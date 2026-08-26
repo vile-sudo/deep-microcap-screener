@@ -32,16 +32,40 @@
   if (!bg || !line || !qtext || !qauth) return;
 
   var bgWrap = bg.parentNode;
+  var mark = bgWrap.querySelector(".hqmark");
   var i = Math.floor(Math.random() * QUOTES.length);
   var timer = null;
   var reduce = false;
   try { reduce = matchMedia("(prefers-reduced-motion: reduce)").matches; } catch (e) {}
+
+  /* The watermark is one unwrapped line, and the quotes differ a lot in
+     length, so a fixed size would clip the long ones. Measure at the base
+     size and scale down until the whole line fits the hero - never up, so
+     short quotes stay the intended size rather than ballooning. */
+  var BASE = 34, MIN = 14, GUTTER = 30;
+
+  function fit() {
+    bg.style.fontSize = BASE + "px";
+    var avail = bgWrap.clientWidth - (mark ? mark.offsetWidth : 0) - GUTTER;
+    var need = bg.scrollWidth;
+    if (avail <= 0 || need <= 0) return;          /* hidden on narrow screens */
+    if (need > avail) {
+      bg.style.fontSize = Math.max(MIN, Math.floor(BASE * avail / need)) + "px";
+    }
+  }
+
+  var rt = null;
+  addEventListener("resize", function () {
+    clearTimeout(rt);
+    rt = setTimeout(fit, 120);
+  });
 
   function paint() {
     var q = QUOTES[i];
     bg.textContent = q[0];
     qtext.textContent = "\u201c" + q[0] + "\u201d";
     qauth.textContent = "  \u2014 " + q[1];
+    fit();
     bgWrap.classList.add("in");
     line.classList.add("in");
   }
