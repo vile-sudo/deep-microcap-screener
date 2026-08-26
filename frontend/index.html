@@ -11,9 +11,17 @@
 <body>
 <div class="wrap">
 
+<div class="hero">
+<div class="herobg" aria-hidden="true">
+  <span class="hqmark">&ldquo;</span><span class="hqtext" id="hqtext"></span>
+</div>
+
 <header>
   <div>
     <h1>Deep Microcap Screener — the full research universe</h1>
+    <p class="quoteline" id="quoteline" title="Click for another">
+      <span class="qt" id="qtext"></span><span class="qa" id="qauth"></span>
+    </p>
   </div>
   <div class="verstamp">
     <div class="vbadge">
@@ -25,6 +33,7 @@
     <button class="btn" id="theme">◐ Dark</button>
   </div>
 </header>
+</div>
 
 <div class="tiles" id="tiles"></div>
 
@@ -170,6 +179,7 @@
 <aside class="drawer" id="drawer" aria-label="Company detail"></aside>
 <div class="modal" id="modal" role="dialog" aria-modal="true"><div class="mbox"><button class="close" id="mclose" aria-label="Close">&times;</button><div id="mbody"></div></div></div>
 
+<script src="/static/quotes.js" defer></script>
 <script src="/static/app.js" defer></script>
 </body>
 </html>

@@ -321,3 +321,47 @@ button.tile:hover .k::after{opacity:.5}
 .disc>summary:focus-visible{outline:2px solid var(--s1);outline-offset:-2px}
 .disc .discbody{padding:0 18px 16px}
 .empty{padding:40px;text-align:center;color:var(--muted)}
+
+/* ---- hero: a rotating investing quote behind the title ----
+   Two layers of the same line: a large, very faint watermark that sits
+   behind the header (masked so it fades out rather than colliding with
+   the build stamp), and a small attributed line under the h1 that is
+   actually meant to be read. quotes.js fills both and rotates them. */
+.hero{position:relative;isolation:isolate;padding:16px 0 28px;margin:-14px 0 -6px}
+.herobg{
+  position:absolute;inset:0;z-index:-1;overflow:hidden;pointer-events:none;
+  display:flex;align-items:flex-end;gap:.04em;padding-bottom:2px;
+  opacity:0;transition:opacity .5s ease;
+  /* fade the line out well before the build stamp on the right */
+  -webkit-mask-image:linear-gradient(90deg,#000 0%,#000 38%,transparent 72%);
+          mask-image:linear-gradient(90deg,#000 0%,#000 38%,transparent 72%);
+}
+.herobg.in{opacity:1}
+.hqmark{
+  font:700 clamp(58px,7.5vw,108px)/.72 Georgia,"Times New Roman",serif;
+  color:var(--s1);opacity:.11;flex:none;margin-top:.24em;
+}
+.hqtext{
+  font:italic 600 clamp(18px,2.6vw,34px)/1.3 Georgia,"Times New Roman",serif;
+  color:var(--ink);opacity:.055;white-space:nowrap;letter-spacing:-.015em;
+}
+:root[data-theme="dark"] .hqtext{opacity:.075}
+:root[data-theme="dark"] .hqmark{opacity:.16}
+
+.quoteline{
+  margin:8px 0 0;max-width:760px;font-size:13px;line-height:1.45;color:var(--ink2);
+  cursor:pointer;user-select:none;
+  opacity:0;transition:opacity .5s ease;
+}
+.quoteline.in{opacity:1}
+.quoteline .qt{font-style:italic}
+.quoteline .qa{color:var(--muted);font-style:normal;white-space:nowrap}
+.quoteline:hover .qa{color:var(--s1)}
+
+@media (max-width:720px){
+  .herobg{display:none}
+  .hero{padding:0;margin:0}
+}
+@media (prefers-reduced-motion:reduce){
+  .herobg,.quoteline{transition:none}
+}
