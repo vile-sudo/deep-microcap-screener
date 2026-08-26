@@ -29,6 +29,14 @@ class Settings(BaseSettings):
     environment: str = "development"          # development | production
     cors_origins: str = "*"                    # comma-separated list, or "*"
 
+    # --- Access control ---------------------------------------------------
+    # Optional HTTP Basic Auth in front of the whole app (API + dashboard).
+    # Leave auth_username empty (the default) to leave the site open, as it
+    # was before. Set both AUTH_USERNAME and AUTH_PASSWORD (as env vars, or
+    # in backend/.env) to require a login before anything loads.
+    auth_username: str = ""
+    auth_password: str = ""
+
     # --- Data seeding ----------------------------------------------------
     seed_file: Path = BASE_DIR / "data" / "companies_raw.json"
     meta_file: Path = BASE_DIR / "data" / "meta_raw.json"

@@ -7,6 +7,7 @@ from fastapi.middleware.gzip import GZipMiddleware
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import FileResponse
 
+from .auth import BasicAuthMiddleware
 from .config import get_settings
 from .database import Base, engine
 from .routers import companies, meta
@@ -38,6 +39,12 @@ app.add_middleware(
     allow_methods=["GET"],
     allow_headers=["*"],
 )
+if settings.auth_username:
+    app.add_middleware(
+        BasicAuthMiddleware,
+        username=settings.auth_username,
+        password=settings.auth_password,
+    )
 
 app.include_router(companies.router)
 app.include_router(meta.router)
