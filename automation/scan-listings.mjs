@@ -41,18 +41,22 @@
  *
  * What this script does NOT do
  *   It does not decide whether a company has a moat or replaces an import --
- *   neither fact exists in any exchange feed. It does not read a single
- *   filing (profile-company.mjs does, for names that filed a prospectus --
- *   which an already-listed sweep name usually didn't). And nothing it
- *   writes reaches the live board on its own: candidates_raw.json is a
- *   queue for you (or the Claude Code step in weekly-prompt.md) to rule on,
- *   never something this script promotes by itself.
+ *   neither fact exists in any exchange feed, and a sector guessed from a
+ *   name is not evidence of one. So nothing this script queues reaches the
+ *   live dashboard by itself: every entry is written with `moat_signal:
+ *   null` (not yet evidenced), and lib/publish.mjs's gate keeps it out of
+ *   backend/data/candidates_raw.json until profile-company.mjs finds a
+ *   monopoly/import-substitution claim in an actual prospectus, or the
+ *   weekly-prompt.md judgement pass finds real evidence via Screener/
+ *   Trendlyne and sets moat_signal itself. Sector-plausible is this
+ *   script's whole vocabulary -- it only ever means "worth a closer look."
  */
 
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { PLAUSIBLE, hint } from './lib/sectors.mjs';
+import { publishCandidates } from './lib/publish.mjs';
 
 const HERE = path.dirname(fileURLToPath(import.meta.url));
 const DRY = process.argv.includes('--dry');
@@ -63,7 +67,6 @@ const SNAP = path.join(DIR, 'listings-snapshot.json');
 const QUEUE = path.join(DIR, 'candidates-queue.json');          // full history, all verdicts
 const REVIEWED = path.join(DIR, 'reviewed-symbols.json');       // one-way "already surfaced" ledger
 const EXISTING_BOARD = path.join(BACKEND_DATA, 'companies_raw.json');
-const CANDIDATES_OUT = path.join(BACKEND_DATA, 'candidates_raw.json'); // published view, seed.py reads this
 
 /* Rough SEBI-style bands in crore. These are a starting point, not a
    definition handed down from anywhere -- adjust freely. The point of
@@ -189,6 +192,12 @@ const newlyQueued = dedupedFresh.map(r => {
     sym: r.sym, name: r.name, board: r.board, isin: r.isin || null, listed: r.listed || null,
     hint: h, why: known === true ? 'sector plausible' : known === null ? 'sector unknown, SME platform' : 'sector ruled out',
     plausible: keep, verdict: null, seen_on: today(), source: 'new-listing',
+    /* Not evidence of a moat -- just a sector guess. Stays null (not yet
+       evidenced) until profile-company.mjs finds a monopoly/import-
+       substitution claim in the prospectus, or weekly-prompt.md's research
+       finds one. See lib/publish.mjs: only moat_signal === true ever
+       reaches the live dashboard. */
+    moat_signal: null, moat_evidence: null,
   };
 });
 
@@ -215,6 +224,10 @@ const swept = bseUniverse.filter(r => {
     sym: r.sym, name: r.name, board: r.board, isin: r.isin || null, listed: null,
     hint: hint(r.name), why: r.mktcap_cr <= SMALL_CAP_MAX_CR ? 'small-cap sweep' : 'mid-cap sweep',
     mktcap_cr: r.mktcap_cr, plausible: true, verdict: null, seen_on: today(), source: 'sweep',
+    /* A sweep candidate has no prospectus, so this can only ever be set by
+       weekly-prompt.md's research -- never by this script. Stays private
+       (see lib/publish.mjs) until that research finds real evidence. */
+    moat_signal: null, moat_evidence: null,
   }));
 
 say(`\n  small/mid-cap sweep of already-listed BSE names: ${swept.length} added this run` +
@@ -250,11 +263,13 @@ fs.writeFileSync(SNAP, JSON.stringify({
   symbols: [...seen.keys()].sort(),
 }, null, 0));
 
-/* candidates_raw.json is the published view: only what's still open, in the
-   shape the dashboard's queue UI already expects (see frontend/static/app.js,
-   the #ipoq handler). profile-company.mjs adds a `profile` field to a row
-   in-place in the queue; that carries straight through here. */
+/* candidates_raw.json is the published view -- only entries with actual
+   moat evidence (see lib/publish.mjs). A plain scan+sweep run essentially
+   never adds to it directly: nothing here has been researched yet. It's
+   republished anyway so a verdict/moat_signal written by an earlier
+   weekly-prompt.md run (still sitting in the queue) doesn't regress. */
+const publishedPath = publishCandidates(queue, BACKEND_DATA);
 const open = queue.filter(q => q.verdict === null);
-fs.writeFileSync(CANDIDATES_OUT, JSON.stringify(open, null, 1));
+const published = queue.filter(q => q.verdict === null && q.moat_signal === true);
 
-say(`\n  queue: ${held.length} held + ${toAdd.length} added → ${open.length} open → ${path.relative(process.cwd(), CANDIDATES_OUT)}`);
+say(`\n  queue: ${held.length} held + ${toAdd.length} added → ${open.length} open, ${published.length} with moat evidence → ${path.relative(process.cwd(), publishedPath)}`);

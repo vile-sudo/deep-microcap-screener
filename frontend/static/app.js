@@ -899,9 +899,12 @@ function csvCell(v){
       openModal(`<h3>Candidates queue</h3>
         <p class="mp">Nothing waiting. The weekly discovery pipeline compares exchange symbol lists
         against the last snapshot for new listings, and sweeps the SME/small-cap/mid-cap
-        universe for names not yet on this board, queuing anything whose sector could plausibly
-        be an import-substitution story. An empty queue means nothing new turned up —
-        not that the pipeline failed.</p>`);
+        universe for names not yet on this board — but a name only reaches this queue once
+        there's sourced evidence of a real moat: import substitution, a stated India
+        market-share or leading-manufacturer claim, being the only (or one of very few)
+        Indian makers of something, or a genuinely niche, non-commodity segment. Sector
+        plausibility alone never clears that bar. An empty queue means nothing cleared it
+        this week — not that the pipeline failed.</p>`);
       return;
     }
     /* count(o) -> "moat 2, import_substitution 1" from a scan() bucket like
@@ -925,8 +928,11 @@ function csvCell(v){
       </tr>`;
     }).join('');
     openModal(`<h3>Candidates queue — ${open.length} awaiting a verdict</h3>
-      <p class="mp">Symbols that appeared on the NSE mainboard, Emerge/SME or BSE lists since the
-      last snapshot, in a sector where import substitution is at least possible. The sector is a
+      <p class="mp">New listings and already-listed SME/small-cap/mid-cap names with <b>sourced
+      moat evidence</b> — an import-substitution story, a stated India market-share or
+      leading-manufacturer claim, being the only (or one of very few) Indian makers of
+      something, or a genuinely niche segment — found either in the company's own prospectus
+      or in that week's Screener/Trendlyne research pass. The sector shown is still a
       <b>guess from the company's name</b>, not a finding. Where a prospectus has been read, the
       claims/risk columns are <b>company-stated</b> — extracted from the filing's own words, not
       verified against any outside source. Nothing here is scored or on the board.</p>

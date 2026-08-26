@@ -45,12 +45,12 @@ import path from 'node:path';
 import os from 'node:os';
 import { fileURLToPath } from 'node:url';
 import { execFileSync } from 'node:child_process';
+import { publishCandidates } from './lib/publish.mjs';
 
 const HERE = path.dirname(fileURLToPath(import.meta.url));
 const DIR = path.join(HERE, 'data');
 const BACKEND_DATA = path.resolve(HERE, '..', 'backend', 'data');
 const QUEUE = path.join(DIR, 'candidates-queue.json');
-const CANDIDATES_OUT = path.join(BACKEND_DATA, 'candidates_raw.json');
 const OUT = path.join(DIR, 'profiles');
 const KEEP = process.argv.includes('--keep');
 const ARGS = process.argv.slice(2).filter(a => !a.startsWith('--')).map(s => s.toUpperCase());
@@ -71,6 +71,15 @@ const CLAIMS = [
   ['import_substitution', /\b(import substitut\w*|indigenis\w*|indigeniz\w*|Make in India|Atmanirbhar|PLI scheme|production linked incentive)\b/gi],
   ['ip', /\b(patent(?:s|ed)?|trademark(?:s|ed)?|proprietary (?:technolog|process|formulation)\w*)\b/gi],
 ];
+
+/* Of the four CLAIMS buckets, these two are what actually count as moat
+   evidence for lib/publish.mjs's gate -- a claim to be the sole/largest/
+   first-in-India manufacturer of something, or an explicit import-
+   substitution/Make-in-India/PLI story. `accreditation` and `ip` are real
+   signals worth showing in the profile, but a certification alone isn't a
+   claim to be India's leading manufacturer or a niche near-monopoly, so
+   they don't by themselves clear the bar for the live dashboard. */
+const MOAT_CLAIM_KEYS = new Set(['monopoly_claim', 'import_substitution']);
 
 /* Disclosed because it must be, which is what makes it worth more than the
    strengths section. */
@@ -235,8 +244,7 @@ async function textOf(url, tag) {
    companies writes these files ten times fewer than it could. */
 function publish(queue) {
   fs.writeFileSync(QUEUE, JSON.stringify(queue, null, 1));
-  fs.mkdirSync(BACKEND_DATA, { recursive: true });
-  fs.writeFileSync(CANDIDATES_OUT, JSON.stringify(queue.filter(q => q.verdict === null), null, 1));
+  publishCandidates(queue, BACKEND_DATA);
 }
 
 /* ------------------------------------------------------------------ main */
@@ -302,7 +310,26 @@ for (const t of targets) {
      queue UI (frontend/static/app.js, #ipoq) can render it without a
      second file to look up. */
   const entry = queue.find(q => q.sym === t.sym);
-  if (entry) entry.profile = profile;
+  if (entry) {
+    entry.profile = profile;
+
+    /* This is the only place a new-listing candidate can clear
+       lib/publish.mjs's gate without a person or the weekly-prompt.md
+       research pass -- and only because the evidence is the company's own
+       first-person words in a filed, public document, not this script's
+       opinion. A hit on accreditation/ip alone does not set this; see the
+       comment on MOAT_CLAIM_KEYS above. */
+    const moatHits = Object.entries(profile.claims).filter(([k]) => MOAT_CLAIM_KEYS.has(k));
+    if (moatHits.length) {
+      entry.moat_signal = true;
+      entry.moat_evidence = moatHits.flatMap(([k, v]) =>
+        v.evidence.map(e => `${k.replace(/_/g, ' ')}: "${e.sentence}" (prospectus, company-stated)`));
+    }
+    /* No hit doesn't mean no moat -- a prospectus rarely states a market
+       share figure the way Screener/Trendlyne might. Leave moat_signal as
+       scan-listings.mjs set it (null) so weekly-prompt.md still gets a
+       chance to find evidence a different way. */
+  }
 
   const line = o => Object.entries(o).map(([k, v]) => `${k} ${v.count}`).join(', ') || 'none';
   say(`    ${(got.bytes / 1048576).toFixed(1)} MB → ${got.text.length.toLocaleString('en-US')} chars`);

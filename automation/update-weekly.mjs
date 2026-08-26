@@ -28,6 +28,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { execFileSync } from 'node:child_process';
+import { publishCandidates } from './lib/publish.mjs';
 
 const HERE = path.dirname(fileURLToPath(import.meta.url));
 const SKIP_PROFILE = process.argv.includes('--no-profile');
@@ -94,11 +95,18 @@ if (!SKIP_PROFILE && !STAMP_ONLY) {
 step('stamp the board', () => {
   const queue = fs.existsSync(QUEUE) ? JSON.parse(fs.readFileSync(QUEUE, 'utf8')) : [];
   const open = queue.filter(q => q.verdict === null);
+  const published = queue.filter(q => q.verdict === null && q.moat_signal === true);
   const profiled = queue.filter(q => q.profile).length;
-  const info = { scanned_on: day(), queue_open: open.length, profiles: profiled };
+  const info = { scanned_on: day(), queue_open: open.length, published: published.length, profiles: profiled };
   fs.mkdirSync(BACKEND_DATA, { recursive: true });
   fs.writeFileSync(BUILD_STAMP_OUT, JSON.stringify(info, null, 1));
-  process.stdout.write(`   scanned ${info.scanned_on} · ${info.queue_open} open in the queue · ${info.profiles} profiled\n`);
+  /* --stamp-only runs after run-weekly.cmd's Claude Code judgement pass has
+     written new moat_signal/verdict values into the queue -- this is what
+     makes those verdicts actually reach the dashboard. Without this call the
+     board would keep showing whatever candidates/publish.mjs published a
+     week ago, no matter what the judgement pass decided. */
+  publishCandidates(queue, BACKEND_DATA);
+  process.stdout.write(`   scanned ${info.scanned_on} · ${info.queue_open} open in the queue · ${info.published} with moat evidence · ${info.profiles} profiled\n`);
 });
 
 fs.mkdirSync(DIR, { recursive: true });

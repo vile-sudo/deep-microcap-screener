@@ -9,6 +9,33 @@ here ever edits `backend/data/companies_raw.json` or promotes a candidate to
 the live board on its own — that stays a decision you make by hand, the same
 way it always has.
 
+## The moat gate
+
+A candidate reaching this pipeline's internal queue (sector-plausible by
+name alone) is not the same as a candidate reaching the live dashboard.
+`lib/publish.mjs` is the one gate between them: it only writes an entry into
+`backend/data/candidates_raw.json` (what the dashboard's Candidates queue
+button reads) once that entry has `moat_signal: true` — real, sourced
+evidence against the five criteria you asked for: import substitution,
+being India's leading manufacturer of something, holding a stated India
+market share, being the only (or one of very few) Indian companies making
+something, or working a genuinely niche, non-commodity segment.
+
+Two things can set `moat_signal: true`:
+  - `profile-company.mjs`, when a new listing's own IPO prospectus states a
+    monopoly/leading-manufacturer or import-substitution claim in its own
+    first-person words.
+  - the weekly `weekly-prompt.md` judgement pass, researching a candidate
+    (especially a `sweep` one, which has no prospectus) via Screener/
+    Trendlyne and finding a sourced hit on one of the five criteria.
+
+`scan-listings.mjs` and `profile-company.mjs` both call `publishCandidates()`
+after touching the queue; `update-weekly.mjs --stamp-only` calls it again
+after the judgement pass runs, so a verdict written by that pass actually
+reaches the dashboard. Sector plausibility alone (the `hint`/`plausible`
+fields) still decides what gets *queued* for a look — it just never decides
+what gets *published*.
+
 ## One-time setup
 
 1. **Node.js** on PATH (18+; the scripts use built-in `fetch`).
@@ -74,6 +101,7 @@ click Manual Deploy yourself.
 | File | What it is |
 |---|---|
 | `lib/sectors.mjs` | Guesses a sector from a company name alone — the only signal an exchange feed carries. |
+| `lib/publish.mjs` | The moat gate — writes `backend/data/candidates_raw.json` from the queue, keeping only entries with `moat_signal: true`. |
 | `scan-listings.mjs` | New-listing diff (NSE/BSE/SME) + small/mid-cap sweep of already-listed BSE names not on the board. |
 | `profile-company.mjs` | Downloads and reads a new listing's IPO prospectus; extracts company-stated claims/risks/objects. |
 | `update-weekly.mjs` | Orchestrates the two above, then stamps `backend/data/build_stamp.json`. |
