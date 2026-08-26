@@ -128,3 +128,13 @@ python scripts/refresh_data.py && python -m app.seed
 The qualitative research fields (business description, moat notes,
 scores) are not touched by the refresh script — those are a research
 step, documented in the README.
+
+## Finding new candidates
+
+`automation/` is a separate pipeline that runs on your own machine (Windows
+Task Scheduler), not on Render — it scans NSE/BSE for new listings, sweeps
+the small/mid-cap universe for names not on the board, and profiles what
+prospectuses it can. See `automation/README.md` for setup. It writes
+`backend/data/candidates_raw.json` and `build_stamp.json`, which is what
+powers the dashboard's "Candidates queue" button — nothing it finds reaches
+the board without a person deciding so.

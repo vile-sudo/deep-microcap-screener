@@ -896,28 +896,65 @@ function csvCell(v){
   if(!open.length) btn.classList.add('quiet');
   btn.onclick=()=>{
     if(!open.length){
-      openModal(`<h3>New listings queue</h3>
-        <p class="mp">Nothing waiting. The refresh pipeline compares the exchange symbol lists against the
-        last snapshot and queues anything new whose sector could plausibly be an
-        import-substitution story. An empty queue means no new listing has appeared since
-        the last refresh — not that the refresh failed.</p>`);
+      openModal(`<h3>Candidates queue</h3>
+        <p class="mp">Nothing waiting. The weekly discovery pipeline compares exchange symbol lists
+        against the last snapshot for new listings, and sweeps the SME/small-cap/mid-cap
+        universe for names not yet on this board, queuing anything whose sector could plausibly
+        be an import-substitution story. An empty queue means nothing new turned up —
+        not that the pipeline failed.</p>`);
       return;
     }
-    const rows=open.map(c=>`<tr>
-        <td><b>${esc(c.name)}</b><span class="tc" style="margin-left:8px">${esc(c.sym)}${c.board==='SME'?' · SME':''}</span></td>
-        <td>${esc(c.listed||'—')}</td>
+    /* count(o) -> "moat 2, import_substitution 1" from a scan() bucket like
+       {moat:{count:2,...}, import_substitution:{count:1,...}}; profile-company.mjs
+       writes exactly this shape into c.profile.claims / .risk_factors. */
+    const line=o=>o?Object.entries(o).map(([k,v])=>`${k.replace(/_/g,' ')} ${v.count}`).join(', '):'';
+    const rows=open.map((c,i)=>{
+      const p=c.profile;
+      const boardTag=c.board&&c.board!=='NSE'?` · ${esc(c.board)}`:'';
+      const claimsLine=p?line(p.claims):'';
+      const riskLine=p?line(p.risk_factors):'';
+      const profileBit=p
+        ? `<button class="btn" data-cand="${i}" style="padding:2px 8px;font-size:.85em">profile ↗</button>`
+        : '<span class="nd">not yet profiled</span>';
+      return `<tr>
+        <td><b>${esc(c.name)}</b><span class="tc" style="margin-left:8px">${esc(c.sym)}${boardTag}</span></td>
+        <td>${esc(c.listed||c.seen_on||'—')}</td>
         <td>${c.hint?esc(c.hint):'<span class="nd">—</span>'}</td>
-        <td><a class="nm" href="https://www.screener.in/company/${encodeURIComponent(c.sym)}/" target="_blank" rel="noopener">open <span class="ext">↗</span></a></td>
-      </tr>`).join('');
-    openModal(`<h3>New listings queue — ${open.length} awaiting a verdict</h3>
-      <p class="mp">Symbols that appeared on the NSE mainboard or Emerge lists since the last
-      snapshot, in a sector where import substitution is at least possible. The sector is a
-      <b>guess from the company's name</b>, not a finding — whether any of these has a moat or
-      replaces an import is in the prospectus, and no exchange feed carries it.
-      Nothing here is scored or on the board.</p>
+        <td>${p?`<span class="tc">${esc(claimsLine||'no claims found')}${riskLine?' · risk: '+esc(riskLine):''}</span>`:'<span class="nd">—</span>'}</td>
+        <td>${profileBit} <a class="nm" href="https://www.screener.in/company/${encodeURIComponent(c.sym)}/" target="_blank" rel="noopener">screener ↗</a></td>
+      </tr>`;
+    }).join('');
+    openModal(`<h3>Candidates queue — ${open.length} awaiting a verdict</h3>
+      <p class="mp">Symbols that appeared on the NSE mainboard, Emerge/SME or BSE lists since the
+      last snapshot, in a sector where import substitution is at least possible. The sector is a
+      <b>guess from the company's name</b>, not a finding. Where a prospectus has been read, the
+      claims/risk columns are <b>company-stated</b> — extracted from the filing's own words, not
+      verified against any outside source. Nothing here is scored or on the board.</p>
       <div style="overflow:auto;max-height:60vh"><table class="cmp">
-        <thead><tr><th>Company</th><th>Listed</th><th>Sector guess</th><th>Research</th></tr></thead>
+        <thead><tr><th>Company</th><th>Listed</th><th>Sector guess</th><th>Prospectus (company-stated)</th><th>Links</th></tr></thead>
         <tbody>${rows}</tbody></table></div>`);
+    mbody.querySelectorAll('[data-cand]').forEach(b=>{
+      b.onclick=()=>{
+        const c=open[+b.dataset.cand], p=c.profile;
+        const bucket=(title,o,note)=>{
+          const entries=Object.entries(o||{});
+          if(!entries.length) return '';
+          const items=entries.map(([k,v])=>`<li><b>${esc(k.replace(/_/g,' '))}</b> (${v.count})<ul>${
+            (v.evidence||[]).map(e=>`<li class="tc">"${esc(e.sentence)}"</li>`).join('')
+          }</ul></li>`).join('');
+          return `<h4 style="margin:14px 0 4px">${title}</h4><p class="mp" style="color:var(--muted)">${note}</p><ul>${items}</ul>`;
+        };
+        openModal(`<h3>${esc(c.name)} <span class="tc">${esc(c.sym)}</span></h3>
+          <p class="mp">Source: <a class="nm" href="${esc(p.source.url)}" target="_blank" rel="noopener">${esc(p.source.document)}${p.source.filed?' ('+esc(p.source.filed)+')':''} ↗</a>
+          · graded <b>${esc(p.grade)}</b> — the company's own words, not verified.</p>
+          ${bucket('Claims', p.claims, 'What the company says about itself — moat, accreditation, import substitution, IP.')}
+          ${bucket('Risk factors', p.risk_factors, 'Disclosed because it legally must be — usually worth more than the strengths section.')}
+          ${bucket('Objects of the issue', p.objects_of_the_issue, 'What the raised capital is actually for.')}
+          <p class="mp" style="margin-top:14px"><button class="btn" id="backtoqueue">← back to queue</button></p>`);
+        const back=document.getElementById('backtoqueue');
+        if(back) back.onclick=()=>btn.onclick();
+      };
+    });
   };
 })();
 

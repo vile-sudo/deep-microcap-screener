@@ -41,6 +41,14 @@ class Settings(BaseSettings):
     seed_file: Path = BASE_DIR / "data" / "companies_raw.json"
     meta_file: Path = BASE_DIR / "data" / "meta_raw.json"
 
+    # Written by the weekly discovery pipeline (see automation/), which runs
+    # on your own machine, not on the server. If present, these override
+    # whatever CANDIDATES/BUILD_STAMP baked into meta_raw.json at seed time --
+    # that's what lets a `git push` of just these two small files update the
+    # live "New listings queue" without touching the 375-company dataset.
+    candidates_file: Path = BASE_DIR / "data" / "candidates_raw.json"
+    build_stamp_file: Path = BASE_DIR / "data" / "build_stamp.json"
+
     @property
     def cors_origin_list(self) -> list[str]:
         if self.cors_origins.strip() == "*":

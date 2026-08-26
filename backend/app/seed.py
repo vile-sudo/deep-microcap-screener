@@ -56,6 +56,16 @@ def seed() -> None:
     companies = _load_json(settings.seed_file)
     meta = _load_json(settings.meta_file)
 
+    # The weekly discovery pipeline (automation/, runs on your machine) writes
+    # these two small files independently of the 375-company dataset. If
+    # they exist, they win over whatever meta_raw.json shipped with -- that's
+    # what lets a candidates-only push update the live queue without a full
+    # re-export of companies_raw.json.
+    if settings.candidates_file.exists():
+        meta["CANDIDATES"] = _load_json(settings.candidates_file)
+    if settings.build_stamp_file.exists():
+        meta["BUILD_STAMP"] = _load_json(settings.build_stamp_file)
+
     # Patch any screen codes present in the data but missing from the legend,
     # so the frontend never hits an undefined lookup.
     screens = dict(meta.get("SCREENS") or {})

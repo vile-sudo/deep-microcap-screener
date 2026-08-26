@@ -6,3 +6,12 @@ backend/data/screener.db
 backend/.env
 .DS_Store
 *.egg-info/
+
+# Weekly discovery pipeline (automation/) -- local working state and secrets,
+# never something to commit. candidates-queue.json, reviewed-symbols.json and
+# profiles/ ARE committed (git add'd explicitly by publish-candidates.cmd) --
+# they're the pipeline's record, not scratch.
+automation/deploy-hook.txt
+automation/data/listings-snapshot.json
+automation/data/last-run.json
+automation/data/weekly.log
