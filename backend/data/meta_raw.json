@@ -1,0 +1,164 @@
+{
+  "BUILD": {
+    "version": "v5",
+    "built": "20 August 2026",
+    "history": [
+      {
+        "v": "v7",
+        "d": "20 August 2026",
+        "items": [
+          "Depth round: 62 new companies, taking the board from 248 to 310. Half went into themes that were too thin to be useful — medical devices, testing and certification, water and environment, healthcare services, railways, marine, logistics, IT hardware.",
+          "The other half opened new ground: renewables and the EV supply chain, cables and wires, refractories and abrasives, industrial gases and lubricants, paper, ethanol and distillery, safety and fire, elevators and HVAC, tools and fasteners, appliances and lighting, mining and minerals, glass and ceramics.",
+          "Themes consolidated from 34 to 18 so the filter is usable. The fine-grained sector is still on every company card.",
+          "Assembler check applied hard in renewables and appliances: three solar names still import Chinese cells and are labelled as assemblers, not manufacturers. Artemis Electricals and Osel Devices are marked weak on import substitution because the India content is housing and wiring around imported LED packages.",
+          "Some sectors are genuinely empty at these gates and the sweeps say so rather than forcing names in. Refractories yielded nothing that cleared ROCE; paper yielded exactly one mill; marine is close to exhausted at 4 names.",
+          "Guidance above 15% now stands at 28 names, and 52 carry CWIP at or above 25% of net block."
+        ]
+      },
+      {
+        "v": "v6",
+        "d": "20 August 2026",
+        "items": [
+          "Sector expansion: 42 new companies across nine themes the board had barely touched — packaging and printing, plastics, building materials, technical textiles, agri and food processing, logistics, water and environment, healthcare services, and IT hardware. Board goes from 206 to 248.",
+          "Every one screened against the same v3 gates (₹120–4,000 cr, under 40,000 holders, promoter ≥40%, ROCE ≥12%, ROE >5%) and scored on the same six pillars, so they are directly comparable with the existing v3 and v5 rows.",
+          "Moat scores in these sectors are honestly low where they should be. Corrugated boxes, commodity spinning, maize crushing and cost-plus distribution are scored as what they are, not dressed up.",
+          "Notable finds: Worth Peripherals is building a second company’s worth of assets (CWIP 99% of net block) in an unrelated wellness venture; B&B Triplewall has turned from a −₹7cr quarter to +₹14cr off a now-capitalised automated line; Mayur Uniquoters lands top-40 on auto-OEM PPAP qualification.",
+          "Guidance above 15% found in 21 names now, up from 13."
+        ]
+      },
+      {
+        "v": "v5",
+        "d": "20 August 2026",
+        "items": [
+          "Merged every screen onto one board — 206 companies, up from 79. The 18 v3 screening-pass names, the whole 58-name v4 moat & monopoly cohort and the 11 triage names had been sitting in the project record and a separate artifact, never on this dashboard.",
+          "Fresh sector sweep added 40 new names across defence, railways, marine, electronics, chemicals, capital goods and energy hardware — all screened against the v3 gates.",
+          "Added the three signal lenses: unearned capex (P/E above 40 with CWIP at least 15% of net block), management revenue guidance above 15%, and PAT turning positive after a loss.",
+          "Added 8 names on request: Vinyas, Shree Refrigerations, Centum Electronics, High Energy Batteries, Sigma Advanced Systems, Sunflag Iron & Steel, Marine Electricals and Digilogic Systems.",
+          "Made the two scoring rubrics explicit. v3 and v4 scores are no longer presented as if they were the same number.",
+          "Added full-text search across every field of the research, and this version history.",
+          "Still outstanding: the CWIP / guidance / quarterly-PAT pull for the 87 v4 and v3-screen names — a rate limit cut that pass short. Those rows show ⋯ rather than a misleading dash."
+        ]
+      },
+      {
+        "v": "v4",
+        "d": "19 August 2026",
+        "items": [
+          "Moat & monopoly cohort: 69 companies researched, 58 scored on a separate 100-point rubric weighting pricing power as heavily as the exclusivity claim.",
+          "Every exclusivity claim graded against a primary source. 7 verified, 27 company-stated, 11 claiming nothing, 13 debunked."
+        ]
+      },
+      {
+        "v": "v3",
+        "d": "17 August 2026",
+        "items": [
+          "Deep microcap screen: ~2,100 companies enumerated, ~480 individually screened, 90 scored, 71 given full deep-dive workups.",
+          "Two tiers introduced — Tier 1 with institutions already on the register, Tier 2 with no institutional footprint yet."
+        ]
+      }
+    ]
+  },
+  "SCREENS": {
+    "v8-moat": {
+      "lab": "v8 moat",
+      "cls": "b-v8",
+      "full": "v8 · the moat board — small, mid and large caps scored on rubric v5"
+    },
+    "v3-deep": {
+      "lab": "v3 deep",
+      "cls": "b-v3d",
+      "full": "v3 · full deep-dive — the undiscovered screen"
+    },
+    "v3-screen": {
+      "lab": "v3 screen",
+      "cls": "b-v3s",
+      "full": "v3 · screening pass only — scored, never deep-dived"
+    },
+    "v4-moat": {
+      "lab": "v4 moat",
+      "cls": "b-v4",
+      "full": "v4 · moat & monopoly cohort — a different rubric"
+    },
+    "v4-triage": {
+      "lab": "triage",
+      "cls": "b-tri",
+      "full": "v4 · checked but never scored"
+    },
+    "v5-new": {
+      "lab": "v5 sweep",
+      "cls": "b-v5",
+      "full": "v5 · fresh sweep of the core themes, 20 Aug 2026"
+    },
+    "v6-new": {
+      "lab": "v6 sectors",
+      "cls": "b-v6",
+      "full": "v6 · sector expansion into packaging, building materials, textiles, agri, logistics, water, healthcare and IT hardware, 20 Aug 2026"
+    },
+    "v7-new": {
+      "lab": "v7 depth",
+      "cls": "b-v7",
+      "full": "v7 · deepened the thin themes and opened renewables, cables, refractories, gases, paper, ethanol, safety, HVAC, tools, appliances and minerals, 20 Aug 2026"
+    },
+    "user": {
+      "lab": "requested",
+      "cls": "b-user",
+      "full": "added on request"
+    }
+  },
+  "SHORT": {
+    "Electricals & Energy Hardware": "Electricals & Energy",
+    "Machinery & Precision Manufacturing": "Precision Machinery",
+    "Medical Devices & Instruments": "Medical Devices",
+    "Electronics & Semiconductors": "Electronics & Semis",
+    "Specialty Chemicals": "Specialty Chemicals",
+    "Advanced Materials": "Advanced Materials",
+    "Defence & Aerospace": "Defence & Aerospace",
+    "Pharma API & Fine Chemicals": "Pharma API & Fine Chem",
+    "Testing & Certification": "Testing & Certification",
+    "Marine & Shipbuilding": "Marine & Shipbuilding",
+    "Railways & Mobility": "Railways & Mobility",
+    "Auto & Mobility": "Auto & Mobility",
+    "Consumer & Food": "Consumer & Food",
+    "Packaging, Plastics & Printing": "Packaging & Plastics",
+    "Building Materials": "Building Materials",
+    "Textiles & Technical Textiles": "Textiles & Tech Textiles",
+    "Agri & Food Processing": "Agri & Food",
+    "Logistics & Supply Chain": "Logistics",
+    "Water & Environment": "Water & Environment",
+    "Healthcare Services": "Healthcare Services",
+    "IT Hardware & Data": "IT Hardware & Data",
+    "Advanced Materials & Minerals": "Materials & Minerals",
+    "Building Products & Systems": "Building Products",
+    "Transport & Logistics": "Transport & Logistics",
+    "Healthcare & Testing Services": "Healthcare & Testing",
+    "Consumer & Appliances": "Consumer & Appliances",
+    "Process Industries": "Process Industries"
+  },
+  "BUILD_STAMP": {
+    "scanned_on": "2026-08-23",
+    "queue_open": 0,
+    "profiles": 2
+  },
+  "CANDIDATES": [
+    {
+      "sym": "PRAMODINI",
+      "name": "Pramodini Medicare Limited",
+      "listed": "19-Aug-26",
+      "board": "SME",
+      "hint": "pharma & healthcare",
+      "plausible": true,
+      "verdict": null,
+      "seen_on": "2026-08-21"
+    },
+    {
+      "sym": "BLEL",
+      "name": "Behari Lal Engineering Limited",
+      "listed": "19-AUG-2026",
+      "board": "NSE",
+      "hint": "precision engineering",
+      "plausible": true,
+      "verdict": null,
+      "seen_on": "2026-08-21"
+    }
+  ],
+  "BUILD_NEW": "2026-08-20"
+}

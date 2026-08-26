@@ -1,0 +1,323 @@
+:root{
+  color-scheme: light;
+  --plane:#f9f9f7; --surface:#fcfcfb;
+  --ink:#0b0b0b; --ink2:#52514e; --muted:#898781;
+  --grid:#e1e0d9; --axis:#c3c2b7; --ring:rgba(11,11,11,.10);
+  --s1:#2a78d6; --s2:#eb6834; --s3:#1baf7a; --s4:#eda100; --s5:#e87ba4; --s6:#008300;
+  --good:#0ca30c; --warn:#fab219; --serious:#ec835a; --crit:#d03b3b;
+  --good-ink:#006300;
+}
+:root[data-theme="dark"]{
+  color-scheme: dark;
+  --plane:#0d0d0d; --surface:#1a1a19;
+  --ink:#ffffff; --ink2:#c3c2b7; --muted:#898781;
+  --grid:#2c2c2a; --axis:#383835; --ring:rgba(255,255,255,.10);
+  --s1:#3987e5; --s2:#d95926; --s3:#199e70; --s4:#c98500; --s5:#d55181; --s6:#008300;
+  --good-ink:#0ca30c;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{
+  background:var(--plane); color:var(--ink);
+  font:14px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif;
+  -webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:1620px;margin:0 auto;padding:28px 22px 80px}
+h1{font-size:26px;line-height:1.2;margin:0 0 6px;letter-spacing:-.02em}
+h2{font-size:16px;margin:0 0 14px;letter-spacing:-.01em}
+.sub{color:var(--ink2);font-size:13.5px;margin:0 0 4px;max-width:920px}
+.meta{color:var(--muted);font-size:12px;margin-top:8px}
+header{display:flex;justify-content:space-between;align-items:flex-start;gap:20px;flex-wrap:wrap}
+.card{background:var(--surface);border:1px solid var(--ring);border-radius:12px;padding:18px}
+.btn{
+  background:var(--surface);color:var(--ink);border:1px solid var(--ring);
+  border-radius:8px;padding:7px 13px;font:inherit;font-size:12.5px;cursor:pointer;
+}
+.btn:hover{border-color:var(--axis)}
+.btn.on{background:var(--s1);border-color:var(--s1);color:#fff}
+
+/* ---- build / version stamp (top right) ---- */
+header > div:first-child{flex:1 1 560px;min-width:0}
+.verstamp{display:flex;flex-direction:column;align-items:flex-end;gap:8px;flex:0 0 auto;order:2}
+.vbadge{
+  background:var(--surface);border:1px solid var(--ring);border-radius:10px;
+  padding:9px 13px 10px;text-align:right;line-height:1.3;min-width:158px;
+}
+.vbadge .vlabel{
+  font-size:9.5px;letter-spacing:.09em;text-transform:uppercase;color:var(--muted);
+}
+.vbadge .vver{font-size:16px;font-weight:600;letter-spacing:-.01em;color:var(--ink);margin:1px 0 2px}
+.vbadge .vdate{font-size:12px;color:var(--ink2)}
+.vbadge .vdata{font-size:11px;color:var(--muted);margin-top:4px;padding-top:4px;border-top:1px solid var(--ring)}
+@media (max-width:720px){
+  .verstamp{align-items:flex-start}
+  .vbadge{text-align:left}
+}
+
+/* ---- stat tiles ---- */
+.tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin:22px 0}
+.tile{background:var(--surface);border:1px solid var(--ring);border-radius:12px;padding:14px 16px}
+.tile .v{font-size:27px;font-weight:600;letter-spacing:-.02em;line-height:1.15}
+.tile .k{color:var(--ink2);font-size:11.5px;margin-top:3px}
+.tile .n{color:var(--muted);font-size:11px;margin-top:5px}
+/* share of the board — the denominator, drawn rather than written */
+.tile .tbar{height:3px;border-radius:2px;background:var(--grid);margin-top:8px;cursor:help}
+.tile .tbar i{display:block;height:100%;border-radius:2px}
+
+/* ---- filters ---- */
+.filters{margin:22px 0}
+.frow{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:14px}
+.chip{
+  border:1px solid var(--ring);background:var(--surface);color:var(--ink2);
+  border-radius:999px;padding:5px 12px;font-size:12px;cursor:pointer;user-select:none;
+  display:inline-flex;align-items:center;gap:6px;
+}
+.chip:hover{border-color:var(--axis)}
+.chip.on{color:var(--ink);border-color:currentColor;font-weight:500}
+.mk{width:13px;flex:none;color:var(--s1);font-size:11px;line-height:1}
+.chip.on .mk::before{content:"\2713";font-weight:700}
+.sliders{display:grid;grid-template-columns:repeat(auto-fit,minmax(215px,1fr));gap:16px 22px}
+.sl label{display:flex;justify-content:space-between;font-size:11.5px;color:var(--ink2);margin-bottom:5px}
+.sl label b{color:var(--ink);font-weight:600;font-variant-numeric:tabular-nums}
+input[type=range]{width:100%;accent-color:var(--s1);height:18px}
+.toggles{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px;padding-top:14px;border-top:1px solid var(--grid)}
+.tglab{font-size:10.5px;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);
+  width:100%;margin:6px 0 -4px;font-weight:600}
+
+svg{display:block;width:100%;overflow:visible}
+/* freshness chip — quiet while current, and only loud once a run has actually been missed */
+#fresh.due{border-color:var(--warn);color:var(--warn)}
+#fresh.stale{border-color:var(--crit);color:var(--crit)}
+.tk{fill:var(--muted);font-size:10.5px;font-variant-numeric:tabular-nums}
+
+/* ---- table ---- */
+.tablewrap{background:var(--surface);border:1px solid var(--ring);border-radius:12px;overflow:auto;max-height:86vh}
+table{border-collapse:separate;border-spacing:0;width:100%;font-size:12.5px}
+th{
+  position:sticky;top:0;z-index:2;background:var(--surface);
+  text-align:right;padding:11px 9px;font-size:10.5px;font-weight:600;color:var(--ink2);
+  letter-spacing:.03em;text-transform:uppercase;cursor:pointer;white-space:nowrap;
+  border-bottom:1px solid var(--axis);
+}
+th:first-child,th:nth-child(2){text-align:left}
+th:hover{color:var(--ink)}
+th .arw{color:var(--s1);font-size:9px}
+td{padding:9px;text-align:right;border-bottom:1px solid var(--grid);font-variant-numeric:tabular-nums;white-space:nowrap}
+td:first-child,td:nth-child(2){text-align:left}
+td.sig{text-align:left}
+tbody tr{cursor:pointer}
+tbody tr:hover{background:color-mix(in srgb, var(--s1) 7%, transparent)}
+.nm{font-weight:500;color:var(--ink);display:block;max-width:240px;overflow:hidden;text-overflow:ellipsis;text-decoration:none}
+.nm:hover{color:var(--s1);text-decoration:underline}
+.ext{color:var(--muted);font-size:9px;vertical-align:super}
+.links{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+.lnk{font-size:11.5px;padding:5px 11px;border:1px solid var(--ring);border-radius:7px;color:var(--ink2);text-decoration:none}
+.lnk:hover{border-color:var(--s1);color:var(--s1)}
+.tierbadge{font-size:10.5px;padding:2px 8px;border-radius:5px;border:1px solid var(--ring);color:var(--ink2);margin-left:6px}
+.tc{color:var(--muted);font-size:10.5px;letter-spacing:.02em}
+.thm{font-size:11px;color:var(--ink2)}
+.sc{font-weight:600}
+/* Score bar. Magnitude is one hue, never the map's family colours — a v5-sweep name
+   is green on the maps and would otherwise pick up a second, contradictory meaning
+   here. The v4 rubric is not comparable with a v3 score, so it is marked with
+   texture rather than a colour, which would have implied it were another category. */
+.sbar{display:block;width:74px;height:3px;border-radius:2px;background:var(--grid);margin-top:5px}
+.sbar i{display:block;height:100%;border-radius:2px;background:var(--s1)}
+.sbar.v4 i{background:repeating-linear-gradient(115deg,var(--s1) 0 3px,color-mix(in srgb,var(--s1) 45%,transparent) 3px 6px)}
+.flag{font-size:10.5px;padding:1px 6px;border-radius:4px;border:1px solid var(--ring);margin-left:5px}
+.f-clean{color:var(--good-ink)} .f-caution{color:var(--serious)}
+.pen{font-size:10.5px;color:var(--crit);margin-left:5px;font-variant-numeric:tabular-nums}
+.badge{
+  display:inline-block;font-size:10px;line-height:1.5;padding:1px 6px;border-radius:5px;
+  border:1px solid currentColor;margin:0 4px 2px 0;white-space:nowrap;font-variant-numeric:tabular-nums;
+}
+.b-capex{color:var(--crit)}
+.b-guide{color:var(--good-ink)}
+.b-turn{color:var(--s1)}
+.b-heavy{color:var(--s4)}
+.b-user{color:var(--s2)}
+.b-v3d{color:var(--s1)} .b-v3s{color:var(--s5)} .b-v4{color:var(--s6)}
+.b-v5{color:var(--s3)} .b-v6{color:var(--s4)} .b-v7{color:var(--s5)}.b-v8{color:var(--s2)} .b-tri{color:var(--muted)}
+.rub{font-size:9px;color:var(--s6);vertical-align:super;margin-left:2px;font-weight:600}
+.cg{display:inline-block;font-size:10px;padding:1px 7px;border-radius:5px;border:1px solid currentColor;white-space:nowrap}
+.cg-verified{color:var(--good-ink)} .cg-company{color:var(--ink2)}
+.cg-none{color:var(--muted)} .cg-debunked{color:var(--crit)}
+.pend{color:var(--muted);opacity:.55}
+.searchbar{display:flex;gap:10px;align-items:center;margin:0 0 18px;flex-wrap:wrap}
+.searchwrap{position:relative;flex:1;min-width:280px}
+.searchwrap input{
+  width:100%;font:inherit;font-size:14px;padding:11px 38px 11px 38px;
+  background:var(--surface);color:var(--ink);
+  border:1px solid var(--ring);border-radius:10px;
+}
+.searchwrap input:focus{outline:none;border-color:var(--s1);box-shadow:0 0 0 3px color-mix(in srgb,var(--s1) 18%,transparent)}
+.searchwrap .ic{position:absolute;left:13px;top:50%;transform:translateY(-50%);color:var(--muted);font-size:14px;pointer-events:none}
+.searchwrap .clr{position:absolute;right:10px;top:50%;transform:translateY(-50%);border:none;background:none;color:var(--muted);font-size:17px;cursor:pointer;line-height:1;display:none}
+.searchwrap .clr:hover{color:var(--ink)}
+.searchwrap.has .clr{display:block}
+.hits{font-size:11.5px;color:var(--muted);white-space:nowrap}
+.sugg{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px}
+.sugg button{
+  font:inherit;font-size:11.5px;padding:4px 10px;border-radius:999px;cursor:pointer;
+  border:1px dashed var(--axis);background:none;color:var(--ink2);
+}
+.sugg button:hover{border-style:solid;border-color:var(--s1);color:var(--s1)}
+mark{background:color-mix(in srgb,var(--s4) 45%,transparent);color:inherit;border-radius:2px;padding:0 1px}
+.newbadge{color:var(--s3)}
+.vhist{margin:0;padding:0;list-style:none}
+.vhist li{border-left:2px solid var(--grid);padding:0 0 16px 16px;position:relative}
+.vhist li::before{content:"";position:absolute;left:-5px;top:4px;width:8px;height:8px;border-radius:50%;background:var(--axis)}
+.vhist li:first-child::before{background:var(--s1)}
+.vhist b{display:block;font-size:13px;margin-bottom:2px}
+.vhist .vd{font-size:11px;color:var(--muted);margin-bottom:6px}
+.vhist ul{margin:0;padding-left:16px;font-size:12.5px;color:var(--ink2);line-height:1.65}
+.nd{color:var(--muted)}
+
+/* ---- detail drawer ---- */
+.scrim{position:fixed;inset:0;background:rgba(0,0,0,.42);opacity:0;pointer-events:none;transition:opacity .18s;z-index:40}
+.scrim.on{opacity:1;pointer-events:auto}
+.drawer{
+  position:fixed;top:0;right:0;height:100%;width:min(580px,100%);z-index:50;
+  background:var(--surface);border-left:1px solid var(--ring);
+  transform:translateX(102%);transition:transform .22s ease;overflow-y:auto;
+}
+.drawer.on{transform:none}
+.dhead{padding:22px 24px 16px;border-bottom:1px solid var(--grid);position:sticky;top:0;background:var(--surface);z-index:2}
+.dbody{padding:20px 24px 60px}
+.close{position:absolute;top:16px;right:18px;border:none;background:none;color:var(--muted);font-size:22px;cursor:pointer;line-height:1}
+.close:hover{color:var(--ink)}
+.kv{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:16px 0 22px}
+.kv div span{display:block;font-size:10.5px;color:var(--muted);margin-bottom:2px}
+.kv div b{font-size:15px;font-weight:600;font-variant-numeric:tabular-nums}
+.sec{margin-top:22px}
+.sec h4{font-size:11px;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);margin:0 0 7px;font-weight:600}
+.sec p{margin:0;font-size:13px;color:var(--ink2);line-height:1.6}
+.quote{
+  margin:0 0 8px;font-size:13px;line-height:1.6;color:var(--ink);
+  padding:10px 13px;border-radius:8px;border-left:3px solid var(--good-ink);
+  background:color-mix(in srgb, var(--good-ink) 9%, transparent);
+}
+.qsrc{font-size:11.5px;color:var(--muted);margin:0}
+.bar{display:grid;grid-template-columns:118px 1fr 42px;align-items:center;gap:10px;margin-bottom:8px}
+.bar i{font-style:normal;font-size:11.5px;color:var(--ink2)}
+.track{height:9px;background:var(--grid);border-radius:4px;overflow:hidden}
+.fill{height:100%;border-radius:0 4px 4px 0;display:block}
+.bar b{font-size:11.5px;text-align:right;font-variant-numeric:tabular-nums;color:var(--ink)}
+.warns{margin:0;padding-left:0;list-style:none}
+.warns li{
+  font-size:12px;color:var(--ink2);padding:7px 10px;margin-bottom:6px;border-radius:7px;
+  background:color-mix(in srgb, var(--serious) 13%, transparent);
+  border-left:3px solid var(--serious);
+}
+.gates{margin:0;padding-left:0;list-style:none}
+.gates li{
+  font-size:12px;color:var(--ink2);padding:7px 10px;margin-bottom:6px;border-radius:7px;
+  background:color-mix(in srgb, var(--s2) 13%, transparent);
+  border-left:3px solid var(--s2);
+}
+.caveat{
+  font-size:12px;color:var(--ink2);padding:9px 11px;border-radius:7px;line-height:1.55;
+  background:color-mix(in srgb, var(--warn) 13%, transparent);border-left:3px solid var(--warn);
+}
+
+/* ---- view toolbar ---- */
+.toolbar{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-top:16px;padding-top:14px;border-top:1px solid var(--grid)}
+.toolbar .spacer{margin-left:auto}
+.btn:disabled{opacity:.42;cursor:default}
+.btn:disabled:hover{border-color:var(--ring)}
+.popwrap{position:relative}
+.pop{
+  position:absolute;z-index:30;top:calc(100% + 6px);left:0;min-width:236px;max-height:344px;overflow:auto;
+  background:var(--surface);border:1px solid var(--axis);border-radius:10px;padding:10px;
+  box-shadow:0 8px 26px rgba(0,0,0,.18);display:none;
+}
+.pop.on{display:block}
+.pop label{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--ink2);padding:4px 4px;cursor:pointer;border-radius:5px}
+.pop label:hover{background:color-mix(in srgb,var(--s1) 8%,transparent);color:var(--ink)}
+.pop input{accent-color:var(--s1)}
+.pop .prow{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:9px;padding-bottom:9px;border-bottom:1px solid var(--grid)}
+.pop .prow button{font:inherit;font-size:11px;padding:3px 9px;border-radius:999px;border:1px solid var(--ring);background:none;color:var(--ink2);cursor:pointer}
+.pop .prow button:hover{border-color:var(--s1);color:var(--s1)}
+
+/* ---- watchlist ---- */
+th[data-k="pin"],td.pincell{text-align:center;padding-left:7px;padding-right:2px;width:26px}
+.pin{border:none;background:none;cursor:pointer;font-size:14px;line-height:1;color:var(--axis);padding:2px}
+.pin:hover{color:var(--s4)}
+.pin.on{color:var(--s4)}
+tbody tr.cursor{background:color-mix(in srgb,var(--s1) 13%,transparent);box-shadow:inset 3px 0 0 var(--s1)}
+/* ---- my watchlist ----
+   The pins live in localStorage, so this shelf is per-browser and per-device.
+   "Copy watchlist link" is how a list moves to another machine: the codes ride
+   in the URL, which applyState() reads back on load. */
+.wl{padding:15px 18px;margin-bottom:22px}
+.wlhead{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.wlhead h2{margin:0;font-size:15px;letter-spacing:-.01em}
+.wlacts{display:flex;gap:7px;flex-wrap:wrap;margin-left:auto}
+.wlacts .btn{font-size:11.5px;padding:5px 10px}
+.wlcar{border:none;background:none;color:var(--muted);cursor:pointer;font-size:10px;padding:3px 5px;border-radius:5px}
+.wlcar:hover{color:var(--ink)}
+.wlhint{font-size:12.5px;color:var(--muted);margin:0}
+.wlhint b{color:var(--ink);font-weight:600}
+.wltab{margin-top:13px}
+/* the board's th is sticky and sortable; this one is neither */
+.wltab th{position:static;cursor:default;padding:7px 9px}
+.wltab th:hover{color:var(--ink2)}
+.wltab td{padding:8px 9px}
+.wltab tr:last-child td{border-bottom:none}
+.wlx{border:none;background:none;color:var(--muted);cursor:pointer;font-size:13px;line-height:1;padding:2px 4px}
+.wlx:hover{color:var(--crit)}
+.wlgone{color:var(--muted)}
+/* ---- modal ---- */
+.modal{position:fixed;inset:0;z-index:70;background:rgba(0,0,0,.46);display:none;padding:34px 18px;overflow:auto}
+.modal.on{display:block}
+.mbox{position:relative;background:var(--surface);border:1px solid var(--ring);border-radius:14px;max-width:1120px;margin:0 auto;padding:24px 26px 30px}
+.mbox h3{margin:0 0 6px;font-size:19px;letter-spacing:-.015em}
+.cmp{width:100%;border-collapse:separate;border-spacing:0;font-size:12.5px;margin-top:18px}
+.cmp th,.cmp td{padding:9px 12px;border-bottom:1px solid var(--grid);text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums}
+.cmp th:first-child,.cmp td:first-child{text-align:left;color:var(--ink2);font-size:11.5px;white-space:normal}
+.cmp thead th{position:sticky;top:0;z-index:2;background:var(--surface);border-bottom:1px solid var(--axis);font-size:12px;font-weight:600}
+.cmp td.best{color:var(--good-ink);font-weight:600}
+.cmp td.best::after{content:" \2713";font-size:10px}
+.kbd{display:inline-block;min-width:22px;text-align:center;font:inherit;font-size:11px;padding:2px 6px;border-radius:5px;border:1px solid var(--axis);border-bottom-width:2px;color:var(--ink2);background:var(--plane)}
+.klist{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:11px 24px;margin-top:16px}
+.klist div{display:flex;gap:8px;align-items:baseline;font-size:12.5px;color:var(--ink2)}
+.klist div i{font-style:normal;margin-left:2px}
+
+/* ---- drawer nav ---- */
+.dnav{display:flex;gap:6px;align-items:center;position:absolute;top:15px;right:50px}
+.dnav button{border:1px solid var(--ring);background:none;color:var(--ink2);border-radius:7px;width:27px;height:27px;font-size:13px;line-height:1;cursor:pointer;padding:0}
+.dnav button:hover:not(:disabled){border-color:var(--s1);color:var(--s1)}
+.dnav button:disabled{opacity:.3;cursor:default}
+.dnav .dpin.on{color:var(--s4);border-color:var(--s4)}
+.dpos{font-size:11px;color:var(--muted);white-space:nowrap;margin-right:3px;font-variant-numeric:tabular-nums}
+
+/* ---- clickable stat tiles ---- */
+button.tile{font:inherit;color:inherit;text-align:left;width:100%;cursor:pointer;display:block}
+button.tile:hover{border-color:var(--axis)}
+button.tile.on{border-color:var(--s1);box-shadow:inset 0 0 0 1px var(--s1)}
+button.tile .k::after{content:" \2192";opacity:0;transition:opacity .12s}
+button.tile:hover .k::after{opacity:.5}
+.method{margin-top:34px}
+.card.method{display:none}
+.method table{font-size:12.5px}
+.method td,.method th{text-align:left;padding:8px 12px 8px 0;white-space:normal}
+/* Caveats, collapsed by default: out of the way, but one click and one tab stop away
+   rather than deleted. <details> carries the keyboard and screen-reader behaviour on
+   its own, so there is no JS here that could drift out of step with the markup.
+   The padding moves off the container so the summary row can span the full width. */
+.disc{
+  margin-top:30px;border-radius:10px;font-size:12px;color:var(--ink2);
+  background:color-mix(in srgb, var(--warn) 12%, transparent);
+  border-left:3px solid var(--warn);line-height:1.6;
+}
+.disc>summary{
+  cursor:pointer;list-style:none;padding:13px 18px;display:flex;align-items:center;gap:10px;
+  font-weight:600;color:var(--ink2);border-radius:0 10px 10px 0;
+}
+.disc>summary::-webkit-details-marker{display:none}
+.disc>summary::after{content:"▸";margin-left:auto;color:var(--muted);transition:transform .15s}
+.disc[open]>summary::after{transform:rotate(90deg)}
+.disc>summary:hover{color:var(--ink)}
+.disc>summary:focus-visible{outline:2px solid var(--s1);outline-offset:-2px}
+.disc .discbody{padding:0 18px 16px}
+.empty{padding:40px;text-align:center;color:var(--muted)}

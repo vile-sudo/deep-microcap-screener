@@ -1,0 +1,18 @@
+services:
+  screener:
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
+    ports:
+      - "8000:8000"
+    volumes:
+      # Persist the SQLite DB across container restarts/rebuilds.
+      - screener_data:/app/backend/data
+    environment:
+      - DATABASE_URL=sqlite:///./data/screener.db
+      - ENVIRONMENT=production
+      - CORS_ORIGINS=*
+    restart: unless-stopped
+
+volumes:
+  screener_data:

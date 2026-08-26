@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Deep Microcap Screener</title>
+<meta name="description" content="Indian listed companies across multiple research screens on one board, served from a live API.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%94%8D%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <div>
+    <h1>Deep Microcap Screener — the full research universe</h1>
+  </div>
+  <div class="verstamp">
+    <div class="vbadge">
+      <div class="vlabel">Build</div>
+      <div class="vver">…</div>
+      <div class="vdate">…</div>
+      <div class="vdata">Live from API</div>
+    </div>
+    <button class="btn" id="theme">◐ Dark</button>
+  </div>
+</header>
+
+<div class="tiles" id="tiles"></div>
+
+<div class="card filters">
+  <div class="searchbar">
+    <div class="searchwrap" id="swrap">
+      <span class="ic">&#9906;</span>
+      <input id="q" type="search" autocomplete="off" spellcheck="false"
+        placeholder="Search companies — name, ticker, or any word in the research: 'torpedo', 'CRGO', 'NABL', 'sole Indian', 'debunked'…">
+      <button class="clr" id="qclear" title="Clear search">&times;</button>
+    </div>
+    <span class="hits" id="hits"></span>
+    <button class="btn" id="whatsnew">&#9998; What changed</button>
+  </div>
+  <div class="sugg" id="sugg"></div>
+  <h2 style="margin-top:18px">Filters</h2>
+  <div class="tglab" style="margin:0 0 8px">Theme</div>
+  <div class="frow" id="themes"></div>
+  <div class="sliders" id="sliders"></div>
+  <div class="toggles">
+    <div class="tglab">The three new lenses</div>
+    <button class="btn" data-tg="overhang">⚑ High P/E + heavy CWIP</button>
+    <button class="btn" data-tg="heavycap">🏗 CWIP ≥ 25% of net block</button>
+    <button class="btn" data-tg="guide15">▲ Management guides &gt; 15%</button>
+    <button class="btn" data-tg="guideany">▲ Any forward growth statement</button>
+    <button class="btn" data-tg="turn">↻ PAT turned positive from negative</button>
+    <button class="btn" data-tg="haslens">Only names with the new data pulled</button>
+    <button class="btn" data-tg="ipo" title="Names whose own research note calls them an SME IPO or a recent listing. Derived from the notes, not from a listing-date field — a recent listing whose note never says so will be missed.">&#127381; Recent listing / SME IPO</button>
+  </div>
+  <div class="toolbar">
+    <button class="btn" data-tg="watch" id="watchbtn" title="Show only the companies you have pinned">&#9733; Watchlist only <span class="tc" id="wcount"></span></button>
+    <button class="btn" id="reset" title="Clear every filter, the search and the sort">Reset all</button>
+    <div class="popwrap">
+      <button class="btn" id="colbtn" title="Choose which columns the table shows">&#9638; Columns</button>
+      <div class="pop" id="colpop"></div>
+    </div>
+    <button class="btn" id="copylink" title="Copies this page&#39;s address with every filter, sort and column choice encoded in it - reopening that address lands on exactly this view">&#128279; Copy link to this view</button>
+    <button class="btn" id="csv" title="Download the rows currently shown, in the current sort order">&#8681; Export CSV</button>
+    <button class="btn" id="ipoq" title="New exchange listings picked up by the refresh pipeline and not yet ruled on. These are candidates only — nothing here is scored, verified, or on the board.">&#127381; New listings queue <span class="tc" id="ipoqn"></span></button>
+    <button class="btn" id="fresh" title="When the data was last refreshed">&#9202; <span id="freshtxt">checking…</span></button>
+    <button class="btn spacer" id="keys" title="Keyboard shortcuts">&#9000; Shortcuts</button>
+  </div>
+</div>
+
+<section class="card wl" id="wl" aria-label="My watchlist"></section>
+
+<div class="card" style="padding:0;overflow:hidden">
+  <div class="tablewrap">
+    <table id="tbl">
+      <thead><tr id="thead"></tr></thead>
+      <tbody id="tbody"></tbody>
+    </table>
+  </div>
+</div>
+<p class="meta" id="count"></p>
+
+<div class="card method">
+  <h2>Research screens — reading a score</h2>
+  <p class="sub" style="margin-bottom:16px">This board merges work from separate runs that asked different questions. Scores are comparable <i>within</i> a rubric and misleading <i>across</i> one. Every row carries its screen and, where it matters, a <span class="rub">v4</span> marker on the score.</p>
+  <table id="screensTable">
+    <tr><th style="width:190px">Screen</th><th style="width:70px">Names</th><th>What it was looking for, and what its score means</th></tr>
+    <tr><td><span class="badge b-v3d">v3 deep</span></td><td id="n-v3-deep">—</td><td><b>Undiscovered quality.</b> Full deep-dive workups. Gated on size (₹120–4,000 cr), fewer than 40,000 retail holders, promoter ≥40%, ROCE ≥12%, ROE &gt;5%. Scored out of 100 on six pillars — moat 25, import substitution 20, promoter 15, institutional 15, under-covered 15, financials 10 — then confidence-adjusted and reduced by an itemised risk penalty.</td></tr>
+    <tr><td><span class="badge b-v7">v7 depth</span></td><td id="n-v7-new">—</td><td><b>Depth round, 20 Aug 2026.</b> Half filled out themes that were too thin to be useful — medical devices, testing, water, healthcare, railways, marine, logistics, IT hardware. Half opened new ground: renewables and EV supply chain, cables, refractories, industrial gases, paper, ethanol, safety and fire, elevators and HVAC, tools and fasteners, appliances and lighting, minerals, glass and ceramics. Same gates, same rubric.</td></tr>
+    <tr><td><span class="badge b-v3s">v3 screen</span></td><td id="n-v3-screen">—</td><td><b>Same gates, same rubric, less work.</b> These cleared every v3 gate and were scored, but never received the full deep-dive. The narrative on each is a first look, not a finished view — treat accordingly.</td></tr>
+    <tr><td><span class="badge b-v4">v4 moat</span></td><td id="n-v4-moat">—</td><td><b>Defensibility, not obscurity.</b> Deliberately <i>not</i> gated on size or shareholder count, because a sole domestic manufacturer of anything worthwhile usually gets found. Scored on a different 100-point rubric: exclusivity 25, certification depth 15, <b>pricing power 25 (scored off the actual five-year operating-margin series, not the narrative)</b>, switching costs 15, returns quality 10, balance sheet and governance 10. A v4 score of 60 is not "worse" than a v3 score of 70 — it is measuring something else.</td></tr>
+    <tr><td><span class="badge b-tri">triage</span></td><td id="n-v4-triage">—</td><td><b>Checked, never scored.</b> Taken far enough to reject or park. They carry a verdict and one decisive fact each, and no score at all — they sort to the bottom because they are unranked, not because they ranked last.</td></tr>
+    <tr><td><span class="badge b-v5">v5 sweep</span></td><td id="n-v5-new">—</td><td><b>Fresh sweep of the core themes, 20 Aug 2026.</b> Defence, railways, marine, electronics, chemicals, capital goods and energy hardware. Run on the v3 gates and the v3 rubric, with the three new lenses used as tie-breakers.</td></tr>
+    <tr><td><span class="badge b-v6">v6 sectors</span></td><td id="n-v6-new">—</td><td><b>Sector expansion, 20 Aug 2026.</b> Nine themes the board had barely touched: packaging and printing, plastics, building materials, technical textiles, agri and food processing, logistics, water and environment, healthcare services, IT hardware. Same gates, same rubric. These sectors contain a lot of commodity converting and monsoon-dependent cyclicals, and the moat scores say so — several land in single digits by design.</td></tr>
+    <tr><td><span class="badge b-v8">v8 moat</span></td><td id="n-v8-moat">—</td><td><b>Moat scoring wave, rubric v5.</b> Adds a "strategic" pillar in place of "under-covered" — used for names (defence PSUs, large caps) where market obscurity isn't the point but strategic positioning is.</td></tr>
+    <tr><td><span class="badge b-v8">v8 weekly</span></td><td id="n-v8-weekly">—</td><td><b>Weekly refresh sweep.</b> The recurring pass that keeps existing names current between the larger research rounds above.</td></tr>
+    <tr><td><span class="badge b-user">added on request</span></td><td id="n-user">—</td><td>Names you asked for by hand. Several fail the v3 gates outright; each card lists exactly which, and the score carries an explicit penalty for it.</td></tr>
+  </table>
+  <table style="margin-top:20px">
+    <tr><th style="width:190px">Claim grade <span class="tc">(v4 only)</span></th><th>What it means</th></tr>
+    <tr><td><span class="cg cg-verified">verified</span></td><td>An <i>independent third party</i> says it — an ICRA/CRISIL/CARE rating rationale, a regulator (FSSAI, RDSO, WOAH), or a customer-conferred award. This is the only grade that is evidence rather than assertion.</td></tr>
+    <tr><td><span class="cg cg-company">company-stated</span></td><td>The company says it and nothing contradicts it. An assertion in a statutory annual report is the strongest form of this, but it is still the company describing itself.</td></tr>
+    <tr><td><span class="cg cg-none">none claimed</span></td><td>The company makes no exclusivity claim at all. If a name reached the list on a monopoly framing, that framing came from somewhere other than the company.</td></tr>
+    <tr><td><span class="cg cg-debunked">DEBUNKED</span></td><td>A primary source contradicts the claim, or the company itself has quietly retreated from it. Several of these circulate widely in Indian investing commentary. They are kept on the board deliberately, so the work does not get repeated.</td></tr>
+  </table>
+  <p class="sub" style="margin-top:16px;margin-bottom:0"><b>The single most useful finding from the v4 run:</b> market share and pricing power are close to uncorrelated in this data. I G Petrochemicals holds ~50% of India's phthalic anhydride capacity on a 5–6% operating margin. Rajratan is ICRA-confirmed as the sole bead-wire supplier in Thailand and its margin fell from 19% to 13% while volumes grew 55%. Meanwhile Bhansali Engineering Polymers is not a monopoly at all and holds 15–19% margins through every raw-material cycle. Where share and pricing power <i>do</i> line up, it is usually a regulatory or qualification moat rather than a structural one.</p>
+</div>
+
+<div class="card method">
+  <h2>The three new columns, and exactly what they mean</h2>
+  <table>
+    <tr><th style="width:190px">Column</th><th>Definition and how to read it</th></tr>
+    <tr><td><b>CWIP ₹cr</b> and <b>CWIP %NB</b></td><td>Capital work-in-progress at the latest balance-sheet date, in rupees crore and as a percentage of net block (net fixed assets). CWIP is money already spent on plant that is <i>not yet producing anything</i> — it sits on the balance sheet earning nothing and depreciating nothing until commissioned. A rising CWIP balance is a growth signal; a large one relative to the existing asset base is also an execution risk, because the whole thesis depends on that plant starting up and filling.</td></tr>
+    <tr><td><span class="badge b-capex">⚑ PE+CWIP</span></td><td>Flags a company where <b>P/E is above 40 <i>and</i> CWIP is at least 15% of net block</b>. This is the combination you asked for: the market is already paying a rich multiple on earnings that exist, while a material slice of the asset base has not started earning at all. It cuts both ways — it can mean the growth is genuinely ahead of the earnings, or that the price has run ahead of a plant that has not been proven yet.</td></tr>
+    <tr><td><span class="badge b-heavy">🏗 heavy capex</span></td><td>A softer, valuation-blind version: CWIP is at least 25% of net block, whatever the multiple. This catches the cheap capex stories the P/E filter misses.</td></tr>
+    <tr><td><span class="badge b-guide">▲ guides &gt;15%</span></td><td>Management has made a forward revenue-growth statement above 15%. The <b>Guide %</b> column carries the number. Where management gave a rupee target rather than a percentage, the percentage is derived from their own two figures and the card says so. Where they made a forward statement but refused to quantify it, the badge is grey and the number is blank — those are surfaced under "Any forward growth statement". An order book or a capacity expansion is <b>not</b> counted as guidance.</td></tr>
+    <tr><td><span class="badge b-turn">↻ PAT+</span></td><td>Profit after tax in the most recent reported period is positive <i>and</i> at least one of the previous three periods was a loss. Note the period type: many SME names report half-yearly, so "the last three periods" can span eighteen months. Every turnaround card says what actually drove the swing — several of these are divestment gains or investment mark-to-market, not operating recoveries.</td></tr>
+    <tr><td><span class="badge b-user">added on request</span></td><td>Names added at your request rather than surfaced by the screen. Several of them fail the screen's own hard gates on size, shareholder count or returns; each card lists exactly which gates it fails, and the score carries an explicit penalty for it.</td></tr>
+  </table>
+</div>
+
+<div class="card method">
+  <h2>How the score is built</h2>
+  <p class="sub" style="margin-bottom:16px">Every name must first clear four hard filters. Survivors are then scored out of 100 across six pillars. The displayed score is confidence-adjusted — a company with thin data cannot outrank one with a complete record.</p>
+  <table>
+    <tr><th style="width:180px">Hard filter</th><th>Threshold</th></tr>
+    <tr><td>Promoter skin in the game</td><td>Promoter holding ≥ 40%; promoter pledge below 40% (above 10% flagged)</td></tr>
+    <tr><td>Institutional validation</td><td><b>Tier 1:</b> FII + DII ≥ 1% — institutions already on the register. <b>Tier 2:</b> passes every other gate but has no meaningful institutional holding yet. Tier 2 exists because this filter was removing the most genuinely undiscovered names in the market; they carry a −3 score penalty and are labelled everywhere</td></tr>
+    <tr><td>Retail float</td><td>Public holding ≤ 60%</td></tr>
+    <tr><td>Size &amp; obscurity</td><td>Market cap ₹120 cr – ₹3,000 cr (Tier 2 up to ₹4,000 cr) and fewer than 25,000 retail shareholders (Tier 2: 40,000). This is the filter that removes the names you already know</td></tr>
+    <tr><td>Quality floor</td><td>ROCE ≥ 12% and ROE &gt; 5% — a moat that does not show up in returns on capital is not a moat</td></tr>
+  </table>
+  <table style="margin-top:20px">
+    <tr><th style="width:180px">Pillar</th><th style="width:60px">Weight</th><th>What it measures</th></tr>
+    <tr><td>Moat</td><td>25</td><td>Specificity of the competitive barrier (approvals, qualification cycles, IP, switching costs) plus ROCE level and operating margin as evidence the barrier is real</td></tr>
+    <tr><td>Import substitution</td><td>20</td><td>How concrete and evidenced the import-replacement claim is — a named imported product and origin scores far higher than a generic "Make in India" framing — plus revenue growth as proof the substitution is actually happening</td></tr>
+    <tr><td>Promoter</td><td>15</td><td>Promoter holding level (peak reward 55–70%; very high stakes discounted for float risk), pledge penalty, and direction of the promoter stake over the last year</td></tr>
+    <tr><td>Institutional</td><td>15</td><td>Both FII and DII present scores highest; the sweet spot is 2–15% total — validated but not yet crowded. Above 25% is treated as already discovered</td></tr>
+    <tr><td>Under-covered / Strategic</td><td>15</td><td>Analyst coverage, market-cap band, and the retail shareholder count for most names; for the v5-rubric "strategic" pillar (large/PSU names), strategic positioning instead</td></tr>
+    <tr><td>Financials</td><td>10</td><td>ROE, debt/equity, three-year profit growth, Piotroski score</td></tr>
+  </table>
+  <table style="margin-top:20px">
+    <tr><th style="width:180px">Adjustment</th><th style="width:60px">Effect</th><th>Why</th></tr>
+    <tr><td>Confidence adjustment</td><td>×0.72–1.0</td><td>Scales the pillar total by how complete the company's data record is, so a thinly-documented name cannot outrank a fully verified one on the strength of missing fields</td></tr>
+    <tr><td>Risk penalty</td><td>−2 to −23</td><td>Subtracted after scoring: verification caution (−4), import-substitution thesis rated weak (−5) or absent (−6), fewer than 1,500 shareholders (−7) or fewer than 3,000 (−5), P/E above 60 (−3), promoter pledge above 10% (−3), three or more red flags (−2), Tier 2 status (−3), and failing the screen's own hard gates (−4 per gate, capped at −8) for names added on request. Every penalty is itemised on the company's card</td></tr>
+  </table>
+</div>
+
+<div class="card method">
+  <h2>How this stays current</h2>
+  <p class="sub" style="margin-bottom:14px">Every company name in the table is a live link to its screener.in page — the same source the numbers came from — so you can check any figure at its source in one click. The scorecard drawer adds direct links to filings and annual reports, the exchange quote page, and a news search.</p>
+  <p class="sub" style="margin-bottom:0">This dashboard is now backed by a real API and database rather than a static file. The figures still come from a periodic data-refresh pass (screener.in / Trendlyne), not a live market feed — see <code>scripts/refresh_data.py</code> in the project for how to re-run it and re-seed the database. The build stamp in the header always tells you how fresh the current data is.</p>
+</div>
+
+<div class="card method" id="changelog">
+  <h2>Version history — what changed, and when</h2>
+  <p class="sub" style="margin-bottom:18px">Use the <b>New since</b> filter (in the search suggestions) to show only rows added in a given build.</p>
+  <ul class="vhist" id="vhist"></ul>
+</div>
+
+<details class="disc">
+  <summary>&#9888; Caveats — data quality, guidance, one-off PAT gains, and liquidity</summary>
+  <div class="discbody"><b>Read this before acting on any of it.</b> This is a research screen, not investment advice — I am not a registered investment adviser and none of this is a recommendation to buy or sell. Data was pulled from third-party aggregators and company filings and can be stale, mis-tagged, or simply wrong; verify every figure against the company's own filings before committing capital. <b>On the new columns specifically:</b> CWIP is reported inconsistently — several companies here capitalise spend directly without ever showing it as CWIP, so a zero does not always mean no capex, and where that is likely the card says so. Management guidance is a statement of intent by people with an interest in the share price, not a fact; some guidance entries are second-hand paraphrases rather than verified transcripts and are labelled as such, and several percentages are <i>derived</i> from a rupee target management gave rather than quoted. A PAT turnaround can be an operating recovery or a one-off gain. Read the card before treating any flag as a signal. A quantitative screen also cannot read management quality, related-party dealings, or accounting aggression. The smallest names here have as few as a few hundred retail shareholders; you may not be able to exit at a quoted price, or at all, on a bad day. Many are recent SME listings whose share prices have moved sharply on a short operating history. Treat this list as a research starting point, not a buy list.</div>
+</details>
+
+</div>
+
+<div class="scrim" id="scrim"></div>
+<aside class="drawer" id="drawer" aria-label="Company detail"></aside>
+<div class="modal" id="modal" role="dialog" aria-modal="true"><div class="mbox"><button class="close" id="mclose" aria-label="Close">&times;</button><div id="mbody"></div></div></div>
+
+<script src="/static/app.js" defer></script>
+</body>
+</html>
