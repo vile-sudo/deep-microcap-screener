@@ -47,8 +47,8 @@
  *   null` (not yet evidenced), and lib/publish.mjs's gate keeps it out of
  *   backend/data/candidates_raw.json until profile-company.mjs finds a
  *   monopoly/import-substitution claim in an actual prospectus, or the
- *   weekly-prompt.md judgement pass finds real evidence via Screener/
- *   Trendlyne and sets moat_signal itself. Sector-plausible is this
+ *   weekly-prompt.md judgement pass finds real evidence via Screener and
+ *   NSE filings and sets moat_signal itself. Sector-plausible is this
  *   script's whole vocabulary -- it only ever means "worth a closer look."
  */
 
@@ -57,6 +57,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { PLAUSIBLE, hint } from './lib/sectors.mjs';
 import { publishCandidates } from './lib/publish.mjs';
+import { boardIndex } from './lib/board-index.mjs';
 
 const HERE = path.dirname(fileURLToPath(import.meta.url));
 const DRY = process.argv.includes('--dry');
@@ -156,6 +157,11 @@ for (const src of SOURCES) {
 const keyOf = r => `${r.board.startsWith('BSE') ? 'BSE' : 'NSE'}:${r.sym}`;
 const seen = new Map(rows.map(r => [keyOf(r), r]));
 
+/* ---------------------------------------------- who is already on the board */
+const board = loadJSON(EXISTING_BOARD, []);
+const reviewed = new Set(loadJSON(REVIEWED, []));
+const isOnBoard = boardIndex(board);   // see lib/board-index.mjs for why this isn't just `code`
+
 /* ------------------------------------------------------- job 1: new listings */
 const snapPrior = loadJSON(SNAP, null);
 let fresh = [];
@@ -183,8 +189,19 @@ const dedupedFresh = fresh.filter(r => {
   return true;
 });
 
+/* Set difference is immune to a re-stamped listing date, but not to a symbol
+   re-entering the feed after a suspension, a group change or a rename -- it
+   was absent last week, so it reads as new. Checking the board catches the
+   subset of those that are companies you already hold a view on. It cannot
+   catch the rest: Salasar Exteriors, an NSE SME name listed in September
+   2019, arrived on 31-Aug-2026 tagged `new-listing` and was profiled as
+   though it had just IPO'd. Nothing in the exchange feeds distinguishes that
+   case, so it stays a judgement call downstream. */
+const boardDupes = dedupedFresh.filter(isOnBoard);
+const trulyFresh = dedupedFresh.filter(r => !isOnBoard(r));
+
 const SME_BOARDS = new Set(['SME', 'BSE-SME']);
-const newlyQueued = dedupedFresh.map(r => {
+const newlyQueued = trulyFresh.map(r => {
   const h = hint(r.name);
   const known = h ? PLAUSIBLE.has(h) : null;
   const keep = known === true || (known === null && SME_BOARDS.has(r.board));
@@ -203,16 +220,14 @@ const newlyQueued = dedupedFresh.map(r => {
 
 say(`\n  new symbols since ${snapPrior ? snapPrior.taken : 'n/a'}: ${fresh.length}${
   fresh.length - dedupedFresh.length ? ` (${fresh.length - dedupedFresh.length} the same company on both exchanges, counted once)` : ''}`);
+if (boardDupes.length)
+  say(`  ${boardDupes.length} of those are already on the board, skipped: ${boardDupes.map(r => r.sym).join(', ')}`);
 say(`  of those, a sector where import substitution is even possible: ${newlyQueued.filter(q => q.plausible).length}`);
 
 /* --------------------------------------------------- job 2: the sweep */
-const board = loadJSON(EXISTING_BOARD, []);
-const onBoard = new Set(board.map(c => String(c.code || '').toUpperCase()));
-const reviewed = new Set(loadJSON(REVIEWED, []));
-
 const bseUniverse = rows.filter(r => r.board === 'BSE' || r.board === 'BSE-SME');
 const swept = bseUniverse.filter(r => {
-  if (onBoard.has(r.sym.toUpperCase())) return false;   // already on the live board
+  if (isOnBoard(r)) return false;                       // already on the live board
   if (reviewed.has(r.sym)) return false;                // already surfaced at some point, don't repeat
   if (r.mktcap_cr == null) return false;                // no market cap figure, can't band it
   if (r.mktcap_cr < SMALL_CAP_MIN_CR || r.mktcap_cr > MID_CAP_MAX_CR) return false;

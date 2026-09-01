@@ -4,7 +4,7 @@ Runs on **your own machine** (Windows Task Scheduler), never on Render. It
 finds candidates — brand-new NSE/BSE/SME listings, plus a weekly slice of the
 already-listed small/mid-cap universe not on the board yet — reads what
 prospectuses it can, and puts them in front of you (and, once a week,
-Claude Code with the Screener/Trendlyne MCP servers) for a verdict. Nothing
+Claude Code with the Screener MCP server) for a verdict. Nothing
 here ever edits `backend/data/companies_raw.json` or promotes a candidate to
 the live board on its own — that stays a decision you make by hand, the same
 way it always has.
@@ -26,8 +26,9 @@ Two things can set `moat_signal: true`:
     monopoly/leading-manufacturer or import-substitution claim in its own
     first-person words.
   - the weekly `weekly-prompt.md` judgement pass, researching a candidate
-    (especially a `sweep` one, which has no prospectus) via Screener/
-    Trendlyne and finding a sourced hit on one of the five criteria.
+    (especially a `sweep` one, which has no prospectus) via Screener and
+    the company's own filings on NSE, and finding a sourced hit on one of
+    the five criteria.
 
 `scan-listings.mjs` and `profile-company.mjs` both call `publishCandidates()`
 after touching the queue; `update-weekly.mjs --stamp-only` calls it again
@@ -35,6 +36,26 @@ after the judgement pass runs, so a verdict written by that pass actually
 reaches the dashboard. Sector plausibility alone (the `hint`/`plausible`
 fields) still decides what gets *queued* for a look — it just never decides
 what gets *published*.
+
+### The second source
+
+`moat_signal: true` records that a sourced moat claim exists. It does not
+record that anyone outside the company agrees with it, and on 31-Aug-2026
+that distinction turned out to matter: all twenty flagged candidates were
+checked against rating-agency rationales, regulator findings and industry
+reports, and **eleven failed** — five contradicted by their own rating
+agency, one whose moat had been demerged into a different listed company,
+one that had been queued as a new listing but listed in 2019, and four that
+were already on the board.
+
+So the judgement pass now also writes `moat_confirmed` (`true` / `"partial"`
+/ `false`), `confirm_source` and `confirm_note`. This is deliberately *not*
+a second gate — `lib/publish.mjs` still gates on `moat_signal` alone, so the
+dashboard queue behaves as before. It is a column of judgement for the
+person deciding, and the one case where it does force a verdict is when the
+independent source flatly contradicts the claim. See "The second source" in
+`weekly-prompt.md` for where to look and how to read it (including the
+`curl` + `pdftotext` recipe — `WebFetch` cannot read a PDF).
 
 ## One-time setup
 
@@ -46,10 +67,13 @@ what gets *published*.
      variable `PDFTOTEXT` to its full path.
    - `unzip` on PATH too, for the occasional zipped prospectus.
 3. **Claude Code CLI** (`npm install -g @anthropic-ai/claude-code` or
-   however you already have it) with the **Screener** and **Trendlyne** MCP
-   servers configured — the same ones you used to build the dashboard
-   itself. `run-weekly.cmd` calls `claude -p ... --permission-mode
-   bypassPermissions`, so make sure those MCP servers work non-interactively
+   however you already have it) with the **Screener** MCP server configured
+   — the same one you used to build the dashboard itself. The judgement pass
+   reads company filings and disclosures on NSE directly, so Screener is the
+   only MCP server it needs; a thin or empty Screener record is normal for
+   companies this small and is not a reason for the pass to stop.
+   `run-weekly.cmd` calls `claude -p ... --permission-mode
+   bypassPermissions`, so make sure that MCP server works non-interactively
    before you rely on the scheduled run.
 4. Register the scheduled task (from an ordinary, non-admin prompt, in this
    `automation\` folder):
@@ -78,7 +102,7 @@ what gets *published*.
 ```
 run-weekly.cmd  (Task Scheduler, Saturdays 17:00)
   ├─ update-weekly.mjs           scan-listings.mjs → profile-company.mjs → stamp
-  └─ claude -p weekly-prompt.md  research + verdicts, via Screener/Trendlyne MCP
+  └─ claude -p weekly-prompt.md  research + verdicts, via Screener MCP + NSE filings
        (writes back into automation/data/candidates-queue.json, re-stamps)
 ```
 
@@ -102,10 +126,11 @@ click Manual Deploy yourself.
 |---|---|
 | `lib/sectors.mjs` | Guesses a sector from a company name alone — the only signal an exchange feed carries. |
 | `lib/publish.mjs` | The moat gate — writes `backend/data/candidates_raw.json` from the queue, keeping only entries with `moat_signal: true`. |
+| `lib/board-index.mjs` | "Is this exchange row already on the board?" — matches on `code`/`nse_code`/`bse_code` plus an exact normalised name, because the board keys rows by NSE symbol and the BSE feed carries only BSE numbers. `lib/board-index.test.mjs` is its regression test (`node lib/board-index.test.mjs`). |
 | `scan-listings.mjs` | New-listing diff (NSE/BSE/SME) + small/mid-cap sweep of already-listed BSE names not on the board. |
 | `profile-company.mjs` | Downloads and reads a new listing's IPO prospectus; extracts company-stated claims/risks/objects. |
 | `update-weekly.mjs` | Orchestrates the two above, then stamps `backend/data/build_stamp.json`. |
-| `weekly-prompt.md` | What the unattended Claude Code step does with Screener/Trendlyne — research, and rule-outs only. |
+| `weekly-prompt.md` | What the unattended Claude Code step does with Screener and NSE filings — research, and rule-outs only. |
 | `run-weekly.cmd` | The Task Scheduler entry point. |
 | `publish-candidates.cmd` | The only thing that pushes to GitHub / triggers a Render deploy. Always asks first unless you pass `-y`. |
 | `data/candidates-queue.json` | Full record: every candidate ever queued, whatever its verdict. |

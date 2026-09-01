@@ -4,7 +4,7 @@ REM
 REM Two halves. The node scripts do the mechanical part: scan NSE/BSE for new
 REM listings, sweep the small/mid-cap universe for names not on the board yet,
 REM pull any new listing's prospectus, stamp the board. Claude Code then does
-REM the part that needs judgement and the Screener/Trendlyne MCP servers,
+REM the part that needs judgement and the Screener MCP server + NSE filings,
 REM following weekly-prompt.md. A node script cannot call an MCP server, which
 REM is why the second half exists at all.
 REM
@@ -77,7 +77,7 @@ REM bypassPermissions is deliberate and is the reason this runs in its own
 REM folder. Nobody is at the keyboard, so a permission prompt does not get
 REM answered - it hangs until the task times out and the week is silently
 REM lost. The blast radius is bounded by what weekly-prompt.md tells it to
-REM do: it reads companies up on Screener/Trendlyne and writes verdicts into
+REM do: it reads companies up on Screener and NSE and writes verdicts into
 REM the queue. It has no git credentials and no Render deploy hook, so it
 REM cannot ship anything even if it wanted to.
 call "%CLAUDE%" -p "Follow the instructions in weekly-prompt.md exactly. You are running unattended on a schedule." ^

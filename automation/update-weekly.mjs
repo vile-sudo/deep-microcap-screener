@@ -16,8 +16,8 @@
  *   It does not decide whether a candidate belongs on the board, and it does
  *   not touch backend/data/companies_raw.json. It fills a queue and reads
  *   prospectuses. The judgement half of the week -- classifying a sweep
- *   candidate's real sector and market-cap band with the Screener/Trendlyne
- *   MCP servers, weighing a claim, deciding a verdict -- is run-weekly.cmd's
+ *   candidate's real sector and market-cap band with Screener and NSE
+ *   filings, weighing a claim, deciding a verdict -- is run-weekly.cmd's
  *   second half, using weekly-prompt.md, never this script. And even that
  *   half only ever writes verdicts into the queue; putting a company on the
  *   live board is still something you do by hand, then ship with

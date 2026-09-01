@@ -14,7 +14,7 @@
  *   - import substitution (the company says it replaces an import, or
  *     benefits from Make in India / PLI / a tariff wall)
  *   - a stated India market-share, or "largest/leading manufacturer"
- *     claim -- the company's own words, or Screener/Trendlyne's numbers
+ *     claim -- the company's own words, or Screener's numbers
  *   - being the only, or one of very few, Indian companies making
  *     something
  *   - a genuinely niche segment -- few competitors, specialised product,
@@ -26,8 +26,8 @@
  * can supply the evidence that does: profile-company.mjs, reading an
  * actual prospectus for a monopoly/import-substitution claim in the
  * company's own first-person words; or the weekly-prompt.md judgement
- * pass, researching a sweep candidate via Screener/Trendlyne since it has
- * no prospectus to read. Either way, the field this checks is the same:
+ * pass, researching a sweep candidate via Screener and NSE filings since it
+ * has no prospectus to read. Either way, the field this checks is the same:
  * `moat_signal === true`, with `moat_evidence` saying why.
  */
 import fs from 'node:fs';

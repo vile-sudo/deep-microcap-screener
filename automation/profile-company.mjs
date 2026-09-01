@@ -12,7 +12,7 @@
  * A small/mid-cap sweep candidate is an already-listed company -- it has no
  * IPO prospectus to fetch, has probably already filed several annual
  * reports, and is exactly what weekly-prompt.md's Claude Code step (with the
- * Screener/Trendlyne MCP servers) is for instead. Running this against a
+ * Screener MCP server and NSE filings) is for instead. Running this against a
  * sweep symbol is harmless -- it will just report "no offer document filed"
  * and move on -- but it will never be where a sweep candidate gets read.
  *
@@ -216,7 +216,15 @@ function pickDocument(d) {
 async function textOf(url, tag) {
   const tmp = fs.mkdtempSync(path.join(os.tmpdir(), 'prosp-'));
   const res = await fetch(url, { headers: HEADERS });
-  if (!res.ok) throw new Error(`HTTP ${res.status} fetching the prospectus`);
+  if (!res.ok) {
+    const e = new Error(`HTTP ${res.status} fetching the prospectus`);
+    /* 404/410 mean the exchange stopped serving a document it once listed --
+       common for the older drafts. That is the same kind of absence as a
+       candidate with no offer document at all, so the caller counts it as a
+       skip. Anything else is us failing to read a document that is there. */
+    e.goneAtSource = res.status === 404 || res.status === 410;
+    throw e;
+  }
   const buf = Buffer.from(await res.arrayBuffer());
   const zipped = /\.zip$/i.test(url) || buf.subarray(0, 2).toString('latin1') === 'PK';
   const file = path.join(tmp, zipped ? `${tag}.zip` : `${tag}.pdf`);
@@ -284,7 +292,11 @@ for (const t of targets) {
 
   let got;
   try { got = await textOf(pick.url, t.sym); }
-  catch (e) { failed++; say(`    could not read it: ${e.message}\n`); continue; }
+  catch (e) {
+    if (e.goneAtSource) { skipped++; say(`    the exchange no longer serves this document (${e.message}) — skipped\n`); }
+    else { failed++; say(`    could not read it: ${e.message}\n`); }
+    continue;
+  }
 
   const text = got.text.replace(/\s+/g, ' ');
   const profile = {
@@ -326,7 +338,7 @@ for (const t of targets) {
         v.evidence.map(e => `${k.replace(/_/g, ' ')}: "${e.sentence}" (prospectus, company-stated)`));
     }
     /* No hit doesn't mean no moat -- a prospectus rarely states a market
-       share figure the way Screener/Trendlyne might. Leave moat_signal as
+       share figure the way a later annual report might. Leave moat_signal as
        scan-listings.mjs set it (null) so weekly-prompt.md still gets a
        chance to find evidence a different way. */
   }
