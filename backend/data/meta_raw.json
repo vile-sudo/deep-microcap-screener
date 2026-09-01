@@ -1,8 +1,19 @@
 {
   "BUILD": {
-    "version": "v5",
-    "built": "20 August 2026",
+    "version": "v9",
+    "built": "1 September 2026",
     "history": [
+      {
+        "v": "v9",
+        "d": "1 September 2026",
+        "items": [
+          "Five companies added, taking the board from 375 to 380: Hindusthan Insulators & Industries, Tempsens Instruments (India), PPAP Automotive, Sukhjit Starch & Chemicals and Foods & Inns.",
+          "They come in under a new v9-verified screen, and the screen is the point rather than the count: a moat claim is only accepted here when an independent third party says it — a rating-agency rationale, a regulator or DGTR finding, a named industry report — not when the company says it about itself. Twenty queued candidates were put through that check and eleven failed it.",
+          "The weekly pass now records moat_confirmed, confirm_source and confirm_note on every candidate, so a claim travels with its evidence. Deliberately not a second gate: at this size, absence of corroboration is usually absence of coverage, not absence of a moat.",
+          "Sweep dedupe fixed. The board keys dual-listed rows by NSE symbol, but the sweep matched only against a BSE feed, so four companies already on the board came back as fresh finds and were researched from scratch; the new-listings job never checked the board at all. Both now match on code, NSE code, BSE code and exact normalised name.",
+          "The “Updated” date in this header is no longer hand-typed. It is the newest added_on in the dataset, so it moves on a build that adds companies and stays put on one that does not — which is why it sat at 20 August 2026 through four builds that changed the board underneath it."
+        ]
+      },
       {
         "v": "v7",
         "d": "20 August 2026",
@@ -165,5 +176,5 @@
       "seen_on": "2026-08-21"
     }
   ],
-  "BUILD_NEW": "2026-08-20"
+  "BUILD_NEW": "2026-09-01"
 }

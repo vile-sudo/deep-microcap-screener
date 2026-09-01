@@ -10,6 +10,7 @@ Usage:
 """
 import json
 import sys
+from datetime import datetime
 
 from .config import get_settings
 from .database import Base, SessionLocal, engine
@@ -32,6 +33,15 @@ SCREEN_PATCHES = {
 def _load_json(path):
     with open(path, encoding="utf-8") as f:
         return json.load(f)
+
+
+def _pretty_date(iso: str) -> str:
+    """2026-09-01 -> "1 September 2026", the format the board header uses."""
+    try:
+        d = datetime.strptime(iso, "%Y-%m-%d")
+    except (TypeError, ValueError):
+        return iso
+    return f"{d.day} {d:%B %Y}"
 
 
 # Fields the frontend always treats as arrays (e.g. `(d.warnings||[]).filter(...)`).
@@ -65,6 +75,21 @@ def seed() -> None:
         meta["CANDIDATES"] = _load_json(settings.candidates_file)
     if settings.build_stamp_file.exists():
         meta["BUILD_STAMP"] = _load_json(settings.build_stamp_file)
+
+    # The header's "Updated <date>" used to be a string hand-typed into
+    # meta_raw.json, which nothing in the weekly pipeline touches -- so it sat
+    # at "20 August 2026" while the board underneath it kept moving. It is not
+    # a judgement call anyway: the board is updated on the day companies are
+    # added to it. Derive both it and BUILD_NEW (which drives the NEW badge and
+    # the "new in this build" filter) from the newest added_on in the dataset,
+    # so a push that adds companies moves the date, and one that doesn't leaves
+    # it alone -- and the header, the badge and the filter can never disagree.
+    newest_added = max((c.get("added_on") or "" for c in companies), default="")
+    if newest_added:
+        meta["BUILD_NEW"] = newest_added
+        build = dict(meta.get("BUILD") or {})
+        build["built"] = _pretty_date(newest_added)
+        meta["BUILD"] = build
 
     # Patch any screen codes present in the data but missing from the legend,
     # so the frontend never hits an undefined lookup.

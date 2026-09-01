@@ -229,7 +229,9 @@ const SUGG=['torpedo','CRGO','NABL','DRDO','sole Indian','debunked','import subs
             'switchgear','forging','submarine','data centre','railway','pricing power','SME'];
 document.getElementById('sugg').innerHTML =
   SUGG.map(s=>`<button data-q="${s}">${s}</button>`).join('') +
-  `<button data-new="2026-08-20">&#9733; new in this build (${DATA.filter(d=>d.added_on==='2026-08-20').length})</button>`;
+  /* the build date is derived from the data (see backend/app/seed.py), so this
+     button follows it instead of carrying its own hand-typed copy of the date */
+  (BUILD_NEW ? `<button data-new="${BUILD_NEW}">&#9733; new in this build (${DATA.filter(d=>d.added_on===BUILD_NEW).length})</button>` : '');
 document.getElementById('sugg').onclick=e=>{
   const b=e.target.closest('button'); if(!b) return;
   if(b.dataset.new){ NEWSINCE = NEWSINCE===b.dataset.new?null:b.dataset.new; b.style.borderStyle=NEWSINCE?'solid':'dashed'; render(); }
