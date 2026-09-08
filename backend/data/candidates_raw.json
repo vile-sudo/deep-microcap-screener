@@ -47,5 +47,896 @@
   "confirm_source": "no independent source found; secondary sites (Screener key points, TradeIndia, IndiaMART) all trace back to company copy",
   "confirm_note": "The \"first to develop and patent 5-ply polypropylene corrugated sheets\" claim repeats verbatim across several third-party-looking pages, but every one of them is reproducing the company's own description; no rating rationale, regulator record or patent-registry entry was found to confirm either the patent or the first-in-India priority. The claim may well be true — it is simply unverified, and a patent-office search is the check that would settle it. Left open rather than promoted or ruled out.",
   "confirmed_on": "2026-08-31"
+ },
+ {
+  "sym": "ABH",
+  "name": "ABH Healthcare Limited",
+  "board": "SME",
+  "isin": "INE1R2M01019",
+  "listed": "01-Sep-26",
+  "hint": "pharma & healthcare",
+  "why": "sector plausible",
+  "plausible": true,
+  "verdict": null,
+  "seen_on": "2026-09-05",
+  "source": "new-listing",
+  "moat_signal": true,
+  "moat_evidence": [
+   "Regional leadership claim: 'In 2022, we were honored to be recognized as the leading hospital in Punjab among 720 hospitals empaneled with the State Health Agency, Punjab, and the National Health Authority (source: State Health Agency Punjab)' — DRHP, 'Accreditations and recognitions' section and 'Major Events, Milestones, Key Awards' table (which cites 715 hospitals in the award-history entry vs 720 in the narrative text)."
+  ],
+  "profile": {
+   "symbol": "ABH",
+   "company": "Abh Healthcare Limited",
+   "isin": "INE1R2M01019",
+   "board": "SME",
+   "source": {
+    "document": "draft prospectus",
+    "url": "https://nsearchives.nseindia.com/emerge/corporates/content/Registration_28062025023914_ABHDRHP27062025.pdf",
+    "filed": "28-Jun-2025",
+    "pdf_bytes": 8989484,
+    "extracted_chars": 1350728
+   },
+   "grade": "company-stated",
+   "verified_against": null,
+   "claims": {
+    "accreditation": {
+     "count": 10,
+     "dropped_as_industry_commentary": 19,
+     "terms": [
+      "NABH",
+      "AERB"
+     ],
+     "evidence": [
+      {
+       "match": "NABH",
+       "sentence": "For instance, we adopted cutting-edge digital technologies in healthcare for which our hospital was accredited as NABH Digital Standards during the Fiscal 2025, for enhancing our operational capabilities."
+      },
+      {
+       "match": "NABH",
+       "sentence": "We also maintain certain accreditations, including accreditations from the National Accreditation Board for Hospitals and Healthcare Providers (\"NABH\") for our hospital."
+      },
+      {
+       "match": "NABH",
+       "sentence": "Further, we have also been accredited with NABH Digital Standards, highlighting our adoption of cutting-edge digital technologies in healthcare in the year 2024-25."
+      }
+     ]
+    },
+    "ip": {
+     "count": 10,
+     "dropped_as_industry_commentary": 4,
+     "terms": [
+      "Trademark",
+      "trademarks",
+      "trademark"
+     ],
+     "evidence": [
+      {
+       "match": "Trademark",
+       "sentence": "Kamal Baghi vide deed of assignment dated June,12, 2025, Pursuant to this, our Company has filed an application for the assignment of the Trademark with the Trademark Registry, bearing application number 12566473."
+      },
+      {
+       "match": "trademarks",
+       "sentence": "We may not be able to prevent infringement of our trademarks and a passing off action may not provide sufficient protection until such time that this registration is granted."
+      },
+      {
+       "match": "trademarks",
+       "sentence": "Pending the registration of these trademarks, any third party may use the above-mentioned trademarks and we may have a lesser recourse to initiate legal proceedings to protect our intellectual property."
+      }
+     ]
+    }
+   },
+   "risk_factors": {
+    "customer_concentration": {
+     "count": 3,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "top 10 customers",
+      "Top 2 customers",
+      "Top 5 customers"
+     ],
+     "evidence": [
+      {
+       "match": "top 10 customers",
+       "sentence": "While our In-patient and Out patients cannot be categorised under the top ten category however based on the patients who come through Governmental organisations, insurance companies, TPA's and corporate entities under the tie-up arrangements, our top 10 customers relating to such entities contribute 53."
+      },
+      {
+       "match": "Top 2 customers",
+       "sentence": "Top 2 customers 1,336."
+      },
+      {
+       "match": "Top 5 customers",
+       "sentence": "Top 5 customers 1,795."
+      }
+     ]
+    },
+    "promoter_litigation": {
+     "count": 6,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "Criminal Proceedings",
+      "criminal proceedings",
+      "criminal cases",
+      "Criminal proceedings"
+     ],
+     "evidence": [
+      {
+       "match": "Criminal Proceedings",
+       "sentence": "this Draft Red Herring Prospectus in terms of the SEBI ICDR Regulations and the Materiality Resolution is provided below: Statutory Disciplinary actions Entity Criminal Proceedings Tax Proceedings or Regulatory by the SEBI or Stock Exchanges against Proceedings our Promoters Company By the Company 1 Nil 1 N."
+      },
+      {
+       "match": "criminal proceedings",
+       "sentence": "Any non-compliance with the applicable laws, rules and regulations may subject us to regulatory action, including penalties and other civil or criminal proceedings, which may materially and adversely affect our business, prospects and reputation."
+      },
+      {
+       "match": "criminal cases",
+       "sentence": "In respect of the track record of the Directors, there have been no criminal cases filed or investigations being undertaken with regard to alleged commission of any offence by any of our directors and none of our directors have been chargesheeted with serious crimes like murder, rape, forgery, economic offence."
+      }
+     ]
+    },
+    "related_party": {
+     "count": 20,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "related party transactions",
+      "RELATED PARTY TRANSACTION",
+      "Related Party Transactions",
+      "Related Party transactions"
+     ],
+     "evidence": [
+      {
+       "match": "related party transactions",
+       "sentence": "\"Group Companies\" Companies with which there were related party transactions as disclosed in the Restated Consolidated Financial Statements as covered under the applicable accounting standards and also other companies as considered material by our Company, and as disclosed in \"Our Group Companies\" on page 180 of this Draft Red Herring Prospectus."
+      },
+      {
+       "match": "RELATED PARTY TRANSACTION",
+       "sentence": "29 SUMMARY OF RELATED PARTY TRANSACTION The details of related party transactions entered into by our Company for the nine months period ended December 31, 2024, for the Fiscal 2024, Fiscal 2023 and Fiscal 2022, and derived from the Restated Standalone Financial Statements are as set out in the table below: ( in lakhs) Sr."
+      },
+      {
+       "match": "Related Party Transactions",
+       "sentence": "Therefore, wrong pocket adjustments are ignored while preparing the Related Party Transactions in lieu of the agreed clauses mentioned in the Business Transfer Agreement."
+      }
+     ]
+    }
+   },
+   "objects_of_the_issue": {
+    "fresh_issue": {
+     "count": 21,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "Fresh Issue",
+      "FRESH ISSUE",
+      "fresh Issue",
+      "fresh issue",
+      "Fresh issue"
+     ],
+     "evidence": [
+      {
+       "match": "Fresh Issue",
+       "sentence": "VAISHALI SAINI DETAILS OF ISSUE TO PUBLIC Type Fresh Issue Size OFS size (by no."
+      },
+      {
+       "match": "Fresh Issue",
+       "sentence": "of shares Total Issue Size or by amount in Rs) Eligibility Fresh Issue Up to 34,29,000 Equity Shares N."
+      },
+      {
+       "match": "FRESH ISSUE",
+       "sentence": "FOR SALE AND THEIR AVERAGE COST OF ACQUISITION : NOT APPLICABLE AS THE ENTIRE ISSUE CONSTITUTES FRESH ISSUE OF EQUITY SHARES RISK IN RELATION TO THE FIRST ISSUE This being the first public issue of Equity Shares of our Company, there has been no formal market for the Equity Shares of our Company."
+      }
+     ]
+    },
+    "capital_expenditure": {
+     "count": 19,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "capital expenditure",
+      "Capital expenditure",
+      "setting up of"
+     ],
+     "evidence": [
+      {
+       "match": "capital expenditure",
+       "sentence": "Our ability to provide affordable healthcare depends on our ability to maintain a high volume of patients, occupancy rates, and effectively manage capital, project costs, operating costs and capital expenditure."
+      },
+      {
+       "match": "capital expenditure",
+       "sentence": "Any failure by us to maintain or improve our admissions or occupancy rates may result in an ineffective deployment of capital expenditure and reduced profit margins, which may have an adverse impact on our business, financial condition, and results of operations 21."
+      },
+      {
+       "match": "capital expenditure",
+       "sentence": "If we are unable to increase our hospital occupancy rates and reduce average length of stay of our patient, we may not be able to generate adequate returns on our capital expenditure."
+      }
+     ]
+    },
+    "working_capital": {
+     "count": 30,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "Working Capital Requirements",
+      "working capital requirements",
+      "working capital requirement"
+     ],
+     "evidence": [
+      {
+       "match": "Working Capital Requirements",
+       "sentence": "00 Funding our Working Capital Requirements 430."
+      },
+      {
+       "match": "Working Capital Requirements",
+       "sentence": "We intend to use a portion of the Net Proceeds of the Fresh Issue for the following: (i) Repayment / prepayment, in part or full, of certain of our borrowings; (ii) Funding our Working Capital Requirements; and (iii) Funding inorganic growth through unidentified acquisitions and general corporate purposes (collectively referred to as \"Objects\") Our Company may have to revise"
+      },
+      {
+       "match": "working capital requirements",
+       "sentence": "Our operations are subject to high working capital requirements."
+      }
+     ]
+    },
+    "general_corporate": {
+     "count": 18,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "General Corporate Purpose",
+      "general corporate purpose",
+      "general corporate purposes"
+     ],
+     "evidence": [
+      {
+       "match": "General Corporate Purpose",
+       "sentence": "\"General Corporate Purpose\" Include such identified purposes for which no specific amount is allocated or any amount so specified towards general corporate purpose or any such purpose by whatever name called, in the offer document."
+      },
+      {
+       "match": "general corporate purpose",
+       "sentence": "Provided that any Issue related expenses shall not be considered as a part of general corporate purpose merely because no specific amount has been allocated for such expenses in the Issue document."
+      },
+      {
+       "match": "general corporate purposes",
+       "sentence": "00 general corporate purposes* Funding inorganic growth through unidentified acquisitions and [] Total *To be finalized upon determination of the Issue Price and will be updated in the Prospectus prior to filing with the RoC."
+      }
+     ]
+    }
+   },
+   "profiled_on": "2026-09-05"
+  },
+  "moat_confirmed": false,
+  "confirm_source": null,
+  "confirm_note": "Searched for independent corroboration of the 'No.1 hospital in Punjab among 715/720 PMJAY-empanelled hospitals' claim: State Health Agency Punjab's public hospital-search page, National Health Authority/PMJAY press releases, Arogya Manthan 2022 award coverage (PIB, medicaldialogues), and news search for the hospital name plus 'award'/'number 1'. Every hit traces back to the company's own website (anilbaghihospital.com, which repeats the identical wording) or the prospectus itself — no SHA Punjab or NHA press release, gazette, or independent news report naming Anil Baghi Hospital was found. This does not contradict the claim; it is the expected absence-of-coverage case for a Tier-3-city SME hospital.",
+  "research_note": "ABH Healthcare Limited runs a single 150-bed multi-specialty hospital ('Anil Baghi Hospital', acquired from the promoter's sole proprietorship in 2022, originally a 30-bed facility founded in 1985) in Ferozepur, Punjab, offering 25 specialties; it derives essentially 100% of revenue from this one facility, 100% geographically concentrated in Ferozepur. Screener shows only bare metrics (market cap ~Rs 83cr, P/E 14.5, ROCE 19.9%, ROE 39.6%), no business description, as expected for an SME-platform name. NABH accreditation and pending trademarks are table-stakes, not moat evidence, but the DRHP separately states the hospital was recognized in 2022 as Punjab's leading hospital among 715-720 PMJAY-empanelled hospitals — a concrete, sourced regional-leadership claim, though uncorroborated outside the company's own materials.",
+  "flag": "unclear"
+ },
+ {
+  "sym": "SYMBIOTEC",
+  "name": "Symbiotec Pharmalab Limited",
+  "board": "NSE",
+  "isin": "INE899I01028",
+  "listed": "01-SEP-2026",
+  "hint": null,
+  "why": "sector unknown, SME platform",
+  "plausible": false,
+  "verdict": null,
+  "seen_on": "2026-09-05",
+  "source": "new-listing",
+  "moat_signal": true,
+  "moat_evidence": [
+   "monopoly claim: \"Similarly, we are one of the few companies globally to have successfully developed a complex API with 82 US FDA mandated components despite the product's primary composition patents having expired several decades prior.\" (prospectus, company-stated)",
+   "monopoly claim: \"Symbiotec is also one of the few companies globally to have successfully developed a complex API with 82 US FDA mandated components despite the product's primary composition patents having expired several decades prior.\" (prospectus, company-stated)",
+   "monopoly claim: \"Our ability to develop and scale niche, complex API products is reflected in our success in developing conjugated estrogen products, where we are one of the few companies globally to have successfully developed a complex API with 82 US FDA mandated components despite the product's primary composition patents having expired several decades prior.\" (prospectus, company-stated)"
+  ],
+  "profile": {
+   "symbol": "SYMBIOTEC",
+   "company": "Symbiotec Pharmalab Limited",
+   "isin": "INE899I01028",
+   "board": "NSE",
+   "source": {
+    "document": "final prospectus",
+    "url": "https://nsearchives.nseindia.com/corporate/FP_INE899I01028_31AUG2026.pdf",
+    "filed": "31-Aug-2026",
+    "pdf_bytes": 9368829,
+    "extracted_chars": 2101495
+   },
+   "grade": "company-stated",
+   "verified_against": null,
+   "claims": {
+    "accreditation": {
+     "count": 42,
+     "dropped_as_industry_commentary": 11,
+     "terms": [
+      "US FDA",
+      "WHO-GMP",
+      "EU GMP",
+      "ISO 14001",
+      "USFDA"
+     ],
+     "evidence": [
+      {
+       "match": "US FDA",
+       "sentence": "t and manufacturing organisation Certificate of suitability Double chamber bag Double chamber device Double chamber syringe 20 Term DCV DMF DS EDQM EU-GMP FDA/ US FDA GLP-1 HRT KL KSM MT UV WHO-GMP Description Double chamber vial Drug master file Drug substance European Directorate for the Quality of Medicines and HealthCare European Union - Good Manufacturi"
+      },
+      {
+       "match": "WHO-GMP",
+       "sentence": "on Certificate of suitability Double chamber bag Double chamber device Double chamber syringe 20 Term DCV DMF DS EDQM EU-GMP FDA/ US FDA GLP-1 HRT KL KSM MT UV WHO-GMP Description Double chamber vial Drug master file Drug substance European Directorate for the Quality of Medicines and HealthCare European Union - Good Manufacturing Practices United States Foo"
+      },
+      {
+       "match": "US FDA",
+       "sentence": "Our Rau Facility is approved by the US FDA, World Health Organization Good Manufacturing Practices (\"WHO-GMP\") and EU-GMP (by Regierung von Oberbayern, Germany) and other regulatory authorities."
+      }
+     ]
+    },
+    "monopoly_claim": {
+     "count": 5,
+     "dropped_as_industry_commentary": 4,
+     "terms": [
+      "one of the few companies",
+      "among the few players"
+     ],
+     "evidence": [
+      {
+       "match": "one of the few companies",
+       "sentence": "Similarly, we are one of the few companies globally to have successfully developed a complex API with 82 US FDA mandated components despite the product's primary composition patents having expired several decades prior."
+      },
+      {
+       "match": "one of the few companies",
+       "sentence": "Symbiotec is also one of the few companies globally to have successfully developed a complex API with 82 US FDA mandated components despite the product's primary composition patents having expired several decades prior."
+      },
+      {
+       "match": "one of the few companies",
+       "sentence": "Our ability to develop and scale niche, complex API products is reflected in our success in developing conjugated estrogen products, where we are one of the few companies globally to have successfully developed a complex API with 82 US FDA mandated components despite the product's primary composition patents having expired several decades prior."
+      }
+     ]
+    },
+    "ip": {
+     "count": 32,
+     "dropped_as_industry_commentary": 24,
+     "terms": [
+      "proprietary technologies",
+      "patented",
+      "patents",
+      "patent",
+      "trademarks",
+      "Trademarks"
+     ],
+     "evidence": [
+      {
+       "match": "proprietary technologies",
+       "sentence": "Additionally, audits or disputes with tax authorities in various jurisdictions could lead to unexpected tax assessments and penalties; � Protection of our intellectual property rights across multiple jurisdictions, including the risk of infringement and unauthorised use of our proprietary technologies and products; � Imposition of international sanctions on one or more of the jurisdictions to which we export products; � Fluctuations in foreign currency exchange rates agains"
+      },
+      {
+       "match": "patented",
+       "sentence": "While no tariffs have yet been imposed by the United States on pharmaceutical goods other than branded / patented products imported from India and consequently our results of operations have not been directly impacted, this could change in the future, and we cannot assure you that our business will not be affected by it."
+      },
+      {
+       "match": "patents",
+       "sentence": "Similarly, we are one of the few companies globally to have successfully developed a complex API with 82 US FDA mandated components despite the product's primary composition patents having expired several decades prior."
+      }
+     ]
+    }
+   },
+   "risk_factors": {
+    "customer_concentration": {
+     "count": 16,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "top ten customers",
+      "Top five customers",
+      "dependent on a limited number of customers",
+      "top five customers",
+      "customer concentration"
+     ],
+     "evidence": [
+      {
+       "match": "top ten customers",
+       "sentence": "Revenue generated from our top ten customers accounted for 57."
+      },
+      {
+       "match": "Top five customers",
+       "sentence": "The table below sets forth the breakdown of amounts generated from our significant customers, including their percentage of sale of products, in the corresponding years: Fiscal 2026 Fiscal 2025 Particulars Top five customers Amount ( million) 3,475."
+      },
+      {
+       "match": "top ten customers",
+       "sentence": "90% customers Note: The customers comprising our top five and top ten customers varied across each period."
+      }
+     ]
+    },
+    "promoter_litigation": {
+     "count": 19,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "Criminal proceedings",
+      "criminal proceedings",
+      "criminal case",
+      "proceedings involving our Promoters"
+     ],
+     "evidence": [
+      {
+       "match": "Criminal proceedings",
+       "sentence": "The table below sets forth a summary of outstanding litigation proceedings involving our Company, our Subsidiaries, Promoters, and Directors as of the date of this Prospectus: Name of Entity Criminal proceedings Tax proceedings Statutory or regulatory proceedings Company By the 1 Company Nil N."
+      },
+      {
+       "match": "criminal proceedings",
+       "sentence": "67 Nil Nil 56 A summary of outstanding criminal proceedings and statutory or regulatory proceedings, as on the date of this Prospectus, involving our Key Managerial Personnel and Senior Management, as disclosed in \"Outstanding Litigation a"
+      },
+      {
+       "match": "Criminal proceedings",
+       "sentence": "r Management, as disclosed in \"Outstanding Litigation and Other Material Developments\" in terms of the SEBI ICDR Regulations, is provided below: Name of Entity Criminal proceedings Statutory or regulatory proceedings Key Managerial Personnel# By the Key Managerial Personnel Nil N."
+      }
+     ]
+    },
+    "single_site": {
+     "count": 1,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "single unit"
+     ],
+     "evidence": [
+      {
+       "match": "single unit",
+       "sentence": "By integrating storage, reconstitution, and delivery into a single unit, double chamber technology improves patient safety, enhances compliance, and provides significant efficiency gains for healthcare systems handling complex biologics and other labile therapeutic compounds."
+      }
+     ]
+    },
+    "related_party": {
+     "count": 32,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "RELATED PARTY TRANSACTIONS",
+      "related party transactions",
+      "Related Party Transactions",
+      "Related party transactions",
+      "related party transaction"
+     ],
+     "evidence": [
+      {
+       "match": "RELATED PARTY TRANSACTIONS",
+       "sentence": "90 SUMMARY OF RELATED PARTY TRANSACTIONS ."
+      },
+      {
+       "match": "related party transactions",
+       "sentence": "The table below sets forth details of our related party transactions in the relevant years: Particulars Arithmetic aggregated absolute sum of all Related Party Transactions ( million) (A) Revenue from operations ( million) (B) Arithmetic aggr"
+      },
+      {
+       "match": "Related Party Transactions",
+       "sentence": "48% For further information, see \"Other Financial Information - Related Party Transactions\" on page 370."
+      }
+     ]
+    }
+   },
+   "objects_of_the_issue": {
+    "offer_for_sale": {
+     "count": 44,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "OFFER FOR SALE",
+      "Offer for Sale",
+      "offer for sale"
+     ],
+     "evidence": [
+      {
+       "match": "OFFER FOR SALE",
+       "sentence": "DETAILS OF THE OFFER FOR SALE BY THE SELLING SHAREHOLDERS AND WEIGHTED AVERAGE COST OF ACQUISITION PER EQUITY SHARE NAME OF THE SELLING SHAREHOLDERS TYPE MAXIMUM NUMBER OF EQUITY SHARES OFFERED AND AMOUNT ( IN MILLI"
+      },
+      {
+       "match": "Offer for Sale",
+       "sentence": "Each of the Selling Shareholders, severally and not jointly, accepts responsibility for and only confirms the statements made or confirmed by such Selling Shareholder in this Prospectus to the extent of information specifically pertaining to itself and its respective portion of the Offered Shares in the Offer for Sale and assumes responsibility that such statements are true and correct in all material respects and are not misleading in any material respect."
+      },
+      {
+       "match": "OFFER FOR SALE",
+       "sentence": "00 MILLION*^ BY OUR COMPANY (\"FRESH ISSUE\") AND AN OFFER FOR SALE OF 16,265,181* EQUITY SHARES OF FACE VALUE OF 2 EACH (\"OFFERED SHARES\") AGGREGATING 16,070."
+      }
+     ]
+    },
+    "fresh_issue": {
+     "count": 49,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "FRESH ISSUE",
+      "Fresh Issue",
+      "fresh issue"
+     ],
+     "evidence": [
+      {
+       "match": "FRESH ISSUE",
+       "sentence": "com Pradesh, India Compliance Officer Telephone: +91 731 667 6405 THE PROMOTERS OF OUR COMPANY: ANIL SATWANI, KASHISH SATWANI, SUSHIL SATWANI AND SATWANI HOLDINGS LLP DETAILS OF OFFER TO THE PUBLIC TYPE FRESH ISSUE OFFER FOR TOTAL ELIGIBILITY & SHARE RESERVATION AMONG QIBS, SIZE SALE SIZE OFFER SIZE NIBS, RIBS & ELIGIBLE EMPLOYEES Fresh Issue 1,521,261* Equity 16,265,181* Equity 17,786,442* The Offer"
+      },
+      {
+       "match": "Fresh Issue",
+       "sentence": "S OF OFFER TO THE PUBLIC TYPE FRESH ISSUE OFFER FOR TOTAL ELIGIBILITY & SHARE RESERVATION AMONG QIBS, SIZE SALE SIZE OFFER SIZE NIBS, RIBS & ELIGIBLE EMPLOYEES Fresh Issue 1,521,261* Equity 16,265,181* Equity 17,786,442* The Offer was made pursuant to Regulation 6(1) of the Securities and and Offer Shares of face Shares of face Equity Shares of Exchange Boar"
+      },
+      {
+       "match": "FRESH ISSUE",
+       "sentence": "THE OFFER COMPRISED A FRESH ISSUE OF 1,521,261* EQUITY SHARES OF FACE VALUE OF 2 EACH AGGREGATING TO 1,500."
+      }
+     ]
+    },
+    "capital_expenditure": {
+     "count": 39,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "Capital Expenditure",
+      "Capital expenditure",
+      "capital expenditure",
+      "expansion of our",
+      "setting up of",
+      "CAPITAL EXPENDITURE"
+     ],
+     "evidence": [
+      {
+       "match": "Capital Expenditure",
+       "sentence": "AIF Regulations, as the case may be Key Performance Indicators (under the section titled \"Basis for Offer Price\" on page 146) KPI Adjusted ROCE (%) API Revenue Capital Expenditure Description Adjusted ROCE is calculated based on the consolidated average capital employed for the year after excluding the capital employed attributable to Knovea Pharmaceutical Private Limited and Symbiotec Zenfold Private Limited."
+      },
+      {
+       "match": "Capital expenditure",
+       "sentence": "to generate return on capital employed in coming years API Revenue represents revenue from sales of active pharmaceutical ingredients and related intermediates Capital expenditure comprises additions to property, plant and equipment, capital workin-progress, right-of-use assets and intangible assets during the respective Fiscal."
+      },
+      {
+       "match": "capital expenditure",
+       "sentence": "severe weather conditions, natural disasters, and outbreak of infectious diseases, could adversely affect our business and may require us to incur significant capital expenditure and change our business strategy."
+      }
+     ]
+    },
+    "working_capital": {
+     "count": 9,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "working capital requirements",
+      "Working capital requirements"
+     ],
+     "evidence": [
+      {
+       "match": "working capital requirements",
+       "sentence": "Our inability to meet our working capital requirements could have an adverse effect on our business, results of operations, financial condition and cash flows."
+      },
+      {
+       "match": "working capital requirements",
+       "sentence": "Our inability to meet our working capital requirements through borrowings or cash from our operations, as the case may be, could have an adverse effect on our business, results of operations financial condition and cash flows."
+      },
+      {
+       "match": "working capital requirements",
+       "sentence": "Delayed payments or non-payment by our customers negatively affect our working capital requirements and may entail incurring additional finance costs."
+      }
+     ]
+    },
+    "general_corporate": {
+     "count": 9,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "General corporate purposes",
+      "general corporate purposes"
+     ],
+     "evidence": [
+      {
+       "match": "General corporate purposes",
+       "sentence": "General corporate purposes."
+      },
+      {
+       "match": "General corporate purposes",
+       "sentence": "00 borrowings availed by our Company General corporate purposes (1) 295."
+      },
+      {
+       "match": "General corporate purposes",
+       "sentence": "00 portion of certain outstanding borrowings availed by our Company General corporate purposes 295."
+      }
+     ]
+    }
+   },
+   "profiled_on": "2026-09-05"
+  },
+  "moat_confirmed": "partial",
+  "confirm_source": "CARE Ratings Ltd. Press Release, Symbiotec Pharmalab Private Limited (CARE A+/Stable), 10-Feb-2021; and US FDA Office of Generic Drugs Product-Specific Guidance on Conjugated Estrogens (Tablets), recommended Dec 2014",
+  "confirm_note": "CARE's 2021 rationale independently states 'SPPL is one of the few companies in India which exclusively manufactures steroid APIs' and credits its niche corticosteroid/hormone API franchise, USFDA/EU-GMP/WHO-GMP-approved facilities, sustained R&D (~5% of revenue), and exclusive collaboration agreements with a large global pharma company for in-house-developed niche injectable products — confirming the business is genuinely niche and R&D-capable. Neither the 2021 nor 2022 CARE release mentions conjugated estrogen, the 82-component figure, or a 'few companies globally' claim specifically; CARE's weaknesses section instead flags a 'highly fragmented and competitive bulk drug industry' and heavy import dependence (78% of raw materials) as constraints. Separately, the FDA's own Product-Specific Guidance on Conjugated Estrogens independently confirms the API is held to an unusually complex identity standard (60 FDA-mandated steroidal components via a bespoke LC-MS method, plus non-steroidal components) — not exactly '82' but corroborating the general complexity claim — and FDA approval history shows the first-ever generic (Ingenus, Nov 2025) came only decades after the original patents expired, supporting that very few firms have mastered this API. No independent source names Symbiotec specifically as one of the few global manufacturers of this exact API.",
+  "research_note": "Symbiotec Pharmalab (Indore, M.P.) is a ~20-year-old manufacturer of niche corticosteroid and hormone APIs (steroids ~70% of FY22 revenue) with USFDA/EU-GMP/WHO-GMP-approved facilities, exporting to 30+ countries; Screener shows market cap ~Rs 6,987cr, P/E 60.6, ROCE 13%, ROE 11.7% post its Sept-2026 listing but no business description yet. Independent CARE Ratings rationales (2021, 2022) corroborate the niche API/hormone franchise and R&D capability but do not corroborate the specific conjugated-estrogen/82-component claim; an FDA product-specific guidance document independently confirms the underlying technical complexity of conjugated estrogens APIs generally, without naming Symbiotec.",
+  "flag": "unclear"
+ },
+ {
+  "sym": "543725",
+  "name": "Elin Electronics Ltd",
+  "board": "BSE",
+  "isin": "INE050401020",
+  "listed": null,
+  "hint": "electronics & electricals",
+  "why": "small-cap sweep",
+  "mktcap_cr": 473.48,
+  "plausible": true,
+  "verdict": null,
+  "seen_on": "2026-09-05",
+  "source": "sweep",
+  "moat_signal": true,
+  "moat_evidence": [
+   "import substitution: \"Further, in June 2022, our Company received approval under the Production Linked Incentive (\"PLI\") Scheme for White Goods (Air Conditioners and LEDs) for manufacturing of specified eligible products in the LED (components) target segment, and with a committed investment of 100 million.\" (prospectus, company-stated)",
+   "import substitution: \"We believe that this will enable us to claim incentives under the PLI scheme, subject to us satisfying the eligibility and other conditions thereunder.\" (prospectus, company-stated)",
+   "import substitution: \"The Company had received approval to get Production linked Incentive Scheme for White Goods (PLI Scheme) notified vide Gazette Notification No.\" (prospectus, company-stated)"
+  ],
+  "profile": {
+   "symbol": "543725",
+   "company": "Elin Electronics Limited",
+   "isin": "INE050401020",
+   "board": "BSE",
+   "source": {
+    "document": "final prospectus",
+    "url": "https://nsearchives.nseindia.com/corporate/FP_INE050401020_28DEC2022.pdf",
+    "filed": "23-Dec-2022",
+    "pdf_bytes": 12404222,
+    "extracted_chars": 1434318
+   },
+   "grade": "company-stated",
+   "verified_against": null,
+   "claims": {
+    "accreditation": {
+     "count": 7,
+     "dropped_as_industry_commentary": 10,
+     "terms": [
+      "ISO 9001",
+      "ISO 14001",
+      "BIS"
+     ],
+     "evidence": [
+      {
+       "match": "ISO 9001",
+       "sentence": "30 All of our manufacturing facilities have been accredited with management system certificates for compliance with ISO 9001:2015 and ISO 14001:2015."
+      },
+      {
+       "match": "ISO 14001",
+       "sentence": "We also have ISO 14001:2004 certification for `Environment Management System Standard' and TS: 16949: 2016 quality certifications for automotive parts manufacture of injection moulded and sheet metal components and their sub-assemblies."
+      },
+      {
+       "match": "ISO 9001",
+       "sentence": "All of our manufacturing facilities have been accredited with management system certificates for compliance with ISO 9001:2015 and ISO 14001:2015."
+      }
+     ]
+    },
+    "import_substitution": {
+     "count": 4,
+     "dropped_as_industry_commentary": 36,
+     "terms": [
+      "Production Linked Incentive",
+      "PLI scheme",
+      "Production linked Incentive"
+     ],
+     "evidence": [
+      {
+       "match": "Production Linked Incentive",
+       "sentence": "Further, in June 2022, our Company received approval under the Production Linked Incentive (\"PLI\") Scheme for White Goods (Air Conditioners and LEDs) for manufacturing of specified eligible products in the LED (components) target segment, and with a committed investment of 100 million."
+      },
+      {
+       "match": "PLI scheme",
+       "sentence": "We believe that this will enable us to claim incentives under the PLI scheme, subject to us satisfying the eligibility and other conditions thereunder."
+      },
+      {
+       "match": "Production linked Incentive",
+       "sentence": "The Company had received approval to get Production linked Incentive Scheme for White Goods (PLI Scheme) notified vide Gazette Notification No."
+      }
+     ]
+    },
+    "ip": {
+     "count": 11,
+     "dropped_as_industry_commentary": 8,
+     "terms": [
+      "patent",
+      "patented",
+      "trademarks",
+      "trademark"
+     ],
+     "evidence": [
+      {
+       "match": "patent",
+       "sentence": "Our technical knowledge is an independent asset of ours, which may not be adequately protected by intellectual property rights such as patent registration or design registration."
+      },
+      {
+       "match": "patented",
+       "sentence": "The potential damage from such disclosure is increased as our designs and products are not patented, and thus we may have no recourse against copies of our products and designs that enter the market subsequent to such leakages."
+      },
+      {
+       "match": "trademarks",
+       "sentence": "We have registered certain trademarks in India, and may apply for other intellectual property registrations in the future."
+      }
+     ]
+    }
+   },
+   "risk_factors": {
+    "customer_concentration": {
+     "count": 4,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "top 5 customers",
+      "top 10 customers",
+      "top five customers"
+     ],
+     "evidence": [
+      {
+       "match": "top 5 customers",
+       "sentence": "Our top 5 customers accounted, cumulatively, for 69."
+      },
+      {
+       "match": "top 10 customers",
+       "sentence": "Further, our top 10 customers accounted, cumulatively, for 80."
+      },
+      {
+       "match": "top 10 customers",
+       "sentence": "Set forth below is the chart indicating the revenue attributable to our top 10 customers and the largest customers as percentage of our revenue from operations for the period indicated: 100 80 60 40 20 0 Fiscal 2020 Fiscal 2021 Revenue from top 10 customers (in %) Fiscal"
+      }
+     ]
+    },
+    "promoter_litigation": {
+     "count": 6,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "criminal proceedings"
+     ],
+     "evidence": [
+      {
+       "match": "criminal proceedings",
+       "sentence": "A summary of pending material civil, tax and criminal proceedings involving our Company, Promoters, Directors, and Subsidiary, as identified by our Company pursuant to the materiality policy adopted by our Board is provided below: Name of Entity"
+      },
+      {
+       "match": "criminal proceedings",
+       "sentence": "331 SECTION VI: LEGAL AND OTHER INFORMATION OUTSTANDING LITIGATION AND OTHER MATERIAL DEVELOPMENTS Except as stated below there are no outstanding (i) criminal proceedings involving our Company, Directors, Promoters or Subsidiary (\"Relevant Parties\"); (ii) actions by statutory or regulatory authorities involving the Relevant Parties, including for a"
+      },
+      {
+       "match": "criminal proceedings",
+       "sentence": "Directors, Promoters or Subsidiary (\"Relevant Parties\"); (ii) actions by statutory or regulatory authorities involving the Relevant Parties, including for all criminal proceedings; (iii) outstanding claims relating to direct and indirect taxes, in a consolidated manner involving the Relevant Parties; and (iv) other pending civil litigation as determined to"
+      }
+     ]
+    },
+    "single_site": {
+     "count": 1,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "single manufacturing facility"
+     ],
+     "evidence": [
+      {
+       "match": "single manufacturing facility",
+       "sentence": "� It has evolved from a single manufacturing facility to a diversified corporation with a global footprint and multidomain competence in EMS, ODM, SI, and ADM."
+      }
+     ]
+    },
+    "related_party": {
+     "count": 25,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "RELATED PARTY TRANSACTIONS",
+      "related party transactions",
+      "Related Party Transactions"
+     ],
+     "evidence": [
+      {
+       "match": "RELATED PARTY TRANSACTIONS",
+       "sentence": "296 RELATED PARTY TRANSACTIONS."
+      },
+      {
+       "match": "related party transactions",
+       "sentence": "11 acknowledged as debts Summary of related party transactions For details relating to contingent liabilities of our Company, see \"Financial Statements\" on page 239."
+      },
+      {
+       "match": "related party transactions",
+       "sentence": "Summary of the related party transactions derived from the Restated Consolidated Financial Statements, is as follows: Particulars Purchases/receiving of Goods & services Elin Appliances Private Limited Sales/renderi"
+      }
+     ]
+    }
+   },
+   "objects_of_the_issue": {
+    "offer_for_sale": {
+     "count": 44,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "Offer for Sale",
+      "Offer for sale",
+      "OFFER FOR SALE",
+      "offer for sale"
+     ],
+     "evidence": [
+      {
+       "match": "Offer for Sale",
+       "sentence": "HA SETHIA AND VINAY KUMAR SETHIA DETAILS OF THE OFFER TYPE FRESH ISSUE SIZE OFFER FOR TOTAL OFFER SIZE ELIGIBILITY AND RESERVATION SALE SIZE Fresh Issue and an Offer for Sale Fresh issue of 7,085,020^ Offer for sale 4,750 million The Offer was made pursuant to Regulation 6(1) of the SEBI ICDR Equity Shares aggregating of Regulations."
+      },
+      {
+       "match": "Offer for sale",
+       "sentence": "OF THE OFFER TYPE FRESH ISSUE SIZE OFFER FOR TOTAL OFFER SIZE ELIGIBILITY AND RESERVATION SALE SIZE Fresh Issue and an Offer for Sale Fresh issue of 7,085,020^ Offer for sale 4,750 million The Offer was made pursuant to Regulation 6(1) of the SEBI ICDR Equity Shares aggregating of Regulations."
+      },
+      {
+       "match": "OFFER FOR SALE",
+       "sentence": "Equity Shares aggregating to 3,000 million OFFER FOR SALE NAME OF SELLING SHAREHOLDER TYPE NUMBER OF EQUITY SHARES OFFERED/ AMOUNT ( IN MILLION) WEIGHTED AVERAGE COST OF ACQUISITION$(IN ) Kamal Sethia Promoter Selling Shareholder 695,627^ Equity Shares aggregating to 171."
+      }
+     ]
+    },
+    "fresh_issue": {
+     "count": 44,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "FRESH ISSUE",
+      "Fresh issue",
+      "Fresh Issue",
+      "fresh issue"
+     ],
+     "evidence": [
+      {
+       "match": "FRESH ISSUE",
+       "sentence": "com West Bengal, India New Delhi - 110002, India OUR PROMOTERS: MANGI LALL SETHIA, KAMAL SETHIA, KISHORE SETHIA, GAURAV SETHIA, SANJEEV SETHIA, SUMIT SETHIA, SUMAN SETHIA, VASUDHA SETHIA AND VINAY KUMAR SETHIA DETAILS OF THE OFFER TYPE FRESH ISSUE SIZE OFFER FOR TOTAL OFFER SIZE ELIGIBILITY AND RESERVATION SALE SIZE Fresh Issue and an Offer for Sale Fresh issue of 7,085,020^ Offer for sale 4,750 million The Offer was made pursuant to Regulation 6(1) of the SEBI ICDR Equity Shares aggregating of Regulations."
+      },
+      {
+       "match": "Fresh issue",
+       "sentence": "INAY KUMAR SETHIA DETAILS OF THE OFFER TYPE FRESH ISSUE SIZE OFFER FOR TOTAL OFFER SIZE ELIGIBILITY AND RESERVATION SALE SIZE Fresh Issue and an Offer for Sale Fresh issue of 7,085,020^ Offer for sale 4,750 million The Offer was made pursuant to Regulation 6(1) of the SEBI ICDR Equity Shares aggregating of Regulations."
+      },
+      {
+       "match": "FRESH ISSUE",
+       "sentence": "AT A PRICE OF 247 PER EQUITY SHARE (INCLUDING A SHARE PREMIUM OF 242 PER EQUITY SHARE) (\"OFFER PRICE\") AGGREGATING TO 4,750 MILLION (THE \"OFFER\") COMPRISING A FRESH ISSUE OF 7,085,020^ EQUITY SHARES AGGREGATING TO 1,750 MILLION BY OUR COMPANY (THE \"FRESH ISSUE\") AND AN OFFER FOR SALE OF 12,145,726^ EQUITY SHARES AGGREGATING TO 3,000 MILLION, COMPRISING 695,627^ EQUITY SHARES BY KAMAL SETHIA AGGREGATING TO 171."
+      }
+     ]
+    },
+    "capital_expenditure": {
+     "count": 30,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "expansion of our",
+      "capital expenditure",
+      "Capital expenditure",
+      "purchase of machinery",
+      "Capital Expenditure"
+     ],
+     "evidence": [
+      {
+       "match": "expansion of our",
+       "sentence": "� Our inability to manage the expansion of our products range, customer base and manufacturing capacities, and execute our growth strategy in a timely manner or within budget estimates, or our inability to meet the expectations to"
+      },
+      {
+       "match": "capital expenditure",
+       "sentence": "� We have incurred significant capital expenditure in the past and will continue to incur significant capital expenditure in the future, and such expenditure may not yield the benefits we anticipate."
+      },
+      {
+       "match": "capital expenditure",
+       "sentence": "00 Company Funding capital expenditure towards upgrading and expanding our existing 375."
+      }
+     ]
+    },
+    "working_capital": {
+     "count": 6,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "working capital requirements"
+     ],
+     "evidence": [
+      {
+       "match": "working capital requirements",
+       "sentence": "We cannot assure that the budgeting of our working capital requirements for a particular year will be accurate."
+      },
+      {
+       "match": "working capital requirements",
+       "sentence": "There may be situations where we may under-budget for our working capital requirements, in which case there may be delays in arranging the additional working capital requirements, which may delay the execution of orders leading to loss of reputation and an adverse effect on the cash flows."
+      },
+      {
+       "match": "working capital requirements",
+       "sentence": "Our ability to pay dividends in the future will depend on our earnings, financial condition, working capital requirements, capital expenditures and restrictive covenants of our financing arrangements."
+      }
+     ]
+    },
+    "general_corporate": {
+     "count": 11,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "General corporate purposes",
+      "general corporate purposes",
+      "general corporate purpose",
+      "General Corporate Purposes"
+     ],
+     "evidence": [
+      {
+       "match": "General corporate purposes",
+       "sentence": "89 facilities at (i) Ghaziabad, Uttar Pradesh, and (ii) Verna, Goa General corporate purposes (1) 390."
+      },
+      {
+       "match": "general corporate purposes",
+       "sentence": "13 (1) The amount utilised for general corporate purposes does not exceed 25% of the Gross Proceeds."
+      },
+      {
+       "match": "General corporate purposes",
+       "sentence": "General corporate purposes (collectively, referred to herein as the \"Objects\")."
+      }
+     ]
+    }
+   },
+   "profiled_on": "2026-09-05"
+  },
+  "moat_confirmed": true,
+  "confirm_source": "DPIIT/PIB Round-2 selection list under the PLI Scheme for White Goods (ACs and LED Lights), announced ~June 2022 (PIB press release PRID 1837544, 'DPIIT selects 15 companies with committed investment of Rs 1,368 crore', syndicated by KNN India and India Briefing); cross-checked against CRISIL Ratings rationales for Elin Electronics Limited (CRISIL A/Stable, CRISIL A1), reaffirmed 28-Feb-2023 and 30-Apr-2024",
+  "confirm_note": "The government's own PLI Round-2 selection list names 'Elin Electronics Limited' specifically in the LED Components category with a committed investment of Rs 100 million (Rs 10 crore) — this exactly matches the figure the prospectus itself cites ('committed investment of 100 million'). This is a DPIIT/PIB government record the company does not control, and it independently confirms the PLI approval claim is real and attributable to this specific entity, satisfying the import-substitution criterion. However, neither CRISIL rationale (Feb-2023 or Apr-2024) mentions the PLI scheme at all, and neither makes any market-share or leading-manufacturer claim for Elin. CRISIL's weaknesses section instead describes the 'contract manufacturing industry' as 'fragmented and competitive' with 'value addition being relatively low by the contract manufacturer,' and reports operating margin falling to ~4% in 9M FY24 from 7-8% previously, with revenue down ~17% over the same period on weak small-appliance and LED OEM demand. So the specific PLI claim is independently verified, but the broader picture from the rating agency is one of a low-differentiation, price-competitive contract manufacturer rather than a scale-driven leader.",
+  "research_note": "Elin Electronics Limited (BSE 543725 / NSE ELIN) is a contract manufacturer (EMS/ODM) of universal motors, electrical appliances/small domestic appliances, LEDs, and sheet-metal/moulded components, supplying major brands including Philips, Signify, Bajaj Electricals, Havells and Panasonic; it is not a branded consumer-product company. Screener shows market cap ~Rs 492cr, Stock P/E 28.7, ROCE 6.85%, ROE 4.27% — thin profitability, matching CRISIL's note of margin compression. Verified the PLI claim against an independent DPIIT/PIB government selection list naming Elin specifically with a matching Rs 100mn investment figure. No demerger or entity-mismatch concerns found.",
+  "flag": "promising"
  }
 ]

@@ -1,3 +1,90 @@
+# Moat verification — follow-up pass, 08 September 2026
+
+The scheduled Saturday run (05-Sep-2026) completed its mechanical half —
+`scan-listings.mjs` added 50 new candidates and `profile-company.mjs` read
+7 prospectuses (543725 Elin Electronics, 544750 Om Power Transmission, ABH
+Healthcare, ESDS Software Solution, Lumino Industries, Skyways Air
+Services, Symbiotec Pharmalab) — but the judgement pass never ran, so none
+of the 50 had been researched and the profile reader's `moat_signal` calls
+on those 7 were unchecked against a second source. This pass closes that
+gap for those 7 specifically (not the other 43 still-open Sept-5 sweep
+candidates, which remain untouched at `moat_signal: null`).
+
+**Elin Electronics (543725) — confirmed, stays open.** A contract
+manufacturer (EMS/ODM) for Philips, Signify, Bajaj Electricals, Havells and
+Panasonic — not a branded product company. Its PLI (Production Linked
+Incentive) approval for White Goods/LED-components manufacturing is named
+directly, with a matching ₹10cr investment figure, in DPIIT/PIB's own
+Round-2 PLI selection list — a government record it doesn't control.
+CRISIL's rationale doesn't mention the PLI scheme at all and separately
+flags margin compression (~4% operating margin, down from 7-8%) in a
+"fragmented and competitive" contract-manufacturing industry — recorded
+alongside the confirmation. `moat_confirmed: true`, flagged promising.
+
+**Symbiotec Pharmalab (SYMBIOTEC) — partial, stays open.** A ~20-year-old
+niche corticosteroid/hormone API maker (USFDA/EU-GMP/WHO-GMP facilities,
+30+ export markets). CARE's rating rationale independently states "SPPL is
+one of the few companies in India which exclusively manufactures steroid
+APIs," confirming the niche franchise generally — but neither CARE release
+nor any other independent source names Symbiotec specifically for the
+prospectus's precise claim (one of few global makers of the 82-component
+conjugated-estrogen API). An FDA product-specific guidance document
+corroborates that this particular API is held to an unusually complex
+identity standard, without naming the company. `moat_confirmed: "partial"`.
+
+**ABH Healthcare (ABH) — uncorroborated, stays open.** A single 150-bed
+hospital in Ferozepur, Punjab (100% revenue concentration in one facility).
+Its DRHP claims recognition in 2022 as Punjab's leading hospital among
+715-720 PMJAY-empanelled hospitals, attributed to the State Health Agency
+and National Health Authority — a concrete, sourced claim, not vague
+marketing. No corroboration found outside the company's own site and
+prospectus, which is the expected absence-of-coverage case for a
+Tier-3-city SME hospital, not a contradiction. `moat_confirmed: false`
+(uncorroborated), flagged unclear.
+
+**Om Power Transmission (544750) — ruled out.** A Gujarat transmission-line
+EPC contractor (~80% of order book from GETCO). No leadership, share or
+import-substitution claim anywhere in the prospectus; CRISIL's own
+rationale (BB+/Stable) lists aggressive competitive bidding and margin
+pressure as weaknesses. A genuine commodity EPC business, not a moat.
+
+**ESDS Software Solution (ESDS) — ruled out.** Its data-centre/cloud
+business is real (not the plain "IT services" the sector regex assumed —
+that part of the mechanical flag was wrong), but CRISIL's Sept-2025
+rationale calls the data-centre market "competitive with a few large
+players dominating," directly contradicting the prospectus's "one of only
+two players in India" claim; independent coverage names several other
+full-stack DC/cloud operators (CtrlS, Sify, Yotta, STT GDC, Web Werks,
+Nxtra). Ruled out on contradiction, not sector.
+
+**Lumino Industries (LUMINO) — ruled out; corrects a false positive.** The
+mechanical `moat_signal: true` traced to a keyword match on Lumino
+disclosing its own largest raw-material *supplier* — a supply-chain-risk
+disclosure, not a leadership claim. On full review, Lumino is a
+transmission/distribution EPC and cable/conductor maker that explicitly
+calls itself "a growing player" against larger named peers (Apar
+Industries, KEI, Sterlite Electric); its one differentiated product line
+runs on a non-exclusive third-party (CTC Global) license. `moat_signal`
+corrected to `null`.
+
+**Skyways Air Services (SKYWAYS) — ruled out.** Holds a real, independently
+sourced ranking (WorldACD: India's #1 air freight forwarder by AWB volume,
+2022-2025) — but CARE and CRISIL both independently describe air freight
+forwarding as fragmented, low-entry-barrier and commoditized, with price
+wars pressuring margins. Same pattern the pipeline caught with Cords Cable
+on 31-Aug: being the largest player in a commodity business is scale, not
+a moat.
+
+**Net effect on the dashboard queue:** 2 confirmed/partial names stay open
+(Elin Electronics, Symbiotec Pharmalab) plus 1 uncorroborated-but-real claim
+(ABH Healthcare); 4 ruled out (Om Power Transmission, ESDS, Lumino,
+Skyways). `node update-weekly.mjs --stamp-only` was run afterward —
+`candidates_raw.json` now carries 5 open moat-signal entries, queue has 56
+open. The other 43 Sept-5 sweep candidates are unresearched and remain for
+a future pass.
+
+---
+
 # Weekly discovery — judgement pass, 31 August 2026
 
 ## The short version
