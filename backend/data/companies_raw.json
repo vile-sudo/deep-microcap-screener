@@ -32951,5 +32951,59 @@
   "added_on": "2026-09-01",
   "score": 36,
   "final_score": 36
+ },
+ {
+  "code": "ELIN",
+  "nse_code": "ELIN",
+  "bse_code": "543725",
+  "name": "Elin Electronics",
+  "sector": "Electronics Manufacturing Services",
+  "theme": "Consumer & Appliances",
+  "theme_detail": "Contract manufacturer of small appliances, LED lighting components and universal motors for other brands.",
+  "cap_tier": "micro",
+  "tier": 2,
+  "claim_grade": "verified",
+  "qualifies_as": [
+   "manufacturer",
+   "import-substitution"
+  ],
+  "market_cap_cr": 493,
+  "pe": 28.8,
+  "roce_pct": 6.85,
+  "roe_pct": 4.27,
+  "promoter_pct": 32.97,
+  "fii_pct": 0.58,
+  "dii_pct": 2.89,
+  "num_shareholders": 52035,
+  "business": "Contract manufacturer (EMS/ODM) of universal motors, small domestic appliances and LED lighting components for other brands, not a branded consumer-product company itself. Its customer list includes Philips, Signify, Bajaj Electricals, Havells and Panasonic, from facilities in Ghaziabad, Baddi and Goa. Listed via IPO in December 2022.",
+  "moat_note": "Confirmed against a government record, not the company's own page. The prospectus's claim of a Production Linked Incentive (PLI) Scheme approval for White Goods (LED components) manufacturing is independently corroborated by DPIIT/PIB's own Round-2 PLI selection list (PIB press release PRID 1837544), which names 'Elin Electronics Limited' specifically in the LED Components category with a committed investment of Rs 10 crore -- matching the prospectus's own figure exactly. That is a third party (the government agency that approved the scheme) confirming the claim, not the company describing itself. Honest limits: CRISIL's own rating rationales (Feb-2023, Apr-2024) don't mention the PLI scheme at all, and instead describe the 'contract manufacturing industry' Elin operates in as 'fragmented and competitive' with 'value addition being relatively low by the contract manufacturer' -- so the underlying business is low-differentiation OEM/ODM work, and the moat here is a specific, confirmed policy benefit rather than a structural market position.",
+  "import_substitution": "Specific and independently recorded: DPIIT/PIB's Round-2 PLI (Production Linked Incentive) Scheme for White Goods selection list names Elin Electronics Limited in the LED Components category, committed investment Rs 10 crore -- confirmed by the government body administering the scheme, not company marketing.",
+  "risk_note": "CRISIL's weaknesses section (rationales dated Feb-2023 and Apr-2024) reports operating margin falling to ~4% in 9M FY24 from 7-8% previously, with revenue down ~17% over the same period on weak small-appliance and LED OEM demand -- the PLI approval is real but hasn't shown up in the numbers yet. Promoter holding is low for this board at 32.97% (stable, not falling), and institutional interest has been draining: DII holding fell from 12.58% (Sep-2024) to 2.89% (Jun-2026) across seven straight quarters. 52,035 shareholders is a wide float for that level of insider and institutional commitment.",
+  "verify_comment": "Moat confirmed independently: DPIIT/PIB Round-2 PLI selection list (government record, PIB PRID 1837544), cross-checked against CRISIL Ratings rationales for Elin Electronics Limited (CRISIL A/Stable, CRISIL A1) reaffirmed 28-Feb-2023 and 30-Apr-2024, both read in full rather than summarized. Financials and shareholding from Screener, standalone, June 2026 quarter.",
+  "data_note": "Surfaced by the weekly discovery pipeline's small-cap sweep on 2026-09-05; the PLI claim was verified against an independent source and the company promoted to the board on 2026-09-08.",
+  "s_moat": 12,
+  "s_import_sub": 14,
+  "s_strategic": 5,
+  "s_promoter": 6,
+  "s_institutional": 4,
+  "s_financials": 3,
+  "risk_penalty": 5,
+  "penalty_detail": [
+   "-2 revenue down ~17% and operating margin compressed to ~4% (from 7-8%) in 9M FY24 per CRISIL",
+   "-2 CRISIL itself calls the contract-manufacturing industry fragmented, competitive and low value-add",
+   "-1 promoter holding only 32.97%, well under typical board comfort level, against a 52,035-strong float"
+  ],
+  "v3_gates": "Fails two -- 52,035 holders (over both the 25,000 and 40,000 gates) and promoter 32.97% (under 45%). Included despite that because the PLI import-substitution claim is independently confirmed by a government record.",
+  "warnings": [
+   "DII holding fell from 12.58% (Sep-2024) to 2.89% (Jun-2026) -- steady institutional exit across seven quarters",
+   "Revenue down ~17% and operating margin compressed to ~4% (from 7-8%) in 9M FY24 per CRISIL, on weak small-appliance/LED OEM demand",
+   "52,035 shareholders against 32.97% promoter holding -- thin insider commitment for the float size"
+  ],
+  "rank": 381,
+  "screen": "v9-verified",
+  "rubric": "v5",
+  "added_on": "2026-09-08",
+  "score": 39,
+  "final_score": 39
  }
 ]
