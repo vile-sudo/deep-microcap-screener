@@ -972,25 +972,46 @@ function csvCell(v){
    by name against NSE's and BSE's own listed-equity feeds, so only names
    an exchange confirms are actually listed survive here. None of this was
    run through this board's gates or scored on any rubric — the button
-   just hands back the names, tickers and exchange(s). */
+   just hands back the names, tickers, exchange(s) and how long each has
+   held an ASME certificate. */
 (function(){
   const btn=document.getElementById('asmeBtn'), n=document.getElementById('asmeCount');
   const list=window.ASME_CERTIFIED||[];
   if(!btn) return;
   if(n) n.textContent = list.length;
   const exBadge = ex => `<span class="badge b-${ex==='NSE-SME'?'sme':ex.toLowerCase()}">${ex==='NSE-SME'?'NSE SME':ex}</span>`;
+  const MONTHS=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  const fmtDate = iso => { const [y,m,d]=iso.split('-').map(Number); return `${d} ${MONTHS[m-1]} ${y}`; };
+
+  const SORTS = {
+    name:  {label:'Name',           fn:(a,b)=>a.name.localeCompare(b.name)},
+    oldest:{label:'Oldest first',   fn:(a,b)=>a.since.localeCompare(b.since)},
+    newest:{label:'Newest first',   fn:(a,b)=>b.since.localeCompare(a.since)},
+  };
+
+  function cardHtml(c){
+    const screenerSym = (c.symbol||'').replace(/-[A-Z]$/,''); // drop a trailing series letter (e.g. "-B") for the link only
+    return `<div class="asme-card">
+      <div class="asme-name">${esc(c.name)}</div>
+      <div class="asme-meta">
+        ${c.exch.map(exBadge).join('')}
+        <span class="tc asme-sym">${esc(c.symbol)}</span>
+        <a class="asme-link" href="https://www.screener.in/company/${encodeURIComponent(screenerSym)}/" target="_blank" rel="noopener">screener &#8599;</a>
+      </div>
+      <div class="asme-since" title="Earliest ASME certificate on file, ${esc(c.since)}">&#9878; ASME-certified since ${fmtDate(c.since)}</div>
+    </div>`;
+  }
+
+  function render(sort){
+    const rows=[...list].sort(SORTS[sort].fn).map(cardHtml).join('');
+    const grid=document.querySelector('#mbody .asme-grid');
+    if(grid) grid.innerHTML=rows;
+    document.querySelectorAll('#mbody .asme-sort .btn').forEach(b=>b.classList.toggle('on', b.dataset.sort===sort));
+  }
+
   btn.onclick=()=>{
-    const cards=list.map(c=>{
-      const screenerSym = (c.symbol||'').replace(/-[A-Z]$/,''); // drop a trailing series letter (e.g. "-B") for the link only
-      return `<div class="asme-card">
-        <div class="asme-name">${esc(c.name)}</div>
-        <div class="asme-meta">
-          ${c.exch.map(exBadge).join('')}
-          <span class="tc asme-sym">${esc(c.symbol)}</span>
-          <a class="asme-link" href="https://www.screener.in/company/${encodeURIComponent(screenerSym)}/" target="_blank" rel="noopener">screener &#8599;</a>
-        </div>
-      </div>`;
-    }).join('');
+    const sortBtns=Object.entries(SORTS).map(([k,v])=>
+      `<button class="btn" data-sort="${k}">${v.label}</button>`).join('');
     openModal(`<h3>&#9878; ASME Certified — ${list.length} companies</h3>
       <p class="mp">Active ASME certificate holders in India, per ASME's own
       <a class="nm" href="https://caconnect.asme.org/directory/" target="_blank" rel="noopener">CA Connect directory</a>,
@@ -998,7 +1019,12 @@ function csvCell(v){
       names an exchange confirms are listed made this cut. Independent of the
       board above: none of these were cross-checked against it, none are
       scored, and the moat rubric doesn't apply to any of them.</p>
-      <div class="asme-grid">${cards}</div>`);
+      <div class="asme-sort">Sort by ${sortBtns}</div>
+      <div class="asme-grid"></div>`);
+    document.querySelectorAll('#mbody .asme-sort .btn').forEach(b=>{
+      b.onclick=()=>render(b.dataset.sort);
+    });
+    render('name');
   };
 })();
 
