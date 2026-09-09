@@ -68,6 +68,10 @@ git add backend\data\candidates_raw.json backend\data\build_stamp.json
 git add automation\data\candidates-queue.json automation\data\reviewed-symbols.json
 if exist "automation\data\profiles" git add automation\data\profiles
 if exist "automation\data\weekly-report.md" git add automation\data\weekly-report.md
+REM scan-asme.mjs's report -- a record of what it found, same reasoning as
+REM the queue above. It never edits frontend/static/asme-certified.js itself
+REM (see that file's header), so committing this never changes the live site.
+if exist "automation\data\asme-scan.json" git add automation\data\asme-scan.json
 
 git diff --cached --quiet
 if not errorlevel 1 (

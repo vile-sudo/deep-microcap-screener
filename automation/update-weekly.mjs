@@ -10,18 +10,24 @@
  * queue, profile-company reads that queue and pulls each new listing's
  * prospectus, and only then is backend/data/build_stamp.json stamped -- so
  * the freshness date the dashboard shows means "these steps finished," not
- * "something was tried."
+ * "something was tried." scan-asme.mjs runs alongside scan-listings -- it
+ * answers a separate question (has a new NSE/BSE-listed company shown up in
+ * ASME's certificate directory) that has nothing to do with the queue, so
+ * its result (automation/data/asme-scan.json) sits outside the ordering
+ * that matters for the rest of this file.
  *
  * What this script does NOT do
  *   It does not decide whether a candidate belongs on the board, and it does
- *   not touch backend/data/companies_raw.json. It fills a queue and reads
- *   prospectuses. The judgement half of the week -- classifying a sweep
- *   candidate's real sector and market-cap band with Screener and NSE
- *   filings, weighing a claim, deciding a verdict -- is run-weekly.cmd's
- *   second half, using weekly-prompt.md, never this script. And even that
- *   half only ever writes verdicts into the queue; putting a company on the
- *   live board is still something you do by hand, then ship with
- *   publish-candidates.cmd.
+ *   not touch backend/data/companies_raw.json (nor, for the ASME step,
+ *   frontend/static/asme-certified.js). It fills a queue and reads
+ *   prospectuses, and separately reports what changed in ASME's directory.
+ *   The judgement half of the week -- classifying a sweep candidate's real
+ *   sector and market-cap band with Screener and NSE filings, weighing a
+ *   claim, deciding a verdict -- is run-weekly.cmd's second half, using
+ *   weekly-prompt.md, never this script. And even that half only ever
+ *   writes verdicts into the queue; putting a company on the live board, or
+ *   a new match into asme-certified.js, is still something you do by hand,
+ *   then ship with publish-candidates.cmd.
  */
 
 import fs from 'node:fs';
@@ -79,6 +85,16 @@ const node = (script, args = []) => {
 };
 
 if (!STAMP_ONLY) step('scan listings + sweep small/mid-cap universe', () => node('scan-listings.mjs'));
+
+/* Independent of everything else here -- see scan-asme.mjs's own header for
+   what this checks and why it needs a headless browser rather than a plain
+   fetch. A failure here (network hiccup, ASME's site down, Playwright's
+   Chromium not installed) is caught by step() same as any other and must
+   never stop the rest of the week's run; nothing downstream depends on it,
+   and it never touches frontend/static/asme-certified.js on its own -- see
+   that file's header for why promoting a match into it stays a decision
+   made by hand. */
+if (!STAMP_ONLY) step('scan ASME certified directory for new NSE/BSE-listed matches', () => node('scan-asme.mjs'));
 
 if (!SKIP_PROFILE && !STAMP_ONLY) {
   const open = fs.existsSync(QUEUE)

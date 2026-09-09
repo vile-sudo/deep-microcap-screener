@@ -15,3 +15,10 @@ automation/deploy-hook.txt
 automation/data/listings-snapshot.json
 automation/data/last-run.json
 automation/data/weekly.log
+
+# scan-asme.mjs's Playwright dependency -- package.json and package-lock.json
+# ARE committed so `npm install` reproduces it. The Chromium binary `npx
+# playwright install chromium` downloads lives outside the repo entirely
+# (%LOCALAPPDATA%\ms-playwright on Windows), so only node_modules itself
+# needs excluding here.
+automation/node_modules/

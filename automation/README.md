@@ -66,7 +66,20 @@ independent source flatly contradicts the claim. See "The second source" in
      separately. If it's not found automatically, set an environment
      variable `PDFTOTEXT` to its full path.
    - `unzip` on PATH too, for the occasional zipped prospectus.
-3. **Claude Code CLI** (`npm install -g @anthropic-ai/claude-code` or
+3. **Playwright**, needed only by `scan-asme.mjs` — ASME's own directory
+   returns a flat WAF block to a plain scripted request (confirmed against
+   both `curl` and Node's `fetch`), so that one script drives a real headless
+   Chromium instead. From this `automation\` folder, once:
+   ```
+   npm install
+   npx playwright install chromium
+   ```
+   The second command downloads Chromium (~300MB) to
+   `%LOCALAPPDATA%\ms-playwright`, outside the repo. If this step is ever
+   skipped, `scan-asme.mjs` fails on its own — `update-weekly.mjs` logs it
+   and keeps going, same as any other step failure (see "What this script
+   does NOT do" in `update-weekly.mjs`).
+4. **Claude Code CLI** (`npm install -g @anthropic-ai/claude-code` or
    however you already have it) with the **Screener** MCP server configured
    — the same one you used to build the dashboard itself. The judgement pass
    reads company filings and disclosures on NSE directly, so Screener is the
@@ -75,7 +88,7 @@ independent source flatly contradicts the claim. See "The second source" in
    `run-weekly.cmd` calls `claude -p ... --permission-mode
    bypassPermissions`, so make sure that MCP server works non-interactively
    before you rely on the scheduled run.
-4. Register the scheduled task (from an ordinary, non-admin prompt, in this
+5. Register the scheduled task (from an ordinary, non-admin prompt, in this
    `automation\` folder):
    ```
    schtasks /create /tn "Microcap screener weekly discovery" /tr "\"%cd%\run-weekly.cmd\"" /sc weekly /d SAT /st 17:00 /f
@@ -90,7 +103,7 @@ independent source flatly contradicts the claim. See "The second source" in
    ```
    Check it: `schtasks /query /tn "Microcap screener weekly discovery" /v /fo list`
    Run it now: `schtasks /run /tn "Microcap screener weekly discovery"`
-5. **(Optional but recommended) a Render Deploy Hook**, so publishing is one
+6. **(Optional but recommended) a Render Deploy Hook**, so publishing is one
    command instead of a push plus a click in the Render dashboard:
    Render → deep-microcap-screener → Settings → Deploy Hook → Create Deploy
    Hook → copy the URL into a new file `automation\deploy-hook.txt` (one
@@ -101,7 +114,7 @@ independent source flatly contradicts the claim. See "The second source" in
 
 ```
 run-weekly.cmd  (Task Scheduler, Saturdays 17:00)
-  ├─ update-weekly.mjs           scan-listings.mjs → profile-company.mjs → stamp
+  ├─ update-weekly.mjs           scan-listings.mjs → scan-asme.mjs → profile-company.mjs → stamp
   └─ claude -p weekly-prompt.md  research + verdicts, via Screener MCP + NSE filings
        (writes back into automation/data/candidates-queue.json, re-stamps)
 ```
@@ -116,9 +129,32 @@ publish-candidates.cmd
 This commits `backend/data/candidates_raw.json` + `build_stamp.json` (what
 the live dashboard reads) and this pipeline's own record
 (`automation/data/candidates-queue.json`, `reviewed-symbols.json`,
-`profiles/`), pushes to GitHub, and — if `automation\deploy-hook.txt`
-exists — triggers a Render redeploy. Without that file it tells you to
-click Manual Deploy yourself.
+`profiles/`, `asme-scan.json`), pushes to GitHub, and — if
+`automation\deploy-hook.txt` exists — triggers a Render redeploy. Without
+that file it tells you to click Manual Deploy yourself.
+
+## ASME certification check
+
+`scan-asme.mjs` runs every week alongside `scan-listings.mjs`, but answers a
+completely separate question and is wired up separately from everything
+above it: has a new NSE/BSE-listed company shown up in ASME's own
+certificate-holder directory (the source behind the dashboard's **ASME
+Certified** button)?
+
+It writes `automation/data/asme-scan.json` — this run's full matched list,
+what's new since last week's scan, what's new versus the live
+`frontend/static/asme-certified.js` (the actionable list — copy-paste ready:
+name, certs, exch, symbol, since), and anything previously matched that
+dropped out (delisted, or the certificate lapsed). It never edits
+`asme-certified.js` itself; a new match still gets added to the live modal
+by hand, the same considered way the existing 40 entries were (see that
+file's header for the by-hand cross-check that built them, and
+`lib/asme-match.mjs`'s header for why the matching here is deliberately
+precise rather than fuzzy).
+
+Needs Playwright — see step 3 under "One-time setup" above. If that's not
+installed, this step fails and is logged like any other `update-weekly.mjs`
+step failure; the rest of the week's run is unaffected.
 
 ## Files
 
@@ -127,14 +163,17 @@ click Manual Deploy yourself.
 | `lib/sectors.mjs` | Guesses a sector from a company name alone — the only signal an exchange feed carries. |
 | `lib/publish.mjs` | The moat gate — writes `backend/data/candidates_raw.json` from the queue, keeping only entries with `moat_signal: true`. |
 | `lib/board-index.mjs` | "Is this exchange row already on the board?" — matches on `code`/`nse_code`/`bse_code` plus an exact normalised name, because the board keys rows by NSE symbol and the BSE feed carries only BSE numbers. `lib/board-index.test.mjs` is its regression test (`node lib/board-index.test.mjs`). |
+| `lib/asme-match.mjs` | "Does this ASME directory name match a listed company?" — exact match plus a narrow division/plant-merge rule, deliberately not fuzzy (see its header). `lib/asme-match.test.mjs` is its regression test (`node lib/asme-match.test.mjs`). |
 | `scan-listings.mjs` | New-listing diff (NSE/BSE/SME) + small/mid-cap sweep of already-listed BSE names not on the board. |
+| `scan-asme.mjs` | Weekly ASME certificate-directory check — see "ASME certification check" above. |
 | `profile-company.mjs` | Downloads and reads a new listing's IPO prospectus; extracts company-stated claims/risks/objects. |
-| `update-weekly.mjs` | Orchestrates the two above, then stamps `backend/data/build_stamp.json`. |
+| `update-weekly.mjs` | Orchestrates the three above, then stamps `backend/data/build_stamp.json`. |
 | `weekly-prompt.md` | What the unattended Claude Code step does with Screener and NSE filings — research, and rule-outs only. |
 | `run-weekly.cmd` | The Task Scheduler entry point. |
 | `publish-candidates.cmd` | The only thing that pushes to GitHub / triggers a Render deploy. Always asks first unless you pass `-y`. |
 | `data/candidates-queue.json` | Full record: every candidate ever queued, whatever its verdict. |
 | `data/reviewed-symbols.json` | One-way ledger of every symbol the sweep has ever surfaced, so it's never re-queued. |
+| `data/asme-scan.json` | This week's ASME directory check — see "ASME certification check" above. |
 | `data/listings-snapshot.json` | Last week's full symbol set, for the new-listing diff. Not committed — regenerates (re-baselines silently) if lost. |
 | `data/profiles/*.json` | One file per profiled new listing — the raw extraction, kept for audit even though it's folded into the queue entry too. |
 | `data/weekly.log`, `data/last-run.json` | This machine's run history. Not committed. |
@@ -147,4 +186,11 @@ feeds the dashboard) against mocked exchange data, from a cloud sandbox whose
 network can't actually reach nseindia.com or bseindia.com. The first real run
 against live NSE/BSE data needs to happen on your machine — run
 `node scan-listings.mjs --dry` by hand first and check the counts look sane
-before you trust the scheduled task with it.
+before you trust the scheduled task with it. Same for `scan-asme.mjs`: run
+`node scan-asme.mjs --dry` by hand once and check `matched_listed_count` is
+in the same ballpark as `frontend/static/asme-certified.js`'s current 40
+before trusting it unattended — and if ASME ever changes the directory
+app enough that the in-page call this makes stops matching what the page
+itself sends, that will surface as this step failing outright rather than
+quietly returning wrong data, which is what calling the page's own function
+(rather than a hand-built request body) is for.

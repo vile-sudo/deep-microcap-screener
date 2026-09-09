@@ -3,10 +3,12 @@ REM run-weekly.cmd — what Task Scheduler runs once a week.
 REM
 REM Two halves. The node scripts do the mechanical part: scan NSE/BSE for new
 REM listings, sweep the small/mid-cap universe for names not on the board yet,
-REM pull any new listing's prospectus, stamp the board. Claude Code then does
-REM the part that needs judgement and the Screener MCP server + NSE filings,
-REM following weekly-prompt.md. A node script cannot call an MCP server, which
-REM is why the second half exists at all.
+REM pull any new listing's prospectus, check ASME's certificate directory for
+REM newly-listed companies (scan-asme.mjs -- writes automation\data\asme-scan.json,
+REM never touches the live site on its own), stamp the board. Claude Code then
+REM does the part that needs judgement and the Screener MCP server + NSE
+REM filings, following weekly-prompt.md. A node script cannot call an MCP
+REM server, which is why the second half exists at all.
 REM
 REM Registering the task is left to you rather than done for you, because it
 REM changes a system setting. From an ordinary (non-admin) prompt, in this
