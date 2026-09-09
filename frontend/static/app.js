@@ -966,6 +966,28 @@ function csvCell(v){
   };
 })();
 
+/* ASME Certified — a standalone reference list, unrelated to everything
+   else on this page. These names and their certificate types come straight
+   from ASME's own CA Connect directory (caconnect.asme.org/directory), not
+   from screener.in/Trendlyne, and were never run through this board's gates
+   or scored on any rubric. The button just hands back what ASME lists. */
+(function(){
+  const btn=document.getElementById('asmeBtn'), n=document.getElementById('asmeCount');
+  const list=window.ASME_CERTIFIED||[];
+  if(!btn) return;
+  if(n) n.textContent = list.length;
+  btn.onclick=()=>{
+    const rows=list.map(c=>`<div>${esc(c.name)}</div>`).join('');
+    openModal(`<h3>ASME Certified — ${list.length} companies</h3>
+      <p class="mp">Active ASME certificate holders in India, per ASME's own
+      <a class="nm" href="https://caconnect.asme.org/directory/" target="_blank" rel="noopener">CA Connect directory</a>,
+      pulled as a one-time snapshot. This list is independent of the board above —
+      none of these names were cross-checked against it, none are scored, and the
+      moat rubric doesn't apply to any of them.</p>
+      <div class="klist">${rows}</div>`);
+  };
+})();
+
 document.getElementById('csv').onclick=()=>{
   const rows=CURRENT;
   if(!rows.length){ flash(document.getElementById('csv'),'nothing to export'); return; }
