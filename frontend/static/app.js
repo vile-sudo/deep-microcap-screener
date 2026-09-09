@@ -967,24 +967,38 @@ function csvCell(v){
 })();
 
 /* ASME Certified — a standalone reference list, unrelated to everything
-   else on this page. These names and their certificate types come straight
-   from ASME's own CA Connect directory (caconnect.asme.org/directory), not
-   from screener.in/Trendlyne, and were never run through this board's gates
-   or scored on any rubric. The button just hands back what ASME lists. */
+   else on this page. Names and certificate types come from ASME's own CA
+   Connect directory (caconnect.asme.org/directory); each was then matched
+   by name against NSE's and BSE's own listed-equity feeds, so only names
+   an exchange confirms are actually listed survive here. None of this was
+   run through this board's gates or scored on any rubric — the button
+   just hands back the names, tickers and exchange(s). */
 (function(){
   const btn=document.getElementById('asmeBtn'), n=document.getElementById('asmeCount');
   const list=window.ASME_CERTIFIED||[];
   if(!btn) return;
   if(n) n.textContent = list.length;
+  const exBadge = ex => `<span class="badge b-${ex==='NSE-SME'?'sme':ex.toLowerCase()}">${ex==='NSE-SME'?'NSE SME':ex}</span>`;
   btn.onclick=()=>{
-    const rows=list.map(c=>`<div>${esc(c.name)}</div>`).join('');
-    openModal(`<h3>ASME Certified — ${list.length} companies</h3>
+    const cards=list.map(c=>{
+      const screenerSym = (c.symbol||'').replace(/-[A-Z]$/,''); // drop a trailing series letter (e.g. "-B") for the link only
+      return `<div class="asme-card">
+        <div class="asme-name">${esc(c.name)}</div>
+        <div class="asme-meta">
+          ${c.exch.map(exBadge).join('')}
+          <span class="tc asme-sym">${esc(c.symbol)}</span>
+          <a class="asme-link" href="https://www.screener.in/company/${encodeURIComponent(screenerSym)}/" target="_blank" rel="noopener">screener &#8599;</a>
+        </div>
+      </div>`;
+    }).join('');
+    openModal(`<h3>&#9878; ASME Certified — ${list.length} companies</h3>
       <p class="mp">Active ASME certificate holders in India, per ASME's own
       <a class="nm" href="https://caconnect.asme.org/directory/" target="_blank" rel="noopener">CA Connect directory</a>,
-      pulled as a one-time snapshot. This list is independent of the board above —
-      none of these names were cross-checked against it, none are scored, and the
-      moat rubric doesn't apply to any of them.</p>
-      <div class="klist">${rows}</div>`);
+      matched by name against NSE's and BSE's own listed-equity feeds — only
+      names an exchange confirms are listed made this cut. Independent of the
+      board above: none of these were cross-checked against it, none are
+      scored, and the moat rubric doesn't apply to any of them.</p>
+      <div class="asme-grid">${cards}</div>`);
   };
 })();
 
