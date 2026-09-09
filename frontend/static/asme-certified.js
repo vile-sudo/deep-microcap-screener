@@ -50,6 +50,26 @@
    not just the plain "Thermax Limited" row's own date) — pulled from
    the same API call as everything else, same day.
    ================================================================ */
+
+/* What each `certs` code actually certifies — copied from the "Certificate
+   Type" dropdown on ASME's own search form at caconnect.asme.org/directory,
+   restricted to the codes that actually appear below. ASME issues several
+   near-duplicate codes per scope (U/U2/U3 are all "Pressure Vessels" at
+   different classes; N/NA/NPT/NS are all nuclear-component variants) —
+   that's ASME's own scheme, not a simplification made here. */
+window.ASME_CERT_TYPES = {
+  N:   'Nuclear Components',
+  NA:  'Nuclear Installation and Shop Assembly',
+  NPT: 'Nuclear Partials',
+  NS:  'Nuclear Components',
+  PP:  'Pressure Piping',
+  S:   'Power Boiler',
+  T:   'Transport Tanks',
+  U:   'Pressure Vessels',
+  U2:  'Pressure Vessels',
+  U3:  'Pressure Vessels',
+  UM:  'Miniature Pressure Vessels',
+};
 window.ASME_CERTIFIED = [
   {name:"ADOR WELDING LIMITED", certs:["U"], exch:["BSE","NSE"], symbol:"ADOR", since:"2008-07-30"},
   {name:"AEROFLEX INDUSTRIES LIMITED", certs:["U"], exch:["BSE","NSE"], symbol:"AEROFLEX", since:"2025-07-16"},

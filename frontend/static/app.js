@@ -983,6 +983,22 @@ function csvCell(v){
   const MONTHS=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
   const fmtDate = iso => { const [y,m,d]=iso.split('-').map(Number); return `${d} ${MONTHS[m-1]} ${y}`; };
 
+  /* "U, U2, U3" all mean "Pressure Vessels" at different classes — grouping
+     by what a code actually certifies (rather than just listing codes) is
+     what makes this readable instead of alphabet soup. Falls back to the
+     bare code if ASME ever issues one window.ASME_CERT_TYPES doesn't have
+     yet, rather than hiding it. */
+  const CERT_TYPES=window.ASME_CERT_TYPES||{};
+  function certsLine(certs){
+    const byDesc=new Map();
+    certs.forEach(code=>{
+      const desc=CERT_TYPES[code]||code;
+      if(!byDesc.has(desc)) byDesc.set(desc, []);
+      byDesc.get(desc).push(code);
+    });
+    return [...byDesc.entries()].map(([desc,codes])=>`${desc} (${codes.join(', ')})`).join(' &middot; ');
+  }
+
   const SORTS = {
     name:  {label:'Name',           fn:(a,b)=>a.name.localeCompare(b.name)},
     oldest:{label:'Oldest first',   fn:(a,b)=>a.since.localeCompare(b.since)},
@@ -998,6 +1014,7 @@ function csvCell(v){
         <span class="tc asme-sym">${esc(c.symbol)}</span>
         <a class="asme-link" href="https://www.screener.in/company/${encodeURIComponent(screenerSym)}/" target="_blank" rel="noopener">screener &#8599;</a>
       </div>
+      <div class="asme-certs" title="ASME certificate type(s) on file, by code">&#128220; ${certsLine(c.certs)}</div>
       <div class="asme-since" title="Earliest ASME certificate on file, ${esc(c.since)}">&#9878; ASME-certified since ${fmtDate(c.since)}</div>
     </div>`;
   }
