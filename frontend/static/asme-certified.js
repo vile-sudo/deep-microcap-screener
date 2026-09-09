@@ -16,11 +16,25 @@
    (nsearchives.nseindia.com/content/equities/EQUITY_L.csv) and the SME
    board (.../emerge/corporates/content/SME_EQUITY_L.csv) — and BSE's
    active-scrip API (api.bseindia.com/BseIndiaAPI/api/ListofScripData),
-   all pulled the same day. Only the 37 names that matched a live NSE
-   and/or BSE listing survive here; the other 352 — almost entirely
-   Private Limited companies and LLPs, which cannot be listed at all —
-   were dropped. `exch` records which board(s) matched and `symbol` is
-   that listing's ticker.
+   all pulled the same day. 40 names survive here; the other 349 —
+   almost entirely Private Limited companies and LLPs, which cannot be
+   listed at all — were dropped. `exch` records which board(s) matched
+   and `symbol` is that listing's ticker.
+
+   A second, deliberately paranoid pass re-checked every dropped name
+   for near-misses a strict match would swallow: an "(I)" ASME wrote
+   where the exchange spelled out "India" (caught Patels Airtemp), and
+   ASME rows that are one specific plant/division of an already-listed
+   parent rather than a separately incorporated company — recognized
+   only where the ASME name itself says so explicitly (e.g. "Dee
+   Development Engineers Limited, Plant-2", "TATA STEEL LTD. - Growth
+   Shop", or a division named "(A Division of Thermax Limited)").
+   Those merge into the parent's single row rather than adding a
+   duplicate card; Thermax Limited's `certs` here is the union of its
+   own row and its two Chemicals & Hydrogenation Group divisions.
+   Token-overlap and edit-distance passes surfaced nothing else real —
+   just noise from generic words ("Energy", "Raj", "Creative") shared
+   with unrelated listed companies, which was discarded.
 
    This file is intentionally NOT wired into the API, the database, or
    DATA/THEMES in app.js. Nothing here was cross-checked against the
@@ -40,6 +54,7 @@ window.ASME_CERTIFIED = [
   {name:"Bharat Heavy Electricals Limited", certs:["S","U","U2"], exch:["BSE","NSE"], symbol:"BHEL"},
   {name:"Blue Star Limited", certs:["U"], exch:["BSE","NSE"], symbol:"BLUESTARCO"},
   {name:"CRYOGENIC OGS LIMITED", certs:["U"], exch:["BSE"], symbol:"CRYOGENIC"},
+  {name:"Dee Development Engineers Limited", certs:["PP","S","U","U2"], exch:["BSE","NSE"], symbol:"DEEDEV"},
   {name:"ELGI EQUIPMENTS LIMITED", certs:["U"], exch:["BSE","NSE"], symbol:"ELGIEQUIP"},
   {name:"EXPO ENGINEERING AND PROJECTS LIMITED", certs:["U"], exch:["BSE"], symbol:"EXPOEAPL"},
   {name:"GE Power India Limited", certs:["S","U"], exch:["BSE","NSE"], symbol:"GVPIL"},
@@ -59,13 +74,15 @@ window.ASME_CERTIFIED = [
   {name:"Lloyds Engineering Works Limited", certs:["S","U","U2"], exch:["BSE","NSE"], symbol:"LLOYDSENGG"},
   {name:"LOYAL equipments limited.", certs:["U","U2"], exch:["BSE"], symbol:"LOYAL"},
   {name:"Mazda Limited", certs:["U"], exch:["BSE","NSE"], symbol:"MAZDA"},
+  {name:"PATELS AIRTEMP (INDIA) LIMITED", certs:["S","U","U2"], exch:["BSE"], symbol:"PATELSAI"},
   {name:"PENNAR INDUSTRIES LIMITED", certs:["S","U"], exch:["BSE","NSE"], symbol:"PENIND"},
   {name:"PRAJ Industries Limited", certs:["S","U","U2","U3"], exch:["BSE","NSE"], symbol:"PRAJIND"},
   {name:"Sealmatic India Limited", certs:["U"], exch:["BSE"], symbol:"SEALMATIC"},
+  {name:"Tata Steel Limited", certs:["U","U2"], exch:["BSE","NSE"], symbol:"TATASTEEL"},
   {name:"TEMPSENS INSTRUMENTS INDIA LIMITED", certs:["U"], exch:["BSE","NSE"], symbol:"TEMPSENS"},
   {name:"Texmaco Rail & Engineering Limited", certs:["U"], exch:["BSE","NSE"], symbol:"TEXRAIL"},
   {name:"THE ANUP ENGINEERING LIMITED", certs:["S","U","U2"], exch:["BSE","NSE"], symbol:"ANUP"},
   {name:"The K.C.P Limited", certs:["S","U","U2"], exch:["BSE","NSE"], symbol:"KCP"},
-  {name:"Thermax Limited", certs:["U"], exch:["BSE","NSE"], symbol:"THERMAX"},
+  {name:"Thermax Limited", certs:["S","U"], exch:["BSE","NSE"], symbol:"THERMAX"},
   {name:"United Heat Transfer Limited", certs:["U"], exch:["NSE-SME"], symbol:"UHTL"}
 ];
