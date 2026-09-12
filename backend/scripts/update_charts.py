@@ -120,12 +120,18 @@ def main() -> int:
         if f.name not in wanted:
             f.unlink()
 
-    INDEX_FILE.write_text(json.dumps({
+    index = {
         "generated_at": datetime.now(timezone.utc).isoformat(timespec="seconds"),
         "latest_session": days[-1][0].isoformat(),
         "companies": dict(sorted(companies.items())),
         "no_data": sorted(missing),
-    }, indent=1), encoding="utf-8")
+    }
+    prior = load_index()
+    if all(prior.get(k) == index[k] for k in ("latest_session", "companies", "no_data")):
+        # nothing new (e.g. the late retry after a normal run): leave the file
+        # untouched so the workflow has nothing to commit and nothing to redeploy
+        index["generated_at"] = prior.get("generated_at") or index["generated_at"]
+    INDEX_FILE.write_text(json.dumps(index, indent=1), encoding="utf-8")
 
     print(f"charts: {len(series)} built from {len(days)} sessions (latest {days[-1][0]}), "
           f"{kept} kept from last run, {len(missing)} with no exchange data: {', '.join(missing) or 'none'}")
