@@ -547,13 +547,15 @@ addEventListener('keydown',e=>{ if(e.key==='Escape') closeDrawer(); });
 
 /* ---------- theme toggle ---------- */
 const tbtn=document.getElementById('theme');
-tbtn.onclick=()=>{
-  const dark=document.documentElement.dataset.theme==='dark';
-  document.documentElement.dataset.theme=dark?'light':'dark';
-  tbtn.textContent=dark?'◐ Dark':'◑ Light';
-  render();
-};
-if(matchMedia('(prefers-color-scheme: dark)').matches){ document.documentElement.dataset.theme='dark'; tbtn.textContent='◑ Light'; }
+if(tbtn){
+  tbtn.onclick=()=>{
+    const dark=document.documentElement.dataset.theme==='dark';
+    document.documentElement.dataset.theme=dark?'light':'dark';
+    tbtn.textContent=dark?'◐ Dark':'◑ Light';
+    render();
+  };
+  if(matchMedia('(prefers-color-scheme: dark)').matches){ document.documentElement.dataset.theme='dark'; tbtn.textContent='◑ Light'; }
+}
 
 /* ==================================================================
    Interactive layer
@@ -1122,6 +1124,7 @@ addEventListener('keydown',e=>{
 
 /* ---------- remember the theme the reader chose ---------- */
 (function(){
+  if(!tbtn) return;
   let stored=null; try{ stored=localStorage.getItem('dms.theme'); }catch(e){}
   if(stored==='dark'||stored==='light'){
     document.documentElement.dataset.theme=stored;
