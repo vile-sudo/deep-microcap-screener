@@ -197,7 +197,7 @@ researchNav.map(id=>typeof id==='string'?document.getElementById(id):id).filter(
 sectionNav.filter(link=>!marketNav.includes(link)&&!researchNav.includes(link)).forEach(link=>link.onclick=()=>document.body.className='');
 THEMES.forEach(t=>{
   const b=document.createElement('button');
-  b.className='chip on'; b.dataset.t=t;
+  b.type='button'; b.className='chip on'; b.dataset.t=t;
   b.innerHTML=`<span class="mk"></span>${shortT(t)}`;
   b.onclick=()=>{
     activeThemes=new Set([t]);
