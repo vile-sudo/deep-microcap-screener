@@ -30,7 +30,7 @@ async function boot() {
 
   /* Keep the header build stamp and page chrome sourced from the API
      instead of hand-edited on every publish. */
-  document.title = "Deep Microcap Screener \u2014 " + DATA.length + " companies";
+  document.title = "Deep Sweep — " + DATA.length + " companies";
   const qElBoot = document.getElementById("q");
   if (qElBoot) qElBoot.placeholder = qElBoot.placeholder.replace("Search companies", "Search " + DATA.length + " companies");
   const verElBoot = document.querySelector(".vver"), dateElBoot = document.querySelector(".vdate");
@@ -47,6 +47,7 @@ async function boot() {
     set("n-v3-deep","v3-deep"); set("n-v7-new","v7-new"); set("n-v3-screen","v3-screen");
     set("n-v4-moat","v4-moat"); set("n-v4-triage","v4-triage"); set("n-v5-new","v5-new");
     set("n-v6-new","v6-new"); set("n-v8-moat","v8-moat"); set("n-v8-weekly","v8-weekly"); set("n-user","user");
+    set("n-deep-sweep","deep-sweep");
   })();
 
 const THEMES = [...new Set(DATA.map(d=>(d.theme||'').split(' / ')[0]))];
@@ -59,7 +60,7 @@ DATA.forEach(d=>{
           + ' ' + SCREENS_LABEL(d.screen)).toLowerCase();
 });
 function SCREENS_LABEL(s){return {'v3-deep':'v3 deep','v3-screen':'v3 screen','v4-moat':'v4 moat monopoly',
-  'v4-triage':'triage','v5-new':'v5 new sweep','v6-new':'v6 new sectors','v7-new':'v7 depth expansion','user':'requested added on request'}[s]||'';}
+  'v4-triage':'triage','v5-new':'v5 new sweep','v6-new':'v6 new sectors','v7-new':'v7 depth expansion','user':'requested added on request','deep-sweep':'Deep Sweep'}[s]||'';}
 const SERIES = ['--s1','--s2','--s3','--s4','--s5','--s6'];
 /* Nine themes cannot be given nine safe categorical hues, and cycling six would make
    two themes share a colour - a key that lies. So no chart encodes theme by colour:

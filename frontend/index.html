@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="light">
+<html lang="en" data-theme="dark">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Deep Microcap Screener</title>
-<meta name="description" content="Indian listed companies across multiple research screens on one board, served from a live API.">
+<title>Deep Sweep</title>
+<meta name="description" content="Deep Sweep — a dark ocean-themed research board for microcap and quality-first names.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%94%8D%3C/text%3E%3C/svg%3E">
-<link rel="stylesheet" href="/static/style.css?v=8">
+<link rel="stylesheet" href="/static/style.css?v=9">
 </head>
 <body>
 <div class="wrap">
@@ -16,21 +16,22 @@
   <span class="hqmark">&ldquo;</span><span class="hqtext" id="hqtext"></span>
 </div>
 
-<header>
-  <div>
-    <h1>Deep Microcap Screener — the full research universe</h1>
-    <p class="quoteline" id="quoteline" title="Click for another">
-      <span class="qt" id="qtext"></span><span class="qa" id="qauth"></span>
-    </p>
-  </div>
-  <div class="verstamp">
-    <div class="vbadge">
-      <div class="vlabel">Build</div>
-      <div class="vver">…</div>
-      <div class="vdate">…</div>
-      <div class="vdata">Live from API</div>
+<header class="topbar">
+  <div class="brand">
+    <div class="brand-mark" aria-hidden="true">
+      <span class="wave wave-one"></span>
+      <span class="wave wave-two"></span>
+      <span class="wave wave-three"></span>
     </div>
-    <button class="btn" id="theme">◐ Dark</button>
+    <div class="brand-copy">
+      <div class="brand-name">Deep Sweep</div>
+      <div class="brand-tag">New 52-week highs, and what is behind them</div>
+    </div>
+  </div>
+
+  <div class="market-box">
+    <div class="market-label">MARKET DAY</div>
+    <div class="market-value">Thursday, 10 September 2026 <span>Updated 10 Sept, 18:48 IST</span></div>
   </div>
 </header>
 </div>
@@ -107,6 +108,7 @@
     <tr><td><span class="badge b-v6">v6 sectors</span></td><td id="n-v6-new">—</td><td><b>Sector expansion, 20 Aug 2026.</b> Nine themes the board had barely touched: packaging and printing, plastics, building materials, technical textiles, agri and food processing, logistics, water and environment, healthcare services, IT hardware. Same gates, same rubric. These sectors contain a lot of commodity converting and monsoon-dependent cyclicals, and the moat scores say so — several land in single digits by design.</td></tr>
     <tr><td><span class="badge b-v8">v8 moat</span></td><td id="n-v8-moat">—</td><td><b>Moat scoring wave, rubric v5.</b> Adds a "strategic" pillar in place of "under-covered" — used for names (defence PSUs, large caps) where market obscurity isn't the point but strategic positioning is.</td></tr>
     <tr><td><span class="badge b-v8">v8 weekly</span></td><td id="n-v8-weekly">—</td><td><b>Weekly refresh sweep.</b> The recurring pass that keeps existing names current between the larger research rounds above.</td></tr>
+    <tr><td><span class="badge b-deepsweep">🌊 Deep Sweep</span></td><td id="n-deep-sweep">—</td><td><b>Ocean-wave deep scan.</b> A dedicated high-conviction pass designed to surface only the most compelling, quality-first names with strong structure and a cleaner moat profile.</td></tr>
     <tr><td><span class="badge b-user">added on request</span></td><td id="n-user">—</td><td>Names you asked for by hand. Several fail the v3 gates outright; each card lists exactly which, and the score carries an explicit penalty for it.</td></tr>
   </table>
   <table style="margin-top:20px">
