@@ -1,5 +1,8 @@
 name: Daily Screener Run
 
+permissions:
+  contents: write
+
 on:
   schedule:
     - cron: '30 11 * * *'
