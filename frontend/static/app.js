@@ -178,27 +178,30 @@ const themeBox = document.getElementById('themes');
 const overviewNav=document.getElementById('overview-link');
 const marketNav=['themes-link','market-link'].map(id=>document.getElementById(id)).filter(Boolean);
 const sectionNav=['themes-link','market-link','signals-link','companies-link','filters-link'].map(id=>document.getElementById(id)).filter(Boolean);
+const researchNav=['signals-link','filters-link'];
 overviewNav.onclick=e=>{
   e.preventDefault();
-  document.body.classList.add('overview-focus');
-  document.body.classList.remove('theme-focus','market-focus');
+  document.body.className='overview-focus';
   window.scrollTo({top:0,behavior:'smooth'});
 };
 marketNav.forEach(link=>link.onclick=e=>{
   e.preventDefault();
-  document.body.classList.remove('overview-focus','theme-focus');
-  document.body.classList.add('market-focus');
+  document.body.className='market-focus';
   window.scrollTo({top:0,behavior:'smooth'});
 });
-sectionNav.filter(link=>!marketNav.includes(link)).forEach(link=>link.onclick=()=>document.body.classList.remove('overview-focus','market-focus','theme-focus'));
+researchNav.map(id=>typeof id==='string'?document.getElementById(id):id).filter(Boolean).forEach(link=>link.onclick=e=>{
+  e.preventDefault();
+  document.body.className='research-focus';
+  window.scrollTo({top:0,behavior:'smooth'});
+});
+sectionNav.filter(link=>!marketNav.includes(link)&&!researchNav.includes(link)).forEach(link=>link.onclick=()=>document.body.className='');
 THEMES.forEach(t=>{
   const b=document.createElement('button');
   b.className='chip on'; b.dataset.t=t;
   b.innerHTML=`<span class="mk"></span>${shortT(t)}`;
   b.onclick=()=>{
     activeThemes=new Set([t]);
-    document.body.classList.remove('overview-focus','market-focus');
-    document.body.classList.add('theme-focus');
+    document.body.className='theme-focus';
     syncChips(); render();
   };
   themeBox.appendChild(b);
@@ -218,7 +221,7 @@ function renderThemeResults(){
   const names=DATA.filter(d=>base(d)===theme).sort((a,b)=>String(a.name||'').localeCompare(String(b.name||'')));
   box.innerHTML=`<div class="theme-results-head"><button class="theme-back" id="theme-back">← All themes</button><div><span class="eyebrow">COMPANIES IN THEME</span><h3>${esc(shortT(theme))}</h3><p>${names.length} screened compan${names.length===1?'y':'ies'}</p></div><span class="folder-count">${names.length} names</span></div>
     <div class="company-files">${names.map(d=>`<button class="company-file" data-theme-company="${esc(d.code)}"><span class="file-symbol">${esc((d.name||'?').slice(0,1).toUpperCase())}</span><span class="file-copy"><b>${esc(d.name||'Unnamed company')}</b><small>${esc(d.code||'')} · Score ${fmt(d.final_score,1)}</small></span><span class="file-arrow">›</span></button>`).join('')}</div>`;
-  box.querySelector('#theme-back').onclick=()=>{document.body.classList.remove('theme-focus');document.body.classList.add('market-focus');activeThemes=new Set(THEMES);syncChips();render();};
+  box.querySelector('#theme-back').onclick=()=>{document.body.className='market-focus';activeThemes=new Set(THEMES);syncChips();render();};
   box.querySelectorAll('[data-theme-company]').forEach(b=>b.onclick=()=>{const d=DATA.find(row=>String(row.code)===b.dataset.themeCompany); if(d) openDrawer(d);});
 }
 
@@ -234,11 +237,11 @@ SL.forEach((s,i)=>{
     const atEnd = s.inv ? (s.v>=s.max) : (s.v<=s.min);
     out.textContent = atEnd ? 'any' : (s.pre||'')+(s.step<1?s.v.toFixed(2):Math.round(s.v).toLocaleString('en-IN'))+s.unit;
   };
-  inp.oninput=()=>{upd();render();}; upd();
+  inp.oninput=()=>{document.body.classList.add('research-results');upd();render();}; upd();
 });
 
 document.querySelectorAll('[data-tg]').forEach(b=>{
-  b.onclick=()=>{ TG[b.dataset.tg]=!TG[b.dataset.tg]; b.classList.toggle('on',TG[b.dataset.tg]); render(); };
+  b.onclick=()=>{ document.body.classList.add('research-results'); TG[b.dataset.tg]=!TG[b.dataset.tg]; b.classList.toggle('on',TG[b.dataset.tg]); render(); };
 });
 /* ---------- search ---------- */
 const qIn=document.getElementById('q'), qWrap=document.getElementById('swrap');

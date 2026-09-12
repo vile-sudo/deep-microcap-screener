@@ -116,6 +116,23 @@ body.market-focus .dashboard-shell{display:block}
 body.market-focus .dashboard-main{width:100%}
 body.market-focus .wrap{max-width:none;padding:10px}
 body.market-focus .market-section{margin-top:6px}
+body.research-focus .overview-section,
+body.research-focus .market-section,
+body.research-focus #filters,
+body.research-focus #wl,
+body.research-focus #research,
+body.research-focus #count,
+body.research-focus .method,
+body.research-focus .disc{display:none}
+body.research-focus .side-nav,
+body.research-focus .hero{display:none}
+body.research-focus .dashboard-shell{display:block}
+body.research-focus .dashboard-main{width:100%}
+body.research-focus .wrap{max-width:none;padding:10px}
+body.research-focus .research-filter-section{margin-top:6px}
+body.research-focus.research-results #research,
+body.research-focus.research-results #count{display:block}
+body.research-focus.research-results #research{margin-top:16px}
 .filter-panel .toggles{margin:0;padding:0;border:0;gap:9px}
 .filter-panel .btn{background:#0d1a23;border-color:#233b4a;padding:9px 13px}
 .filter-panel .btn.on{background:#19404a;border-color:#65c6d5;color:#f2fbff}
