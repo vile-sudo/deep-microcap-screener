@@ -20,12 +20,12 @@
     <div class="side-label">START</div>
     <a class="side-link active" href="#overview"><span class="side-icon">⌂</span>Overview</a>
     <div class="side-label">MARKET</div>
-    <a class="side-link" href="#market"><span class="side-icon">↗</span>52-week highs</a>
-    <a class="side-link" href="#market"><span class="side-icon">◒</span>Score distribution</a>
-    <a class="side-link" href="#filters"><span class="side-icon">!</span>Signals</a>
+    <a class="side-link" href="#market"><span class="side-icon">↗</span>Themes</a>
+    <a class="side-link" href="#market"><span class="side-icon">◒</span>Market view</a>
+    <a class="side-link" href="#research-filters"><span class="side-icon">!</span>Signals</a>
     <div class="side-label">RESEARCH</div>
     <a class="side-link" href="#research"><span class="side-icon">⌕</span>Companies</a>
-    <a class="side-link" href="#filters"><span class="side-icon">≡</span>Screen filters</a>
+    <a class="side-link" href="#research-filters"><span class="side-icon">≡</span>Screen filters</a>
     <a class="side-link" href="#changelog"><span class="side-icon">◷</span>Build history</a>
     <div class="side-label">REFERENCE</div>
     <a class="side-link" href="#methodology"><span class="side-icon">?</span>How it works</a>
@@ -63,8 +63,16 @@
 </div>
 
 <span id="overview" class="anchor-target"></span>
+<section class="overview-section" aria-labelledby="overview-title">
+  <div class="section-heading"><div><span class="eyebrow">START</span><h1 id="overview-title">Company overview</h1><p class="section-copy">A concise view of the screened companies currently on the board.</p></div></div>
+  <div class="tiles" id="tiles"></div>
+</section>
+
 <span id="market" class="anchor-target"></span>
-<div class="tiles" id="tiles"></div>
+<section class="dashboard-section market-section" aria-labelledby="market-title">
+  <div class="section-heading"><div><span class="eyebrow">MARKET</span><h2 id="market-title">Themes</h2><p class="section-copy">Choose a theme to show only the companies screened in that area.</p></div><span class="section-note">Click any theme to filter the company table</span></div>
+  <div class="theme-panel"><div class="tglab">THEME</div><div class="frow" id="themes"></div></div>
+</section>
 
 <div class="card filters" id="filters">
   <div class="searchbar">
@@ -78,22 +86,8 @@
     <button class="btn" id="whatsnew">&#9998; What changed</button>
   </div>
   <div class="sugg" id="sugg"></div>
-  <h2 style="margin-top:18px">Filters</h2>
-  <div class="tglab" style="margin:0 0 8px">Theme</div>
-  <div class="frow" id="themes"></div>
   <div class="frow" style="margin-top:8px">
     <button class="btn" id="asmeBtn" title="ASME's own active certificate holders in India (caconnect.asme.org/directory), narrowed to the ones NSE or BSE's own listed-equity feeds confirm are actually listed. Separate from the board above — not cross-checked against it, not scored, and the moat rubric doesn't apply to any of these names.">&#9878; ASME Certified <span class="tc" id="asmeCount"></span></button>
-  </div>
-  <div class="sliders" id="sliders"></div>
-  <div class="toggles">
-    <div class="tglab">The three new lenses</div>
-    <button class="btn" data-tg="overhang">⚑ High P/E + heavy CWIP</button>
-    <button class="btn" data-tg="heavycap">🏗 CWIP ≥ 25% of net block</button>
-    <button class="btn" data-tg="guide15">▲ Management guides &gt; 15%</button>
-    <button class="btn" data-tg="guideany">▲ Any forward growth statement</button>
-    <button class="btn" data-tg="turn">↻ PAT turned positive from negative</button>
-    <button class="btn" data-tg="haslens">Only names with the new data pulled</button>
-    <button class="btn" data-tg="ipo" title="Names whose own research note calls them an SME IPO or a recent listing. Derived from the notes, not from a listing-date field — a recent listing whose note never says so will be missed.">&#127381; Recent listing / SME IPO</button>
   </div>
   <div class="toolbar">
     <button class="btn" data-tg="watch" id="watchbtn" title="Show only the companies you have pinned">&#9733; Watchlist only <span class="tc" id="wcount"></span></button>
@@ -109,6 +103,24 @@
     <button class="btn spacer" id="keys" title="Keyboard shortcuts">&#9000; Shortcuts</button>
   </div>
 </div>
+
+<section class="dashboard-section research-filter-section" id="research-filters" aria-labelledby="research-filter-title">
+  <div class="section-heading"><div><span class="eyebrow">RESEARCH</span><h2 id="research-filter-title">Screen filters</h2><p class="section-copy">Apply evidence-based lenses and see the matching companies immediately.</p></div><span class="section-note">Filters map directly to the rows below</span></div>
+  <div class="filter-panel">
+    <div class="tglab">THE THREE NEW LENSES</div>
+    <div class="toggles">
+      <button class="btn" data-tg="overhang">⚑ High P/E + heavy CWIP</button>
+      <button class="btn" data-tg="heavycap">🏗 CWIP ≥ 25% of net block</button>
+      <button class="btn" data-tg="guide15">▲ Management guides &gt; 15%</button>
+      <button class="btn" data-tg="guideany">▲ Any forward growth statement</button>
+      <button class="btn" data-tg="turn">↻ PAT turned positive from negative</button>
+      <button class="btn" data-tg="haslens">Only names with the new data pulled</button>
+      <button class="btn" data-tg="ipo" title="Names whose own research note calls them an SME IPO or a recent listing.">&#127381; Recent listing / SME IPO</button>
+    </div>
+    <div class="slider-heading"><span class="tglab">NUMERIC FILTERS</span></div>
+    <div class="sliders" id="sliders"></div>
+  </div>
+</section>
 
 <section class="card wl" id="wl" aria-label="My watchlist"></section>
 
