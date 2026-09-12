@@ -190,6 +190,20 @@ THEMES.forEach(t=>{
 function syncChips(){
   [...themeBox.children].forEach(c=>c.classList.toggle('on', activeThemes.has(c.dataset.t)));
 }
+function renderThemeResults(){
+  const box=document.getElementById('theme-results');
+  if(!box) return;
+  const selected=[...activeThemes];
+  if(selected.length!==1){
+    box.innerHTML='<div class="theme-empty"><b>Choose one theme folder</b><span>Select Defence, Textiles, Healthcare, or another theme above to open its screened companies.</span></div>';
+    return;
+  }
+  const theme=selected[0];
+  const names=DATA.filter(d=>base(d)===theme).sort((a,b)=>String(a.name||'').localeCompare(String(b.name||'')));
+  box.innerHTML=`<div class="theme-results-head"><div><span class="eyebrow">OPEN THEME</span><h3>${esc(shortT(theme))}</h3><p>${names.length} screened compan${names.length===1?'y':'ies'} in this theme</p></div><span class="folder-count">${names.length} names</span></div>
+    <div class="company-files">${names.map(d=>`<button class="company-file" data-theme-company="${esc(d.code)}"><span class="file-symbol">${esc((d.name||'?').slice(0,1).toUpperCase())}</span><span class="file-copy"><b>${esc(d.name||'Unnamed company')}</b><small>${esc(d.code||'')} · Score ${fmt(d.final_score,1)}</small></span><span class="file-arrow">›</span></button>`).join('')}</div>`;
+  box.querySelectorAll('[data-theme-company]').forEach(b=>b.onclick=()=>{const d=DATA.find(row=>String(row.code)===b.dataset.themeCompany); if(d) openDrawer(d);});
+}
 
 /* ---------- sliders ---------- */
 const slBox=document.getElementById('sliders');
@@ -350,6 +364,7 @@ const SORTF = Object.fromEntries(COLS.filter(c=>c.sortf).map(c=>[c.k,c.sortf]));
 let CURRENT=[], CUR=-1, DRAWERI=-1;
 function render(){
   if(BUSY) return;                       /* batched updates render once, at the end */
+  renderThemeResults();
   buildHead();
   const cols=VIS();
   const rows=DATA.filter(pass).sort((a,b)=>{
