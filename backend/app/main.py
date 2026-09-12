@@ -10,7 +10,7 @@ from fastapi.responses import FileResponse
 from .auth import BasicAuthMiddleware
 from .config import get_settings
 from .database import Base, engine
-from .routers import asme, charts, companies, meta
+from .routers import asme, charts, companies, market, meta
 
 settings = get_settings()
 
@@ -50,6 +50,7 @@ app.include_router(companies.router)
 app.include_router(meta.router)
 app.include_router(charts.router)
 app.include_router(asme.router)
+app.include_router(market.router)
 
 
 @app.get("/healthz", tags=["ops"])

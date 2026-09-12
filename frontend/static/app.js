@@ -198,8 +198,8 @@ let sortKey='final_score', sortDir=-1;
      method    - how the scores work
    Moving to another page clears whatever was picked on the last one, so a theme
    chosen on Themes never quietly narrows what Screen filters shows. */
-const VIEWS=['overview','themes','watchlist','companies','filters','gallery','method'];
-const NAV={'overview-link':'overview','themes-link':'themes','market-link':'themes','watchlist-link':'watchlist',
+const VIEWS=['overview','themes','market','watchlist','companies','filters','gallery','method'];
+const NAV={'overview-link':'overview','themes-link':'themes','market-link':'market','watchlist-link':'watchlist',
            'companies-link':'companies','filters-link':'filters','gallery-link':'gallery'};
 const LENSES=['overhang','heavycap','guide15','guideany','turn','haslens','ipo','asme'];
 const TILE_LABEL={all:'Companies on the board',overhang:'High P/E + heavy CWIP',guide15:'Management guides > 15%',
@@ -217,6 +217,7 @@ function setView(v, opts){
   if(!opts.keep) window.scrollTo({top:0,behavior:'smooth'});
   render();
   if(VIEW==='gallery') openGallery();
+  if(VIEW==='market') openMarket();
 }
 Object.keys(NAV).forEach(id=>{
   const link=document.getElementById(id);
@@ -1525,6 +1526,108 @@ function openChart(code){
     };
     svg.onmouseleave=()=>{ cross.style.display='none'; out.innerHTML=read(vis[vis.length-1]); };
   }
+}
+
+/* ==================================================================
+   Market view
+   NIFTY 50 / SENSEX (live through Zerodha when connected, delayed
+   otherwise) and the board companies breaking their 1-day, 1-week,
+   1-month or 52-week high or low today. Both poll while the page is open:
+   fast when there is a live feed and the market is open, slowly otherwise.
+   ================================================================== */
+const MV_WINDOWS=[['52w','52-week'],['1m','1-month'],['1w','1-week'],['1d','1-day']];
+const MV={tab:{high:'52w', low:'52w'}, all:{high:false, low:false}, idx:null, trend:null, kite:null, timers:{}};
+
+function openMarket(){
+  mvStatus(); mvIndices(); mvTrending();
+}
+function mvSchedule(name, fn, ms){
+  clearTimeout(MV.timers[name]);
+  MV.timers[name]=setTimeout(()=>{ if(VIEW!=='market') return; if(document.hidden){ mvSchedule(name,fn,ms); return; } fn(); }, ms);
+}
+document.addEventListener('visibilitychange',()=>{ if(!document.hidden && VIEW==='market') openMarket(); });
+
+async function mvStatus(){
+  try{ MV.kite=await fetchJSON('/api/kite/status'); }catch(e){ MV.kite={configured:false,connected:false}; }
+  const k=MV.kite, box=document.getElementById('mv-conn');
+  if(k.connected){
+    const until=k.expires?new Date(k.expires).toLocaleTimeString('en-IN',{hour:'numeric',minute:'2-digit'}):'';
+    box.innerHTML=`<span class="mv-chip live"><i></i>Live via Zerodha${k.user?' · '+esc(k.user):''}</span><small>session until ${esc(until)} tomorrow</small>`;
+  } else if(k.configured){
+    box.innerHTML=`<span class="mv-chip"><i></i>Delayed prices</span><button class="btn" id="mv-connect" type="button">Connect Zerodha</button>`;
+    document.getElementById('mv-connect').onclick=mvConnect;
+  } else {
+    box.innerHTML=`<span class="mv-chip" title="Set KITE_API_KEY, KITE_API_SECRET and KITE_ADMIN_KEY on the server to enable live prices"><i></i>Delayed prices · Zerodha not set up</span>`;
+  }
+  mvSchedule('status', mvStatus, 5*60*1000);
+}
+function mvConnect(){
+  openModal(`<h3>Connect Zerodha</h3>
+    <p class="mp">Zerodha asks for a login once a day; the session lasts until 6 a.m. the next morning. Enter the admin key set on the server (KITE_ADMIN_KEY) to continue to Zerodha's login page.</p>
+    <form id="mv-key-form" class="mv-key"><input id="mv-key" type="password" autocomplete="current-password" placeholder="Admin key" class="gal-search" required>
+    <button class="btn" type="submit">Continue to Zerodha</button></form>`);
+  const f=document.getElementById('mv-key-form'), inp=document.getElementById('mv-key');
+  inp.focus();
+  f.onsubmit=e=>{ e.preventDefault(); location.href='/api/kite/login?key='+encodeURIComponent(inp.value); };
+}
+
+const mvNum=(v,d=2)=>v==null?'—':(+v).toLocaleString('en-IN',{minimumFractionDigits:d,maximumFractionDigits:d});
+async function mvIndices(){
+  let j; try{ j=await fetchJSON('/api/market/indices'); }catch(e){ j=null; }
+  const box=document.getElementById('mv-indices');
+  if(j){
+    const prev=MV.idx; MV.idx=j;
+    const when=new Date(j.as_of).toLocaleTimeString('en-IN',{hour:'2-digit',minute:'2-digit',second:'2-digit'});
+    box.innerHTML=j.items.map(it=>{
+      const p=prev && prev.items.find(x=>x.key===it.key);
+      const tick=p && p.last!=null && it.last!=null && it.last!==p.last ? (it.last>p.last?' tick-up':' tick-dn') : '';
+      const dir=(it.change||0)>=0?'up':'dn';
+      const pos=(it.high!=null && it.low!=null && it.high>it.low && it.last!=null) ? Math.max(0,Math.min(100,(it.last-it.low)/(it.high-it.low)*100)) : null;
+      return `<article class="mv-index">
+        <div class="mv-ix-head"><b>${esc(it.name)}</b><span class="mv-src ${j.source==='zerodha'?'live':''}">${j.source==='zerodha'?(j.market_open?'LIVE':'Zerodha · market closed'):'Delayed'}</span></div>
+        <div class="mv-ix-price${tick}">${mvNum(it.last)}</div>
+        <div class="mv-ix-chg ${dir}">${it.change==null?'—':(it.change>=0?'+':'')+mvNum(it.change)} <span>(${it.change_pct==null?'—':(it.change_pct>=0?'+':'')+it.change_pct.toFixed(2)+'%'})</span></div>
+        ${pos==null?'':`<div class="mv-range" title="Today's range"><span>${mvNum(it.low)}</span><div class="mv-bar"><i style="left:${pos.toFixed(1)}%"></i></div><span>${mvNum(it.high)}</span></div>`}
+        <div class="mv-ix-kv"><span>Open <b>${mvNum(it.open)}</b></span><span>Prev close <b>${mvNum(it.prev_close)}</b></span><span>${j.source==='zerodha'?'Updated':'Checked'} <b>${when}</b></span></div>
+      </article>`;
+    }).join('');
+  } else if(!MV.idx){
+    box.innerHTML='<p class="view-hint">Index prices are unavailable right now.</p>';
+  }
+  const fast = j && j.source==='zerodha' && j.market_open;
+  mvSchedule('indices', mvIndices, fast?3000:60000);
+}
+
+async function mvTrending(){
+  let j; try{ j=await fetchJSON('/api/market/trending'); }catch(e){ j=null; }
+  if(j) MV.trend=j;
+  mvPanel('high'); mvPanel('low');
+  mvSchedule('trending', mvTrending, j && j.mode==='live' ? 30000 : 5*60*1000);
+}
+function mvPanel(side){
+  const box=document.getElementById(side==='high'?'mv-highs':'mv-lows'), t=MV.trend;
+  const title = side==='high' ? 'New highs today' : 'New lows today';
+  if(!t){ box.innerHTML=`<h3 class="mv-title">${title}</h3><p class="view-hint">Loading…</p>`; return; }
+  const tab=MV.tab[side], items=t.groups[`${side}_${tab}`]||[];
+  const mode = t.mode==='live'
+    ? `Live · updated ${new Date(t.generated_at).toLocaleTimeString('en-IN',{hour:'2-digit',minute:'2-digit'})}`
+    : `End of day · ${t.as_of?galDay(t.as_of):'—'}`;
+  const label=Object.fromEntries(MV_WINDOWS)[tab];
+  const shown=MV.all[side]?items:items.slice(0,25);
+  box.innerHTML=`<div class="mv-panel-head"><h3 class="mv-title ${side==='high'?'up':'dn'}">${side==='high'?'▲':'▼'} ${title}</h3><span class="mv-mode${t.mode==='live'?' live':''}">${mode}</span></div>
+    <div class="mv-tabs" role="tablist">${MV_WINDOWS.map(([k,l])=>`<button type="button" role="tab" class="mv-tab${k===tab?' on':''}" data-mv-tab="${k}" aria-selected="${k===tab}">${l} <span>${t.counts[`${side}_${k}`]||0}</span></button>`).join('')}</div>
+    <p class="mv-explain">Today's ${side} went ${side==='high'?'above the highest':'below the lowest'} price of the previous ${({'52w':'52 weeks','1m':'month (21 sessions)','1w':'week (5 sessions)','1d':'session'})[tab]}.</p>
+    ${items.length ? `<div class="mv-list">${shown.map(x=>`
+      <button type="button" class="mv-row" data-mv-code="${esc(x.code)}">
+        <span class="gc-tick">${esc(x.symbol)}</span>
+        <span class="mv-name"><b>${esc(x.name||x.code)}</b><small>${side==='high'?'above':'below'} ${label} ${side==='high'?'high':'low'} ₹${mvNum(x.level)} (${x.beyond_pct>=0?'+':''}${x.beyond_pct}%)</small></span>
+        <span class="mv-px"><b>₹${mvNum(x.last)}</b><small class="${(x.chg_pct||0)>=0?'up':'dn'}">${x.chg_pct==null?'—':(x.chg_pct>=0?'+':'')+x.chg_pct.toFixed(2)+'%'}</small></span>
+      </button>`).join('')}</div>
+      ${items.length>25?`<button type="button" class="theme-back mv-more" data-mv-more>${MV.all[side]?'Show fewer':`Show all ${items.length}`}</button>`:''}`
+    : `<p class="view-hint">No board company broke its ${label} ${side} ${t.mode==='live'?'so far today':'in this session'}.</p>`}`;
+  box.querySelectorAll('[data-mv-tab]').forEach(b=>b.onclick=()=>{ MV.tab[side]=b.dataset.mvTab; MV.all[side]=false; mvPanel(side); });
+  const more=box.querySelector('[data-mv-more]'); if(more) more.onclick=()=>{ MV.all[side]=!MV.all[side]; mvPanel(side); };
+  box.querySelectorAll('[data-mv-code]').forEach(b=>b.onclick=()=>openChart(b.dataset.mvCode));
 }
 
 BUSY=true; buildColPop(); applyState(); BUSY=false;

@@ -37,6 +37,16 @@ class Settings(BaseSettings):
     auth_username: str = ""
     auth_password: str = ""
 
+    # --- Zerodha Kite Connect (Market view live prices) ------------------
+    # From your app at https://developers.kite.trade. Set them as env vars on
+    # the host (never commit them). kite_admin_key is a password you make up:
+    # connecting Zerodha (/api/kite/login) asks for it, so a visitor can't
+    # replace the session. Leave all three empty and Market view falls back
+    # to delayed index prices and end-of-day breakouts.
+    kite_api_key: str = ""
+    kite_api_secret: str = ""
+    kite_admin_key: str = ""
+
     # --- Data seeding ----------------------------------------------------
     seed_file: Path = BASE_DIR / "data" / "companies_raw.json"
     meta_file: Path = BASE_DIR / "data" / "meta_raw.json"

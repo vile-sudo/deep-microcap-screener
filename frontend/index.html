@@ -6,7 +6,7 @@
 <title>Deep Sweep</title>
 <meta name="description" content="Deep Sweep — a dark ocean-themed research board for microcap and quality-first names.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%94%8D%3C/text%3E%3C/svg%3E">
-<link rel="stylesheet" href="/static/style.css?v=23">
+<link rel="stylesheet" href="/static/style.css?v=24">
 </head>
 <body>
 <div class="wrap">
@@ -70,6 +70,15 @@
   <div class="section-heading" id="theme-heading"><div><span class="eyebrow">MARKET</span><h2 id="market-title">Themes</h2><p class="section-copy">Choose a theme to show only the companies screened in that area.</p></div><span class="section-note">Click any theme to open it</span></div>
   <div class="theme-panel" id="theme-panel"><div class="tglab">THEME FOLDERS</div><div class="frow" id="themes"></div></div>
   <div class="theme-results" id="theme-results" aria-live="polite" hidden></div>
+</section>
+
+<section class="dashboard-section market-view" data-views="market" aria-labelledby="mv-title">
+  <div class="section-heading"><div><span class="eyebrow">MARKET</span><h2 id="mv-title">Market view</h2><p class="section-copy">NIFTY 50 and SENSEX live, and the board companies breaking out to new highs or down to new lows today.</p></div><div class="mv-conn" id="mv-conn"></div></div>
+  <div class="mv-indices" id="mv-indices"></div>
+  <div class="mv-trend">
+    <section class="mv-panel" id="mv-highs" aria-label="New highs"></section>
+    <section class="mv-panel" id="mv-lows" aria-label="New lows"></section>
+  </div>
 </section>
 
 <section class="dashboard-section gallery-section" data-views="gallery" aria-labelledby="gallery-title">
@@ -249,6 +258,6 @@
 
 <script src="/static/quotes.js?v=5" defer></script>
 <script src="/static/asme-certified.js?v=5" defer></script>
-<script src="/static/app.js?v=23" defer></script>
+<script src="/static/app.js?v=24" defer></script>
 </body>
 </html>
