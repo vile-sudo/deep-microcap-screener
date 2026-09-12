@@ -1,0 +1,73 @@
+name: ASME certification scan
+
+# Weekly pass over ASME's CA Connect certificate directory (India, active),
+# matched to NSE/BSE listings by automation/scan-asme.mjs. A successful scan
+# rewrites backend/data/asme_raw.json, which drives the dashboard's
+# "ASME certified" screen filter and ASME Certified list, then redeploys.
+# The match against the board's own companies happens in /api/asme at
+# request time, so board changes never need a re-scan.
+
+permissions:
+  contents: write
+
+on:
+  schedule:
+    - cron: '30 11 * * 6'      # Saturday 17:00 IST
+  workflow_dispatch:
+
+concurrency:
+  group: asme-scan
+  cancel-in-progress: false
+
+jobs:
+  scan-asme:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repo
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+
+      - name: Install automation dependencies
+        working-directory: ./automation
+        run: |
+          npm install --no-audit --no-fund
+          npx playwright install --with-deps chromium
+
+      - name: Scan ASME directory
+        working-directory: ./automation
+        run: node scan-asme.mjs
+
+      - name: Commit ASME data
+        id: commit
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add automation/data/asme-scan.json backend/data/asme_raw.json
+          if git diff --cached --quiet; then
+            echo "No ASME changes"
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          git commit -m "ASME certification scan"
+          for i in 1 2 3; do
+            git pull --rebase origin ${{ github.ref_name }} && git push origin HEAD:${{ github.ref_name }} && break
+            sleep 5
+          done
+          echo "changed=true" >> "$GITHUB_OUTPUT"
+
+      - name: Trigger Render deploy
+        if: ${{ steps.commit.outputs.changed == 'true' }}
+        env:
+          RENDER_DEPLOY_HOOK: ${{ secrets.RENDER_DEPLOY_HOOK }}
+        run: |
+          if [ -z "$RENDER_DEPLOY_HOOK" ]; then
+            echo "RENDER_DEPLOY_HOOK secret not set; skipping deploy"
+            exit 0
+          fi
+          curl -fsSL --retry 3 --retry-delay 5 -X POST "$RENDER_DEPLOY_HOOK" > /dev/null
+          echo "Render deploy triggered"

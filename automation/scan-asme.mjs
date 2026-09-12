@@ -36,14 +36,17 @@
  *   for one more week is the safe failure direction; a false positive
  *   entering an unattended report is not.
  *
- * What this script does NOT do
- *   It never writes to frontend/static/asme-certified.js. That file is
- *   what the live dashboard's ASME Certified button reads, and — like
- *   backend/data/companies_raw.json — promoting something into it stays a
- *   decision made by hand, with a display name and casing chosen the same
- *   way the existing 40 entries were. This script's only job is to say
- *   "here's what changed since last time," into automation/data/
- *   asme-scan.json, for that decision to be made against.
+ * What it publishes
+ *   Besides the report (automation/data/asme-scan.json), a successful scan
+ *   writes backend/data/asme_raw.json, which the live dashboard reads
+ *   through /api/asme: the Screen filters "ASME certified" lens, the ASME
+ *   line on scorecards and the ASME Certified list. So a listed company
+ *   that gains (or loses) an ASME certificate reaches the board on the next
+ *   scan + deploy with no hand edit. A scan that matches far fewer companies
+ *   than the last one is not published -- see publishToBoard at the bottom.
+ *   It runs weekly in .github/workflows/asme.yml and in run-weekly.cmd.
+ *   frontend/static/asme-certified.js is now only the certificate-type
+ *   legend plus a fallback snapshot for when the API is unreachable.
  */
 import fs from 'node:fs';
 import path from 'node:path';
@@ -287,4 +290,35 @@ if (DRY) {
   fs.mkdirSync(DIR, { recursive: true });
   fs.writeFileSync(REPORT, JSON.stringify(report, null, 1));
   say(`\n  wrote ${path.relative(process.cwd(), REPORT)}`);
+  publishToBoard(report, priorScan);
+}
+
+/* ------------------------------------------------ feed the live dashboard */
+/* backend/data/asme_raw.json is what the dashboard's ASME filter and ASME
+   Certified list read (via /api/asme, which matches it against the board's
+   companies). Writing it here is what makes ASME a pipeline rather than a
+   report: a company that gains an ASME certificate shows up in Screen
+   filters after the next scan + deploy, with no hand edit.
+
+   The one guard: a scan that suddenly matches far fewer listed companies
+   than the last one is far more likely a partial fetch than 40% of India's
+   certificate holders lapsing in a week, so it is reported but not
+   published. The previous list stays live until a scan looks sane again. */
+function publishToBoard(report, prior) {
+  const BOARD_FILE = path.resolve(HERE, '..', 'backend', 'data', 'asme_raw.json');
+  const previous = fs.existsSync(BOARD_FILE) ? JSON.parse(fs.readFileSync(BOARD_FILE, 'utf8')) : null;
+  const before = previous?.companies?.length || prior?.matched_listed_count || 0;
+  if (before && report.matched.length < before * 0.7) {
+    say(`  NOT publishing to the dashboard: ${report.matched.length} matches vs ${before} last time looks like a bad scan.`);
+    return;
+  }
+  const board = {
+    scanned_on: report.scanned_on,
+    source: 'ASME CA Connect directory (India, active) matched to NSE/BSE listings by automation/scan-asme.mjs',
+    companies: report.matched.map(m => ({
+      symbol: m.symbol, exch: m.exch, name: m.listedName, certs: m.certs, since: m.since, asme_names: m.asmeRows,
+    })),
+  };
+  fs.writeFileSync(BOARD_FILE, JSON.stringify(board, null, 1));
+  say(`  wrote ${path.relative(process.cwd(), BOARD_FILE)} (${board.companies.length} companies) for the dashboard`);
 }

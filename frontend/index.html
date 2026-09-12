@@ -6,7 +6,7 @@
 <title>Deep Sweep</title>
 <meta name="description" content="Deep Sweep — a dark ocean-themed research board for microcap and quality-first names.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%94%8D%3C/text%3E%3C/svg%3E">
-<link rel="stylesheet" href="/static/style.css?v=22">
+<link rel="stylesheet" href="/static/style.css?v=23">
 </head>
 <body>
 <div class="wrap">
@@ -130,6 +130,7 @@
       <button class="btn" data-tg="turn">↻ PAT turned positive from negative</button>
       <button class="btn" data-tg="haslens">Only names with the new data pulled</button>
       <button class="btn" data-tg="ipo" title="Names whose own research note calls them an SME IPO or a recent listing.">&#127381; Recent listing / SME IPO</button>
+      <button class="btn" data-tg="asme" data-label="ASME certified" title="Board companies that hold an active ASME certificate (boiler, pressure vessel, nuclear component stamps), from the weekly scan of ASME's own directory.">&#9878; ASME certified <span class="tc" id="asme-filter-n"></span></button>
     </div>
     <div class="slider-heading"><span class="tglab">NUMERIC FILTERS</span></div>
     <div class="sliders" id="sliders"></div>
@@ -151,6 +152,7 @@
   </div>
 </div>
 <p class="meta" id="count"></p>
+<section class="asme-offboard" id="asme-offboard" hidden></section>
 
 <div class="card method" id="methodology" data-views="method">
   <h2>Research screens — reading a score</h2>
@@ -247,6 +249,6 @@
 
 <script src="/static/quotes.js?v=5" defer></script>
 <script src="/static/asme-certified.js?v=5" defer></script>
-<script src="/static/app.js?v=22" defer></script>
+<script src="/static/app.js?v=23" defer></script>
 </body>
 </html>

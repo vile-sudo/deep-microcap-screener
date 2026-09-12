@@ -134,3 +134,19 @@ averages, volume, 52-week high — for every company on the board.
   live (Yahoo Finance) until the next run replaces it with exchange data.
 - **Run it by hand:** `cd backend && python scripts/update_charts.py`, or
   *Actions → Chart gallery update → Run workflow* on GitHub.
+
+## ASME certification (automated)
+
+Screen filters has an **ASME certified** filter: board companies holding an
+active ASME certificate (boiler, pressure-vessel, nuclear-component stamps),
+with the other NSE/BSE-listed ASME holders listed underneath. Scorecards of
+certified companies show their certificate types and since-date.
+
+- `automation/scan-asme.mjs` reads ASME's CA Connect directory (India,
+  active) in a headless browser, matches it to NSE/BSE listings, and on a
+  sane result writes `backend/data/asme_raw.json`.
+- `.github/workflows/asme.yml` runs it every Saturday, commits and
+  redeploys. It also still runs in the local weekly task (`run-weekly.cmd`).
+- `GET /api/asme` matches that list against the board's current companies
+  at request time (ticker, exchange symbol, or exact company name), so a
+  company added to the board is tagged without a re-scan.

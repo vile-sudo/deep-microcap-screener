@@ -16,9 +16,11 @@ async function fetchJSON(url) {
 }
 
 async function boot() {
-  const [DATA, META] = await Promise.all([
+  const [DATA, META, ASME] = await Promise.all([
     fetchJSON("/api/companies"),
     fetchJSON("/api/meta"),
+    /* the board still loads if the ASME list can't */
+    fetchJSON("/api/asme").catch(function(){ return {scanned_on: null, companies: []}; }),
   ]);
 
   const BUILD = META.build || {version: "\u2014", built: "\u2014", history: []};
@@ -80,6 +82,12 @@ const SERIES = ['--s1','--s2','--s3','--s4','--s5','--s6'];
    fetch one, so this is written in by update-weekly.mjs. If it is missing, the freshness
    chip says the scan has never run rather than inventing a date. */
 
+/* ASME certificate holders from the weekly scan, keyed by the board company
+   each one is (the API does the matching). Drives the Screen filter, the
+   ASME line on scorecards and the ASME Certified list. */
+const ASME_BY_CODE = {};
+(ASME.companies||[]).forEach(c=>{ if(c.board_code) ASME_BY_CODE[c.board_code]=c; });
+{ const n=document.getElementById('asme-filter-n'); if(n) n.textContent=Object.keys(ASME_BY_CODE).length; }
 const CG={'verified':'cg-verified','company-stated':'cg-company','none claimed':'cg-none','DEBUNKED':'cg-debunked'};
 const pend = '<span class="pend" title="Not pulled yet for this name">&#8943;</span>';
 const shortT = t => SHORT[t] || t;
@@ -169,7 +177,7 @@ function listingYear(d){
   return m ? (m[1]||m[2]) : null;
 }
 
-const TG = {overhang:false, heavycap:false, guide15:false, guideany:false, turn:false, haslens:false, ipo:false,
+const TG = {overhang:false, heavycap:false, guide15:false, guideany:false, turn:false, haslens:false, ipo:false, asme:false,
             nolens:false, watch:false,
             nosme:false, nopledge:false, realsub:false, cheap:false, ongate:false};
 /* The watchlist is the one piece of state that belongs to the reader rather than to the
@@ -193,7 +201,7 @@ let sortKey='final_score', sortDir=-1;
 const VIEWS=['overview','themes','watchlist','companies','filters','gallery','method'];
 const NAV={'overview-link':'overview','themes-link':'themes','market-link':'themes','watchlist-link':'watchlist',
            'companies-link':'companies','filters-link':'filters','gallery-link':'gallery'};
-const LENSES=['overhang','heavycap','guide15','guideany','turn','haslens','ipo'];
+const LENSES=['overhang','heavycap','guide15','guideany','turn','haslens','ipo','asme'];
 const TILE_LABEL={all:'Companies on the board',overhang:'High P/E + heavy CWIP',guide15:'Management guides > 15%',
                   turn:'PAT turned positive',nolens:'Awaiting the capex pass'};
 let VIEW='overview', NAVID='overview-link', TILE=null;
@@ -353,6 +361,7 @@ function pass(d){
   if(TG.turn     && !d.pat_turnaround) return false;
   if(TG.haslens  && !d.has_lens_data) return false;
   if(TG.ipo      && !isRecentListing(d)) return false;
+  if(TG.asme     && !ASME_BY_CODE[d.code]) return false;
   if(TG.ongate   && (d.gate_failures||[]).length) return false;
   if(TG.nosme && (nz(d.num_shareholders)!==null && d.num_shareholders<3000)) return false;
   if(TG.nopledge && (nz(d.promoter_pledge_pct)||0)>0.5) return false;
@@ -380,7 +389,7 @@ const COLS=[
      f:d=>`<button class="pin${WATCH.has(d.code)?' on':''}" data-pin="${esc(d.code)}" title="${WATCH.has(d.code)?'Remove from':'Add to'} watchlist" aria-label="Pin ${esc(d.name)}">${WATCH.has(d.code)?'★':'☆'}</button>`,
      sortf:d=>WATCH.has(d.code)?1:0},
   {k:'rank',  l:'#',        f:d=>d.rank},
-  {k:'name',  l:'Company',  f:d=>`<a class="nm" href="${scrURL(d)}" target="_blank" rel="noopener" onclick="event.stopPropagation()" title="Open on screener.in">${hl(d.name)} <span class="ext">↗</span></a><span class="tc">${hl(d.code||'')}${d.tier===2?' · Tier 2':''}${d.added_on===BUILD_NEW?' · <b class="newbadge">NEW</b>':''}</span>`},
+  {k:'name',  l:'Company',  f:d=>`<a class="nm" href="${scrURL(d)}" target="_blank" rel="noopener" onclick="event.stopPropagation()" title="Open on screener.in">${hl(d.name)} <span class="ext">↗</span></a><span class="tc">${hl(d.code||'')}${d.tier===2?' · Tier 2':''}${d.added_on===BUILD_NEW?' · <b class="newbadge">NEW</b>':''}${ASME_BY_CODE[d.code]?' · <b class="asme-tag" title="Holds an active ASME certificate">ASME</b>':''}</span>`},
   {k:'theme', l:'Theme',    f:d=>`<span class="thm">${shortT(base(d))}</span>`},
   {k:'final_score',l:'Score', f:d=>{
       if(d.final_score===null||d.final_score===undefined)
@@ -444,13 +453,32 @@ function renderResultsFrame(){
   if(show && VIEW==='filters'){
     const on=LENSES.find(k=>TG[k]);
     const b=on && document.querySelector(`.filter-panel [data-tg="${on}"]`);
-    label = b ? b.textContent.trim() : 'Numeric filters';
+    label = b ? (b.dataset.label || b.textContent.trim()) : 'Numeric filters';
   }
   head.hidden = !label;
+  renderAsmeOffBoard(show && VIEW==='filters' && TG.asme);
   if(label){
     head.innerHTML=`<div><b>${esc(label)}</b><small>Only the companies that match are listed below</small></div><button class="theme-back" id="results-clear" type="button">✕ Clear</button>`;
     head.querySelector('#results-clear').onclick=()=>{ clearFilters(); render(); };
   }
+}
+/* Under the ASME filter's table: the other listed ASME certificate holders,
+   the ones not on the board, so the filter answers "who holds ASME stamps"
+   and not only "which of mine do". */
+function renderAsmeOffBoard(on){
+  const box=document.getElementById('asme-offboard');
+  const off=(ASME.companies||[]).filter(c=>!c.board_code);
+  box.hidden = !on || !off.length;
+  if(box.hidden){ box.innerHTML=''; return; }
+  const types=window.ASME_CERT_TYPES||{};
+  box.innerHTML=`<div class="asme-off-head"><div><b>Also ASME certified — not on your board (${off.length})</b>
+      <small>Listed on NSE/BSE and holding an active ASME certificate${ASME.scanned_on?`, per the scan of ${esc(ASME.scanned_on)}`:''}. Not scored; open one on screener.in to research it.</small></div></div>
+    <div class="asme-off-grid">${off.slice().sort((a,b)=>String(a.name).localeCompare(String(b.name))).map(c=>`
+      <a class="asme-off" href="https://www.screener.in/company/${encodeURIComponent(String(c.symbol||'').replace(/-[A-Z]$/,''))}/" target="_blank" rel="noopener">
+        <span class="gc-tick">${esc(c.symbol)}</span>
+        <span class="asme-off-copy"><b>${esc(c.name)}</b><small title="${esc(c.certs.map(x=>types[x]||x).join(', '))}">${esc(c.certs.join(', '))} · since ${esc(String(c.since||'').slice(0,4)||'—')} · ${esc((c.exch||[]).join(' + '))}</small></span>
+        <span class="file-arrow">↗</span>
+      </a>`).join('')}</div>`;
 }
 function render(){
   if(BUSY) return;                       /* batched updates render once, at the end */
@@ -617,6 +645,9 @@ function openDrawer(d){
      ${d.watch_note?`<div class="sec"><h4>Watch</h4><p>${hl(d.watch_note)}</p></div>`:''}
      ${d.triage_verdict?`<div class="sec"><h4>Triage verdict</h4><p><b>${esc(d.triage_verdict)}</b></p></div>`:''}
 
+     ${ASME_BY_CODE[d.code]?(a=>`<div class="sec"><h4>ASME certification</h4>
+       <p><b class="asme-tag">ASME</b> Active certificate holder since <b>${esc(a.since||'—')}</b>: ${a.certs.map(c=>esc((window.ASME_CERT_TYPES||{})[c]||c)+' ('+esc(c)+')').join(' · ')}.</p>
+       <p class="caveat" style="margin-top:6px">From ASME's own CA Connect directory, matched to this listing by the weekly scan${ASME.scanned_on?' of '+esc(ASME.scanned_on):''}.</p></div>`)(ASME_BY_CODE[d.code]):''}
      ${d.data_note?`<div class="sec"><h4>Data caveats on this name</h4><p class="caveat">${esc(d.data_note)}</p></div>`:''}
 
      ${nz(d.s_moat)!==null?`<div class="sec"><h4>Score breakdown</h4>
@@ -1083,7 +1114,8 @@ function csvCell(v){
    held an ASME certificate. */
 (function(){
   const btn=document.getElementById('asmeBtn'), n=document.getElementById('asmeCount');
-  const list=window.ASME_CERTIFIED||[];
+  /* the pipeline's list (via /api/asme) when it loaded, else the bundled snapshot */
+  const list=(ASME.companies&&ASME.companies.length)?ASME.companies:(window.ASME_CERTIFIED||[]);
   if(!btn) return;
   if(n) n.textContent = list.length;
   const exBadge = ex => `<span class="badge b-${ex==='NSE-SME'?'sme':ex.toLowerCase()}">${ex==='NSE-SME'?'NSE SME':ex}</span>`;
@@ -1115,7 +1147,7 @@ function csvCell(v){
   function cardHtml(c){
     const screenerSym = (c.symbol||'').replace(/-[A-Z]$/,''); // drop a trailing series letter (e.g. "-B") for the link only
     return `<div class="asme-card">
-      <div class="asme-name">${esc(c.name)}</div>
+      <div class="asme-name">${esc(c.name)}${c.board_code?' <b class="asme-tag">On board</b>':''}</div>
       <div class="asme-meta">
         ${c.exch.map(exBadge).join('')}
         <span class="tc asme-sym">${esc(c.symbol)}</span>
@@ -1140,9 +1172,9 @@ function csvCell(v){
       <p class="mp">Active ASME certificate holders in India, per ASME's own
       <a class="nm" href="https://caconnect.asme.org/directory/" target="_blank" rel="noopener">CA Connect directory</a>,
       matched by name against NSE's and BSE's own listed-equity feeds — only
-      names an exchange confirms are listed made this cut. Independent of the
-      board above: none of these were cross-checked against it, none are
-      scored, and the moat rubric doesn't apply to any of them.</p>
+      names an exchange confirms are listed made this cut. Refreshed by the
+      weekly scan${ASME.scanned_on?` (last run ${esc(ASME.scanned_on)})`:''}. Companies that are
+      also on your board are marked <b class="asme-tag">On board</b>; the rest are not scored.</p>
       <div class="asme-sort">Sort by ${sortBtns}</div>
       <div class="asme-grid"></div>`);
     document.querySelectorAll('#mbody .asme-sort .btn').forEach(b=>{
