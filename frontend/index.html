@@ -6,10 +6,36 @@
 <title>Deep Sweep</title>
 <meta name="description" content="Deep Sweep — a dark ocean-themed research board for microcap and quality-first names.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%94%8D%3C/text%3E%3C/svg%3E">
-<link rel="stylesheet" href="/static/style.css?v=9">
+<link rel="stylesheet" href="/static/style.css?v=10">
 </head>
 <body>
 <div class="wrap">
+<div class="dashboard-shell">
+<aside class="side-nav" aria-label="Dashboard navigation">
+  <div class="side-brand">
+    <div class="side-mark" aria-hidden="true"><span></span><span></span><span></span></div>
+    <div><strong>Deep Sweep</strong><small>Research terminal</small></div>
+  </div>
+  <nav class="side-links">
+    <div class="side-label">START</div>
+    <a class="side-link active" href="#overview"><span class="side-icon">⌂</span>Overview</a>
+    <div class="side-label">MARKET</div>
+    <a class="side-link" href="#market"><span class="side-icon">↗</span>52-week highs</a>
+    <a class="side-link" href="#market"><span class="side-icon">◒</span>Score distribution</a>
+    <a class="side-link" href="#filters"><span class="side-icon">!</span>Signals</a>
+    <div class="side-label">RESEARCH</div>
+    <a class="side-link" href="#research"><span class="side-icon">⌕</span>Companies</a>
+    <a class="side-link" href="#filters"><span class="side-icon">≡</span>Screen filters</a>
+    <a class="side-link" href="#changelog"><span class="side-icon">◷</span>Build history</a>
+    <div class="side-label">REFERENCE</div>
+    <a class="side-link" href="#methodology"><span class="side-icon">?</span>How it works</a>
+  </nav>
+  <div class="side-foot">
+    <span class="status-dot"></span>
+    <span><b>Board online</b><small>Live research data</small></span>
+  </div>
+</aside>
+<main class="dashboard-main">
 
 <div class="hero">
 <div class="herobg" aria-hidden="true">
@@ -36,9 +62,11 @@
 </header>
 </div>
 
+<span id="overview" class="anchor-target"></span>
+<span id="market" class="anchor-target"></span>
 <div class="tiles" id="tiles"></div>
 
-<div class="card filters">
+<div class="card filters" id="filters">
   <div class="searchbar">
     <div class="searchwrap" id="swrap">
       <span class="ic">&#9906;</span>
@@ -84,7 +112,7 @@
 
 <section class="card wl" id="wl" aria-label="My watchlist"></section>
 
-<div class="card" style="padding:0;overflow:hidden">
+<div class="card" id="research" style="padding:0;overflow:hidden">
   <div class="tablewrap">
     <table id="tbl">
       <thead><tr id="thead"></tr></thead>
@@ -94,7 +122,7 @@
 </div>
 <p class="meta" id="count"></p>
 
-<div class="card method">
+<div class="card method" id="methodology">
   <h2>Research screens — reading a score</h2>
   <p class="sub" style="margin-bottom:16px">This board merges work from separate runs that asked different questions. Scores are comparable <i>within</i> a rubric and misleading <i>across</i> one. Every row carries its screen and, where it matters, a <span class="rub">v4</span> marker on the score.</p>
   <table id="screensTable">
@@ -178,6 +206,9 @@
   <div class="discbody"><b>Read this before acting on any of it.</b> This is a research screen, not investment advice — I am not a registered investment adviser and none of this is a recommendation to buy or sell. Data was pulled from third-party aggregators and company filings and can be stale, mis-tagged, or simply wrong; verify every figure against the company's own filings before committing capital. <b>On the new columns specifically:</b> CWIP is reported inconsistently — several companies here capitalise spend directly without ever showing it as CWIP, so a zero does not always mean no capex, and where that is likely the card says so. Management guidance is a statement of intent by people with an interest in the share price, not a fact; some guidance entries are second-hand paraphrases rather than verified transcripts and are labelled as such, and several percentages are <i>derived</i> from a rupee target management gave rather than quoted. A PAT turnaround can be an operating recovery or a one-off gain. Read the card before treating any flag as a signal. A quantitative screen also cannot read management quality, related-party dealings, or accounting aggression. The smallest names here have as few as a few hundred retail shareholders; you may not be able to exit at a quoted price, or at all, on a bad day. Many are recent SME listings whose share prices have moved sharply on a short operating history. Treat this list as a research starting point, not a buy list.</div>
 </details>
 
+</div>
+
+</main>
 </div>
 
 <div class="scrim" id="scrim"></div>
