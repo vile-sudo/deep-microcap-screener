@@ -27,10 +27,13 @@ from pathlib import Path
 import requests
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
+from app import setups  # noqa: E402
 from app.charts import (  # noqa: E402
-    BACKEND_DIR, CHART_DIR, INDEX_FILE, PRICES_DIR,
+    BACKEND_DIR, CHART_DIR, INDEX_FILE, PRICES_DIR, _adjust,
     build_series, compute_stats, fetch_bhavcopy, load_index, read_day, safe_name, write_day,
 )
+
+SETUPS_FILE = CHART_DIR / "setups.json"
 
 RAW = BACKEND_DIR / "data" / "companies_raw.json"
 CACHE = BACKEND_DIR / ".bhav_cache"
@@ -133,9 +136,64 @@ def main() -> int:
         index["generated_at"] = prior.get("generated_at") or index["generated_at"]
     INDEX_FILE.write_text(json.dumps(index, indent=1), encoding="utf-8")
 
+    write_setups(records, series, days)
+
     print(f"charts: {len(series)} built from {len(days)} sessions (latest {days[-1][0]}), "
           f"{kept} kept from last run, {len(missing)} with no exchange data: {', '.join(missing) or 'none'}")
     return 0
+
+
+def write_setups(records: list[dict], series: dict, days: list) -> None:
+    """Market view's stages, measures and feed -- see app/setups.py."""
+    latest = days[-1][0].isoformat()
+    # the NSE universe: RS ratings are ranked against every liquid NSE stock,
+    # and "broke out market-wide" counts breakouts across all of them
+    raw: dict[str, list] = {}
+    names: dict[str, str] = {}
+    for day, nse_rows, _ in days:
+        for key, r in nse_rows.items():
+            raw.setdefault(key, []).append((day.isoformat(), r[3], r[4], r[5], r[6], r[7], r[8]))
+            names[key] = r[2]
+    universe = {}
+    for key, tuples in raw.items():
+        if len(tuples) < 80 or tuples[-1][0] != latest:
+            continue
+        tail = tuples[-50:]
+        if sum(t[4] * t[5] for t in tail) / len(tail) < 1e7:   # under Rs 1 crore a day: not liquid
+            continue
+        universe[key] = _adjust(tuples)
+    rank = setups.percentile_ranker([x for x in (setups.rs_score([r[4] for r in rows]) for rows in universe.values()) if x is not None])
+
+    board_symbols = {(v["exchange"], v["symbol"]) for v in series.values()}
+    market = []
+    for key, rows in universe.items():
+        hit = setups.market_breakout_today(rows)
+        if hit:
+            market.append({"symbol": key, "name": names.get(key, key).title(), "on_board": ("NSE", key) in board_symbols, **hit})
+    market.sort(key=lambda x: -x["vol_x"])
+
+    stocks, feed = {}, []
+    for rec in records:
+        code = rec["code"]
+        if code not in series or series[code]["rows"][-1][0] != latest:
+            continue
+        a = setups.analyze(series[code]["rows"], rank)
+        if not a:
+            continue
+        for item in a.pop("feed"):
+            feed.append({"code": code, "name": rec.get("name"), "close": a["last"]["c"], "chg_pct": a["last"]["chg_pct"], **item})
+        stocks[code] = a
+    feed.sort(key=lambda x: (x["order"], -abs(x["chg_pct"] or 0)))
+    counts = {k: sum(1 for a in stocks.values() if a["stage"] == k) for k in ("forming", "fresh", "climbing", "played")}
+    SETUPS_FILE.write_text(json.dumps({
+        "as_of": latest,
+        "universe": len(universe),
+        "counts": counts,
+        "market_breakouts": market,
+        "feed": feed,
+        "stocks": dict(sorted(stocks.items())),
+    }, separators=(",", ":")), encoding="utf-8")
+    print(f"setups: {counts} on the board; {len(market)} breakouts across {len(universe)} liquid NSE stocks; {len(feed)} feed items")
 
 
 if __name__ == "__main__":

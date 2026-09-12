@@ -1,6 +1,7 @@
 name: Chart gallery update
 
-# Keeps the Chart gallery current with no one touching it:
+# Keeps the Chart gallery and Market view's stage screen (chart_data/setups.json)
+# current with no one touching it:
 #   * every weekday evening, after NSE and BSE publish the day's bhavcopy
 #     (~18:00-19:00 IST), so every chart gains the day's candle;
 #   * whenever the board's company list changes, so a company added to the

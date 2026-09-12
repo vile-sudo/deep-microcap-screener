@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en" data-theme="light">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Deep Sweep</title>
 <meta name="description" content="Deep Sweep — a dark ocean-themed research board for microcap and quality-first names.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%94%8D%3C/text%3E%3C/svg%3E">
-<link rel="stylesheet" href="/static/style.css?v=24">
+<link rel="stylesheet" href="/static/style.css?v=25">
 </head>
 <body>
 <div class="wrap">
@@ -72,13 +72,38 @@
   <div class="theme-results" id="theme-results" aria-live="polite" hidden></div>
 </section>
 
-<section class="dashboard-section market-view" data-views="market" aria-labelledby="mv-title">
-  <div class="section-heading"><div><span class="eyebrow">MARKET</span><h2 id="mv-title">Market view</h2><p class="section-copy">NIFTY 50 and SENSEX live, and the board companies breaking out to new highs or down to new lows today.</p></div><div class="mv-conn" id="mv-conn"></div></div>
-  <div class="mv-indices" id="mv-indices"></div>
-  <div class="mv-trend">
-    <section class="mv-panel" id="mv-highs" aria-label="New highs"></section>
-    <section class="mv-panel" id="mv-lows" aria-label="New lows"></section>
+<section class="dashboard-section bp" data-views="market" aria-labelledby="bp-title">
+  <div class="bp-bar">
+    <span class="bp-lab">Screen</span>
+    <select id="bp-theme" class="bp-select" aria-label="Theme"></select>
+    <input id="bp-find" class="bp-find" type="search" autocomplete="off" placeholder="Find a stock" aria-label="Find a stock">
+    <span class="bp-spacer"></span>
+    <div class="bp-idx" id="bp-idx" aria-live="polite"></div>
+    <button class="bp-mw" id="bp-mw" type="button" hidden></button>
+    <span class="bp-upd" id="bp-upd"></span>
   </div>
+
+  <div class="bp-hero">
+    <h2 id="bp-title">Spot the board's next leaders.</h2>
+    <p class="bp-sub">Every company on the board is scanned after each trading day — here are the few actually setting up. Pick a stage.</p>
+    <div class="bp-hero-grid">
+      <div class="bp-stages" id="bp-stages"></div>
+      <div class="bp-feed" id="bp-feed"></div>
+    </div>
+    <div class="bp-hero-foot"><span>Every board company, scanned every trading day from NSE/BSE closing data · <button class="bp-link" id="bp-how" type="button">how these are found →</button></span><span id="bp-conn"></span></div>
+  </div>
+
+  <div class="bp-list-head">
+    <h2><i></i><span id="bp-list-title"></span> <span class="bp-n" id="bp-list-n"></span></h2>
+    <button class="bp-btn" id="bp-csv" type="button">⤓ Download CSV</button>
+    <span class="bp-spacer"></span>
+    <div class="bp-seg"><button class="bp-btn on" id="bp-cards-btn" type="button">▦ Cards</button><button class="bp-btn" id="bp-list-btn" type="button">☰ List</button></div>
+    <label class="bp-lab" for="bp-sort" style="font-size:13px;font-weight:500">Sort</label>
+    <select id="bp-sort" class="bp-select"></select>
+  </div>
+  <p class="bp-desc" id="bp-desc"></p>
+  <div id="bp-results"></div>
+  <p class="bp-disc">A research screen built from exchange closing prices — not investment advice. Stages and measures follow fixed rules (see "how these are found"); they describe price and volume, not the business.</p>
 </section>
 
 <section class="dashboard-section gallery-section" data-views="gallery" aria-labelledby="gallery-title">
@@ -258,6 +283,6 @@
 
 <script src="/static/quotes.js?v=5" defer></script>
 <script src="/static/asme-certified.js?v=5" defer></script>
-<script src="/static/app.js?v=24" defer></script>
+<script src="/static/app.js?v=25" defer></script>
 </body>
 </html>

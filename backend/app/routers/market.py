@@ -17,6 +17,7 @@ POST /api/kite/logout?key=  drop the session
 from __future__ import annotations
 
 import hmac
+import json
 import html
 import threading
 import time
@@ -209,6 +210,18 @@ def trending(db: Session = Depends(get_db)):
     ttl = 30 if live else 600
     stamp = charts.load_index().get("generated_at")
     return _cached(f"trending:{live}:{stamp}", ttl, lambda: _trending(db, live))
+
+
+# ----------------------------------------------------------------- setups
+@router.get("/api/market/setups")
+def market_setups():
+    """Stages, measures and the what-changed feed from the daily scan (app/setups.py)."""
+    path = charts.CHART_DIR / "setups.json"
+    try:
+        stamp = path.stat().st_mtime
+    except OSError:
+        return {"as_of": None, "counts": {}, "market_breakouts": [], "feed": [], "stocks": {}}
+    return _cached(f"setups:{stamp}", 3600, lambda: json.loads(path.read_text(encoding="utf-8")))
 
 
 # ------------------------------------------------------------------- kite

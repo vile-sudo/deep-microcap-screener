@@ -151,25 +151,36 @@ certified companies show their certificate types and since-date.
   at request time (ticker, exchange symbol, or exact company name), so a
   company added to the board is tagged without a re-scan.
 
-## Market view (Zerodha live prices)
+## Market view (automated stage screen)
 
-**Market view** shows NIFTY 50 and SENSEX and, for the board's companies,
-who broke their 1-day, 1-week, 1-month or 52-week high or low today.
+**Market view** is a stage screen for the board, rebuilt after every trading
+day with no manual step:
 
-- **Live** (Zerodha connected, market open): index prices every 3 s;
-  breakouts every 30 s from Kite quotes checked against the stored daily
-  history (`backend/chart_data/`).
-- **Otherwise:** delayed index prices (Yahoo Finance) and breakouts from the
-  latest end-of-day session. Every panel says which it is showing.
+- **Stages** — Forming (in a base under its pivot), Fresh breakouts (cleared
+  the pivot on volume in the last 5 sessions), Climbing, Played out (this
+  year's breakouts that were stopped or trailed out).
+- **Cards** — candles with the pivot line and base box, plus RS rating, now
+  vs pivot, tightening (ATR ratio), volume dry-up, up/down volume, distance
+  from the 52-week high, squat / failed-poke flags and a Powering up /
+  Cooling off read. Cards or list, sortable, filterable by theme, CSV.
+- **What changed since last close** — breakouts, moves to Climbing, exits,
+  new setups, new 52-week highs/lows; and how many liquid NSE stocks broke
+  out market-wide.
 
-Setup, once:
+`backend/app/setups.py` holds every rule (documented at the top of the
+file). `scripts/update_charts.py` runs it and writes
+`backend/chart_data/setups.json`, so the existing
+`.github/workflows/charts.yml` schedule (weekday evenings, and whenever
+`companies_raw.json` changes) keeps it current and redeploys.
+
+NIFTY 50 and SENSEX sit in the Market view bar: live through Zerodha when
+connected, delayed otherwise. Zerodha setup, once:
 1. Create an app at https://developers.kite.trade (the Connect plan includes
    market data). Set its **Redirect URL** to `https://YOUR-SITE/api/kite/callback`.
 2. On Render → Environment, add `KITE_API_KEY`, `KITE_API_SECRET`, and
    `KITE_ADMIN_KEY` (a password you choose). Never commit these.
 
-Daily: Market view → **Connect Zerodha** → enter the admin key → log in to
-Zerodha. Zerodha sessions end at 6 a.m., so this is once per trading day. The
-access token stays on the server (`app/kite.py`) and is never sent to the
-browser. A redeploy on a host without a persistent disk drops the session;
-connect again after one.
+Daily: Market view → **Connect Zerodha** → enter the admin key → log in.
+Zerodha sessions end at 6 a.m. The access token stays on the server and is
+never sent to the browser; a redeploy on a host without a persistent disk
+drops the session.

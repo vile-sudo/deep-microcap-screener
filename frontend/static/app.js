@@ -1429,16 +1429,20 @@ function galPaint(code){
 /* Candles, 50/200-day averages, volume and the 52-week high, as one SVG.
    The averages are computed over the whole year and then windowed, so the
    200-day line is real from its first visible point rather than warming up. */
+/* o: {w,h,sessions, axis, ma (default true), hi52 (default true), volColor,
+       pivot: price for a dashed pivot line, box: {start,end,low,high,label} base box} */
 function candleSVG(rows,o){
-  const W=o.w, H=o.h, axis=!!o.axis, padR=axis?62:2, padT=axis?12:5, padB=axis?24:3;
+  const W=o.w, H=o.h, axis=!!o.axis, padR=axis?62:2, padT=axis?14:5, padB=axis?24:3;
+  const useMA=o.ma!==false, useHi=o.hi52!==false;
   const closes=rows.map(r=>r[4]);
   const ma=n=>{ let sum=0; return closes.map((c,i)=>{ sum+=c; if(i>=n) sum-=closes[i-n]; return i>=n-1 ? sum/n : null; }); };
   const start=Math.max(0, rows.length-o.sessions);
   const vis=rows.slice(start), m50=ma(50).slice(start), m200=ma(200).slice(start);
   const hi52=Math.max(...rows.map(r=>r[2]));
   let lo=Math.min(...vis.map(r=>r[3])), hi=Math.max(...vis.map(r=>r[2]));
-  m50.concat(m200).forEach(v=>{ if(v!=null){ lo=Math.min(lo,v); hi=Math.max(hi,v); } });
-  const showHi = hi52<=hi*1.12;
+  if(useMA) m50.concat(m200).forEach(v=>{ if(v!=null){ lo=Math.min(lo,v); hi=Math.max(hi,v); } });
+  if(o.pivot) hi=Math.max(hi,o.pivot);
+  const showHi = useHi && hi52<=hi*1.12;
   if(showHi) hi=Math.max(hi,hi52);
   const pad=(hi-lo)*0.05 || hi*0.02 || 1; hi+=pad; lo=Math.max(0,lo-pad);
   const inner=H-padT-padB, volH=inner*0.2, priceH=inner-volH-6;
@@ -1453,7 +1457,15 @@ function candleSVG(rows,o){
       s+=`<line x1="0" x2="${plotW}" y1="${f(yy)}" y2="${f(yy)}" class="cs-grid"/><text x="${plotW+8}" y="${f(yy+4)}" class="cs-tx">${(+p).toLocaleString('en-IN',{maximumFractionDigits:p<100?2:0})}</text>`;
     }
   }
-  vis.forEach((r,i)=>{ const vh=r[5]/vmax*volH; s+=`<rect x="${f(X(i)-cw/2)}" y="${f(H-padB-vh)}" width="${f(cw)}" height="${f(Math.max(vh,0.3))}" class="cs-vol"/>`; });
+  vis.forEach((r,i)=>{ const vh=r[5]/vmax*volH; s+=`<rect x="${f(X(i)-cw/2)}" y="${f(H-padB-vh)}" width="${f(cw)}" height="${f(Math.max(vh,0.3))}" class="cs-vol${o.volColor?(r[4]>=r[1]?' up':' dn'):''}"/>`; });
+  if(o.box){
+    const i0=vis.findIndex(r=>r[0]>=o.box.start), i1=(()=>{ let k=-1; vis.forEach((r,i)=>{ if(r[0]<=o.box.end) k=i; }); return k; })();
+    if(i0>=0 && i1>=i0){
+      const x0=X(i0)-step/2, x1=X(i1)+step/2, yt=y(o.box.high), yb=y(o.box.low);
+      s+=`<rect x="${f(x0)}" y="${f(yt)}" width="${f(x1-x0)}" height="${f(Math.max(1,yb-yt))}" class="cs-box"/>`;
+      if(o.box.label) s+=`<text x="${f((x0+x1)/2)}" y="${f(yt-4)}" text-anchor="middle" class="cs-boxlab">${esc(o.box.label)}</text>`;
+    }
+  }
   if(showHi) s+=`<line x1="0" x2="${plotW}" y1="${f(y(hi52))}" y2="${f(y(hi52))}" class="cs-hi"/>`;
   let upW='',dnW='',upB='',dnB='';
   vis.forEach((r,i)=>{
@@ -1463,8 +1475,16 @@ function candleSVG(rows,o){
   });
   s+=`<path d="${upW}" class="cs-wick up"/><path d="${dnW}" class="cs-wick dn"/><path d="${upB}" class="cs-body up"/><path d="${dnB}" class="cs-body dn"/>`;
   const line=(arr,cls)=>{ let d=''; arr.forEach((v,i)=>{ if(v!=null) d+=(d?'L':'M')+f(X(i))+' '+f(y(v)); }); return d?`<path d="${d}" class="${cls}"/>`:''; };
-  s+=line(m50,'cs-ma50')+line(m200,'cs-ma200');
-  if(axis){
+  if(useMA) s+=line(m50,'cs-ma50')+line(m200,'cs-ma200');
+  if(o.pivot){
+    const yp=y(o.pivot), lab=`pivot ₹${(+o.pivot).toLocaleString('en-IN',{maximumFractionDigits:2})}`;
+    s+=`<line x1="0" x2="${plotW}" y1="${f(yp)}" y2="${f(yp)}" class="cs-pivot"/><g class="cs-pivlab"><rect x="2" y="${f(yp-15)}" width="${lab.length*6.1+10}" height="13" rx="2"/><text x="7" y="${f(yp-5)}">${lab}</text></g>`;
+  }
+  if(axis && o.isoAxis){
+    const every=Math.max(1,Math.round(vis.length/5));
+    vis.forEach((r,i)=>{ if(i%every===Math.floor(every/2)) s+=`<text x="${f(X(i))}" y="${H-6}" class="cs-tx" text-anchor="middle">${r[0]}</text>`; });
+    s+=`<line id="cs-cross" x1="0" x2="0" y1="${padT}" y2="${H-padB}" class="cs-cross" style="display:none"/>`;
+  } else if(axis){
     let last='';
     vis.forEach((r,i)=>{ const m=r[0].slice(0,7); if(m!==last){ if(last && i>2) s+=`<text x="${f(X(i))}" y="${H-6}" class="cs-tx" text-anchor="middle">${GMONTHS[+r[0].slice(5,7)-1]}</text>`; last=m; } });
     s+=`<line id="cs-cross" x1="0" x2="0" y1="${padT}" y2="${H-padB}" class="cs-cross" style="display:none"/>`;
@@ -1529,106 +1549,301 @@ function openChart(code){
 }
 
 /* ==================================================================
-   Market view
-   NIFTY 50 / SENSEX (live through Zerodha when connected, delayed
-   otherwise) and the board companies breaking their 1-day, 1-week,
-   1-month or 52-week high or low today. Both poll while the page is open:
-   fast when there is a live feed and the market is open, slowly otherwise.
+   Market view — stage screen
+   Built from /api/market/setups, which the daily chart job writes (see
+   backend/app/setups.py): every board company's stage (Forming, Fresh
+   breakouts, Climbing, Played out), its measures, and what changed since
+   the last close. NIFTY 50 / SENSEX sit in the bar, live through Zerodha
+   when connected and delayed otherwise.
    ================================================================== */
-const MV_WINDOWS=[['52w','52-week'],['1m','1-month'],['1w','1-week'],['1d','1-day']];
-const MV={tab:{high:'52w', low:'52w'}, all:{high:false, low:false}, idx:null, trend:null, kite:null, timers:{}};
+const BP_STAGES=[
+  {k:'forming',  label:'Forming',         hint:'resting before a breakout',             title:'Forming — on watch',
+   desc:'Strong stocks pausing in a tight, quiet range just under a ceiling, their trading drying up as they coil. A close above the pivot on heavy volume sets one off.'},
+  {k:'fresh',    label:'Fresh breakouts', hint:'cleared the pivot in the last 5 sessions', title:'Fresh breakouts',
+   desc:'Closed above the pivot on at least 1.4× their usual volume within the last five sessions, and still holding above the stop.'},
+  {k:'climbing', label:'Climbing',        hint:'broke out earlier, still rising',       title:'Climbing',
+   desc:'Broke out more than five sessions ago and still in the trade: never 8% under the pivot, never a close under the 50-day average.'},
+  {k:'played',   label:'Played out',      hint:'this year\'s breakouts, stopped or trailed out', title:'Played out',
+   desc:'Broke out this year, then either fell 8% under the pivot (stopped) or closed under the 50-day average (trailed out).'},
+];
+const BP_SORTS={
+  rs:   {l:'RS rating',              k:a=>a.rs,            dir:-1},
+  pivot:{l:'Now vs pivot (%)',       k:a=>a.now_vs_pivot,  dir:-1},
+  atr:  {l:'Tightening (ATR ratio)', k:a=>a.atr_ratio,     dir:1},
+  dry:  {l:'Volume dry-up',          k:a=>a.vol_dryup,     dir:1},
+  ud:   {l:'Up/down volume, net',    k:a=>a.updown,        dir:-1},
+  age:  {l:'Base age',               k:a=>bpBase(a) && bpBase(a).weeks, dir:-1},
+  high: {l:'From 52-week high',      k:a=>a.from_high,     dir:1},
+  mcap: {l:'Market cap',             d:d=>nz(d.market_cap_cr), dir:-1},
+};
+const BP_INFO={
+  rs:'Relative strength, 1–99: weighted 3/6/9/12-month return ranked against every liquid NSE stock. 90 means it beat 90% of them.',
+  pivot:'Last close against the pivot — the ceiling of the base. Negative means still under it.',
+  atr:'10-day average true range divided by the 50-day. Under 1× means the daily swings are tightening.',
+  dry:'10-day average volume divided by the 50-day. Under 1× means trading is drying up.',
+  ud:'Volume on up days minus volume on down days, over total volume, last 50 sessions. Above 0 means buyers are heavier.',
+  high:'How far the last close is under the 52-week high.',
+  squat:'Traded above the pivot but closed back under it in the last 10 sessions.',
+  poke:'Closed above the pivot without breakout volume, then fell back under it.',
+};
+const BP={data:null, loading:null, stage:'forming', view:'cards', all:false, idx:null, kite:null, timers:{}, obs:null};
+const bpBase = a => a.base || (a.breakout && {...a.breakout.base, pivot:a.breakout.pivot});
+const bpInr = (v,d=2) => v==null ? '—' : '₹'+(+v).toLocaleString('en-IN',{maximumFractionDigits:d});
+const bpPct = (v,d=2) => v==null ? '—' : `${v>=0?'+':''}${(+v).toFixed(d)}%`;
+const bpVol = v => v==null ? '—' : v>=1e7 ? (v/1e7).toFixed(1)+'Cr' : v>=1e5 ? (v/1e5).toFixed(1)+'L' : v>=1e3 ? (v/1e3).toFixed(1)+'K' : String(v);
+const bpSym = d => d.nse_code && !/^\d+$/.test(d.nse_code) ? d.nse_code : d.code;
+const bpByCode = {}; DATA.forEach(d=>{ bpByCode[d.code]=d; });
 
 function openMarket(){
-  mvStatus(); mvIndices(); mvTrending();
+  bpStatus(); bpIndices();
+  if(!BP.data){
+    document.getElementById('bp-results').innerHTML='<p class="bp-empty">Loading the scan…</p>';
+    BP.loading = BP.loading || fetchJSON('/api/market/setups').catch(()=>({stocks:{},feed:[],counts:{},market_breakouts:[]})).then(j=>{ BP.data=j; bpControls(); });
+    BP.loading.then(()=>{ if(VIEW==='market') bpRender(); });
+  } else bpRender();
 }
-function mvSchedule(name, fn, ms){
-  clearTimeout(MV.timers[name]);
-  MV.timers[name]=setTimeout(()=>{ if(VIEW!=='market') return; if(document.hidden){ mvSchedule(name,fn,ms); return; } fn(); }, ms);
+function bpSchedule(name, fn, ms){
+  clearTimeout(BP.timers[name]);
+  BP.timers[name]=setTimeout(()=>{ if(VIEW!=='market') return; if(document.hidden){ bpSchedule(name,fn,ms); return; } fn(); }, ms);
 }
-document.addEventListener('visibilitychange',()=>{ if(!document.hidden && VIEW==='market') openMarket(); });
+document.addEventListener('visibilitychange',()=>{ if(!document.hidden && VIEW==='market'){ bpStatus(); bpIndices(); } });
 
-async function mvStatus(){
-  try{ MV.kite=await fetchJSON('/api/kite/status'); }catch(e){ MV.kite={configured:false,connected:false}; }
-  const k=MV.kite, box=document.getElementById('mv-conn');
-  if(k.connected){
-    const until=k.expires?new Date(k.expires).toLocaleTimeString('en-IN',{hour:'numeric',minute:'2-digit'}):'';
-    box.innerHTML=`<span class="mv-chip live"><i></i>Live via Zerodha${k.user?' · '+esc(k.user):''}</span><small>session until ${esc(until)} tomorrow</small>`;
-  } else if(k.configured){
-    box.innerHTML=`<span class="mv-chip"><i></i>Delayed prices</span><button class="btn" id="mv-connect" type="button">Connect Zerodha</button>`;
-    document.getElementById('mv-connect').onclick=mvConnect;
-  } else {
-    box.innerHTML=`<span class="mv-chip" title="Set KITE_API_KEY, KITE_API_SECRET and KITE_ADMIN_KEY on the server to enable live prices"><i></i>Delayed prices · Zerodha not set up</span>`;
-  }
-  mvSchedule('status', mvStatus, 5*60*1000);
+function bpControls(){
+  const th=document.getElementById('bp-theme'), so=document.getElementById('bp-sort');
+  th.innerHTML='<option value="">All themes</option>'+THEMES.map(t=>`<option value="${esc(t)}">${esc(shortT(t))}</option>`).join('');
+  so.innerHTML=Object.entries(BP_SORTS).map(([k,v])=>`<option value="${k}">${v.l}</option>`).join('');
+  let t=0;
+  th.onchange=()=>{ BP.all=false; bpRender(); };
+  so.onchange=()=>bpRender();
+  document.getElementById('bp-find').oninput=()=>{ clearTimeout(t); t=setTimeout(()=>{ BP.all=false; bpRender(); },120); };
+  document.getElementById('bp-cards-btn').onclick=()=>{ BP.view='cards'; bpRender(); };
+  document.getElementById('bp-list-btn').onclick=()=>{ BP.view='list'; bpRender(); };
+  document.getElementById('bp-csv').onclick=bpCsv;
+  document.getElementById('bp-how').onclick=bpHow;
+  const j=BP.data;
+  document.getElementById('bp-upd').innerHTML = j.as_of ? `<i></i>Updated · ${galDay(j.as_of)}` : '';
+  const mw=document.getElementById('bp-mw'), n=(j.market_breakouts||[]).length;
+  mw.hidden=!j.as_of;
+  mw.innerHTML=`↗ ${n} broke out market-wide ›`;
+  mw.onclick=bpMarketWide;
 }
-function mvConnect(){
+
+/* the board companies that pass the theme + find filters */
+function bpPool(){
+  const th=document.getElementById('bp-theme').value, q=document.getElementById('bp-find').value.trim().toLowerCase();
+  return Object.entries(BP.data.stocks||{}).filter(([code])=>{
+    const d=bpByCode[code]; if(!d) return false;
+    if(th && base(d)!==th) return false;
+    if(q && !d._n.includes(q)) return false;
+    return true;
+  });
+}
+function bpRows(){
+  const so=BP_SORTS[document.getElementById('bp-sort').value]||BP_SORTS.rs;
+  const val=([code,a])=>so.d ? so.d(bpByCode[code]) : so.k(a);
+  return bpPool().filter(([,a])=>a.stage===BP.stage).sort((x,y)=>{
+    const a=val(x), b=val(y);
+    if(a==null && b==null) return 0; if(a==null) return 1; if(b==null) return -1;
+    return (a-b)*so.dir;
+  });
+}
+
+function bpRender(){
+  if(!BP.data) return;
+  const pool=bpPool(), counts={};
+  pool.forEach(([,a])=>{ counts[a.stage]=(counts[a.stage]||0)+1; });
+  document.getElementById('bp-stages').innerHTML=BP_STAGES.map(s=>`
+    <button type="button" class="bp-stage${s.k===BP.stage?' on':''}" data-bp-stage="${s.k}">
+      <span class="bp-tap">tap to view ›</span><b>${counts[s.k]||0}</b><span>${s.label}</span><small>${s.hint}</small>
+    </button>`).join('');
+  document.querySelectorAll('[data-bp-stage]').forEach(b=>b.onclick=()=>{ BP.stage=b.dataset.bpStage; BP.all=false; bpRender(); });
+
+  const codes=new Set(pool.map(([c])=>c));
+  const feed=(BP.data.feed||[]).filter(f=>codes.has(f.code));
+  document.getElementById('bp-feed').innerHTML=`<h3><i>⟲</i>What changed since last close?</h3>
+    ${feed.length ? feed.slice(0,3).map(bpFeedItem).join('') : '<p class="bp-empty" style="padding:14px">Nothing changed stage on the board in the last session.</p>'}
+    ${feed.length>3?`<button type="button" class="bp-link" id="bp-full-feed">Show the full feed (${feed.length}) ›</button>`:''}`;
+  document.querySelectorAll('#bp-feed [data-bp-code]').forEach(b=>b.onclick=()=>openChart(b.dataset.bpCode));
+  const ff=document.getElementById('bp-full-feed'); if(ff) ff.onclick=()=>bpFullFeed(feed);
+
+  const stage=BP_STAGES.find(s=>s.k===BP.stage), rows=bpRows();
+  document.getElementById('bp-list-title').textContent=stage.title;
+  document.getElementById('bp-list-n').textContent=rows.length;
+  document.getElementById('bp-desc').textContent=stage.desc;
+  document.getElementById('bp-cards-btn').classList.toggle('on',BP.view==='cards');
+  document.getElementById('bp-list-btn').classList.toggle('on',BP.view==='list');
+  const box=document.getElementById('bp-results');
+  if(!rows.length){ box.innerHTML=`<p class="bp-empty">No board company is in "${esc(stage.label)}" ${document.getElementById('bp-theme').value||document.getElementById('bp-find').value?'with these filters':'right now'}.</p>`; return; }
+
+  if(BP.view==='list'){
+    box.innerHTML=`<div class="bp-table-wrap"><table class="bp-table"><thead><tr>
+      <th>Company</th><th>Price</th><th>Chg</th><th>RS</th><th>vs pivot</th><th>Tightening</th><th>Dry-up</th><th>Up/down</th><th>Base (wks)</th><th>From 52w high</th><th>M-cap ₹cr</th></tr></thead><tbody>
+      ${rows.map(([code,a])=>{ const d=bpByCode[code], b=bpBase(a); return `<tr data-bp-code="${esc(code)}">
+        <td><b>${esc(d.name)}</b> <span class="bpc-sym">${esc(bpSym(d))}</span></td>
+        <td>${bpInr(a.last.c)}</td><td class="${a.last.chg_pct>=0?'up':'dn'}">${bpPct(a.last.chg_pct)}</td>
+        <td>${a.rs??'—'}</td><td>${a.now_vs_pivot==null?'—':bpPct(a.now_vs_pivot,1)}</td>
+        <td>${a.atr_ratio==null?'—':a.atr_ratio.toFixed(2)+'×'}</td><td>${a.vol_dryup==null?'—':a.vol_dryup.toFixed(2)+'×'}</td>
+        <td>${a.updown==null?'—':a.updown.toFixed(2)}</td><td>${b?b.weeks:'—'}</td>
+        <td>${a.from_high==null?'—':a.from_high+'%'}</td><td>${fmtI(d.market_cap_cr)}</td></tr>`; }).join('')}
+      </tbody></table></div>`;
+    box.querySelectorAll('[data-bp-code]').forEach(tr=>tr.onclick=()=>openChart(tr.dataset.bpCode));
+    return;
+  }
+
+  const shown=BP.all?rows:rows.slice(0,6);
+  box.innerHTML=`<div class="bp-cards">${shown.map(([code,a])=>bpCard(code,a)).join('')}</div>
+    ${rows.length>6?`<button type="button" class="bp-more" id="bp-more">${BP.all?'Show fewer':`Show all ${rows.length} ${stage.label.toLowerCase()} ›`}</button>`:''}`;
+  const more=document.getElementById('bp-more'); if(more) more.onclick=()=>{ BP.all=!BP.all; bpRender(); };
+  box.querySelectorAll('[data-bp-tech]').forEach(b=>b.onclick=()=>openChart(b.dataset.bpTech));
+  box.querySelectorAll('[data-bp-star]').forEach(b=>b.onclick=()=>{ togglePin(b.dataset.bpStar); const on=WATCH.has(b.dataset.bpStar); b.classList.toggle('on',on); b.textContent=on?'★':'☆'; });
+  box.querySelectorAll('[data-bp-theme]').forEach(b=>b.onclick=()=>{ document.getElementById('bp-theme').value=b.dataset.bpTheme; BP.all=false; bpRender(); });
+  box.querySelectorAll('[data-bp-share]').forEach(b=>b.onclick=()=>bpShare(b));
+  if(BP.obs) BP.obs.disconnect();
+  BP.obs=new IntersectionObserver(es=>es.forEach(e=>{ if(e.isIntersecting){ BP.obs.unobserve(e.target); bpDrawChart(e.target); } }),{rootMargin:'400px 0px'});
+  box.querySelectorAll('[data-bp-chart]').forEach(el=>{ el.onclick=()=>openChart(el.dataset.bpChart); BP.obs.observe(el); });
+}
+
+function bpFeedItem(f){
+  return `<button type="button" class="bp-fi" data-bp-code="${esc(f.code)}"><span><b>${esc(f.name||f.code)}</b> ${esc(f.text)}</span>
+    <span class="bp-fpx">${bpInr(f.close)} <span class="${(f.chg_pct||0)>=0?'up':'dn'}">${bpPct(f.chg_pct,1)}</span></span></button>`;
+}
+
+function bpCard(code,a){
+  const d=bpByCode[code], l=a.last, b=bpBase(a), on=WATCH.has(code), bo=a.breakout;
+  const m=(label,info,val)=>`<div><span>${label}<i class="bpc-i" title="${esc(info)}">i</i></span><b>${val}</b></div>`;
+  let note=a.note||'';
+  if(!note && bo){
+    if(a.stage==='fresh') note=`Broke out ${_bpDay(bo.date)} on ${bo.vol_x}× usual volume — ${bpPct(bo.gain_pct,1)} from the pivot`;
+    else if(a.stage==='climbing') note=`Broke out ${_bpDay(bo.date)} — ${bpPct(bo.gain_pct,1)} since, ${bo.sessions} sessions in`;
+    else if(a.stage==='played' && bo.exit) note=`Broke out ${_bpDay(bo.date)} → ${bo.exit.reason==='stopped'?'stopped out':'trailed out'} ${_bpDay(bo.exit.date)} (${bpPct(bo.exit.result_pct,1)})`;
+  }
+  const flags=(a.flags||[]).map(fl=>fl==='squat'
+    ? `<span class="bpc-flag" title="${esc(BP_INFO.squat)}">⚑ squat</span>`
+    : `<span class="bpc-flag bad" title="${esc(BP_INFO.poke)}">✕ failed poke</span>`).join('');
+  return `<article class="bpc">
+    <div class="bpc-top">
+      <div style="min-width:0">
+        <div class="bpc-title"><span class="bpc-name">${esc(d.name)}</span><span class="bpc-sym">${esc(bpSym(d))}</span>
+          <button type="button" class="bpc-star${on?' on':''}" data-bp-star="${esc(code)}" title="${on?'Remove from':'Add to'} watchlist">${on?'★':'☆'}</button></div>
+        <div class="bpc-ind"><button type="button" data-bp-theme="${esc(base(d))}">${esc(shortT(base(d)))}</button>${d.industry||d.sector?` · ${esc(d.industry||d.sector)}`:''}</div>
+      </div>
+      <div class="bpc-right"><button type="button" class="bpc-tech" data-bp-tech="${esc(code)}">📈 Tech chart ›</button>
+        <div class="bpc-px">${bpInr(l.c)} <span class="${l.chg_pct>=0?'up':'dn'}">(${bpPct(l.chg_pct)})</span></div></div>
+    </div>
+    <div class="bpc-ohlc"><b>${esc(a.asof)}</b><span>O ${(+l.o).toFixed(2)}</span><span>H ${(+l.h).toFixed(2)}</span><span>L ${(+l.l).toFixed(2)}</span><span>C ${(+l.c).toFixed(2)}</span><span class="${l.chg_pct>=0?'up':'dn'}">(${bpPct(l.chg_pct)})</span><span>Vol ${bpVol(l.v)}</span><span>RS ${a.rs??'—'}</span></div>
+    <div class="bpc-chart" data-bp-chart="${esc(code)}" title="Open the full chart"><span class="gc-skel"></span></div>
+    <div class="bpc-m">
+      ${m('RS rating',BP_INFO.rs,a.rs??'—')}
+      ${m('Now vs pivot (%)',BP_INFO.pivot,a.now_vs_pivot==null?'—':bpPct(a.now_vs_pivot,1))}
+      ${m('Tightening (ATR ratio)',BP_INFO.atr,a.atr_ratio==null?'—':a.atr_ratio.toFixed(2)+'×')}
+      ${m('Volume dry-up',BP_INFO.dry,a.vol_dryup==null?'—':a.vol_dryup.toFixed(2)+'×')}
+      ${m('Up/down volume, net',BP_INFO.ud,a.updown==null?'—':a.updown.toFixed(2))}
+      ${m('From 52-week high',BP_INFO.high,a.from_high==null?'—':a.from_high+'%')}
+    </div>
+    ${flags?`<div class="bpc-flags">${flags}</div>`:''}
+    ${note?`<div class="bpc-note">${esc(note)}</div>`:''}
+    <div class="bpc-foot"><button type="button" class="bp-btn" data-bp-share="${esc(code)}">⤴ Share</button>
+      <span class="bpc-foot-r">${b?`<span class="bpc-stage">${b.weeks}-week base · ${esc(bpInr(b.pivot||a.pivot))} pivot</span>`:''}<span class="bpc-mood ${a.mood==='Powering up'?'up':'dn'}">${a.mood==='Powering up'?'▲':'▼'} ${esc(a.mood)}</span></span></div>
+  </article>`;
+}
+function _bpDay(iso){ const [y,mo,dd]=String(iso).split('-').map(Number); return `${dd} ${GMONTHS[mo-1]}`; }
+
+function bpDrawChart(el){
+  const code=el.dataset.bpChart, a=BP.data.stocks[code];
+  galFetch(code).then(()=>{
+    const ser=GSERIES.get(code);
+    if(!ser || ser.missing || !ser.rows){ el.innerHTML='<span class="gc-empty">No price data</span>'; return; }
+    const b=bpBase(a);
+    el.innerHTML=candleSVG(ser.rows,{w:600,h:230,sessions:125,axis:true,isoAxis:true,ma:false,hi52:false,volColor:true,
+      pivot:a.pivot, box:b?{start:b.start,end:b.end,low:b.low,high:b.pivot||a.pivot,label:`${b.weeks} wks`}:null});
+  });
+}
+
+async function bpShare(btn){
+  const code=btn.dataset.bpShare, a=BP.data.stocks[code], d=bpByCode[code];
+  const stage=BP_STAGES.find(s=>s.k===a.stage);
+  const text=`${d.name} (${bpSym(d)}) — ${stage?stage.label:'no setup'} · ${bpInr(a.last.c)} ${bpPct(a.last.chg_pct)} · pivot ${bpInr(a.pivot)} (${a.now_vs_pivot==null?'—':bpPct(a.now_vs_pivot,1)}) · RS ${a.rs??'—'} · ${galDay(a.asof)}`;
+  try{ await navigator.clipboard.writeText(text); flash(btn,'✓ Copied'); }
+  catch(e){ openModal(`<h3>Share</h3><p class="quote" style="margin-top:12px">${esc(text)}</p>`); }
+}
+
+function bpCsv(){
+  const rows=bpRows(); if(!rows.length) return;
+  const head=['Company','Symbol','Theme','Stage','Close','Change %','RS','Pivot','Now vs pivot %','ATR ratio','Volume dry-up','Up/down net','Base weeks','From 52w high %','Market cap cr','As of'];
+  const lines=[head.join(',')].concat(rows.map(([code,a])=>{ const d=bpByCode[code], b=bpBase(a);
+    return [d.name,bpSym(d),shortT(base(d)),a.stage,a.last.c,a.last.chg_pct,a.rs,a.pivot,a.now_vs_pivot,a.atr_ratio,a.vol_dryup,a.updown,b&&b.weeks,a.from_high,d.market_cap_cr,a.asof].map(csvCell).join(','); }));
+  const url=URL.createObjectURL(new Blob(['﻿'+lines.join('\r\n')],{type:'text/csv;charset=utf-8'}));
+  const link=document.createElement('a'); link.href=url; link.download=`market-view-${BP.stage}-${BP.data.as_of}.csv`;
+  document.body.appendChild(link); link.click(); link.remove(); setTimeout(()=>URL.revokeObjectURL(url),4000);
+}
+
+function bpFullFeed(feed){
+  openModal(`<h3>What changed since last close — ${galDay(BP.data.as_of)}</h3>
+    <p class="mp">Stage changes on the board in the latest session, then new 52-week highs and lows.</p>
+    <div style="margin-top:14px">${feed.map(bpFeedItem).join('')}</div>`);
+  mbody.querySelectorAll('[data-bp-code]').forEach(b=>b.onclick=()=>openChart(b.dataset.bpCode));
+}
+
+function bpMarketWide(){
+  const list=BP.data.market_breakouts||[];
+  openModal(`<h3>↗ ${list.length} broke out market-wide — ${galDay(BP.data.as_of)}</h3>
+    <p class="mp">Every liquid NSE stock (${fmtI(BP.data.universe)} with over ₹1 crore traded a day) that closed above its base's pivot on at least 1.4× its usual volume in the latest session, while in an uptrend. Stocks also on your board are marked.</p>
+    ${list.length?`<div class="bp-table-wrap" style="margin-top:14px"><table class="bp-table"><thead><tr><th>Company</th><th>Close</th><th>Chg</th><th>Pivot</th><th>Above pivot</th><th>Volume</th></tr></thead><tbody>
+      ${list.map(x=>`<tr${x.on_board?' data-bp-mw="1"':''}><td><b>${esc(x.name)}</b> <span class="bpc-sym">${esc(x.symbol)}</span>${x.on_board?' <span class="asme-tag">On board</span>':''}</td>
+        <td>${bpInr(x.close)}</td><td class="${x.chg_pct>=0?'up':'dn'}">${bpPct(x.chg_pct)}</td><td>${bpInr(x.pivot)}</td><td>${bpPct(x.above_pct,1)}</td><td>${x.vol_x}×</td></tr>`).join('')}
+      </tbody></table></div>`:'<p class="bp-empty" style="margin-top:14px">No breakouts market-wide in the latest session.</p>'}`);
+}
+
+function bpHow(){
+  openModal(`<h3>How these are found</h3>
+    <p class="mp">After every trading day the chart job rebuilds each board company's split-adjusted daily candles from the NSE/BSE closing files and runs the same fixed rules over them. Nothing is picked by hand.</p>
+    <table class="cmp" style="margin-top:12px"><tbody>
+      <tr><td><b>Base &amp; pivot</b></td><td>The highest high of the last ~6 months is the pivot. It is a base when that high is at least 3 weeks old, the pullback from it is at most 35%, and the stock ran up at least 25% into it.</td></tr>
+      <tr><td><b>Breakout</b></td><td>The first close above the pivot on at least 1.4× the 50-day average volume.</td></tr>
+      <tr><td><b>Exit</b></td><td>Stopped when the price trades 8% under the pivot; trailed out on a close under the 50-day average.</td></tr>
+      <tr><td><b>Forming</b></td><td>In a base, within 15% under the pivot, above the 200-day average with the 50-day above the 200-day — or building a new base after an earlier breakout.</td></tr>
+      <tr><td><b>Fresh / Climbing</b></td><td>Broke out and not exited: within the last 5 sessions, or earlier.</td></tr>
+      <tr><td><b>Played out</b></td><td>Broke out this year and has since been stopped or trailed out.</td></tr>
+      <tr><td><b>RS rating</b></td><td>${esc(BP_INFO.rs)}</td></tr>
+      <tr><td><b>Powering up / Cooling off</b></td><td>Last close above / below the close five sessions earlier.</td></tr>
+    </tbody></table>`);
+}
+
+/* ---- NIFTY 50 / SENSEX chips and the Zerodha connection ---- */
+async function bpStatus(){
+  try{ BP.kite=await fetchJSON('/api/kite/status'); }catch(e){ BP.kite={configured:false,connected:false}; }
+  const k=BP.kite, box=document.getElementById('bp-conn');
+  if(k.connected) box.innerHTML=`<span class="bp-upd"><i></i>NIFTY &amp; SENSEX live via Zerodha${k.user?' · '+esc(k.user):''}</span>`;
+  else if(k.configured) box.innerHTML=`<span>Index prices delayed · </span><button class="bp-link" id="bp-connect" type="button">Connect Zerodha</button>`;
+  else box.innerHTML='<span title="Set KITE_API_KEY, KITE_API_SECRET and KITE_ADMIN_KEY on the server">Index prices delayed (Zerodha not set up)</span>';
+  const c=document.getElementById('bp-connect'); if(c) c.onclick=bpConnect;
+  bpSchedule('status', bpStatus, 5*60*1000);
+}
+function bpConnect(){
   openModal(`<h3>Connect Zerodha</h3>
     <p class="mp">Zerodha asks for a login once a day; the session lasts until 6 a.m. the next morning. Enter the admin key set on the server (KITE_ADMIN_KEY) to continue to Zerodha's login page.</p>
-    <form id="mv-key-form" class="mv-key"><input id="mv-key" type="password" autocomplete="current-password" placeholder="Admin key" class="gal-search" required>
-    <button class="btn" type="submit">Continue to Zerodha</button></form>`);
-  const f=document.getElementById('mv-key-form'), inp=document.getElementById('mv-key');
+    <form id="bp-key-form" class="bp-key"><input id="bp-key" type="password" autocomplete="current-password" placeholder="Admin key" class="bp-find" required>
+    <button class="bp-mw" type="submit">Continue to Zerodha</button></form>`);
+  const f=document.getElementById('bp-key-form'), inp=document.getElementById('bp-key');
   inp.focus();
   f.onsubmit=e=>{ e.preventDefault(); location.href='/api/kite/login?key='+encodeURIComponent(inp.value); };
 }
-
-const mvNum=(v,d=2)=>v==null?'—':(+v).toLocaleString('en-IN',{minimumFractionDigits:d,maximumFractionDigits:d});
-async function mvIndices(){
+async function bpIndices(){
   let j; try{ j=await fetchJSON('/api/market/indices'); }catch(e){ j=null; }
-  const box=document.getElementById('mv-indices');
+  const box=document.getElementById('bp-idx');
   if(j){
-    const prev=MV.idx; MV.idx=j;
-    const when=new Date(j.as_of).toLocaleTimeString('en-IN',{hour:'2-digit',minute:'2-digit',second:'2-digit'});
+    const prev=BP.idx; BP.idx=j;
+    const live=j.source==='zerodha';
     box.innerHTML=j.items.map(it=>{
       const p=prev && prev.items.find(x=>x.key===it.key);
       const tick=p && p.last!=null && it.last!=null && it.last!==p.last ? (it.last>p.last?' tick-up':' tick-dn') : '';
-      const dir=(it.change||0)>=0?'up':'dn';
-      const pos=(it.high!=null && it.low!=null && it.high>it.low && it.last!=null) ? Math.max(0,Math.min(100,(it.last-it.low)/(it.high-it.low)*100)) : null;
-      return `<article class="mv-index">
-        <div class="mv-ix-head"><b>${esc(it.name)}</b><span class="mv-src ${j.source==='zerodha'?'live':''}">${j.source==='zerodha'?(j.market_open?'LIVE':'Zerodha · market closed'):'Delayed'}</span></div>
-        <div class="mv-ix-price${tick}">${mvNum(it.last)}</div>
-        <div class="mv-ix-chg ${dir}">${it.change==null?'—':(it.change>=0?'+':'')+mvNum(it.change)} <span>(${it.change_pct==null?'—':(it.change_pct>=0?'+':'')+it.change_pct.toFixed(2)+'%'})</span></div>
-        ${pos==null?'':`<div class="mv-range" title="Today's range"><span>${mvNum(it.low)}</span><div class="mv-bar"><i style="left:${pos.toFixed(1)}%"></i></div><span>${mvNum(it.high)}</span></div>`}
-        <div class="mv-ix-kv"><span>Open <b>${mvNum(it.open)}</b></span><span>Prev close <b>${mvNum(it.prev_close)}</b></span><span>${j.source==='zerodha'?'Updated':'Checked'} <b>${when}</b></span></div>
-      </article>`;
+      const tip=`${it.name} · ${live?(j.market_open?'live':'Zerodha, market closed'):'delayed'} · O ${it.open==null?'—':mvNum(it.open)} H ${it.high==null?'—':mvNum(it.high)} L ${it.low==null?'—':mvNum(it.low)} · prev close ${it.prev_close==null?'—':mvNum(it.prev_close)}`;
+      return `<span class="bp-ix${tick}" title="${esc(tip)}"><i class="${live&&j.market_open?'live':''}"></i><b>${esc(it.name)}</b><span>${it.last==null?'—':mvNum(it.last)}</span><small class="${(it.change||0)>=0?'up':'dn'}">${it.change_pct==null?'':bpPct(it.change_pct)}</small></span>`;
     }).join('');
-  } else if(!MV.idx){
-    box.innerHTML='<p class="view-hint">Index prices are unavailable right now.</p>';
   }
-  const fast = j && j.source==='zerodha' && j.market_open;
-  mvSchedule('indices', mvIndices, fast?3000:60000);
+  bpSchedule('indices', bpIndices, j && j.source==='zerodha' && j.market_open ? 3000 : 60000);
 }
-
-async function mvTrending(){
-  let j; try{ j=await fetchJSON('/api/market/trending'); }catch(e){ j=null; }
-  if(j) MV.trend=j;
-  mvPanel('high'); mvPanel('low');
-  mvSchedule('trending', mvTrending, j && j.mode==='live' ? 30000 : 5*60*1000);
-}
-function mvPanel(side){
-  const box=document.getElementById(side==='high'?'mv-highs':'mv-lows'), t=MV.trend;
-  const title = side==='high' ? 'New highs today' : 'New lows today';
-  if(!t){ box.innerHTML=`<h3 class="mv-title">${title}</h3><p class="view-hint">Loading…</p>`; return; }
-  const tab=MV.tab[side], items=t.groups[`${side}_${tab}`]||[];
-  const mode = t.mode==='live'
-    ? `Live · updated ${new Date(t.generated_at).toLocaleTimeString('en-IN',{hour:'2-digit',minute:'2-digit'})}`
-    : `End of day · ${t.as_of?galDay(t.as_of):'—'}`;
-  const label=Object.fromEntries(MV_WINDOWS)[tab];
-  const shown=MV.all[side]?items:items.slice(0,25);
-  box.innerHTML=`<div class="mv-panel-head"><h3 class="mv-title ${side==='high'?'up':'dn'}">${side==='high'?'▲':'▼'} ${title}</h3><span class="mv-mode${t.mode==='live'?' live':''}">${mode}</span></div>
-    <div class="mv-tabs" role="tablist">${MV_WINDOWS.map(([k,l])=>`<button type="button" role="tab" class="mv-tab${k===tab?' on':''}" data-mv-tab="${k}" aria-selected="${k===tab}">${l} <span>${t.counts[`${side}_${k}`]||0}</span></button>`).join('')}</div>
-    <p class="mv-explain">Today's ${side} went ${side==='high'?'above the highest':'below the lowest'} price of the previous ${({'52w':'52 weeks','1m':'month (21 sessions)','1w':'week (5 sessions)','1d':'session'})[tab]}.</p>
-    ${items.length ? `<div class="mv-list">${shown.map(x=>`
-      <button type="button" class="mv-row" data-mv-code="${esc(x.code)}">
-        <span class="gc-tick">${esc(x.symbol)}</span>
-        <span class="mv-name"><b>${esc(x.name||x.code)}</b><small>${side==='high'?'above':'below'} ${label} ${side==='high'?'high':'low'} ₹${mvNum(x.level)} (${x.beyond_pct>=0?'+':''}${x.beyond_pct}%)</small></span>
-        <span class="mv-px"><b>₹${mvNum(x.last)}</b><small class="${(x.chg_pct||0)>=0?'up':'dn'}">${x.chg_pct==null?'—':(x.chg_pct>=0?'+':'')+x.chg_pct.toFixed(2)+'%'}</small></span>
-      </button>`).join('')}</div>
-      ${items.length>25?`<button type="button" class="theme-back mv-more" data-mv-more>${MV.all[side]?'Show fewer':`Show all ${items.length}`}</button>`:''}`
-    : `<p class="view-hint">No board company broke its ${label} ${side} ${t.mode==='live'?'so far today':'in this session'}.</p>`}`;
-  box.querySelectorAll('[data-mv-tab]').forEach(b=>b.onclick=()=>{ MV.tab[side]=b.dataset.mvTab; MV.all[side]=false; mvPanel(side); });
-  const more=box.querySelector('[data-mv-more]'); if(more) more.onclick=()=>{ MV.all[side]=!MV.all[side]; mvPanel(side); };
-  box.querySelectorAll('[data-mv-code]').forEach(b=>b.onclick=()=>openChart(b.dataset.mvCode));
-}
+const mvNum=(v,d=2)=>v==null?'—':(+v).toLocaleString('en-IN',{minimumFractionDigits:d,maximumFractionDigits:d});
 
 BUSY=true; buildColPop(); applyState(); BUSY=false;
 setView(VIEW,{keep:true});
