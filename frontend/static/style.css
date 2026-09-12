@@ -92,6 +92,11 @@ body.overview-focus #count,
 body.overview-focus .method,
 body.overview-focus .disc{display:none}
 body.overview-focus .overview-section{padding-top:6px}
+body.overview-focus .side-nav,
+body.overview-focus .hero{display:none}
+body.overview-focus .dashboard-shell{display:block}
+body.overview-focus .dashboard-main{width:100%}
+body.overview-focus .wrap{max-width:none;padding:10px}
 .filter-panel .toggles{margin:0;padding:0;border:0;gap:9px}
 .filter-panel .btn{background:#0d1a23;border-color:#233b4a;padding:9px 13px}
 .filter-panel .btn.on{background:#19404a;border-color:#65c6d5;color:#f2fbff}
