@@ -180,10 +180,8 @@ THEMES.forEach(t=>{
   b.className='chip on'; b.dataset.t=t;
   b.innerHTML=`<span class="mk"></span>${shortT(t)}`;
   b.onclick=()=>{
-    if(activeThemes.has(t)&&activeThemes.size===THEMES.length){activeThemes=new Set([t]);}
-    else if(activeThemes.has(t)){activeThemes.delete(t); if(!activeThemes.size)activeThemes=new Set(THEMES);}
-    else activeThemes.add(t);
-    if(activeThemes.size===1) document.body.classList.add('theme-focus');
+    activeThemes=new Set([t]);
+    document.body.classList.add('theme-focus');
     syncChips(); render();
   };
   themeBox.appendChild(b);
