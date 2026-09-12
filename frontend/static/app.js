@@ -175,12 +175,22 @@ let activeThemes = new Set(THEMES);
 let sortKey='final_score', sortDir=-1;
 /* ---------- filter chips ---------- */
 const themeBox = document.getElementById('themes');
+const overviewNav=document.getElementById('overview-link');
+const sectionNav=['themes-link','market-link','signals-link','companies-link','filters-link'].map(id=>document.getElementById(id)).filter(Boolean);
+overviewNav.onclick=e=>{
+  e.preventDefault();
+  document.body.classList.add('overview-focus');
+  document.body.classList.remove('theme-focus');
+  window.scrollTo({top:0,behavior:'smooth'});
+};
+sectionNav.forEach(link=>link.onclick=()=>document.body.classList.remove('overview-focus'));
 THEMES.forEach(t=>{
   const b=document.createElement('button');
   b.className='chip on'; b.dataset.t=t;
   b.innerHTML=`<span class="mk"></span>${shortT(t)}`;
   b.onclick=()=>{
     activeThemes=new Set([t]);
+    document.body.classList.remove('overview-focus');
     document.body.classList.add('theme-focus');
     syncChips(); render();
   };

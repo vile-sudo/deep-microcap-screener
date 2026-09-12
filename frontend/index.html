@@ -6,7 +6,7 @@
 <title>Deep Sweep</title>
 <meta name="description" content="Deep Sweep — a dark ocean-themed research board for microcap and quality-first names.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%94%8D%3C/text%3E%3C/svg%3E">
-<link rel="stylesheet" href="/static/style.css?v=13">
+<link rel="stylesheet" href="/static/style.css?v=14">
 </head>
 <body>
 <div class="wrap">
@@ -18,14 +18,14 @@
   </div>
   <nav class="side-links">
     <div class="side-label">START</div>
-    <a class="side-link active" href="#overview"><span class="side-icon">⌂</span>Overview</a>
+    <a class="side-link active" id="overview-link" href="#overview"><span class="side-icon">⌂</span>Overview</a>
     <div class="side-label">MARKET</div>
-    <a class="side-link" href="#market"><span class="side-icon">↗</span>Themes</a>
-    <a class="side-link" href="#market"><span class="side-icon">◒</span>Market view</a>
-    <a class="side-link" href="#research-filters"><span class="side-icon">!</span>Signals</a>
+    <a class="side-link" id="themes-link" href="#market"><span class="side-icon">↗</span>Themes</a>
+    <a class="side-link" id="market-link" href="#market"><span class="side-icon">◒</span>Market view</a>
+    <a class="side-link" id="signals-link" href="#research-filters"><span class="side-icon">!</span>Signals</a>
     <div class="side-label">RESEARCH</div>
-    <a class="side-link" href="#research"><span class="side-icon">⌕</span>Companies</a>
-    <a class="side-link" href="#research-filters"><span class="side-icon">≡</span>Screen filters</a>
+    <a class="side-link" id="companies-link" href="#research"><span class="side-icon">⌕</span>Companies</a>
+    <a class="side-link" id="filters-link" href="#research-filters"><span class="side-icon">≡</span>Screen filters</a>
     <a class="side-link" href="#changelog"><span class="side-icon">◷</span>Build history</a>
     <div class="side-label">REFERENCE</div>
     <a class="side-link" href="#methodology"><span class="side-icon">?</span>How it works</a>
@@ -230,6 +230,6 @@
 
 <script src="/static/quotes.js?v=5" defer></script>
 <script src="/static/asme-certified.js?v=5" defer></script>
-<script src="/static/app.js?v=13" defer></script>
+<script src="/static/app.js?v=14" defer></script>
 </body>
 </html>
