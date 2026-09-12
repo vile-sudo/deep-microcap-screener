@@ -190,9 +190,9 @@ let sortKey='final_score', sortDir=-1;
      method    - how the scores work
    Moving to another page clears whatever was picked on the last one, so a theme
    chosen on Themes never quietly narrows what Screen filters shows. */
-const VIEWS=['overview','themes','watchlist','companies','filters','method'];
+const VIEWS=['overview','themes','watchlist','companies','filters','gallery','method'];
 const NAV={'overview-link':'overview','themes-link':'themes','market-link':'themes','watchlist-link':'watchlist',
-           'companies-link':'companies','filters-link':'filters','method-link':'method'};
+           'companies-link':'companies','filters-link':'filters','gallery-link':'gallery'};
 const LENSES=['overhang','heavycap','guide15','guideany','turn','haslens','ipo'];
 const TILE_LABEL={all:'Companies on the board',overhang:'High P/E + heavy CWIP',guide15:'Management guides > 15%',
                   turn:'PAT turned positive',nolens:'Awaiting the capex pass'};
@@ -208,6 +208,7 @@ function setView(v, opts){
   document.querySelectorAll('.side-link').forEach(l=>l.classList.toggle('active', l.id===NAVID));
   if(!opts.keep) window.scrollTo({top:0,behavior:'smooth'});
   render();
+  if(VIEW==='gallery') openGallery();
 }
 Object.keys(NAV).forEach(id=>{
   const link=document.getElementById(id);
@@ -1243,6 +1244,256 @@ addEventListener('keydown',e=>{
   const flip=tbtn.onclick;
   tbtn.onclick=()=>{ flip(); try{ localStorage.setItem('dms.theme',document.documentElement.dataset.theme); }catch(e){} };
 })();
+
+/* ==================================================================
+   Chart gallery
+   A daily candlestick card for every company on the board. The card list
+   is DATA itself, so a company that reaches the board is in the gallery on
+   the next page load; its candles come from /api/charts, which the daily
+   GitHub Action refreshes from the NSE/BSE bhavcopy (and which fetches a
+   company live if it arrived since that run). Candles load lazily as the
+   cards scroll into view; filters and sorting use the small stats index.
+   ================================================================== */
+const GAL_STATUS={high:['At 52-week high','st-high'], near:['Near 52-week high','st-near'],
+                  up:['Uptrend','st-up'], flat:['Sideways','st-flat'], down:['Downtrend','st-down']};
+const GAL_SORTS={
+  high :{l:'Sort: closest to 52-week high', s:s=>s.from_high_pct, dir:-1},
+  chg  :{l:"Sort: day's change",            s:s=>s.chg_pct,       dir:-1},
+  vol  :{l:'Sort: volume vs average',       s:s=>s.vol_ratio,     dir:-1},
+  mcap :{l:'Sort: market cap',              d:d=>nz(d.market_cap_cr), dir:-1},
+  score:{l:'Sort: score',                   d:d=>nz(d.final_score),   dir:-1},
+  name :{l:'Sort: name',                    d:d=>String(d.name||''),  dir:1},
+};
+const GMONTHS=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+const GSERIES=new Map(), GPROM=new Map(), GQUEUE=[];
+let GAL=null, GALLOADING=null, GACTIVE=0, GOBS=null;
+document.getElementById('gallery-count').textContent=DATA.length;
+
+const galStats = d => (GAL && GAL.companies[d.code]) || (GSERIES.get(d.code)||{}).stats || null;
+const galDay = iso => { const [y,m,dd]=String(iso).split('-').map(Number); return `${dd} ${GMONTHS[m-1]} ${y}`; };
+const galPx = v => v==null ? '—' : '₹'+(+v).toLocaleString('en-IN',{maximumFractionDigits:2});
+const galTicker = (d,s) => s ? s.symbol : (d.nse_code && !/^\d+$/.test(d.nse_code) ? d.nse_code : d.code);
+
+async function openGallery(){
+  if(!GAL){
+    document.getElementById('ggrid').innerHTML='<p class="view-hint">Loading charts…</p>';
+    GALLOADING = GALLOADING || fetchJSON('/api/charts').catch(()=>({companies:{}})).then(j=>{ GAL=j; buildGalControls(); });
+    await GALLOADING;
+  }
+  if(VIEW==='gallery') renderGallery();
+}
+
+function buildGalControls(){
+  const tr=document.getElementById('gtrend'), th=document.getElementById('gtheme'), so=document.getElementById('gsort');
+  const byStatus={}, byTheme={};
+  DATA.forEach(d=>{ const s=galStats(d), k=s?s.status:'none'; byStatus[k]=(byStatus[k]||0)+1; byTheme[base(d)]=(byTheme[base(d)]||0)+1; });
+  tr.innerHTML='<option value="">Trend: all</option>'
+    + Object.entries(GAL_STATUS).map(([k,[l]])=>`<option value="${k}">${l} (${byStatus[k]||0})</option>`).join('')
+    + (byStatus.none?`<option value="none">No chart yet (${byStatus.none})</option>`:'');
+  th.innerHTML='<option value="">Theme: all</option>'
+    + Object.entries(byTheme).sort((a,b)=>b[1]-a[1]).map(([t,n])=>`<option value="${esc(t)}">${esc(shortT(t))} (${n})</option>`).join('');
+  so.innerHTML=Object.entries(GAL_SORTS).map(([k,v])=>`<option value="${k}">${v.l}</option>`).join('');
+  document.getElementById('gallery-asof').textContent = GAL.latest_session ? 'Last session: '+galDay(GAL.latest_session) : '';
+  let t=0;
+  document.getElementById('gq').oninput=()=>{ clearTimeout(t); t=setTimeout(renderGallery,120); };
+  [tr,th,so].forEach(el=>el.onchange=renderGallery);
+  document.getElementById('gclear').onclick=()=>{ document.getElementById('gq').value=''; tr.value=''; th.value=''; so.value='high'; renderGallery(); };
+
+  const grid=document.getElementById('ggrid');
+  grid.onclick=e=>{
+    const pin=e.target.closest('[data-gpin]');
+    if(pin){ e.stopPropagation(); togglePin(pin.dataset.gpin); galPinButtons(pin.dataset.gpin); return; }
+    const card=e.target.closest('[data-gcode]'); if(card) openChart(card.dataset.gcode);
+  };
+  grid.onkeydown=e=>{ const card=e.target.closest('[data-gcode]'); if(card && (e.key==='Enter'||e.key===' ')){ e.preventDefault(); openChart(card.dataset.gcode); } };
+}
+
+function galRows(){
+  const q=document.getElementById('gq').value.trim().toLowerCase();
+  const tr=document.getElementById('gtrend').value, th=document.getElementById('gtheme').value;
+  const so=GAL_SORTS[document.getElementById('gsort').value]||GAL_SORTS.high;
+  const val=d=>{ if(so.d) return so.d(d); const s=galStats(d); return s ? so.s(s) : null; };
+  return DATA.filter(d=>{
+    if(th && base(d)!==th) return false;
+    const s=galStats(d);
+    if(tr==='none' ? !!s : (tr && (!s || s.status!==tr))) return false;
+    if(q && !(d._n+' '+(s?String(s.symbol).toLowerCase():'')).includes(q)) return false;
+    return true;
+  }).sort((a,b)=>{
+    const x=val(a), y=val(b);
+    if(x==null && y==null) return String(a.name).localeCompare(String(b.name));
+    if(x==null) return 1; if(y==null) return -1;
+    return (typeof x==='string' ? x.localeCompare(y) : x-y)*so.dir;
+  });
+}
+
+function renderGallery(){
+  if(!GAL) return;
+  const rows=galRows(), grid=document.getElementById('ggrid');
+  document.getElementById('gcount').textContent=`${rows.length} of ${DATA.length}`;
+  grid.innerHTML = rows.length ? rows.map(galCard).join('')
+    : '<p class="view-hint">No chart matches — clear the search or pick another filter.</p>';
+  if(GOBS) GOBS.disconnect();
+  GOBS=new IntersectionObserver(es=>es.forEach(e=>{
+    if(e.isIntersecting){ GOBS.unobserve(e.target); galFetch(e.target.dataset.gchart); }
+  }),{rootMargin:'500px 0px'});
+  grid.querySelectorAll('[data-gchart]').forEach(el=>{ if(!GSERIES.has(el.dataset.gchart)) GOBS.observe(el); });
+}
+
+function galCard(d){
+  const s=galStats(d), st=s && GAL_STATUS[s.status], on=WATCH.has(d.code);
+  return `<article class="gcard" data-gcode="${esc(d.code)}" tabindex="0" aria-label="Open the chart for ${esc(d.name)}">
+    <div class="gc-head"><span class="gc-tick">${esc(galTicker(d,s))}</span><span class="gc-name" title="${esc(d.name)}">${esc(d.name)}</span>${st?`<span class="gc-badge ${st[1]}">${st[0]}</span>`:''}</div>
+    <div class="gc-chart" data-gchart="${esc(d.code)}">${galThumb(d.code)}</div>
+    <div class="gc-stats">${galStatLine(d.code, s)}</div>
+    <div class="gc-foot"><span class="gc-theme">${esc(shortT(base(d)))}</span><button type="button" class="gc-pin${on?' on':''}" data-gpin="${esc(d.code)}" title="${on?'Remove from':'Add to'} watchlist" aria-label="Star ${esc(d.name)}">${on?'★':'☆'}</button></div>
+  </article>`;
+}
+function galThumb(code){
+  const ser=GSERIES.get(code);
+  if(!ser) return '<span class="gc-skel"></span>';
+  if(ser.missing || !ser.rows || !ser.rows.length) return '<span class="gc-empty">No price data yet — the chart appears after the next daily update</span>';
+  return candleSVG(ser.rows,{w:320,h:160,sessions:125});
+}
+function galStatLine(code, s){
+  if(!s) return GSERIES.get(code) ? '<span class="nd">Waiting for exchange data</span>' : '<span class="nd">Loading…</span>';
+  const chg = s.chg_pct==null ? '' : `<span class="${s.chg_pct>=0?'up':'dn'}">${s.chg_pct>=0?'+':''}${s.chg_pct.toFixed(2)}%</span>`;
+  const hi = s.status==='high' ? '<span class="gc-chip">52w high</span>' : `<span>${Math.abs(s.from_high_pct).toFixed(1)}% off high</span>`;
+  return `${chg}<span>${galPx(s.last)}</span>${s.vol_ratio==null?'':`<span>vol ${s.vol_ratio}×</span>`}${hi}`;
+}
+function galPinButtons(code){
+  const on=WATCH.has(code);
+  document.querySelectorAll(`[data-gpin="${CSS.escape(code)}"]`).forEach(b=>{
+    b.classList.toggle('on',on); b.textContent=on?'★':'☆'; b.title=(on?'Remove from':'Add to')+' watchlist';
+  });
+  const mp=document.getElementById('cm-pin');
+  if(mp && mp.dataset.code===code) mp.innerHTML = on ? '★ In watchlist' : '☆ Add to watchlist';
+}
+
+function galFetch(code){
+  if(!GPROM.has(code)) GPROM.set(code, new Promise(resolve=>{ GQUEUE.push([code,resolve]); galPump(); }));
+  return GPROM.get(code);
+}
+function galPump(){
+  while(GACTIVE<6 && GQUEUE.length){
+    const [code,resolve]=GQUEUE.shift();
+    GACTIVE++;
+    fetch('/api/charts/'+encodeURIComponent(code)).then(r=>r.ok?r.json():null).catch(()=>null).then(j=>{
+      GACTIVE--;
+      GSERIES.set(code, j || {missing:true});
+      galPaint(code); resolve(); galPump();
+    });
+  }
+}
+function galPaint(code){
+  const card=document.querySelector(`#ggrid [data-gcode="${CSS.escape(code)}"]`);
+  if(!card) return;
+  const d=DATA.find(x=>x.code===code);
+  if(GAL && !GAL.companies[code]){ card.outerHTML=galCard(d); return; }  /* arrived live: badge + stats too */
+  card.querySelector('.gc-chart').innerHTML=galThumb(code);
+}
+
+/* Candles, 50/200-day averages, volume and the 52-week high, as one SVG.
+   The averages are computed over the whole year and then windowed, so the
+   200-day line is real from its first visible point rather than warming up. */
+function candleSVG(rows,o){
+  const W=o.w, H=o.h, axis=!!o.axis, padR=axis?62:2, padT=axis?12:5, padB=axis?24:3;
+  const closes=rows.map(r=>r[4]);
+  const ma=n=>{ let sum=0; return closes.map((c,i)=>{ sum+=c; if(i>=n) sum-=closes[i-n]; return i>=n-1 ? sum/n : null; }); };
+  const start=Math.max(0, rows.length-o.sessions);
+  const vis=rows.slice(start), m50=ma(50).slice(start), m200=ma(200).slice(start);
+  const hi52=Math.max(...rows.map(r=>r[2]));
+  let lo=Math.min(...vis.map(r=>r[3])), hi=Math.max(...vis.map(r=>r[2]));
+  m50.concat(m200).forEach(v=>{ if(v!=null){ lo=Math.min(lo,v); hi=Math.max(hi,v); } });
+  const showHi = hi52<=hi*1.12;
+  if(showHi) hi=Math.max(hi,hi52);
+  const pad=(hi-lo)*0.05 || hi*0.02 || 1; hi+=pad; lo=Math.max(0,lo-pad);
+  const inner=H-padT-padB, volH=inner*0.2, priceH=inner-volH-6;
+  const plotW=W-padR, step=plotW/vis.length, cw=Math.max(0.8, Math.min(8, step*0.66));
+  const y=p=>padT+(hi-p)/(hi-lo)*priceH;
+  const X=i=>i*step+step/2, f=n=>n.toFixed(2);
+  const vmax=Math.max(1,...vis.map(r=>r[5]));
+  let s=`<svg viewBox="0 0 ${W} ${H}" class="cs${axis?' cs-full':''}" role="img" aria-label="Daily candlestick chart">`;
+  if(axis){
+    for(let i=0;i<=4;i++){
+      const p=lo+(hi-lo)*i/4, yy=y(p);
+      s+=`<line x1="0" x2="${plotW}" y1="${f(yy)}" y2="${f(yy)}" class="cs-grid"/><text x="${plotW+8}" y="${f(yy+4)}" class="cs-tx">${(+p).toLocaleString('en-IN',{maximumFractionDigits:p<100?2:0})}</text>`;
+    }
+  }
+  vis.forEach((r,i)=>{ const vh=r[5]/vmax*volH; s+=`<rect x="${f(X(i)-cw/2)}" y="${f(H-padB-vh)}" width="${f(cw)}" height="${f(Math.max(vh,0.3))}" class="cs-vol"/>`; });
+  if(showHi) s+=`<line x1="0" x2="${plotW}" y1="${f(y(hi52))}" y2="${f(y(hi52))}" class="cs-hi"/>`;
+  let upW='',dnW='',upB='',dnB='';
+  vis.forEach((r,i)=>{
+    const x=X(i), up=r[4]>=r[1], top=y(Math.max(r[1],r[4])), bh=Math.max(0.9,Math.abs(y(r[1])-y(r[4])));
+    const wick=`M${f(x)} ${f(y(r[2]))}V${f(y(r[3]))}`, body=`M${f(x-cw/2)} ${f(top)}h${f(cw)}v${f(bh)}h${f(-cw)}Z`;
+    if(up){ upW+=wick; upB+=body; } else { dnW+=wick; dnB+=body; }
+  });
+  s+=`<path d="${upW}" class="cs-wick up"/><path d="${dnW}" class="cs-wick dn"/><path d="${upB}" class="cs-body up"/><path d="${dnB}" class="cs-body dn"/>`;
+  const line=(arr,cls)=>{ let d=''; arr.forEach((v,i)=>{ if(v!=null) d+=(d?'L':'M')+f(X(i))+' '+f(y(v)); }); return d?`<path d="${d}" class="${cls}"/>`:''; };
+  s+=line(m50,'cs-ma50')+line(m200,'cs-ma200');
+  if(axis){
+    let last='';
+    vis.forEach((r,i)=>{ const m=r[0].slice(0,7); if(m!==last){ if(last && i>2) s+=`<text x="${f(X(i))}" y="${H-6}" class="cs-tx" text-anchor="middle">${GMONTHS[+r[0].slice(5,7)-1]}</text>`; last=m; } });
+    s+=`<line id="cs-cross" x1="0" x2="0" y1="${padT}" y2="${H-padB}" class="cs-cross" style="display:none"/>`;
+  }
+  return s+'</svg>';
+}
+
+function openChart(code){
+  const d=DATA.find(x=>x.code===code); if(!d) return;
+  if(!GSERIES.has(code)){
+    openModal('<p class="view-hint">Loading chart…</p>');
+    galFetch(code).then(()=>{ if(modal.classList.contains('on')) openChart(code); });
+    return;
+  }
+  const ser=GSERIES.get(code), s=(ser && ser.stats) || galStats(d), st=s && GAL_STATUS[s.status];
+  const on=WATCH.has(code);
+  const W=1000, H=430, padR=62;
+  const has=ser && !ser.missing && ser.rows && ser.rows.length;
+  const vis=has ? ser.rows.slice(-250) : [];
+  const read=r=>`<b>${galDay(r[0])}</b> · O ${galPx(r[1])} · H ${galPx(r[2])} · L ${galPx(r[3])} · C ${galPx(r[4])} · Vol ${fmtI(r[5])}`;
+  const kv=(k,v)=>`<div><span>${k}</span><b>${v}</b></div>`;
+  openModal(`
+    <div class="cm-head"><span class="gc-tick">${esc(galTicker(d,s))}</span><h3>${esc(d.name)}</h3>${st?`<span class="gc-badge ${st[1]}">${st[0]}</span>`:''}
+      <span class="tc">${s?esc(s.exchange)+' · ':''}${esc(shortT(base(d)))}</span></div>
+    ${has ? `<div class="cm-read" id="cm-read">${read(vis[vis.length-1])}</div>
+      <div class="cm-chart" id="cm-chart">${candleSVG(ser.rows,{w:W,h:H,sessions:250,axis:true})}</div>
+      <div class="cm-legend"><span><i class="lg lg-50"></i>50-day average</span><span><i class="lg lg-200"></i>200-day average</span><span><i class="lg lg-hi"></i>52-week high</span><span><i class="lg lg-vol"></i>Volume</span></div>`
+    : '<p class="view-hint">No price data for this company yet. The chart appears automatically after the next daily update.</p>'}
+    ${s ? `<div class="kv cm-kv">
+      ${kv('Last close', galPx(s.last))}
+      ${kv("Day's change", s.chg_pct==null?'—':`<span class="${s.chg_pct>=0?'up':'dn'}">${s.chg_pct>=0?'+':''}${s.chg_pct.toFixed(2)}%</span>`)}
+      ${kv('52-week high', galPx(s.high52))}
+      ${kv('52-week low', galPx(s.low52))}
+      ${kv('From 52-week high', s.from_high_pct==null?'—':s.from_high_pct.toFixed(1)+'%')}
+      ${kv('50-day average', galPx(s.dma50))}
+      ${kv('200-day average', galPx(s.dma200))}
+      ${kv('Volume vs 50-day avg', s.vol_ratio==null?'—':s.vol_ratio+'×')}
+      ${kv('As of', galDay(s.asof))}
+    </div>` : ''}
+    <div class="cm-acts">
+      <button class="btn" id="cm-card" type="button">Open scorecard</button>
+      <button class="btn" id="cm-pin" data-code="${esc(code)}" type="button">${on?'★ In watchlist':'☆ Add to watchlist'}</button>
+      <a class="btn" href="${scrURL(d)}" target="_blank" rel="noopener">screener.in ↗</a>
+    </div>
+    <p class="cm-src">${ser && ser.source==='live' ? 'Fetched live because this company joined the board after the last daily update; tonight\'s run replaces it with exchange data.' : 'Source: NSE / BSE end-of-day bhavcopy, refreshed automatically every trading day.'} Prices are not adjusted for splits or bonus issues.</p>`);
+  document.getElementById('cm-card').onclick=()=>{ closeModal(); CURRENT=GAL?galRows():[d]; openDrawer(d); };
+  document.getElementById('cm-pin').onclick=()=>{ togglePin(code); galPinButtons(code); };
+  const box=document.getElementById('cm-chart');
+  if(box){
+    const svg=box.querySelector('svg'), cross=svg.querySelector('#cs-cross'), out=document.getElementById('cm-read');
+    const step=(W-padR)/vis.length;
+    svg.onmousemove=e=>{
+      const rect=svg.getBoundingClientRect(), x=(e.clientX-rect.left)/rect.width*W;
+      if(x>W-padR){ cross.style.display='none'; return; }
+      const i=Math.max(0,Math.min(vis.length-1,Math.floor(x/step)));
+      const cx=(i*step+step/2).toFixed(2);
+      cross.setAttribute('x1',cx); cross.setAttribute('x2',cx); cross.style.display='';
+      out.innerHTML=read(vis[i]);
+    };
+    svg.onmouseleave=()=>{ cross.style.display='none'; out.innerHTML=read(vis[vis.length-1]); };
+  }
+}
 
 BUSY=true; buildColPop(); applyState(); BUSY=false;
 setView(VIEW,{keep:true});

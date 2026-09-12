@@ -6,7 +6,7 @@
 <title>Deep Sweep</title>
 <meta name="description" content="Deep Sweep — a dark ocean-themed research board for microcap and quality-first names.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%94%8D%3C/text%3E%3C/svg%3E">
-<link rel="stylesheet" href="/static/style.css?v=21">
+<link rel="stylesheet" href="/static/style.css?v=22">
 </head>
 <body>
 <div class="wrap">
@@ -26,8 +26,8 @@
     <div class="side-label">RESEARCH</div>
     <button class="side-link" id="companies-link" type="button"><span class="side-icon">⌕</span>Companies</button>
     <button class="side-link" id="filters-link" type="button"><span class="side-icon">≡</span>Screen filters</button>
-    <div class="side-label">REFERENCE</div>
-    <button class="side-link" id="method-link" type="button"><span class="side-icon">?</span>How it works</button>
+    <div class="side-label">CHARTS</div>
+    <button class="side-link" id="gallery-link" type="button"><span class="side-icon">▥</span>Chart Gallery <span class="side-count" id="gallery-count"></span></button>
   </nav>
   <div class="side-foot">
     <span class="status-dot"></span>
@@ -70,6 +70,19 @@
   <div class="section-heading" id="theme-heading"><div><span class="eyebrow">MARKET</span><h2 id="market-title">Themes</h2><p class="section-copy">Choose a theme to show only the companies screened in that area.</p></div><span class="section-note">Click any theme to open it</span></div>
   <div class="theme-panel" id="theme-panel"><div class="tglab">THEME FOLDERS</div><div class="frow" id="themes"></div></div>
   <div class="theme-results" id="theme-results" aria-live="polite" hidden></div>
+</section>
+
+<section class="dashboard-section gallery-section" data-views="gallery" aria-labelledby="gallery-title">
+  <div class="section-heading"><div><span class="eyebrow">CHARTS</span><h2 id="gallery-title">Chart Gallery</h2><p class="section-copy">A daily chart for every company on the board — candles from the NSE and BSE end-of-day files, with the 50- and 200-day averages and volume. It updates itself every trading day, and a company added to the board gets its chart automatically. Click a chart for the full view.</p></div><span class="section-note" id="gallery-asof"></span></div>
+  <div class="gal-controls">
+    <input id="gq" class="gal-search" type="search" autocomplete="off" spellcheck="false" placeholder="Search chart gallery">
+    <select id="gtrend" class="gal-select" aria-label="Trend"></select>
+    <select id="gtheme" class="gal-select" aria-label="Theme"></select>
+    <select id="gsort" class="gal-select" aria-label="Sort"></select>
+    <button class="theme-back" id="gclear" type="button">Clear</button>
+  </div>
+  <div class="gal-count" id="gcount"></div>
+  <div class="gal-grid" id="ggrid"></div>
 </section>
 
 <section class="dashboard-section" data-views="companies" aria-labelledby="companies-title">
@@ -234,6 +247,6 @@
 
 <script src="/static/quotes.js?v=5" defer></script>
 <script src="/static/asme-certified.js?v=5" defer></script>
-<script src="/static/app.js?v=21" defer></script>
+<script src="/static/app.js?v=22" defer></script>
 </body>
 </html>

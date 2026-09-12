@@ -22,3 +22,8 @@ automation/data/weekly.log
 # (%LOCALAPPDATA%\ms-playwright on Windows), so only node_modules itself
 # needs excluding here.
 automation/node_modules/
+
+# Chart gallery: the raw NSE/BSE daily bhavcopy cache update_charts.py builds
+# from. Rebuildable from the exchanges in about a minute, and kept between
+# GitHub Action runs by actions/cache -- chart_data/ is what gets committed.
+backend/.bhav_cache/

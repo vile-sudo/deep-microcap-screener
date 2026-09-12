@@ -115,3 +115,22 @@ session), then re-seed.
 
 See **DEPLOYMENT.md** for step-by-step instructions for Render, Railway,
 Fly.io, and a plain VPS.
+
+## Chart Gallery (automated)
+
+The **Chart Gallery** page shows a daily candlestick chart — 50/200-day
+averages, volume, 52-week high — for every company on the board.
+
+- **Data:** the NSE and BSE end-of-day bhavcopy files, which cover SME
+  listings too. `backend/scripts/update_charts.py` keeps a one-year cache of
+  them, rebuilds every company's candles (back-adjusted for splits and
+  bonuses) and writes `backend/chart_data/`.
+- **Automation:** `.github/workflows/charts.yml` runs it every weekday
+  evening after the exchanges publish, and on every push that changes
+  `backend/data/companies_raw.json` — so a company added to the board gets
+  its chart without anyone doing anything. It commits the result and
+  triggers the Render deploy hook.
+- **In between runs:** `GET /api/charts/{code}` fetches a newly added company
+  live (Yahoo Finance) until the next run replaces it with exchange data.
+- **Run it by hand:** `cd backend && python scripts/update_charts.py`, or
+  *Actions → Chart gallery update → Run workflow* on GitHub.

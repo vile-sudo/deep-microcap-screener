@@ -10,7 +10,7 @@ from fastapi.responses import FileResponse
 from .auth import BasicAuthMiddleware
 from .config import get_settings
 from .database import Base, engine
-from .routers import companies, meta
+from .routers import charts, companies, meta
 
 settings = get_settings()
 
@@ -48,6 +48,7 @@ if settings.auth_username:
 
 app.include_router(companies.router)
 app.include_router(meta.router)
+app.include_router(charts.router)
 
 
 @app.get("/healthz", tags=["ops"])

@@ -1,0 +1,86 @@
+name: Chart gallery update
+
+# Keeps the Chart gallery current with no one touching it:
+#   * every weekday evening, after NSE and BSE publish the day's bhavcopy
+#     (~18:00-19:00 IST), so every chart gains the day's candle;
+#   * whenever the board's company list changes, so a company added to the
+#     board gets its chart (with a full year of history) within minutes.
+# Commits by this workflow use GITHUB_TOKEN, which never re-triggers
+# workflows, so the push trigger cannot loop.
+
+permissions:
+  contents: write
+
+on:
+  schedule:
+    - cron: '0 14 * * 1-5'     # 19:30 IST, Mon-Fri
+    - cron: '30 17 * * 1-5'    # 23:00 IST retry, for days the exchanges publish late
+  push:
+    branches: [main]
+    paths:
+      - backend/data/companies_raw.json
+  workflow_dispatch:
+
+concurrency:
+  group: chart-gallery
+  cancel-in-progress: false
+
+jobs:
+  update-charts:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: pip install requests
+
+      # The last year of daily exchange files. A cache hit means only the
+      # newest day is downloaded; a miss rebuilds the year in about a minute.
+      - name: Restore bhavcopy cache
+        uses: actions/cache@v4
+        with:
+          path: backend/.bhav_cache
+          key: bhav-${{ github.run_id }}
+          restore-keys: bhav-
+
+      - name: Build charts
+        working-directory: ./backend
+        run: python scripts/update_charts.py
+
+      - name: Commit chart data
+        id: commit
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add backend/chart_data
+          if git diff --cached --quiet; then
+            echo "No chart changes"
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          git commit -m "Chart gallery update"
+          # the daily screener run may have pushed in the meantime
+          for i in 1 2 3; do
+            git pull --rebase origin ${{ github.ref_name }} && git push origin HEAD:${{ github.ref_name }} && break
+            sleep 5
+          done
+          echo "changed=true" >> "$GITHUB_OUTPUT"
+
+      - name: Trigger Render deploy
+        if: ${{ steps.commit.outputs.changed == 'true' }}
+        env:
+          RENDER_DEPLOY_HOOK: ${{ secrets.RENDER_DEPLOY_HOOK }}
+        run: |
+          if [ -z "$RENDER_DEPLOY_HOOK" ]; then
+            echo "RENDER_DEPLOY_HOOK secret not set; skipping deploy"
+            exit 0
+          fi
+          curl -fsSL --retry 3 --retry-delay 5 -X POST "$RENDER_DEPLOY_HOOK" > /dev/null
+          echo "Render deploy triggered"
