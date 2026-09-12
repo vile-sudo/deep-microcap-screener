@@ -1215,7 +1215,6 @@ document.getElementById('tiles').onclick=e=>{
   syncTgButtons(); render();
   if(!same) document.getElementById('results-head').scrollIntoView({behavior:'smooth',block:'start'});
 };
-document.getElementById('history-link').onclick=e=>{ e.preventDefault(); document.getElementById('whatsnew').onclick(); };
 addEventListener('keydown',e=>{
   if(e.key==='Escape' && modal.classList.contains('on')){ closeModal(); return; }
   const ae=document.activeElement||{};
