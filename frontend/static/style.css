@@ -70,6 +70,18 @@ body{
 .file-symbol{display:grid;place-items:center;flex:0 0 28px;width:28px;height:28px;border-radius:7px;background:#173d47;color:#70dce5;font-size:12px;font-weight:700}
 .file-copy{min-width:0;flex:1}.file-copy b,.file-copy small{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.file-copy b{font-size:12px}.file-copy small{margin-top:2px;color:var(--muted);font-size:10px}.file-arrow{color:#6b9aa6;font-size:20px}
 .theme-empty{display:flex;align-items:center;gap:10px;padding:14px 17px;color:var(--muted);font-size:11px}.theme-empty b{color:var(--ink);font-size:12px}.theme-empty span{border-left:1px solid var(--grid);padding-left:10px}
+.theme-back{border:0;background:none;color:#72d6df;padding:0;font:inherit;font-size:11px;cursor:pointer;white-space:nowrap}.theme-back:hover{text-decoration:underline}
+body.theme-focus .overview-section,
+body.theme-focus #filters,
+body.theme-focus .research-filter-section,
+body.theme-focus #wl,
+body.theme-focus #research,
+body.theme-focus #count,
+body.theme-focus .method,
+body.theme-focus .disc{display:none}
+body.theme-focus .theme-panel{display:none}
+body.theme-focus .market-section{margin-top:18px}
+body.theme-focus .theme-results{margin-top:0}
 .filter-panel .toggles{margin:0;padding:0;border:0;gap:9px}
 .filter-panel .btn{background:#0d1a23;border-color:#233b4a;padding:9px 13px}
 .filter-panel .btn.on{background:#19404a;border-color:#65c6d5;color:#f2fbff}

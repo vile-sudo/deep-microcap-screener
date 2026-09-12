@@ -183,6 +183,7 @@ THEMES.forEach(t=>{
     if(activeThemes.has(t)&&activeThemes.size===THEMES.length){activeThemes=new Set([t]);}
     else if(activeThemes.has(t)){activeThemes.delete(t); if(!activeThemes.size)activeThemes=new Set(THEMES);}
     else activeThemes.add(t);
+    if(activeThemes.size===1) document.body.classList.add('theme-focus');
     syncChips(); render();
   };
   themeBox.appendChild(b);
@@ -195,13 +196,14 @@ function renderThemeResults(){
   if(!box) return;
   const selected=[...activeThemes];
   if(selected.length!==1){
-    box.innerHTML='<div class="theme-empty"><b>Choose one theme folder</b><span>Select Defence, Textiles, Healthcare, or another theme above to open its screened companies.</span></div>';
+    box.innerHTML='';
     return;
   }
   const theme=selected[0];
   const names=DATA.filter(d=>base(d)===theme).sort((a,b)=>String(a.name||'').localeCompare(String(b.name||'')));
-  box.innerHTML=`<div class="theme-results-head"><div><span class="eyebrow">OPEN THEME</span><h3>${esc(shortT(theme))}</h3><p>${names.length} screened compan${names.length===1?'y':'ies'} in this theme</p></div><span class="folder-count">${names.length} names</span></div>
+  box.innerHTML=`<div class="theme-results-head"><button class="theme-back" id="theme-back">← All themes</button><div><span class="eyebrow">COMPANIES IN THEME</span><h3>${esc(shortT(theme))}</h3><p>${names.length} screened compan${names.length===1?'y':'ies'}</p></div><span class="folder-count">${names.length} names</span></div>
     <div class="company-files">${names.map(d=>`<button class="company-file" data-theme-company="${esc(d.code)}"><span class="file-symbol">${esc((d.name||'?').slice(0,1).toUpperCase())}</span><span class="file-copy"><b>${esc(d.name||'Unnamed company')}</b><small>${esc(d.code||'')} · Score ${fmt(d.final_score,1)}</small></span><span class="file-arrow">›</span></button>`).join('')}</div>`;
+  box.querySelector('#theme-back').onclick=()=>{document.body.classList.remove('theme-focus');activeThemes=new Set(THEMES);syncChips();render();};
   box.querySelectorAll('[data-theme-company]').forEach(b=>b.onclick=()=>{const d=DATA.find(row=>String(row.code)===b.dataset.themeCompany); if(d) openDrawer(d);});
 }
 
