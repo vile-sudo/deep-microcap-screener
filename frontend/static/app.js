@@ -58,7 +58,13 @@ const QFIELDS=['name','code','nse_code','bse_code','theme','sector','industry','
 DATA.forEach(d=>{
   d._q = (QFIELDS.map(k=>d[k]||'').join(' ') + ' ' + (d.warnings||[]).join(' ')
           + ' ' + SCREENS_LABEL(d.screen)).toLowerCase();
+  /* name and tickers only: a company search should land on that company, not on
+     every write-up that happens to mention it */
+  d._n = [d.name,d.code,d.nse_code,d.bse_code].filter(Boolean).join(' ').toLowerCase();
 });
+/* true when the search matches a company name or ticker; only when nothing does
+   is the search widened to the research text, and the hit line says so */
+let NAMEHIT = false;
 function SCREENS_LABEL(s){return {'v3-deep':'v3 deep','v3-screen':'v3 screen','v4-moat':'v4 moat monopoly',
   'v4-triage':'triage','v5-new':'v5 new sweep','v6-new':'v6 new sectors','v7-new':'v7 depth expansion','user':'requested added on request','deep-sweep':'Deep Sweep'}[s]||'';}
 const SERIES = ['--s1','--s2','--s3','--s4','--s5','--s6'];
@@ -92,8 +98,8 @@ const esc = s => String(s==null?'':s).replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt
   const n = k => DATA.filter(d=>d[k]).length;
   const pending = DATA.filter(d=>!d.has_lens_data).length;
   const t = [
-    [String(DATA.length),'Companies on the board','89 v3 · 58 v4 · 11 triage · 144 from three 2026 sweeps · 8 requested',null,'reset'],
-    ['18','Themes covered','Every one now has real depth — the thinnest holds 5 names, the largest 64',"var(--s6)"],
+    [String(DATA.length),'Companies on the board','89 v3 · 58 v4 · 11 triage · 144 from three 2026 sweeps · 8 requested',null,'all'],
+    [String(THEMES.length),'Themes covered','Every one now has real depth — the thinnest holds 5 names, the largest 64',"var(--s6)",'themes'],
     [String(n('capex_overhang')),'&#9873; High P/E + heavy CWIP','P/E &gt; 40 and CWIP &#8805; 15% of net block',"var(--crit)",'overhang'],
     [String(n('guidance_over15')),'&#9650; Management guides &gt; 15%','A further '+(n('guidance_flag')-n('guidance_over15'))+' made an unquantified forward statement',"var(--good-ink)",'guide15'],
     [String(n('pat_turnaround')),'&#8635; PAT turned positive','Latest period profitable after a loss in the prior three',"var(--s1)",'turn'],
@@ -103,13 +109,14 @@ const esc = s => String(s==null?'':s).replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt
      quickest route to the names behind it. */
   document.getElementById('tiles').innerHTML = t.map(([v,k,nn,c,tg])=>{
     const tag = tg ? 'button' : 'div';
-    const at  = tg ? ` class="tile" data-tile="${tg}" title="${tg==='reset'?'Clear every filter and show the whole board':'Filter the board down to these names'}"` : ' class="tile"';
+    const tip = tg==='all' ? 'Show every company on the board' : tg==='themes' ? 'Open the theme folders' : 'Show only these companies';
+    const at  = tg ? ` type="button" class="tile" data-tile="${tg}" title="${tip}"` : ' class="tile"';
     /* A bare count leaves the reader doing arithmetic against 310. The share bar puts
        the denominator back without spending a second number on it. The first tile IS
        the denominator, and the themes tile counts themes rather than companies, so
        neither gets one. */
     const num = Number(String(v).replace(/[^0-9.]/g,''));
-    const share = (tg && tg!=='reset' && isFinite(num) && DATA.length) ? (num/DATA.length)*100 : null;
+    const share = (tg && tg!=='all' && tg!=='themes' && isFinite(num) && DATA.length) ? (num/DATA.length)*100 : null;
     const bar = share===null ? '' : `<div class="tbar" title="${num} of ${DATA.length} companies — ${share.toFixed(share<1?1:0)}%"><i style="width:${Math.max(share,1.2).toFixed(1)}%;background:${c||'var(--ink2)'}"></i></div>`;
     return `<${tag}${at}><div class="v"${c?` style="color:${c}"`:''}>${v}</div><div class="k">${k}</div>${bar}<div class="n">${nn}</div></${tag}>`;
   }).join('');
@@ -173,56 +180,86 @@ let BUSY = false;
 let QUERY = '', QTERMS = [], NEWSINCE = null;
 let activeThemes = new Set(THEMES);
 let sortKey='final_score', sortDir=-1;
-/* ---------- filter chips ---------- */
+
+/* ---------- pages ----------
+   The board is one page at a time, following the sidebar:
+     overview  - the stat tiles; a tile shows only the companies behind it
+     themes    - the theme folders; a folder shows only that theme's companies
+     companies - the search box; a search shows only the companies it names
+     filters   - the screen filters; a filter shows only the companies it matches
+     method    - how the scores work
+   Moving to another page clears whatever was picked on the last one, so a theme
+   chosen on Themes never quietly narrows what Screen filters shows. */
+const VIEWS=['overview','themes','watchlist','companies','filters','method'];
+const NAV={'overview-link':'overview','themes-link':'themes','market-link':'themes','watchlist-link':'watchlist',
+           'companies-link':'companies','filters-link':'filters','method-link':'method'};
+const LENSES=['overhang','heavycap','guide15','guideany','turn','haslens','ipo'];
+const TILE_LABEL={all:'Companies on the board',overhang:'High P/E + heavy CWIP',guide15:'Management guides > 15%',
+                  turn:'PAT turned positive',nolens:'Awaiting the capex pass'};
+let VIEW='overview', NAVID='overview-link', TILE=null;
+
+function setView(v, opts){
+  opts=opts||{};
+  VIEW = VIEWS.includes(v) ? v : 'overview';
+  NAVID = opts.nav || VIEW+'-link';
+  if(!opts.keep) clearFilters();
+  document.body.dataset.view=VIEW;
+  document.querySelectorAll('[data-views]').forEach(el=>{ el.hidden=!el.dataset.views.split(' ').includes(VIEW); });
+  document.querySelectorAll('.side-link').forEach(l=>l.classList.toggle('active', l.id===NAVID));
+  if(!opts.keep) window.scrollTo({top:0,behavior:'smooth'});
+  render();
+}
+Object.keys(NAV).forEach(id=>{
+  const link=document.getElementById(id);
+  if(link) link.onclick=e=>{ e.preventDefault(); setView(NAV[id],{nav:id}); };
+});
+
+/* Does the current page have a picked set of companies to list? */
+function sliderMoved(){ return SL.some(s=>s.inv ? s.v<s.max : s.v>s.min); }
+function showResults(){
+  if(VIEW==='overview')  return TILE!==null;
+  if(VIEW==='companies') return QTERMS.length>0 || !!NEWSINCE;
+  if(VIEW==='filters')   return LENSES.some(k=>TG[k]) || sliderMoved();
+  return false;
+}
+
+/* ---------- theme folders ---------- */
 const themeBox = document.getElementById('themes');
-const overviewNav=document.getElementById('overview-link');
-const marketNav=['themes-link','market-link'].map(id=>document.getElementById(id)).filter(Boolean);
-const sectionNav=['themes-link','market-link','signals-link','companies-link','filters-link'].map(id=>document.getElementById(id)).filter(Boolean);
-const researchNav=['signals-link','filters-link'];
-overviewNav.onclick=e=>{
-  e.preventDefault();
-  document.body.className='overview-focus';
-  window.scrollTo({top:0,behavior:'smooth'});
-};
-marketNav.forEach(link=>link.onclick=e=>{
-  e.preventDefault();
-  document.body.className='market-focus';
-  window.scrollTo({top:0,behavior:'smooth'});
-});
-researchNav.map(id=>typeof id==='string'?document.getElementById(id):id).filter(Boolean).forEach(link=>link.onclick=e=>{
-  e.preventDefault();
-  document.body.className='research-focus';
-  window.scrollTo({top:0,behavior:'smooth'});
-});
-sectionNav.filter(link=>!marketNav.includes(link)&&!researchNav.includes(link)).forEach(link=>link.onclick=()=>document.body.className='');
 THEMES.forEach(t=>{
   const b=document.createElement('button');
-  b.type='button'; b.className='chip on'; b.dataset.t=t;
-  b.innerHTML=`<span class="mk"></span>${shortT(t)}`;
+  b.type='button'; b.className='chip'; b.dataset.t=t;
+  const n=DATA.filter(d=>base(d)===t).length;
+  b.innerHTML=`<span class="mk"></span>${shortT(t)} <span class="tc">${n}</span>`;
   b.onclick=()=>{
     activeThemes=new Set([t]);
-    document.body.className='theme-focus';
     syncChips(); render();
+    window.scrollTo({top:0,behavior:'smooth'});
   };
   themeBox.appendChild(b);
 });
 function syncChips(){
-  [...themeBox.children].forEach(c=>c.classList.toggle('on', activeThemes.has(c.dataset.t)));
+  const one=activeThemes.size===1;
+  [...themeBox.children].forEach(c=>c.classList.toggle('on', one && activeThemes.has(c.dataset.t)));
 }
 function renderThemeResults(){
   const box=document.getElementById('theme-results');
   if(!box) return;
-  const selected=[...activeThemes];
-  if(selected.length!==1){
-    box.innerHTML='';
-    return;
-  }
-  const theme=selected[0];
+  const theme = (VIEW==='themes' && activeThemes.size===1) ? [...activeThemes][0] : null;
+  /* a picked theme replaces the folder list: only that theme's companies are on screen */
+  document.getElementById('theme-panel').hidden = !!theme;
+  document.getElementById('theme-heading').hidden = !!theme;
+  box.hidden = !theme;
+  if(!theme){ box.innerHTML=''; return; }
   const names=DATA.filter(d=>base(d)===theme).sort((a,b)=>String(a.name||'').localeCompare(String(b.name||'')));
   box.innerHTML=`<div class="theme-results-head"><button class="theme-back" id="theme-back">← All themes</button><div><span class="eyebrow">COMPANIES IN THEME</span><h3>${esc(shortT(theme))}</h3><p>${names.length} screened compan${names.length===1?'y':'ies'}</p></div><span class="folder-count">${names.length} names</span></div>
-    <div class="company-files">${names.map(d=>`<button class="company-file" data-theme-company="${esc(d.code)}"><span class="file-symbol">${esc((d.name||'?').slice(0,1).toUpperCase())}</span><span class="file-copy"><b>${esc(d.name||'Unnamed company')}</b><small>${esc(d.code||'')} · Score ${fmt(d.final_score,1)}</small></span><span class="file-arrow">›</span></button>`).join('')}</div>`;
-  box.querySelector('#theme-back').onclick=()=>{document.body.className='market-focus';activeThemes=new Set(THEMES);syncChips();render();};
-  box.querySelectorAll('[data-theme-company]').forEach(b=>b.onclick=()=>{const d=DATA.find(row=>String(row.code)===b.dataset.themeCompany); if(d) openDrawer(d);});
+    <div class="company-files">${names.map(d=>`<button class="company-file" data-theme-company="${esc(d.code)}"><span class="file-symbol">${esc((d.name||'?').slice(0,1).toUpperCase())}</span><span class="file-copy"><b>${esc(d.name||'Unnamed company')}</b><small>${esc(d.code||'')} · Score ${fmt(d.final_score,1)}</small></span><span class="file-pin${WATCH.has(d.code)?' on':''}" data-file-pin="${esc(d.code)}" role="button" title="${WATCH.has(d.code)?'Remove from':'Add to'} watchlist" aria-label="Star ${esc(d.name)}">${WATCH.has(d.code)?'★':'☆'}</span><span class="file-arrow">›</span></button>`).join('')}</div>`;
+  box.querySelector('#theme-back').onclick=()=>{ activeThemes=new Set(THEMES); syncChips(); render(); };
+  /* the drawer's prev/next walks CURRENT, so point it at this theme's list */
+  box.querySelectorAll('[data-file-pin]').forEach(s=>s.onclick=e=>{ e.stopPropagation(); togglePin(s.dataset.filePin); });
+  box.querySelectorAll('[data-theme-company]').forEach(b=>b.onclick=()=>{
+    const d=names.find(row=>String(row.code)===b.dataset.themeCompany);
+    if(d){ CURRENT=names; openDrawer(d); }
+  });
 }
 
 /* ---------- sliders ---------- */
@@ -237,11 +274,18 @@ SL.forEach((s,i)=>{
     const atEnd = s.inv ? (s.v>=s.max) : (s.v<=s.min);
     out.textContent = atEnd ? 'any' : (s.pre||'')+(s.step<1?s.v.toFixed(2):Math.round(s.v).toLocaleString('en-IN'))+s.unit;
   };
-  inp.oninput=()=>{document.body.classList.add('research-results');upd();render();}; upd();
+  inp.oninput=()=>{upd();render();}; upd();
 });
 
+/* Screen filters are one at a time: clicking a filter shows only its companies,
+   clicking another switches to that one, clicking the same one again clears it. */
 document.querySelectorAll('[data-tg]').forEach(b=>{
-  b.onclick=()=>{ document.body.classList.add('research-results'); TG[b.dataset.tg]=!TG[b.dataset.tg]; b.classList.toggle('on',TG[b.dataset.tg]); render(); };
+  b.onclick=()=>{
+    const k=b.dataset.tg, on=!TG[k];
+    if(LENSES.includes(k)) LENSES.forEach(x=>TG[x]=false);
+    TG[k]=on;
+    syncTgButtons(); render();
+  };
 });
 /* ---------- search ---------- */
 const qIn=document.getElementById('q'), qWrap=document.getElementById('swrap');
@@ -294,7 +338,7 @@ document.getElementById('whatsnew').onclick=()=>{
 function pass(d){
   if(TG.watch && !WATCH.has(d.code)) return false;
   if(TG.nolens && d.has_lens_data) return false;
-  if(QTERMS.length && !QTERMS.every(w=>d._q.includes(w))) return false;
+  if(QTERMS.length){ const hay=NAMEHIT?d._n:d._q; if(!QTERMS.every(w=>hay.includes(w))) return false; }
   if(NEWSINCE && d.added_on!==NEWSINCE) return false;
   if(!activeThemes.has(base(d))) return false;
   for(const s of SL){
@@ -382,11 +426,38 @@ function buildHead(){
 const SORTF = Object.fromEntries(COLS.filter(c=>c.sortf).map(c=>[c.k,c.sortf]));
 
 let CURRENT=[], CUR=-1, DRAWERI=-1;
+/* The table, its header and the count line belong to whichever page picked the
+   companies; until something is picked the page shows a one-line hint instead. */
+const HINT={overview:'Click a tile above to see the companies behind that number.',
+            companies:'Type a company name or ticker above — only the companies it names will be shown.',
+            filters:'Click a filter above to see only the companies that match it.'};
+function renderResultsFrame(){
+  const show=showResults();
+  const head=document.getElementById('results-head'), cnt=document.getElementById('count');
+  document.getElementById('research').hidden=!show;
+  cnt.hidden = !(show || HINT[VIEW]);
+  cnt.classList.toggle('view-hint', !show);
+  if(!show) cnt.textContent = HINT[VIEW] || '';
+  let label='';
+  if(show && VIEW==='overview') label = TILE_LABEL[TILE] || '';
+  if(show && VIEW==='filters'){
+    const on=LENSES.find(k=>TG[k]);
+    const b=on && document.querySelector(`.filter-panel [data-tg="${on}"]`);
+    label = b ? b.textContent.trim() : 'Numeric filters';
+  }
+  head.hidden = !label;
+  if(label){
+    head.innerHTML=`<div><b>${esc(label)}</b><small>Only the companies that match are listed below</small></div><button class="theme-back" id="results-clear" type="button">✕ Clear</button>`;
+    head.querySelector('#results-clear').onclick=()=>{ clearFilters(); render(); };
+  }
+}
 function render(){
   if(BUSY) return;                       /* batched updates render once, at the end */
   renderThemeResults();
+  renderResultsFrame();
   buildHead();
   const cols=VIS();
+  NAMEHIT = QTERMS.length>0 && DATA.some(d=>QTERMS.every(w=>d._n.includes(w)));
   const rows=DATA.filter(pass).sort((a,b)=>{
     const g=SORTF[sortKey];
     let x = g? g(a) : a[sortKey], y = g? g(b) : b[sortKey];
@@ -406,8 +477,11 @@ function render(){
     : QUERY ? `Nothing matches <b>“${esc(QUERY)}”</b> with the current filters. Try a single word, or clear the filters.`
     : 'No company matches these filters — loosen one of the sliders or turn a toggle off.'}</td></tr>`;
   document.getElementById('hits').innerHTML = QUERY
-    ? `<b>${rows.length}</b> match${rows.length===1?'':'es'} for “${esc(QUERY)}”`
+    ? (NAMEHIT || !rows.length
+        ? `<b>${rows.length}</b> compan${rows.length===1?'y':'ies'} named “${esc(QUERY)}”`
+        : `No company named “${esc(QUERY)}” — <b>${rows.length}</b> mention${rows.length===1?'s':''} it in their research`)
     : (NEWSINCE?`<b>${rows.length}</b> added in this build`:`${DATA.length} companies · <b>/</b> to search · <b>?</b> for shortcuts`);
+  if(!showResults()){ CURRENT=rows; renderWatchlist(); syncURL(); return; }
   /* one reflow for the whole table instead of one per row */
   const frag=document.createDocumentFragment();
   rows.forEach((d,i)=>{
@@ -609,7 +683,7 @@ function togglePin(code){
 }
 function syncTgButtons(){
   document.querySelectorAll('[data-tg]').forEach(b=>b.classList.toggle('on', !!TG[b.dataset.tg]));
-  document.querySelectorAll('[data-tile]').forEach(b=>b.classList.toggle('on', !!TG[b.dataset.tile]));
+  document.querySelectorAll('[data-tile]').forEach(b=>b.classList.toggle('on', b.dataset.tile===TILE));
 }
 /* ---------- my watchlist ----------
    A shelf above the board for the names you pinned, so returning to them is a
@@ -619,38 +693,31 @@ function syncTgButtons(){
    The pins are localStorage, which means per-browser and per-device. That is the
    one real limit, so the section says so and hands you a link that carries the
    list to another machine. */
-let WLOPEN = true;
-try{ WLOPEN = localStorage.getItem('dms.wlopen') !== '0'; }catch(e){}
 let WLARM = 0;   /* Clear is two-step: a stray click must not take the whole list */
 
 function renderWatchlist(){
   const box=document.getElementById('wl');
   const codes=[...WATCH];
-  document.getElementById('wcount').textContent = codes.length ? '· '+codes.length : '';
-  document.getElementById('watchbtn').disabled = !codes.length && !TG.watch;
+  document.getElementById('wcount').textContent = codes.length || '';
 
   if(!codes.length){
     WLARM=0;
-    box.innerHTML = `<p class="wlhint"><b>My watchlist</b> — nothing pinned yet. `
-      + `Click the ☆ beside any company, in the table or on its card, to keep it here.</p>`;
+    box.innerHTML = `<p class="wlhint"><b>No starred companies yet.</b> `
+      + `Click the ☆ beside any company — in Overview, Themes, Companies or Screen filters, or on its scorecard — and it will show up here.</p>`;
     return;
   }
 
   const byCode={}; DATA.forEach(d=>{ byCode[d.code]=d; });
   const head=`<div class="wlhead">
-      <button class="wlcar" id="wlcar" aria-expanded="${WLOPEN}" title="${WLOPEN?'Collapse':'Expand'} the watchlist">${WLOPEN?'▼':'►'}</button>
       <h2>My watchlist <span class="tc">${codes.length} ${codes.length===1?'company':'companies'}</span></h2>
       <div class="wlacts">
-        <button class="btn${TG.watch?' on':''}" id="wlonly" title="Filter the board below to these names">Show only these</button>
         <button class="btn" id="wlcmp" title="Put them side by side (c)">Compare ${codes.length}</button>
         <button class="btn" id="wllink" title="Copies a link that carries this watchlist — open it on another device to get the same pins">&#128279; Copy watchlist link</button>
         <button class="btn" id="wlclr">${WLARM?'Click again to clear':'Clear'}</button>
       </div>
     </div>`;
 
-  let body='';
-  if(WLOPEN){
-    body = `<div class="wltab"><table>
+  const body = `<div class="wltab"><table>
       <thead><tr><th></th><th>Company</th><th>Theme</th><th>Score</th><th>M-cap ₹cr</th><th>P/E</th><th>ROCE %</th><th class="sig">Signals</th></tr></thead>
       <tbody>` + codes.map(c=>{
         const d=byCode[c];
@@ -668,15 +735,8 @@ function renderWatchlist(){
         </tr>`;
       }).join('')
       + `</tbody></table></div>`;
-  }
   box.innerHTML = head + body;
 
-  document.getElementById('wlcar').onclick=()=>{
-    WLOPEN=!WLOPEN;
-    try{ localStorage.setItem('dms.wlopen', WLOPEN?'1':'0'); }catch(e){}
-    renderWatchlist();
-  };
-  document.getElementById('wlonly').onclick=()=>{ TG.watch=!TG.watch; syncTgButtons(); render(); };
   document.getElementById('wlcmp').onclick=openCompare;
   document.getElementById('wllink').onclick=async ()=>{
     const url=location.origin+location.pathname+location.search+'#w='+codes.join(',');
@@ -701,7 +761,8 @@ function renderWatchlist(){
   });
   box.querySelectorAll('[data-wl]').forEach(tr=>{
     tr.style.cursor='pointer';
-    tr.onclick=()=>{ const d=byCode[tr.dataset.wl]; if(d) openDrawer(d); };
+    /* the scorecard's prev/next walks CURRENT, so point it at the watchlist */
+    tr.onclick=()=>{ const d=byCode[tr.dataset.wl]; if(d){ CURRENT=codes.map(c=>byCode[c]).filter(Boolean); openDrawer(d); } };
   });
 }
 /* ---------- side-by-side comparison ----------
@@ -770,24 +831,29 @@ document.getElementById('whatsnew').onclick=()=>{
     + `</ul>`);
 };
 
-/* ---------- reset: now clears the search, tiers and the NEW pill too ---------- */
-document.getElementById('reset').onclick=()=>{
-  BUSY=true;
+/* ---------- reset: clears the search, tiles, filters, sliders and the NEW pill ---------- */
+function clearFilters(){
+  const wasBusy=BUSY; BUSY=true;
   SL.forEach((s,i)=>{ s.v = s.inv? s.max : s.min; const el=document.getElementById('si'+i); el.value=s.v; el.dispatchEvent(new Event('input')); });
   Object.keys(TG).forEach(k=>TG[k]=false);
+  TILE=null;
   activeThemes=new Set(THEMES); syncChips();
   NEWSINCE=null; const nb=document.querySelector('[data-new]'); if(nb) nb.style.borderStyle='dashed';
   sortKey='final_score'; sortDir=-1;
+  qIn.value=''; QUERY=''; QTERMS=[]; qWrap.classList.remove('has');
+  CUR=-1;
   syncTgButtons();
-  BUSY=false;
-  setQuery('');
-};
+  BUSY=wasBusy;
+}
+document.getElementById('reset').onclick=()=>{ clearFilters(); render(); };
 
 /* ---------- shareable view state ----------
    Every choice a reader makes goes into the URL fragment, so a filtered view can
    be sent to someone else (or bookmarked) and reopened exactly as it was. */
 function syncURL(){
   const p=new URLSearchParams();
+  if(VIEW!=='overview') p.set('v',VIEW);
+  if(TILE) p.set('tile',TILE);
   if(QUERY) p.set('q',QUERY);
   if(NEWSINCE) p.set('new',NEWSINCE);
   if(activeThemes.size<THEMES.length) p.set('t',[...activeThemes].map(t=>THEMES.indexOf(t)).join(','));
@@ -804,6 +870,8 @@ function applyState(){
   const raw=location.hash.replace(/^#/,''); if(!raw) return;
   const p=new URLSearchParams(raw);
   const get=k=>p.get(k);
+  if(VIEWS.includes(get('v'))) VIEW=get('v');
+  if(get('tile') && (get('tile') in TILE_LABEL)) TILE=get('tile');
   if(get('w')) get('w').split(',').filter(Boolean).forEach(c=>WATCH.add(c));
   if(get('t')){ const v=get('t').split(',').map(n=>THEMES[+n]).filter(Boolean); if(v.length) activeThemes=new Set(v); }
   if(get('tg')) get('tg').split(',').forEach(k=>{ if(k in TG) TG[k]=true; });
@@ -1135,11 +1203,19 @@ function showKeys(){
     <p class="sub" style="margin-top:20px">Elsewhere on the page: the stat tiles at the top are buttons — clicking one filters the board to the names behind that number. So are the bars in <b>Score distribution by theme</b>. Every point on both scatter plots opens its company.</p>`);
 }
 document.getElementById('keys').onclick=showKeys;
+/* A tile shows only the companies behind its number, right under the tiles.
+   The themes tile opens the Themes page; clicking the open tile again closes it. */
 document.getElementById('tiles').onclick=e=>{
   const b=e.target.closest('[data-tile]'); if(!b) return;
-  if(b.dataset.tile==='reset'){ document.getElementById('reset').click(); return; }
-  TG[b.dataset.tile]=!TG[b.dataset.tile]; syncTgButtons(); render();
+  const t=b.dataset.tile;
+  if(t==='themes'){ setView('themes'); return; }
+  const same = TILE===t;
+  clearFilters();
+  if(!same){ TILE=t; if(t!=='all') TG[t]=true; }
+  syncTgButtons(); render();
+  if(!same) document.getElementById('results-head').scrollIntoView({behavior:'smooth',block:'start'});
 };
+document.getElementById('history-link').onclick=e=>{ e.preventDefault(); document.getElementById('whatsnew').onclick(); };
 addEventListener('keydown',e=>{
   if(e.key==='Escape' && modal.classList.contains('on')){ closeModal(); return; }
   const ae=document.activeElement||{};
@@ -1170,7 +1246,7 @@ addEventListener('keydown',e=>{
 })();
 
 BUSY=true; buildColPop(); applyState(); BUSY=false;
-render();
+setView(VIEW,{keep:true});
 
 }
 

@@ -69,70 +69,21 @@ body{
 .company-file:hover{border-color:#62cbd5;background:#132a33}
 .file-symbol{display:grid;place-items:center;flex:0 0 28px;width:28px;height:28px;border-radius:7px;background:#173d47;color:#70dce5;font-size:12px;font-weight:700}
 .file-copy{min-width:0;flex:1}.file-copy b,.file-copy small{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.file-copy b{font-size:12px}.file-copy small{margin-top:2px;color:var(--muted);font-size:10px}.file-arrow{color:#6b9aa6;font-size:20px}
+.file-pin{flex:0 0 auto;padding:2px 4px;border-radius:5px;color:#6b9aa6;font-size:16px;line-height:1}
+.file-pin:hover{color:var(--s4);background:#173d47}.file-pin.on{color:var(--s4)}
+.side-count{margin-left:auto;min-width:20px;padding:1px 7px;border-radius:999px;background:#173d47;color:#70dce5;font-size:11px;text-align:center}
+.side-count:empty{display:none}
 .theme-empty{display:flex;align-items:center;gap:10px;padding:14px 17px;color:var(--muted);font-size:11px}.theme-empty b{color:var(--ink);font-size:12px}.theme-empty span{border-left:1px solid var(--grid);padding-left:10px}
 .theme-back{border:0;background:none;color:#72d6df;padding:0;font:inherit;font-size:11px;cursor:pointer;white-space:nowrap}.theme-back:hover{text-decoration:underline}
-body.theme-focus .overview-section,
-body.theme-focus #filters,
-body.theme-focus .research-filter-section,
-body.theme-focus #wl,
-body.theme-focus #research,
-body.theme-focus #count,
-body.theme-focus .method,
-body.theme-focus .disc{display:none}
-body.theme-focus .theme-panel{display:none}
-body.theme-focus .market-section .section-heading{display:none}
-body.theme-focus .market-section{margin-top:18px}
-body.theme-focus .theme-results{margin-top:0}
-body.theme-focus .side-nav,
-body.theme-focus .hero{display:none}
-body.theme-focus .dashboard-shell{display:block}
-body.theme-focus .dashboard-main{width:100%}
-body.theme-focus .wrap{max-width:none;padding:10px}
-body.overview-focus .market-section,
-body.overview-focus #filters,
-body.overview-focus .research-filter-section,
-body.overview-focus #wl,
-body.overview-focus #research,
-body.overview-focus #count,
-body.overview-focus .method,
-body.overview-focus .disc{display:none}
-body.overview-focus .overview-section{padding-top:6px}
-body.overview-focus .side-nav,
-body.overview-focus .hero{display:none}
-body.overview-focus .dashboard-shell{display:block}
-body.overview-focus .dashboard-main{width:100%}
-body.overview-focus .wrap{max-width:none;padding:10px}
-body.market-focus .overview-section,
-body.market-focus #filters,
-body.market-focus .research-filter-section,
-body.market-focus #wl,
-body.market-focus #research,
-body.market-focus #count,
-body.market-focus .method,
-body.market-focus .disc{display:none}
-body.market-focus .side-nav,
-body.market-focus .hero{display:none}
-body.market-focus .dashboard-shell{display:block}
-body.market-focus .dashboard-main{width:100%}
-body.market-focus .wrap{max-width:none;padding:10px}
-body.market-focus .market-section{margin-top:6px}
-body.research-focus .overview-section,
-body.research-focus .market-section,
-body.research-focus #filters,
-body.research-focus #wl,
-body.research-focus #research,
-body.research-focus #count,
-body.research-focus .method,
-body.research-focus .disc{display:none}
-body.research-focus .side-nav,
-body.research-focus .hero{display:none}
-body.research-focus .dashboard-shell{display:block}
-body.research-focus .dashboard-main{width:100%}
-body.research-focus .wrap{max-width:none;padding:10px}
-body.research-focus .research-filter-section{margin-top:6px}
-body.research-focus.research-results #research,
-body.research-focus.research-results #count{display:block}
-body.research-focus.research-results #research{margin-top:16px}
+/* one page at a time: app.js sets `hidden` on every [data-views] block that
+   does not belong to the current page, and on the results table until the
+   page has something to show */
+[hidden]{display:none!important}
+body:not([data-view="overview"]) .dashboard-main>.dashboard-section{margin-top:0}
+.results-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:18px 0 10px;padding:11px 15px;background:#0b171f;border:1px solid rgba(173,210,255,.11);border-radius:11px}
+.results-head b{color:var(--ink);font-size:14px}.results-head small{display:block;color:var(--muted);font-size:11px;margin-top:2px}
+.results-head .theme-back{font-size:12px}
+.view-hint{margin:14px 0 0;padding:14px 16px;border:1px dashed #213847;border-radius:11px;color:var(--muted);font-size:12.5px}
 .filter-panel .toggles{margin:0;padding:0;border:0;gap:9px}
 .filter-panel .btn{background:#0d1a23;border-color:#233b4a;padding:9px 13px}
 .filter-panel .btn.on{background:#19404a;border-color:#65c6d5;color:#f2fbff}
@@ -472,7 +423,6 @@ button.tile.on{border-color:var(--s1);box-shadow:inset 0 0 0 1px var(--s1)}
 button.tile .k::after{content:" \2192";opacity:0;transition:opacity .12s}
 button.tile:hover .k::after{opacity:.5}
 .method{margin-top:34px}
-.card.method{display:none}
 .method table{font-size:12.5px}
 .method td,.method th{text-align:left;padding:8px 12px 8px 0;white-space:normal}
 /* Caveats, collapsed by default: out of the way, but one click and one tab stop away

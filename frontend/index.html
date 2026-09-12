@@ -6,7 +6,7 @@
 <title>Deep Sweep</title>
 <meta name="description" content="Deep Sweep — a dark ocean-themed research board for microcap and quality-first names.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%94%8D%3C/text%3E%3C/svg%3E">
-<link rel="stylesheet" href="/static/style.css?v=18">
+<link rel="stylesheet" href="/static/style.css?v=20">
 </head>
 <body>
 <div class="wrap">
@@ -22,13 +22,13 @@
     <div class="side-label">MARKET</div>
     <button class="side-link" id="themes-link" type="button"><span class="side-icon">↗</span>Themes</button>
     <button class="side-link" id="market-link" type="button"><span class="side-icon">◒</span>Market view</button>
-    <button class="side-link" id="signals-link" type="button"><span class="side-icon">!</span>Signals</button>
+    <button class="side-link" id="watchlist-link" type="button"><span class="side-icon">★</span>Watchlist <span class="side-count" id="wcount"></span></button>
     <div class="side-label">RESEARCH</div>
     <button class="side-link" id="companies-link" type="button"><span class="side-icon">⌕</span>Companies</button>
     <button class="side-link" id="filters-link" type="button"><span class="side-icon">≡</span>Screen filters</button>
-    <a class="side-link" href="#changelog"><span class="side-icon">◷</span>Build history</a>
+    <button class="side-link" id="history-link" type="button"><span class="side-icon">◷</span>Build history</button>
     <div class="side-label">REFERENCE</div>
-    <a class="side-link" href="#methodology"><span class="side-icon">?</span>How it works</a>
+    <button class="side-link" id="method-link" type="button"><span class="side-icon">?</span>How it works</button>
   </nav>
   <div class="side-foot">
     <span class="status-dot"></span>
@@ -62,25 +62,27 @@
 </header>
 </div>
 
-<span id="overview" class="anchor-target"></span>
-<section class="overview-section" aria-labelledby="overview-title">
-  <div class="section-heading"><div><span class="eyebrow">START</span><h1 id="overview-title">Company overview</h1><p class="section-copy">A concise view of the screened companies currently on the board.</p></div></div>
+<section class="overview-section" data-views="overview" aria-labelledby="overview-title">
+  <div class="section-heading"><div><span class="eyebrow">START</span><h1 id="overview-title">Company overview</h1><p class="section-copy">A concise view of the screened companies currently on the board. Click a tile to see the companies behind it.</p></div></div>
   <div class="tiles" id="tiles"></div>
 </section>
 
-<span id="market" class="anchor-target"></span>
-<section class="dashboard-section market-section" aria-labelledby="market-title">
-  <div class="section-heading"><div><span class="eyebrow">MARKET</span><h2 id="market-title">Themes</h2><p class="section-copy">Choose a theme to show only the companies screened in that area.</p></div><span class="section-note">Click any theme to filter the company table</span></div>
-  <div class="theme-panel"><div class="tglab">THEME FOLDERS</div><div class="frow" id="themes"></div></div>
-  <div class="theme-results" id="theme-results" aria-live="polite"></div>
+<section class="dashboard-section market-section" data-views="themes" aria-labelledby="market-title">
+  <div class="section-heading" id="theme-heading"><div><span class="eyebrow">MARKET</span><h2 id="market-title">Themes</h2><p class="section-copy">Choose a theme to show only the companies screened in that area.</p></div><span class="section-note">Click any theme to open it</span></div>
+  <div class="theme-panel" id="theme-panel"><div class="tglab">THEME FOLDERS</div><div class="frow" id="themes"></div></div>
+  <div class="theme-results" id="theme-results" aria-live="polite" hidden></div>
 </section>
 
-<div class="card filters" id="filters">
+<section class="dashboard-section" data-views="companies" aria-labelledby="companies-title">
+  <div class="section-heading"><div><span class="eyebrow">RESEARCH</span><h2 id="companies-title">Companies</h2><p class="section-copy">Search a company name or ticker to show only that company.</p></div></div>
+</section>
+
+<div class="card filters" id="filters" data-views="companies">
   <div class="searchbar">
     <div class="searchwrap" id="swrap">
       <span class="ic">&#9906;</span>
       <input id="q" type="search" autocomplete="off" spellcheck="false"
-        placeholder="Search companies — name, ticker, or any word in the research: 'torpedo', 'CRGO', 'NABL', 'sole Indian', 'debunked'…">
+        placeholder="Search companies — type a company name or ticker…">
       <button class="clr" id="qclear" title="Clear search">&times;</button>
     </div>
     <span class="hits" id="hits"></span>
@@ -91,7 +93,6 @@
     <button class="btn" id="asmeBtn" title="ASME's own active certificate holders in India (caconnect.asme.org/directory), narrowed to the ones NSE or BSE's own listed-equity feeds confirm are actually listed. Separate from the board above — not cross-checked against it, not scored, and the moat rubric doesn't apply to any of these names.">&#9878; ASME Certified <span class="tc" id="asmeCount"></span></button>
   </div>
   <div class="toolbar">
-    <button class="btn" data-tg="watch" id="watchbtn" title="Show only the companies you have pinned">&#9733; Watchlist only <span class="tc" id="wcount"></span></button>
     <button class="btn" id="reset" title="Clear every filter, the search and the sort">Reset all</button>
     <div class="popwrap">
       <button class="btn" id="colbtn" title="Choose which columns the table shows">&#9638; Columns</button>
@@ -105,8 +106,8 @@
   </div>
 </div>
 
-<section class="dashboard-section research-filter-section" id="research-filters" aria-labelledby="research-filter-title">
-  <div class="section-heading"><div><span class="eyebrow">RESEARCH</span><h2 id="research-filter-title">Screen filters</h2><p class="section-copy">Apply evidence-based lenses and see the matching companies immediately.</p></div><span class="section-note">Filters map directly to the rows below</span></div>
+<section class="dashboard-section research-filter-section" id="research-filters" data-views="filters" aria-labelledby="research-filter-title">
+  <div class="section-heading"><div><span class="eyebrow">RESEARCH</span><h2 id="research-filter-title">Screen filters</h2><p class="section-copy">Click a filter to show only the companies that match it.</p></div><span class="section-note">One filter at a time · click again to clear</span></div>
   <div class="filter-panel">
     <div class="tglab">THE THREE NEW LENSES</div>
     <div class="toggles">
@@ -123,9 +124,13 @@
   </div>
 </section>
 
-<section class="card wl" id="wl" aria-label="My watchlist"></section>
+<section class="dashboard-section" data-views="watchlist" aria-labelledby="watchlist-title">
+  <div class="section-heading"><div><span class="eyebrow">MARKET</span><h2 id="watchlist-title">Watchlist</h2><p class="section-copy">Every company you starred. Click the ☆ beside any company to add it here, or × to remove it.</p></div></div>
+</section>
+<section class="card wl" id="wl" data-views="watchlist" aria-label="My watchlist"></section>
 
-<div class="card" id="research" style="padding:0;overflow:hidden">
+<div class="results-head" id="results-head" hidden></div>
+<div class="card" id="research" style="padding:0;overflow:hidden" hidden>
   <div class="tablewrap">
     <table id="tbl">
       <thead><tr id="thead"></tr></thead>
@@ -135,7 +140,7 @@
 </div>
 <p class="meta" id="count"></p>
 
-<div class="card method" id="methodology">
+<div class="card method" id="methodology" data-views="method">
   <h2>Research screens — reading a score</h2>
   <p class="sub" style="margin-bottom:16px">This board merges work from separate runs that asked different questions. Scores are comparable <i>within</i> a rubric and misleading <i>across</i> one. Every row carries its screen and, where it matters, a <span class="rub">v4</span> marker on the score.</p>
   <table id="screensTable">
@@ -162,7 +167,7 @@
   <p class="sub" style="margin-top:16px;margin-bottom:0"><b>The single most useful finding from the v4 run:</b> market share and pricing power are close to uncorrelated in this data. I G Petrochemicals holds ~50% of India's phthalic anhydride capacity on a 5–6% operating margin. Rajratan is ICRA-confirmed as the sole bead-wire supplier in Thailand and its margin fell from 19% to 13% while volumes grew 55%. Meanwhile Bhansali Engineering Polymers is not a monopoly at all and holds 15–19% margins through every raw-material cycle. Where share and pricing power <i>do</i> line up, it is usually a regulatory or qualification moat rather than a structural one.</p>
 </div>
 
-<div class="card method">
+<div class="card method" data-views="method">
   <h2>The three new columns, and exactly what they mean</h2>
   <table>
     <tr><th style="width:190px">Column</th><th>Definition and how to read it</th></tr>
@@ -175,7 +180,7 @@
   </table>
 </div>
 
-<div class="card method">
+<div class="card method" data-views="method">
   <h2>How the score is built</h2>
   <p class="sub" style="margin-bottom:16px">Every name must first clear four hard filters. Survivors are then scored out of 100 across six pillars. The displayed score is confidence-adjusted — a company with thin data cannot outrank one with a complete record.</p>
   <table>
@@ -202,19 +207,19 @@
   </table>
 </div>
 
-<div class="card method">
+<div class="card method" data-views="method">
   <h2>How this stays current</h2>
   <p class="sub" style="margin-bottom:14px">Every company name in the table is a live link to its screener.in page — the same source the numbers came from — so you can check any figure at its source in one click. The scorecard drawer adds direct links to filings and annual reports, the exchange quote page, and a news search.</p>
   <p class="sub" style="margin-bottom:0">This dashboard is now backed by a real API and database rather than a static file. The figures still come from a periodic data-refresh pass (screener.in / Trendlyne), not a live market feed — see <code>scripts/refresh_data.py</code> in the project for how to re-run it and re-seed the database. The build stamp in the header always tells you how fresh the current data is.</p>
 </div>
 
-<div class="card method" id="changelog">
+<div class="card method" id="changelog" data-views="method">
   <h2>Version history — what changed, and when</h2>
   <p class="sub" style="margin-bottom:18px">Use the <b>New since</b> filter (in the search suggestions) to show only rows added in a given build.</p>
   <ul class="vhist" id="vhist"></ul>
 </div>
 
-<details class="disc">
+<details class="disc" data-views="method">
   <summary>&#9888; Caveats — data quality, guidance, one-off PAT gains, and liquidity</summary>
   <div class="discbody"><b>Read this before acting on any of it.</b> This is a research screen, not investment advice — I am not a registered investment adviser and none of this is a recommendation to buy or sell. Data was pulled from third-party aggregators and company filings and can be stale, mis-tagged, or simply wrong; verify every figure against the company's own filings before committing capital. <b>On the new columns specifically:</b> CWIP is reported inconsistently — several companies here capitalise spend directly without ever showing it as CWIP, so a zero does not always mean no capex, and where that is likely the card says so. Management guidance is a statement of intent by people with an interest in the share price, not a fact; some guidance entries are second-hand paraphrases rather than verified transcripts and are labelled as such, and several percentages are <i>derived</i> from a rupee target management gave rather than quoted. A PAT turnaround can be an operating recovery or a one-off gain. Read the card before treating any flag as a signal. A quantitative screen also cannot read management quality, related-party dealings, or accounting aggression. The smallest names here have as few as a few hundred retail shareholders; you may not be able to exit at a quoted price, or at all, on a bad day. Many are recent SME listings whose share prices have moved sharply on a short operating history. Treat this list as a research starting point, not a buy list.</div>
 </details>
@@ -230,6 +235,6 @@
 
 <script src="/static/quotes.js?v=5" defer></script>
 <script src="/static/asme-certified.js?v=5" defer></script>
-<script src="/static/app.js?v=18" defer></script>
+<script src="/static/app.js?v=20" defer></script>
 </body>
 </html>
