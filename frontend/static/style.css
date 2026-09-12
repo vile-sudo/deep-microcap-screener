@@ -83,6 +83,11 @@ body.theme-focus .theme-panel{display:none}
 body.theme-focus .market-section .section-heading{display:none}
 body.theme-focus .market-section{margin-top:18px}
 body.theme-focus .theme-results{margin-top:0}
+body.theme-focus .side-nav,
+body.theme-focus .hero{display:none}
+body.theme-focus .dashboard-shell{display:block}
+body.theme-focus .dashboard-main{width:100%}
+body.theme-focus .wrap{max-width:none;padding:10px}
 body.overview-focus .market-section,
 body.overview-focus #filters,
 body.overview-focus .research-filter-section,
@@ -97,6 +102,20 @@ body.overview-focus .hero{display:none}
 body.overview-focus .dashboard-shell{display:block}
 body.overview-focus .dashboard-main{width:100%}
 body.overview-focus .wrap{max-width:none;padding:10px}
+body.market-focus .overview-section,
+body.market-focus #filters,
+body.market-focus .research-filter-section,
+body.market-focus #wl,
+body.market-focus #research,
+body.market-focus #count,
+body.market-focus .method,
+body.market-focus .disc{display:none}
+body.market-focus .side-nav,
+body.market-focus .hero{display:none}
+body.market-focus .dashboard-shell{display:block}
+body.market-focus .dashboard-main{width:100%}
+body.market-focus .wrap{max-width:none;padding:10px}
+body.market-focus .market-section{margin-top:6px}
 .filter-panel .toggles{margin:0;padding:0;border:0;gap:9px}
 .filter-panel .btn{background:#0d1a23;border-color:#233b4a;padding:9px 13px}
 .filter-panel .btn.on{background:#19404a;border-color:#65c6d5;color:#f2fbff}
