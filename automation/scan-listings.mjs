@@ -58,6 +58,7 @@ import { fileURLToPath } from 'node:url';
 import { PLAUSIBLE, hint } from './lib/sectors.mjs';
 import { publishCandidates } from './lib/publish.mjs';
 import { boardIndex } from './lib/board-index.mjs';
+import { MAX_CANDIDATES_PER_RUN, shouldQueueCandidate } from './lib/scan-rules.mjs';
 
 const HERE = path.dirname(fileURLToPath(import.meta.url));
 const DRY = process.argv.includes('--dry');
@@ -69,19 +70,13 @@ const QUEUE = path.join(DIR, 'candidates-queue.json');          // full history,
 const REVIEWED = path.join(DIR, 'reviewed-symbols.json');       // one-way "already surfaced" ledger
 const EXISTING_BOARD = path.join(BACKEND_DATA, 'companies_raw.json');
 
-/* Rough SEBI-style bands in crore. These are a starting point, not a
-   definition handed down from anywhere -- adjust freely. The point of
-   having them as named constants up top is that "why 20000?" should be
-   answerable by editing one line, not by re-deriving the sweep logic. */
+/* Daily automation: keep the scan focused, filtered, and short enough to be
+   readable each day instead of a large weekly dump. */
 const SMALL_CAP_MIN_CR = 300;
 const SMALL_CAP_MAX_CR = 5000;
 const MID_CAP_MAX_CR = 20000;
 
-/* How many never-before-queued sweep names to add in one run. The SME/IPO
-   side of the queue runs at two or three a week naturally; the sweep could
-   add thousands in one pass if uncapped, which stops being a queue you can
-   review and starts being a second dataset to reconcile. */
-const SWEEP_BATCH_MAX = 25;
+const SWEEP_BATCH_MAX = MAX_CANDIDATES_PER_RUN;
 
 const SOURCES = [
   { board: 'SME', kind: 'nse-csv', url: 'https://nsearchives.nseindia.com/emerge/corporates/content/SME_EQUITY_L.csv' },
@@ -227,21 +222,20 @@ say(`  of those, a sector where import substitution is even possible: ${newlyQue
 /* --------------------------------------------------- job 2: the sweep */
 const bseUniverse = rows.filter(r => r.board === 'BSE' || r.board === 'BSE-SME');
 const swept = bseUniverse.filter(r => {
-  if (isOnBoard(r)) return false;                       // already on the live board
-  if (reviewed.has(r.sym)) return false;                // already surfaced at some point, don't repeat
-  if (r.mktcap_cr == null) return false;                // no market cap figure, can't band it
-  if (r.mktcap_cr < SMALL_CAP_MIN_CR || r.mktcap_cr > MID_CAP_MAX_CR) return false;
-  const h = hint(r.name);
-  return h && PLAUSIBLE.has(h);                          // mainboard-scale universe needs a known sector
-}).sort((a, b) => a.mktcap_cr - b.mktcap_cr)             // smaller first -- closer to this board's usual range
+  const queued = shouldQueueCandidate({
+    name: r.name,
+    board: r.board,
+    mktcap_cr: r.mktcap_cr,
+    isOnBoard: isOnBoard(r),
+    reviewed: reviewed.has(r.sym),
+  });
+  return queued;
+}).sort((a, b) => a.mktcap_cr - b.mktcap_cr)
   .slice(0, SWEEP_BATCH_MAX)
   .map(r => ({
     sym: r.sym, name: r.name, board: r.board, isin: r.isin || null, listed: null,
     hint: hint(r.name), why: r.mktcap_cr <= SMALL_CAP_MAX_CR ? 'small-cap sweep' : 'mid-cap sweep',
     mktcap_cr: r.mktcap_cr, plausible: true, verdict: null, seen_on: today(), source: 'sweep',
-    /* A sweep candidate has no prospectus, so this can only ever be set by
-       weekly-prompt.md's research -- never by this script. Stays private
-       (see lib/publish.mjs) until that research finds real evidence. */
     moat_signal: null, moat_evidence: null,
   }));
 

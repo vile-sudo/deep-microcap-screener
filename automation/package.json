@@ -2,9 +2,9 @@
   "name": "screener-app-automation",
   "private": true,
   "type": "module",
-  "description": "Weekly discovery pipeline (scan-listings.mjs, scan-asme.mjs, profile-company.mjs). Runs on your own machine via Task Scheduler -- see README.md.",
+  "description": "Daily discovery pipeline (scan-listings.mjs, scan-asme.mjs, profile-company.mjs). Runs on your own machine via Task Scheduler -- see README.md.",
   "scripts": {
-    "test": "node lib/board-index.test.mjs && node lib/asme-match.test.mjs"
+    "test": "node lib/scan-rules.test.mjs && node lib/board-index.test.mjs && node lib/asme-match.test.mjs"
   },
   "dependencies": {
     "playwright": "^1.48.0"
