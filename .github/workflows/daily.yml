@@ -87,7 +87,9 @@ jobs:
         continue-on-error: true
         timeout-minutes: 60
         working-directory: ./automation
-        run: node update-weekly.mjs --no-asme
+        # exits 1 when any sub-step fails, including one unreadable prospectus
+        # out of dozens; the listings and queue are still written, so warn only
+        run: node update-weekly.mjs --no-asme || echo "::warning::discovery finished with some failed sub-steps (see automation/data/last-run.json)"
 
       - name: 3. Auto-screen new companies
         id: autoscreen
