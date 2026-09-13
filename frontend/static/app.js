@@ -247,9 +247,9 @@ let sortKey='final_score', sortDir=-1;
      method    - how the scores work
    Moving to another page clears whatever was picked on the last one, so a theme
    chosen on Themes never quietly narrows what Screen filters shows. */
-const VIEWS=['overview','themes','market','watchlist','companies','filters','gallery','reports','method'];
+const VIEWS=['overview','themes','market','watchlist','companies','filters','gallery','reports','sectors','method'];
 const NAV={'overview-link':'overview','themes-link':'themes','market-link':'market','watchlist-link':'watchlist',
-           'companies-link':'companies','filters-link':'filters','gallery-link':'gallery','reports-link':'reports'};
+           'companies-link':'companies','filters-link':'filters','gallery-link':'gallery','reports-link':'reports','sectors-link':'sectors'};
 const LENSES=['overhang','heavycap','guide15','guideany','turn','haslens','ipo','asme','auto'];
 const TILE_LABEL={all:'Companies on the board',overhang:'High P/E + heavy CWIP',guide15:'Management guides > 15%',
                   turn:'PAT turned positive',nolens:'Awaiting the capex pass'};
@@ -268,6 +268,7 @@ function setView(v, opts){
   if(VIEW==='gallery') openGallery();
   if(VIEW==='market') openMarket();
   if(VIEW==='reports'){ if(!opts.keep) RP.code=null; openReports(); }
+  if(VIEW==='sectors'){ if(!opts.keep){ SC.slug=null; SC.edition=null; } openSectors(); }
   const ts=document.getElementById('top-search');
   if(ts && VIEW!=='companies') ts.value='';
 }
@@ -1088,6 +1089,7 @@ document.getElementById('reset').onclick=()=>{ clearFilters(); render(); };
 function syncURL(){
   const p=new URLSearchParams();
   if(VIEW!=='overview') p.set('v',VIEW);
+  if(VIEW==='sectors' && SC.slug){ p.set('s',SC.slug); if(SC.edition) p.set('se',SC.edition); }
   if(VIEW==='reports' && RP.code){ p.set('r',RP.code); if(DR.period) p.set('rp',DR.period); if(DR.tab==='board') p.set('rt','board'); }
   if(TILE) p.set('tile',TILE);
   if(QUERY) p.set('q',QUERY);
@@ -1108,6 +1110,8 @@ function applyState(){
   const get=k=>p.get(k);
   if(VIEWS.includes(get('v'))) VIEW=get('v');
   if(get('r')) RP.code=get('r');
+  if(get('s') && /^[a-z0-9-]+$/.test(get('s'))) SC.slug=get('s');
+  if(get('se') && /^\d{4}-\d{2}$/.test(get('se'))) SC.edition=get('se');
   if(get('rp') && /^FY\d\d-Q[1-4]$/.test(get('rp'))) DR.period=get('rp');
   if(get('rt')==='board') DR.tab='board';
   if(get('tile') && (get('tile') in TILE_LABEL)) TILE=get('tile');
@@ -3058,7 +3062,8 @@ function drBars(labels, series, opts){
     series.forEach((se,k)=>{
       const v=se.values[i]; if(v==null) return;
       const top=Math.min(y(0),y(v)), h=Math.max(1,Math.abs(y(v)-y(0)));
-      s+=`<rect x="${(x0+k*bw+1).toFixed(1)}" y="${top.toFixed(1)}" width="${Math.max(1,bw-2).toFixed(1)}" height="${h.toFixed(1)}" rx="2" class="dr-bar ${se.cls}${v<0?' neg':''}"><title>${esc(se.name)} ${esc(lab)}: ${drN(v)}</title></rect>`;
+      s+=`<rect x="${(x0+k*bw+1).toFixed(1)}" y="${top.toFixed(1)}" width="${Math.max(1,bw-2).toFixed(1)}" height="${h.toFixed(1)}" rx="2" class="dr-bar ${se.cls}${v<0?' neg':''}"><title>${esc(se.name)} ${esc(lab)}: ${drN(v, Math.abs(v)<1000 && v%1 ? 2 : 0)}</title></rect>`;
+      if(opts.values && labels.length*series.length<=28) s+=`<text x="${(x0+k*bw+bw/2).toFixed(1)}" y="${(v<0?y(v)+11:y(v)-4).toFixed(1)}" text-anchor="middle" class="dr-val">${drN(v, Math.abs(v)<10 && v%1 ? 2 : Math.abs(v)<100 && v%1 ? 1 : 0)}</text>`;
     });
     if(labels.length<=14 || i%2===0) s+=`<text x="${(padL+i*step+step/2).toFixed(1)}" y="${H-10}" text-anchor="middle" class="dr-tick">${esc(String(lab).replace(/^([A-Z][a-z]{2}) 20(\d\d)$/,'$1 $2'))}</text>`;
   });
@@ -3224,6 +3229,134 @@ function drOpen(d){
   });
 }
 
+
+/* ================================================================
+   Sector Research: what is happening in a sector around the world and in
+   India, and what it means for Indian listed companies. Every figure is
+   cited to its source (official statistics, research houses, company
+   disclosures, news); company numbers refresh daily from screener.in.
+   ================================================================ */
+const SC={index:null, loading:null, slug:null, edition:null, cache:new Map()};
+const SC_BUCKET={producer:['Producers (E&P)','Find and pump oil & gas'], services:['Oilfield services & drilling','Rigs, vessels, seismic, well services'],
+  equipment:['Equipment, pipes & engineering','Pipes, tubulars, engineering for upstream'], gas_chain:['Gas value chain','Gas transmission, LNG, city gas'],
+  downstream:['Refiners & fuel retailers','Buy crude, sell fuels'], other:['Other','']};
+const SC_KIND={primary:'Official statistics & regulators', company:'Company disclosures', research:'Research houses & analysts', news:'News & media', other:'Other sources'};
+const scIcon = k => ({oil:'<path d="M12 3.5c3 4.2 5.5 7.3 5.5 10.5a5.5 5.5 0 0 1-11 0c0-3.2 2.5-6.3 5.5-10.5z"/><path d="M9.5 14.5a2.6 2.6 0 0 0 2.5 2.5"/>'}[k]
+  || '<circle cx="12" cy="12" r="8"/><path d="M4 12h16M12 4c2.5 2.6 2.5 13.4 0 16M12 4c-2.5 2.6-2.5 13.4 0 16"/>');
+
+function scLoadIndex(){
+  if(SC.index) return Promise.resolve(SC.index);
+  SC.loading = SC.loading || fetchJSON('/api/sectors').catch(()=>({sectors:[],planned:[]})).then(j=>{ SC.index=j; return j; });
+  return SC.loading;
+}
+function scFetch(slug, edition){
+  const k=slug+'|'+(edition||'');
+  if(!SC.cache.has(k)) SC.cache.set(k, fetchJSON('/api/sectors/'+encodeURIComponent(slug)+(edition?'/'+encodeURIComponent(edition):'')).catch(()=>null));
+  return SC.cache.get(k);
+}
+function openSectors(){
+  scLoadIndex().then(()=>{ if(VIEW!=='sectors') return; SC.slug ? scRenderDoc() : scRenderLib(); });
+}
+function openSector(slug){ SC.slug=slug; SC.edition=null; setView('sectors',{nav:'sectors-link',keep:true}); window.scrollTo({top:0}); }
+const scMonth = ed => { const [y,m]=String(ed||'').split('-').map(Number); return y?`${GMONTHS[m-1]} ${y}`:ed; };
+
+function scRenderLib(){
+  document.getElementById('sc-heading').hidden=false;
+  document.getElementById('sc-lib').hidden=false;
+  document.getElementById('sc-doc').hidden=true;
+  const j=SC.index||{sectors:[],planned:[]};
+  document.getElementById('sc-grid').innerHTML = (j.sectors.length ? j.sectors.map(s=>`
+    <article class="sc-card" data-sc="${esc(s.slug)}" tabindex="0">
+      <div class="sc-card-top"><span class="sc-ic"><svg viewBox="0 0 24 24">${scIcon(s.icon)}</svg></span><span>Sector research · ${esc(scMonth(s.edition))}</span></div>
+      <h3>${esc(s.name)}</h3>
+      <p>${esc((s.one_line||'').replace(/\s*\(S\d+(?:;\s*S\d+)*\)/g,''))}</p>
+      <div class="sc-kpis">${(s.kpis||[]).slice(0,3).map(k=>`<div><b>${esc(k.value)}</b><span>${esc(k.label)}</span></div>`).join('')}</div>
+      <div class="sc-card-foot"><span>${s.companies} listed companies · ${s.sources} sources</span><span class="rp-read">Read the research ›</span></div>
+    </article>`).join('') : '<p class="view-hint">No sector research published yet.</p>')
+    + (j.planned||[]).map(p=>`<article class="sc-card planned"><div class="sc-card-top"><span class="sc-ic"><svg viewBox="0 0 24 24">${scIcon(p.icon)}</svg></span><span>Coming next</span></div><h3>${esc(p.name)}</h3><p>${esc(p.note||'')}</p></article>`).join('');
+  document.querySelectorAll('[data-sc]').forEach(c=>{ c.onclick=()=>openSector(c.dataset.sc); c.onkeydown=e=>{ if(e.key==='Enter') openSector(c.dataset.sc); }; });
+  syncURL();
+}
+
+function scChart(b, sources){
+  const series=b.series||[]; if(!series.length) return '';
+  const labels=series[0].points.map(p=>p[0]);
+  const vals=series.map((s,i)=>({name:s.name, values:labels.map(l=>{ const pt=s.points.find(p=>p[0]===l); return pt?+pt[1]:null; }), cls:['s1','s2','s3'][i]||'s1'}));
+  const src=b.source?`<div class="dr-cap sc-chart-src">${drText(b.source,sources)}</div>`:'';
+  return `<div class="sc-chart"><div class="sc-chart-title">${esc(b.title||'')}${b.unit?` <span>(${esc(b.unit)})</span>`:''}</div>${drBars(labels, vals, {title:b.title, h:210, values:true})}${src}</div>`;
+}
+function scBlocks(blocks, sources){
+  return (blocks||[]).map(b=> b.type==='chart' ? scChart(b, sources) : drBlocks([b], sources)).join('');
+}
+const scNum=(v,d=0)=>v==null||isNaN(v)?'—':(+v).toLocaleString('en-IN',{maximumFractionDigits:d,minimumFractionDigits:d});
+function scCompanies(r){
+  const nums=(r.numbers&&r.numbers.companies)||{}, byCode={}; DATA.forEach(d=>byCode[d.code]=d);
+  const groups={};
+  (r.companies||[]).forEach(c=>{ (groups[c.bucket]||(groups[c.bucket]=[])).push(c); });
+  const order=['producer','services','equipment','gas_chain','downstream','other'];
+  return `${r.numbers?`<p class="dr-muted">Company numbers from screener.in, refreshed ${esc((r.numbers.as_of||'').slice(0,10))}. Sorted by market cap within each group. Research text is from the ${esc(scMonth(r.edition))} edition.</p>`:''}
+    ${order.filter(k=>groups[k]).map(k=>{
+      const list=groups[k].slice().sort((a,b)=>((nums[b.nse||b.bse]||{}).market_cap||0)-((nums[a.nse||a.bse]||{}).market_cap||0));
+      return `<h3>${esc(SC_BUCKET[k][0])} <span class="dr-muted">${esc(SC_BUCKET[k][1])}</span></h3>
+      <div class="dr-tablewrap"><table class="dr-table sc-cos"><thead><tr><th>Company</th><th>Role in the value chain</th><th>What the sector trend means for it</th><th class="n">M-cap ₹cr</th><th class="n">P/E</th><th class="n">ROCE %</th><th class="n">Sales 3y CAGR</th><th class="n">From 52w high</th><th></th></tr></thead>
+      <tbody>${list.map(c=>{ const key=c.nse||c.bse, n=nums[key]||{}, bc=n.board_code&&byCode[n.board_code];
+        return `<tr><td><b>${esc(c.name)}</b><div class="dr-muted">${esc(c.nse||c.bse||'')}${bc?' · <span class="sc-onboard">on your board</span>':''}</div></td>
+          <td>${drText(c.role||'',r.sources)}</td><td>${drText(c.impact||'',r.sources)}</td>
+          <td class="n">${scNum(n.market_cap)}</td><td class="n">${scNum(n.pe,1)}</td><td class="n">${scNum(n.roce,0)}</td>
+          <td class="n">${n.sales_cagr_3y==null?'—':scNum(n.sales_cagr_3y,0)+'%'}</td><td class="n">${n.from_52w_high==null?'—':scNum(n.from_52w_high,0)+'%'}</td>
+          <td class="sc-links">${bc?`<button type="button" class="btn" data-sc-card="${esc(bc.code)}">Scorecard</button>`:''}<a class="btn" href="${esc(n.screener_url||('https://www.screener.in/company/'+encodeURIComponent(key)+'/'))}" target="_blank" rel="noopener">screener ↗</a></td></tr>`;}).join('')}</tbody></table></div>`;}).join('')}`;
+}
+async function scRenderDoc(){
+  document.getElementById('sc-heading').hidden=true;
+  document.getElementById('sc-lib').hidden=true;
+  const doc=document.getElementById('sc-doc'); doc.hidden=false;
+  doc.innerHTML='<p class="view-hint">Loading the sector research…</p>';
+  const r=await scFetch(SC.slug, SC.edition);
+  if(VIEW!=='sectors') return;
+  if(!r){ SC.slug=null; return scRenderLib(); }
+  const src=r.sources||[], secs=r.sections||[], sm=r.summary||{};
+  const parts=[['summary','Key takeaways', `
+      ${sm.one_line?`<p class="dr-lede">${drText(sm.one_line,src)}</p>`:''}
+      <ul class="dr-ul sc-points">${(sm.key_points||[]).map(p=>`<li>${drText(p,src)}</li>`).join('')}</ul>
+      ${(sm.for_investors||[]).length?`<div class="dr-sumgrid">${sm.for_investors.map(x=>`<div class="dr-sum ${x.tone==='bad'?'bad':x.tone==='watch'?'watch':'good'}"><h4>${esc(x.title)}</h4><ul>${(x.points||[]).map(p=>`<li>${drText(p,src)}</li>`).join('')}</ul></div>`).join('')}</div>`:''}`]];
+  secs.forEach(s=>parts.push([s.id, s.title, (s.subsections||[]).map(sub=>`${sub.title?`<h3>${esc(sub.title)}</h3>`:''}${scBlocks(sub.blocks,src)}`).join('')]));
+  if((r.companies||[]).length) parts.push(['companies','Indian listed companies', scCompanies(r)]);
+  const byKind={}; src.forEach(s=>(byKind[s.kind||'other']||(byKind[s.kind||'other']=[])).push(s));
+  parts.push(['sources',`Sources (${src.length})`, Object.keys(SC_KIND).filter(k=>byKind[k]).map(k=>`<h3>${SC_KIND[k]} <span class="dr-muted">${byKind[k].length}</span></h3>
+      <ol class="dr-sources">${byKind[k].map(s=>`<li value="${esc(String(s.id).replace(/\D/g,''))}"><b>${esc(s.id)}</b> — ${esc(s.publisher||'')}: ${s.url?`<a href="${esc(s.url)}" target="_blank" rel="noopener">${esc(s.title||s.url)} ↗</a>`:esc(s.title||'')}${s.date?` · ${esc(s.date)}`:''}</li>`).join('')}</ol>`).join('')
+    + (r.method?`<h3>How this was put together</h3><p class="dr-muted">${esc(r.method)}</p>`:'')]);
+  const eds=r.editions||[r.edition];
+  doc.innerHTML=`
+    <div class="rp-toolbar">
+      <button type="button" class="theme-back" id="sc-back">‹ All sectors</button>
+      <span class="rp-tools">
+        ${eds.length>1?`<select class="gal-select dr-period" id="sc-edition">${eds.map(e=>`<option value="${e}"${e===r.edition?' selected':''}>${scMonth(e)} edition${e===eds[0]?' (latest)':''}</option>`).join('')}</select>`:''}
+        <button type="button" class="btn rp-print" id="sc-print">Print / save PDF</button>
+      </span>
+    </div>
+    <header class="rp-cover sc-cover">
+      <div class="rp-cover-main">
+        <span class="rp-eyebrow">SECTOR RESEARCH · ${esc(scMonth(r.edition).toUpperCase())} EDITION</span>
+        <h1>${esc(r.name)}</h1>
+        <div class="rp-cover-sub">${esc(r.scope||'')}</div>
+        <div class="rp-cover-meta"><span class="rp-dateline">Updated ${esc((r.updated||'').slice(0,10))} · ${src.length} sources · ${(r.companies||[]).length} Indian listed companies · refreshed monthly, company numbers daily</span></div>
+      </div>
+      <div class="sc-cover-ic" aria-hidden="true"><svg viewBox="0 0 24 24">${scIcon(r.icon)}</svg></div>
+    </header>
+    ${(r.kpis||[]).length?`<div class="rp-kpis sc-kpi">${r.kpis.map(k=>`<div class="rp-kpi"><span>${esc(k.label)}</span><b>${esc(k.value)}</b><small>${drText(k.sub||'',src)}</small></div>`).join('')}</div>`:''}
+    <div class="dr-layout">
+      <nav class="dr-toc" aria-label="Sections"><b>Contents</b><ol>${parts.map(([id,t])=>`<li><a href="#sc-${id}" data-sc-go="${id}">${esc(t)}</a></li>`).join('')}</ol></nav>
+      <div class="dr-body">${parts.map(([id,t,h],n)=>`<section class="rp-block dr-sec" id="sc-${id}"><h2><span class="rp-n">${n+1}</span>${esc(t)}</h2>${h}</section>`).join('')}
+        <footer class="rp-foot">For research and education only — not investment advice or a recommendation to buy or sell any security. Figures are as published by the cited sources on the dates shown; forecasts are the sources' own. Verify before acting.</footer>
+      </div>
+    </div>`;
+  document.getElementById('sc-back').onclick=()=>{ SC.slug=null; SC.edition=null; scRenderLib(); window.scrollTo({top:0}); };
+  document.getElementById('sc-print').onclick=()=>window.print();
+  const sel=document.getElementById('sc-edition'); if(sel) sel.onchange=()=>{ SC.edition=sel.value===eds[0]?null:sel.value; scRenderDoc(); };
+  doc.querySelectorAll('[data-sc-go]').forEach(a=>a.onclick=e=>{ e.preventDefault(); const t=document.getElementById('sc-'+a.dataset.scGo); if(t) window.scrollTo({top:t.getBoundingClientRect().top+scrollY-80,behavior:'smooth'}); });
+  doc.querySelectorAll('[data-sc-card]').forEach(b=>b.onclick=()=>{ const d=DATA.find(x=>x.code===b.dataset.scCard); if(d){ CURRENT=[d]; openDrawer(d); } });
+  syncURL();
+}
 
 ACCT.loaded=initUserMenu();
 watchSync();

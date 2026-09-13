@@ -101,8 +101,8 @@
   .f1{transform:translateX(12vw)}.f2{transform:translateX(66vw)}.f3{transform:translateX(38vw)}.f4{transform:translateX(18vw)}.f5{transform:translateX(74vw)}.sp-school{transform:translateX(56vw)}
 }
 </style>
-<link rel="stylesheet" href="/static/style.css?v=45">
-<link rel="stylesheet" href="/static/dark.css?v=45">
+<link rel="stylesheet" href="/static/style.css?v=47">
+<link rel="stylesheet" href="/static/dark.css?v=47">
 </head>
 <body>
 <div id="ds-splash" role="status" aria-live="polite" aria-label="Loading Deep Sweep">
@@ -220,6 +220,7 @@
       <button class="side-link" id="filters-link" type="button" title="Screen filters"><svg viewBox="0 0 24 24"><path d="M3 12h4l2.5-5 4 10 2.5-5H21"/></svg>Screens</button>
       <button class="side-link" id="gallery-link" type="button" title="Chart Gallery"><svg viewBox="0 0 24 24"><rect x="4" y="4.5" width="16" height="15" rx="2"/><path d="M8 15l3-3.5 2.5 2 3-4.5"/></svg>Charts<span class="side-count" id="gallery-count"></span></button>
       <button class="side-link" id="reports-link" type="button" title="Research Reports"><svg viewBox="0 0 24 24"><path d="M7 3.5h7.5L19 8v12.5H7z"/><path d="M14.5 3.5V8H19"/><path d="M10 12h6M10 15.5h6M10 19h3.5"/></svg>Reports</button>
+      <button class="side-link" id="sectors-link" type="button" title="Sector Research"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><path d="M4 12h16M12 4c2.5 2.6 2.5 13.4 0 16M12 4c-2.5 2.6-2.5 13.4 0 16"/></svg>Sectors</button>
     </nav>
     <span class="nav-upd" id="nav-upd" hidden></span>
     <button type="button" class="nav-bell" id="alerts-btn" hidden title="Alerts: new highs, new lows and breakouts" aria-label="Alerts">
@@ -293,6 +294,12 @@
   </div>
   <div class="gal-count" id="gcount"></div>
   <div class="gal-grid" id="ggrid"></div>
+</section>
+
+<section class="dashboard-section sectors-section" data-views="sectors" aria-labelledby="sectors-title">
+  <div class="section-heading" id="sc-heading"><div><span class="eyebrow">RESEARCH</span><h2 id="sectors-title">Sector Research</h2><p class="section-copy">Deep, source-confirmed research on one sector at a time: what is happening around the world, what is happening in India, and what it means for Indian listed companies across the value chain. Every figure is cited to official statistics, research houses, company disclosures or news; the research is refreshed monthly and the company numbers every day.</p></div></div>
+  <div id="sc-lib"><div class="sc-grid" id="sc-grid"></div></div>
+  <article class="rp-doc sc-doc" id="sc-doc" hidden></article>
 </section>
 
 <section class="dashboard-section reports-section" data-views="reports" aria-labelledby="reports-title">
@@ -475,7 +482,7 @@
   <p><b>Important.</b> Deep Sweep is a stock research and screening board for Indian equities — not investment advice, and not a SEBI-registered adviser or research analyst. Stages, scores and flags follow fixed rules over exchange data and company filings, which can lag or be wrong; verify before acting, and consult a SEBI-registered adviser before investing.</p>
   <div class="site-foot-row">
     <nav aria-label="Footer">
-      <button type="button" data-foot="overview-link">Overview</button><button type="button" data-foot="market-link">Market</button><button type="button" data-foot="filters-link">Screens</button><button type="button" data-foot="gallery-link">Charts</button><button type="button" data-foot="reports-link">Reports</button><button type="button" data-foot="companies-link">Companies</button><button type="button" data-foot="method">How it works</button>
+      <button type="button" data-foot="overview-link">Overview</button><button type="button" data-foot="market-link">Market</button><button type="button" data-foot="filters-link">Screens</button><button type="button" data-foot="gallery-link">Charts</button><button type="button" data-foot="reports-link">Reports</button><button type="button" data-foot="sectors-link">Sectors</button><button type="button" data-foot="companies-link">Companies</button><button type="button" data-foot="method">How it works</button>
     </nav>
     <span>© 2026 Deep Sweep</span>
   </div>
@@ -486,6 +493,6 @@
 <div class="modal" id="modal" role="dialog" aria-modal="true"><div class="mbox"><button class="close" id="mclose" aria-label="Close">&times;</button><div id="mbody"></div></div></div>
 
 <script src="/static/asme-certified.js?v=5" defer></script>
-<script src="/static/app.js?v=43" defer></script>
+<script src="/static/app.js?v=47" defer></script>
 </body>
 </html>

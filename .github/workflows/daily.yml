@@ -14,11 +14,15 @@ name: Daily 7 AM update
 #   5. charts         yesterday's candles, Chart gallery and Market view
 #                     stages -- after step 3, so a company added today has
 #                     its chart today                   (scripts/update_charts.py)
-#   6. deep-dive      quarterly research reports for companies that filed
+#   6. sector research  a new monthly edition for each sector in Sector
+#                     Research, once a month            (scripts/sector_research.py)
+#   7. sector numbers screener.in numbers for the companies in each sector
+#                     report, every day                  (scripts/sector_numbers.py)
+#   8. deep-dive      quarterly research reports for companies that filed
 #                     new results (a few a day)         (scripts/deep_reports.py)
-#   7. report PDFs    printed from the dashboard's report page and uploaded
+#   9. report PDFs    printed from the dashboard's report page and uploaded
 #                     to the "reports" release          (automation/render-report-pdfs.mjs)
-#   8. one commit, one Render deploy
+#  10. one commit, one Render deploy
 #
 # A stage that fails is reported but doesn't stop the rest: every script
 # writes nothing when its source is broken, so the board keeps yesterday's
@@ -119,12 +123,35 @@ jobs:
         working-directory: ./backend
         run: python scripts/update_charts.py
 
+      # Monthly sector research editions, written by Claude Code with web search on
+      # the owner's Claude Max plan. Does nothing unless a sector's edition for this
+      # month is missing (normally the 1st), and runs before the deep-dive reports so
+      # the monthly session gets the day's usage first. SECTORS_PER_RUN (default 1)
+      # caps how many sectors are written in one day; the rest follow on later days.
+      - name: 6. Sector research (monthly)
+        id: sectors
+        continue-on-error: true
+        timeout-minutes: 170
+        working-directory: ./backend
+        env:
+          CLAUDE_CODE_OAUTH_TOKEN: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+          SECTORS_PER_RUN: ${{ vars.SECTORS_PER_RUN || '1' }}
+          SECTOR_SESSION_MINUTES: '75'
+        run: python scripts/sector_research.py
+
+      - name: 7. Sector company numbers
+        id: sectornums
+        continue-on-error: true
+        timeout-minutes: 20
+        working-directory: ./backend
+        run: python scripts/sector_numbers.py
+
       # Quarterly deep-dive reports: a small batch a day, as companies file
       # results, written by Claude Code on the owner's Claude Max plan. Off until
       # the CLAUDE_CODE_OAUTH_TOKEN secret exists (create it with `claude setup-token`).
       # Optional repo variables: REPORTS_PER_DAY (default 2), REPORT_MODEL (default opus),
       # REPORT_ENGINE=api to use a paid ANTHROPIC_API_KEY instead.
-      - name: 6. Deep-dive reports
+      - name: 8. Deep-dive reports
         id: reports
         continue-on-error: true
         timeout-minutes: 200
@@ -145,7 +172,7 @@ jobs:
           if [ -z "$ANTHROPIC_API_KEY" ]; then unset ANTHROPIC_API_KEY; fi
           python scripts/deep_reports.py --out-list ../reports-today.txt
 
-      - name: 7. Report PDFs
+      - name: 9. Report PDFs
         id: pdfs
         continue-on-error: true
         timeout-minutes: 45
@@ -166,7 +193,7 @@ jobs:
             gh release upload reports reports-pdf/*.pdf --clobber
           fi
 
-      - name: 8. Commit
+      - name: 10. Commit
         id: commit
         run: |
           git config user.name "github-actions[bot]"
@@ -176,7 +203,7 @@ jobs:
                   automation/data/candidates-queue.json automation/data/reviewed-symbols.json \
                   automation/data/listings-snapshot.json automation/data/asme-scan.json
           for f in automation/data/auto-screen.json automation/data/weekly-report.md automation/data/profiles \
-                   backend/reports automation/data/deep-reports.json; do
+                   backend/reports backend/sectors automation/data/deep-reports.json; do
             if [ -e "$f" ]; then git add "$f"; fi
           done
           if git diff --cached --quiet; then
@@ -186,7 +213,8 @@ jobs:
           fi
           added=$(python -c "import json;r=json.load(open('automation/data/auto-screen.json'))['runs'][-1];print(len(r.get('added_codes',[])))" 2>/dev/null || echo 0)
           reports=$(grep -c . reports-today.txt 2>/dev/null || echo 0)
-          git commit -m "Daily update $(TZ=Asia/Kolkata date +%F): ${added} auto-added, ${reports} deep-dive reports"
+          sectors=$(git diff --cached --name-only -- 'backend/sectors/*/????-??.json' | wc -l)
+          git commit -m "Daily update $(TZ=Asia/Kolkata date +%F): ${added} auto-added, ${reports} deep-dive reports, ${sectors} sector editions"
           for i in 1 2 3; do
             git pull --rebase origin ${{ github.ref_name }} && git push origin HEAD:${{ github.ref_name }} && break
             sleep 5
@@ -214,6 +242,8 @@ jobs:
             echo "| auto-screen | ${{ steps.autoscreen.outcome }} |"
             echo "| ASME | ${{ steps.asme.outcome }} |"
             echo "| charts | ${{ steps.charts.outcome }} |"
+            echo "| sector research | ${{ steps.sectors.outcome }} |"
+            echo "| sector numbers | ${{ steps.sectornums.outcome }} |"
             echo "| deep-dive reports | ${{ steps.reports.outcome }} |"
             echo "| report PDFs | ${{ steps.pdfs.outcome }} |"
           } >> "$GITHUB_STEP_SUMMARY"
@@ -222,7 +252,7 @@ jobs:
             python -c "import json;r=json.load(open('automation/data/auto-screen.json'))['runs'][-1];print('\nAuto-screen:', r)" >> "$GITHUB_STEP_SUMMARY"
           fi
           failed=""
-          for o in "${{ steps.fundamentals.outcome }}" "${{ steps.discovery.outcome }}" "${{ steps.autoscreen.outcome }}" "${{ steps.asme.outcome }}" "${{ steps.charts.outcome }}" "${{ steps.reports.outcome }}" "${{ steps.pdfs.outcome }}"; do
+          for o in "${{ steps.fundamentals.outcome }}" "${{ steps.discovery.outcome }}" "${{ steps.autoscreen.outcome }}" "${{ steps.asme.outcome }}" "${{ steps.charts.outcome }}" "${{ steps.sectors.outcome }}" "${{ steps.sectornums.outcome }}" "${{ steps.reports.outcome }}" "${{ steps.pdfs.outcome }}"; do
             if [ "$o" = "failure" ]; then failed=1; fi
           done
           if [ -n "$failed" ]; then echo "::error::a stage failed -- see the table above"; exit 1; fi

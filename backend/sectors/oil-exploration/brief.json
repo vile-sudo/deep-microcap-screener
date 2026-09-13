@@ -1,0 +1,60 @@
+{
+ "slug": "oil-exploration",
+ "name": "Oil & Exploration",
+ "icon": "oil",
+ "scope": "Upstream oil & gas: exploration and production, oilfield services and equipment, and how global and Indian trends flow through to Indian listed companies.",
+ "questions": [
+  "Global: where are crude and gas prices, demand, supply, inventories and OPEC+ policy, and what do the IEA, EIA, OPEC and major banks forecast for the next 12-24 months?",
+  "Global: how much is being invested upstream, where is new supply coming from, and what geopolitical or structural shifts matter for producers and service companies?",
+  "India: domestic crude and gas production trend, consumption, import dependence and the import bill.",
+  "India: gas pricing (APM formula, new-well premium, HPHT/deepwater ceiling), taxes and levies (windfall tax, cess), and how they change producer realisations.",
+  "India: exploration policy (OALP rounds, Oilfields Regulation and Development Amendment Act 2025, PNG Rules, No-Go area release, deepwater mission), targets and discoveries.",
+  "India: ONGC, Oil India, Vedanta-Cairn, Reliance KG-D6 production guidance, capex and project pipeline; demand for rigs, vessels and seismic services.",
+  "Value chain: producers, oilfield services, equipment and pipes, gas transmission and LNG, refiners - who earns what, and who wins or loses when crude or gas prices move.",
+  "Listed companies: for each Indian listed company in the universe, its role, exposure and what the sector trends mean for it, with published sensitivities where available.",
+  "Research houses and analysts: what named brokers, rating agencies and boutique firms say about the sector and its stocks.",
+  "Risks, catalysts with dates, and the monthly indicators an investor should watch."
+ ],
+ "universe": {
+  "producer": [
+   "ONGC",
+   "OIL",
+   "VOGL",
+   "RELIANCE",
+   "ANTELOPUS",
+   "HINDOILEXP"
+  ],
+  "services": [
+   "JINDRILL",
+   "DEEPINDS",
+   "DOLPHIN",
+   "ASIANENE",
+   "ABAN",
+   "SOUTHWEST",
+   "SEAMECLTD",
+   "GESHIP"
+  ],
+  "equipment": [
+   "MAHSEAMLES",
+   "JINDALSAW",
+   "WELCORP",
+   "MANINDS",
+   "OILCOUNTUB",
+   "ENGINERSIN",
+   "LT"
+  ],
+  "gas_chain": [
+   "GAIL",
+   "PETRONET",
+   "GUJGASLTD",
+   "IGL",
+   "MGL"
+  ],
+  "downstream": [
+   "IOC",
+   "BPCL",
+   "HINDPETRO"
+  ]
+ },
+ "refresh": "monthly"
+}

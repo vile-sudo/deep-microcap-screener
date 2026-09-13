@@ -212,6 +212,41 @@ to only fetch the documents and build the work folder.
 (`REPORT_ENGINE=api` with an `ANTHROPIC_API_KEY` secret switches the writer to
 the paid API instead - `scripts/deep_report/writer.py`.)
 
+## Sector Research (automated, monthly)
+
+The **Sectors** tab holds deep research on one sector at a time: what is
+happening around the world, what is happening in India, and what it means for
+Indian listed companies across the value chain (producers, services, equipment,
+the gas chain, refiners...). Every figure is cited `(S12)` to a numbered source -
+official statistics and regulators, company filings, rating agencies, research
+houses and news - and the sources are listed by type at the end. Forecasts and
+broker views are attributed to whoever made them; the dashboard gives no ratings.
+
+Files, one folder per sector under `backend/sectors/<slug>/`:
+
+| File | What it is |
+|---|---|
+| `brief.json` | name, scope, the questions the research must answer, the company universe |
+| `YYYY-MM.json` | one edition per month (older editions stay selectable on the page) |
+| `numbers.json` | today's screener.in numbers for the companies in the latest edition |
+
+`backend/sectors/planned.json` lists the "coming next" cards.
+
+- **Editions** - `scripts/sector_research.py` runs Claude Code (Claude Max plan,
+  the same `CLAUDE_CODE_OAUTH_TOKEN` as the deep-dive reports) with web search.
+  It gets the brief, last month's edition and the company numbers, and must
+  re-verify and update every number. The output is checked (at least 20 sources,
+  every citation resolves, known block types) before it is saved. The daily run
+  writes a sector's new edition when this month's is missing, normally on the
+  1st; `SECTORS_PER_RUN` (default 1) spreads several sectors over several days.
+- **Company numbers** - `scripts/sector_numbers.py`, every day.
+- **By hand** - *Actions → Sector research (by hand) → Run workflow* (optionally a
+  sector slug and *force*), or locally `cd backend && python scripts/sector_research.py --sector oil-exploration --force`.
+
+**Adding a sector**: create `backend/sectors/<slug>/brief.json` (copy
+`oil-exploration/brief.json` and change the scope, questions and universe),
+remove its card from `planned.json`, then run the manual workflow with that slug.
+
 ## ASME certification (automated)
 
 Screen filters has an **ASME certified** filter: board companies holding an
@@ -317,9 +352,12 @@ stages run, and marks the run failed (GitHub emails you).
 | 3. Auto-screen | `backend/scripts/auto_screen.py` | adds up to 10 companies a day that pass the board's rules, marked **Auto-added** (below) |
 | 4. ASME | `automation/scan-asme.mjs` | ASME certificate holders, certificate types and dates |
 | 5. Charts | `backend/scripts/update_charts.py` | candles, Chart Gallery, Market view stages (VCP + IPO base), breakouts, feed |
+| 6. Sector research | `backend/scripts/sector_research.py` | a new monthly edition for each sector (Claude Code, Max plan) |
+| 7. Sector numbers | `backend/scripts/sector_numbers.py` | screener.in numbers for the companies in each sector report |
+| 8. Deep-dive reports | `backend/scripts/deep_reports.py` | quarterly deep-dive reports after new results, and their PDFs |
 
 Each step also has its own workflow for a manual re-run (*Actions → Run
-workflow*): `fundamentals.yml`, `discovery.yml`, `asme.yml`, `charts.yml`
+workflow*): `fundamentals.yml`, `discovery.yml`, `asme.yml`, `charts.yml`, `deep-reports.yml`, `sector-research.yml`
 (which also runs on every push that changes `companies_raw.json`).
 `uptime.yml` pings the site every 10 minutes, keeping a free instance awake.
 
