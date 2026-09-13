@@ -136,6 +136,26 @@ averages, volume, 52-week high — for every company on the board.
 - **Run it by hand:** `cd backend && python scripts/update_charts.py`, or
   *Actions → Chart gallery update → Run workflow* on GitHub.
 
+## Research Reports (automated)
+
+**Reports** holds a full research report for every company on the board:
+key takeaways, business, moat and pricing power, import substitution, why
+the market overlooks it, financials with the profit trend, capex and
+guidance, the price chart with its Market view stage, risks and red flags,
+verification and sources, plus a scorecard, ownership and ASME certificates.
+
+- Built in the browser from each company's research record, chart and stage
+  (`frontend/static/app.js`, "Research Reports"), so there is nothing to
+  write or regenerate: a company added to the board — including the daily
+  auto-screen's — has its report the same day, and the numbers move with
+  the 07:00 refresh.
+- The library searches the research text and filters by theme and report
+  type (deep dive, research note, screening note, triage note, auto-screened).
+- Each report has its own link (`#v=reports&r=CODE`), previous/next, and
+  **Print / save PDF**, which prints just the report.
+- Open one from the Reports tab, a company's scorecard (**Research report ›**)
+  or a chart.
+
 ## ASME certification (automated)
 
 Screen filters has an **ASME certified** filter: board companies holding an

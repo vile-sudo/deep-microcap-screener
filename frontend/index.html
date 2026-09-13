@@ -6,7 +6,7 @@
 <title>Deep Sweep</title>
 <meta name="description" content="Deep Sweep — a research board for Indian microcap and quality-first names: stage screens, IPO bases, charts and ASME certification.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%94%8D%3C/text%3E%3C/svg%3E">
-<link rel="stylesheet" href="/static/style.css?v=33">
+<link rel="stylesheet" href="/static/style.css?v=35">
 </head>
 <body>
 <header class="nav" id="topnav">
@@ -27,6 +27,7 @@
       <button class="side-link" id="companies-link" type="button"><svg viewBox="0 0 24 24"><path d="M6 20V5.5h8V20"/><path d="M14 10h4v10"/><path d="M9 9h2M9 12.5h2M9 16h2"/></svg>Companies</button>
       <button class="side-link" id="filters-link" type="button" title="Screen filters"><svg viewBox="0 0 24 24"><path d="M3 12h4l2.5-5 4 10 2.5-5H21"/></svg>Screens</button>
       <button class="side-link" id="gallery-link" type="button" title="Chart Gallery"><svg viewBox="0 0 24 24"><rect x="4" y="4.5" width="16" height="15" rx="2"/><path d="M8 15l3-3.5 2.5 2 3-4.5"/></svg>Charts<span class="side-count" id="gallery-count"></span></button>
+      <button class="side-link" id="reports-link" type="button" title="Research Reports"><svg viewBox="0 0 24 24"><path d="M7 3.5h7.5L19 8v12.5H7z"/><path d="M14.5 3.5V8H19"/><path d="M10 12h6M10 15.5h6M10 19h3.5"/></svg>Reports</button>
     </nav>
     <span class="nav-upd" id="nav-upd" hidden></span>
     <div class="nav-user" id="nav-user" hidden></div>
@@ -96,6 +97,22 @@
   </div>
   <div class="gal-count" id="gcount"></div>
   <div class="gal-grid" id="ggrid"></div>
+</section>
+
+<section class="dashboard-section reports-section" data-views="reports" aria-labelledby="reports-title">
+  <div class="section-heading" id="reports-heading"><div><span class="eyebrow">RESEARCH</span><h2 id="reports-title">Research Reports</h2><p class="section-copy">A full research report for every company on the board — business, moat, import substitution, financials, ownership, capex and guidance, chart and stage, score, risks and verification. Reports are built from the board's research and refresh with the daily update; a company that joins the board gets its report the same day. Open one to read, print or save it as a PDF.</p></div><span class="section-note" id="rp-note"></span></div>
+  <div id="rp-lib">
+    <div class="gal-controls">
+      <input id="rpq" class="gal-search" type="search" autocomplete="off" spellcheck="false" placeholder="Search reports — company, ticker, moat, risk…">
+      <select id="rptheme" class="gal-select" aria-label="Theme"></select>
+      <select id="rpkind" class="gal-select" aria-label="Report type"></select>
+      <select id="rpsort" class="gal-select" aria-label="Sort"></select>
+      <button class="theme-back" id="rpclear" type="button">Clear</button>
+    </div>
+    <div class="gal-count" id="rpcount"></div>
+    <div class="rp-grid" id="rpgrid"></div>
+  </div>
+  <article class="rp-doc" id="rp-doc" hidden></article>
 </section>
 
 <section class="dashboard-section" data-views="companies" aria-labelledby="companies-title">
@@ -261,7 +278,7 @@
   <p><b>Important.</b> Deep Sweep is a stock research and screening board for Indian equities — not investment advice, and not a SEBI-registered adviser or research analyst. Stages, scores and flags follow fixed rules over exchange data and company filings, which can lag or be wrong; verify before acting, and consult a SEBI-registered adviser before investing.</p>
   <div class="site-foot-row">
     <nav aria-label="Footer">
-      <button type="button" data-foot="overview-link">Overview</button><button type="button" data-foot="market-link">Market</button><button type="button" data-foot="filters-link">Screens</button><button type="button" data-foot="gallery-link">Charts</button><button type="button" data-foot="companies-link">Companies</button><button type="button" data-foot="method">How it works</button>
+      <button type="button" data-foot="overview-link">Overview</button><button type="button" data-foot="market-link">Market</button><button type="button" data-foot="filters-link">Screens</button><button type="button" data-foot="gallery-link">Charts</button><button type="button" data-foot="reports-link">Reports</button><button type="button" data-foot="companies-link">Companies</button><button type="button" data-foot="method">How it works</button>
     </nav>
     <span>© 2026 Deep Sweep</span>
   </div>
@@ -272,6 +289,6 @@
 <div class="modal" id="modal" role="dialog" aria-modal="true"><div class="mbox"><button class="close" id="mclose" aria-label="Close">&times;</button><div id="mbody"></div></div></div>
 
 <script src="/static/asme-certified.js?v=5" defer></script>
-<script src="/static/app.js?v=33" defer></script>
+<script src="/static/app.js?v=35" defer></script>
 </body>
 </html>
