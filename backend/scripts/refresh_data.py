@@ -139,6 +139,26 @@ def fetch_screener(code: str) -> dict:
     return out
 
 
+def fetch_screener_any(rec: dict) -> dict:
+    """screener.in files many SME and BSE-only companies under their BSE scrip
+    code rather than the board's code, so on a 404 try the BSE code, then the
+    NSE symbol, before giving up."""
+    tried, last_error = set(), None
+    for cand in (rec.get("code"), rec.get("bse_code"), rec.get("nse_code")):
+        cand = str(cand or "").strip()
+        if not cand or cand in tried:
+            continue
+        tried.add(cand)
+        try:
+            return fetch_screener(cand)
+        except requests.HTTPError as e:
+            last_error = e
+            if e.response is None or e.response.status_code != 404:
+                raise
+            time.sleep(REQUEST_DELAY_SECONDS)
+    raise last_error or requests.RequestException("no screener.in code to try")
+
+
 def _refresh_flags(rec: dict) -> None:
     """Keep the flags that are pure functions of refreshed numbers in step.
 
@@ -188,7 +208,7 @@ def main():
     changed = failed = 0
     for i, code in enumerate(targets, 1):
         try:
-            fresh = fetch_screener(code)
+            fresh = fetch_screener_any(by_code[code])
             fresh.update(fetch_trendlyne(code))
         except requests.RequestException as e:
             failed += 1
