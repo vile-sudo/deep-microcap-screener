@@ -115,6 +115,11 @@ def _cache_drop(token: str) -> None:
         _cache.pop(_digest(token), None)
 
 
+def _cache_clear() -> None:
+    with _cache_lock:
+        _cache.clear()
+
+
 def user_for_token(token: str | None) -> dict | None:
     """The approved user behind a session cookie, as a plain dict, or None."""
     if not token:

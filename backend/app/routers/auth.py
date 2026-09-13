@@ -22,7 +22,7 @@ from sqlalchemy.orm import Session
 
 from .. import auth
 from ..database import get_db
-from ..models import User, WatchItem
+from ..models import SavedFilter, User, UserSettings, WatchItem
 
 router = APIRouter(tags=["auth"])
 
@@ -167,6 +167,8 @@ def delete_user(user_id: int, admin: dict = Depends(require_admin), db: Session 
     user = _target(db, user_id, admin)
     auth.end_all_sessions(db, user.id)
     db.query(WatchItem).filter(WatchItem.user_id == user.id).delete()   # SQLite does not enforce ON DELETE CASCADE
+    db.query(SavedFilter).filter(SavedFilter.user_id == user.id).delete()
+    db.query(UserSettings).filter(UserSettings.user_id == user.id).delete()
     db.delete(user)
     db.commit()
     return {"deleted": user_id}

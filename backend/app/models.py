@@ -116,3 +116,44 @@ class WatchItem(Base):
     user_id: Mapped[int] = mapped_column(Integer, ForeignKey("users.id", ondelete="CASCADE"), index=True)
     code: Mapped[str] = mapped_column(String(40))
     added_at: Mapped[datetime] = mapped_column(DateTime)
+
+
+class UserSettings(Base):
+    """Per-account preferences (dark mode, ...) and when the user last opened Updates."""
+
+    __tablename__ = "user_settings"
+
+    user_id: Mapped[int] = mapped_column(Integer, ForeignKey("users.id", ondelete="CASCADE"), primary_key=True)
+    prefs: Mapped[dict] = mapped_column(JSON, default=dict)
+    updates_seen_at: Mapped[datetime | None] = mapped_column(DateTime, nullable=True)
+
+
+class SavedFilter(Base):
+    """A named dashboard view a user saved: the dashboard's own URL state (view,
+    themes, toggles, sliders, search, sort), re-applied when they pick it."""
+
+    __tablename__ = "saved_filters"
+
+    id: Mapped[int] = mapped_column(Integer, primary_key=True)
+    user_id: Mapped[int] = mapped_column(Integer, ForeignKey("users.id", ondelete="CASCADE"), index=True)
+    name: Mapped[str] = mapped_column(String(80))
+    state: Mapped[str] = mapped_column(String(2000))
+    created_at: Mapped[datetime] = mapped_column(DateTime)
+    updated_at: Mapped[datetime] = mapped_column(DateTime)
+
+
+class Feedback(Base):
+    """A "Write to us" message. Kept even if the account is later deleted."""
+
+    __tablename__ = "feedback"
+
+    id: Mapped[int] = mapped_column(Integer, primary_key=True)
+    user_id: Mapped[int | None] = mapped_column(Integer, nullable=True, index=True)
+    name: Mapped[str] = mapped_column(String(120), default="")
+    email: Mapped[str] = mapped_column(String(254), default="")
+    category: Mapped[str] = mapped_column(String(40), default="feedback")
+    message: Mapped[str] = mapped_column(String(5000))
+    page: Mapped[str] = mapped_column(String(500), default="")
+    status: Mapped[str] = mapped_column(String(12), default="new", index=True)   # new | read | done
+    created_at: Mapped[datetime] = mapped_column(DateTime)
+

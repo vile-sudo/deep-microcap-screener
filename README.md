@@ -287,6 +287,17 @@ admin, delete). Disabling or rejecting someone ends their sessions at once.
 - With no admin configured (local development) the site stays open.
 - **Accounts must live in Postgres in production** — the SQLite file on a
   Render web service is rebuilt on every deploy. See DEPLOYMENT.md.
+- **Account menu** (everything saved per person): **Dark mode** (follows the
+  account to every device; `frontend/static/dark.css` is generated from
+  `style.css` by `python frontend/tools/build_dark_css.py` — re-run it after
+  CSS changes, hand fixes go in `dark-extra.css`), **Profile** (name, password —
+  changing it logs out other devices; the main admin's password stays in the
+  server settings), **Updates** (new companies, new deep-dive reports and new
+  features from `backend/data/updates.json`, unread count, watchlist names
+  flagged), **My saved filters** (name and re-apply any dashboard view; also the
+  ☆ Save filters button), **Write to us** (messages land in the admin's
+  **Messages** inbox), **Log out**. Watchlists are per account too.
+  Code: `backend/app/routers/account.py`, `routers/watchlist.py`.
 - Code: `backend/app/auth.py` (hashing, sessions, the gate),
   `backend/app/routers/auth.py` (endpoints), `frontend/login.html`.
 

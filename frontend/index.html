@@ -6,7 +6,9 @@
 <title>Deep Sweep</title>
 <meta name="description" content="Deep Sweep — a research board for Indian microcap and quality-first names: stage screens, IPO bases, charts and ASME certification.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%94%8D%3C/text%3E%3C/svg%3E">
-<link rel="stylesheet" href="/static/style.css?v=39">
+<script>try{if(localStorage.getItem("dms.mode")==="dark")document.documentElement.dataset.mode="dark"}catch(e){}</script>
+<link rel="stylesheet" href="/static/style.css?v=41">
+<link rel="stylesheet" href="/static/dark.css?v=41">
 </head>
 <body>
 <header class="nav" id="topnav">
@@ -136,6 +138,7 @@
   </div>
   <div class="toolbar">
     <button class="btn" id="reset" title="Clear every filter, the search and the sort">Reset all</button>
+    <button class="btn" id="save-filter" type="button" hidden title="Save this view to your account (My saved filters)">&#9734; Save filters</button>
     <div class="popwrap">
       <button class="btn" id="colbtn" title="Choose which columns the table shows">&#9638; Columns</button>
       <div class="pop" id="colpop"></div>
@@ -289,6 +292,6 @@
 <div class="modal" id="modal" role="dialog" aria-modal="true"><div class="mbox"><button class="close" id="mclose" aria-label="Close">&times;</button><div id="mbody"></div></div></div>
 
 <script src="/static/asme-certified.js?v=5" defer></script>
-<script src="/static/app.js?v=39" defer></script>
+<script src="/static/app.js?v=41" defer></script>
 </body>
 </html>

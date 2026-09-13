@@ -1,0 +1,13 @@
+/* hand-written additions to dark mode, appended to dark.css by build_dark_css.py */
+html[data-mode="dark"] .site-foot{background:no-repeat top center/100% 60px url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 60' preserveAspectRatio='none'%3E%3Cpath d='M0 0 H1440 V22 C1200 58 960 6 720 30 S240 52 0 18Z' fill='%230b141c'/%3E%3C/svg%3E"),linear-gradient(160deg,#0b3954,#08273a)}
+html[data-mode="dark"] .bp-stage b{color:#8fd0f0}
+html[data-mode="dark"] .rp-print{background:linear-gradient(135deg,#0a73a8,#0b3954);color:#fff;border-color:transparent}
+html[data-mode="dark"] input,html[data-mode="dark"] select,html[data-mode="dark"] textarea{color-scheme:dark}
+html[data-mode="dark"] input[type=range]{accent-color:#2db6dd}
+html[data-mode="dark"] .nav-menu button.switch{background:#3a4852}
+html[data-mode="dark"] .nav-menu button.switch[aria-checked="true"]{background:#2d9fd0}
+html[data-mode="dark"] .nav-menu{box-shadow:0 24px 50px -20px rgba(0,0,0,.8)}
+html[data-mode="dark"] .modal{background:rgba(0,0,0,.62)}
+html[data-mode="dark"] .upd-new{background:#2d9fd0}
+html[data-mode="dark"] ::selection{background:#1d4a66;color:#fff}
+html[data-mode="dark"] .switch i{background:#fff}

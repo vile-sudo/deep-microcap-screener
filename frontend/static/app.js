@@ -1051,7 +1051,7 @@ function openCompare(){
 
 /* ---------- modal ---------- */
 const modal=document.getElementById('modal'), mbody=document.getElementById('mbody');
-function openModal(html){ mbody.innerHTML=html; modal.classList.add('on'); modal.scrollTop=0; }
+function openModal(html){ modal.querySelector('.mbox').classList.remove('narrow'); mbody.innerHTML=html; modal.classList.add('on'); modal.scrollTop=0; }
 function closeModal(){ modal.classList.remove('on'); }
 document.getElementById('mclose').onclick=closeModal;
 modal.onclick=e=>{ if(e.target===modal) closeModal(); };
@@ -2151,38 +2151,278 @@ const mvNum=(v,d=2)=>v==null?'—':(+v).toLocaleString('en-IN',{minimumFractionD
    the people who asked for access.
    ================================================================== */
 var ME=null;   /* the signed-in user, once /api/auth/me answers */
+/* ---------- account menu: dark mode, profile, updates, saved filters, write to us ----------
+   Everything here belongs to the logged-in person and is saved to their account
+   (routers/account.py). Dark mode is also remembered in this browser so the page
+   paints dark straight away, before the account answers. */
+const MI={
+  moon:'<path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a7 7 0 0 0 10.5 10.5z"/>',
+  user:'<circle cx="12" cy="8" r="4"/><path d="M4.5 20.5c1.3-3.8 4.2-5.5 7.5-5.5s6.2 1.7 7.5 5.5"/>',
+  bell:'<path d="M6 16.5V11a6 6 0 0 1 12 0v5.5l1.5 2h-15z"/><path d="M10 20.5a2.2 2.2 0 0 0 4 0"/>',
+  filter:'<path d="M4 5h16l-6.2 7.4V19l-3.6-1.8v-4.8z"/>',
+  mail:'<rect x="3.5" y="5.5" width="17" height="13" rx="2"/><path d="M4 7l8 6 8-6"/>',
+  out:'<path d="M10 4.5H6a1.5 1.5 0 0 0-1.5 1.5v12A1.5 1.5 0 0 0 6 19.5h4"/><path d="M15 8l4 4-4 4"/><path d="M9.5 12H19"/>',
+  users:'<circle cx="9" cy="8.5" r="3.2"/><path d="M3.5 19c1-3 3.1-4.4 5.5-4.4s4.5 1.4 5.5 4.4"/><path d="M15.5 5.6a3.2 3.2 0 0 1 0 6"/><path d="M17.5 14.9c1.6.6 2.6 1.9 3.2 4.1"/>',
+  inbox:'<path d="M3.5 13.5 6 5.5h12l2.5 8V19h-17z"/><path d="M3.5 13.5H9l1 2h4l1-2h5.5"/>',
+  report:'<path d="M7 3.5h7.5L19 8v12.5H7z"/><path d="M14.5 3.5V8H19"/><path d="M10 12h6M10 15.5h6"/>',
+  plus:'<path d="M12 5v14M5 12h14"/>',
+  star:'<path d="M12 4.5l2.3 4.7 5.2.8-3.8 3.6.9 5.2L12 16.4l-4.6 2.4.9-5.2-3.8-3.6 5.2-.8z"/>',
+  building:'<path d="M5 20V6.5L12 3l7 3.5V20"/><path d="M9 20v-4h6v4"/><path d="M9 9.5h.01M15 9.5h.01M9 13h.01M15 13h.01"/>',
+};
+const mi = n => `<svg class="mi" viewBox="0 0 24 24" aria-hidden="true">${MI[n]}</svg>`;
+const ACCT={prefs:{}, unread:0, msgs:0};
+async function api(url, method, body){
+  const r=await fetch(url,{method:method||'GET',credentials:'same-origin',headers:body?{'Content-Type':'application/json'}:{},body:body?JSON.stringify(body):undefined});
+  let j={}; try{ j=await r.json(); }catch(e){}
+  if(!r.ok) throw new Error(j.detail||('Something went wrong ('+r.status+')'));
+  return j;
+}
+function smallModal(html){ openModal(html); modal.querySelector('.mbox').classList.add('narrow'); }
+const whenIN = iso => iso ? new Date(iso).toLocaleDateString('en-IN',{day:'numeric',month:'short',year:'numeric'}) : '—';
+const dayIN = d => { const [y,m,dd]=String(d).split('-').map(Number); return y?`${dd} ${GMONTHS[m-1]} ${y}`:d; };
+
+function setDark(on, save){
+  document.documentElement.dataset.mode = on ? 'dark' : 'light';
+  try{ localStorage.setItem('dms.mode', on ? 'dark' : 'light'); }catch(e){}
+  const sw=document.getElementById('nav-dark'); if(sw) sw.setAttribute('aria-checked', String(on));
+  if(save && ME) api('/api/me/settings','PATCH',{prefs:{dark:on}}).catch(()=>{});
+  if(VIEW==='gallery' || VIEW==='market') render();
+}
+
 async function initUserMenu(){
   let me=null;
   try{ me=await fetchJSON('/api/auth/me'); }catch(e){ return; }
   if(!me || !me.user) return;                 /* accounts off (local development) */
   const u=me.user, box=document.getElementById('nav-user');
   ME=u;
+  drawUserMenu();
+  api('/api/me/settings').then(j=>{ ACCT.prefs=j.prefs||{}; if(typeof ACCT.prefs.dark==='boolean') setDark(ACCT.prefs.dark,false); }).catch(()=>{});
+  refreshUpdatesBadge();
+  setInterval(refreshUpdatesBadge, 15*60*1000);
+  if(u.is_admin){
+    refreshPending(); refreshMessages();
+    setInterval(()=>{ refreshPending(); refreshMessages(); }, 5*60*1000);
+  }
+  const sf=document.getElementById('save-filter'); if(sf){ sf.hidden=false; sf.onclick=()=>openSavedFilters(true); }
+  document.addEventListener('click',e=>{ const menu=document.getElementById('nav-menu'); if(menu && !box.contains(e.target)){ menu.hidden=true; document.getElementById('nav-user-btn').setAttribute('aria-expanded','false'); } });
+}
+function drawUserMenu(){
+  const u=ME, box=document.getElementById('nav-user');
   const initial=(u.name||u.email||'?').trim().charAt(0).toUpperCase();
+  const dark=document.documentElement.dataset.mode==='dark';
   box.hidden=false;
   box.innerHTML=`<button type="button" class="nav-user-btn" id="nav-user-btn" aria-haspopup="menu" aria-expanded="false">
       <span class="nav-avatar">${esc(initial)}</span><span class="nav-user-name">${esc(u.name||u.email)}</span><span class="nav-pending" id="nav-pending" hidden></span>
     </button>
     <div class="nav-menu" id="nav-menu" role="menu" hidden>
       <div class="nav-menu-head"><span class="nav-avatar lg">${esc(initial)}</span><div><b>${esc(u.name||'Signed in')}</b><small>${esc(u.email)}${u.is_admin?' · Admin':''}</small></div></div>
-      ${u.is_admin?`<button type="button" role="menuitem" id="nav-manage">${icon('building')}Manage users <span class="nav-pending" id="nav-pending-2" hidden></span></button>`:''}
-      <button type="button" role="menuitem" id="nav-logout">${icon('flag')}Log out</button>
+      <div class="nav-menu-row" role="menuitemcheckbox" aria-checked="${dark}" id="nav-dark-row">${mi('moon')}<span>Dark mode</span>
+        <button type="button" class="switch" id="nav-dark" role="switch" aria-checked="${dark}" aria-label="Dark mode"><i></i></button></div>
+      <button type="button" role="menuitem" data-acct="profile">${mi('user')}Profile</button>
+      <button type="button" role="menuitem" data-acct="updates">${mi('bell')}Updates <span class="nav-pending" id="nav-updates" hidden></span></button>
+      <button type="button" role="menuitem" data-acct="filters">${mi('filter')}My saved filters</button>
+      <button type="button" role="menuitem" data-acct="write">${mi('mail')}Write to us</button>
+      ${u.is_admin?`<div class="nav-menu-sep">Admin</div>
+      <button type="button" role="menuitem" data-acct="users">${mi('users')}Manage users <span class="nav-pending" id="nav-pending-2" hidden></span></button>
+      <button type="button" role="menuitem" data-acct="messages">${mi('inbox')}Messages <span class="nav-pending" id="nav-msgs" hidden></span></button>`:''}
+      <div class="nav-menu-sep"></div>
+      <button type="button" role="menuitem" data-acct="logout">${mi('out')}Log out</button>
     </div>`;
   const btn=document.getElementById('nav-user-btn'), menu=document.getElementById('nav-menu');
   btn.onclick=e=>{ e.stopPropagation(); menu.hidden=!menu.hidden; btn.setAttribute('aria-expanded', String(!menu.hidden)); };
-  document.addEventListener('click',e=>{ if(!box.contains(e.target)){ menu.hidden=true; btn.setAttribute('aria-expanded','false'); } });
-  document.getElementById('nav-logout').onclick=async ()=>{
-    try{ await fetch('/api/auth/logout',{method:'POST',credentials:'same-origin'}); }catch(e){}
-    location.href='/login';
-  };
-  if(u.is_admin){
-    document.getElementById('nav-manage').onclick=()=>{ menu.hidden=true; openUsers(); };
-    refreshPending();
-    setInterval(refreshPending, 5*60*1000);
-  }
+  document.getElementById('nav-dark-row').onclick=e=>{ e.stopPropagation(); setDark(document.documentElement.dataset.mode!=='dark', true); };
+  menu.querySelectorAll('[data-acct]').forEach(b=>b.onclick=async ()=>{
+    menu.hidden=true;
+    const a=b.dataset.acct;
+    if(a==='profile') openProfile();
+    else if(a==='updates') openUpdates();
+    else if(a==='filters') openSavedFilters(false);
+    else if(a==='write') openWriteToUs();
+    else if(a==='users') openUsers();
+    else if(a==='messages') openMessages();
+    else if(a==='logout'){ try{ await fetch('/api/auth/logout',{method:'POST',credentials:'same-origin'}); }catch(e){} location.href='/login'; }
+  });
+  badges();
 }
+function badges(){
+  const set=(id,n)=>{ const el=document.getElementById(id); if(el){ el.textContent=n; el.hidden=!n; } };
+  set('nav-updates', ACCT.unread); set('nav-msgs', ACCT.msgs);
+  const dot=document.getElementById('nav-pending');   /* the avatar badge sums what needs attention */
+  if(dot){ const n=(ACCT.pendingUsers||0)+(ACCT.msgs||0)+(ACCT.unread||0); dot.textContent=n; dot.hidden=!n; }
+  set('nav-pending-2', ACCT.pendingUsers||0);
+}
+async function refreshUpdatesBadge(){ try{ const j=await api('/api/me/updates'); ACCT.unread=j.unread; badges(); return j; }catch(e){} }
+async function refreshMessages(){ try{ const j=await api('/api/admin/feedback'); ACCT.msgs=j.new; badges(); return j; }catch(e){} }
+
+/* ---------- profile ---------- */
+function openProfile(){
+  const u=ME;
+  smallModal(`<h3>Profile</h3>
+    <form class="acct-form" id="pf-name">
+      <label for="pf-n">Name</label>
+      <div class="acct-inline"><input id="pf-n" maxlength="120" value="${esc(u.name||'')}" autocomplete="name"><button class="btn on" type="submit">Save</button></div>
+      <div class="acct-msg" id="pf-name-msg" role="status"></div>
+    </form>
+    <dl class="acct-dl">
+      <div><dt>Email</dt><dd>${esc(u.email)}</dd></div>
+      <div><dt>Role</dt><dd>${u.is_admin?'Admin':'Member'}</dd></div>
+      <div><dt>Member since</dt><dd>${whenIN(u.approved_at||u.created_at)}</dd></div>
+      <div><dt>Last login</dt><dd>${whenIN(u.last_login)}</dd></div>
+    </dl>
+    <form class="acct-form" id="pf-pass">
+      <h4>Change password</h4>
+      <label for="pf-cur">Current password</label><input id="pf-cur" type="password" autocomplete="current-password" required>
+      <label for="pf-new">New password</label><input id="pf-new" type="password" autocomplete="new-password" minlength="8" required>
+      <label for="pf-new2">Repeat new password</label><input id="pf-new2" type="password" autocomplete="new-password" minlength="8" required>
+      <button class="btn on" type="submit">Change password</button>
+      <div class="acct-msg" id="pf-pass-msg" role="status"></div>
+    </form>`);
+  const msg=(id,t,ok)=>{ const el=document.getElementById(id); el.textContent=t; el.className='acct-msg '+(ok?'ok':'err'); };
+  document.getElementById('pf-name').onsubmit=async e=>{
+    e.preventDefault();
+    try{ const j=await api('/api/me/profile','PATCH',{name:document.getElementById('pf-n').value}); ME=j.user; drawUserMenu(); msg('pf-name-msg','Saved.',true); }
+    catch(err){ msg('pf-name-msg',err.message,false); }
+  };
+  document.getElementById('pf-pass').onsubmit=async e=>{
+    e.preventDefault();
+    const cur=document.getElementById('pf-cur').value, nw=document.getElementById('pf-new').value, nw2=document.getElementById('pf-new2').value;
+    if(nw!==nw2) return msg('pf-pass-msg','The two new passwords do not match.',false);
+    if(nw.length<8) return msg('pf-pass-msg','Use at least 8 characters.',false);
+    try{ const j=await api('/api/me/password','POST',{current:cur,new:nw}); e.target.reset(); msg('pf-pass-msg',j.message,true); }
+    catch(err){ msg('pf-pass-msg',err.message,false); }
+  };
+}
+
+/* ---------- updates ---------- */
+async function openUpdates(){
+  smallModal('<h3>Updates</h3><p class="view-hint">Loading…</p>');
+  const j=await refreshUpdatesBadge();
+  if(!j){ mbody.innerHTML='<h3>Updates</h3><p class="view-hint">Could not load updates.</p>'; return; }
+  const kindIcon={feature:'star',companies:'building',report:'report'};
+  const byCode={}; DATA.forEach(d=>byCode[d.code]=d);
+  mbody.innerHTML=`<h3>Updates</h3><p class="mp">What's new on the board over the last few weeks${j.seen?`; anything since ${dayIN(j.seen)} is marked new`:''}.</p>
+    <ol class="upd-list">${j.items.length?j.items.map(i=>{
+      const watch=(i.watch||[]).filter(c=>byCode[c]);
+      const action = i.kind==='report' && byCode[i.code] ? `<button class="btn" data-upd-report="${esc(i.code)}">Read report</button>`
+        : i.kind==='companies' ? `<button class="btn" data-upd-new="${esc(i.new_since)}">See them</button>`
+        : i.view ? `<button class="btn" data-upd-view="${esc(i.view)}">Open</button>` : '';
+      return `<li class="upd-item${i.unread?' unread':''}">
+        <span class="upd-ic k-${esc(i.kind)}">${mi(kindIcon[i.kind]||'bell')}</span>
+        <div class="upd-main"><div class="upd-top"><b>${esc(i.title)}</b>${i.unread?'<span class="upd-new">New</span>':''}</div>
+          ${i.body?`<p>${esc(i.body.length>320?i.body.slice(0,320)+'…':i.body)}</p>`:''}
+          ${watch.length?`<div class="upd-watch">${mi('star')} On your watchlist: ${watch.map(c=>esc(byCode[c].name)).join(', ')}</div>`:''}
+          <div class="upd-foot"><span>${dayIN(i.date)}</span>${action}</div></div>
+      </li>`;}).join(''):'<li class="view-hint">Nothing new yet.</li>'}</ol>`;
+  mbody.querySelectorAll('[data-upd-report]').forEach(b=>b.onclick=()=>{ closeModal(); openReport(b.dataset.updReport); });
+  mbody.querySelectorAll('[data-upd-new]').forEach(b=>b.onclick=()=>{ closeModal(); setView('companies',{nav:'companies-link'}); NEWSINCE=b.dataset.updNew; render(); });
+  mbody.querySelectorAll('[data-upd-view]').forEach(b=>b.onclick=()=>{ closeModal(); setView(b.dataset.updView); });
+  if(j.unread){ api('/api/me/updates/seen','POST').then(()=>{ ACCT.unread=0; badges(); }).catch(()=>{}); }
+}
+
+/* ---------- saved filters ---------- */
+const VIEW_NAME={overview:'Overview',themes:'Themes',market:'Market',watchlist:'Watchlist',companies:'Companies',filters:'Screens',gallery:'Charts',reports:'Reports',method:'How it works'};
+function describeState(state){
+  const p=new URLSearchParams(state), bits=[];
+  bits.push(VIEW_NAME[p.get('v')||'overview']||'Overview');
+  if(p.get('tile')) bits.push(TILE_LABEL[p.get('tile')]||p.get('tile'));
+  if(p.get('t')){ const ts=p.get('t').split(',').map(n=>THEMES[+n]).filter(Boolean); if(ts.length) bits.push(ts.length<=2?ts.map(shortT).join(', '):ts.length+' themes'); }
+  if(p.get('tg')) p.get('tg').split(',').forEach(k=>{ const b=document.querySelector(`.filter-panel [data-tg="${CSS.escape(k)}"], [data-tg="${CSS.escape(k)}"]`); bits.push(b?(b.dataset.label||b.textContent.replace(/\d+\s*$/,'').replace(/^[^\w₹]+/,'').trim()):k); });
+  if(p.get('sl')) bits.push(p.get('sl').split(',').length+' slider'+(p.get('sl').split(',').length>1?'s':''));
+  if(p.get('q')) bits.push('search "'+p.get('q')+'"');
+  if(p.get('new')) bits.push('added '+dayIN(p.get('new')));
+  if(p.get('r')) bits.push('report '+p.get('r'));
+  if(p.get('sort')){ const k=p.get('sort').split(':')[0]; bits.push('sorted by '+((COLS.find(c=>c.k===k)||{}).l||k)); }
+  return bits.join(' · ');
+}
+function currentState(){ syncURL(); return location.hash.replace(/^#/,''); }
+function applySavedFilter(state){
+  closeModal();
+  try{ history.replaceState(null,'',location.pathname+location.search+'#'+state); }catch(e){}
+  BUSY=true; clearFilters(); VIEW='overview'; RP.code=null; applyState(); BUSY=false;
+  setView(VIEW,{keep:true});
+}
+async function openSavedFilters(focusSave){
+  const state=currentState();
+  smallModal(`<h3>My saved filters</h3>
+    <p class="mp">Save the view you're looking at — page, themes, screens, sliders, search and sort — and come back to it in one click. Saved to your account.</p>
+    <form class="acct-form sf-save" id="sf-form">
+      <label for="sf-name">Save the current view</label>
+      <div class="sf-now">${state?esc(describeState(state)):'Nothing picked yet — choose some filters first'}</div>
+      <div class="acct-inline"><input id="sf-name" maxlength="80" placeholder="Name, e.g. Defence under ₹1,000 cr" ${state?'':'disabled'}><button class="btn on" type="submit" ${state?'':'disabled'}>${mi('plus')}Save</button></div>
+      <div class="acct-msg" id="sf-msg" role="status"></div>
+    </form>
+    <div id="sf-list"><p class="view-hint">Loading…</p></div>`);
+  const list=document.getElementById('sf-list');
+  const draw=async()=>{
+    let j; try{ j=await api('/api/me/filters'); }catch(e){ list.innerHTML='<p class="view-hint">Could not load your saved filters.</p>'; return; }
+    list.innerHTML = j.filters.length ? `<ul class="sf-list">${j.filters.map(f=>`<li data-sf="${f.id}">
+        <div class="sf-main"><b>${esc(f.name)}</b><small>${esc(describeState(f.state))}</small></div>
+        <div class="sf-acts"><button class="btn on" data-sf-apply="${f.id}">Apply</button><button class="btn" data-sf-rename="${f.id}">Rename</button><button class="btn" data-sf-update="${f.id}" title="Replace it with the view you're looking at now" ${state?'':'disabled'}>Update</button><button class="btn danger" data-sf-del="${f.id}">Delete</button></div>
+      </li>`).join('')}</ul>` : '<p class="view-hint">No saved filters yet.</p>';
+    const find=id=>j.filters.find(f=>String(f.id)===String(id));
+    list.querySelectorAll('[data-sf-apply]').forEach(b=>b.onclick=()=>applySavedFilter(find(b.dataset.sfApply).state));
+    list.querySelectorAll('[data-sf-rename]').forEach(b=>b.onclick=async()=>{ const f=find(b.dataset.sfRename); const n=prompt('Rename saved filter', f.name); if(n&&n.trim()){ try{ await api('/api/me/filters/'+f.id,'PATCH',{name:n}); draw(); }catch(e){ alert(e.message); } } });
+    list.querySelectorAll('[data-sf-update]').forEach(b=>b.onclick=async()=>{ const f=find(b.dataset.sfUpdate); if(confirm(`Replace "${f.name}" with the view you're looking at now?`)){ try{ await api('/api/me/filters/'+f.id,'PATCH',{state}); draw(); }catch(e){ alert(e.message); } } });
+    list.querySelectorAll('[data-sf-del]').forEach(b=>b.onclick=async()=>{ const f=find(b.dataset.sfDel); if(confirm(`Delete "${f.name}"?`)){ try{ await api('/api/me/filters/'+f.id,'DELETE'); draw(); }catch(e){ alert(e.message); } } });
+  };
+  document.getElementById('sf-form').onsubmit=async e=>{
+    e.preventDefault();
+    const el=document.getElementById('sf-msg');
+    try{ await api('/api/me/filters','POST',{name:document.getElementById('sf-name').value,state}); document.getElementById('sf-name').value=''; el.textContent='Saved.'; el.className='acct-msg ok'; draw(); }
+    catch(err){ el.textContent=err.message; el.className='acct-msg err'; }
+  };
+  if(focusSave && state) document.getElementById('sf-name').focus();
+  draw();
+}
+
+/* ---------- write to us ---------- */
+function openWriteToUs(){
+  smallModal(`<h3>Write to us</h3>
+    <p class="mp">Spotted a wrong number, want a feature, or have a question? It goes straight to the team.</p>
+    <form class="acct-form" id="wt-form">
+      <label for="wt-cat">What is it about?</label>
+      <select id="wt-cat" class="gal-select"><option value="feedback">Feedback</option><option value="data-error">A data error</option><option value="feature">A feature request</option><option value="question">A question</option><option value="other">Something else</option></select>
+      <label for="wt-msg">Message</label>
+      <textarea id="wt-msg" rows="6" maxlength="5000" required placeholder="Tell us what you noticed — the company, the number and where you saw it help a lot."></textarea>
+      <label class="acct-check"><input type="checkbox" id="wt-page" checked> Include a link to the page I'm on</label>
+      <button class="btn on" type="submit">Send</button>
+      <div class="acct-msg" id="wt-msg-out" role="status"></div>
+    </form>`);
+  document.getElementById('wt-msg').focus();
+  document.getElementById('wt-form').onsubmit=async e=>{
+    e.preventDefault();
+    const out=document.getElementById('wt-msg-out'), btn=e.target.querySelector('button[type=submit]');
+    btn.disabled=true;
+    try{
+      syncURL();
+      const j=await api('/api/feedback','POST',{category:document.getElementById('wt-cat').value,message:document.getElementById('wt-msg').value,
+        page:document.getElementById('wt-page').checked?(location.pathname+location.hash):''});
+      e.target.querySelector('textarea').value=''; out.textContent=j.message; out.className='acct-msg ok';
+    }catch(err){ out.textContent=err.message; out.className='acct-msg err'; }
+    btn.disabled=false;
+  };
+}
+async function openMessages(){
+  smallModal('<h3>Messages</h3><p class="view-hint">Loading…</p>');
+  const j=await refreshMessages();
+  if(!j){ mbody.innerHTML='<h3>Messages</h3><p class="view-hint">Could not load messages.</p>'; return; }
+  const draw=()=>{
+    mbody.innerHTML=`<h3>Messages</h3><p class="mp">${j.new?`<b>${j.new}</b> new. `:'No new messages. '}Sent from "Write to us" by signed-in users.</p>
+      <ul class="msg-list">${j.messages.length?j.messages.map(m=>`<li class="msg-item st-${m.status}">
+        <div class="msg-top"><b>${esc(m.name||m.email)}</b><span class="msg-cat">${esc(j.categories[m.category]||m.category)}</span>${m.status==='new'?'<span class="upd-new">New</span>':''}<small>${whenIN(m.created_at)}</small></div>
+        <div class="msg-from"><a href="mailto:${esc(m.email)}">${esc(m.email)}</a>${m.page?` · <a href="${esc(m.page)}" target="_blank" rel="noopener">page they were on</a>`:''}</div>
+        <p>${esc(m.message)}</p>
+        <div class="sf-acts">${m.status!=='done'?`<button class="btn" data-msg="${m.id}" data-st="done">Mark done</button>`:`<button class="btn" data-msg="${m.id}" data-st="new">Reopen</button>`}${m.status==='new'?`<button class="btn" data-msg="${m.id}" data-st="read">Mark read</button>`:''}<button class="btn danger" data-msg-del="${m.id}">Delete</button></div>
+      </li>`).join(''):'<li class="view-hint">No messages yet.</li>'}</ul>`;
+    mbody.querySelectorAll('[data-msg]').forEach(b=>b.onclick=async()=>{ try{ await api(`/api/admin/feedback/${b.dataset.msg}/${b.dataset.st}`,'POST'); const m=j.messages.find(x=>String(x.id)===b.dataset.msg); m.status=b.dataset.st; j.new=j.messages.filter(x=>x.status==='new').length; ACCT.msgs=j.new; badges(); draw(); }catch(e){ alert(e.message); } });
+    mbody.querySelectorAll('[data-msg-del]').forEach(b=>b.onclick=async()=>{ if(!confirm('Delete this message?')) return; try{ await api('/api/admin/feedback/'+b.dataset.msgDel,'DELETE'); j.messages=j.messages.filter(x=>String(x.id)!==b.dataset.msgDel); j.new=j.messages.filter(x=>x.status==='new').length; ACCT.msgs=j.new; badges(); draw(); }catch(e){ alert(e.message); } });
+  };
+  draw();
+}
+
 async function refreshPending(){
   let j; try{ j=await fetchJSON('/api/admin/users'); }catch(e){ return; }
-  ['nav-pending','nav-pending-2'].forEach(id=>{ const el=document.getElementById(id); if(el){ el.textContent=j.pending; el.hidden=!j.pending; } });
+  ACCT.pendingUsers=j.pending; badges();
   return j;
 }
 const USER_STATUS={pending:['Waiting for approval','st-pending'], approved:['Approved','st-approved'], rejected:['Rejected','st-rejected'], disabled:['Disabled','st-disabled']};
