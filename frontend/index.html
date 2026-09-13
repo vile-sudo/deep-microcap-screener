@@ -7,10 +7,195 @@
 <meta name="description" content="Deep Sweep — a research board for Indian microcap and quality-first names: stage screens, IPO bases, charts and ASME certification.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%94%8D%3C/text%3E%3C/svg%3E">
 <script>try{if(localStorage.getItem("dms.mode")==="dark")document.documentElement.dataset.mode="dark"}catch(e){}</script>
-<link rel="stylesheet" href="/static/style.css?v=41">
-<link rel="stylesheet" href="/static/dark.css?v=41">
+<style>
+/* ---- loading scene: inline so it paints before the stylesheet arrives ---- */
+#ds-splash{position:fixed;inset:0;z-index:9999;overflow:hidden;background:#06202f;font-family:"Inter","Segoe UI",system-ui,-apple-system,sans-serif;transition:opacity .7s ease,visibility .7s ease}
+#ds-splash.sp-hide{opacity:0;visibility:hidden}
+.sp-sky{position:absolute;left:0;right:0;top:0;height:26%;background:linear-gradient(180deg,#9fdcf2 0%,#c9eefa 70%,#e3f7fd 100%)}
+.sp-sun{position:absolute;right:14%;top:22%;width:90px;height:90px;border-radius:50%;background:radial-gradient(circle,#fff7d6 0%,#ffe79a 45%,rgba(255,231,154,0) 72%);animation:spGlow 4s ease-in-out infinite}
+.sp-waves{position:absolute;left:0;right:0;top:calc(26% - 110px);height:112px;z-index:2}
+.sp-wave{position:absolute;left:0;bottom:0;width:200%;height:100%;background-repeat:repeat-x;background-size:50% 100%}
+.sp-wave.w3{bottom:26px;opacity:.55;animation:spWaveX 13s linear infinite;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 120' preserveAspectRatio='none'%3E%3Cpath d='M0 60 Q180 25 360 60 T720 60 T1080 60 T1440 60 V120 H0Z' fill='%236fd0ee'/%3E%3C/svg%3E")}
+.sp-wave.w2{bottom:12px;opacity:.8;animation:spWaveX 9s linear infinite reverse;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 120' preserveAspectRatio='none'%3E%3Cpath d='M0 64 Q180 30 360 64 T720 64 T1080 64 T1440 64 V120 H0Z' fill='%232db6dd'/%3E%3C/svg%3E")}
+.sp-wave.w1{bottom:0;animation:spWaveX 6s linear infinite;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 120' preserveAspectRatio='none'%3E%3Cpath d='M0 70 Q180 40 360 70 T720 70 T1080 70 T1440 70 V120 H0Z' fill='%23179bd0'/%3E%3Cpath d='M0 70 Q180 40 360 70 T720 70 T1080 70 T1440 70' stroke='%23ffffff' stroke-width='3' stroke-opacity='.55' fill='none'/%3E%3C/svg%3E")}
+.sp-sea{position:absolute;left:0;right:0;top:26%;bottom:0;background:linear-gradient(180deg,#179bd0 0%,#0a73a8 30%,#0b3954 72%,#06202f 100%)}
+.sp-rays{position:absolute;inset:0;overflow:hidden;pointer-events:none}
+.sp-rays i{position:absolute;top:0;width:90px;height:90%;background:linear-gradient(180deg,rgba(255,255,255,0) 0%,rgba(255,255,255,.24) 16%,rgba(255,255,255,0) 100%);transform-origin:top center;filter:blur(6px);animation:spRay 7s ease-in-out infinite}
+.sp-rays i:nth-child(1){left:12%;transform:rotate(14deg)}
+.sp-rays i:nth-child(2){left:30%;width:60px;transform:rotate(9deg);animation-delay:-2s}
+.sp-rays i:nth-child(3){left:52%;width:110px;transform:rotate(4deg);animation-delay:-4s}
+.sp-rays i:nth-child(4){left:70%;width:70px;transform:rotate(-6deg);animation-delay:-1s}
+.sp-rays i:nth-child(5){left:86%;width:50px;transform:rotate(-12deg);animation-delay:-3s}
+
+.sp-fish,.sp-school{position:absolute;left:0;z-index:3;animation:spSwim linear infinite;will-change:transform}
+.sp-fish.rev,.sp-school.rev{animation-name:spSwimRev}
+.sp-fish svg{display:block;width:100%;height:auto;filter:drop-shadow(0 6px 8px rgba(3,20,32,.35))}
+.sp-fish.rev svg{transform:scaleX(-1)}
+.sp-bob{animation:spBob 2.6s ease-in-out infinite}
+.sp-tail{transform-box:fill-box;transform-origin:100% 50%;animation:spTail .45s ease-in-out infinite alternate}
+.f1{top:20%;width:92px;animation-duration:17s;animation-delay:-6s}
+.f2{top:48%;width:104px;animation-duration:22s;animation-delay:-15s}
+.f3{top:34%;width:84px;animation-duration:19s;animation-delay:-3s}
+.f4{top:62%;width:70px;animation-duration:14s;animation-delay:-9s}
+.f5{top:72%;width:78px;animation-duration:24s;animation-delay:-18s}
+.f2 .sp-bob{animation-duration:3.2s}.f4 .sp-bob{animation-duration:2.1s}.f5 .sp-bob{animation-duration:3.6s}
+.sp-school{top:12%;width:170px;opacity:.9;animation-duration:30s;animation-delay:-12s}
+.sp-school svg{display:block;width:100%;height:auto}
+.sp-bubbles i{position:absolute;bottom:-20px;width:10px;height:10px;border-radius:50%;border:1.5px solid rgba(255,255,255,.55);background:radial-gradient(circle at 35% 30%,rgba(255,255,255,.7),rgba(255,255,255,.08) 60%);animation:spRise linear infinite;z-index:2}
+.sp-bubbles i:nth-child(1){left:8%;animation-duration:7s;animation-delay:-1s}
+.sp-bubbles i:nth-child(2){left:16%;width:6px;height:6px;animation-duration:5.5s;animation-delay:-3s}
+.sp-bubbles i:nth-child(3){left:23%;width:14px;height:14px;animation-duration:9s;animation-delay:-5s}
+.sp-bubbles i:nth-child(4){left:34%;animation-duration:6.5s;animation-delay:-2s}
+.sp-bubbles i:nth-child(5){left:44%;width:7px;height:7px;animation-duration:8s;animation-delay:-6s}
+.sp-bubbles i:nth-child(6){left:57%;width:12px;height:12px;animation-duration:7.5s;animation-delay:-4s}
+.sp-bubbles i:nth-child(7){left:63%;width:6px;height:6px;animation-duration:5s;animation-delay:-1.5s}
+.sp-bubbles i:nth-child(8){left:71%;animation-duration:8.5s;animation-delay:-7s}
+.sp-bubbles i:nth-child(9){left:79%;width:15px;height:15px;animation-duration:10s;animation-delay:-3.5s}
+.sp-bubbles i:nth-child(10){left:86%;width:7px;height:7px;animation-duration:6s;animation-delay:-2.5s}
+.sp-bubbles i:nth-child(11){left:92%;animation-duration:7s;animation-delay:-5.5s}
+.sp-bubbles i:nth-child(12){left:50%;width:5px;height:5px;animation-duration:4.5s;animation-delay:-.5s}
+.sp-bed{position:absolute;left:0;right:0;bottom:0;height:22%;z-index:4}
+.sp-sand{position:absolute;left:0;bottom:0;width:100%;height:60%}
+.sp-weed{position:absolute;bottom:22%;height:78%;width:auto;transform-origin:bottom center;animation:spSway 4s ease-in-out infinite alternate}
+.wd1{left:6%}.wd2{left:10%;height:60%;animation-delay:-1.5s}.wd3{right:9%;animation-delay:-.8s}.wd4{right:13%;height:58%;animation-delay:-2.2s}
+
+.sp-card{position:absolute;left:50%;top:54%;z-index:6;transform:translate(-50%,-50%);display:flex;flex-direction:column;align-items:center;gap:10px;padding:26px 40px 24px;border-radius:22px;
+  background:rgba(6,32,47,.38);border:1px solid rgba(255,255,255,.22);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);box-shadow:0 30px 60px -30px rgba(0,0,0,.6);text-align:center;animation:spCardIn .7s ease both}
+.sp-logo{position:relative;width:64px;height:64px;border-radius:18px;overflow:hidden;background:linear-gradient(160deg,#7fdcf5,#2db6dd 45%,#0a73a8);box-shadow:0 8px 22px rgba(45,182,221,.45)}
+.sp-logo i{position:absolute;left:-10%;width:120%;height:30px;border-radius:50%;border-top:3px solid rgba(255,255,255,.9);animation:spLogoWave 2.4s ease-in-out infinite}
+.sp-logo i:nth-child(1){top:24px}.sp-logo i:nth-child(2){top:34px;opacity:.7;animation-delay:-.6s}.sp-logo i:nth-child(3){top:44px;opacity:.45;animation-delay:-1.2s}
+.sp-name{font-size:26px;font-weight:800;letter-spacing:-.02em;color:#fff}
+.sp-name em{font-style:normal;color:#8fe3fb}
+.sp-msg{min-height:20px;font-size:14px;color:#d4eef8}
+.sp-bar{position:relative;width:220px;height:5px;border-radius:99px;background:rgba(255,255,255,.18);overflow:hidden}
+.sp-bar i{position:absolute;top:0;left:-40%;width:40%;height:100%;border-radius:99px;background:linear-gradient(90deg,rgba(143,227,251,0),#8fe3fb,rgba(143,227,251,0));animation:spBar 1.4s ease-in-out infinite}
+
+@keyframes spWaveX{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@keyframes spSwim{from{transform:translateX(-160px)}to{transform:translateX(calc(100vw + 60px))}}
+@keyframes spSwimRev{from{transform:translateX(calc(100vw + 60px))}to{transform:translateX(-200px)}}
+@keyframes spBob{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+@keyframes spTail{from{transform:scaleY(1) skewY(-6deg)}to{transform:scaleY(.72) skewY(6deg)}}
+@keyframes spRise{0%{transform:translate(0,0);opacity:0}10%{opacity:1}50%{transform:translate(12px,-40vh)}100%{transform:translate(-8px,-78vh);opacity:0}}
+@keyframes spSway{from{transform:rotate(-7deg)}to{transform:rotate(7deg)}}
+@keyframes spRay{0%,100%{opacity:.35}50%{opacity:.9}}
+@keyframes spGlow{0%,100%{transform:scale(1)}50%{transform:scale(1.08)}}
+@keyframes spBar{from{left:-40%}to{left:100%}}
+@keyframes spLogoWave{0%,100%{transform:translateX(0)}50%{transform:translateX(-8%)}}
+@keyframes spCardIn{from{opacity:0;transform:translate(-50%,-44%)}to{opacity:1;transform:translate(-50%,-50%)}}
+@media (max-width:640px){
+  .sp-card{padding:20px 26px;width:min(80vw,300px)}
+  .sp-name{font-size:22px}.sp-bar{width:180px}
+  .f1{width:64px}.f2{width:72px}.f3{width:60px}.f4{width:50px}.f5{width:56px}.sp-school{width:120px}
+  .sp-sun{width:60px;height:60px}
+}
+@media (prefers-reduced-motion:reduce){
+  #ds-splash *{animation:none !important}
+  .f1{transform:translateX(12vw)}.f2{transform:translateX(66vw)}.f3{transform:translateX(38vw)}.f4{transform:translateX(18vw)}.f5{transform:translateX(74vw)}.sp-school{transform:translateX(56vw)}
+}
+</style>
+<link rel="stylesheet" href="/static/style.css?v=42">
+<link rel="stylesheet" href="/static/dark.css?v=42">
 </head>
 <body>
+<div id="ds-splash" role="status" aria-live="polite" aria-label="Loading Deep Sweep">
+  <div class="sp-sky"><div class="sp-sun"></div></div>
+  <div class="sp-waves">
+    <div class="sp-wave w3"></div>
+    <div class="sp-wave w2"></div>
+    <div class="sp-wave w1"></div>
+  </div>
+  <div class="sp-sea">
+    <div class="sp-rays"><i></i><i></i><i></i><i></i><i></i></div>
+
+    <!-- fish swimming left to right -->
+    <div class="sp-fish f1"><div class="sp-bob"><svg viewBox="0 0 90 50" aria-hidden="true">
+      <path class="sp-tail" d="M22 25 L3 9 Q9 25 3 41 Z" fill="#ff7a2f"/>
+      <ellipse cx="50" cy="25" rx="31" ry="17" fill="#ff8a3d"/>
+      <path d="M36 9.5 Q40 25 36 40.5 L42 41 Q46 25 42 9Z" fill="#fff"/>
+      <path d="M58 8.5 Q62 25 58 41.5 L64 40 Q68 25 64 10Z" fill="#fff"/>
+      <path d="M44 9 Q52 -1 62 10Z" fill="#ff7a2f"/>
+      <circle cx="72" cy="20" r="3.6" fill="#fff"/><circle cx="73" cy="20" r="1.9" fill="#0b2a3a"/>
+    </svg></div></div>
+
+    <div class="sp-fish f2"><div class="sp-bob"><svg viewBox="0 0 90 50" aria-hidden="true">
+      <path class="sp-tail" d="M22 25 L4 11 Q10 25 4 39 Z" fill="#ffd23f"/>
+      <path d="M22 25 Q40 3 66 10 Q84 18 84 25 Q84 32 66 40 Q40 47 22 25Z" fill="#3a7bd5"/>
+      <path d="M30 22 Q48 14 70 20" stroke="#0b2a6b" stroke-width="3" fill="none" stroke-linecap="round"/>
+      <path d="M44 9 Q56 0 66 10Z" fill="#2a5fb0"/>
+      <circle cx="73" cy="22" r="3.4" fill="#fff"/><circle cx="74" cy="22" r="1.8" fill="#0b2a3a"/>
+    </svg></div></div>
+
+    <div class="sp-fish f4"><div class="sp-bob"><svg viewBox="0 0 90 50" aria-hidden="true">
+      <path class="sp-tail" d="M24 25 L6 12 Q11 25 6 38 Z" fill="#1fa39a"/>
+      <ellipse cx="50" cy="25" rx="28" ry="14" fill="#2ec4b6"/>
+      <path d="M30 25 Q50 32 76 24" stroke="#bff5ee" stroke-width="2.5" fill="none" stroke-linecap="round" opacity=".8"/>
+      <circle cx="70" cy="21" r="3" fill="#fff"/><circle cx="71" cy="21" r="1.6" fill="#0b2a3a"/>
+    </svg></div></div>
+
+    <!-- fish swimming right to left (flipped) -->
+    <div class="sp-fish f3 rev"><div class="sp-bob"><svg viewBox="0 0 90 50" aria-hidden="true">
+      <path class="sp-tail" d="M22 25 L2 10 Q9 25 2 40 Z" fill="#ffb800"/>
+      <path d="M22 25 Q44 2 70 12 Q86 20 86 25 Q86 30 70 38 Q44 48 22 25Z" fill="#ffd23f"/>
+      <path d="M40 8 Q54 -2 66 11Z" fill="#ffb800"/><path d="M40 42 Q54 52 66 39Z" fill="#ffb800"/>
+      <circle cx="75" cy="22" r="3.4" fill="#fff"/><circle cx="76" cy="22" r="1.8" fill="#0b2a3a"/>
+    </svg></div></div>
+
+    <div class="sp-fish f5 rev"><div class="sp-bob"><svg viewBox="0 0 90 50" aria-hidden="true">
+      <path class="sp-tail" d="M22 25 L4 12 Q10 25 4 38 Z" fill="#e85d75"/>
+      <ellipse cx="50" cy="25" rx="29" ry="15" fill="#ff8fa3"/>
+      <circle cx="40" cy="22" r="2" fill="#fff" opacity=".7"/><circle cx="50" cy="30" r="2.4" fill="#fff" opacity=".6"/><circle cx="58" cy="19" r="1.8" fill="#fff" opacity=".7"/>
+      <circle cx="71" cy="21" r="3.2" fill="#fff"/><circle cx="72" cy="21" r="1.7" fill="#0b2a3a"/>
+    </svg></div></div>
+
+    <!-- a small school far away -->
+    <div class="sp-school rev"><div class="sp-bob">
+      <svg viewBox="0 0 160 60" aria-hidden="true" fill="#d7f3fb" opacity=".55">
+        <path d="M10 20 l12-6 v12z M22 20 q10-8 22 0 q-12 8-22 0z"/>
+        <path d="M50 40 l12-6 v12z M62 40 q10-8 22 0 q-12 8-22 0z"/>
+        <path d="M80 14 l12-6 v12z M92 14 q10-8 22 0 q-12 8-22 0z"/>
+        <path d="M112 34 l12-6 v12z M124 34 q10-8 22 0 q-12 8-22 0z"/>
+      </svg></div></div>
+
+    <div class="sp-bubbles"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+
+    <div class="sp-bed">
+      <svg class="sp-weed wd1" viewBox="0 0 40 140" aria-hidden="true"><path d="M20 140 C4 110 34 90 18 60 C6 38 28 20 20 0" stroke="#1f9d6b" stroke-width="7" fill="none" stroke-linecap="round"/></svg>
+      <svg class="sp-weed wd2" viewBox="0 0 40 140" aria-hidden="true"><path d="M20 140 C36 112 6 92 22 62 C34 40 12 22 20 4" stroke="#2bb77c" stroke-width="6" fill="none" stroke-linecap="round"/></svg>
+      <svg class="sp-weed wd3" viewBox="0 0 40 140" aria-hidden="true"><path d="M20 140 C6 116 30 98 16 70 C8 52 26 36 20 18" stroke="#178a5d" stroke-width="7" fill="none" stroke-linecap="round"/></svg>
+      <svg class="sp-weed wd4" viewBox="0 0 40 140" aria-hidden="true"><path d="M20 140 C34 116 8 96 24 66 C34 46 14 30 22 12" stroke="#2bb77c" stroke-width="6" fill="none" stroke-linecap="round"/></svg>
+      <svg class="sp-sand" viewBox="0 0 1440 120" preserveAspectRatio="none" aria-hidden="true">
+        <path d="M0 60 C240 20 420 90 720 55 C1000 22 1200 85 1440 50 V120 H0Z" fill="#0d3d57"/>
+        <path d="M0 85 C300 55 520 110 820 80 C1080 55 1260 100 1440 78 V120 H0Z" fill="#0a2f44"/>
+      </svg>
+    </div>
+  </div>
+
+  <div class="sp-card">
+    <div class="sp-logo" aria-hidden="true"><i></i><i></i><i></i></div>
+    <div class="sp-name">Deep <em>Sweep</em></div>
+    <div class="sp-msg" id="sp-msg">Diving in for today's data…</div>
+    <div class="sp-bar"><i></i></div>
+  </div>
+</div>
+<script>
+(function(){
+  var t0 = Date.now(), done = false, msgs = ["Diving in for today's data…", "Rounding up the companies…", "Reading the charts…", "Almost at the surface…"], k = 0;
+  var tick = setInterval(function(){ var m = document.getElementById('sp-msg'); if (!m) return clearInterval(tick); k = (k + 1) % msgs.length; m.textContent = msgs[k]; }, 1300);
+  /* app.js calls this once the board has loaded; the scene stays at least a moment so a fast load doesn't flicker */
+  window.dsSplashDone = function(){
+    if (done) return; done = true;
+    setTimeout(function(){
+      var s = document.getElementById('ds-splash'); if (!s) return;
+      s.classList.add('sp-hide'); clearInterval(tick);
+      setTimeout(function(){ if (s.parentNode) s.parentNode.removeChild(s); }, 750);
+    }, Math.max(0, 1400 - (Date.now() - t0)));
+  };
+  setTimeout(window.dsSplashDone, 30000);   /* never trap the page behind the scene */
+})();
+</script>
 <header class="nav" id="topnav">
   <div class="nav-in">
     <button class="nav-brand" id="brand-link" type="button" title="Overview">
@@ -292,6 +477,6 @@
 <div class="modal" id="modal" role="dialog" aria-modal="true"><div class="mbox"><button class="close" id="mclose" aria-label="Close">&times;</button><div id="mbody"></div></div></div>
 
 <script src="/static/asme-certified.js?v=5" defer></script>
-<script src="/static/app.js?v=41" defer></script>
+<script src="/static/app.js?v=42" defer></script>
 </body>
 </html>

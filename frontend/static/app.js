@@ -3092,11 +3092,13 @@ watchSync();
 
 BUSY=true; buildColPop(); applyState(); BUSY=false;
 setView(VIEW,{keep:true});
+if(window.dsSplashDone) window.dsSplashDone();   /* the ocean loading scene in index.html */
 
 }
 
 boot().catch(function(err){
   console.error(err);
+  if (err && err.message !== "Login required" && window.dsSplashDone) window.dsSplashDone();
   if (err && err.message === "Login required") return;   /* already on its way to /login */
   document.body.innerHTML =
     '<div style="max-width:640px;margin:80px auto;padding:24px;font:15px/1.5 system-ui;text-align:center">'
