@@ -12,6 +12,7 @@ from fastapi.responses import FileResponse
 from .auth import AccountGateMiddleware, ensure_admin
 from .config import get_settings
 from .database import Base, engine
+from .seed import seed_if_changed
 from .routers import account, asme, auth as auth_routes, charts, companies, market, meta, reports, watchlist
 
 settings = get_settings()
@@ -29,6 +30,7 @@ async def lifespan(app: FastAPI):
         Base.metadata.create_all(bind=engine)
     except Exception as e:  # noqa: BLE001
         logging.getLogger("deepsweep").warning("create_all at startup: %s", e)
+    seed_if_changed()
     ensure_admin()
     yield
 
@@ -66,7 +68,8 @@ app.include_router(account.router)
 def healthz():
     # The deployed commit (Render sets RENDER_GIT_COMMIT) lets anyone confirm
     # which version is live without logging in; it reveals nothing else.
-    return {"status": "ok", "commit": os.environ.get("RENDER_GIT_COMMIT", "")[:7] or None}
+    return {"status": "ok", "commit": os.environ.get("RENDER_GIT_COMMIT", "")[:7] or None,
+            "database": "postgres" if engine.dialect.name == "postgresql" else engine.dialect.name}
 
 
 # --- Serve the frontend -------------------------------------------------

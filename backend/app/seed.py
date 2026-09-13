@@ -8,9 +8,14 @@ duplicated.
 Usage:
     python -m app.seed
 """
+import hashlib
 import json
+import logging
 import sys
 from datetime import datetime
+
+from sqlalchemy import text
+from sqlalchemy.exc import OperationalError
 
 from .config import get_settings
 from .database import Base, SessionLocal, engine
@@ -165,6 +170,11 @@ def seed() -> None:
             else:
                 db.add(MetaKV(key=key, value=meta[key]))
 
+        row = db.get(MetaKV, "SEED_HASH")
+        if row:
+            row.value = data_hash()
+        else:
+            db.add(MetaKV(key="SEED_HASH", value=data_hash()))
         db.commit()
         print(f"Seed complete: {inserted} inserted, {updated} updated, "
               f"{len(companies)} total companies.")
@@ -172,5 +182,61 @@ def seed() -> None:
         db.close()
 
 
+def data_hash() -> str:
+    """Fingerprint of every file the seed reads, so a deploy only re-seeds when the data changed."""
+    settings = get_settings()
+    h = hashlib.sha256()
+    for path in (settings.seed_file, settings.meta_file, settings.candidates_file, settings.build_stamp_file):
+        try:
+            h.update(path.read_bytes())
+        except OSError:
+            h.update(b"-")
+    return h.hexdigest()
+
+
+def seed_if_changed() -> None:
+    """Run at app startup: load the bundled data unless this exact data is
+    already in the database. With Postgres this is how a deploy gets its data
+    (Render's build step may not reach a private database). Several workers
+    start together, so on Postgres they queue on an advisory lock and the
+    later ones find the work done."""
+    log = logging.getLogger("deepsweep")
+    want = data_hash()
+
+    def current_hash(conn):
+        try:
+            v = conn.execute(text("SELECT value FROM meta_kv WHERE key = 'SEED_HASH'")).scalar()
+        except Exception:  # noqa: BLE001 - table not there yet
+            conn.rollback()
+            return None
+        return v.strip('"') if isinstance(v, str) else v
+
+    try:
+        if engine.dialect.name != "postgresql":
+            with engine.connect() as conn:
+                done = current_hash(conn) == want
+            if not done:        # SQLite: the connection above is closed first, so the seed can write
+                seed()
+                log.warning("seeded the database at startup (data changed)")
+            return
+        with engine.connect() as conn:
+            conn.execute(text("SELECT pg_advisory_lock(804211)"))
+            conn.commit()
+            try:
+                if current_hash(conn) != want:
+                    conn.commit()
+                    seed()
+                    log.warning("seeded the database at startup (data changed)")
+            finally:
+                conn.execute(text("SELECT pg_advisory_unlock(804211)"))
+                conn.commit()
+    except Exception as e:  # noqa: BLE001 - never stop the app from starting; the previous data stays
+        log.warning("startup seed skipped: %s", e)
+
 if __name__ == "__main__":
-    sys.exit(seed() or 0)
+    try:
+        sys.exit(seed() or 0)
+    except OperationalError as e:
+        # e.g. a Docker / Render build that can't reach a private Postgres: the app seeds itself at startup
+        print(f"Database not reachable now ({str(e).splitlines()[0][:120]}); the app will load the data when it starts.")
+        sys.exit(0)

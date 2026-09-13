@@ -1,0 +1,61 @@
+name: Postgres check
+
+# Runs the app against a real PostgreSQL (as on Render with DATABASE_URL set)
+# with two gunicorn workers, then exercises sign-up, approval, login,
+# watchlists, settings, profile, password change, saved filters, updates and
+# messages. Run it by hand after changing models or database code.
+
+permissions:
+  contents: read
+
+on:
+  workflow_dispatch:
+
+jobs:
+  postgres:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_USER: deep
+          POSTGRES_PASSWORD: deep-test
+          POSTGRES_DB: deepsweep
+        ports: ['5432:5432']
+        options: >-
+          --health-cmd "pg_isready -U deep" --health-interval 5s --health-timeout 5s --health-retries 10
+    env:
+      DATABASE_URL: postgres://deep:deep-test@127.0.0.1:5432/deepsweep
+      AUTH_USERNAME: Owner
+      AUTH_PASSWORD: Owner-pass-123
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install -r backend/requirements.txt
+      - name: Seed at build time, like Render's build command
+        working-directory: ./backend
+        run: python -m app.seed
+      - name: Start the app with two workers (seeds itself if data changed)
+        working-directory: ./backend
+        run: |
+          gunicorn app.main:app -k uvicorn.workers.UvicornWorker --bind 127.0.0.1:8000 --workers 2 > ../server.log 2>&1 &
+          for i in $(seq 1 60); do curl -fs http://127.0.0.1:8000/healthz && break; sleep 1; done
+      - name: Smoke test
+        run: BASE=http://127.0.0.1:8000 python backend/tests/smoke_accounts.py
+      - name: Restart on an empty database (startup seeding, two workers racing)
+        working-directory: ./backend
+        run: |
+          pkill -f gunicorn || true; sleep 2
+          PGPASSWORD=deep-test psql -h 127.0.0.1 -U deep -d deepsweep -c "DROP SCHEMA public CASCADE; CREATE SCHEMA public;"
+          gunicorn app.main:app -k uvicorn.workers.UvicornWorker --bind 127.0.0.1:8000 --workers 2 >> ../server.log 2>&1 &
+          for i in $(seq 1 90); do curl -fs http://127.0.0.1:8000/healthz && break; sleep 1; done
+          sleep 3
+          PGPASSWORD=deep-test psql -h 127.0.0.1 -U deep -d deepsweep -tc "select count(*) from companies" | tee count.txt
+          test "$(tr -d ' \n' < count.txt)" -gt 300
+          BASE=http://127.0.0.1:8000 python ../backend/tests/smoke_accounts.py
+      - name: Server log
+        if: always()
+        run: tail -60 server.log
