@@ -1,3 +1,4 @@
+import os
 from contextlib import asynccontextmanager
 from pathlib import Path
 
@@ -55,7 +56,9 @@ app.include_router(market.router)
 
 @app.get("/healthz", tags=["ops"])
 def healthz():
-    return {"status": "ok"}
+    # The deployed commit (Render sets RENDER_GIT_COMMIT) lets anyone confirm
+    # which version is live without logging in; it reveals nothing else.
+    return {"status": "ok", "commit": os.environ.get("RENDER_GIT_COMMIT", "")[:7] or None}
 
 
 # --- Serve the frontend -------------------------------------------------
