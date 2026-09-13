@@ -1,0 +1,81 @@
+name: Weekly discovery scan
+
+# The mechanical half of the weekly discovery pipeline, moved off the
+# Windows Task Scheduler so it runs without a PC switched on:
+#   scan-listings.mjs    new NSE / BSE / SME listings since last week, plus a
+#                        slice of the small/mid-cap universe not on the board
+#   profile-company.mjs  reads new listings' IPO prospectuses (pdftotext)
+#   stamp + publish      updates the dashboard's Candidates queue and date
+# The ASME directory has its own workflow (asme.yml). Promoting a candidate
+# onto the board stays a person's decision -- a board company needs research.
+
+permissions:
+  contents: write
+
+on:
+  schedule:
+    - cron: '0 10 * * 6'       # Saturday 15:30 IST
+  workflow_dispatch:
+
+concurrency:
+  group: discovery
+  cancel-in-progress: false
+
+jobs:
+  discover:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+
+    steps:
+      - name: Check out repo
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+
+      - name: Install tools
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq poppler-utils unzip
+          cd automation && npm install --no-audit --no-fund
+
+      - name: Run discovery
+        working-directory: ./automation
+        run: |
+          set +e
+          node update-weekly.mjs --no-asme
+          echo "discovery exit code: $?"
+          exit 0
+
+      - name: Commit queue and snapshot
+        id: commit
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add backend/data/candidates_raw.json backend/data/build_stamp.json \
+                  automation/data/candidates-queue.json automation/data/reviewed-symbols.json \
+                  automation/data/listings-snapshot.json
+          if [ -d automation/data/profiles ]; then git add automation/data/profiles; fi
+          if [ -f automation/data/weekly-report.md ]; then git add automation/data/weekly-report.md; fi
+          if git diff --cached --quiet; then
+            echo "No discovery changes"
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          git commit -m "Weekly discovery scan"
+          for i in 1 2 3; do
+            git pull --rebase origin ${{ github.ref_name }} && git push origin HEAD:${{ github.ref_name }} && break
+            sleep 5
+          done
+          echo "changed=true" >> "$GITHUB_OUTPUT"
+
+      - name: Trigger Render deploy
+        if: ${{ steps.commit.outputs.changed == 'true' }}
+        env:
+          RENDER_DEPLOY_HOOK: ${{ secrets.RENDER_DEPLOY_HOOK }}
+        run: |
+          if [ -z "$RENDER_DEPLOY_HOOK" ]; then echo "RENDER_DEPLOY_HOOK not set; skipping deploy"; exit 0; fi
+          curl -fsSL --retry 3 --retry-delay 5 -X POST "$RENDER_DEPLOY_HOOK" > /dev/null
+          echo "Render deploy triggered"

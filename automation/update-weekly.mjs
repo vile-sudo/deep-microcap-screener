@@ -38,6 +38,9 @@ import { publishCandidates } from './lib/publish.mjs';
 
 const HERE = path.dirname(fileURLToPath(import.meta.url));
 const SKIP_PROFILE = process.argv.includes('--no-profile');
+/* --no-asme: the ASME directory has its own weekly workflow (asme.yml), so the
+   cloud discovery run skips it rather than installing a browser twice. */
+const SKIP_ASME = process.argv.includes('--no-asme');
 /* The discovery half of update-weekly.mjs runs before run-weekly.cmd's Claude
    Code step, which is what actually assigns verdicts. Stamping before that
    has run would leave the board advertising last week's queue_open count, so
@@ -94,7 +97,7 @@ if (!STAMP_ONLY) step('scan listings + sweep small/mid-cap universe', () => node
    and it never touches frontend/static/asme-certified.js on its own -- see
    that file's header for why promoting a match into it stays a decision
    made by hand. */
-if (!STAMP_ONLY) step('scan ASME certified directory for new NSE/BSE-listed matches', () => node('scan-asme.mjs'));
+if (!STAMP_ONLY && !SKIP_ASME) step('scan ASME certified directory for new NSE/BSE-listed matches', () => node('scan-asme.mjs'));
 
 if (!SKIP_PROFILE && !STAMP_ONLY) {
   const open = fs.existsSync(QUEUE)

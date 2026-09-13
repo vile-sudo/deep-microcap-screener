@@ -139,6 +139,16 @@ def fetch_screener(code: str) -> dict:
     return out
 
 
+def _refresh_flags(rec: dict) -> None:
+    """Keep the flags that are pure functions of refreshed numbers in step.
+
+    capex_overhang is "P/E above 40 and CWIP at least 15% of net block"; P/E
+    moves with every refresh, CWIP only with the research pass, so only the
+    P/E side can change here, and only for names that have the CWIP data."""
+    if rec.get("has_lens_data") and rec.get("pe") is not None and rec.get("cwip_pct_net_block") is not None:
+        rec["capex_overhang"] = rec["pe"] > 40 and rec["cwip_pct_net_block"] >= 15
+
+
 def fetch_trendlyne(code: str) -> dict:
     """Stub -- plug in Trendlyne API access here if you have it.
 
@@ -159,6 +169,9 @@ def main():
     ap.add_argument("--codes", help="Comma-separated company codes to refresh (default: all)")
     ap.add_argument("--dry-run", action="store_true", help="Print what would change, write nothing")
     ap.add_argument("--limit", type=int, default=None, help="Stop after N companies (useful for testing)")
+    ap.add_argument("--max-fail-pct", type=float, default=30.0,
+                    help="Write nothing if more than this percent of fetches fail (default 30): a blocked "
+                         "or broken run must not be mistaken for fresh data")
     args = ap.parse_args()
 
     companies = json.loads(DATA_FILE.read_text(encoding="utf-8"))
@@ -172,13 +185,20 @@ def main():
         targets = targets[: args.limit]
 
     print(f"Refreshing {len(targets)} of {len(companies)} companies from screener.in ...")
-    changed = 0
+    changed = failed = 0
     for i, code in enumerate(targets, 1):
         try:
             fresh = fetch_screener(code)
             fresh.update(fetch_trendlyne(code))
         except requests.RequestException as e:
+            failed += 1
             print(f"  [{i}/{len(targets)}] {code}: FAILED ({e})", file=sys.stderr)
+            time.sleep(REQUEST_DELAY_SECONDS)
+            continue
+        if not fresh:
+            # a page that parsed to nothing is a layout change or a block page
+            failed += 1
+            print(f"  [{i}/{len(targets)}] {code}: nothing readable on the page", file=sys.stderr)
             time.sleep(REQUEST_DELAY_SECONDS)
             continue
 
@@ -189,17 +209,27 @@ def main():
             print(f"  [{i}/{len(targets)}] {code}: {len(diffs)} field(s) changed")
             if not args.dry_run:
                 rec.update(fresh)
+                _refresh_flags(rec)
         else:
             print(f"  [{i}/{len(targets)}] {code}: no change")
 
         time.sleep(REQUEST_DELAY_SECONDS)
+
+    fail_pct = 100.0 * failed / max(1, len(targets))
+    print(f"\n{len(targets) - failed} fetched, {failed} failed ({fail_pct:.0f}%).")
+    if fail_pct > args.max_fail_pct:
+        print(f"More than {args.max_fail_pct:.0f}% of fetches failed: screener.in is blocking or has changed. "
+              "Nothing written.", file=sys.stderr)
+        sys.exit(2)
 
     if args.dry_run:
         print(f"\nDry run: {changed} companies would change. Nothing written.")
         return
 
     if changed:
-        DATA_FILE.write_text(json.dumps(companies, indent=2, ensure_ascii=False), encoding="utf-8")
+        # the layout the file already has (1-space indent, UTF-8, trailing
+        # newline), so a refresh diff shows only the numbers that moved
+        DATA_FILE.write_text(json.dumps(companies, indent=1, ensure_ascii=False) + "\n", encoding="utf-8")
         print(f"\nWrote {changed} updated companies to {DATA_FILE}.")
         print("Now run: python -m app.seed")
     else:

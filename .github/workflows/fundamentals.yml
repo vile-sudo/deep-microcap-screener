@@ -1,0 +1,81 @@
+name: Company fundamentals refresh
+
+# Re-pulls the numbers that move every week -- price, market cap, P/E, ROCE,
+# ROE, promoter / FII / DII / public holding -- for every company on the
+# board from its public screener.in page (backend/scripts/refresh_data.py,
+# two seconds between companies). The research itself (scores, moat notes,
+# risk notes) is never touched. If screener.in blocks the run or changes its
+# page, the script writes nothing and the run fails, so stale-but-correct
+# numbers are never replaced by broken ones.
+
+permissions:
+  contents: write
+
+on:
+  schedule:
+    - cron: '30 0 * * 0'       # Sunday 06:00 IST, markets closed
+  workflow_dispatch:
+    inputs:
+      codes:
+        description: 'Only these company codes, comma-separated (blank = all)'
+        required: false
+        default: ''
+
+concurrency:
+  group: fundamentals
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+
+    steps:
+      - name: Check out repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: pip install requests beautifulsoup4
+
+      - name: Refresh from screener.in
+        working-directory: ./backend
+        env:
+          CODES: ${{ github.event.inputs.codes }}
+        run: |
+          if [ -n "$CODES" ]; then
+            python scripts/refresh_data.py --codes "$CODES"
+          else
+            python scripts/refresh_data.py
+          fi
+
+      - name: Commit refreshed numbers
+        id: commit
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add backend/data/companies_raw.json
+          if git diff --cached --quiet; then
+            echo "No numbers changed"
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          git commit -m "Weekly fundamentals refresh"
+          for i in 1 2 3; do
+            git pull --rebase origin ${{ github.ref_name }} && git push origin HEAD:${{ github.ref_name }} && break
+            sleep 5
+          done
+          echo "changed=true" >> "$GITHUB_OUTPUT"
+
+      - name: Trigger Render deploy
+        if: ${{ steps.commit.outputs.changed == 'true' }}
+        env:
+          RENDER_DEPLOY_HOOK: ${{ secrets.RENDER_DEPLOY_HOOK }}
+        run: |
+          if [ -z "$RENDER_DEPLOY_HOOK" ]; then echo "RENDER_DEPLOY_HOOK not set; skipping deploy"; exit 0; fi
+          curl -fsSL --retry 3 --retry-delay 5 -X POST "$RENDER_DEPLOY_HOOK" > /dev/null
+          echo "Render deploy triggered"

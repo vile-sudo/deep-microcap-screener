@@ -8,11 +8,12 @@ backend/.env
 *.egg-info/
 
 # Weekly discovery pipeline (automation/) -- local working state and secrets,
+# (listings-snapshot.json IS committed now: the discovery workflow on GitHub
+# needs last week's symbol lists to tell a new listing from an old one)
 # never something to commit. candidates-queue.json, reviewed-symbols.json and
 # profiles/ ARE committed (git add'd explicitly by publish-candidates.cmd) --
 # they're the pipeline's record, not scratch.
 automation/deploy-hook.txt
-automation/data/listings-snapshot.json
 automation/data/last-run.json
 automation/data/weekly.log
 

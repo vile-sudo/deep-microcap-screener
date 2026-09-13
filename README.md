@@ -213,3 +213,26 @@ admin, delete). Disabling or rejecting someone ends their sessions at once.
   Render web service is rebuilt on every deploy. See DEPLOYMENT.md.
 - Code: `backend/app/auth.py` (hashing, sessions, the gate),
   `backend/app/routers/auth.py` (endpoints), `frontend/login.html`.
+
+
+## What runs by itself
+
+Everything below runs on GitHub Actions (no PC needs to be on), commits its
+results and redeploys Render. Times are IST.
+
+| Workflow | When | What it keeps current |
+|---|---|---|
+| `charts.yml` | weekdays 19:30 (+23:00 retry), and when `companies_raw.json` changes | daily candles, Chart Gallery, Market view stages (VCP + IPO base), breakouts, feed |
+| `fundamentals.yml` | Sundays 06:00 | price, market cap, P/E, ROCE, ROE, promoter/FII/DII/public % for every company (screener.in); refuses to write if screener.in blocks |
+| `discovery.yml` | Saturdays 15:30 | new NSE/BSE/SME listings, small/mid-cap sweep, IPO prospectus reading → Candidates queue |
+| `asme.yml` | Saturdays 17:00 | ASME certificate holders, certificate types and dates |
+| `daily-screener.yml` | daily 01:00 | re-stamps the board and republishes the candidates queue |
+| `uptime.yml` | every 10 minutes | pings the site (keeps a free instance awake); a failed run emails you |
+
+Still a person's job, by design or by necessity:
+- **Adding a company to the board** — every board company carries researched
+  scores and notes; candidates wait in the queue for that research.
+- **The weekly AI judgement pass** over candidates (`weekly-prompt.md`) needs
+  Claude; it still runs from `run-weekly.cmd` on your PC.
+- **Zerodha** requires its account holder to log in once a day.
+- **Approving sign-ups** (account menu → Manage users).
