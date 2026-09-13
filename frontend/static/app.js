@@ -230,6 +230,9 @@ const TG = {overhang:false, heavycap:false, guide15:false, guideany:false, turn:
    data, so it is kept in localStorage and survives a reload. */
 let WATCH = new Set();
 try{ WATCH = new Set(JSON.parse(localStorage.getItem('dms.watch')||'[]')); }catch(e){}
+/* 'server' once logged in: the list lives in the user's account (/api/watchlist),
+   private to them and the same on every device. 'local' with accounts off. */
+var WMODE = 'local';
 let BUSY = false;
 let QUERY = '', QTERMS = [], NEWSINCE = null;
 let activeThemes = new Set(THEMES);
@@ -869,11 +872,49 @@ if(tbtn){
    ================================================================== */
 
 /* ---------- watchlist ---------- */
-function saveWatch(){ try{ localStorage.setItem('dms.watch', JSON.stringify([...WATCH])); }catch(e){} }
+function saveWatch(){
+  if(WMODE==='server'){
+    fetch('/api/watchlist',{method:'PUT',credentials:'same-origin',headers:{'Content-Type':'application/json'},body:JSON.stringify({codes:[...WATCH]})})
+      .then(r=>{ if(!r.ok) throw new Error(r.status); }).catch(()=>watchFailed());
+    return;
+  }
+  try{ localStorage.setItem('dms.watch', JSON.stringify([...WATCH])); }catch(e){}
+}
 function togglePin(code){
   if(!code) return;
-  if(WATCH.has(code)) WATCH.delete(code); else WATCH.add(code);
-  saveWatch(); render();
+  const on=!WATCH.has(code);
+  if(on) WATCH.add(code); else WATCH.delete(code);
+  if(WMODE==='server'){
+    fetch('/api/watchlist/'+encodeURIComponent(code),{method:on?'POST':'DELETE',credentials:'same-origin'})
+      .then(r=>{ if(!r.ok) throw new Error(r.status); })
+      .catch(()=>{ if(on) WATCH.delete(code); else WATCH.add(code); render(); watchFailed(); });
+  } else saveWatch();
+  render();
+}
+let WFAIL=0;
+function watchFailed(){
+  if(Date.now()-WFAIL<5000) return;   /* one message, not one per click */
+  WFAIL=Date.now();
+  openModal('<h3>Watchlist not saved</h3><p class="sub">The change could not be saved to your account — check your connection, or log in again if your session ended. Reload the page to see your saved watchlist.</p>');
+}
+/* Once logged in, the account's list replaces the browser one. Stars made in this
+   browser before accounts existed are copied into the account once, then removed
+   from the browser, so another person using the same computer never inherits them. */
+async function watchSync(){
+  let j;
+  try{ j=await fetchJSON('/api/watchlist'); }catch(e){ return; }
+  if(!j || !j.accounts) return;
+  let local=[];
+  try{ local=JSON.parse(localStorage.getItem('dms.watch')||'[]'); }catch(e){}
+  if(Array.isArray(local) && local.length){
+    try{
+      const r=await fetch('/api/watchlist',{method:'PUT',credentials:'same-origin',headers:{'Content-Type':'application/json'},body:JSON.stringify({codes:local,merge:true})});
+      if(r.ok){ j=await r.json(); try{ localStorage.removeItem('dms.watch'); }catch(e){} }
+    }catch(e){}
+  }
+  WMODE='server';
+  WATCH=new Set(j.codes||[]);
+  render();
 }
 function syncTgButtons(){
   document.querySelectorAll('[data-tg]').forEach(b=>b.classList.toggle('on', !!TG[b.dataset.tg]));
@@ -884,9 +925,9 @@ function syncTgButtons(){
    glance rather than a hunt. It replaces the floating tray the pins used to get:
    same actions, but it holds still and shows the numbers.
 
-   The pins are localStorage, which means per-browser and per-device. That is the
-   one real limit, so the section says so and hands you a link that carries the
-   list to another machine. */
+   Logged in, the pins belong to the account (watchSync, /api/watchlist): private
+   and the same on every device. With accounts off they are localStorage, per
+   browser, and the section hands you a link that carries the list elsewhere. */
 let WLARM = 0;   /* Clear is two-step: a stray click must not take the whole list */
 
 function renderWatchlist(){
@@ -906,7 +947,7 @@ function renderWatchlist(){
       <h2>My watchlist <span class="tc">${codes.length} ${codes.length===1?'company':'companies'}</span></h2>
       <div class="wlacts">
         <button class="btn" id="wlcmp" title="Put them side by side (c)">Compare ${codes.length}</button>
-        <button class="btn" id="wllink" title="Copies a link that carries this watchlist — open it on another device to get the same pins">&#128279; Copy watchlist link</button>
+        ${WMODE==='server'?'<span class="wl-saved" title="Saved to your account: private to you, the same on every device you log in from">&#10003; Saved to your account</span>':'<button class="btn" id="wllink" title="Copies a link that carries this watchlist — open it on another device to get the same pins">&#128279; Copy watchlist link</button>'}
         <button class="btn" id="wlclr">${WLARM?'Click again to clear':'Clear'}</button>
       </div>
     </div>`;
@@ -932,7 +973,7 @@ function renderWatchlist(){
   box.innerHTML = head + body;
 
   document.getElementById('wlcmp').onclick=openCompare;
-  document.getElementById('wllink').onclick=async ()=>{
+  if(document.getElementById('wllink')) document.getElementById('wllink').onclick=async ()=>{
     const url=location.origin+location.pathname+location.search+'#w='+codes.join(',');
     const btn=document.getElementById('wllink');
     try{
@@ -1057,7 +1098,7 @@ function syncURL(){
   if(sl.length) p.set('sl',sl.join(','));
   if(sortKey!=='final_score'||sortDir!==-1) p.set('sort',sortKey+':'+sortDir);
   if(HIDDEN.size) p.set('hide',[...HIDDEN].join(','));
-  if(WATCH.size) p.set('w',[...WATCH].join(','));
+  if(WATCH.size && WMODE!=='server') p.set('w',[...WATCH].join(','));   /* an account's list stays private */
   const h=p.toString();
   try{ history.replaceState(null,'',location.pathname+location.search+(h?'#'+h:'')); }catch(e){}
 }
@@ -2807,6 +2848,7 @@ function drOpen(d){
 
 
 initUserMenu();
+watchSync();
 
 BUSY=true; buildColPop(); applyState(); BUSY=false;
 setView(VIEW,{keep:true});
