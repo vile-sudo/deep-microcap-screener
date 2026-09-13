@@ -156,6 +156,50 @@ verification and sources, plus a scorecard, ownership and ASME certificates.
 - Open one from the Reports tab, a company's scorecard (**Research report ›**)
   or a chart.
 
+### Quarterly deep-dive reports
+
+On top of that summary, each company gets a forensic **deep-dive report**,
+rewritten every quarter after it files results, in the style of an
+institutional initiation note. The Reports page shows it first, with a
+contents sidebar, a quarter picker (every past quarter is kept) and a PDF.
+
+| Part | Comes from | How |
+|---|---|---|
+| Statements, quarterly results, ratios, cash conversion, working capital, shareholding | screener.in public page | code (`scripts/deep_report/model.py`), labelled [F] |
+| Multiples, bear/base/bull DCF, WACC × growth sensitivity, reverse DCF, rule-based red flags | the statements above | code, labelled [E], method and inputs printed in the report |
+| Business, segments, customers, order book, capacity, margins, accounting quality, governance, moat, industry, guidance tracker, catalysts, risks, thesis breakers, monitoring, questions for management, scorecard, final thesis, what changed | latest annual report (highest-value pages), last two earnings-call transcripts, investor presentation, credit-rating rationale, exchange announcements, the board's own notes, last quarter's report | Claude (`scripts/deep_report/writer.py`), every claim labelled [F]/[MC]/[AI]/[E] and cited to its document and page |
+
+Rules the writer works under: no invented numbers, customers or order books
+("not disclosed" is stated as a finding); valuation figures only from the
+code; **no buy/sell rating and no price target** — fair values are mechanical
+DCF outputs shown next to the price.
+
+**Schedule** (step 6 of `daily.yml`): a company is due when it has no report,
+or when screener shows a newer results quarter than its report — the report
+then waits for that quarter's earnings-call transcript, for up to 21 days.
+At most `REPORTS_PER_DAY` a day (default 8). PDFs are printed from the
+dashboard's report page (`automation/render-report-pdfs.mjs`, step 7) and
+uploaded to the repository's `reports` release. Reports are stored as
+`backend/reports/<CODE>/<FY27-Q1>.json`; usage and cost per report are logged
+in `automation/data/deep-reports.json`.
+
+**Turning it on**
+
+1. Create an API key at console.anthropic.com.
+2. GitHub → repo **Settings → Secrets and variables → Actions → New repository
+   secret**: `ANTHROPIC_API_KEY`. Never commit it.
+3. Optional **variables** on the same page: `REPORT_MODEL` (default
+   `claude-sonnet-5`; `claude-opus-5` writes deeper reports at a higher cost),
+   `REPORTS_PER_DAY`, `REPORT_MAX_COST_USD` (stop a run after spending this),
+   `REPORT_PRICE_IN` / `REPORT_PRICE_OUT` (your $ per million tokens, so the
+   log shows cost).
+4. Try it on a few companies first: *Actions → Deep-dive reports → Run
+   workflow* with, say, `SIKA,QLINE,KSB`, and check the cost in the run summary
+   before letting the daily run work through the whole board.
+
+Run locally: `cd backend && python scripts/deep_reports.py --dry-run --codes SIKA`
+(fetches and computes everything, writes `reports-dry/`, calls no API).
+
 ## ASME certification (automated)
 
 Screen filters has an **ASME certified** filter: board companies holding an

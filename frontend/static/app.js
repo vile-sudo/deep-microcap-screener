@@ -1047,7 +1047,7 @@ document.getElementById('reset').onclick=()=>{ clearFilters(); render(); };
 function syncURL(){
   const p=new URLSearchParams();
   if(VIEW!=='overview') p.set('v',VIEW);
-  if(VIEW==='reports' && RP.code) p.set('r',RP.code);
+  if(VIEW==='reports' && RP.code){ p.set('r',RP.code); if(DR.period) p.set('rp',DR.period); if(DR.tab==='board') p.set('rt','board'); }
   if(TILE) p.set('tile',TILE);
   if(QUERY) p.set('q',QUERY);
   if(NEWSINCE) p.set('new',NEWSINCE);
@@ -1067,6 +1067,8 @@ function applyState(){
   const get=k=>p.get(k);
   if(VIEWS.includes(get('v'))) VIEW=get('v');
   if(get('r')) RP.code=get('r');
+  if(get('rp') && /^FY\d\d-Q[1-4]$/.test(get('rp'))) DR.period=get('rp');
+  if(get('rt')==='board') DR.tab='board';
   if(get('tile') && (get('tile') in TILE_LABEL)) TILE=get('tile');
   if(get('w')) get('w').split(',').filter(Boolean).forEach(c=>WATCH.add(c));
   if(get('t')){ const v=get('t').split(',').map(n=>THEMES[+n]).filter(Boolean); if(v.length) activeThemes=new Set(v); }
@@ -2211,11 +2213,17 @@ const rpSearchText = d => d._rp || (d._rp=[d.name,d.code,d.nse_code,d.bse_code,d
   d.import_substitution,d.risk_note,d.why_obscure].filter(Boolean).join(' ').toLowerCase());
 
 function openReports(){
+  if(!DR.index){
+    if(!RP.code) document.getElementById('rpgrid').innerHTML='<p class="view-hint">Loading reports…</p>';
+    drLoadIndex().then(()=>{ if(VIEW==='reports') openReports(); });
+    return;
+  }
   if(!RP.built) rpBuildControls();
   if(RP.code && DATA.some(d=>d.code===RP.code)) rpRenderDoc(RP.code);
   else { RP.code=null; rpRenderLib(); }
 }
 function openReport(code){
+  if(RP.code!==code){ DR.period=null; DR.tab='deep'; }
   RP.code=code;
   closeDrawer(); closeModal();
   setView('reports',{nav:'reports-link', keep:true});
@@ -2226,7 +2234,8 @@ function rpBuildControls(){
   const th=document.getElementById('rptheme'), kd=document.getElementById('rpkind'), so=document.getElementById('rpsort'), q=document.getElementById('rpq');
   th.innerHTML='<option value="">All themes</option>'+THEMES.map(t=>`<option value="${esc(t)}">${esc(shortT(t))} (${DATA.filter(d=>base(d)===t).length})</option>`).join('');
   const kinds=Object.keys(RP_KIND).filter(k=>DATA.some(d=>rpKind(d)===k));
-  kd.innerHTML='<option value="">All report types</option>'+kinds.map(k=>`<option value="${k}">${RP_KIND[k]} (${DATA.filter(d=>rpKind(d)===k).length})</option>`).join('');
+  const nDeep=DATA.filter(d=>DR.index&&DR.index[d.code]).length;
+  kd.innerHTML='<option value="">All report types</option>'+(nDeep?`<option value="deep">Deep-dive available (${nDeep})</option>`:'')+kinds.map(k=>`<option value="${k}">${RP_KIND[k]} (${DATA.filter(d=>rpKind(d)===k).length})</option>`).join('');
   so.innerHTML=Object.entries(RP_SORTS).map(([k,v])=>`<option value="${k}">${v.l}</option>`).join('');
   let timer=null;
   q.oninput=()=>{ clearTimeout(timer); timer=setTimeout(()=>{ RP.q=q.value.trim().toLowerCase(); rpRenderLib(); },140); };
@@ -2245,12 +2254,14 @@ function rpBuildControls(){
 }
 function rpFiltered(){
   const terms=RP.q ? RP.q.split(/\s+/).filter(Boolean) : [];
-  return DATA.filter(d=>(!RP.theme||base(d)===RP.theme) && (!RP.kind||rpKind(d)===RP.kind) && terms.every(t=>rpSearchText(d).includes(t)))
+  return DATA.filter(d=>(!RP.theme||base(d)===RP.theme) && (!RP.kind||(RP.kind==='deep'?!!(DR.index&&DR.index[d.code]):rpKind(d)===RP.kind)) && terms.every(t=>rpSearchText(d).includes(t)))
              .sort(RP_SORTS[RP.sort].f);
 }
 function rpCard(d){
   const k=rpKind(d), on=WATCH.has(d.code);
   const tags=[`<span class="rp-tag rp-k-${k}">${RP_KIND[k]}</span>`];
+  const deep=DR.index&&DR.index[d.code];
+  if(deep) tags.unshift(`<span class="rp-tag rp-deep" title="Quarterly deep-dive report, updated ${esc((deep.generated_at||'').slice(0,10))}">Deep dive · ${esc(deep.period_label)}</span>`);
   if(d.import_sub_verdict) tags.push(`<span class="rp-tag rp-v-${esc(d.import_sub_verdict)}">Import sub: ${esc(d.import_sub_verdict)}</span>`);
   if(d.claim_grade) tags.push(`<span class="rp-tag ${CG[d.claim_grade]||'cg-none'}">Claim: ${esc(d.claim_grade)}</span>`);
   if(ASME_BY_CODE[d.code]) tags.push('<span class="rp-tag rp-asme">ASME</span>');
@@ -2328,6 +2339,7 @@ function rpTakeaways(d){
 
 function rpRenderDoc(code){
   const d=DATA.find(x=>x.code===code); if(!d){ RP.code=null; return rpRenderLib(); }
+  if(DR.tab!=='board' && DR.index && DR.index[code]) return drOpen(d);
   document.getElementById('rp-lib').hidden=true;
   document.getElementById('reports-heading').hidden=true;
   const doc=document.getElementById('rp-doc'); doc.hidden=false;
@@ -2369,6 +2381,7 @@ function rpRenderDoc(code){
     </span>
   </div>
 
+  ${DR.index&&DR.index[d.code]?`<div class="dr-tabs" role="tablist"><button type="button" role="tab" id="dr-deep" aria-selected="false">Deep-dive report · ${esc(DR.index[d.code].period_label)}</button><button type="button" role="tab" class="on" aria-selected="true">Board research summary</button></div>`:''}
   <header class="rp-cover">
     <div class="rp-cover-main">
       <span class="rp-eyebrow">RESEARCH REPORT · ${esc(shortT(base(d)).toUpperCase())}</span>
@@ -2476,6 +2489,8 @@ function rpRenderDoc(code){
   </footer>`;
 
   document.getElementById('rp-back').onclick=()=>{ RP.code=null; rpRenderLib(); window.scrollTo({top:0}); };
+  const ddeep=document.getElementById('dr-deep');
+  if(ddeep) ddeep.onclick=()=>{ DR.tab='deep'; rpRenderDoc(d.code); window.scrollTo({top:0}); };
   if(prev) document.getElementById('rp-prev').onclick=()=>openReport(prev.code);
   if(next) document.getElementById('rp-next').onclick=()=>openReport(next.code);
   document.getElementById('rp-pin').onclick=()=>{ togglePin(d.code); const b=document.getElementById('rp-pin'); b.textContent=WATCH.has(d.code)?'★ In watchlist':'☆ Watchlist'; };
@@ -2517,6 +2532,268 @@ function rpPaintStage(d){
             ['Now vs pivot', st.now_vs_pivot!=null?(st.now_vs_pivot>0?'+':'')+fmt(st.now_vs_pivot)+'%':'—']];
   box.innerHTML=`<h3>Market view</h3><div class="rp-quals">${bits.join('')||'<span>No active setup</span>'}</div>
     <div class="rp-chart-stats">${kv.map(([k,v])=>`<div><span>${k}</span><b>${v}</b></div>`).join('')}</div>`;
+}
+
+
+/* ================================================================
+   Deep-dive reports (scripts/deep_reports.py): quarterly forensic
+   research reports. Numbers and valuation are computed by code from
+   screener.in statements; the analysis is written from the company's
+   annual report, earnings calls, presentation and rating rationale, with
+   every claim labelled [F] fact / [MC] management claim / [AI] inference /
+   [E] estimate and cited to its document.
+   ================================================================ */
+const DR={index:null, loading:null, cache:new Map(), tab:'deep', period:null};
+const DR_ORDER=[
+  ['summary','Summary'],['executive_summary','Executive summary'],['company_history','Company history'],
+  ['business_model','Business model'],['products_segments','Products & segments'],['revenue_drivers','Revenue drivers & geography'],
+  ['customers','Customers'],['order_book','Order book & pipeline'],['capacity_capex','Capacity & capex'],
+  ['margins_costs','Margins & costs'],['financial_forensics','Financial forensics'],['statements','Financial statements'],
+  ['accounting_quality','Accounting quality'],['governance','Management & governance'],['competition_moat','Competition & moat'],
+  ['industry_themes','Industry & structural themes'],['guidance_tracker','Guidance tracker'],['valuation','Valuation'],
+  ['catalysts','Catalysts'],['risks','Risks matrix'],['thesis_breakers','Thesis breakers'],['monitoring','Quarterly monitoring'],
+  ['red_flag_checklist','Red-flag checklist'],['management_questions','Questions for management'],['scorecard','Investment scorecard'],
+  ['final_thesis','Final thesis'],['quality_control','Quality control'],['sources','Sources'],
+];
+const DR_LABEL={F:['F','Fact — directly evidenced by a document or the statements'],MC:['MC','Management claim — not independently verified'],
+  AI:['AI','Analyst inference — the report\'s own interpretation'],E:['E','Estimate — the report\'s own calculation or projection']};
+
+function drLoadIndex(){
+  if(DR.index) return Promise.resolve(DR.index);
+  DR.loading = DR.loading || fetchJSON('/api/reports').catch(()=>({})).then(j=>{ DR.index=j||{}; return DR.index; });
+  return DR.loading;
+}
+function drFetch(code, period){
+  const key=code+'|'+(period||'');
+  if(!DR.cache.has(key)) DR.cache.set(key, fetchJSON('/api/reports/'+encodeURIComponent(code)+(period?'/'+encodeURIComponent(period):'')).catch(()=>null));
+  return DR.cache.get(key);
+}
+
+/* text with [F]/[MC]/[AI]/[E] chips and "(AR2026 p.45)" citations linked to the document */
+function drText(s, sources){
+  let h=esc(s||'');
+  h=h.replace(/\*\*(.+?)\*\*/g,'<b>$1</b>');
+  h=h.replace(/\[(F|MC|AI|E)\]/g,(m,k)=>`<abbr class="dr-lab dr-lab-${k.toLowerCase()}" title="${DR_LABEL[k][1]}">${k}</abbr>`);
+  const ids=(sources||[]).map(x=>x.id).sort((a,b)=>b.length-a.length);
+  if(ids.length){
+    h=h.replace(/\(([^()]{2,80})\)/g,(m,inner)=>{
+      const parts=inner.split(/\s*;\s*/);
+      let linked=false;
+      const out=parts.map(part=>{
+        const id=ids.find(i=>part.startsWith(esc(i)));
+        if(!id) return part;
+        const src=sources.find(x=>x.id===id);
+        const pg=(part.match(/p\.?\s*(\d+)/)||[])[1];
+        const url=src && src.url ? src.url+(pg && /\.pdf/i.test(src.url)?'#page='+pg:'') : null;
+        linked=true;
+        return url?`<a class="dr-cite" href="${esc(url)}" target="_blank" rel="noopener" title="${esc(src.title||id)}">${part}</a>`:`<span class="dr-cite">${part}</span>`;
+      });
+      return linked?`<span class="dr-cites">(${out.join('; ')})</span>`:m;
+    });
+  }
+  return h;
+}
+function drBlocks(blocks, sources){
+  return (blocks||[]).map(b=>{
+    if(b.type==='bullets') return `<ul class="dr-ul">${(b.items||[]).map(i=>`<li>${drText(i,sources)}</li>`).join('')}</ul>`;
+    if(b.type==='table') return `<div class="dr-tablewrap">${b.caption?`<div class="dr-cap">${drText(b.caption,sources)}</div>`:''}<table class="dr-table">
+        <thead><tr>${(b.columns||[]).map(c=>`<th>${esc(c)}</th>`).join('')}</tr></thead>
+        <tbody>${(b.rows||[]).map(r=>`<tr>${r.map(c=>`<td>${drText(String(c==null?'':c),sources)}</td>`).join('')}</tr>`).join('')}</tbody></table></div>`;
+    if(b.type==='callout') return `<div class="dr-callout dr-${esc(b.tone||'info')}">${drText(b.text,sources)}</div>`;
+    return `<p>${drText(b.text,sources)}</p>`;
+  }).join('');
+}
+function drSectionHTML(sec, sources){
+  return (sec.subsections||[]).map(s=>`<h3>${esc(s.title)}</h3>${drBlocks(s.blocks,sources)}`).join('');
+}
+
+/* ---------- numbers: tables and charts built from the quant pack ---------- */
+const drN=(v,d=0)=>v==null||isNaN(v)?'—':(v<0?'−':'')+Math.abs(+v).toLocaleString('en-IN',{maximumFractionDigits:d,minimumFractionDigits:d});
+const drP=(v,d=1)=>v==null||isNaN(v)?'—':(+v).toFixed(d)+'%';
+function drGrid(cols, rows, opts){
+  opts=opts||{};
+  return `<div class="dr-tablewrap">${opts.caption?`<div class="dr-cap">${opts.caption}</div>`:''}<table class="dr-table dr-num">
+    <thead><tr><th>${opts.first||''}</th>${cols.map(c=>`<th>${esc(c)}</th>`).join('')}</tr></thead>
+    <tbody>${rows.filter(r=>r && (r[1]||[]).some(v=>v!=null)).map(([lab,vals,f,cls])=>`<tr class="${cls||''}"><th>${lab}</th>${vals.map(v=>`<td>${(f||drN)(v)}</td>`).join('')}</tr>`).join('')}</tbody></table></div>`;
+}
+function drBars(labels, series, opts){
+  /* series: [{name, values, cls}] grouped bars, negatives below the axis */
+  opts=opts||{};
+  const W=720, H=opts.h||220, padB=30, padT=16, padL=6;
+  const all=series.flatMap(s=>s.values).filter(v=>v!=null);
+  if(all.length<2) return '';
+  const mx=Math.max(0,...all), mn=Math.min(0,...all), span=(mx-mn)||1;
+  const y=v=>padT+(mx-v)/span*(H-padT-padB), step=(W-padL)/labels.length, gw=step*0.72, bw=gw/series.length;
+  let s=`<svg viewBox="0 0 ${W} ${H}" class="dr-chart" role="img" aria-label="${esc(opts.title||'chart')}"><line x1="0" x2="${W}" y1="${y(0).toFixed(1)}" y2="${y(0).toFixed(1)}" class="dr-axis"/>`;
+  labels.forEach((lab,i)=>{
+    const x0=padL+i*step+(step-gw)/2;
+    series.forEach((se,k)=>{
+      const v=se.values[i]; if(v==null) return;
+      const top=Math.min(y(0),y(v)), h=Math.max(1,Math.abs(y(v)-y(0)));
+      s+=`<rect x="${(x0+k*bw+1).toFixed(1)}" y="${top.toFixed(1)}" width="${Math.max(1,bw-2).toFixed(1)}" height="${h.toFixed(1)}" rx="2" class="dr-bar ${se.cls}${v<0?' neg':''}"><title>${esc(se.name)} ${esc(lab)}: ${drN(v)}</title></rect>`;
+    });
+    if(labels.length<=14 || i%2===0) s+=`<text x="${(padL+i*step+step/2).toFixed(1)}" y="${H-10}" text-anchor="middle" class="dr-tick">${esc(String(lab).replace(/^([A-Z][a-z]{2}) 20(\d\d)$/,'$1 $2'))}</text>`;
+  });
+  return `<div class="dr-chartwrap">${s}</svg><div class="dr-legend">${series.map(se=>`<span><i class="dr-bar ${se.cls}"></i>${esc(se.name)}</span>`).join('')}</div></div>`;
+}
+function drStatements(q){
+  const a=q.annual, d=q.derived, c=a.columns, qq=q.quarterly;
+  const ttm=a.ttm;
+  const plCols=ttm?[...c,'TTM']:c, withTTM=(arr,k)=>ttm?[...arr,ttm[k]]:arr;
+  return `
+    <h3>Profit & loss <span class="dr-muted">Rs crore · ${esc(q.basis)} · [F] screener.in</span></h3>
+    ${drGrid(plCols,[
+      ['Sales',withTTM(a.sales,'sales'),null,'b'],['EBITDA',withTTM(a.ebitda,'ebitda')],['EBITDA margin',withTTM(a.opm,'opm'),v=>drP(v,0)],
+      ['Other income',withTTM(a.other_income,'other_income')],['Interest',withTTM(a.interest,'interest')],['Depreciation',withTTM(a.depreciation,'depreciation')],
+      ['Profit before tax',withTTM(a.pbt,'pbt')],['Tax rate',ttm?[...a.tax_rate,null]:a.tax_rate,v=>drP(v,0)],['Net profit',withTTM(a.pat,'pat'),null,'b'],
+      ['EPS (Rs)',withTTM(a.eps,'eps'),v=>drN(v,1)]])}
+    ${drBars(c,[{name:'Sales',values:a.sales,cls:'s1'},{name:'Net profit',values:a.pat,cls:'s2'}],{title:'Sales and net profit'})}
+    <h3>Balance sheet <span class="dr-muted">[F]</span></h3>
+    ${drGrid(c,[['Equity (capital + reserves)',a.equity,null,'b'],['Borrowings',a.borrowings],['Other liabilities',a.other_liabilities],['Total assets',a.total_assets,null,'b'],
+      ['Fixed assets',a.fixed_assets],['Capital work in progress',a.cwip],['Investments',a.investments],['Other assets',a.other_assets]])}
+    <h3>Cash flow and earnings quality <span class="dr-muted">[F] / [E]</span></h3>
+    ${drGrid(c,[['Cash from operations',a.cfo,null,'b'],['Cash from investing',a.cfi],['Cash from financing',a.cff],['Free cash flow',a.fcf,null,'b'],
+      ['Capex (CFO − FCF) [E]',a.capex],['CFO / net profit [E]',d.cfo_pat,v=>v==null?'—':(+v).toFixed(2)+'x'],['Capex / sales [E]',d.capex_sales,v=>drP(v,0)]])}
+    ${drBars(c,[{name:'Cash from operations',values:a.cfo,cls:'s1'},{name:'Net profit',values:a.pat,cls:'s2'}],{title:'Operating cash flow vs profit'})}
+    <h3>Returns, leverage and working capital <span class="dr-muted">[F] / [E]</span></h3>
+    ${drGrid(c,[['ROCE',a.roce,v=>drP(v,0),'b'],['ROE [E]',d.roe,v=>drP(v,0)],['Debt / equity [E]',d.debt_equity,v=>v==null?'—':(+v).toFixed(2)+'x'],
+      ['Interest cover [E]',d.interest_cover,v=>v==null?'—':(+v).toFixed(1)+'x'],['Debtor days',a.debtor_days],['Inventory days',a.inventory_days],
+      ['Days payable',a.payable_days],['Cash conversion cycle',a.ccc],['Working capital days',a.wc_days],['Fixed-asset turnover [E]',d.fixed_asset_turnover,v=>v==null?'—':(+v).toFixed(2)+'x']])}
+    <p class="dr-muted">Growth [E]: ${Object.entries(d.growth||{}).map(([k,v])=>`${esc(k.replace(/_/g,' '))} ${drP(v,0)}`).join(' · ')||'—'} · 3-year CFO/profit ${d.cumulative&&d.cumulative.cfo_pat_3y!=null?d.cumulative.cfo_pat_3y+'x':'—'} · 5-year ${d.cumulative&&d.cumulative.cfo_pat_5y!=null?d.cumulative.cfo_pat_5y+'x':'—'}</p>
+    ${qq&&qq.columns&&qq.columns.length?`<h3>Last ${qq.columns.length} results periods <span class="dr-muted">[F]</span></h3>
+    ${drGrid(qq.columns,[['Sales',qq.sales,null,'b'],['Sales YoY',qq.sales_yoy,v=>drP(v,0)],['EBITDA',qq.ebitda],['EBITDA margin',qq.opm,v=>drP(v,0)],
+      ['Other income',qq.other_income],['Net profit',qq.pat,null,'b'],['Profit YoY',qq.pat_yoy,v=>drP(v,0)],['EPS (Rs)',qq.eps,v=>drN(v,2)]])}
+    ${drBars(qq.columns,[{name:'Sales',values:qq.sales,cls:'s1'},{name:'Net profit',values:qq.pat,cls:'s2'}],{title:'Quarterly sales and profit',h:190})}`:''}`;
+}
+function drShareholding(q){
+  const sh=q.shareholding; if(!sh||!sh.columns||!sh.columns.length) return '';
+  const cols=sh.columns.slice(-8), n=sh.columns.length;
+  const row=(k,f)=>[k,(sh.rows[k]||[]).slice(n-cols.length),f];
+  return `<h3>Shareholding pattern <span class="dr-muted">[F] screener.in</span></h3>${drGrid(cols,[row('Promoters',v=>drP(v,2)),row('FIIs',v=>drP(v,2)),row('DIIs',v=>drP(v,2)),row('Public',v=>drP(v,2)),row('No. of Shareholders')])}`;
+}
+function drValuation(q, price){
+  const v=q.valuation||{}, dcf=v.dcf||{};
+  let h=`<h3>Where the price sits today <span class="dr-muted">[F] / [E]</span></h3>
+    <div class="dr-kpis">${[['Price',v.price?'₹'+drN(v.price,0):'—'],['Market cap',v.market_cap?'₹'+drN(v.market_cap)+' cr':'—'],[`P/E (${esc(v.earnings_basis||'TTM')})`,v.pe_ttm!=null?v.pe_ttm+'x':'—'],
+      ['EV / EBITDA',v.ev_ebitda_ttm!=null?v.ev_ebitda_ttm+'x':'—'],['EV / sales',v.ev_sales_ttm!=null?v.ev_sales_ttm+'x':'—'],['Price / book',v.pb!=null?v.pb+'x':'—'],
+      ['52-week range',v.low_52w&&v.high_52w?`₹${drN(v.low_52w)}–${drN(v.high_52w)}`:'—'],['From 52-week high',drP(v.from_high_pct,0)]].map(([k,x])=>`<div><span>${k}</span><b>${x}</b></div>`).join('')}</div>
+    <p class="dr-muted">${esc(v.net_debt_note||'')}</p>`;
+  if(!dcf.available){ return h+`<div class="dr-callout dr-warn">DCF not shown: ${esc(dcf.reason||'not enough data')}</div>`; }
+  const sc=dcf.scenarios, inp=dcf.inputs;
+  const bar=['bear','base','bull'].map(k=>({k,v:sc[k].per_share}));
+  const maxv=Math.max(price||0,...bar.map(b=>b.v||0))*1.08||1;
+  h+=`<h3>DCF fair value — bear / base / bull <span class="dr-muted">[E] computed, not a price target</span></h3>
+    <div class="dr-fv">${bar.map(b=>`<div class="dr-fv-row"><span>${b.k[0].toUpperCase()+b.k.slice(1)}</span><i><em class="fv-${b.k}" style="width:${Math.max(0,(b.v||0)/maxv*100).toFixed(1)}%"></em></i><b>${b.v!=null?'₹'+drN(b.v,0):'—'}</b><small>${dcf.upside_pct[b.k]!=null?(dcf.upside_pct[b.k]>0?'+':'')+dcf.upside_pct[b.k]+'% vs price':''}</small></div>`).join('')}
+      <div class="dr-fv-row dr-fv-price"><span>Price</span><i><em style="width:${((price||0)/maxv*100).toFixed(1)}%"></em></i><b>₹${drN(price,0)}</b><small>today</small></div></div>
+    ${drGrid(['Bear','Base','Bull'],[
+      ['Starting sales growth',['bear','base','bull'].map(k=>sc[k].assumptions.start_growth),v=>drP(v,1)],
+      ['Growth by year 5',['bear','base','bull'].map(k=>sc[k].assumptions.growth_by_year5),v=>drP(v,1)],
+      ['EBITDA margin',['bear','base','bull'].map(k=>sc[k].assumptions.ebitda_margin),v=>drP(v,1)],
+      ['Enterprise value (Rs cr)',['bear','base','bull'].map(k=>sc[k].ev)],['Equity value (Rs cr)',['bear','base','bull'].map(k=>sc[k].equity_value)],
+      ['Per share (Rs)',['bear','base','bull'].map(k=>sc[k].per_share),v=>drN(v,0),'b']],{first:'Scenario'})}
+    ${drGrid(sc.base.projection.map(p=>'Year '+p.year),[['Sales growth',sc.base.projection.map(p=>p.growth),v=>drP(v,1)],['Sales',sc.base.projection.map(p=>p.sales)],
+      ['EBITDA',sc.base.projection.map(p=>p.ebitda)],['Free cash flow to firm',sc.base.projection.map(p=>p.fcff),null,'b'],['Present value',sc.base.projection.map(p=>p.pv)]],{first:'Base case',caption:'Base-case projection (Rs crore)'})}
+    <p class="dr-muted">Method: ${esc(dcf.method)} Inputs: WACC ${inp.wacc}% (risk-free ${inp.rf}% + beta ${inp.beta} × ERP ${inp.erp}% = cost of equity ${inp.cost_of_equity}%; debt ${inp.debt_weight}% at ${inp.cost_of_debt_post_tax}% post-tax), terminal growth ${inp.terminal_growth}%, tax ${inp.tax_rate}%, base margin ${inp.ebitda_margin_base}% (median of three years), starting growth ${inp.starting_growth_base}% (${esc(inp.growth_basis)}), D&A ${inp.da_pct_sales}% of sales, capex = ${esc(inp.capex_rule||'')} (${inp.fixed_asset_turnover}x), working capital ${inp.wc_days} days.</p>
+    <h3>Sensitivity — base-case value per share <span class="dr-muted">[E]</span></h3>
+    ${drGrid(dcf.sensitivity.g.map(g=>'Terminal g '+g+'%'),dcf.sensitivity.wacc.map((w,i)=>['WACC '+w+'%',dcf.sensitivity.values[i],v=>v==null?'—':'₹'+drN(v,0)]))}
+    <h3>What the price already assumes — reverse DCF <span class="dr-muted">[E]</span></h3>
+    <div class="dr-callout ${dcf.reverse_dcf.implied_5y_sales_cagr!=null&&dcf.reverse_dcf.implied_5y_sales_cagr>dcf.reverse_dcf.base_case_5y_cagr_equivalent+10?'dr-bad':'dr-info'}">
+      ${dcf.reverse_dcf.implied_5y_sales_cagr!=null?`Today's price needs about <b>${dcf.reverse_dcf.implied_5y_sales_cagr}% a year</b> sales growth for five years (at the base margin), against <b>${dcf.reverse_dcf.base_case_5y_cagr_equivalent}%</b> in the base case.`:''} ${esc(dcf.reverse_dcf.note)}</div>`;
+  return h;
+}
+function drFlags(q){
+  const fl=q.red_flags||[]; if(!fl.length) return '';
+  return `<h3>Rule-based checks from the statements</h3><ul class="dr-flags">${fl.map(f=>`<li class="fl-${f.level}"><b>${esc(f.title)}</b> ${esc(f.detail)} <abbr class="dr-lab dr-lab-${f.label.replace(/\W/g,'').toLowerCase()}">${f.label.replace(/\W/g,'')}</abbr></li>`).join('')}</ul>`;
+}
+
+function drRender(d, rep, entry){
+  const doc=document.getElementById('rp-doc');
+  const src=rep.sources||[], q=rep.quant, v=q.valuation||{};
+  const secs=Object.fromEntries((rep.sections||[]).map(s=>[s.id,s]));
+  const list=RP.list.length && RP.list.includes(d) ? RP.list : [...DATA].sort(RP_SORTS.score.f);
+  const i=list.indexOf(d), prev=list[i-1], next=list[i+1], on=WATCH.has(d.code);
+  const periods=rep.periods||[rep.period];
+  const fv=entry&&entry.fair_value;
+  const sm=rep.summary||{};
+  const parts=[];
+  const add=(id,title,html)=>{ if(html && html.trim()) parts.push([id,title,html]); };
+  add('summary','Summary',`
+    ${sm.one_line?`<p class="dr-lede">${drText(sm.one_line,src)}</p>`:''}
+    <div class="dr-sumgrid">
+      <div class="dr-sum good"><h4>The bull case</h4><ul>${(sm.bull_points||[]).map(x=>`<li>${drText(x,src)}</li>`).join('')}</ul></div>
+      <div class="dr-sum bad"><h4>The bear case</h4><ul>${(sm.bear_points||[]).map(x=>`<li>${drText(x,src)}</li>`).join('')}</ul></div>
+      <div class="dr-sum watch"><h4>Watch next quarter</h4><ul>${(sm.watch_points||[]).map(x=>`<li>${drText(x,src)}</li>`).join('')}</ul></div>
+    </div>
+    ${secs.changes_since_last?`<h3>What changed since the last report</h3>${drSectionHTML(secs.changes_since_last,src)}`:''}`);
+  DR_ORDER.forEach(([id,title])=>{
+    if(id==='summary'||id==='sources') return;
+    if(id==='statements') return add(id,title,drStatements(q));
+    if(id==='valuation') return add(id,title,drValuation(q,v.price)+(secs.valuation_view?`<h3 class="dr-sep">Interpretation</h3>${drSectionHTML(secs.valuation_view,src)}`:''));
+    const s=secs[id]; let html=s?drSectionHTML(s,src):'';
+    if(id==='governance') html+=drShareholding(q);
+    if(id==='red_flag_checklist') html=drFlags(q)+html;
+    add(id,(s&&s.title)||title,html);
+  });
+  add('sources','Sources',`<ol class="dr-sources">${src.map(s=>`<li><b>${esc(s.id)}</b> — ${s.url?`<a href="${esc(s.url)}" target="_blank" rel="noopener">${esc(s.title||s.id)} ↗</a>`:esc(s.title||'')}${s.date?` · ${esc(s.date)}`:''}</li>`).join('')}</ol>
+    <p class="dr-muted">Labels: <abbr class="dr-lab dr-lab-f">F</abbr> fact · <abbr class="dr-lab dr-lab-mc">MC</abbr> management claim, not verified · <abbr class="dr-lab dr-lab-ai">AI</abbr> analyst inference · <abbr class="dr-lab dr-lab-e">E</abbr> estimate. Numbers from screener.in (${esc(rep.basis)}); analysis generated ${esc((rep.generated_at||'').slice(0,10))}${rep.model_id?` with ${esc(rep.model_id)}`:''} from the documents listed, checked by rules against invented figures — but it is machine-written: verify anything you act on against the source.</p>`);
+
+  doc.innerHTML=`
+  <div class="rp-toolbar">
+    <button type="button" class="theme-back" id="rp-back">‹ All reports</button>
+    <span class="rp-pos">${i>=0?`${i+1} of ${list.length}`:''}</span>
+    <span class="rp-tools">
+      <button type="button" class="btn" id="rp-prev" ${prev?'':'disabled'} title="${prev?esc(prev.name):''}">‹ Previous</button>
+      <button type="button" class="btn" id="rp-next" ${next?'':'disabled'} title="${next?esc(next.name):''}">Next ›</button>
+      <button type="button" class="btn" id="rp-pin">${on?'★ In watchlist':'☆ Watchlist'}</button>
+      ${periods.length>1?`<select class="gal-select dr-period" id="dr-period" aria-label="Report quarter">${periods.map(p=>`<option value="${esc(p)}"${p===rep.period?' selected':''}>${esc(p.replace(/^FY(\d\d)-(Q\d)$/,'$2 FY$1'))}${p===periods[0]?' (latest)':''}</option>`).join('')}</select>`:''}
+      ${entry&&entry.pdf&&rep.period===entry.period?`<a class="btn" href="${esc(entry.pdf)}" target="_blank" rel="noopener">Download PDF</a>`:''}
+      <button type="button" class="btn rp-print" id="rp-print">Print / save PDF</button>
+    </span>
+  </div>
+  <div class="dr-tabs" role="tablist"><button type="button" role="tab" class="on" aria-selected="true">Deep-dive report · ${esc(rep.period_label)}</button><button type="button" role="tab" id="dr-board" aria-selected="false">Board research summary</button></div>
+  <header class="rp-cover dr-cover">
+    <div class="rp-cover-main">
+      <span class="rp-eyebrow">DEEP-DIVE RESEARCH REPORT · ${esc(rep.period_label)} · ${esc(shortT(base(d)).toUpperCase())}</span>
+      <h1>${esc(rep.name||d.name)}</h1>
+      <div class="rp-cover-sub">${[d.nse_code&&!/^\d+$/.test(d.nse_code)?'NSE: '+esc(d.nse_code):'',d.bse_code?'BSE: '+esc(d.bse_code):''].filter(Boolean).join(' · ')||esc(d.code)} · results to ${esc(rep.results_quarter)} · ${esc(rep.basis)}</div>
+      <div class="rp-cover-meta"><span class="rp-dateline">Updated ${esc((rep.generated_at||'').slice(0,10))} · ${src.length} sources · refreshed automatically after each quarter's results</span></div>
+    </div>
+    <div class="dr-cover-fv">
+      <span>DCF fair value [E]</span>
+      ${fv&&rep.period===entry.period?`<div class="dr-cover-trio">${['bear','base','bull'].map(k=>`<div><small>${k}</small><b>${fv[k]!=null?'₹'+drN(fv[k],0):'—'}</b></div>`).join('')}</div>`:(v.dcf&&v.dcf.available?`<div class="dr-cover-trio">${['bear','base','bull'].map(k=>`<div><small>${k}</small><b>₹${drN(v.dcf.scenarios[k].per_share,0)}</b></div>`).join('')}</div>`:'<b>—</b>')}
+      <small>Price ₹${drN(v.price,0)} · not a price target, no rating</small>
+    </div>
+  </header>
+  <div class="dr-layout">
+    <nav class="dr-toc" aria-label="Report sections"><b>Contents</b><ol>${parts.map(([id,t])=>`<li><a href="#dr-${id}" data-dr="${id}">${esc(t)}</a></li>`).join('')}</ol></nav>
+    <div class="dr-body">${parts.map(([id,t,h],n)=>`<section class="rp-block dr-sec" id="dr-${id}"><h2><span class="rp-n">${n+1}</span>${esc(t)}</h2>${h}</section>`).join('')}
+      <footer class="rp-foot">For research only — not investment advice, not a recommendation to buy or sell, and not from a SEBI-registered research analyst. Fair values are mechanical DCF outputs under the stated assumptions, not price targets.</footer>
+    </div>
+  </div>`;
+  document.getElementById('rp-back').onclick=()=>{ RP.code=null; DR.period=null; rpRenderLib(); window.scrollTo({top:0}); };
+  if(prev) document.getElementById('rp-prev').onclick=()=>{ DR.period=null; openReport(prev.code); };
+  if(next) document.getElementById('rp-next').onclick=()=>{ DR.period=null; openReport(next.code); };
+  document.getElementById('rp-pin').onclick=()=>{ togglePin(d.code); document.getElementById('rp-pin').textContent=WATCH.has(d.code)?'★ In watchlist':'☆ Watchlist'; };
+  document.getElementById('rp-print').onclick=()=>window.print();
+  document.getElementById('dr-board').onclick=()=>{ DR.tab='board'; rpRenderDoc(d.code); window.scrollTo({top:0}); };
+  const sel=document.getElementById('dr-period');
+  if(sel) sel.onchange=()=>{ DR.period=sel.value===periods[0]?null:sel.value; rpRenderDoc(d.code); };
+  doc.querySelectorAll('[data-dr]').forEach(a=>a.onclick=e=>{ e.preventDefault(); const t=document.getElementById('dr-'+a.dataset.dr); if(t) window.scrollTo({top:t.getBoundingClientRect().top+scrollY-80,behavior:'smooth'}); });
+  syncURL();
+}
+function drOpen(d){
+  const doc=document.getElementById('rp-doc');
+  document.getElementById('rp-lib').hidden=true;
+  document.getElementById('reports-heading').hidden=true;
+  doc.hidden=false;
+  const entry=DR.index&&DR.index[d.code];
+  doc.innerHTML='<p class="view-hint">Loading the deep-dive report…</p>';
+  drFetch(d.code, DR.period).then(rep=>{
+    if(RP.code!==d.code || VIEW!=='reports') return;
+    if(!rep){ DR.tab='board'; rpRenderDoc(d.code); return; }
+    drRender(d, rep, entry);
+    document.body.dataset.drReady='1';
+  });
 }
 
 

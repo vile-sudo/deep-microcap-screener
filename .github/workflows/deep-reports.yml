@@ -1,0 +1,114 @@
+name: Deep-dive reports
+
+# Runs every morning as steps 6-7 of daily.yml. This workflow is for writing
+# reports by hand: a few named companies (e.g. to try the pipeline or a new
+# model), a re-write with --force, or a bigger batch than the daily one.
+# Needs the ANTHROPIC_API_KEY secret.
+
+permissions:
+  contents: write
+
+on:
+  workflow_dispatch:
+    inputs:
+      codes:
+        description: 'Board codes, comma-separated (blank = whoever is due)'
+        required: false
+        default: ''
+      max_reports:
+        description: 'Most reports in this run'
+        required: false
+        default: '3'
+      force:
+        description: 'Re-write even if the latest quarter is already covered'
+        type: boolean
+        required: false
+        default: false
+      model:
+        description: 'Claude model (blank = REPORT_MODEL variable, else claude-sonnet-5)'
+        required: false
+        default: ''
+
+concurrency:
+  group: daily-update        # never alongside the daily run, which also commits reports
+  cancel-in-progress: false
+
+jobs:
+  reports:
+    runs-on: ubuntu-latest
+    timeout-minutes: 180
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Install tools
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq poppler-utils
+          pip install -r backend/requirements.txt beautifulsoup4 anthropic
+          cd automation
+          npm install --no-audit --no-fund
+          npx playwright install --with-deps chromium
+
+      - name: Write reports
+        working-directory: ./backend
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          REPORT_MODEL: ${{ github.event.inputs.model || vars.REPORT_MODEL }}
+          REPORT_MAX_COST_USD: ${{ vars.REPORT_MAX_COST_USD }}
+          REPORT_PRICE_IN: ${{ vars.REPORT_PRICE_IN }}
+          REPORT_PRICE_OUT: ${{ vars.REPORT_PRICE_OUT }}
+          CODES: ${{ github.event.inputs.codes }}
+          MAX_REPORTS: ${{ github.event.inputs.max_reports }}
+          FORCE: ${{ github.event.inputs.force }}
+        run: |
+          if [ -z "$ANTHROPIC_API_KEY" ]; then echo "::error::Add the ANTHROPIC_API_KEY secret (Settings > Secrets and variables > Actions)"; exit 1; fi
+          if [ -z "$REPORT_MODEL" ]; then unset REPORT_MODEL; fi
+          set -- --max-reports "${MAX_REPORTS:-3}" --out-list ../reports-today.txt
+          if [ -n "$CODES" ]; then set -- "$@" --codes "$CODES"; fi
+          if [ "$FORCE" = "true" ]; then set -- "$@" --force; fi
+          python scripts/deep_reports.py "$@"
+
+      - name: Render and upload PDFs
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if [ ! -s reports-today.txt ]; then echo "No reports written"; exit 0; fi
+          cd backend
+          python -m app.seed > /dev/null
+          python -m uvicorn app.main:app --host 127.0.0.1 --port 8799 > ../uvicorn.log 2>&1 &
+          for i in $(seq 1 60); do curl -fs http://127.0.0.1:8799/healthz > /dev/null && break; sleep 1; done
+          cd ../automation
+          node render-report-pdfs.mjs --base http://127.0.0.1:8799 --list ../reports-today.txt --out ../reports-pdf
+          cd ..
+          if ls reports-pdf/*.pdf > /dev/null 2>&1; then
+            gh release view reports > /dev/null 2>&1 || gh release create reports --title "Deep-dive report PDFs" \
+              --notes "PDFs of the dashboard's quarterly deep-dive research reports, uploaded automatically. Not investment advice."
+            gh release upload reports reports-pdf/*.pdf --clobber
+          fi
+
+      - name: Commit and deploy
+        env:
+          RENDER_DEPLOY_HOOK: ${{ secrets.RENDER_DEPLOY_HOOK }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add backend/reports automation/data/deep-reports.json 2>/dev/null || true
+          if git diff --cached --quiet; then echo "Nothing to commit"; exit 0; fi
+          git commit -m "Deep-dive reports: $(tr '\n' ' ' < reports-today.txt)"
+          for i in 1 2 3; do
+            git pull --rebase origin ${{ github.ref_name }} && git push origin HEAD:${{ github.ref_name }} && break
+            sleep 5
+          done
+          if [ -n "$RENDER_DEPLOY_HOOK" ]; then curl -fsSL --retry 3 --retry-delay 5 -X POST "$RENDER_DEPLOY_HOOK" > /dev/null && echo "Render deploy triggered"; fi
+
+      - name: Summary
+        if: always()
+        run: |
+          if [ -f automation/data/deep-reports.json ]; then
+            python -c "import json;s=json.load(open('automation/data/deep-reports.json'));r=s['runs'][-1] if s.get('runs') else {};print('### Deep-dive reports\n');print('Written:', ', '.join(r.get('written',[])) or 'none');print();[print(f'- {k}: {v.get(\"period\")} tokens out {v.get(\"tokens_out\")} cost {v.get(\"cost_usd\")}') for k,v in s.get('reports',{}).items() if k+':'+v.get('period','') in r.get('written',[])];print('\nSkipped:', r.get('skipped'))" >> "$GITHUB_STEP_SUMMARY"
+          fi

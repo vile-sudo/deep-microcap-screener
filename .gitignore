@@ -28,3 +28,8 @@ automation/node_modules/
 # from. Rebuildable from the exchanges in about a minute, and kept between
 # GitHub Action runs by actions/cache -- chart_data/ is what gets committed.
 backend/.bhav_cache/
+
+# deep-dive report pipeline scratch output (reports themselves live in backend/reports/)
+reports-dry/
+reports-pdf/
+reports-today.txt

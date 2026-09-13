@@ -130,6 +130,12 @@ def fetch_screener(code: str) -> dict:
             elif "public" in label:
                 out["public_pct"] = value
 
+    # The newest results period screener shows ("Jun 2026"): the deep-dive
+    # report pipeline treats a change here as "new quarterly results filed".
+    q_head = [th.get_text(strip=True) for th in soup.select("#quarters table thead th")]
+    if len(q_head) > 1 and re.match(r"[A-Z][a-z]{2} \d{4}$", q_head[-1]):
+        out["latest_results"] = q_head[-1]
+
     num_el = soup.select_one("#num-shareholders .number, .shareholders .number")
     if num_el:
         n = _num(num_el.get_text(strip=True))

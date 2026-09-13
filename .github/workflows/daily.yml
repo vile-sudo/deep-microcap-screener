@@ -14,7 +14,11 @@ name: Daily 7 AM update
 #   5. charts         yesterday's candles, Chart gallery and Market view
 #                     stages -- after step 3, so a company added today has
 #                     its chart today                   (scripts/update_charts.py)
-#   6. one commit, one Render deploy
+#   6. deep-dive      quarterly research reports for companies that filed
+#                     new results (a few a day)         (scripts/deep_reports.py)
+#   7. report PDFs    printed from the dashboard's report page and uploaded
+#                     to the "reports" release          (automation/render-report-pdfs.mjs)
+#   8. one commit, one Render deploy
 #
 # A stage that fails is reported but doesn't stop the rest: every script
 # writes nothing when its source is broken, so the board keeps yesterday's
@@ -43,7 +47,7 @@ concurrency:
 jobs:
   daily:
     runs-on: ubuntu-latest
-    timeout-minutes: 240
+    timeout-minutes: 330
 
     steps:
       - name: Check out repo
@@ -63,7 +67,7 @@ jobs:
         run: |
           sudo apt-get update -qq
           sudo apt-get install -y -qq poppler-utils unzip
-          pip install requests beautifulsoup4
+          pip install -r backend/requirements.txt beautifulsoup4 anthropic
           cd automation
           npm install --no-audit --no-fund
           npx playwright install --with-deps chromium
@@ -114,7 +118,49 @@ jobs:
         working-directory: ./backend
         run: python scripts/update_charts.py
 
-      - name: 6. Commit
+      # Quarterly deep-dive reports: a small batch a day, as companies file
+      # results. Off until the ANTHROPIC_API_KEY secret exists. Optional repo
+      # variables: REPORT_MODEL, REPORTS_PER_DAY, REPORT_MAX_COST_USD,
+      # REPORT_PRICE_IN / REPORT_PRICE_OUT ($ per million tokens, for the cost log).
+      - name: 6. Deep-dive reports
+        id: reports
+        continue-on-error: true
+        timeout-minutes: 120
+        working-directory: ./backend
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          REPORT_MODEL: ${{ vars.REPORT_MODEL }}
+          REPORTS_PER_DAY: ${{ vars.REPORTS_PER_DAY }}
+          REPORT_MAX_COST_USD: ${{ vars.REPORT_MAX_COST_USD }}
+          REPORT_PRICE_IN: ${{ vars.REPORT_PRICE_IN }}
+          REPORT_PRICE_OUT: ${{ vars.REPORT_PRICE_OUT }}
+        run: |
+          if [ -z "$REPORT_MODEL" ]; then unset REPORT_MODEL; fi
+          if [ -z "$REPORTS_PER_DAY" ]; then unset REPORTS_PER_DAY; fi
+          python scripts/deep_reports.py --out-list ../reports-today.txt
+
+      - name: 7. Report PDFs
+        id: pdfs
+        continue-on-error: true
+        timeout-minutes: 45
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if [ ! -s reports-today.txt ]; then echo "No new reports today"; exit 0; fi
+          cd backend
+          python -m app.seed > /dev/null
+          python -m uvicorn app.main:app --host 127.0.0.1 --port 8799 > ../uvicorn.log 2>&1 &
+          for i in $(seq 1 60); do curl -fs http://127.0.0.1:8799/healthz > /dev/null && break; sleep 1; done
+          cd ../automation
+          node render-report-pdfs.mjs --base http://127.0.0.1:8799 --list ../reports-today.txt --out ../reports-pdf
+          cd ..
+          if ls reports-pdf/*.pdf > /dev/null 2>&1; then
+            gh release view reports > /dev/null 2>&1 || gh release create reports --title "Deep-dive report PDFs" \
+              --notes "PDFs of the dashboard's quarterly deep-dive research reports, uploaded by the daily workflow. Not investment advice."
+            gh release upload reports reports-pdf/*.pdf --clobber
+          fi
+
+      - name: 8. Commit
         id: commit
         run: |
           git config user.name "github-actions[bot]"
@@ -123,7 +169,8 @@ jobs:
                   backend/data/asme_raw.json backend/chart_data \
                   automation/data/candidates-queue.json automation/data/reviewed-symbols.json \
                   automation/data/listings-snapshot.json automation/data/asme-scan.json
-          for f in automation/data/auto-screen.json automation/data/weekly-report.md automation/data/profiles; do
+          for f in automation/data/auto-screen.json automation/data/weekly-report.md automation/data/profiles \
+                   backend/reports automation/data/deep-reports.json; do
             if [ -e "$f" ]; then git add "$f"; fi
           done
           if git diff --cached --quiet; then
@@ -132,7 +179,8 @@ jobs:
             exit 0
           fi
           added=$(python -c "import json;r=json.load(open('automation/data/auto-screen.json'))['runs'][-1];print(len(r.get('added_codes',[])))" 2>/dev/null || echo 0)
-          git commit -m "Daily update $(TZ=Asia/Kolkata date +%F): ${added} auto-added"
+          reports=$(grep -c . reports-today.txt 2>/dev/null || echo 0)
+          git commit -m "Daily update $(TZ=Asia/Kolkata date +%F): ${added} auto-added, ${reports} deep-dive reports"
           for i in 1 2 3; do
             git pull --rebase origin ${{ github.ref_name }} && git push origin HEAD:${{ github.ref_name }} && break
             sleep 5
@@ -160,12 +208,15 @@ jobs:
             echo "| auto-screen | ${{ steps.autoscreen.outcome }} |"
             echo "| ASME | ${{ steps.asme.outcome }} |"
             echo "| charts | ${{ steps.charts.outcome }} |"
+            echo "| deep-dive reports | ${{ steps.reports.outcome }} |"
+            echo "| report PDFs | ${{ steps.pdfs.outcome }} |"
           } >> "$GITHUB_STEP_SUMMARY"
+          if [ -s reports-today.txt ]; then { echo; echo "Deep-dive reports written:"; sed 's/^/- /' reports-today.txt; } >> "$GITHUB_STEP_SUMMARY"; fi
           if [ -f automation/data/auto-screen.json ]; then
             python -c "import json;r=json.load(open('automation/data/auto-screen.json'))['runs'][-1];print('\nAuto-screen:', r)" >> "$GITHUB_STEP_SUMMARY"
           fi
           failed=""
-          for o in "${{ steps.fundamentals.outcome }}" "${{ steps.discovery.outcome }}" "${{ steps.autoscreen.outcome }}" "${{ steps.asme.outcome }}" "${{ steps.charts.outcome }}"; do
+          for o in "${{ steps.fundamentals.outcome }}" "${{ steps.discovery.outcome }}" "${{ steps.autoscreen.outcome }}" "${{ steps.asme.outcome }}" "${{ steps.charts.outcome }}" "${{ steps.reports.outcome }}" "${{ steps.pdfs.outcome }}"; do
             if [ "$o" = "failure" ]; then failed=1; fi
           done
           if [ -n "$failed" ]; then echo "::error::a stage failed -- see the table above"; exit 1; fi
