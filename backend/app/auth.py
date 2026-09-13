@@ -22,6 +22,7 @@ from __future__ import annotations
 import base64
 import hashlib
 import hmac
+import logging
 import secrets
 import threading
 import time
@@ -30,6 +31,7 @@ from datetime import datetime, timedelta, timezone
 from urllib.parse import quote
 
 from sqlalchemy import delete, select
+from sqlalchemy.exc import SQLAlchemyError
 from starlette.middleware.base import BaseHTTPMiddleware
 from starlette.requests import Request
 from starlette.responses import JSONResponse, RedirectResponse
@@ -37,6 +39,8 @@ from starlette.responses import JSONResponse, RedirectResponse
 from .config import get_settings
 from .database import SessionLocal
 from .models import AuthSession, User
+
+log = logging.getLogger("deepsweep.auth")
 
 COOKIE = "ds_session"
 PUBLIC_PREFIXES = ("/static/", "/api/auth/")
@@ -155,23 +159,35 @@ def accounts_enabled() -> bool:
 
 
 def ensure_admin() -> None:
-    """Create the configured admin, or bring its password and rights in line."""
+    """Create the configured admin, or bring its password and rights in line.
+
+    Every gunicorn worker runs this at startup at the same moment, so two can
+    race to insert the same admin; the loser just retries and finds the row.
+    It never raises: a problem here must not stop the site from starting."""
     login = get_settings().admin_login
     if not login:
         return
     ident, password = login
-    with SessionLocal() as db:
-        user = db.execute(select(User).where(User.email == ident)).scalar_one_or_none()
-        now = utcnow()
-        if user is None:
-            db.add(User(email=ident, name="Admin", password_hash=hash_password(password), status="approved",
-                        is_admin=True, created_at=now, approved_at=now))
-        else:
-            if not verify_password(password, user.password_hash):
-                user.password_hash = hash_password(password)
-            user.is_admin, user.status = True, "approved"
-            user.approved_at = user.approved_at or now
-        db.commit()
+    for attempt in range(5):
+        try:
+            with SessionLocal() as db:
+                user = db.execute(select(User).where(User.email == ident)).scalar_one_or_none()
+                now = utcnow()
+                if user is None:
+                    db.add(User(email=ident, name="Admin", password_hash=hash_password(password), status="approved",
+                                is_admin=True, created_at=now, approved_at=now))
+                else:
+                    if not verify_password(password, user.password_hash):
+                        user.password_hash = hash_password(password)
+                    if not user.is_admin or user.status != "approved":
+                        user.is_admin, user.status = True, "approved"
+                    user.approved_at = user.approved_at or now
+                db.commit()
+            return
+        except SQLAlchemyError as e:
+            if attempt == 4:
+                log.warning("could not set up the admin account: %s", e)
+            time.sleep(0.2 * (attempt + 1) + secrets.randbelow(100) / 1000)
 
 
 # ---------------------------------------------------------------- rate limits

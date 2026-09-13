@@ -1,3 +1,4 @@
+import logging
 import os
 from contextlib import asynccontextmanager
 from pathlib import Path
@@ -22,7 +23,12 @@ FRONTEND_DIR = Path(__file__).resolve().parent.parent.parent / "frontend"
 async def lifespan(app: FastAPI):
     # Make sure tables exist even if `python -m app.seed` was never run
     # (e.g. a fresh container with a mounted-but-empty volume).
-    Base.metadata.create_all(bind=engine)
+    # Several workers start at once; a table another worker is creating at the
+    # same moment must not take this one down.
+    try:
+        Base.metadata.create_all(bind=engine)
+    except Exception as e:  # noqa: BLE001
+        logging.getLogger("deepsweep").warning("create_all at startup: %s", e)
     ensure_admin()
     yield
 
