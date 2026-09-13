@@ -465,21 +465,74 @@ function renderResultsFrame(){
 }
 /* Under the ASME filter's table: the other listed ASME certificate holders,
    the ones not on the board, so the filter answers "who holds ASME stamps"
-   and not only "which of mine do". */
+   and not only "which of mine do". Each shows every certificate type it
+   holds with when that type was first received and last (re)issued, and the
+   list sorts and filters by certification date. */
+const ASME_OFF={sort:'newest', when:'', type:''};
+const ASME_OFF_SORTS={
+  newest:  {l:'Newest certificate first',          f:(a,b)=>String(b.latest||b.since||'').localeCompare(String(a.latest||a.since||''))},
+  oldest:  {l:'Oldest certification first',        f:(a,b)=>String(a.since||'9999').localeCompare(String(b.since||'9999'))},
+  recent:  {l:'Most recently certified companies', f:(a,b)=>String(b.since||'').localeCompare(String(a.since||''))},
+  name:    {l:'Name A–Z',                          f:(a,b)=>String(a.name).localeCompare(String(b.name))},
+};
+const ASME_OFF_WHEN={
+  '':    {l:'Certified: any time'},
+  '1y':  {l:'Certificate issued in the last year',  test:c=>asmeYearsAgo(c.latest||c.since)<=1},
+  '3y':  {l:'Certificate issued in the last 3 years', test:c=>asmeYearsAgo(c.latest||c.since)<=3},
+  'old': {l:'Certified for over 10 years',          test:c=>asmeYearsAgo(c.since)>10},
+};
+function asmeYearsAgo(iso){
+  if(!iso) return Infinity;
+  return (Date.now()-Date.parse(String(iso).slice(0,10)))/(365.25*864e5);
+}
+function asmeDate(iso){
+  if(!iso) return '—';
+  const [y,m,d]=String(iso).slice(0,10).split('-').map(Number);
+  return `${d} ${GMONTHS[m-1]} ${y}`;
+}
+function asmeCertRows(c){
+  const types=window.ASME_CERT_TYPES||{};
+  const details=(c.cert_details&&c.cert_details.length) ? c.cert_details : (c.certs||[]).map(code=>({code, first:c.since, latest:null, certificates:null}));
+  return details.map(x=>`<tr>
+      <td><b>${esc(types[x.code]||x.code)}</b> <span class="asme-code">${esc(x.code)}</span></td>
+      <td>${asmeDate(x.first)}</td>
+      <td>${x.latest&&x.latest!==x.first?asmeDate(x.latest):'—'}</td>
+    </tr>`).join('');
+}
 function renderAsmeOffBoard(on){
   const box=document.getElementById('asme-offboard');
-  const off=(ASME.companies||[]).filter(c=>!c.board_code);
-  box.hidden = !on || !off.length;
+  const all=(ASME.companies||[]).filter(c=>!c.board_code);
+  box.hidden = !on || !all.length;
   if(box.hidden){ box.innerHTML=''; return; }
   const types=window.ASME_CERT_TYPES||{};
-  box.innerHTML=`<div class="asme-off-head"><div><b>Also ASME certified — not on your board (${off.length})</b>
-      <small>Listed on NSE/BSE and holding an active ASME certificate${ASME.scanned_on?`, per the scan of ${esc(ASME.scanned_on)}`:''}. Not scored; open one on screener.in to research it.</small></div></div>
-    <div class="asme-off-grid">${off.slice().sort((a,b)=>String(a.name).localeCompare(String(b.name))).map(c=>`
-      <a class="asme-off" href="https://www.screener.in/company/${encodeURIComponent(String(c.symbol||'').replace(/-[A-Z]$/,''))}/" target="_blank" rel="noopener">
-        <span class="gc-tick">${esc(c.symbol)}</span>
-        <span class="asme-off-copy"><b>${esc(c.name)}</b><small title="${esc(c.certs.map(x=>types[x]||x).join(', '))}">${esc(c.certs.join(', '))} · since ${esc(String(c.since||'').slice(0,4)||'—')} · ${esc((c.exch||[]).join(' + '))}</small></span>
-        <span class="file-arrow">↗</span>
-      </a>`).join('')}</div>`;
+  /* certificate types present in the list, by their plain-English name */
+  const typeNames=[...new Set(all.flatMap(c=>(c.certs||[]).map(x=>types[x]||x)))].sort();
+  const when=ASME_OFF_WHEN[ASME_OFF.when]||ASME_OFF_WHEN[''];
+  const list=all.filter(c=>(!when.test||when.test(c)) && (!ASME_OFF.type||(c.certs||[]).some(x=>(types[x]||x)===ASME_OFF.type)))
+                .sort((ASME_OFF_SORTS[ASME_OFF.sort]||ASME_OFF_SORTS.newest).f);
+  const opt=(obj,cur)=>Object.entries(obj).map(([k,v])=>`<option value="${k}"${k===cur?' selected':''}>${v.l}</option>`).join('');
+  box.innerHTML=`<div class="asme-off-head"><div><b>Also ASME certified — not on your board (${all.length})</b>
+      <small>Listed on NSE/BSE and holding an active ASME certificate${ASME.scanned_on?`, per the scan of ${esc(ASME.scanned_on)}`:''}. Each card lists every certificate type with when it was first received and last issued. Not scored; open one on screener.in to research it.</small></div></div>
+    <div class="asme-off-controls">
+      <select class="gal-select" id="asme-off-sort" aria-label="Sort">${opt(ASME_OFF_SORTS,ASME_OFF.sort)}</select>
+      <select class="gal-select" id="asme-off-when" aria-label="When certified">${opt(ASME_OFF_WHEN,ASME_OFF.when)}</select>
+      <select class="gal-select" id="asme-off-type" aria-label="Certificate type"><option value="">All certificate types</option>${typeNames.map(t=>`<option${t===ASME_OFF.type?' selected':''}>${esc(t)}</option>`).join('')}</select>
+      <span class="asme-off-n">${list.length} of ${all.length}</span>
+    </div>
+    ${list.length ? `<div class="asme-off-grid">${list.map(c=>{
+      const yrs=asmeYearsAgo(c.since);
+      return `<article class="asme-off">
+        <div class="asme-off-top">
+          <span class="gc-tick">${esc(c.symbol)}</span>
+          <b class="asme-off-name">${esc(c.name)}</b>
+          <a class="asme-link" href="https://www.screener.in/company/${encodeURIComponent(String(c.symbol||'').replace(/-[A-Z]$/,''))}/" target="_blank" rel="noopener">screener ↗</a>
+        </div>
+        <div class="asme-off-meta">${esc((c.exch||[]).join(' + '))} · ASME-certified since <b>${asmeDate(c.since)}</b>${isFinite(yrs)?` (${yrs<1?'under a year':Math.floor(yrs)+' yr'+(Math.floor(yrs)===1?'':'s')})`:''}${c.latest&&c.latest!==c.since?` · latest certificate <b>${asmeDate(c.latest)}</b>`:''}</div>
+        <table class="asme-certs-table"><thead><tr><th>Certificate type</th><th>First received</th><th>Latest issued</th></tr></thead><tbody>${asmeCertRows(c)}</tbody></table>
+      </article>`; }).join('')}</div>`
+    : '<p class="view-hint">No company matches these filters.</p>'}`;
+  const bind=(id,key)=>{ document.getElementById(id).onchange=e=>{ ASME_OFF[key]=e.target.value; renderAsmeOffBoard(true); }; };
+  bind('asme-off-sort','sort'); bind('asme-off-when','when'); bind('asme-off-type','type');
 }
 function render(){
   if(BUSY) return;                       /* batched updates render once, at the end */
@@ -647,7 +700,8 @@ function openDrawer(d){
      ${d.triage_verdict?`<div class="sec"><h4>Triage verdict</h4><p><b>${esc(d.triage_verdict)}</b></p></div>`:''}
 
      ${ASME_BY_CODE[d.code]?(a=>`<div class="sec"><h4>ASME certification</h4>
-       <p><b class="asme-tag">ASME</b> Active certificate holder since <b>${esc(a.since||'—')}</b>: ${a.certs.map(c=>esc((window.ASME_CERT_TYPES||{})[c]||c)+' ('+esc(c)+')').join(' · ')}.</p>
+       <p><b class="asme-tag">ASME</b> Active certificate holder since <b>${asmeDate(a.since)}</b>${a.latest&&a.latest!==a.since?`, latest certificate issued <b>${asmeDate(a.latest)}</b>`:''}.</p>
+       <table class="asme-certs-table"><thead><tr><th>Certificate type</th><th>First received</th><th>Latest issued</th></tr></thead><tbody>${asmeCertRows(a)}</tbody></table>
        <p class="caveat" style="margin-top:6px">From ASME's own CA Connect directory, matched to this listing by the weekly scan${ASME.scanned_on?' of '+esc(ASME.scanned_on):''}.</p></div>`)(ASME_BY_CODE[d.code]):''}
      ${d.data_note?`<div class="sec"><h4>Data caveats on this name</h4><p class="caveat">${esc(d.data_note)}</p></div>`:''}
 
@@ -1141,8 +1195,8 @@ function csvCell(v){
 
   const SORTS = {
     name:  {label:'Name',           fn:(a,b)=>a.name.localeCompare(b.name)},
-    oldest:{label:'Oldest first',   fn:(a,b)=>a.since.localeCompare(b.since)},
-    newest:{label:'Newest first',   fn:(a,b)=>b.since.localeCompare(a.since)},
+    newest:{label:'Newest certificate first',   fn:(a,b)=>String(b.latest||b.since).localeCompare(String(a.latest||a.since))},
+    oldest:{label:'Oldest certification first', fn:(a,b)=>String(a.since).localeCompare(String(b.since))},
   };
 
   function cardHtml(c){
@@ -1154,8 +1208,9 @@ function csvCell(v){
         <span class="tc asme-sym">${esc(c.symbol)}</span>
         <a class="asme-link" href="https://www.screener.in/company/${encodeURIComponent(screenerSym)}/" target="_blank" rel="noopener">screener &#8599;</a>
       </div>
-      <div class="asme-certs" title="ASME certificate type(s) on file, by code">&#128220; ${certsLine(c.certs)}</div>
-      <div class="asme-since" title="Earliest ASME certificate on file, ${esc(c.since)}">&#9878; ASME-certified since ${fmtDate(c.since)}</div>
+      <div class="asme-since" title="Earliest ASME certificate on file, ${esc(c.since)}">&#9878; ASME-certified since ${fmtDate(c.since)}${c.latest&&c.latest!==c.since?` · latest ${fmtDate(String(c.latest).slice(0,10))}`:''}</div>
+      ${c.cert_details ? `<table class="asme-certs-table"><thead><tr><th>Certificate type</th><th>First received</th><th>Latest issued</th></tr></thead><tbody>${asmeCertRows(c)}</tbody></table>`
+                       : `<div class="asme-certs" title="ASME certificate type(s) on file, by code">&#128220; ${certsLine(c.certs)}</div>`}
     </div>`;
   }
 
@@ -1181,7 +1236,7 @@ function csvCell(v){
     document.querySelectorAll('#mbody .asme-sort .btn').forEach(b=>{
       b.onclick=()=>render(b.dataset.sort);
     });
-    render('name');
+    render('newest');
   };
 })();
 
@@ -1463,7 +1518,12 @@ function candleSVG(rows,o){
     if(i0>=0 && i1>=i0){
       const x0=X(i0)-step/2, x1=X(i1)+step/2, yt=y(o.box.high), yb=y(o.box.low);
       s+=`<rect x="${f(x0)}" y="${f(yt)}" width="${f(x1-x0)}" height="${f(Math.max(1,yb-yt))}" class="cs-box"/>`;
-      if(o.box.label) s+=`<text x="${f((x0+x1)/2)}" y="${f(yt-4)}" text-anchor="middle" class="cs-boxlab">${esc(o.box.label)}</text>`;
+      if(o.box.label){
+        /* keep the label inside the plot: right-align it when the box hugs the right edge */
+        const half=o.box.label.length*3.2, mid=(x0+x1)/2;
+        const [lx,anchor] = mid+half>plotW-2 ? [Math.min(x1,plotW)-2,'end'] : mid-half<2 ? [Math.max(x0,0)+2,'start'] : [mid,'middle'];
+        s+=`<text x="${f(lx)}" y="${f(yt-4)}" text-anchor="${anchor}" class="cs-boxlab">${esc(o.box.label)}</text>`;
+      }
     }
   }
   if(showHi) s+=`<line x1="0" x2="${plotW}" y1="${f(y(hi52))}" y2="${f(y(hi52))}" class="cs-hi"/>`;
@@ -1566,6 +1626,17 @@ const BP_STAGES=[
   {k:'played',   label:'Played out',      hint:'this year\'s breakouts, stopped or trailed out', title:'Played out',
    desc:'Broke out this year, then either fell 8% under the pivot (stopped) or closed under the 50-day average (trailed out).'},
 ];
+/* the IPO base screen reuses the stages; only the words change */
+const BP_IPO_TEXT={
+  forming: {hint:'IPO base, resting under the post-listing high', title:'IPO bases — on watch',
+            desc:'Companies listed in the last two years, holding a base of three weeks or more under their post-listing high. The ones within 5% of it are flagged "on the verge"; a close above it on heavy volume is the breakout.'},
+  fresh:   {hint:'cleared the post-listing high in the last 5 sessions', title:'Fresh IPO base breakouts',
+            desc:'Recent listings that closed above their post-listing high on at least 1.4× usual volume within the last five sessions.'},
+  climbing:{hint:'broke out of the IPO base, still rising', title:'Climbing out of the IPO base',
+            desc:'Broke out of the IPO base more than five sessions ago and still in the trade.'},
+  played:  {hint:'IPO base breakouts this year, stopped or trailed out', title:'IPO base breakouts — played out',
+            desc:'Broke out of the IPO base this year, then fell 8% under the pivot or closed under the moving average.'},
+};
 const BP_SORTS={
   rs:   {l:'RS rating',              k:a=>a.rs,            dir:-1},
   pivot:{l:'Now vs pivot (%)',       k:a=>a.now_vs_pivot,  dir:-1},
@@ -1575,6 +1646,7 @@ const BP_SORTS={
   age:  {l:'Base age',               k:a=>bpBase(a) && bpBase(a).weeks, dir:-1},
   high: {l:'From 52-week high',      k:a=>a.from_high,     dir:1},
   mcap: {l:'Market cap',             d:d=>nz(d.market_cap_cr), dir:-1},
+  listed:{l:'Listing date (newest)', k:a=>a.listed?Date.parse(a.listed):null, dir:-1, ipo:true},
 };
 const BP_INFO={
   rs:'Relative strength, 1–99: weighted 3/6/9/12-month return ranked against every liquid NSE stock. 90 means it beat 90% of them.',
@@ -1586,7 +1658,10 @@ const BP_INFO={
   squat:'Traded above the pivot but closed back under it in the last 10 sessions.',
   poke:'Closed above the pivot without breakout volume, then fell back under it.',
 };
-const BP={data:null, loading:null, stage:'forming', view:'cards', all:false, idx:null, kite:null, timers:{}, obs:null};
+const BP={data:null, loading:null, screen:'vcp', stage:'forming', view:'cards', all:false, idx:null, kite:null, timers:{}, obs:null};
+/* one company as the current screen sees it: shared measures + that screen's stage fields */
+const bpView = a => BP.screen==='ipo' ? (a.ipo ? {...a, ...a.ipo} : null) : a;
+const bpStageText = k => { const x=BP_STAGES.find(y=>y.k===k); return BP.screen==='ipo' ? {...x, ...BP_IPO_TEXT[k]} : x; };
 const bpBase = a => a.base || (a.breakout && {...a.breakout.base, pivot:a.breakout.pivot});
 const bpInr = (v,d=2) => v==null ? '—' : '₹'+(+v).toLocaleString('en-IN',{maximumFractionDigits:d});
 const bpPct = (v,d=2) => v==null ? '—' : `${v>=0?'+':''}${(+v).toFixed(d)}%`;
@@ -1609,9 +1684,15 @@ function bpSchedule(name, fn, ms){
 document.addEventListener('visibilitychange',()=>{ if(!document.hidden && VIEW==='market'){ bpStatus(); bpIndices(); } });
 
 function bpControls(){
-  const th=document.getElementById('bp-theme'), so=document.getElementById('bp-sort');
+  const th=document.getElementById('bp-theme'), so=document.getElementById('bp-sort'), sc=document.getElementById('bp-screen');
   th.innerHTML='<option value="">All themes</option>'+THEMES.map(t=>`<option value="${esc(t)}">${esc(shortT(t))}</option>`).join('');
-  so.innerHTML=Object.entries(BP_SORTS).map(([k,v])=>`<option value="${k}">${v.l}</option>`).join('');
+  const fillSorts=()=>{
+    so.innerHTML=Object.entries(BP_SORTS).filter(([,v])=>!v.ipo||BP.screen==='ipo').map(([k,v])=>`<option value="${k}">${v.l}</option>`).join('');
+    /* IPO base: closest to its breakout first */
+    so.value = BP.screen==='ipo' ? 'pivot' : 'rs';
+  };
+  fillSorts();
+  sc.onchange=()=>{ BP.screen=sc.value; BP.all=false; fillSorts(); bpMarketChip(); bpRender(); };
   let t=0;
   th.onchange=()=>{ BP.all=false; bpRender(); };
   so.onchange=()=>bpRender();
@@ -1622,17 +1703,21 @@ function bpControls(){
   document.getElementById('bp-how').onclick=bpHow;
   const j=BP.data;
   document.getElementById('bp-upd').innerHTML = j.as_of ? `<i></i>Updated · ${galDay(j.as_of)}` : '';
-  const mw=document.getElementById('bp-mw'), n=(j.market_breakouts||[]).length;
+  bpMarketChip();
+}
+function bpMarketChip(){
+  const j=BP.data, mw=document.getElementById('bp-mw');
+  const n=((BP.screen==='ipo'?j.market_breakouts_ipo:j.market_breakouts)||[]).length;
   mw.hidden=!j.as_of;
-  mw.innerHTML=`↗ ${n} broke out market-wide ›`;
+  mw.innerHTML=`↗ ${n} ${BP.screen==='ipo'?'IPO base ':''}broke out market-wide ›`;
   mw.onclick=bpMarketWide;
 }
 
 /* the board companies that pass the theme + find filters */
 function bpPool(){
   const th=document.getElementById('bp-theme').value, q=document.getElementById('bp-find').value.trim().toLowerCase();
-  return Object.entries(BP.data.stocks||{}).filter(([code])=>{
-    const d=bpByCode[code]; if(!d) return false;
+  return Object.entries(BP.data.stocks||{}).map(([code,a])=>[code,bpView(a)]).filter(([code,v])=>{
+    const d=bpByCode[code]; if(!d || !v) return false;
     if(th && base(d)!==th) return false;
     if(q && !d._n.includes(q)) return false;
     return true;
@@ -1652,21 +1737,25 @@ function bpRender(){
   if(!BP.data) return;
   const pool=bpPool(), counts={};
   pool.forEach(([,a])=>{ counts[a.stage]=(counts[a.stage]||0)+1; });
-  document.getElementById('bp-stages').innerHTML=BP_STAGES.map(s=>`
+  document.getElementById('bp-stages').innerHTML=BP_STAGES.map(x=>bpStageText(x.k)).map(s=>`
     <button type="button" class="bp-stage${s.k===BP.stage?' on':''}" data-bp-stage="${s.k}">
       <span class="bp-tap">tap to view ›</span><b>${counts[s.k]||0}</b><span>${s.label}</span><small>${s.hint}</small>
     </button>`).join('');
+  document.querySelector('.bp-hero h2').textContent = BP.screen==='ipo' ? 'Catch recent listings breaking out of their IPO base.' : "Spot the board's next leaders.";
+  document.querySelector('.bp-hero .bp-sub').textContent = BP.screen==='ipo'
+    ? `${pool.length} board companies listed in the last two years, scanned after each trading day. Here are the ones basing under their post-listing high. Pick a stage.`
+    : 'Every company on the board is scanned after each trading day. Here are the few actually setting up. Pick a stage.';
   document.querySelectorAll('[data-bp-stage]').forEach(b=>b.onclick=()=>{ BP.stage=b.dataset.bpStage; BP.all=false; bpRender(); });
 
   const codes=new Set(pool.map(([c])=>c));
-  const feed=(BP.data.feed||[]).filter(f=>codes.has(f.code));
+  const feed=(BP.data.feed||[]).filter(f=>codes.has(f.code) && (f.screen||'vcp')===BP.screen);
   document.getElementById('bp-feed').innerHTML=`<h3><i>⟲</i>What changed since last close?</h3>
     ${feed.length ? feed.slice(0,3).map(bpFeedItem).join('') : '<p class="bp-empty" style="padding:14px">Nothing changed stage on the board in the last session.</p>'}
     ${feed.length>3?`<button type="button" class="bp-link" id="bp-full-feed">Show the full feed (${feed.length}) ›</button>`:''}`;
   document.querySelectorAll('#bp-feed [data-bp-code]').forEach(b=>b.onclick=()=>openChart(b.dataset.bpCode));
   const ff=document.getElementById('bp-full-feed'); if(ff) ff.onclick=()=>bpFullFeed(feed);
 
-  const stage=BP_STAGES.find(s=>s.k===BP.stage), rows=bpRows();
+  const stage=bpStageText(BP.stage), rows=bpRows();
   document.getElementById('bp-list-title').textContent=stage.title;
   document.getElementById('bp-list-n').textContent=rows.length;
   document.getElementById('bp-desc').textContent=stage.desc;
@@ -1711,15 +1800,18 @@ function bpFeedItem(f){
 function bpCard(code,a){
   const d=bpByCode[code], l=a.last, b=bpBase(a), on=WATCH.has(code), bo=a.breakout;
   const m=(label,info,val)=>`<div><span>${label}<i class="bpc-i" title="${esc(info)}">i</i></span><b>${val}</b></div>`;
+  const ipo=BP.screen==='ipo' && a.listed, what=ipo?'the IPO base':'the pivot';
   let note=a.note||'';
   if(!note && bo){
-    if(a.stage==='fresh') note=`Broke out ${_bpDay(bo.date)} on ${bo.vol_x}× usual volume — ${bpPct(bo.gain_pct,1)} from the pivot`;
-    else if(a.stage==='climbing') note=`Broke out ${_bpDay(bo.date)} — ${bpPct(bo.gain_pct,1)} since, ${bo.sessions} sessions in`;
+    if(a.stage==='fresh') note=`Broke out of ${what} ${_bpDay(bo.date)} on ${bo.vol_x}× usual volume — ${bpPct(bo.gain_pct,1)} from the pivot`;
+    else if(a.stage==='climbing') note=`Broke out of ${what} ${_bpDay(bo.date)} — ${bpPct(bo.gain_pct,1)} since, ${bo.sessions} sessions in`;
     else if(a.stage==='played' && bo.exit) note=`Broke out ${_bpDay(bo.date)} → ${bo.exit.reason==='stopped'?'stopped out':'trailed out'} ${_bpDay(bo.exit.date)} (${bpPct(bo.exit.result_pct,1)})`;
   }
-  const flags=(a.flags||[]).map(fl=>fl==='squat'
-    ? `<span class="bpc-flag" title="${esc(BP_INFO.squat)}">⚑ squat</span>`
-    : `<span class="bpc-flag bad" title="${esc(BP_INFO.poke)}">✕ failed poke</span>`).join('');
+  const flags=(a.verge?[`<span class="bpc-flag verge" title="Forming and within 5% of the pivot">🔥 on the verge — ${Math.abs(a.now_vs_pivot)}% under ${ipo?'the post-listing high':'the pivot'}</span>`]:[])
+    .concat((a.flags||[]).map(fl=>fl==='squat'
+      ? `<span class="bpc-flag" title="${esc(BP_INFO.squat)}">⚑ squat</span>`
+      : `<span class="bpc-flag bad" title="${esc(BP_INFO.poke)}">✕ failed poke</span>`)).join('');
+  const listedLine = ipo ? `<div class="bpc-listed">Listed ${galDay(a.listed)} · ${a.sessions_listed} sessions ago · post-listing high ${bpInr(a.listing_high)} (${a.from_listing_high}% above today)</div>` : '';
   return `<article class="bpc">
     <div class="bpc-top">
       <div style="min-width:0">
@@ -1730,6 +1822,7 @@ function bpCard(code,a){
       <div class="bpc-right"><button type="button" class="bpc-tech" data-bp-tech="${esc(code)}">📈 Tech chart ›</button>
         <div class="bpc-px">${bpInr(l.c)} <span class="${l.chg_pct>=0?'up':'dn'}">(${bpPct(l.chg_pct)})</span></div></div>
     </div>
+    ${listedLine}
     <div class="bpc-ohlc"><b>${esc(a.asof)}</b><span>O ${(+l.o).toFixed(2)}</span><span>H ${(+l.h).toFixed(2)}</span><span>L ${(+l.l).toFixed(2)}</span><span>C ${(+l.c).toFixed(2)}</span><span class="${l.chg_pct>=0?'up':'dn'}">(${bpPct(l.chg_pct)})</span><span>Vol ${bpVol(l.v)}</span><span>RS ${a.rs??'—'}</span></div>
     <div class="bpc-chart" data-bp-chart="${esc(code)}" title="Open the full chart"><span class="gc-skel"></span></div>
     <div class="bpc-m">
@@ -1749,19 +1842,22 @@ function bpCard(code,a){
 function _bpDay(iso){ const [y,mo,dd]=String(iso).split('-').map(Number); return `${dd} ${GMONTHS[mo-1]}`; }
 
 function bpDrawChart(el){
-  const code=el.dataset.bpChart, a=BP.data.stocks[code];
+  const code=el.dataset.bpChart, a=bpView(BP.data.stocks[code]);
   galFetch(code).then(()=>{
     const ser=GSERIES.get(code);
     if(!ser || ser.missing || !ser.rows){ el.innerHTML='<span class="gc-empty">No price data</span>'; return; }
     const b=bpBase(a);
-    el.innerHTML=candleSVG(ser.rows,{w:600,h:230,sessions:125,axis:true,isoAxis:true,ma:false,hi52:false,volColor:true,
-      pivot:a.pivot, box:b?{start:b.start,end:b.end,low:b.low,high:b.pivot||a.pivot,label:`${b.weeks} wks`}:null});
+    /* an IPO base card shows the stock's life since listing (up to ~14 months) */
+    const ipoCard = BP.screen==='ipo' && a.listed;
+    const sessions = ipoCard ? Math.min(ser.rows.length, 300) : 125;
+    el.innerHTML=candleSVG(ser.rows,{w:600,h:230,sessions,axis:true,isoAxis:true,ma:false,hi52:false,volColor:true,
+      pivot:a.pivot, box:b?{start:b.start,end:b.end,low:b.low,high:b.pivot||a.pivot,label:`${ipoCard?'IPO base ':''}${b.weeks} wks`}:null});
   });
 }
 
 async function bpShare(btn){
-  const code=btn.dataset.bpShare, a=BP.data.stocks[code], d=bpByCode[code];
-  const stage=BP_STAGES.find(s=>s.k===a.stage);
+  const code=btn.dataset.bpShare, a=bpView(BP.data.stocks[code]), d=bpByCode[code];
+  const stage=a.stage && bpStageText(a.stage);
   const text=`${d.name} (${bpSym(d)}) — ${stage?stage.label:'no setup'} · ${bpInr(a.last.c)} ${bpPct(a.last.chg_pct)} · pivot ${bpInr(a.pivot)} (${a.now_vs_pivot==null?'—':bpPct(a.now_vs_pivot,1)}) · RS ${a.rs??'—'} · ${galDay(a.asof)}`;
   try{ await navigator.clipboard.writeText(text); flash(btn,'✓ Copied'); }
   catch(e){ openModal(`<h3>Share</h3><p class="quote" style="margin-top:12px">${esc(text)}</p>`); }
@@ -1769,11 +1865,11 @@ async function bpShare(btn){
 
 function bpCsv(){
   const rows=bpRows(); if(!rows.length) return;
-  const head=['Company','Symbol','Theme','Stage','Close','Change %','RS','Pivot','Now vs pivot %','ATR ratio','Volume dry-up','Up/down net','Base weeks','From 52w high %','Market cap cr','As of'];
+  const head=['Company','Symbol','Theme','Screen','Stage','On the verge','Listed','Close','Change %','RS','Pivot','Now vs pivot %','ATR ratio','Volume dry-up','Up/down net','Base weeks','From 52w high %','Market cap cr','As of'];
   const lines=[head.join(',')].concat(rows.map(([code,a])=>{ const d=bpByCode[code], b=bpBase(a);
-    return [d.name,bpSym(d),shortT(base(d)),a.stage,a.last.c,a.last.chg_pct,a.rs,a.pivot,a.now_vs_pivot,a.atr_ratio,a.vol_dryup,a.updown,b&&b.weeks,a.from_high,d.market_cap_cr,a.asof].map(csvCell).join(','); }));
+    return [d.name,bpSym(d),shortT(base(d)),BP.screen==='ipo'?'IPO base':'VCP',a.stage,a.verge?'yes':'',a.listed||'',a.last.c,a.last.chg_pct,a.rs,a.pivot,a.now_vs_pivot,a.atr_ratio,a.vol_dryup,a.updown,b&&b.weeks,a.from_high,d.market_cap_cr,a.asof].map(csvCell).join(','); }));
   const url=URL.createObjectURL(new Blob(['﻿'+lines.join('\r\n')],{type:'text/csv;charset=utf-8'}));
-  const link=document.createElement('a'); link.href=url; link.download=`market-view-${BP.stage}-${BP.data.as_of}.csv`;
+  const link=document.createElement('a'); link.href=url; link.download=`market-view-${BP.screen}-${BP.stage}-${BP.data.as_of}.csv`;
   document.body.appendChild(link); link.click(); link.remove(); setTimeout(()=>URL.revokeObjectURL(url),4000);
 }
 
@@ -1785,9 +1881,11 @@ function bpFullFeed(feed){
 }
 
 function bpMarketWide(){
-  const list=BP.data.market_breakouts||[];
-  openModal(`<h3>↗ ${list.length} broke out market-wide — ${galDay(BP.data.as_of)}</h3>
-    <p class="mp">Every liquid NSE stock (${fmtI(BP.data.universe)} with over ₹1 crore traded a day) that closed above its base's pivot on at least 1.4× its usual volume in the latest session, while in an uptrend. Stocks also on your board are marked.</p>
+  const ipo=BP.screen==='ipo', list=(ipo?BP.data.market_breakouts_ipo:BP.data.market_breakouts)||[];
+  openModal(`<h3>↗ ${list.length} ${ipo?'IPO base ':''}broke out market-wide — ${galDay(BP.data.as_of)}</h3>
+    <p class="mp">${ipo
+      ? `Every liquid NSE stock (${fmtI(BP.data.universe)} with over ₹1 crore traded a day) listed in the last two years that closed above its post-listing high, after a base of three weeks or more, on at least 1.4× its usual volume in the latest session.`
+      : `Every liquid NSE stock (${fmtI(BP.data.universe)} with over ₹1 crore traded a day) that closed above its base's pivot on at least 1.4× its usual volume in the latest session, while in an uptrend.`} Stocks also on your board are marked.</p>
     ${list.length?`<div class="bp-table-wrap" style="margin-top:14px"><table class="bp-table"><thead><tr><th>Company</th><th>Close</th><th>Chg</th><th>Pivot</th><th>Above pivot</th><th>Volume</th></tr></thead><tbody>
       ${list.map(x=>`<tr${x.on_board?' data-bp-mw="1"':''}><td><b>${esc(x.name)}</b> <span class="bpc-sym">${esc(x.symbol)}</span>${x.on_board?' <span class="asme-tag">On board</span>':''}</td>
         <td>${bpInr(x.close)}</td><td class="${x.chg_pct>=0?'up':'dn'}">${bpPct(x.chg_pct)}</td><td>${bpInr(x.pivot)}</td><td>${bpPct(x.above_pct,1)}</td><td>${x.vol_x}×</td></tr>`).join('')}
@@ -1804,6 +1902,8 @@ function bpHow(){
       <tr><td><b>Forming</b></td><td>In a base, within 15% under the pivot, above the 200-day average with the 50-day above the 200-day — or building a new base after an earlier breakout.</td></tr>
       <tr><td><b>Fresh / Climbing</b></td><td>Broke out and not exited: within the last 5 sessions, or earlier.</td></tr>
       <tr><td><b>Played out</b></td><td>Broke out this year and has since been stopped or trailed out.</td></tr>
+      <tr><td><b>IPO base screen</b></td><td>Companies listed in the last two years, dated by the first session any of their identifiers (ISIN, NSE or BSE ticker) appears in the exchange files, so renames, splits and a later second listing are not counted as an IPO. The pivot is the highest price since listing; a base needs at least 3 weeks under it and at most a 50% pullback. Usual volume ignores the first 5 sessions after listing.</td></tr>
+      <tr><td><b>On the verge</b></td><td>Forming and within 5% of the pivot.</td></tr>
       <tr><td><b>RS rating</b></td><td>${esc(BP_INFO.rs)}</td></tr>
       <tr><td><b>Powering up / Cooling off</b></td><td>Last close above / below the close five sessions earlier.</td></tr>
     </tbody></table>`);

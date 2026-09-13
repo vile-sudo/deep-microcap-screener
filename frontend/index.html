@@ -6,7 +6,7 @@
 <title>Deep Sweep</title>
 <meta name="description" content="Deep Sweep — a dark ocean-themed research board for microcap and quality-first names.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%94%8D%3C/text%3E%3C/svg%3E">
-<link rel="stylesheet" href="/static/style.css?v=25">
+<link rel="stylesheet" href="/static/style.css?v=26">
 </head>
 <body>
 <div class="wrap">
@@ -75,6 +75,7 @@
 <section class="dashboard-section bp" data-views="market" aria-labelledby="bp-title">
   <div class="bp-bar">
     <span class="bp-lab">Screen</span>
+    <select id="bp-screen" class="bp-select" aria-label="Screen"><option value="vcp">VCP</option><option value="ipo">IPO base</option></select>
     <select id="bp-theme" class="bp-select" aria-label="Theme"></select>
     <input id="bp-find" class="bp-find" type="search" autocomplete="off" placeholder="Find a stock" aria-label="Find a stock">
     <span class="bp-spacer"></span>
@@ -283,6 +284,6 @@
 
 <script src="/static/quotes.js?v=5" defer></script>
 <script src="/static/asme-certified.js?v=5" defer></script>
-<script src="/static/app.js?v=25" defer></script>
+<script src="/static/app.js?v=26" defer></script>
 </body>
 </html>

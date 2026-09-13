@@ -12,6 +12,7 @@ Steps:
   1. Make sure the last year of NSE and BSE daily bhavcopies is in the
      local cache (.bhav_cache/, kept between Action runs by actions/cache).
      Only days not already cached are downloaded -- normally just today.
+     The cache spans two years so a listing inside that window can be dated.
   2. Rebuild a year of candles for every company in companies_raw.json.
   3. Write chart_data/prices/<code>.json and chart_data/index.json, and
      drop the price file of any company no longer on the board.
@@ -30,7 +31,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 from app import setups  # noqa: E402
 from app.charts import (  # noqa: E402
     BACKEND_DIR, CHART_DIR, INDEX_FILE, PRICES_DIR, _adjust,
-    build_series, compute_stats, fetch_bhavcopy, load_index, read_day, safe_name, write_day,
+    build_series, isin_index, compute_stats, fetch_bhavcopy, load_index, read_day, safe_name, write_day,
 )
 
 SETUPS_FILE = CHART_DIR / "setups.json"
@@ -38,7 +39,8 @@ SETUPS_FILE = CHART_DIR / "setups.json"
 RAW = BACKEND_DIR / "data" / "companies_raw.json"
 CACHE = BACKEND_DIR / ".bhav_cache"
 NO_SESSION = CACHE / "no_session.json"   # weekday holidays, so they aren't re-asked every run
-LOOKBACK_DAYS = 380                      # calendar days; comfortably 250 sessions
+FMT = ".v2.csv.gz"                       # cache file format: v2 adds the ISIN column
+LOOKBACK_DAYS = 760                      # calendar days: a year of candles, and two years to date IPO listings
 
 
 def ist_today() -> date:
@@ -54,7 +56,7 @@ def sync_cache(session: requests.Session) -> None:
     today = ist_today()
     wanted = [today - timedelta(days=i) for i in range(LOOKBACK_DAYS)]
     todo = [(d, ex) for d in wanted if d.weekday() < 5 for ex in ("NSE", "BSE")
-            if not (CACHE / f"{ex}-{d:%Y%m%d}.csv.gz").exists() and f"{ex}-{d:%Y%m%d}" not in no_session]
+            if not (CACHE / f"{ex}-{d:%Y%m%d}{FMT}").exists() and f"{ex}-{d:%Y%m%d}" not in no_session]
 
     def one(job):
         d, ex = job
@@ -68,7 +70,7 @@ def sync_cache(session: requests.Session) -> None:
     with ThreadPoolExecutor(max_workers=4) as pool:
         for d, ex, rows in pool.map(one, todo):
             if rows:
-                write_day(CACHE / f"{ex}-{d:%Y%m%d}.csv.gz", rows)
+                write_day(CACHE / f"{ex}-{d:%Y%m%d}{FMT}", rows)
                 got += 1
             elif rows is None and (today - d).days > 3:
                 # no file for a weekday more than 3 days back is a market holiday;
@@ -78,7 +80,8 @@ def sync_cache(session: requests.Session) -> None:
     # forget what fell out of the window
     oldest = today - timedelta(days=LOOKBACK_DAYS)
     for f in CACHE.glob("*.csv.gz"):
-        if datetime.strptime(f.name[4:12], "%Y%m%d").date() < oldest:
+        # files from an older cache format (no ISIN column) are re-fetched
+        if not f.name.endswith(FMT) or datetime.strptime(f.name[4:12], "%Y%m%d").date() < oldest:
             f.unlink()
     no_session = {k for k in no_session if datetime.strptime(k[4:], "%Y%m%d").date() >= oldest}
     NO_SESSION.write_text(json.dumps(sorted(no_session)))
@@ -87,7 +90,7 @@ def sync_cache(session: requests.Session) -> None:
 
 def load_days() -> list:
     by_day: dict[date, list] = {}
-    for f in sorted(CACHE.glob("*.csv.gz")):
+    for f in sorted(CACHE.glob(f"*{FMT}")):
         d = datetime.strptime(f.name[4:12], "%Y%m%d").date()
         slot = by_day.setdefault(d, [{}, {}])
         slot[0 if f.name.startswith("NSE") else 1] = {r[0]: r for r in read_day(f)}
@@ -154,46 +157,64 @@ def write_setups(records: list[dict], series: dict, days: list) -> None:
         for key, r in nse_rows.items():
             raw.setdefault(key, []).append((day.isoformat(), r[3], r[4], r[5], r[6], r[7], r[8]))
             names[key] = r[2]
-    universe = {}
+    cutoff = days[min(20, len(days) - 1)][0].isoformat()
+    _, isin_first = isin_index(days)
+    isin_of = {}
+    for _, nse_rows, _ in days:
+        for key, r in nse_rows.items():
+            if r[9]:
+                isin_of[key] = r[9]
+    universe, listed = {}, {}
     for key, tuples in raw.items():
-        if len(tuples) < 80 or tuples[-1][0] != latest:
+        first_seen = min(tuples[0][0], isin_first.get(isin_of.get(key)) or tuples[0][0])
+        is_new = first_seen > cutoff
+        if tuples[-1][0] != latest or len(tuples) < (20 if is_new else 80):
             continue
         tail = tuples[-50:]
         if sum(t[4] * t[5] for t in tail) / len(tail) < 1e7:   # under Rs 1 crore a day: not liquid
             continue
         universe[key] = _adjust(tuples)
-    rank = setups.percentile_ranker([x for x in (setups.rs_score([r[4] for r in rows]) for rows in universe.values()) if x is not None])
+        if is_new:
+            listed[key] = first_seen
+    rank = setups.percentile_ranker([x for x in (setups.rs_score([r[4] for r in rows[-250:]]) for rows in universe.values()) if x is not None])
 
     board_symbols = {(v["exchange"], v["symbol"]) for v in series.values()}
-    market = []
+    market = {"vcp": [], "ipo": []}
     for key, rows in universe.items():
-        hit = setups.market_breakout_today(rows)
-        if hit:
-            market.append({"symbol": key, "name": names.get(key, key).title(), "on_board": ("NSE", key) in board_symbols, **hit})
-    market.sort(key=lambda x: -x["vol_x"])
+        for screen, hit in setups.market_breakout_today(rows[-250:] if key not in listed else rows, listed.get(key)).items():
+            market[screen].append({"symbol": key, "name": names.get(key, key).title(), "on_board": ("NSE", key) in board_symbols,
+                                   "listed": listed.get(key), **hit})
+    for items in market.values():
+        items.sort(key=lambda x: -x["vol_x"])
 
     stocks, feed = {}, []
     for rec in records:
         code = rec["code"]
         if code not in series or series[code]["rows"][-1][0] != latest:
             continue
-        a = setups.analyze(series[code]["rows"], rank)
+        a = setups.analyze(series[code]["rows"], rank, series[code].get("listed"))
         if not a:
             continue
         for item in a.pop("feed"):
             feed.append({"code": code, "name": rec.get("name"), "close": a["last"]["c"], "chg_pct": a["last"]["chg_pct"], **item})
         stocks[code] = a
     feed.sort(key=lambda x: (x["order"], -abs(x["chg_pct"] or 0)))
-    counts = {k: sum(1 for a in stocks.values() if a["stage"] == k) for k in ("forming", "fresh", "climbing", "played")}
+    stages = ("forming", "fresh", "climbing", "played")
+    counts = {k: sum(1 for a in stocks.values() if a["stage"] == k) for k in stages}
+    counts_ipo = {k: sum(1 for a in stocks.values() if a.get("ipo", {}).get("stage") == k) for k in stages}
     SETUPS_FILE.write_text(json.dumps({
         "as_of": latest,
         "universe": len(universe),
         "counts": counts,
-        "market_breakouts": market,
+        "counts_ipo": counts_ipo,
+        "ipo_listed": sum(1 for a in stocks.values() if "ipo" in a),
+        "market_breakouts": market["vcp"],
+        "market_breakouts_ipo": market["ipo"],
         "feed": feed,
         "stocks": dict(sorted(stocks.items())),
     }, separators=(",", ":")), encoding="utf-8")
-    print(f"setups: {counts} on the board; {len(market)} breakouts across {len(universe)} liquid NSE stocks; {len(feed)} feed items")
+    print(f"setups: VCP {counts}; IPO base {counts_ipo} ({sum(1 for a in stocks.values() if 'ipo' in a)} recent listings); "
+          f"market-wide breakouts {len(market['vcp'])} VCP / {len(market['ipo'])} IPO across {len(universe)} liquid NSE stocks; {len(feed)} feed items")
 
 
 if __name__ == "__main__":

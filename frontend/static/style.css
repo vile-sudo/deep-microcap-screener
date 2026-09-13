@@ -1049,3 +1049,25 @@ td .thm{font-size:10.5px;text-transform:uppercase;letter-spacing:.05em;color:var
 /* the closed scorecard drawer sits just off-screen; its shadow must not show on the white page */
 .drawer{box-shadow:none}
 .drawer.on{box-shadow:-28px 0 60px -34px rgba(17,24,39,.35)}
+
+/* IPO base cards */
+.bpc-listed{margin-top:6px;padding:4px 9px;border-radius:6px;background:#eff6ff;color:#1e40af;font-size:12px;display:inline-block}
+.bpc-flag.verge{color:#c2410c;font-weight:700}
+
+/* ASME certified — not on the board: certificate types with dates */
+.asme-off-controls{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin:0 0 12px}
+.asme-off-controls .gal-select{width:auto;min-width:220px;height:38px}
+.asme-off-n{margin-left:auto;color:var(--muted);font-size:12px}
+.asme-off-grid{grid-template-columns:repeat(auto-fill,minmax(360px,1fr))}
+.asme-off{display:block;padding:14px 16px;cursor:default}
+.asme-off-top{display:flex;align-items:center;gap:10px;min-width:0}
+.asme-off-name{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:13.5px}
+.asme-off-meta{margin-top:6px;color:var(--muted);font-size:12px}
+.asme-off-meta b{color:var(--ink);font-weight:600}
+.asme-certs-table{width:100%;margin-top:10px;border-collapse:collapse;font-size:12px}
+.asme-certs-table th{position:static;padding:6px 8px;background:#f9fafb;color:var(--muted);font-weight:600;text-align:left;box-shadow:none;border-bottom:1px solid var(--grid);white-space:nowrap}
+.asme-certs-table td{padding:6px 8px;border-bottom:1px solid #f3f4f6;white-space:nowrap}
+.asme-certs-table td:first-child{white-space:normal}
+.asme-code{padding:0 5px;border-radius:4px;background:#f3f4f6;color:#4b5563;font:600 10.5px/1.6 var(--mono)}
+@media (max-width:560px){ .asme-off-grid{grid-template-columns:1fr} .asme-off-controls .gal-select{width:100%;min-width:0} }
+.asme-certs-table td{font-family:inherit}

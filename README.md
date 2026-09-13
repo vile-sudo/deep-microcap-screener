@@ -147,6 +147,9 @@ certified companies show their certificate types and since-date.
   sane result writes `backend/data/asme_raw.json`.
 - `.github/workflows/asme.yml` runs it every Saturday, commits and
   redeploys. It also still runs in the local weekly task (`run-weekly.cmd`).
+- Each company carries every certificate type with when it was first
+  received and last issued; the "not on your board" list sorts by newest or
+  oldest certification and filters by date and certificate type.
 - `GET /api/asme` matches that list against the board's current companies
   at request time (ticker, exchange symbol, or exact company name), so a
   company added to the board is tagged without a re-scan.
@@ -166,6 +169,12 @@ day with no manual step:
 - **What changed since last close** — breakouts, moves to Climbing, exits,
   new setups, new 52-week highs/lows; and how many liquid NSE stocks broke
   out market-wide.
+
+**Screen: IPO base** — companies listed in the last two years (dated by the
+first session their ISIN or either exchange ticker appears, so renames,
+splits and a later second listing don't count), basing under their
+post-listing high. Same four stages; "on the verge" flags Forming names
+within 5% of the pivot, and the list sorts closest-to-breakout first.
 
 `backend/app/setups.py` holds every rule (documented at the top of the
 file). `scripts/update_charts.py` runs it and writes

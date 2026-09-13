@@ -170,10 +170,16 @@ function groupAsmeRows(items) {
   for (const it of items) {
     if (!it.name) continue;
     const key = it.name.trim();
-    if (!byName.has(key)) byName.set(key, { name: key, certs: new Set(), dates: [] });
+    if (!byName.has(key)) byName.set(key, { name: key, certs: new Set(), dates: [], certDates: new Map() });
     const g = byName.get(key);
     if (it.certType) g.certs.add(it.certType);
     if (it.issuedDate) g.dates.push(it.issuedDate);
+    /* per certificate type, every issue date: the dashboard shows when each
+       type was first received and when it was most recently (re)issued */
+    if (it.certType) {
+      if (!g.certDates.has(it.certType)) g.certDates.set(it.certType, []);
+      if (it.issuedDate) g.certDates.get(it.certType).push(it.issuedDate);
+    }
   }
   return [...byName.values()];
 }
@@ -226,12 +232,17 @@ for (const c of asmeCompanies) {
       listedName: m.listed[0].name,
       certs: new Set(),
       dates: [],
+      certDates: new Map(),
       asmeRows: [],
     });
   }
   const g = bySymbol.get(symbol);
   c.certs.forEach(x => g.certs.add(x));
   g.dates.push(...c.dates);
+  for (const [type, ds] of c.certDates) {
+    if (!g.certDates.has(type)) g.certDates.set(type, []);
+    g.certDates.get(type).push(...ds);
+  }
   g.asmeRows.push(c.name);
 }
 
@@ -241,6 +252,11 @@ const matched = [...bySymbol.values()].map(g => ({
   listedName: g.listedName,
   certs: [...g.certs].sort(),
   since: g.dates.length ? g.dates.sort()[0] : null,
+  latest: g.dates.length ? g.dates.sort()[g.dates.length - 1] : null,
+  certDetails: [...g.certDates.entries()].map(([code, ds]) => {
+    const d = ds.map(x => String(x).slice(0, 10)).sort();
+    return { code, first: d[0] || null, latest: d[d.length - 1] || null, certificates: ds.length };
+  }).sort((a, b) => a.code.localeCompare(b.code)),
   asmeRows: g.asmeRows.sort(),
 })).sort((a, b) => a.symbol.localeCompare(b.symbol));
 
@@ -316,7 +332,8 @@ function publishToBoard(report, prior) {
     scanned_on: report.scanned_on,
     source: 'ASME CA Connect directory (India, active) matched to NSE/BSE listings by automation/scan-asme.mjs',
     companies: report.matched.map(m => ({
-      symbol: m.symbol, exch: m.exch, name: m.listedName, certs: m.certs, since: m.since, asme_names: m.asmeRows,
+      symbol: m.symbol, exch: m.exch, name: m.listedName, certs: m.certs, since: m.since, latest: m.latest,
+      cert_details: m.certDetails, asme_names: m.asmeRows,
     })),
   };
   fs.writeFileSync(BOARD_FILE, JSON.stringify(board, null, 1));

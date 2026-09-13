@@ -5,57 +5,74 @@ Runs inside scripts/update_charts.py after the daily candles are rebuilt,
 and writes chart_data/setups.json. Everything here is computed from the
 split-adjusted daily candles; nothing is entered by hand.
 
-The method (a VCP-style reading, kept deliberately simple and explicit)
-------------------------------------------------------------------------
-Base      On a given day, look back up to 130 sessions (~6 months). The
-          highest high in that window is the *pivot* -- the ceiling. It is a
-          base when that high is at least 15 sessions (3 weeks) old, the
-          pullback from it is no deeper than 35%, and the stock ran up at
-          least 25% into it (a base follows an advance, not a slide).
-Breakout  The first close above the pivot, on at least 1.4x the 50-day
-          average volume.
-Exit      Stopped: the low trades 8% below the pivot.
-          Trailed: a close below the 50-day average, 3+ sessions after the
-          breakout.
-Stage     Fresh breakouts   broke out within the last 5 sessions, not exited
-          Climbing          broke out earlier, not exited
-          Forming           in a base, closing within 15% under its pivot, in
-                            an uptrend (above the 200-day, 50-day above 200-day)
-                            -- including a 2nd base built after a breakout
-          Played out        broke out this year and has since exited
+Two screens share one engine -- the same breakout, exit and stage rules --
+and differ only in what counts as a base:
+
+VCP screen
+  Base      Look back up to 130 sessions (~6 months). The highest high in that
+            window is the *pivot*. It is a base when that high is at least 15
+            sessions (3 weeks) old, the pullback from it is no deeper than 35%,
+            and the stock ran up at least 25% into it.
+  Forming   also needs an uptrend: above the 200-day, 50-day above 200-day.
+
+IPO base screen (companies listed within the last two years)
+  Listing   The first session the stock appears in the exchange's daily
+            files, when that is after the start of the two-year window.
+  Base      The highest high since listing is the pivot. It is a base when
+            that high is at least 15 sessions old and the stock has held no
+            deeper than 50% under it (IPO bases run deeper than later ones).
+  Volume    "Usual volume" skips the first 5 sessions after listing, whose
+            volumes are listing-day noise.
+
+Shared by both
+  Breakout  The first close above the pivot, on at least 1.4x usual volume
+            (50-day average; since listing for younger IPOs).
+  Exit      Stopped: the low trades 8% below the pivot.
+            Trailed: a close below the 50-day average (20-day for IPOs with
+            under 50 sessions), 3+ sessions after the breakout.
+  Stage     Fresh breakouts  broke out within the last 5 sessions, not exited
+            Climbing         broke out earlier, not exited
+            Forming          in a base within 15% under its pivot (a new base
+                             after an earlier breakout counts too)
+            Played out       broke out this year and has since exited
+  Verge     Forming and within 5% of the pivot.
 
 Measures on every card
-          RS rating       1-99 percentile of 3/6/9/12-month weighted return
-                          against every liquid NSE stock (IBD-style weights)
-          Now vs pivot    last close against the pivot, %
-          Tightening      10-day ATR / 50-day ATR (below 1 = contracting)
-          Volume dry-up   10-day average volume / 50-day average volume
-          Up/down volume  (up-day volume - down-day volume) / total, 50 days
-          From 52w high   % below the 52-week high
-Flags     squat       traded above the pivot but closed back under it
-                      (last 10 sessions)
-          failed poke closed above the pivot without breakout volume, then
-                      fell back under it (last 10 sessions)
+  RS rating       1-99 percentile of 3/6/9/12-month weighted return against
+                  every liquid NSE stock (IBD-style weights)
+  Now vs pivot    last close against the pivot, %
+  Tightening      10-day ATR / 50-day ATR (below 1 = contracting)
+  Volume dry-up   10-day average volume / 50-day average volume
+  Up/down volume  (up-day volume - down-day volume) / total, 50 days
+  From 52w high   % below the 52-week high
+Flags
+  squat           traded above the pivot but closed back under it (10 sessions)
+  failed poke     closed above the pivot without breakout volume, then fell
+                  back under it (10 sessions)
 """
 from __future__ import annotations
 
+import bisect
 from datetime import date
 
 LOOKBACK = 130
 MIN_AGE = 15
 MAX_DEPTH = 0.35
+IPO_MAX_DEPTH = 0.50
 MIN_ADVANCE = 1.25
 BREAKOUT_VOL = 1.4
 STOP = 0.92
 FRESH = 5
 FORMING_BAND = 0.85
+VERGE = 0.95
+IPO_SKIP = 5          # listing-day sessions left out of "usual volume"
 
 
 # ------------------------------------------------------------ primitives
 class _RMQ:
     """O(1) range max/min over a fixed list (sparse table)."""
 
-    def __init__(self, xs: list[float], fn):
+    def __init__(self, xs: list, fn):
         self.fn, self.t = fn, [list(xs)]
         j = 1
         while (1 << j) <= len(xs):
@@ -63,7 +80,7 @@ class _RMQ:
             self.t.append([fn(prev[i], prev[i + half]) for i in range(len(xs) - (1 << j) + 1)])
             j += 1
 
-    def q(self, lo: int, hi: int) -> float:
+    def q(self, lo: int, hi: int):
         """inclusive range [lo, hi]"""
         k = (hi - lo + 1).bit_length() - 1
         return self.fn(self.t[k][lo], self.t[k][hi - (1 << k) + 1])
@@ -89,32 +106,62 @@ class Series:
         self.c = [r[4] for r in rows]
         self.v = [r[5] for r in rows]
         self.n = len(rows)
-        self.sma10, self.sma50, self.sma200 = _sma(self.c, 10), _sma(self.c, 50), _sma(self.c, 200)
+        self.sma10, self.sma20 = _sma(self.c, 10), _sma(self.c, 20)
+        self.sma50, self.sma200 = _sma(self.c, 50), _sma(self.c, 200)
         self.vol50, self.vol10 = _sma(self.v, 50), _sma(self.v, 10)
         tr = [self.h[0] - self.l[0]] + [max(self.h[i], self.c[i - 1]) - min(self.l[i], self.c[i - 1]) for i in range(1, self.n)]
         self.atr10, self.atr50 = _sma(tr, 10), _sma(tr, 50)
         self.hmax = _RMQ(self.h, max)
         self.lmin = _RMQ(self.l, min)
-        # index of the latest highest high: needed for the pivot's position
-        self._hidx = _RMQ([(h, i) for i, h in enumerate(self.h)], max)
+        self._hidx = _RMQ([(h, i) for i, h in enumerate(self.h)], max)   # latest highest high wins ties
+        self._vsum = [0.0]
+        for x in self.v:
+            self._vsum.append(self._vsum[-1] + x)
 
+    # -------- bases
     def base(self, end: int) -> dict | None:
-        """The base whose window ends on session `end` (inclusive), if any."""
+        """VCP base whose window ends on session `end` (inclusive), if any."""
         start = max(0, end - LOOKBACK + 1)
         if end - start < MIN_AGE:
             return None
         pivot, p = self._hidx.q(start, end)
         age = end - p
-        if age < MIN_AGE or p >= end:
+        if age < MIN_AGE:
             return None
         low = self.lmin.q(p + 1, end)
         depth = 1 - low / pivot
         if depth > MAX_DEPTH or depth <= 0:
             return None
-        run_from = self.lmin.q(max(0, p - 126), p)
-        if pivot < run_from * MIN_ADVANCE:
+        if pivot < self.lmin.q(max(0, p - 126), p) * MIN_ADVANCE:
             return None
         return {"pivot": pivot, "peak": p, "start": p, "end": end, "low": low, "depth": depth, "age": age}
+
+    def ipo_base(self, end: int) -> dict | None:
+        """IPO base: the post-listing high held for 3+ weeks, at most 50% deep."""
+        if end < MIN_AGE:
+            return None
+        pivot, p = self._hidx.q(0, end)
+        age = end - p
+        if age < MIN_AGE:
+            return None
+        low = self.lmin.q(p + 1, end)
+        depth = 1 - low / pivot
+        if depth > IPO_MAX_DEPTH or depth <= 0:
+            return None
+        return {"pivot": pivot, "peak": p, "start": p, "end": end, "low": low, "depth": depth, "age": age}
+
+    # -------- volume and trend
+    def usual_vol(self, i: int, ipo: bool = False) -> float | None:
+        """Average volume of the sessions before i: 50-day, or since listing for young IPOs."""
+        if not ipo:
+            return self.vol50[i - 1] if i >= 1 else None
+        lo = max(IPO_SKIP, i - 50)
+        if i - lo < 10:
+            return None
+        return (self._vsum[i] - self._vsum[lo]) / (i - lo)
+
+    def trail(self, i: int, ipo: bool = False) -> float | None:
+        return self.sma50[i] if self.sma50[i] is not None or not ipo else self.sma20[i]
 
     def uptrend(self, i: int) -> bool:
         s50, s200 = self.sma50[i], self.sma200[i]
@@ -124,10 +171,28 @@ class Series:
             return self.c[i] > s50 * 0.95
         return False
 
+
+class Screen:
+    """What differs between the VCP and IPO screens."""
+
+    def __init__(self, s: Series, ipo: bool):
+        self.s, self.ipo = s, ipo
+
+    def base(self, end: int):
+        return self.s.ipo_base(end) if self.ipo else self.s.base(end)
+
+    def avg(self, i: int):
+        return self.s.usual_vol(i, self.ipo)
+
+    def trail(self, i: int):
+        return self.s.trail(i, self.ipo)
+
+    def forming_ok(self, t: int) -> bool:
+        return True if self.ipo else self.s.uptrend(t)
+
     def is_breakout(self, i: int, b: dict | None) -> bool:
-        if not b or i < 1 or self.vol50[i - 1] in (None, 0):
-            return False
-        return self.c[i] > b["pivot"] >= self.c[i - 1] and self.v[i] >= BREAKOUT_VOL * self.vol50[i - 1]
+        avg = self.avg(i) if b else None
+        return bool(avg) and self.s.c[i] > b["pivot"] >= self.s.c[i - 1] and self.s.v[i] >= BREAKOUT_VOL * avg
 
 
 # ------------------------------------------------------------ strength
@@ -146,7 +211,6 @@ def rs_score(closes: list[float]) -> float | None:
 
 def percentile_ranker(scores: list[float]):
     ordered = sorted(scores)
-    import bisect
 
     def rank(x: float | None) -> int | None:
         if x is None or not ordered:
@@ -155,21 +219,22 @@ def percentile_ranker(scores: list[float]):
     return rank
 
 
-# ------------------------------------------------------------ one stock
-def _walk(s: Series) -> list[dict]:
-    """Every breakout in the series, with its exit if it had one."""
-    events, pos = [], None
-    for i in range(60, s.n):
+# ------------------------------------------------------------ engine
+def _walk(sc: Screen) -> list[dict]:
+    """Every breakout under this screen's bases, with its exit if it had one."""
+    s, events, pos = sc.s, [], None
+    for i in range(20 if sc.ipo else 60, s.n):
         if pos:
+            tr = sc.trail(i)
             if s.l[i] <= pos["pivot"] * STOP:
                 pos["exit"] = {"i": i, "reason": "stopped", "price": round(pos["pivot"] * STOP, 2)}
                 pos = None
-            elif i - pos["i"] >= 3 and s.sma50[i] is not None and s.c[i] < s.sma50[i]:
+            elif i - pos["i"] >= 3 and tr is not None and s.c[i] < tr:
                 pos["exit"] = {"i": i, "reason": "trailed", "price": s.c[i]}
                 pos = None
-        b = s.base(i - 1)
-        if b and (pos is None or b["peak"] > pos["i"]) and s.is_breakout(i, b):
-            ev = {"i": i, "pivot": b["pivot"], "base": b, "vol_x": round(s.v[i] / s.vol50[i - 1], 1),
+        b = sc.base(i - 1)
+        if b and (pos is None or b["peak"] > pos["i"]) and sc.is_breakout(i, b):
+            ev = {"i": i, "pivot": b["pivot"], "base": b, "vol_x": round(s.v[i] / sc.avg(i), 1),
                   "chain": (pos["chain"] + 1) if pos else 1, "first": pos["first"] if pos else None}
             if pos:
                 pos["exit"] = {"i": i, "reason": "rolled", "price": s.c[i]}   # into the next base's breakout
@@ -179,7 +244,8 @@ def _walk(s: Series) -> list[dict]:
     return events
 
 
-def stage_at(s: Series, events: list[dict], t: int) -> dict:
+def stage_at(sc: Screen, events: list[dict], t: int) -> dict:
+    s = sc.s
     active = None
     for ev in events:
         if ev["i"] <= t and ("exit" not in ev or ev["exit"]["i"] > t):
@@ -188,34 +254,28 @@ def stage_at(s: Series, events: list[dict], t: int) -> dict:
         since = t - active["i"]
         if since < FRESH:
             return {"stage": "fresh", "event": active, "since": since}
-        b = s.base(t)
+        b = sc.base(t)
         if b and b["peak"] > active["i"] and s.c[t] >= b["pivot"] * FORMING_BAND:
             return {"stage": "forming", "event": active, "base": b, "second": True, "since": since}
         return {"stage": "climbing", "event": active, "since": since}
-    b = s.base(t)
-    if b and b["pivot"] * FORMING_BAND <= s.c[t] <= b["pivot"] * 1.02 and s.uptrend(t):
+    b = sc.base(t)
+    if b and b["pivot"] * FORMING_BAND <= s.c[t] <= b["pivot"] * 1.02 and sc.forming_ok(t):
         return {"stage": "forming", "base": b}
     year = s.d[t][:4]
-    done = [ev for ev in events if "exit" in ev and ev["exit"]["i"] <= t and s.d[ev["i"]][:4] == year and ev["exit"]["reason"] != "rolled"]
+    done = [ev for ev in events if "exit" in ev and ev["exit"]["i"] <= t
+            and s.d[ev["i"]][:4] == year and ev["exit"]["reason"] != "rolled"]
     if done:
         return {"stage": "played", "event": done[-1]}
     return {"stage": None}
 
 
-def analyze(rows: list[list], rs_rank) -> dict | None:
-    if len(rows) < 80:
-        return None
-    s = Series(rows)
-    t = s.n - 1
-    events = _walk(s)
-    now, before = stage_at(s, events, t), stage_at(s, events, t - 1)
-
+def _screen_view(sc: Screen) -> dict:
+    """Stage and pivot-relative fields for one screen, at the latest session."""
+    s, t = sc.s, sc.s.n - 1
+    events = _walk(sc)
+    now, before = stage_at(sc, events, t), stage_at(sc, events, t - 1)
     ev, base = now.get("event"), now.get("base")
     pivot = base["pivot"] if base else (ev["pivot"] if ev else None)
-    rs = rs_rank(rs_score(s.c))
-    up = sum(s.v[i] for i in range(max(1, s.n - 50), s.n) if s.c[i] > s.c[i - 1])
-    dn = sum(s.v[i] for i in range(max(1, s.n - 50), s.n) if s.c[i] < s.c[i - 1])
-    hi52 = s.hmax.q(max(0, s.n - 250), t)
 
     flags = []
     if pivot:
@@ -223,33 +283,22 @@ def analyze(rows: list[list], rs_rank) -> dict | None:
         if any(s.h[i] > pivot >= s.c[i] for i in recent):
             flags.append("squat")
         for i in recent:
-            vol_ok = s.vol50[i - 1] and s.v[i] >= BREAKOUT_VOL * s.vol50[i - 1]
-            if s.c[i] > pivot and not vol_ok and any(s.c[j] <= pivot for j in range(i + 1, s.n)):
+            avg = sc.avg(i)
+            if s.c[i] > pivot and not (avg and s.v[i] >= BREAKOUT_VOL * avg) and any(s.c[j] <= pivot for j in range(i + 1, s.n)):
                 flags.append("failed poke")
                 break
 
     out = {
         "stage": now["stage"],
         "prev_stage": before["stage"],
-        "asof": s.d[t],
-        "last": {"o": s.o[t], "h": s.h[t], "l": s.l[t], "c": s.c[t], "v": s.v[t],
-                 "chg_pct": round((s.c[t] / s.c[t - 1] - 1) * 100, 2)},
-        "rs": rs,
         "pivot": pivot,
         "now_vs_pivot": round((s.c[t] / pivot - 1) * 100, 1) if pivot else None,
-        "atr_ratio": round(s.atr10[t] / s.atr50[t], 2) if s.atr50[t] else None,
-        "vol_dryup": round(s.vol10[t] / s.vol50[t], 2) if s.vol50[t] else None,
-        "updown": round((up - dn) / (up + dn), 2) if up + dn else None,
-        "from_high": round((1 - s.c[t] / hi52) * 100, 1) if hi52 else None,
-        "high52_today": s.h[t] >= hi52 and s.n > 200,
-        "low52_today": s.l[t] <= s.lmin.q(max(0, s.n - 250), t) and s.n > 200,
-        "mood": "Powering up" if s.n > 5 and s.c[t] >= s.c[t - 5] else "Cooling off",
         "flags": flags,
     }
+    out["verge"] = bool(now["stage"] == "forming" and pivot and s.c[t] >= pivot * VERGE)
     if base:
         out["base"] = {"start": s.d[base["start"]], "end": s.d[base["end"]], "low": base["low"],
                        "weeks": _weeks(base["age"]), "depth_pct": round(base["depth"] * 100, 1)}
-        out["base_age_w"] = out["base"]["weeks"]
     if ev:
         b = ev["base"]
         out["breakout"] = {"date": s.d[ev["i"]], "pivot": ev["pivot"], "vol_x": ev["vol_x"],
@@ -266,10 +315,54 @@ def analyze(rows: list[list], rs_rank) -> dict | None:
             out["note"] = (f"Building its {_ordinal(ev['chain'] + 1)} base — up "
                            f"{round((s.c[t] / first['pivot'] - 1) * 100, 1)}% since the 1st breakout "
                            f"({_short_date(s.d[first['i']])})")
-    out["feed"] = _feed(out, s, t)
     return out
 
 
+def analyze(rows: list[list], rs_rank, listed: str | None = None) -> dict | None:
+    """Everything Market view shows for one company.
+
+    Top level: the shared measures plus the VCP screen. `ipo`: the IPO base
+    screen, present only when the company listed within the data window."""
+    s = Series(rows)
+    t = s.n - 1
+    if s.n < 20 or (s.n < 80 and not listed):
+        return None
+    up = sum(s.v[i] for i in range(max(1, s.n - 50), s.n) if s.c[i] > s.c[i - 1])
+    dn = sum(s.v[i] for i in range(max(1, s.n - 50), s.n) if s.c[i] < s.c[i - 1])
+    hi52 = s.hmax.q(max(0, s.n - 250), t)
+    long_enough = s.n > 200
+    out = {
+        "asof": s.d[t],
+        "last": {"o": s.o[t], "h": s.h[t], "l": s.l[t], "c": s.c[t], "v": s.v[t],
+                 "chg_pct": round((s.c[t] / s.c[t - 1] - 1) * 100, 2)},
+        "rs": rs_rank(rs_score(s.c)),
+        "atr_ratio": round(s.atr10[t] / s.atr50[t], 2) if s.atr50[t] else None,
+        "vol_dryup": round(s.vol10[t] / s.vol50[t], 2) if s.vol50[t] else None,
+        "updown": round((up - dn) / (up + dn), 2) if up + dn else None,
+        "from_high": round((1 - s.c[t] / hi52) * 100, 1) if hi52 else None,
+        "high52_today": s.h[t] >= hi52 and long_enough,
+        "low52_today": s.l[t] <= s.lmin.q(max(0, s.n - 250), t) and long_enough,
+        "mood": "Powering up" if s.n > 5 and s.c[t] >= s.c[t - 5] else "Cooling off",
+    }
+    if s.n >= 80:
+        vcp = _screen_view(Screen(s, ipo=False))
+    else:
+        vcp = {"stage": None, "prev_stage": None, "pivot": None, "now_vs_pivot": None, "flags": [], "verge": False}
+    out.update(vcp)
+    feed = _feed(vcp, out, s, t, "vcp")
+    if listed:
+        ipo = _screen_view(Screen(s, ipo=True))
+        ipo["listed"] = listed
+        ipo["sessions_listed"] = s.n
+        ipo["listing_high"] = s.hmax.q(0, t)
+        ipo["from_listing_high"] = round((1 - s.c[t] / ipo["listing_high"]) * 100, 1)
+        out["ipo"] = ipo
+        feed += _feed(ipo, out, s, t, "ipo")
+    out["feed"] = feed
+    return out
+
+
+# ------------------------------------------------------------ text
 def _weeks(sessions: int) -> float | int:
     w = round(sessions / 5, 1)
     return int(w) if w == int(w) else w
@@ -288,37 +381,48 @@ def _inr(x: float) -> str:
     return f"₹{x:,.2f}".rstrip("0").rstrip(".") if x < 1000 else f"₹{x:,.1f}".rstrip("0").rstrip(".")
 
 
-def _feed(a: dict, s: Series, t: int) -> list[dict]:
+def _feed(v: dict, common: dict, s: Series, t: int, screen: str) -> list[dict]:
     """What changed for this stock on the latest session, as sentences."""
-    items, bo, c = [], a.get("breakout"), s.c[t]
-    if a["stage"] == "fresh" and bo and bo["sessions"] == 0:
-        items.append(("breakout", 1, f"broke out. Closed {_inr(c)} — {abs(a['now_vs_pivot'])}% above the "
-                                     f"{_inr(bo['pivot'])} pivot, on {bo['vol_x']}× its usual trading."))
-    if a["stage"] == "climbing" and a["prev_stage"] == "fresh":
+    items, bo, c = [], v.get("breakout"), s.c[t]
+    what = "its IPO base" if screen == "ipo" else "its base"
+    pivot_name = "post-listing high" if screen == "ipo" else "pivot"
+    if v["stage"] == "fresh" and bo and bo["sessions"] == 0:
+        items.append(("breakout", 1, f"broke out of {what}. Closed {_inr(c)} — {abs(v['now_vs_pivot'])}% above the "
+                                     f"{_inr(bo['pivot'])} {pivot_name}, on {bo['vol_x']}× its usual trading."))
+    if v["stage"] == "climbing" and v["prev_stage"] == "fresh":
         items.append(("climbing", 2, "five sessions since its breakout — moved to Climbing."))
-    if a["stage"] == "played" and a["prev_stage"] in ("fresh", "climbing", "forming") and bo and bo.get("exit", {}).get("date") == s.d[t]:
+    if v["stage"] == "played" and v["prev_stage"] in ("fresh", "climbing", "forming") and bo and bo.get("exit", {}).get("date") == s.d[t]:
         x = bo["exit"]
-        why = "fell 8% under its pivot — stopped out" if x["reason"] == "stopped" else "closed under its 50-day average — trailed out"
+        why = "fell 8% under its pivot — stopped out" if x["reason"] == "stopped" else "closed under its moving average — trailed out"
         items.append(("exit", 3, f"{why} ({'+' if x['result_pct'] >= 0 else ''}{x['result_pct']}% from the breakout)."))
-    if a["stage"] == "forming" and a["prev_stage"] != "forming" and a.get("base"):
-        items.append(("forming", 4, f"started setting up — a {a['base']['weeks']}-week base, "
-                                    f"{abs(a['now_vs_pivot'])}% under the {_inr(a['pivot'])} pivot."))
-    if a["high52_today"] and not items:
-        items.append(("high52", 5, f"made a new 52-week high at {_inr(s.h[t])}."))
-    if a["low52_today"] and not items:
-        items.append(("low52", 6, f"made a new 52-week low at {_inr(s.l[t])}."))
-    return [{"kind": k, "order": o, "text": txt} for k, o, txt in items]
+    if v["stage"] == "forming" and v.get("verge") and not (v["prev_stage"] == "forming" and s.c[t - 1] >= v["pivot"] * VERGE):
+        items.append(("verge", 4, f"is on the verge — {abs(v['now_vs_pivot'])}% under the {_inr(v['pivot'])} {pivot_name}"
+                                  f" after a {v['base']['weeks']}-week {'IPO ' if screen == 'ipo' else ''}base." if v.get("base") else ""))
+    elif v["stage"] == "forming" and v["prev_stage"] != "forming" and v.get("base"):
+        items.append(("forming", 5, f"started setting up — a {v['base']['weeks']}-week {'IPO ' if screen == 'ipo' else ''}base, "
+                                    f"{abs(v['now_vs_pivot'])}% under the {_inr(v['pivot'])} {pivot_name}."))
+    if screen == "vcp" and not items:
+        if common["high52_today"]:
+            items.append(("high52", 6, f"made a new 52-week high at {_inr(s.h[t])}."))
+        elif common["low52_today"]:
+            items.append(("low52", 7, f"made a new 52-week low at {_inr(s.l[t])}."))
+    return [{"screen": screen, "kind": k, "order": o, "text": txt} for k, o, txt in items if txt]
 
 
 # ------------------------------------------------------------ market-wide
-def market_breakout_today(rows: list[list]) -> dict | None:
-    """Did this (non-board) stock break out on its latest session? Cheap check."""
-    if len(rows) < 80:
-        return None
+def market_breakout_today(rows: list[list], listed: str | None = None) -> dict:
+    """Did this stock break out on its latest session, under either screen? Cheap check."""
+    out = {}
     s = Series(rows)
     t = s.n - 1
-    b = s.base(t - 1)
-    if not (s.is_breakout(t, b) and s.uptrend(t)):
-        return None
-    return {"close": s.c[t], "chg_pct": round((s.c[t] / s.c[t - 1] - 1) * 100, 2), "pivot": b["pivot"],
-            "above_pct": round((s.c[t] / b["pivot"] - 1) * 100, 1), "vol_x": round(s.v[t] / s.vol50[t - 1], 1)}
+    if t < 21:
+        return out
+    for key, ipo in (("vcp", False), ("ipo", True)):
+        if ipo and not listed or (not ipo and s.n < 80):
+            continue
+        sc = Screen(s, ipo)
+        b = sc.base(t - 1)
+        if sc.is_breakout(t, b) and sc.forming_ok(t):
+            out[key] = {"close": s.c[t], "chg_pct": round((s.c[t] / s.c[t - 1] - 1) * 100, 2), "pivot": b["pivot"],
+                        "above_pct": round((s.c[t] / b["pivot"] - 1) * 100, 1), "vol_x": round(s.v[t] / sc.avg(t), 1)}
+    return out

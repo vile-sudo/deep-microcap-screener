@@ -69,7 +69,7 @@ def _get(url: str, session: requests.Session, referer: str) -> bytes | None:
 
 
 def fetch_bhavcopy(day: date, exchange: str, session: requests.Session) -> list[list] | None:
-    """One day's equity rows as [key, symbol, name, o, h, l, c, v, prev_close], or None.
+    """One day's equity rows as [key, symbol, name, o, h, l, c, v, prev_close, isin], or None.
 
     key is the NSE trading symbol, or the BSE scrip code -- whichever the
     board's nse_code / bse_code fields carry for that exchange."""
@@ -96,7 +96,7 @@ def fetch_bhavcopy(day: date, exchange: str, session: requests.Session) -> list[
         except (TypeError, ValueError):
             continue
         key = r["TckrSymb"] if exchange == "NSE" else r["FinInstrmId"]
-        rows.append([key, r["TckrSymb"], r.get("FinInstrmNm") or "", o, h, l, c, v, prev])
+        rows.append([key, r["TckrSymb"], r.get("FinInstrmNm") or "", o, h, l, c, v, prev, (r.get("ISIN") or "").strip()])
     return rows
 
 
@@ -107,11 +107,35 @@ def write_day(path: Path, rows: list[list]) -> None:
 
 def read_day(path: Path) -> list[list]:
     with gzip.open(path, "rt", encoding="utf-8", newline="") as f:
-        return [[r[0], r[1], r[2], float(r[3]), float(r[4]), float(r[5]), float(r[6]), int(r[7]), float(r[8])]
+        return [[r[0], r[1], r[2], float(r[3]), float(r[4]), float(r[5]), float(r[6]), int(r[7]), float(r[8]),
+                 r[9] if len(r) > 9 else ""]
                 for r in csv.reader(f)]
 
 
 # ------------------------------------------------------------------ series
+def isin_index(days: list) -> tuple[list[tuple[dict, dict]], dict[str, str]]:
+    """Per day, {isin: row} for each exchange; and each ISIN's first session on either.
+
+    The ISIN is the one identifier that survives a rename (HBLPOWER -> HBLENGINE)
+    and is shared by a company's NSE and BSE listings, so it is what dates a
+    listing and what stitches a renamed company's history back together."""
+    by_isin, first = [], {}
+    for day, nse_rows, bse_rows in days:
+        n = {r[9]: r for r in nse_rows.values() if r[9]}
+        b = {r[9]: r for r in bse_rows.values() if r[9]}
+        by_isin.append((n, b))
+        iso = day.isoformat()
+        for isin in n.keys() | b.keys():
+            first.setdefault(isin, iso)
+        # tickers too: a split or face-value change issues a new ISIN under the
+        # same ticker, so a listing is only new when neither identifier is older
+        for k in nse_rows:
+            first.setdefault(("NSE", k), iso)
+        for k in bse_rows:
+            first.setdefault(("BSE", k), iso)
+    return by_isin, first
+
+
 def build_series(records: list[dict], days: list[tuple[date, dict, dict]]) -> dict[str, dict]:
     """Candles per board company from cached daily files, oldest first.
 
@@ -124,6 +148,10 @@ def build_series(records: list[dict], days: list[tuple[date, dict, dict]]) -> di
     (a renamed company, a BSE listing filed under its NSE-style symbol).
     Those are matched instead on the BSE ticker symbol, then on the exact
     company name -- but only when that name belongs to one listing."""
+    # a stock whose first session comes after the start of the window listed
+    # inside it: keep its whole history (for the IPO base screen) and say when
+    listing_cutoff = days[min(20, len(days) - 1)][0].isoformat() if days else ""
+    by_isin, isin_first = isin_index(days)
     latest_nse, latest_bse = {}, {}
     for _, nse_rows, bse_rows in days:
         latest_nse.update(nse_rows)
@@ -135,14 +163,21 @@ def build_series(records: list[dict], days: list[tuple[date, dict, dict]]) -> di
             by_name.setdefault(_norm_name(r[2]), set()).add((exch, k))
 
     def collect(exch: str, key: str) -> list:
-        idx = 1 if exch == "NSE" else 2
+        idx = 0 if exch == "NSE" else 1
+        book = latest_nse if exch == "NSE" else latest_bse
+        isin = book[key][9] if key in book else ""
         raw, symbol = [], None
-        for day, *books in days:
-            r = books[idx - 1].get(key)
+        for (day, *books), isins in zip(days, by_isin):
+            # by ISIN (keeps a renamed listing's history), else by ticker (keeps
+            # the history from before a split, which changes the ISIN)
+            r = (isins[idx].get(isin) if isin else None) or books[idx].get(key)
             if r:
                 symbol = r[1]
                 raw.append((day.isoformat(), r[3], r[4], r[5], r[6], r[7], r[8]))
-        return raw and {"symbol": symbol, "exchange": exch, "rows": _adjust(raw)[-SESSIONS:]}
+        if not raw:
+            return raw
+        rows = _adjust(raw)
+        return {"symbol": symbol, "exchange": exch, "isin": isin, "first": raw[0][0], "rows": rows}
 
     out = {}
     for rec in records:
@@ -172,6 +207,16 @@ def build_series(records: list[dict], days: list[tuple[date, dict, dict]]) -> di
                 exch, key = sorted(hits)[0]
                 best = collect(exch, key)
         if best:
+            # listed inside the window only if no identifier of it is older:
+            # its ISIN, its ticker on either exchange, or its first candle here
+            seen = [best["first"], isin_first.get(best.pop("isin") or None)]
+            seen += [isin_first.get(("NSE", nse)) if nse else None, isin_first.get(("BSE", bse)) if bse else None]
+            listed = min(x for x in seen if x)
+            best.pop("first")
+            if listed > listing_cutoff:
+                best["listed"] = listed
+            else:
+                best["rows"] = best["rows"][-SESSIONS:]
             out[code] = best
     return out
 
@@ -239,8 +284,9 @@ def compute_stats(series: dict) -> dict:
     vols = [r[5] for r in rows]
     last = closes[-1]
     prev = closes[-2] if len(closes) > 1 else None
-    high52 = max(r[2] for r in rows)
-    low52 = min(r[3] for r in rows)
+    year = rows[-SESSIONS:]          # IPO names keep more history than a year
+    high52 = max(r[2] for r in year)
+    low52 = min(r[3] for r in year)
     dma50, dma200 = _sma(closes, 50), _sma(closes, 200)
     past = vols[-51:-1]
     avg_vol = sum(past) / len(past) if past and sum(past) else None
