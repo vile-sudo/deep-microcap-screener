@@ -81,6 +81,11 @@ def healthz():
 if FRONTEND_DIR.exists():
     app.mount("/static", StaticFiles(directory=FRONTEND_DIR / "static"), name="static")
 
+    @app.get("/favicon.ico", include_in_schema=False)
+    def favicon():
+        return FileResponse(FRONTEND_DIR / "static" / "favicon.ico", media_type="image/x-icon",
+                            headers={"Cache-Control": "public, max-age=604800"})
+
     @app.get("/", include_in_schema=False)
     def index():
         return FileResponse(FRONTEND_DIR / "index.html")
