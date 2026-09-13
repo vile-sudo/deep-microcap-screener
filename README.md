@@ -159,46 +159,58 @@ verification and sources, plus a scorecard, ownership and ASME certificates.
 ### Quarterly deep-dive reports
 
 On top of that summary, each company gets a forensic **deep-dive report**,
-rewritten every quarter after it files results, in the style of an
-institutional initiation note. The Reports page shows it first, with a
-contents sidebar, a quarter picker (every past quarter is kept) and a PDF.
+rewritten every quarter after it files results, modelled on an institutional
+initiation-of-coverage note (the Kusumgar Limited deep-dive): 43 sections from
+the executive summary, business model, segments, revenue bridge, customer and
+order-book forensics through capacity, capex, margins, working capital,
+accounting quality, governance, moat and industry structure to forecast,
+scenarios, valuation, reverse DCF, risks, thesis breakers, a monitoring
+dashboard, 25 questions for management, a scorecard and a quality-control
+review. The Reports page shows it first, with a contents sidebar, a quarter
+picker (every past quarter is kept) and a PDF.
 
 | Part | Comes from | How |
 |---|---|---|
 | Statements, quarterly results, ratios, cash conversion, working capital, shareholding | screener.in public page | code (`scripts/deep_report/model.py`), labelled [F] |
 | Multiples, bear/base/bull DCF, WACC × growth sensitivity, reverse DCF, rule-based red flags | the statements above | code, labelled [E], method and inputs printed in the report |
-| Business, segments, customers, order book, capacity, margins, accounting quality, governance, moat, industry, guidance tracker, catalysts, risks, thesis breakers, monitoring, questions for management, scorecard, final thesis, what changed | latest annual report (highest-value pages), last two earnings-call transcripts, investor presentation, credit-rating rationale, exchange announcements, the board's own notes, last quarter's report | Claude (`scripts/deep_report/writer.py`), every claim labelled [F]/[MC]/[AI]/[E] and cited to its document and page |
+| All written analysis (outline in `scripts/deep_report/sections.py`) | the full latest annual report, the last four earnings-call transcripts, the investor presentation, the credit-rating rationale, exchange announcements, the board's own notes, last quarter's report | **Claude Code** on your Claude Pro/Max plan (`scripts/deep_report/claude_code.py`): it searches and reads the documents like an analyst and writes the report, every claim labelled [F]/[MC]/[AI]/[E] and cited to its document and page |
 
 Rules the writer works under: no invented numbers, customers or order books
 ("not disclosed" is stated as a finding); valuation figures only from the
 code; **no buy/sell rating and no price target** — fair values are mechanical
-DCF outputs shown next to the price.
+DCF outputs shown next to the price. Claude Code runs in a scratch folder that
+holds only those public documents, with file tools only (no shell, no web).
 
 **Schedule** (step 6 of `daily.yml`): a company is due when it has no report,
 or when screener shows a newer results quarter than its report — the report
 then waits for that quarter's earnings-call transcript, for up to 21 days.
-At most `REPORTS_PER_DAY` a day (default 8). PDFs are printed from the
-dashboard's report page (`automation/render-report-pdfs.mjs`, step 7) and
+At most `REPORTS_PER_DAY` a day (default 3). A deep dive takes Claude roughly
+15-40 minutes and counts against the plan's usage limits; when a limit is hit
+the run stops cleanly and the next morning carries on. PDFs are printed from
+the dashboard's report page (`automation/render-report-pdfs.mjs`, step 7) and
 uploaded to the repository's `reports` release. Reports are stored as
-`backend/reports/<CODE>/<FY27-Q1>.json`; usage and cost per report are logged
+`backend/reports/<CODE>/<FY27-Q1>.json`; each report's time and usage is logged
 in `automation/data/deep-reports.json`.
 
-**Turning it on**
+**Turning it on (Claude Pro / Max plan, no API bill)**
 
-1. Create an API key at console.anthropic.com.
+1. On your PC, in a terminal where Claude Code is logged in to your Max
+   account, run `claude setup-token` and copy the token it prints.
 2. GitHub → repo **Settings → Secrets and variables → Actions → New repository
-   secret**: `ANTHROPIC_API_KEY`. Never commit it.
-3. Optional **variables** on the same page: `REPORT_MODEL` (default
-   `claude-sonnet-5`; `claude-opus-5` writes deeper reports at a higher cost),
-   `REPORTS_PER_DAY`, `REPORT_MAX_COST_USD` (stop a run after spending this),
-   `REPORT_PRICE_IN` / `REPORT_PRICE_OUT` (your $ per million tokens, so the
-   log shows cost).
-4. Try it on a few companies first: *Actions → Deep-dive reports → Run
-   workflow* with, say, `SIKA,QLINE,KSB`, and check the cost in the run summary
-   before letting the daily run work through the whole board.
+   secret**: name `CLAUDE_CODE_OAUTH_TOKEN`, value the token. Never commit it
+   or paste it anywhere else.
+3. Optional **variables** on the same page: `REPORTS_PER_DAY` (default 3),
+   `REPORT_MODEL` (default `opus`; `sonnet` uses less of the plan).
+4. Try one or two first: *Actions → Deep-dive reports → Run workflow* with a
+   company code, read the report on the dashboard, then let the daily run work
+   through the board.
 
-Run locally: `cd backend && python scripts/deep_reports.py --dry-run --codes SIKA`
-(fetches and computes everything, writes `reports-dry/`, calls no API).
+On your own PC (uses your logged-in Claude Code, no token needed):
+`cd backend && python scripts/deep_reports.py --codes QLINE`. Add `--dry-run`
+to only fetch the documents and build the work folder.
+
+(`REPORT_ENGINE=api` with an `ANTHROPIC_API_KEY` secret switches the writer to
+the paid API instead - `scripts/deep_report/writer.py`.)
 
 ## ASME certification (automated)
 

@@ -1771,3 +1771,4 @@ tbody tr:hover,tbody tr:nth-child(even):hover{background:#f2f9fd}
 .dr-num tbody th{font-size:12px;color:var(--ink2);background:none;border-bottom:1px solid #eef2f5}
 .dr-num thead th{text-align:right}
 .dr-num thead th:first-child{text-align:left}
+.dr-table:not(.dr-num) td{font-family:var(--ui);font-size:12.5px;text-align:left;white-space:normal;font-variant-numeric:normal}

@@ -47,7 +47,7 @@ concurrency:
 jobs:
   daily:
     runs-on: ubuntu-latest
-    timeout-minutes: 330
+    timeout-minutes: 355
 
     steps:
       - name: Check out repo
@@ -71,6 +71,7 @@ jobs:
           cd automation
           npm install --no-audit --no-fund
           npx playwright install --with-deps chromium
+          npm install -g @anthropic-ai/claude-code
 
       - name: Restore bhavcopy cache
         uses: actions/cache@v4
@@ -119,15 +120,18 @@ jobs:
         run: python scripts/update_charts.py
 
       # Quarterly deep-dive reports: a small batch a day, as companies file
-      # results. Off until the ANTHROPIC_API_KEY secret exists. Optional repo
-      # variables: REPORT_MODEL, REPORTS_PER_DAY, REPORT_MAX_COST_USD,
-      # REPORT_PRICE_IN / REPORT_PRICE_OUT ($ per million tokens, for the cost log).
+      # results, written by Claude Code on the owner's Claude Max plan. Off until
+      # the CLAUDE_CODE_OAUTH_TOKEN secret exists (create it with `claude setup-token`).
+      # Optional repo variables: REPORTS_PER_DAY (default 3), REPORT_MODEL (default opus),
+      # REPORT_ENGINE=api to use a paid ANTHROPIC_API_KEY instead.
       - name: 6. Deep-dive reports
         id: reports
         continue-on-error: true
-        timeout-minutes: 120
+        timeout-minutes: 200
         working-directory: ./backend
         env:
+          CLAUDE_CODE_OAUTH_TOKEN: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+          REPORT_ENGINE: ${{ vars.REPORT_ENGINE }}
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           REPORT_MODEL: ${{ vars.REPORT_MODEL }}
           REPORTS_PER_DAY: ${{ vars.REPORTS_PER_DAY }}
@@ -137,6 +141,8 @@ jobs:
         run: |
           if [ -z "$REPORT_MODEL" ]; then unset REPORT_MODEL; fi
           if [ -z "$REPORTS_PER_DAY" ]; then unset REPORTS_PER_DAY; fi
+          if [ -z "$REPORT_ENGINE" ]; then unset REPORT_ENGINE; fi
+          if [ -z "$ANTHROPIC_API_KEY" ]; then unset ANTHROPIC_API_KEY; fi
           python scripts/deep_reports.py --out-list ../reports-today.txt
 
       - name: 7. Report PDFs

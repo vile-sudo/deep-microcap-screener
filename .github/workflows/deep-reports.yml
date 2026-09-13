@@ -3,7 +3,10 @@ name: Deep-dive reports
 # Runs every morning as steps 6-7 of daily.yml. This workflow is for writing
 # reports by hand: a few named companies (e.g. to try the pipeline or a new
 # model), a re-write with --force, or a bigger batch than the daily one.
-# Needs the ANTHROPIC_API_KEY secret.
+# Written by Claude Code on the owner's Claude Max plan: needs the
+# CLAUDE_CODE_OAUTH_TOKEN secret (run `claude setup-token` on your PC, copy the token).
+# Heavy use counts against the plan's usage limits; when a limit is reached the
+# run stops cleanly and the next run carries on.
 
 permissions:
   contents: write
@@ -18,14 +21,14 @@ on:
       max_reports:
         description: 'Most reports in this run'
         required: false
-        default: '3'
+        default: '2'
       force:
         description: 'Re-write even if the latest quarter is already covered'
         type: boolean
         required: false
         default: false
       model:
-        description: 'Claude model (blank = REPORT_MODEL variable, else claude-sonnet-5)'
+        description: 'Model (blank = REPORT_MODEL variable, else opus)'
         required: false
         default: ''
 
@@ -36,7 +39,7 @@ concurrency:
 jobs:
   reports:
     runs-on: ubuntu-latest
-    timeout-minutes: 180
+    timeout-minutes: 355
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -53,10 +56,13 @@ jobs:
           cd automation
           npm install --no-audit --no-fund
           npx playwright install --with-deps chromium
+          npm install -g @anthropic-ai/claude-code
 
       - name: Write reports
         working-directory: ./backend
         env:
+          CLAUDE_CODE_OAUTH_TOKEN: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+          REPORT_ENGINE: ${{ vars.REPORT_ENGINE }}
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           REPORT_MODEL: ${{ github.event.inputs.model || vars.REPORT_MODEL }}
           REPORT_MAX_COST_USD: ${{ vars.REPORT_MAX_COST_USD }}
@@ -66,7 +72,11 @@ jobs:
           MAX_REPORTS: ${{ github.event.inputs.max_reports }}
           FORCE: ${{ github.event.inputs.force }}
         run: |
-          if [ -z "$ANTHROPIC_API_KEY" ]; then echo "::error::Add the ANTHROPIC_API_KEY secret (Settings > Secrets and variables > Actions)"; exit 1; fi
+          if [ -z "$REPORT_ENGINE" ]; then unset REPORT_ENGINE; fi
+          if [ -z "$ANTHROPIC_API_KEY" ]; then unset ANTHROPIC_API_KEY; fi
+          if [ "${REPORT_ENGINE:-claude-code}" = "claude-code" ] && [ -z "$CLAUDE_CODE_OAUTH_TOKEN" ]; then
+            echo "::error::Add the CLAUDE_CODE_OAUTH_TOKEN secret: run 'claude setup-token' on your PC, then Settings > Secrets and variables > Actions"; exit 1
+          fi
           if [ -z "$REPORT_MODEL" ]; then unset REPORT_MODEL; fi
           set -- --max-reports "${MAX_REPORTS:-3}" --out-list ../reports-today.txt
           if [ -n "$CODES" ]; then set -- "$@" --codes "$CODES"; fi

@@ -3,9 +3,9 @@ Quarterly deep-dive research reports, one per board company, kept current
 automatically.
 
     cd backend
-    python scripts/deep_reports.py                   # today's batch (needs ANTHROPIC_API_KEY)
+    python scripts/deep_reports.py                   # today's batch (Claude Code login or CLAUDE_CODE_OAUTH_TOKEN)
     python scripts/deep_reports.py --codes SIKA,QLINE --force
-    python scripts/deep_reports.py --dry-run --codes SIKA   # numbers + document pack only, no API call
+    python scripts/deep_reports.py --dry-run --codes SIKA   # fetch documents + build the work folder only
 
 Runs as a step of .github/workflows/daily.yml.
 
@@ -16,7 +16,7 @@ When a company is due
     either an earnings-call transcript dated after that quarter is out, or
     WAIT_FOR_CALL_DAYS have passed since the new results were first seen
     (so the report reads what management said about the quarter).
-At most --max-reports a day (default 8), new results before first coverage,
+At most --max-reports a day (default 3 with Claude Code), new results before first coverage,
 so the ~390 companies are covered in a few weeks and then refresh as each one
 files; a quarter's results arrive over about six weeks, which spreads the load.
 
@@ -39,7 +39,7 @@ from datetime import date, datetime, timedelta, timezone
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from deep_report import fetch, model, writer  # noqa: E402
+from deep_report import claude_code, fetch, model, writer  # noqa: E402
 
 BACKEND = Path(__file__).resolve().parent.parent
 ROOT = BACKEND.parent
@@ -48,6 +48,8 @@ REPORTS = BACKEND / "reports"
 INDEX = REPORTS / "index.json"
 STATE = ROOT / "automation" / "data" / "deep-reports.json"
 WAIT_FOR_CALL_DAYS = 21
+# claude-code: Claude Code on a Pro/Max subscription (default); api: the paid Anthropic API
+ENGINE = os.environ.get("REPORT_ENGINE") or "claude-code"
 IST = timezone(timedelta(hours=5, minutes=30))
 MONTH = {m: i for i, m in enumerate(["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"], 1)}
 
@@ -124,7 +126,11 @@ def report_for(rec: dict, previous: dict | None, dry_run: bool, today: str) -> t
         waited = seen_on and (date.fromisoformat(today) - date.fromisoformat(seen_on)).days >= WAIT_FOR_CALL_DAYS
         if not (newest_call and month_index(latest) and newest_call > month_index(latest)) and not waited:
             return None, f"waiting for the {label} earnings call transcript"
-    pack, sources = writer.build_pack(company, quant, rec, previous)
+    engine = ENGINE
+    if engine == "api":
+        pack, sources = writer.build_pack(company, quant, rec, previous)
+    else:
+        pack, sources = "", []
     report = {
         "code": rec["code"], "name": company["name"] or rec.get("name"), "period": period, "period_label": label,
         "results_quarter": latest, "generated_at": datetime.now(IST).isoformat(timespec="minutes"),
@@ -132,11 +138,21 @@ def report_for(rec: dict, previous: dict | None, dry_run: bool, today: str) -> t
         "pack_chars": len(pack),
     }
     if dry_run:
+        if engine != "api":
+            work, sources = claude_code.prepare(company, quant, rec, previous, label)
+            report["sources"] = sources
+            print(f"    work folder for Claude Code: {work}")
         report["sections"], report["summary"], report["usage"] = [], {}, {"dry_run": True}
         return report, "dry run"
-    sections, summary, usage = writer.write_sections(pack, report["name"], label)
-    usage["cost_usd"] = cost_usd(usage)
-    report.update(model_id=usage.get("model"), sections=sections, summary=summary, usage=usage)
+    if engine == "api":
+        sections, summary, usage = writer.write_sections(pack, report["name"], label)
+        usage["cost_usd"] = cost_usd(usage)
+    else:
+        sections, summary, usage, sources = claude_code.write_report(company, quant, rec, previous, label,
+                                                                     keep_workdir=os.environ.get("REPORT_KEEP_WORKDIR") == "1")
+        report["sources"] = sources
+        usage["cost_usd"] = None   # subscription usage, not billed per token
+    report.update(model_id=f"{usage.get('engine', 'api')}:{usage.get('model')}", sections=sections, summary=summary, usage=usage)
     return report, "written"
 
 
@@ -157,7 +173,7 @@ def index_entry(r: dict, pdf_base: str | None) -> dict:
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--codes", help="comma-separated board codes (ignores the schedule)")
-    ap.add_argument("--max-reports", type=int, default=int(os.environ.get("REPORTS_PER_DAY", "8")))
+    ap.add_argument("--max-reports", type=int, default=int(os.environ.get("REPORTS_PER_DAY") or ("3" if ENGINE != "api" else "8")))
     ap.add_argument("--max-cost-usd", type=float, default=float(os.environ.get("REPORT_MAX_COST_USD", "0") or 0),
                     help="stop the run once this much has been spent (needs REPORT_PRICE_IN/_OUT)")
     ap.add_argument("--force", action="store_true", help="rewrite even if the latest quarter is already covered")
@@ -166,9 +182,16 @@ def main() -> int:
     args = ap.parse_args()
     if args.force:
         os.environ["REPORT_FORCE"] = "1"
-    if not args.dry_run and not os.environ.get("ANTHROPIC_API_KEY"):
-        print("deep-reports: ANTHROPIC_API_KEY is not set - skipping (add it as a GitHub Actions secret to turn reports on)")
+    if not args.dry_run and ENGINE == "api" and not os.environ.get("ANTHROPIC_API_KEY"):
+        print("deep-reports: REPORT_ENGINE=api but ANTHROPIC_API_KEY is not set - skipping")
         return 0
+    if not args.dry_run and ENGINE != "api":
+        if not claude_code.available():
+            print("deep-reports: Claude Code CLI not installed - skipping")
+            return 0
+        if os.environ.get("GITHUB_ACTIONS") and not os.environ.get("CLAUDE_CODE_OAUTH_TOKEN"):
+            print("deep-reports: CLAUDE_CODE_OAUTH_TOKEN secret is not set - skipping (run `claude setup-token` and add it to GitHub)")
+            return 0
 
     today = datetime.now(IST).date().isoformat()
     companies = load(COMPANIES, [])
@@ -178,7 +201,7 @@ def main() -> int:
     pdf_base = f"https://github.com/{os.environ['GITHUB_REPOSITORY']}/releases/download/reports" if os.environ.get("GITHUB_REPOSITORY") else None
 
     queue = due_list(companies, index, state, today, codes, args.force)
-    print(f"deep-reports: {len(queue)} due, writing at most {args.max_reports} (model {writer.MODEL})")
+    print(f"deep-reports: {len(queue)} due, writing at most {args.max_reports} (engine {ENGINE}, model {claude_code.MODEL if ENGINE != 'api' else writer.MODEL})")
     written, spent, outcomes = [], 0.0, {}
     for rec in queue:
         if len(written) >= args.max_reports:
@@ -194,6 +217,10 @@ def main() -> int:
         t0 = time.time()
         try:
             report, why = report_for(rec, previous, args.dry_run, today)
+        except claude_code.UsageLimitReached as e:
+            outcomes[code] = f"paused: usage limit ({e})"
+            print(f"  {code}: Claude usage limit reached - stopping; the batch resumes on the next run")
+            break
         except Exception as e:  # noqa: BLE001 - one company's failure never stops the batch
             traceback.print_exc()
             outcomes[code] = f"error: {str(e)[:160]}"
@@ -206,7 +233,8 @@ def main() -> int:
         u = report.get("usage", {})
         print(f"  {code}: {why} {report['period_label']} in {time.time()-t0:.0f}s, pack {report['pack_chars']:,} chars, "
               f"{len(report.get('sections', []))} sections, tokens in {u.get('input_tokens', 0)+u.get('cache_read_input_tokens', 0)+u.get('cache_creation_input_tokens', 0):,} / out {u.get('output_tokens', 0):,}"
-              + (f", ${u['cost_usd']}" if u.get("cost_usd") is not None else ""))
+              + (f", ${u['cost_usd']}" if u.get("cost_usd") is not None else "")
+              + (f", {u['sessions']} Claude Code session(s), {u['turns']} turns" if u.get("sessions") else ""))
         if args.dry_run:
             out = ROOT / "reports-dry" / f"{code}-{report['period']}.json"
             save(out, report)
@@ -214,7 +242,8 @@ def main() -> int:
         spent += u.get("cost_usd") or 0
         save(REPORTS / code / f"{report['period']}.json", report)
         index[code] = index_entry(report, pdf_base)
-        state.setdefault("reports", {})[code] = {"period": report["period"], "on": today, "tokens_out": u.get("output_tokens"), "cost_usd": u.get("cost_usd")}
+        state.setdefault("reports", {})[code] = {"period": report["period"], "on": today, "engine": u.get("engine", "api"), "tokens_out": u.get("output_tokens"),
+                                                 "cost_usd": u.get("cost_usd"), "api_equivalent_usd": u.get("estimated_api_cost_usd"), "minutes": round((time.time() - t0) / 60, 1)}
         state.get("seen_new_results", {}).pop(code, None)
         written.append(f"{code}:{report['period']}")
         save(INDEX, dict(sorted(index.items())))   # saved as it goes, so a timeout keeps finished reports

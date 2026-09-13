@@ -2,7 +2,7 @@
 The analysis half of a deep-dive report, written by Claude from the source
 documents and the numbers model.py computed.
 
-Three passes over one cached document pack (business, forensics, verdict),
+Four passes (the parts in sections.py) over one cached document pack,
 each returning its sections through a forced tool call, so the output is
 always valid, schema-shaped JSON. The rules the model works under are in
 SYSTEM below: label every claim, cite the document, never invent a number,
@@ -14,25 +14,13 @@ import json
 import os
 import re
 
-from . import fetch
+from . import fetch, sections as S
 
 MODEL = os.environ.get("REPORT_MODEL", "claude-sonnet-5")
 MAX_OUTPUT = int(os.environ.get("REPORT_MAX_OUTPUT_TOKENS", "16000"))
 
-SYSTEM = """You are a skeptical buy-side equity analyst writing a forensic deep-dive research report on an Indian listed small/micro-cap company for sophisticated investors. You are not an IPO marketer and not a promoter.
-
-EVIDENCE RULES (non-negotiable)
-- Label every factual or analytical statement inline with exactly one of: [F] fact directly evidenced by a document or the numbers pack; [MC] management claim not independently verified; [AI] your own inference; [E] an estimate or calculation.
-- Cite the source right after the label using the document ids given in the pack, e.g. "[F] (AR2026 p.112)", "[MC] (CALL Aug 2026)", "[F] (NUMBERS)", "[F] (RATING)". Page numbers only for annual reports, and only pages that appear in the pack.
-- Never invent a number, customer, contract, order book, capacity, market share, guidance or date. If something is not disclosed in the pack, say plainly that it is not disclosed. "Not disclosed" is a finding, not a gap to fill.
-- All valuation numbers (fair values, DCF, multiples, implied growth) come ONLY from the NUMBERS pack. You may interpret them; you may not produce new fair values, price targets or valuation figures.
-- Do NOT give a buy/sell/hold/overweight/underweight rating or a price target. Present evidence, scenarios and the fair-value ranges from NUMBERS.
-- Separate facts from management claims. Treat industry TAM figures as industry context, never as company revenue.
-- Where two sources disagree, show both and say they are not reconciled.
-- Rs crore unless stated; Indian fiscal years (FY26 = April 2025 - March 2026).
-- Be balanced: give the strongest bull case and the strongest bear case.
-- Write crisply. Tables where the content is tabular. No filler, no marketing adjectives.
-"""
+SYSTEM = ("You are a skeptical buy-side equity analyst writing a forensic deep-dive research report "
+          "on an Indian listed small/micro-cap company.\n\n" + S.RULES)
 
 BLOCKS = {
     "type": "array",
@@ -71,56 +59,13 @@ def _tool(name, section_ids, extra=None):
             "input_schema": {"type": "object", "properties": props, "required": list(props)}}
 
 
-PASSES = [
-    {
-        "tool": "submit_business",
-        "sections": {
-            "executive_summary": "What the company actually does (2 short paragraphs); a bull-thesis TABLE with columns Thesis | Evidence | Financial impact | Time horizon | Confidence (4-8 rows); the strongest bear theses as bullets (5-10, each with evidence); key debates (3-5 bullets: what the market may be getting wrong, both ways); variant perception (1 paragraph).",
-            "company_history": "Corporate timeline TABLE (Date | Event) from the documents; subsidiaries / group structure (table if disclosed); what the timeline tells an investor.",
-            "business_model": "The production / value chain and where value is captured; how the company earns money; capital intensity.",
-            "products_segments": "Product family TABLE (Product | Application | Segment | Customers | Competitive intensity | Growth outlook | Margin potential) as far as disclosed; segment revenue TABLE if disclosed with growth; why each segment moved per management [MC] and your read [AI].",
-            "revenue_drivers": "Revenue bridge for the latest year (disclosed drivers only, residuals labelled as residuals); export vs domestic and geography TABLE if disclosed; currency and tariff exposure.",
-            "customers": "Customer concentration trend (top 1/5/10 if disclosed), named customers, stickiness, contract terms (long-term agreements or purchase orders), whether concentration is improving; say clearly when not disclosed.",
-            "order_book": "Order book / backlog as disclosed (or an explicit statement that none is disclosed); a TABLE separating A confirmed revenue, B contracted not recognised, C qualified opportunity, D tender pipeline, E management aspiration, F industry TAM - never conflate them; execution timeline if disclosed.",
-            "capacity_capex": "Facilities, installed capacity and utilisation TABLE if disclosed; capex plans, funding and status; operating-leverage implications; leases and single-location risks.",
-        },
-    },
-    {
-        "tool": "submit_forensics",
-        "sections": {
-            "margins_costs": "Raw materials and key costs, import dependence, pass-through ability, margin trend from NUMBERS with structural vs temporary drivers; EBITDA sensitivity only if it can be computed from NUMBERS (label [E]).",
-            "financial_forensics": "Read the statements in NUMBERS like a forensic analyst: revenue and profit trajectory, earnings quality (CFO vs PAT, other income, tax rate), working capital (debtor/inventory/payable days, cash conversion cycle), capex and returns (ROCE/ROE trend), leverage and interest cover, balance-sheet composition. Quote the figures from NUMBERS with years. Do not repeat whole tables - the report shows them separately.",
-            "accounting_quality": "Auditor, audit opinion, key audit matters, emphasis of matter, CARO observations, audit-trail compliance, contingent liabilities and guarantees, restatements, related-party accounting - from the annual report pages provided; say what was not in the pages provided.",
-            "governance": "Management and board TABLE (Role | Name | Since | Background) as disclosed; promoter holding and changes (NUMBERS); pledges; related-party transactions with economic substance; remuneration; KMP / auditor / director changes; a management & governance scorecard TABLE (Factor | Score 1-10 | Rationale) with a simple average.",
-            "competition_moat": "Competitive landscape and named peers; a moat scorecard TABLE (Moat factor | Score 1-10 | Rationale) covering brand, switching costs, regulatory/approval barriers, technology/IP, scale/cost, relationships, network effects, input control; the key questions the scores cannot answer; overall moat conclusion.",
-            "industry_themes": "Industry structure and channel; TAM figures only as context with why they cannot be read as company revenue; structural themes that ARE supported by company evidence vs themes present in the narrative but NOT supported (table or two bullet lists).",
-            "guidance_tracker": "TABLE (Item | Guidance given? | What management said [MC] | Status vs actuals) covering revenue growth, margins, order book, capex, utilisation, new products; if PREVIOUS REPORT guidance is provided, check each item against the latest NUMBERS and say met / missed / pending.",
-        },
-    },
-    {
-        "tool": "submit_verdict",
-        "sections": {
-            "valuation_view": "Interpret the NUMBERS valuation: current multiples, the bear/base/bull DCF fair values and their assumptions, the WACC x terminal-growth sensitivity, and the reverse DCF (growth the price implies) vs the company's history. Also give the strongest counter-argument to that conclusion. No new valuation numbers and no rating.",
-            "catalysts": "Near-term (0-3 months), medium-term (3-12 months) and long-term (1-3 years) catalysts, plus overhangs (lock-ins, dilution, pledges, litigation) - only ones evidenced in the pack.",
-            "risks": "Risks matrix TABLE (Risk | Category | Evidence | Severity 1-5 | Likelihood 1-5), 8-14 rows, most serious first.",
-            "thesis_breakers": "TABLE (Thesis breaker | Measurable threshold | What it would confirm), 5-8 rows, plus bullets of thesis-confirming signals.",
-            "monitoring": "Quarterly monitoring dashboard TABLE (Metric | Latest value (with period) | What to watch), 8-12 rows using NUMBERS and disclosures.",
-            "red_flag_checklist": "Three bullet groups GREEN / AMBER / RED (use three subsections) combining the rule-based flags in NUMBERS with findings from the documents; each item labelled and cited.",
-            "management_questions": "15-25 specific forensic questions for the next earnings call, grouped by theme (one subsection per theme), that the pack leaves unanswered.",
-            "scorecard": "Investment scorecard TABLE (Factor | Score 1-10 | Basis) with 12-15 factors (revenue visibility, customer concentration, margin quality, earnings quality, balance sheet, working capital, accounting quality, governance, related-party discipline, moat durability, growth durability, optionality, valuation vs base-case DCF, valuation vs bull-case DCF, disclosure candour) and a simple average. This is not a rating.",
-            "final_thesis": "The case for owning, the case against, what the market may be missing in both directions, a fair-value framing TABLE using only the NUMBERS bear/base/bull per-share values vs the current price, and a five-year possibility space. Close with what would make you re-review. No rating, no price target.",
-            "changes_since_last": "If a PREVIOUS REPORT summary is provided: what changed this quarter in numbers, disclosures, guidance delivery, risks and the thesis (bullets, most important first). If none is provided, one paragraph saying this is initial coverage.",
-            "quality_control": "Self-check bullets confirming: no TAM/revenue conflation, no invented order book or customers, management claims labelled, fair values only from NUMBERS, both bull and bear cases given, discrepancies flagged, and any sections where the evidence was thin.",
-        },
-        "extra": {"summary": {"type": "object", "properties": {
-            "one_line": {"type": "string", "description": "one sentence on what the report concludes, no rating"},
-            "bull_points": {"type": "array", "items": {"type": "string"}},
-            "bear_points": {"type": "array", "items": {"type": "string"}},
-            "watch_points": {"type": "array", "items": {"type": "string"}},
-            "guidance": {"type": "array", "items": {"type": "string"}, "description": "each explicit management guidance item this quarter, for next quarter's tracker"},
-        }, "required": ["one_line", "bull_points", "bear_points", "watch_points", "guidance"]}},
-    },
-]
+SUMMARY_SCHEMA = {"type": "object", "properties": {
+    "one_line": {"type": "string", "description": S.SUMMARY_SPEC["one_line"]},
+    **{k: {"type": "array", "items": {"type": "string"}, "description": v} for k, v in S.SUMMARY_SPEC.items() if k != "one_line"},
+}, "required": list(S.SUMMARY_SPEC)}
+
+PASSES = [{"tool": f"submit_{pid}", "sections": secs} for pid, _, secs in S.PARTS]
+PASSES[-1]["extra"] = {"summary": SUMMARY_SCHEMA}
 
 
 # ------------------------------------------------------------------ document pack

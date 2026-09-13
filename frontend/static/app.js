@@ -2544,16 +2544,25 @@ function rpPaintStage(d){
    [E] estimate and cited to its document.
    ================================================================ */
 const DR={index:null, loading:null, cache:new Map(), tab:'deep', period:null};
+/* mirrors backend/scripts/deep_report/sections.py; 'statements' and 'sources' are built here,
+   'summary' holds the summary plus changes_since_last */
 const DR_ORDER=[
-  ['summary','Summary'],['executive_summary','Executive summary'],['company_history','Company history'],
-  ['business_model','Business model'],['products_segments','Products & segments'],['revenue_drivers','Revenue drivers & geography'],
-  ['customers','Customers'],['order_book','Order book & pipeline'],['capacity_capex','Capacity & capex'],
-  ['margins_costs','Margins & costs'],['financial_forensics','Financial forensics'],['statements','Financial statements'],
-  ['accounting_quality','Accounting quality'],['governance','Management & governance'],['competition_moat','Competition & moat'],
-  ['industry_themes','Industry & structural themes'],['guidance_tracker','Guidance tracker'],['valuation','Valuation'],
-  ['catalysts','Catalysts'],['risks','Risks matrix'],['thesis_breakers','Thesis breakers'],['monitoring','Quarterly monitoring'],
-  ['red_flag_checklist','Red-flag checklist'],['management_questions','Questions for management'],['scorecard','Investment scorecard'],
-  ['final_thesis','Final thesis'],['quality_control','Quality control'],['sources','Sources'],
+  ['summary','Summary'],['executive_summary','Executive investment summary'],['company_history','Company history'],
+  ['business_model','Understanding the business model'],['products','Product-level analysis'],['segments','Segment-wise revenue analysis'],
+  ['revenue_bridge','Revenue bridge'],['export_domestic','Export vs domestic'],['customer_forensics','Customer forensics'],
+  ['client_analysis','Global client analysis'],['order_book','Order book forensics'],['business_line_deep_dives','Business-line deep dives'],
+  ['capacity','Capacity analysis'],['capex_forensics','Capex forensics'],['raw_materials','Raw material economics'],
+  ['margin_analysis','Margin analysis'],['unit_economics','Unit economics'],['financial_forensics','Financial forensics'],
+  ['statements','Financial statements'],['working_capital','Working capital forensics'],['balance_sheet_quality','Balance sheet quality'],
+  ['accounting_quality','Accounting quality'],['group_structure_rpt','Subsidiaries, group structure and related parties'],
+  ['management','Management and promoter analysis'],['competitive_landscape','Competitive landscape'],['moat','Competitive moat'],
+  ['industry_structure','Industry structure'],['structural_themes','Structural themes'],['guidance_tracker','Management guidance tracker'],
+  ['earnings_quality','Earnings quality'],['forecast','Forecast model'],['scenarios','Bull / base / bear scenarios'],
+  ['valuation','Valuation'],['priced_in','What is already priced in'],['catalysts','Catalysts'],['risks_matrix','Risks matrix'],
+  ['thesis_breakers','Thesis breakers'],['monitoring_dashboard','Quarterly monitoring dashboard'],['red_flag_checklist','Red-flag checklist'],
+  ['management_questions','Twenty-five management questions'],['investment_scorecard','Investment scorecard'],
+  ['final_thesis','Final investment thesis'],['final_conclusion','Final conclusion'],['quality_control','Quality control — second-pass review'],
+  ['sources','Source appendix'],
 ];
 const DR_LABEL={F:['F','Fact — directly evidenced by a document or the statements'],MC:['MC','Management claim — not independently verified'],
   AI:['AI','Analyst inference — the report\'s own interpretation'],E:['E','Estimate — the report\'s own calculation or projection']};
@@ -2728,9 +2737,9 @@ function drRender(d, rep, entry){
   DR_ORDER.forEach(([id,title])=>{
     if(id==='summary'||id==='sources') return;
     if(id==='statements') return add(id,title,drStatements(q));
-    if(id==='valuation') return add(id,title,drValuation(q,v.price)+(secs.valuation_view?`<h3 class="dr-sep">Interpretation</h3>${drSectionHTML(secs.valuation_view,src)}`:''));
+    if(id==='valuation') return add(id,(secs.valuation&&secs.valuation.title)||title,drValuation(q,v.price)+(secs.valuation?`<h3 class="dr-sep">Interpretation</h3>${drSectionHTML(secs.valuation,src)}`:''));
     const s=secs[id]; let html=s?drSectionHTML(s,src):'';
-    if(id==='governance') html+=drShareholding(q);
+    if(id==='management') html+=drShareholding(q);
     if(id==='red_flag_checklist') html=drFlags(q)+html;
     add(id,(s&&s.title)||title,html);
   });
