@@ -1647,6 +1647,8 @@ const BP_SORTS={
   high: {l:'From 52-week high',      k:a=>a.from_high,     dir:1},
   mcap: {l:'Market cap',             d:d=>nz(d.market_cap_cr), dir:-1},
   listed:{l:'Listing date (newest)', k:a=>a.listed?Date.parse(a.listed):null, dir:-1, ipo:true},
+  bodate:{l:'Breakout date (newest)', k:a=>a.breakouts&&a.breakouts[0]?Date.parse(a.breakouts[0].date):null, dir:-1, ipo:true},
+  bogain:{l:'Gain since breakout (%)', k:a=>a.breakouts&&a.breakouts[0]?a.breakouts[0].gain_pct:null, dir:-1, ipo:true},
 };
 const BP_INFO={
   rs:'Relative strength, 1–99: weighted 3/6/9/12-month return ranked against every liquid NSE stock. 90 means it beat 90% of them.',
@@ -1658,7 +1660,9 @@ const BP_INFO={
   squat:'Traded above the pivot but closed back under it in the last 10 sessions.',
   poke:'Closed above the pivot without breakout volume, then fell back under it.',
 };
-const BP={data:null, loading:null, screen:'vcp', stage:'forming', view:'cards', all:false, idx:null, kite:null, timers:{}, obs:null};
+/* IPO base screen: companies whose latest IPO base breakout falls in a window */
+const BP_BWINS=[['1w','1 week',7],['1m','1 month',30],['3m','3 months',91],['6m','6 months',182],['1y','1 year',365]];
+const BP={data:null, loading:null, screen:'vcp', stage:'forming', bwin:null, view:'cards', all:false, idx:null, kite:null, timers:{}, obs:null};
 /* one company as the current screen sees it: shared measures + that screen's stage fields */
 const bpView = a => BP.screen==='ipo' ? (a.ipo ? {...a, ...a.ipo} : null) : a;
 const bpStageText = k => { const x=BP_STAGES.find(y=>y.k===k); return BP.screen==='ipo' ? {...x, ...BP_IPO_TEXT[k]} : x; };
@@ -1692,7 +1696,7 @@ function bpControls(){
     so.value = BP.screen==='ipo' ? 'pivot' : 'rs';
   };
   fillSorts();
-  sc.onchange=()=>{ BP.screen=sc.value; BP.all=false; fillSorts(); bpMarketChip(); bpRender(); };
+  sc.onchange=()=>{ BP.screen=sc.value; BP.bwin=null; BP.all=false; fillSorts(); bpMarketChip(); bpRender(); };
   let t=0;
   th.onchange=()=>{ BP.all=false; bpRender(); };
   so.onchange=()=>bpRender();
@@ -1726,7 +1730,8 @@ function bpPool(){
 function bpRows(){
   const so=BP_SORTS[document.getElementById('bp-sort').value]||BP_SORTS.rs;
   const val=([code,a])=>so.d ? so.d(bpByCode[code]) : so.k(a);
-  return bpPool().filter(([,a])=>a.stage===BP.stage).sort((x,y)=>{
+  const inList = BP.bwin ? (([,a])=>bpInWindow(a,BP.bwin)) : (([,a])=>a.stage===BP.stage);
+  return bpPool().filter(inList).sort((x,y)=>{
     const a=val(x), b=val(y);
     if(a==null && b==null) return 0; if(a==null) return 1; if(b==null) return -1;
     return (a-b)*so.dir;
@@ -1738,14 +1743,19 @@ function bpRender(){
   const pool=bpPool(), counts={};
   pool.forEach(([,a])=>{ counts[a.stage]=(counts[a.stage]||0)+1; });
   document.getElementById('bp-stages').innerHTML=BP_STAGES.map(x=>bpStageText(x.k)).map(s=>`
-    <button type="button" class="bp-stage${s.k===BP.stage?' on':''}" data-bp-stage="${s.k}">
+    <button type="button" class="bp-stage${s.k===BP.stage&&!BP.bwin?' on':''}" data-bp-stage="${s.k}">
       <span class="bp-tap">tap to view ›</span><b>${counts[s.k]||0}</b><span>${s.label}</span><small>${s.hint}</small>
     </button>`).join('');
   document.querySelector('.bp-hero h2').textContent = BP.screen==='ipo' ? 'Catch recent listings breaking out of their IPO base.' : "Spot the board's next leaders.";
   document.querySelector('.bp-hero .bp-sub').textContent = BP.screen==='ipo'
     ? `${pool.length} board companies listed in the last two years, scanned after each trading day. Here are the ones basing under their post-listing high. Pick a stage.`
     : 'Every company on the board is scanned after each trading day. Here are the few actually setting up. Pick a stage.';
-  document.querySelectorAll('[data-bp-stage]').forEach(b=>b.onclick=()=>{ BP.stage=b.dataset.bpStage; BP.all=false; bpRender(); });
+  document.querySelectorAll('[data-bp-stage]').forEach(b=>b.onclick=()=>{
+    BP.stage=b.dataset.bpStage; BP.all=false;
+    if(BP.bwin){ BP.bwin=null; document.getElementById('bp-sort').value='pivot'; }
+    bpRender();
+  });
+  bpBwinBar(pool);
 
   const codes=new Set(pool.map(([c])=>c));
   const feed=(BP.data.feed||[]).filter(f=>codes.has(f.code) && (f.screen||'vcp')===BP.screen);
@@ -1755,7 +1765,10 @@ function bpRender(){
   document.querySelectorAll('#bp-feed [data-bp-code]').forEach(b=>b.onclick=()=>openChart(b.dataset.bpCode));
   const ff=document.getElementById('bp-full-feed'); if(ff) ff.onclick=()=>bpFullFeed(feed);
 
-  const stage=bpStageText(BP.stage), rows=bpRows();
+  const win=BP.bwin && BP_BWINS.find(w=>w[0]===BP.bwin);
+  const stage=win ? {label:`breakouts in the last ${win[1]}`, title:`IPO base breakouts — last ${win[1]}`,
+    desc:`Recent listings whose latest IPO base breakout — a close above the post-listing high on at least 1.4× usual volume — came in the last ${win[1]} (to ${galDay(BP.data.as_of)}). Each card says how far it has run since and whether it is still in the trade.`} : bpStageText(BP.stage);
+  const rows=bpRows();
   document.getElementById('bp-list-title').textContent=stage.title;
   document.getElementById('bp-list-n').textContent=rows.length;
   document.getElementById('bp-desc').textContent=stage.desc;
@@ -1792,6 +1805,29 @@ function bpRender(){
   box.querySelectorAll('[data-bp-chart]').forEach(el=>{ el.onclick=()=>openChart(el.dataset.bpChart); BP.obs.observe(el); });
 }
 
+/* latest IPO base breakout within the window, counted in calendar days to the scan date */
+function bpInWindow(a, key){
+  const w=BP_BWINS.find(x=>x[0]===key), bo=a.breakouts&&a.breakouts[0];
+  if(!w || !bo) return false;
+  return (Date.parse(BP.data.as_of)-Date.parse(bo.date))/864e5 <= w[2];
+}
+function bpBwinBar(pool){
+  const bar=document.getElementById('bp-bwins');
+  bar.hidden = BP.screen!=='ipo';
+  if(bar.hidden){ bar.innerHTML=''; return; }
+  bar.innerHTML=`<span class="bp-bwins-lab">IPO base breakouts in the last</span>${BP_BWINS.map(([k,l])=>{
+      const n=pool.filter(([,a])=>bpInWindow(a,k)).length;
+      return `<button type="button" class="bp-bwin${BP.bwin===k?' on':''}" data-bp-bwin="${k}">${l} <span>${n}</span></button>`;
+    }).join('')}`;
+  bar.querySelectorAll('[data-bp-bwin]').forEach(b=>b.onclick=()=>{
+    BP.bwin = BP.bwin===b.dataset.bpBwin ? null : b.dataset.bpBwin;
+    BP.all=false;
+    document.getElementById('bp-sort').value = BP.bwin ? 'bodate' : 'pivot';
+    bpRender();
+    if(BP.bwin) document.getElementById('bp-list-title').scrollIntoView({behavior:'smooth',block:'start'});
+  });
+}
+
 function bpFeedItem(f){
   return `<button type="button" class="bp-fi" data-bp-code="${esc(f.code)}"><span><b>${esc(f.name||f.code)}</b> ${esc(f.text)}</span>
     <span class="bp-fpx">${bpInr(f.close)} <span class="${(f.chg_pct||0)>=0?'up':'dn'}">${bpPct(f.chg_pct,1)}</span></span></button>`;
@@ -1802,7 +1838,12 @@ function bpCard(code,a){
   const m=(label,info,val)=>`<div><span>${label}<i class="bpc-i" title="${esc(info)}">i</i></span><b>${val}</b></div>`;
   const ipo=BP.screen==='ipo' && a.listed, what=ipo?'the IPO base':'the pivot';
   let note=a.note||'';
-  if(!note && bo){
+  const wb = BP.bwin && a.breakouts && a.breakouts[0];
+  if(wb){
+    const st = wb.status==='active' ? 'still in the trade' : wb.status==='rolled' ? 'broke out again from a later base'
+             : `${wb.status==='stopped'?'stopped out':'trailed out'} ${_bpDay(wb.exit.date)} (${bpPct(wb.exit.result_pct,1)})`;
+    note=`Broke out of the IPO base ${_bpDay(wb.date)} (${wb.sessions_ago} session${wb.sessions_ago===1?'':'s'} ago) on ${wb.vol_x}× volume · ${bpPct(wb.gain_pct,1)} since, best ${bpPct(wb.best_pct,1)} · ${st}`;
+  } else if(!note && bo){
     if(a.stage==='fresh') note=`Broke out of ${what} ${_bpDay(bo.date)} on ${bo.vol_x}× usual volume — ${bpPct(bo.gain_pct,1)} from the pivot`;
     else if(a.stage==='climbing') note=`Broke out of ${what} ${_bpDay(bo.date)} — ${bpPct(bo.gain_pct,1)} since, ${bo.sessions} sessions in`;
     else if(a.stage==='played' && bo.exit) note=`Broke out ${_bpDay(bo.date)} → ${bo.exit.reason==='stopped'?'stopped out':'trailed out'} ${_bpDay(bo.exit.date)} (${bpPct(bo.exit.result_pct,1)})`;
@@ -1846,12 +1887,13 @@ function bpDrawChart(el){
   galFetch(code).then(()=>{
     const ser=GSERIES.get(code);
     if(!ser || ser.missing || !ser.rows){ el.innerHTML='<span class="gc-empty">No price data</span>'; return; }
-    const b=bpBase(a);
+    const wb = BP.bwin && a.breakouts && a.breakouts[0];
+    const b = wb ? {...wb.base, pivot:wb.pivot} : bpBase(a);
     /* an IPO base card shows the stock's life since listing (up to ~14 months) */
     const ipoCard = BP.screen==='ipo' && a.listed;
     const sessions = ipoCard ? Math.min(ser.rows.length, 300) : 125;
     el.innerHTML=candleSVG(ser.rows,{w:600,h:230,sessions,axis:true,isoAxis:true,ma:false,hi52:false,volColor:true,
-      pivot:a.pivot, box:b?{start:b.start,end:b.end,low:b.low,high:b.pivot||a.pivot,label:`${ipoCard?'IPO base ':''}${b.weeks} wks`}:null});
+      pivot:wb?wb.pivot:a.pivot, box:b?{start:b.start,end:b.end,low:b.low,high:b.pivot||a.pivot,label:`${ipoCard?'IPO base ':''}${b.weeks} wks`}:null});
   });
 }
 
@@ -1865,11 +1907,11 @@ async function bpShare(btn){
 
 function bpCsv(){
   const rows=bpRows(); if(!rows.length) return;
-  const head=['Company','Symbol','Theme','Screen','Stage','On the verge','Listed','Close','Change %','RS','Pivot','Now vs pivot %','ATR ratio','Volume dry-up','Up/down net','Base weeks','From 52w high %','Market cap cr','As of'];
+  const head=['Company','Symbol','Theme','Screen','Stage','On the verge','Listed','Latest breakout','Breakout status','Gain since breakout %','Close','Change %','RS','Pivot','Now vs pivot %','ATR ratio','Volume dry-up','Up/down net','Base weeks','From 52w high %','Market cap cr','As of'];
   const lines=[head.join(',')].concat(rows.map(([code,a])=>{ const d=bpByCode[code], b=bpBase(a);
-    return [d.name,bpSym(d),shortT(base(d)),BP.screen==='ipo'?'IPO base':'VCP',a.stage,a.verge?'yes':'',a.listed||'',a.last.c,a.last.chg_pct,a.rs,a.pivot,a.now_vs_pivot,a.atr_ratio,a.vol_dryup,a.updown,b&&b.weeks,a.from_high,d.market_cap_cr,a.asof].map(csvCell).join(','); }));
+    return [d.name,bpSym(d),shortT(base(d)),BP.screen==='ipo'?'IPO base':'VCP',a.stage,a.verge?'yes':'',a.listed||'',(a.breakouts&&a.breakouts[0]||{}).date||'',(a.breakouts&&a.breakouts[0]||{}).status||'',(a.breakouts&&a.breakouts[0]||{}).gain_pct??'',a.last.c,a.last.chg_pct,a.rs,a.pivot,a.now_vs_pivot,a.atr_ratio,a.vol_dryup,a.updown,b&&b.weeks,a.from_high,d.market_cap_cr,a.asof].map(csvCell).join(','); }));
   const url=URL.createObjectURL(new Blob(['﻿'+lines.join('\r\n')],{type:'text/csv;charset=utf-8'}));
-  const link=document.createElement('a'); link.href=url; link.download=`market-view-${BP.screen}-${BP.stage}-${BP.data.as_of}.csv`;
+  const link=document.createElement('a'); link.href=url; link.download=`market-view-${BP.screen}-${BP.bwin?'breakouts-'+BP.bwin:BP.stage}-${BP.data.as_of}.csv`;
   document.body.appendChild(link); link.click(); link.remove(); setTimeout(()=>URL.revokeObjectURL(url),4000);
 }
 

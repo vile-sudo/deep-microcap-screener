@@ -315,6 +315,26 @@ def _screen_view(sc: Screen) -> dict:
             out["note"] = (f"Building its {_ordinal(ev['chain'] + 1)} base — up "
                            f"{round((s.c[t] / first['pivot'] - 1) * 100, 1)}% since the 1st breakout "
                            f"({_short_date(s.d[first['i']])})")
+    if sc.ipo:
+        # every IPO base breakout, newest first, for the "broke out in the last
+        # week / month / 3 / 6 / 12 months" view
+        out["breakouts"] = [_event_summary(s, e, t) for e in reversed(events)]
+    return out
+
+
+def _event_summary(s: Series, ev: dict, t: int) -> dict:
+    b, i = ev["base"], ev["i"]
+    end = ev["exit"]["i"] if "exit" in ev and ev["exit"]["i"] <= t else t
+    peak = s.hmax.q(i, end)
+    out = {"date": s.d[i], "sessions_ago": t - i, "pivot": ev["pivot"], "vol_x": ev["vol_x"], "chain": ev["chain"],
+           "close": s.c[i], "gain_pct": round((s.c[t] / ev["pivot"] - 1) * 100, 1),
+           "best_pct": round((peak / ev["pivot"] - 1) * 100, 1),
+           "base": {"start": s.d[b["start"]], "end": s.d[b["end"]], "low": b["low"], "weeks": _weeks(b["age"])},
+           "status": "active"}
+    if "exit" in ev and ev["exit"]["i"] <= t:
+        x = ev["exit"]
+        out["status"] = x["reason"]                       # stopped | trailed | rolled (into a later breakout)
+        out["exit"] = {"date": s.d[x["i"]], "result_pct": round((x["price"] / ev["pivot"] - 1) * 100, 1)}
     return out
 
 
