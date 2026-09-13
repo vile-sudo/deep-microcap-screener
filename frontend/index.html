@@ -96,8 +96,8 @@
   .f1{transform:translateX(12vw)}.f2{transform:translateX(66vw)}.f3{transform:translateX(38vw)}.f4{transform:translateX(18vw)}.f5{transform:translateX(74vw)}.sp-school{transform:translateX(56vw)}
 }
 </style>
-<link rel="stylesheet" href="/static/style.css?v=42">
-<link rel="stylesheet" href="/static/dark.css?v=42">
+<link rel="stylesheet" href="/static/style.css?v=45">
+<link rel="stylesheet" href="/static/dark.css?v=45">
 </head>
 <body>
 <div id="ds-splash" role="status" aria-live="polite" aria-label="Loading Deep Sweep">
@@ -217,6 +217,10 @@
       <button class="side-link" id="reports-link" type="button" title="Research Reports"><svg viewBox="0 0 24 24"><path d="M7 3.5h7.5L19 8v12.5H7z"/><path d="M14.5 3.5V8H19"/><path d="M10 12h6M10 15.5h6M10 19h3.5"/></svg>Reports</button>
     </nav>
     <span class="nav-upd" id="nav-upd" hidden></span>
+    <button type="button" class="nav-bell" id="alerts-btn" hidden title="Alerts: new highs, new lows and breakouts" aria-label="Alerts">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 16.5V11a6 6 0 0 1 12 0v5.5l1.5 2h-15z"/><path d="M10 20.5a2.2 2.2 0 0 0 4 0"/></svg>
+      <span class="nav-bell-label">Alerts</span><span class="nav-pending" id="alerts-count" hidden></span>
+    </button>
     <div class="nav-user" id="nav-user" hidden></div>
   </div>
 </header>
@@ -477,6 +481,6 @@
 <div class="modal" id="modal" role="dialog" aria-modal="true"><div class="mbox"><button class="close" id="mclose" aria-label="Close">&times;</button><div id="mbody"></div></div></div>
 
 <script src="/static/asme-certified.js?v=5" defer></script>
-<script src="/static/app.js?v=42" defer></script>
+<script src="/static/app.js?v=43" defer></script>
 </body>
 </html>

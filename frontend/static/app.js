@@ -2196,7 +2196,7 @@ async function initUserMenu(){
   const u=me.user, box=document.getElementById('nav-user');
   ME=u;
   drawUserMenu();
-  api('/api/me/settings').then(j=>{ ACCT.prefs=j.prefs||{}; if(typeof ACCT.prefs.dark==='boolean') setDark(ACCT.prefs.dark,false); }).catch(()=>{});
+  try{ const j=await api('/api/me/settings'); ACCT.prefs=j.prefs||{}; if(typeof ACCT.prefs.dark==='boolean') setDark(ACCT.prefs.dark,false); }catch(e){}
   refreshUpdatesBadge();
   setInterval(refreshUpdatesBadge, 15*60*1000);
   if(u.is_admin){
@@ -2418,6 +2418,144 @@ async function openMessages(){
     mbody.querySelectorAll('[data-msg-del]').forEach(b=>b.onclick=async()=>{ if(!confirm('Delete this message?')) return; try{ await api('/api/admin/feedback/'+b.dataset.msgDel,'DELETE'); j.messages=j.messages.filter(x=>String(x.id)!==b.dataset.msgDel); j.new=j.messages.filter(x=>x.status==='new').length; ACCT.msgs=j.new; badges(); draw(); }catch(e){ alert(e.message); } });
   };
   draw();
+}
+
+/* ---------- Alerts: new highs / lows (1D-1Y), IPO-base and base breakouts ----------
+   Built after each session by scripts/update_charts.py (rules: app/alerts.py) and
+   filtered server-side (/api/alerts) by what each person chose to follow. Choices
+   and "seen up to" are saved to the account, or to this browser with accounts off. */
+const AL_WINDOWS=['1D','1W','1M','6M','1Y'];
+const AL_WLABEL={'1D':'1-day','1W':'1-week','1M':'1-month','6M':'6-month','1Y':'1-year'};
+const AL_DEFAULT={highs:['1W','1M','6M','1Y'], lows:['1W','1M','6M','1Y'], ipo:true, vcp:true, scope:'board', notify:false};
+const AL={prefs:null, seen:null, data:null, type:'all'};
+
+function alPrefs(){
+  if(AL.prefs) return AL.prefs;
+  let p=null;
+  if(ME && ACCT.prefs && ACCT.prefs.alerts) p=ACCT.prefs.alerts;
+  else { try{ p=JSON.parse(localStorage.getItem('dms.alerts')||'null'); }catch(e){} }
+  AL.prefs=Object.assign({}, AL_DEFAULT, p||{});
+  AL.seen = (ME && ACCT.prefs) ? (ACCT.prefs.alerts_seen||null) : (()=>{ try{ return localStorage.getItem('dms.alerts.seen'); }catch(e){ return null; } })();
+  return AL.prefs;
+}
+function alSave(){
+  const p=AL.prefs;
+  if(ME){ ACCT.prefs.alerts=p; api('/api/me/settings','PATCH',{prefs:{alerts:p}}).catch(()=>{}); }
+  else { try{ localStorage.setItem('dms.alerts', JSON.stringify(p)); }catch(e){} }
+}
+function alMarkSeen(date){
+  if(!date || AL.seen===date) return;
+  AL.seen=date;
+  if(ME){ ACCT.prefs.alerts_seen=date; api('/api/me/settings','PATCH',{prefs:{alerts_seen:date}}).catch(()=>{}); }
+  else { try{ localStorage.setItem('dms.alerts.seen', date); }catch(e){} }
+}
+function alQuery(p, sessions){
+  const q=new URLSearchParams({highs:p.highs.join(','), lows:p.lows.join(','), ipo:p.ipo?'1':'0', vcp:p.vcp?'1':'0', scope:p.scope, sessions:String(sessions||5)});
+  if(AL.seen) q.set('seen', AL.seen);
+  if(p.scope==='watchlist' && WMODE!=='server') q.set('codes',[...WATCH].join(','));
+  return '/api/alerts?'+q.toString();
+}
+async function alRefresh(){
+  const p=alPrefs();
+  let j; try{ j=await fetchJSON(alQuery(p, 15)); }catch(e){ return null; }
+  AL.data=j;
+  const badge=document.getElementById('alerts-count');
+  if(badge){ badge.textContent=j.new>99?'99+':j.new; badge.hidden=!j.new; }
+  return j;
+}
+async function alertsInit(){
+  const btn=document.getElementById('alerts-btn'); if(!btn) return;
+  btn.hidden=false;
+  btn.onclick=()=>openAlerts();
+  try{ await (ACCT.loaded||Promise.resolve()); }catch(e){}
+  AL.prefs=null; alPrefs();
+  const j=await alRefresh();
+  if(j && j.new && AL.prefs.notify && 'Notification' in window && Notification.permission==='granted'){
+    const latest=j.sessions[0]; const items=latest?latest.items:[];
+    const hi=items.filter(i=>i.type==='high').length, lo=items.filter(i=>i.type==='low').length, bo=items.filter(i=>i.type.endsWith('breakout')).length;
+    try{ new Notification('Deep Sweep alerts', {body:`${j.new} new: ${hi} new highs · ${lo} new lows · ${bo} breakouts (close of ${galDay(j.latest)})`, tag:'ds-alerts-'+j.latest}); }catch(e){}
+  }
+  setInterval(alRefresh, 30*60*1000);
+}
+
+const AL_TYPES=[['all','All'],['high','New highs'],['low','New lows'],['ipo_breakout','IPO base breakouts'],['vcp_breakout','Base breakouts']];
+function alLabel(it){
+  if(it.type==='ipo_breakout') return `<span class="al-chip al-ipo">&#9650; IPO base breakout</span>`;
+  if(it.type==='vcp_breakout') return `<span class="al-chip al-vcp">&#9650; Base breakout</span>`;
+  const hi=it.type==='high', top=AL_WLABEL[it.top]||it.top;
+  return `<span class="al-chip ${hi?'al-hi':'al-lo'}">${hi?'&#9650;':'&#9660;'} New ${it.since_listing?'since-listing':top} ${hi?'high':'low'}</span>`
+    + `<span class="al-wins">${(it.windows||[]).map(w=>`<i>${w}</i>`).join('')}</span>`;
+}
+function alRow(it, byCode){
+  const d=it.code && byCode[it.code], on=d && WATCH.has(d.code);
+  const chg=it.chg_pct==null?'':`<span class="${it.chg_pct>=0?'up':'dn'}">${it.chg_pct>=0?'+':''}${it.chg_pct.toFixed(2)}%</span>`;
+  const detail = it.type.endsWith('breakout')
+    ? `pivot ${galPx(it.pivot)}${it.vol_x?` · ${it.vol_x}× volume`:''}${it.listed?` · listed ${galDay(it.listed)}`:''}`
+    : `${it.closed_beyond?'closed':'traded'} ${it.type==='high'?'above':'below'} ${galPx(it.level)}${it.vol_x?` · ${it.vol_x}× volume`:''}`;
+  return `<li class="al-row">
+    <div class="al-main">
+      <div class="al-name">${d?`<button type="button" class="al-link" data-al-open="${esc(d.code)}">${esc(d.name)}</button>`:`<b>${esc(it.name)}</b>`}
+        <span class="al-sym">${esc(it.symbol||it.code||'')}</span>${it.scope==='market'?'<span class="al-mkt" title="Not on your board">market</span>':''}</div>
+      <div class="al-what">${alLabel(it)}</div>
+      <div class="al-detail">${detail}</div>
+    </div>
+    <div class="al-side"><b>${galPx(it.close)}</b>${chg}
+      <div class="al-acts">${d?`<button type="button" class="btn" data-al-chart="${esc(d.code)}">Chart</button><button type="button" class="al-star${on?' on':''}" data-al-star="${esc(d.code)}" title="${on?'Remove from':'Add to'} watchlist">${on?'&#9733;':'&#9734;'}</button>`:`<a class="btn" href="https://www.screener.in/company/${encodeURIComponent(it.symbol)}/" target="_blank" rel="noopener">screener &#8599;</a>`}</div>
+    </div>
+  </li>`;
+}
+async function openAlerts(showSettings){
+  const p=alPrefs();
+  openModal('<h3>Alerts</h3><p class="view-hint">Loading…</p>');
+  const j=await alRefresh();
+  if(!j){ mbody.innerHTML='<h3>Alerts</h3><p class="view-hint">Could not load alerts.</p>'; return; }
+  const byCode={}; DATA.forEach(d=>byCode[d.code]=d);
+  const seenBefore=AL.seen;
+  const draw=()=>{
+    const sessions=(AL.data.sessions||[]).map(s=>({date:s.date, items:s.items.filter(i=>AL.type==='all'||i.type===AL.type)}));
+    const count=t=>(AL.data.sessions[0]||{items:[]}).items.filter(i=>t==='all'||i.type===t).length;
+    const scopeTxt={watchlist:'your watchlist',board:'companies on the board',market:'the board and the whole NSE market'}[p.scope];
+    mbody.innerHTML=`<div class="al-head"><h3>Alerts</h3>
+        <span class="al-asof">${AL.data.latest?`From the ${galDay(AL.data.latest)} close · ${scopeTxt}`:'No alert data yet'}</span>
+        <button type="button" class="btn" id="al-gear" aria-expanded="${!!showSettings}">&#9881; Alert settings</button></div>
+      <div class="al-settings" id="al-settings" ${showSettings?'':'hidden'}>
+        <div class="al-set-row"><b>New highs</b><div class="al-toggles">${AL_WINDOWS.map(w=>`<label class="al-tg${p.highs.includes(w)?' on':''}"><input type="checkbox" data-al-hi="${w}" ${p.highs.includes(w)?'checked':''}>${w}</label>`).join('')}</div></div>
+        <div class="al-set-row"><b>New lows</b><div class="al-toggles">${AL_WINDOWS.map(w=>`<label class="al-tg lo${p.lows.includes(w)?' on':''}"><input type="checkbox" data-al-lo="${w}" ${p.lows.includes(w)?'checked':''}>${w}</label>`).join('')}</div></div>
+        <div class="al-set-row"><b>Breakouts</b><div class="al-toggles">
+          <label class="al-tg${p.ipo?' on':''}"><input type="checkbox" id="al-ipo" ${p.ipo?'checked':''}>IPO base</label>
+          <label class="al-tg${p.vcp?' on':''}"><input type="checkbox" id="al-vcp" ${p.vcp?'checked':''}>Base (VCP)</label></div></div>
+        <div class="al-set-row"><b>Which stocks</b><div class="al-toggles">
+          ${[['watchlist','My watchlist'],['board','Board companies'],['market','Whole market']].map(([v,l])=>`<label class="al-tg${p.scope===v?' on':''}"><input type="radio" name="al-scope" value="${v}" ${p.scope===v?'checked':''}>${l}</label>`).join('')}</div></div>
+        <p class="al-note">Whole market adds liquid NSE stocks that are not on the board — for those, 6-month and 1-year highs and lows and IPO base breakouts only. 1D = above yesterday's high / below yesterday's low.</p>
+        <div class="al-set-row"><b>Notify me</b><div class="al-toggles"><label class="al-tg${p.notify?' on':''}"><input type="checkbox" id="al-notify" ${p.notify?'checked':''}>Browser notification when I open the dashboard and there are new alerts</label></div></div>
+      </div>
+      <div class="al-types">${AL_TYPES.map(([k,l])=>`<button type="button" class="al-type${AL.type===k?' on':''}" data-al-type="${k}">${l} <span>${count(k)}</span></button>`).join('')}</div>
+      ${sessions.map((s,n)=>`<section class="al-session${n?' earlier':''}">
+        <h4>${n===0?'Latest session':'Earlier'} · ${galDay(s.date)} <span>${s.items.length} alert${s.items.length===1?'':'s'}</span>${seenBefore&&s.date>seenBefore?'<span class="upd-new">New</span>':''}</h4>
+        ${s.items.length?`<ul class="al-list">${s.items.slice(0, n===0?300:60).map(it=>alRow(it,byCode)).join('')}</ul>${s.items.length>(n===0?300:60)?`<p class="al-note">Showing the first ${n===0?300:60} — narrow the settings to see fewer.</p>`:''}`:'<p class="al-note">Nothing matched your alert settings in this session.</p>'}
+      </section>`).join('')}`;
+    document.getElementById('al-gear').onclick=()=>{ const el=document.getElementById('al-settings'); el.hidden=!el.hidden; };
+    mbody.querySelectorAll('[data-al-type]').forEach(b=>b.onclick=()=>{ AL.type=b.dataset.alType; const open=!document.getElementById('al-settings').hidden; draw(); if(open) document.getElementById('al-settings').hidden=false; });
+    const changed=async()=>{
+      p.highs=AL_WINDOWS.filter(w=>mbody.querySelector(`[data-al-hi="${w}"]`).checked);
+      p.lows=AL_WINDOWS.filter(w=>mbody.querySelector(`[data-al-lo="${w}"]`).checked);
+      p.ipo=document.getElementById('al-ipo').checked; p.vcp=document.getElementById('al-vcp').checked;
+      p.scope=(mbody.querySelector('input[name="al-scope"]:checked')||{}).value||'board';
+      const wantNotify=document.getElementById('al-notify').checked;
+      if(wantNotify && 'Notification' in window && Notification.permission!=='granted'){
+        try{ const r=await Notification.requestPermission(); if(r!=='granted'){ alert('Notifications are blocked for this site in your browser settings.'); } }catch(e){}
+      }
+      p.notify=wantNotify;
+      alSave();
+      await alRefresh(); draw(); document.getElementById('al-settings').hidden=false;
+    };
+    mbody.querySelectorAll('#al-settings input').forEach(i=>i.onchange=changed);
+    mbody.querySelectorAll('[data-al-open]').forEach(b=>b.onclick=()=>{ closeModal(); CURRENT=[byCode[b.dataset.alOpen]]; openDrawer(byCode[b.dataset.alOpen]); });
+    mbody.querySelectorAll('[data-al-chart]').forEach(b=>b.onclick=()=>openChart(b.dataset.alChart));
+    mbody.querySelectorAll('[data-al-star]').forEach(b=>b.onclick=()=>{ togglePin(b.dataset.alStar); const on=WATCH.has(b.dataset.alStar); b.classList.toggle('on',on); b.innerHTML=on?'&#9733;':'&#9734;'; });
+  };
+  draw();
+  if(AL.data.latest){ alMarkSeen(AL.data.latest); const badge=document.getElementById('alerts-count'); if(badge) badge.hidden=true; }
 }
 
 async function refreshPending(){
@@ -3087,12 +3225,13 @@ function drOpen(d){
 }
 
 
-initUserMenu();
+ACCT.loaded=initUserMenu();
 watchSync();
 
 BUSY=true; buildColPop(); applyState(); BUSY=false;
 setView(VIEW,{keep:true});
 if(window.dsSplashDone) window.dsSplashDone();   /* the ocean loading scene in index.html */
+alertsInit();
 
 }
 

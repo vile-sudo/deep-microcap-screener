@@ -74,12 +74,20 @@ def get_settings_(request: Request, db: Session = Depends(get_db)):
 @router.patch("/api/me/settings")
 def patch_settings(body: SettingsIn, request: Request, db: Session = Depends(get_db)):
     user = _user(request)
-    allowed = {"dark": bool}
     row = _settings(db, user["id"])
     prefs = dict(row.prefs or {})
     for k, v in body.prefs.items():
-        if k in allowed:
-            prefs[k] = allowed[k](v)
+        if k == "dark":
+            prefs[k] = bool(v)
+        elif k == "alerts_seen" and isinstance(v, str) and re.match(r"^\d{4}-\d{2}-\d{2}$", v):
+            prefs[k] = v
+        elif k == "alerts" and isinstance(v, dict):
+            windows = ["1D", "1W", "1M", "6M", "1Y"]
+            prefs[k] = {"highs": [w for w in windows if w in (v.get("highs") or [])],
+                        "lows": [w for w in windows if w in (v.get("lows") or [])],
+                        "ipo": bool(v.get("ipo", True)), "vcp": bool(v.get("vcp", True)),
+                        "scope": v.get("scope") if v.get("scope") in ("watchlist", "board", "market") else "board",
+                        "notify": bool(v.get("notify", False))}
     row.prefs = prefs
     db.commit()
     return {"prefs": prefs}

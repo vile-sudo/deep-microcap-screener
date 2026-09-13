@@ -28,13 +28,14 @@ from pathlib import Path
 import requests
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
-from app import setups  # noqa: E402
+from app import alerts, setups  # noqa: E402
 from app.charts import (  # noqa: E402
     BACKEND_DIR, CHART_DIR, INDEX_FILE, PRICES_DIR, _adjust,
     build_series, isin_index, compute_stats, fetch_bhavcopy, load_index, read_day, safe_name, write_day,
 )
 
 SETUPS_FILE = CHART_DIR / "setups.json"
+ALERTS_FILE = CHART_DIR / "alerts.json"
 
 RAW = BACKEND_DIR / "data" / "companies_raw.json"
 CACHE = BACKEND_DIR / ".bhav_cache"
@@ -213,6 +214,13 @@ def write_setups(records: list[dict], series: dict, days: list) -> None:
         "feed": feed,
         "stocks": dict(sorted(stocks.items())),
     }, separators=(",", ":")), encoding="utf-8")
+    board_items = alerts.board_alerts(records, series, stocks, latest)
+    market_items = alerts.market_alerts(universe, names, listed, market["ipo"], board_symbols, latest)
+    alerts.write(ALERTS_FILE, latest, board_items + market_items)
+    tally = {}
+    for it in board_items:
+        tally[it["type"]] = tally.get(it["type"], 0) + 1
+    print(f"alerts: board {tally}; market-wide {len(market_items)}")
     print(f"setups: VCP {counts}; IPO base {counts_ipo} ({sum(1 for a in stocks.values() if 'ipo' in a)} recent listings); "
           f"market-wide breakouts {len(market['vcp'])} VCP / {len(market['ipo'])} IPO across {len(universe)} liquid NSE stocks; {len(feed)} feed items")
 

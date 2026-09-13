@@ -279,6 +279,24 @@ html[data-mode="dark"] .sf-list li,html[data-mode="dark"] .msg-item{background:v
 html[data-mode="dark"] .btn.danger{color:var(--crit,#eb8585)}
 html[data-mode="dark"] .msg-cat{background:var(--surface-2,#131c23)}
 html[data-mode="dark"] .msg-from a{color:var(--acc-dark,#b8e3f9)}
+html[data-mode="dark"] .nav-bell{background:var(--surface,#0e1418)}
+html[data-mode="dark"] .nav-bell:hover{border-color:#274451}
+html[data-mode="dark"] .al-settings{background:var(--surface-2,#11191f)}
+html[data-mode="dark"] .al-tg{background:var(--surface,#0e1418)}
+html[data-mode="dark"] .al-tg.on{background:#151e25;color:#b9f3cf}
+html[data-mode="dark"] .al-tg.lo.on{background:#131b22;color:#f2a29c}
+html[data-mode="dark"] .al-type{background:var(--surface,#0e1418)}
+html[data-mode="dark"] .al-type span{background:var(--surface-2,#131c23)}
+html[data-mode="dark"] .al-type.on{background:var(--acc-soft,#162c36);color:var(--acc-dark,#b8e3f9)}
+html[data-mode="dark"] .al-row{background:var(--surface,#0e1418)}
+html[data-mode="dark"] .al-link:hover{color:var(--ocean,#a4dcf8)}
+html[data-mode="dark"] .al-mkt{background:var(--surface-2,#131c23)}
+html[data-mode="dark"] .al-hi{background:#172128;color:#b9f3cf}
+html[data-mode="dark"] .al-lo{background:#131b22;color:#f2a29c}
+html[data-mode="dark"] .al-ipo{background:#172c37;color:#b8e3f9}
+html[data-mode="dark"] .al-vcp{background:#121b21;color:#a3abe0}
+html[data-mode="dark"] .al-wins i{background:var(--surface-2,#131c23)}
+html[data-mode="dark"] .al-star.on{color:#f6d88d}
 /* hand-written additions to dark mode, appended to dark.css by build_dark_css.py */
 html[data-mode="dark"] .site-foot{background:no-repeat top center/100% 60px url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 60' preserveAspectRatio='none'%3E%3Cpath d='M0 0 H1440 V22 C1200 58 960 6 720 30 S240 52 0 18Z' fill='%230b141c'/%3E%3C/svg%3E"),linear-gradient(160deg,#0b3954,#08273a)}
 html[data-mode="dark"] .bp-stage b{color:#8fd0f0}
