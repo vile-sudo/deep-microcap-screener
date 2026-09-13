@@ -444,9 +444,10 @@ const HINT={overview:'Click a tile above to see the companies behind that number
             filters:'Click a filter above to see only the companies that match it.'};
 function renderResultsFrame(){
   const show=showResults();
+  const asmeList = show && VIEW==='filters' && TG.asme;
   const head=document.getElementById('results-head'), cnt=document.getElementById('count');
-  document.getElementById('research').hidden=!show;
-  cnt.hidden = !(show || HINT[VIEW]);
+  document.getElementById('research').hidden=!show || asmeList;
+  cnt.hidden = !(show || HINT[VIEW]) || asmeList;
   cnt.classList.toggle('view-hint', !show);
   if(!show) cnt.textContent = HINT[VIEW] || '';
   let label='';
@@ -457,18 +458,22 @@ function renderResultsFrame(){
     label = b ? (b.dataset.label || b.textContent.trim()) : 'Numeric filters';
   }
   head.hidden = !label;
-  renderAsmeOffBoard(show && VIEW==='filters' && TG.asme);
+  renderAsmeOffBoard(asmeList);
   if(label){
-    head.innerHTML=`<div><b>${esc(label)}</b><small>Only the companies that match are listed below</small></div><button class="theme-back" id="results-clear" type="button">✕ Clear</button>`;
+    const sub = asmeList
+      ? `Every NSE/BSE-listed company holding an active ASME certificate${ASME.scanned_on?` (scan of ${esc(ASME.scanned_on)})`:''}, with each certificate type and when it was received. Your board's companies are marked.`
+      : 'Only the companies that match are listed below';
+    head.innerHTML=`<div><b>${esc(label)}</b><small>${sub}</small></div><button class="theme-back" id="results-clear" type="button">✕ Clear</button>`;
     head.querySelector('#results-clear').onclick=()=>{ clearFilters(); render(); };
   }
 }
-/* Under the ASME filter's table: the other listed ASME certificate holders,
-   the ones not on the board, so the filter answers "who holds ASME stamps"
-   and not only "which of mine do". Each shows every certificate type it
-   holds with when that type was first received and last (re)issued, and the
-   list sorts and filters by certification date. */
-const ASME_OFF={sort:'newest', when:'', type:''};
+/* The ASME certified filter: one list of every NSE/BSE-listed ASME
+   certificate holder, the board's own companies and the rest together, in
+   one format. Each card shows every certificate type with when it was first
+   received and last (re)issued; board companies also carry their theme,
+   score and a way into their scorecard. The list sorts and filters by
+   certification date, certificate type and whether a company is on the board. */
+const ASME_OFF={sort:'newest', when:'', type:'', board:''};
 const ASME_OFF_SORTS={
   newest:  {l:'Newest certificate first',          f:(a,b)=>String(b.latest||b.since||'').localeCompare(String(a.latest||a.since||''))},
   oldest:  {l:'Oldest certification first',        f:(a,b)=>String(a.since||'9999').localeCompare(String(b.since||'9999'))},
@@ -477,9 +482,9 @@ const ASME_OFF_SORTS={
 };
 const ASME_OFF_WHEN={
   '':    {l:'Certified: any time'},
-  '1y':  {l:'Certificate issued in the last year',  test:c=>asmeYearsAgo(c.latest||c.since)<=1},
+  '1y':  {l:'Certificate issued in the last year',    test:c=>asmeYearsAgo(c.latest||c.since)<=1},
   '3y':  {l:'Certificate issued in the last 3 years', test:c=>asmeYearsAgo(c.latest||c.since)<=3},
-  'old': {l:'Certified for over 10 years',          test:c=>asmeYearsAgo(c.since)>10},
+  'old': {l:'Certified for over 10 years',            test:c=>asmeYearsAgo(c.since)>10},
 };
 function asmeYearsAgo(iso){
   if(!iso) return Infinity;
@@ -492,7 +497,7 @@ function asmeDate(iso){
 }
 function asmeCertRows(c){
   const types=window.ASME_CERT_TYPES||{};
-  const details=(c.cert_details&&c.cert_details.length) ? c.cert_details : (c.certs||[]).map(code=>({code, first:c.since, latest:null, certificates:null}));
+  const details=(c.cert_details&&c.cert_details.length) ? c.cert_details : (c.certs||[]).map(code=>({code, first:c.since, latest:null}));
   return details.map(x=>`<tr>
       <td><b>${esc(types[x.code]||x.code)}</b> <span class="asme-code">${esc(x.code)}</span></td>
       <td>${asmeDate(x.first)}</td>
@@ -501,38 +506,54 @@ function asmeCertRows(c){
 }
 function renderAsmeOffBoard(on){
   const box=document.getElementById('asme-offboard');
-  const all=(ASME.companies||[]).filter(c=>!c.board_code);
+  const all=(ASME.companies||[]);
   box.hidden = !on || !all.length;
   if(box.hidden){ box.innerHTML=''; return; }
   const types=window.ASME_CERT_TYPES||{};
-  /* certificate types present in the list, by their plain-English name */
+  const byCode={}; DATA.forEach(d=>{ byCode[d.code]=d; });
+  const onBoard=all.filter(c=>c.board_code && byCode[c.board_code]).length;
   const typeNames=[...new Set(all.flatMap(c=>(c.certs||[]).map(x=>types[x]||x)))].sort();
   const when=ASME_OFF_WHEN[ASME_OFF.when]||ASME_OFF_WHEN[''];
-  const list=all.filter(c=>(!when.test||when.test(c)) && (!ASME_OFF.type||(c.certs||[]).some(x=>(types[x]||x)===ASME_OFF.type)))
-                .sort((ASME_OFF_SORTS[ASME_OFF.sort]||ASME_OFF_SORTS.newest).f);
+  const list=all.filter(c=>(!when.test||when.test(c))
+      && (!ASME_OFF.type||(c.certs||[]).some(x=>(types[x]||x)===ASME_OFF.type))
+      && (ASME_OFF.board!=='on' || byCode[c.board_code]) && (ASME_OFF.board!=='off' || !byCode[c.board_code]))
+    .sort((ASME_OFF_SORTS[ASME_OFF.sort]||ASME_OFF_SORTS.newest).f);
   const opt=(obj,cur)=>Object.entries(obj).map(([k,v])=>`<option value="${k}"${k===cur?' selected':''}>${v.l}</option>`).join('');
-  box.innerHTML=`<div class="asme-off-head"><div><b>Also ASME certified — not on your board (${all.length})</b>
-      <small>Listed on NSE/BSE and holding an active ASME certificate${ASME.scanned_on?`, per the scan of ${esc(ASME.scanned_on)}`:''}. Each card lists every certificate type with when it was first received and last issued. Not scored; open one on screener.in to research it.</small></div></div>
-    <div class="asme-off-controls">
+  const boards={'':{l:`All ASME certified (${all.length})`}, on:{l:`On your board (${onBoard})`}, off:{l:`Not on your board (${all.length-onBoard})`}};
+  box.innerHTML=`<div class="asme-off-controls">
+      <select class="gal-select" id="asme-off-board" aria-label="Board">${opt(boards,ASME_OFF.board)}</select>
       <select class="gal-select" id="asme-off-sort" aria-label="Sort">${opt(ASME_OFF_SORTS,ASME_OFF.sort)}</select>
       <select class="gal-select" id="asme-off-when" aria-label="When certified">${opt(ASME_OFF_WHEN,ASME_OFF.when)}</select>
       <select class="gal-select" id="asme-off-type" aria-label="Certificate type"><option value="">All certificate types</option>${typeNames.map(t=>`<option${t===ASME_OFF.type?' selected':''}>${esc(t)}</option>`).join('')}</select>
       <span class="asme-off-n">${list.length} of ${all.length}</span>
     </div>
     ${list.length ? `<div class="asme-off-grid">${list.map(c=>{
-      const yrs=asmeYearsAgo(c.since);
-      return `<article class="asme-off">
+      const d=byCode[c.board_code], yrs=asmeYearsAgo(c.since), on=d && WATCH.has(d.code);
+      const sym=String(c.symbol||'').replace(/-[A-Z]$/,'');
+      return `<article class="asme-off${d?' on-board':''}">
         <div class="asme-off-top">
           <span class="gc-tick">${esc(c.symbol)}</span>
-          <b class="asme-off-name">${esc(c.name)}</b>
-          <a class="asme-link" href="https://www.screener.in/company/${encodeURIComponent(String(c.symbol||'').replace(/-[A-Z]$/,''))}/" target="_blank" rel="noopener">screener ↗</a>
+          <b class="asme-off-name">${esc(d?d.name:c.name)}</b>
+          ${d?`<span class="asme-tag">On your board</span><button type="button" class="bpc-star${on?' on':''}" data-asme-star="${esc(d.code)}" title="${on?'Remove from':'Add to'} watchlist">${on?'★':'☆'}</button>`:''}
         </div>
+        ${d?`<div class="asme-off-board">${esc(shortT(base(d)))} · Score <b>${fmt(d.final_score,1)}</b> · M-cap ₹${fmtI(d.market_cap_cr)} cr · P/E ${fmt(d.pe,1)} · ROCE ${fmt(d.roce_pct)}%</div>`:''}
         <div class="asme-off-meta">${esc((c.exch||[]).join(' + '))} · ASME-certified since <b>${asmeDate(c.since)}</b>${isFinite(yrs)?` (${yrs<1?'under a year':Math.floor(yrs)+' yr'+(Math.floor(yrs)===1?'':'s')})`:''}${c.latest&&c.latest!==c.since?` · latest certificate <b>${asmeDate(c.latest)}</b>`:''}</div>
         <table class="asme-certs-table"><thead><tr><th>Certificate type</th><th>First received</th><th>Latest issued</th></tr></thead><tbody>${asmeCertRows(c)}</tbody></table>
+        <div class="asme-off-acts">
+          ${d?`<button type="button" class="bp-btn" data-asme-card="${esc(d.code)}">Open scorecard</button>`:''}
+          <a class="bp-btn" href="https://www.screener.in/company/${encodeURIComponent(sym)}/" target="_blank" rel="noopener">screener.in ↗</a>
+        </div>
       </article>`; }).join('')}</div>`
     : '<p class="view-hint">No company matches these filters.</p>'}`;
   const bind=(id,key)=>{ document.getElementById(id).onchange=e=>{ ASME_OFF[key]=e.target.value; renderAsmeOffBoard(true); }; };
-  bind('asme-off-sort','sort'); bind('asme-off-when','when'); bind('asme-off-type','type');
+  bind('asme-off-board','board'); bind('asme-off-sort','sort'); bind('asme-off-when','when'); bind('asme-off-type','type');
+  box.querySelectorAll('[data-asme-card]').forEach(b=>b.onclick=()=>{
+    const d=byCode[b.dataset.asmeCard]; if(!d) return;
+    CURRENT=list.map(c=>byCode[c.board_code]).filter(Boolean); openDrawer(d);
+  });
+  box.querySelectorAll('[data-asme-star]').forEach(b=>b.onclick=()=>{
+    togglePin(b.dataset.asmeStar);   /* re-renders the page, which redraws this list */
+  });
 }
 function render(){
   if(BUSY) return;                       /* batched updates render once, at the end */

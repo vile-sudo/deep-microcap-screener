@@ -1079,3 +1079,14 @@ td .thm{font-size:10.5px;text-transform:uppercase;letter-spacing:.05em;color:var
 .bp-bwin span{min-width:22px;padding:0 7px;border-radius:999px;background:#f3f4f6;color:#374151;font-size:11.5px;font-weight:700;text-align:center}
 .bp-bwin:hover{border-color:#86efac}
 .bp-bwin.on{border-color:#15803d;background:#15803d;color:#fff}.bp-bwin.on span{background:rgba(255,255,255,.22);color:#fff}
+
+/* ASME certified: one combined list */
+.asme-off.on-board{border-color:#fcd34d;background:#fffdf5}
+.asme-off-top .asme-tag{flex:none}
+.asme-off-top .bpc-star{flex:none}
+.asme-off-board{margin-top:6px;color:var(--ink2);font-size:12px}
+.asme-off-board b{color:var(--ink)}
+.asme-off-acts{display:flex;gap:8px;margin-top:10px}
+.asme-off-acts a.bp-btn{text-decoration:none}
+.asme-off-acts .bp-btn{border:1px solid #e5e7eb;background:#fff;color:#111827}
+.asme-off-acts .bp-btn:hover{border-color:#15803d;color:#15803d}
