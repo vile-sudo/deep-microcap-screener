@@ -301,5 +301,279 @@
   "confirm_note": "Searched for independent corroboration of the 'No.1 hospital in Punjab among 715/720 PMJAY-empanelled hospitals' claim: State Health Agency Punjab's public hospital-search page, National Health Authority/PMJAY press releases, Arogya Manthan 2022 award coverage (PIB, medicaldialogues), and news search for the hospital name plus 'award'/'number 1'. Every hit traces back to the company's own website (anilbaghihospital.com, which repeats the identical wording) or the prospectus itself — no SHA Punjab or NHA press release, gazette, or independent news report naming Anil Baghi Hospital was found. This does not contradict the claim; it is the expected absence-of-coverage case for a Tier-3-city SME hospital.",
   "research_note": "ABH Healthcare Limited runs a single 150-bed multi-specialty hospital ('Anil Baghi Hospital', acquired from the promoter's sole proprietorship in 2022, originally a 30-bed facility founded in 1985) in Ferozepur, Punjab, offering 25 specialties; it derives essentially 100% of revenue from this one facility, 100% geographically concentrated in Ferozepur. Screener shows only bare metrics (market cap ~Rs 83cr, P/E 14.5, ROCE 19.9%, ROE 39.6%), no business description, as expected for an SME-platform name. NABH accreditation and pending trademarks are table-stakes, not moat evidence, but the DRHP separately states the hospital was recognized in 2022 as Punjab's leading hospital among 715-720 PMJAY-empanelled hospitals — a concrete, sourced regional-leadership claim, though uncorroborated outside the company's own materials.",
   "flag": "unclear"
+ },
+ {
+  "sym": "544328",
+  "name": "Indo Farm Equipment Ltd",
+  "board": "BSE",
+  "isin": "INE622H01018",
+  "listed": null,
+  "hint": "industrial & capital goods",
+  "why": "small-cap sweep",
+  "mktcap_cr": 682.09,
+  "plausible": true,
+  "verdict": null,
+  "seen_on": "2026-09-13",
+  "source": "sweep",
+  "moat_signal": true,
+  "moat_evidence": [
+   "import substitution: \"For the initial 2 years, we have imported completely assembled engines and later on, we have indigenized and upgraded the engines to meet out the fast changing emission norms requirements of our country In the year 2006, we set up our in-house captive foundry and in the year 2007 we have introduced Pick & Carry Cranes to our portfolio and have been one of the pioneers in this segment.\" (prospectus, company-stated)",
+   "import substitution: \"Some of our key achievements in R&D: • Indigenization of technology, for manufacture of high-grade tractor engines for our 2-series tractors, obtained initially from Ursus, Poland.\" (prospectus, company-stated)"
+  ],
+  "profile": {
+   "symbol": "544328",
+   "company": "Indo Farm Equipment Limited",
+   "isin": "INE622H01018",
+   "board": "BSE",
+   "source": {
+    "document": "final prospectus",
+    "url": "https://nsearchives.nseindia.com/corporate/FP_INE622H01018_06JAN2025.pdf",
+    "filed": "06-Jan-2025",
+    "pdf_bytes": 17269976,
+    "extracted_chars": 1346535
+   },
+   "grade": "company-stated",
+   "verified_against": null,
+   "claims": {
+    "accreditation": {
+     "count": 5,
+     "dropped_as_industry_commentary": 8,
+     "terms": [
+      "ISO 9001"
+     ],
+     "evidence": [
+      {
+       "match": "ISO 9001",
+       "sentence": "We manufacture our products through ISO 9001:2015 certified manufacturing units."
+      },
+      {
+       "match": "ISO 9001",
+       "sentence": "Our ISO 9001:2015 certified manufacturing facilities are spread across 127,840 sq."
+      },
+      {
+       "match": "ISO 9001",
+       "sentence": "Some of them are as below: Fully Integrated and established Manufacturing Setup Our ISO 9001:2015 certified manufacturing facilities are spread across 127,840 sq."
+      }
+     ]
+    },
+    "import_substitution": {
+     "count": 2,
+     "dropped_as_industry_commentary": 1,
+     "terms": [
+      "indigenized",
+      "Indigenization"
+     ],
+     "evidence": [
+      {
+       "match": "indigenized",
+       "sentence": "For the initial 2 years, we have imported completely assembled engines and later on, we have indigenized and upgraded the engines to meet out the fast changing emission norms requirements of our country In the year 2006, we set up our in-house captive foundry and in the year 2007 we have introduced Pick & Carry Cranes to our portfolio and have been one of the pioneers in this segment."
+      },
+      {
+       "match": "Indigenization",
+       "sentence": "Some of our key achievements in R&D: • Indigenization of technology, for manufacture of high-grade tractor engines for our 2-series tractors, obtained initially from Ursus, Poland."
+      }
+     ]
+    },
+    "ip": {
+     "count": 16,
+     "dropped_as_industry_commentary": 29,
+     "terms": [
+      "Trademarks",
+      "trademarks",
+      "trademark",
+      "Trademark"
+     ],
+     "evidence": [
+      {
+       "match": "Trademarks",
+       "sentence": "Tax deduction account number 13 Term TIN Trademarks Act TDS UPI US/United States USD/ US$/ $ U."
+      },
+      {
+       "match": "trademarks",
+       "sentence": "India and other countries; • Changes in government policies and regulatory actions that apply to or affect our business; • Inability to adequately protect our trademarks; • The performance of the financial markets in India and globally; • The occurrence of natural disasters or calamities and • Failure to successfully upgrade our products and service portfolio, from time to time."
+      },
+      {
+       "match": "trademarks",
+       "sentence": "Any failure to protect or enforce our rights to own or use trademarks and brand names and identities could have an adverse effect on our business and competitive position."
+      }
+     ]
+    }
+   },
+   "risk_factors": {
+    "customer_concentration": {
+     "count": 1,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "top ten customers"
+     ],
+     "evidence": [
+      {
+       "match": "top ten customers",
+       "sentence": "Our top ten customers/ dealers contribute to 39."
+      }
+     ]
+    },
+    "promoter_litigation": {
+     "count": 30,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "Criminal Proceedings",
+      "proceedings involving our Promoters",
+      "criminal case",
+      "criminal complaint",
+      "criminal proceedings",
+      "Criminal Complaint",
+      "Criminal Case",
+      "Criminal complaint"
+     ],
+     "evidence": [
+      {
+       "match": "Criminal Proceedings",
+       "sentence": "y By our Subsidiary Company affecting business operations of our Company Litigation against our Subsidiary Company affecting business operations of our Company Criminal Proceedings Tax proceedings Statutory/ Regulatory proceedings Disciplinary actions by the SEBI or stock Exchanges against our Promoter 8 3 - - 1# 268."
+      },
+      {
+       "match": "proceedings involving our Promoters",
+       "sentence": "Mentioned below are the details of the proceedings involving our Promoters/Directors, and our Subsidiary as on the date of this Prospectus along with the amount involved, to the extent quantifiable, based on the materiality policy for litigations, as approved by the Company in its Board meeting held on August 25, 2023."
+      },
+      {
+       "match": "Criminal Proceedings",
+       "sentence": "ry actions by the SEBI or stock Exchanges against our Promoter Aggregate Material amount involved civil to the extent litigations ascertainable (₹ in million)* Criminal Proceedings Tax proceedings Statutory/ Regulatory proceedings 8 3 - - 1# 268."
+      }
+     ]
+    },
+    "related_party": {
+     "count": 17,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "related party transactions",
+      "Related Party Transactions",
+      "Related party transactions"
+     ],
+     "evidence": [
+      {
+       "match": "related party transactions",
+       "sentence": "Persons holding Equity Share of our Company Executive Directors(s) on our Board Companies (other than our Subsidiaries) with which there were related party transactions as disclosed in the Restated Financial Statements as covered under the applicable accounting standards, and as disclosed in “Our Group Companies” on page no."
+      },
+      {
+       "match": "Related Party Transactions",
+       "sentence": "Related Party Transactions A."
+      },
+      {
+       "match": "related party transactions",
+       "sentence": "50 For further information on our related party transactions, see “Restated Financial Statements – Related party disclosure on page no."
+      }
+     ]
+    }
+   },
+   "objects_of_the_issue": {
+    "offer_for_sale": {
+     "count": 38,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "Offer for Sale",
+      "OFFER FOR SALE",
+      "Offer for sale",
+      "offer for sale"
+     ],
+     "evidence": [
+      {
+       "match": "Offer for Sale",
+       "sentence": "For details in relation to share reservation Fresh Issue and Shares of face value of of face value of ₹10 each of face value of ₹10 each among Qualified Institutional Buyers, Non-Institutional Offer for Sale ₹10 each aggregating to aggregating to ₹ 752."
+      },
+      {
+       "match": "OFFER FOR SALE",
+       "sentence": "DETAILS OF OFFER FOR SALE BY THE SELLING SHAREHOLDER NAME OF SELLING SHAREHOLDER TYPE WEIGHTED AVERAGE COST OF ACQUISITION ON FULLY DILUTED BASIS (IN ₹ PER EQUITY SHARE) 2."
+      },
+      {
+       "match": "Offer for Sale",
+       "sentence": "Shareholder in this Prospectus solely to the extent of information specifically pertaining to itself and its portion of the Equity Shares offered by it in the Offer for Sale, and assumes responsibility that such statements are true and correct in all material respects and are not misleading in any material respect."
+      }
+     ]
+    },
+    "fresh_issue": {
+     "count": 41,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "FRESH ISSUE",
+      "Fresh Issue"
+     ],
+     "evidence": [
+      {
+       "match": "FRESH ISSUE",
+       "sentence": "in PROMOTERS OF OUR COMPANY: RANBIR SINGH KHADWALIA AND SUNITA SAINI DETAILS OF THE OFFER FRESH ISSUE SIZE* OFS SIZE* TOTAL OFFER SIZE* Eligibility – 6(1) / 6(2) & Share Reservation among QIB, TYPE (₹ IN MILLIONS) (₹ IN MILLIONS) (₹ IN MILLION) NII &RII Initial Public Offer of The Offer is"
+      },
+      {
+       "match": "Fresh Issue",
+       "sentence": "For details in relation to share reservation Fresh Issue and Shares of face value of of face value of ₹10 each of face value of ₹10 each among Qualified Institutional Buyers, Non-Institutional Offer for Sale ₹10 each aggregating to aggregating to ₹ 752."
+      },
+      {
+       "match": "Fresh Issue",
+       "sentence": "Accordingly, the size of the Issue has been reduced from 14,000,000 Equity Shares to 12,100,000 Equity Shares of Face Value of ₹ 10 each and the size of Fresh Issue has been reduced from 10,500,000 Equity Shares to 8,600,000 Equity Shares of Face Value of ₹ 10 each."
+      }
+     ]
+    },
+    "capital_expenditure": {
+     "count": 25,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "capital expenditure",
+      "Expansion of our",
+      "expansion of our",
+      "setting up of"
+     ],
+     "evidence": [
+      {
+       "match": "capital expenditure",
+       "sentence": "• Inability to identify the new premises may adversely affect the operations, finances and profitability of the Company; • Our ability to successfully implement our growth strategy and expansion plans; • Volatility of Loan interest rates and inflation; • Our ability to meet our further capital expenditure requirements; • Fluctuations in operating costs; • Our ability to attract and retain qualified personnel; • Conflict of Interest with affiliated companies, the promoter group and o"
+      },
+      {
+       "match": "Expansion of our",
+       "sentence": "Particulars Amount Setting up new Dedicated Unit for Expansion of our Pick & Carry Cranes 1 700."
+      },
+      {
+       "match": "capital expenditure",
+       "sentence": "adversely affect our manufacturing and distribution activities, further resulting in modification of our business strategy, or require us to incur significant capital expenditure, which will in turn have a material adverse effect on our business, financial condition, results of operations, and cash flows."
+      }
+     ]
+    },
+    "working_capital": {
+     "count": 1,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "working capital requirement"
+     ],
+     "evidence": [
+      {
+       "match": "working capital requirement",
+       "sentence": "The increase was mainly due to higher interest rates on loans or borrowings, additional financing for working capital requirement."
+      }
+     ]
+    },
+    "general_corporate": {
+     "count": 11,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "General Corporate Purposes",
+      "general corporate purposes",
+      "General Corporate Purpose"
+     ],
+     "evidence": [
+      {
+       "match": "General Corporate Purposes",
+       "sentence": "4 General Corporate Purposes(1) 29."
+      },
+      {
+       "match": "General Corporate Purposes",
+       "sentence": "70 million have been utilized towards General Corporate Purposes (working capital & operating expenses)."
+      },
+      {
+       "match": "General Corporate Purposes",
+       "sentence": "The amount utilised for General Corporate Purposes shall not exceed 25% of the Gross Proceeds of the Offer."
+      }
+     ]
+    }
+   },
+   "profiled_on": "2026-09-13"
+  }
  }
 ]
