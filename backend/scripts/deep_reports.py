@@ -16,7 +16,7 @@ When a company is due
     either an earnings-call transcript dated after that quarter is out, or
     WAIT_FOR_CALL_DAYS have passed since the new results were first seen
     (so the report reads what management said about the quarter).
-At most --max-reports a day (default 3 with Claude Code), new results before first coverage,
+At most --max-reports a day (default 2 with Claude Code), new results before first coverage,
 so the ~390 companies are covered in a few weeks and then refresh as each one
 files; a quarter's results arrive over about six weeks, which spreads the load.
 
@@ -173,7 +173,7 @@ def index_entry(r: dict, pdf_base: str | None) -> dict:
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--codes", help="comma-separated board codes (ignores the schedule)")
-    ap.add_argument("--max-reports", type=int, default=int(os.environ.get("REPORTS_PER_DAY") or ("3" if ENGINE != "api" else "8")))
+    ap.add_argument("--max-reports", type=int, default=int(os.environ.get("REPORTS_PER_DAY") or ("2" if ENGINE != "api" else "8")))
     ap.add_argument("--max-cost-usd", type=float, default=float(os.environ.get("REPORT_MAX_COST_USD", "0") or 0),
                     help="stop the run once this much has been spent (needs REPORT_PRICE_IN/_OUT)")
     ap.add_argument("--force", action="store_true", help="rewrite even if the latest quarter is already covered")

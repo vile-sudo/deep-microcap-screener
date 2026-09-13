@@ -184,7 +184,7 @@ holds only those public documents, with file tools only (no shell, no web).
 **Schedule** (step 6 of `daily.yml`): a company is due when it has no report,
 or when screener shows a newer results quarter than its report — the report
 then waits for that quarter's earnings-call transcript, for up to 21 days.
-At most `REPORTS_PER_DAY` a day (default 3). A deep dive takes Claude roughly
+At most `REPORTS_PER_DAY` a day (default 2). A deep dive takes Claude roughly
 15-40 minutes and counts against the plan's usage limits; when a limit is hit
 the run stops cleanly and the next morning carries on. PDFs are printed from
 the dashboard's report page (`automation/render-report-pdfs.mjs`, step 7) and
@@ -199,7 +199,7 @@ in `automation/data/deep-reports.json`.
 2. GitHub → repo **Settings → Secrets and variables → Actions → New repository
    secret**: name `CLAUDE_CODE_OAUTH_TOKEN`, value the token. Never commit it
    or paste it anywhere else.
-3. Optional **variables** on the same page: `REPORTS_PER_DAY` (default 3),
+3. Optional **variables** on the same page: `REPORTS_PER_DAY` (default 2),
    `REPORT_MODEL` (default `opus`; `sonnet` uses less of the plan).
 4. Try one or two first: *Actions → Deep-dive reports → Run workflow* with a
    company code, read the report on the dashboard, then let the daily run work

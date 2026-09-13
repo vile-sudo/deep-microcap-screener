@@ -122,7 +122,7 @@ jobs:
       # Quarterly deep-dive reports: a small batch a day, as companies file
       # results, written by Claude Code on the owner's Claude Max plan. Off until
       # the CLAUDE_CODE_OAUTH_TOKEN secret exists (create it with `claude setup-token`).
-      # Optional repo variables: REPORTS_PER_DAY (default 3), REPORT_MODEL (default opus),
+      # Optional repo variables: REPORTS_PER_DAY (default 2), REPORT_MODEL (default opus),
       # REPORT_ENGINE=api to use a paid ANTHROPIC_API_KEY instead.
       - name: 6. Deep-dive reports
         id: reports
