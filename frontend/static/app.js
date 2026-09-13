@@ -218,6 +218,8 @@ function setView(v, opts){
   render();
   if(VIEW==='gallery') openGallery();
   if(VIEW==='market') openMarket();
+  const ts=document.getElementById('top-search');
+  if(ts && VIEW!=='companies') ts.value='';
 }
 Object.keys(NAV).forEach(id=>{
   const link=document.getElementById(id);
@@ -299,6 +301,21 @@ document.querySelectorAll('[data-tg]').forEach(b=>{
 });
 /* ---------- search ---------- */
 const qIn=document.getElementById('q'), qWrap=document.getElementById('swrap');
+/* Top bar: logo goes home, the search box opens Companies with the query,
+   footer links follow the same routes as the tabs. */
+(function(){
+  const ts=document.getElementById('top-search');
+  let timer=0;
+  const go=()=>{ const v=ts.value; if(VIEW!=='companies') setView('companies'); setQuery(v); ts.focus(); };
+  ts.oninput=()=>{ clearTimeout(timer); timer=setTimeout(go,160); };
+  ts.onkeydown=e=>{ if(e.key==='Enter'){ clearTimeout(timer); go(); } if(e.key==='Escape'){ ts.value=''; go(); } };
+  document.getElementById('brand-link').onclick=()=>setView('overview');
+  document.querySelectorAll('[data-foot]').forEach(b=>b.onclick=()=>{
+    const id=b.dataset.foot;
+    if(id==='method') setView('method',{nav:null});
+    else document.getElementById(id).click();
+  });
+})();
 function setQuery(v){
   qIn.value=v; QUERY=v.trim().toLowerCase();
   QTERMS = QUERY ? QUERY.split(/\s+/).filter(Boolean) : [];
@@ -308,10 +325,10 @@ function setQuery(v){
 /* a keystroke used to rebuild all 310 rows and redraw all three charts; at that
    size the page visibly stalls mid-word, so settle briefly before re-rendering */
 let qTimer=0;
-qIn.oninput=()=>{ clearTimeout(qTimer); qTimer=setTimeout(()=>setQuery(qIn.value),110); };
+qIn.oninput=()=>{ clearTimeout(qTimer); qTimer=setTimeout(()=>{ setQuery(qIn.value); document.getElementById('top-search').value=qIn.value; },110); };
 document.getElementById('qclear').onclick=()=>{setQuery(''); qIn.focus();};
 addEventListener('keydown',e=>{
-  if(e.key==='/' && document.activeElement!==qIn){ e.preventDefault(); qIn.focus(); }
+  if(e.key==='/' && !/^(INPUT|TEXTAREA|SELECT)$/.test((document.activeElement||{}).tagName||'')){ e.preventDefault(); document.getElementById('top-search').focus(); }
   if(e.key==='Escape' && document.activeElement===qIn && QUERY){ setQuery(''); }
 });
 const SUGG=['torpedo','CRGO','NABL','DRDO','sole Indian','debunked','import substitution',
@@ -1377,6 +1394,11 @@ const GMONTHS=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov'
 const GSERIES=new Map(), GPROM=new Map(), GQUEUE=[];
 let GAL=null, GALLOADING=null, GACTIVE=0, GOBS=null;
 document.getElementById('gallery-count').textContent=DATA.length;
+GALLOADING = fetchJSON('/api/charts').catch(()=>({companies:{}})).then(j=>{
+  GAL=j; buildGalControls();
+  const up=document.getElementById('nav-upd');
+  if(j.latest_session){ up.innerHTML=`<i></i>Updated · ${galDay(j.latest_session)}`; up.hidden=false; }
+});
 
 const galStats = d => (GAL && GAL.companies[d.code]) || (GSERIES.get(d.code)||{}).stats || null;
 const galDay = iso => { const [y,m,dd]=String(iso).split('-').map(Number); return `${dd} ${GMONTHS[m-1]} ${y}`; };

@@ -4,62 +4,38 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Deep Sweep</title>
-<meta name="description" content="Deep Sweep — a dark ocean-themed research board for microcap and quality-first names.">
+<meta name="description" content="Deep Sweep — a research board for Indian microcap and quality-first names: stage screens, IPO bases, charts and ASME certification.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%94%8D%3C/text%3E%3C/svg%3E">
-<link rel="stylesheet" href="/static/style.css?v=28">
+<link rel="stylesheet" href="/static/style.css?v=29">
 </head>
 <body>
-<div class="wrap">
-<div class="dashboard-shell">
-<aside class="side-nav" aria-label="Dashboard navigation">
-  <div class="side-brand">
-    <div class="side-mark" aria-hidden="true"><span></span><span></span><span></span></div>
-    <div><strong>Deep Sweep</strong><small>Research terminal</small></div>
-  </div>
-  <nav class="side-links">
-    <div class="side-label">START</div>
-    <button class="side-link active" id="overview-link" type="button"><span class="side-icon">⌂</span>Overview</button>
-    <div class="side-label">MARKET</div>
-    <button class="side-link" id="themes-link" type="button"><span class="side-icon">↗</span>Themes</button>
-    <button class="side-link" id="market-link" type="button"><span class="side-icon">◒</span>Market view</button>
-    <button class="side-link" id="watchlist-link" type="button"><span class="side-icon">★</span>Watchlist <span class="side-count" id="wcount"></span></button>
-    <div class="side-label">RESEARCH</div>
-    <button class="side-link" id="companies-link" type="button"><span class="side-icon">⌕</span>Companies</button>
-    <button class="side-link" id="filters-link" type="button"><span class="side-icon">≡</span>Screen filters</button>
-    <div class="side-label">CHARTS</div>
-    <button class="side-link" id="gallery-link" type="button"><span class="side-icon">▥</span>Chart Gallery <span class="side-count" id="gallery-count"></span></button>
-  </nav>
-  <div class="side-foot">
-    <span class="status-dot"></span>
-    <span><b>Board online</b><small>Live research data</small></span>
-  </div>
-</aside>
-<main class="dashboard-main">
-
-<div class="hero">
-<div class="herobg" aria-hidden="true">
-  <span class="hqmark">&ldquo;</span><span class="hqtext" id="hqtext"></span>
-</div>
-
-<header class="topbar">
-  <div class="brand">
-    <div class="brand-mark" aria-hidden="true">
-      <span class="wave wave-one"></span>
-      <span class="wave wave-two"></span>
-      <span class="wave wave-three"></span>
-    </div>
-    <div class="brand-copy">
-      <div class="brand-name">Deep Sweep</div>
-      <div class="brand-tag">Screened companies with the MOAT</div>
-    </div>
-  </div>
-
-  <div class="market-box">
-    <div class="market-label">MARKET DAY</div>
-    <div class="market-value">Thursday, 10 September 2026 <span>Updated 10 Sept, 18:48 IST</span></div>
+<header class="nav" id="topnav">
+  <div class="nav-in">
+    <button class="nav-brand" id="brand-link" type="button" title="Overview">
+      <span class="nav-mark" aria-hidden="true"><svg viewBox="0 0 32 32"><path d="M3 22c4 0 5-6 9-6s5 6 9 6 5-10 8-12"/><path d="M3 27h26"/></svg></span>
+      <span class="nav-name"><b>Deep<em>Sweep</em></b><small>Screened companies with the MOAT</small></span>
+    </button>
+    <label class="nav-search" title="Search any company on the board">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="m16 16 4.5 4.5"/></svg>
+      <input id="top-search" type="search" autocomplete="off" spellcheck="false" placeholder="Search any company" aria-label="Search any company">
+    </label>
+    <nav class="nav-tabs" aria-label="Dashboard">
+      <button class="side-link active" id="overview-link" type="button"><svg viewBox="0 0 24 24"><path d="M3 11.5 12 4l9 7.5"/><path d="M5.5 10v9.5h13V10"/></svg>Overview</button>
+      <button class="side-link" id="themes-link" type="button"><svg viewBox="0 0 24 24"><path d="M3.5 7.5h6l2 2h9v10h-17z"/></svg>Themes</button>
+      <button class="side-link" id="market-link" type="button"><svg viewBox="0 0 24 24"><path d="M4 19.5h16"/><path d="M7 16v-5"/><path d="M12 16V7"/><path d="M17 16v-8"/></svg>Market</button>
+      <button class="side-link" id="watchlist-link" type="button"><svg viewBox="0 0 24 24"><path d="M12 4.5l2.3 4.7 5.2.8-3.8 3.6.9 5.2L12 16.4l-4.6 2.4.9-5.2-3.8-3.6 5.2-.8z"/></svg>Watchlist<span class="side-count" id="wcount"></span></button>
+      <button class="side-link" id="companies-link" type="button"><svg viewBox="0 0 24 24"><path d="M6 20V5.5h8V20"/><path d="M14 10h4v10"/><path d="M9 9h2M9 12.5h2M9 16h2"/></svg>Companies</button>
+      <button class="side-link" id="filters-link" type="button" title="Screen filters"><svg viewBox="0 0 24 24"><path d="M3 12h4l2.5-5 4 10 2.5-5H21"/></svg>Screens</button>
+      <button class="side-link" id="gallery-link" type="button" title="Chart Gallery"><svg viewBox="0 0 24 24"><rect x="4" y="4.5" width="16" height="15" rx="2"/><path d="M8 15l3-3.5 2.5 2 3-4.5"/></svg>Charts<span class="side-count" id="gallery-count"></span></button>
+    </nav>
+    <span class="nav-upd" id="nav-upd" hidden></span>
   </div>
 </header>
-</div>
+
+<div class="wrap">
+<div class="dashboard-shell">
+<main class="dashboard-main">
+
 
 <section class="overview-section" data-views="overview" aria-labelledby="overview-title">
   <div class="section-heading"><div><span class="eyebrow">START</span><h1 id="overview-title">Company overview</h1><p class="section-copy">A concise view of the screened companies currently on the board. Click a tile to see the companies behind it.</p></div></div>
@@ -279,12 +255,21 @@
 </main>
 </div>
 
+<footer class="site-foot">
+  <p><b>Important.</b> Deep Sweep is a stock research and screening board for Indian equities — not investment advice, and not a SEBI-registered adviser or research analyst. Stages, scores and flags follow fixed rules over exchange data and company filings, which can lag or be wrong; verify before acting, and consult a SEBI-registered adviser before investing.</p>
+  <div class="site-foot-row">
+    <nav aria-label="Footer">
+      <button type="button" data-foot="overview-link">Overview</button><button type="button" data-foot="market-link">Market</button><button type="button" data-foot="filters-link">Screens</button><button type="button" data-foot="gallery-link">Charts</button><button type="button" data-foot="companies-link">Companies</button><button type="button" data-foot="method">How it works</button>
+    </nav>
+    <span>© 2026 Deep Sweep</span>
+  </div>
+</footer>
+
 <div class="scrim" id="scrim"></div>
 <aside class="drawer" id="drawer" aria-label="Company detail"></aside>
 <div class="modal" id="modal" role="dialog" aria-modal="true"><div class="mbox"><button class="close" id="mclose" aria-label="Close">&times;</button><div id="mbody"></div></div></div>
 
-<script src="/static/quotes.js?v=5" defer></script>
 <script src="/static/asme-certified.js?v=5" defer></script>
-<script src="/static/app.js?v=28" defer></script>
+<script src="/static/app.js?v=29" defer></script>
 </body>
 </html>

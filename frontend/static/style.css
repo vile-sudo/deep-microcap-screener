@@ -1090,3 +1090,143 @@ td .thm{font-size:10.5px;text-transform:uppercase;letter-spacing:.05em;color:var
 .asme-off-acts a.bp-btn{text-decoration:none}
 .asme-off-acts .bp-btn{border:1px solid #e5e7eb;background:#fff;color:#111827}
 .asme-off-acts .bp-btn:hover{border-color:#15803d;color:#15803d}
+
+/* ================================================================
+   Bananapatterns look — top navigation bar, system type, white cards,
+   pale-yellow active tab, green actions. Appended last so it wins over
+   the older sidebar/dashboard rules without editing them.
+   ================================================================ */
+:root[data-theme="light"]{
+  --ink:#1a1a17; --ink2:#3f4652; --muted:#6b7480; --grid:#e9ecef; --ring:#e9ecef; --axis:#d6dade;
+  --acc:#1a8a4a; --acc-dark:#156e3b; --acc-soft:#edf8f1; --tab-on:#fff3cf; --panel:#f8f9fb;
+}
+html,body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+body{font-size:15px;color:var(--ink);background:#fff}
+.hero,.side-nav{display:none!important}
+
+/* ---- top bar ---- */
+.nav{position:sticky;top:0;z-index:35;background:rgba(255,255,255,.985);border-bottom:1px solid var(--grid);backdrop-filter:saturate(1.2) blur(6px)}
+.nav-in{max-width:1400px;margin:0 auto;padding:0 20px;min-height:67px;display:flex;align-items:center;gap:18px}
+.nav-brand{display:flex;align-items:center;gap:10px;flex:none;padding:0;border:0;background:none;color:var(--ink);font:inherit;text-align:left;cursor:pointer}
+.nav-mark{display:grid;place-items:center;width:36px;height:36px;border-radius:10px;background:linear-gradient(145deg,#ffd84d,#f2b705);box-shadow:0 2px 6px rgba(242,183,5,.35)}
+.nav-mark svg{width:26px;height:26px;fill:none;stroke:#1a1a17;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
+.nav-name b{display:block;font-size:18px;font-weight:700;letter-spacing:-.02em;line-height:1.1}
+.nav-name b em{font-style:normal;color:var(--acc)}
+.nav-name small{display:block;margin-top:1px;color:var(--acc-dark);font-size:11px;font-weight:600}
+.nav-search{flex:1;max-width:480px;min-width:200px;height:40px;margin-left:auto;display:flex;align-items:center;gap:9px;padding:0 16px;border:1px solid var(--grid);border-radius:22px;background:#f7f8fa;cursor:text}
+.nav-search:focus-within{background:#fff;border-color:var(--acc);box-shadow:0 0 0 3px rgba(26,138,74,.12)}
+.nav-search svg{width:17px;height:17px;flex:none;fill:none;stroke:#d9423a;stroke-width:2.2;stroke-linecap:round}
+.nav-search input{flex:1;min-width:0;height:100%;border:0;outline:0;background:transparent;color:var(--ink);font:inherit;font-size:14px;font-weight:500}
+.nav-search input::placeholder{color:#6b7480}
+.nav-tabs{display:flex;align-items:center;gap:4px;margin-left:auto}
+.nav .nav-tabs .side-link{display:inline-flex;align-items:center;gap:7px;width:auto;min-height:38px;margin:0;padding:0 12px;border:0;border-radius:8px;background:none;color:#6b7480;font:inherit;font-size:14px;font-weight:500;white-space:nowrap;cursor:pointer}
+.nav .nav-tabs .side-link svg{width:17px;height:17px;flex:none;fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+.nav .nav-tabs .side-link:hover{background:#f7f8fa;color:var(--ink)}
+.nav .nav-tabs .side-link.active{background:var(--tab-on);color:var(--acc-dark);font-weight:600}
+.nav .side-count{margin-left:1px;min-width:0;padding:0 6px;border-radius:999px;background:#eef0f3;color:#3f4652;font-size:11px;font-weight:600;line-height:18px}
+.nav .side-link.active .side-count{background:rgba(21,110,59,.12);color:var(--acc-dark)}
+.nav-upd{display:inline-flex;align-items:center;gap:7px;flex:none;color:#3f4652;font-size:12.5px;white-space:nowrap}
+.nav-upd i{width:8px;height:8px;border-radius:50%;background:#22a05a}
+
+/* ---- page frame ---- */
+.wrap{max-width:1400px;padding:26px 20px 30px}
+.dashboard-shell{display:block}
+.dashboard-main{width:100%}
+.eyebrow{display:none}
+.section-heading{margin-bottom:16px}
+.section-heading h1{font-size:29px;font-weight:700;letter-spacing:-.02em}
+.section-heading h2{font-size:21px;font-weight:650;letter-spacing:-.01em}
+.section-copy{margin-top:4px;color:var(--muted);font-size:14px}
+.section-note{color:var(--muted);font-size:12.5px}
+h1,h2,h3{color:var(--ink)}
+
+/* ---- cards, panels, tiles ---- */
+.card{border:1px solid var(--grid);border-radius:14px;box-shadow:none;background:#fff}
+:root[data-theme="light"] .theme-panel,:root[data-theme="light"] .filter-panel,:root[data-theme="light"] .theme-results,
+:root[data-theme="light"] .results-head,:root[data-theme="light"] .asme-off-head{background:var(--panel);border:1px solid var(--grid);border-radius:16px}
+.theme-panel,.filter-panel{padding:22px 24px}
+.tglab,.slider-heading .tglab{color:#3f4652;font-size:12px;font-weight:700;letter-spacing:.02em;text-transform:none}
+.tiles{gap:12px;margin:18px 0}
+.tile{position:relative;padding:18px 18px 16px;border:1px solid var(--grid);border-radius:12px;background:#fff;box-shadow:none}
+.tile::before{content:none}
+button.tile::after{content:"tap to view ›";position:absolute;top:10px;right:12px;color:#9aa1ab;font-size:11px;letter-spacing:0;text-transform:none}
+button.tile:hover{border-color:#8ad3a8;transform:none;box-shadow:none}
+button.tile.on{border:2px solid var(--acc);background:var(--acc-soft);padding:17px 17px 15px;box-shadow:none}
+button.tile.on::after{color:var(--acc)}
+.tile .v{margin-top:14px;font-family:inherit;font-size:28px;font-weight:700;letter-spacing:-.02em}
+.tile .k{margin-top:4px;color:var(--ink);font-size:13.5px;font-weight:600;letter-spacing:0;text-transform:none}
+.tile .n{margin-top:3px;color:var(--muted);font-size:12px;font-style:italic}
+button.tile .k::after{content:none}
+.tile .tbar{margin-top:10px;height:3px}
+
+:root[data-theme="light"] .theme-panel .chip{min-height:46px;border:1px solid var(--grid);border-radius:12px;background:#fff;color:var(--ink);font-size:14px;font-weight:500}
+:root[data-theme="light"] .theme-panel .chip:hover{border-color:#8ad3a8;background:#fff}
+:root[data-theme="light"] .theme-panel .chip .tc{background:#eef0f3;color:#3f4652}
+:root[data-theme="light"] .company-file,:root[data-theme="light"] .asme-off,:root[data-theme="light"] .gcard{border:1px solid var(--grid);border-radius:12px;background:#fff}
+:root[data-theme="light"] .company-file:hover,:root[data-theme="light"] .gcard:hover,:root[data-theme="light"] .asme-off:hover{border-color:#8ad3a8}
+.results-head b{font-size:16px}
+.view-hint{border-radius:12px;color:var(--muted);font-size:13.5px}
+
+/* ---- buttons and inputs ---- */
+.btn{border:1px solid var(--grid);border-radius:8px;background:#fff;color:var(--ink);font-size:13px;font-weight:500;box-shadow:none}
+.btn:hover:not(:disabled){border-color:#c3c8cf;transform:none}
+:root[data-theme="light"] .btn.on,:root[data-theme="light"] .filter-panel .btn.on{background:var(--acc);border-color:var(--acc);color:#fff}
+:root[data-theme="light"] .filter-panel .btn{border:1px solid var(--grid);background:#fff;color:var(--ink);font-weight:500}
+.theme-back{color:var(--acc);font-weight:600}
+.searchwrap input,.gal-search,.gal-select,.bp-select,.bp-find{border-color:var(--grid);border-radius:10px}
+.searchwrap input:focus{border-color:var(--acc);box-shadow:0 0 0 3px rgba(26,138,74,.12)}
+.sugg button{border:1px solid var(--grid);border-radius:999px;background:#fff;color:#3f4652}
+input[type=range]{accent-color:var(--acc)}
+
+/* ---- tables ---- */
+.tablewrap{border-radius:14px}
+th{background:#f8f9fb;color:#6b7480;font-weight:600;letter-spacing:.02em;box-shadow:none;border-bottom:1px solid var(--grid)}
+td{border-bottom:1px solid #f1f3f5}
+tbody tr:nth-child(even){background:transparent}
+tbody tr:hover,tbody tr:nth-child(even):hover{background:#f8f9fb}
+.nm{color:var(--ink)}
+td .thm{color:#6b7480}
+
+/* ---- drawer / modal ---- */
+.drawer{border-left:1px solid var(--grid)}
+.mbox{border:1px solid var(--grid);border-radius:16px}
+
+/* ---- Market view already follows this look; align its accent ---- */
+.bp{--bp-green:#1a8a4a}
+.bp-mw,.bp-btn.on,.bp-bwin.on{background:#1a8a4a;border-color:#1a8a4a}
+.bp-stage.on{border-color:#1a8a4a}
+
+/* ---- footer ---- */
+.site-foot{max-width:1400px;margin:10px auto 0;padding:26px 20px 50px;border-top:1px solid var(--grid);color:#6b7480;font-size:12.5px}
+.site-foot p{margin:0 0 14px;max-width:1100px;line-height:1.6}
+.site-foot p b{color:var(--ink)}
+.site-foot-row{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;padding-top:14px;border-top:1px solid var(--grid)}
+.site-foot nav{display:flex;flex-wrap:wrap;gap:4px 18px}
+.site-foot nav button{padding:0;border:0;background:none;color:#6b7480;font:inherit;cursor:pointer}
+.site-foot nav button:hover{color:var(--ink);text-decoration:underline}
+
+/* ---- narrow screens: brand + search on one row, tabs scroll underneath ---- */
+@media (max-width:1180px){
+  .nav-in{flex-wrap:wrap;gap:10px 14px;padding-top:10px;padding-bottom:8px}
+  .nav-search{order:2;max-width:none}
+  .nav-upd{order:1;margin-left:auto}
+  .nav-tabs{order:3;width:100%;margin-left:0;overflow-x:auto;scrollbar-width:none;padding-bottom:2px}
+  .nav-tabs::-webkit-scrollbar{display:none}
+}
+@media (max-width:640px){
+  .nav-name small{display:none}
+  .nav-search{order:3;width:100%;flex-basis:100%}
+  .nav-tabs{order:4}
+  .wrap{padding:18px 16px 24px}
+  .section-heading h1{font-size:24px}
+}
+
+/* old dark-theme leftovers that fight the top bar */
+body::before{display:none}
+header.nav{display:block;flex-wrap:nowrap;gap:0}
+.nav-search{max-width:440px;min-width:220px}
+.nav .nav-tabs .side-link{padding:0 11px}
+@media (max-width:1280px){ .nav .nav-tabs .side-link svg{display:none} }
+.nav-in{gap:14px}
+.nav-search{max-width:400px}
+.nav-tabs{gap:2px}
