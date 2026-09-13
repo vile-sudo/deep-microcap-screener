@@ -88,7 +88,7 @@
     <div class="card">
       <div class="tabs" role="tablist">
         <button type="button" role="tab" id="tab-login" class="on" aria-selected="true">Log in</button>
-        <button type="button" role="tab" id="tab-signup" aria-selected="false">Request access</button>
+        <button type="button" role="tab" id="tab-signup" aria-selected="false">Sign up</button>
       </div>
 
       <form id="form-login" novalidate>
@@ -100,12 +100,12 @@
         <div class="field"><input id="li-pass" name="password" type="password" autocomplete="current-password" required><button type="button" class="show" data-show="li-pass">Show</button></div>
         <button class="primary" type="submit">Log in</button>
         <div class="msg" id="li-msg" role="alert"></div>
-        <p class="fine">No account yet? <a href="#" id="to-signup">Request access</a></p>
+        <p class="fine">No account yet? <a href="#" id="to-signup">Sign up</a></p>
       </form>
 
       <form id="form-signup" hidden novalidate>
-        <h2>Request access</h2>
-        <p class="sub">Create an account. The admin approves new accounts before they can log in.</p>
+        <h2>Create your account</h2>
+        <p class="sub">Sign up with your email. Your account becomes active once the admin approves it.</p>
         <label for="su-name">Name</label>
         <input id="su-name" name="name" autocomplete="name">
         <label for="su-email">Email</label>
@@ -113,9 +113,9 @@
         <label for="su-pass">Password</label>
         <div class="field"><input id="su-pass" name="password" type="password" autocomplete="new-password" minlength="8" required><button type="button" class="show" data-show="su-pass">Show</button></div>
         <div class="hint">At least 8 characters.</div>
-        <button class="primary" type="submit">Request access</button>
+        <button class="primary" type="submit">Sign up</button>
         <div class="msg" id="su-msg" role="alert"></div>
-        <p class="fine">Already approved? <a href="#" id="to-login">Log in</a></p>
+        <p class="fine">Already have an account? <a href="#" id="to-login">Log in</a></p>
       </form>
     </div>
   </main>
@@ -171,13 +171,13 @@
     var body = {name: $('su-name').value.trim(), email: $('su-email').value.trim(), password: $('su-pass').value};
     if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(body.email)){ show(msg, 'Enter a valid email address.', 'err'); return; }
     if (body.password.length < 8){ show(msg, 'Use a password of at least 8 characters.', 'err'); return; }
-    btn.disabled = true; btn.textContent = 'Sending…';
+    btn.disabled = true; btn.textContent = 'Signing up…';
     try {
       var res = await post('/api/auth/signup', body);
-      if (res.ok){ show(msg, res.data.message, 'ok'); this.reset(); btn.textContent = 'Request sent'; return; }
-      show(msg, res.data.detail || 'Could not send the request.', 'err');
+      if (res.ok){ show(msg, res.data.message, 'ok'); this.reset(); btn.textContent = 'Signed up'; return; }
+      show(msg, res.data.detail || 'Could not sign up.', 'err');
     } catch(err){ show(msg, 'Could not reach the server. Check your connection and try again.', 'err'); }
-    btn.disabled = false; btn.textContent = 'Request access';
+    btn.disabled = false; btn.textContent = 'Sign up';
   };
 
   /* already logged in? straight to the dashboard */

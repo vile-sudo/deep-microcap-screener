@@ -62,11 +62,11 @@ def signup(body: SignupIn, request: Request, db: Session = Depends(get_db)):
     if existing is not None:
         # the same answer whether or not the address exists, so sign-up can't
         # be used to find out who has an account
-        return {"status": "pending", "message": "Thanks — your request is in. You'll be able to log in once an admin approves it."}
+        return {"status": "pending", "message": "Thanks for signing up. You'll be able to log in as soon as the admin approves your account."}
     db.add(User(email=email, name=name, password_hash=auth.hash_password(body.password), status="pending",
                 is_admin=False, created_at=auth.utcnow()))
     db.commit()
-    return {"status": "pending", "message": "Thanks — your request is in. You'll be able to log in once an admin approves it."}
+    return {"status": "pending", "message": "Thanks for signing up. You'll be able to log in as soon as the admin approves your account."}
 
 
 @router.post("/api/auth/login")
