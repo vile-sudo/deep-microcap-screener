@@ -101,6 +101,46 @@ const fmt = (v,d=1)=> v===null||v===undefined||isNaN(v) ? '—' : (+v).toFixed(d
 const fmtI = v => v===null||v===undefined||isNaN(v) ? '—' : Math.round(v).toLocaleString('en-IN');
 const esc = s => String(s==null?'':s).replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
 
+/* ---------- icons ----------
+   One small line-icon set for tiles, theme folders and Market view stages.
+   Paths are drawn on a 24px grid and stroked with currentColor. */
+const ICON_PATHS={
+  building:'<path d="M5 20V6.5L12 3l7 3.5V20"/><path d="M9 20v-4h6v4"/><path d="M9 9.5h.01M15 9.5h.01M9 13h.01M15 13h.01"/>',
+  folder:'<path d="M3.5 7h6l2 2.2h9V19h-17z"/>',
+  flag:'<path d="M5.5 21V4"/><path d="M5.5 4.5h11l-2.2 3.8 2.2 3.8h-11"/>',
+  trend:'<path d="M3.5 17.5l6-6 4 4 7-7.5"/><path d="M15 8h5.5v5.5"/>',
+  cycle:'<path d="M19.5 12a7.5 7.5 0 1 1-2.2-5.3"/><path d="M19.5 4.5v4.2h-4.2"/>',
+  hourglass:'<path d="M7 3.5h10M7 20.5h10"/><path d="M8 3.5c0 5 8 5 8 8.5s-8 3.5-8 8.5M16 3.5c0 5-8 5-8 8.5s8 3.5 8 8.5"/>',
+  shield:'<path d="M12 3l7.5 3v5.5c0 4.6-3.2 8.3-7.5 9.5-4.3-1.2-7.5-4.9-7.5-9.5V6z"/><path d="M9 12l2.2 2.2L15.5 10"/>',
+  plus:'<rect x="3.5" y="3.5" width="17" height="17" rx="4"/><path d="M12 8v8M8 12h8"/>',
+  bolt:'<path d="M13 3L5.5 13.5H12L11 21l7.5-10.5H12z"/>',
+  gear:'<circle cx="12" cy="12" r="3"/><path d="M12 3.5v2.2M12 18.3v2.2M20.5 12h-2.2M5.7 12H3.5M18 6l-1.6 1.6M7.6 16.4L6 18M18 18l-1.6-1.6M7.6 7.6L6 6"/>',
+  chip:'<rect x="6.5" y="6.5" width="11" height="11" rx="2"/><path d="M9.5 3.5v3M14.5 3.5v3M9.5 17.5v3M14.5 17.5v3M3.5 9.5h3M3.5 14.5h3M17.5 9.5h3M17.5 14.5h3"/>',
+  flask:'<path d="M9.5 3.5h5M10.5 3.5v5.5L5 19a1.5 1.5 0 0 0 1.3 2h11.4a1.5 1.5 0 0 0 1.3-2l-5.5-10V3.5"/><path d="M7.5 15h9"/>',
+  cube:'<path d="M12 3l8 4.5v9L12 21l-8-4.5v-9z"/><path d="M4 7.5l8 4.5 8-4.5M12 12v9"/>',
+  pulse:'<path d="M3 12h4l2.5-5.5 4 11 2.5-5.5H21"/>',
+  car:'<path d="M4 16.5V12l2-5h12l2 5v4.5"/><path d="M3.5 12h17"/><circle cx="7.5" cy="16.5" r="1.8"/><circle cx="16.5" cy="16.5" r="1.8"/>',
+  thread:'<path d="M5 20L19 4"/><circle cx="17.5" cy="5.5" r="2.5"/><path d="M4 8c4 0 6 2 8 4s4 4 8 4"/>',
+  bricks:'<rect x="3.5" y="5" width="17" height="14" rx="1.5"/><path d="M3.5 9.7h17M3.5 14.3h17M9 5v4.7M15 9.7v4.6M9 14.3V19"/>',
+  bag:'<path d="M5 8.5h14l-1 12H6z"/><path d="M9 8.5V7a3 3 0 0 1 6 0v1.5"/>',
+  leaf:'<path d="M5 19c0-8.5 5.5-14 15-14 0 9.5-5.5 15-14 15"/><path d="M5 19l7.5-7.5"/>',
+  box:'<path d="M3.5 8L12 4l8.5 4v8L12 20l-8.5-4z"/><path d="M3.5 8L12 12l8.5-4M12 12v8M7.8 6l8.4 4"/>',
+  truck:'<path d="M3 6.5h11v9H3zM14 10h4l3 3v2.5h-7"/><circle cx="7" cy="17" r="1.8"/><circle cx="17.5" cy="17" r="1.8"/>',
+  drop:'<path d="M12 3.5c3.5 4.2 6 7.5 6 10.5a6 6 0 0 1-12 0c0-3 2.5-6.3 6-10.5z"/>',
+  factory:'<path d="M3.5 20V10l5 3V10l5 3V5h3v15z"/><path d="M3.5 20h17"/>',
+  coil:'<path d="M4 12c2-4 4-4 6 0s4 4 6 0 3-3 4-2"/><path d="M4 17h16"/>',
+  rocket:'<path d="M12 3c3.5 2 5 5.5 5 9l-2 3H9l-2-3c0-3.5 1.5-7 5-9z"/><circle cx="12" cy="9.5" r="1.6"/><path d="M9.5 18L8 21M14.5 18L16 21"/>',
+  mountain:'<path d="M3 19.5l6-9 3.5 5 2.5-3.5 6 7.5z"/><path d="M14.5 5.5h4v4"/>',
+  done:'<path d="M5.5 21V4"/><path d="M5.5 4.5h11l-2.2 3.8 2.2 3.8h-11"/><path d="M13 17.5l1.8 1.8 3.7-3.7"/>',
+};
+const icon = name => `<svg class="ic-svg" viewBox="0 0 24 24" aria-hidden="true">${ICON_PATHS[name]||ICON_PATHS.folder}</svg>`;
+const THEME_ICON=[[/defen|aero/i,'shield'],[/pharma/i,'flask'],[/medical|diagnos/i,'plus'],[/health|testing/i,'pulse'],[/electric|energy|power/i,'bolt'],
+  [/machin|engineer|capital/i,'gear'],[/electron|semi/i,'chip'],[/chem|pharma/i,'flask'],[/material|mineral|metal/i,'cube'],
+  [/auto|mobility/i,'car'],[/textile/i,'thread'],[/building|construct/i,'bricks'],[/consumer|appliance/i,'bag'],
+  [/agri|food/i,'leaf'],[/packag|plastic/i,'box'],[/transport|logist|rail|marine/i,'truck'],[/water|environ/i,'drop'],[/process/i,'factory']];
+const themeIcon = t => icon((THEME_ICON.find(([re])=>re.test(t))||[0,'folder'])[1]);
+const TILE_ICON={all:'building', themes:'folder', overhang:'flag', guide15:'trend', turn:'cycle', nolens:'hourglass'};
+
 /* ---------- stat tiles ---------- */
 (function(){
   const n = k => DATA.filter(d=>d[k]).length;
@@ -108,9 +148,9 @@ const esc = s => String(s==null?'':s).replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt
   const t = [
     [String(DATA.length),'Companies on the board','89 v3 · 58 v4 · 11 triage · 144 from three 2026 sweeps · 8 requested',null,'all'],
     [String(THEMES.length),'Themes covered','Every one now has real depth — the thinnest holds 5 names, the largest 64',"var(--s6)",'themes'],
-    [String(n('capex_overhang')),'&#9873; High P/E + heavy CWIP','P/E &gt; 40 and CWIP &#8805; 15% of net block',"var(--crit)",'overhang'],
-    [String(n('guidance_over15')),'&#9650; Management guides &gt; 15%','A further '+(n('guidance_flag')-n('guidance_over15'))+' made an unquantified forward statement',"var(--good-ink)",'guide15'],
-    [String(n('pat_turnaround')),'&#8635; PAT turned positive','Latest period profitable after a loss in the prior three',"var(--s1)",'turn'],
+    [String(n('capex_overhang')),'High P/E + heavy CWIP','P/E &gt; 40 and CWIP &#8805; 15% of net block',"var(--crit)",'overhang'],
+    [String(n('guidance_over15')),'Management guides &gt; 15%','A further '+(n('guidance_flag')-n('guidance_over15'))+' made an unquantified forward statement',"var(--good-ink)",'guide15'],
+    [String(n('pat_turnaround')),'PAT turned positive','Latest period profitable after a loss in the prior three',"var(--s1)",'turn'],
     [String(pending),'Awaiting the capex pass','CWIP, guidance and quarterly PAT not yet pulled for these',"var(--muted)",'nolens'],
   ];
   /* Every tile that maps onto a filter is a button - the number you just read is the
@@ -126,7 +166,7 @@ const esc = s => String(s==null?'':s).replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt
     const num = Number(String(v).replace(/[^0-9.]/g,''));
     const share = (tg && tg!=='all' && tg!=='themes' && isFinite(num) && DATA.length) ? (num/DATA.length)*100 : null;
     const bar = share===null ? '' : `<div class="tbar" title="${num} of ${DATA.length} companies — ${share.toFixed(share<1?1:0)}%"><i style="width:${Math.max(share,1.2).toFixed(1)}%;background:${c||'var(--ink2)'}"></i></div>`;
-    return `<${tag}${at}><div class="v"${c?` style="color:${c}"`:''}>${v}</div><div class="k">${k}</div>${bar}<div class="n">${nn}</div></${tag}>`;
+    return `<${tag}${at} style="--tile:${c||'#0a73a8'}"><span class="tile-ic">${icon(TILE_ICON[tg]||'building')}</span><div class="v"${c?` style="color:${c}"`:''}>${v}</div><div class="k">${k}</div>${bar}<div class="n">${nn}</div></${tag}>`;
   }).join('');
 })();
 
@@ -241,7 +281,7 @@ THEMES.forEach(t=>{
   const b=document.createElement('button');
   b.type='button'; b.className='chip'; b.dataset.t=t;
   const n=DATA.filter(d=>base(d)===t).length;
-  b.innerHTML=`<span class="mk"></span>${shortT(t)} <span class="tc">${n}</span>`;
+  b.innerHTML=`<span class="theme-ic">${themeIcon(t)}</span><span class="theme-name">${shortT(t)}</span> <span class="tc">${n}</span>`;
   b.onclick=()=>{
     activeThemes=new Set([t]);
     syncChips(); render();
@@ -1787,7 +1827,7 @@ function bpRender(){
   pool.forEach(([,a])=>{ counts[a.stage]=(counts[a.stage]||0)+1; });
   document.getElementById('bp-stages').innerHTML=BP_STAGES.map(x=>bpStageText(x.k)).map(s=>`
     <button type="button" class="bp-stage${s.k===BP.stage&&!BP.bwin?' on':''}" data-bp-stage="${s.k}">
-      <span class="bp-tap">tap to view ›</span><b>${counts[s.k]||0}</b><span>${s.label}</span><small>${s.hint}</small>
+      <span class="bp-tap">tap to view ›</span><span class="stage-ic">${icon({forming:'coil',fresh:'rocket',climbing:'mountain',played:'done'}[s.k])}</span><b>${counts[s.k]||0}</b><span>${s.label}</span><small>${s.hint}</small>
     </button>`).join('');
   document.querySelector('.bp-hero h2').textContent = BP.screen==='ipo' ? 'Catch recent listings breaking out of their IPO base.' : "Spot the board's next leaders.";
   document.querySelector('.bp-hero .bp-sub').textContent = BP.screen==='ipo'
