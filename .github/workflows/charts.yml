@@ -2,8 +2,8 @@ name: Chart gallery update
 
 # Keeps the Chart gallery and Market view's stage screen (chart_data/setups.json)
 # current with no one touching it:
-#   * every weekday evening, after NSE and BSE publish the day's bhavcopy
-#     (~18:00-19:00 IST), so every chart gains the day's candle;
+#   * every morning as step 5 of daily.yml (07:00 IST), so every chart
+#     gains the previous session's candle;
 #   * whenever the board's company list changes, so a company added to the
 #     board gets its chart (with a full year of history) within minutes.
 # Commits by this workflow use GITHUB_TOKEN, which never re-triggers
@@ -13,9 +13,6 @@ permissions:
   contents: write
 
 on:
-  schedule:
-    - cron: '0 14 * * 1-5'     # 19:30 IST, Mon-Fri
-    - cron: '30 17 * * 1-5'    # 23:00 IST retry, for days the exchanges publish late
   push:
     branches: [main]
     paths:

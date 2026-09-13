@@ -1,6 +1,7 @@
 name: Weekly discovery scan
 
-# The mechanical half of the weekly discovery pipeline, moved off the
+# Runs every morning as step 2 of daily.yml; this workflow is for a manual
+# re-run. The mechanical half of the weekly discovery pipeline, moved off the
 # Windows Task Scheduler so it runs without a PC switched on:
 #   scan-listings.mjs    new NSE / BSE / SME listings since last week, plus a
 #                        slice of the small/mid-cap universe not on the board
@@ -13,8 +14,6 @@ permissions:
   contents: write
 
 on:
-  schedule:
-    - cron: '0 10 * * 6'       # Saturday 15:30 IST
   workflow_dispatch:
 
 concurrency:

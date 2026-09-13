@@ -125,8 +125,9 @@ averages, volume, 52-week high — for every company on the board.
   listings too. `backend/scripts/update_charts.py` keeps a one-year cache of
   them, rebuilds every company's candles (back-adjusted for splits and
   bonuses) and writes `backend/chart_data/`.
-- **Automation:** `.github/workflows/charts.yml` runs it every weekday
-  evening after the exchanges publish, and on every push that changes
+- **Automation:** step 5 of `.github/workflows/daily.yml` runs it every
+  morning at 07:00 IST (after the day's auto-screen, so a company added that
+  morning has its chart), and `charts.yml` on every push that changes
   `backend/data/companies_raw.json` — so a company added to the board gets
   its chart without anyone doing anything. It commits the result and
   triggers the Render deploy hook.
@@ -145,8 +146,8 @@ certified companies show their certificate types and since-date.
 - `automation/scan-asme.mjs` reads ASME's CA Connect directory (India,
   active) in a headless browser, matches it to NSE/BSE listings, and on a
   sane result writes `backend/data/asme_raw.json`.
-- `.github/workflows/asme.yml` runs it every Saturday, commits and
-  redeploys. It also still runs in the local weekly task (`run-weekly.cmd`).
+- Step 4 of `.github/workflows/daily.yml` runs it every morning (`asme.yml`
+  re-runs it by hand). It also still runs in the local weekly task (`run-weekly.cmd`).
 - Each company carries every certificate type with when it was first
   received and last issued; the "not on your board" list sorts by newest or
   oldest certification and filters by date and certificate type.
@@ -178,9 +179,8 @@ within 5% of the pivot, and the list sorts closest-to-breakout first.
 
 `backend/app/setups.py` holds every rule (documented at the top of the
 file). `scripts/update_charts.py` runs it and writes
-`backend/chart_data/setups.json`, so the existing
-`.github/workflows/charts.yml` schedule (weekday evenings, and whenever
-`companies_raw.json` changes) keeps it current and redeploys.
+`backend/chart_data/setups.json`, so the daily 07:00 run (and `charts.yml`
+whenever `companies_raw.json` changes) keeps it current and redeploys.
 
 NIFTY 50 and SENSEX sit in the Market view bar: live through Zerodha when
 connected, delayed otherwise. Zerodha setup, once:
@@ -217,21 +217,51 @@ admin, delete). Disabling or rejecting someone ends their sessions at once.
 
 ## What runs by itself
 
-Everything below runs on GitHub Actions (no PC needs to be on), commits its
-results and redeploys Render. Times are IST.
+Everything runs on GitHub Actions (no PC needs to be on), in **one run every
+morning at about 07:00 IST** (`.github/workflows/daily.yml`; GitHub can start
+scheduled runs a few minutes late). It commits once and redeploys Render once.
+A stage that fails leaves yesterday's data for that part, lets the other
+stages run, and marks the run failed (GitHub emails you).
 
-| Workflow | When | What it keeps current |
+| Step | Script | What it keeps current |
 |---|---|---|
-| `charts.yml` | weekdays 19:30 (+23:00 retry), and when `companies_raw.json` changes | daily candles, Chart Gallery, Market view stages (VCP + IPO base), breakouts, feed |
-| `fundamentals.yml` | Sundays 06:00 | price, market cap, P/E, ROCE, ROE, promoter/FII/DII/public % for every company (screener.in); refuses to write if screener.in blocks |
-| `discovery.yml` | Saturdays 15:30 | new NSE/BSE/SME listings, small/mid-cap sweep, IPO prospectus reading → Candidates queue |
-| `asme.yml` | Saturdays 17:00 | ASME certificate holders, certificate types and dates |
-| `daily-screener.yml` | daily 01:00 | re-stamps the board and republishes the candidates queue |
-| `uptime.yml` | every 10 minutes | pings the site (keeps a free instance awake); a failed run emails you |
+| 1. Fundamentals | `backend/scripts/refresh_data.py` | price, market cap, P/E, ROCE, ROE, promoter/FII/DII/public % for every company (screener.in); refuses to write if screener.in blocks |
+| 2. Discovery | `automation/update-weekly.mjs --no-asme` | new NSE/BSE/SME listings, small/mid-cap sweep, IPO prospectus reading → Candidates queue |
+| 3. Auto-screen | `backend/scripts/auto_screen.py` | adds up to 10 companies a day that pass the board's rules, marked **Auto-added** (below) |
+| 4. ASME | `automation/scan-asme.mjs` | ASME certificate holders, certificate types and dates |
+| 5. Charts | `backend/scripts/update_charts.py` | candles, Chart Gallery, Market view stages (VCP + IPO base), breakouts, feed |
+
+Each step also has its own workflow for a manual re-run (*Actions → Run
+workflow*): `fundamentals.yml`, `discovery.yml`, `asme.yml`, `charts.yml`
+(which also runs on every push that changes `companies_raw.json`).
+`uptime.yml` pings the site every 10 minutes, keeping a free instance awake.
+
+### Auto-added companies
+
+Step 3 works through the listed universe (BSE's active scrips in the ₹120–4,000 cr
+band plus NSE/SME listings; finance, realty, media and software names skipped;
+up to 400 screener.in pages a day, each company re-checked at most every 90 days)
+and adds a company only if it:
+
+- **passes the board's gates** — market cap ₹120–3,000 cr (₹4,000 cr Tier 2),
+  promoter ≥ 40%, public ≤ 60%, ROCE ≥ 12%, ROE > 5%, fewer than 25,000
+  (Tier 1) / 40,000 (Tier 2) shareholders, and a sector that maps onto a board theme;
+- **states a moat in its own words** — in its screener.in profile or, failing
+  that, its latest annual report (public BSE/NSE filing): import substitution,
+  India's leading/largest maker, a stated market share, sole / one of few Indian
+  makers, first / pioneer in India, or a niche segment plus an approval (DRDO,
+  RDSO, ISRO, USFDA, AS9100, ASME...). Report sentences only count when the
+  company is the subject.
+
+The best 10 by the board's six-pillar score go live, badged **AUTO-ADDED**,
+with the matched sentences and links to where they came from, and a
+**Screen filters → Auto-added** filter. On a quiet day fewer than five pass;
+the rules are not loosened to hit a number. An admin can open an auto-added
+company and **Remove from board**; it will not be auto-added again.
 
 Still a person's job, by design or by necessity:
-- **Adding a company to the board** — every board company carries researched
-  scores and notes; candidates wait in the queue for that research.
+- **Researching auto-added companies** — they arrive with screener.in numbers and
+  the company's own moat wording, not a researched verdict.
 - **The weekly AI judgement pass** over candidates (`weekly-prompt.md`) needs
   Claude; it still runs from `run-weekly.cmd` on your PC.
 - **Zerodha** requires its account holder to log in once a day.

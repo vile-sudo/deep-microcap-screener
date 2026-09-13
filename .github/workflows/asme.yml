@@ -1,6 +1,7 @@
 name: ASME certification scan
 
-# Weekly pass over ASME's CA Connect certificate directory (India, active),
+# Runs every morning as step 4 of daily.yml; this workflow is for a manual
+# re-run. A pass over ASME's CA Connect certificate directory (India, active),
 # matched to NSE/BSE listings by automation/scan-asme.mjs. A successful scan
 # rewrites backend/data/asme_raw.json, which drives the dashboard's
 # "ASME certified" screen filter and ASME Certified list, then redeploys.
@@ -11,8 +12,6 @@ permissions:
   contents: write
 
 on:
-  schedule:
-    - cron: '30 11 * * 6'      # Saturday 17:00 IST
   workflow_dispatch:
 
 concurrency:

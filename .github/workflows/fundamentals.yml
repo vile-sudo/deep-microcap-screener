@@ -1,6 +1,7 @@
 name: Company fundamentals refresh
 
-# Re-pulls the numbers that move every week -- price, market cap, P/E, ROCE,
+# Runs every morning as step 1 of daily.yml; this workflow is for a manual
+# re-run (optionally of a few codes). Re-pulls the numbers that move every week -- price, market cap, P/E, ROCE,
 # ROE, promoter / FII / DII / public holding -- for every company on the
 # board from its public screener.in page (backend/scripts/refresh_data.py,
 # two seconds between companies). The research itself (scores, moat notes,
@@ -12,8 +13,6 @@ permissions:
   contents: write
 
 on:
-  schedule:
-    - cron: '30 0 * * 0'       # Sunday 06:00 IST, markets closed
   workflow_dispatch:
     inputs:
       codes:

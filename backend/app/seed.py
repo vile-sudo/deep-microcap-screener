@@ -22,6 +22,12 @@ from .models import Company, MetaKV
 # throw in the original file). We patch the legend here rather than drop
 # the companies, so every row on the board renders correctly.
 SCREEN_PATCHES = {
+    "auto": {
+        "lab": "Auto-added",
+        "cls": "b-auto",
+        "full": "Auto-added by the daily 7 AM screen: passes the board's gates and the company states a moat "
+                "(import substitution, market leadership, sole maker...). Numbers from screener.in; not yet researched by hand.",
+    },
     "v8-weekly": {
         "lab": "v8 weekly",
         "cls": "b-v8",

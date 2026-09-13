@@ -1,0 +1,169 @@
+name: Daily 7 AM update
+
+# The whole dashboard, refreshed once every morning at about 07:00 IST
+# (GitHub can start scheduled runs 5-20 minutes late). One job, in order:
+#
+#   1. fundamentals   price, market cap, P/E, ROCE, ROE and holdings for every
+#                     board company, from screener.in   (scripts/refresh_data.py)
+#   2. discovery      new NSE / BSE / SME listings and their prospectuses ->
+#                     the Candidates queue               (automation/update-weekly.mjs)
+#   3. auto-screen    checks listed companies against the board's gates and
+#                     moat-evidence rules and adds the best 5-10 that pass,
+#                     marked "Auto-added"               (scripts/auto_screen.py)
+#   4. ASME           certificate directory scan        (automation/scan-asme.mjs)
+#   5. charts         yesterday's candles, Chart gallery and Market view
+#                     stages -- after step 3, so a company added today has
+#                     its chart today                   (scripts/update_charts.py)
+#   6. one commit, one Render deploy
+#
+# A stage that fails is reported but doesn't stop the rest: every script
+# writes nothing when its source is broken, so the board keeps yesterday's
+# data for that part. The run is marked failed at the end (GitHub then emails
+# the repo owner) if any stage failed.
+#
+# Every stage also has its own workflow for running by hand.
+
+permissions:
+  contents: write
+
+on:
+  schedule:
+    - cron: '30 1 * * *'       # 07:00 IST, every day
+  workflow_dispatch:
+    inputs:
+      max_add:
+        description: 'Most companies the auto-screen may add'
+        required: false
+        default: '10'
+
+concurrency:
+  group: daily-update
+  cancel-in-progress: false
+
+jobs:
+  daily:
+    runs-on: ubuntu-latest
+    timeout-minutes: 240
+
+    steps:
+      - name: Check out repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+
+      - name: Install tools
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq poppler-utils unzip
+          pip install requests beautifulsoup4
+          cd automation
+          npm install --no-audit --no-fund
+          npx playwright install --with-deps chromium
+
+      - name: Restore bhavcopy cache
+        uses: actions/cache@v4
+        with:
+          path: backend/.bhav_cache
+          key: bhav-${{ github.run_id }}
+          restore-keys: bhav-
+
+      - name: 1. Fundamentals refresh
+        id: fundamentals
+        continue-on-error: true
+        timeout-minutes: 50
+        working-directory: ./backend
+        run: python scripts/refresh_data.py
+
+      - name: 2. Discovery scan
+        id: discovery
+        continue-on-error: true
+        timeout-minutes: 60
+        working-directory: ./automation
+        run: node update-weekly.mjs --no-asme
+
+      - name: 3. Auto-screen new companies
+        id: autoscreen
+        continue-on-error: true
+        timeout-minutes: 60
+        working-directory: ./backend
+        env:
+          MAX_ADD: ${{ github.event.inputs.max_add || '10' }}
+        run: python scripts/auto_screen.py --max-add "$MAX_ADD" --budget 400
+
+      - name: 4. ASME certification scan
+        id: asme
+        continue-on-error: true
+        timeout-minutes: 40
+        working-directory: ./automation
+        run: node scan-asme.mjs
+
+      - name: 5. Charts and Market view stages
+        id: charts
+        continue-on-error: true
+        timeout-minutes: 30
+        working-directory: ./backend
+        run: python scripts/update_charts.py
+
+      - name: 6. Commit
+        id: commit
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add backend/data/companies_raw.json backend/data/candidates_raw.json backend/data/build_stamp.json \
+                  backend/data/asme_raw.json backend/chart_data \
+                  automation/data/candidates-queue.json automation/data/reviewed-symbols.json \
+                  automation/data/listings-snapshot.json automation/data/asme-scan.json
+          for f in automation/data/auto-screen.json automation/data/weekly-report.md automation/data/profiles; do
+            if [ -e "$f" ]; then git add "$f"; fi
+          done
+          if git diff --cached --quiet; then
+            echo "Nothing changed"
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          added=$(python -c "import json;r=json.load(open('automation/data/auto-screen.json'))['runs'][-1];print(len(r.get('added',[])))" 2>/dev/null || echo 0)
+          git commit -m "Daily update $(TZ=Asia/Kolkata date +%F): ${added} auto-added"
+          for i in 1 2 3; do
+            git pull --rebase origin ${{ github.ref_name }} && git push origin HEAD:${{ github.ref_name }} && break
+            sleep 5
+          done
+          echo "changed=true" >> "$GITHUB_OUTPUT"
+
+      - name: Trigger Render deploy
+        if: ${{ steps.commit.outputs.changed == 'true' }}
+        env:
+          RENDER_DEPLOY_HOOK: ${{ secrets.RENDER_DEPLOY_HOOK }}
+        run: |
+          if [ -z "$RENDER_DEPLOY_HOOK" ]; then echo "RENDER_DEPLOY_HOOK not set; skipping deploy"; exit 0; fi
+          curl -fsSL --retry 3 --retry-delay 5 -X POST "$RENDER_DEPLOY_HOOK" > /dev/null
+          echo "Render deploy triggered"
+
+      - name: Summary
+        if: always()
+        run: |
+          {
+            echo "### Daily update"
+            echo "| stage | result |"
+            echo "|---|---|"
+            echo "| fundamentals | ${{ steps.fundamentals.outcome }} |"
+            echo "| discovery | ${{ steps.discovery.outcome }} |"
+            echo "| auto-screen | ${{ steps.autoscreen.outcome }} |"
+            echo "| ASME | ${{ steps.asme.outcome }} |"
+            echo "| charts | ${{ steps.charts.outcome }} |"
+          } >> "$GITHUB_STEP_SUMMARY"
+          if [ -f automation/data/auto-screen.json ]; then
+            python -c "import json;r=json.load(open('automation/data/auto-screen.json'))['runs'][-1];print('\nAuto-screen:', r)" >> "$GITHUB_STEP_SUMMARY"
+          fi
+          failed=""
+          for o in "${{ steps.fundamentals.outcome }}" "${{ steps.discovery.outcome }}" "${{ steps.autoscreen.outcome }}" "${{ steps.asme.outcome }}" "${{ steps.charts.outcome }}"; do
+            if [ "$o" = "failure" ]; then failed=1; fi
+          done
+          if [ -n "$failed" ]; then echo "::error::a stage failed -- see the table above"; exit 1; fi

@@ -1432,3 +1432,13 @@ tbody tr:hover,tbody tr:nth-child(even):hover{background:#f2f9fd}
 @media (max-width:1180px){ .nav-user{order:1} }
 @media (max-width:640px){ .nav-user-name{display:none} }
 .user-owner{color:var(--muted);font-size:12px}
+
+/* ---------- auto-added companies ---------- */
+.b-auto{color:#0a73a8}
+.auto-tag{color:#0a73a8;font-size:10px;letter-spacing:.04em}
+.auto-sec{border-left:3px solid var(--acc,#0a73a8);background:var(--tab-on,#e3f2fa);border-radius:8px;padding:10px 12px}
+.auto-sec p{font-size:12.5px}
+.auto-src{margin-top:6px}
+.auto-src .lnk{margin-right:8px}
+.auto-hide{margin-top:8px;border:1px solid #c0392b;color:#c0392b;background:#fff}
+.auto-hide:hover{background:#fdecea}

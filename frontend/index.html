@@ -6,7 +6,7 @@
 <title>Deep Sweep</title>
 <meta name="description" content="Deep Sweep — a research board for Indian microcap and quality-first names: stage screens, IPO bases, charts and ASME certification.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%94%8D%3C/text%3E%3C/svg%3E">
-<link rel="stylesheet" href="/static/style.css?v=32">
+<link rel="stylesheet" href="/static/style.css?v=33">
 </head>
 <body>
 <header class="nav" id="topnav">
@@ -144,6 +144,7 @@
       <button class="btn" data-tg="haslens">Only names with the new data pulled</button>
       <button class="btn" data-tg="ipo" title="Names whose own research note calls them an SME IPO or a recent listing.">&#127381; Recent listing / SME IPO</button>
       <button class="btn" data-tg="asme" data-label="ASME certified" title="Board companies that hold an active ASME certificate (boiler, pressure vessel, nuclear component stamps), from the weekly scan of ASME's own directory.">&#9878; ASME certified <span class="tc" id="asme-filter-n"></span></button>
+      <button class="btn" data-tg="auto" data-label="Auto-added" title="Companies the daily 7 AM screen added: they pass the board's gates and state a moat, but nobody has researched them yet.">&#9881; Auto-added <span class="tc" id="auto-filter-n"></span></button>
     </div>
     <div class="slider-heading"><span class="tglab">NUMERIC FILTERS</span></div>
     <div class="sliders" id="sliders"></div>
@@ -271,6 +272,6 @@
 <div class="modal" id="modal" role="dialog" aria-modal="true"><div class="mbox"><button class="close" id="mclose" aria-label="Close">&times;</button><div id="mbody"></div></div></div>
 
 <script src="/static/asme-certified.js?v=5" defer></script>
-<script src="/static/app.js?v=32" defer></script>
+<script src="/static/app.js?v=33" defer></script>
 </body>
 </html>

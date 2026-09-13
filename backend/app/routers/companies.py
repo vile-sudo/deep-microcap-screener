@@ -22,9 +22,20 @@ from sqlalchemy import asc, desc
 from sqlalchemy.orm import Session
 
 from ..database import get_db
-from ..models import Company
+from ..models import Company, MetaKV
+from .auth import require_admin
 
 router = APIRouter(prefix="/api/companies", tags=["companies"])
+
+# Auto-added companies an admin took off the board. They stay in
+# companies_raw.json (the server can't edit the repo) and are left out here;
+# the daily auto-screen never re-adds a company it has added once.
+HIDDEN_KEY = "HIDDEN_CODES"
+
+
+def hidden_codes(db: Session) -> set[str]:
+    row = db.get(MetaKV, HIDDEN_KEY)
+    return set(row.value or []) if row else set()
 
 SORTABLE = {
     "final_score", "score", "market_cap_cr", "pe", "roce_pct", "roe_pct",
@@ -120,6 +131,9 @@ def list_companies(
     # NULLs last regardless of direction, matching the frontend's own sort behaviour
     q = q.order_by(sort_col.is_(None), order)
 
+    hidden = hidden_codes(db)
+    if hidden:
+        q = q.filter(Company.code.notin_(hidden))
     if offset:
         q = q.offset(offset)
     if limit:
@@ -143,7 +157,8 @@ def export_csv(
 ):
     q = db.query(Company)
     q = _apply_filters(q, sector, theme, screen, rubric, min_score, max_pe, min_roce, search, codes)
-    rows = q.all()
+    hidden = hidden_codes(db)
+    rows = [c for c in q.all() if c.code not in hidden]
 
     buf = io.StringIO()
     writer = csv.writer(buf)
@@ -163,9 +178,40 @@ def export_csv(
     )
 
 
+@router.get("/hidden")
+def list_hidden(admin: dict = Depends(require_admin), db: Session = Depends(get_db)):
+    codes = sorted(hidden_codes(db))
+    names = {c.code: c.name for c in db.query(Company).filter(Company.code.in_(codes))} if codes else {}
+    return [{"code": c, "name": names.get(c)} for c in codes]
+
+
+@router.post("/{code}/{action}")
+def hide_company(code: str, action: str, admin: dict = Depends(require_admin), db: Session = Depends(get_db)):
+    """Admins: take an auto-added company off the board ("remove") or put it back ("restore")."""
+    if action not in ("remove", "restore"):
+        raise HTTPException(status_code=404, detail="Unknown action")
+    company = db.get(Company, code)
+    if not company:
+        raise HTTPException(status_code=404, detail=f"No company with code '{code}'")
+    if company.screen != "auto":
+        raise HTTPException(status_code=400, detail="Only auto-added companies can be removed here; researched companies are edited in the data files")
+    codes = hidden_codes(db)
+    if action == "remove":
+        codes.add(code)
+    else:
+        codes.discard(code)
+    row = db.get(MetaKV, HIDDEN_KEY)
+    if row:
+        row.value = sorted(codes)
+    else:
+        db.add(MetaKV(key=HIDDEN_KEY, value=sorted(codes)))
+    db.commit()
+    return {"code": code, "hidden": code in codes}
+
+
 @router.get("/{code}")
 def get_company(code: str, db: Session = Depends(get_db)):
     company = db.get(Company, code)
-    if not company:
+    if not company or company.code in hidden_codes(db):
         raise HTTPException(status_code=404, detail=f"No company with code '{code}'")
     return company.data

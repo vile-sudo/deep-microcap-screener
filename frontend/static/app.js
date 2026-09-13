@@ -73,7 +73,7 @@ DATA.forEach(d=>{
    is the search widened to the research text, and the hit line says so */
 let NAMEHIT = false;
 function SCREENS_LABEL(s){return {'v3-deep':'v3 deep','v3-screen':'v3 screen','v4-moat':'v4 moat monopoly',
-  'v4-triage':'triage','v5-new':'v5 new sweep','v6-new':'v6 new sectors','v7-new':'v7 depth expansion','user':'requested added on request','deep-sweep':'Deep Sweep'}[s]||'';}
+  'v4-triage':'triage','v5-new':'v5 new sweep','v6-new':'v6 new sectors','v7-new':'v7 depth expansion','user':'requested added on request','deep-sweep':'Deep Sweep','auto':'auto-added'}[s]||'';}
 const SERIES = ['--s1','--s2','--s3','--s4','--s5','--s6'];
 /* Nine themes cannot be given nine safe categorical hues, and cycling six would make
    two themes share a colour - a key that lies. So no chart encodes theme by colour:
@@ -93,6 +93,7 @@ const SERIES = ['--s1','--s2','--s3','--s4','--s5','--s6'];
 const ASME_BY_CODE = {};
 (ASME.companies||[]).forEach(c=>{ if(c.board_code) ASME_BY_CODE[c.board_code]=c; });
 { const n=document.getElementById('asme-filter-n'); if(n) n.textContent=Object.keys(ASME_BY_CODE).length; }
+{ const n=document.getElementById('auto-filter-n'); if(n) n.textContent=DATA.filter(d=>d.screen==='auto').length; }
 const CG={'verified':'cg-verified','company-stated':'cg-company','none claimed':'cg-none','DEBUNKED':'cg-debunked'};
 const pend = '<span class="pend" title="Not pulled yet for this name">&#8943;</span>';
 const shortT = t => SHORT[t] || t;
@@ -222,7 +223,7 @@ function listingYear(d){
   return m ? (m[1]||m[2]) : null;
 }
 
-const TG = {overhang:false, heavycap:false, guide15:false, guideany:false, turn:false, haslens:false, ipo:false, asme:false,
+const TG = {overhang:false, heavycap:false, guide15:false, guideany:false, turn:false, haslens:false, ipo:false, asme:false, auto:false,
             nolens:false, watch:false,
             nosme:false, nopledge:false, realsub:false, cheap:false, ongate:false};
 /* The watchlist is the one piece of state that belongs to the reader rather than to the
@@ -246,7 +247,7 @@ let sortKey='final_score', sortDir=-1;
 const VIEWS=['overview','themes','market','watchlist','companies','filters','gallery','method'];
 const NAV={'overview-link':'overview','themes-link':'themes','market-link':'market','watchlist-link':'watchlist',
            'companies-link':'companies','filters-link':'filters','gallery-link':'gallery'};
-const LENSES=['overhang','heavycap','guide15','guideany','turn','haslens','ipo','asme'];
+const LENSES=['overhang','heavycap','guide15','guideany','turn','haslens','ipo','asme','auto'];
 const TILE_LABEL={all:'Companies on the board',overhang:'High P/E + heavy CWIP',guide15:'Management guides > 15%',
                   turn:'PAT turned positive',nolens:'Awaiting the capex pass'};
 let VIEW='overview', NAVID='overview-link', TILE=null;
@@ -425,6 +426,7 @@ function pass(d){
   if(TG.haslens  && !d.has_lens_data) return false;
   if(TG.ipo      && !isRecentListing(d)) return false;
   if(TG.asme     && !ASME_BY_CODE[d.code]) return false;
+  if(TG.auto     && d.screen!=='auto') return false;
   if(TG.ongate   && (d.gate_failures||[]).length) return false;
   if(TG.nosme && (nz(d.num_shareholders)!==null && d.num_shareholders<3000)) return false;
   if(TG.nopledge && (nz(d.promoter_pledge_pct)||0)>0.5) return false;
@@ -451,8 +453,8 @@ const COLS=[
   {k:'pin',   l:'★',      cls:'pincell', tip:'Pin a company to your watchlist',
      f:d=>`<button class="pin${WATCH.has(d.code)?' on':''}" data-pin="${esc(d.code)}" title="${WATCH.has(d.code)?'Remove from':'Add to'} watchlist" aria-label="Pin ${esc(d.name)}">${WATCH.has(d.code)?'★':'☆'}</button>`,
      sortf:d=>WATCH.has(d.code)?1:0},
-  {k:'rank',  l:'#',        f:d=>d.rank},
-  {k:'name',  l:'Company',  f:d=>`<a class="nm" href="${scrURL(d)}" target="_blank" rel="noopener" onclick="event.stopPropagation()" title="Open on screener.in">${hl(d.name)} <span class="ext">↗</span></a><span class="tc">${hl(d.code||'')}${d.tier===2?' · Tier 2':''}${d.added_on===BUILD_NEW?' · <b class="newbadge">NEW</b>':''}${ASME_BY_CODE[d.code]?' · <b class="asme-tag" title="Holds an active ASME certificate">ASME</b>':''}</span>`},
+  {k:'rank',  l:'#',        f:d=>d.rank ?? '<span class="nd" title="Auto-added: scored by the daily screen, not ranked with the researched board">auto</span>'},
+  {k:'name',  l:'Company',  f:d=>`<a class="nm" href="${scrURL(d)}" target="_blank" rel="noopener" onclick="event.stopPropagation()" title="Open on screener.in">${hl(d.name)} <span class="ext">↗</span></a><span class="tc">${hl(d.code||'')}${d.tier===2?' · Tier 2':''}${d.added_on===BUILD_NEW?' · <b class="newbadge">NEW</b>':''}${ASME_BY_CODE[d.code]?' · <b class="asme-tag" title="Holds an active ASME certificate">ASME</b>':''}${d.screen==='auto'?' · <b class="auto-tag" title="Auto-added by the daily 7 AM screen; not yet researched by hand">AUTO-ADDED</b>':''}</span>`},
   {k:'theme', l:'Theme',    f:d=>`<span class="thm">${shortT(base(d))}</span>`},
   {k:'final_score',l:'Score', f:d=>{
       if(d.final_score===null||d.final_score===undefined)
@@ -722,7 +724,7 @@ function openDrawer(d){
        <button id="dprev" title="Previous company (←)">‹</button>
        <button id="dnext" title="Next company (→)">›</button>
      </div>
-     <div class="thm" style="margin-bottom:6px">${base(d)} · ${d.final_score===null?'unranked':'rank '+d.rank}<span class="tierbadge">${d.tier===1?'Tier 1 · institutions present':'Tier 2 · no institutions yet'}</span></div>
+     <div class="thm" style="margin-bottom:6px">${base(d)} · ${d.screen==='auto'?'auto-added '+esc(d.added_on||''):d.final_score===null?'unranked':'rank '+d.rank}<span class="tierbadge">${d.tier===1?'Tier 1 · institutions present':'Tier 2 · no institutions yet'}</span></div>
      <h2 style="margin:0 0 3px;font-size:19px">${hl(d.name)}</h2>
      <div class="tc">${d.code||''}${d.industry?' · '+esc(d.industry):''}</div>
      <div style="margin-top:9px">
@@ -752,6 +754,13 @@ function openDrawer(d){
        <div><span>ROE</span><b>${nz(d.roe_pct)===null?'—':fmt(d.roe_pct)+'%'}</b></div>
        <div><span>Retail holders</span><b>${fmtI(d.num_shareholders)}</b></div>
      </div>
+
+     ${d.screen==='auto'?`<div class="sec auto-sec"><h4>Auto-added by the daily screen</h4>
+       <p>Added on ${esc(d.added_on||'')} because it passes the board's gates (market cap, promoter, public float, ROCE, ROE, shareholders)
+       and the company itself states a moat. The numbers are screener.in's and the moat is the company's own wording, matched by rules —
+       nobody has researched it yet, so read it as a lead, not a verdict.</p>
+       ${(d.evidence_sources||[]).length?`<p class="auto-src">Evidence: ${(d.evidence_sources||[]).map(u=>`<a class="lnk" href="${esc(u)}" target="_blank" rel="noopener">${/\.pdf/i.test(u)?'annual report':'screener.in profile'} ↗</a>`).join(' ')}</p>`:''}
+       ${ME&&ME.is_admin?`<button type="button" class="btn auto-hide" id="d-hide">Remove from board</button>`:''}</div>`:''}
 
      ${gates.length?`<div class="sec"><h4>Added on request — gates it does not clear</h4>
        <ul class="gates">${gates.map(g=>`<li>✕ ${esc(g)}</li>`).join('')}</ul>
@@ -818,6 +827,17 @@ function openDrawer(d){
   if(dn){ dn.disabled = DRAWERI<0 || DRAWERI>=CURRENT.length-1; dn.onclick=()=>stepDrawer(1);  }
   const dpin=drawer.querySelector('#dpin');
   if(dpin) dpin.onclick=()=>{ togglePin(d.code); openDrawer(d); };
+  const dhide=drawer.querySelector('#d-hide');
+  if(dhide) dhide.onclick=async ()=>{
+    if(!confirm(`Remove ${d.name} from the board? It won't be auto-added again. (Admins can restore it via the API.)`)) return;
+    dhide.disabled=true;
+    try{
+      const r=await fetch(`/api/companies/${encodeURIComponent(d.code)}/remove`,{method:'POST',credentials:'same-origin'});
+      if(!r.ok) throw new Error((await r.json().catch(()=>({}))).detail||('HTTP '+r.status));
+      const i=DATA.indexOf(d); if(i>=0) DATA.splice(i,1);
+      closeDrawer(); render();
+    }catch(e){ dhide.disabled=false; alert('Could not remove: '+e.message); }
+  };
 }
 function closeDrawer(){ drawer.classList.remove('on'); scrim.classList.remove('on'); }
   window.closeDrawer = closeDrawer;
@@ -2079,11 +2099,13 @@ const mvNum=(v,d=2)=>v==null?'—':(+v).toLocaleString('en-IN',{minimumFractionD
    Account menu: who is logged in, log out, and (for admins) approving
    the people who asked for access.
    ================================================================== */
+var ME=null;   /* the signed-in user, once /api/auth/me answers */
 async function initUserMenu(){
   let me=null;
   try{ me=await fetchJSON('/api/auth/me'); }catch(e){ return; }
   if(!me || !me.user) return;                 /* accounts off (local development) */
   const u=me.user, box=document.getElementById('nav-user');
+  ME=u;
   const initial=(u.name||u.email||'?').trim().charAt(0).toUpperCase();
   box.hidden=false;
   box.innerHTML=`<button type="button" class="nav-user-btn" id="nav-user-btn" aria-haspopup="menu" aria-expanded="false">
