@@ -8,10 +8,10 @@ from fastapi.middleware.gzip import GZipMiddleware
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import FileResponse
 
-from .auth import BasicAuthMiddleware
+from .auth import AccountGateMiddleware, ensure_admin
 from .config import get_settings
 from .database import Base, engine
-from .routers import asme, charts, companies, market, meta
+from .routers import asme, auth as auth_routes, charts, companies, market, meta
 
 settings = get_settings()
 
@@ -23,6 +23,7 @@ async def lifespan(app: FastAPI):
     # Make sure tables exist even if `python -m app.seed` was never run
     # (e.g. a fresh container with a mounted-but-empty volume).
     Base.metadata.create_all(bind=engine)
+    ensure_admin()
     yield
 
 
@@ -40,13 +41,11 @@ app.add_middleware(
     allow_methods=["GET"],
     allow_headers=["*"],
 )
-if settings.auth_username:
-    app.add_middleware(
-        BasicAuthMiddleware,
-        username=settings.auth_username,
-        password=settings.auth_password,
-    )
+# Every page and API needs an approved account once an admin is configured
+# (see app/auth.py); the login page, auth API, static files and /healthz stay open.
+app.add_middleware(AccountGateMiddleware)
 
+app.include_router(auth_routes.router)
 app.include_router(companies.router)
 app.include_router(meta.router)
 app.include_router(charts.router)
@@ -72,3 +71,7 @@ if FRONTEND_DIR.exists():
     @app.get("/", include_in_schema=False)
     def index():
         return FileResponse(FRONTEND_DIR / "index.html")
+
+    @app.get("/login", include_in_schema=False)
+    def login_page():
+        return FileResponse(FRONTEND_DIR / "login.html")

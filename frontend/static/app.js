@@ -10,7 +10,12 @@
    ================================================================ */
 
 async function fetchJSON(url) {
-  const r = await fetch(url);
+  const r = await fetch(url, {credentials: "same-origin"});
+  if (r.status === 401) {
+    /* session ended (logged out elsewhere, expired, or access removed) */
+    location.href = "/login?next=" + encodeURIComponent(location.pathname + location.hash);
+    throw new Error("Login required");
+  }
   if (!r.ok) throw new Error(url + " -> HTTP " + r.status);
   return r.json();
 }
@@ -2070,6 +2075,79 @@ async function bpIndices(){
 }
 const mvNum=(v,d=2)=>v==null?'—':(+v).toLocaleString('en-IN',{minimumFractionDigits:d,maximumFractionDigits:d});
 
+/* ==================================================================
+   Account menu: who is logged in, log out, and (for admins) approving
+   the people who asked for access.
+   ================================================================== */
+async function initUserMenu(){
+  let me=null;
+  try{ me=await fetchJSON('/api/auth/me'); }catch(e){ return; }
+  if(!me || !me.user) return;                 /* accounts off (local development) */
+  const u=me.user, box=document.getElementById('nav-user');
+  const initial=(u.name||u.email||'?').trim().charAt(0).toUpperCase();
+  box.hidden=false;
+  box.innerHTML=`<button type="button" class="nav-user-btn" id="nav-user-btn" aria-haspopup="menu" aria-expanded="false">
+      <span class="nav-avatar">${esc(initial)}</span><span class="nav-user-name">${esc(u.name||u.email)}</span><span class="nav-pending" id="nav-pending" hidden></span>
+    </button>
+    <div class="nav-menu" id="nav-menu" role="menu" hidden>
+      <div class="nav-menu-head"><span class="nav-avatar lg">${esc(initial)}</span><div><b>${esc(u.name||'Signed in')}</b><small>${esc(u.email)}${u.is_admin?' · Admin':''}</small></div></div>
+      ${u.is_admin?`<button type="button" role="menuitem" id="nav-manage">${icon('building')}Manage users <span class="nav-pending" id="nav-pending-2" hidden></span></button>`:''}
+      <button type="button" role="menuitem" id="nav-logout">${icon('flag')}Log out</button>
+    </div>`;
+  const btn=document.getElementById('nav-user-btn'), menu=document.getElementById('nav-menu');
+  btn.onclick=e=>{ e.stopPropagation(); menu.hidden=!menu.hidden; btn.setAttribute('aria-expanded', String(!menu.hidden)); };
+  document.addEventListener('click',e=>{ if(!box.contains(e.target)){ menu.hidden=true; btn.setAttribute('aria-expanded','false'); } });
+  document.getElementById('nav-logout').onclick=async ()=>{
+    try{ await fetch('/api/auth/logout',{method:'POST',credentials:'same-origin'}); }catch(e){}
+    location.href='/login';
+  };
+  if(u.is_admin){
+    document.getElementById('nav-manage').onclick=()=>{ menu.hidden=true; openUsers(); };
+    refreshPending();
+    setInterval(refreshPending, 5*60*1000);
+  }
+}
+async function refreshPending(){
+  let j; try{ j=await fetchJSON('/api/admin/users'); }catch(e){ return; }
+  ['nav-pending','nav-pending-2'].forEach(id=>{ const el=document.getElementById(id); if(el){ el.textContent=j.pending; el.hidden=!j.pending; } });
+  return j;
+}
+const USER_STATUS={pending:['Waiting for approval','st-pending'], approved:['Approved','st-approved'], rejected:['Rejected','st-rejected'], disabled:['Disabled','st-disabled']};
+async function openUsers(){
+  openModal('<p class="view-hint">Loading accounts…</p>');
+  const j=await refreshPending(); if(!j) return;
+  const when=iso=>iso?new Date(iso).toLocaleDateString('en-IN',{day:'numeric',month:'short',year:'numeric'}):'—';
+  const acts=u=>{
+    if(u.is_owner) return '<span class="user-owner" title="Set by ADMIN_EMAIL / AUTH_USERNAME on the server">Main admin · managed in server settings</span>';
+    if(u.status==='pending') return `<button class="btn on" data-uact="approve" data-uid="${u.id}">Approve</button><button class="btn" data-uact="reject" data-uid="${u.id}">Reject</button>`;
+    if(u.status==='approved') return `${u.is_admin?`<button class="btn" data-uact="remove-admin" data-uid="${u.id}">Remove admin</button>`:`<button class="btn" data-uact="make-admin" data-uid="${u.id}">Make admin</button>`}<button class="btn" data-uact="disable" data-uid="${u.id}">Disable</button>`;
+    return `<button class="btn" data-uact="enable" data-uid="${u.id}">${u.status==='rejected'?'Approve':'Enable'}</button><button class="btn danger" data-udel="${u.id}">Delete</button>`;
+  };
+  mbody.innerHTML=`<h3>Manage users</h3>
+    <p class="mp">${j.pending?`<b>${j.pending}</b> ${j.pending===1?'person is':'people are'} waiting for approval. `:'No one is waiting for approval. '}New sign-ups can't log in until you approve them; disabling or rejecting someone logs them out straight away.</p>
+    <div class="users-list">${j.users.map(u=>{ const st=USER_STATUS[u.status]||[u.status,'']; return `
+      <div class="user-row">
+        <span class="nav-avatar lg">${esc((u.name||u.email).charAt(0).toUpperCase())}</span>
+        <div class="user-info"><b>${esc(u.name||'—')}${u.is_admin?' <span class="user-admin">Admin</span>':''}</b><small>${esc(u.email)}</small>
+          <small>Signed up ${when(u.created_at)}${u.last_login?` · last login ${when(u.last_login)}`:''}</small></div>
+        <span class="user-status ${st[1]}">${st[0]}</span>
+        <div class="user-acts">${acts(u)}</div>
+      </div>`; }).join('')}</div>`;
+  mbody.querySelectorAll('[data-uact]').forEach(b=>b.onclick=async ()=>{
+    b.disabled=true;
+    const r=await fetch(`/api/admin/users/${b.dataset.uid}/${b.dataset.uact}`,{method:'POST',credentials:'same-origin'});
+    if(!r.ok){ const d=await r.json().catch(()=>({})); alert(d.detail||'That did not work.'); }
+    openUsers();
+  });
+  mbody.querySelectorAll('[data-udel]').forEach(b=>b.onclick=async ()=>{
+    if(!confirm('Delete this account permanently?')) return;
+    const r=await fetch(`/api/admin/users/${b.dataset.udel}`,{method:'DELETE',credentials:'same-origin'});
+    if(!r.ok){ const d=await r.json().catch(()=>({})); alert(d.detail||'That did not work.'); }
+    openUsers();
+  });
+}
+initUserMenu();
+
 BUSY=true; buildColPop(); applyState(); BUSY=false;
 setView(VIEW,{keep:true});
 
@@ -2077,6 +2155,7 @@ setView(VIEW,{keep:true});
 
 boot().catch(function(err){
   console.error(err);
+  if (err && err.message === "Login required") return;   /* already on its way to /login */
   document.body.innerHTML =
     '<div style="max-width:640px;margin:80px auto;padding:24px;font:15px/1.5 system-ui;text-align:center">'
     + '<h2 style="margin-bottom:8px">Could not load the screener</h2>'

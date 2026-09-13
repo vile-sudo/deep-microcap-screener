@@ -5,9 +5,11 @@ from .config import get_settings
 
 settings = get_settings()
 
-connect_args = {"check_same_thread": False} if settings.database_url.startswith("sqlite") else {}
+url = settings.sqlalchemy_url
+connect_args = {"check_same_thread": False} if url.startswith("sqlite") else {}
 
-engine = create_engine(settings.database_url, connect_args=connect_args)
+# pool_pre_ping: a managed Postgres drops idle connections; test before use
+engine = create_engine(url, connect_args=connect_args, pool_pre_ping=True)
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
 

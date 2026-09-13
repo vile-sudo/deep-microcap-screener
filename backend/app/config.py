@@ -29,13 +29,24 @@ class Settings(BaseSettings):
     environment: str = "development"          # development | production
     cors_origins: str = "*"                    # comma-separated list, or "*"
 
-    # --- Access control ---------------------------------------------------
-    # Optional HTTP Basic Auth in front of the whole app (API + dashboard).
-    # Leave auth_username empty (the default) to leave the site open, as it
-    # was before. Set both AUTH_USERNAME and AUTH_PASSWORD (as env vars, or
-    # in backend/.env) to require a login before anything loads.
+    # --- Accounts: log in / sign up ---------------------------------------
+    # The dashboard requires an approved account once an admin is configured.
+    # The admin account is created (and its password kept in sync) at startup
+    # from ADMIN_EMAIL + ADMIN_PASSWORD, or -- so an existing deployment keeps
+    # working without new settings -- from the older AUTH_USERNAME +
+    # AUTH_PASSWORD. With neither set (local development) the site stays open.
+    # New sign-ups wait as "pending" until the admin approves them.
+    admin_email: str = ""
+    admin_password: str = ""
     auth_username: str = ""
     auth_password: str = ""
+    session_days: int = 30
+
+    @property
+    def admin_login(self) -> tuple[str, str] | None:
+        ident = (self.admin_email or self.auth_username).strip().lower()
+        pw = self.admin_password or self.auth_password
+        return (ident, pw) if ident and pw else None
 
     # --- Zerodha Kite Connect (Market view live prices) ------------------
     # From your app at https://developers.kite.trade. Set them as env vars on
@@ -58,6 +69,16 @@ class Settings(BaseSettings):
     # live "New listings queue" without touching the 375-company dataset.
     candidates_file: Path = BASE_DIR / "data" / "candidates_raw.json"
     build_stamp_file: Path = BASE_DIR / "data" / "build_stamp.json"
+
+    @property
+    def sqlalchemy_url(self) -> str:
+        """Render hands out postgres:// URLs; SQLAlchemy wants postgresql+psycopg2://."""
+        url = self.database_url.strip()
+        if url.startswith("postgres://"):
+            url = "postgresql+psycopg2://" + url[len("postgres://"):]
+        elif url.startswith("postgresql://"):
+            url = "postgresql+psycopg2://" + url[len("postgresql://"):]
+        return url
 
     @property
     def cors_origin_list(self) -> list[str]:

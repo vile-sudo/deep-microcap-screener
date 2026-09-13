@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Log in · Deep Sweep</title>
+<meta name="robots" content="noindex">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%94%8D%3C/text%3E%3C/svg%3E">
+<style>
+  :root{--navy:#0b3954;--ocean:#0a73a8;--sky:#2db6dd;--foam:#e8f5fb;--ink:#14212b;--muted:#5f7382;--line:#dde7ee;--crit:#c0392b;--good:#15803d}
+  *{box-sizing:border-box}
+  html,body{margin:0;min-height:100%}
+  body{font:15px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;color:var(--ink);background:#f4f8fb}
+  .shell{min-height:100vh;display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr)}
+
+  /* ---- left: brand panel ---- */
+  .brand{position:relative;overflow:hidden;isolation:isolate;display:flex;flex-direction:column;justify-content:space-between;padding:44px 52px;color:#eaf8ff;
+    background:radial-gradient(640px 320px at 85% 0%, rgba(125,225,255,.35), transparent 70%),linear-gradient(150deg,#0b3954 0%,#0a5f8c 55%,#0a73a8 85%,#2db6dd 130%)}
+  .brand::after{content:"";position:absolute;z-index:-1;left:0;right:0;bottom:0;height:260px;pointer-events:none;
+    background:no-repeat bottom/100% 100% url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 260' preserveAspectRatio='none'%3E%3Cpath d='M0 150 C120 100 240 100 360 140 S600 200 800 120 V260 H0Z' fill='%23ffffff' fill-opacity='.06'/%3E%3Cpath d='M0 185 C130 140 250 150 380 180 S620 230 800 170 V260 H0Z' fill='%23ffffff' fill-opacity='.08'/%3E%3Cpath d='M0 220 C140 190 260 200 400 216 S640 250 800 214 V260 H0Z' fill='%237de1ff' fill-opacity='.16'/%3E%3C/svg%3E")}
+  .logo{display:flex;align-items:center;gap:12px}
+  .mark{position:relative;overflow:hidden;width:46px;height:46px;border-radius:13px;background:linear-gradient(180deg,#67d9ff,#2db6dd);box-shadow:0 10px 26px rgba(0,0,0,.25), inset 0 0 12px rgba(255,255,255,.25)}
+  .mark i{position:absolute;left:50%;transform:translateX(-50%);display:block;border:2px solid rgba(255,255,255,.95);border-color:rgba(255,255,255,.9) transparent transparent transparent;border-radius:50% 50% 0 0}
+  .mark i:nth-child(1){width:20px;height:11px;bottom:-3px;left:46%}
+  .mark i:nth-child(2){width:31px;height:16px;bottom:-8px;left:54%}
+  .mark i:nth-child(3){width:39px;height:20px;bottom:-13px}
+  .logo b{display:block;font-size:21px;letter-spacing:-.02em;color:#fff}
+  .logo b em{font-style:normal;color:#9be7ff}
+  .logo small{display:block;color:#bfe3f3;font-size:12px}
+  .pitch h1{margin:0;max-width:520px;font-size:clamp(28px,3.2vw,40px);line-height:1.15;letter-spacing:-.03em;color:#fff}
+  .pitch p{margin:14px 0 0;max-width:500px;color:#cfeaf7;font-size:15.5px}
+  .features{display:grid;gap:12px;margin:30px 0 0;padding:0;list-style:none;max-width:500px}
+  .features li{display:flex;align-items:center;gap:12px;padding:12px 14px;border:1px solid rgba(255,255,255,.16);border-radius:14px;background:rgba(255,255,255,.07);backdrop-filter:blur(4px)}
+  .features svg{flex:none;width:34px;height:34px;padding:7px;border-radius:10px;background:rgba(255,255,255,.14);fill:none;stroke:#fff;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+  .features b{display:block;color:#fff;font-size:14px}
+  .features span{color:#bfe3f3;font-size:12.5px}
+  .brand-foot{color:#9cc6da;font-size:12px}
+
+  /* ---- right: the form ---- */
+  .panel{position:relative;z-index:1;display:grid;place-items:center;padding:40px 24px}
+  .card{width:100%;max-width:420px;padding:30px 30px 26px;border:1px solid var(--line);border-radius:20px;background:#fff;box-shadow:0 2px 4px rgba(11,57,84,.05),0 30px 60px -36px rgba(11,57,84,.45)}
+  .card h2{margin:0;font-size:24px;letter-spacing:-.02em}
+  .card .sub{margin:4px 0 18px;color:var(--muted);font-size:14px}
+  .tabs{display:grid;grid-template-columns:1fr 1fr;gap:4px;margin-bottom:20px;padding:4px;border-radius:12px;background:#eef4f8}
+  .tabs button{height:38px;border:0;border-radius:9px;background:none;color:var(--muted);font:inherit;font-size:14px;font-weight:600;cursor:pointer}
+  .tabs button.on{background:#fff;color:var(--navy);box-shadow:0 1px 3px rgba(11,57,84,.12), inset 0 -2px 0 var(--sky)}
+  label{display:block;margin:12px 0 5px;color:#314554;font-size:13px;font-weight:600}
+  .field{position:relative}
+  input{width:100%;height:46px;padding:0 14px;border:1px solid var(--line);border-radius:12px;background:#fbfdfe;color:var(--ink);font:inherit;font-size:15px}
+  input:focus{outline:none;border-color:var(--ocean);background:#fff;box-shadow:0 0 0 4px rgba(10,115,168,.12)}
+  .show{position:absolute;right:8px;top:50%;transform:translateY(-50%);height:30px;padding:0 10px;border:0;border-radius:8px;background:#eef4f8;color:var(--ocean);font:inherit;font-size:12px;font-weight:600;cursor:pointer}
+  .hint{margin-top:5px;color:var(--muted);font-size:12px}
+  .primary{width:100%;height:48px;margin-top:20px;border:0;border-radius:12px;background:linear-gradient(135deg,#0a73a8,#0b5f8c);color:#fff;font:inherit;font-size:15px;font-weight:700;cursor:pointer;box-shadow:0 10px 22px -12px rgba(10,115,168,.9)}
+  .primary:hover{background:linear-gradient(135deg,#0b86c2,#0a73a8)}
+  .primary:disabled{opacity:.6;cursor:progress}
+  .msg{display:none;margin-top:14px;padding:11px 13px;border-radius:12px;font-size:13.5px}
+  .msg.err{display:block;background:#fdecea;color:var(--crit)}
+  .msg.ok{display:block;background:#e8f7ee;color:var(--good)}
+  .fine{margin:18px 0 0;color:var(--muted);font-size:12px;text-align:center}
+  [hidden]{display:none!important}
+
+  @media (max-width:900px){
+    .shell{grid-template-columns:1fr}
+    .brand{padding:28px 22px 120px}
+    .features{display:none}
+    .brand-foot{display:none}
+    .panel{margin-top:-96px;padding:0 16px 40px}
+  }
+</style>
+</head>
+<body>
+<div class="shell">
+  <section class="brand" aria-label="Deep Sweep">
+    <div class="logo"><span class="mark" aria-hidden="true"><i></i><i></i><i></i></span><span><b>Deep <em>Sweep</em></b><small>Screened companies with the MOAT</small></span></div>
+    <div class="pitch">
+      <h1>Research India's quality microcaps before the crowd does.</h1>
+      <p>A private research board: moat-scored companies, stage screens, IPO bases and a chart for every name — rebuilt after each trading day.</p>
+      <ul class="features">
+        <li><svg viewBox="0 0 24 24"><path d="M4 12c2-4 4-4 6 0s4 4 6 0 3-3 4-2"/><path d="M4 17h16"/></svg><div><b>Stage screens &amp; IPO bases</b><span>Forming, fresh breakouts, climbing — updated nightly</span></div></li>
+        <li><svg viewBox="0 0 24 24"><rect x="4" y="4.5" width="16" height="15" rx="2"/><path d="M8 15l3-3.5 2.5 2 3-4.5"/></svg><div><b>A chart for every company</b><span>NSE &amp; BSE candles, split-adjusted, SME included</span></div></li>
+        <li><svg viewBox="0 0 24 24"><path d="M12 3l7.5 3v5.5c0 4.6-3.2 8.3-7.5 9.5-4.3-1.2-7.5-4.9-7.5-9.5V6z"/><path d="M9 12l2.2 2.2L15.5 10"/></svg><div><b>ASME certification &amp; watchlists</b><span>Certificates with dates, your own starred companies</span></div></li>
+      </ul>
+    </div>
+    <div class="brand-foot">Research, not investment advice.</div>
+  </section>
+
+  <main class="panel">
+    <div class="card">
+      <div class="tabs" role="tablist">
+        <button type="button" role="tab" id="tab-login" class="on" aria-selected="true">Log in</button>
+        <button type="button" role="tab" id="tab-signup" aria-selected="false">Request access</button>
+      </div>
+
+      <form id="form-login" novalidate>
+        <h2>Welcome back</h2>
+        <p class="sub">Log in to open the dashboard.</p>
+        <label for="li-email">Email or username</label>
+        <input id="li-email" name="email" autocomplete="username" required>
+        <label for="li-pass">Password</label>
+        <div class="field"><input id="li-pass" name="password" type="password" autocomplete="current-password" required><button type="button" class="show" data-show="li-pass">Show</button></div>
+        <button class="primary" type="submit">Log in</button>
+        <div class="msg" id="li-msg" role="alert"></div>
+        <p class="fine">No account yet? <a href="#" id="to-signup">Request access</a></p>
+      </form>
+
+      <form id="form-signup" hidden novalidate>
+        <h2>Request access</h2>
+        <p class="sub">Create an account. The admin approves new accounts before they can log in.</p>
+        <label for="su-name">Name</label>
+        <input id="su-name" name="name" autocomplete="name">
+        <label for="su-email">Email</label>
+        <input id="su-email" name="email" type="email" autocomplete="email" required>
+        <label for="su-pass">Password</label>
+        <div class="field"><input id="su-pass" name="password" type="password" autocomplete="new-password" minlength="8" required><button type="button" class="show" data-show="su-pass">Show</button></div>
+        <div class="hint">At least 8 characters.</div>
+        <button class="primary" type="submit">Request access</button>
+        <div class="msg" id="su-msg" role="alert"></div>
+        <p class="fine">Already approved? <a href="#" id="to-login">Log in</a></p>
+      </form>
+    </div>
+  </main>
+</div>
+<script>
+(function(){
+  var $ = function(id){ return document.getElementById(id); };
+  function tab(which){
+    var login = which === 'login';
+    $('form-login').hidden = !login; $('form-signup').hidden = login;
+    $('tab-login').classList.toggle('on', login); $('tab-signup').classList.toggle('on', !login);
+    $('tab-login').setAttribute('aria-selected', login); $('tab-signup').setAttribute('aria-selected', !login);
+    (login ? $('li-email') : $('su-name')).focus();
+  }
+  $('tab-login').onclick = function(){ tab('login'); };
+  $('tab-signup').onclick = function(){ tab('signup'); };
+  $('to-signup').onclick = function(e){ e.preventDefault(); tab('signup'); };
+  $('to-login').onclick = function(e){ e.preventDefault(); tab('login'); };
+  if (location.hash === '#signup') tab('signup');
+  document.querySelectorAll('[data-show]').forEach(function(b){
+    b.onclick = function(){ var i = $(b.dataset.show); var hide = i.type === 'text'; i.type = hide ? 'password' : 'text'; b.textContent = hide ? 'Show' : 'Hide'; };
+  });
+
+  /* only same-site paths, so ?next= can't send someone to another site */
+  function nextUrl(){
+    var n = new URLSearchParams(location.search).get('next') || '/';
+    return (n.charAt(0) === '/' && n.charAt(1) !== '/' && n.indexOf('\\') < 0) ? n : '/';
+  }
+  function show(el, text, kind){ el.textContent = text; el.className = 'msg ' + kind; }
+  async function post(url, body){
+    var r = await fetch(url, {method:'POST', headers:{'Content-Type':'application/json'}, credentials:'same-origin', body: JSON.stringify(body)});
+    var data = {}; try { data = await r.json(); } catch(e) {}
+    return {ok: r.ok, status: r.status, data: data};
+  }
+
+  $('form-login').onsubmit = async function(e){
+    e.preventDefault();
+    var btn = this.querySelector('.primary'), msg = $('li-msg');
+    var email = $('li-email').value.trim(), pass = $('li-pass').value;
+    if (!email || !pass){ show(msg, 'Enter your email and password.', 'err'); return; }
+    btn.disabled = true; btn.textContent = 'Logging in…';
+    try {
+      var res = await post('/api/auth/login', {email: email, password: pass});
+      if (res.ok){ location.href = nextUrl(); return; }
+      show(msg, res.data.detail || 'Could not log in.', 'err');
+    } catch(err){ show(msg, 'Could not reach the server. Check your connection and try again.', 'err'); }
+    btn.disabled = false; btn.textContent = 'Log in';
+  };
+
+  $('form-signup').onsubmit = async function(e){
+    e.preventDefault();
+    var btn = this.querySelector('.primary'), msg = $('su-msg');
+    var body = {name: $('su-name').value.trim(), email: $('su-email').value.trim(), password: $('su-pass').value};
+    if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(body.email)){ show(msg, 'Enter a valid email address.', 'err'); return; }
+    if (body.password.length < 8){ show(msg, 'Use a password of at least 8 characters.', 'err'); return; }
+    btn.disabled = true; btn.textContent = 'Sending…';
+    try {
+      var res = await post('/api/auth/signup', body);
+      if (res.ok){ show(msg, res.data.message, 'ok'); this.reset(); btn.textContent = 'Request sent'; return; }
+      show(msg, res.data.detail || 'Could not send the request.', 'err');
+    } catch(err){ show(msg, 'Could not reach the server. Check your connection and try again.', 'err'); }
+    btn.disabled = false; btn.textContent = 'Request access';
+  };
+
+  /* already logged in? straight to the dashboard */
+  fetch('/api/auth/me', {credentials:'same-origin'}).then(function(r){ if (r.ok) return r.json(); }).then(function(j){
+    if (j && j.user) location.replace(nextUrl());
+  }).catch(function(){});
+  $('li-email').focus();
+})();
+</script>
+</body>
+</html>

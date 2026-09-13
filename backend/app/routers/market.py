@@ -24,7 +24,7 @@ import time
 from datetime import datetime
 
 import requests
-from fastapi import APIRouter, Depends, HTTPException, Query
+from fastapi import APIRouter, Depends, HTTPException, Query, Request
 from fastapi.responses import HTMLResponse, RedirectResponse
 from sqlalchemy.orm import Session
 
@@ -225,7 +225,11 @@ def market_setups():
 
 
 # ------------------------------------------------------------------- kite
-def _check_admin(key: str) -> None:
+def _check_admin(key: str, request: Request | None = None) -> None:
+    # a logged-in dashboard admin needs no separate key
+    user = getattr(request.state, "user", None) if request is not None else None
+    if user and user.get("is_admin"):
+        return
     admin = get_settings().kite_admin_key
     if not admin or not hmac.compare_digest(key or "", admin):
         raise HTTPException(status_code=403, detail="Wrong or missing admin key")
@@ -237,10 +241,10 @@ def kite_status():
 
 
 @router.get("/api/kite/login")
-def kite_login(key: str = Query("")):
+def kite_login(request: Request, key: str = Query("")):
     if not kite.configured():
         raise HTTPException(status_code=503, detail="Zerodha is not configured: set KITE_API_KEY and KITE_API_SECRET")
-    _check_admin(key)
+    _check_admin(key, request)
     return RedirectResponse(kite.login_url(), status_code=302)
 
 
@@ -260,8 +264,8 @@ def kite_callback(request_token: str = "", status: str = "", state: str = ""):
 
 
 @router.post("/api/kite/logout")
-def kite_logout(key: str = Query("")):
-    _check_admin(key)
+def kite_logout(request: Request, key: str = Query("")):
+    _check_admin(key, request)
     kite.logout()
     with _cache_lock:
         _cache.clear()

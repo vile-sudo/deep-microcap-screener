@@ -193,3 +193,23 @@ Daily: Market view → **Connect Zerodha** → enter the admin key → log in.
 Zerodha sessions end at 6 a.m. The access token stays on the server and is
 never sent to the browser; a redeploy on a host without a persistent disk
 drops the session.
+
+
+## Accounts — log in, sign up, approval
+
+The dashboard sits behind its own login page (`/login`). Anyone can **request
+access**; the account stays *pending* until an admin approves it in the
+dashboard (account menu → **Manage users**: approve, reject, disable, make
+admin, delete). Disabling or rejecting someone ends their sessions at once.
+
+- Passwords: salted scrypt hashes. Sessions: a random token in an HttpOnly,
+  SameSite=Lax cookie (Secure on HTTPS), stored only as a SHA-256 hash, 30 days.
+- Login and sign-up are rate-limited per IP.
+- The admin account comes from `ADMIN_EMAIL` + `ADMIN_PASSWORD`, or from the
+  older `AUTH_USERNAME` + `AUTH_PASSWORD` if those are what's set; changing the
+  env var changes the admin password on the next start.
+- With no admin configured (local development) the site stays open.
+- **Accounts must live in Postgres in production** — the SQLite file on a
+  Render web service is rebuilt on every deploy. See DEPLOYMENT.md.
+- Code: `backend/app/auth.py` (hashing, sessions, the gate),
+  `backend/app/routers/auth.py` (endpoints), `frontend/login.html`.

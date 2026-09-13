@@ -17,7 +17,13 @@ you want it.
    if you want the SQLite file to survive redeploys. Otherwise every
    deploy re-seeds from the bundled JSON, which is also fine if your data
    only changes via `data/companies_raw.json` in git.
-5. Deploy. Render gives you an HTTPS URL immediately.
+5. **Accounts need a real database.** On Render: **New → PostgreSQL**
+   (the free plan is fine), open it, copy the **Internal Database URL**, and
+   add it to the web service as `DATABASE_URL`. Also set `ADMIN_EMAIL` and
+   `ADMIN_PASSWORD` (or keep your existing `AUTH_USERNAME` / `AUTH_PASSWORD`,
+   which act as the admin login). Without Postgres, sign-ups and sessions are
+   wiped on every deploy.
+6. Deploy. Render gives you an HTTPS URL immediately.
 
 ## Option B — Railway
 
