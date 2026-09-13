@@ -555,7 +555,7 @@ def main() -> int:
         if result == "passed, not added today":
             continue   # not recorded, so it is first in line tomorrow
         state["checked"][isin] = {"on": today, "result": result, **({"detail": detail} if detail else {})}
-    state["runs"] = (state.get("runs", []) + [{"on": today, "fetched": fetched, "added": [r["code"] for r, _ in added], **counts}])[-60:]
+    state["runs"] = (state.get("runs", []) + [{"on": today, "fetched": fetched, **counts, "added_codes": [r["code"] for r, _ in added]}])[-60:]
     STATE.write_text(json.dumps(state, indent=1, ensure_ascii=False) + "\n", encoding="utf-8")
     if added:
         companies.extend(r for r, _ in added)
