@@ -7,6 +7,16 @@
    ],
    "spent_usd": null,
    "skipped": {}
+  },
+  {
+   "on": "2026-09-14",
+   "written": [
+    "BEL:FY27-Q1",
+    "HAL:FY27-Q1",
+    "VIMTALABS:FY25-Q3"
+   ],
+   "spent_usd": null,
+   "skipped": {}
   }
  ],
  "seen_new_results": {},
@@ -19,6 +29,33 @@
    "cost_usd": null,
    "api_equivalent_usd": 12.582,
    "minutes": 29.3
+  },
+  "BEL": {
+   "period": "FY27-Q1",
+   "on": "2026-09-14",
+   "engine": "claude-code",
+   "tokens_out": 226874,
+   "cost_usd": null,
+   "api_equivalent_usd": 27.004,
+   "minutes": 45.6
+  },
+  "HAL": {
+   "period": "FY27-Q1",
+   "on": "2026-09-14",
+   "engine": "claude-code",
+   "tokens_out": 198358,
+   "cost_usd": null,
+   "api_equivalent_usd": 21.861,
+   "minutes": 41.4
+  },
+  "VIMTALABS": {
+   "period": "FY25-Q3",
+   "on": "2026-09-14",
+   "engine": "claude-code",
+   "tokens_out": 193948,
+   "cost_usd": null,
+   "api_equivalent_usd": 19.131,
+   "minutes": 39.6
   }
  }
 }
