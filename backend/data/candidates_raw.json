@@ -873,5 +873,255 @@
    },
    "profiled_on": "2026-09-14"
   }
+ },
+ {
+  "sym": "544345",
+  "name": "Denta Water and Infra Solutions Ltd",
+  "board": "BSE",
+  "isin": "INE0R4L01018",
+  "listed": null,
+  "hint": "construction & building materials",
+  "why": "small-cap sweep",
+  "mktcap_cr": 750.27,
+  "plausible": true,
+  "verdict": null,
+  "seen_on": "2026-09-15",
+  "source": "sweep",
+  "moat_signal": true,
+  "moat_evidence": [
+   "monopoly claim: \"We are one of the few companies in India having experience and expertise in design, installation, commissioning, operations and maintenance of ground water recharging using recycled water.\" (prospectus, company-stated)",
+   "monopoly claim: \"The table below sets out the raw materials which we have obtained from our largest supplier, top 5 suppliers and top 10 suppliers together with such supply as a percentage of our total raw materials supply in the six months period ended September 30, 2024 and Fiscal 2024, Fi\" (prospectus, company-stated)",
+   "monopoly claim: \"The value of raw material purchases from our largest supplier, top 5 suppliers and top 10 suppliers in six months period ended September 30, 2024 and Fiscal 2024, Fiscal 2023 and Fiscal 2022 are as under: (in ₹ million) Particulars Six months pe\" (prospectus, company-stated)"
+  ],
+  "profile": {
+   "symbol": "544345",
+   "company": "Denta Water And Infra Solutions Limited",
+   "isin": "INE0R4L01018",
+   "board": "BSE",
+   "source": {
+    "document": "final prospectus",
+    "url": "https://nsearchives.nseindia.com/corporate/FP_INE0R4L01018_28JAN2025.pdf",
+    "filed": "28-Jan-2025",
+    "pdf_bytes": 9375994,
+    "extracted_chars": 1452746
+   },
+   "grade": "company-stated",
+   "verified_against": null,
+   "claims": {
+    "monopoly_claim": {
+     "count": 3,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "one of the few companies",
+      "largest supplier"
+     ],
+     "evidence": [
+      {
+       "match": "one of the few companies",
+       "sentence": "We are one of the few companies in India having experience and expertise in design, installation, commissioning, operations and maintenance of ground water recharging using recycled water."
+      },
+      {
+       "match": "largest supplier",
+       "sentence": "The table below sets out the raw materials which we have obtained from our largest supplier, top 5 suppliers and top 10 suppliers together with such supply as a percentage of our total raw materials supply in the six months period ended September 30, 2024 and Fiscal 2024, Fi"
+      },
+      {
+       "match": "largest supplier",
+       "sentence": "The value of raw material purchases from our largest supplier, top 5 suppliers and top 10 suppliers in six months period ended September 30, 2024 and Fiscal 2024, Fiscal 2023 and Fiscal 2022 are as under: (in ₹ million) Particulars Six months pe"
+      }
+     ]
+    },
+    "ip": {
+     "count": 4,
+     "dropped_as_industry_commentary": 9,
+     "terms": [
+      "trademark"
+     ],
+     "evidence": [
+      {
+       "match": "trademark",
+       "sentence": "As of the date of this Prospectus, our Company has obtained registered trademark in relation to our name and logo under class 37 of the Trade Marks Act, 1999."
+      },
+      {
+       "match": "trademark",
+       "sentence": "While we enjoy the statutory protections accorded to a registered trademark, we rely on protections available under Indian law, which may not be adequate to prevent unauthorized use of our intellectual property by third parties."
+      },
+      {
+       "match": "trademark",
+       "sentence": "Intellectual Property As on the date of this Prospectus, our Company has one registered trademark in India, for which we have obtained valid registration certificates under Class 37 from the Trade Marks Registry, Government of India under the Trade Marks Act, 1999 (“Trade Marks Act”), as amended."
+      }
+     ]
+    }
+   },
+   "risk_factors": {
+    "customer_concentration": {
+     "count": 7,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "top 5 customers",
+      "Top 5 customers",
+      "top 10 customers",
+      "Top 10 customers"
+     ],
+     "evidence": [
+      {
+       "match": "top 5 customers",
+       "sentence": "The table set forth below provides the revenue contribution and revenue contribution as a percentage of our total revenue from contracts with customers of our largest customer, our top 5 customers and our top 10 customers, for the six months period ended September 30, 2024 and Fiscal 2024, Fiscal 2023 and Fiscal 2022: ₹ in million except as stated) Particulars Top 1 customer* Si"
+      },
+      {
+       "match": "Top 5 customers",
+       "sentence": "29 41 Particulars Top 5 customers* Top 10 customers* Six months period Fiscal 2024 Fiscal 2023 Fiscal 2022 ended September 30, 2024 Amount % of Amount % of Amount % of Amount % of Revenue Revenue Revenue Revenue 439."
+      },
+      {
+       "match": "top 10 customers",
+       "sentence": "73 *While more than 50% of our revenue from operations originates from our top 10 customers, names of the customers have not been included in the above table as consents for disclosure of certain customer names were not available."
+      }
+     ]
+    },
+    "promoter_litigation": {
+     "count": 3,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "Criminal Proceedings",
+      "proceedings against our Promoter",
+      "proceedings involving our Promoters"
+     ],
+     "evidence": [
+      {
+       "match": "Criminal Proceedings",
+       "sentence": "Summary of Outstanding Litigation A summary of outstanding litigations involving our Company, our Promoters, our Directors and our Group Companies which have a material impact on our Company, as on the date of this Prospectus is as follows: (in ₹ million) Particulars Criminal Proceedings Company By our Company Nil Against our Company Nil Directors (Other than Promoters) By our Directors Nil Against our Directors Nil Promoters By our Promoters Nil Against our Promo"
+      },
+      {
+       "match": "proceedings against our Promoter",
+       "sentence": "We are also exposed to the risk of any governmental authority taking cognizance of such complaints and initiating enquiries or legal proceedings against our Promoter and our Company, which will require us defend ourselves against the allegations made, the outcome of which will not be in our control."
+      },
+      {
+       "match": "proceedings involving our Promoters",
+       "sentence": "Litigation involving our Promoters Except as disclosed in “Outstanding Litigation and Other Material Developments” on page 348, there are no legal and regulatory proceedings involving our Promoters as on the date of this Prospectus."
+      }
+     ]
+    },
+    "related_party": {
+     "count": 22,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "RELATED PARTY TRANSACTIONS",
+      "Related Party Transactions",
+      "related party transactions",
+      "related party transaction"
+     ],
+     "evidence": [
+      {
+       "match": "RELATED PARTY TRANSACTIONS",
+       "sentence": "311 RELATED PARTY TRANSACTIONS ."
+      },
+      {
+       "match": "Related Party Transactions",
+       "sentence": "25 Summary of Related Party Transactions The details of related party transactions entered into by our Company for the six months period ended September 30, 2024 and financial years ended March 31, 2024, March 31,"
+      },
+      {
+       "match": "related party transactions",
+       "sentence": "11 For details of the related party transactions and as reported in the Restated Consolidated Financial Information, please see section titled “Restated Consolidated Financial Information – Note no."
+      }
+     ]
+    }
+   },
+   "objects_of_the_issue": {
+    "fresh_issue": {
+     "count": 16,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "FRESH ISSUE",
+      "Fresh Issue",
+      "fresh issue"
+     ],
+     "evidence": [
+      {
+       "match": "FRESH ISSUE",
+       "sentence": "in Mansion, South End Road, Basavanagudi Company Secretary and Bangalore, South Bangalore- 560 004 Compliance Officer Karnataka, India OUR PROMOTERS: SOWBHAGYAMMA, SUJITH T R, C MRUTHYUNJAYA SWAMY AND HEMA H M DETAILS OF ISSUE TYPE OF FRESH ISSUE OFFER FOR TOTAL ISSUE ELIGIBILITY AND SHARE RESERVATION AMONG QIB, ISSUE SIZE SALE SIZE NIB AND RIB Fresh Fresh Issue of Not ₹ 2,205."
+      },
+      {
+       "match": "Fresh Issue",
+       "sentence": "AMY AND HEMA H M DETAILS OF ISSUE TYPE OF FRESH ISSUE OFFER FOR TOTAL ISSUE ELIGIBILITY AND SHARE RESERVATION AMONG QIB, ISSUE SIZE SALE SIZE NIB AND RIB Fresh Fresh Issue of Not ₹ 2,205."
+      },
+      {
+       "match": "Fresh Issue",
+       "sentence": ", gross proceeds of the Fresh Issue, less Issue expenses."
+      }
+     ]
+    },
+    "capital_expenditure": {
+     "count": 25,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "capital expenditure",
+      "expansion of our",
+      "setting up of",
+      "Capital Expenditure",
+      "purchase of plant"
+     ],
+     "evidence": [
+      {
+       "match": "capital expenditure",
+       "sentence": "Cash flow of a company is a key indicator to show the extent of cash generated from operations to meet capital expenditure, pay dividends, repay loans and make new investments without raising finance from external resources."
+      },
+      {
+       "match": "expansion of our",
+       "sentence": "For further details relating to the expansion of our international operations, please see section titled “Our Business - Our Strategy - Expanding our geographical area of operations” on page 187."
+      },
+      {
+       "match": "capital expenditure",
+       "sentence": "tly employ may become less competitive or even obsolete due to advancement in technology or changes in market demand, which may require us to incur substantial capital expenditure."
+      }
+     ]
+    },
+    "working_capital": {
+     "count": 33,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "working capital requirements",
+      "working capital requirement",
+      "Working capital requirements"
+     ],
+     "evidence": [
+      {
+       "match": "working capital requirements",
+       "sentence": "To meet working capital requirements 1,500."
+      },
+      {
+       "match": "working capital requirements",
+       "sentence": "Also, if payments under our contracts with the government authorities are delayed, our financial condition and results of operations may be affected on account of an effect on our working capital requirements, resulting in additional finance costs and increase in our realization cycle."
+      },
+      {
+       "match": "working capital requirements",
+       "sentence": "The objects of the Issue include funding working capital requirements of our Company which are based on certain assumptions and estimates."
+      }
+     ]
+    },
+    "general_corporate": {
+     "count": 13,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "General corporate purposes",
+      "general corporate purposes",
+      "General Corporate Purposes"
+     ],
+     "evidence": [
+      {
+       "match": "General corporate purposes",
+       "sentence": "General corporate purposes, subject to the applicable laws* 453."
+      },
+      {
+       "match": "general corporate purposes",
+       "sentence": "42 * The amount utilized for general corporate purposes shall not exceed 25% of the Gross Proceeds 23 For further details, please see section titled “Objects of the Issue” on page 98."
+      },
+      {
+       "match": "general corporate purposes",
+       "sentence": "We propose to utilise the Net Proceeds towards funding working capital requirements of our Company and general corporate purposes."
+      }
+     ]
+    }
+   },
+   "profiled_on": "2026-09-15"
+  }
  }
 ]
