@@ -1,48 +1,59 @@
 {
- "updated": "2026-09-15T10:01+05:30",
+ "updated": "2026-09-15T10:48+05:30",
  "figures": [
   {
    "label": "Brent crude",
-   "value": "$107.22/bbl",
+   "value": "$107.40/bbl",
+   "as_of": "2026-09-15",
+   "note": "+1.63% on the day, near a 4-month high",
+   "source": {
+    "publisher": "Trading Economics",
+    "url": "https://tradingeconomics.com/commodity/brent-crude-oil"
+   }
+  },
+  {
+   "label": "Saudi East-West pipeline outage",
+   "value": "2.6-4 mb/d route down 3-5 weeks",
    "as_of": "2026-09-14",
-   "note": "+1.27% on the day, touched $108 intraday, 4-month high",
+   "note": "drone-hit pipeline and pumping station under repair, per Saudi officials",
    "source": {
-    "publisher": "OilPrice.com",
-    "url": "https://oilprice.com/Latest-Energy-News/World-News/Brent-Hits-108-as-Saudi-Pipeline-Shutdown-Deepens-Supply-Fears.html"
+    "publisher": "Associated Press (via Local10)",
+    "url": "https://www.local10.com/news/world/2026/09/14/saudi-oil-pipeline-hit-in-strikes-will-be-mostly-out-of-service-for-several-weeks-for-repair/"
    }
   },
   {
-   "label": "Indian crude basket",
-   "value": "$115.98/bbl",
-   "as_of": "2026-09-09",
-   "note": "Sept-to-date avg $104.09, +15.4% vs August's $90.19",
+   "label": "India's Russian crude imports",
+   "value": "1.42 mb/d (H1-Sept)",
+   "as_of": "2026-09-14",
+   "note": "down 30% from August's 2.1 mb/d",
    "source": {
-    "publisher": "Business Today",
-    "url": "https://www.businesstoday.in/markets/stocks/story/indian-crude-oil-basket-hits-115-98-a-barrel-hsbc-goldman-sachs-raise-brent-forecasts-554552-2026-09-10"
-   }
-  },
-  {
-   "label": "HSBC 2026 Brent forecast",
-   "value": "$90/bbl",
-   "as_of": "2026-09-09",
-   "note": "raised from $80/bbl, on Hormuz shipping risk",
-   "source": {
-    "publisher": "Business Today",
-    "url": "https://www.businesstoday.in/markets/stocks/story/indian-crude-oil-basket-hits-115-98-a-barrel-hsbc-goldman-sachs-raise-brent-forecasts-554552-2026-09-10"
-   }
-  },
-  {
-   "label": "IEA 2026 global oil demand forecast",
-   "value": "-2.5 mb/d",
-   "as_of": "2026-09-11",
-   "note": "cut by a further 940,000 b/d vs August report",
-   "source": {
-    "publisher": "IEA",
-    "url": "https://www.iea.org/reports/oil-market-report-september-2026"
+    "publisher": "ThePrint",
+    "url": "https://theprint.in/economy/indias-russian-crude-imports-set-to-fall-in-september-amid-tighter-supply-iraq-a-key-alternative/3042166/"
    }
   }
  ],
  "items": [
+  {
+   "date": "2026-09-14",
+   "title": "India's Russian crude imports fall 30% in Sept as Iraq, Venezuela fill the gap",
+   "text": "India's Russian crude imports dropped to about 1.42 million bpd in the first half of September, down 30% from August's 2.1 million bpd average, as tighter Russian availability and stronger Chinese competition for barrels bite, per Kpler data. Iraqi imports more than tripled to roughly 535,000 bpd, largely via ship-to-ship transfers outside the Strait of Hormuz, while Venezuelan crude added about 150,000 bpd; Saudi Arabia's East-West pipeline shutdown has further squeezed traditional Gulf supply. The shift toward costlier, non-discounted grades adds to crude sourcing costs for Indian refiners already squeezed by the retail price freeze.",
+   "tone": "watch",
+   "companies": [
+    "RELIANCE",
+    "IOC",
+    "BPCL",
+    "HINDPETRO"
+   ],
+   "sources": [
+    {
+     "publisher": "ThePrint",
+     "title": "India's Russian crude imports set to fall in September amid tighter supply, Iraq a key alternative",
+     "url": "https://theprint.in/economy/indias-russian-crude-imports-set-to-fall-in-september-amid-tighter-supply-iraq-a-key-alternative/3042166/",
+     "date": "2026-09-14"
+    }
+   ],
+   "added": "2026-09-15"
+  },
   {
    "date": "2026-09-14",
    "title": "Brent hits 4-month high above $108 on Hormuz attack, Saudi pipeline shutdown",
