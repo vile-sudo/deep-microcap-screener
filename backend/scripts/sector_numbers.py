@@ -8,7 +8,7 @@ For every company named in a sector's latest edition, reads its public
 screener.in page (consolidated when available) and writes
 backend/sectors/<slug>/numbers.json: price, market cap, P/E, ROCE, ROE,
 operating margin, 3-year sales and profit growth, debt/equity, promoter
-holding and the latest quarter's sales growth. Runs daily with the 3 AM job,
+holding and the latest quarter's sales growth. Runs daily with the 2 AM job,
 so the research text can stay monthly while the numbers stay current.
 """
 from __future__ import annotations

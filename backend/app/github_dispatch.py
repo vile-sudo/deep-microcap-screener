@@ -2,7 +2,7 @@
 Fires a GitHub Actions workflow_dispatch from the live server, so an admin can
 run "Sector research (by hand)" (sector-research.yml) with one click on the
 dashboard instead of going to GitHub -- e.g. to refresh a sector's "Latest
-developments" right after big news, without waiting for the 3 AM run.
+developments" right after big news, without waiting for the 2 AM run.
 
 Needs GH_DISPATCH_TOKEN: a fine-grained personal access token scoped to this
 repo with "Actions: Read and write" permission (github.com/settings/tokens).

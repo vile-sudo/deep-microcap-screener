@@ -1,6 +1,6 @@
-name: Daily 3 AM update
+name: Daily 2 AM update
 
-# The whole dashboard, refreshed once every night at about 03:00 IST -- while
+# The whole dashboard, refreshed once every night at about 02:00 IST -- while
 # the owner sleeps, so a fresh Claude usage session is available by morning
 # (GitHub can start scheduled runs 5-20 minutes late). One job, in order:
 #
@@ -39,7 +39,7 @@ permissions:
 
 on:
   schedule:
-    - cron: '30 21 * * *'      # 03:00 IST, every day (21:30 UTC the previous day)
+    - cron: '30 20 * * *'      # 02:00 IST, every day (20:30 UTC the previous day)
   workflow_dispatch:
     inputs:
       max_add:

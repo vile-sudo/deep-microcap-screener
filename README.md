@@ -126,7 +126,7 @@ averages, volume, 52-week high — for every company on the board.
   them, rebuilds every company's candles (back-adjusted for splits and
   bonuses) and writes `backend/chart_data/`.
 - **Automation:** step 5 of `.github/workflows/daily.yml` runs it every
-  night at 03:00 IST (after the day's auto-screen, so a company added that
+  night at 02:00 IST (after the day's auto-screen, so a company added that
   morning has its chart), and `charts.yml` on every push that changes
   `backend/data/companies_raw.json` — so a company added to the board gets
   its chart without anyone doing anything. It commits the result and
@@ -251,7 +251,7 @@ Files, one folder per sector under `backend/sectors/<slug>/`:
   developments or monthly edition, optionally a sector slug and *force*), or locally `cd backend && python scripts/sector_research.py --sector oil-exploration --force`.
 - **Refresh now (one click)** - a **Refresh now** button on each sector page (admin
   only) fires the same latest-developments check straight away, for when
-  something big just happened and you don't want to wait for the 3 AM run or open
+  something big just happened and you don't want to wait for the 2 AM run or open
   GitHub. Needs `GH_DISPATCH_TOKEN` on the server: a fine-grained GitHub token
   scoped to this repo with "Actions: Read and write" (see `.env.example`).
   Server-side cooldown (10 min) stops repeat clicks queuing several runs.
@@ -357,7 +357,7 @@ admin, delete). Disabling or rejecting someone ends their sessions at once.
 ## What runs by itself
 
 Everything runs on GitHub Actions (no PC needs to be on), in **one run every
-night at about 03:00 IST**, while you sleep, so a fresh Claude usage window
+night at about 02:00 IST**, while you sleep, so a fresh Claude usage window
 is available by the time you're up (`.github/workflows/daily.yml`; GitHub can start
 scheduled runs a few minutes late). It commits once and redeploys Render once.
 A stage that fails leaves yesterday's data for that part, lets the other
