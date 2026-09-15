@@ -6,7 +6,7 @@ GET /api/sectors/{slug}                the latest edition, its edition list, liv
                                        and the daily latest developments
 GET /api/sectors/{slug}/{edition}      one edition, e.g. 2026-09
 POST /api/sectors/{slug}/refresh       admin: fire the daily latest-developments
-                                       check right now instead of waiting for 7 AM
+                                       check right now instead of waiting for 3 AM
 
 Research lives in backend/sectors/<slug>/<edition>.json (written by hand or by
 scripts/sector_research.py); company numbers in backend/sectors/<slug>/numbers.json

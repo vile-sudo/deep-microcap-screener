@@ -30,7 +30,7 @@ SCREEN_PATCHES = {
     "auto": {
         "lab": "Auto-added",
         "cls": "b-auto",
-        "full": "Auto-added by the daily 7 AM screen: passes the board's gates and the company states a moat "
+        "full": "Auto-added by the daily 3 AM screen: passes the board's gates and the company states a moat "
                 "(import substitution, market leadership, sole maker...). Numbers from screener.in; not yet researched by hand.",
     },
     "v8-weekly": {

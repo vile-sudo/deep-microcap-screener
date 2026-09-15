@@ -62,7 +62,7 @@ class Settings(BaseSettings):
     # A fine-grained personal access token, Actions: Read and write, scoped to
     # this one repo (github.com/settings/tokens -> Fine-grained tokens). Lets an
     # admin fire the "Latest developments" workflow on demand instead of waiting
-    # for the 7 AM run. Leave empty and the button explains how to set it up.
+    # for the 3 AM run. Leave empty and the button explains how to set it up.
     github_repo: str = "vile-sudo/deep-microcap-screener"
     github_branch: str = "main"
     gh_dispatch_token: str = ""

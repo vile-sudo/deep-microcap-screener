@@ -126,7 +126,7 @@ averages, volume, 52-week high — for every company on the board.
   them, rebuilds every company's candles (back-adjusted for splits and
   bonuses) and writes `backend/chart_data/`.
 - **Automation:** step 5 of `.github/workflows/daily.yml` runs it every
-  morning at 07:00 IST (after the day's auto-screen, so a company added that
+  night at 03:00 IST (after the day's auto-screen, so a company added that
   morning has its chart), and `charts.yml` on every push that changes
   `backend/data/companies_raw.json` — so a company added to the board gets
   its chart without anyone doing anything. It commits the result and
@@ -148,7 +148,7 @@ verification and sources, plus a scorecard, ownership and ASME certificates.
   (`frontend/static/app.js`, "Research Reports"), so there is nothing to
   write or regenerate: a company added to the board — including the daily
   auto-screen's — has its report the same day, and the numbers move with
-  the 07:00 refresh.
+  the 03:00 refresh.
 - The library searches the research text and filters by theme and report
   type (deep dive, research note, screening note, triage note, auto-screened).
 - Each report has its own link (`#v=reports&r=CODE`), previous/next, and
@@ -251,7 +251,7 @@ Files, one folder per sector under `backend/sectors/<slug>/`:
   developments or monthly edition, optionally a sector slug and *force*), or locally `cd backend && python scripts/sector_research.py --sector oil-exploration --force`.
 - **Refresh now (one click)** - a **Refresh now** button on each sector page (admin
   only) fires the same latest-developments check straight away, for when
-  something big just happened and you don't want to wait for 7 AM or open
+  something big just happened and you don't want to wait for the 3 AM run or open
   GitHub. Needs `GH_DISPATCH_TOKEN` on the server: a fine-grained GitHub token
   scoped to this repo with "Actions: Read and write" (see `.env.example`).
   Server-side cooldown (10 min) stops repeat clicks queuing several runs.
@@ -303,7 +303,7 @@ within 5% of the pivot, and the list sorts closest-to-breakout first.
 
 `backend/app/setups.py` holds every rule (documented at the top of the
 file). `scripts/update_charts.py` runs it and writes
-`backend/chart_data/setups.json`, so the daily 07:00 run (and `charts.yml`
+`backend/chart_data/setups.json`, so the daily 03:00 run (and `charts.yml`
 whenever `companies_raw.json` changes) keeps it current and redeploys.
 
 NIFTY 50 and SENSEX sit in the Market view bar: live through Zerodha when
@@ -357,7 +357,8 @@ admin, delete). Disabling or rejecting someone ends their sessions at once.
 ## What runs by itself
 
 Everything runs on GitHub Actions (no PC needs to be on), in **one run every
-morning at about 07:00 IST** (`.github/workflows/daily.yml`; GitHub can start
+night at about 03:00 IST**, while you sleep, so a fresh Claude usage window
+is available by the time you're up (`.github/workflows/daily.yml`; GitHub can start
 scheduled runs a few minutes late). It commits once and redeploys Render once.
 A stage that fails leaves yesterday's data for that part, lets the other
 stages run, and marks the run failed (GitHub emails you).

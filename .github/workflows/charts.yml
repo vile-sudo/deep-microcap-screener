@@ -2,7 +2,7 @@ name: Chart gallery update
 
 # Keeps the Chart gallery and Market view's stage screen (chart_data/setups.json)
 # current with no one touching it:
-#   * every morning as step 5 of daily.yml (07:00 IST), so every chart
+#   * every morning as step 5 of daily.yml (03:00 IST), so every chart
 #     gains the previous session's candle;
 #   * whenever the board's company list changes, so a company added to the
 #     board gets its chart (with a full year of history) within minutes.
