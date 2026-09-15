@@ -2125,13 +2125,35 @@ async function bpStatus(){
   bpSchedule('status', bpStatus, 5*60*1000);
 }
 function bpConnect(){
+  const admin=!!(ME&&ME.is_admin), cb=location.origin+'/api/kite/callback';
+  const keyInput=id=>admin?'':`<input id="${id}" type="password" autocomplete="current-password" placeholder="Admin key (KITE_ADMIN_KEY)" class="bp-find" required>`;
   openModal(`<h3>Connect Zerodha</h3>
-    <p class="mp">Zerodha asks for a login once a day; the session lasts until 6 a.m. the next morning. Enter the admin key set on the server (KITE_ADMIN_KEY) to continue to Zerodha's login page.</p>
-    <form id="bp-key-form" class="bp-key"><input id="bp-key" type="password" autocomplete="current-password" placeholder="Admin key" class="bp-find" required>
-    <button class="bp-mw" type="submit">Continue to Zerodha</button></form>`);
+    <p class="mp">Zerodha asks for a login once a day; the session lasts until 6 a.m. the next morning.</p>
+    <h4 class="bp-kh">1. Log in with Zerodha</h4>
+    <p class="mp">Needs your Kite app's Redirect URL set to <code class="bp-cb">${esc(cb)}</code></p>
+    <form id="bp-key-form" class="bp-key">${keyInput('bp-key')}<button class="bp-mw" type="submit">Continue to Zerodha</button></form>
+    <h4 class="bp-kh">2. Or paste a request token</h4>
+    <p class="mp">If Zerodha sends you somewhere else after logging in, copy the <b>request_token</b> from that page's address (or the whole address) and paste it here. A token works once, within a few minutes.</p>
+    <form id="bp-tok-form" class="bp-key">${keyInput('bp-key2')}<input id="bp-tok" type="text" autocomplete="off" spellcheck="false" placeholder="request_token or the full redirected address" class="bp-find" required>
+    <button class="bp-mw" type="submit">Connect</button></form>
+    <p class="mp bp-tok-msg" id="bp-tok-msg" role="status"></p>`);
   const f=document.getElementById('bp-key-form'), inp=document.getElementById('bp-key');
-  inp.focus();
-  f.onsubmit=e=>{ e.preventDefault(); location.href='/api/kite/login?key='+encodeURIComponent(inp.value); };
+  (inp||document.getElementById('bp-tok')).focus();
+  f.onsubmit=e=>{ e.preventDefault(); location.href='/api/kite/login'+(inp?'?key='+encodeURIComponent(inp.value):''); };
+  const tf=document.getElementById('bp-tok-form'), msg=document.getElementById('bp-tok-msg');
+  tf.onsubmit=async e=>{
+    e.preventDefault();
+    const btn=tf.querySelector('button'), k2=document.getElementById('bp-key2');
+    btn.disabled=true; msg.className='mp bp-tok-msg'; msg.textContent='Connecting…';
+    try{
+      const r=await fetch('/api/kite/token',{method:'POST',credentials:'same-origin',headers:{'Content-Type':'application/json'},
+        body:JSON.stringify({request_token:document.getElementById('bp-tok').value, key:k2?k2.value:''})});
+      const j=await r.json().catch(()=>({}));
+      if(!r.ok) throw new Error(j.detail||('HTTP '+r.status));
+      msg.classList.add('ok'); msg.textContent='Connected'+(j.user?' as '+j.user:'')+'. Live prices are on.';
+      setTimeout(()=>{ closeModal(); bpStatus(); bpIndices(); }, 900);
+    }catch(err){ msg.classList.add('bad'); msg.textContent=err.message; btn.disabled=false; }
+  };
 }
 async function bpIndices(){
   let j; try{ j=await fetchJSON('/api/market/indices'); }catch(e){ j=null; }

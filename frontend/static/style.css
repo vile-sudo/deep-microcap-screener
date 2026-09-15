@@ -1029,7 +1029,10 @@ td .thm{font-size:10.5px;text-transform:uppercase;letter-spacing:.05em;color:var
 .bp-table tbody tr{cursor:pointer}.bp-table tbody tr:hover{background:#f9fafb}
 .bp-empty{padding:26px;border:1px dashed #d1d5db;border-radius:12px;color:#6b7280;text-align:center}
 .bp-disc{margin-top:26px;color:#6b7280;font-size:11.5px}
-.bp-key{display:flex;gap:10px;margin-top:16px;flex-wrap:wrap}.bp-key input{flex:1;min-width:200px}
+.bp-key{display:flex;gap:10px;margin-top:10px;flex-wrap:wrap}.bp-key input{flex:1;min-width:200px}
+.bp-kh{margin:18px 0 4px;font-size:14px}
+.bp-cb{font-size:12px;overflow-wrap:anywhere;user-select:all}
+.bp-tok-msg{min-height:1.2em;margin-top:8px}.bp-tok-msg.ok{color:var(--good-ink,#15803d)}.bp-tok-msg.bad{color:#b91c1c}
 
 /* chart marks on stage cards */
 .cs .cs-pivot{stroke:#0a73a8;stroke-width:1.2;stroke-dasharray:5 4}

@@ -301,6 +301,10 @@ connected, delayed otherwise. Zerodha setup, once:
    `KITE_ADMIN_KEY` (a password you choose). Never commit these.
 
 Daily: Market view → **Connect Zerodha** → enter the admin key → log in.
+(Logged in as the dashboard admin, no key is asked.) If your Kite app's
+Redirect URL points somewhere else, log in at Zerodha anyway, copy the
+`request_token` from the address it lands on (or the whole address) and paste
+it under **Or paste a request token** in the same window, within a few minutes.
 Zerodha sessions end at 6 a.m. The access token stays on the server and is
 never sent to the browser; a redeploy on a host without a persistent disk
 drops the session.

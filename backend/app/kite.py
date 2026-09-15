@@ -14,6 +14,10 @@ Starting a login needs KITE_ADMIN_KEY, and the callback only accepts the
 one-time `state` issued by that login -- so a visitor can neither start a
 login nor swap in a session of their own.
 
+When the Kite app's Redirect URL points somewhere else (a local script, say),
+the admin can paste the request_token -- or the whole redirected address --
+into Market view instead (POST /api/kite/token, admin only).
+
 When there is no valid session, callers get None and fall back (delayed
 index quotes, end-of-day breakouts) rather than an error.
 """
@@ -22,10 +26,12 @@ from __future__ import annotations
 import csv
 import hashlib
 import io
+import re
 import secrets
 import threading
 import time
 from datetime import datetime, timedelta, timezone
+from urllib.parse import parse_qs, urlsplit
 
 import requests
 
@@ -115,6 +121,25 @@ def complete_login(request_token: str, state: str) -> dict:
     pending = _get_kv("KITE_LOGIN_STATE") or {}
     if not state or state != pending.get("state") or time.time() - pending.get("issued", 0) > 900:
         raise PermissionError("This login link has expired or was not started here. Start again from Market view.")
+    return exchange_token(request_token)
+
+
+_TOKEN = re.compile(r"[A-Za-z0-9]{6,64}")
+
+
+def parse_request_token(text: str) -> str | None:
+    """A request token pasted on its own, or the whole address Zerodha
+    redirected to (...?request_token=XXXX&action=login&status=success)."""
+    text = (text or "").strip()
+    if "request_token" in text:
+        query = urlsplit(text).query or text.split("?", 1)[-1]
+        text = (parse_qs(query).get("request_token") or [""])[0].strip()
+    return text if _TOKEN.fullmatch(text) else None
+
+
+def exchange_token(request_token: str) -> dict:
+    """Swap a one-time request token (valid for a few minutes) for the day's
+    access token. Callers check who is allowed to do this."""
     s = get_settings()
     checksum = hashlib.sha256((s.kite_api_key + request_token + s.kite_api_secret).encode()).hexdigest()
     r = requests.post(f"{API}/session/token", headers={"X-Kite-Version": "3"},

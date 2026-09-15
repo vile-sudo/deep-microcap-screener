@@ -12,6 +12,7 @@ GET  /api/market/trending   board companies breaking their 1-day, 1-week,
 GET  /api/kite/status       is Zerodha configured / connected
 GET  /api/kite/login?key=   start the daily Zerodha login (needs KITE_ADMIN_KEY)
 GET  /api/kite/callback     where Zerodha sends the login back
+POST /api/kite/token        connect with a pasted request token (admin)
 POST /api/kite/logout?key=  drop the session
 """
 from __future__ import annotations
@@ -26,6 +27,7 @@ from datetime import datetime
 import requests
 from fastapi import APIRouter, Depends, HTTPException, Query, Request
 from fastapi.responses import HTMLResponse, RedirectResponse
+from pydantic import BaseModel, Field
 from sqlalchemy.orm import Session
 
 from .. import charts, kite
@@ -261,6 +263,32 @@ def kite_callback(request_token: str = "", status: str = "", state: str = ""):
     with _cache_lock:
         _cache.clear()
     return RedirectResponse("/#v=market", status_code=302)
+
+
+class KiteToken(BaseModel):
+    request_token: str = Field("", max_length=2000)   # the token, or the whole redirected address
+    key: str = Field("", max_length=200)
+
+
+@router.post("/api/kite/token")
+def kite_token(body: KiteToken, request: Request):
+    """Connect with a request token pasted by the admin, for when Zerodha's
+    redirect doesn't come back to this site."""
+    if not kite.configured():
+        raise HTTPException(status_code=503, detail="Zerodha is not configured: set KITE_API_KEY and KITE_API_SECRET")
+    _check_admin(body.key, request)
+    token = kite.parse_request_token(body.request_token)
+    if not token:
+        raise HTTPException(status_code=400, detail="That doesn't look like a request token. Paste the value after request_token= or the whole address Zerodha opened.")
+    try:
+        sess = kite.exchange_token(token)
+    except RuntimeError as e:
+        raise HTTPException(status_code=400, detail=f"Zerodha rejected the token: {str(e).rstrip('.')}. Request tokens work once and only for a few minutes, so log in again for a fresh one.")
+    except requests.RequestException:
+        raise HTTPException(status_code=502, detail="Could not reach Zerodha. Try again.")
+    with _cache_lock:
+        _cache.clear()
+    return kite.status() | {"user": sess.get("user_name") or sess.get("user_id")}
 
 
 @router.post("/api/kite/logout")
