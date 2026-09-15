@@ -37,6 +37,12 @@ for (const entry of entries) {
     const name = (await page.textContent('.dr-cover h1')).trim();
     const label = (await page.textContent('.dr-cover .rp-eyebrow')).split('·')[1]?.trim() || period;
     await page.emulateMedia({ media: 'print' });
+    // Chromium's very first PDF export after a navigation comes out 10-15x larger than a
+    // second export of the identical page (a 2 MB report becomes 25-30 MB) -- reproduced
+    // locally against this exact Playwright/Chromium build. A throwaway export first warms
+    // whatever makes the difference, so the real, saved export is normal-sized; the visual
+    // content is byte-for-byte the same either way, only the file size differs.
+    await page.pdf({ format: 'A4', printBackground: true, margin: { top: '14mm', bottom: '16mm', left: '11mm', right: '11mm' } });
     await page.pdf({
       path: file, format: 'A4', printBackground: true,
       margin: { top: '14mm', bottom: '16mm', left: '11mm', right: '11mm' },
