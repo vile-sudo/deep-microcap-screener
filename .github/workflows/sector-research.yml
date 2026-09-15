@@ -1,6 +1,6 @@
 name: Sector research (by hand)
 
-# Writes a sector research edition with Claude Code on the owner's Claude Max
+# Writes a sector's latest developments or its monthly research edition with Claude Code on the owner's Claude Max
 # plan (CLAUDE_CODE_OAUTH_TOKEN secret), refreshes the sector company numbers,
 # commits and deploys. The daily workflow does the same once a month on its own.
 
@@ -10,12 +10,17 @@ permissions:
 on:
   workflow_dispatch:
     inputs:
+      job:
+        description: 'What to run'
+        type: choice
+        options: ['latest developments', 'monthly edition']
+        default: 'latest developments'
       sector:
         description: 'Sector slug (blank = every sector whose edition for this month is missing)'
         required: false
         default: ''
       force:
-        description: 'Rewrite this month''s edition even if it exists'
+        description: 'Run even if already done today / this month'
         type: boolean
         default: false
 
@@ -41,7 +46,21 @@ jobs:
           sudo apt-get install -y -qq poppler-utils
           pip install -r backend/requirements.txt beautifulsoup4
           npm install -g @anthropic-ai/claude-code
+      - name: Sector latest developments
+        if: ${{ github.event.inputs.job == 'latest developments' }}
+        working-directory: ./backend
+        env:
+          CLAUDE_CODE_OAUTH_TOKEN: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+          SECTOR_LATEST_MODEL: ${{ vars.SECTOR_LATEST_MODEL || 'sonnet' }}
+          SECTOR: ${{ github.event.inputs.sector }}
+          FORCE: ${{ github.event.inputs.force }}
+        run: |
+          args=()
+          if [ -n "$SECTOR" ]; then args+=(--sector "$SECTOR"); fi
+          if [ "$FORCE" = "true" ]; then args+=(--force); fi
+          python scripts/sector_latest.py "${args[@]}"
       - name: Sector research
+        if: ${{ github.event.inputs.job == 'monthly edition' }}
         working-directory: ./backend
         env:
           CLAUDE_CODE_OAUTH_TOKEN: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
@@ -49,10 +68,10 @@ jobs:
           SECTOR: ${{ github.event.inputs.sector }}
           FORCE: ${{ github.event.inputs.force }}
         run: |
-          args=""
-          if [ -n "$SECTOR" ]; then args="--sector $SECTOR"; fi
-          if [ "$FORCE" = "true" ]; then args="$args --force"; fi
-          python scripts/sector_research.py $args
+          args=()
+          if [ -n "$SECTOR" ]; then args+=(--sector "$SECTOR"); fi
+          if [ "$FORCE" = "true" ]; then args+=(--force); fi
+          python scripts/sector_research.py "${args[@]}"
       - name: Sector company numbers
         working-directory: ./backend
         run: python scripts/sector_numbers.py

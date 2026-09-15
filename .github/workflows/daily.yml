@@ -18,6 +18,8 @@ name: Daily 7 AM update
 #                     Research, once a month            (scripts/sector_research.py)
 #   7. sector numbers screener.in numbers for the companies in each sector
 #                     report, every day                  (scripts/sector_numbers.py)
+#      + latest       a short news check per sector: dated, cited "Latest
+#                     developments" at the top of each report (scripts/sector_latest.py)
 #   8. deep-dive      quarterly research reports for companies that filed
 #                     new results (a few a day)         (scripts/deep_reports.py)
 #   9. report PDFs    printed from the dashboard's report page and uploaded
@@ -146,6 +148,20 @@ jobs:
         working-directory: ./backend
         run: python scripts/sector_numbers.py
 
+      # A short Claude Code session per sector (Sonnet by default, to save the plan's
+      # usage for the deep-dive reports): news since the last check, each item cited.
+      - name: 7b. Sector latest developments
+        id: sectorlatest
+        continue-on-error: true
+        timeout-minutes: 45
+        working-directory: ./backend
+        env:
+          CLAUDE_CODE_OAUTH_TOKEN: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+          SECTOR_LATEST_MODEL: ${{ vars.SECTOR_LATEST_MODEL || 'sonnet' }}
+          SECTOR_LATEST_MINUTES: '20'
+          SECTOR_LATEST_COUNT_FILE: ../sector-latest-count.txt
+        run: python scripts/sector_latest.py
+
       # Quarterly deep-dive reports: a small batch a day, as companies file
       # results, written by Claude Code on the owner's Claude Max plan. Off until
       # the CLAUDE_CODE_OAUTH_TOKEN secret exists (create it with `claude setup-token`).
@@ -214,7 +230,8 @@ jobs:
           added=$(python -c "import json;r=json.load(open('automation/data/auto-screen.json'))['runs'][-1];print(len(r.get('added_codes',[])))" 2>/dev/null || echo 0)
           reports=$(grep -c . reports-today.txt 2>/dev/null || echo 0)
           sectors=$(git diff --cached --name-only -- 'backend/sectors/*/????-??.json' | wc -l)
-          git commit -m "Daily update $(TZ=Asia/Kolkata date +%F): ${added} auto-added, ${reports} deep-dive reports, ${sectors} sector editions"
+          news=$(cat sector-latest-count.txt 2>/dev/null || echo 0)
+          git commit -m "Daily update $(TZ=Asia/Kolkata date +%F): ${added} auto-added, ${reports} deep-dive reports, ${sectors} sector editions, ${news} sector developments"
           for i in 1 2 3; do
             git pull --rebase origin ${{ github.ref_name }} && git push origin HEAD:${{ github.ref_name }} && break
             sleep 5
@@ -244,6 +261,7 @@ jobs:
             echo "| charts | ${{ steps.charts.outcome }} |"
             echo "| sector research | ${{ steps.sectors.outcome }} |"
             echo "| sector numbers | ${{ steps.sectornums.outcome }} |"
+            echo "| sector latest developments | ${{ steps.sectorlatest.outcome }} |"
             echo "| deep-dive reports | ${{ steps.reports.outcome }} |"
             echo "| report PDFs | ${{ steps.pdfs.outcome }} |"
           } >> "$GITHUB_STEP_SUMMARY"
@@ -252,7 +270,7 @@ jobs:
             python -c "import json;r=json.load(open('automation/data/auto-screen.json'))['runs'][-1];print('\nAuto-screen:', r)" >> "$GITHUB_STEP_SUMMARY"
           fi
           failed=""
-          for o in "${{ steps.fundamentals.outcome }}" "${{ steps.discovery.outcome }}" "${{ steps.autoscreen.outcome }}" "${{ steps.asme.outcome }}" "${{ steps.charts.outcome }}" "${{ steps.sectors.outcome }}" "${{ steps.sectornums.outcome }}" "${{ steps.reports.outcome }}" "${{ steps.pdfs.outcome }}"; do
+          for o in "${{ steps.fundamentals.outcome }}" "${{ steps.discovery.outcome }}" "${{ steps.autoscreen.outcome }}" "${{ steps.asme.outcome }}" "${{ steps.charts.outcome }}" "${{ steps.sectors.outcome }}" "${{ steps.sectornums.outcome }}" "${{ steps.sectorlatest.outcome }}" "${{ steps.reports.outcome }}" "${{ steps.pdfs.outcome }}"; do
             if [ "$o" = "failure" ]; then failed=1; fi
           done
           if [ -n "$failed" ]; then echo "::error::a stage failed -- see the table above"; exit 1; fi

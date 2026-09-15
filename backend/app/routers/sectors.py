@@ -2,12 +2,14 @@
 Sector research endpoints.
 
 GET /api/sectors                       every sector: name, latest edition, headline, key stats
-GET /api/sectors/{slug}                the latest edition, its edition list and live company numbers
+GET /api/sectors/{slug}                the latest edition, its edition list, live company numbers
+                                       and the daily latest developments
 GET /api/sectors/{slug}/{edition}      one edition, e.g. 2026-09
 
 Research lives in backend/sectors/<slug>/<edition>.json (written by hand or by
 scripts/sector_research.py); company numbers in backend/sectors/<slug>/numbers.json
-(refreshed daily by scripts/sector_numbers.py).
+(refreshed daily by scripts/sector_numbers.py); latest developments in
+backend/sectors/<slug>/latest.json (daily, scripts/sector_latest.py).
 """
 import json
 import os
@@ -49,10 +51,13 @@ def list_sectors():
         if not eds:
             continue
         r = _load(d / f"{eds[0]}.json") or {}
+        lt = _load(d / "latest.json") or {}
         out.append({"slug": d.name, "name": r.get("name"), "edition": eds[0], "updated": r.get("updated"),
                     "icon": r.get("icon"), "one_line": (r.get("summary") or {}).get("one_line"),
                     "kpis": (r.get("kpis") or [])[:4], "companies": len(r.get("companies") or []),
-                    "sources": len(r.get("sources") or [])})
+                    "sources": len(r.get("sources") or []),
+                    "latest": {"updated": lt.get("updated"), "items": (lt.get("items") or [])[:2],
+                               "count": len(lt.get("items") or [])} if lt.get("items") else None})
     planned = _load(SECTORS / "planned.json") or []
     return {"sectors": out, "planned": planned}
 
@@ -65,7 +70,8 @@ def _with_numbers(slug: str, report: dict) -> dict:
 def latest(slug: str):
     if not SLUG.match(slug) or not _editions(slug):
         raise HTTPException(status_code=404, detail="No research for this sector yet")
-    return _with_numbers(slug, _load(SECTORS / slug / f"{_editions(slug)[0]}.json"))
+    return {**_with_numbers(slug, _load(SECTORS / slug / f"{_editions(slug)[0]}.json")),
+            "latest": _load(SECTORS / slug / "latest.json")}
 
 
 @router.get("/{slug}/{edition}")

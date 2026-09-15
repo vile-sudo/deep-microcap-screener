@@ -3292,6 +3292,7 @@ function scRenderLib(){
       <div class="sc-card-top"><span class="sc-ic"><svg viewBox="0 0 24 24">${scIcon(s.icon)}</svg></span><span>Sector research · ${esc(scMonth(s.edition))}</span></div>
       <h3>${esc(s.name)}</h3>
       <p>${esc((s.one_line||'').replace(/\s*\(S\d+(?:;\s*S\d+)*\)/g,''))}</p>
+      ${s.latest&&s.latest.items.length?`<div class="sc-card-latest"><b>Latest · ${esc(scDay(s.latest.items[0].date))}</b><span>${esc(s.latest.items[0].title)}</span></div>`:''}
       <div class="sc-kpis">${(s.kpis||[]).slice(0,3).map(k=>`<div><b>${esc(k.value)}</b><span>${esc(k.label)}</span></div>`).join('')}</div>
       <div class="sc-card-foot"><span>${s.companies} listed companies · ${s.sources} sources</span><span class="rp-read">Read the research ›</span></div>
     </article>`).join('') : '<p class="view-hint">No sector research published yet.</p>')
@@ -3328,6 +3329,26 @@ function scCompanies(r){
           <td class="n">${n.sales_cagr_3y==null?'—':scNum(n.sales_cagr_3y,0)+'%'}</td><td class="n">${n.from_52w_high==null?'—':scNum(n.from_52w_high,0)+'%'}</td>
           <td class="sc-links">${bc?`<button type="button" class="btn" data-sc-card="${esc(bc.code)}">Scorecard</button>`:''}<a class="btn" href="${esc(n.screener_url||('https://www.screener.in/company/'+encodeURIComponent(key)+'/'))}" target="_blank" rel="noopener">screener ↗</a></td></tr>`;}).join('')}</tbody></table></div>`;}).join('')}`;
 }
+const scDay = d => { const [y,m,dd]=String(d||'').slice(0,10).split('-').map(Number); return y?`${dd} ${GMONTHS[m-1]} ${y}`:''; };
+const SC_TONE={good:'Positive',bad:'Negative',watch:'Watch',info:'Update'};
+function scLatest(lt){
+  const items=(lt&&lt.items)||[], figs=(lt&&lt.figures)||[];
+  const upd=lt&&lt.updated?String(lt.updated).replace('T',' ').slice(0,16):'';
+  const byDay=[]; items.forEach(it=>{ const g=byDay[byDay.length-1]; if(g&&g.d===it.date) g.list.push(it); else byDay.push({d:it.date,list:[it]}); });
+  const item=it=>`<article class="sc-news sc-news-${esc(it.tone||'info')}">
+      <div class="sc-news-head"><span class="sc-tone">${esc(SC_TONE[it.tone]||'Update')}</span><h4>${esc(it.title)}</h4></div>
+      <p>${esc(it.text)}</p>
+      <div class="sc-news-foot">${(it.companies||[]).map(c=>`<button type="button" class="sc-co" data-sc-go="companies">${esc(c)}</button>`).join('')}
+        <span class="sc-news-src">${(it.sources||[]).map(s=>`<a href="${esc(s.url)}" target="_blank" rel="noopener" title="${esc(s.title||'')}">${esc(s.publisher||'Source')} ↗</a>`).join(' · ')}</span></div>
+    </article>`;
+  let shown=0, older=0;   /* whole days, until about 12 items are on show */
+  const days=byDay.map(g=>{ const hide=shown>=12; shown+=g.list.length; if(hide) older+=g.list.length;
+    return `<div class="sc-day"${hide?' data-sc-old hidden':''}><h3>${esc(scDay(g.d))}</h3>${g.list.map(item).join('')}</div>`; }).join('');
+  return `<p class="dr-muted">Checked every morning for news since the last update; each item links to the pages it came from. ${upd?`Last checked ${esc(upd)} IST.`:''} The full report below is re-verified monthly.</p>
+    ${figs.length?`<div class="sc-figs">${figs.map(f=>`<a class="sc-fig" href="${esc(f.source.url)}" target="_blank" rel="noopener"><span>${esc(f.label)}</span><b>${esc(f.value)}</b><small>${esc(f.note||'')}${f.note?' · ':''}${esc(scDay(f.as_of))} · ${esc(f.source.publisher||'source')}</small></a>`).join('')}</div>`:''}
+    ${items.length?days:'<p class="view-hint">No new developments recorded yet. The daily check adds them here.</p>'}
+    ${older?`<button type="button" class="btn sc-older" id="sc-older">Show ${older} older ${older===1?'development':'developments'}</button>`:''}`;
+}
 async function scRenderDoc(){
   document.getElementById('sc-heading').hidden=true;
   document.getElementById('sc-lib').hidden=true;
@@ -3337,10 +3358,12 @@ async function scRenderDoc(){
   if(VIEW!=='sectors') return;
   if(!r){ SC.slug=null; return scRenderLib(); }
   const src=r.sources||[], secs=r.sections||[], sm=r.summary||{};
-  const parts=[['summary','Key takeaways', `
+  const parts=[];
+  if(!SC.edition && r.latest) parts.push(['latest','Latest developments', scLatest(r.latest)]);
+  parts.push(['summary','Key takeaways', `
       ${sm.one_line?`<p class="dr-lede">${drText(sm.one_line,src)}</p>`:''}
       <ul class="dr-ul sc-points">${(sm.key_points||[]).map(p=>`<li>${drText(p,src)}</li>`).join('')}</ul>
-      ${(sm.for_investors||[]).length?`<div class="dr-sumgrid">${sm.for_investors.map(x=>`<div class="dr-sum ${x.tone==='bad'?'bad':x.tone==='watch'?'watch':'good'}"><h4>${esc(x.title)}</h4><ul>${(x.points||[]).map(p=>`<li>${drText(p,src)}</li>`).join('')}</ul></div>`).join('')}</div>`:''}`]];
+      ${(sm.for_investors||[]).length?`<div class="dr-sumgrid">${sm.for_investors.map(x=>`<div class="dr-sum ${x.tone==='bad'?'bad':x.tone==='watch'?'watch':'good'}"><h4>${esc(x.title)}</h4><ul>${(x.points||[]).map(p=>`<li>${drText(p,src)}</li>`).join('')}</ul></div>`).join('')}</div>`:''}`]);
   secs.forEach(s=>parts.push([s.id, s.title, (s.subsections||[]).map(sub=>`${sub.title?`<h3>${esc(sub.title)}</h3>`:''}${scBlocks(sub.blocks,src)}`).join('')]));
   if((r.companies||[]).length) parts.push(['companies','Indian listed companies', scCompanies(r)]);
   const byKind={}; src.forEach(s=>(byKind[s.kind||'other']||(byKind[s.kind||'other']=[])).push(s));
@@ -3376,6 +3399,7 @@ async function scRenderDoc(){
   document.getElementById('sc-print').onclick=()=>window.print();
   const sel=document.getElementById('sc-edition'); if(sel) sel.onchange=()=>{ SC.edition=sel.value===eds[0]?null:sel.value; scRenderDoc(); };
   doc.querySelectorAll('[data-sc-go]').forEach(a=>a.onclick=e=>{ e.preventDefault(); const t=document.getElementById('sc-'+a.dataset.scGo); if(t) window.scrollTo({top:t.getBoundingClientRect().top+scrollY-80,behavior:'smooth'}); });
+  const older=document.getElementById('sc-older'); if(older) older.onclick=()=>{ doc.querySelectorAll('[data-sc-old]').forEach(x=>x.hidden=false); older.remove(); };
   doc.querySelectorAll('[data-sc-card]').forEach(b=>b.onclick=()=>{ const d=DATA.find(x=>x.code===b.dataset.scCard); if(d){ CURRENT=[d]; openDrawer(d); } });
   syncURL();
 }

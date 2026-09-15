@@ -229,6 +229,7 @@ Files, one folder per sector under `backend/sectors/<slug>/`:
 | `brief.json` | name, scope, the questions the research must answer, the company universe |
 | `YYYY-MM.json` | one edition per month (older editions stay selectable on the page) |
 | `numbers.json` | today's screener.in numbers for the companies in the latest edition |
+| `latest.json` | daily "Latest developments": dated news items with their sources and the companies they affect, plus a few headline figures (last 45 days) |
 
 `backend/sectors/planned.json` lists the "coming next" cards.
 
@@ -240,8 +241,14 @@ Files, one folder per sector under `backend/sectors/<slug>/`:
   writes a sector's new edition when this month's is missing, normally on the
   1st; `SECTORS_PER_RUN` (default 1) spreads several sectors over several days.
 - **Company numbers** - `scripts/sector_numbers.py`, every day.
-- **By hand** - *Actions → Sector research (by hand) → Run workflow* (optionally a
-  sector slug and *force*), or locally `cd backend && python scripts/sector_research.py --sector oil-exploration --force`.
+- **Latest developments** - `scripts/sector_latest.py`, every day: a short Claude
+  Code session per sector (Sonnet by default; repo variable `SECTOR_LATEST_MODEL`
+  to change) looks for news since the last check and writes 0-8 dated items, each
+  with the pages it came from. Items without a source URL, outside the date window
+  or already published are dropped before saving. They show at the top of the
+  sector page.
+- **By hand** - *Actions → Sector research (by hand) → Run workflow* (choose latest
+  developments or monthly edition, optionally a sector slug and *force*), or locally `cd backend && python scripts/sector_research.py --sector oil-exploration --force`.
 
 **Adding a sector**: create `backend/sectors/<slug>/brief.json` (copy
 `oil-exploration/brief.json` and change the scope, questions and universe),
@@ -358,6 +365,7 @@ stages run, and marks the run failed (GitHub emails you).
 | 5. Charts | `backend/scripts/update_charts.py` | candles, Chart Gallery, Market view stages (VCP + IPO base), breakouts, feed |
 | 6. Sector research | `backend/scripts/sector_research.py` | a new monthly edition for each sector (Claude Code, Max plan) |
 | 7. Sector numbers | `backend/scripts/sector_numbers.py` | screener.in numbers for the companies in each sector report |
+| 7b. Sector latest | `backend/scripts/sector_latest.py` | dated, cited latest developments at the top of each sector report |
 | 8. Deep-dive reports | `backend/scripts/deep_reports.py` | quarterly deep-dive reports after new results, and their PDFs |
 
 Each step also has its own workflow for a manual re-run (*Actions → Run

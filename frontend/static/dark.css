@@ -304,6 +304,17 @@ html[data-mode="dark"] .sc-ic{background:var(--acc-soft,#162c36)}
 html[data-mode="dark"] .sc-kpis div{background:var(--surface-2,#11191e)}
 html[data-mode="dark"] .sc-cover-ic{border:1px solid rgba(43,49,54,.25)}
 html[data-mode="dark"] .sc-cover-ic svg{stroke:#2b3136}
+html[data-mode="dark"] .sc-card-latest{background:var(--surface-2,#11191e)}
+html[data-mode="dark"] .sc-card-latest b{color:var(--ocean,#a4dcf8)}
+html[data-mode="dark"] .sc-fig{background:var(--surface,#0e1418)}
+html[data-mode="dark"] .sc-news{background:var(--surface,#0e1418)}
+html[data-mode="dark"] .sc-tone{background:#1a252e;color:#c6cdd2}
+html[data-mode="dark"] .sc-news-good .sc-tone{background:#143c22;color:#c7f3d8}
+html[data-mode="dark"] .sc-news-bad .sc-tone{background:#3c1111;color:#f0abab}
+html[data-mode="dark"] .sc-news-watch .sc-tone{background:#433913;color:#f7caaf}
+html[data-mode="dark"] .sc-news-info .sc-tone{background:#112b3c;color:#b8e2f9}
+html[data-mode="dark"] .sc-co:hover{color:var(--ocean,#a4dcf8)}
+html[data-mode="dark"] .sc-news-src a{color:var(--ocean,#a4dcf8)}
 html[data-mode="dark"] .sc-chart{background:var(--surface,#0e1418)}
 html[data-mode="dark"] .sc-onboard{color:var(--good-ink,#b9f3cf)}
 /* hand-written additions to dark mode, appended to dark.css by build_dark_css.py */
