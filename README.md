@@ -249,6 +249,12 @@ Files, one folder per sector under `backend/sectors/<slug>/`:
   sector page.
 - **By hand** - *Actions → Sector research (by hand) → Run workflow* (choose latest
   developments or monthly edition, optionally a sector slug and *force*), or locally `cd backend && python scripts/sector_research.py --sector oil-exploration --force`.
+- **Refresh now (one click)** - a **Refresh now** button on each sector page (admin
+  only) fires the same latest-developments check straight away, for when
+  something big just happened and you don't want to wait for 7 AM or open
+  GitHub. Needs `GH_DISPATCH_TOKEN` on the server: a fine-grained GitHub token
+  scoped to this repo with "Actions: Read and write" (see `.env.example`).
+  Server-side cooldown (10 min) stops repeat clicks queuing several runs.
 
 **Adding a sector**: create `backend/sectors/<slug>/brief.json` (copy
 `oil-exploration/brief.json` and change the scope, questions and universe),

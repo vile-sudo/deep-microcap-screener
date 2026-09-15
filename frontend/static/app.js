@@ -3349,6 +3349,45 @@ function scLatest(lt){
     ${items.length?days:'<p class="view-hint">No new developments recorded yet. The daily check adds them here.</p>'}
     ${older?`<button type="button" class="btn sc-older" id="sc-older">Show ${older} older ${older===1?'development':'developments'}</button>`:''}`;
 }
+/* "Refresh now": admin fires the daily latest-developments check on demand,
+   then this polls until the page has new content or gives up. */
+function scWireRefresh(slug, waitSeconds, knownUpdated){
+  const btn=document.getElementById('sc-refresh'), msg=document.getElementById('sc-refresh-msg');
+  if(!btn) return;
+  let countdown=null, poll=null;
+  const stopCountdown=()=>{ if(countdown){ clearInterval(countdown); countdown=null; } };
+  const stopPoll=()=>{ if(poll){ clearInterval(poll); poll=null; } };
+  const disable=secs=>{
+    stopCountdown(); btn.disabled=true; let left=secs;
+    const tick=()=>{ const m=Math.floor(left/60), s=left%60; btn.textContent=`Refresh now (${m}:${String(s).padStart(2,'0')})`;
+      if(left<=0){ stopCountdown(); btn.disabled=false; btn.textContent='Refresh now'; } left--; };
+    tick(); countdown=setInterval(tick,1000);
+  };
+  const startPoll=since=>{
+    stopPoll(); let tries=0;
+    poll=setInterval(async()=>{
+      if(++tries>24 || SC.slug!==slug){ stopPoll(); if(SC.slug===slug && tries>24) msg.textContent='Still checking — check back in a few minutes.'; return; }
+      SC.cache.delete(slug+'|'); const j=await fetchJSON('/api/sectors/'+encodeURIComponent(slug)).catch(()=>null);
+      if(j) SC.cache.set(slug+'|', Promise.resolve(j));
+      if(j && j.latest && j.latest.updated && j.latest.updated!==since){
+        stopPoll();
+        if(SC.slug===slug && !SC.edition){ msg.textContent='Updated.'; scRenderDoc(); }
+      }
+    }, 30000);
+  };
+  if(waitSeconds>0) disable(waitSeconds);
+  btn.onclick=async()=>{
+    btn.disabled=true; msg.textContent='Starting…';
+    try{
+      const r=await fetch('/api/sectors/'+encodeURIComponent(slug)+'/refresh',{method:'POST',credentials:'same-origin'});
+      const j=await r.json().catch(()=>({}));
+      if(!r.ok) throw new Error(j.detail||('HTTP '+r.status));
+      msg.textContent='Queued — this usually takes 5–10 minutes. This page updates itself when it is done.';
+      disable(j.cooldown_seconds||600);
+      startPoll(knownUpdated);
+    }catch(err){ msg.textContent=err.message; btn.disabled=false; }
+  };
+}
 async function scRenderDoc(){
   document.getElementById('sc-heading').hidden=true;
   document.getElementById('sc-lib').hidden=true;
@@ -3376,8 +3415,10 @@ async function scRenderDoc(){
       <button type="button" class="theme-back" id="sc-back">‹ All sectors</button>
       <span class="rp-tools">
         ${eds.length>1?`<select class="gal-select dr-period" id="sc-edition">${eds.map(e=>`<option value="${e}"${e===r.edition?' selected':''}>${scMonth(e)} edition${e===eds[0]?' (latest)':''}</option>`).join('')}</select>`:''}
+        ${ME&&ME.is_admin?`<button type="button" class="btn" id="sc-refresh">Refresh now</button>`:''}
         <button type="button" class="btn rp-print" id="sc-print">Print / save PDF</button>
       </span>
+      ${ME&&ME.is_admin?`<span class="sc-refresh-msg" id="sc-refresh-msg"></span>`:''}
     </div>
     <header class="rp-cover sc-cover">
       <div class="rp-cover-main">
@@ -3398,6 +3439,7 @@ async function scRenderDoc(){
   document.getElementById('sc-back').onclick=()=>{ SC.slug=null; SC.edition=null; scRenderLib(); window.scrollTo({top:0}); };
   document.getElementById('sc-print').onclick=()=>window.print();
   const sel=document.getElementById('sc-edition'); if(sel) sel.onchange=()=>{ SC.edition=sel.value===eds[0]?null:sel.value; scRenderDoc(); };
+  scWireRefresh(SC.slug, r.refresh_wait_seconds||0, (r.latest&&r.latest.updated)||null);
   doc.querySelectorAll('[data-sc-go]').forEach(a=>a.onclick=e=>{ e.preventDefault(); const t=document.getElementById('sc-'+a.dataset.scGo); if(t) window.scrollTo({top:t.getBoundingClientRect().top+scrollY-80,behavior:'smooth'}); });
   const older=document.getElementById('sc-older'); if(older) older.onclick=()=>{ doc.querySelectorAll('[data-sc-old]').forEach(x=>x.hidden=false); older.remove(); };
   doc.querySelectorAll('[data-sc-card]').forEach(b=>b.onclick=()=>{ const d=DATA.find(x=>x.code===b.dataset.scCard); if(d){ CURRENT=[d]; openDrawer(d); } });
