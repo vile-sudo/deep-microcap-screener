@@ -78,7 +78,10 @@ def _get(url: str, session: requests.Session, referer: str) -> bytes | None:
 
 def _parse_legacy_nse(text: str) -> list[list]:
     rows = []
-    for r in csv.DictReader(io.StringIO(text), skipinitialspace=True):
+    # newline='' matches csv's own recommendation for reading from a string/file
+    # that may carry \r\n or an embedded newline inside a field -- without it,
+    # some days' files raise "new-line character seen in unquoted field"
+    for r in csv.DictReader(io.StringIO(text, newline=""), skipinitialspace=True):
         if (r.get("SERIES") or "").strip() not in NSE_LEGACY_SERIES:
             continue
         try:

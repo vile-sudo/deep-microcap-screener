@@ -70,6 +70,10 @@ def sync_cache(session: requests.Session) -> None:
         except RuntimeError as e:
             print(f"  {e}")
             return d, ex, False          # transient failure: try again next run
+        except Exception as e:  # noqa: BLE001 - one malformed day (a parsing surprise years
+            # back, say) must never abort a run that is otherwise fetching thousands of good days
+            print(f"  {ex} {d}: could not parse ({e}); skipping this day, will retry next run")
+            return d, ex, False
 
     got = 0
     with ThreadPoolExecutor(max_workers=4) as pool:
