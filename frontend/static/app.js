@@ -2085,7 +2085,7 @@ async function mvRender(){
     ${ME&&ME.is_admin?`<div class="mv-admin"><button type="button" class="btn" id="mv-refresh">Run tonight's scan now</button><span class="mv-refresh-msg" id="mv-refresh-msg"></span></div>`:''}
     <p class="mv-src">Source: NSE's own end-of-day bhavcopy (every EQ / BE / BZ / SM / ST series it carries -- main board, trade-for-trade and the SME platform), corporate actions, corporate announcements, bulk/block deals and allowlisted news coverage.
     ${snap.stats&&snap.stats.mechanical_only?` ${snap.stats.mechanical_only} move(s) fell under ${snap.threshold_percent}% once a corporate action was adjusted out, and are not listed.`:''}
-    On a busy day, news coverage is checked for the board's own companies and the largest moves first; a row marked "not checked" ran out of that day's budget rather than turning up nothing. Not investment advice.</p>`;
+    Every flagged move is checked for news; on an extraordinarily busy day the board's own companies and the largest moves are checked first, and a row marked "not checked" simply hasn't been reached yet, which is different from turning up nothing. Not investment advice.</p>`;
   document.getElementById('mv-rows').onclick=e=>{
     const row=e.target.closest('[data-mvrow]'); if(row) mvOpenRow(row.dataset.mvrow);
   };

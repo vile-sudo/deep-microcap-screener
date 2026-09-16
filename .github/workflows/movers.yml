@@ -34,7 +34,10 @@ concurrency:
 jobs:
   scan:
     runs-on: ubuntu-latest
-    timeout-minutes: 60
+    # Every flagged move gets a news search (one request each, politely
+    # paced), and a busy session across the whole NSE universe can flag
+    # several hundred -- comfortable headroom for that, not a normal runtime.
+    timeout-minutes: 120
 
     steps:
       - name: Check out repo

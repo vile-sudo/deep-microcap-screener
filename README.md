@@ -346,13 +346,15 @@ changed crossing it into this dashboard) before joining the board here.
   and the press agree, `medium`/`low` for news or a deal alone,
   `mechanical` for an action too complex to quantify (a demerger, say), and
   `none` when nothing was found -- reported honestly rather than guessed.
-- **News is bounded, not skipped:** filings, corporate actions and deals
-  are a handful of requests for the whole day, but news is one search per
-  symbol. On a day with several hundred flagged moves that is capped at
-  `MOVERS_NEWS_LIMIT` (default 120) -- the board's own companies first,
-  then the largest moves by size -- so a busy session cannot turn into a
-  thousand-query run. A move outside that budget is marked "not checked"
-  on the dashboard, which is different from "checked, found nothing."
+- **Every flagged move gets checked**, one news search each: filings and
+  corporate actions are a handful of requests for the whole day, and news
+  is more (one per symbol, politely paced), but on an ordinary day that is
+  still a few hundred at most. `MOVERS_NEWS_LIMIT` (default 5000) is a
+  safety valve, not a normal ceiling -- board companies and the largest
+  moves are checked first, so if a session ever flags an extraordinary
+  number of moves the run still finishes rather than growing unbounded. A
+  move outside that valve is marked "not checked" on the dashboard, which
+  is different from "checked, found nothing."
 - **Automation:** its own schedule, `movers.yml`, at **07:00 IST every
   morning** -- separately from the rest of the dashboard's 02:00 IST run,
   and later on purpose: news of yesterday's move is often published the

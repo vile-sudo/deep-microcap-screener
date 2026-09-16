@@ -38,13 +38,13 @@ from app.movers.scan import format_report, scan_closes, write_snapshot  # noqa: 
 IST = timezone(timedelta(hours=5, minutes=30))
 BHAVCOPY_READY = time_type(16, 30)   # NSE publishes within about an hour of the close
 THRESHOLD_PERCENT = 4.0
-# A quiet session flags a few dozen moves; a busy one, several hundred, since
-# the universe is every NSE equity series rather than a fixed index -- see
-# app/movers/__init__.py. Filings, corporate actions and deals are cheap (a
-# handful of requests cover the whole day), but news is one Google query per
-# symbol, so it is bounded rather than run for every long-tail penny stock.
-# The board's own companies always get it regardless of rank.
-NEWS_LIMIT = int(os.environ.get("MOVERS_NEWS_LIMIT", "120"))
+# Every flagged move gets a news check, board companies and the biggest moves
+# first, same as the standalone tool this was ported from did for its whole
+# (smaller) universe -- see app/movers/__init__.py. NEWS_LIMIT is a safety
+# valve, not a normal ceiling: high enough that an ordinary day never reaches
+# it, so it only bites if a session flags an extraordinary number of moves,
+# keeping the run bounded rather than open-ended.
+NEWS_LIMIT = int(os.environ.get("MOVERS_NEWS_LIMIT", "5000"))
 BACKEND_DIR = Path(__file__).resolve().parent.parent
 SNAPSHOT_DIR = BACKEND_DIR / "data" / "movers"
 
@@ -113,11 +113,11 @@ def _attribute(moves: list, trade_date: date, adjustments: dict, board: dict, lo
     """Attach an explanation to every flagged move, in place.
 
     Filings, corporate actions and deals are fetched once for the whole day
-    and applied to every move. News is looked up per symbol, so on a day with
-    several hundred flagged moves it is capped at NEWS_LIMIT -- board
-    companies first, then the largest moves by size -- and returns which
-    symbols were actually checked, so the snapshot can say "not checked"
-    rather than implying nothing was found.
+    and applied to every move. News is looked up per symbol and normally run
+    for every flagged move; only on a session flagging more than NEWS_LIMIT
+    (board companies first, then the largest moves by size) does the tail get
+    skipped. Returns which symbols were actually checked, so the snapshot can
+    say "not checked" rather than implying nothing was found.
     """
     from app.movers.announcements import filings_for_session
     from app.movers.attribution import explain, summarise
