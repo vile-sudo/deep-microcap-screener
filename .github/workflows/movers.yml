@@ -1,9 +1,16 @@
 name: Movers scan
 
-# Keeps the Movers page current with no one touching it: every morning as
-# step 5c of daily.yml, and on demand when an admin clicks "Run tonight's
-# scan now" on the dashboard (POST /api/admin/movers/run-now, see
-# app/routers/movers.py) or this is run by hand from the Actions tab.
+# Keeps the Movers page current with no one touching it: on its own schedule
+# at 07:00 IST every morning -- separately from daily.yml's 02:00 IST run,
+# and on purpose. News coverage of yesterday's move is often published the
+# next morning, so scanning at 07:00 (about 15.5 hours after the 15:30 close)
+# catches far more of it than scanning at 02:00 (about 10.5 hours after)
+# would. This scan makes no use of the Claude Max plan daily.yml is paced
+# around, so running it later costs nothing there.
+#
+# Also runs on demand: an admin clicking "Run tonight's scan now" on the
+# dashboard (POST /api/admin/movers/run-now, see app/routers/movers.py), or
+# this workflow run by hand from the Actions tab.
 #
 # Commits by this workflow use GITHUB_TOKEN, which never re-triggers
 # workflows, so nothing here can loop.
@@ -12,6 +19,8 @@ permissions:
   contents: write
 
 on:
+  schedule:
+    - cron: '30 1 * * *'      # 07:00 IST, every day (01:30 UTC)
   workflow_dispatch:
     inputs:
       date:

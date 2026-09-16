@@ -353,12 +353,16 @@ changed crossing it into this dashboard) before joining the board here.
   then the largest moves by size -- so a busy session cannot turn into a
   thousand-query run. A move outside that budget is marked "not checked"
   on the dashboard, which is different from "checked, found nothing."
-- **Automation:** step 5c of `.github/workflows/daily.yml` scans the most
-  recently settled session every night; `movers.yml` reruns or backfills
-  one date by hand (`gh workflow run movers.yml -f date=2026-09-10`), and
-  an admin can fire it from the dashboard ("Run tonight's scan now" on the
-  Movers page → `POST /api/admin/movers/run-now`, needs `GH_DISPATCH_TOKEN`
-  like Sector Research's "Refresh now").
+- **Automation:** its own schedule, `movers.yml`, at **07:00 IST every
+  morning** -- separately from the rest of the dashboard's 02:00 IST run,
+  and later on purpose: news of yesterday's move is often published the
+  next morning, and this scan makes no use of the Claude Max plan the
+  02:00 run is paced around, so there is nothing to gain by running it
+  earlier. `movers.yml` also reruns or backfills one date by hand
+  (`gh workflow run movers.yml -f date=2026-09-10`), and an admin can fire
+  it from the dashboard ("Run tonight's scan now" on the Movers page →
+  `POST /api/admin/movers/run-now`, needs `GH_DISPATCH_TOKEN` like Sector
+  Research's "Refresh now").
 - **Data:** one JSON snapshot per trading day in `backend/data/movers/`,
   committed like Sector Research and Reports; `GET /api/movers` serves the
   latest plus the date list, `GET /api/movers/{date}` one session.
@@ -458,16 +462,20 @@ stages run, and marks the run failed (GitHub emails you).
 | 3. Auto-screen | `backend/scripts/auto_screen.py` | adds up to 10 companies a day that pass the board's rules, marked **Auto-added** (below) |
 | 4. ASME | `automation/scan-asme.mjs` | ASME certificate holders, certificate types and dates |
 | 5. Charts | `backend/scripts/update_charts.py` | candles, Screen any Chart, Market view stages (VCP + IPO base), breakouts, feed |
-| 5c. Movers | `backend/scripts/run_movers.py` | every NSE stock that closed 4%+ up or down, with why |
 | 6. Sector research | `backend/scripts/sector_research.py` | a new monthly edition for each sector (Claude Code, Max plan) |
 | 7. Sector numbers | `backend/scripts/sector_numbers.py` | screener.in numbers for the companies in each sector report |
 | 7b. Sector latest | `backend/scripts/sector_latest.py` | dated, cited latest developments at the top of each sector report |
 | 8. Deep-dive reports | `backend/scripts/deep_reports.py` | quarterly deep-dive reports after new results, and their PDFs |
 
 Each step also has its own workflow for a manual re-run (*Actions → Run
-workflow*): `fundamentals.yml`, `auto-screen.yml`, `discovery.yml`, `asme.yml`, `charts.yml`, `movers.yml`, `deep-reports.yml`, `sector-research.yml`
+workflow*): `fundamentals.yml`, `auto-screen.yml`, `discovery.yml`, `asme.yml`, `charts.yml`, `deep-reports.yml`, `sector-research.yml`
 (which also runs on every push that changes `companies_raw.json`).
 `uptime.yml` pings the site every 10 minutes, keeping a free instance awake.
+
+**Movers** runs separately, on its own schedule at **07:00 IST**
+(`movers.yml`) rather than in the 02:00 IST run above -- it needs no
+Claude usage, and running it later catches more of the previous session's
+overnight news coverage (see the Movers section above).
 
 ### Auto-added companies
 
