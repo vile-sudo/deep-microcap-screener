@@ -22,6 +22,7 @@ from __future__ import annotations
 
 import json
 import sys
+import time
 from concurrent.futures import ThreadPoolExecutor
 from datetime import date, datetime, timedelta, timezone
 from pathlib import Path
@@ -32,11 +33,13 @@ sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 from app import alerts, setups  # noqa: E402
 from app.charts import (  # noqa: E402
     BACKEND_DIR, CHART_DIR, INDEX_FILE, PRICES_DIR, _adjust,
-    build_series, isin_index, compute_stats, fetch_bhavcopy, load_index, read_day, safe_name, write_day,
+    build_series, build_universe, isin_index, compute_stats, fetch_bhavcopy, load_index, read_day, safe_name, write_day,
 )
 
 SETUPS_FILE = CHART_DIR / "setups.json"
 ALERTS_FILE = CHART_DIR / "alerts.json"
+UNIVERSE_INDEX = CHART_DIR / "universe.json"        # small, committed: what Screen any Chart searches
+UNIVERSE_DIR = BACKEND_DIR / "universe_charts"      # big, never committed: uploaded as a release asset
 
 RAW = BACKEND_DIR / "data" / "companies_raw.json"
 CACHE = BACKEND_DIR / ".bhav_cache"
@@ -46,6 +49,9 @@ LOOKBACK_DAYS = 2450                     # calendar days: real NSE data via app.
                                           # about January 2020 (a legacy-format fallback beyond ~Dec 2023); this
                                           # window comfortably covers all of it for the chart gallery's "X-ray"
                                           # multi-year base view, and two years is plenty to date IPO listings
+BACKFILL_BUDGET = 40 * 60                # seconds spent downloading missing days in one run; what is
+                                         # left over is fetched by the next run rather than risking
+                                         # a job that never finishes and saves nothing
 
 
 def ist_today() -> date:
@@ -63,8 +69,19 @@ def sync_cache(session: requests.Session) -> None:
     todo = [(d, ex) for d in wanted if d.weekday() < 5 for ex in ("NSE", "BSE")
             if not (CACHE / f"{ex}-{d:%Y%m%d}{FMT}").exists() and f"{ex}-{d:%Y%m%d}" not in no_session]
 
+    # A first run against years of history has thousands of files to fetch,
+    # which can outlast the CI job. Every day that lands is written to the
+    # cache as it arrives, so stopping early costs nothing: the run finishes
+    # with what it has and the next one picks up where this stopped.
+    deadline = time.monotonic() + BACKFILL_BUDGET
+    stopped = 0
+
     def one(job):
+        nonlocal stopped
         d, ex = job
+        if time.monotonic() > deadline:
+            stopped += 1
+            return d, ex, False
         try:
             return d, ex, fetch_bhavcopy(d, ex, session)
         except RuntimeError as e:
@@ -94,15 +111,38 @@ def sync_cache(session: requests.Session) -> None:
             f.unlink()
     no_session = {k for k in no_session if datetime.strptime(k[4:], "%Y%m%d").date() >= oldest}
     NO_SESSION.write_text(json.dumps(sorted(no_session)))
-    print(f"bhavcopy cache: {len(todo)} day-files checked, {got} downloaded")
+    left = f", {stopped} left for the next run (time budget reached)" if stopped else ""
+    print(f"bhavcopy cache: {len(todo)} day-files checked, {got} downloaded{left}")
 
 
 def load_days() -> list:
+    """Every cached session in memory, oldest first.
+
+    Years of daily files for thousands of stocks is the one structure in this
+    script big enough to matter: each ticker, company name and ISIN otherwise
+    gets a fresh string object per day, which is most of it. Interning them
+    against a single pool cuts the whole thing by about 40% and makes the
+    difference between a nightly job that fits the runner and one that does
+    not."""
+    pool: dict[str, str] = {}
+
+    def keep(s):
+        if type(s) is not str:
+            return s
+        got = pool.get(s)
+        if got is None:
+            pool[s] = got = s
+        return got
+
     by_day: dict[date, list] = {}
     for f in sorted(CACHE.glob(f"*{FMT}")):
         d = datetime.strptime(f.name[4:12], "%Y%m%d").date()
         slot = by_day.setdefault(d, [{}, {}])
-        slot[0 if f.name.startswith("NSE") else 1] = {r[0]: r for r in read_day(f)}
+        book = {}
+        for r in read_day(f):
+            r[0], r[1], r[2], r[9] = keep(r[0]), keep(r[1]), keep(r[2]), keep(r[9])
+            book[r[0]] = r
+        slot[0 if f.name.startswith("NSE") else 1] = book
     return [(d, nse, bse) for d, (nse, bse) in sorted(by_day.items())]
 
 
@@ -153,6 +193,64 @@ def main() -> int:
     print(f"charts: {len(series)} built from {len(days)} sessions (latest {days[-1][0]}), "
           f"{kept} kept from last run, {len(missing)} with no exchange data: {', '.join(missing) or 'none'}")
     return 0
+
+
+def write_universe(days: list, board: dict, rank) -> int:
+    """Every actively traded NSE/BSE company, for "Screen any Chart".
+
+    Two outputs, deliberately split:
+      chart_data/universe.json   one small line per stock (symbol, name, last
+                                 price, stats) -- committed, so searching and
+                                 browsing works the moment the page opens;
+      universe_charts/<KEY>.json its candles and its base/X-ray analysis --
+                                 thousands of files, hundreds of MB, so these
+                                 are uploaded as a GitHub release asset rather
+                                 than committed, and the API fetches them on
+                                 demand (see routers/charts.py).
+    The board's own companies keep their fuller, committed charts and are
+    skipped here; the index points at them instead."""
+    on_board_isins = frozenset(s.get("isin") for s in board.values() if s.get("isin"))
+    on_board_keys = frozenset((s["exchange"], s.get("key") or s["symbol"]) for s in board.values())
+    UNIVERSE_DIR.mkdir(parents=True, exist_ok=True)
+    for f in UNIVERSE_DIR.glob("*.json"):
+        f.unlink()
+
+    index, charted = {}, 0
+    for key, s in build_universe(days, on_board_isins, on_board_keys):
+        charted += 1
+        stats = compute_stats(s)
+        a = setups.analyze(s["rows"], rank, s.get("listed"))
+        payload = {**s, "setups": a}
+        (UNIVERSE_DIR / f"{key}.json").write_text(json.dumps(payload, separators=(",", ":")), encoding="utf-8")
+        recent = s["rows"][-20:]
+        index[key] = {"symbol": s["symbol"], "name": s["name"], "exchange": s["exchange"],
+                      "last": stats.get("last"), "chg_pct": stats.get("chg_pct"),
+                      "from_high_pct": stats.get("from_high_pct"), "status": stats.get("status"),
+                      "vol_ratio": stats.get("vol_ratio"), "sessions": len(s["rows"]),
+                      # rupees traded a day, so a thin ticker at a 52-week high
+                      # cannot be mistaken for a liquid one
+                      "turnover": round(sum(r[4] * r[5] for r in recent) / max(1, len(recent))),
+                      "stage": (a or {}).get("stage"), "rs": (a or {}).get("rs"),
+                      "bases": len((a or {}).get("breakouts") or [])}
+    # the board's companies belong in the same search: same shape, flagged, and
+    # pointing at the board code so the chart drawer opens the richer version
+    for code, s in board.items():
+        stats = compute_stats(s)
+        index[f"BOARD-{safe_name(code)}"] = {"symbol": s["symbol"], "name": s.get("name") or s["symbol"],
+                                             "exchange": s["exchange"], "code": code, "on_board": True,
+                                             "last": stats.get("last"), "chg_pct": stats.get("chg_pct"),
+                                             "from_high_pct": stats.get("from_high_pct"),
+                                             "status": stats.get("status"), "vol_ratio": stats.get("vol_ratio"),
+                                             "sessions": len(s["rows"])}
+    UNIVERSE_INDEX.write_text(json.dumps({
+        "as_of": days[-1][0].isoformat(),
+        "count": len(index),
+        "stocks": dict(sorted(index.items())),
+    }, separators=(",", ":")), encoding="utf-8")
+    size_mb = sum(f.stat().st_size for f in UNIVERSE_DIR.glob("*.json")) / 1e6
+    print(f"universe: {charted} traded companies charted ({size_mb:.0f} MB in {UNIVERSE_DIR.name}/), "
+          f"{len(index)} rows in universe.json")
+    return charted
 
 
 def write_setups(records: list[dict], series: dict, days: list) -> None:
@@ -225,6 +323,7 @@ def write_setups(records: list[dict], series: dict, days: list) -> None:
     board_items = alerts.board_alerts(records, series, stocks, latest)
     market_items = alerts.market_alerts(universe, names, listed, market["ipo"], board_symbols, latest)
     alerts.write(ALERTS_FILE, latest, board_items + market_items)
+    write_universe(days, series, rank)
     tally = {}
     for it in board_items:
         tally[it["type"]] = tally.get(it["type"], 0) + 1

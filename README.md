@@ -121,8 +121,9 @@ Fly.io, and a plain VPS.
 The **Screen any Chart** page shows a daily candlestick chart — 50/200-day
 averages, volume, 52-week high, a 1W-to-Max range and **X-ray: every base
 it ever built** (every VCP base and breakout the stock has had, not just
-the current one, each boxed and labelled on the chart) — for every company
-on the board.
+the current one, each boxed and labelled on the chart) — for **every
+actively traded company on the NSE and BSE**, roughly 4,000–5,000 of them,
+not only the board's own.
 
 - **Data:** the NSE and BSE end-of-day bhavcopy files, which cover SME
   listings too, as far back as each exchange publishes them (NSE: its
@@ -131,8 +132,27 @@ on the board.
   `backend/scripts/update_charts.py` keeps that whole window cached
   (`.bhav_cache/`, ~2450 days), rebuilds every company's candles and writes
   `backend/chart_data/`. The very first run after this window was extended
-  is a one-time, slower backfill; every run after that only downloads the
-  new day.
+  is a one-time backfill of thousands of day-files; it downloads for at most
+  `BACKFILL_BUDGET` (40 minutes) per run and the next run continues where it
+  stopped, so no run has to finish the whole thing. After that each run only
+  downloads the new day.
+- **Which companies count as traded:** an ordinary share (ISIN `INE…01…`,
+  which leaves out the ETFs, NCDs and bonds the bhavcopy also carries) that
+  actually traded in the last 20 sessions, averaging at least ₹1 lakh a day.
+  A company listed on both exchanges is charted once, NSE preferred, matched
+  on ISIN. Every card shows the average value traded a day, in amber under
+  ₹5 lakh, so a thin ticker at a 52-week high cannot be mistaken for a
+  liquid one.
+- **Where the candles live:** a few thousand multi-year series is a few
+  hundred MB rewritten nightly — far too much to commit. Only the small
+  search index `backend/chart_data/universe.json` (one line per company) is
+  in the repo; the candles ride in the `charts` GitHub **release asset**
+  (`universe-charts.tar.gz`), which `backend/app/universe.py` fetches once
+  per server and serves from `GET /api/charts/u/{key}`. If that fetch fails,
+  the board's own charts are unaffected — they are committed as before — and
+  only non-board stocks report no data. The board's companies keep their
+  fuller, committed charts; the universe build skips them by ISIN and by
+  exchange key, so nothing is listed twice.
 - **Base detection:** `backend/app/setups.py` — the same VCP/IPO base
   and breakout rules that drive Market view, walked across the whole
   cached history, with RS rating and the "Base characteristics", "Stock
@@ -141,8 +161,9 @@ on the board.
   night at 02:00 IST (after the day's auto-screen, so a company added that
   morning has its chart), and `charts.yml` on every push that changes
   `backend/data/companies_raw.json` — so a company added to the board gets
-  its chart without anyone doing anything. It commits the result and
-  triggers the Render deploy hook.
+  its chart without anyone doing anything. It commits the result, uploads
+  the universe bundle to the `charts` release, and triggers the Render
+  deploy hook.
 - **In between runs:** `GET /api/charts/{code}` fetches a newly added company
   live (Yahoo Finance) until the next run replaces it with exchange data.
 - **Run it by hand:** `cd backend && python scripts/update_charts.py`, or

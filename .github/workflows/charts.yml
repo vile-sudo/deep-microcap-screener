@@ -55,6 +55,24 @@ jobs:
         working-directory: ./backend
         run: python scripts/update_charts.py
 
+      # Screen any Chart covers every actively traded NSE/BSE company, which is
+      # a few hundred MB of candles rewritten nightly -- far too much to commit.
+      # It rides in a release asset instead; app/universe.py fetches it once per
+      # server. Only the small search index (chart_data/universe.json) is
+      # committed, so searching still works even if this upload fails.
+      - name: Publish universe charts
+        id: universe
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if [ ! -d backend/universe_charts ]; then echo "no universe charts built"; exit 0; fi
+          tar -czf universe-charts.tar.gz -C backend/universe_charts .
+          ls -lh universe-charts.tar.gz
+          gh release view charts > /dev/null 2>&1 || gh release create charts --title "Chart data" \
+            --notes "Daily candles and base analysis for every actively traded NSE/BSE company, used by Screen any Chart. Rebuilt nightly; not investment advice."
+          gh release upload charts universe-charts.tar.gz --clobber
+
       - name: Commit chart data
         id: commit
         run: |

@@ -29,6 +29,15 @@ automation/node_modules/
 # GitHub Action runs by actions/cache -- chart_data/ is what gets committed.
 backend/.bhav_cache/
 
+# "Screen any Chart" charts every actively traded NSE/BSE company, not just the
+# board's. That is thousands of files and hundreds of MB rewritten every night,
+# which would bloat this repo's history badly -- so the candles are uploaded as
+# a GitHub release asset instead (see .github/workflows/charts.yml) and fetched
+# on demand by routers/charts.py. Only the small search index,
+# backend/chart_data/universe.json, is committed.
+backend/universe_charts/
+backend/universe-charts.tar.gz
+
 # deep-dive report pipeline scratch output (reports themselves live in backend/reports/)
 reports-dry/
 reports-pdf/

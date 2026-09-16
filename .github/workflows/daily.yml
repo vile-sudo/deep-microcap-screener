@@ -126,6 +126,20 @@ jobs:
         working-directory: ./backend
         run: python scripts/update_charts.py
 
+      # Screen any Chart's charts for every actively traded NSE/BSE company:
+      # too big to commit, so they ride in a release asset (see charts.yml)
+      - name: 5b. Publish universe charts
+        id: universe
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if [ ! -d backend/universe_charts ]; then echo "no universe charts built"; exit 0; fi
+          tar -czf universe-charts.tar.gz -C backend/universe_charts .
+          ls -lh universe-charts.tar.gz
+          gh release view charts > /dev/null 2>&1 || gh release create charts --title "Chart data"             --notes "Daily candles and base analysis for every actively traded NSE/BSE company, used by Screen any Chart. Rebuilt nightly; not investment advice."
+          gh release upload charts universe-charts.tar.gz --clobber
+
       # Monthly sector research editions, written by Claude Code with web search on
       # the owner's Claude Max plan. Does nothing unless a sector's edition for this
       # month is missing (normally the 1st), and runs before the deep-dive reports so
@@ -260,6 +274,7 @@ jobs:
             echo "| auto-screen | ${{ steps.autoscreen.outcome }} |"
             echo "| ASME | ${{ steps.asme.outcome }} |"
             echo "| charts | ${{ steps.charts.outcome }} |"
+            echo "| universe charts | ${{ steps.universe.outcome }} |"
             echo "| sector research | ${{ steps.sectors.outcome }} |"
             echo "| sector numbers | ${{ steps.sectornums.outcome }} |"
             echo "| sector latest developments | ${{ steps.sectorlatest.outcome }} |"

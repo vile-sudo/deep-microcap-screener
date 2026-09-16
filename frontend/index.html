@@ -101,8 +101,8 @@
   .f1{transform:translateX(12vw)}.f2{transform:translateX(66vw)}.f3{transform:translateX(38vw)}.f4{transform:translateX(18vw)}.f5{transform:translateX(74vw)}.sp-school{transform:translateX(56vw)}
 }
 </style>
-<link rel="stylesheet" href="/static/style.css?v=52">
-<link rel="stylesheet" href="/static/dark.css?v=52">
+<link rel="stylesheet" href="/static/style.css?v=53">
+<link rel="stylesheet" href="/static/dark.css?v=53">
 </head>
 <body>
 <div id="ds-splash" role="status" aria-live="polite" aria-label="Loading Deep Sweep">
@@ -284,9 +284,10 @@
 </section>
 
 <section class="dashboard-section gallery-section" data-views="gallery" aria-labelledby="gallery-title">
-  <div class="section-heading"><div><span class="eyebrow">SCREEN ANY CHART</span><h2 id="gallery-title">Screen any Chart</h2><p class="section-copy">Every company on the board, one chart each — candles from the NSE and BSE end-of-day files, back as far as real exchange data goes, with the 50- and 200-day averages, volume, and X-ray: every base it ever built. Updates itself every trading day; a company added to the board gets its chart automatically. Click a chart for the full view.</p></div><span class="section-note" id="gallery-asof"></span></div>
+  <div class="section-heading"><div><span class="eyebrow">SCREEN ANY CHART</span><h2 id="gallery-title">Screen any Chart</h2><p class="section-copy">Every actively traded company on the NSE and BSE, one chart each — candles from the exchanges' own end-of-day files, with the 50- and 200-day averages, volume, and X-ray: every base it ever built. Search any listed name; the board's own companies are in here too, marked and carrying their score. Updates itself every trading day. Click a chart for the full view.</p></div><span class="section-note" id="gallery-asof"></span></div>
   <div class="gal-controls">
-    <input id="gq" class="gal-search" type="search" autocomplete="off" spellcheck="false" placeholder="Search chart gallery">
+    <input id="gq" class="gal-search" type="search" autocomplete="off" spellcheck="false" placeholder="Search any NSE or BSE company">
+    <select id="gscope" class="gal-select" aria-label="Which companies"></select>
     <select id="gtrend" class="gal-select" aria-label="Trend"></select>
     <select id="gtheme" class="gal-select" aria-label="Theme"></select>
     <select id="gsort" class="gal-select" aria-label="Sort"></select>
@@ -493,6 +494,6 @@
 <div class="modal" id="modal" role="dialog" aria-modal="true"><div class="mbox"><button class="close" id="mclose" aria-label="Close">&times;</button><div id="mbody"></div></div></div>
 
 <script src="/static/asme-certified.js?v=5" defer></script>
-<script src="/static/app.js?v=52" defer></script>
+<script src="/static/app.js?v=53" defer></script>
 </body>
 </html>

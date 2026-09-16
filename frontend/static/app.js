@@ -1518,7 +1518,38 @@ GALLOADING = fetchJSON('/api/charts').catch(()=>({companies:{}})).then(j=>{
   if(j.latest_session){ up.innerHTML=`<i></i><span>Updated · ${galDay(j.latest_session)}</span>`; up.title=`Prices updated to the ${galDay(j.latest_session)} session`; up.hidden=false; }
 });
 
-const galStats = d => (GAL && GAL.companies[d.code]) || (GSERIES.get(d.code)||{}).stats || null;
+/* Every actively traded NSE/BSE company, not just the board's 417: a small
+   index (symbol, name, last price, stage, how many bases) loaded the first
+   time this page needs it. The candles come per stock from /api/charts/u/. */
+const GU={rows:null, loading:null, ready:false};
+const guKey = code => /^(NSE|BSE)-/.test(String(code||''));
+function guLoad(){
+  GU.loading = GU.loading || fetchJSON('/api/charts/universe').catch(()=>({stocks:{}})).then(j=>{
+    GU.ready=!!j.charts_ready;
+    /* the build already leaves out whatever the board charted; this catches a
+       company the two sides key differently, so nothing is listed twice */
+    const onBoard=new Set(DATA.flatMap(d=>[d.code,d.nse_code,d.bse_code]).filter(Boolean).map(String));
+    GU.rows=Object.entries(j.stocks||{}).filter(([k,s])=>
+      !k.startsWith('BOARD-') && !onBoard.has(String(s.symbol)) && !onBoard.has(k.slice(4))
+    ).map(([key,s])=>({
+      code:key, universe:true, name:s.name, symbol:s.symbol, exchange:s.exchange, stats:s,
+      _n:((s.name||'')+' '+(s.symbol||'')).toLowerCase(),
+    }));
+    galScopeOptions();
+    if(GU.rows.length) document.getElementById('gallery-count').textContent=fmtI(GU.rows.length+DATA.length);
+    if(VIEW==='gallery') renderGallery();
+    return GU.rows;
+  });
+  return GU.loading;
+}
+
+function galStats(d){
+  if(!d) return null;
+  if(!d.universe) return (GAL && GAL.companies[d.code]) || (GSERIES.get(d.code)||{}).stats || null;
+  /* the chart's own stats are fuller, but only the index row knows turnover */
+  const st=(GSERIES.get(d.code)||{}).stats;
+  return st ? {...d.stats, ...st} : (d.stats || null);
+}
 const galDay = iso => { const [y,m,dd]=String(iso).split('-').map(Number); return `${dd} ${GMONTHS[m-1]} ${y}`; };
 const galPx = v => v==null ? '—' : '₹'+(+v).toLocaleString('en-IN',{maximumFractionDigits:2});
 const galTicker = (d,s) => s ? s.symbol : (d.nse_code && !/^\d+$/.test(d.nse_code) ? d.nse_code : d.code);
@@ -1529,11 +1560,13 @@ async function openGallery(){
     GALLOADING = GALLOADING || fetchJSON('/api/charts').catch(()=>({companies:{}})).then(j=>{ GAL=j; buildGalControls(); });
     await GALLOADING;
   }
+  guLoad();
   if(VIEW==='gallery') renderGallery();
 }
 
 function buildGalControls(){
   const tr=document.getElementById('gtrend'), th=document.getElementById('gtheme'), so=document.getElementById('gsort');
+  const sc=document.getElementById('gscope');
   const byStatus={}, byTheme={};
   DATA.forEach(d=>{ const s=galStats(d), k=s?s.status:'none'; byStatus[k]=(byStatus[k]||0)+1; byTheme[base(d)]=(byTheme[base(d)]||0)+1; });
   tr.innerHTML='<option value="">Trend: all</option>'
@@ -1542,14 +1575,16 @@ function buildGalControls(){
   th.innerHTML='<option value="">Theme: all</option>'
     + Object.entries(byTheme).sort((a,b)=>b[1]-a[1]).map(([t,n])=>`<option value="${esc(t)}">${esc(shortT(t))} (${n})</option>`).join('');
   so.innerHTML=Object.entries(GAL_SORTS).map(([k,v])=>`<option value="${k}">${v.l}</option>`).join('');
+  galScopeOptions();
   document.getElementById('gallery-asof').textContent = GAL.latest_session ? 'Last session: '+galDay(GAL.latest_session) : '';
   let t=0;
-  document.getElementById('gq').oninput=()=>{ clearTimeout(t); t=setTimeout(renderGallery,120); };
-  [tr,th,so].forEach(el=>el.onchange=renderGallery);
-  document.getElementById('gclear').onclick=()=>{ document.getElementById('gq').value=''; tr.value=''; th.value=''; so.value='high'; renderGallery(); };
+  document.getElementById('gq').oninput=()=>{ clearTimeout(t); GSHOW=GAL_PAGE; t=setTimeout(renderGallery,120); };
+  [tr,th,so,sc].forEach(el=>el.onchange=()=>{ GSHOW=GAL_PAGE; renderGallery(); });
+  document.getElementById('gclear').onclick=()=>{ document.getElementById('gq').value=''; tr.value=''; th.value=''; so.value='high'; sc.value='all'; GSHOW=GAL_PAGE; renderGallery(); };
 
   const grid=document.getElementById('ggrid');
   grid.onclick=e=>{
+    if(e.target.closest('#gmore')){ GSHOW+=GAL_PAGE; renderGallery(); return; }
     const pin=e.target.closest('[data-gpin]');
     if(pin){ e.stopPropagation(); togglePin(pin.dataset.gpin); galPinButtons(pin.dataset.gpin); return; }
     const card=e.target.closest('[data-gcode]'); if(card) openChart(card.dataset.gcode);
@@ -1557,12 +1592,29 @@ function buildGalControls(){
   grid.onkeydown=e=>{ const card=e.target.closest('[data-gcode]'); if(card && (e.key==='Enter'||e.key===' ')){ e.preventDefault(); openChart(card.dataset.gcode); } };
 }
 
+function galScopeOptions(){
+  const sc=document.getElementById('gscope'); if(!sc) return;
+  const keep=sc.value||'all', n=GU.rows?GU.rows.length+DATA.length:null;
+  sc.innerHTML=`<option value="all">All NSE &amp; BSE${n?` (${fmtI(n)})`:''}</option>`
+    +`<option value="board">Board companies only (${DATA.length})</option>`;
+  sc.value=keep;
+}
+
+/* The board's own companies and the wider universe are shown side by side.
+   A board company is never listed twice: the universe build skips whatever
+   the board already charted, matched on ISIN. */
+const GAL_PAGE=120;
+let GSHOW=GAL_PAGE;
+
 function galRows(){
   const q=document.getElementById('gq').value.trim().toLowerCase();
   const tr=document.getElementById('gtrend').value, th=document.getElementById('gtheme').value;
   const so=GAL_SORTS[document.getElementById('gsort').value]||GAL_SORTS.high;
+  const scope=(document.getElementById('gscope')||{}).value||'all';
   const val=d=>{ if(so.d) return so.d(d); const s=galStats(d); return s ? so.s(s) : null; };
-  return DATA.filter(d=>{
+  /* a theme filter only means anything for board companies */
+  const pool = scope==='board' || th ? DATA : DATA.concat(GU.rows || (guLoad(), []));
+  return pool.filter(d=>{
     if(th && base(d)!==th) return false;
     const s=galStats(d);
     if(tr==='none' ? !!s : (tr && (!s || s.status!==tr))) return false;
@@ -1579,9 +1631,15 @@ function galRows(){
 function renderGallery(){
   if(!GAL) return;
   const rows=galRows(), grid=document.getElementById('ggrid');
-  document.getElementById('gcount').textContent=`${rows.length} of ${DATA.length}`;
-  grid.innerHTML = rows.length ? rows.map(galCard).join('')
-    : '<p class="view-hint">No chart matches — clear the search or pick another filter.</p>';
+  const total=DATA.length+(GU.rows?GU.rows.length:0);
+  const shown=rows.slice(0,GSHOW);
+  document.getElementById('gcount').textContent =
+    `${fmtI(rows.length)} of ${fmtI(total)}${rows.length>shown.length?` · showing ${fmtI(shown.length)}`:''}`
+    + (GU.rows||GU.loading ? '' : ' · board only');
+  grid.innerHTML = shown.length ? shown.map(galCard).join('')
+      + (rows.length>shown.length ? `<button type="button" class="btn gal-more" id="gmore">Show ${fmtI(Math.min(GAL_PAGE,rows.length-shown.length))} more</button>` : '')
+    : (GU.loading && !GU.rows ? '<p class="view-hint">Loading every listed company…</p>'
+       : '<p class="view-hint">No chart matches — clear the search or pick another filter.</p>');
   if(GOBS) GOBS.disconnect();
   GOBS=new IntersectionObserver(es=>es.forEach(e=>{
     if(e.isIntersecting){ GOBS.unobserve(e.target); galFetch(e.target.dataset.gchart); }
@@ -1590,12 +1648,15 @@ function renderGallery(){
 }
 
 function galCard(d){
-  const s=galStats(d), st=s && GAL_STATUS[s.status], on=WATCH.has(d.code);
-  return `<article class="gcard" data-gcode="${esc(d.code)}" tabindex="0" aria-label="Open the chart for ${esc(d.name)}">
+  const s=galStats(d), st=s && GAL_STATUS[s.status], on=!d.universe && WATCH.has(d.code);
+  const foot = d.universe
+    ? `<span class="gc-theme">${esc(d.exchange||'')}${d.stats&&d.stats.rs!=null?` · RS ${d.stats.rs}`:''}</span><span class="gc-off">Not on the board</span>`
+    : `<span class="gc-theme">${esc(shortT(base(d)))}</span><button type="button" class="gc-pin${on?' on':''}" data-gpin="${esc(d.code)}" title="${on?'Remove from':'Add to'} watchlist" aria-label="Star ${esc(d.name)}">${on?'★':'☆'}</button>`;
+  return `<article class="gcard${d.universe?' gc-uni':''}" data-gcode="${esc(d.code)}" tabindex="0" aria-label="Open the chart for ${esc(d.name)}">
     <div class="gc-head"><span class="gc-tick">${esc(galTicker(d,s))}</span><span class="gc-name" title="${esc(d.name)}">${esc(d.name)}</span>${st?`<span class="gc-badge ${st[1]}">${st[0]}</span>`:''}</div>
     <div class="gc-chart" data-gchart="${esc(d.code)}">${galThumb(d.code)}</div>
     <div class="gc-stats">${galStatLine(d.code, s)}</div>
-    <div class="gc-foot"><span class="gc-theme">${esc(shortT(base(d)))}</span><button type="button" class="gc-pin${on?' on':''}" data-gpin="${esc(d.code)}" title="${on?'Remove from':'Add to'} watchlist" aria-label="Star ${esc(d.name)}">${on?'★':'☆'}</button></div>
+    <div class="gc-foot">${foot}</div>
   </article>`;
 }
 function galThumb(code){
@@ -1604,11 +1665,19 @@ function galThumb(code){
   if(ser.missing || !ser.rows || !ser.rows.length) return '<span class="gc-empty">No price data yet — the chart appears after the next daily update</span>';
   return candleSVG(ser.rows,{w:320,h:160,sessions:125});
 }
+/* rupees traded on an average day -- what says whether a name can be bought */
+const galTurn = t => t==null ? '' : t>=1e7 ? `₹${(t/1e7).toFixed(t<1e8?1:0)} cr/day`
+  : `₹${Math.max(1,Math.round(t/1e5))} L/day`;
 function galStatLine(code, s){
   if(!s) return GSERIES.get(code) ? '<span class="nd">Waiting for exchange data</span>' : '<span class="nd">Loading…</span>';
   const chg = s.chg_pct==null ? '' : `<span class="${s.chg_pct>=0?'up':'dn'}">${s.chg_pct>=0?'+':''}${s.chg_pct.toFixed(2)}%</span>`;
   const hi = s.status==='high' ? '<span class="gc-chip">52w high</span>' : `<span>${Math.abs(s.from_high_pct).toFixed(1)}% off high</span>`;
-  return `${chg}<span>${galPx(s.last)}</span>${s.vol_ratio==null?'':`<span>vol ${s.vol_ratio}×</span>`}${hi}`;
+  /* browsing thousands of names, how much can actually be traded matters more
+     than today's volume against its own average; the drawer still shows both */
+  const liq = s.turnover!=null
+    ? `<span class="${s.turnover<5e5?'gc-thin':''}" title="Average value traded a day over the last month">${galTurn(s.turnover)}</span>`
+    : (s.vol_ratio==null ? '' : `<span>vol ${s.vol_ratio}×</span>`);
+  return `${chg}<span>${galPx(s.last)}</span>${liq}${hi}`;
 }
 function galPinButtons(code){
   const on=WATCH.has(code);
@@ -1627,7 +1696,8 @@ function galPump(){
   while(GACTIVE<6 && GQUEUE.length){
     const [code,resolve]=GQUEUE.shift();
     GACTIVE++;
-    fetch('/api/charts/'+encodeURIComponent(code)).then(r=>r.ok?r.json():null).catch(()=>null).then(j=>{
+    const url=(guKey(code)?'/api/charts/u/':'/api/charts/')+encodeURIComponent(code);
+    fetch(url).then(r=>r.ok?r.json():null).catch(()=>null).then(j=>{
       GACTIVE--;
       GSERIES.set(code, j || {missing:true});
       galPaint(code); resolve(); galPump();
@@ -1637,9 +1707,19 @@ function galPump(){
 function galPaint(code){
   const card=document.querySelector(`#ggrid [data-gcode="${CSS.escape(code)}"]`);
   if(!card) return;
-  const d=DATA.find(x=>x.code===code);
-  if(GAL && !GAL.companies[code]){ card.outerHTML=galCard(d); return; }  /* arrived live: badge + stats too */
+  const d=galRec(code); if(!d) return;
+  if(!d.universe && GAL && !GAL.companies[code]){ card.outerHTML=galCard(d); return; }  /* arrived live: badge + stats too */
   card.querySelector('.gc-chart').innerHTML=galThumb(code);
+}
+
+/* A chart can be opened for a board company (full record, score, theme) or
+   for any other listed company (name and candles only). */
+function galRec(code){
+  if(!guKey(code)) return DATA.find(x=>x.code===code) || null;
+  const row=(GU.rows||[]).find(x=>x.code===code);
+  if(row) return row;
+  const ser=GSERIES.get(code);
+  return ser && !ser.missing ? {code, universe:true, name:ser.name||code, symbol:ser.symbol, exchange:ser.exchange} : null;
 }
 
 /* Candles, 50/200-day averages, volume and the 52-week high, as one SVG.
@@ -1737,11 +1817,13 @@ const CM_RANGES=[['1W',5],['1M',21],['3M',63],['6M',126],['12M',252],['18M',378]
 const CM={code:null, range:'6M', xray:true, ma:true, rs:true, tab:'base', year:'all'};
 
 function openChart(code){
-  const d=DATA.find(x=>x.code===code); if(!d) return;
+  const uni=guKey(code);
+  if(!uni && !DATA.some(x=>x.code===code)) return;
   CM.code=code; CM.range='6M'; CM.tab='base'; CM.year='all';
   const need=[];
   if(!GSERIES.has(code)) need.push(galFetch(code));
-  if(!BP.data) need.push(BP.loading = BP.loading || fetchJSON('/api/market/setups').catch(()=>({stocks:{}})).then(j=>{ BP.data=j; }));
+  /* a non-board stock carries its own base analysis in its chart file */
+  if(!uni && !BP.data) need.push(BP.loading = BP.loading || fetchJSON('/api/market/setups').catch(()=>({stocks:{}})).then(j=>{ BP.data=j; }));
   if(need.length){
     openModal('<p class="view-hint">Loading chart…</p>');
     Promise.all(need).then(()=>{ if(modal.classList.contains('on') && CM.code===code) cmRender(); });
@@ -1750,11 +1832,14 @@ function openChart(code){
   cmRender();
 }
 
-function cmSetup(code){ return (BP.data && BP.data.stocks && BP.data.stocks[code]) || null; }
+function cmSetup(code){
+  if(guKey(code)){ const ser=GSERIES.get(code); return (ser && ser.setups) || null; }
+  return (BP.data && BP.data.stocks && BP.data.stocks[code]) || null;
+}
 const cmDepth = ev => ev.pivot ? Math.round((1-ev.base.low/ev.pivot)*1000)/10 : null;
 
 function cmRender(){
-  const code=CM.code, d=DATA.find(x=>x.code===code); if(!d) return;
+  const code=CM.code, d=galRec(code); if(!d) return;
   const ser=GSERIES.get(code), s=(ser && ser.stats) || galStats(d), st=s && GAL_STATUS[s.status];
   const has=ser && !ser.missing && ser.rows && ser.rows.length;
   const a=cmSetup(code), stage=a && a.stage && BP_STAGES.find(x=>x.k===a.stage);
@@ -1773,11 +1858,12 @@ function cmRender(){
   const vis=has?ser.rows.slice(-sessions):[];
   const read=r=>`<b>${galDay(r[0])}</b> · O ${galPx(r[1])} · H ${galPx(r[2])} · L ${galPx(r[3])} · C ${galPx(r[4])} · Vol ${fmtI(r[5])}`;
   const kv=(k,v)=>`<div><span>${k}</span><b>${v}</b></div>`;
-  const CM_TABS=[['base','Base characteristics'],['measures','Stock measures'],['peers','Peers']];
+  const CM_TABS=[['base','Base characteristics'],['measures','Stock measures']].concat(d.universe?[]:[['peers','Peers']]);
+  if(d.universe && CM.tab==='peers') CM.tab='base';
   openModal(`
     <div class="cm-head">
       <span class="gc-tick">${esc(galTicker(d,s))}</span><h3>${esc(d.name)}</h3>${st?`<span class="gc-badge ${st[1]}">${st[0]}</span>`:''}
-      <span class="tc">${s?esc(s.exchange)+' · ':''}${esc(shortT(base(d)))}</span>
+      <span class="tc">${s?esc(s.exchange)+' · ':''}${d.universe?'not on the board':esc(shortT(base(d)))}</span>
       <button type="button" class="btn cm-share" id="cm-share" title="Copy a summary to share">⤴ Share</button>
     </div>
     ${breakouts.length ? `<button type="button" class="cm-xray${CM.xray?' on':''}" id="cm-xray-btn">
@@ -1788,6 +1874,7 @@ function cmRender(){
         ${s && s.chg_pct!=null?`<span class="${s.chg_pct>=0?'up':'dn'}">${s.chg_pct>=0?'+':''}${s.chg_pct.toFixed(2)}%</span>`:''}
         ${d.market_cap_cr?`<span class="tc">mcap ₹${fmtI(d.market_cap_cr)} cr</span>`:''}
         ${CM.rs && a && a.rs!=null?`<span class="tc">RS ${a.rs}</span>`:''}
+        ${d.universe && d.stats && d.stats.turnover!=null?`<span class="tc${d.stats.turnover<5e5?' gc-thin':''}" title="Average value traded a day over the last month">${galTurn(d.stats.turnover)}</span>`:''}
         <span class="tc">as of ${s?galDay(s.asof):''}</span>
       </div>
       <div class="cm-pills" id="cm-pills">${CM_RANGES.map(([lab,n])=>`<button type="button" class="cm-pill${CM.range===lab?' on':''}" data-cmr="${lab}" ${n!==Infinity && n>maxSessions?'disabled':''}>${lab}</button>`).join('')}</div>
@@ -1811,11 +1898,12 @@ function cmRender(){
       <div id="cm-tabbody">${cmTabBody(d, a, s, shown)}</div>`
     : (a ? `<div id="cm-tabbody">${cmTabBody(d, a, s, [])}</div>` : '')}
     <div class="cm-acts">
-      <button class="btn" id="cm-card" type="button">Open scorecard</button>
+      ${d.universe ? '' : `<button class="btn" id="cm-card" type="button">Open scorecard</button>
       <button class="btn" id="cm-report" type="button">Research report</button>
-      <button class="btn" id="cm-pin" data-code="${esc(code)}" type="button">${on?'★ In watchlist':'☆ Add to watchlist'}</button>
-      <a class="btn" href="${scrURL(d)}" target="_blank" rel="noopener">screener.in ↗</a>
+      <button class="btn" id="cm-pin" data-code="${esc(code)}" type="button">${on?'★ In watchlist':'☆ Add to watchlist'}</button>`}
+      <a class="btn" href="${cmScreenerURL(d)}" target="_blank" rel="noopener">screener.in ↗</a>
     </div>
+    ${d.universe ? '<p class="cm-src">This company is not on the board: it has not been through the screen, so there is no scorecard, score or research report for it — only the chart and what the candles themselves say.</p>' : ''}
     <p class="cm-src">${ser && ser.source==='live' ? 'Fetched live because this company joined the board after the last daily update; the next daily run replaces it with exchange data.' : 'Source: NSE / BSE end-of-day bhavcopy, refreshed automatically every trading day, as far back as real exchange data goes.'} Prices are not adjusted for splits or bonus issues. Base detection and RS rating are a rule-based reading of the candles, not advice.</p>`);
   cmWire(d, a, s, shown);
 }
@@ -1881,10 +1969,19 @@ async function cmShare(d, a, s){
   catch(e){ openModal(`<h3>Share</h3><p class="quote" style="margin-top:12px">${esc(text)}</p>`); }
 }
 
+/* screener.in keys a company by its NSE symbol, or by its BSE scrip code when
+   it is BSE-only -- exactly what the board code and the universe key carry. */
+const cmScreenerURL = d => d.universe
+  ? `https://www.screener.in/company/${encodeURIComponent(d.exchange==='BSE' ? d.code.slice(4) : (d.symbol||d.code.slice(4)))}/`
+  : scrURL(d);
+
 function cmWire(d, a, s){
-  document.getElementById('cm-card').onclick=()=>{ closeModal(); CURRENT=GAL?galRows():[d]; openDrawer(d); };
-  document.getElementById('cm-report').onclick=()=>openReport(d.code);
-  document.getElementById('cm-pin').onclick=()=>{ togglePin(d.code); galPinButtons(d.code); };
+  const card=document.getElementById('cm-card');
+  if(card){
+    card.onclick=()=>{ closeModal(); CURRENT=GAL?galRows().filter(x=>!x.universe):[d]; openDrawer(d); };
+    document.getElementById('cm-report').onclick=()=>openReport(d.code);
+    document.getElementById('cm-pin').onclick=()=>{ togglePin(d.code); galPinButtons(d.code); };
+  }
   const shareBtn=document.getElementById('cm-share'); if(shareBtn) shareBtn.onclick=()=>cmShare(d,a,s);
   const box=document.getElementById('cm-chart');
   if(box){

@@ -816,6 +816,11 @@ td .thm{font-size:10.5px;text-transform:uppercase;letter-spacing:.05em;color:var
 .gc-theme{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:var(--muted);font-size:11.5px}
 .gc-pin{flex:none;border:0;background:none;color:#6b9aa6;font-size:17px;line-height:1;padding:2px 4px;border-radius:5px;cursor:pointer}
 .gc-pin:hover{color:var(--s4);background:#173d47}.gc-pin.on{color:var(--s4)}
+/* companies that are listed but not on the board: chart only, no score */
+.gcard.gc-uni{border-style:dashed}
+.gc-off{flex:none;color:var(--muted);font-size:10.5px;letter-spacing:.02em;opacity:.75}
+.gc-thin{color:var(--s4)}   /* under Rs 5 lakh a day: barely tradeable */
+.gal-more{grid-column:1/-1;justify-self:center;margin-top:6px;padding:9px 22px}
 
 /* candles */
 .cs .cs-vol{fill:#2b4757;opacity:.75}

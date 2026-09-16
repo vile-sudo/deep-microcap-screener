@@ -1,28 +1,34 @@
 """
 Chart gallery endpoints.
 
-GET /api/charts          chart stats for every company that has a chart,
-                         keyed by board code (sorting/filtering the gallery
-                         needs all of them up front; the candles are not
-                         included, so this stays small)
-GET /api/charts/{code}   one company's daily candles plus its stats
+GET /api/charts           chart stats for every company that has a chart,
+                          keyed by board code (sorting/filtering the gallery
+                          needs all of them up front; the candles are not
+                          included, so this stays small)
+GET /api/charts/universe  every actively traded NSE/BSE company, one small
+                          line each -- what Screen any Chart searches
+GET /api/charts/u/{key}   one non-board stock's candles and base analysis
+                          (see app/universe.py)
+GET /api/charts/{code}    one board company's daily candles plus its stats
 
 The data is written by scripts/update_charts.py (see app/charts.py). A
 company that is on the board but not in that data yet -- added since the
 last scheduled run -- is fetched live on first request and cached here,
 so it appears in the gallery immediately.
 """
+import re
 import threading
 import time
 
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 
-from .. import charts
+from .. import charts, universe
 from ..database import get_db
 from ..models import Company
 
 router = APIRouter(prefix="/api/charts", tags=["charts"])
+UNIVERSE_KEY = re.compile(r"^(?:NSE|BSE)-[A-Za-z0-9\-_&]{1,40}$")
 
 _LIVE: dict[str, tuple[float, dict | None]] = {}
 _LIVE_LOCK = threading.Lock()
@@ -38,6 +44,28 @@ def chart_index():
         "latest_session": idx.get("latest_session"),
         "companies": idx.get("companies", {}),
     }
+
+
+@router.get("/universe")
+def universe_index():
+    """Every actively traded NSE/BSE company: name, last price, stage, base
+    count. Small enough to search in the browser; the candles come per stock."""
+    idx = universe.index()
+    return {**idx, "charts_ready": universe.status()["charts_ready"]}
+
+
+@router.get("/u/{key}")
+def universe_chart(key: str):
+    if not UNIVERSE_KEY.match(key):
+        raise HTTPException(status_code=404, detail="Unknown stock")
+    data = universe.load(key)
+    if data is None:
+        st = universe.status()
+        raise HTTPException(status_code=503 if st["error"] else 404,
+                            detail="Charts for stocks outside the board are still loading — try again in a minute."
+                                   if st["error"] else "No chart for this stock")
+    series = {k: v for k, v in data.items() if k != "setups"}
+    return {**series, "stats": charts.compute_stats(series), "setups": data.get("setups"), "source": "exchange"}
 
 
 @router.get("/{code}")
