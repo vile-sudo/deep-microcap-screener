@@ -1298,14 +1298,6 @@ td .thm{color:#6b7480}
 .site-foot nav button{padding:0;border:0;background:none;color:#6b7480;font:inherit;cursor:pointer}
 .site-foot nav button:hover{color:var(--ink);text-decoration:underline}
 
-/* ---- narrow screens: brand + search on one row, tabs scroll underneath ---- */
-@media (max-width:1180px){
-  .nav-in{flex-wrap:wrap;gap:10px 14px;padding-top:10px;padding-bottom:8px}
-  .nav-search{order:2;max-width:none}
-  .nav-upd{order:1;margin-left:auto}
-  .nav-tabs{order:3;width:100%;margin-left:0;overflow-x:auto;scrollbar-width:none;padding-bottom:2px}
-  .nav-tabs::-webkit-scrollbar{display:none}
-}
 @media (max-width:640px){
   .nav-name small{display:none}
   .nav-search{order:3;width:100%;flex-basis:100%}
@@ -1522,7 +1514,6 @@ tbody tr:hover,tbody tr:nth-child(even):hover{background:#f2f9fd}
 .st-rejected{background:#fee2e2;color:#b91c1c}.st-disabled{background:#f1f5f9;color:#475569}
 .user-acts{display:flex;gap:8px}
 .btn.danger{color:#b91c1c;border-color:#fecaca}.btn.danger:hover{background:#fef2f2}
-@media (max-width:1180px){ .nav-user{order:1} }
 @media (max-width:640px){ .nav-user-name{display:none} }
 .user-owner{color:var(--muted);font-size:12px}
 
@@ -1721,22 +1712,23 @@ tbody tr:hover,tbody tr:nth-child(even):hover{background:#f2f9fd}
   a.lnk{text-decoration:none}
 }
 
-/* ---- top bar with the Reports tab: stays on one row, never scrolls the page ---- */
+/* ---- top bar: tabs get their own full-width row, so all of them stay
+   reachable without scrolling -- fitting a growing tab list onto one row
+   with the search box and account menu kept needing a wider and wider
+   escape hatch each time a tab was added (this one used to be
+   @media max-width:1320px, before that 1180px), and even then the widest
+   ordinary screens still clipped tabs invisibly with no hint more existed.
+   Unconditional now: there is no width where tabs and the account menu
+   compete for the same row. ---- */
 .nav-search{min-width:170px}
 @media (max-width:2080px){ .nav-upd span{display:none} .nav-upd{padding:0 2px;cursor:help} }
-@media (max-width:1700px){
-  .nav .nav-tabs .side-link svg{display:none}
-  .nav .nav-tabs .side-link{padding:0 9px}
-}
-@media (max-width:1320px){
-  .nav-in{flex-wrap:wrap;gap:10px 14px;padding-top:10px;padding-bottom:8px}
-  .nav-search{order:2;max-width:none}
-  .nav-upd{order:1;margin-left:auto}
-  .nav-user{order:1}
-  .nav-tabs{order:3;width:100%;margin-left:0;overflow-x:auto;scrollbar-width:none;padding-bottom:2px}
-  .nav-tabs::-webkit-scrollbar{display:none}
-  .nav .nav-tabs .side-link svg{display:block}
-}
+.nav-in{flex-wrap:wrap;gap:10px 14px;padding-top:10px;padding-bottom:8px}
+.nav-search{order:2;max-width:none}
+.nav-upd{order:1;margin-left:auto}
+.nav-user{order:1}
+.nav-tabs{order:3;width:100%;margin-left:0;overflow-x:auto;scrollbar-width:none;padding-bottom:2px}
+.nav-tabs::-webkit-scrollbar{display:none}
+.nav .nav-tabs .side-link svg{display:block}
 @media (max-width:640px){ .nav-tabs{order:4} .nav-search{order:3} }
 /* report tables: plain rows, not the board table's header style */
 .rp-table th{background:none;text-transform:none;letter-spacing:0;font-size:13px;position:static}
@@ -1968,8 +1960,7 @@ tbody tr:hover,tbody tr:nth-child(even):hover{background:#f2f9fd}
 .nav-bell:hover{border-color:#bfe3f3;box-shadow:0 4px 12px -8px rgba(11,57,84,.45)}
 .nav-bell .nav-pending{position:absolute;top:-6px;right:-6px}
 .nav-bell-label{display:none}
-.nav-bell{width:40px;padding:0;justify-content:center}
-@media (max-width:1320px){ .nav-bell{order:1} }
+.nav-bell{width:40px;padding:0;justify-content:center;order:1}
 .al-head{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:6px}
 .al-head h3{margin:0}
 .al-asof{font-size:13px;color:var(--muted)}
