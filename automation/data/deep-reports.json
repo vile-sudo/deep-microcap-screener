@@ -110,6 +110,17 @@
     "539984": "error: report incomplete after 3 sessions: {'business': ['file not written'], 'operations': ['file not written'], 'governance': ['file not written'], 'verdict': ['file",
     "MONOLITH": "error: report incomplete after 3 sessions: {'business': ['file not written'], 'operations': ['file not written'], 'governance': ['file not written'], 'verdict': ['file"
    }
+  },
+  {
+   "on": "2026-09-16",
+   "written": [
+    "MAZDOCK:FY27-Q1",
+    "SIKA:FY27-Q1"
+   ],
+   "spent_usd": null,
+   "skipped": {
+    "VIMTALABS": "already covers Dec 2024"
+   }
   }
  ],
  "seen_new_results": {
@@ -181,6 +192,24 @@
    "cost_usd": null,
    "api_equivalent_usd": 10.357,
    "minutes": 42.2
+  },
+  "MAZDOCK": {
+   "period": "FY27-Q1",
+   "on": "2026-09-16",
+   "engine": "claude-code",
+   "tokens_out": 164380,
+   "cost_usd": null,
+   "api_equivalent_usd": 16.181,
+   "minutes": 39.9
+  },
+  "SIKA": {
+   "period": "FY27-Q1",
+   "on": "2026-09-16",
+   "engine": "claude-code",
+   "tokens_out": 179680,
+   "cost_usd": null,
+   "api_equivalent_usd": 17.732,
+   "minutes": 35.2
   }
  }
 }

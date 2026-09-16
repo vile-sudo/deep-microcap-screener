@@ -1,38 +1,134 @@
 {
- "updated": "2026-09-15T10:48+05:30",
+ "updated": "2026-09-16T05:25+05:30",
  "figures": [
   {
    "label": "Brent crude",
-   "value": "$107.40/bbl",
+   "value": "$108.75/bbl",
    "as_of": "2026-09-15",
-   "note": "+1.63% on the day, near a 4-month high",
+   "note": "+2.9% on the day",
    "source": {
     "publisher": "Trading Economics",
     "url": "https://tradingeconomics.com/commodity/brent-crude-oil"
    }
   },
   {
-   "label": "Saudi East-West pipeline outage",
-   "value": "2.6-4 mb/d route down 3-5 weeks",
-   "as_of": "2026-09-14",
-   "note": "drone-hit pipeline and pumping station under repair, per Saudi officials",
+   "label": "Indian crude basket",
+   "value": "$128.70/bbl",
+   "as_of": "2026-09-15",
+   "note": "highest since April 2026",
    "source": {
-    "publisher": "Associated Press (via Local10)",
-    "url": "https://www.local10.com/news/world/2026/09/14/saudi-oil-pipeline-hit-in-strikes-will-be-mostly-out-of-service-for-several-weeks-for-repair/"
+    "publisher": "PPAC / Business Today",
+    "url": "https://www.businesstoday.in/markets/stocks/story/indian-crude-oil-basket-hits-128-70-highest-since-april-impact-on-stocks-sectors-rbi-policy-555557-2026-09-15"
    }
   },
   {
-   "label": "India's Russian crude imports",
-   "value": "1.42 mb/d (H1-Sept)",
+   "label": "EIA 2026 Brent forecast (full year)",
+   "value": "$91.01/bbl",
    "as_of": "2026-09-14",
-   "note": "down 30% from August's 2.1 mb/d",
+   "note": "vs $69.04 in 2025; 2027 seen at $73.74",
    "source": {
-    "publisher": "ThePrint",
-    "url": "https://theprint.in/economy/indias-russian-crude-imports-set-to-fall-in-september-amid-tighter-supply-iraq-a-key-alternative/3042166/"
+    "publisher": "EIA / Rigzone",
+    "url": "https://www.rigzone.com/news/eia_sees_2026_oil_price_coming_in_22_higher_than_last_year-14-sep-2026-184606-article/"
+   }
+  },
+  {
+   "label": "Asia spot LNG price",
+   "value": "~$30/mmBtu",
+   "as_of": "2026-09-15",
+   "note": "vs ~$10/mmBtu pre-war",
+   "source": {
+    "publisher": "BOE Report",
+    "url": "https://boereport.com/2026/09/15/lng-demand-in-china-and-india-expected-to-recover-when-mideast-war-ends/"
    }
   }
  ],
  "items": [
+  {
+   "date": "2026-09-15",
+   "title": "Indian crude basket jumps to $128.70/bbl, highest since April",
+   "text": "PPAC data showed the Indian crude oil basket at $128.70/bbl on 15 September, nearly double the $67.16 level of 2 July though still below the March peak of $157.04. Every $10/bbl rise adds an estimated $13-14 billion a year to India's import bill and can lift retail inflation by 30-50 bps; analysts flagged HSBC and MOFSL now expect RBI rate hikes in October and December. Upstream producers ONGC and Oil India gain from stronger realisations, while OMCs are squeezed if pump prices stay frozen.",
+   "tone": "watch",
+   "companies": [
+    "ONGC",
+    "OIL",
+    "IOC",
+    "BPCL",
+    "HINDPETRO"
+   ],
+   "sources": [
+    {
+     "publisher": "Business Today",
+     "title": "Indian crude oil basket hits $128.70, highest since April: Impact on stocks, sectors, RBI policy",
+     "url": "https://www.businesstoday.in/markets/stocks/story/indian-crude-oil-basket-hits-128-70-highest-since-april-impact-on-stocks-sectors-rbi-policy-555557-2026-09-15",
+     "date": "2026-09-15"
+    }
+   ],
+   "added": "2026-09-16"
+  },
+  {
+   "date": "2026-09-15",
+   "title": "GAIL: LNG above $20/mmBtu curbing India gas demand, supply restored to 90-95%",
+   "text": "Speaking at Gastech in Bangkok, GAIL chairman Deepak Gupta said LNG prices above $20/mmBtu are hurting India's price-sensitive industrial demand as buyers switch to alternative fuels, with Asian spot LNG near $30/mmBtu versus about $10 pre-war. GAIL said it has used its trading capability to source LNG from alternative markets and restore supply to 90-95% of normal levels. Higher spot gas costs squeeze city-gas margins and raise input costs across GAIL, Petronet LNG and the CGD companies.",
+   "tone": "watch",
+   "companies": [
+    "GAIL",
+    "PETRONET",
+    "IGL",
+    "MGL",
+    "GUJGASLTD"
+   ],
+   "sources": [
+    {
+     "publisher": "BOE Report",
+     "title": "LNG demand in China and India expected to recover when Mideast war ends",
+     "url": "https://boereport.com/2026/09/15/lng-demand-in-china-and-india-expected-to-recover-when-mideast-war-ends/",
+     "date": "2026-09-15"
+    }
+   ],
+   "added": "2026-09-16"
+  },
+  {
+   "date": "2026-09-14",
+   "title": "Tanker rates to India surge 150% as West Asia crisis deepens",
+   "text": "Daily charter rates for tankers heading to India have jumped about 150%, from roughly $100,000 to $250,000, as the security situation in West Asia worsens; bunker fuel is up about 50% to near $900/tonne and insurance costs are up about 20%. West Asia supplies roughly 30% of India's oil and gas imports, so higher freight and insurance raise the landed cost of crude even if benchmark prices hold steady, adding further pressure on refiners' and OMCs' costs.",
+   "tone": "watch",
+   "companies": [
+    "IOC",
+    "BPCL",
+    "HINDPETRO",
+    "GESHIP"
+   ],
+   "sources": [
+    {
+     "publisher": "Millennium Post",
+     "title": "India-bound tanker rates surge 150% as West Asia crisis disrupts shipping",
+     "url": "https://www.millenniumpost.in/business/india-bound-tanker-rates-surge-150-as-west-asia-crisis-disrupts-shipping-675936",
+     "date": "2026-09-14"
+    }
+   ],
+   "added": "2026-09-16"
+  },
+  {
+   "date": "2026-09-14",
+   "title": "EIA September outlook lifts 2026 Brent forecast to $91.01, flags rising Gulf shut-ins",
+   "text": "The EIA's September Short-Term Energy Outlook put full-year 2026 Brent at $91.01/bbl (versus $69.04 in 2025) and sees prices easing to $73.74/bbl in 2027 as Middle East exports normalise, with Q3 2026 at $89.11 and Q4 at $90.66. The agency raised its estimate of Gulf crude production shut in to 6.7 mb/d in August, up from 5.0 mb/d in July, underscoring that Indian upstream producers' elevated realisations could persist near-term before a 2027 pullback.",
+   "tone": "watch",
+   "companies": [
+    "ONGC",
+    "OIL",
+    "RELIANCE",
+    "VOGL"
+   ],
+   "sources": [
+    {
+     "publisher": "Rigzone",
+     "title": "EIA Sees 2026 Oil Price Coming in $22 Higher Than Last Year",
+     "url": "https://www.rigzone.com/news/eia_sees_2026_oil_price_coming_in_22_higher_than_last_year-14-sep-2026-184606-article/",
+     "date": "2026-09-14"
+    }
+   ],
+   "added": "2026-09-16"
+  },
   {
    "date": "2026-09-14",
    "title": "India's Russian crude imports fall 30% in Sept as Iraq, Venezuela fill the gap",
