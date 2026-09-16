@@ -822,6 +822,57 @@ td .thm{font-size:10.5px;text-transform:uppercase;letter-spacing:.05em;color:var
 .gc-thin{color:var(--s4)}   /* under Rs 5 lakh a day: barely tradeable */
 .gal-more{grid-column:1/-1;justify-self:center;margin-top:6px;padding:9px 22px}
 
+/* Movers */
+.mv-toolbar{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.mv-toolbar .gal-search{flex:1 1 220px;width:auto;min-width:180px}
+.mv-toolbar .gal-select{flex:0 1 auto;width:auto}
+#mv-date{min-width:170px}
+#mv-dir,#mv-board{min-width:150px}
+#mv-why{min-width:190px}
+#mv-sort{min-width:180px}
+.mv-count{margin:14px 0 8px;text-align:right;color:var(--muted);font-size:12px}
+.mv-tablewrap{overflow-x:auto;border:1px solid var(--grid);border-radius:10px}
+.mv-table{width:100%;border-collapse:collapse;font-size:12.5px}
+.mv-table th,.mv-table td{padding:8px 10px;border-bottom:1px solid var(--grid);text-align:left;vertical-align:middle;white-space:nowrap}
+.mv-table thead th{background:#0b3954;color:#fff;font-weight:600;font-size:11.5px;position:sticky;top:0}
+.mv-table td.n,.mv-table th.n{text-align:right;font-family:var(--mono)}
+.mv-table td:last-child,.mv-table th:last-child{white-space:normal;min-width:220px}
+.mv-table tbody tr{cursor:pointer}
+.mv-table tbody tr:hover td{background:rgba(10,115,168,.06)}
+.mv-table tbody tr:nth-child(even) td{background:var(--surface-2,#fafcfd)}
+.mv-table tbody tr:hover:nth-child(even) td{background:rgba(10,115,168,.09)}
+.mv-tick{display:block;font:700 12.5px var(--mono);color:var(--ink)}
+.mv-name{display:block;color:var(--muted);font-size:11.5px;white-space:normal}
+.mv-onboard{display:inline-block;margin-top:2px;padding:1px 6px;border-radius:5px;background:rgba(10,115,168,.12);color:var(--ocean,#0a73a8);font-size:10px;font-weight:600}
+.mv-hint{cursor:help;opacity:.75;font-style:normal}
+.mv-badge{display:inline-block;padding:2px 7px;margin-right:4px;border-radius:5px;font-size:10.5px;font-weight:600;white-space:nowrap}
+.mv-high{background:rgba(71,217,140,.16);color:#1f9d5c}
+.mv-med{background:rgba(244,186,73,.18);color:#b06a15}
+.mv-low{background:rgba(244,186,73,.1);color:#8a7139}
+.mv-mech{background:rgba(148,158,171,.18);color:var(--muted)}
+.mv-none{background:rgba(148,158,171,.1);color:var(--muted)}
+.mv-admin{display:flex;align-items:center;gap:10px;margin-top:16px}
+.mv-refresh-msg{color:var(--muted);font-size:12px}
+.mv-src{margin:14px 0 0;color:var(--muted);font-size:11.5px}
+.mv-mhead{display:flex;flex-wrap:wrap;align-items:center;gap:10px}
+.mv-mhead h3{margin:0}
+.mv-mstats{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px;margin:16px 0}
+.mv-mstats div span{display:block;color:var(--muted);font-size:11.5px}
+.mv-mstats div b{font:600 14px var(--mono);color:var(--ink)}
+.mv-mstats small{color:var(--muted);font-weight:400}
+.mv-ca{margin:0 0 12px;padding:9px 12px;border-radius:8px;background:rgba(244,186,73,.12);border-left:3px solid var(--warn);font-size:12.5px}
+.mv-verdict{display:flex;align-items:center;gap:8px;margin:4px 0 14px;font-size:13.5px}
+.mv-ev{padding:10px 0;border-top:1px solid var(--grid)}
+.mv-ev:first-of-type{border-top:0}
+.mv-ev-tier{display:block;color:var(--muted);font-size:10.5px;text-transform:uppercase;letter-spacing:.04em;margin-bottom:3px}
+.mv-ev p{margin:0;font-size:13px;line-height:1.5}
+.mv-ev a{color:var(--ocean,#0a73a8)}
+.mv-ev small{color:var(--muted);font-size:11px}
+.mv-acts{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
+@media (max-width:640px){
+  .mv-toolbar .gal-select,.mv-toolbar .gal-search{flex:1 1 100%}
+}
+
 /* candles */
 .cs .cs-vol{fill:#2b4757;opacity:.75}
 .cs .cs-wick{fill:none;stroke-width:1}

@@ -1,0 +1,79 @@
+name: Movers scan
+
+# Keeps the Movers page current with no one touching it: every morning as
+# step 5c of daily.yml, and on demand when an admin clicks "Run tonight's
+# scan now" on the dashboard (POST /api/admin/movers/run-now, see
+# app/routers/movers.py) or this is run by hand from the Actions tab.
+#
+# Commits by this workflow use GITHUB_TOKEN, which never re-triggers
+# workflows, so nothing here can loop.
+
+permissions:
+  contents: write
+
+on:
+  workflow_dispatch:
+    inputs:
+      date:
+        description: 'Trading date to scan as YYYY-MM-DD (blank: the most recently settled session)'
+        required: false
+
+concurrency:
+  group: movers-scan
+  cancel-in-progress: false
+
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+
+    steps:
+      - name: Check out repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: pip install requests
+
+      - name: Run the scan
+        working-directory: ./backend
+        run: |
+          if [ -n "${{ github.event.inputs.date }}" ]; then
+            python scripts/run_movers.py --date "${{ github.event.inputs.date }}"
+          else
+            python scripts/run_movers.py
+          fi
+
+      - name: Commit
+        id: commit
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add backend/data/movers
+          if git diff --cached --quiet; then
+            echo "No movers changes"
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          git commit -m "Movers scan"
+          for i in 1 2 3; do
+            git pull --rebase origin ${{ github.ref_name }} && git push origin HEAD:${{ github.ref_name }} && break
+            sleep 5
+          done
+          echo "changed=true" >> "$GITHUB_OUTPUT"
+
+      - name: Trigger Render deploy
+        if: ${{ steps.commit.outputs.changed == 'true' }}
+        env:
+          RENDER_DEPLOY_HOOK: ${{ secrets.RENDER_DEPLOY_HOOK }}
+        run: |
+          if [ -z "$RENDER_DEPLOY_HOOK" ]; then
+            echo "RENDER_DEPLOY_HOOK secret not set; skipping deploy"
+            exit 0
+          fi
+          curl -fsSL --retry 3 --retry-delay 5 -X POST "$RENDER_DEPLOY_HOOK" > /dev/null
+          echo "Render deploy triggered"

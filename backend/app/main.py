@@ -13,7 +13,7 @@ from .auth import AccountGateMiddleware, ensure_admin
 from .config import get_settings
 from .database import Base, engine
 from .seed import seed_if_changed
-from .routers import account, alerts, asme, auth as auth_routes, charts, companies, logic_gates, market, meta, reports, sectors, watchlist
+from .routers import account, alerts, asme, auth as auth_routes, charts, companies, logic_gates, market, meta, movers, reports, sectors, watchlist
 
 settings = get_settings()
 
@@ -65,6 +65,7 @@ app.include_router(account.router)
 app.include_router(alerts.router)
 app.include_router(sectors.router)
 app.include_router(logic_gates.router)
+app.include_router(movers.router)
 
 
 @app.get("/healthz", tags=["ops"])

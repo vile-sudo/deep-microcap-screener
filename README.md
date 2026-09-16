@@ -312,6 +312,61 @@ certified companies show their certificate types and since-date.
   at request time (ticker, exchange symbol, or exact company name), so a
   company added to the board is tagged without a re-scan.
 
+## Movers (automated)
+
+**Movers** lists every NSE stock that closed 4% or more up or down on a
+trading day, with why: not just the number, but the filing, news coverage
+or bulk/block deal behind it, checked against NSE's own disclosures. It
+started as a standalone tool (`backend/app/movers/` says exactly what
+changed crossing it into this dashboard) before joining the board here.
+
+- **Universe:** every equity series NSE's bhavcopy carries that day --
+  main board, trade-for-trade and the SME platform -- not a fixed index
+  list, so a comprehensive session can flag several hundred moves. That is
+  by design for a microcap-focused board: a Nifty-Total-Market-only
+  screener misses exactly the names this dashboard tracks. A company also
+  on the board is marked and links to its scorecard and report.
+- **Corporate-action adjustment:** the bhavcopy's `PREV_CLOSE` is not
+  adjusted for a dividend, bonus or split going ex that morning, so the raw
+  change on an ex-date mixes a real move with pure arithmetic (a 1:1 bonus
+  reads as -50%). `app/movers/corpactions.py` reads NSE's corporate actions
+  and adjusts the previous close before the 4% test, so a move that only
+  existed on paper drops out; what is left is what actually traded.
+- **Why it moved**, ranked by how much each source actually proves:
+  1. **Filings** — NSE's own corporate announcements, classified and
+     windowed to the session they could have moved (a 15:59 filing explains
+     the next day's close, not today's); routine housekeeping is set aside.
+  2. **News** — allowlisted desks only (Moneycontrol, Mint, Economic Times,
+     Business Standard, Reuters, Bloomberg and others), searched per
+     company by name (a ticker like "SAILIFE" returns nothing), filtered
+     for headlines that actually name the company and report an event
+     rather than a listicle.
+  3. **Bulk and block deals** — a single trade large enough to matter.
+  Each move gets a headline verdict and a confidence: `high` when a filing
+  and the press agree, `medium`/`low` for news or a deal alone,
+  `mechanical` for an action too complex to quantify (a demerger, say), and
+  `none` when nothing was found -- reported honestly rather than guessed.
+- **News is bounded, not skipped:** filings, corporate actions and deals
+  are a handful of requests for the whole day, but news is one search per
+  symbol. On a day with several hundred flagged moves that is capped at
+  `MOVERS_NEWS_LIMIT` (default 120) -- the board's own companies first,
+  then the largest moves by size -- so a busy session cannot turn into a
+  thousand-query run. A move outside that budget is marked "not checked"
+  on the dashboard, which is different from "checked, found nothing."
+- **Automation:** step 5c of `.github/workflows/daily.yml` scans the most
+  recently settled session every night; `movers.yml` reruns or backfills
+  one date by hand (`gh workflow run movers.yml -f date=2026-09-10`), and
+  an admin can fire it from the dashboard ("Run tonight's scan now" on the
+  Movers page → `POST /api/admin/movers/run-now`, needs `GH_DISPATCH_TOKEN`
+  like Sector Research's "Refresh now").
+- **Data:** one JSON snapshot per trading day in `backend/data/movers/`,
+  committed like Sector Research and Reports; `GET /api/movers` serves the
+  latest plus the date list, `GET /api/movers/{date}` one session.
+- **Run it by hand:** `cd backend && python scripts/run_movers.py`, or
+  `--date 2026-09-10` to rescan or backfill a specific session (a rerun
+  also gets more of that session's news coverage, since NSE's own
+  publication window keeps widening for a day or two after the close).
+
 ## Market view (automated stage screen)
 
 **Market view** is a stage screen for the board, rebuilt after every trading
@@ -403,13 +458,14 @@ stages run, and marks the run failed (GitHub emails you).
 | 3. Auto-screen | `backend/scripts/auto_screen.py` | adds up to 10 companies a day that pass the board's rules, marked **Auto-added** (below) |
 | 4. ASME | `automation/scan-asme.mjs` | ASME certificate holders, certificate types and dates |
 | 5. Charts | `backend/scripts/update_charts.py` | candles, Screen any Chart, Market view stages (VCP + IPO base), breakouts, feed |
+| 5c. Movers | `backend/scripts/run_movers.py` | every NSE stock that closed 4%+ up or down, with why |
 | 6. Sector research | `backend/scripts/sector_research.py` | a new monthly edition for each sector (Claude Code, Max plan) |
 | 7. Sector numbers | `backend/scripts/sector_numbers.py` | screener.in numbers for the companies in each sector report |
 | 7b. Sector latest | `backend/scripts/sector_latest.py` | dated, cited latest developments at the top of each sector report |
 | 8. Deep-dive reports | `backend/scripts/deep_reports.py` | quarterly deep-dive reports after new results, and their PDFs |
 
 Each step also has its own workflow for a manual re-run (*Actions → Run
-workflow*): `fundamentals.yml`, `auto-screen.yml`, `discovery.yml`, `asme.yml`, `charts.yml`, `deep-reports.yml`, `sector-research.yml`
+workflow*): `fundamentals.yml`, `auto-screen.yml`, `discovery.yml`, `asme.yml`, `charts.yml`, `movers.yml`, `deep-reports.yml`, `sector-research.yml`
 (which also runs on every push that changes `companies_raw.json`).
 `uptime.yml` pings the site every 10 minutes, keeping a free instance awake.
 

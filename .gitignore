@@ -38,6 +38,12 @@ backend/.bhav_cache/
 backend/universe_charts/
 backend/universe-charts.tar.gz
 
+# Movers: bhavcopy, corporate actions, announcements, deals and news, cached
+# per trading day while scripts/run_movers.py runs. Rebuildable from NSE and
+# Google News in a few minutes; only the scan's own output, backend/data/movers/,
+# is committed.
+backend/.movers_cache/
+
 # deep-dive report pipeline scratch output (reports themselves live in backend/reports/)
 reports-dry/
 reports-pdf/

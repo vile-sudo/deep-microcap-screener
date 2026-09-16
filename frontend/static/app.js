@@ -247,9 +247,9 @@ let sortKey='final_score', sortDir=-1;
      method    - how the scores work
    Moving to another page clears whatever was picked on the last one, so a theme
    chosen on Themes never quietly narrows what Screen filters shows. */
-const VIEWS=['overview','themes','market','watchlist','companies','filters','gallery','reports','sectors','method'];
+const VIEWS=['overview','themes','market','watchlist','companies','filters','gallery','reports','sectors','movers','method'];
 const NAV={'overview-link':'overview','themes-link':'themes','market-link':'market','watchlist-link':'watchlist',
-           'companies-link':'companies','filters-link':'filters','gallery-link':'gallery','reports-link':'reports','sectors-link':'sectors'};
+           'companies-link':'companies','filters-link':'filters','gallery-link':'gallery','reports-link':'reports','sectors-link':'sectors','movers-link':'movers'};
 const LENSES=['overhang','heavycap','guide15','guideany','turn','haslens','ipo','asme','auto'];
 const TILE_LABEL={all:'Companies on the board',overhang:'High P/E + heavy CWIP',guide15:'Management guides > 15%',
                   turn:'PAT turned positive',nolens:'Awaiting the capex pass'};
@@ -269,6 +269,7 @@ function setView(v, opts){
   if(VIEW==='market') openMarket();
   if(VIEW==='reports'){ if(!opts.keep) RP.code=null; openReports(); }
   if(VIEW==='sectors'){ if(!opts.keep){ SC.slug=null; SC.edition=null; } openSectors(); }
+  if(VIEW==='movers') openMovers();
   const ts=document.getElementById('top-search');
   if(ts && VIEW!=='companies') ts.value='';
 }
@@ -2012,6 +2013,190 @@ function cmWire(d, a, s){
   const yearSel=document.getElementById('cm-yearsel'); if(yearSel) yearSel.onchange=()=>{ CM.year=yearSel.value; cmRender(); };
   document.querySelectorAll('[data-cmtab]').forEach(b=>b.onclick=()=>{ CM.tab=b.dataset.cmtab; cmRender(); });
   document.querySelectorAll('[data-cmpeer]').forEach(b=>b.onclick=()=>openChart(b.dataset.cmpeer));
+}
+
+/* ==================================================================
+   Movers -- every NSE stock that closed 4%+ up or down, with why.
+   Built from /api/movers, one JSON snapshot per trading day written by
+   backend/scripts/run_movers.py (see backend/app/movers/ for the scan,
+   corporate-action adjustment and filing/news/deal attribution). A stock
+   also on the board carries board_code and links to its scorecard.
+   ================================================================== */
+const MV_WHY={high:['High','mv-high'], medium:['Medium','mv-med'], low:['Low','mv-low'],
+              mechanical:['Mechanical','mv-mech'], none:['No reason found','mv-none']};
+const MV={dates:null, cache:new Map(), date:null, built:false};
+
+function mvFetch(trade_date){
+  const key=trade_date||'';
+  if(!MV.cache.has(key)) MV.cache.set(key, fetchJSON(trade_date?('/api/movers/'+encodeURIComponent(trade_date)):'/api/movers').catch(()=>null));
+  return MV.cache.get(key);
+}
+
+async function openMovers(){
+  const body=document.getElementById('mv-body');
+  if(!MV.dates){
+    body.innerHTML='<p class="view-hint">Loading…</p>';
+    const j=await mvFetch('');
+    if(!j || !j.dates || !j.dates.length){ body.innerHTML='<p class="view-hint">No movers scan has run yet. It runs automatically every trading night.</p>'; return; }
+    MV.dates=j.dates;
+    MV.cache.set(j.dates[0], Promise.resolve(j.snapshot));
+    MV.date=MV.date && MV.dates.includes(MV.date) ? MV.date : MV.dates[0];
+  }
+  if(!MV.built) mvBuildControls();
+  await mvRender();
+}
+
+function mvBuildControls(){
+  MV.built=true;
+  const dateSel=document.getElementById('mv-date');
+  dateSel.innerHTML=MV.dates.map(d=>`<option value="${d}"${d===MV.date?' selected':''}>${esc(mvDay(d))}${d===MV.dates[0]?' (latest)':''}</option>`).join('');
+  dateSel.onchange=()=>{ MV.date=dateSel.value; mvRender(); };
+  let t=0;
+  document.getElementById('mv-q').oninput=()=>{ clearTimeout(t); t=setTimeout(mvRenderTable,120); };
+  ['mv-dir','mv-why','mv-board','mv-sort'].forEach(id=>document.getElementById(id).onchange=mvRenderTable);
+  document.getElementById('mv-clear').onclick=()=>{
+    document.getElementById('mv-q').value='';
+    ['mv-dir','mv-why','mv-board'].forEach(id=>document.getElementById(id).value='');
+    document.getElementById('mv-sort').value='size';
+    mvRenderTable();
+  };
+}
+
+function mvDay(iso){
+  const [y,m,d]=String(iso).split('-').map(Number);
+  return `${d} ${GMONTHS[m-1]} ${y}`;
+}
+
+let MV_SNAP=null;
+async function mvRender(){
+  const body=document.getElementById('mv-body');
+  body.innerHTML='<p class="view-hint">Loading…</p>';
+  const snap=await mvFetch(MV.date);
+  if(VIEW!=='movers') return;
+  MV_SNAP=snap;
+  document.getElementById('mv-date').value=MV.date;
+  const upd=document.getElementById('mv-asof');
+  upd.textContent = snap ? `Last session: ${mvDay(snap.trade_date)}` : '';
+  if(!snap){ body.innerHTML='<p class="view-hint">Could not load this session.</p>'; return; }
+  body.innerHTML=`
+    <div class="mv-tablewrap"><table class="mv-table"><thead><tr>
+      <th>Company</th><th class="n">Change</th><th class="n">Close</th><th class="n">Prev close</th><th class="n">Delivery</th><th>Why</th>
+    </tr></thead><tbody id="mv-rows"></tbody></table></div>
+    ${ME&&ME.is_admin?`<div class="mv-admin"><button type="button" class="btn" id="mv-refresh">Run tonight's scan now</button><span class="mv-refresh-msg" id="mv-refresh-msg"></span></div>`:''}
+    <p class="mv-src">Source: NSE's own end-of-day bhavcopy (every EQ / BE / BZ / SM / ST series it carries -- main board, trade-for-trade and the SME platform), corporate actions, corporate announcements, bulk/block deals and allowlisted news coverage.
+    ${snap.stats&&snap.stats.mechanical_only?` ${snap.stats.mechanical_only} move(s) fell under ${snap.threshold_percent}% once a corporate action was adjusted out, and are not listed.`:''}
+    On a busy day, news coverage is checked for the board's own companies and the largest moves first; a row marked "not checked" ran out of that day's budget rather than turning up nothing. Not investment advice.</p>`;
+  document.getElementById('mv-rows').onclick=e=>{
+    const row=e.target.closest('[data-mvrow]'); if(row) mvOpenRow(row.dataset.mvrow);
+  };
+  document.getElementById('mv-rows').onkeydown=e=>{
+    const row=e.target.closest('[data-mvrow]'); if(row && (e.key==='Enter'||e.key===' ')){ e.preventDefault(); mvOpenRow(row.dataset.mvrow); }
+  };
+  const refreshBtn=document.getElementById('mv-refresh');
+  if(refreshBtn) mvWireRefresh();
+  mvRenderTable();
+}
+
+function mvRows(){
+  if(!MV_SNAP) return [];
+  const q=(document.getElementById('mv-q')||{}).value?.trim().toLowerCase()||'';
+  const dir=(document.getElementById('mv-dir')||{}).value||'';
+  const why=(document.getElementById('mv-why')||{}).value||'';
+  const boardOnly=(document.getElementById('mv-board')||{}).value==='board';
+  const sort=(document.getElementById('mv-sort')||{}).value||'size';
+  let rows=(MV_SNAP.moves||[]).filter(m=>{
+    if(dir && m.direction!==dir) return false;
+    if(boardOnly && !m.board_code) return false;
+    if(why && (!m.why || m.why.confidence!==why)) return false;
+    if(q && !(m.symbol.toLowerCase()+' '+(m.name||'').toLowerCase()).includes(q)) return false;
+    return true;
+  });
+  const cmp={
+    size:(a,b)=>Math.abs(b.pct_change)-Math.abs(a.pct_change),
+    up:(a,b)=>b.pct_change-a.pct_change,
+    down:(a,b)=>a.pct_change-b.pct_change,
+    deliv:(a,b)=>(b.delivery_percent??-1)-(a.delivery_percent??-1),
+    name:(a,b)=>String(a.name||a.symbol).localeCompare(String(b.name||b.symbol)),
+  }[sort] || null;
+  if(cmp) rows=rows.slice().sort(cmp);
+  return rows;
+}
+
+function mvRenderTable(){
+  const tbody=document.getElementById('mv-rows'); if(!tbody) return;
+  const rows=mvRows();
+  document.getElementById('mv-count').textContent=`${fmtI(rows.length)} of ${fmtI((MV_SNAP.moves||[]).length)}`;
+  tbody.innerHTML = rows.length ? rows.map(mvRowHtml).join('')
+    : `<tr><td colspan="6"><p class="view-hint">No move matches -- clear the search or pick another filter.</p></td></tr>`;
+}
+
+function mvRowHtml(m){
+  const why=m.why||{headline:'No disclosed reason',confidence:'none'};
+  const badge=MV_WHY[why.confidence]||MV_WHY.none;
+  const notChecked = !m.news_checked && why.confidence==='none';
+  return `<tr data-mvrow="${esc(m.symbol)}" tabindex="0">
+    <td><b class="mv-tick">${esc(m.symbol)}</b><span class="mv-name">${esc(m.name||m.symbol)}</span>${m.board_code?'<span class="mv-onboard">On the board</span>':''}</td>
+    <td class="n"><span class="${m.direction==='UP'?'up':'dn'}">${bpPct(m.pct_change)}</span>${m.corporate_action?` <i class="mv-hint" title="${esc(m.corporate_action)}">⚙</i>`:''}</td>
+    <td class="n">${bpInr(m.close,2)}</td>
+    <td class="n">${bpInr(m.prev_close,2)}</td>
+    <td class="n">${m.delivery_percent==null?'—':m.delivery_percent.toFixed(1)+'%'}</td>
+    <td><span class="mv-badge ${badge[1]}">${badge[0]}</span> ${esc(notChecked?'Not checked yet':why.headline)}</td>
+  </tr>`;
+}
+
+function mvOpenRow(symbol){
+  const m=(MV_SNAP.moves||[]).find(x=>x.symbol===symbol); if(!m) return;
+  const why=m.why||{headline:'No disclosed reason',confidence:'none',evidence:[]};
+  const badge=MV_WHY[why.confidence]||MV_WHY.none;
+  const notChecked = !m.news_checked && why.confidence==='none';
+  const ev=(why.evidence||[]).map(e=>`
+    <div class="mv-ev"><span class="mv-ev-tier">${esc(e.tier)}${e.kind?' · '+esc(e.kind):''}</span>
+      <p>${e.url?`<a href="${esc(e.url)}" target="_blank" rel="noopener">${esc(e.detail)} ↗</a>`:esc(e.detail)}</p>
+      ${e.source?`<small>${esc(e.source)}</small>`:''}
+    </div>`).join('');
+  smallModal(`
+    <div class="mv-mhead"><b class="mv-tick">${esc(m.symbol)}</b><h3>${esc(m.name||m.symbol)}</h3>${m.board_code?'<span class="mv-onboard">On the board</span>':''}</div>
+    <div class="mv-mstats">
+      <div><span>Change</span><b class="${m.direction==='UP'?'up':'dn'}">${bpPct(m.pct_change)}</b>${m.raw_pct_change!=null && m.raw_pct_change!==m.pct_change?` <small>(${bpPct(m.raw_pct_change)} before the corporate action)</small>`:''}</div>
+      <div><span>Close</span><b>${bpInr(m.close,2)}</b></div>
+      <div><span>Previous close</span><b>${bpInr(m.prev_close,2)}${m.corporate_action?' <small>(adjusted)</small>':''}</b></div>
+      <div><span>Delivery</span><b>${m.delivery_percent==null?'—':m.delivery_percent.toFixed(1)+'%'}</b></div>
+    </div>
+    ${m.corporate_action?`<p class="mv-ca">⚙ ${esc(m.corporate_action)}</p>`:''}
+    <div class="mv-verdict"><span class="mv-badge ${badge[1]}">${badge[0]}</span> <b>${esc(notChecked?'News not checked yet':why.headline)}</b></div>
+    ${notChecked?'<p class="view-hint">This move ran outside today\'s news-search budget (board companies and the largest moves are checked first). Filings and corporate actions were still checked in full.</p>':''}
+    ${ev||'<p class="view-hint">No filing, news coverage or large deal found for this move.</p>'}
+    ${m.board_code?`<div class="mv-acts"><button class="btn" id="mv-card" type="button">Open scorecard</button><button class="btn" id="mv-report" type="button">Research report</button></div>`:''}
+  `);
+  const card=document.getElementById('mv-card');
+  if(card){
+    const d=DATA.find(x=>x.code===m.board_code);
+    card.onclick=()=>{ closeModal(); if(d) openDrawer(d); };
+    const rp=document.getElementById('mv-report'); if(rp) rp.onclick=()=>openReport(m.board_code);
+  }
+}
+
+function mvWireRefresh(){
+  const btn=document.getElementById('mv-refresh'), msg=document.getElementById('mv-refresh-msg');
+  if(!btn) return;
+  let countdown=null;
+  const disable=secs=>{
+    if(countdown) clearInterval(countdown);
+    btn.disabled=true; let left=secs;
+    const tick=()=>{ const m=Math.floor(left/60), s=left%60; btn.textContent=`Run tonight's scan now (${m}:${String(s).padStart(2,'0')})`;
+      if(left<=0){ clearInterval(countdown); countdown=null; btn.disabled=false; btn.textContent="Run tonight's scan now"; } left--; };
+    tick(); countdown=setInterval(tick,1000);
+  };
+  btn.onclick=async()=>{
+    btn.disabled=true; msg.textContent='Starting…';
+    try{
+      const r=await fetch('/api/admin/movers/run-now',{method:'POST',credentials:'same-origin'});
+      const j=await r.json().catch(()=>({}));
+      if(!r.ok) throw new Error(j.detail||('HTTP '+r.status));
+      msg.textContent='Queued -- this takes several minutes. Reopen this page later to see it.';
+      disable(j.cooldown_seconds||1800);
+    }catch(err){ msg.textContent=err.message; btn.disabled=false; }
+  };
 }
 
 /* ==================================================================
