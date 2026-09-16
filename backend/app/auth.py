@@ -44,7 +44,10 @@ log = logging.getLogger("deepsweep.auth")
 
 COOKIE = "ds_session"
 PUBLIC_PREFIXES = ("/static/", "/api/auth/")
-PUBLIC_PATHS = {"/login", "/healthz", "/favicon.ico"}
+PUBLIC_PATHS = {"/login", "/healthz", "/favicon.ico", "/api/meta/logic-gates"}
+# /api/meta/logic-gates (GET) is public because it's already documented on the
+# board's own "How this board is built" page, and the daily auto-screen reads
+# it over plain HTTP from GitHub Actions, which has no session cookie.
 
 
 def utcnow() -> datetime:

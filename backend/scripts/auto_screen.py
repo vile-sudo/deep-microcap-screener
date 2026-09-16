@@ -7,8 +7,13 @@ add the best of them to the dashboard, marked "Auto-added".
     python scripts/auto_screen.py --dry-run       # screen, print, write nothing
     python scripts/auto_screen.py --max-add 10 --budget 400
 
-Runs in .github/workflows/daily.yml every morning, before the charts are
+Runs in .github/workflows/daily.yml every night, before the charts are
 rebuilt, so a company added today gets its chart and Market view stage today.
+
+All the thresholds and keyword lists below are defaults only. The live
+values -- editable on the dashboard, account menu -> Admin -> Logic Gates,
+with no code change or deploy -- are fetched from /api/meta/logic-gates at
+the start of every run (see load_gates() / apply_gates()) and override these.
 
 Where candidates come from
 --------------------------
@@ -77,6 +82,8 @@ ROOT = BACKEND.parent
 COMPANIES = BACKEND / "data" / "companies_raw.json"
 QUEUE = ROOT / "automation" / "data" / "candidates-queue.json"
 STATE = ROOT / "automation" / "data" / "auto-screen.json"
+GATES_DEFAULTS_FILE = BACKEND / "data" / "logic_gates_defaults.json"
+DASHBOARD_URL = os.environ.get("DASHBOARD_URL", "https://deep-microcap-screener.onrender.com")
 
 HEADERS = {"User-Agent": "Mozilla/5.0 (compatible; personal-research-screener/1.0; research script, not a bulk crawler)"}
 EXCHANGE_HEADERS = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/124.0 Safari/537.36",
@@ -84,9 +91,16 @@ EXCHANGE_HEADERS = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) App
 DELAY = 2.0
 RECHECK_DAYS = 90
 
+# Defaults below; overridden at startup by load_gates() from the dashboard's
+# /api/meta/logic-gates (Logic Gates, in the account menu's Admin section),
+# so an admin's edit there takes effect on the next run with no code change.
 CAP_MIN, CAP_MAX_T1, CAP_MAX_T2 = 120, 3000, 4000
 PROMOTER_MIN, PUBLIC_MAX, ROCE_MIN, ROE_MIN = 40, 60, 12, 5
+INST_TIER1_MIN = 1
 HOLDERS_MAX_T1, HOLDERS_MAX_T2 = 25000, 40000
+PE_OVERHANG_MIN, CWIP_OVERHANG_MIN, CWIP_HEAVY_MIN = 40, 15, 25
+GUIDANCE_OVER_PCT, PAT_LOOKBACK, PE_PENALTY_MIN = 15, 3, 60
+IMPORT_MATERIALS: list[str] = []
 
 SKIP_NAME = re.compile(r"\b(finance|financial|fincorp|finserv|capital|credit|leasing|investments?|holdings?|securities|"
                        r"broking|bank|insurance|realty|real estate|properties|developers|estates?|hotels?|resorts?|"
@@ -145,6 +159,68 @@ LABEL = {"import_substitution": "import substitution", "leading_maker": "India's
          "first_mover": "first / pioneer in India", "niche": "a niche segment with a qualification"}
 PDFTOTEXT = shutil.which("pdftotext")
 AR_PAGES = 90
+# a guidance statement has to be self-referencing too, and either give a number
+# or use unmistakably forward-looking language -- an order book or a capacity
+# expansion is not guidance (see frontend/index.html's own "Guide %" caveat)
+GUIDANCE_VERB_RX = re.compile(r"\b(?:guid(?:e|ance|ing)|expects?|targets?|aims?|anticipates?)\b", re.I)
+GUIDANCE_GROWTH_WORD_RX = re.compile(r"\b(?:growth|grow(?:s|ing)?|increase|revenue|sales|turnover)\b", re.I)
+GUIDANCE_PCT_RX = re.compile(r"(\d{1,3}(?:\.\d+)?)\s?%")
+GUIDANCE_FLAG_RX = re.compile(r"\b(?:revenue|sales|turnover)\b[^.;]{0,40}?\bguid(?:e|ance|ing)\b|"
+                              r"\bguid(?:e|ance|ing)\b[^.;]{0,40}?\b(?:revenue|sales|turnover)\b|"
+                              r"\bexpects? (?:revenue|sales|turnover) (?:to grow|growth)\b|"
+                              r"\bexpects? to grow(?: (?:revenue|sales|turnover))?\b|"
+                              r"\btargets? (?:revenue |sales |turnover )?growth of\b|\baims? to (?:grow|double|triple)\b", re.I)
+
+
+def load_gates() -> dict:
+    """The effective Logic Gates: the dashboard's live override merged over
+    the built-in defaults, fetched over plain HTTP (this script has no
+    database access, running in GitHub Actions) -- or the local defaults
+    file alone if the site can't be reached, so a run never hard-fails on it."""
+    try:
+        defaults = json.loads(GATES_DEFAULTS_FILE.read_text(encoding="utf-8"))
+    except (OSError, ValueError):
+        defaults = {"hard_gates": {}, "flags": {}, "moat_keywords": {}, "import_substitution_materials": []}
+    try:
+        r = requests.get(f"{DASHBOARD_URL}/api/meta/logic-gates", timeout=15)
+        r.raise_for_status()
+        live = r.json()
+        return {k: live.get(k, defaults.get(k)) for k in ("hard_gates", "flags", "moat_keywords", "import_substitution_materials")}
+    except (requests.RequestException, ValueError) as e:
+        print(f"auto-screen: could not fetch live Logic Gates ({e}); using the built-in defaults")
+        return defaults
+
+
+def apply_gates(cfg: dict) -> None:
+    """Push a loaded gates config into the module's globals: the numeric
+    thresholds gates()/score() read, plus extra moat keywords and import-
+    substitution materials layered onto the built-in evidence patterns."""
+    global CAP_MIN, CAP_MAX_T1, CAP_MAX_T2, PROMOTER_MIN, PUBLIC_MAX, ROCE_MIN, ROE_MIN, INST_TIER1_MIN
+    global HOLDERS_MAX_T1, HOLDERS_MAX_T2, PE_OVERHANG_MIN, CWIP_OVERHANG_MIN, CWIP_HEAVY_MIN
+    global GUIDANCE_OVER_PCT, PAT_LOOKBACK, PE_PENALTY_MIN, IMPORT_MATERIALS
+    hg, fl = cfg.get("hard_gates") or {}, cfg.get("flags") or {}
+    CAP_MIN = hg.get("market_cap_min_cr", CAP_MIN)
+    CAP_MAX_T1 = hg.get("market_cap_max_tier1_cr", CAP_MAX_T1)
+    CAP_MAX_T2 = hg.get("market_cap_max_tier2_cr", CAP_MAX_T2)
+    PROMOTER_MIN = hg.get("promoter_min_pct", PROMOTER_MIN)
+    PUBLIC_MAX = hg.get("public_max_pct", PUBLIC_MAX)
+    ROCE_MIN = hg.get("roce_min_pct", ROCE_MIN)
+    ROE_MIN = hg.get("roe_min_pct", ROE_MIN)
+    INST_TIER1_MIN = hg.get("institutional_tier1_min_pct", INST_TIER1_MIN)
+    HOLDERS_MAX_T1 = hg.get("shareholders_max_tier1", HOLDERS_MAX_T1)
+    HOLDERS_MAX_T2 = hg.get("shareholders_max_tier2", HOLDERS_MAX_T2)
+    PE_OVERHANG_MIN = fl.get("pe_overhang_min", PE_OVERHANG_MIN)
+    CWIP_OVERHANG_MIN = fl.get("cwip_overhang_min_pct", CWIP_OVERHANG_MIN)
+    CWIP_HEAVY_MIN = fl.get("cwip_heavy_min_pct", CWIP_HEAVY_MIN)
+    GUIDANCE_OVER_PCT = fl.get("guidance_over_pct", GUIDANCE_OVER_PCT)
+    PAT_LOOKBACK = int(fl.get("pat_turnaround_lookback_periods", PAT_LOOKBACK))
+    PE_PENALTY_MIN = fl.get("pe_penalty_min", PE_PENALTY_MIN)
+    IMPORT_MATERIALS = [m.strip() for m in (cfg.get("import_substitution_materials") or []) if m and m.strip()]
+    for cat, extra in (cfg.get("moat_keywords") or {}).items():
+        phrases = [p.strip() for p in (extra or []) if p and p.strip()]
+        if phrases and cat in EVIDENCE:
+            rx = EVIDENCE[cat]
+            EVIDENCE[cat] = re.compile(rx.pattern + "|" + "|".join(re.escape(p) for p in phrases), rx.flags)
 
 
 # ------------------------------------------------------------------ universe
@@ -251,6 +327,30 @@ def parse(soup: BeautifulSoup) -> dict:
                 out["public_pct"] = value
             elif "shareholders" in label:
                 out["num_shareholders"] = int(value)
+    bs = soup.select_one("#balance-sheet")
+    if bs:
+        for row in bs.select("table tbody tr"):
+            cells = row.select("td, th")
+            if len(cells) < 2:
+                continue
+            label = cells[0].get_text(" ", strip=True).lower()
+            value = _num(cells[-1].get_text(strip=True))   # latest (rightmost) column
+            if value is None:
+                continue
+            if label.startswith("fixed assets"):
+                out["net_block_cr"] = value
+            elif label == "cwip":
+                out["cwip_cr"] = value
+    if out.get("net_block_cr"):
+        out["cwip_pct_net_block"] = round(100 * (out.get("cwip_cr") or 0) / out["net_block_cr"], 1)
+    pl = soup.select_one("#profit-loss")
+    if pl:
+        head = pl.select_one("table thead tr")
+        has_ttm = bool(head) and head.select("th")[-1].get_text(strip=True) == "TTM"
+        row = next((r for r in pl.select("table tbody tr") if r.select("td")[0].get_text(" ", strip=True).lower().startswith("net profit")), None)
+        if row:
+            vals = [_num(c.get_text(strip=True)) for c in row.select("td")[1:]]   # skip the row label, itself a td here
+            out["pat_series_cr"] = vals[:-1] if has_ttm else vals   # drop the trailing TTM column, not a fiscal period
     title = soup.select_one("h1")
     out["name"] = title.get_text(" ", strip=True) if title else None
     about = soup.select_one(".company-profile .about") or soup.select_one(".about")
@@ -267,7 +367,7 @@ def parse(soup: BeautifulSoup) -> dict:
 def gates(p: dict) -> tuple[list[str], int]:
     fails = []
     inst = (p.get("fii_pct") or 0) + (p.get("dii_pct") or 0)
-    tier = 1 if inst >= 1 else 2
+    tier = 1 if inst >= INST_TIER1_MIN else 2
     cap = p.get("market_cap_cr")
     if cap is None or not (CAP_MIN <= cap <= (CAP_MAX_T1 if tier == 1 else CAP_MAX_T2)):
         fails.append(f"market cap {cap} cr outside Rs {CAP_MIN}-{CAP_MAX_T1 if tier == 1 else CAP_MAX_T2} cr")
@@ -312,6 +412,10 @@ def _short_name(name: str | None) -> str | None:
     return words[0] if words and (len(words[0]) >= 4 or (len(words[0]) == 3 and words[0].isupper())) else None
 
 
+_PRODUCE_VERB = re.compile(r"\b(?:manufactur\w*|produc\w*|makes?|making|process\w*|develops?|supplies|supplied|"
+                           r"exports?)\b", re.I)
+
+
 def find_evidence(text: str, name: str | None, source: str, need_self: bool) -> dict[str, dict]:
     """Moat statements in `text`. Profile text is the company describing itself
     already; annual-report sentences must also name the company."""
@@ -329,6 +433,13 @@ def find_evidence(text: str, name: str | None, source: str, need_self: bool) -> 
             # in a report the company has to be the subject: named just before the claim
             if m and (not need_self or self_rx.search(sent[max(0, m.start() - 100):m.end()])):
                 found[key] = {"text": sent, "source": source}
+        # a named heavily-imported material (Logic Gates -> import substitution materials),
+        # alongside a make/produce verb and, for annual-report text, the company as subject
+        if "import_substitution" not in found and IMPORT_MATERIALS:
+            low = sent.lower()
+            hit = next((m for m in IMPORT_MATERIALS if m.lower() in low), None)
+            if hit and _PRODUCE_VERB.search(sent) and (not need_self or self_rx.search(sent)):
+                found["import_substitution"] = {"text": sent, "source": source, "material": hit}
         if niche is None and NICHE.search(sent) and (not need_self or self_rx.search(sent)):
             niche = sent
         if approval is None and APPROVAL.search(sent) and (not need_self or self_rx.search(sent)):
@@ -337,6 +448,32 @@ def find_evidence(text: str, name: str | None, source: str, need_self: bool) -> 
     if niche and approval:
         found["niche"] = {"text": niche if niche == approval else f"{niche} … {approval}", "source": source}
     return found
+
+
+def find_guidance(text: str, name: str | None, source: str) -> dict | None:
+    """A self-referencing, forward-looking growth statement (Logic Gates ->
+    guidance). An order book or a capacity expansion is not guidance -- this
+    only matches an explicit guide/expect/target/aim verb. Low confidence by
+    nature (a paraphrase in an annual report, not a verified transcript), so
+    the matched sentence always travels with the flag for manual checking."""
+    short = _short_name(name)
+    self_rx = re.compile(SELF.pattern + (r"|\b" + re.escape(short) + r"\b" if short else ""), re.I)
+    unquantified = None
+    for sent in sentences(text):
+        if not self_rx.search(sent):
+            continue
+        vm = GUIDANCE_VERB_RX.search(sent)
+        if vm:
+            # the growth word and the percentage must sit near the guidance verb,
+            # not just somewhere else in a long, unrelated sentence
+            window = sent[max(0, vm.start() - 60):vm.end() + 80]
+            if GUIDANCE_GROWTH_WORD_RX.search(window):
+                pm = GUIDANCE_PCT_RX.search(window)
+                if pm:
+                    return {"pct": float(pm.group(1)), "text": sent, "source": source}
+        if unquantified is None and GUIDANCE_FLAG_RX.search(sent):
+            unquantified = sent
+    return {"pct": None, "text": unquantified, "source": source} if unquantified else None
 
 
 def annual_report_link(soup: BeautifulSoup) -> tuple[str, str] | None:
@@ -369,21 +506,45 @@ def annual_report_text(url: str) -> str:
             pass
 
 
-def moat_evidence(p: dict, soup: BeautifulSoup | None = None) -> dict[str, dict]:
+def moat_evidence(p: dict, soup: BeautifulSoup | None = None) -> tuple[dict[str, dict], dict | None]:
     found = find_evidence(p.get("about", "") + " " + p.get("key_points", ""), p.get("name"),
                           "screener.in company profile", need_self=False)
     if any(k in found for k in STRONG) or soup is None:
-        return found
+        return found, None
     link = annual_report_link(soup)
     if not link:
-        return found
+        return found, None
     try:
         text = annual_report_text(link[0])
     except (requests.RequestException, subprocess.SubprocessError, OSError):
-        return found
+        return found, None
     for key, val in find_evidence(text, p.get("name"), link[1], need_self=True).items():
         found.setdefault(key, {**val, "url": link[0]})
-    return found
+    # guidance can only be read from the annual report -- the profile/key-points
+    # blurb is too short to carry a genuine forward-looking statement
+    guidance = find_guidance(text, p.get("name"), link[1])
+    if guidance:
+        guidance["url"] = link[0]
+    return found, guidance
+
+
+def pat_turnaround(series: list) -> bool:
+    """Latest reported period profitable after a loss in at least one of the
+    previous PAT_LOOKBACK periods (Logic Gates -> PAT turnaround lookback)."""
+    vals = [v for v in (series or []) if v is not None]
+    if len(vals) < 2:
+        return False
+    latest, prior = vals[-1], vals[max(0, len(vals) - 1 - PAT_LOOKBACK):-1]
+    return latest > 0 and any(v < 0 for v in prior)
+
+
+def capex_flags(pe, cwip_pct_net_block) -> tuple[bool, bool]:
+    """(capex_overhang, capex_heavy) -- see frontend/index.html's own definitions."""
+    if cwip_pct_net_block is None:
+        return False, False
+    heavy = cwip_pct_net_block >= CWIP_HEAVY_MIN
+    overhang = pe is not None and pe > PE_OVERHANG_MIN and cwip_pct_net_block >= CWIP_OVERHANG_MIN
+    return overhang, heavy
 
 
 def score(p: dict, ev: dict, tier: int) -> tuple[float, dict, list[str]]:
@@ -411,8 +572,8 @@ def score(p: dict, ev: dict, tier: int) -> tuple[float, dict, list[str]]:
         penalties.append((f"only {holders:,} shareholders", 7))
     elif holders is not None and holders < 3000:
         penalties.append((f"only {holders:,} shareholders", 5))
-    if pe is not None and pe > 60:
-        penalties.append((f"P/E {pe} above 60", 3))
+    if pe is not None and pe > PE_PENALTY_MIN:
+        penalties.append((f"P/E {pe} above {PE_PENALTY_MIN}", 3))
     raw = s_moat + s_import + s_prom + s_inst + s_cov + s_fin
     pen = sum(v for _, v in penalties)
     pillars = {"s_moat": s_moat, "s_import_sub": s_import, "s_promoter": s_prom, "s_institutional": s_inst,
@@ -420,10 +581,17 @@ def score(p: dict, ev: dict, tier: int) -> tuple[float, dict, list[str]]:
     return round(raw - pen, 1), {**pillars, "score": raw, "risk_penalty": pen}, [f"{t} (-{v})" for t, v in penalties]
 
 
-def record(code: str, cand: dict, p: dict, ev: dict, tier: int, theme: str, today: str) -> dict:
+def record(code: str, cand: dict, p: dict, ev: dict, tier: int, theme: str, today: str, guidance: dict | None = None) -> dict:
     final, parts, penalty_detail = score(p, ev, tier)
     path = p.get("sector_path") or []
     evidence_lines = [f"{LABEL[k]} ({v['source']}): “{v['text']}”" for k, v in ev.items()]
+    imp = ev.get("import_substitution")
+    imp_note = (f"Company-stated ({imp['source']}{', names ' + imp['material'] if imp.get('material') else ''}): “{imp['text']}”"
+               if imp else "None found in the company's profile or annual report.")
+    cwip_pct = p.get("cwip_pct_net_block")
+    capex_overhang, capex_heavy = capex_flags(p.get("pe"), cwip_pct)
+    turned = pat_turnaround(p.get("pat_series_cr") or [])
+    guidance_pct = guidance.get("pct") if guidance else None
     return {
         "code": code,
         "name": p.get("name") or cand.get("name"),
@@ -446,8 +614,15 @@ def record(code: str, cand: dict, p: dict, ev: dict, tier: int, theme: str, toda
         "public_pct": p.get("public_pct"), "num_shareholders": p.get("num_shareholders"),
         "business": " ".join(x for x in (p.get("about"), p.get("key_points")) if x)[:1200],
         "moat_note": "Auto-screen found the company describing itself with: " + " · ".join(evidence_lines),
-        "import_substitution": ev.get("import_substitution") and f"Company-stated ({ev['import_substitution']['source']}): “{ev['import_substitution']['text']}”"
-                               or "None found in the company's profile or annual report.",
+        "import_substitution": imp_note,
+        "cwip_pct_net_block": cwip_pct,
+        "capex_overhang": capex_overhang,
+        "capex_heavy": capex_heavy,
+        "pat_turnaround": turned,
+        "guidance_pct": guidance_pct,
+        "guidance_over15": guidance_pct is not None and guidance_pct > GUIDANCE_OVER_PCT,
+        "guidance_flag": guidance is not None,
+        "guidance_note": (f"Auto-detected, unverified ({guidance['source']}): “{guidance['text']}”" if guidance and guidance.get("text") else None),
         "evidence_sources": sorted({v.get("url") or "https://www.screener.in/company/" + code + "/" for v in ev.values()}),
         "final_score": final,
         "adj_score": final,
@@ -474,6 +649,13 @@ def main() -> int:
     ap.add_argument("--budget", type=int, default=400, help="most company pages to fetch in one run")
     ap.add_argument("--dry-run", action="store_true")
     args = ap.parse_args()
+
+    gates_cfg = load_gates()
+    apply_gates(gates_cfg)
+    print(f"auto-screen: gates -- cap Rs {CAP_MIN}-{CAP_MAX_T1}/{CAP_MAX_T2} cr, promoter >= {PROMOTER_MIN}%, "
+          f"public <= {PUBLIC_MAX}%, ROCE >= {ROCE_MIN}%, ROE > {ROE_MIN}%, shareholders < {HOLDERS_MAX_T1:,}/{HOLDERS_MAX_T2:,}"
+          + (f"; {sum(len(v) for v in (gates_cfg.get('moat_keywords') or {}).values())} extra moat keyword(s), "
+             f"{len(IMPORT_MATERIALS)} import-substitution material(s)" if gates_cfg.get("moat_keywords") or IMPORT_MATERIALS else ""))
 
     today = datetime.now(timezone(timedelta(hours=5, minutes=30))).date().isoformat()
     companies = json.loads(COMPANIES.read_text(encoding="utf-8"))
@@ -523,11 +705,11 @@ def main() -> int:
         if not theme:
             outcomes[cand["isin"]] = ("sector", " / ".join(p.get("sector_path") or []) or "no sector")
             continue
-        ev = moat_evidence(p, soup)
+        ev, guidance = moat_evidence(p, soup)
         if not ev:
             outcomes[cand["isin"]] = ("no moat evidence", "")
             continue
-        rec = record(code, cand, p, ev, tier, theme, today)
+        rec = record(code, cand, p, ev, tier, theme, today, guidance)
         passes.append((rec, cand))
         print(f"  PASS {code:<12} {rec['name'][:40]:<40} score {rec['final_score']:>5}  {theme}  [{', '.join(ev)}]")
 

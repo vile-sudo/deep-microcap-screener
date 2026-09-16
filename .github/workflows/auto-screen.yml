@@ -1,0 +1,65 @@
+name: Auto-screen new companies
+
+# Runs every night as step 3 of daily.yml; this workflow is for a manual
+# re-run -- e.g. right after changing Logic Gates on the dashboard (account
+# menu -> Admin -> Logic Gates -> Run now does exactly this). Screens listed
+# companies against the board's gates and moat-evidence rules
+# (backend/scripts/auto_screen.py), reading the current gates from the live
+# dashboard's own /api/meta/logic-gates so an admin's edit takes effect
+# immediately, not just at the next 2 AM run.
+
+permissions:
+  contents: write
+
+on:
+  workflow_dispatch:
+    inputs:
+      max_add:
+        description: 'Most companies to add'
+        required: false
+        default: '10'
+      budget:
+        description: 'Most company pages to fetch'
+        required: false
+        default: '400'
+
+concurrency:
+  group: daily-update   # never alongside the nightly run, which also writes companies_raw.json
+  cancel-in-progress: false
+
+jobs:
+  screen:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+
+    steps:
+      - name: Check out repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: pip install requests beautifulsoup4
+
+      - name: Screen new companies
+        working-directory: ./backend
+        env:
+          MAX_ADD: ${{ github.event.inputs.max_add || '10' }}
+          BUDGET: ${{ github.event.inputs.budget || '400' }}
+        run: python scripts/auto_screen.py --max-add "$MAX_ADD" --budget "$BUDGET"
+
+      - name: Commit and deploy
+        env:
+          RENDER_DEPLOY_HOOK: ${{ secrets.RENDER_DEPLOY_HOOK }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add automation/data/auto-screen.json backend/data/companies_raw.json
+          if git diff --cached --quiet; then echo "Nothing changed"; exit 0; fi
+          added=$(python -c "import json;r=json.load(open('automation/data/auto-screen.json'))['runs'][-1];print(len(r.get('added_codes',[])))" 2>/dev/null || echo 0)
+          git commit -m "Auto-screen (manual run): ${added} added"
+          for i in 1 2 3; do git pull --rebase origin ${{ github.ref_name }} && git push origin HEAD:${{ github.ref_name }} && break; sleep 5; done
+          if [ -n "$RENDER_DEPLOY_HOOK" ]; then curl -fsSL --retry 3 -X POST "$RENDER_DEPLOY_HOOK" > /dev/null; echo "Render deploy triggered"; fi

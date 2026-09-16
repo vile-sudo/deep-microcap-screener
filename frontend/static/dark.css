@@ -272,6 +272,10 @@ html[data-mode="dark"] .acct-form{background:var(--surface-2,#11191f)}
 html[data-mode="dark"] .acct-form input:not([type=checkbox]),html[data-mode="dark"] .acct-form textarea,html[data-mode="dark"] .acct-form select{background:var(--surface,#0e1418)}
 html[data-mode="dark"] .acct-msg.ok{color:var(--good-ink,#b9f3cf)}
 html[data-mode="dark"] .acct-msg.err{color:var(--crit,#eb8585)}
+html[data-mode="dark"] .lg-group{background:var(--surface-2,#11191f)}
+html[data-mode="dark"] .lg-inline input{background:var(--surface,#0e1418)}
+html[data-mode="dark"] .lg-field textarea{background:var(--surface,#0e1418)}
+html[data-mode="dark"] #lg-form>.lg-group textarea:not([data-lgkw]){background:var(--surface,#0e1418)}
 html[data-mode="dark"] .upd-item{background:var(--surface,#0e1418)}
 html[data-mode="dark"] .upd-item.unread{border-color:var(--acc-line,#26424f);background:var(--acc-soft,#162c36)}
 html[data-mode="dark"] .upd-ic{background:var(--surface-2,#131c23)}

@@ -376,7 +376,7 @@ stages run, and marks the run failed (GitHub emails you).
 | 8. Deep-dive reports | `backend/scripts/deep_reports.py` | quarterly deep-dive reports after new results, and their PDFs |
 
 Each step also has its own workflow for a manual re-run (*Actions → Run
-workflow*): `fundamentals.yml`, `discovery.yml`, `asme.yml`, `charts.yml`, `deep-reports.yml`, `sector-research.yml`
+workflow*): `fundamentals.yml`, `auto-screen.yml`, `discovery.yml`, `asme.yml`, `charts.yml`, `deep-reports.yml`, `sector-research.yml`
 (which also runs on every push that changes `companies_raw.json`).
 `uptime.yml` pings the site every 10 minutes, keeping a free instance awake.
 
@@ -402,6 +402,45 @@ with the matched sentences and links to where they came from, and a
 **Screen filters → Auto-added** filter. On a quiet day fewer than five pass;
 the rules are not loosened to hit a number. An admin can open an auto-added
 company and **Remove from board**; it will not be auto-added again.
+
+#### Logic Gates — editing the rules above, live
+
+Every threshold and keyword list above is a default, not a fixed constant.
+An admin can change any of it from **account menu → Admin → Logic Gates**
+on the dashboard — no code change, no deploy — and the next auto-screen run
+applies it:
+
+- **Numeric gates and flags**: market cap, promoter/public %, ROCE/ROE
+  ("quality floor"), institutional and shareholder limits ("shareholding
+  pattern"), the P/E + CWIP capex-overhang thresholds, the management-guidance
+  threshold, and how many periods back PAT turnaround looks.
+- **Moat — extra keywords**: literal phrases added *alongside* the board's
+  own tuned rules for each of the five moat categories (import substitution,
+  leading maker, market share, sole maker, first mover) — a company only
+  needs to match one, from either source.
+- **Import substitution — materials**: named materials India imports
+  heavily (e.g. "specialty chemicals", "solar cells"). If a company says it
+  makes or supplies one of these, that counts as import-substitution
+  evidence too, without needing the generic "import substitute" phrasing.
+- **Run auto-screen now**: fires `auto-screen.yml` right away instead of
+  waiting for the nightly run, using whatever is saved above. Needs
+  `GH_DISPATCH_TOKEN` (see the Sector Research section above for how to set
+  it up — the same token covers both).
+
+Mechanically: `GET /api/meta/logic-gates` is public (these thresholds are
+already documented on this page) and is what `auto_screen.py` reads at the
+start of every run, since it has no database access, running in GitHub
+Actions — the built-in defaults (`backend/data/logic_gates_defaults.json`)
+are the fallback if the site can't be reached. `PUT`/`POST .../reset` are
+admin-only and are stored in Postgres, so an edit survives every deploy.
+
+CWIP and PAT-turnaround detection (new: the auto-screen didn't fetch either
+before) come straight from screener.in's balance sheet and profit & loss
+tables. Management guidance is best-effort — a self-referencing, forward
+growth statement matched in the annual report text already fetched for moat
+evidence — and every auto-detected guidance flag carries the matched
+sentence, unverified, for the same reason the original hand-researched board
+never treats guidance as a fact.
 
 Still a person's job, by design or by necessity:
 - **Researching auto-added companies** — they arrive with screener.in numbers and

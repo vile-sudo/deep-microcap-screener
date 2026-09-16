@@ -1821,6 +1821,21 @@ tbody tr:hover,tbody tr:nth-child(even):hover{background:#f2f9fd}
 .acct-dl dt{font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
 .acct-dl dd{margin:2px 0 0;font-size:14px;color:var(--ink);overflow-wrap:anywhere}
 
+/* ---- Logic Gates (admin) ---- */
+.lg-group{margin:0 0 16px;padding:12px 14px 14px;border:1px solid var(--grid);border-radius:12px;background:var(--surface-2,#f7f9fa)}
+.lg-group legend{padding:0 6px;font-size:13px;font-weight:700;color:var(--ink)}
+.lg-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px;margin-top:6px}
+.lg-field{display:flex;flex-direction:column;gap:4px;font-size:12.5px;font-weight:600;color:var(--ink2)}
+.lg-field.lg-wide{grid-column:1/-1}
+.lg-inline{display:flex;align-items:center;gap:8px}
+.lg-inline input{flex:1;min-width:0;box-sizing:border-box;padding:8px 10px;border:1px solid var(--grid);border-radius:9px;background:var(--surface,#fff);color:var(--ink);font:inherit;font-size:14px}
+.lg-inline input:focus{outline:none;border-color:var(--ocean,#0a73a8);box-shadow:0 0 0 3px rgba(10,115,168,.14)}
+.lg-inline small{flex:none;color:var(--muted);font-weight:500}
+.lg-field textarea{box-sizing:border-box;padding:8px 10px;border:1px solid var(--grid);border-radius:9px;background:var(--surface,#fff);color:var(--ink);font:inherit;font-size:13px;line-height:1.5;resize:vertical;min-height:70px}
+.lg-field textarea:focus{outline:none;border-color:var(--ocean,#0a73a8);box-shadow:0 0 0 3px rgba(10,115,168,.14)}
+#lg-form>.lg-group textarea:not([data-lgkw]){box-sizing:border-box;width:100%;padding:8px 10px;border:1px solid var(--grid);border-radius:9px;background:var(--surface,#fff);color:var(--ink);font:inherit;font-size:13px;line-height:1.5;resize:vertical;min-height:90px;margin-top:6px}
+.lg-actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:6px}
+
 .upd-list,.sf-list,.msg-list{list-style:none;margin:12px 0 0;padding:0;display:grid;gap:8px}
 .upd-item{display:flex;gap:12px;padding:12px;border:1px solid var(--grid);border-radius:12px;background:var(--surface,#fff)}
 .upd-item.unread{border-color:var(--acc-line,#c7e7f5);background:var(--acc-soft,#e8f5fb)}

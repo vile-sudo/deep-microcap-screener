@@ -2250,7 +2250,8 @@ function drawUserMenu(){
       <button type="button" role="menuitem" data-acct="write">${mi('mail')}Write to us</button>
       ${u.is_admin?`<div class="nav-menu-sep">Admin</div>
       <button type="button" role="menuitem" data-acct="users">${mi('users')}Manage users <span class="nav-pending" id="nav-pending-2" hidden></span></button>
-      <button type="button" role="menuitem" data-acct="messages">${mi('inbox')}Messages <span class="nav-pending" id="nav-msgs" hidden></span></button>`:''}
+      <button type="button" role="menuitem" data-acct="messages">${mi('inbox')}Messages <span class="nav-pending" id="nav-msgs" hidden></span></button>
+      <button type="button" role="menuitem" data-acct="logicgates">${mi('filter')}Logic Gates</button>`:''}
       <div class="nav-menu-sep"></div>
       <button type="button" role="menuitem" data-acct="logout">${mi('out')}Log out</button>
     </div>`;
@@ -2266,6 +2267,7 @@ function drawUserMenu(){
     else if(a==='write') openWriteToUs();
     else if(a==='users') openUsers();
     else if(a==='messages') openMessages();
+    else if(a==='logicgates') openLogicGates();
     else if(a==='logout'){ try{ await fetch('/api/auth/logout',{method:'POST',credentials:'same-origin'}); }catch(e){} location.href='/login'; }
   });
   badges();
@@ -2623,6 +2625,79 @@ async function openUsers(){
     openUsers();
   });
 }
+/* ================================================================
+   Logic Gates (admin): the numeric thresholds and keyword lists the daily
+   auto-screen applies to new companies. Editable here, read by the script
+   over /api/meta/logic-gates -- no code change, no deploy, takes effect on
+   the next auto-screen run (2 AM, or Run auto-screen now below).
+   ================================================================ */
+const LG_NUM = [
+  ['Quality floor', [['hard_gates','roce_min_pct','ROCE at least','%'], ['hard_gates','roe_min_pct','ROE above','%']]],
+  ['Shareholding pattern', [['hard_gates','promoter_min_pct','Promoter holding at least','%'], ['hard_gates','public_max_pct','Public holding at most','%'],
+    ['hard_gates','institutional_tier1_min_pct','Tier 1: FII+DII at least','%'], ['hard_gates','shareholders_max_tier1','Shareholders under (Tier 1)',''],
+    ['hard_gates','shareholders_max_tier2','Shareholders under (Tier 2)','']]],
+  ['Size & obscurity', [['hard_gates','market_cap_min_cr','Market cap at least','₹cr'], ['hard_gates','market_cap_max_tier1_cr','Market cap under (Tier 1)','₹cr'],
+    ['hard_gates','market_cap_max_tier2_cr','Market cap under (Tier 2)','₹cr']]],
+  ['PE & CWIP (capex)', [['flags','pe_overhang_min','P/E above','x'], ['flags','cwip_overhang_min_pct','+ CWIP at least (overhang)','%'],
+    ['flags','cwip_heavy_min_pct','CWIP at least, any P/E (heavy)','%'], ['flags','pe_penalty_min','Score penalty when P/E above','x']]],
+  ['Management guidance', [['flags','guidance_over_pct','Flag "guides above"','%']]],
+  ['PAT turnaround', [['flags','pat_turnaround_lookback_periods','Loss in any of the last N periods','periods']]],
+];
+const LG_KEYWORDS = [['import_substitution','Import substitution'], ['leading_maker',"India's leading/largest maker"],
+  ['market_share','A stated India market share'], ['sole_maker','Only / one of few Indian makers'], ['first_mover','First / pioneer in India']];
+
+async function openLogicGates(){
+  openModal('<p class="view-hint">Loading Logic Gates…</p>');
+  let j; try{ j=await fetchJSON('/api/meta/logic-gates'); }catch(e){ mbody.innerHTML='<h3>Logic Gates</h3><p class="view-hint">Could not load the current gates.</p>'; return; }
+  const num=(section,key)=>{ const v=(j[section]||{})[key]; return v==null?'':v; };
+  const kw=cat=>((j.moat_keywords||{})[cat]||[]).join('\n');
+  mbody.innerHTML=`<h3>Logic Gates</h3>
+    <p class="mp">What the daily auto-screen requires before a new company is added, and the extra keywords it looks for.
+      Read live from here -- no deploy needed. Applied on the next auto-screen run (2 AM IST daily, or <b>Run auto-screen now</b> below).
+      ${j.customized?'':'<br><i>Showing the built-in defaults -- nothing has been customised yet.</i>'}</p>
+    <form id="lg-form">
+      ${LG_NUM.map(([group,fields])=>`<fieldset class="lg-group"><legend>${esc(group)}</legend><div class="lg-grid">
+        ${fields.map(([section,key,label,unit])=>`<label class="lg-field"><span>${esc(label)}</span>
+          <div class="lg-inline"><input type="number" step="any" min="0" data-lg="${section}.${key}" value="${esc(String(num(section,key)))}">${unit?`<small>${esc(unit)}</small>`:''}</div></label>`).join('')}
+      </div></fieldset>`).join('')}
+      <fieldset class="lg-group"><legend>Moat -- extra keywords</legend>
+        <p class="mp">One phrase per line. Added <i>alongside</i> the board's existing rules for each category (a company only needs to match one).</p>
+        <div class="lg-grid">${LG_KEYWORDS.map(([cat,label])=>`<label class="lg-field lg-wide"><span>${esc(label)}</span>
+          <textarea data-lgkw="${cat}" rows="3" placeholder="one phrase per line">${esc(kw(cat))}</textarea></label>`).join('')}</div>
+      </fieldset>
+      <fieldset class="lg-group"><legend>Import substitution -- materials</legend>
+        <p class="mp">Named materials India imports heavily. If a company says it makes or supplies one of these, that counts as import-substitution evidence too. One per line.</p>
+        <textarea data-lgmat rows="5" placeholder="e.g. specialty chemicals&#10;solar cells&#10;active pharmaceutical ingredients">${esc((j.import_substitution_materials||[]).join('\n'))}</textarea>
+      </fieldset>
+      <div class="lg-actions">
+        <button type="submit" class="btn on">Save</button>
+        <button type="button" class="btn" id="lg-reset">Reset to defaults</button>
+        <button type="button" class="btn" id="lg-run">Run auto-screen now</button>
+      </div>
+      <div class="acct-msg" id="lg-msg" role="status"></div>
+    </form>`;
+  document.getElementById('lg-form').onsubmit=async e=>{
+    e.preventDefault();
+    const body={hard_gates:{}, flags:{}, moat_keywords:{}, import_substitution_materials:[]};
+    mbody.querySelectorAll('[data-lg]').forEach(inp=>{ const [section,key]=inp.dataset.lg.split('.'); if(inp.value!=='') body[section][key]=+inp.value; });
+    mbody.querySelectorAll('[data-lgkw]').forEach(t=>{ body.moat_keywords[t.dataset.lgkw]=t.value.split('\n').map(s=>s.trim()).filter(Boolean); });
+    body.import_substitution_materials=mbody.querySelector('[data-lgmat]').value.split('\n').map(s=>s.trim()).filter(Boolean);
+    const msg=document.getElementById('lg-msg'); msg.className='acct-msg'; msg.textContent='Saving…';
+    try{ await api('/api/admin/logic-gates','PUT',body); msg.classList.add('ok'); msg.textContent='Saved. Takes effect on the next auto-screen run.'; }
+    catch(err){ msg.classList.add('err'); msg.textContent=err.message; }
+  };
+  document.getElementById('lg-reset').onclick=async()=>{
+    if(!confirm('Reset every Logic Gate to its built-in default? This cannot be undone.')) return;
+    try{ await api('/api/admin/logic-gates/reset','POST'); openLogicGates(); }catch(err){ alert(err.message); }
+  };
+  document.getElementById('lg-run').onclick=async()=>{
+    const btn=document.getElementById('lg-run'), msg=document.getElementById('lg-msg');
+    btn.disabled=true; msg.className='acct-msg'; msg.textContent='Starting the auto-screen run…';
+    try{ await api('/api/admin/logic-gates/run-now','POST'); msg.classList.add('ok'); msg.textContent='Queued -- usually takes 15-30 minutes; screens with whatever is saved above.'; }
+    catch(err){ msg.classList.add('err'); msg.textContent=err.message; btn.disabled=false; }
+  };
+}
+
 /* ================================================================
    Research Reports
    One report for every company on the board, composed from its research
