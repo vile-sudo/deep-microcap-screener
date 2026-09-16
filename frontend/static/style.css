@@ -1206,7 +1206,12 @@ body{font-size:15px;color:var(--ink);background:#fff}
 .nav-search svg{width:17px;height:17px;flex:none;fill:none;stroke:#0a73a8;stroke-width:2.2;stroke-linecap:round}
 .nav-search input{flex:1;min-width:0;height:100%;border:0;outline:0;background:transparent;color:var(--ink);font:inherit;font-size:14px;font-weight:500}
 .nav-search input::placeholder{color:#6b7480}
-.nav-tabs{display:flex;align-items:center;gap:4px;margin-left:auto}
+/* min-width:0 lets this shrink below its content width (the flexbox default
+   is content-based, which is what let ten tabs push the account menu off the
+   right edge of the screen entirely); overflow-x:auto means it scrolls
+   internally instead, so the search box and account controls never move. */
+.nav-tabs{display:flex;align-items:center;gap:4px;margin-left:auto;min-width:0;overflow-x:auto;scrollbar-width:none}
+.nav-tabs::-webkit-scrollbar{display:none}
 .nav .nav-tabs .side-link{display:inline-flex;align-items:center;gap:7px;width:auto;min-height:38px;margin:0;padding:0 12px;border:0;border-radius:8px;background:none;color:#6b7480;font:inherit;font-size:14px;font-weight:500;white-space:nowrap;cursor:pointer}
 .nav .nav-tabs .side-link svg{width:17px;height:17px;flex:none;fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
 .nav .nav-tabs .side-link:hover{background:#f7f8fa;color:var(--ink)}
