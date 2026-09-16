@@ -20,6 +20,12 @@ html[data-mode="dark"] .results-head{border:1px solid rgba(39,59,82,.11)}
 html[data-mode="dark"] .wave{border:2px solid rgba(43,49,54,.95);border-color:rgba(43,49,54,.9) transparent transparent transparent}
 html[data-mode="dark"] .gc-pin{color:#9eaab3}
 html[data-mode="dark"] .cs .cs-vol{fill:#cfdfe7}
+html[data-mode="dark"] .cm-xray{background:var(--surface-2,#11191f)}
+html[data-mode="dark"] .cm-xray b{color:var(--ocean,#a4dcf8)}
+html[data-mode="dark"] .cm-pill{background:var(--surface,#0e1418)}
+html[data-mode="dark"] .cm-pill:hover:not([disabled]):not(.on){color:var(--ocean,#a4dcf8)}
+html[data-mode="dark"] .cm-flag{color:#f7c59f}
+html[data-mode="dark"] .cm-tabs button.on{color:var(--ocean,#a4dcf8)}
 html[data-mode="dark"] .asme-off-head{border:1px solid rgba(39,59,82,.11)}
 html[data-mode="dark"][data-theme="light"] body{background:#0e1418}
 html[data-mode="dark"][data-theme="light"] .side-nav{background:#0e1418}
@@ -96,6 +102,9 @@ html[data-mode="dark"] .cs .cs-box{fill:rgba(164,220,248,.08)}
 html[data-mode="dark"] .cs .cs-boxlab{fill:#a4dcf8}
 html[data-mode="dark"] .cs .cs-vol.up{fill:rgba(165,243,194,.35)}
 html[data-mode="dark"] .cs .cs-vol.dn{fill:rgba(235,133,133,.3)}
+html[data-mode="dark"] .cs .cs-box-x{fill:rgba(158,170,179,.06)}
+html[data-mode="dark"] .cs .cs-boxlab-x{fill:#9eaab3}
+html[data-mode="dark"] .cs .cs-boxlab-x.flagged{fill:#f7c59f}
 html[data-mode="dark"] .bpc-listed{background:#121a20;color:#9fb1ef}
 html[data-mode="dark"] .bpc-flag.verge{color:#f7b296}
 html[data-mode="dark"] .asme-certs-table th{background:#10181d}

@@ -122,7 +122,7 @@ jobs:
       - name: 5. Charts and Market view stages
         id: charts
         continue-on-error: true
-        timeout-minutes: 30
+        timeout-minutes: 90   # the one-time multi-year bhavcopy backfill is slow; incremental runs after that are quick
         working-directory: ./backend
         run: python scripts/update_charts.py
 

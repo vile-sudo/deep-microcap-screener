@@ -116,15 +116,27 @@ session), then re-seed.
 See **DEPLOYMENT.md** for step-by-step instructions for Render, Railway,
 Fly.io, and a plain VPS.
 
-## Chart Gallery (automated)
+## Screen any Chart (automated)
 
-The **Chart Gallery** page shows a daily candlestick chart — 50/200-day
-averages, volume, 52-week high — for every company on the board.
+The **Screen any Chart** page shows a daily candlestick chart — 50/200-day
+averages, volume, 52-week high, a 1W-to-Max range and **X-ray: every base
+it ever built** (every VCP base and breakout the stock has had, not just
+the current one, each boxed and labelled on the chart) — for every company
+on the board.
 
 - **Data:** the NSE and BSE end-of-day bhavcopy files, which cover SME
-  listings too. `backend/scripts/update_charts.py` keeps a one-year cache of
-  them, rebuilds every company's candles (back-adjusted for splits and
-  bonuses) and writes `backend/chart_data/`.
+  listings too, as far back as each exchange publishes them (NSE: its
+  current format from about December 2023, a legacy-format fallback back to
+  about January 2020; BSE goes back further still).
+  `backend/scripts/update_charts.py` keeps that whole window cached
+  (`.bhav_cache/`, ~2450 days), rebuilds every company's candles and writes
+  `backend/chart_data/`. The very first run after this window was extended
+  is a one-time, slower backfill; every run after that only downloads the
+  new day.
+- **Base detection:** `backend/app/setups.py` — the same VCP/IPO base
+  and breakout rules that drive Market view, walked across the whole
+  cached history, with RS rating and the "Base characteristics", "Stock
+  measures" and "Peers" tabs on the chart drawer.
 - **Automation:** step 5 of `.github/workflows/daily.yml` runs it every
   night at 02:00 IST (after the day's auto-screen, so a company added that
   morning has its chart), and `charts.yml` on every push that changes
@@ -369,7 +381,7 @@ stages run, and marks the run failed (GitHub emails you).
 | 2. Discovery | `automation/update-weekly.mjs --no-asme` | new NSE/BSE/SME listings, small/mid-cap sweep, IPO prospectus reading → Candidates queue |
 | 3. Auto-screen | `backend/scripts/auto_screen.py` | adds up to 10 companies a day that pass the board's rules, marked **Auto-added** (below) |
 | 4. ASME | `automation/scan-asme.mjs` | ASME certificate holders, certificate types and dates |
-| 5. Charts | `backend/scripts/update_charts.py` | candles, Chart Gallery, Market view stages (VCP + IPO base), breakouts, feed |
+| 5. Charts | `backend/scripts/update_charts.py` | candles, Screen any Chart, Market view stages (VCP + IPO base), breakouts, feed |
 | 6. Sector research | `backend/scripts/sector_research.py` | a new monthly edition for each sector (Claude Code, Max plan) |
 | 7. Sector numbers | `backend/scripts/sector_numbers.py` | screener.in numbers for the companies in each sector report |
 | 7b. Sector latest | `backend/scripts/sector_latest.py` | dated, cited latest developments at the top of each sector report |

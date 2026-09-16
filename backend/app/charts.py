@@ -50,6 +50,14 @@ _UA = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.
 # ---------------------------------------------------------------- bhavcopy
 NSE_URL = "https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_{d}_F_0000.csv.zip"
 BSE_URL = "https://www.bseindia.com/download/BhavCopy/Equity/BhavCopy_BSE_CM_0_0_0_{d}_F_0000.CSV"
+# NSE's current ("UDiFF") bhavcopy above only goes back to about December 2023.
+# Its predecessor format, still served from the archive, reaches back to about
+# January 2020 -- used as a fallback so the Chart gallery's "X-ray" base view
+# has real multi-year history instead of stopping at ~21 months. No ISIN or
+# company name column, so those come back blank for a legacy-format day; the
+# rest of the pipeline already treats both as optional.
+NSE_LEGACY_URL = "https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_{d}.csv"
+NSE_LEGACY_SERIES = {"EQ", "BE", "SM", "ST"}   # main-board, trade-for-trade, SME main and SME T2T
 
 
 def _get(url: str, session: requests.Session, referer: str) -> bytes | None:
@@ -68,6 +76,22 @@ def _get(url: str, session: requests.Session, referer: str) -> bytes | None:
     raise RuntimeError(f"could not fetch {url}")
 
 
+def _parse_legacy_nse(text: str) -> list[list]:
+    rows = []
+    for r in csv.DictReader(io.StringIO(text), skipinitialspace=True):
+        if (r.get("SERIES") or "").strip() not in NSE_LEGACY_SERIES:
+            continue
+        try:
+            o, h, l, c = (round(float(r[k]), 2) for k in ("OPEN_PRICE", "HIGH_PRICE", "LOW_PRICE", "CLOSE_PRICE"))
+            v = int(float(r.get("TTL_TRD_QNTY") or 0))
+            prev = round(float(r.get("PREV_CLOSE") or 0), 2)
+        except (TypeError, ValueError):
+            continue
+        sym = (r.get("SYMBOL") or "").strip()
+        rows.append([sym, sym, "", o, h, l, c, v, prev, ""])   # no name / ISIN column in this format
+    return rows
+
+
 def fetch_bhavcopy(day: date, exchange: str, session: requests.Session) -> list[list] | None:
     """One day's equity rows as [key, symbol, name, o, h, l, c, v, prev_close, isin], or None.
 
@@ -76,10 +100,12 @@ def fetch_bhavcopy(day: date, exchange: str, session: requests.Session) -> list[
     d = day.strftime("%Y%m%d")
     if exchange == "NSE":
         raw = _get(NSE_URL.format(d=d), session, "https://www.nseindia.com/")
-        if raw is None:
-            return None
-        with zipfile.ZipFile(io.BytesIO(raw)) as z:
-            text = z.read(z.namelist()[0]).decode("utf-8", "replace")
+        if raw is not None:
+            with zipfile.ZipFile(io.BytesIO(raw)) as z:
+                text = z.read(z.namelist()[0]).decode("utf-8", "replace")
+        else:
+            legacy = _get(NSE_LEGACY_URL.format(d=day.strftime("%d%m%Y")), session, "https://www.nseindia.com/")
+            return _parse_legacy_nse(legacy.decode("utf-8", "replace")) if legacy is not None else None
     else:
         raw = _get(BSE_URL.format(d=d), session, "https://www.bseindia.com/")
         if raw is None or raw[:6] != b"TradDt":

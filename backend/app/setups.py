@@ -315,11 +315,31 @@ def _screen_view(sc: Screen) -> dict:
             out["note"] = (f"Building its {_ordinal(ev['chain'] + 1)} base — up "
                            f"{round((s.c[t] / first['pivot'] - 1) * 100, 1)}% since the 1st breakout "
                            f"({_short_date(s.d[first['i']])})")
-    if sc.ipo:
-        # every IPO base breakout, newest first, for the "broke out in the last
-        # week / month / 3 / 6 / 12 months" view
-        out["breakouts"] = [_event_summary(s, e, t) for e in reversed(events)]
+    # every base's breakout, newest first -- the "X-ray: every base it ever
+    # built" view, and (for the IPO screen) the "broke out in the last
+    # week / month / 3 / 6 / 12 months" view
+    out["breakouts"] = [_event_summary(s, e, t) for e in reversed(events)]
     return out
+
+
+BASE_FLAG_WINDOW = 10   # sessions right after a breakout that squat/failed-poke are judged over
+
+
+def _event_flags(s: Series, ev: dict, end: int) -> list[str]:
+    """squat / failed poke for one historical breakout, judged over the
+    BASE_FLAG_WINDOW sessions right after it broke out (not "now" -- there is
+    no "now" for a base that finished years ago)."""
+    pivot = ev["pivot"]
+    window = range(ev["i"], min(end + 1, ev["i"] + BASE_FLAG_WINDOW))
+    flags = []
+    if any(s.h[i] > pivot >= s.c[i] for i in window):
+        flags.append("squat")
+    for i in window:
+        avg = s.vol50[i - 1] if i >= 1 else None
+        if s.c[i] > pivot and not (avg and s.v[i] >= BREAKOUT_VOL * avg) and any(s.c[j] <= pivot for j in range(i + 1, min(end + 1, i + BASE_FLAG_WINDOW))):
+            flags.append("failed poke")
+            break
+    return flags
 
 
 def _event_summary(s: Series, ev: dict, t: int) -> dict:
@@ -330,7 +350,7 @@ def _event_summary(s: Series, ev: dict, t: int) -> dict:
            "close": s.c[i], "gain_pct": round((s.c[t] / ev["pivot"] - 1) * 100, 1),
            "best_pct": round((peak / ev["pivot"] - 1) * 100, 1),
            "base": {"start": s.d[b["start"]], "end": s.d[b["end"]], "low": b["low"], "weeks": _weeks(b["age"])},
-           "status": "active"}
+           "flags": _event_flags(s, ev, end), "status": "active"}
     if "exit" in ev and ev["exit"]["i"] <= t:
         x = ev["exit"]
         out["status"] = x["reason"]                       # stopped | trailed | rolled (into a later breakout)

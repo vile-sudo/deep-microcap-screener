@@ -5,7 +5,8 @@ name: Chart gallery update
 #   * every morning as step 5 of daily.yml (02:00 IST), so every chart
 #     gains the previous session's candle;
 #   * whenever the board's company list changes, so a company added to the
-#     board gets its chart (with a full year of history) within minutes.
+#     board gets its chart (with as much history as the exchanges have) within
+#     minutes.
 # Commits by this workflow use GITHUB_TOKEN, which never re-triggers
 # workflows, so the push trigger cannot loop.
 
@@ -39,8 +40,10 @@ jobs:
       - name: Install dependencies
         run: pip install requests
 
-      # The last year of daily exchange files. A cache hit means only the
-      # newest day is downloaded; a miss rebuilds the year in about a minute.
+      # Years of daily exchange files (back to about January 2020, as far as
+      # real NSE/BSE data goes). A cache hit means only the newest day is
+      # downloaded; a full miss backfills everything, which is slow the very
+      # first time and quick on every run after.
       - name: Restore bhavcopy cache
         uses: actions/cache@v4
         with:

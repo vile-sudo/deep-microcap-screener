@@ -846,6 +846,30 @@ td .thm{font-size:10.5px;text-transform:uppercase;letter-spacing:.05em;color:var
 .cm-acts{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}
 .cm-acts a.btn{text-decoration:none}
 .cm-src{margin:16px 0 0;color:var(--muted);font-size:11.5px}
+.cm-share{margin-left:auto}
+.cm-xray{display:block;width:100%;margin:10px 0 0;padding:9px 14px;border:1px solid var(--grid);border-radius:10px;background:var(--surface-2,#f7f9fa);color:var(--ink);font:inherit;font-size:12.5px;text-align:left;cursor:pointer}
+.cm-xray b{color:var(--ocean,#0a73a8)}
+.cm-xray.on{border-color:var(--ocean,#0a73a8);background:rgba(10,115,168,.08)}
+.cm-priceline{display:flex;flex-wrap:wrap;align-items:baseline;gap:10px;margin:14px 0 8px}
+.cm-px{font:700 22px var(--mono);color:var(--ink)}
+.cm-priceline .tc{color:var(--muted);font-size:12px}
+.cm-pills{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:4px}
+.cm-pill{padding:4px 10px;border:1px solid var(--grid);border-radius:999px;background:var(--surface,#fff);color:var(--ink2);font:600 11.5px var(--mono);cursor:pointer}
+.cm-pill:hover:not([disabled]):not(.on){border-color:var(--ocean,#0a73a8);color:var(--ocean,#0a73a8)}
+.cm-pill.on{background:var(--ocean,#0a73a8);border-color:var(--ocean,#0a73a8);color:#fff}
+.cm-pill.on:hover{background:#075a85;border-color:#075a85}
+.cm-pill[disabled]{opacity:.35;cursor:default}
+.cm-legend label{display:inline-flex;align-items:center;gap:5px;cursor:pointer}
+.cm-legend input[type=checkbox]{margin:0}
+.cm-flags{margin:8px 0 0}
+.cm-flag{display:inline-block;padding:2px 8px;margin:2px 4px 2px 0;border-radius:999px;background:rgba(217,119,6,.12);color:#b45309;font-size:11px;font-weight:600}
+.cm-tabs{display:flex;flex-wrap:wrap;align-items:center;gap:4px;margin:18px 0 10px;border-bottom:1px solid var(--grid)}
+.cm-tabs button{padding:8px 12px;border:0;border-bottom:2px solid transparent;background:none;color:var(--muted);font:600 12.5px inherit;cursor:pointer}
+.cm-tabs button.on{color:var(--ocean,#0a73a8);border-color:var(--ocean,#0a73a8)}
+.cm-tabs button:hover:not(.on){color:var(--ink)}
+.cm-year{margin-left:auto;height:30px}
+.cm-hint{display:inline-flex;align-items:center;justify-content:center;width:13px;height:13px;border-radius:50%;background:var(--grid);color:var(--muted);font:600 9px var(--ui);font-style:normal;cursor:help}
+.cm-basetbl td,.cm-peertbl td{white-space:nowrap}
 
 @media (max-width:1100px){
   .gal-controls{grid-template-columns:1fr 1fr}
@@ -1040,6 +1064,11 @@ td .thm{font-size:10.5px;text-transform:uppercase;letter-spacing:.05em;color:var
 .cs .cs-box{fill:rgba(10,115,168,.08);stroke:rgba(10,115,168,.55);stroke-width:1}
 .cs .cs-boxlab{fill:#0a73a8;font:600 10px var(--mono)}
 .cs .cs-vol.up{fill:rgba(22,163,74,.35)}.cs .cs-vol.dn{fill:rgba(220,38,38,.3)}
+/* X-ray: every base a stock ever built, not just the current one */
+.cs .cs-box-x{fill:rgba(100,116,139,.06);stroke:rgba(100,116,139,.55);stroke-width:1;stroke-dasharray:3 2}
+.cs .cs-box-x.flagged{stroke:rgba(217,119,6,.65)}
+.cs .cs-boxlab-x{fill:#64748b;font:600 9px var(--mono)}
+.cs .cs-boxlab-x.flagged{fill:#b45309}
 
 @media (max-width:1100px){ .bp-hero-grid{grid-template-columns:1fr} }
 @media (max-width:640px){

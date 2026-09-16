@@ -9,11 +9,12 @@ data/companies_raw.json changes, so a company added to the board gets its
 chart without anyone touching this script.
 
 Steps:
-  1. Make sure the last year of NSE and BSE daily bhavcopies is in the
-     local cache (.bhav_cache/, kept between Action runs by actions/cache).
-     Only days not already cached are downloaded -- normally just today.
-     The cache spans two years so a listing inside that window can be dated.
-  2. Rebuild a year of candles for every company in companies_raw.json.
+  1. Make sure NSE and BSE daily bhavcopies back to about January 2020 are
+     in the local cache (.bhav_cache/, kept between Action runs by
+     actions/cache). Only days not already cached are downloaded -- normally
+     just today, except the one-time backfill the first time this runs.
+  2. Rebuild multi-year candles for every company in companies_raw.json,
+     as far back as real exchange data goes (see app/charts.fetch_bhavcopy).
   3. Write chart_data/prices/<code>.json and chart_data/index.json, and
      drop the price file of any company no longer on the board.
 """
@@ -41,7 +42,10 @@ RAW = BACKEND_DIR / "data" / "companies_raw.json"
 CACHE = BACKEND_DIR / ".bhav_cache"
 NO_SESSION = CACHE / "no_session.json"   # weekday holidays, so they aren't re-asked every run
 FMT = ".v2.csv.gz"                       # cache file format: v2 adds the ISIN column
-LOOKBACK_DAYS = 760                      # calendar days: a year of candles, and two years to date IPO listings
+LOOKBACK_DAYS = 2450                     # calendar days: real NSE data via app.charts.fetch_bhavcopy goes back to
+                                          # about January 2020 (a legacy-format fallback beyond ~Dec 2023); this
+                                          # window comfortably covers all of it for the chart gallery's "X-ray"
+                                          # multi-year base view, and two years is plenty to date IPO listings
 
 
 def ist_today() -> date:

@@ -1658,6 +1658,14 @@ function candleSVG(rows,o){
   let lo=Math.min(...vis.map(r=>r[3])), hi=Math.max(...vis.map(r=>r[2]));
   if(useMA) m50.concat(m200).forEach(v=>{ if(v!=null){ lo=Math.min(lo,v); hi=Math.max(hi,v); } });
   if(o.pivot) hi=Math.max(hi,o.pivot);
+  /* X-ray: every historical base in view (o.boxes), each with its own dashed
+     box + duration label -- only those whose date range overlaps what is
+     actually visible affect the axis range or get drawn */
+  const visBoxes=(o.boxes||[]).map(b=>{
+    const i0=vis.findIndex(r=>r[0]>=b.start), i1=(()=>{ let k=-1; vis.forEach((r,i)=>{ if(r[0]<=b.end) k=i; }); return k; })();
+    return i0>=0 && i1>=i0 ? {...b,i0,i1} : null;
+  }).filter(Boolean);
+  visBoxes.forEach(b=>{ hi=Math.max(hi,b.high); lo=Math.min(lo,b.low); });
   const showHi = useHi && hi52<=hi*1.12;
   if(showHi) hi=Math.max(hi,hi52);
   const pad=(hi-lo)*0.05 || hi*0.02 || 1; hi+=pad; lo=Math.max(0,lo-pad);
@@ -1687,6 +1695,15 @@ function candleSVG(rows,o){
       }
     }
   }
+  visBoxes.forEach(b=>{
+    const x0=X(b.i0)-step/2, x1=X(b.i1)+step/2, yt=y(b.high), yb=y(b.low), w=Math.max(1,x1-x0);
+    s+=`<rect x="${f(x0)}" y="${f(yt)}" width="${f(w)}" height="${f(Math.max(1,yb-yt))}" class="cs-box-x${b.flags&&b.flags.length?' flagged':''}"><title>${esc(b.label)}${b.flags&&b.flags.length?' — '+b.flags.join(', '):''}</title></rect>`;
+    if(w>20){
+      const half=b.label.length*2.9, mid=(x0+x1)/2;
+      const [lx,anchor]=mid+half>plotW-2 ? [Math.min(x1,plotW)-2,'end'] : mid-half<2 ? [Math.max(x0,0)+2,'start'] : [mid,'middle'];
+      s+=`<text x="${f(lx)}" y="${f(Math.max(padT+9,yt-3))}" text-anchor="${anchor}" class="cs-boxlab-x${b.flags&&b.flags.length?' flagged':''}">${esc(b.label)}</text>`;
+    }
+  });
   if(showHi) s+=`<line x1="0" x2="${plotW}" y1="${f(y(hi52))}" y2="${f(y(hi52))}" class="cs-hi"/>`;
   let upW='',dnW='',upB='',dnB='';
   vis.forEach((r,i)=>{
@@ -1713,62 +1730,191 @@ function candleSVG(rows,o){
   return s+'</svg>';
 }
 
+/* ---- Screen any Chart: the full drawer, with every base a stock ever
+   built ("X-ray"), a multi-year range, base characteristics, stock
+   measures and peers. CM holds the UI state for whichever company is open. ---- */
+const CM_RANGES=[['1W',5],['1M',21],['3M',63],['6M',126],['12M',252],['18M',378],['3Y',756],['Max',Infinity]];
+const CM={code:null, range:'6M', xray:true, ma:true, rs:true, tab:'base', year:'all'};
+
 function openChart(code){
   const d=DATA.find(x=>x.code===code); if(!d) return;
-  if(!GSERIES.has(code)){
+  CM.code=code; CM.range='6M'; CM.tab='base'; CM.year='all';
+  const need=[];
+  if(!GSERIES.has(code)) need.push(galFetch(code));
+  if(!BP.data) need.push(BP.loading = BP.loading || fetchJSON('/api/market/setups').catch(()=>({stocks:{}})).then(j=>{ BP.data=j; }));
+  if(need.length){
     openModal('<p class="view-hint">Loading chart…</p>');
-    galFetch(code).then(()=>{ if(modal.classList.contains('on')) openChart(code); });
+    Promise.all(need).then(()=>{ if(modal.classList.contains('on') && CM.code===code) cmRender(); });
     return;
   }
+  cmRender();
+}
+
+function cmSetup(code){ return (BP.data && BP.data.stocks && BP.data.stocks[code]) || null; }
+const cmDepth = ev => ev.pivot ? Math.round((1-ev.base.low/ev.pivot)*1000)/10 : null;
+
+function cmRender(){
+  const code=CM.code, d=DATA.find(x=>x.code===code); if(!d) return;
   const ser=GSERIES.get(code), s=(ser && ser.stats) || galStats(d), st=s && GAL_STATUS[s.status];
-  const on=WATCH.has(code);
-  const W=1000, H=430, padR=62;
   const has=ser && !ser.missing && ser.rows && ser.rows.length;
-  const vis=has ? ser.rows.slice(-250) : [];
+  const a=cmSetup(code), stage=a && a.stage && BP_STAGES.find(x=>x.k===a.stage);
+  const on=WATCH.has(code);
+  const breakouts=(a && a.breakouts) || [];
+  const years=[...new Set(breakouts.map(b=>b.date.slice(0,4)))].sort().reverse();
+  if(CM.year!=='all' && !years.includes(CM.year)) CM.year='all';
+  const shown=CM.year==='all' ? breakouts : breakouts.filter(b=>b.date.startsWith(CM.year));
+  const range=CM_RANGES.find(r=>r[0]===CM.range) || CM_RANGES[4];
+  const maxSessions=has?ser.rows.length:0;
+  const sessions=range[1]===Infinity ? maxSessions : Math.min(range[1],maxSessions);
+  const W=1000, H=430, padR=62;
+  const cur=a && bpBase(a);
+  const boxes=CM.xray && has ? shown.map(b=>({start:b.base.start,end:b.base.end,high:b.pivot,low:b.base.low,
+    label:`${b.base.weeks} wks`,flags:b.flags})).filter(b=>!cur || b.start!==cur.start || b.end!==cur.end) : null;
+  const vis=has?ser.rows.slice(-sessions):[];
   const read=r=>`<b>${galDay(r[0])}</b> · O ${galPx(r[1])} · H ${galPx(r[2])} · L ${galPx(r[3])} · C ${galPx(r[4])} · Vol ${fmtI(r[5])}`;
   const kv=(k,v)=>`<div><span>${k}</span><b>${v}</b></div>`;
+  const CM_TABS=[['base','Base characteristics'],['measures','Stock measures'],['peers','Peers']];
   openModal(`
-    <div class="cm-head"><span class="gc-tick">${esc(galTicker(d,s))}</span><h3>${esc(d.name)}</h3>${st?`<span class="gc-badge ${st[1]}">${st[0]}</span>`:''}
-      <span class="tc">${s?esc(s.exchange)+' · ':''}${esc(shortT(base(d)))}</span></div>
-    ${has ? `<div class="cm-read" id="cm-read">${read(vis[vis.length-1])}</div>
-      <div class="cm-chart" id="cm-chart">${candleSVG(ser.rows,{w:W,h:H,sessions:250,axis:true})}</div>
-      <div class="cm-legend"><span><i class="lg lg-50"></i>50-day average</span><span><i class="lg lg-200"></i>200-day average</span><span><i class="lg lg-hi"></i>52-week high</span><span><i class="lg lg-vol"></i>Volume</span></div>`
+    <div class="cm-head">
+      <span class="gc-tick">${esc(galTicker(d,s))}</span><h3>${esc(d.name)}</h3>${st?`<span class="gc-badge ${st[1]}">${st[0]}</span>`:''}
+      <span class="tc">${s?esc(s.exchange)+' · ':''}${esc(shortT(base(d)))}</span>
+      <button type="button" class="btn cm-share" id="cm-share" title="Copy a summary to share">⤴ Share</button>
+    </div>
+    ${breakouts.length ? `<button type="button" class="cm-xray${CM.xray?' on':''}" id="cm-xray-btn">
+        <b>X-ray</b> — every base it ever built (${breakouts.length}) ${CM.xray?'▾':'›'}</button>` : ''}
+    ${has ? `
+      <div class="cm-priceline">
+        <b class="cm-px">${galPx(s?s.last:ser.rows[ser.rows.length-1][4])}</b>
+        ${s && s.chg_pct!=null?`<span class="${s.chg_pct>=0?'up':'dn'}">${s.chg_pct>=0?'+':''}${s.chg_pct.toFixed(2)}%</span>`:''}
+        ${d.market_cap_cr?`<span class="tc">mcap ₹${fmtI(d.market_cap_cr)} cr</span>`:''}
+        ${CM.rs && a && a.rs!=null?`<span class="tc">RS ${a.rs}</span>`:''}
+        <span class="tc">as of ${s?galDay(s.asof):''}</span>
+      </div>
+      <div class="cm-pills" id="cm-pills">${CM_RANGES.map(([lab,n])=>`<button type="button" class="cm-pill${CM.range===lab?' on':''}" data-cmr="${lab}" ${n!==Infinity && n>maxSessions?'disabled':''}>${lab}</button>`).join('')}</div>
+      <div class="cm-read" id="cm-read">${read(vis[vis.length-1])}</div>
+      <div class="cm-chart" id="cm-chart">${candleSVG(ser.rows,{w:W,h:H,sessions,axis:true,ma:CM.ma,
+        box:cur?{start:cur.start,end:cur.end,high:cur.pivot||a.pivot,low:cur.low,label:`${cur.weeks} wks`}:null,
+        pivot:a?a.pivot:null, boxes})}</div>
+      <div class="cm-legend">
+        <label><input type="checkbox" id="cm-ma" ${CM.ma?'checked':''}> 50/200-day average</label>
+        <label><input type="checkbox" id="cm-rs" ${CM.rs?'checked':''}> RS rating</label>
+        ${breakouts.length?`<label><input type="checkbox" id="cm-xray-cb" ${CM.xray?'checked':''}> Bases</label>`:''}
+        <span><i class="lg lg-hi"></i>52-week high</span><span><i class="lg lg-vol"></i>Volume</span>
+      </div>`
     : '<p class="view-hint">No price data for this company yet. The chart appears automatically after the next daily update.</p>'}
-    ${s ? `<div class="kv cm-kv">
-      ${kv('Last close', galPx(s.last))}
-      ${kv("Day's change", s.chg_pct==null?'—':`<span class="${s.chg_pct>=0?'up':'dn'}">${s.chg_pct>=0?'+':''}${s.chg_pct.toFixed(2)}%</span>`)}
-      ${kv('52-week high', galPx(s.high52))}
-      ${kv('52-week low', galPx(s.low52))}
-      ${kv('From 52-week high', s.from_high_pct==null?'—':s.from_high_pct.toFixed(1)+'%')}
-      ${kv('50-day average', galPx(s.dma50))}
-      ${kv('200-day average', galPx(s.dma200))}
-      ${kv('Volume vs 50-day avg', s.vol_ratio==null?'—':s.vol_ratio+'×')}
-      ${kv('As of', galDay(s.asof))}
-    </div>` : ''}
+    ${a && a.flags && a.flags.length ? `<p class="cm-flags">${a.flags.map(f=>`<span class="cm-flag">🚩 ${esc(f)}</span>`).join(' ')}</p>` : ''}
+    ${breakouts.length ? `
+      <div class="cm-tabs" role="tablist">
+        ${CM_TABS.map(([k,l])=>`<button type="button" role="tab" class="${CM.tab===k?'on':''}" data-cmtab="${k}">${l}</button>`).join('')}
+        ${years.length>1?`<select class="gal-select cm-year" id="cm-yearsel">${['all',...years].map(y=>`<option value="${y}"${CM.year===y?' selected':''}>${y==='all'?'All bases (all years)':`Bases in ${y}`}</option>`).join('')}</select>`:''}
+      </div>
+      <div id="cm-tabbody">${cmTabBody(d, a, s, shown)}</div>`
+    : (a ? `<div id="cm-tabbody">${cmTabBody(d, a, s, [])}</div>` : '')}
     <div class="cm-acts">
       <button class="btn" id="cm-card" type="button">Open scorecard</button>
       <button class="btn" id="cm-report" type="button">Research report</button>
       <button class="btn" id="cm-pin" data-code="${esc(code)}" type="button">${on?'★ In watchlist':'☆ Add to watchlist'}</button>
       <a class="btn" href="${scrURL(d)}" target="_blank" rel="noopener">screener.in ↗</a>
     </div>
-    <p class="cm-src">${ser && ser.source==='live' ? 'Fetched live because this company joined the board after the last daily update; tonight\'s run replaces it with exchange data.' : 'Source: NSE / BSE end-of-day bhavcopy, refreshed automatically every trading day.'} Prices are not adjusted for splits or bonus issues.</p>`);
+    <p class="cm-src">${ser && ser.source==='live' ? 'Fetched live because this company joined the board after the last daily update; the next daily run replaces it with exchange data.' : 'Source: NSE / BSE end-of-day bhavcopy, refreshed automatically every trading day, as far back as real exchange data goes.'} Prices are not adjusted for splits or bonus issues. Base detection and RS rating are a rule-based reading of the candles, not advice.</p>`);
+  cmWire(d, a, s, shown);
+}
+
+function cmTabBody(d, a, s, shown){
+  if(CM.tab==='measures') return cmMeasures(a, s);
+  if(CM.tab==='peers') return cmPeers(d);
+  return cmBaseList(shown);
+}
+
+function cmBaseList(shown){
+  if(!shown.length) return '<p class="view-hint">No base found for this window yet — needs a run-up, then at least three weeks of a tight pullback.</p>';
+  return `<div class="dr-tablewrap"><table class="dr-table cm-basetbl"><thead><tr>
+    <th>Breakout</th><th>Base</th><th class="n">Weeks</th><th class="n">Depth</th><th class="n">Pivot</th><th class="n">Volume</th><th>Result</th><th>Flags</th>
+  </tr></thead><tbody>${shown.map(b=>{
+    const depth=cmDepth(b);
+    const result=b.status==='active' ? `<span class="up">running · ${bpPct(b.gain_pct,1)}</span>`
+      : `<span class="${b.exit && b.exit.result_pct>=0?'up':'dn'}">${b.status} · ${b.exit?bpPct(b.exit.result_pct,1):''}</span>`;
+    return `<tr><td>${galDay(b.date)}${b.chain>1?` <span class="tc">(base ${b.chain})</span>`:''}</td>
+      <td>${galDay(b.base.start)} – ${galDay(b.base.end)}</td><td class="n">${b.base.weeks}</td>
+      <td class="n">${depth==null?'—':depth+'%'}</td><td class="n">${bpInr(b.pivot,2)}</td><td class="n">${b.vol_x}×</td>
+      <td>${result}</td><td>${(b.flags||[]).map(f=>`<span class="cm-flag">${esc(f)}</span>`).join(' ')||'—'}</td></tr>`;
+  }).join('')}</tbody></table></div>`;
+}
+
+function cmMeasures(a, s){
+  if(!a) return '<p class="view-hint">Needs about four months of trading history to compute.</p>';
+  const kv=(k,v,hint)=>`<div><span>${k}${hint?` <i class="cm-hint" title="${esc(hint)}">?</i>`:''}</span><b>${v}</b></div>`;
+  return `<div class="kv cm-kv">
+    ${kv('RS rating', a.rs??'—', '1-99 percentile of 3/6/9/12-month return against every liquid NSE stock')}
+    ${kv('Now vs pivot', a.now_vs_pivot==null?'—':bpPct(a.now_vs_pivot,1))}
+    ${kv('Tightening', a.atr_ratio??'—', '10-day average true range / 50-day — below 1 means the range is contracting')}
+    ${kv('Volume dry-up', a.vol_dryup??'—', '10-day average volume / 50-day — below 1 means volume is drying up')}
+    ${kv('Up/down volume', a.updown??'—', '(up-day volume − down-day volume) / total, last 50 sessions')}
+    ${kv('From 52-week high', a.from_high==null?'—':a.from_high+'%')}
+    ${s?kv('50-day average', galPx(s.dma50)):''}${s?kv('200-day average', galPx(s.dma200)):''}
+    ${s?kv('Volume vs 50-day avg', s.vol_ratio==null?'—':s.vol_ratio+'×'):''}
+  </div>`;
+}
+
+function cmPeers(d){
+  const th=base(d);
+  const peers=DATA.filter(x=>x.code!==d.code && base(x)===th)
+    .sort((x,y)=>(nz(y.market_cap_cr)||0)-(nz(x.market_cap_cr)||0)).slice(0,20);
+  if(!peers.length) return '<p class="view-hint">No other board company shares this theme yet.</p>';
+  return `<div class="dr-tablewrap"><table class="dr-table cm-peertbl"><thead><tr>
+    <th>Company</th><th class="n">M-cap ₹cr</th><th class="n">P/E</th><th class="n">ROCE</th><th class="n">RS</th><th>Stage</th><th></th>
+  </tr></thead><tbody>${peers.map(p=>{
+    const pa=cmSetup(p.code), pst=pa && pa.stage && BP_STAGES.find(x=>x.k===pa.stage);
+    return `<tr><td><b>${esc(p.name)}</b></td><td class="n">${fmtI(p.market_cap_cr)}</td><td class="n">${fmt(p.pe)}</td>
+      <td class="n">${fmt(p.roce_pct)}</td><td class="n">${pa&&pa.rs!=null?pa.rs:'—'}</td>
+      <td>${pst?esc(pst.label):'—'}</td><td><button type="button" class="btn" data-cmpeer="${esc(p.code)}">Chart ›</button></td></tr>`;
+  }).join('')}</tbody></table></div>`;
+}
+
+async function cmShare(d, a, s){
+  const stage=a && a.stage && BP_STAGES.find(x=>x.k===a.stage);
+  const text=`${d.name} (${galTicker(d,s)}) — ${stage?stage.label:'no setup'} · ${galPx(s?s.last:null)}`
+    +`${s&&s.chg_pct!=null?' '+bpPct(s.chg_pct):''}${a?` · pivot ${bpInr(a.pivot,2)} · RS ${a.rs??'—'}`:''}`
+    +`${a&&a.breakouts?` · ${a.breakouts.length} base${a.breakouts.length===1?'':'s'} on record`:''} · ${s?galDay(s.asof):''}`
+    +`\n${location.origin}/#v=gallery&c=${encodeURIComponent(d.code)}`;
+  try{ await navigator.clipboard.writeText(text); flash(document.getElementById('cm-share'),'✓ Copied'); }
+  catch(e){ openModal(`<h3>Share</h3><p class="quote" style="margin-top:12px">${esc(text)}</p>`); }
+}
+
+function cmWire(d, a, s){
   document.getElementById('cm-card').onclick=()=>{ closeModal(); CURRENT=GAL?galRows():[d]; openDrawer(d); };
-  document.getElementById('cm-report').onclick=()=>openReport(code);
-  document.getElementById('cm-pin').onclick=()=>{ togglePin(code); galPinButtons(code); };
+  document.getElementById('cm-report').onclick=()=>openReport(d.code);
+  document.getElementById('cm-pin').onclick=()=>{ togglePin(d.code); galPinButtons(d.code); };
+  const shareBtn=document.getElementById('cm-share'); if(shareBtn) shareBtn.onclick=()=>cmShare(d,a,s);
   const box=document.getElementById('cm-chart');
   if(box){
-    const svg=box.querySelector('svg'), cross=svg.querySelector('#cs-cross'), out=document.getElementById('cm-read');
-    const step=(W-padR)/vis.length;
-    svg.onmousemove=e=>{
-      const rect=svg.getBoundingClientRect(), x=(e.clientX-rect.left)/rect.width*W;
-      if(x>W-padR){ cross.style.display='none'; return; }
-      const i=Math.max(0,Math.min(vis.length-1,Math.floor(x/step)));
-      const cx=(i*step+step/2).toFixed(2);
-      cross.setAttribute('x1',cx); cross.setAttribute('x2',cx); cross.style.display='';
-      out.innerHTML=read(vis[i]);
-    };
-    svg.onmouseleave=()=>{ cross.style.display='none'; out.innerHTML=read(vis[vis.length-1]); };
+    const ser=GSERIES.get(d.code);
+    const range=CM_RANGES.find(r=>r[0]===CM.range) || CM_RANGES[4];
+    const sessions=Math.min(range[1]===Infinity?ser.rows.length:range[1], ser.rows.length);
+    const vis=ser.rows.slice(-sessions);
+    const read=r=>`<b>${galDay(r[0])}</b> · O ${galPx(r[1])} · H ${galPx(r[2])} · L ${galPx(r[3])} · C ${galPx(r[4])} · Vol ${fmtI(r[5])}`;
+    const svg=box.querySelector('svg'), cross=svg&&svg.querySelector('#cs-cross'), out=document.getElementById('cm-read');
+    const W=1000, padR=62, step=(W-padR)/vis.length;
+    if(svg){
+      svg.onmousemove=e=>{
+        const rect=svg.getBoundingClientRect(), x=(e.clientX-rect.left)/rect.width*W;
+        if(x>W-padR){ cross.style.display='none'; return; }
+        const i=Math.max(0,Math.min(vis.length-1,Math.floor(x/step)));
+        const cx=(i*step+step/2).toFixed(2);
+        cross.setAttribute('x1',cx); cross.setAttribute('x2',cx); cross.style.display='';
+        out.innerHTML=read(vis[i]);
+      };
+      svg.onmouseleave=()=>{ cross.style.display='none'; out.innerHTML=read(vis[vis.length-1]); };
+    }
   }
+  document.querySelectorAll('[data-cmr]').forEach(b=>b.onclick=()=>{ if(b.disabled) return; CM.range=b.dataset.cmr; cmRender(); });
+  const xrayBtn=document.getElementById('cm-xray-btn'); if(xrayBtn) xrayBtn.onclick=()=>{ CM.xray=!CM.xray; cmRender(); };
+  const xrayCb=document.getElementById('cm-xray-cb'); if(xrayCb) xrayCb.onchange=()=>{ CM.xray=xrayCb.checked; cmRender(); };
+  const maCb=document.getElementById('cm-ma'); if(maCb) maCb.onchange=()=>{ CM.ma=maCb.checked; cmRender(); };
+  const rsCb=document.getElementById('cm-rs'); if(rsCb) rsCb.onchange=()=>{ CM.rs=rsCb.checked; cmRender(); };
+  const yearSel=document.getElementById('cm-yearsel'); if(yearSel) yearSel.onchange=()=>{ CM.year=yearSel.value; cmRender(); };
+  document.querySelectorAll('[data-cmtab]').forEach(b=>b.onclick=()=>{ CM.tab=b.dataset.cmtab; cmRender(); });
+  document.querySelectorAll('[data-cmpeer]').forEach(b=>b.onclick=()=>openChart(b.dataset.cmpeer));
 }
 
 /* ==================================================================
@@ -2348,7 +2494,7 @@ async function openUpdates(){
 }
 
 /* ---------- saved filters ---------- */
-const VIEW_NAME={overview:'Overview',themes:'Themes',market:'Market',watchlist:'Watchlist',companies:'Companies',filters:'Screens',gallery:'Charts',reports:'Reports',method:'How it works'};
+const VIEW_NAME={overview:'Overview',themes:'Themes',market:'Market',watchlist:'Watchlist',companies:'Companies',filters:'Screens',gallery:'Screen any Chart',reports:'Reports',method:'How it works'};
 function describeState(state){
   const p=new URLSearchParams(state), bits=[];
   bits.push(VIEW_NAME[p.get('v')||'overview']||'Overview');
