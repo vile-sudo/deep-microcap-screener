@@ -1505,10 +1505,22 @@ const GAL_SORTS={
   high :{l:'Sort: closest to 52-week high', s:s=>s.from_high_pct, dir:-1},
   chg  :{l:"Sort: day's change",            s:s=>s.chg_pct,       dir:-1},
   vol  :{l:'Sort: volume vs average',       s:s=>s.vol_ratio,     dir:-1},
+  breakout:{l:'Sort: freshest breakout',    d:d=>{ const s=galStats(d); return -GAL_STAGE_RANK[galStage(d)||'none']*1e6+(s&&s.vol_ratio||0); }, dir:-1},
   mcap :{l:'Sort: market cap',              d:d=>nz(d.market_cap_cr), dir:-1},
   score:{l:'Sort: score',                   d:d=>nz(d.final_score),   dir:-1},
   name :{l:'Sort: name',                    d:d=>String(d.name||''),  dir:1},
 };
+/* Base breakouts -- the horizontal-resistance pattern Market view's stage
+   screen already finds for every board company, now also for Screen any
+   Chart's full NSE/BSE universe (the "stage" written by write_universe, see
+   backend/scripts/update_charts.py) and picked up by the Alerts bell the
+   same session a stock breaks out. Labels match Market view's exactly. */
+const GAL_STAGE_RANK={fresh:0, forming:1, climbing:2, played:3, none:4};
+function galStage(d){
+  if(!d) return null;
+  if(d.universe) return (d.stats||{}).stage || null;
+  return (BP.data && BP.data.stocks && BP.data.stocks[d.code] && BP.data.stocks[d.code].stage) || null;
+}
 const GMONTHS=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
 const GSERIES=new Map(), GPROM=new Map(), GQUEUE=[];
 let GAL=null, GALLOADING=null, GACTIVE=0, GOBS=null;
@@ -1562,17 +1574,24 @@ async function openGallery(){
     await GALLOADING;
   }
   guLoad();
+  /* board companies' stage comes from Market view's own data (BP.data);
+     universe stocks already carry theirs in the index (GU.rows) */
+  if(!BP.data){
+    BP.loading = BP.loading || fetchJSON('/api/market/setups').catch(()=>({stocks:{}})).then(j=>{ BP.data=j; if(VIEW==='gallery') renderGallery(); });
+  }
   if(VIEW==='gallery') renderGallery();
 }
 
 function buildGalControls(){
   const tr=document.getElementById('gtrend'), th=document.getElementById('gtheme'), so=document.getElementById('gsort');
-  const sc=document.getElementById('gscope');
+  const sc=document.getElementById('gscope'), sg=document.getElementById('gstage');
   const byStatus={}, byTheme={};
   DATA.forEach(d=>{ const s=galStats(d), k=s?s.status:'none'; byStatus[k]=(byStatus[k]||0)+1; byTheme[base(d)]=(byTheme[base(d)]||0)+1; });
   tr.innerHTML='<option value="">Trend: all</option>'
     + Object.entries(GAL_STATUS).map(([k,[l]])=>`<option value="${k}">${l} (${byStatus[k]||0})</option>`).join('')
     + (byStatus.none?`<option value="none">No chart yet (${byStatus.none})</option>`:'');
+  sg.innerHTML='<option value="">Breakout stage: any</option>'
+    + BP_STAGES.map(x=>`<option value="${x.k}" title="${esc(x.hint)}">${esc(x.label)}${x.k==='fresh'?' 🚀':''}</option>`).join('');
   th.innerHTML='<option value="">Theme: all</option>'
     + Object.entries(byTheme).sort((a,b)=>b[1]-a[1]).map(([t,n])=>`<option value="${esc(t)}">${esc(shortT(t))} (${n})</option>`).join('');
   so.innerHTML=Object.entries(GAL_SORTS).map(([k,v])=>`<option value="${k}">${v.l}</option>`).join('');
@@ -1580,8 +1599,8 @@ function buildGalControls(){
   document.getElementById('gallery-asof').textContent = GAL.latest_session ? 'Last session: '+galDay(GAL.latest_session) : '';
   let t=0;
   document.getElementById('gq').oninput=()=>{ clearTimeout(t); GSHOW=GAL_PAGE; t=setTimeout(renderGallery,120); };
-  [tr,th,so,sc].forEach(el=>el.onchange=()=>{ GSHOW=GAL_PAGE; renderGallery(); });
-  document.getElementById('gclear').onclick=()=>{ document.getElementById('gq').value=''; tr.value=''; th.value=''; so.value='high'; sc.value='all'; GSHOW=GAL_PAGE; renderGallery(); };
+  [tr,sg,th,so,sc].forEach(el=>el.onchange=()=>{ GSHOW=GAL_PAGE; renderGallery(); });
+  document.getElementById('gclear').onclick=()=>{ document.getElementById('gq').value=''; tr.value=''; sg.value=''; th.value=''; so.value='high'; sc.value='all'; GSHOW=GAL_PAGE; renderGallery(); };
 
   const grid=document.getElementById('ggrid');
   grid.onclick=e=>{
@@ -1610,6 +1629,7 @@ let GSHOW=GAL_PAGE;
 function galRows(){
   const q=document.getElementById('gq').value.trim().toLowerCase();
   const tr=document.getElementById('gtrend').value, th=document.getElementById('gtheme').value;
+  const stage=(document.getElementById('gstage')||{}).value||'';
   const so=GAL_SORTS[document.getElementById('gsort').value]||GAL_SORTS.high;
   const scope=(document.getElementById('gscope')||{}).value||'all';
   const val=d=>{ if(so.d) return so.d(d); const s=galStats(d); return s ? so.s(s) : null; };
@@ -1617,6 +1637,7 @@ function galRows(){
   const pool = scope==='board' || th ? DATA : DATA.concat(GU.rows || (guLoad(), []));
   return pool.filter(d=>{
     if(th && base(d)!==th) return false;
+    if(stage && galStage(d)!==stage) return false;
     const s=galStats(d);
     if(tr==='none' ? !!s : (tr && (!s || s.status!==tr))) return false;
     if(q && !(d._n+' '+(s?String(s.symbol).toLowerCase():'')).includes(q)) return false;
@@ -1650,11 +1671,15 @@ function renderGallery(){
 
 function galCard(d){
   const s=galStats(d), st=s && GAL_STATUS[s.status], on=!d.universe && WATCH.has(d.code);
+  /* a fresh breakout is worth flagging even over the trend badge; other
+     stages (forming/climbing/played) stay in the filter, not the card, so
+     an already-busy grid doesn't get louder for names browsed by default */
+  const fresh=galStage(d)==='fresh';
   const foot = d.universe
     ? `<span class="gc-theme">${esc(d.exchange||'')}${d.stats&&d.stats.rs!=null?` · RS ${d.stats.rs}`:''}</span><span class="gc-off">Not on the board</span>`
     : `<span class="gc-theme">${esc(shortT(base(d)))}</span><button type="button" class="gc-pin${on?' on':''}" data-gpin="${esc(d.code)}" title="${on?'Remove from':'Add to'} watchlist" aria-label="Star ${esc(d.name)}">${on?'★':'☆'}</button>`;
   return `<article class="gcard${d.universe?' gc-uni':''}" data-gcode="${esc(d.code)}" tabindex="0" aria-label="Open the chart for ${esc(d.name)}">
-    <div class="gc-head"><span class="gc-tick">${esc(galTicker(d,s))}</span><span class="gc-name" title="${esc(d.name)}">${esc(d.name)}</span>${st?`<span class="gc-badge ${st[1]}">${st[0]}</span>`:''}</div>
+    <div class="gc-head"><span class="gc-tick">${esc(galTicker(d,s))}</span><span class="gc-name" title="${esc(d.name)}">${esc(d.name)}</span>${fresh?`<span class="gc-badge gc-stage-fresh" title="Cleared the pivot in the last 5 sessions">🚀 Fresh breakout</span>`:(st?`<span class="gc-badge ${st[1]}">${st[0]}</span>`:'')}</div>
     <div class="gc-chart" data-gchart="${esc(d.code)}">${galThumb(d.code)}</div>
     <div class="gc-stats">${galStatLine(d.code, s)}</div>
     <div class="gc-foot">${foot}</div>
@@ -2956,7 +2981,9 @@ function alRow(it, byCode){
       <div class="al-detail">${detail}</div>
     </div>
     <div class="al-side"><b>${galPx(it.close)}</b>${chg}
-      <div class="al-acts">${d?`<button type="button" class="btn" data-al-chart="${esc(d.code)}">Chart</button><button type="button" class="al-star${on?' on':''}" data-al-star="${esc(d.code)}" title="${on?'Remove from':'Add to'} watchlist">${on?'&#9733;':'&#9734;'}</button>`:`<a class="btn" href="https://www.screener.in/company/${encodeURIComponent(it.symbol)}/" target="_blank" rel="noopener">screener &#8599;</a>`}</div>
+      <div class="al-acts">${d?`<button type="button" class="btn" data-al-chart="${esc(d.code)}">Chart</button><button type="button" class="al-star${on?' on':''}" data-al-star="${esc(d.code)}" title="${on?'Remove from':'Add to'} watchlist">${on?'&#9733;':'&#9734;'}</button>`
+        :it.key?`<button type="button" class="btn" data-al-chart="${esc(it.key)}">Chart</button>`
+        :`<a class="btn" href="https://www.screener.in/company/${encodeURIComponent(it.symbol)}/" target="_blank" rel="noopener">screener &#8599;</a>`}</div>
     </div>
   </li>`;
 }
@@ -2982,7 +3009,7 @@ async function openAlerts(showSettings){
           <label class="al-tg${p.vcp?' on':''}"><input type="checkbox" id="al-vcp" ${p.vcp?'checked':''}>Base (VCP)</label></div></div>
         <div class="al-set-row"><b>Which stocks</b><div class="al-toggles">
           ${[['watchlist','My watchlist'],['board','Board companies'],['market','Whole market']].map(([v,l])=>`<label class="al-tg${p.scope===v?' on':''}"><input type="radio" name="al-scope" value="${v}" ${p.scope===v?'checked':''}>${l}</label>`).join('')}</div></div>
-        <p class="al-note">Whole market adds liquid NSE stocks that are not on the board — for those, 6-month and 1-year highs and lows and IPO base breakouts only. 1D = above yesterday's high / below yesterday's low.</p>
+        <p class="al-note">Whole market adds every actively traded NSE/BSE company that is not on the board — the same universe as Screen any Chart. For those: base and IPO base breakouts across all of it, plus 6-month and 1-year highs and lows for the liquid NSE subset. 1D = above yesterday's high / below yesterday's low.</p>
         <div class="al-set-row"><b>Notify me</b><div class="al-toggles"><label class="al-tg${p.notify?' on':''}"><input type="checkbox" id="al-notify" ${p.notify?'checked':''}>Browser notification when I open the dashboard and there are new alerts</label></div></div>
       </div>
       <div class="al-types">${AL_TYPES.map(([k,l])=>`<button type="button" class="al-type${AL.type===k?' on':''}" data-al-type="${k}">${l} <span>${count(k)}</span></button>`).join('')}</div>

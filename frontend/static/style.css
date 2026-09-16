@@ -782,7 +782,14 @@ td .thm{font-size:10.5px;text-transform:uppercase;letter-spacing:.05em;color:var
    Chart gallery — a card per company: ticker, name, trend badge,
    daily candles with 50/200-day averages and volume, and a stats line.
    ================================================================ */
-.gal-controls{display:grid;grid-template-columns:minmax(220px,1.5fr) repeat(3,minmax(170px,1fr)) auto;gap:12px;align-items:center}
+/* flex, not a fixed-column grid: Screen any Chart has gained a filter each
+   time it grew a new dimension (scope, then stage), and a grid sized for
+   yesterday's control count either mis-sizes or drops the newest one below
+   a hardcoded breakpoint -- flex-wrap keeps this correct at any count. */
+.gal-controls{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+.gal-controls .gal-search{flex:1 1 220px;width:auto;min-width:180px}
+.gal-controls .gal-select{flex:1 1 170px;width:auto;min-width:150px}
+.gal-controls .theme-back{flex:none}
 .gal-search,.gal-select{width:100%;min-width:0;height:42px;padding:0 13px;border:1px solid #213847;border-radius:9px;background:#0b171f;color:var(--ink);font:inherit;font-size:13px}
 .gal-search::placeholder{color:var(--muted)}
 .gal-search:focus,.gal-select:focus{outline:none;border-color:#62cbd5;box-shadow:0 0 0 3px rgba(98,203,213,.14)}
@@ -804,6 +811,7 @@ td .thm{font-size:10.5px;text-transform:uppercase;letter-spacing:.05em;color:var
 .st-up{background:rgba(77,182,255,.15);color:#8ccdff}
 .st-flat{background:rgba(126,160,183,.14);color:#a9c0cf}
 .st-down{background:rgba(255,106,106,.14);color:#ff9a9a}
+.gc-stage-fresh{background:rgba(249,115,22,.2);color:#fdba74}
 .gc-chart{position:relative;margin:10px 0 9px;aspect-ratio:320/160;border-radius:7px;background:#0a141b;overflow:hidden}
 .gc-chart svg{display:block;width:100%;height:100%}
 .gc-skel{position:absolute;inset:0;background:linear-gradient(90deg,transparent,rgba(173,210,255,.06),transparent);background-size:200% 100%;animation:gcshim 1.2s linear infinite}
@@ -927,12 +935,9 @@ td .thm{font-size:10.5px;text-transform:uppercase;letter-spacing:.05em;color:var
 .cm-hint{display:inline-flex;align-items:center;justify-content:center;width:13px;height:13px;border-radius:50%;background:var(--grid);color:var(--muted);font:600 9px var(--ui);font-style:normal;cursor:help}
 .cm-basetbl td,.cm-peertbl td{white-space:nowrap}
 
-@media (max-width:1100px){
-  .gal-controls{grid-template-columns:1fr 1fr}
-  .gal-controls .gal-search{grid-column:1 / -1}
-}
+@media (max-width:1100px){ .gal-controls .gal-search{flex-basis:100%} }
 @media (max-width:560px){
-  .gal-controls{grid-template-columns:1fr}
+  .gal-controls .gal-search,.gal-controls .gal-select{flex-basis:100%}
   .gal-grid{grid-template-columns:1fr}
 }
 
@@ -1003,6 +1008,7 @@ td .thm{font-size:10.5px;text-transform:uppercase;letter-spacing:.05em;color:var
 :root[data-theme="light"] .st-up{background:#dbeafe;color:#1d4ed8}
 :root[data-theme="light"] .st-flat{background:#f3f4f6;color:#4b5563}
 :root[data-theme="light"] .st-down{background:#fee2e2;color:#b91c1c}
+:root[data-theme="light"] .gc-stage-fresh{background:#ffedd5;color:#c2410c}
 :root[data-theme="light"] .gc-chip{background:#dcfce7;color:#15803d}
 :root[data-theme="light"] .asme-tag{background:#fef3c7;color:#b45309}
 :root[data-theme="light"] .cs .cs-vol{fill:#cbd5e1;opacity:.9}

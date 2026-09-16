@@ -157,6 +157,20 @@ not only the board's own.
   and breakout rules that drive Market view, walked across the whole
   cached history, with RS rating and the "Base characteristics", "Stock
   measures" and "Peers" tabs on the chart drawer.
+- **Breakout stage filter and sort:** a "Breakout stage" control (Forming /
+  Fresh breakouts 🚀 / Climbing / Played out — Market view's own stages)
+  filters the gallery to just that pattern across the whole universe, board
+  companies included, and "Sort: freshest breakout" brings the newest ones
+  to the top. A card with a fresh breakout is flagged 🚀 even outside that
+  filter. `write_universe()` computes this for every universe stock as it
+  builds its chart (`stage`, in `chart_data/universe.json`); board
+  companies' comes from `GET /api/market/setups`, fetched once when the
+  page opens.
+- **Alerts:** a fresh base or IPO-base breakout — on any actively traded
+  NSE/BSE company, not only the board's — reaches the Alerts bell the same
+  session it happens (`app.alerts.universe_breakout_item`, deduplicated
+  against Market view's own narrower NSE-only pass). Opening a market-scope
+  breakout alert's "Chart" button goes straight to that stock's page here.
 - **Automation:** step 5 of `.github/workflows/daily.yml` runs it every
   night at 02:00 IST (after the day's auto-screen, so a company added that
   morning has its chart), and `charts.yml` on every push that changes

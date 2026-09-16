@@ -195,7 +195,7 @@ def main() -> int:
     return 0
 
 
-def write_universe(days: list, board: dict, rank) -> int:
+def write_universe(days: list, board: dict, rank) -> tuple[int, list[dict]]:
     """Every actively traded NSE/BSE company, for "Screen any Chart".
 
     Two outputs, deliberately split:
@@ -208,14 +208,17 @@ def write_universe(days: list, board: dict, rank) -> int:
                                  than committed, and the API fetches them on
                                  demand (see routers/charts.py).
     The board's own companies keep their fuller, committed charts and are
-    skipped here; the index points at them instead."""
+    skipped here; the index points at them instead.
+
+    Also returns every fresh (this-session) base or IPO-base breakout found
+    along the way, for the Alerts bell -- see alerts.universe_breakout_item."""
     on_board_isins = frozenset(s.get("isin") for s in board.values() if s.get("isin"))
     on_board_keys = frozenset((s["exchange"], s.get("key") or s["symbol"]) for s in board.values())
     UNIVERSE_DIR.mkdir(parents=True, exist_ok=True)
     for f in UNIVERSE_DIR.glob("*.json"):
         f.unlink()
 
-    index, charted = {}, 0
+    index, breakout_items, charted = {}, [], 0
     for key, s in build_universe(days, on_board_isins, on_board_keys):
         charted += 1
         stats = compute_stats(s)
@@ -232,6 +235,14 @@ def write_universe(days: list, board: dict, rank) -> int:
                       "turnover": round(sum(r[4] * r[5] for r in recent) / max(1, len(recent))),
                       "stage": (a or {}).get("stage"), "rs": (a or {}).get("rs"),
                       "bases": len((a or {}).get("breakouts") or [])}
+        if a:
+            bo = a.get("breakout")
+            if a.get("stage") == "fresh" and bo and bo.get("sessions") == 0:
+                breakout_items.append(alerts.universe_breakout_item(key, s, "vcp_breakout", bo))
+            ipo = a.get("ipo") or {}
+            ibo = ipo.get("breakout")
+            if ipo.get("stage") == "fresh" and ibo and ibo.get("sessions") == 0:
+                breakout_items.append(alerts.universe_breakout_item(key, s, "ipo_breakout", ibo, ipo.get("listed")))
     # the board's companies belong in the same search: same shape, flagged, and
     # pointing at the board code so the chart drawer opens the richer version
     for code, s in board.items():
@@ -249,8 +260,8 @@ def write_universe(days: list, board: dict, rank) -> int:
     }, separators=(",", ":")), encoding="utf-8")
     size_mb = sum(f.stat().st_size for f in UNIVERSE_DIR.glob("*.json")) / 1e6
     print(f"universe: {charted} traded companies charted ({size_mb:.0f} MB in {UNIVERSE_DIR.name}/), "
-          f"{len(index)} rows in universe.json")
-    return charted
+          f"{len(index)} rows in universe.json, {len(breakout_items)} fresh breakout(s)")
+    return charted, breakout_items
 
 
 def write_setups(records: list[dict], series: dict, days: list) -> None:
@@ -320,10 +331,13 @@ def write_setups(records: list[dict], series: dict, days: list) -> None:
         "feed": feed,
         "stocks": dict(sorted(stocks.items())),
     }, separators=(",", ":")), encoding="utf-8")
+    _, universe_items = write_universe(days, series, rank)
     board_items = alerts.board_alerts(records, series, stocks, latest)
     market_items = alerts.market_alerts(universe, names, listed, market["ipo"], board_symbols, latest)
-    alerts.write(ALERTS_FILE, latest, board_items + market_items)
-    write_universe(days, series, rank)
+    # universe_items covers every actively traded NSE/BSE company (Screen any
+    # Chart's own universe); market_items' breakouts are a narrower NSE-only
+    # pass kept for Market view's own panel. dedupe() drops the overlap.
+    alerts.write(ALERTS_FILE, latest, alerts.dedupe(board_items + market_items + universe_items))
     tally = {}
     for it in board_items:
         tally[it["type"]] = tally.get(it["type"], 0) + 1

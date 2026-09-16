@@ -13,7 +13,14 @@ For each board company (daily candles, split-adjusted):
   base breakout           the VCP screen's pivot breakout on this session
 
 Across the liquid NSE universe (not just the board): new 6-month and 1-year
-highs and lows, and IPO-base breakouts.
+highs and lows, and IPO-base breakouts (both from scripts/update_charts.py's
+own narrower, NSE-only pass, kept for Market view's "market-wide breakouts"
+panel). base_breakout and IPO base breakout ALSO fire across every actively
+traded NSE/BSE company -- not just the board's -- via universe_breakout_item(),
+built from the same per-stock analysis Screen any Chart's universe already
+computes (see scripts/update_charts.py's write_universe). Deduplicated against
+the narrower pass by (symbol, type) before writing, so a stock liquid enough
+for both is only alerted once.
 
 The file keeps the last SESSIONS_KEPT sessions, so someone who hasn't opened
 the dashboard for a few days still sees what they missed.
@@ -22,6 +29,8 @@ from __future__ import annotations
 
 import json
 from pathlib import Path
+
+from .charts import universe_key
 
 WINDOWS = [("1D", 1), ("1W", 5), ("1M", 21), ("6M", 126), ("1Y", 250)]
 MARKET_WINDOWS = [("6M", 126), ("1Y", 250)]
@@ -99,6 +108,8 @@ def board_alerts(records: list[dict], series: dict, stocks: dict, latest: str) -
 
 
 def market_alerts(universe: dict, names: dict, listed: dict, market_ipo: list[dict], board_symbols: set, latest: str) -> list[dict]:
+    # This pass is NSE only, so the universe key is always NSE-<symbol>; that
+    # is what lets an alert row open the stock in Screen any Chart.
     items = []
     for key, rows in universe.items():
         if ("NSE", key) in board_symbols or not rows or rows[-1][0] != latest:
@@ -109,15 +120,45 @@ def market_alerts(universe: dict, names: dict, listed: dict, market_ipo: list[di
         name = (names.get(key) or key).title()
         for kind in ("high", "low"):
             if ext[kind]:
-                items.append(_item(None, key, name, "market", kind, rows, ext[kind], ext[f"{kind}_level"]))
+                items.append(_item(None, key, name, "market", kind, rows, ext[kind], ext[f"{kind}_level"],
+                                   {"exchange": "NSE", "key": universe_key("NSE", key)}))
     for hit in market_ipo:
         if hit.get("on_board"):
             continue
         rows = universe.get(hit["symbol"])
         if rows:
             items.append(_item(None, hit["symbol"], hit["name"], "market", "ipo_breakout", rows,
-                               extra={"pivot": hit.get("pivot"), "vol_x": hit.get("vol_x"), "listed": hit.get("listed")}))
+                               extra={"pivot": hit.get("pivot"), "vol_x": hit.get("vol_x"), "listed": hit.get("listed"),
+                                      "exchange": "NSE", "key": universe_key("NSE", hit["symbol"])}))
     return items
+
+
+def universe_breakout_item(key: str, series: dict, kind: str, bo: dict, listed: str | None = None) -> dict:
+    """A fresh base or IPO-base breakout for a stock outside the board -- from
+    Screen any Chart's universe build (write_universe), which covers every
+    actively traded NSE/BSE company, not just the NSE-liquid subset
+    market_alerts() checks. `key` is that build's own key (NSE-SHANTIGOLD,
+    BSE-517421, ...), which is what lets the alert open straight into Screen
+    any Chart rather than a scorecard that does not exist for this stock."""
+    extra = {"pivot": bo.get("pivot"), "vol_x": bo.get("vol_x"), "exchange": series["exchange"], "key": key}
+    if listed:
+        extra["listed"] = listed
+    return _item(None, series["symbol"], series.get("name") or series["symbol"], "market", kind, series["rows"], extra=extra)
+
+
+def dedupe(items: list[dict]) -> list[dict]:
+    """Drop a later item that names the same symbol and alert type as an
+    earlier one -- market_alerts()'s narrower NSE pass and the broader
+    universe-wide pass can each independently flag a stock liquid enough
+    for both."""
+    seen, out = set(), []
+    for it in items:
+        key = (it.get("symbol"), it["type"])
+        if key in seen:
+            continue
+        seen.add(key)
+        out.append(it)
+    return out
 
 
 def write(path: Path, latest: str, items: list[dict]) -> dict:
