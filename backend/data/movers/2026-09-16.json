@@ -1,7 +1,7 @@
 {
  "trade_date": "2026-09-16",
  "threshold_percent": 4.0,
- "generated_at": "2026-09-17T09:30:55+05:30",
+ "generated_at": "2026-09-17T12:13:48+05:30",
  "stats": {
   "scanned": 3369,
   "flagged": 432,
@@ -364,17 +364,9 @@
    "raw_pct_change": 10.01,
    "corporate_action": null,
    "why": {
-    "headline": "Management Change (Scanx)",
-    "confidence": "low",
-    "evidence": [
-     {
-      "tier": "news",
-      "kind": "management change",
-      "detail": "Foseco Crucible appoints Lewis, Lowes, Chaturvedi as directors",
-      "url": "https://news.google.com/rss/articles/CBMivwFBVV95cUxNSURxLXZjemVXeXQySHlwVFZZTENtZVItMHQzdVJTTDEta0RMTXVfQmI5dVhnZkg3TWZUdlhLWng4dTRVVHpXRjl1U24yQ1MyVTU3S2pkdkREd0ExbklPejlVVzQ2djhZMXdPcWhXU2VhdzQwOUlmS1VVX1IyS2ljcFBYai1nYXVGVDQ1SG1CTzRfdl9xdkFuR0syeHJtUldiOUxwVUU4LXhfZVZQV3FEd0Y2N1pBa1RYWDJzYlJTQQ?oc=5",
-      "source": "Scanx"
-     }
-    ]
+    "headline": "No disclosed reason",
+    "confidence": "none",
+    "evidence": []
    },
    "news_checked": true
   },
@@ -999,9 +991,17 @@
    "raw_pct_change": 6.55,
    "corporate_action": null,
    "why": {
-    "headline": "No disclosed reason",
-    "confidence": "none",
-    "evidence": []
+    "headline": "Results (Scanx)",
+    "confidence": "low",
+    "evidence": [
+     {
+      "tier": "news",
+      "kind": "results",
+      "detail": "VMS TMT FY26 net profit up 36% to ₹210.3 crore on revenue growth",
+      "url": "https://news.google.com/rss/articles/CBMirwFBVV95cUxPNmMyWnVjdWl5elMxUzlHSjVzYVJkejM5eXdacF84ejhXQlBBbEtQeTdXVXI4ZDhwZ2I5RmpnNFNVa1d6TnRSdWFla3Rsam5IOE9VUGxWU3NhTS03dWxfT3VNemtzM2xybWVmQ2k2VThZMzF6clpTc21Nd0RNWmhhdjdUSkRxRU5TU3lIMW05Nk10cU42YklaZU9TQmZvRVdHelRBMnRTQ2JqV3RnUzlB?oc=5",
+      "source": "Scanx"
+     }
+    ]
    },
    "news_checked": true
   },
@@ -1649,9 +1649,16 @@
    "raw_pct_change": 5.25,
    "corporate_action": null,
    "why": {
-    "headline": "M&A Or Stake (Scanx)",
+    "headline": "M&A Or Stake (Sahi)",
     "confidence": "low",
     "evidence": [
+     {
+      "tier": "news",
+      "kind": "M&A or stake",
+      "detail": "PB Fintech Approves 20% Myloancare Acquisition and OKs ₹10 Crore Investment in PB Wheels",
+      "url": "https://news.google.com/rss/articles/CBMitAFBVV95cUxQMWN0aXVqc3dmWEtfNWNTeURpRVJsZXRqMUVSQ1lSQmhTdHJDRUhRNTRaaTExUzRneWxUOHA2a29nRERxcjlLYmZxNEUwdWUzei13eDlJTFptWDdhWDNQUkdjOU84UTdSSXBtSW5zN09lTXJLWVh6Q1hUREdfZlhjQm04dTRPWUl2Nnd3eWJJVHpLQ1NRRUxwalpPczM5Rm5XZlY4TFMtYVBXRjNQNjJHTzVOb08?oc=5",
+      "source": "Sahi"
+     },
      {
       "tier": "news",
       "kind": "M&A or stake",
@@ -4029,9 +4036,17 @@
    "raw_pct_change": -4.05,
    "corporate_action": null,
    "why": {
-    "headline": "No disclosed reason",
-    "confidence": "none",
-    "evidence": []
+    "headline": "Results (Scanx)",
+    "confidence": "low",
+    "evidence": [
+     {
+      "tier": "news",
+      "kind": "results",
+      "detail": "Sterlite Technologies raises FY27 EBITDA margin guidance to 23%",
+      "url": "https://news.google.com/rss/articles/CBMi9gFBVV95cUxNN0lGTVU0WkdkR2RrMDk0TUFHU1Eta0dIckU3bHZyN2ZiSnA4OXVnYUlhaWNCbXMtMU9kNTV3SjlFZ0xZY3R4aGFfSlZvX2FjWlczVEVJU3I2WkhKQnZjdjJMMlBfaUkxeWtNb2R1X2xxc2J6ZWpmNjd4S2NpQlhSdFl1MGQ0dXJtQ0pqOURpNTZfT1hxNjcyTXE3X1NTM0pIVGNzeVNWZjgxWEs3S2txUFVabThUbHBrUktxQUJNWjIxUC1zTUpzSnFJLXhvVXl5T3lDSGFWbFlQX1daRkZyYjV2OHFlS09QWTRhdVZBOURFTkMwMmc?oc=5",
+      "source": "Scanx"
+     }
+    ]
    },
    "news_checked": true
   },
@@ -4309,16 +4324,9 @@
    "raw_pct_change": -4.17,
    "corporate_action": null,
    "why": {
-    "headline": "Order Win (Economic Times)",
+    "headline": "Broker Action (Moneycontrol)",
     "confidence": "medium",
     "evidence": [
-     {
-      "tier": "news",
-      "kind": "order win",
-      "detail": "UPI MDR bonanza: Why Paytm may win bigger, but Pine Labs could gain faster",
-      "url": "https://news.google.com/rss/articles/CBMi3wFBVV95cUxNNFUzT2JWU21vRFNnZVZ2dFlGLW93QXpBRDYtZ1pPR21nZGZPMmNVWUhIU2RSTVNZRVZRT3NCSGNtUGVNZE1hZS1Xa1g0ejVaRWNFcmlRNTNtbld4cWNOb2UtdXE3U0JuemhzczA4Y184eExiQUhjMjMzMUxBdl9IcFVFNEI0UVhnOWsxSmFqUlRfR2ZYbmNBQlpOeDh2VTFSYmlzZ25aUE9RNWpJSU85OFlZYXgxZkJTRzlLN3BJR2tDX3h6UnRtWVlDZzR1WjlUX0JDTjFiWThzNHJjWWxr0gHkAUFVX3lxTE9DVFBFbDdMenFWWHlZMGl3ZW9iTFYtODVIUWVUbjYtczVOU1R3Y1NSSC0yb192SUp1Wlp2ZDM2ZDlMOXd5UUJkSkZxS3lNV1JLVTlUOG01MUE0eG8tSjdUX1c4c0htY081VzE4aXM3c19LdTBUclZlUGFzd2I4OWY3MTlLVjc3eXQ0R0VWZVBKTlNFRXIxOE5zY1p1Mk9Tam9wSXoyUjh6WWFZbTZqRXdFU2V1bk5Ic2ExTS05TEtDbl84dGhUX0o4bTc3a242R1lPdUlJZE1HTDBveVB3VUY5d1M2UQ?oc=5",
-      "source": "Economic Times"
-     },
      {
       "tier": "news",
       "kind": "broker action",
@@ -4328,10 +4336,17 @@
      },
      {
       "tier": "news",
+      "kind": "order win",
+      "detail": "UPI MDR bonanza: Why Paytm may win bigger, but Pine Labs could gain faster",
+      "url": "https://news.google.com/rss/articles/CBMi3wFBVV95cUxNNFUzT2JWU21vRFNnZVZ2dFlGLW93QXpBRDYtZ1pPR21nZGZPMmNVWUhIU2RSTVNZRVZRT3NCSGNtUGVNZE1hZS1Xa1g0ejVaRWNFcmlRNTNtbld4cWNOb2UtdXE3U0JuemhzczA4Y184eExiQUhjMjMzMUxBdl9IcFVFNEI0UVhnOWsxSmFqUlRfR2ZYbmNBQlpOeDh2VTFSYmlzZ25aUE9RNWpJSU85OFlZYXgxZkJTRzlLN3BJR2tDX3h6UnRtWVlDZzR1WjlUX0JDTjFiWThzNHJjWWxr0gHkAUFVX3lxTE9DVFBFbDdMenFWWHlZMGl3ZW9iTFYtODVIUWVUbjYtczVOU1R3Y1NSSC0yb192SUp1Wlp2ZDM2ZDlMOXd5UUJkSkZxS3lNV1JLVTlUOG01MUE0eG8tSjdUX1c4c0htY081VzE4aXM3c19LdTBUclZlUGFzd2I4OWY3MTlLVjc3eXQ0R0VWZVBKTlNFRXIxOE5zY1p1Mk9Tam9wSXoyUjh6WWFZbTZqRXdFU2V1bk5Ic2ExTS05TEtDbl84dGhUX0o4bTc3a242R1lPdUlJZE1HTDBveVB3VUY5d1M2UQ?oc=5",
+      "source": "Economic Times"
+     },
+     {
+      "tier": "news",
       "kind": "results",
-      "detail": "Paytm, Pine Labs, MobiKwik shares witness profit booking after the new MDR framework",
-      "url": "https://news.google.com/rss/articles/CBMi2AFBVV95cUxQNWFMQWVpdWJEV05EU0VvQVZWc3o5ZEo1RHpfM3p0N0haLXZmTk9PbVdmR0VhWkxOUVFENDRNT3RfbFRpMC1Hd2xuTkI1RDk5dVVmTkNvdnZNajZyTWlXSkY1VlB4cEVpbFkzQXRQRnBLRVJMVnRsdkNHampxLVZySEVXQnFPMjRZZTBUaUlyQmhBaVZRS0Z6NDl6U2ZoaVFNaXluanhxZGtKcVVQWVlHaHlTWWVaVGpDRmRDX3VHVFpjRFRoUjB0czhZbGphWGRrbnlRRzZRcGPSAd4BQVVfeXFMT01DMVBHNzJhSUdBSV9veHNaSmZwSll1Vk1nWm5QWGotV2lNN1pBVUQyak1mWGQ2alJyTVpjSlNfT2p1QWNldXBYTUY1aWdFUEZwczVDYUV1NDdXMjhjaDNMOTFnai1pV1cwcnRDV3g1Q0RDMzMtdmtQQ2tvQ1ZqSlpwVmJsQU9zSXRlUUQ3clNPSlJuenNmdjgwbTR4dHM1VkR6U0tTX280NUdjUGllbzFZTWNndnlqZjFReEJHMlQzNzVPbzhQUEFqRGlGOW55Si1QaTlrQlVEaUVYVmtB?oc=5",
-      "source": "CNBC TV18"
+      "detail": "Pine Labs share price jumps 5%: Why new UPI MDR rules could boost earnings - Check new target",
+      "url": "https://news.google.com/rss/articles/CBMi8AFBVV95cUxORVBpNV81dXN2MkVZTWJHR2xDcU9kRFZtZjdfNjVGa2EwQmE5TG1sRWNuVXVyLUI0dk1ZdHE1VXZ1TTBqcnhwY19YY3NXRmtDMTExQUtDOXh0cWFWMmdhZE0xN0pvaXRuZUVjVDhTWUdxcnpxXzlTM1B2Vk43UF91b1VQSjNRcXFMMWdSbVBpbzgyTUVndTJ1MlNfVURzZzVIc2l3cnBMTDlwV3JnR1liSGxLYkczMndfRm51Z3BlRkR4bWVCM3pXdy1KZVZicDEwUm9UbjJtNURrZFVDd19kLWxqOUVNaV9ZMTlfODM2VzTSAfYBQVVfeXFMTWlnZlJzWWc1bkJ6c2hKU2ZjaExmZmZyMldRbWpsMWh0MVJJTE1rOWlEWVRUc2NzNnVmNDh1SFRNN0JhUThJRmxsLS1MY1g3MUFDSEpLaGJ5ZklNVGlHLXRlU1FPNnhkb2tWdFdMRjlqcU96T0cxaGFYWGoxNGVlUXN4LXB2aWIxWGV1SEFCNlRlWUYwZEtLLUNkcnI2QzVsTXlNU0hzZi1fdlVxaTZfMTRjcmN0M2t4eWViN0NLQjZUcW4tUHVsRzZrTWpwNnlTazlEaW9TWm56cTI0YVo4VFNmX1p1VWs1QWdmdGFtWnZQLVNZTDN3?oc=5",
+      "source": "Mint"
      }
     ]
    },
@@ -4429,7 +4444,7 @@
    "raw_pct_change": -4.2,
    "corporate_action": null,
    "why": {
-    "headline": "Results, reported by Business Upturn",
+    "headline": "Results, reported by Business Today",
     "confidence": "high",
     "evidence": [
      {
@@ -4452,6 +4467,13 @@
       "detail": "Apollo Micro Systems Limited has informed the Exchange about General Updates",
       "url": "https://nsearchives.nseindia.com/corporate/APOLLO_16092026135808_AMS_Business_Update_16092026.pdf",
       "source": "16 Sep 13:58"
+     },
+     {
+      "tier": "news",
+      "kind": "explainer",
+      "detail": "Paras Defence, Apollo Micro, BEML, BEL, GRSE: Defence stocks rise up to 5% today; here's why",
+      "url": "https://news.google.com/rss/articles/CBMi5wFBVV95cUxOX2xobV9yZF9SVUV2OUlFWHJ6UnkyRWplQ1VJdUpyVktQSF85Zzl4aHJYcVl0TU1XOUhJZGVKalhNejkxN1l1WVVzRmNEaXFsaF9LU2o3cFFlRWNEZnZQb3BTeDhpdkpoQkcwU01yaVQ3cFFCN3Mzc0I5MHBJQ25yTW4ySzRVM1lyNUFhZnp3a1VBVkpERXRTLVBySFZkV2VVeEZ6VThFTlllZm55REV2V05qTERiMDdjSS04SU5nZi03c3ktV2JheWdBYjQxRHJsWG9tU01TZkNibGhsVTZxcTlvRF8yMjQ?oc=5",
+      "source": "Business Today"
      },
      {
       "tier": "news",
@@ -5154,10 +5176,10 @@
      },
      {
       "tier": "news",
-      "kind": "order win",
-      "detail": "India women's team refuses to take Asia Cup trophy from Mohsin Naqvi after title win - WATCH",
-      "url": "https://news.google.com/rss/articles/CBMi7gFBVV95cUxNT2g5Z0toTkhyclFjYlh3UFFZeGd0NVlhS1A5RDl4eWt1ZzJ6V3ppQjlGVFdMZ25LalRmOUlOem9HQzlZeUhCTjVjQ1B2bm9hZFZKUlR0anh3cWR5ZUJ3V21BZzBvQXY2cXlMOVdETjNwLW42WHhCT2NMUXBjZWF4X3JJSVZnRlo1bGw2T1BoWFh4TVI3d1dTeEpOVVRvTERzcmpiQlhjY3lXR2lkdnplcG5kelRJZTdPUHUxMUxFSDBrUjVkRmpSc1Fiei1zZXZXcTZkcFBuaGt3YWgzM3V6eVpzb1NVN0wxUGszdmFR0gHzAUFVX3lxTFA4MC1YZS1ZWnpNOF9rMUo5enBrVFN5bnUtN08yeFdIRnVyajlsc21RQ29FdE9ZT21iOVdfU0tSZzVjVmt6ZGVvWENCZklvMllHSVByVlBINmNwYWprWDNWdzNLWTRCUEFnaUtidzdCVWlpZDVUd0pjdnlnUG1aZVNWbHhCSzlyaHhKbWF3WWxXRkpjZGIzTkwzVFBVMl9hZjFaVUo3czlxUDJTTFhvV2dzbm1TRll4SGlfaElYd01UcGt2dmtEdEdydEdjeGppR3BscHhqTzhKeE11X2JIYjZGdzNaUUZWMDFZSFVFSDRzQzJLWQ?oc=5",
-      "source": "Times of India"
+      "kind": "sector pricing",
+      "detail": "US tariffs news: India prepared to take ‘all necessary measures’ as US bill raises 100% tariff threat over Russian oil",
+      "url": "https://news.google.com/rss/articles/CBMi6wFBVV95cUxOdzRNckc5djVibV8ya0ZibS1wc2VOVlNVdTFfNjRxcFE3MzZncVJHTkRBUEx3M1hSS2NQUWpRQzhsZFBSTE9vWWJRaVRqRkwxTWJnbVA0XzFDVTV6OTVvVzRfbTRqdzhOV2swbXFSbXdidjZIX0oya0YwTGZveExvVU5OTk1JdWtnSUlBOUFBamxtaENNdEZ0UElsYjY5ODV4djlIbHF2cjY1eThOQmxRVmlDMlhNVFBSOVhKWWpMVXYzODlveTVJUE9mMlowNkt6QjRwWFl5bloyTXJFLXlReDdhV3h0bnJvMjdv?oc=5",
+      "source": "Moneycontrol"
      }
     ]
    },
@@ -6253,9 +6275,17 @@
    "raw_pct_change": -4.87,
    "corporate_action": null,
    "why": {
-    "headline": "No disclosed reason",
-    "confidence": "none",
-    "evidence": []
+    "headline": "Order Win (Moneycontrol)",
+    "confidence": "medium",
+    "evidence": [
+     {
+      "tier": "news",
+      "kind": "order win",
+      "detail": "Premier Energies: Backward integration, strong order book to drive growth",
+      "url": "https://news.google.com/rss/articles/CBMi5AFBVV95cUxPeElSLVZiX3A2U3AzSy00V1BKcktYXy1HTmVjWW9ZbUlkd0x3LThYUnRDUWkxVzhaSmVUVFNVbXA0M2ZRNVhveDNHX0drOTNZeXlHWnp6dGlzRE1fSEZmbC1wVUJCcU5OMzlfeWx0c19LZ3BjV29QUFUyZDhURXJ3WkRnS2w3akZSZVpaRTRZeG9WMnhGU0VrTkxNd1VFRWxRNFFhQnJkSC1FdUJHXzU4LUtwbGlGZkVTX25FNjY3VHM5NDF1XzRqMUhpRm1VdTJLRllzVHhneUF6bG1NUEFJSWI5ak7SAeoBQVVfeXFMUG1PcEl0OFdLaFdjdnc1eFFjMmZ6cElLSzVrNE1VMXlJNzRXdnphTWpYRHhRYzFTRm9wRlpobzJQa01PSlhGeHBwZzU4aWM0WWNDWkVfdzBKcmM1NkNOVDVTTFdTcWVpMjBQM24xVTR4ckk0c2N4U3o4cnJELVNET1RhYWppYS00NG1CZF9tOGxGZnhfaHFHTkNsWkZtRngwVVVKQmZTdmR6NDduWXNqaWxQNzFtbE9KRzB1djdSOUx0TWFicU5VYWo3YTNqSW1aTG1CbVZ4VXNkazZ3RUNFdk9HNi0wTWpjVWh3?oc=5",
+      "source": "Moneycontrol"
+     }
+    ]
    },
    "news_checked": true
   },
@@ -8439,16 +8469,9 @@
    "raw_pct_change": -5.52,
    "corporate_action": null,
    "why": {
-    "headline": "Fundraise Or Deal (Mint)",
+    "headline": "Fundraise Or Deal (Moneycontrol)",
     "confidence": "medium",
     "evidence": [
-     {
-      "tier": "news",
-      "kind": "fundraise or deal",
-      "detail": "Upcoming IPOs: GMP comparison | NSE IPO, SS Retail IPO to Hero Motors IPO - Grey market winner is?",
-      "url": "https://news.google.com/rss/articles/CBMi4AFBVV95cUxNanRSUmM0cm92NGd6OWhLSXcxa1dnelZyLVpBU0tGZ0FRZ0dXZHNsQWhyTnNMQ2tESVdfMmFtWnFWLW81NGNDOU5ZTlpiekdSNHphdEh1dGsyZ1Q3N0JVeG84U2FKWnd4SjZxc2Y5bzlhYVg3OWQtWU9tRS04OWZrWFFwT2s0UEVMZkVsQzAxZmx1VzhsbHFmVHdxZWw2Rk1mdnp1Z2NnbG5yWWVfYlVUYzRNQVJ3OVd5QjRnYTJlVDRfUnRhRmR3cU0yX3JxU3dRQ2l4WkxjU3JlNlRZQUFsd9IB5gFBVV95cUxNd2FtRTBCVDNETmRxcVdmekJLRnl0NkdZZ3M1T3dpTTNNTkZlUFY4R2ZPM3VHS1pnY2gzVXB3X1JEWVlOaE5Ra1ZRZTFIc2FxaGFLc3IzQXhrOU80dnhzSGFWSXBBSXI5VkFWSTFHMFBSOEJITmlWV2tkbWhCREV5UlpyM2RoTWNsOVl4NV9NZWxzQVVNdVg4NVpqQjFEbWN5d09HZXdkaTMtRk9kc3B1TkxBX1pDM29QTUJibjdhYkxGanBSM0lFSGZoUlZhajdHek1zdTJ5YW0xNmhsazhhT01oSDNsZw?oc=5",
-      "source": "Mint"
-     },
      {
       "tier": "news",
       "kind": "fundraise or deal",
@@ -8459,9 +8482,16 @@
      {
       "tier": "news",
       "kind": "fundraise or deal",
-      "detail": "Watch: India’s IPO boom: Is grey market premium a valuation sign for retail buyers? | Business Matters",
-      "url": "https://news.google.com/rss/articles/CBMi6gFBVV95cUxNSjRENkt6eGFURm8zUkdnbEFmSXl2QUpNSVB0dVBQSkZNMlhBNjBEakNiNGVpNW0xbzRIYUFpTjNHTnZsUWRCQ3g3anZ4WWlpczQ3eGdRWVFMOFIzQlkxd1BpM0pmbEswSUthZW9nUlNmMUs1Y0pqNklSVTJkZFMxbU5KOFA3VlJsVFZtdlozX1RZdmd0dGR1UF9mUDRUZWo4Snp4a29HZDhTcHUwTW52akpLTDBuMVZSd0hFTmR6NGJ4OTItWE9qRDdha21NczFuS21ST1VPOUpESjhDZXhVVHhxTUZhWTdqVXfSAfABQVVfeXFMUFBVWTNLWUptcnpHVjJCMXIydlI2aERuMlZMelB1YmpmdVNLczJuanNGNFoxeEJSdWJCakZteGlvRzBLOHNGYkROM1pWdmR2TTBxRWYta1JyR2hxYjdEdmFPRUhTTjNfV0hRXzhvN05IclNWTE5sTUVfTG1nb21VWVN4cnVLLWR2MWNvY0JFSWVpR1Q4UTVvUkE0cGNncDRic3BxejZENEtCS0dYa3RBU2pfS2dxYzNJMUUyVWQ2NlVvRnBrRS1ocUxGVWwxTy1odmZsQUpJMXZMa1JMUTkxZnl0bWV2WnRNRmhVVjFFYTdn?oc=5",
-      "source": "The Hindu"
+      "detail": "SS Retail IPO Day 2; GMP at 19%, subscribed 1.44 times; Check key details",
+      "url": "https://news.google.com/rss/articles/CBMi2AFBVV95cUxOTUNZTUludEV5Vy1WTndjdU5MUXlma0ZCMGNSc1ZFUF8zOGxWbmVPb01LVmVzX3g0X1U4dTNnNHVsbElYSXRDUnVsOWVIdktkdXhxMzNxaGwwajF3RjNNN0E0LWxrdGV5RHlpZUxadUJpcURoRnY5WU5jWElLSWxBVFVjTjJYOUVCa2RTQmFDY2VQUzhucUdMZDVMa2g5Z0xYbDVXS0pQcGZPa3NFWHhSYVppbi0wLUY3Ym9HWlgtQVM4Y0ZZN0ZFU09POTJBdjBONVc5Rmk2V2HSAd4BQVVfeXFMUFJMd2NHUzY4SElfMnJ0VWF3VHFmV0QzWHBJeEdjcXFPZElfU1FvaUxIQmdfWXdaR1BsZlRmaDV1TEx3TFhVMXN5T2JLWVdpSzFNTWxfZW90b2N0QWxjNjRfUjRUNjNjc2lqbm5xQzlCaUJ2Z3NaVnc3REktYnVrVlhCVUJ3UHJSbmxPdkNHUElidC1VZVBMeG8tZUM3d19GUG9kWUNPTm9KV3BXenZWZmc4SVVyeE1DVm5MeFpwazRCUlI3Y0hpNWNkVEptWFZzRjZHU3FaRDNmOU0yRlJ3?oc=5",
+      "source": "Economic Times"
+     },
+     {
+      "tier": "news",
+      "kind": "fundraise or deal",
+      "detail": "Upcoming IPOs: GMP comparison | NSE IPO, SS Retail IPO to Hero Motors IPO - Grey market winner is?",
+      "url": "https://news.google.com/rss/articles/CBMi4AFBVV95cUxNanRSUmM0cm92NGd6OWhLSXcxa1dnelZyLVpBU0tGZ0FRZ0dXZHNsQWhyTnNMQ2tESVdfMmFtWnFWLW81NGNDOU5ZTlpiekdSNHphdEh1dGsyZ1Q3N0JVeG84U2FKWnd4SjZxc2Y5bzlhYVg3OWQtWU9tRS04OWZrWFFwT2s0UEVMZkVsQzAxZmx1VzhsbHFmVHdxZWw2Rk1mdnp1Z2NnbG5yWWVfYlVUYzRNQVJ3OVd5QjRnYTJlVDRfUnRhRmR3cU0yX3JxU3dRQ2l4WkxjU3JlNlRZQUFsd9IB5gFBVV95cUxNd2FtRTBCVDNETmRxcVdmekJLRnl0NkdZZ3M1T3dpTTNNTkZlUFY4R2ZPM3VHS1pnY2gzVXB3X1JEWVlOaE5Ra1ZRZTFIc2FxaGFLc3IzQXhrOU80dnhzSGFWSXBBSXI5VkFWSTFHMFBSOEJITmlWV2tkbWhCREV5UlpyM2RoTWNsOVl4NV9NZWxzQVVNdVg4NVpqQjFEbWN5d09HZXdkaTMtRk9kc3B1TkxBX1pDM29QTUJibjdhYkxGanBSM0lFSGZoUlZhajdHek1zdTJ5YW0xNmhsazhhT01oSDNsZw?oc=5",
+      "source": "Mint"
      }
     ]
    },
