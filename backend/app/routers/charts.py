@@ -23,10 +23,11 @@ import re
 import threading
 import time
 
-from fastapi import APIRouter, Depends, HTTPException
+from fastapi import APIRouter, Depends, HTTPException, Request
 from sqlalchemy.orm import Session
 
 from .. import charts, ema_crossover, universe
+from ..json_file import file_response
 from ..database import get_db
 from ..models import Company
 
@@ -40,28 +41,23 @@ _MISS_TTL = 30 * 60        # a miss is retried every half hour
 
 
 @router.get("")
-def chart_index():
-    idx = charts.load_index()
-    return {
-        "generated_at": idx.get("generated_at"),
-        "latest_session": idx.get("latest_session"),
-        "companies": idx.get("companies", {}),
-    }
+def chart_index(request: Request):
+    return file_response(request, charts.INDEX_FILE, {"generated_at": None, "latest_session": None, "companies": {}})
 
 
 @router.get("/ema-crossover")
-def ema_crossover_index():
+def ema_crossover_index(request: Request):
     """Screen any Chart's own weekly 9/21 EMA crossover filter -- a separate
     screen from compute_stats()'s 50/200-day SMA trend classification."""
-    return ema_crossover.load()
+    return file_response(request, ema_crossover.CROSS_FILE, {"as_of": None, "count": 0, "crossovers": {}})
 
 
 @router.get("/universe")
-def universe_index():
+def universe_index(request: Request):
     """Every actively traded NSE/BSE company: name, last price, stage, base
     count. Small enough to search in the browser; the candles come per stock."""
-    idx = universe.index()
-    return {**idx, "charts_ready": universe.status()["charts_ready"]}
+    return file_response(request, universe.UNIVERSE_INDEX, {"as_of": None, "count": 0, "stocks": {}, "charts_ready": False},
+                         extra={"charts_ready": bool(universe.status()["charts_ready"])})
 
 
 @router.get("/u/{key}")

@@ -33,6 +33,7 @@ from sqlalchemy.orm import Session
 from .. import charts, kite
 from ..config import get_settings
 from ..database import get_db
+from ..json_file import file_response
 from ..models import Company
 
 router = APIRouter(tags=["market"])
@@ -216,27 +217,18 @@ def trending(db: Session = Depends(get_db)):
 
 # ----------------------------------------------------------------- setups
 @router.get("/api/market/setups")
-def market_setups():
+def market_setups(request: Request):
     """Stages, measures and the what-changed feed from the daily scan (app/setups.py)."""
-    path = charts.CHART_DIR / "setups.json"
-    try:
-        stamp = path.stat().st_mtime
-    except OSError:
-        return {"as_of": None, "counts": {}, "market_breakouts": [], "feed": [], "stocks": {}}
-    return _cached(f"setups:{stamp}", 3600, lambda: json.loads(path.read_text(encoding="utf-8")))
+    return file_response(request, charts.CHART_DIR / "setups.json",
+                         {"as_of": None, "counts": {}, "market_breakouts": [], "feed": [], "stocks": {}})
 
 
 @router.get("/api/market/setups-all")
-def market_setups_all():
+def market_setups_all(request: Request):
     """The same four screens run over every actively traded NSE/BSE company
     outside the board (scripts/update_charts.py's write_universe) -- only the
     stocks in a setup, in the compact shape setups.compact() writes."""
-    path = charts.CHART_DIR / "market_all.json"
-    try:
-        stamp = path.stat().st_mtime
-    except OSError:
-        return {"as_of": None, "feed": [], "stocks": {}}
-    return _cached(f"setups-all:{stamp}", 3600, lambda: json.loads(path.read_text(encoding="utf-8")))
+    return file_response(request, charts.CHART_DIR / "market_all.json", {"as_of": None, "feed": [], "stocks": {}})
 
 
 # ------------------------------------------------------------------- kite
