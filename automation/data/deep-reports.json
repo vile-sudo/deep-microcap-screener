@@ -121,6 +121,17 @@
    "skipped": {
     "VIMTALABS": "already covers Dec 2024"
    }
+  },
+  {
+   "on": "2026-09-17",
+   "written": [
+    "POWERINDIA:FY27-Q1",
+    "INOXINDIA:FY27-Q1"
+   ],
+   "spent_usd": null,
+   "skipped": {
+    "VIMTALABS": "already covers Dec 2024"
+   }
   }
  ],
  "seen_new_results": {
@@ -210,6 +221,24 @@
    "cost_usd": null,
    "api_equivalent_usd": 17.732,
    "minutes": 35.2
+  },
+  "POWERINDIA": {
+   "period": "FY27-Q1",
+   "on": "2026-09-17",
+   "engine": "claude-code",
+   "tokens_out": 190839,
+   "cost_usd": null,
+   "api_equivalent_usd": 21.228,
+   "minutes": 42.5
+  },
+  "INOXINDIA": {
+   "period": "FY27-Q1",
+   "on": "2026-09-17",
+   "engine": "claude-code",
+   "tokens_out": 163728,
+   "cost_usd": null,
+   "api_equivalent_usd": 23.64,
+   "minutes": 34.1
   }
  }
 }
