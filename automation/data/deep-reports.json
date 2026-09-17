@@ -132,6 +132,14 @@
    "skipped": {
     "VIMTALABS": "already covers Dec 2024"
    }
+  },
+  {
+   "on": "2026-09-17",
+   "written": [
+    "FILATEX:FY27-Q1"
+   ],
+   "spent_usd": null,
+   "skipped": {}
   }
  ],
  "seen_new_results": {
@@ -239,6 +247,15 @@
    "cost_usd": null,
    "api_equivalent_usd": 23.64,
    "minutes": 34.1
+  },
+  "FILATEX": {
+   "period": "FY27-Q1",
+   "on": "2026-09-17",
+   "engine": "claude-code",
+   "tokens_out": 162506,
+   "cost_usd": null,
+   "api_equivalent_usd": 16.637,
+   "minutes": 33.6
   }
  }
 }
