@@ -5,7 +5,7 @@ Runs inside scripts/update_charts.py after the daily candles are rebuilt,
 and writes chart_data/setups.json. Everything here is computed from the
 split-adjusted daily candles; nothing is entered by hand.
 
-Two screens share one engine -- the same breakout, exit and stage rules --
+Four screens share one engine -- the same breakout, exit and stage rules --
 and differ only in what counts as a base:
 
 VCP screen
@@ -14,6 +14,20 @@ VCP screen
             sessions (3 weeks) old, the pullback from it is no deeper than 35%,
             and the stock ran up at least 25% into it.
   Forming   also needs an uptrend: above the 200-day, 50-day above 200-day.
+
+Blue sky screen (at least a year of trading history)
+  Base      A VCP base whose pivot is also the highest price in all the data
+            held for the stock (NSE/BSE files back to about January 2020) --
+            no one who bought higher is waiting to sell at break-even. A
+            company listed before 2020 may have traded higher before then.
+  Forming   also needs an uptrend, as VCP.
+
+Multi-year breakouts screen
+  Base      The highest high of up to 1,250 sessions (~5 years) is the pivot.
+            It is a base when that high is at least 250 sessions (a year) old
+            -- nothing has closed the gap since -- and the stock has held no
+            deeper than 50% under it.
+  Forming   also needs an uptrend, as VCP.
 
 IPO base screen (companies listed within the last two years)
   Listing   The first session the stock appears in the exchange's daily
@@ -66,6 +80,10 @@ FRESH = 5
 FORMING_BAND = 0.85
 VERGE = 0.95
 IPO_SKIP = 5          # listing-day sessions left out of "usual volume"
+BLUESKY_MIN_HISTORY = 250   # a year of sessions, so a new listing isn't trivially at its high
+MULTI_LOOKBACK = 1250       # ~5 years
+MULTI_MIN_AGE = 250         # the ceiling has held for a year or more
+MULTI_MAX_DEPTH = 0.50
 
 
 # ------------------------------------------------------------ primitives
@@ -150,6 +168,28 @@ class Series:
             return None
         return {"pivot": pivot, "peak": p, "start": p, "end": end, "low": low, "depth": depth, "age": age}
 
+    def bluesky_base(self, end: int) -> dict | None:
+        """A VCP base whose pivot is also the highest high in all the data up to `end`."""
+        if end + 1 < BLUESKY_MIN_HISTORY:
+            return None
+        b = self.base(end)
+        return b if b and b["pivot"] >= self.hmax.q(0, end) else None
+
+    def multiyear_base(self, end: int) -> dict | None:
+        """Multi-year base: the highest high of up to ~5 years, a year or more old, at most 50% deep."""
+        start = max(0, end - MULTI_LOOKBACK + 1)
+        if end - start < MULTI_MIN_AGE:
+            return None
+        pivot, p = self._hidx.q(start, end)
+        age = end - p
+        if age < MULTI_MIN_AGE:
+            return None
+        low = self.lmin.q(p + 1, end)
+        depth = 1 - low / pivot
+        if depth > MULTI_MAX_DEPTH or depth <= 0:
+            return None
+        return {"pivot": pivot, "peak": p, "start": p, "end": end, "low": low, "depth": depth, "age": age}
+
     # -------- volume and trend
     def usual_vol(self, i: int, ipo: bool = False) -> float | None:
         """Average volume of the sessions before i: 50-day, or since listing for young IPOs."""
@@ -172,14 +212,19 @@ class Series:
         return False
 
 
-class Screen:
-    """What differs between the VCP and IPO screens."""
+SCREENS = ("vcp", "bluesky", "multiyear", "ipo")
 
-    def __init__(self, s: Series, ipo: bool):
-        self.s, self.ipo = s, ipo
+
+class Screen:
+    """What differs between the screens: what counts as a base, and (IPO only)
+    usual volume, the trailing average and whether forming needs an uptrend."""
+
+    def __init__(self, s: Series, kind: str):
+        self.s, self.kind, self.ipo = s, kind, kind == "ipo"
+        self._base = {"vcp": s.base, "ipo": s.ipo_base, "bluesky": s.bluesky_base, "multiyear": s.multiyear_base}[kind]
 
     def base(self, end: int):
-        return self.s.ipo_base(end) if self.ipo else self.s.base(end)
+        return self._base(end)
 
     def avg(self, i: int):
         return self.s.usual_vol(i, self.ipo)
@@ -358,11 +403,14 @@ def _event_summary(s: Series, ev: dict, t: int) -> dict:
     return out
 
 
-def analyze(rows: list[list], rs_rank, listed: str | None = None) -> dict | None:
+def analyze(rows: list[list], rs_rank, listed: str | None = None, long_bases: bool = False) -> dict | None:
     """Everything Market view shows for one company.
 
     Top level: the shared measures plus the VCP screen. `ipo`: the IPO base
-    screen, present only when the company listed within the data window."""
+    screen, present only when the company listed within the data window.
+    `bluesky` / `multiyear`: only with long_bases, and a year of history --
+    both need the full price history to mean anything, which the board's
+    series have and Screen any Chart's universe (UNIVERSE_SESSIONS) does not."""
     s = Series(rows)
     t = s.n - 1
     if s.n < 20 or (s.n < 80 and not listed):
@@ -385,13 +433,17 @@ def analyze(rows: list[list], rs_rank, listed: str | None = None) -> dict | None
         "mood": "Powering up" if s.n > 5 and s.c[t] >= s.c[t - 5] else "Cooling off",
     }
     if s.n >= 80:
-        vcp = _screen_view(Screen(s, ipo=False))
+        vcp = _screen_view(Screen(s, "vcp"))
     else:
         vcp = {"stage": None, "prev_stage": None, "pivot": None, "now_vs_pivot": None, "flags": [], "verge": False}
     out.update(vcp)
     feed = _feed(vcp, out, s, t, "vcp")
+    if long_bases and s.n >= BLUESKY_MIN_HISTORY:
+        for kind in ("bluesky", "multiyear"):
+            out[kind] = _screen_view(Screen(s, kind))
+            feed += _feed(out[kind], out, s, t, kind)
     if listed:
-        ipo = _screen_view(Screen(s, ipo=True))
+        ipo = _screen_view(Screen(s, "ipo"))
         ipo["listed"] = listed
         ipo["sessions_listed"] = s.n
         ipo["listing_high"] = s.hmax.q(0, t)
@@ -399,6 +451,44 @@ def analyze(rows: list[list], rs_rank, listed: str | None = None) -> dict | None
         out["ipo"] = ipo
         feed += _feed(ipo, out, s, t, "ipo")
     out["feed"] = feed
+    return out
+
+
+_VIEW_KEYS = ("stage", "pivot", "now_vs_pivot", "flags", "verge", "base", "breakout", "note")
+_IPO_KEYS = ("listed", "sessions_listed", "listing_high", "from_listing_high")
+_SHARED_KEYS = ("asof", "last", "rs", "atr_ratio", "vol_dryup", "updown", "from_high", "mood")
+
+
+def compact(a: dict | None) -> dict | None:
+    """analyze()'s output trimmed to what Market view's cards and list need,
+    for the whole-market file: only the latest breakout of each screen's
+    history (the IPO "broke out in the last ..." windows and the CSV read no
+    further back), and a screen left out entirely when it has nothing to show.
+    None when no screen has the stock in a setup."""
+    if not a:
+        return None
+
+    def view(v: dict, extra=()) -> dict | None:
+        bos = v.get("breakouts") or []
+        if not v.get("stage") and not bos:
+            return None
+        out = {k: v[k] for k in _VIEW_KEYS + extra if v.get(k) not in (None, [], False)}
+        out["stage"] = v.get("stage")
+        if bos:
+            out["breakouts"] = bos[:1]
+        return out
+
+    screens = {"vcp": view(a)}
+    for kind in ("bluesky", "multiyear"):
+        screens[kind] = view(a[kind]) if a.get(kind) else None
+    screens["ipo"] = view(a["ipo"], _IPO_KEYS) if a.get("ipo") else None
+    if not any(screens.values()):
+        return None
+    out = {k: a[k] for k in _SHARED_KEYS if k in a}
+    out.update(screens["vcp"] or {"stage": None})
+    for kind in ("bluesky", "multiyear", "ipo"):
+        if screens[kind]:
+            out[kind] = screens[kind]
     return out
 
 
@@ -421,11 +511,17 @@ def _inr(x: float) -> str:
     return f"₹{x:,.2f}".rstrip("0").rstrip(".") if x < 1000 else f"₹{x:,.1f}".rstrip("0").rstrip(".")
 
 
+# (what it broke out of, what the pivot is called, what the base is called)
+_WORDS = {"vcp": ("its base", "pivot", "base"),
+          "ipo": ("its IPO base", "post-listing high", "IPO base"),
+          "bluesky": ("its base at an all-time high", "all-time high", "base at an all-time high"),
+          "multiyear": ("its multi-year base", "multi-year high", "multi-year base")}
+
+
 def _feed(v: dict, common: dict, s: Series, t: int, screen: str) -> list[dict]:
     """What changed for this stock on the latest session, as sentences."""
     items, bo, c = [], v.get("breakout"), s.c[t]
-    what = "its IPO base" if screen == "ipo" else "its base"
-    pivot_name = "post-listing high" if screen == "ipo" else "pivot"
+    what, pivot_name, noun = _WORDS[screen]
     if v["stage"] == "fresh" and bo and bo["sessions"] == 0:
         items.append(("breakout", 1, f"broke out of {what}. Closed {_inr(c)} — {abs(v['now_vs_pivot'])}% above the "
                                      f"{_inr(bo['pivot'])} {pivot_name}, on {bo['vol_x']}× its usual trading."))
@@ -437,9 +533,9 @@ def _feed(v: dict, common: dict, s: Series, t: int, screen: str) -> list[dict]:
         items.append(("exit", 3, f"{why} ({'+' if x['result_pct'] >= 0 else ''}{x['result_pct']}% from the breakout)."))
     if v["stage"] == "forming" and v.get("verge") and not (v["prev_stage"] == "forming" and s.c[t - 1] >= v["pivot"] * VERGE):
         items.append(("verge", 4, f"is on the verge — {abs(v['now_vs_pivot'])}% under the {_inr(v['pivot'])} {pivot_name}"
-                                  f" after a {v['base']['weeks']}-week {'IPO ' if screen == 'ipo' else ''}base." if v.get("base") else ""))
+                                  f" after a {v['base']['weeks']}-week {noun}." if v.get("base") else ""))
     elif v["stage"] == "forming" and v["prev_stage"] != "forming" and v.get("base"):
-        items.append(("forming", 5, f"started setting up — a {v['base']['weeks']}-week {'IPO ' if screen == 'ipo' else ''}base, "
+        items.append(("forming", 5, f"started setting up — a {v['base']['weeks']}-week {noun}, "
                                     f"{abs(v['now_vs_pivot'])}% under the {_inr(v['pivot'])} {pivot_name}."))
     if screen == "vcp" and not items:
         if common["high52_today"]:
@@ -451,18 +547,28 @@ def _feed(v: dict, common: dict, s: Series, t: int, screen: str) -> list[dict]:
 
 # ------------------------------------------------------------ market-wide
 def market_breakout_today(rows: list[list], listed: str | None = None) -> dict:
-    """Did this stock break out on its latest session, under either screen? Cheap check."""
+    """Did this stock break out on its latest session, under any screen? Cheap check.
+
+    `rows` is the full history. VCP and IPO base only ever look back a year,
+    so they run on that; Blue sky and Multi-year need everything, and that
+    bigger build is skipped unless the close is above every high of the
+    last LOOKBACK sessions -- which a breakout under either one needs anyway."""
     out = {}
-    s = Series(rows)
-    t = s.n - 1
+    t = len(rows) - 1
     if t < 21:
         return out
-    for key, ipo in (("vcp", False), ("ipo", True)):
-        if ipo and not listed or (not ipo and s.n < 80):
-            continue
-        sc = Screen(s, ipo)
-        b = sc.base(t - 1)
-        if sc.is_breakout(t, b) and sc.forming_ok(t):
-            out[key] = {"close": s.c[t], "chg_pct": round((s.c[t] / s.c[t - 1] - 1) * 100, 2), "pivot": b["pivot"],
-                        "above_pct": round((s.c[t] / b["pivot"] - 1) * 100, 1), "vol_x": round(s.v[t] / sc.avg(t), 1)}
+    year = Series(rows if listed else rows[-250:])
+    wanted = [("vcp", year)] if year.n >= 80 else []
+    if listed:
+        wanted.append(("ipo", year))
+    if t >= BLUESKY_MIN_HISTORY and rows[t][4] > max(r[2] for r in rows[t - LOOKBACK:t]):
+        full = Series(rows)
+        wanted += [("bluesky", full), ("multiyear", full)]
+    for key, s in wanted:
+        n = s.n - 1
+        sc = Screen(s, key)
+        b = sc.base(n - 1)
+        if sc.is_breakout(n, b) and sc.forming_ok(n):
+            out[key] = {"close": s.c[n], "chg_pct": round((s.c[n] / s.c[n - 1] - 1) * 100, 2), "pivot": b["pivot"],
+                        "above_pct": round((s.c[n] / b["pivot"] - 1) * 100, 1), "vol_x": round(s.v[n] / sc.avg(n), 1)}
     return out

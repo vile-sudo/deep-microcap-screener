@@ -226,6 +226,19 @@ def market_setups():
     return _cached(f"setups:{stamp}", 3600, lambda: json.loads(path.read_text(encoding="utf-8")))
 
 
+@router.get("/api/market/setups-all")
+def market_setups_all():
+    """The same four screens run over every actively traded NSE/BSE company
+    outside the board (scripts/update_charts.py's write_universe) -- only the
+    stocks in a setup, in the compact shape setups.compact() writes."""
+    path = charts.CHART_DIR / "market_all.json"
+    try:
+        stamp = path.stat().st_mtime
+    except OSError:
+        return {"as_of": None, "feed": [], "stocks": {}}
+    return _cached(f"setups-all:{stamp}", 3600, lambda: json.loads(path.read_text(encoding="utf-8")))
+
+
 # ------------------------------------------------------------------- kite
 def _check_admin(key: str, request: Request | None = None) -> None:
     # a logged-in dashboard admin needs no separate key

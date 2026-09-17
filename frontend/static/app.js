@@ -138,6 +138,9 @@ const ICON_PATHS={
   rocket:'<path d="M12 3c3.5 2 5 5.5 5 9l-2 3H9l-2-3c0-3.5 1.5-7 5-9z"/><circle cx="12" cy="9.5" r="1.6"/><path d="M9.5 18L8 21M14.5 18L16 21"/>',
   mountain:'<path d="M3 19.5l6-9 3.5 5 2.5-3.5 6 7.5z"/><path d="M14.5 5.5h4v4"/>',
   done:'<path d="M5.5 21V4"/><path d="M5.5 4.5h11l-2.2 3.8 2.2 3.8h-11"/><path d="M13 17.5l1.8 1.8 3.7-3.7"/>',
+  sun:'<circle cx="12" cy="12" r="3.8"/><path d="M12 3v2.2M12 18.8V21M3 12h2.2M18.8 12H21M5.6 5.6l1.6 1.6M16.8 16.8l1.6 1.6M5.6 18.4l1.6-1.6M16.8 7.2l1.6-1.6"/>',
+  climb:'<path d="M5 19L19 5"/><path d="M9.5 5H19v9.5"/>',
+  sprout:'<path d="M12 21v-9"/><path d="M12 12c0-4-2.5-6.5-7-6.5 0 4 2.5 6.5 7 6.5z"/><path d="M12 14.5c0-3.5 2.2-5.5 6.5-5.5 0 3.5-2.2 5.5-6.5 5.5z"/>',
 };
 const icon = name => `<svg class="ic-svg" viewBox="0 0 24 24" aria-hidden="true">${ICON_PATHS[name]||ICON_PATHS.folder}</svg>`;
 const THEME_ICON=[[/defen|aero/i,'shield'],[/pharma/i,'flask'],[/medical|diagnos/i,'plus'],[/health|testing/i,'pulse'],[/electric|energy|power/i,'bolt'],
@@ -247,9 +250,9 @@ let sortKey='final_score', sortDir=-1;
      method    - how the scores work
    Moving to another page clears whatever was picked on the last one, so a theme
    chosen on Themes never quietly narrows what Screen filters shows. */
-const VIEWS=['overview','themes','market','watchlist','companies','filters','gallery','reports','sectors','movers','method'];
+const VIEWS=['overview','themes','market','watchlist','companies','filters','gallery','reports','sectors','movers','news','method'];
 const NAV={'overview-link':'overview','themes-link':'themes','market-link':'market','watchlist-link':'watchlist',
-           'companies-link':'companies','filters-link':'filters','gallery-link':'gallery','reports-link':'reports','sectors-link':'sectors','movers-link':'movers'};
+           'companies-link':'companies','filters-link':'filters','gallery-link':'gallery','reports-link':'reports','sectors-link':'sectors','movers-link':'movers','news-link':'news'};
 const LENSES=['overhang','heavycap','guide15','guideany','turn','haslens','ipo','asme','auto'];
 const TILE_LABEL={all:'Companies on the board',overhang:'High P/E + heavy CWIP',guide15:'Management guides > 15%',
                   turn:'PAT turned positive',nolens:'Awaiting the capex pass'};
@@ -270,6 +273,7 @@ function setView(v, opts){
   if(VIEW==='reports'){ if(!opts.keep) RP.code=null; openReports(); }
   if(VIEW==='sectors'){ if(!opts.keep){ SC.slug=null; SC.edition=null; } openSectors(); }
   if(VIEW==='movers') openMovers();
+  if(VIEW==='news') openNews();
   const ts=document.getElementById('top-search');
   if(ts && VIEW!=='companies') ts.value='';
 }
@@ -1521,6 +1525,32 @@ function galStage(d){
   if(d.universe) return (d.stats||{}).stage || null;
   return (BP.data && BP.data.stocks && BP.data.stocks[d.code] && BP.data.stocks[d.code].stage) || null;
 }
+/* Weekly 9/21 EMA crossover -- Screen any Chart's own filter, deliberately
+   run as a separate pipeline from compute_stats()'s 50/200-day SMA trend
+   classification (see backend/app/ema_crossover.py). Its own small index,
+   fetched once, keyed the same way GAL.companies/GU.rows are. */
+const GAL_CROSS_LABEL={bull:['Bullish crossover','cross-bull','⤴'], bear:['Bearish crossover','cross-bear','⤵']};
+/* A stock the screen catches before the cross itself -- converging, not
+   crossed yet (backend/app/ema_crossover.py's forming()). One filter option
+   either way (its own direction still shows on the badge/chart). */
+function crossBadge(c){
+  if(!c) return null;
+  if(c.state==='forming') return {cls:'cross-forming', icon:c.direction==='bull'?'↗':'↘', label:'Crossover forming',
+    title:`Weekly 9 and 21 EMA are ${c.gap_pct}% apart and converging -- no cross yet`};
+  const l=GAL_CROSS_LABEL[c.direction]; if(!l) return null;
+  return {cls:l[1], icon:l[2], label:l[0],
+    title:`Weekly 9 EMA crossed the 21 EMA ${c.weeks_ago===0?'this week':c.weeks_ago+' week'+(c.weeks_ago===1?'':'s')+' ago'}`};
+}
+const GX={map:null, loading:null};
+function gxLoad(){
+  GX.loading = GX.loading || fetchJSON('/api/charts/ema-crossover').catch(()=>({crossovers:{}})).then(j=>{
+    GX.map=j.crossovers||{};
+    if(VIEW==='gallery') renderGallery();
+    return GX.map;
+  });
+  return GX.loading;
+}
+function galCross(d){ return d && GX.map ? (GX.map[d.code] || null) : null; }
 const GMONTHS=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
 const GSERIES=new Map(), GPROM=new Map(), GQUEUE=[];
 let GAL=null, GALLOADING=null, GACTIVE=0, GOBS=null;
@@ -1574,6 +1604,7 @@ async function openGallery(){
     await GALLOADING;
   }
   guLoad();
+  if(!GX.map) gxLoad();
   /* board companies' stage comes from Market view's own data (BP.data);
      universe stocks already carry theirs in the index (GU.rows) */
   if(!BP.data){
@@ -1584,7 +1615,7 @@ async function openGallery(){
 
 function buildGalControls(){
   const tr=document.getElementById('gtrend'), th=document.getElementById('gtheme'), so=document.getElementById('gsort');
-  const sc=document.getElementById('gscope'), sg=document.getElementById('gstage');
+  const sc=document.getElementById('gscope'), sg=document.getElementById('gstage'), cr=document.getElementById('gcross');
   const byStatus={}, byTheme={};
   DATA.forEach(d=>{ const s=galStats(d), k=s?s.status:'none'; byStatus[k]=(byStatus[k]||0)+1; byTheme[base(d)]=(byTheme[base(d)]||0)+1; });
   tr.innerHTML='<option value="">Trend: all</option>'
@@ -1592,6 +1623,9 @@ function buildGalControls(){
     + (byStatus.none?`<option value="none">No chart yet (${byStatus.none})</option>`:'');
   sg.innerHTML='<option value="">Breakout stage: any</option>'
     + BP_STAGES.map(x=>`<option value="${x.k}" title="${esc(x.hint)}">${esc(x.label)}${x.k==='fresh'?' 🚀':''}</option>`).join('');
+  cr.innerHTML='<option value="">EMA crossover: any</option>'
+    + Object.entries(GAL_CROSS_LABEL).map(([k,[l,,icon]])=>`<option value="${k}" title="The weekly 9 EMA crossed the 21 EMA within the last 8 weeks -- its own screen, separate from Trend">${icon} ${esc(l)}</option>`).join('')
+    + `<option value="forming" title="The weekly 9 and 21 EMA are converging but haven't crossed yet">↗ Crossover forming</option>`;
   th.innerHTML='<option value="">Theme: all</option>'
     + Object.entries(byTheme).sort((a,b)=>b[1]-a[1]).map(([t,n])=>`<option value="${esc(t)}">${esc(shortT(t))} (${n})</option>`).join('');
   so.innerHTML=Object.entries(GAL_SORTS).map(([k,v])=>`<option value="${k}">${v.l}</option>`).join('');
@@ -1599,8 +1633,8 @@ function buildGalControls(){
   document.getElementById('gallery-asof').textContent = GAL.latest_session ? 'Last session: '+galDay(GAL.latest_session) : '';
   let t=0;
   document.getElementById('gq').oninput=()=>{ clearTimeout(t); GSHOW=GAL_PAGE; t=setTimeout(renderGallery,120); };
-  [tr,sg,th,so,sc].forEach(el=>el.onchange=()=>{ GSHOW=GAL_PAGE; renderGallery(); });
-  document.getElementById('gclear').onclick=()=>{ document.getElementById('gq').value=''; tr.value=''; sg.value=''; th.value=''; so.value='high'; sc.value='all'; GSHOW=GAL_PAGE; renderGallery(); };
+  [tr,sg,cr,th,so,sc].forEach(el=>el.onchange=()=>{ GSHOW=GAL_PAGE; renderGallery(); });
+  document.getElementById('gclear').onclick=()=>{ document.getElementById('gq').value=''; tr.value=''; sg.value=''; cr.value=''; th.value=''; so.value='high'; sc.value='all'; GSHOW=GAL_PAGE; renderGallery(); };
 
   const grid=document.getElementById('ggrid');
   grid.onclick=e=>{
@@ -1630,6 +1664,7 @@ function galRows(){
   const q=document.getElementById('gq').value.trim().toLowerCase();
   const tr=document.getElementById('gtrend').value, th=document.getElementById('gtheme').value;
   const stage=(document.getElementById('gstage')||{}).value||'';
+  const cross=(document.getElementById('gcross')||{}).value||'';
   const so=GAL_SORTS[document.getElementById('gsort').value]||GAL_SORTS.high;
   const scope=(document.getElementById('gscope')||{}).value||'all';
   const val=d=>{ if(so.d) return so.d(d); const s=galStats(d); return s ? so.s(s) : null; };
@@ -1638,6 +1673,11 @@ function galRows(){
   return pool.filter(d=>{
     if(th && base(d)!==th) return false;
     if(stage && galStage(d)!==stage) return false;
+    if(cross){
+      const c=galCross(d);
+      if(!c) return false;
+      if(cross==='forming' ? c.state!=='forming' : !(c.state==='crossed' && c.direction===cross)) return false;
+    }
     const s=galStats(d);
     if(tr==='none' ? !!s : (tr && (!s || s.status!==tr))) return false;
     if(q && !(d._n+' '+(s?String(s.symbol).toLowerCase():'')).includes(q)) return false;
@@ -1675,11 +1715,17 @@ function galCard(d){
      stages (forming/climbing/played) stay in the filter, not the card, so
      an already-busy grid doesn't get louder for names browsed by default */
   const fresh=galStage(d)==='fresh';
+  /* matches exactly what the crossover filter matches (crossed or forming),
+     so a filtered card is never left without its badge */
+  const xb=crossBadge(galCross(d));
+  const badge=fresh?`<span class="gc-badge gc-stage-fresh" title="Cleared the pivot in the last 5 sessions">🚀 Fresh breakout</span>`
+    :xb?`<span class="gc-badge gc-${xb.cls}" title="${esc(xb.title)}">${xb.icon} ${esc(xb.label)}</span>`
+    :(st?`<span class="gc-badge ${st[1]}">${st[0]}</span>`:'');
   const foot = d.universe
     ? `<span class="gc-theme">${esc(d.exchange||'')}${d.stats&&d.stats.rs!=null?` · RS ${d.stats.rs}`:''}</span><span class="gc-off">Not on the board</span>`
     : `<span class="gc-theme">${esc(shortT(base(d)))}</span><button type="button" class="gc-pin${on?' on':''}" data-gpin="${esc(d.code)}" title="${on?'Remove from':'Add to'} watchlist" aria-label="Star ${esc(d.name)}">${on?'★':'☆'}</button>`;
   return `<article class="gcard${d.universe?' gc-uni':''}" data-gcode="${esc(d.code)}" tabindex="0" aria-label="Open the chart for ${esc(d.name)}">
-    <div class="gc-head"><span class="gc-tick">${esc(galTicker(d,s))}</span><span class="gc-name" title="${esc(d.name)}">${esc(d.name)}</span>${fresh?`<span class="gc-badge gc-stage-fresh" title="Cleared the pivot in the last 5 sessions">🚀 Fresh breakout</span>`:(st?`<span class="gc-badge ${st[1]}">${st[0]}</span>`:'')}</div>
+    <div class="gc-head"><span class="gc-tick">${esc(galTicker(d,s))}</span><span class="gc-name" title="${esc(d.name)}">${esc(d.name)}</span>${badge}</div>
     <div class="gc-chart" data-gchart="${esc(d.code)}">${galThumb(d.code)}</div>
     <div class="gc-stats">${galStatLine(d.code, s)}</div>
     <div class="gc-foot">${foot}</div>
@@ -1751,15 +1797,48 @@ function galRec(code){
 /* Candles, 50/200-day averages, volume and the 52-week high, as one SVG.
    The averages are computed over the whole year and then windowed, so the
    200-day line is real from its first visible point rather than warming up. */
+/* The weekly 9/21 EMA overlay for a stock the "EMA crossover" filter has
+   flagged -- the same weekly-close EMA backend/app/ema_crossover.py computes,
+   just carried back onto every daily candle in that week (flat within the
+   week, stepping up at each week's close) so it can sit on the same daily
+   chart rather than needing its own weekly view. Kept out of candleSVG's own
+   50/200-day SMA path entirely; only used when a stock actually has a cross. */
+function weeklyEmaAlign(rows, fast, slow){
+  const weekKey=iso=>{
+    const d=new Date(iso+'T00:00:00Z'), dayNr=(d.getUTCDay()+6)%7;
+    d.setUTCDate(d.getUTCDate()-dayNr+3);
+    const firstThu=new Date(Date.UTC(d.getUTCFullYear(),0,4));
+    firstThu.setUTCDate(firstThu.getUTCDate()-((firstThu.getUTCDay()+6)%7)+3);
+    return d.getUTCFullYear()+'-'+(1+Math.round((d-firstThu)/6.048e8));
+  };
+  const keys=rows.map(r=>weekKey(r[0])), order=[], close={};
+  keys.forEach((k,i)=>{ if(!(k in close)) order.push(k); close[k]=rows[i][4]; });
+  const closes=order.map(k=>close[k]);
+  const ema=(vals,n)=>{
+    if(vals.length<n) return vals.map(()=>null);
+    const k=2/(n+1); const out=new Array(vals.length).fill(null);
+    let e=vals.slice(0,n).reduce((a,b)=>a+b,0)/n; out[n-1]=e;
+    for(let i=n;i<vals.length;i++){ e=vals[i]*k+e*(1-k); out[i]=e; }
+    return out;
+  };
+  const ef=ema(closes,fast), es=ema(closes,slow), idx={}; order.forEach((k,i)=>idx[k]=i);
+  return [keys.map(k=>ef[idx[k]]), keys.map(k=>es[idx[k]])];
+}
+
 /* o: {w,h,sessions, axis, ma (default true), hi52 (default true), volColor,
-       pivot: price for a dashed pivot line, box: {start,end,low,high,label} base box} */
+       pivot: price for a dashed pivot line, box: {start,end,low,high,label} base box,
+       weeklyEma: [fast,slow] -- draw that weekly EMA pair instead of the 50/200-day SMA} */
 function candleSVG(rows,o){
   const W=o.w, H=o.h, axis=!!o.axis, padR=axis?62:2, padT=axis?14:5, padB=axis?24:3;
   const useMA=o.ma!==false, useHi=o.hi52!==false;
   const closes=rows.map(r=>r[4]);
   const ma=n=>{ let sum=0; return closes.map((c,i)=>{ sum+=c; if(i>=n) sum-=closes[i-n]; return i>=n-1 ? sum/n : null; }); };
   const start=Math.max(0, rows.length-o.sessions);
-  const vis=rows.slice(start), m50=ma(50).slice(start), m200=ma(200).slice(start);
+  const vis=rows.slice(start);
+  const [maFast,maSlow,maClass]=o.weeklyEma
+    ? [...weeklyEmaAlign(rows,o.weeklyEma[0],o.weeklyEma[1]), ['cs-ema9','cs-ema21']]
+    : [ma(50),ma(200),['cs-ma50','cs-ma200']];
+  const m50=maFast.slice(start), m200=maSlow.slice(start);
   const hi52=Math.max(...rows.map(r=>r[2]));
   let lo=Math.min(...vis.map(r=>r[3])), hi=Math.max(...vis.map(r=>r[2]));
   if(useMA) m50.concat(m200).forEach(v=>{ if(v!=null){ lo=Math.min(lo,v); hi=Math.max(hi,v); } });
@@ -1819,7 +1898,7 @@ function candleSVG(rows,o){
   });
   s+=`<path d="${upW}" class="cs-wick up"/><path d="${dnW}" class="cs-wick dn"/><path d="${upB}" class="cs-body up"/><path d="${dnB}" class="cs-body dn"/>`;
   const line=(arr,cls)=>{ let d=''; arr.forEach((v,i)=>{ if(v!=null) d+=(d?'L':'M')+f(X(i))+' '+f(y(v)); }); return d?`<path d="${d}" class="${cls}"/>`:''; };
-  if(useMA) s+=line(m50,'cs-ma50')+line(m200,'cs-ma200');
+  if(useMA) s+=line(m50,maClass[0])+line(m200,maClass[1]);
   if(o.pivot){
     const yp=y(o.pivot), lab=`pivot ₹${(+o.pivot).toLocaleString('en-IN',{maximumFractionDigits:2})}`;
     s+=`<line x1="0" x2="${plotW}" y1="${f(yp)}" y2="${f(yp)}" class="cs-pivot"/><g class="cs-pivlab"><rect x="2" y="${f(yp-15)}" width="${lab.length*6.1+10}" height="13" rx="2"/><text x="7" y="${f(yp-5)}">${lab}</text></g>`;
@@ -1879,6 +1958,10 @@ function cmRender(){
   const sessions=range[1]===Infinity ? maxSessions : Math.min(range[1],maxSessions);
   const W=1000, H=430, padR=62;
   const cur=a && bpBase(a);
+  /* the "EMA crossover" filter's own screen (backend/app/ema_crossover.py) --
+     only a stock it actually flagged switches its chart to the 9/21-week EMA
+     it was flagged on; every other chart keeps the 50/200-day average */
+  const xc=galCross(d), xb=crossBadge(xc);
   const boxes=CM.xray && has ? shown.map(b=>({start:b.base.start,end:b.base.end,high:b.pivot,low:b.base.low,
     label:`${b.base.weeks} wks`,flags:b.flags})).filter(b=>!cur || b.start!==cur.start || b.end!==cur.end) : null;
   const vis=has?ser.rows.slice(-sessions):[];
@@ -1889,6 +1972,7 @@ function cmRender(){
   openModal(`
     <div class="cm-head">
       <span class="gc-tick">${esc(galTicker(d,s))}</span><h3>${esc(d.name)}</h3>${st?`<span class="gc-badge ${st[1]}">${st[0]}</span>`:''}
+      ${xb?`<span class="gc-badge gc-${xb.cls}" title="${esc(xb.title)}">${xb.icon} ${esc(xb.label)}</span>`:''}
       <span class="tc">${s?esc(s.exchange)+' · ':''}${d.universe?'not on the board':esc(shortT(base(d)))}</span>
       <button type="button" class="btn cm-share" id="cm-share" title="Copy a summary to share">⤴ Share</button>
     </div>
@@ -1905,11 +1989,11 @@ function cmRender(){
       </div>
       <div class="cm-pills" id="cm-pills">${CM_RANGES.map(([lab,n])=>`<button type="button" class="cm-pill${CM.range===lab?' on':''}" data-cmr="${lab}" ${n!==Infinity && n>maxSessions?'disabled':''}>${lab}</button>`).join('')}</div>
       <div class="cm-read" id="cm-read">${read(vis[vis.length-1])}</div>
-      <div class="cm-chart" id="cm-chart">${candleSVG(ser.rows,{w:W,h:H,sessions,axis:true,ma:CM.ma,
+      <div class="cm-chart" id="cm-chart">${candleSVG(ser.rows,{w:W,h:H,sessions,axis:true,ma:CM.ma,weeklyEma:xc?[9,21]:null,
         box:cur?{start:cur.start,end:cur.end,high:cur.pivot||a.pivot,low:cur.low,label:`${cur.weeks} wks`}:null,
         pivot:a?a.pivot:null, boxes})}</div>
       <div class="cm-legend">
-        <label><input type="checkbox" id="cm-ma" ${CM.ma?'checked':''}> 50/200-day average</label>
+        <label><input type="checkbox" id="cm-ma" ${CM.ma?'checked':''}> ${xc?'9/21-week EMA':'50/200-day average'}</label>
         <label><input type="checkbox" id="cm-rs" ${CM.rs?'checked':''}> RS rating</label>
         ${breakouts.length?`<label><input type="checkbox" id="cm-xray-cb" ${CM.xray?'checked':''}> Bases</label>`:''}
         <span><i class="lg lg-hi"></i>52-week high</span><span><i class="lg lg-vol"></i>Volume</span>
@@ -2225,6 +2309,155 @@ function mvWireRefresh(){
 }
 
 /* ==================================================================
+   News Channel — China/India/USA news for the sectors each one
+   dominates globally (see backend/app/news_channel.py: at most 3
+   newsdata.io requests a run, refreshed every 12 hours). A flat feed,
+   fetched once; every filter here runs client-side against it. */
+const NEWS_COUNTRY={cn:'China', in:'India', us:'USA'};
+const NEWS={data:null, loading:null, built:false, seen:undefined};
+
+function newsFetch(){
+  NEWS.loading = NEWS.loading || fetchJSON('/api/news-channel').catch(()=>null);
+  return NEWS.loading;
+}
+
+/* The nav badge is this feature's "alert": every item newer than the last
+   time News Channel was opened counts as unseen, the same "seen up to a
+   timestamp" idea the Alerts bell uses (AL.seen below), just kept as its
+   own cursor rather than folded into that bell -- this feed runs on its
+   own schedule and isn't the per-stock price signal that bell is for. */
+function newsSeen(){
+  if(NEWS.seen===undefined){ try{ NEWS.seen=localStorage.getItem('dms.news.seen'); }catch(e){ NEWS.seen=null; } }
+  return NEWS.seen;
+}
+function newsMarkSeen(){
+  const items=(NEWS.data && NEWS.data.items) || []; if(!items.length) return;
+  const latest=items.reduce((m,it)=>(it.published||'')>m?(it.published||''):m, '');
+  if(!latest || latest===NEWS.seen) return;
+  NEWS.seen=latest;
+  try{ localStorage.setItem('dms.news.seen', latest); }catch(e){}
+  newsBadgeUpdate();
+}
+function newsBadgeUpdate(){
+  const badge=document.getElementById('news-badge'); if(!badge) return;
+  const items=(NEWS.data && NEWS.data.items) || [];
+  const seen=newsSeen();
+  /* never opened before: everything counts as new, the same way a brand
+     new Alerts bell would rather than silently starting caught up */
+  const unseen=seen==null ? items.length : items.filter(it=>(it.published||'')>seen).length;
+  badge.textContent=unseen>99?'99+':unseen||'';
+  badge.hidden=!unseen;
+}
+/* Fetched once as soon as the app loads, not only when the page is opened,
+   the same way gallery-count and wcount are populated before their pages
+   are ever visited -- otherwise the badge could never show up unvisited. */
+newsFetch().then(j=>{ if(j && j.items){ NEWS.data=j; newsBadgeUpdate(); } });
+
+async function openNews(){
+  const body=document.getElementById('news-body');
+  if(!NEWS.data){
+    body.innerHTML='<p class="view-hint">Loading…</p>';
+    const j=await newsFetch();
+    if(!j || !j.items){ body.innerHTML='<p class="view-hint">No news fetched yet. It runs automatically every 12 hours.</p>'; return; }
+    NEWS.data=j;
+  }
+  if(!NEWS.built) newsBuildControls();
+  newsRender();
+  newsMarkSeen();
+}
+
+function newsBuildControls(){
+  NEWS.built=true;
+  const items=NEWS.data.items||[];
+  const cc=document.getElementById('news-country'), sc=document.getElementById('news-sector');
+  const byCountry={}, bySector={};
+  items.forEach(it=>{
+    byCountry[it.country]=(byCountry[it.country]||0)+1;
+    (it.sectors||[]).forEach(s=>{ bySector[s]=(bySector[s]||0)+1; });
+  });
+  cc.innerHTML='<option value="">All countries</option>'
+    + Object.entries(NEWS_COUNTRY).map(([k,l])=>`<option value="${k}">${esc(l)} (${byCountry[k]||0})</option>`).join('');
+  sc.innerHTML='<option value="">All sectors</option>'
+    + Object.entries(bySector).sort((a,b)=>b[1]-a[1]).map(([s,n])=>`<option value="${esc(s)}">${esc(s)} (${n})</option>`).join('');
+  [cc,sc].forEach(el=>el.onchange=newsRender);
+  document.getElementById('news-pm').onchange=newsRender;
+  document.getElementById('news-clear').onclick=()=>{
+    cc.value=''; sc.value=''; document.getElementById('news-pm').checked=false; newsRender();
+  };
+}
+
+function newsRows(){
+  const items=(NEWS.data && NEWS.data.items) || [];
+  const country=(document.getElementById('news-country')||{}).value||'';
+  const sector=(document.getElementById('news-sector')||{}).value||'';
+  const pmOnly=(document.getElementById('news-pm')||{}).checked;
+  return items.filter(it=>{
+    if(country && it.country!==country) return false;
+    if(sector && !(it.sectors||[]).includes(sector)) return false;
+    if(pmOnly && !it.price_move) return false;
+    return true;
+  });
+}
+
+function newsAgoISO(iso){
+  const t=Date.parse(iso);
+  if(isNaN(t)) return '';
+  const mins=Math.max(0,Math.round((Date.now()-t)/60000));
+  if(mins<60) return mins+'m ago';
+  const hrs=Math.round(mins/60);
+  if(hrs<48) return hrs+'h ago';
+  return Math.round(hrs/24)+'d ago';
+}
+const newsAgo = pub => pub ? newsAgoISO(pub.replace(' ','T')+'Z') : '';
+
+function newsItemHtml(it){
+  return `<article class="news-item">
+    <a class="news-title" href="${esc(it.link)}" target="_blank" rel="noopener">${esc(it.title)}</a>
+    <div class="news-meta">
+      <span class="news-tag news-country-tag">${esc(NEWS_COUNTRY[it.country]||it.country)}</span>
+      ${(it.sectors||[]).map(s=>`<span class="news-tag news-sector-tag">${esc(s)}</span>`).join('')}
+      ${it.price_move?'<span class="news-tag news-move-tag">Price move</span>':''}
+      <span>${esc(it.source||'')}</span><span>${esc(newsAgo(it.published))}</span>
+    </div>
+  </article>`;
+}
+
+function newsRender(){
+  const body=document.getElementById('news-body');
+  const rows=newsRows();
+  document.getElementById('news-count').textContent=`${fmtI(rows.length)} of ${fmtI((NEWS.data.items||[]).length)}`;
+  document.getElementById('news-asof').textContent = NEWS.data.as_of ? 'Last fetched: '+newsAgoISO(NEWS.data.as_of) : '';
+  body.innerHTML = rows.length ? `<div class="news-list">${rows.map(newsItemHtml).join('')}</div>`
+    + (ME&&ME.is_admin?`<div class="mv-admin"><button type="button" class="btn" id="news-refresh">Refresh now</button><span class="mv-refresh-msg" id="news-refresh-msg"></span></div>`:'')
+    : '<p class="view-hint">No news matches — clear the filters, or wait for the next scheduled fetch.</p>';
+  const btn=document.getElementById('news-refresh');
+  if(btn) newsWireRefresh();
+}
+
+function newsWireRefresh(){
+  const btn=document.getElementById('news-refresh'), msg=document.getElementById('news-refresh-msg');
+  if(!btn) return;
+  let countdown=null;
+  const disable=secs=>{
+    if(countdown) clearInterval(countdown);
+    btn.disabled=true; let left=secs;
+    const tick=()=>{ const m=Math.floor(left/60), s=left%60; btn.textContent=`Refresh now (${m}:${String(s).padStart(2,'0')})`;
+      if(left<=0){ clearInterval(countdown); countdown=null; btn.disabled=false; btn.textContent='Refresh now'; } left--; };
+    tick(); countdown=setInterval(tick,1000);
+  };
+  btn.onclick=async()=>{
+    btn.disabled=true; msg.textContent='Starting…';
+    try{
+      const r=await fetch('/api/admin/news-channel/run-now',{method:'POST',credentials:'same-origin'});
+      const j=await r.json().catch(()=>({}));
+      if(!r.ok) throw new Error(j.detail||('HTTP '+r.status));
+      msg.textContent='Queued — takes a minute or two. Reopen this page shortly to see it.';
+      disable(j.cooldown_seconds||900);
+    }catch(err){ msg.textContent=err.message; btn.disabled=false; }
+  };
+}
+
+/* ==================================================================
    Market view — stage screen
    Built from /api/market/setups, which the daily chart job writes (see
    backend/app/setups.py): every board company's stage (Forming, Fresh
@@ -2253,6 +2486,47 @@ const BP_IPO_TEXT={
   played:  {hint:'IPO base breakouts this year, stopped or trailed out', title:'IPO base breakouts — played out',
             desc:'Broke out of the IPO base this year, then fell 8% under the pivot or closed under the moving average.'},
 };
+/* The preset screens -- one engine, four definitions of a base (backend/app/setups.py).
+   A company's VCP fields sit at the top level of setups.json; every other
+   screen's sit under its key (a.ipo, a.bluesky, a.multiyear). */
+const BP_SCREENS=[
+  {k:'vcp', label:'Volatility Contraction Pattern (VCP)', short:'VCP', icon:'coil', tag:'a tight, quiet coil under a ceiling',
+   what:'the pivot', pivot:'the pivot', mw:'broke out', mwTitle:'broke out',
+   hero:"Spot the board's next leaders.", sub:(n,all)=>all ? `All ${all} actively traded NSE & BSE stocks are scanned after each trading day. Here are the few actually setting up. Pick a stage.` : 'Every company on the board is scanned after each trading day. Here are the few actually setting up. Pick a stage.'},
+  {k:'bluesky', label:'Blue sky', short:'Blue sky', icon:'sun', tag:'basing at its high — no sellers above',
+   what:'its base at an all-time high', pivot:'the all-time high', mw:'broke out', mwTitle:'broke out to a new high',
+   hero:'Stocks with no sellers above them.', sub:(n,all)=>`${all ? `All ${all} actively traded NSE & BSE stocks, scanned` : `${n} board companies with a year or more of trading, scanned`} after each trading day. Here are the ones basing at, or breaking out from, the highest price they have traded. Pick a stage.`},
+  {k:'multiyear', label:'Multi-year breakouts', short:'Multi-year breakouts', icon:'climb', tag:'clearing a year-plus base',
+   what:'its multi-year base', pivot:'the multi-year high', mw:'broke out', mwTitle:'cleared a multi-year base',
+   hero:'Catch stocks clearing a year-plus ceiling.', sub:(n,all)=>`${all ? `All ${all} actively traded NSE & BSE stocks, scanned` : `${n} board companies with a year or more of trading, scanned`} after each trading day. Here are the ones back near, or through, a high that held them for a year or more. Pick a stage.`},
+  {k:'ipo', label:'IPO base', short:'IPO base', icon:'sprout', tag:'a young listing’s first base',
+   what:'the IPO base', pivot:'the post-listing high', mw:'IPO base broke out', mwTitle:'IPO base broke out',
+   hero:'Catch recent listings breaking out of their IPO base.', sub:(n,all)=>`${all ? `All ${all} actively traded NSE & BSE stocks, scanned` : `${n} board companies listed in the last two years, scanned`} after each trading day. Here are the recent listings basing under, or breaking out of, their post-listing high. Pick a stage.`},
+];
+const bpScreen = () => BP_SCREENS.find(x=>x.k===BP.screen) || BP_SCREENS[0];
+const BP_SCREEN_TEXT={
+  ipo: BP_IPO_TEXT,
+  bluesky:{
+    forming: {hint:'basing at its all-time high', title:'Blue sky — on watch',
+              desc:'Strong stocks basing right at the highest price they have traded in our exchange data (back to January 2020): no earlier buyer is sitting above, waiting to sell at break-even. The ones within 5% of the pivot are flagged "on the verge"; a close above it on heavy volume takes them into blue sky.'},
+    fresh:   {hint:'broke out to a new high in the last 5 sessions', title:'Fresh blue sky breakouts',
+              desc:'Closed above a base at their all-time high on at least 1.4× their usual volume within the last five sessions, and still holding above the stop.'},
+    climbing:{hint:'broke out into blue sky, still rising', title:'Climbing in blue sky',
+              desc:'Broke out of a base at their all-time high more than five sessions ago and still in the trade: never 8% under the pivot, never a close under the 50-day average.'},
+    played:  {hint:'this year\'s blue sky breakouts, stopped or trailed out', title:'Blue sky breakouts — played out',
+              desc:'Broke out to a new all-time high this year, then either fell 8% under the pivot (stopped) or closed under the 50-day average (trailed out).'},
+  },
+  multiyear:{
+    forming: {hint:'within 15% of a year-plus ceiling', title:'Multi-year bases — on watch',
+              desc:'Stocks in an uptrend and back within 15% of a high that has capped them for a year or more (looking back up to five years), never more than 50% under it since. The ones within 5% are flagged "on the verge"; a close above it on heavy volume is the breakout.'},
+    fresh:   {hint:'cleared a year-plus base in the last 5 sessions', title:'Fresh multi-year breakouts',
+              desc:'Closed above a high that had held for a year or more, on at least 1.4× their usual volume, within the last five sessions — and still holding above the stop.'},
+    climbing:{hint:'cleared a year-plus base, still rising', title:'Climbing out of a multi-year base',
+              desc:'Cleared a year-plus base more than five sessions ago and still in the trade: never 8% under the pivot, never a close under the 50-day average.'},
+    played:  {hint:'this year\'s multi-year breakouts, stopped or trailed out', title:'Multi-year breakouts — played out',
+              desc:'Cleared a year-plus base this year, then either fell 8% under the pivot (stopped) or closed under the 50-day average (trailed out).'},
+  },
+};
 const BP_SORTS={
   rs:   {l:'RS rating',              k:a=>a.rs,            dir:-1},
   pivot:{l:'Now vs pivot (%)',       k:a=>a.now_vs_pivot,  dir:-1},
@@ -2278,23 +2552,53 @@ const BP_INFO={
 };
 /* IPO base screen: companies whose latest IPO base breakout falls in a window */
 const BP_BWINS=[['1w','1 week',7],['1m','1 month',30],['3m','3 months',91],['6m','6 months',182],['1y','1 year',365]];
-const BP={data:null, loading:null, screen:'vcp', stage:'forming', bwin:null, view:'cards', all:false, idx:null, kite:null, timers:{}, obs:null};
-/* one company as the current screen sees it: shared measures + that screen's stage fields */
-const bpView = a => BP.screen==='ipo' ? (a.ipo ? {...a, ...a.ipo} : null) : a;
-const bpStageText = k => { const x=BP_STAGES.find(y=>y.k===k); return BP.screen==='ipo' ? {...x, ...BP_IPO_TEXT[k]} : x; };
+const BP={data:null, loading:null, mkt:null, mktLoading:null, scope:'all', controls:false, screen:'vcp', stage:'forming', bwin:null, view:'cards', all:false, idx:null, kite:null, timers:{}, obs:null};
+/* one company as the current screen sees it: shared measures + that screen's stage fields.
+   The VCP stage fields at the top level are cleared first -- base, breakout and note
+   are only present when a screen has them, so a spread alone would let VCP's show
+   through on a stock that has none under this screen */
+const BP_SCREEN_FIELDS=['stage','prev_stage','pivot','now_vs_pivot','flags','verge','base','breakout','note','breakouts'];
+const bpView = a => {
+  if(BP.screen==='vcp') return a;
+  const v=a[BP.screen]; if(!v) return null;
+  const out={...a}; BP_SCREEN_FIELDS.forEach(k=>{ delete out[k]; });
+  return Object.assign(out, v);
+};
+const bpStageText = k => { const x=BP_STAGES.find(y=>y.k===k), o=(BP_SCREEN_TEXT[BP.screen]||{})[k]; return o ? {...x, ...o} : x; };
 const bpBase = a => a.base || (a.breakout && {...a.breakout.base, pivot:a.breakout.pivot});
 const bpInr = (v,d=2) => v==null ? '—' : '₹'+(+v).toLocaleString('en-IN',{maximumFractionDigits:d});
 const bpPct = (v,d=2) => v==null ? '—' : `${v>=0?'+':''}${(+v).toFixed(d)}%`;
 const bpVol = v => v==null ? '—' : v>=1e7 ? (v/1e7).toFixed(1)+'Cr' : v>=1e5 ? (v/1e5).toFixed(1)+'L' : v>=1e3 ? (v/1e3).toFixed(1)+'K' : String(v);
 const bpSym = d => d.nse_code && !/^\d+$/.test(d.nse_code) ? d.nse_code : d.code;
 const bpByCode = {}; DATA.forEach(d=>{ bpByCode[d.code]=d; });
+/* "All NSE & BSE": the same four screens over every actively traded stock
+   outside the board (/api/market/setups-all, written with Screen any Chart's
+   universe). Those stocks get a light record here -- name, symbol, exchange --
+   since they have no theme, market cap or scorecard. */
+const bpStock = code => (BP.data && BP.data.stocks && BP.data.stocks[code]) || (BP.mkt && BP.mkt.stocks && BP.mkt.stocks[code]) || null;
+function bpMktLoad(){
+  BP.mktLoading = BP.mktLoading || fetchJSON('/api/market/setups-all').catch(()=>({stocks:{},feed:[]})).then(j=>{
+    Object.entries(j.stocks||{}).forEach(([k,x])=>{
+      if(!bpByCode[k]) bpByCode[k]={code:k, universe:true, name:x.name||x.symbol||k, nse_code:x.symbol, exchange:x.exchange,
+        _n:((x.name||'')+' '+(x.symbol||'')).toLowerCase()};
+    });
+    BP.mkt=j;
+    return j;
+  });
+  return BP.mktLoading;
+}
 
 function openMarket(){
   bpStatus(); bpIndices();
-  if(!BP.data){
+  /* BP.data may already be here from another page (Screen any Chart, Reports)
+     without Market view's controls ever having been built */
+  if(!BP.data || !BP.controls || (BP.scope==='all' && !BP.mkt)){
     document.getElementById('bp-results').innerHTML='<p class="bp-empty">Loading the scan…</p>';
-    BP.loading = BP.loading || fetchJSON('/api/market/setups').catch(()=>({stocks:{},feed:[],counts:{},market_breakouts:[]})).then(j=>{ BP.data=j; bpControls(); });
-    BP.loading.then(()=>{ if(VIEW==='market') bpRender(); });
+    BP.loading = BP.loading || fetchJSON('/api/market/setups').catch(()=>({stocks:{},feed:[],counts:{},market_breakouts:[]})).then(j=>{ BP.data=j; });
+    Promise.all([BP.loading, BP.scope==='all' ? bpMktLoad() : null]).then(()=>{
+      if(!BP.controls) bpControls();
+      if(VIEW==='market') bpRender();
+    });
   } else bpRender();
 }
 function bpSchedule(name, fn, ms){
@@ -2304,7 +2608,16 @@ function bpSchedule(name, fn, ms){
 document.addEventListener('visibilitychange',()=>{ if(!document.hidden && VIEW==='market'){ bpStatus(); bpIndices(); } });
 
 function bpControls(){
-  const th=document.getElementById('bp-theme'), so=document.getElementById('bp-sort'), sc=document.getElementById('bp-screen');
+  BP.controls=true;
+  const th=document.getElementById('bp-theme'), so=document.getElementById('bp-sort'), scp=document.getElementById('bp-scope');
+  scp.value=BP.scope;
+  scp.onchange=()=>{
+    BP.scope=scp.value; BP.all=false;
+    if(BP.scope==='all' && !BP.mkt){
+      document.getElementById('bp-results').innerHTML='<p class="bp-empty">Loading every NSE &amp; BSE stock…</p>';
+      bpMktLoad().then(()=>{ if(VIEW==='market') bpRender(); });
+    } else bpRender();
+  };
   th.innerHTML='<option value="">All themes</option>'+THEMES.map(t=>`<option value="${esc(t)}">${esc(shortT(t))}</option>`).join('');
   const fillSorts=()=>{
     so.innerHTML=Object.entries(BP_SORTS).filter(([,v])=>!v.ipo||BP.screen==='ipo').map(([k,v])=>`<option value="${k}">${v.l}</option>`).join('');
@@ -2312,7 +2625,7 @@ function bpControls(){
     so.value = BP.screen==='ipo' ? 'pivot' : 'rs';
   };
   fillSorts();
-  sc.onchange=()=>{ BP.screen=sc.value; BP.bwin=null; BP.all=false; fillSorts(); bpMarketChip(); bpRender(); };
+  bpScreenMenu(k=>{ BP.screen=k; BP.bwin=null; BP.all=false; fillSorts(); bpMarketChip(); bpRender(); });
   let t=0;
   th.onchange=()=>{ BP.all=false; bpRender(); };
   so.onchange=()=>bpRender();
@@ -2325,18 +2638,60 @@ function bpControls(){
   document.getElementById('bp-upd').innerHTML = j.as_of ? `<i></i>Updated · ${galDay(j.as_of)}` : '';
   bpMarketChip();
 }
+/* "Screen ▾" -- the preset screens menu. onPick(key) runs when a different screen is chosen. */
+function bpScreenMenu(onPick){
+  const wrap=document.getElementById('bp-scr'), btn=document.getElementById('bp-scr-btn'), menu=document.getElementById('bp-scr-menu');
+  const paint=()=>{
+    const cur=bpScreen();
+    btn.innerHTML=`<span class="bp-scr-ic">${icon(cur.icon)}</span><span>${esc(cur.short)}</span><span class="bp-scr-caret" aria-hidden="true">▾</span>`;
+    menu.innerHTML=`<div class="bp-scr-head">Preset screens</div>`+BP_SCREENS.map(x=>`
+      <button type="button" role="menuitemradio" aria-checked="${x.k===cur.k}" class="bp-scr-item${x.k===cur.k?' on':''}" data-bp-scr="${x.k}">
+        <span class="bp-scr-ic">${icon(x.icon)}</span><span class="bp-scr-txt"><b>${esc(x.label)}</b><small>${esc(x.tag)}</small></span><span class="bp-scr-chev" aria-hidden="true">›</span>
+      </button>`).join('');
+  };
+  const items=()=>[...menu.querySelectorAll('[data-bp-scr]')];
+  const close=focusBtn=>{ if(menu.hidden) return; menu.hidden=true; btn.setAttribute('aria-expanded','false'); if(focusBtn) btn.focus(); };
+  const open=()=>{
+    menu.hidden=false; btn.setAttribute('aria-expanded','true');
+    /* anchored under the button, but kept inside the 16px page gutter on narrow screens */
+    menu.style.left='0px';
+    const r=menu.getBoundingClientRect(), over=r.right-(document.documentElement.clientWidth-16);
+    if(over>0) menu.style.left=`${-Math.max(0, Math.min(over, r.left-16))}px`;
+    (menu.querySelector('.bp-scr-item.on')||items()[0]).focus();
+  };
+  paint();
+  btn.onclick=()=>menu.hidden?open():close();
+  menu.onclick=e=>{
+    const it=e.target.closest('[data-bp-scr]'); if(!it) return;
+    const k=it.dataset.bpScr, changed=k!==BP.screen;
+    close(true);
+    if(changed){ onPick(k); paint(); }
+  };
+  menu.onkeydown=e=>{
+    const list=items(), i=list.indexOf(document.activeElement);
+    if(e.key==='ArrowDown'||e.key==='ArrowUp'){ e.preventDefault(); list[(i+(e.key==='ArrowDown'?1:-1)+list.length)%list.length].focus(); }
+    else if(e.key==='Escape'){ e.preventDefault(); close(true); }
+    else if(e.key==='Tab') close(false);
+  };
+  if(!wrap.dataset.wired){
+    wrap.dataset.wired='1';
+    document.addEventListener('click',e=>{ if(!wrap.contains(e.target)) close(false); });
+  }
+}
+
 function bpMarketChip(){
   const j=BP.data, mw=document.getElementById('bp-mw');
-  const n=((BP.screen==='ipo'?j.market_breakouts_ipo:j.market_breakouts)||[]).length;
+  const n=(j[BP.screen==='vcp'?'market_breakouts':'market_breakouts_'+BP.screen]||[]).length;
   mw.hidden=!j.as_of;
-  mw.innerHTML=`↗ ${n} ${BP.screen==='ipo'?'IPO base ':''}broke out market-wide ›`;
+  mw.innerHTML=`↗ ${n} ${bpScreen().mw} market-wide ›`;
   mw.onclick=bpMarketWide;
 }
 
-/* the board companies that pass the theme + find filters */
+/* the companies in scope (the board, or the board plus every other NSE/BSE stock in a setup) that pass the theme + find filters */
 function bpPool(){
   const th=document.getElementById('bp-theme').value, q=document.getElementById('bp-find').value.trim().toLowerCase();
-  return Object.entries(BP.data.stocks||{}).map(([code,a])=>[code,bpView(a)]).filter(([code,v])=>{
+  const src=Object.entries(BP.data.stocks||{}).concat(BP.scope==='all' && BP.mkt ? Object.entries(BP.mkt.stocks||{}) : []);
+  return src.map(([code,a])=>[code,bpView(a)]).filter(([code,v])=>{
     const d=bpByCode[code]; if(!d || !v) return false;
     if(th && base(d)!==th) return false;
     if(q && !d._n.includes(q)) return false;
@@ -2362,10 +2717,8 @@ function bpRender(){
     <button type="button" class="bp-stage${s.k===BP.stage&&!BP.bwin?' on':''}" data-bp-stage="${s.k}">
       <span class="bp-tap">tap to view ›</span><span class="stage-ic">${icon({forming:'coil',fresh:'rocket',climbing:'mountain',played:'done'}[s.k])}</span><b>${counts[s.k]||0}</b><span>${s.label}</span><small>${s.hint}</small>
     </button>`).join('');
-  document.querySelector('.bp-hero h2').textContent = BP.screen==='ipo' ? 'Catch recent listings breaking out of their IPO base.' : "Spot the board's next leaders.";
-  document.querySelector('.bp-hero .bp-sub').textContent = BP.screen==='ipo'
-    ? `${pool.length} board companies listed in the last two years, scanned after each trading day. Here are the ones basing under their post-listing high. Pick a stage.`
-    : 'Every company on the board is scanned after each trading day. Here are the few actually setting up. Pick a stage.';
+  document.querySelector('.bp-hero h2').textContent = BP.scope==='all' ? bpScreen().hero.replace("the board's","the market's") : bpScreen().hero;
+  document.querySelector('.bp-hero .bp-sub').textContent = bpScreen().sub(pool.length, BP.scope==='all' && BP.mkt ? fmtI((BP.mkt.scanned||0)+Object.keys(BP.data.stocks||{}).length) : null);
   document.querySelectorAll('[data-bp-stage]').forEach(b=>b.onclick=()=>{
     BP.stage=b.dataset.bpStage; BP.all=false;
     if(BP.bwin){ BP.bwin=null; document.getElementById('bp-sort').value='pivot'; }
@@ -2374,9 +2727,11 @@ function bpRender(){
   bpBwinBar(pool);
 
   const codes=new Set(pool.map(([c])=>c));
-  const feed=(BP.data.feed||[]).filter(f=>codes.has(f.code) && (f.screen||'vcp')===BP.screen);
+  const feed=(BP.data.feed||[]).concat(BP.scope==='all' && BP.mkt ? BP.mkt.feed||[] : [])
+    .filter(f=>codes.has(f.code) && (f.screen||'vcp')===BP.screen)
+    .sort((x,y)=>x.order-y.order || Math.abs(y.chg_pct||0)-Math.abs(x.chg_pct||0));
   document.getElementById('bp-feed').innerHTML=`<h3><i>⟲</i>What changed since last close?</h3>
-    ${feed.length ? feed.slice(0,3).map(bpFeedItem).join('') : '<p class="bp-empty" style="padding:14px">Nothing changed stage on the board in the last session.</p>'}
+    ${feed.length ? feed.slice(0,3).map(bpFeedItem).join('') : '<p class="bp-empty" style="padding:14px">Nothing changed stage in the last session.</p>'}
     ${feed.length>3?`<button type="button" class="bp-link" id="bp-full-feed">Show the full feed (${feed.length}) ›</button>`:''}`;
   document.querySelectorAll('#bp-feed [data-bp-code]').forEach(b=>b.onclick=()=>openChart(b.dataset.bpCode));
   const ff=document.getElementById('bp-full-feed'); if(ff) ff.onclick=()=>bpFullFeed(feed);
@@ -2391,7 +2746,7 @@ function bpRender(){
   document.getElementById('bp-cards-btn').classList.toggle('on',BP.view==='cards');
   document.getElementById('bp-list-btn').classList.toggle('on',BP.view==='list');
   const box=document.getElementById('bp-results');
-  if(!rows.length){ box.innerHTML=`<p class="bp-empty">No board company is in "${esc(stage.label)}" ${document.getElementById('bp-theme').value||document.getElementById('bp-find').value?'with these filters':'right now'}.</p>`; return; }
+  if(!rows.length){ box.innerHTML=`<p class="bp-empty">No ${BP.scope==='all'?'stock':'board company'} is in "${esc(stage.label)}" ${document.getElementById('bp-theme').value||document.getElementById('bp-find').value?'with these filters':'right now'}.</p>`; return; }
 
   if(BP.view==='list'){
     box.innerHTML=`<div class="bp-table-wrap"><table class="bp-table"><thead><tr>
@@ -2452,7 +2807,7 @@ function bpFeedItem(f){
 function bpCard(code,a){
   const d=bpByCode[code], l=a.last, b=bpBase(a), on=WATCH.has(code), bo=a.breakout;
   const m=(label,info,val)=>`<div><span>${label}<i class="bpc-i" title="${esc(info)}">i</i></span><b>${val}</b></div>`;
-  const ipo=BP.screen==='ipo' && a.listed, what=ipo?'the IPO base':'the pivot';
+  const ipo=BP.screen==='ipo' && a.listed, what=bpScreen().what;
   let note=a.note||'';
   const wb = BP.bwin && a.breakouts && a.breakouts[0];
   if(wb){
@@ -2464,7 +2819,7 @@ function bpCard(code,a){
     else if(a.stage==='climbing') note=`Broke out of ${what} ${_bpDay(bo.date)} — ${bpPct(bo.gain_pct,1)} since, ${bo.sessions} sessions in`;
     else if(a.stage==='played' && bo.exit) note=`Broke out ${_bpDay(bo.date)} → ${bo.exit.reason==='stopped'?'stopped out':'trailed out'} ${_bpDay(bo.exit.date)} (${bpPct(bo.exit.result_pct,1)})`;
   }
-  const flags=(a.verge?[`<span class="bpc-flag verge" title="Forming and within 5% of the pivot">🔥 on the verge — ${Math.abs(a.now_vs_pivot)}% under ${ipo?'the post-listing high':'the pivot'}</span>`]:[])
+  const flags=(a.verge?[`<span class="bpc-flag verge" title="Forming and within 5% of the pivot">🔥 on the verge — ${Math.abs(a.now_vs_pivot)}% under ${bpScreen().pivot}</span>`]:[])
     .concat((a.flags||[]).map(fl=>fl==='squat'
       ? `<span class="bpc-flag" title="${esc(BP_INFO.squat)}">⚑ squat</span>`
       : `<span class="bpc-flag bad" title="${esc(BP_INFO.poke)}">✕ failed poke</span>`)).join('');
@@ -2473,8 +2828,8 @@ function bpCard(code,a){
     <div class="bpc-top">
       <div style="min-width:0">
         <div class="bpc-title"><span class="bpc-name">${esc(d.name)}</span><span class="bpc-sym">${esc(bpSym(d))}</span>
-          <button type="button" class="bpc-star${on?' on':''}" data-bp-star="${esc(code)}" title="${on?'Remove from':'Add to'} watchlist">${on?'★':'☆'}</button></div>
-        <div class="bpc-ind"><button type="button" data-bp-theme="${esc(base(d))}">${esc(shortT(base(d)))}</button>${d.industry||d.sector?` · ${esc(d.industry||d.sector)}`:''}</div>
+          ${d.universe?'':`<button type="button" class="bpc-star${on?' on':''}" data-bp-star="${esc(code)}" title="${on?'Remove from':'Add to'} watchlist">${on?'★':'☆'}</button>`}</div>
+        <div class="bpc-ind">${d.universe?`${esc(d.exchange||'')} · not on the board`:`<button type="button" data-bp-theme="${esc(base(d))}">${esc(shortT(base(d)))}</button>${d.industry||d.sector?` · ${esc(d.industry||d.sector)}`:''}`}</div>
       </div>
       <div class="bpc-right"><button type="button" class="bpc-tech" data-bp-tech="${esc(code)}">📈 Tech chart ›</button>
         <div class="bpc-px">${bpInr(l.c)} <span class="${l.chg_pct>=0?'up':'dn'}">(${bpPct(l.chg_pct)})</span></div></div>
@@ -2499,22 +2854,25 @@ function bpCard(code,a){
 function _bpDay(iso){ const [y,mo,dd]=String(iso).split('-').map(Number); return `${dd} ${GMONTHS[mo-1]}`; }
 
 function bpDrawChart(el){
-  const code=el.dataset.bpChart, a=bpView(BP.data.stocks[code]);
+  const code=el.dataset.bpChart, a=bpView(bpStock(code));
   galFetch(code).then(()=>{
     const ser=GSERIES.get(code);
     if(!ser || ser.missing || !ser.rows){ el.innerHTML='<span class="gc-empty">No price data</span>'; return; }
     const wb = BP.bwin && a.breakouts && a.breakouts[0];
     const b = wb ? {...wb.base, pivot:wb.pivot} : bpBase(a);
-    /* an IPO base card shows the stock's life since listing (up to ~14 months) */
+    /* an IPO base card shows the stock's life since listing (up to ~14 months); a
+       multi-year card the whole base, a year or more; blue sky the year it topped */
     const ipoCard = BP.screen==='ipo' && a.listed;
-    const sessions = ipoCard ? Math.min(ser.rows.length, 300) : 125;
+    const sessions = Math.min(ser.rows.length, ipoCard ? 300
+      : BP.screen==='multiyear' ? Math.max(300, Math.round(((b&&b.weeks)||0)*5)+40)
+      : BP.screen==='bluesky' ? 250 : 125);
     el.innerHTML=candleSVG(ser.rows,{w:600,h:230,sessions,axis:true,isoAxis:true,ma:false,hi52:false,volColor:true,
       pivot:wb?wb.pivot:a.pivot, box:b?{start:b.start,end:b.end,low:b.low,high:b.pivot||a.pivot,label:`${ipoCard?'IPO base ':''}${b.weeks} wks`}:null});
   });
 }
 
 async function bpShare(btn){
-  const code=btn.dataset.bpShare, a=bpView(BP.data.stocks[code]), d=bpByCode[code];
+  const code=btn.dataset.bpShare, a=bpView(bpStock(code)), d=bpByCode[code];
   const stage=a.stage && bpStageText(a.stage);
   const text=`${d.name} (${bpSym(d)}) — ${stage?stage.label:'no setup'} · ${bpInr(a.last.c)} ${bpPct(a.last.chg_pct)} · pivot ${bpInr(a.pivot)} (${a.now_vs_pivot==null?'—':bpPct(a.now_vs_pivot,1)}) · RS ${a.rs??'—'} · ${galDay(a.asof)}`;
   try{ await navigator.clipboard.writeText(text); flash(btn,'✓ Copied'); }
@@ -2525,7 +2883,7 @@ function bpCsv(){
   const rows=bpRows(); if(!rows.length) return;
   const head=['Company','Symbol','Theme','Screen','Stage','On the verge','Listed','Latest breakout','Breakout status','Gain since breakout %','Close','Change %','RS','Pivot','Now vs pivot %','ATR ratio','Volume dry-up','Up/down net','Base weeks','From 52w high %','Market cap cr','As of'];
   const lines=[head.join(',')].concat(rows.map(([code,a])=>{ const d=bpByCode[code], b=bpBase(a);
-    return [d.name,bpSym(d),shortT(base(d)),BP.screen==='ipo'?'IPO base':'VCP',a.stage,a.verge?'yes':'',a.listed||'',(a.breakouts&&a.breakouts[0]||{}).date||'',(a.breakouts&&a.breakouts[0]||{}).status||'',(a.breakouts&&a.breakouts[0]||{}).gain_pct??'',a.last.c,a.last.chg_pct,a.rs,a.pivot,a.now_vs_pivot,a.atr_ratio,a.vol_dryup,a.updown,b&&b.weeks,a.from_high,d.market_cap_cr,a.asof].map(csvCell).join(','); }));
+    return [d.name,bpSym(d),shortT(base(d)),bpScreen().short,a.stage,a.verge?'yes':'',a.listed||'',(a.breakouts&&a.breakouts[0]||{}).date||'',(a.breakouts&&a.breakouts[0]||{}).status||'',(a.breakouts&&a.breakouts[0]||{}).gain_pct??'',a.last.c,a.last.chg_pct,a.rs,a.pivot,a.now_vs_pivot,a.atr_ratio,a.vol_dryup,a.updown,b&&b.weeks,a.from_high,d.market_cap_cr,a.asof].map(csvCell).join(','); }));
   const url=URL.createObjectURL(new Blob(['﻿'+lines.join('\r\n')],{type:'text/csv;charset=utf-8'}));
   const link=document.createElement('a'); link.href=url; link.download=`market-view-${BP.screen}-${BP.bwin?'breakouts-'+BP.bwin:BP.stage}-${BP.data.as_of}.csv`;
   document.body.appendChild(link); link.click(); link.remove(); setTimeout(()=>URL.revokeObjectURL(url),4000);
@@ -2533,17 +2891,22 @@ function bpCsv(){
 
 function bpFullFeed(feed){
   openModal(`<h3>What changed since last close — ${galDay(BP.data.as_of)}</h3>
-    <p class="mp">Stage changes on the board in the latest session, then new 52-week highs and lows.</p>
+    <p class="mp">Stage changes in the latest session, then new 52-week highs and lows on the board.</p>
     <div style="margin-top:14px">${feed.map(bpFeedItem).join('')}</div>`);
   mbody.querySelectorAll('[data-bp-code]').forEach(b=>b.onclick=()=>openChart(b.dataset.bpCode));
 }
 
 function bpMarketWide(){
-  const ipo=BP.screen==='ipo', list=(ipo?BP.data.market_breakouts_ipo:BP.data.market_breakouts)||[];
-  openModal(`<h3>↗ ${list.length} ${ipo?'IPO base ':''}broke out market-wide — ${galDay(BP.data.as_of)}</h3>
-    <p class="mp">${ipo
-      ? `Every liquid NSE stock (${fmtI(BP.data.universe)} with over ₹1 crore traded a day) listed in the last two years that closed above its post-listing high, after a base of three weeks or more, on at least 1.4× its usual volume in the latest session.`
-      : `Every liquid NSE stock (${fmtI(BP.data.universe)} with over ₹1 crore traded a day) that closed above its base's pivot on at least 1.4× its usual volume in the latest session, while in an uptrend.`} Stocks also on your board are marked.</p>
+  const sc=BP.screen, list=BP.data[sc==='vcp'?'market_breakouts':'market_breakouts_'+sc]||[];
+  const liquid=`Every liquid NSE stock (${fmtI(BP.data.universe)} with over ₹1 crore traded a day)`;
+  const why={
+    vcp:`${liquid} that closed above its base's pivot on at least 1.4× its usual volume in the latest session, while in an uptrend.`,
+    ipo:`${liquid} listed in the last two years that closed above its post-listing high, after a base of three weeks or more, on at least 1.4× its usual volume in the latest session.`,
+    bluesky:`${liquid} with a year or more of trading that closed above a base at the highest price it has traded (back to January 2020), on at least 1.4× its usual volume in the latest session, while in an uptrend.`,
+    multiyear:`${liquid} that closed above a high which had held it for a year or more, on at least 1.4× its usual volume in the latest session, while in an uptrend.`,
+  }[sc];
+  openModal(`<h3>↗ ${list.length} ${bpScreen().mwTitle} market-wide — ${galDay(BP.data.as_of)}</h3>
+    <p class="mp">${why} Stocks also on your board are marked.</p>
     ${list.length?`<div class="bp-table-wrap" style="margin-top:14px"><table class="bp-table"><thead><tr><th>Company</th><th>Close</th><th>Chg</th><th>Pivot</th><th>Above pivot</th><th>Volume</th></tr></thead><tbody>
       ${list.map(x=>`<tr${x.on_board?' data-bp-mw="1"':''}><td><b>${esc(x.name)}</b> <span class="bpc-sym">${esc(x.symbol)}</span>${x.on_board?' <span class="asme-tag">On board</span>':''}</td>
         <td>${bpInr(x.close)}</td><td class="${x.chg_pct>=0?'up':'dn'}">${bpPct(x.chg_pct)}</td><td>${bpInr(x.pivot)}</td><td>${bpPct(x.above_pct,1)}</td><td>${x.vol_x}×</td></tr>`).join('')}
@@ -2560,6 +2923,8 @@ function bpHow(){
       <tr><td><b>Forming</b></td><td>In a base, within 15% under the pivot, above the 200-day average with the 50-day above the 200-day — or building a new base after an earlier breakout.</td></tr>
       <tr><td><b>Fresh / Climbing</b></td><td>Broke out and not exited: within the last 5 sessions, or earlier.</td></tr>
       <tr><td><b>Played out</b></td><td>Broke out this year and has since been stopped or trailed out.</td></tr>
+      <tr><td><b>Blue sky screen</b></td><td>A base as above whose pivot is also the highest price the stock has traded in our exchange data (back to January 2020), so no earlier buyer sits above it waiting to sell at break-even. Needs a year or more of trading. A company that listed before 2020 may have traded higher before then.</td></tr>
+      <tr><td><b>Multi-year breakouts screen</b></td><td>The pivot is the highest high of up to five years, set at least a year ago and never cleared since; a base needs the stock held no more than 50% under it. Forming, as above, also needs the uptrend.</td></tr>
       <tr><td><b>IPO base screen</b></td><td>Companies listed in the last two years, dated by the first session any of their identifiers (ISIN, NSE or BSE ticker) appears in the exchange files, so renames, splits and a later second listing are not counted as an IPO. The pivot is the highest price since listing; a base needs at least 3 weeks under it and at most a 50% pullback. Usual volume ignores the first 5 sessions after listing.</td></tr>
       <tr><td><b>On the verge</b></td><td>Forming and within 5% of the pivot.</td></tr>
       <tr><td><b>RS rating</b></td><td>${esc(BP_INFO.rs)}</td></tr>

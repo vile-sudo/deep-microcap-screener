@@ -55,11 +55,27 @@ html[data-mode="dark"][data-theme="light"] .st-up{background:#12253d;color:#88a3
 html[data-mode="dark"][data-theme="light"] .st-flat{background:#131c23;color:#c6cdd2}
 html[data-mode="dark"][data-theme="light"] .st-down{background:#3c1111;color:#f09999}
 html[data-mode="dark"][data-theme="light"] .gc-stage-fresh{background:#3f2c12;color:#f7b296}
+html[data-mode="dark"][data-theme="light"] .gc-cross-bull{background:#143c22;color:#b9f3cf}
+html[data-mode="dark"][data-theme="light"] .gc-cross-bear{background:#3c1111;color:#f09999}
+html[data-mode="dark"][data-theme="light"] .gc-cross-forming{background:#433913;color:#f7caaf}
+html[data-mode="dark"][data-theme="light"] .news-country-tag{background:#12253d;color:#88a3ef}
+html[data-mode="dark"][data-theme="light"] .news-sector-tag{background:#131c23;color:#c6cdd2}
+html[data-mode="dark"][data-theme="light"] .news-move-tag{background:#3f2c12;color:#f7b296}
 html[data-mode="dark"][data-theme="light"] .gc-chip{background:#143c22;color:#b9f3cf}
 html[data-mode="dark"][data-theme="light"] .asme-tag{background:#433913;color:#f7c59f}
 html[data-mode="dark"][data-theme="light"] .lg-vol{background:#282f37}
 html[data-mode="dark"] .bp{color:#eaedf6}
 html[data-mode="dark"] .bp-select,html[data-mode="dark"] .bp-find{background:#0e1418;color:#eaedf6}
+html[data-mode="dark"] .bp-scr-btn{background:#0e1418;color:#eaedf6}
+html[data-mode="dark"] .bp-scr-caret{color:#9eaab3}
+html[data-mode="dark"] .bp-scr-menu{background:#0e1418}
+html[data-mode="dark"] .bp-scr-head{color:#9eaab3}
+html[data-mode="dark"] .bp-scr-item{color:#eaedf6}
+html[data-mode="dark"] .bp-scr-item:hover,html[data-mode="dark"] .bp-scr-item:focus-visible{background:#131c23}
+html[data-mode="dark"] .bp-scr-item.on{background:#162c36}
+html[data-mode="dark"] .bp-scr-item .bp-scr-ic{color:#c6cdd2}
+html[data-mode="dark"] .bp-scr-item.on .bp-scr-ic{color:#a4dcf8}
+html[data-mode="dark"] .bp-scr-txt small{color:#9eaab3}
 html[data-mode="dark"] .bp-ix{background:#0e1418}
 html[data-mode="dark"] .bp-ix b{color:#c6cdd2}
 html[data-mode="dark"] .bp-ix.tick-up{background:#121b21}

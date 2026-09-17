@@ -10,6 +10,9 @@ GET /api/charts/universe  every actively traded NSE/BSE company, one small
 GET /api/charts/u/{key}   one non-board stock's candles and base analysis
                           (see app/universe.py)
 GET /api/charts/{code}    one board company's daily candles plus its stats
+GET /api/charts/ema-crossover  Screen any Chart's independent weekly 9/21
+                          EMA crossover filter (see app/ema_crossover.py) --
+                          unrelated to compute_stats()'s 50/200-day SMA
 
 The data is written by scripts/update_charts.py (see app/charts.py). A
 company that is on the board but not in that data yet -- added since the
@@ -23,7 +26,7 @@ import time
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 
-from .. import charts, universe
+from .. import charts, ema_crossover, universe
 from ..database import get_db
 from ..models import Company
 
@@ -44,6 +47,13 @@ def chart_index():
         "latest_session": idx.get("latest_session"),
         "companies": idx.get("companies", {}),
     }
+
+
+@router.get("/ema-crossover")
+def ema_crossover_index():
+    """Screen any Chart's own weekly 9/21 EMA crossover filter -- a separate
+    screen from compute_stats()'s 50/200-day SMA trend classification."""
+    return ema_crossover.load()
 
 
 @router.get("/universe")

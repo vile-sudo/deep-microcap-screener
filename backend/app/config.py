@@ -58,6 +58,13 @@ class Settings(BaseSettings):
     kite_api_secret: str = ""
     kite_admin_key: str = ""
 
+    # --- News Channel (China/India/USA monopoly-sector news) -------------
+    # From https://newsdata.io/ -- the free plan is 200 requests/day. Set as
+    # an env var on the host (never commit it); also needed as a GitHub
+    # Actions secret (NEWSDATA_API_KEY) for scripts/run_news_channel.py's
+    # scheduled runs. Leave empty and the feed stays empty with no error.
+    newsdata_api_key: str = ""
+
     # --- GitHub Actions dispatch (admin "Refresh now" on a sector page) --------
     # A fine-grained personal access token, Actions: Read and write, scoped to
     # this one repo (github.com/settings/tokens -> Fine-grained tokens). Lets an

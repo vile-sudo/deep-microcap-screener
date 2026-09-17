@@ -30,7 +30,7 @@ from pathlib import Path
 import requests
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
-from app import alerts, setups  # noqa: E402
+from app import alerts, ema_crossover, setups  # noqa: E402
 from app.charts import (  # noqa: E402
     BACKEND_DIR, CHART_DIR, INDEX_FILE, PRICES_DIR, _adjust,
     build_series, build_universe, isin_index, compute_stats, fetch_bhavcopy, load_index, read_day, safe_name, write_day,
@@ -40,6 +40,7 @@ SETUPS_FILE = CHART_DIR / "setups.json"
 ALERTS_FILE = CHART_DIR / "alerts.json"
 UNIVERSE_INDEX = CHART_DIR / "universe.json"        # small, committed: what Screen any Chart searches
 UNIVERSE_DIR = BACKEND_DIR / "universe_charts"      # big, never committed: uploaded as a release asset
+MARKET_ALL = CHART_DIR / "market_all.json"          # Market view's four screens over that same universe
 
 RAW = BACKEND_DIR / "data" / "companies_raw.json"
 CACHE = BACKEND_DIR / ".bhav_cache"
@@ -190,6 +191,9 @@ def main() -> int:
 
     write_setups(records, series, days)
 
+    crossovers = ema_crossover.write(days, series, build_universe)
+    print(f"ema crossover: {crossovers} stocks with a weekly 9/21 cross in the last 8 weeks")
+
     print(f"charts: {len(series)} built from {len(days)} sessions (latest {days[-1][0]}), "
           f"{kept} kept from last run, {len(missing)} with no exchange data: {', '.join(missing) or 'none'}")
     return 0
@@ -210,6 +214,12 @@ def write_universe(days: list, board: dict, rank) -> tuple[int, list[dict]]:
     The board's own companies keep their fuller, committed charts and are
     skipped here; the index points at them instead.
 
+    Also writes chart_data/market_all.json: Market view's four screens (VCP,
+    Blue sky, Multi-year breakouts, IPO base) for every one of these stocks in
+    a setup, compacted (setups.compact) -- what its "All NSE & BSE" scope shows.
+    Blue sky and Multi-year run on these files' own history (UNIVERSE_SESSIONS,
+    about three years; since listing for recent IPOs), shorter than the board's.
+
     Also returns every fresh (this-session) base or IPO-base breakout found
     along the way, for the Alerts bell -- see alerts.universe_breakout_item."""
     on_board_isins = frozenset(s.get("isin") for s in board.values() if s.get("isin"))
@@ -218,11 +228,21 @@ def write_universe(days: list, board: dict, rank) -> tuple[int, list[dict]]:
     for f in UNIVERSE_DIR.glob("*.json"):
         f.unlink()
 
+    latest = days[-1][0].isoformat()
     index, breakout_items, charted = {}, [], 0
+    market, feed = {}, []
     for key, s in build_universe(days, on_board_isins, on_board_keys):
         charted += 1
         stats = compute_stats(s)
-        a = setups.analyze(s["rows"], rank, s.get("listed"))
+        a = setups.analyze(s["rows"], rank, s.get("listed"), long_bases=True)
+        if a and s["rows"][-1][0] == latest:
+            m = setups.compact(a)
+            if m:
+                market[key] = {"name": s["name"], "symbol": s["symbol"], "exchange": s["exchange"], **m}
+                for item in a.get("feed") or []:
+                    if item["kind"] not in ("high52", "low52"):   # thousands of those market-wide; stage changes only
+                        feed.append({"code": key, "name": s["name"], "close": a["last"]["c"],
+                                     "chg_pct": a["last"]["chg_pct"], **item})
         payload = {**s, "setups": a}
         (UNIVERSE_DIR / f"{key}.json").write_text(json.dumps(payload, separators=(",", ":")), encoding="utf-8")
         recent = s["rows"][-20:]
@@ -258,9 +278,14 @@ def write_universe(days: list, board: dict, rank) -> tuple[int, list[dict]]:
         "count": len(index),
         "stocks": dict(sorted(index.items())),
     }, separators=(",", ":")), encoding="utf-8")
+    feed.sort(key=lambda x: (x["order"], -abs(x["chg_pct"] or 0)))
+    MARKET_ALL.write_text(json.dumps({"as_of": latest, "scanned": charted, "feed": feed,
+                                      "stocks": dict(sorted(market.items()))},
+                                     separators=(",", ":")), encoding="utf-8")
     size_mb = sum(f.stat().st_size for f in UNIVERSE_DIR.glob("*.json")) / 1e6
     print(f"universe: {charted} traded companies charted ({size_mb:.0f} MB in {UNIVERSE_DIR.name}/), "
-          f"{len(index)} rows in universe.json, {len(breakout_items)} fresh breakout(s)")
+          f"{len(index)} rows in universe.json, {len(breakout_items)} fresh breakout(s); "
+          f"market_all.json {len(market)} in a setup, {MARKET_ALL.stat().st_size // 1024} KB")
     return charted, breakout_items
 
 
@@ -297,9 +322,9 @@ def write_setups(records: list[dict], series: dict, days: list) -> None:
     rank = setups.percentile_ranker([x for x in (setups.rs_score([r[4] for r in rows[-250:]]) for rows in universe.values()) if x is not None])
 
     board_symbols = {(v["exchange"], v["symbol"]) for v in series.values()}
-    market = {"vcp": [], "ipo": []}
+    market = {k: [] for k in setups.SCREENS}
     for key, rows in universe.items():
-        for screen, hit in setups.market_breakout_today(rows[-250:] if key not in listed else rows, listed.get(key)).items():
+        for screen, hit in setups.market_breakout_today(rows, listed.get(key)).items():
             market[screen].append({"symbol": key, "name": names.get(key, key).title(), "on_board": ("NSE", key) in board_symbols,
                                    "listed": listed.get(key), **hit})
     for items in market.values():
@@ -310,7 +335,7 @@ def write_setups(records: list[dict], series: dict, days: list) -> None:
         code = rec["code"]
         if code not in series or series[code]["rows"][-1][0] != latest:
             continue
-        a = setups.analyze(series[code]["rows"], rank, series[code].get("listed"))
+        a = setups.analyze(series[code]["rows"], rank, series[code].get("listed"), long_bases=True)
         if not a:
             continue
         for item in a.pop("feed"):
@@ -319,15 +344,16 @@ def write_setups(records: list[dict], series: dict, days: list) -> None:
     feed.sort(key=lambda x: (x["order"], -abs(x["chg_pct"] or 0)))
     stages = ("forming", "fresh", "climbing", "played")
     counts = {k: sum(1 for a in stocks.values() if a["stage"] == k) for k in stages}
-    counts_ipo = {k: sum(1 for a in stocks.values() if a.get("ipo", {}).get("stage") == k) for k in stages}
+    per_screen = {sc: {k: sum(1 for a in stocks.values() if a.get(sc, {}).get("stage") == k) for k in stages}
+                  for sc in setups.SCREENS if sc != "vcp"}
     SETUPS_FILE.write_text(json.dumps({
         "as_of": latest,
         "universe": len(universe),
         "counts": counts,
-        "counts_ipo": counts_ipo,
+        **{f"counts_{sc}": c for sc, c in per_screen.items()},
         "ipo_listed": sum(1 for a in stocks.values() if "ipo" in a),
         "market_breakouts": market["vcp"],
-        "market_breakouts_ipo": market["ipo"],
+        **{f"market_breakouts_{sc}": market[sc] for sc in setups.SCREENS if sc != "vcp"},
         "feed": feed,
         "stocks": dict(sorted(stocks.items())),
     }, separators=(",", ":")), encoding="utf-8")
@@ -342,8 +368,10 @@ def write_setups(records: list[dict], series: dict, days: list) -> None:
     for it in board_items:
         tally[it["type"]] = tally.get(it["type"], 0) + 1
     print(f"alerts: board {tally}; market-wide {len(market_items)}")
-    print(f"setups: VCP {counts}; IPO base {counts_ipo} ({sum(1 for a in stocks.values() if 'ipo' in a)} recent listings); "
-          f"market-wide breakouts {len(market['vcp'])} VCP / {len(market['ipo'])} IPO across {len(universe)} liquid NSE stocks; {len(feed)} feed items")
+    print(f"setups: VCP {counts}; Blue sky {per_screen['bluesky']}; Multi-year {per_screen['multiyear']}; "
+          f"IPO base {per_screen['ipo']} ({sum(1 for a in stocks.values() if 'ipo' in a)} recent listings); "
+          f"market-wide breakouts {' / '.join(f'{len(market[sc])} {sc}' for sc in setups.SCREENS)} "
+          f"across {len(universe)} liquid NSE stocks; {len(feed)} feed items")
 
 
 if __name__ == "__main__":

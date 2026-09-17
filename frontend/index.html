@@ -101,8 +101,8 @@
   .f1{transform:translateX(12vw)}.f2{transform:translateX(66vw)}.f3{transform:translateX(38vw)}.f4{transform:translateX(18vw)}.f5{transform:translateX(74vw)}.sp-school{transform:translateX(56vw)}
 }
 </style>
-<link rel="stylesheet" href="/static/style.css?v=58">
-<link rel="stylesheet" href="/static/dark.css?v=58">
+<link rel="stylesheet" href="/static/style.css?v=59">
+<link rel="stylesheet" href="/static/dark.css?v=59">
 </head>
 <body>
 <div id="ds-splash" role="status" aria-live="polite" aria-label="Loading Deep Sweep">
@@ -222,6 +222,7 @@
       <button class="side-link" id="reports-link" type="button" title="Research Reports"><svg viewBox="0 0 24 24"><path d="M7 3.5h7.5L19 8v12.5H7z"/><path d="M14.5 3.5V8H19"/><path d="M10 12h6M10 15.5h6M10 19h3.5"/></svg>Reports</button>
       <button class="side-link" id="sectors-link" type="button" title="Sector Research"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><path d="M4 12h16M12 4c2.5 2.6 2.5 13.4 0 16M12 4c-2.5 2.6-2.5 13.4 0 16"/></svg>Sectors</button>
       <button class="side-link" id="movers-link" type="button" title="Movers"><svg viewBox="0 0 24 24"><path d="M3 17l5-6 4 4 8-9"/><path d="M14 6h6v6"/></svg>Movers</button>
+      <button class="side-link" id="news-link" type="button" title="News Channel"><svg viewBox="0 0 24 24"><path d="M4 5.5h16v13h-16z"/><path d="M8 9.5h8M8 13h8M8 16.5h5"/></svg>News Channel<span class="side-count" id="news-badge" hidden></span></button>
     </nav>
     <span class="nav-upd" id="nav-upd" hidden></span>
     <button type="button" class="nav-bell" id="alerts-btn" hidden title="Alerts: new highs, new lows and breakouts" aria-label="Alerts">
@@ -251,7 +252,11 @@
 <section class="dashboard-section bp" data-views="market" aria-labelledby="bp-title">
   <div class="bp-bar">
     <span class="bp-lab">Screen</span>
-    <select id="bp-screen" class="bp-select" aria-label="Screen"><option value="vcp">VCP</option><option value="ipo">IPO base</option></select>
+    <div class="bp-scr" id="bp-scr">
+      <button type="button" class="bp-scr-btn" id="bp-scr-btn" aria-haspopup="menu" aria-expanded="false" aria-controls="bp-scr-menu"></button>
+      <div class="bp-scr-menu" id="bp-scr-menu" role="menu" aria-label="Preset screens" hidden></div>
+    </div>
+    <select id="bp-scope" class="bp-select" aria-label="Which stocks"><option value="all">All NSE &amp; BSE</option><option value="board">Board companies only</option></select>
     <select id="bp-theme" class="bp-select" aria-label="Theme"></select>
     <input id="bp-find" class="bp-find" type="search" autocomplete="off" placeholder="Find a stock" aria-label="Find a stock">
     <span class="bp-spacer"></span>
@@ -268,7 +273,7 @@
       <div class="bp-feed" id="bp-feed"></div>
     </div>
     <div class="bp-bwins" id="bp-bwins" hidden></div>
-    <div class="bp-hero-foot"><span>Every board company, scanned every trading day from NSE/BSE closing data · <button class="bp-link" id="bp-how" type="button">how these are found →</button></span><span id="bp-conn"></span></div>
+    <div class="bp-hero-foot"><span>Scanned every trading day from NSE/BSE closing data · <button class="bp-link" id="bp-how" type="button">how these are found →</button></span><span id="bp-conn"></span></div>
   </div>
 
   <div class="bp-list-head">
@@ -291,6 +296,7 @@
     <select id="gscope" class="gal-select" aria-label="Which companies"></select>
     <select id="gtrend" class="gal-select" aria-label="Trend"></select>
     <select id="gstage" class="gal-select" aria-label="Breakout stage"></select>
+    <select id="gcross" class="gal-select" aria-label="Weekly EMA crossover"></select>
     <select id="gtheme" class="gal-select" aria-label="Theme"></select>
     <select id="gsort" class="gal-select" aria-label="Sort"></select>
     <button class="theme-back" id="gclear" type="button">Clear</button>
@@ -338,6 +344,22 @@
   </div>
   <div class="mv-count" id="mv-count"></div>
   <div id="mv-body"><p class="view-hint">Loading…</p></div>
+</section>
+
+<section class="dashboard-section news-section" data-views="news" aria-labelledby="news-title">
+  <div class="section-heading"><div><span class="eyebrow">NEWS CHANNEL</span><h2 id="news-title">News Channel</h2><p class="section-copy">China, India and USA news for the sectors each one dominates globally — a leading indicator for Indian listed companies downstream: a Chinese API price hike is a margin story for the bulk-drug makers who buy from it, a US tariff reroutes demand, a China+1 shift is a tailwind for the Indian maker competing for that order. Refreshed every 12 hours from newsdata.io, at most three requests a run.</p></div><span class="section-note" id="news-asof"></span></div>
+  <div class="mv-toolbar">
+    <select class="gal-select" id="news-country" aria-label="Country">
+      <option value="">All countries</option>
+    </select>
+    <select class="gal-select" id="news-sector" aria-label="Sector">
+      <option value="">All sectors</option>
+    </select>
+    <label class="news-pm"><input type="checkbox" id="news-pm"> Price-moving only</label>
+    <button class="theme-back" id="news-clear" type="button">Clear</button>
+  </div>
+  <div class="mv-count" id="news-count"></div>
+  <div id="news-body"><p class="view-hint">Loading…</p></div>
 </section>
 
 <section class="dashboard-section reports-section" data-views="reports" aria-labelledby="reports-title">
@@ -531,6 +553,6 @@
 <div class="modal" id="modal" role="dialog" aria-modal="true"><div class="mbox"><button class="close" id="mclose" aria-label="Close">&times;</button><div id="mbody"></div></div></div>
 
 <script src="/static/asme-certified.js?v=5" defer></script>
-<script src="/static/app.js?v=58" defer></script>
+<script src="/static/app.js?v=59" defer></script>
 </body>
 </html>

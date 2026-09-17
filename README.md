@@ -387,6 +387,49 @@ changed crossing it into this dashboard) before joining the board here.
   also gets more of that session's news coverage, since NSE's own
   publication window keeps widening for a day or two after the close).
 
+## News Channel (automated)
+
+**News Channel** tracks China, India and USA news for the sectors each one
+dominates globally -- a leading indicator for Indian listed companies
+downstream (a Chinese API price hike is a margin story for the Indian
+bulk-drug makers who buy from it; a US tariff reroutes demand; a China+1
+shift is a tailwind for the Indian maker competing for that order).
+
+- **Provider:** [newsdata.io](https://newsdata.io/), whose free plan is
+  **200 requests/day** and caps the search query at 100 characters -- both
+  binding constraints on the design. Set `NEWSDATA_API_KEY` as an env var
+  on the server and as a GitHub Actions secret (never commit it).
+- **One request per country, not per sector:** `app/news_channel.py` sends
+  each country a short `q` of OR'd sector keywords (under the 100-character
+  cap) alongside `category=business` and `prioritydomain=top` (drops
+  press-release wire noise), then does the real filtering itself,
+  client-side, the same way `app/movers/news.py` already does for company
+  news -- a headline only survives if it actually contains one of the
+  sector's own keyword phrases (title only, not the description, to keep
+  an incidental mention from counting), and is flagged `price_move` if it
+  reads like an actual price event (a `%`, or a rise/fall/hike/cut/ban/curb
+  word), not just general sector coverage.
+- **Sectors tracked per country:**
+  - **China** -- specialty chemicals, pharma APIs/bulk drugs, rare earths &
+    critical minerals, solar, battery/EV materials, steel, electronics
+    components.
+  - **India** -- generic pharma, IT services, textiles & cotton, gems &
+    jewellery, agrochemicals, auto components.
+  - **USA** -- semiconductors, biotech/FDA, defence & aerospace, agri
+    commodities, oil & gas/shale, tariffs & trade policy.
+- **Quota budget:** 3 requests a run, so the default **every-12-hours**
+  schedule (`news_channel.yml`) costs only 6/day -- about 3% of the free
+  plan, well clear of exhausting it. Each run merges its results into the existing feed rather than
+  replacing it (a single request only returns newsdata's latest ~10 hits
+  per country) and prunes anything over 48 hours old.
+- **Data:** `backend/data/news_channel/latest.json`, committed like Movers;
+  `GET /api/news-channel` serves it. An admin can also fire a fetch from
+  the dashboard ("Refresh now" on the News Channel page →
+  `POST /api/admin/news-channel/run-now`, needs `GH_DISPATCH_TOKEN` like
+  Sector Research's "Refresh now" -- rate-limited server-side so repeat
+  clicks don't chip into the quota).
+- **Run it by hand:** `cd backend && python scripts/run_news_channel.py`.
+
 ## Market view (automated stage screen)
 
 **Market view** is a stage screen for the board, rebuilt after every trading
@@ -403,11 +446,42 @@ day with no manual step:
   new setups, new 52-week highs/lows; and how many liquid NSE stocks broke
   out market-wide.
 
-**Screen: IPO base** — companies listed in the last two years (dated by the
-first session their ISIN or either exchange ticker appears, so renames,
-splits and a later second listing don't count), basing under their
-post-listing high. Same four stages; "on the verge" flags Forming names
-within 5% of the pivot, and the list sorts closest-to-breakout first.
+**Screens** — the **Screen ▾** menu picks one of four preset screens. They
+share one engine (the same breakout, exit and stage rules above) and differ
+only in what counts as a base:
+
+- **Volatility Contraction Pattern (VCP)** — *a tight, quiet coil under a
+  ceiling*: the highest high of the last ~6 months, at least 3 weeks old, a
+  pullback of at most 35%, after a run-up of at least 25%.
+- **Blue sky** — *basing at its high, no sellers above*: a VCP base whose
+  pivot is also the highest price the stock has traded in our exchange data
+  (back to January 2020), with at least a year of trading history. A company
+  listed before 2020 may have traded higher before then.
+- **Multi-year breakouts** — *clearing a year-plus base*: the highest high of
+  up to five years, set at least a year ago and never cleared since, with the
+  stock no more than 50% under it.
+- **IPO base** — *a young listing's first base*: companies listed in the last
+  two years (dated by the first session their ISIN or either exchange ticker
+  appears, so renames, splits and a later second listing don't count), basing
+  under their post-listing high; the list sorts closest-to-breakout first.
+
+VCP, Blue sky and Multi-year need an uptrend (above the 200-day, 50-day above
+the 200-day) to count as Forming. In every screen "on the verge" flags Forming
+names within 5% of the pivot, and the market-wide chip counts that screen's
+breakouts across every liquid NSE stock.
+
+**All NSE & BSE / Board companies only** — the scope next to the screen menu
+(default: All NSE & BSE). All four screens run every trading day over every
+actively traded NSE and BSE company, not just the board: `write_universe` in
+`scripts/update_charts.py` analyses each stock in Screen any Chart's universe
+and writes the ones in a setup under any screen to
+`backend/chart_data/market_all.json` (compacted by `setups.compact`, about
+1.2 MB / 200 KB gzipped, committed), served at `GET /api/market/setups-all`.
+Those stocks show their exchange instead of a theme and have no market cap or
+watchlist star; a theme filter shows board companies only. Their history is
+the universe files' own, about three years (since listing for recent IPOs),
+so for them Blue sky means the highest price in that window and Multi-year
+looks back three years rather than five.
 
 `backend/app/setups.py` holds every rule (documented at the top of the
 file). `scripts/update_charts.py` runs it and writes
@@ -492,6 +566,12 @@ workflow*): `fundamentals.yml`, `auto-screen.yml`, `discovery.yml`, `asme.yml`, 
 (`movers.yml`) rather than in the 02:00 IST run above -- it needs no
 Claude usage, and running it later catches more of the previous session's
 overnight news coverage (see the Movers section above).
+
+**News Channel** also runs separately, every **12 hours** (`news_channel.yml`)
+-- news is time-sensitive in a way the rest of the dashboard's once-a-day
+data isn't, but the cadence stays conservative to keep the newsdata.io free
+plan's 200-request/day quota nowhere near exhausted (see the News Channel
+section above).
 
 ### Auto-added companies
 

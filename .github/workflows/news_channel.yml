@@ -1,0 +1,77 @@
+name: News Channel
+
+# China/India/USA news for the sectors each dominates globally -- see
+# backend/app/news_channel.py for the rules and why this only ever costs 3
+# newsdata.io requests (the free plan is 200/day). Runs every 12 hours --
+# comfortably same-day coverage while keeping the quota nowhere near
+# exhausted (6 requests/day, 3% of the free plan) -- plus on demand via
+# "Refresh now" on the dashboard (POST /api/admin/news-channel/run-now) or
+# this workflow run by hand from the Actions tab.
+#
+# Commits by this workflow use GITHUB_TOKEN, which never re-triggers
+# workflows, so nothing here can loop.
+
+permissions:
+  contents: write
+
+on:
+  schedule:
+    - cron: '15 */12 * * *'
+  workflow_dispatch:
+
+concurrency:
+  group: news-channel
+  cancel-in-progress: false
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Check out repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: pip install requests
+
+      - name: Fetch
+        working-directory: ./backend
+        env:
+          NEWSDATA_API_KEY: ${{ secrets.NEWSDATA_API_KEY }}
+        run: python scripts/run_news_channel.py
+
+      - name: Commit
+        id: commit
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add backend/data/news_channel
+          if git diff --cached --quiet; then
+            echo "No news channel changes"
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          git commit -m "News Channel update"
+          for i in 1 2 3; do
+            git pull --rebase origin ${{ github.ref_name }} && git push origin HEAD:${{ github.ref_name }} && break
+            sleep 5
+          done
+          echo "changed=true" >> "$GITHUB_OUTPUT"
+
+      - name: Trigger Render deploy
+        if: ${{ steps.commit.outputs.changed == 'true' }}
+        env:
+          RENDER_DEPLOY_HOOK: ${{ secrets.RENDER_DEPLOY_HOOK }}
+        run: |
+          if [ -z "$RENDER_DEPLOY_HOOK" ]; then
+            echo "RENDER_DEPLOY_HOOK secret not set; skipping deploy"
+            exit 0
+          fi
+          curl -fsSL --retry 3 --retry-delay 5 -X POST "$RENDER_DEPLOY_HOOK" > /dev/null
+          echo "Render deploy triggered"
