@@ -1506,6 +1506,7 @@ const GAL_SORTS={
   chg  :{l:"Sort: day's change",            s:s=>s.chg_pct,       dir:-1},
   vol  :{l:'Sort: volume vs average',       s:s=>s.vol_ratio,     dir:-1},
   breakout:{l:'Sort: freshest breakout',    d:d=>{ const s=galStats(d); return -GAL_STAGE_RANK[galStage(d)||'none']*1e6+(s&&s.vol_ratio||0); }, dir:-1},
+  cross:{l:'Sort: freshest EMA crossover',  d:d=>{ const s=galStats(d); return (s&&s.cross_dir)?1e6-(s.cross_ago??99):-1e6; }, dir:-1},
   mcap :{l:'Sort: market cap',              d:d=>nz(d.market_cap_cr), dir:-1},
   score:{l:'Sort: score',                   d:d=>nz(d.final_score),   dir:-1},
   name :{l:'Sort: name',                    d:d=>String(d.name||''),  dir:1},
@@ -1521,6 +1522,10 @@ function galStage(d){
   if(d.universe) return (d.stats||{}).stage || null;
   return (BP.data && BP.data.stocks && BP.data.stocks[d.code] && BP.data.stocks[d.code].stage) || null;
 }
+/* Weekly 9/21 EMA crossover -- unlike stage, this comes from compute_stats()
+   itself (backend/app/charts.py), so it already reaches galStats() for both
+   board and universe rows the same way; no separate lookup needed here. */
+const GAL_CROSS_LABEL={bull:['Bullish crossover','cross-bull','⤴'], bear:['Bearish crossover','cross-bear','⤵']};
 const GMONTHS=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
 const GSERIES=new Map(), GPROM=new Map(), GQUEUE=[];
 let GAL=null, GALLOADING=null, GACTIVE=0, GOBS=null;
@@ -1584,7 +1589,7 @@ async function openGallery(){
 
 function buildGalControls(){
   const tr=document.getElementById('gtrend'), th=document.getElementById('gtheme'), so=document.getElementById('gsort');
-  const sc=document.getElementById('gscope'), sg=document.getElementById('gstage');
+  const sc=document.getElementById('gscope'), sg=document.getElementById('gstage'), cr=document.getElementById('gcross');
   const byStatus={}, byTheme={};
   DATA.forEach(d=>{ const s=galStats(d), k=s?s.status:'none'; byStatus[k]=(byStatus[k]||0)+1; byTheme[base(d)]=(byTheme[base(d)]||0)+1; });
   tr.innerHTML='<option value="">Trend: all</option>'
@@ -1592,6 +1597,8 @@ function buildGalControls(){
     + (byStatus.none?`<option value="none">No chart yet (${byStatus.none})</option>`:'');
   sg.innerHTML='<option value="">Breakout stage: any</option>'
     + BP_STAGES.map(x=>`<option value="${x.k}" title="${esc(x.hint)}">${esc(x.label)}${x.k==='fresh'?' 🚀':''}</option>`).join('');
+  cr.innerHTML='<option value="">EMA crossover (weekly): any</option>'
+    + Object.entries(GAL_CROSS_LABEL).map(([k,[l,,icon]])=>`<option value="${k}" title="The weekly 9 EMA crossed the 21 EMA within the last 8 weeks">${icon} ${esc(l)}</option>`).join('');
   th.innerHTML='<option value="">Theme: all</option>'
     + Object.entries(byTheme).sort((a,b)=>b[1]-a[1]).map(([t,n])=>`<option value="${esc(t)}">${esc(shortT(t))} (${n})</option>`).join('');
   so.innerHTML=Object.entries(GAL_SORTS).map(([k,v])=>`<option value="${k}">${v.l}</option>`).join('');
@@ -1599,8 +1606,8 @@ function buildGalControls(){
   document.getElementById('gallery-asof').textContent = GAL.latest_session ? 'Last session: '+galDay(GAL.latest_session) : '';
   let t=0;
   document.getElementById('gq').oninput=()=>{ clearTimeout(t); GSHOW=GAL_PAGE; t=setTimeout(renderGallery,120); };
-  [tr,sg,th,so,sc].forEach(el=>el.onchange=()=>{ GSHOW=GAL_PAGE; renderGallery(); });
-  document.getElementById('gclear').onclick=()=>{ document.getElementById('gq').value=''; tr.value=''; sg.value=''; th.value=''; so.value='high'; sc.value='all'; GSHOW=GAL_PAGE; renderGallery(); };
+  [tr,sg,cr,th,so,sc].forEach(el=>el.onchange=()=>{ GSHOW=GAL_PAGE; renderGallery(); });
+  document.getElementById('gclear').onclick=()=>{ document.getElementById('gq').value=''; tr.value=''; sg.value=''; cr.value=''; th.value=''; so.value='high'; sc.value='all'; GSHOW=GAL_PAGE; renderGallery(); };
 
   const grid=document.getElementById('ggrid');
   grid.onclick=e=>{
@@ -1630,6 +1637,7 @@ function galRows(){
   const q=document.getElementById('gq').value.trim().toLowerCase();
   const tr=document.getElementById('gtrend').value, th=document.getElementById('gtheme').value;
   const stage=(document.getElementById('gstage')||{}).value||'';
+  const cross=(document.getElementById('gcross')||{}).value||'';
   const so=GAL_SORTS[document.getElementById('gsort').value]||GAL_SORTS.high;
   const scope=(document.getElementById('gscope')||{}).value||'all';
   const val=d=>{ if(so.d) return so.d(d); const s=galStats(d); return s ? so.s(s) : null; };
@@ -1639,6 +1647,7 @@ function galRows(){
     if(th && base(d)!==th) return false;
     if(stage && galStage(d)!==stage) return false;
     const s=galStats(d);
+    if(cross && !(s && s.cross_dir===cross)) return false;
     if(tr==='none' ? !!s : (tr && (!s || s.status!==tr))) return false;
     if(q && !(d._n+' '+(s?String(s.symbol).toLowerCase():'')).includes(q)) return false;
     return true;
@@ -1675,11 +1684,17 @@ function galCard(d){
      stages (forming/climbing/played) stay in the filter, not the card, so
      an already-busy grid doesn't get louder for names browsed by default */
   const fresh=galStage(d)==='fresh';
+  /* matches exactly what the crossover filter matches (any cross within
+     the 8-week lookback), so a filtered card is never left without its badge */
+  const xc=s && s.cross_dir ? GAL_CROSS_LABEL[s.cross_dir] : null;
+  const badge=fresh?`<span class="gc-badge gc-stage-fresh" title="Cleared the pivot in the last 5 sessions">🚀 Fresh breakout</span>`
+    :xc?`<span class="gc-badge gc-${xc[1]}" title="Weekly 9 EMA crossed the 21 EMA ${s.cross_ago===0?'this week':s.cross_ago+' week'+(s.cross_ago===1?'':'s')+' ago'}">${xc[2]} ${esc(xc[0])}</span>`
+    :(st?`<span class="gc-badge ${st[1]}">${st[0]}</span>`:'');
   const foot = d.universe
     ? `<span class="gc-theme">${esc(d.exchange||'')}${d.stats&&d.stats.rs!=null?` · RS ${d.stats.rs}`:''}</span><span class="gc-off">Not on the board</span>`
     : `<span class="gc-theme">${esc(shortT(base(d)))}</span><button type="button" class="gc-pin${on?' on':''}" data-gpin="${esc(d.code)}" title="${on?'Remove from':'Add to'} watchlist" aria-label="Star ${esc(d.name)}">${on?'★':'☆'}</button>`;
   return `<article class="gcard${d.universe?' gc-uni':''}" data-gcode="${esc(d.code)}" tabindex="0" aria-label="Open the chart for ${esc(d.name)}">
-    <div class="gc-head"><span class="gc-tick">${esc(galTicker(d,s))}</span><span class="gc-name" title="${esc(d.name)}">${esc(d.name)}</span>${fresh?`<span class="gc-badge gc-stage-fresh" title="Cleared the pivot in the last 5 sessions">🚀 Fresh breakout</span>`:(st?`<span class="gc-badge ${st[1]}">${st[0]}</span>`:'')}</div>
+    <div class="gc-head"><span class="gc-tick">${esc(galTicker(d,s))}</span><span class="gc-name" title="${esc(d.name)}">${esc(d.name)}</span>${badge}</div>
     <div class="gc-chart" data-gchart="${esc(d.code)}">${galThumb(d.code)}</div>
     <div class="gc-stats">${galStatLine(d.code, s)}</div>
     <div class="gc-foot">${foot}</div>
@@ -1748,21 +1763,31 @@ function galRec(code){
   return ser && !ser.missing ? {code, universe:true, name:ser.name||code, symbol:ser.symbol, exchange:ser.exchange} : null;
 }
 
-/* Candles, 50/200-day averages, volume and the 52-week high, as one SVG.
+/* Candles, 9/21/50 EMAs, volume and the 52-week high, as one SVG.
    The averages are computed over the whole year and then windowed, so the
-   200-day line is real from its first visible point rather than warming up. */
+   50 EMA line is real from its first visible point rather than warming up. */
 /* o: {w,h,sessions, axis, ma (default true), hi52 (default true), volColor,
        pivot: price for a dashed pivot line, box: {start,end,low,high,label} base box} */
 function candleSVG(rows,o){
   const W=o.w, H=o.h, axis=!!o.axis, padR=axis?62:2, padT=axis?14:5, padB=axis?24:3;
   const useMA=o.ma!==false, useHi=o.hi52!==false;
   const closes=rows.map(r=>r[4]);
-  const ma=n=>{ let sum=0; return closes.map((c,i)=>{ sum+=c; if(i>=n) sum-=closes[i-n]; return i>=n-1 ? sum/n : null; }); };
+  /* seeded with a plain average of the first n closes, same convention most
+     charting tools use, then carried forward with the usual EMA weighting */
+  const ema=n=>{
+    const k=2/(n+1); let prev=null, sum=0; const out=[];
+    closes.forEach((c,i)=>{
+      if(i<n-1){ sum+=c; out.push(null); return; }
+      if(i===n-1){ sum+=c; prev=sum/n; out.push(prev); return; }
+      prev=c*k+prev*(1-k); out.push(prev);
+    });
+    return out;
+  };
   const start=Math.max(0, rows.length-o.sessions);
-  const vis=rows.slice(start), m50=ma(50).slice(start), m200=ma(200).slice(start);
+  const vis=rows.slice(start), e9=ema(9).slice(start), e21=ema(21).slice(start), e50=ema(50).slice(start);
   const hi52=Math.max(...rows.map(r=>r[2]));
   let lo=Math.min(...vis.map(r=>r[3])), hi=Math.max(...vis.map(r=>r[2]));
-  if(useMA) m50.concat(m200).forEach(v=>{ if(v!=null){ lo=Math.min(lo,v); hi=Math.max(hi,v); } });
+  if(useMA) e9.concat(e21,e50).forEach(v=>{ if(v!=null){ lo=Math.min(lo,v); hi=Math.max(hi,v); } });
   if(o.pivot) hi=Math.max(hi,o.pivot);
   /* X-ray: every historical base in view (o.boxes), each with its own dashed
      box + duration label -- only those whose date range overlaps what is
@@ -1819,7 +1844,7 @@ function candleSVG(rows,o){
   });
   s+=`<path d="${upW}" class="cs-wick up"/><path d="${dnW}" class="cs-wick dn"/><path d="${upB}" class="cs-body up"/><path d="${dnB}" class="cs-body dn"/>`;
   const line=(arr,cls)=>{ let d=''; arr.forEach((v,i)=>{ if(v!=null) d+=(d?'L':'M')+f(X(i))+' '+f(y(v)); }); return d?`<path d="${d}" class="${cls}"/>`:''; };
-  if(useMA) s+=line(m50,'cs-ma50')+line(m200,'cs-ma200');
+  if(useMA) s+=line(e9,'cs-ema9')+line(e21,'cs-ema21')+line(e50,'cs-ema50');
   if(o.pivot){
     const yp=y(o.pivot), lab=`pivot ₹${(+o.pivot).toLocaleString('en-IN',{maximumFractionDigits:2})}`;
     s+=`<line x1="0" x2="${plotW}" y1="${f(yp)}" y2="${f(yp)}" class="cs-pivot"/><g class="cs-pivlab"><rect x="2" y="${f(yp-15)}" width="${lab.length*6.1+10}" height="13" rx="2"/><text x="7" y="${f(yp-5)}">${lab}</text></g>`;
@@ -1909,9 +1934,10 @@ function cmRender(){
         box:cur?{start:cur.start,end:cur.end,high:cur.pivot||a.pivot,low:cur.low,label:`${cur.weeks} wks`}:null,
         pivot:a?a.pivot:null, boxes})}</div>
       <div class="cm-legend">
-        <label><input type="checkbox" id="cm-ma" ${CM.ma?'checked':''}> 50/200-day average</label>
+        <label><input type="checkbox" id="cm-ma" ${CM.ma?'checked':''}> 9/21/50 EMA</label>
         <label><input type="checkbox" id="cm-rs" ${CM.rs?'checked':''}> RS rating</label>
         ${breakouts.length?`<label><input type="checkbox" id="cm-xray-cb" ${CM.xray?'checked':''}> Bases</label>`:''}
+        <span><i class="lg lg-e9"></i>9 EMA</span><span><i class="lg lg-e21"></i>21 EMA</span><span><i class="lg lg-e50"></i>50 EMA</span>
         <span><i class="lg lg-hi"></i>52-week high</span><span><i class="lg lg-vol"></i>Volume</span>
       </div>`
     : '<p class="view-hint">No price data for this company yet. The chart appears automatically after the next daily update.</p>'}
@@ -1965,8 +1991,9 @@ function cmMeasures(a, s){
     ${kv('Volume dry-up', a.vol_dryup??'—', '10-day average volume / 50-day — below 1 means volume is drying up')}
     ${kv('Up/down volume', a.updown??'—', '(up-day volume − down-day volume) / total, last 50 sessions')}
     ${kv('From 52-week high', a.from_high==null?'—':a.from_high+'%')}
-    ${s?kv('50-day average', galPx(s.dma50)):''}${s?kv('200-day average', galPx(s.dma200)):''}
+    ${s?kv('9 EMA', galPx(s.ema9)):''}${s?kv('50 EMA', galPx(s.ema50)):''}
     ${s?kv('Volume vs 50-day avg', s.vol_ratio==null?'—':s.vol_ratio+'×'):''}
+    ${s&&s.cross_dir?kv('Weekly EMA crossover', `${GAL_CROSS_LABEL[s.cross_dir][2]} ${GAL_CROSS_LABEL[s.cross_dir][0]}${s.cross_ago?` · ${s.cross_ago} wk ago`:' · this week'}`, 'The weekly 9 EMA crossing the 21 EMA, within the last 8 weeks'):''}
   </div>`;
 }
 
@@ -3485,7 +3512,7 @@ function rpPaintChart(d){
   box.innerHTML = candleSVG(ser.rows,{w:900,h:320,sessions:250,axis:true})
     + `<div class="rp-chart-stats">${[
         ['Last close', galPx(s&&s.last)], ['52-week high', galPx(s&&s.high52)], ['52-week low', galPx(s&&s.low52)],
-        ['From 52-week high', s&&s.from_high_pct!=null?s.from_high_pct.toFixed(1)+'%':'—'], ['50-day avg', galPx(s&&s.dma50)], ['200-day avg', galPx(s&&s.dma200)],
+        ['From 52-week high', s&&s.from_high_pct!=null?s.from_high_pct.toFixed(1)+'%':'—'], ['9 EMA', galPx(s&&s.ema9)], ['50 EMA', galPx(s&&s.ema50)],
         ['Trend', st?st[0]:'—'], ['As of', s&&s.asof?galDay(s.asof):'—']
       ].map(([k,v])=>`<div><span>${k}</span><b>${v}</b></div>`).join('')}</div>`;
 }
