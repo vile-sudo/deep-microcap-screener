@@ -234,8 +234,7 @@ def write_universe(days: list, board: dict, rank) -> tuple[int, list[dict]]:
                       # cannot be mistaken for a liquid one
                       "turnover": round(sum(r[4] * r[5] for r in recent) / max(1, len(recent))),
                       "stage": (a or {}).get("stage"), "rs": (a or {}).get("rs"),
-                      "bases": len((a or {}).get("breakouts") or []),
-                      "cross_dir": stats.get("cross_dir"), "cross_ago": stats.get("cross_ago")}
+                      "bases": len((a or {}).get("breakouts") or [])}
         if a:
             bo = a.get("breakout")
             if a.get("stage") == "fresh" and bo and bo.get("sessions") == 0:

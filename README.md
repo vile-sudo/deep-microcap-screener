@@ -118,8 +118,8 @@ Fly.io, and a plain VPS.
 
 ## Screen any Chart (automated)
 
-The **Screen any Chart** page shows a daily candlestick chart — 9/21/50
-EMAs, volume, 52-week high, a 1W-to-Max range and **X-ray: every base
+The **Screen any Chart** page shows a daily candlestick chart — 50/200-day
+averages, volume, 52-week high, a 1W-to-Max range and **X-ray: every base
 it ever built** (every VCP base and breakout the stock has had, not just
 the current one, each boxed and labelled on the chart) — for **every
 actively traded company on the NSE and BSE**, roughly 4,000–5,000 of them,
@@ -171,35 +171,6 @@ not only the board's own.
   session it happens (`app.alerts.universe_breakout_item`, deduplicated
   against Market view's own narrower NSE-only pass). Opening a market-scope
   breakout alert's "Chart" button goes straight to that stock's page here.
-- **Moving averages:** the chart draws the 9/21/50 EMA (`candleSVG`'s own
-  `ema()`, matched exactly by the backend's `_ema()` in `app/charts.py` so
-  the "Stock measures" figure and the chart line always agree), and it is
-  what decides the Uptrend/Downtrend/Sideways trend badge and filter too
-  (`compute_stats()`'s `status`, replacing the old 50/200-day SMA).
-- **Weekly EMA crossover filter and sort:** an "EMA crossover (weekly)"
-  control (Bullish: 9 crossed above 21 / Bearish: 9 crossed below 21, on
-  bars built by resampling the daily candles) finds a cross within the last
-  8 weeks, board companies and the universe alike, and "Sort: freshest EMA
-  crossover" brings the newest ones up front. A matching card is flagged
-  ⤴/⤵ (a fresh base breakout still takes priority over it). Computed in
-  `charts.weekly_ema_cross()`, called from `compute_stats()`, so it reaches
-  the same places `ema9`/`ema50`/`status` do. Its dropdown's default option
-  reads "None", not "any" like the dashboard's other filters -- picked so
-  it is unambiguous that leaving it there means every other filter (Trend,
-  day change, volume, ...) works completely unrestricted by it.
-- **Daily/Weekly candles:** a toggle next to the range pills switches the
-  chart itself between daily candles and one candle a week (built
-  client-side from the same daily rows already fetched, by `toWeekly()` in
-  `app.js`, grouped by ISO week like `weekly_ema_cross()` groups them
-  server-side) -- with the 9/21/50 EMA now computed on weekly closes, so a
-  weekly crossover is something you can actually see cross, not just a
-  filter result. The X-ray base box, pivot line and hover readout all
-  follow whichever mode is active. Opened from Market view specifically,
-  the chart draws only the 50 EMA -- the 9/21 pair is a Screen any Chart
-  idea (the weekly crossover), not part of Market view's own daily
-  pivot/base screen. `candleSVG()` takes an `emas` option for this; the
-  modal is shared, so `cmRender()` tells the two apart by checking `VIEW`,
-  which does not change while the modal is open.
 - **Automation:** step 5 of `.github/workflows/daily.yml` runs it every
   night at 02:00 IST (after the day's auto-screen, so a company added that
   morning has its chart), and `charts.yml` on every push that changes

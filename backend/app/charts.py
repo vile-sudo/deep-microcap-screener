@@ -312,58 +312,8 @@ def _norm_name(name: str) -> str:
 
 
 # ------------------------------------------------------------------- stats
-def _ema_series(closes: list[float], n: int) -> list[float | None]:
-    """The same EMA the chart itself draws (frontend candleSVG's ema()): a
-    plain average of the first n closes to seed it, then carried forward
-    with the usual EMA weighting -- so this number is always the value the
-    chart's own line would show at that candle, not a second, divergent
-    definition of "the EMA". One entry per close, None until the seed."""
-    if len(closes) < n:
-        return [None] * len(closes)
-    k = 2 / (n + 1)
-    out: list[float | None] = [None] * (n - 1)
-    ema = sum(closes[:n]) / n
-    out.append(ema)
-    for c in closes[n:]:
-        ema = c * k + ema * (1 - k)
-        out.append(ema)
-    return out
-
-
-def _ema(closes: list[float], n: int) -> float | None:
-    series = _ema_series(closes, n)
-    return round(series[-1], 2) if series and series[-1] is not None else None
-
-
-def _weekly_closes(rows: list[list]) -> list[tuple[str, float]]:
-    """One bar a week from daily rows -- (the week's last trading day, that
-    day's close) -- keeping the current week too, still forming, the same
-    way any weekly chart's rightmost bar updates through the week rather
-    than appearing only once it closes."""
-    weeks: dict[tuple[int, int], tuple[str, float]] = {}
-    for r in rows:
-        key = date.fromisoformat(r[0]).isocalendar()[:2]
-        weeks[key] = (r[0], r[4])   # later same-week rows overwrite; dict keeps first-seen order per key
-    return list(weeks.values())
-
-
-def weekly_ema_cross(rows: list[list], fast: int = 9, slow: int = 21, lookback_weeks: int = 8) -> dict | None:
-    """Whether the `fast`-week EMA crossed the `slow`-week EMA recently, on
-    weekly bars built from daily candles -- None if there isn't enough
-    weekly history or no cross inside lookback_weeks."""
-    weekly = _weekly_closes(rows)
-    if len(weekly) < slow + 2:
-        return None
-    closes = [c for _, c in weekly]
-    ef, es = _ema_series(closes, fast), _ema_series(closes, slow)
-    t = len(closes) - 1
-    for i in range(t, max(slow, t - lookback_weeks), -1):
-        if None in (ef[i], es[i], ef[i - 1], es[i - 1]):
-            break
-        now_up, prev_up = ef[i] > es[i], ef[i - 1] > es[i - 1]
-        if now_up != prev_up:
-            return {"direction": "bull" if now_up else "bear", "weeks_ago": t - i, "week": weekly[i][0]}
-    return None
+def _sma(closes: list[float], n: int) -> float | None:
+    return round(sum(closes[-n:]) / n, 2) if len(closes) >= n else None
 
 
 def compute_stats(series: dict) -> dict:
@@ -376,8 +326,7 @@ def compute_stats(series: dict) -> dict:
     year = rows[-SESSIONS:]          # IPO names keep more history than a year
     high52 = max(r[2] for r in year)
     low52 = min(r[3] for r in year)
-    ema9, ema50 = _ema(closes, 9), _ema(closes, 50)
-    cross = weekly_ema_cross(rows)
+    dma50, dma200 = _sma(closes, 50), _sma(closes, 200)
     past = vols[-51:-1]
     avg_vol = sum(past) / len(past) if past and sum(past) else None
     from_high = round((last / high52 - 1) * 100, 2) if high52 else None
@@ -386,9 +335,9 @@ def compute_stats(series: dict) -> dict:
         status = "high"          # at (within 1% of) the 52-week high
     elif from_high is not None and from_high >= -5:
         status = "near"          # within 5% of it
-    elif ema9 and ema50 and last > ema9 > ema50:
-        status = "up"            # above a rising 9 and 50 EMA
-    elif (ema50 or ema9) and last < (ema50 or ema9):
+    elif dma50 and dma200 and last > dma50 > dma200:
+        status = "up"            # above a rising 50 and 200-day average
+    elif (dma200 or dma50) and last < (dma200 or dma50):
         status = "down"          # below its long average
     else:
         status = "flat"
@@ -404,13 +353,9 @@ def compute_stats(series: dict) -> dict:
         "high52": high52,
         "low52": low52,
         "from_high_pct": from_high,
-        "ema9": ema9,
-        "ema50": ema50,
+        "dma50": dma50,
+        "dma200": dma200,
         "status": status,
-        # weekly 9/21 EMA crossover, within the last 8 weeks -- None means
-        # no cross that recent, not that the stock has never had one
-        "cross_dir": cross["direction"] if cross else None,
-        "cross_ago": cross["weeks_ago"] if cross else None,
     }
 
 

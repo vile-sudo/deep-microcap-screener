@@ -1506,7 +1506,6 @@ const GAL_SORTS={
   chg  :{l:"Sort: day's change",            s:s=>s.chg_pct,       dir:-1},
   vol  :{l:'Sort: volume vs average',       s:s=>s.vol_ratio,     dir:-1},
   breakout:{l:'Sort: freshest breakout',    d:d=>{ const s=galStats(d); return -GAL_STAGE_RANK[galStage(d)||'none']*1e6+(s&&s.vol_ratio||0); }, dir:-1},
-  cross:{l:'Sort: freshest EMA crossover',  d:d=>{ const s=galStats(d); return (s&&s.cross_dir)?1e6-(s.cross_ago??99):-1e6; }, dir:-1},
   mcap :{l:'Sort: market cap',              d:d=>nz(d.market_cap_cr), dir:-1},
   score:{l:'Sort: score',                   d:d=>nz(d.final_score),   dir:-1},
   name :{l:'Sort: name',                    d:d=>String(d.name||''),  dir:1},
@@ -1522,10 +1521,6 @@ function galStage(d){
   if(d.universe) return (d.stats||{}).stage || null;
   return (BP.data && BP.data.stocks && BP.data.stocks[d.code] && BP.data.stocks[d.code].stage) || null;
 }
-/* Weekly 9/21 EMA crossover -- unlike stage, this comes from compute_stats()
-   itself (backend/app/charts.py), so it already reaches galStats() for both
-   board and universe rows the same way; no separate lookup needed here. */
-const GAL_CROSS_LABEL={bull:['Bullish crossover','cross-bull','⤴'], bear:['Bearish crossover','cross-bear','⤵']};
 const GMONTHS=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
 const GSERIES=new Map(), GPROM=new Map(), GQUEUE=[];
 let GAL=null, GALLOADING=null, GACTIVE=0, GOBS=null;
@@ -1581,13 +1576,15 @@ async function openGallery(){
   guLoad();
   /* board companies' stage comes from Market view's own data (BP.data);
      universe stocks already carry theirs in the index (GU.rows) */
-  if(!BP.data) bpEnsureData().then(()=>{ if(VIEW==='gallery') renderGallery(); });
+  if(!BP.data){
+    BP.loading = BP.loading || fetchJSON('/api/market/setups').catch(()=>({stocks:{}})).then(j=>{ BP.data=j; if(VIEW==='gallery') renderGallery(); });
+  }
   if(VIEW==='gallery') renderGallery();
 }
 
 function buildGalControls(){
   const tr=document.getElementById('gtrend'), th=document.getElementById('gtheme'), so=document.getElementById('gsort');
-  const sc=document.getElementById('gscope'), sg=document.getElementById('gstage'), cr=document.getElementById('gcross');
+  const sc=document.getElementById('gscope'), sg=document.getElementById('gstage');
   const byStatus={}, byTheme={};
   DATA.forEach(d=>{ const s=galStats(d), k=s?s.status:'none'; byStatus[k]=(byStatus[k]||0)+1; byTheme[base(d)]=(byTheme[base(d)]||0)+1; });
   tr.innerHTML='<option value="">Trend: all</option>'
@@ -1595,8 +1592,6 @@ function buildGalControls(){
     + (byStatus.none?`<option value="none">No chart yet (${byStatus.none})</option>`:'');
   sg.innerHTML='<option value="">Breakout stage: any</option>'
     + BP_STAGES.map(x=>`<option value="${x.k}" title="${esc(x.hint)}">${esc(x.label)}${x.k==='fresh'?' 🚀':''}</option>`).join('');
-  cr.innerHTML='<option value="">EMA crossover (weekly): None</option>'
-    + Object.entries(GAL_CROSS_LABEL).map(([k,[l,,icon]])=>`<option value="${k}" title="The weekly 9 EMA crossed the 21 EMA within the last 8 weeks">${icon} ${esc(l)}</option>`).join('');
   th.innerHTML='<option value="">Theme: all</option>'
     + Object.entries(byTheme).sort((a,b)=>b[1]-a[1]).map(([t,n])=>`<option value="${esc(t)}">${esc(shortT(t))} (${n})</option>`).join('');
   so.innerHTML=Object.entries(GAL_SORTS).map(([k,v])=>`<option value="${k}">${v.l}</option>`).join('');
@@ -1604,8 +1599,8 @@ function buildGalControls(){
   document.getElementById('gallery-asof').textContent = GAL.latest_session ? 'Last session: '+galDay(GAL.latest_session) : '';
   let t=0;
   document.getElementById('gq').oninput=()=>{ clearTimeout(t); GSHOW=GAL_PAGE; t=setTimeout(renderGallery,120); };
-  [tr,sg,cr,th,so,sc].forEach(el=>el.onchange=()=>{ GSHOW=GAL_PAGE; renderGallery(); });
-  document.getElementById('gclear').onclick=()=>{ document.getElementById('gq').value=''; tr.value=''; sg.value=''; cr.value=''; th.value=''; so.value='high'; sc.value='all'; GSHOW=GAL_PAGE; renderGallery(); };
+  [tr,sg,th,so,sc].forEach(el=>el.onchange=()=>{ GSHOW=GAL_PAGE; renderGallery(); });
+  document.getElementById('gclear').onclick=()=>{ document.getElementById('gq').value=''; tr.value=''; sg.value=''; th.value=''; so.value='high'; sc.value='all'; GSHOW=GAL_PAGE; renderGallery(); };
 
   const grid=document.getElementById('ggrid');
   grid.onclick=e=>{
@@ -1635,7 +1630,6 @@ function galRows(){
   const q=document.getElementById('gq').value.trim().toLowerCase();
   const tr=document.getElementById('gtrend').value, th=document.getElementById('gtheme').value;
   const stage=(document.getElementById('gstage')||{}).value||'';
-  const cross=(document.getElementById('gcross')||{}).value||'';
   const so=GAL_SORTS[document.getElementById('gsort').value]||GAL_SORTS.high;
   const scope=(document.getElementById('gscope')||{}).value||'all';
   const val=d=>{ if(so.d) return so.d(d); const s=galStats(d); return s ? so.s(s) : null; };
@@ -1645,7 +1639,6 @@ function galRows(){
     if(th && base(d)!==th) return false;
     if(stage && galStage(d)!==stage) return false;
     const s=galStats(d);
-    if(cross && !(s && s.cross_dir===cross)) return false;
     if(tr==='none' ? !!s : (tr && (!s || s.status!==tr))) return false;
     if(q && !(d._n+' '+(s?String(s.symbol).toLowerCase():'')).includes(q)) return false;
     return true;
@@ -1682,17 +1675,11 @@ function galCard(d){
      stages (forming/climbing/played) stay in the filter, not the card, so
      an already-busy grid doesn't get louder for names browsed by default */
   const fresh=galStage(d)==='fresh';
-  /* matches exactly what the crossover filter matches (any cross within
-     the 8-week lookback), so a filtered card is never left without its badge */
-  const xc=s && s.cross_dir ? GAL_CROSS_LABEL[s.cross_dir] : null;
-  const badge=fresh?`<span class="gc-badge gc-stage-fresh" title="Cleared the pivot in the last 5 sessions">🚀 Fresh breakout</span>`
-    :xc?`<span class="gc-badge gc-${xc[1]}" title="Weekly 9 EMA crossed the 21 EMA ${s.cross_ago===0?'this week':s.cross_ago+' week'+(s.cross_ago===1?'':'s')+' ago'}">${xc[2]} ${esc(xc[0])}</span>`
-    :(st?`<span class="gc-badge ${st[1]}">${st[0]}</span>`:'');
   const foot = d.universe
     ? `<span class="gc-theme">${esc(d.exchange||'')}${d.stats&&d.stats.rs!=null?` · RS ${d.stats.rs}`:''}</span><span class="gc-off">Not on the board</span>`
     : `<span class="gc-theme">${esc(shortT(base(d)))}</span><button type="button" class="gc-pin${on?' on':''}" data-gpin="${esc(d.code)}" title="${on?'Remove from':'Add to'} watchlist" aria-label="Star ${esc(d.name)}">${on?'★':'☆'}</button>`;
   return `<article class="gcard${d.universe?' gc-uni':''}" data-gcode="${esc(d.code)}" tabindex="0" aria-label="Open the chart for ${esc(d.name)}">
-    <div class="gc-head"><span class="gc-tick">${esc(galTicker(d,s))}</span><span class="gc-name" title="${esc(d.name)}">${esc(d.name)}</span>${badge}</div>
+    <div class="gc-head"><span class="gc-tick">${esc(galTicker(d,s))}</span><span class="gc-name" title="${esc(d.name)}">${esc(d.name)}</span>${fresh?`<span class="gc-badge gc-stage-fresh" title="Cleared the pivot in the last 5 sessions">🚀 Fresh breakout</span>`:(st?`<span class="gc-badge ${st[1]}">${st[0]}</span>`:'')}</div>
     <div class="gc-chart" data-gchart="${esc(d.code)}">${galThumb(d.code)}</div>
     <div class="gc-stats">${galStatLine(d.code, s)}</div>
     <div class="gc-foot">${foot}</div>
@@ -1761,37 +1748,21 @@ function galRec(code){
   return ser && !ser.missing ? {code, universe:true, name:ser.name||code, symbol:ser.symbol, exchange:ser.exchange} : null;
 }
 
-/* Candles, 9/21/50 EMAs, volume and the 52-week high, as one SVG.
+/* Candles, 50/200-day averages, volume and the 52-week high, as one SVG.
    The averages are computed over the whole year and then windowed, so the
-   50 EMA line is real from its first visible point rather than warming up. */
+   200-day line is real from its first visible point rather than warming up. */
 /* o: {w,h,sessions, axis, ma (default true), hi52 (default true), volColor,
        pivot: price for a dashed pivot line, box: {start,end,low,high,label} base box} */
 function candleSVG(rows,o){
   const W=o.w, H=o.h, axis=!!o.axis, padR=axis?62:2, padT=axis?14:5, padB=axis?24:3;
   const useMA=o.ma!==false, useHi=o.hi52!==false;
   const closes=rows.map(r=>r[4]);
-  /* seeded with a plain average of the first n closes, same convention most
-     charting tools use, then carried forward with the usual EMA weighting */
-  const ema=n=>{
-    const k=2/(n+1); let prev=null, sum=0; const out=[];
-    closes.forEach((c,i)=>{
-      if(i<n-1){ sum+=c; out.push(null); return; }
-      if(i===n-1){ sum+=c; prev=sum/n; out.push(prev); return; }
-      prev=c*k+prev*(1-k); out.push(prev);
-    });
-    return out;
-  };
+  const ma=n=>{ let sum=0; return closes.map((c,i)=>{ sum+=c; if(i>=n) sum-=closes[i-n]; return i>=n-1 ? sum/n : null; }); };
   const start=Math.max(0, rows.length-o.sessions);
-  const vis=rows.slice(start), e9=ema(9).slice(start), e21=ema(21).slice(start), e50=ema(50).slice(start);
-  /* which of the three actually get drawn -- Market view's own daily
-     stage/pivot screen has nothing to do with the 9/21 (that pair is
-     about the weekly crossover, a Screen any Chart idea), so it draws
-     just the 50 there; everywhere else still gets all three */
-  const emaSet=new Set(o.emas || [9,21,50]);
-  const emaLines=[[9,e9,'cs-ema9'],[21,e21,'cs-ema21'],[50,e50,'cs-ema50']].filter(([n])=>emaSet.has(n));
+  const vis=rows.slice(start), m50=ma(50).slice(start), m200=ma(200).slice(start);
   const hi52=Math.max(...rows.map(r=>r[2]));
   let lo=Math.min(...vis.map(r=>r[3])), hi=Math.max(...vis.map(r=>r[2]));
-  if(useMA) emaLines.forEach(([,arr])=>arr.forEach(v=>{ if(v!=null){ lo=Math.min(lo,v); hi=Math.max(hi,v); } }));
+  if(useMA) m50.concat(m200).forEach(v=>{ if(v!=null){ lo=Math.min(lo,v); hi=Math.max(hi,v); } });
   if(o.pivot) hi=Math.max(hi,o.pivot);
   /* X-ray: every historical base in view (o.boxes), each with its own dashed
      box + duration label -- only those whose date range overlaps what is
@@ -1848,7 +1819,7 @@ function candleSVG(rows,o){
   });
   s+=`<path d="${upW}" class="cs-wick up"/><path d="${dnW}" class="cs-wick dn"/><path d="${upB}" class="cs-body up"/><path d="${dnB}" class="cs-body dn"/>`;
   const line=(arr,cls)=>{ let d=''; arr.forEach((v,i)=>{ if(v!=null) d+=(d?'L':'M')+f(X(i))+' '+f(y(v)); }); return d?`<path d="${d}" class="${cls}"/>`:''; };
-  if(useMA) s+=emaLines.map(([,arr,cls])=>line(arr,cls)).join('');
+  if(useMA) s+=line(m50,'cs-ma50')+line(m200,'cs-ma200');
   if(o.pivot){
     const yp=y(o.pivot), lab=`pivot ₹${(+o.pivot).toLocaleString('en-IN',{maximumFractionDigits:2})}`;
     s+=`<line x1="0" x2="${plotW}" y1="${f(yp)}" y2="${f(yp)}" class="cs-pivot"/><g class="cs-pivlab"><rect x="2" y="${f(yp-15)}" width="${lab.length*6.1+10}" height="13" rx="2"/><text x="7" y="${f(yp-5)}">${lab}</text></g>`;
@@ -1869,41 +1840,16 @@ function candleSVG(rows,o){
    built ("X-ray"), a multi-year range, base characteristics, stock
    measures and peers. CM holds the UI state for whichever company is open. ---- */
 const CM_RANGES=[['1W',5],['1M',21],['3M',63],['6M',126],['12M',252],['18M',378],['3Y',756],['Max',Infinity]];
-const CM={code:null, range:'6M', tf:'daily', xray:true, ma:true, rs:true, tab:'base', year:'all'};
-
-/* One bar a week -- open of the week's first session, close of its last,
-   the week's high/low/summed volume -- built from the same daily rows the
-   chart already has, so a "Weekly" toggle needs no separate fetch. Grouped
-   by ISO week, the same convention app/charts.py's weekly_ema_cross() uses
-   backend-side, so a candle here lines up with what that crossover means. */
-function toWeekly(rows){
-  const isoWeekKey=iso=>{
-    const d=new Date(iso+'T00:00:00Z');
-    const dayNum=(d.getUTCDay()+6)%7;                 // Mon=0..Sun=6
-    d.setUTCDate(d.getUTCDate()-dayNum+3);             // nearest Thursday
-    const firstThu=new Date(Date.UTC(d.getUTCFullYear(),0,4));
-    const firstDayNum=(firstThu.getUTCDay()+6)%7;
-    const week=1+Math.round(((d-firstThu)/86400000-3+firstDayNum)/7);
-    return d.getUTCFullYear()+'-'+week;
-  };
-  const out=[]; let key=null, bar=null;
-  rows.forEach(r=>{
-    const k=isoWeekKey(r[0]);
-    if(k!==key){ if(bar) out.push(bar); bar=[r[0],r[1],r[2],r[3],r[4],r[5]]; key=k; }
-    else { bar[0]=r[0]; bar[2]=Math.max(bar[2],r[2]); bar[3]=Math.min(bar[3],r[3]); bar[4]=r[4]; bar[5]+=r[5]; }
-  });
-  if(bar) out.push(bar);
-  return out;
-}
+const CM={code:null, range:'6M', xray:true, ma:true, rs:true, tab:'base', year:'all'};
 
 function openChart(code){
   const uni=guKey(code);
   if(!uni && !DATA.some(x=>x.code===code)) return;
-  CM.code=code; CM.range='6M'; CM.tf='daily'; CM.tab='base'; CM.year='all';
+  CM.code=code; CM.range='6M'; CM.tab='base'; CM.year='all';
   const need=[];
   if(!GSERIES.has(code)) need.push(galFetch(code));
   /* a non-board stock carries its own base analysis in its chart file */
-  if(!uni && !BP.data) need.push(bpEnsureData());
+  if(!uni && !BP.data) need.push(BP.loading = BP.loading || fetchJSON('/api/market/setups').catch(()=>({stocks:{}})).then(j=>{ BP.data=j; }));
   if(need.length){
     openModal('<p class="view-hint">Loading chart…</p>');
     Promise.all(need).then(()=>{ if(modal.classList.contains('on') && CM.code===code) cmRender(); });
@@ -1929,26 +1875,13 @@ function cmRender(){
   if(CM.year!=='all' && !years.includes(CM.year)) CM.year='all';
   const shown=CM.year==='all' ? breakouts : breakouts.filter(b=>b.date.startsWith(CM.year));
   const range=CM_RANGES.find(r=>r[0]===CM.range) || CM_RANGES[4];
-  /* Weekly bars are built from the same daily rows already fetched; a
-     range's session count becomes a week count (5 trading days a week),
-     so "6M" still means six calendar months either way. */
-  const weekly=CM.tf==='weekly';
-  /* Market view's own screen is about the daily pivot/base breakout, not
-     the weekly 9/21 crossover (a Screen any Chart idea) -- opened from
-     there, the chart draws just the 50 EMA. The modal is shared, so this
-     is the one place that knows which page is asking: VIEW doesn't
-     change while it's open, since opening it is not a page navigation. */
-  const marketCtx=VIEW==='market';
-  const emas=marketCtx?[50]:[9,21,50];
-  const plotRows=has ? (weekly ? toWeekly(ser.rows) : ser.rows) : [];
-  const maxSessions=plotRows.length;
-  const rangeN=range[1]===Infinity ? Infinity : (weekly ? Math.max(1,Math.round(range[1]/5)) : range[1]);
-  const sessions=rangeN===Infinity ? maxSessions : Math.min(rangeN,maxSessions);
+  const maxSessions=has?ser.rows.length:0;
+  const sessions=range[1]===Infinity ? maxSessions : Math.min(range[1],maxSessions);
   const W=1000, H=430, padR=62;
   const cur=a && bpBase(a);
   const boxes=CM.xray && has ? shown.map(b=>({start:b.base.start,end:b.base.end,high:b.pivot,low:b.base.low,
     label:`${b.base.weeks} wks`,flags:b.flags})).filter(b=>!cur || b.start!==cur.start || b.end!==cur.end) : null;
-  const vis=has?plotRows.slice(-sessions):[];
+  const vis=has?ser.rows.slice(-sessions):[];
   const read=r=>`<b>${galDay(r[0])}</b> · O ${galPx(r[1])} · H ${galPx(r[2])} · L ${galPx(r[3])} · C ${galPx(r[4])} · Vol ${fmtI(r[5])}`;
   const kv=(k,v)=>`<div><span>${k}</span><b>${v}</b></div>`;
   const CM_TABS=[['base','Base characteristics'],['measures','Stock measures']].concat(d.universe?[]:[['peers','Peers']]);
@@ -1970,20 +1903,15 @@ function cmRender(){
         ${d.universe && d.stats && d.stats.turnover!=null?`<span class="tc${d.stats.turnover<5e5?' gc-thin':''}" title="Average value traded a day over the last month">${galTurn(d.stats.turnover)}</span>`:''}
         <span class="tc">as of ${s?galDay(s.asof):''}</span>
       </div>
-      <div class="cm-pills" id="cm-pills">${CM_RANGES.map(([lab,n])=>{ const need=n===Infinity?Infinity:(weekly?Math.max(1,Math.round(n/5)):n); return `<button type="button" class="cm-pill${CM.range===lab?' on':''}" data-cmr="${lab}" ${need!==Infinity && need>maxSessions?'disabled':''}>${lab}</button>`; }).join('')}
-      <span class="cm-tf" id="cm-tf" role="group" aria-label="Daily or weekly candles">
-        <button type="button" class="cm-pill${!weekly?' on':''}" data-cmtf="daily">Daily</button>
-        <button type="button" class="cm-pill${weekly?' on':''}" data-cmtf="weekly" title="One candle a week, with the ${marketCtx?'50 EMA':'9/21/50 EMA'} computed on weekly closes${marketCtx?'':' -- the same bars the weekly crossover filter checks'}">Weekly</button>
-      </span></div>
+      <div class="cm-pills" id="cm-pills">${CM_RANGES.map(([lab,n])=>`<button type="button" class="cm-pill${CM.range===lab?' on':''}" data-cmr="${lab}" ${n!==Infinity && n>maxSessions?'disabled':''}>${lab}</button>`).join('')}</div>
       <div class="cm-read" id="cm-read">${read(vis[vis.length-1])}</div>
-      <div class="cm-chart" id="cm-chart">${candleSVG(plotRows,{w:W,h:H,sessions,axis:true,ma:CM.ma,emas,
+      <div class="cm-chart" id="cm-chart">${candleSVG(ser.rows,{w:W,h:H,sessions,axis:true,ma:CM.ma,
         box:cur?{start:cur.start,end:cur.end,high:cur.pivot||a.pivot,low:cur.low,label:`${cur.weeks} wks`}:null,
         pivot:a?a.pivot:null, boxes})}</div>
       <div class="cm-legend">
-        <label><input type="checkbox" id="cm-ma" ${CM.ma?'checked':''}> ${marketCtx?'50 EMA':'9/21/50 EMA'}${weekly?' (weekly)':''}</label>
+        <label><input type="checkbox" id="cm-ma" ${CM.ma?'checked':''}> 50/200-day average</label>
         <label><input type="checkbox" id="cm-rs" ${CM.rs?'checked':''}> RS rating</label>
         ${breakouts.length?`<label><input type="checkbox" id="cm-xray-cb" ${CM.xray?'checked':''}> Bases</label>`:''}
-        ${marketCtx?'':'<span><i class="lg lg-e9"></i>9 EMA</span><span><i class="lg lg-e21"></i>21 EMA</span>'}<span><i class="lg lg-e50"></i>50 EMA</span>
         <span><i class="lg lg-hi"></i>52-week high</span><span><i class="lg lg-vol"></i>Volume</span>
       </div>`
     : '<p class="view-hint">No price data for this company yet. The chart appears automatically after the next daily update.</p>'}
@@ -2037,9 +1965,8 @@ function cmMeasures(a, s){
     ${kv('Volume dry-up', a.vol_dryup??'—', '10-day average volume / 50-day — below 1 means volume is drying up')}
     ${kv('Up/down volume', a.updown??'—', '(up-day volume − down-day volume) / total, last 50 sessions')}
     ${kv('From 52-week high', a.from_high==null?'—':a.from_high+'%')}
-    ${s?kv('9 EMA', galPx(s.ema9)):''}${s?kv('50 EMA', galPx(s.ema50)):''}
+    ${s?kv('50-day average', galPx(s.dma50)):''}${s?kv('200-day average', galPx(s.dma200)):''}
     ${s?kv('Volume vs 50-day avg', s.vol_ratio==null?'—':s.vol_ratio+'×'):''}
-    ${s&&s.cross_dir?kv('Weekly EMA crossover', `${GAL_CROSS_LABEL[s.cross_dir][2]} ${GAL_CROSS_LABEL[s.cross_dir][0]}${s.cross_ago?` · ${s.cross_ago} wk ago`:' · this week'}`, 'The weekly 9 EMA crossing the 21 EMA, within the last 8 weeks'):''}
   </div>`;
 }
 
@@ -2085,12 +2012,9 @@ function cmWire(d, a, s){
   const box=document.getElementById('cm-chart');
   if(box){
     const ser=GSERIES.get(d.code);
-    const weekly=CM.tf==='weekly';
-    const plotRows=weekly?toWeekly(ser.rows):ser.rows;
     const range=CM_RANGES.find(r=>r[0]===CM.range) || CM_RANGES[4];
-    const rangeN=range[1]===Infinity?Infinity:(weekly?Math.max(1,Math.round(range[1]/5)):range[1]);
-    const sessions=Math.min(rangeN===Infinity?plotRows.length:rangeN, plotRows.length);
-    const vis=plotRows.slice(-sessions);
+    const sessions=Math.min(range[1]===Infinity?ser.rows.length:range[1], ser.rows.length);
+    const vis=ser.rows.slice(-sessions);
     const read=r=>`<b>${galDay(r[0])}</b> · O ${galPx(r[1])} · H ${galPx(r[2])} · L ${galPx(r[3])} · C ${galPx(r[4])} · Vol ${fmtI(r[5])}`;
     const svg=box.querySelector('svg'), cross=svg&&svg.querySelector('#cs-cross'), out=document.getElementById('cm-read');
     const W=1000, padR=62, step=(W-padR)/vis.length;
@@ -2107,7 +2031,6 @@ function cmWire(d, a, s){
     }
   }
   document.querySelectorAll('[data-cmr]').forEach(b=>b.onclick=()=>{ if(b.disabled) return; CM.range=b.dataset.cmr; cmRender(); });
-  document.querySelectorAll('[data-cmtf]').forEach(b=>b.onclick=()=>{ CM.tf=b.dataset.cmtf; cmRender(); });
   const xrayBtn=document.getElementById('cm-xray-btn'); if(xrayBtn) xrayBtn.onclick=()=>{ CM.xray=!CM.xray; cmRender(); };
   const xrayCb=document.getElementById('cm-xray-cb'); if(xrayCb) xrayCb.onchange=()=>{ CM.xray=xrayCb.checked; cmRender(); };
   const maCb=document.getElementById('cm-ma'); if(maCb) maCb.onchange=()=>{ CM.ma=maCb.checked; cmRender(); };
@@ -2355,21 +2278,7 @@ const BP_INFO={
 };
 /* IPO base screen: companies whose latest IPO base breakout falls in a window */
 const BP_BWINS=[['1w','1 week',7],['1m','1 month',30],['3m','3 months',91],['6m','6 months',182],['1y','1 year',365]];
-const BP={data:null, loading:null, controlsBuilt:false, screen:'vcp', stage:'forming', bwin:null, view:'cards', all:false, idx:null, kite:null, timers:{}, obs:null};
-/* /api/market/setups is shared by Market view, Screen any Chart (board
-   companies' stage) and Reports (the stage badge) -- whichever page opens
-   first fetches it. bpControls() builds Market view's own dropdowns/chip,
-   so it has to run once data exists no matter which of those pages caused
-   the fetch, or Market view can land with empty controls if a different
-   page got there first. */
-function bpEnsureData(){
-  if(BP.data){
-    if(!BP.controlsBuilt) bpControls();
-    return Promise.resolve(BP.data);
-  }
-  BP.loading = BP.loading || fetchJSON('/api/market/setups').catch(()=>({stocks:{},feed:[],counts:{},market_breakouts:[]})).then(j=>{ BP.data=j; bpControls(); return j; });
-  return BP.loading;
-}
+const BP={data:null, loading:null, screen:'vcp', stage:'forming', bwin:null, view:'cards', all:false, idx:null, kite:null, timers:{}, obs:null};
 /* one company as the current screen sees it: shared measures + that screen's stage fields */
 const bpView = a => BP.screen==='ipo' ? (a.ipo ? {...a, ...a.ipo} : null) : a;
 const bpStageText = k => { const x=BP_STAGES.find(y=>y.k===k); return BP.screen==='ipo' ? {...x, ...BP_IPO_TEXT[k]} : x; };
@@ -2382,8 +2291,11 @@ const bpByCode = {}; DATA.forEach(d=>{ bpByCode[d.code]=d; });
 
 function openMarket(){
   bpStatus(); bpIndices();
-  if(!BP.data) document.getElementById('bp-results').innerHTML='<p class="bp-empty">Loading the scan…</p>';
-  bpEnsureData().then(()=>{ if(VIEW==='market') bpRender(); });
+  if(!BP.data){
+    document.getElementById('bp-results').innerHTML='<p class="bp-empty">Loading the scan…</p>';
+    BP.loading = BP.loading || fetchJSON('/api/market/setups').catch(()=>({stocks:{},feed:[],counts:{},market_breakouts:[]})).then(j=>{ BP.data=j; bpControls(); });
+    BP.loading.then(()=>{ if(VIEW==='market') bpRender(); });
+  } else bpRender();
 }
 function bpSchedule(name, fn, ms){
   clearTimeout(BP.timers[name]);
@@ -2392,7 +2304,6 @@ function bpSchedule(name, fn, ms){
 document.addEventListener('visibilitychange',()=>{ if(!document.hidden && VIEW==='market'){ bpStatus(); bpIndices(); } });
 
 function bpControls(){
-  BP.controlsBuilt=true;
   const th=document.getElementById('bp-theme'), so=document.getElementById('bp-sort'), sc=document.getElementById('bp-screen');
   th.innerHTML='<option value="">All themes</option>'+THEMES.map(t=>`<option value="${esc(t)}">${esc(shortT(t))}</option>`).join('');
   const fillSorts=()=>{
@@ -3574,14 +3485,15 @@ function rpPaintChart(d){
   box.innerHTML = candleSVG(ser.rows,{w:900,h:320,sessions:250,axis:true})
     + `<div class="rp-chart-stats">${[
         ['Last close', galPx(s&&s.last)], ['52-week high', galPx(s&&s.high52)], ['52-week low', galPx(s&&s.low52)],
-        ['From 52-week high', s&&s.from_high_pct!=null?s.from_high_pct.toFixed(1)+'%':'—'], ['9 EMA', galPx(s&&s.ema9)], ['50 EMA', galPx(s&&s.ema50)],
+        ['From 52-week high', s&&s.from_high_pct!=null?s.from_high_pct.toFixed(1)+'%':'—'], ['50-day avg', galPx(s&&s.dma50)], ['200-day avg', galPx(s&&s.dma200)],
         ['Trend', st?st[0]:'—'], ['As of', s&&s.asof?galDay(s.asof):'—']
       ].map(([k,v])=>`<div><span>${k}</span><b>${v}</b></div>`).join('')}</div>`;
 }
 function rpPaintStage(d){
   const box=document.getElementById('rp-stage'); if(!box) return;
   if(!BP.data){
-    bpEnsureData().then(()=>{ if(RP.code===d.code && VIEW==='reports'){ rpPaintStage(d); const t=document.querySelector('.rp-summary'); if(t) t.innerHTML='<h2>Key takeaways</h2>'+rpTakeaways(d); } });
+    BP.loading = BP.loading || fetchJSON('/api/market/setups').catch(()=>({stocks:{},feed:[],counts:{},market_breakouts:[]})).then(j=>{ BP.data=j; bpControls(); });
+    BP.loading.then(()=>{ if(RP.code===d.code && VIEW==='reports'){ rpPaintStage(d); const t=document.querySelector('.rp-summary'); if(t) t.innerHTML='<h2>Key takeaways</h2>'+rpTakeaways(d); } });
     return;
   }
   const st=BP.data.stocks && BP.data.stocks[d.code];
