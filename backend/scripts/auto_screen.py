@@ -27,7 +27,7 @@ software names are skipped by name before any page is fetched.
 The rules (the board's own, applied to screener.in's public company page)
 -------------------------------------------------------------------------
 Gates -- all must pass:
-  market cap  Rs 120-4,000 cr   (Rs 3,000 cr for Tier 1)
+  market cap  Rs 120-10,000 cr  (Rs 7,500 cr for Tier 1) -- micro and small cap
   promoter    >= 40%
   public      <= 60%
   ROCE        >= 12%
@@ -94,7 +94,7 @@ RECHECK_DAYS = 90
 # Defaults below; overridden at startup by load_gates() from the dashboard's
 # /api/meta/logic-gates (Logic Gates, in the account menu's Admin section),
 # so an admin's edit there takes effect on the next run with no code change.
-CAP_MIN, CAP_MAX_T1, CAP_MAX_T2 = 120, 3000, 4000
+CAP_MIN, CAP_MAX_T1, CAP_MAX_T2 = 120, 7500, 10000
 PROMOTER_MIN, PUBLIC_MAX, ROCE_MIN, ROE_MIN = 40, 60, 12, 5
 INST_TIER1_MIN = 1
 HOLDERS_MAX_T1, HOLDERS_MAX_T2 = 25000, 40000

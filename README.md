@@ -575,12 +575,12 @@ section above).
 
 ### Auto-added companies
 
-Step 3 works through the listed universe (BSE's active scrips in the ₹120–4,000 cr
-band plus NSE/SME listings; finance, realty, media and software names skipped;
-up to 400 screener.in pages a day, each company re-checked at most every 90 days)
-and adds a company only if it:
+Step 3 works through the listed universe (BSE's active scrips in the ₹120–10,000 cr
+band -- micro and small cap -- plus NSE/SME listings; finance, realty, media and
+software names skipped; up to 400 screener.in pages a day, each company re-checked
+at most every 90 days) and adds a company only if it:
 
-- **passes the board's gates** — market cap ₹120–3,000 cr (₹4,000 cr Tier 2),
+- **passes the board's gates** — market cap ₹120–7,500 cr (₹10,000 cr Tier 2),
   promoter ≥ 40%, public ≤ 60%, ROCE ≥ 12%, ROE > 5%, fewer than 25,000
   (Tier 1) / 40,000 (Tier 2) shareholders, and a sector that maps onto a board theme;
 - **states a moat in its own words** — in its screener.in profile or, failing
