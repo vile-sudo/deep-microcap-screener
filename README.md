@@ -578,17 +578,34 @@ section above).
 Step 3 works through the listed universe (BSE's active scrips in the ₹120–10,000 cr
 band -- micro and small cap -- plus NSE/SME listings; finance, realty, media and
 software names skipped; up to 400 screener.in pages a day, each company re-checked
-at most every 90 days) and adds a company only if it:
+at most every 90 days, legacy/PSU brand names skipped by name up front). Two things
+every candidate still needs, neither skippable: a sector that maps onto a board
+theme, and **known_to_public()** -- shareholder count under the tier limit, and
+not on the hand-kept legacy/PSU-brand denylist (`LEGACY_BRAND`), added after HMT
+Ltd -- a real moat match, but a famous old PSU name, not hidden by any reasonable
+meaning of the word -- slipped through on a thinned-out shareholder count alone.
+Past those two, a company is added if it clears **any one** of three, independent
+of the others -- the point is to catch a company the numbers alone would never
+surface, so financials are deliberately not a blocker for a company that clears
+one of these on its own:
 
-- **passes the board's gates** — market cap ₹120–7,500 cr (₹10,000 cr Tier 2),
-  promoter ≥ 40%, public ≤ 60%, ROCE ≥ 12%, ROE > 5%, fewer than 25,000
-  (Tier 1) / 40,000 (Tier 2) shareholders, and a sector that maps onto a board theme;
 - **states a moat in its own words** — in its screener.in profile or, failing
   that, its latest annual report (public BSE/NSE filing): import substitution,
   India's leading/largest maker, a stated market share, sole / one of few Indian
   makers, first / pioneer in India, or a niche segment plus an approval (DRDO,
   RDSO, ISRO, USFDA, AS9100, ASME...). Report sentences only count when the
   company is the subject.
+- **management guidance above 15%** — a self-referencing, forward-looking
+  growth statement in the annual report.
+- **PAT turnaround** — the latest reported period profitable after a loss in
+  one of the last few periods before it.
+
+The board's usual fundamentals gates (market cap ₹120–7,500 cr / ₹10,000 cr Tier 2,
+promoter ≥ 40%, public ≤ 60%, ROCE ≥ 12%, ROE > 5%) are still computed and still
+shown, but no longer required — a company added on moat, guidance or PAT
+turnaround alone, having failed one of these, carries the same "added on request
+— gates it does not clear"
+disclosure a manually-added company gets, listing exactly what it failed.
 
 The best 10 by the board's six-pillar score go live, badged **AUTO-ADDED**,
 with the matched sentences and links to where they came from, and a

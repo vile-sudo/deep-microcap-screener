@@ -21,36 +21,68 @@ BSE's active-scrip list (which carries market cap) narrowed to the board's
 size band, plus NSE's main-board and SME lists for listings BSE doesn't have,
 minus anything already on the board, already ruled out in the discovery
 queue, or checked here in the last RECHECK_DAYS. New listings go first, then
-the names checked longest ago. Finance, realty, hospitality, media and
-software names are skipped by name before any page is fetched.
+the names checked longest ago. Finance, realty, hospitality, media, software
+and known legacy/PSU-brand names (LEGACY_BRAND) are skipped by name before
+any page is fetched.
 
 The rules (the board's own, applied to screener.in's public company page)
 -------------------------------------------------------------------------
-Gates -- all must pass:
+A candidate is added if it clears ANY ONE of three, independent of the
+others -- the whole point is to catch a company financials alone would
+never surface. Two things every path still needs, neither skippable, because
+neither is a quality bar the way the fundamentals gates below are --
+they're what "hidden" actually means:
+  - a sector that maps onto one of the board's themes (theme_for()) -- is
+    this the right kind of business for this board at all;
+  - known_to_public() and LEGACY_BRAND both clear -- shareholder count under
+    the tier limit, and not a name on the hand-kept legacy/PSU list. A
+    company many people already hold, or a famous old name whatever its
+    current holder count (HMT Ltd: 1.6% ROCE, a real "first_mover" moat
+    match, and a shareholder base thinned out by decades of decline --
+    still not hidden by any reasonable meaning of the word), fails here
+    regardless of which of the three below it would otherwise clear.
+
+1. Moat evidence -- the company describing itself, first in its "About" and
+   "Key Points" text on screener.in and, when that says nothing, in its
+   latest annual report (the public BSE / NSE filing screener links to).
+   Only sentences that are about the company count ("the Company", "we",
+   "our", its name) -- "India's defence indigenisation" in an industry
+   overview is not evidence. At least one of:
+     import substitution                 ("import substitute", "replace imports",
+                                          "indigenously developed", "indigenised")
+     India's leading / largest maker     ("India's largest manufacturer of ...")
+     a stated India market share         ("35% market share", "market share of about 40%")
+     only / one of few Indian makers     ("only manufacturer in India", "among the few ...")
+     first / pioneer in India            ("first company in India to ...", "pioneer in ...")
+     a niche segment WITH a qualification (the company calls its segment "niche", plus RDSO,
+                                           DRDO, ISRO, USFDA, EU-GMP, NABL, AS9100, ASME...)
+2. Management guidance above GUIDANCE_OVER_PCT (15%) -- a self-referencing,
+   forward-looking growth statement in the annual report (see find_guidance()).
+3. PAT turnaround -- the latest reported period profitable after a loss in
+   one of the PAT_LOOKBACK periods before it (see pat_turnaround()).
+
+None of that requires the fundamentals gates below to pass -- financials are
+deliberately not a blocker for a company that clears one of the three above;
+this is a "find it despite the numbers" screen, not a quality floor. A
+candidate that clears one of the three above ONLY because of it, having
+failed a fundamentals gate, is added anyway, with exactly which gate it
+failed recorded (gate_failures) for the same honest "added on request, gates
+it does not clear" disclosure a manually-added company gets.
+
+Fundamentals gates -- still computed and still recorded (gate_failures), but
+no longer required to pass:
   market cap  Rs 120-10,000 cr  (Rs 7,500 cr for Tier 1) -- micro and small cap
   promoter    >= 40%
   public      <= 60%
   ROCE        >= 12%
   ROE         > 5%
-  shareholders < 25,000 (Tier 1) / 40,000 (Tier 2), when screener shows it
   Tier 1 = FII + DII >= 1%; Tier 2 = less (allowed, penalised)
-  sector      must map onto one of the board's themes
-Moat evidence -- the company describing itself, first in its "About" and
-"Key Points" text on screener.in and, when that says nothing, in its latest
-annual report (the public BSE / NSE filing screener links to). Only sentences
-that are about the company count ("the Company", "we", "our", its name) --
-"India's defence indigenisation" in an industry overview is not evidence.
-At least one of:
-  import substitution                 ("import substitute", "replace imports",
-                                       "indigenously developed", "indigenised")
-  India's leading / largest maker     ("India's largest manufacturer of ...")
-  a stated India market share         ("35% market share", "market share of about 40%")
-  only / one of few Indian makers     ("only manufacturer in India", "among the few ...")
-  first / pioneer in India            ("first company in India to ...", "pioneer in ...")
-  a niche segment WITH a qualification (the company calls its segment "niche", plus RDSO,
-                                        DRDO, ISRO, USFDA, EU-GMP, NABL, AS9100, ASME...)
+(Shareholder count moved out of this list into known_to_public() above --
+it's a hidden-ness check, not a quality one, so unlike these it's never
+skippable.)
 Score out of 100 on the board's six pillars, from the page's numbers and the
-evidence found (see score() below), minus the board's penalties.
+evidence found (see score() below), minus the board's penalties -- used only
+to rank passes against each other, same as before.
 
 What gets added
 ---------------
@@ -59,6 +91,13 @@ fewer than five pass -- the rules are not loosened to hit a number. Each
 record says plainly that it was auto-screened: the numbers are screener.in's,
 the moat text is the company describing itself (claim_grade
 "company-stated"), and nobody has researched it yet.
+
+Note the real cost of this: checking guidance and PAT turnaround needs the
+annual report (moat_evidence()'s PDF fetch), which used to be skipped
+outright for anything failing the gates. Every candidate that clears the
+market-cap pre-filter and has a mapped theme now gets that fetch, not just
+the ones that already passed every gate -- more PDF downloads per run,
+against the same --budget ceiling.
 """
 from __future__ import annotations
 
@@ -106,6 +145,18 @@ SKIP_NAME = re.compile(r"\b(finance|financial|fincorp|finserv|capital|credit|lea
                        r"broking|bank|insurance|realty|real estate|properties|developers|estates?|hotels?|resorts?|"
                        r"hospitality|entertainment|media|films?|broadcast|software|infotech|infosystems|trading|"
                        r"exports? & imports?|commodities)\b", re.I)
+
+# known_to_public() (shareholder count) is a proxy, not a guarantee: HMT Ltd passed it
+# clean -- 1.6% ROCE, a "first_mover" moat match, and a shareholder base thinned out by
+# decades of decline -- despite being a famous name (watches, machine tools) no screen
+# should call hidden. This is a hand-kept list of specific old PSU/legacy-brand
+# companies for exactly that failure mode: real names, not a generic word list (nothing
+# like "Hindustan" or "Bharat" alone -- Hindustan Unilever and Bharat Forge are neither
+# old nor obscure). Seeded from the HMT case; add to it as more turn up, the same way
+# EXCLUDED_SECTORS/SKIP_NAME above grew.
+LEGACY_BRAND = re.compile(r"\b(HMT|Scooters India|Bharat Immunologicals|Andrew Yule|Instrumentation Ltd|"
+                          r"Central Electronics Ltd|Tungabhadra Steel|Hindustan Organic Chemicals|Binny Ltd|"
+                          r"Mafatlal Industries|Modi Rubber)\b", re.I)
 
 # screener.in's sector path -> the board's theme names. First match wins.
 THEMES = [
@@ -364,6 +415,21 @@ def parse(soup: BeautifulSoup) -> dict:
 
 
 # ------------------------------------------------------------------ rules
+def known_to_public(p: dict, tier: int) -> str | None:
+    """Shareholder count over the tier limit, this screen's proxy for "the
+    public already knows about this one" -- Raymond Lifestyle (market cap
+    Rs 4,002cr, comfortably microcap) still has 138,586 shareholders; a
+    company that many people already hold isn't hidden, whatever else is
+    true about it. Checked on every admission path in main() below,
+    including moat/guidance/PAT-turnaround -- never skippable, unlike the
+    fundamentals gates in gates()."""
+    holders = p.get("num_shareholders")
+    limit = HOLDERS_MAX_T1 if tier == 1 else HOLDERS_MAX_T2
+    if holders is not None and holders >= limit:
+        return f"{holders:,} shareholders -- already public knowledge, over the {limit:,} limit"
+    return None
+
+
 def gates(p: dict) -> tuple[list[str], int]:
     fails = []
     inst = (p.get("fii_pct") or 0) + (p.get("dii_pct") or 0)
@@ -379,9 +445,9 @@ def gates(p: dict) -> tuple[list[str], int]:
         fails.append(f"ROCE {p.get('roce_pct')}% under {ROCE_MIN}%")
     if (p.get("roe_pct") or 0) <= ROE_MIN:
         fails.append(f"ROE {p.get('roe_pct')}% not above {ROE_MIN}%")
-    holders = p.get("num_shareholders")
-    if holders is not None and holders >= (HOLDERS_MAX_T1 if tier == 1 else HOLDERS_MAX_T2):
-        fails.append(f"{holders:,} shareholders over the limit")
+    known = known_to_public(p, tier)
+    if known:
+        fails.append(known)
     return fails, tier
 
 
@@ -581,7 +647,8 @@ def score(p: dict, ev: dict, tier: int) -> tuple[float, dict, list[str]]:
     return round(raw - pen, 1), {**pillars, "score": raw, "risk_penalty": pen}, [f"{t} (-{v})" for t, v in penalties]
 
 
-def record(code: str, cand: dict, p: dict, ev: dict, tier: int, theme: str, today: str, guidance: dict | None = None) -> dict:
+def record(code: str, cand: dict, p: dict, ev: dict, tier: int, theme: str, today: str,
+           guidance: dict | None = None, fails: list[str] | None = None) -> dict:
     final, parts, penalty_detail = score(p, ev, tier)
     path = p.get("sector_path") or []
     evidence_lines = [f"{LABEL[k]} ({v['source']}): “{v['text']}”" for k, v in ev.items()]
@@ -592,6 +659,19 @@ def record(code: str, cand: dict, p: dict, ev: dict, tier: int, theme: str, toda
     capex_overhang, capex_heavy = capex_flags(p.get("pe"), cwip_pct)
     turned = pat_turnaround(p.get("pat_series_cr") or [])
     guidance_pct = guidance.get("pct") if guidance else None
+    fails = fails or []
+    if evidence_lines:
+        moat_note = "Auto-screen found the company describing itself with: " + " · ".join(evidence_lines)
+    elif turned:
+        moat_note = "No moat evidence found -- added on the PAT-turnaround gate alone (see pat_turnaround below)."
+    else:
+        moat_note = "No moat evidence found -- added on the management-guidance gate alone (see guidance_note below)."
+    warn = ["Auto-added by the daily screen: numbers are from screener.in and the moat evidence is the "
+            "company's own description (profile or annual report) matched by rules. Nobody has researched this company yet."]
+    if fails:
+        warn.append("Added despite failing the fundamentals gates below -- it cleared moat, guidance or "
+                     "PAT-turnaround on its own, which this screen treats as sufficient by itself; financials "
+                     "are not a blocker for that path.")
     return {
         "code": code,
         "name": p.get("name") or cand.get("name"),
@@ -613,7 +693,7 @@ def record(code: str, cand: dict, p: dict, ev: dict, tier: int, theme: str, toda
         "promoter_pct": p.get("promoter_pct"), "fii_pct": p.get("fii_pct"), "dii_pct": p.get("dii_pct"),
         "public_pct": p.get("public_pct"), "num_shareholders": p.get("num_shareholders"),
         "business": " ".join(x for x in (p.get("about"), p.get("key_points")) if x)[:1200],
-        "moat_note": "Auto-screen found the company describing itself with: " + " · ".join(evidence_lines),
+        "moat_note": moat_note,
         "import_substitution": imp_note,
         "cwip_pct_net_block": cwip_pct,
         "capex_overhang": capex_overhang,
@@ -627,9 +707,8 @@ def record(code: str, cand: dict, p: dict, ev: dict, tier: int, theme: str, toda
         "final_score": final,
         "adj_score": final,
         "penalty_detail": penalty_detail,
-        "gate_failures": [],
-        "warnings": ["Auto-added by the daily screen: numbers are from screener.in and the moat evidence is the "
-                     "company's own description (profile or annual report) matched by rules. Nobody has researched this company yet."],
+        "gate_failures": fails,
+        "warnings": warn,
         "score_rationale": "Automated six-pillar score from screener.in numbers and matched moat statements (see backend/scripts/auto_screen.py).",
         **parts,
     }
@@ -671,7 +750,7 @@ def main() -> int:
     pool = []
     for cand in universe():
         keys = {str(x).upper() for x in (cand.get("nse_code"), cand.get("bse_code")) if x}
-        if keys & on_board or keys & ruled_out or SKIP_NAME.search(cand["name"] or ""):
+        if keys & on_board or keys & ruled_out or SKIP_NAME.search(cand["name"] or "") or LEGACY_BRAND.search(cand["name"] or ""):
             continue
         seen = state["checked"].get(cand["isin"])
         if seen and (seen["result"] == "added" or seen["on"] >= recheck_before):
@@ -697,21 +776,36 @@ def main() -> int:
             continue
         code, soup = got
         p = parse(soup)
+        # gates() still runs and is still recorded (gate_failures, for the honest
+        # "added on request" disclosure), but no longer gatekeeps by itself --
+        # moat, guidance or a PAT turnaround, any one alone, is enough. known_to_public()
+        # and LEGACY_BRAND are the exceptions: they always block, on every path, before
+        # the expensive annual-report fetch below -- a company that many people already
+        # hold, or a famous old name however thin its current holder base, isn't hidden.
         fails, tier = gates(p)
-        if fails:
-            outcomes[cand["isin"]] = ("gates", "; ".join(fails))
+        if LEGACY_BRAND.search(p.get("name") or cand["name"] or ""):
+            outcomes[cand["isin"]] = ("legacy brand", "")
+            continue
+        known = known_to_public(p, tier)
+        if known:
+            outcomes[cand["isin"]] = ("known to the public", known)
             continue
         theme = theme_for(p)
         if not theme:
             outcomes[cand["isin"]] = ("sector", " / ".join(p.get("sector_path") or []) or "no sector")
             continue
         ev, guidance = moat_evidence(p, soup)
-        if not ev:
-            outcomes[cand["isin"]] = ("no moat evidence", "")
+        turned = pat_turnaround(p.get("pat_series_cr") or [])
+        guidance_pct = guidance.get("pct") if guidance else None
+        over_guidance = guidance_pct is not None and guidance_pct > GUIDANCE_OVER_PCT
+        if not (ev or turned or over_guidance):
+            outcomes[cand["isin"]] = ("no moat, guidance or PAT turnaround", "; ".join(fails) if fails else "")
             continue
-        rec = record(code, cand, p, ev, tier, theme, today, guidance)
+        rec = record(code, cand, p, ev, tier, theme, today, guidance, fails)
         passes.append((rec, cand))
-        print(f"  PASS {code:<12} {rec['name'][:40]:<40} score {rec['final_score']:>5}  {theme}  [{', '.join(ev)}]")
+        why = ', '.join(ev) or ('PAT turnaround' if turned else f'guidance {guidance_pct}%')
+        print(f"  PASS {code:<12} {rec['name'][:40]:<40} score {rec['final_score']:>5}  {theme}  [{why}]"
+              + (f"  GATES FAILED: {'; '.join(fails)}" if fails else ""))
 
     passes.sort(key=lambda x: -x[0]["final_score"])
     added = passes[:args.max_add]
