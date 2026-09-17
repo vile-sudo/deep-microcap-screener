@@ -1783,9 +1783,15 @@ function candleSVG(rows,o){
   };
   const start=Math.max(0, rows.length-o.sessions);
   const vis=rows.slice(start), e9=ema(9).slice(start), e21=ema(21).slice(start), e50=ema(50).slice(start);
+  /* which of the three actually get drawn -- Market view's own daily
+     stage/pivot screen has nothing to do with the 9/21 (that pair is
+     about the weekly crossover, a Screen any Chart idea), so it draws
+     just the 50 there; everywhere else still gets all three */
+  const emaSet=new Set(o.emas || [9,21,50]);
+  const emaLines=[[9,e9,'cs-ema9'],[21,e21,'cs-ema21'],[50,e50,'cs-ema50']].filter(([n])=>emaSet.has(n));
   const hi52=Math.max(...rows.map(r=>r[2]));
   let lo=Math.min(...vis.map(r=>r[3])), hi=Math.max(...vis.map(r=>r[2]));
-  if(useMA) e9.concat(e21,e50).forEach(v=>{ if(v!=null){ lo=Math.min(lo,v); hi=Math.max(hi,v); } });
+  if(useMA) emaLines.forEach(([,arr])=>arr.forEach(v=>{ if(v!=null){ lo=Math.min(lo,v); hi=Math.max(hi,v); } }));
   if(o.pivot) hi=Math.max(hi,o.pivot);
   /* X-ray: every historical base in view (o.boxes), each with its own dashed
      box + duration label -- only those whose date range overlaps what is
@@ -1842,7 +1848,7 @@ function candleSVG(rows,o){
   });
   s+=`<path d="${upW}" class="cs-wick up"/><path d="${dnW}" class="cs-wick dn"/><path d="${upB}" class="cs-body up"/><path d="${dnB}" class="cs-body dn"/>`;
   const line=(arr,cls)=>{ let d=''; arr.forEach((v,i)=>{ if(v!=null) d+=(d?'L':'M')+f(X(i))+' '+f(y(v)); }); return d?`<path d="${d}" class="${cls}"/>`:''; };
-  if(useMA) s+=line(e9,'cs-ema9')+line(e21,'cs-ema21')+line(e50,'cs-ema50');
+  if(useMA) s+=emaLines.map(([,arr,cls])=>line(arr,cls)).join('');
   if(o.pivot){
     const yp=y(o.pivot), lab=`pivot ₹${(+o.pivot).toLocaleString('en-IN',{maximumFractionDigits:2})}`;
     s+=`<line x1="0" x2="${plotW}" y1="${f(yp)}" y2="${f(yp)}" class="cs-pivot"/><g class="cs-pivlab"><rect x="2" y="${f(yp-15)}" width="${lab.length*6.1+10}" height="13" rx="2"/><text x="7" y="${f(yp-5)}">${lab}</text></g>`;
@@ -1927,6 +1933,13 @@ function cmRender(){
      range's session count becomes a week count (5 trading days a week),
      so "6M" still means six calendar months either way. */
   const weekly=CM.tf==='weekly';
+  /* Market view's own screen is about the daily pivot/base breakout, not
+     the weekly 9/21 crossover (a Screen any Chart idea) -- opened from
+     there, the chart draws just the 50 EMA. The modal is shared, so this
+     is the one place that knows which page is asking: VIEW doesn't
+     change while it's open, since opening it is not a page navigation. */
+  const marketCtx=VIEW==='market';
+  const emas=marketCtx?[50]:[9,21,50];
   const plotRows=has ? (weekly ? toWeekly(ser.rows) : ser.rows) : [];
   const maxSessions=plotRows.length;
   const rangeN=range[1]===Infinity ? Infinity : (weekly ? Math.max(1,Math.round(range[1]/5)) : range[1]);
@@ -1960,17 +1973,17 @@ function cmRender(){
       <div class="cm-pills" id="cm-pills">${CM_RANGES.map(([lab,n])=>{ const need=n===Infinity?Infinity:(weekly?Math.max(1,Math.round(n/5)):n); return `<button type="button" class="cm-pill${CM.range===lab?' on':''}" data-cmr="${lab}" ${need!==Infinity && need>maxSessions?'disabled':''}>${lab}</button>`; }).join('')}
       <span class="cm-tf" id="cm-tf" role="group" aria-label="Daily or weekly candles">
         <button type="button" class="cm-pill${!weekly?' on':''}" data-cmtf="daily">Daily</button>
-        <button type="button" class="cm-pill${weekly?' on':''}" data-cmtf="weekly" title="One candle a week, with the 9/21/50 EMA computed on weekly closes -- the same bars the weekly crossover filter checks">Weekly</button>
+        <button type="button" class="cm-pill${weekly?' on':''}" data-cmtf="weekly" title="One candle a week, with the ${marketCtx?'50 EMA':'9/21/50 EMA'} computed on weekly closes${marketCtx?'':' -- the same bars the weekly crossover filter checks'}">Weekly</button>
       </span></div>
       <div class="cm-read" id="cm-read">${read(vis[vis.length-1])}</div>
-      <div class="cm-chart" id="cm-chart">${candleSVG(plotRows,{w:W,h:H,sessions,axis:true,ma:CM.ma,
+      <div class="cm-chart" id="cm-chart">${candleSVG(plotRows,{w:W,h:H,sessions,axis:true,ma:CM.ma,emas,
         box:cur?{start:cur.start,end:cur.end,high:cur.pivot||a.pivot,low:cur.low,label:`${cur.weeks} wks`}:null,
         pivot:a?a.pivot:null, boxes})}</div>
       <div class="cm-legend">
-        <label><input type="checkbox" id="cm-ma" ${CM.ma?'checked':''}> 9/21/50 EMA${weekly?' (weekly)':''}</label>
+        <label><input type="checkbox" id="cm-ma" ${CM.ma?'checked':''}> ${marketCtx?'50 EMA':'9/21/50 EMA'}${weekly?' (weekly)':''}</label>
         <label><input type="checkbox" id="cm-rs" ${CM.rs?'checked':''}> RS rating</label>
         ${breakouts.length?`<label><input type="checkbox" id="cm-xray-cb" ${CM.xray?'checked':''}> Bases</label>`:''}
-        <span><i class="lg lg-e9"></i>9 EMA</span><span><i class="lg lg-e21"></i>21 EMA</span><span><i class="lg lg-e50"></i>50 EMA</span>
+        ${marketCtx?'':'<span><i class="lg lg-e9"></i>9 EMA</span><span><i class="lg lg-e21"></i>21 EMA</span>'}<span><i class="lg lg-e50"></i>50 EMA</span>
         <span><i class="lg lg-hi"></i>52-week high</span><span><i class="lg lg-vol"></i>Volume</span>
       </div>`
     : '<p class="view-hint">No price data for this company yet. The chart appears automatically after the next daily update.</p>'}

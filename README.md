@@ -194,7 +194,12 @@ not only the board's own.
   server-side) -- with the 9/21/50 EMA now computed on weekly closes, so a
   weekly crossover is something you can actually see cross, not just a
   filter result. The X-ray base box, pivot line and hover readout all
-  follow whichever mode is active.
+  follow whichever mode is active. Opened from Market view specifically,
+  the chart draws only the 50 EMA -- the 9/21 pair is a Screen any Chart
+  idea (the weekly crossover), not part of Market view's own daily
+  pivot/base screen. `candleSVG()` takes an `emas` option for this; the
+  modal is shared, so `cmRender()` tells the two apart by checking `VIEW`,
+  which does not change while the modal is open.
 - **Automation:** step 5 of `.github/workflows/daily.yml` runs it every
   night at 02:00 IST (after the day's auto-screen, so a company added that
   morning has its chart), and `charts.yml` on every push that changes
