@@ -183,7 +183,18 @@ not only the board's own.
   crossover" brings the newest ones up front. A matching card is flagged
   ⤴/⤵ (a fresh base breakout still takes priority over it). Computed in
   `charts.weekly_ema_cross()`, called from `compute_stats()`, so it reaches
-  the same places `ema9`/`ema50`/`status` do.
+  the same places `ema9`/`ema50`/`status` do. Its dropdown's default option
+  reads "None", not "any" like the dashboard's other filters -- picked so
+  it is unambiguous that leaving it there means every other filter (Trend,
+  day change, volume, ...) works completely unrestricted by it.
+- **Daily/Weekly candles:** a toggle next to the range pills switches the
+  chart itself between daily candles and one candle a week (built
+  client-side from the same daily rows already fetched, by `toWeekly()` in
+  `app.js`, grouped by ISO week like `weekly_ema_cross()` groups them
+  server-side) -- with the 9/21/50 EMA now computed on weekly closes, so a
+  weekly crossover is something you can actually see cross, not just a
+  filter result. The X-ray base box, pivot line and hover readout all
+  follow whichever mode is active.
 - **Automation:** step 5 of `.github/workflows/daily.yml` runs it every
   night at 02:00 IST (after the day's auto-screen, so a company added that
   morning has its chart), and `charts.yml` on every push that changes

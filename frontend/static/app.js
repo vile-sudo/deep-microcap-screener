@@ -1581,9 +1581,7 @@ async function openGallery(){
   guLoad();
   /* board companies' stage comes from Market view's own data (BP.data);
      universe stocks already carry theirs in the index (GU.rows) */
-  if(!BP.data){
-    BP.loading = BP.loading || fetchJSON('/api/market/setups').catch(()=>({stocks:{}})).then(j=>{ BP.data=j; if(VIEW==='gallery') renderGallery(); });
-  }
+  if(!BP.data) bpEnsureData().then(()=>{ if(VIEW==='gallery') renderGallery(); });
   if(VIEW==='gallery') renderGallery();
 }
 
@@ -1597,7 +1595,7 @@ function buildGalControls(){
     + (byStatus.none?`<option value="none">No chart yet (${byStatus.none})</option>`:'');
   sg.innerHTML='<option value="">Breakout stage: any</option>'
     + BP_STAGES.map(x=>`<option value="${x.k}" title="${esc(x.hint)}">${esc(x.label)}${x.k==='fresh'?' 🚀':''}</option>`).join('');
-  cr.innerHTML='<option value="">EMA crossover (weekly): any</option>'
+  cr.innerHTML='<option value="">EMA crossover (weekly): None</option>'
     + Object.entries(GAL_CROSS_LABEL).map(([k,[l,,icon]])=>`<option value="${k}" title="The weekly 9 EMA crossed the 21 EMA within the last 8 weeks">${icon} ${esc(l)}</option>`).join('');
   th.innerHTML='<option value="">Theme: all</option>'
     + Object.entries(byTheme).sort((a,b)=>b[1]-a[1]).map(([t,n])=>`<option value="${esc(t)}">${esc(shortT(t))} (${n})</option>`).join('');
@@ -1865,16 +1863,41 @@ function candleSVG(rows,o){
    built ("X-ray"), a multi-year range, base characteristics, stock
    measures and peers. CM holds the UI state for whichever company is open. ---- */
 const CM_RANGES=[['1W',5],['1M',21],['3M',63],['6M',126],['12M',252],['18M',378],['3Y',756],['Max',Infinity]];
-const CM={code:null, range:'6M', xray:true, ma:true, rs:true, tab:'base', year:'all'};
+const CM={code:null, range:'6M', tf:'daily', xray:true, ma:true, rs:true, tab:'base', year:'all'};
+
+/* One bar a week -- open of the week's first session, close of its last,
+   the week's high/low/summed volume -- built from the same daily rows the
+   chart already has, so a "Weekly" toggle needs no separate fetch. Grouped
+   by ISO week, the same convention app/charts.py's weekly_ema_cross() uses
+   backend-side, so a candle here lines up with what that crossover means. */
+function toWeekly(rows){
+  const isoWeekKey=iso=>{
+    const d=new Date(iso+'T00:00:00Z');
+    const dayNum=(d.getUTCDay()+6)%7;                 // Mon=0..Sun=6
+    d.setUTCDate(d.getUTCDate()-dayNum+3);             // nearest Thursday
+    const firstThu=new Date(Date.UTC(d.getUTCFullYear(),0,4));
+    const firstDayNum=(firstThu.getUTCDay()+6)%7;
+    const week=1+Math.round(((d-firstThu)/86400000-3+firstDayNum)/7);
+    return d.getUTCFullYear()+'-'+week;
+  };
+  const out=[]; let key=null, bar=null;
+  rows.forEach(r=>{
+    const k=isoWeekKey(r[0]);
+    if(k!==key){ if(bar) out.push(bar); bar=[r[0],r[1],r[2],r[3],r[4],r[5]]; key=k; }
+    else { bar[0]=r[0]; bar[2]=Math.max(bar[2],r[2]); bar[3]=Math.min(bar[3],r[3]); bar[4]=r[4]; bar[5]+=r[5]; }
+  });
+  if(bar) out.push(bar);
+  return out;
+}
 
 function openChart(code){
   const uni=guKey(code);
   if(!uni && !DATA.some(x=>x.code===code)) return;
-  CM.code=code; CM.range='6M'; CM.tab='base'; CM.year='all';
+  CM.code=code; CM.range='6M'; CM.tf='daily'; CM.tab='base'; CM.year='all';
   const need=[];
   if(!GSERIES.has(code)) need.push(galFetch(code));
   /* a non-board stock carries its own base analysis in its chart file */
-  if(!uni && !BP.data) need.push(BP.loading = BP.loading || fetchJSON('/api/market/setups').catch(()=>({stocks:{}})).then(j=>{ BP.data=j; }));
+  if(!uni && !BP.data) need.push(bpEnsureData());
   if(need.length){
     openModal('<p class="view-hint">Loading chart…</p>');
     Promise.all(need).then(()=>{ if(modal.classList.contains('on') && CM.code===code) cmRender(); });
@@ -1900,13 +1923,19 @@ function cmRender(){
   if(CM.year!=='all' && !years.includes(CM.year)) CM.year='all';
   const shown=CM.year==='all' ? breakouts : breakouts.filter(b=>b.date.startsWith(CM.year));
   const range=CM_RANGES.find(r=>r[0]===CM.range) || CM_RANGES[4];
-  const maxSessions=has?ser.rows.length:0;
-  const sessions=range[1]===Infinity ? maxSessions : Math.min(range[1],maxSessions);
+  /* Weekly bars are built from the same daily rows already fetched; a
+     range's session count becomes a week count (5 trading days a week),
+     so "6M" still means six calendar months either way. */
+  const weekly=CM.tf==='weekly';
+  const plotRows=has ? (weekly ? toWeekly(ser.rows) : ser.rows) : [];
+  const maxSessions=plotRows.length;
+  const rangeN=range[1]===Infinity ? Infinity : (weekly ? Math.max(1,Math.round(range[1]/5)) : range[1]);
+  const sessions=rangeN===Infinity ? maxSessions : Math.min(rangeN,maxSessions);
   const W=1000, H=430, padR=62;
   const cur=a && bpBase(a);
   const boxes=CM.xray && has ? shown.map(b=>({start:b.base.start,end:b.base.end,high:b.pivot,low:b.base.low,
     label:`${b.base.weeks} wks`,flags:b.flags})).filter(b=>!cur || b.start!==cur.start || b.end!==cur.end) : null;
-  const vis=has?ser.rows.slice(-sessions):[];
+  const vis=has?plotRows.slice(-sessions):[];
   const read=r=>`<b>${galDay(r[0])}</b> · O ${galPx(r[1])} · H ${galPx(r[2])} · L ${galPx(r[3])} · C ${galPx(r[4])} · Vol ${fmtI(r[5])}`;
   const kv=(k,v)=>`<div><span>${k}</span><b>${v}</b></div>`;
   const CM_TABS=[['base','Base characteristics'],['measures','Stock measures']].concat(d.universe?[]:[['peers','Peers']]);
@@ -1928,13 +1957,17 @@ function cmRender(){
         ${d.universe && d.stats && d.stats.turnover!=null?`<span class="tc${d.stats.turnover<5e5?' gc-thin':''}" title="Average value traded a day over the last month">${galTurn(d.stats.turnover)}</span>`:''}
         <span class="tc">as of ${s?galDay(s.asof):''}</span>
       </div>
-      <div class="cm-pills" id="cm-pills">${CM_RANGES.map(([lab,n])=>`<button type="button" class="cm-pill${CM.range===lab?' on':''}" data-cmr="${lab}" ${n!==Infinity && n>maxSessions?'disabled':''}>${lab}</button>`).join('')}</div>
+      <div class="cm-pills" id="cm-pills">${CM_RANGES.map(([lab,n])=>{ const need=n===Infinity?Infinity:(weekly?Math.max(1,Math.round(n/5)):n); return `<button type="button" class="cm-pill${CM.range===lab?' on':''}" data-cmr="${lab}" ${need!==Infinity && need>maxSessions?'disabled':''}>${lab}</button>`; }).join('')}
+      <span class="cm-tf" id="cm-tf" role="group" aria-label="Daily or weekly candles">
+        <button type="button" class="cm-pill${!weekly?' on':''}" data-cmtf="daily">Daily</button>
+        <button type="button" class="cm-pill${weekly?' on':''}" data-cmtf="weekly" title="One candle a week, with the 9/21/50 EMA computed on weekly closes -- the same bars the weekly crossover filter checks">Weekly</button>
+      </span></div>
       <div class="cm-read" id="cm-read">${read(vis[vis.length-1])}</div>
-      <div class="cm-chart" id="cm-chart">${candleSVG(ser.rows,{w:W,h:H,sessions,axis:true,ma:CM.ma,
+      <div class="cm-chart" id="cm-chart">${candleSVG(plotRows,{w:W,h:H,sessions,axis:true,ma:CM.ma,
         box:cur?{start:cur.start,end:cur.end,high:cur.pivot||a.pivot,low:cur.low,label:`${cur.weeks} wks`}:null,
         pivot:a?a.pivot:null, boxes})}</div>
       <div class="cm-legend">
-        <label><input type="checkbox" id="cm-ma" ${CM.ma?'checked':''}> 9/21/50 EMA</label>
+        <label><input type="checkbox" id="cm-ma" ${CM.ma?'checked':''}> 9/21/50 EMA${weekly?' (weekly)':''}</label>
         <label><input type="checkbox" id="cm-rs" ${CM.rs?'checked':''}> RS rating</label>
         ${breakouts.length?`<label><input type="checkbox" id="cm-xray-cb" ${CM.xray?'checked':''}> Bases</label>`:''}
         <span><i class="lg lg-e9"></i>9 EMA</span><span><i class="lg lg-e21"></i>21 EMA</span><span><i class="lg lg-e50"></i>50 EMA</span>
@@ -2039,9 +2072,12 @@ function cmWire(d, a, s){
   const box=document.getElementById('cm-chart');
   if(box){
     const ser=GSERIES.get(d.code);
+    const weekly=CM.tf==='weekly';
+    const plotRows=weekly?toWeekly(ser.rows):ser.rows;
     const range=CM_RANGES.find(r=>r[0]===CM.range) || CM_RANGES[4];
-    const sessions=Math.min(range[1]===Infinity?ser.rows.length:range[1], ser.rows.length);
-    const vis=ser.rows.slice(-sessions);
+    const rangeN=range[1]===Infinity?Infinity:(weekly?Math.max(1,Math.round(range[1]/5)):range[1]);
+    const sessions=Math.min(rangeN===Infinity?plotRows.length:rangeN, plotRows.length);
+    const vis=plotRows.slice(-sessions);
     const read=r=>`<b>${galDay(r[0])}</b> · O ${galPx(r[1])} · H ${galPx(r[2])} · L ${galPx(r[3])} · C ${galPx(r[4])} · Vol ${fmtI(r[5])}`;
     const svg=box.querySelector('svg'), cross=svg&&svg.querySelector('#cs-cross'), out=document.getElementById('cm-read');
     const W=1000, padR=62, step=(W-padR)/vis.length;
@@ -2058,6 +2094,7 @@ function cmWire(d, a, s){
     }
   }
   document.querySelectorAll('[data-cmr]').forEach(b=>b.onclick=()=>{ if(b.disabled) return; CM.range=b.dataset.cmr; cmRender(); });
+  document.querySelectorAll('[data-cmtf]').forEach(b=>b.onclick=()=>{ CM.tf=b.dataset.cmtf; cmRender(); });
   const xrayBtn=document.getElementById('cm-xray-btn'); if(xrayBtn) xrayBtn.onclick=()=>{ CM.xray=!CM.xray; cmRender(); };
   const xrayCb=document.getElementById('cm-xray-cb'); if(xrayCb) xrayCb.onchange=()=>{ CM.xray=xrayCb.checked; cmRender(); };
   const maCb=document.getElementById('cm-ma'); if(maCb) maCb.onchange=()=>{ CM.ma=maCb.checked; cmRender(); };
@@ -2305,7 +2342,21 @@ const BP_INFO={
 };
 /* IPO base screen: companies whose latest IPO base breakout falls in a window */
 const BP_BWINS=[['1w','1 week',7],['1m','1 month',30],['3m','3 months',91],['6m','6 months',182],['1y','1 year',365]];
-const BP={data:null, loading:null, screen:'vcp', stage:'forming', bwin:null, view:'cards', all:false, idx:null, kite:null, timers:{}, obs:null};
+const BP={data:null, loading:null, controlsBuilt:false, screen:'vcp', stage:'forming', bwin:null, view:'cards', all:false, idx:null, kite:null, timers:{}, obs:null};
+/* /api/market/setups is shared by Market view, Screen any Chart (board
+   companies' stage) and Reports (the stage badge) -- whichever page opens
+   first fetches it. bpControls() builds Market view's own dropdowns/chip,
+   so it has to run once data exists no matter which of those pages caused
+   the fetch, or Market view can land with empty controls if a different
+   page got there first. */
+function bpEnsureData(){
+  if(BP.data){
+    if(!BP.controlsBuilt) bpControls();
+    return Promise.resolve(BP.data);
+  }
+  BP.loading = BP.loading || fetchJSON('/api/market/setups').catch(()=>({stocks:{},feed:[],counts:{},market_breakouts:[]})).then(j=>{ BP.data=j; bpControls(); return j; });
+  return BP.loading;
+}
 /* one company as the current screen sees it: shared measures + that screen's stage fields */
 const bpView = a => BP.screen==='ipo' ? (a.ipo ? {...a, ...a.ipo} : null) : a;
 const bpStageText = k => { const x=BP_STAGES.find(y=>y.k===k); return BP.screen==='ipo' ? {...x, ...BP_IPO_TEXT[k]} : x; };
@@ -2318,11 +2369,8 @@ const bpByCode = {}; DATA.forEach(d=>{ bpByCode[d.code]=d; });
 
 function openMarket(){
   bpStatus(); bpIndices();
-  if(!BP.data){
-    document.getElementById('bp-results').innerHTML='<p class="bp-empty">Loading the scan…</p>';
-    BP.loading = BP.loading || fetchJSON('/api/market/setups').catch(()=>({stocks:{},feed:[],counts:{},market_breakouts:[]})).then(j=>{ BP.data=j; bpControls(); });
-    BP.loading.then(()=>{ if(VIEW==='market') bpRender(); });
-  } else bpRender();
+  if(!BP.data) document.getElementById('bp-results').innerHTML='<p class="bp-empty">Loading the scan…</p>';
+  bpEnsureData().then(()=>{ if(VIEW==='market') bpRender(); });
 }
 function bpSchedule(name, fn, ms){
   clearTimeout(BP.timers[name]);
@@ -2331,6 +2379,7 @@ function bpSchedule(name, fn, ms){
 document.addEventListener('visibilitychange',()=>{ if(!document.hidden && VIEW==='market'){ bpStatus(); bpIndices(); } });
 
 function bpControls(){
+  BP.controlsBuilt=true;
   const th=document.getElementById('bp-theme'), so=document.getElementById('bp-sort'), sc=document.getElementById('bp-screen');
   th.innerHTML='<option value="">All themes</option>'+THEMES.map(t=>`<option value="${esc(t)}">${esc(shortT(t))}</option>`).join('');
   const fillSorts=()=>{
@@ -3519,8 +3568,7 @@ function rpPaintChart(d){
 function rpPaintStage(d){
   const box=document.getElementById('rp-stage'); if(!box) return;
   if(!BP.data){
-    BP.loading = BP.loading || fetchJSON('/api/market/setups').catch(()=>({stocks:{},feed:[],counts:{},market_breakouts:[]})).then(j=>{ BP.data=j; bpControls(); });
-    BP.loading.then(()=>{ if(RP.code===d.code && VIEW==='reports'){ rpPaintStage(d); const t=document.querySelector('.rp-summary'); if(t) t.innerHTML='<h2>Key takeaways</h2>'+rpTakeaways(d); } });
+    bpEnsureData().then(()=>{ if(RP.code===d.code && VIEW==='reports'){ rpPaintStage(d); const t=document.querySelector('.rp-summary'); if(t) t.innerHTML='<h2>Key takeaways</h2>'+rpTakeaways(d); } });
     return;
   }
   const st=BP.data.stocks && BP.data.stocks[d.code];

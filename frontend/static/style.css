@@ -922,6 +922,7 @@ td .thm{font-size:10.5px;text-transform:uppercase;letter-spacing:.05em;color:var
 .cm-px{font:700 22px var(--mono);color:var(--ink)}
 .cm-priceline .tc{color:var(--muted);font-size:12px}
 .cm-pills{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:4px}
+.cm-tf{display:flex;gap:5px;margin-left:auto;padding-left:10px;border-left:1px solid var(--grid)}
 .cm-pill{padding:4px 10px;border:1px solid var(--grid);border-radius:999px;background:var(--surface,#fff);color:var(--ink2);font:600 11.5px var(--mono);cursor:pointer}
 .cm-pill:hover:not([disabled]):not(.on){border-color:var(--ocean,#0a73a8);color:var(--ocean,#0a73a8)}
 .cm-pill.on{background:var(--ocean,#0a73a8);border-color:var(--ocean,#0a73a8);color:#fff}
