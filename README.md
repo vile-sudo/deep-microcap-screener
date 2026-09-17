@@ -632,6 +632,12 @@ applies it:
   heavily (e.g. "specialty chemicals", "solar cells"). If a company says it
   makes or supplies one of these, that counts as import-substitution
   evidence too, without needing the generic "import substitute" phrasing.
+- **Legacy / PSU brand denylist**: famous old PSU/legacy names
+  (`legacy_brand_names`, `LEGACY_BRAND` in code) dropped by name before any
+  page is fetched, even if they'd otherwise clear a moat, guidance or
+  PAT-turnaround gate — added after HMT Ltd cleared a real moat match on a
+  thinned-out shareholder count alone. Replaces the built-in list entirely,
+  same as materials above, not layered on top of it.
 - **Run auto-screen now**: fires `auto-screen.yml` right away instead of
   waiting for the nightly run, using whatever is saved above. Needs
   `GH_DISPATCH_TOKEN` (see the Sector Research section above for how to set

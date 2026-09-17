@@ -149,14 +149,21 @@ SKIP_NAME = re.compile(r"\b(finance|financial|fincorp|finserv|capital|credit|lea
 # known_to_public() (shareholder count) is a proxy, not a guarantee: HMT Ltd passed it
 # clean -- 1.6% ROCE, a "first_mover" moat match, and a shareholder base thinned out by
 # decades of decline -- despite being a famous name (watches, machine tools) no screen
-# should call hidden. This is a hand-kept list of specific old PSU/legacy-brand
+# should call hidden. LEGACY_BRAND is a hand-kept list of specific old PSU/legacy-brand
 # companies for exactly that failure mode: real names, not a generic word list (nothing
 # like "Hindustan" or "Bharat" alone -- Hindustan Unilever and Bharat Forge are neither
-# old nor obscure). Seeded from the HMT case; add to it as more turn up, the same way
-# EXCLUDED_SECTORS/SKIP_NAME above grew.
-LEGACY_BRAND = re.compile(r"\b(HMT|Scooters India|Bharat Immunologicals|Andrew Yule|Instrumentation Ltd|"
-                          r"Central Electronics Ltd|Tungabhadra Steel|Hindustan Organic Chemicals|Binny Ltd|"
-                          r"Mafatlal Industries|Modi Rubber)\b", re.I)
+# old nor obscure). Seeded from the HMT case. Live-editable from the dashboard (Admin ->
+# Logic Gates -> Legacy / PSU brand names, legacy_brand_names below) with no code change
+# or deploy; the list baked in here is only the fallback for the (unlikely) case the
+# defaults file on disk can't even be read -- see load_gates()/apply_gates().
+def _brand_regex(names: list[str]) -> re.Pattern:
+    return re.compile(r"\b(" + "|".join(re.escape(n) for n in names) + r")\b", re.I)
+
+
+_LEGACY_BRAND_FALLBACK = ["HMT", "Scooters India", "Bharat Immunologicals", "Andrew Yule",
+                          "Instrumentation Ltd", "Central Electronics Ltd", "Tungabhadra Steel",
+                          "Hindustan Organic Chemicals", "Binny Ltd", "Mafatlal Industries", "Modi Rubber"]
+LEGACY_BRAND = _brand_regex(_LEGACY_BRAND_FALLBACK)
 
 # screener.in's sector path -> the board's theme names. First match wins.
 THEMES = [
@@ -231,12 +238,13 @@ def load_gates() -> dict:
     try:
         defaults = json.loads(GATES_DEFAULTS_FILE.read_text(encoding="utf-8"))
     except (OSError, ValueError):
-        defaults = {"hard_gates": {}, "flags": {}, "moat_keywords": {}, "import_substitution_materials": []}
+        defaults = {"hard_gates": {}, "flags": {}, "moat_keywords": {}, "import_substitution_materials": [], "legacy_brand_names": []}
     try:
         r = requests.get(f"{DASHBOARD_URL}/api/meta/logic-gates", timeout=15)
         r.raise_for_status()
         live = r.json()
-        return {k: live.get(k, defaults.get(k)) for k in ("hard_gates", "flags", "moat_keywords", "import_substitution_materials")}
+        return {k: live.get(k, defaults.get(k)) for k in
+                ("hard_gates", "flags", "moat_keywords", "import_substitution_materials", "legacy_brand_names")}
     except (requests.RequestException, ValueError) as e:
         print(f"auto-screen: could not fetch live Logic Gates ({e}); using the built-in defaults")
         return defaults
@@ -244,11 +252,14 @@ def load_gates() -> dict:
 
 def apply_gates(cfg: dict) -> None:
     """Push a loaded gates config into the module's globals: the numeric
-    thresholds gates()/score() read, plus extra moat keywords and import-
-    substitution materials layered onto the built-in evidence patterns."""
+    thresholds gates()/score() read, extra moat keywords and import-
+    substitution materials layered onto the built-in evidence patterns,
+    and legacy_brand_names replacing LEGACY_BRAND outright (like
+    import_substitution_materials, not layered -- an admin's list is
+    the whole list, not an addition to the built-in fallback)."""
     global CAP_MIN, CAP_MAX_T1, CAP_MAX_T2, PROMOTER_MIN, PUBLIC_MAX, ROCE_MIN, ROE_MIN, INST_TIER1_MIN
     global HOLDERS_MAX_T1, HOLDERS_MAX_T2, PE_OVERHANG_MIN, CWIP_OVERHANG_MIN, CWIP_HEAVY_MIN
-    global GUIDANCE_OVER_PCT, PAT_LOOKBACK, PE_PENALTY_MIN, IMPORT_MATERIALS
+    global GUIDANCE_OVER_PCT, PAT_LOOKBACK, PE_PENALTY_MIN, IMPORT_MATERIALS, LEGACY_BRAND
     hg, fl = cfg.get("hard_gates") or {}, cfg.get("flags") or {}
     CAP_MIN = hg.get("market_cap_min_cr", CAP_MIN)
     CAP_MAX_T1 = hg.get("market_cap_max_tier1_cr", CAP_MAX_T1)
@@ -267,6 +278,9 @@ def apply_gates(cfg: dict) -> None:
     PAT_LOOKBACK = int(fl.get("pat_turnaround_lookback_periods", PAT_LOOKBACK))
     PE_PENALTY_MIN = fl.get("pe_penalty_min", PE_PENALTY_MIN)
     IMPORT_MATERIALS = [m.strip() for m in (cfg.get("import_substitution_materials") or []) if m and m.strip()]
+    brand_names = [n.strip() for n in (cfg.get("legacy_brand_names") or []) if n and n.strip()]
+    if brand_names:
+        LEGACY_BRAND = _brand_regex(brand_names)
     for cat, extra in (cfg.get("moat_keywords") or {}).items():
         phrases = [p.strip() for p in (extra or []) if p and p.strip()]
         if phrases and cat in EVIDENCE:

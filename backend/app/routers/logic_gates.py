@@ -2,7 +2,9 @@
 Logic Gates: the numeric thresholds and keyword lists the daily auto-screen
 (backend/scripts/auto_screen.py) applies to decide which newly-listed
 companies pass the board's rules, plus the extra moat and import-substitution
-keywords it looks for. Editable on the dashboard (account menu -> Admin ->
+keywords it looks for, and the legacy_brand_names denylist (known_to_public()
+/ LEGACY_BRAND there) for famous old PSU/legacy names that shouldn't be added
+even if they clear a moat. Editable on the dashboard (account menu -> Admin ->
 Logic Gates) without a code change or a deploy.
 
 GET  /api/meta/logic-gates          the effective gates (defaults + any admin
@@ -58,7 +60,7 @@ def defaults() -> dict:
     try:
         return _defaults(DEFAULTS_FILE.stat().st_mtime)
     except OSError:
-        return {"hard_gates": {}, "flags": {}, "moat_keywords": {}, "import_substitution_materials": []}
+        return {"hard_gates": {}, "flags": {}, "moat_keywords": {}, "import_substitution_materials": [], "legacy_brand_names": []}
 
 
 def _merge(base: dict, override: dict) -> dict:
@@ -81,6 +83,7 @@ class GatesUpdate(BaseModel):
     flags: dict[str, float] | None = None
     moat_keywords: dict[str, list[str]] | None = None
     import_substitution_materials: list[str] | None = Field(None, max_length=500)
+    legacy_brand_names: list[str] | None = Field(None, max_length=500)
 
 
 def _validate(body: GatesUpdate) -> list[str]:
@@ -101,6 +104,9 @@ def _validate(body: GatesUpdate) -> list[str]:
     if body.import_substitution_materials is not None:
         if any(not isinstance(p, str) or len(p) > 200 for p in body.import_substitution_materials):
             errs.append("import_substitution_materials: each entry must be under 200 characters")
+    if body.legacy_brand_names is not None:
+        if any(not isinstance(p, str) or not p.strip() or len(p) > 200 for p in body.legacy_brand_names):
+            errs.append("legacy_brand_names: each entry must be non-empty and under 200 characters")
     full = _merge(defaults(), body.model_dump(exclude_none=True))["hard_gates"]
     if full.get("market_cap_min_cr", 0) >= full.get("market_cap_max_tier1_cr", 1):
         errs.append("hard_gates.market_cap_min_cr must be less than market_cap_max_tier1_cr")

@@ -3489,6 +3489,10 @@ async function openLogicGates(){
         <p class="mp">Named materials India imports heavily. If a company says it makes or supplies one of these, that counts as import-substitution evidence too. One per line.</p>
         <textarea data-lgmat rows="5" placeholder="e.g. specialty chemicals&#10;solar cells&#10;active pharmaceutical ingredients">${esc((j.import_substitution_materials||[]).join('\n'))}</textarea>
       </fieldset>
+      <fieldset class="lg-group"><legend>Legacy / PSU brand denylist</legend>
+        <p class="mp">Famous old PSU/legacy names, dropped by name before any page is even fetched -- even if they'd otherwise clear a moat, guidance or PAT-turnaround gate. Real company names only (not generic words like "Hindustan" or "Bharat" alone). One per line. Replaces the built-in list entirely, same as materials above.</p>
+        <textarea data-lgbrand rows="5" placeholder="e.g. HMT&#10;Scooters India&#10;Andrew Yule">${esc((j.legacy_brand_names||[]).join('\n'))}</textarea>
+      </fieldset>
       <div class="lg-actions">
         <button type="submit" class="btn on">Save</button>
         <button type="button" class="btn" id="lg-reset">Reset to defaults</button>
@@ -3498,10 +3502,11 @@ async function openLogicGates(){
     </form>`;
   document.getElementById('lg-form').onsubmit=async e=>{
     e.preventDefault();
-    const body={hard_gates:{}, flags:{}, moat_keywords:{}, import_substitution_materials:[]};
+    const body={hard_gates:{}, flags:{}, moat_keywords:{}, import_substitution_materials:[], legacy_brand_names:[]};
     mbody.querySelectorAll('[data-lg]').forEach(inp=>{ const [section,key]=inp.dataset.lg.split('.'); if(inp.value!=='') body[section][key]=+inp.value; });
     mbody.querySelectorAll('[data-lgkw]').forEach(t=>{ body.moat_keywords[t.dataset.lgkw]=t.value.split('\n').map(s=>s.trim()).filter(Boolean); });
     body.import_substitution_materials=mbody.querySelector('[data-lgmat]').value.split('\n').map(s=>s.trim()).filter(Boolean);
+    body.legacy_brand_names=mbody.querySelector('[data-lgbrand]').value.split('\n').map(s=>s.trim()).filter(Boolean);
     const msg=document.getElementById('lg-msg'); msg.className='acct-msg'; msg.textContent='Saving…';
     try{ await api('/api/admin/logic-gates','PUT',body); msg.classList.add('ok'); msg.textContent='Saved. Takes effect on the next auto-screen run.'; }
     catch(err){ msg.classList.add('err'); msg.textContent=err.message; }
