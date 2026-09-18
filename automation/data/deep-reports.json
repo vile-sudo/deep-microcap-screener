@@ -140,6 +140,17 @@
    ],
    "spent_usd": null,
    "skipped": {}
+  },
+  {
+   "on": "2026-09-18",
+   "written": [
+    "544773:FY26-Q2",
+    "GRSE:FY27-Q1"
+   ],
+   "spent_usd": null,
+   "skipped": {
+    "VIMTALABS": "already covers Dec 2024"
+   }
   }
  ],
  "seen_new_results": {
@@ -256,6 +267,24 @@
    "cost_usd": null,
    "api_equivalent_usd": 16.637,
    "minutes": 33.6
+  },
+  "544773": {
+   "period": "FY26-Q2",
+   "on": "2026-09-18",
+   "engine": "claude-code",
+   "tokens_out": 156499,
+   "cost_usd": null,
+   "api_equivalent_usd": 6.935,
+   "minutes": 31.8
+  },
+  "GRSE": {
+   "period": "FY27-Q1",
+   "on": "2026-09-18",
+   "engine": "claude-code",
+   "tokens_out": 176709,
+   "cost_usd": null,
+   "api_equivalent_usd": 18.132,
+   "minutes": 35.4
   }
  }
 }
