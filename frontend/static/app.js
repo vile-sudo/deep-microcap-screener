@@ -2325,12 +2325,27 @@ function mvWireRefresh(){
    shape as News Channel below. */
 const DL={data:null, built:false, boardOnly:false};
 
+let DL_TABS_WIRED=false;
+function dlWireTabs(){
+  if(DL_TABS_WIRED) return; DL_TABS_WIRED=true;
+  document.querySelectorAll('.dl-tab').forEach(t=>t.onclick=()=>{
+    document.querySelectorAll('.dl-tab').forEach(x=>{ x.classList.toggle('on',x===t); x.setAttribute('aria-selected',String(x===t)); });
+    const tab=t.dataset.dltab;
+    document.getElementById('dltab-deals').hidden = tab!=='deals';
+    document.getElementById('dltab-ann').hidden = tab!=='ann';
+    if(tab==='ann') openAnnouncements();
+    else if(DL.data) document.getElementById('dl-asof').textContent =
+      `${mvDay(DL.data.from_date)} – ${mvDay(DL.data.to_date)} · ${fmtI(DL.data.count)} deals · ${fmtI(DL.data.board_count)} on the board`;
+  });
+}
+
 async function openDeals(){
+  dlWireTabs();
   const body=document.getElementById('dl-body');
   if(!DL.data){
     body.innerHTML='<p class="view-hint">Loading…</p>';
     let j; try{ j=await fetchJSON('/api/deals'); }catch(e){ j=null; }
-    if(!j || !j.deals || !j.deals.length){ body.innerHTML='<p class="view-hint">No deals scan has run yet. It runs automatically, twice a day.</p>'; return; }
+    if(!j || !j.deals || !j.deals.length){ body.innerHTML='<p class="view-hint">No deals scan has run yet. It runs automatically every night.</p>'; return; }
     DL.data=j;
   }
   if(!DL.built) dlBuildControls();
@@ -2400,6 +2415,85 @@ function dlRowHtml(d){
     <td class="n">${fmtI(d.quantity)}</td>
     <td class="n">${bpInr(d.price,2)}</td>
     <td class="n">${fmt(d.value_cr,2)}</td>
+  </tr>`;
+}
+
+/* Announcements sub-tab of the same section -- NSE's corporate filings,
+   already classified server-side (app/movers/announcements.py) into how
+   likely each one is to matter; scripts/run_announcements.py drops the
+   flat "routine filing" bucket before it ever reaches this JSON, but
+   "investor meeting" and "other disclosure" still come through, so the
+   category filter here is real signal, not decoration. */
+const AN={data:null, built:false, boardOnly:false};
+
+async function openAnnouncements(){
+  const body=document.getElementById('an-body');
+  if(!AN.data){
+    body.innerHTML='<p class="view-hint">Loading…</p>';
+    let j; try{ j=await fetchJSON('/api/announcements'); }catch(e){ j=null; }
+    if(!j || !j.announcements || !j.announcements.length){ body.innerHTML='<p class="view-hint">No announcements scan has run yet. It runs automatically every night.</p>'; return; }
+    AN.data=j;
+  }
+  if(!AN.built) anBuildControls();
+  document.getElementById('dl-asof').textContent =
+    `${mvDay(AN.data.from_date)} – ${mvDay(AN.data.to_date)} · ${fmtI(AN.data.count)} announcements · ${fmtI(AN.data.board_count)} on the board`;
+  anRenderTable();
+}
+
+function anBuildControls(){
+  AN.built=true;
+  const dates=[...new Set(AN.data.announcements.map(a=>a.date))].sort().reverse();
+  const dateSel=document.getElementById('an-date');
+  dateSel.innerHTML='<option value="">Every day on record</option>'+
+    dates.map(d=>`<option value="${d}">${esc(mvDay(d))}${d===dates[0]?' (latest)':''}</option>`).join('');
+  dateSel.onchange=anRenderTable;
+  let t=0;
+  document.getElementById('an-q').oninput=()=>{ clearTimeout(t); t=setTimeout(anRenderTable,120); };
+  ['an-kind','an-sort'].forEach(id=>document.getElementById(id).onchange=anRenderTable);
+  const boardBtn=document.getElementById('an-board');
+  boardBtn.onclick=()=>{ AN.boardOnly=!AN.boardOnly; boardBtn.classList.toggle('on',AN.boardOnly);
+    boardBtn.setAttribute('aria-pressed',String(AN.boardOnly)); anRenderTable(); };
+  document.getElementById('an-clear').onclick=()=>{
+    document.getElementById('an-q').value=''; document.getElementById('an-date').value='';
+    document.getElementById('an-kind').value=''; document.getElementById('an-sort').value='date';
+    AN.boardOnly=false; boardBtn.classList.remove('on'); boardBtn.setAttribute('aria-pressed','false');
+    anRenderTable();
+  };
+}
+
+function anRows(){
+  if(!AN.data) return [];
+  const q=(document.getElementById('an-q')||{}).value?.trim().toLowerCase()||'';
+  const dateF=(document.getElementById('an-date')||{}).value||'';
+  const kind=(document.getElementById('an-kind')||{}).value||'';
+  const sort=(document.getElementById('an-sort')||{}).value||'date';
+  let rows=AN.data.announcements.filter(a=>{
+    if(dateF && a.date!==dateF) return false;
+    if(kind && a.kind!==kind) return false;
+    if(AN.boardOnly && !a.board_code) return false;
+    if(q && !(a.symbol.toLowerCase()+' '+(a.name||'').toLowerCase()+' '+(a.summary||'').toLowerCase()).includes(q)) return false;
+    return true;
+  });
+  rows=rows.slice().sort(sort==='weight' ? (a,b)=>b.weight-a.weight||b.filed_at.localeCompare(a.filed_at) : (a,b)=>b.filed_at.localeCompare(a.filed_at));
+  return rows;
+}
+
+function anRenderTable(){
+  const body=document.getElementById('an-body'); if(!body) return;
+  const rows=anRows();
+  document.getElementById('an-count').textContent=`${fmtI(rows.length)} of ${fmtI(AN.data.announcements.length)}`;
+  body.innerHTML = rows.length ? `<div class="mv-tablewrap"><table class="mv-table"><thead><tr>
+      <th>Filed</th><th>Company</th><th>Category</th><th>Summary</th>
+    </tr></thead><tbody>${rows.map(anRowHtml).join('')}</tbody></table></div>`
+    : `<p class="view-hint">No announcement matches — clear the search or pick another filter.</p>`;
+}
+
+function anRowHtml(a){
+  return `<tr>
+    <td>${esc(mvDay(a.date))}</td>
+    <td><b class="mv-tick">${esc(a.symbol)}</b><span class="mv-name">${esc(a.name||a.symbol)}</span>${a.board_code?'<span class="mv-onboard">On the board</span>':''}</td>
+    <td><span class="an-cat">${esc(a.kind)}</span></td>
+    <td class="an-summary">${a.url?`<a href="${esc(a.url)}" target="_blank" rel="noopener">${esc(a.summary||a.category)} ↗</a>`:esc(a.summary||a.category)}</td>
   </tr>`;
 }
 

@@ -145,6 +145,49 @@ def filings_for_session(
     return by_symbol
 
 
+def range_announcements(
+    client: NseClient,
+    start: date,
+    end: date,
+    *,
+    cache_dir: Path = DEFAULT_CACHE_DIR,
+) -> list[dict]:
+    """Every filing NSE published between start and end (inclusive), classified
+    but NOT windowed to any single session's close the way filings_for_session()
+    is -- for a general announcements feed (scripts/run_announcements.py), not
+    move attribution. One dict per filing, not grouped by symbol, keeping
+    seq_id (NSE's own announcement id, the reliable dedup key across runs)
+    that the Filing dataclass elsewhere in this module has no use for."""
+    records: list[dict] = []
+    for day in _days_between(start, end):
+        try:
+            records += load_announcements(client, day, cache_dir=cache_dir)
+        except Exception:
+            LOGGER.exception("Could not load announcements for %s", day.isoformat())
+
+    out: list[dict] = []
+    for row in records:
+        symbol = str(row.get("symbol") or "").strip()
+        filed_at = parse_nse_datetime(row.get("an_dt") or row.get("exchdisstime"))
+        if not symbol or filed_at is None:
+            continue
+        category = str(row.get("desc") or "").strip()
+        summary = re.sub(r"\s+", " ", str(row.get("attchmntText") or "")).strip()
+        kind, weight = classify(category, summary)
+        out.append({
+            "seq_id": str(row.get("seq_id") or ""),
+            "symbol": symbol,
+            "company": str(row.get("sm_name") or "").strip(),
+            "category": category,
+            "summary": summary,
+            "kind": kind,
+            "weight": weight,
+            "filed_at": filed_at.isoformat(),
+            "url": str(row.get("attchmntFile") or "").strip(),
+        })
+    return out
+
+
 def _previous_weekday(value: date) -> date:
     candidate = value - timedelta(days=1)
     while candidate.weekday() >= 5:

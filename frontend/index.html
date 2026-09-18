@@ -101,8 +101,8 @@
   .f1{transform:translateX(12vw)}.f2{transform:translateX(66vw)}.f3{transform:translateX(38vw)}.f4{transform:translateX(18vw)}.f5{transform:translateX(74vw)}.sp-school{transform:translateX(56vw)}
 }
 </style>
-<link rel="stylesheet" href="/static/style.css?v=60">
-<link rel="stylesheet" href="/static/dark.css?v=60">
+<link rel="stylesheet" href="/static/style.css?v=61">
+<link rel="stylesheet" href="/static/dark.css?v=61">
 </head>
 <body>
 <div id="ds-splash" role="status" aria-live="polite" aria-label="Loading Deep Sweep">
@@ -347,29 +347,68 @@
 </section>
 
 <section class="dashboard-section deals-section" data-views="deals" aria-labelledby="deals-title">
-  <div class="section-heading"><div><span class="eyebrow">BULK &amp; BLOCK DEALS</span><h2 id="deals-title">Bulk &amp; Block Deals</h2><p class="section-copy">Every bulk and block deal from NSE's own report — a single trade large enough that the exchange requires it to be disclosed separately from the order book. Refreshed every night at 02:00 IST; NSE only ever serves the latest settled session, so this page keeps a rolling 120-day history built up run by run. Board companies are marked and link to their scorecard.</p></div><span class="section-note" id="dl-asof"></span></div>
-  <div class="mv-toolbar">
-    <select class="gal-select" id="dl-date" aria-label="Trading day"></select>
-    <input id="dl-q" class="gal-search" type="search" autocomplete="off" spellcheck="false" placeholder="Search symbol, company or client">
-    <select class="gal-select" id="dl-kind" aria-label="Deal type">
-      <option value="">Bulk and block</option>
-      <option value="bulk">Bulk only</option>
-      <option value="block">Block only</option>
-    </select>
-    <select class="gal-select" id="dl-side" aria-label="Side">
-      <option value="">Buy and sell</option>
-      <option value="BUY">Buy only</option>
-      <option value="SELL">Sell only</option>
-    </select>
-    <select class="gal-select" id="dl-sort" aria-label="Sort by">
-      <option value="value">Biggest deal value</option>
-      <option value="date">Most recent</option>
-    </select>
-    <button class="btn" id="dl-board" type="button" aria-pressed="false">Board companies only</button>
-    <button class="theme-back" id="dl-clear" type="button">Clear</button>
+  <div class="section-heading"><div><span class="eyebrow">BULK &amp; BLOCK DEALS</span><h2 id="deals-title">Bulk &amp; Block Deals</h2><p class="section-copy">Every bulk and block deal, and every non-routine corporate announcement, from NSE's own reports. Refreshed every night at 02:00 IST; NSE only ever serves the latest settled session for deals, so this page keeps a rolling history built up run by run (120 days for deals, 45 for announcements). Board companies are marked and link to their scorecard.</p></div><span class="section-note" id="dl-asof"></span></div>
+
+  <div class="dl-tabs" role="tablist">
+    <button class="dl-tab on" type="button" data-dltab="deals" role="tab" aria-selected="true">Deals</button>
+    <button class="dl-tab" type="button" data-dltab="ann" role="tab" aria-selected="false">Announcements</button>
   </div>
-  <div class="mv-count" id="dl-count"></div>
-  <div id="dl-body"><p class="view-hint">Loading…</p></div>
+
+  <div id="dltab-deals">
+    <div class="mv-toolbar">
+      <select class="gal-select" id="dl-date" aria-label="Trading day"></select>
+      <input id="dl-q" class="gal-search" type="search" autocomplete="off" spellcheck="false" placeholder="Search symbol, company or client">
+      <select class="gal-select" id="dl-kind" aria-label="Deal type">
+        <option value="">Bulk and block</option>
+        <option value="bulk">Bulk only</option>
+        <option value="block">Block only</option>
+      </select>
+      <select class="gal-select" id="dl-side" aria-label="Side">
+        <option value="">Buy and sell</option>
+        <option value="BUY">Buy only</option>
+        <option value="SELL">Sell only</option>
+      </select>
+      <select class="gal-select" id="dl-sort" aria-label="Sort by">
+        <option value="value">Biggest deal value</option>
+        <option value="date">Most recent</option>
+      </select>
+      <button class="btn" id="dl-board" type="button" aria-pressed="false">Board companies only</button>
+      <button class="theme-back" id="dl-clear" type="button">Clear</button>
+    </div>
+    <div class="mv-count" id="dl-count"></div>
+    <div id="dl-body"><p class="view-hint">Loading…</p></div>
+  </div>
+
+  <div id="dltab-ann" hidden>
+    <div class="mv-toolbar">
+      <select class="gal-select" id="an-date" aria-label="Filed on"></select>
+      <input id="an-q" class="gal-search" type="search" autocomplete="off" spellcheck="false" placeholder="Search symbol, company or summary">
+      <select class="gal-select" id="an-kind" aria-label="Category">
+        <option value="">Every category</option>
+        <option value="results">Results</option>
+        <option value="order win">Order win</option>
+        <option value="M&amp;A">M&amp;A</option>
+        <option value="fundraise">Fundraise</option>
+        <option value="capital action">Capital action (buyback / bonus / split / dividend)</option>
+        <option value="rating change">Rating change</option>
+        <option value="management change">Management change</option>
+        <option value="capacity or plant">Capacity or plant</option>
+        <option value="agreement">Agreement</option>
+        <option value="regulatory or legal">Regulatory or legal</option>
+        <option value="investor meeting">Investor meeting</option>
+        <option value="exchange query">Exchange query</option>
+        <option value="other disclosure">Other disclosure</option>
+      </select>
+      <select class="gal-select" id="an-sort" aria-label="Sort by">
+        <option value="date">Most recent</option>
+        <option value="weight">Most material</option>
+      </select>
+      <button class="btn" id="an-board" type="button" aria-pressed="false">Board companies only</button>
+      <button class="theme-back" id="an-clear" type="button">Clear</button>
+    </div>
+    <div class="mv-count" id="an-count"></div>
+    <div id="an-body"><p class="view-hint">Loading…</p></div>
+  </div>
 </section>
 
 <section class="dashboard-section news-section" data-views="news" aria-labelledby="news-title">
@@ -578,6 +617,6 @@
 <div class="modal" id="modal" role="dialog" aria-modal="true"><div class="mbox"><button class="close" id="mclose" aria-label="Close">&times;</button><div id="mbody"></div></div></div>
 
 <script src="/static/asme-certified.js?v=5" defer></script>
-<script src="/static/app.js?v=62" defer></script>
+<script src="/static/app.js?v=63" defer></script>
 </body>
 </html>
