@@ -584,7 +584,7 @@ theme, and **known_to_public()** -- shareholder count under the tier limit, and
 not on the hand-kept legacy/PSU-brand denylist (`LEGACY_BRAND`), added after HMT
 Ltd -- a real moat match, but a famous old PSU name, not hidden by any reasonable
 meaning of the word -- slipped through on a thinned-out shareholder count alone.
-Past those two, a company is added if it clears **any one** of three, independent
+Past those two, a company is added if it clears **any one** of five, independent
 of the others -- the point is to catch a company the numbers alone would never
 surface, so financials are deliberately not a blocker for a company that clears
 one of these on its own:
@@ -599,13 +599,27 @@ one of these on its own:
   growth statement in the annual report.
 - **PAT turnaround** — the latest reported period profitable after a loss in
   one of the last few periods before it.
+- **capacity utilisation ramping up** — a self-referencing statement that
+  capacity utilisation will rise, tied to a named near-term period ("from the
+  next quarter", "from Q3 FY27"). An operating-leverage inflection still to
+  come, not one already reported — "utilisation should improve" with no
+  timeframe doesn't count, and neither does a capacity *expansion* on its own.
+- **product-mix pivot** — a self-referencing statement describing a strategic
+  move (diversifying, foraying into a new segment, a new product/business
+  line) explicitly tied to a shift in market or industry demand, not routine
+  capacity addition on the same product.
 
 The board's usual fundamentals gates (market cap ₹120–7,500 cr / ₹10,000 cr Tier 2,
 promoter ≥ 40%, public ≤ 60%, ROCE ≥ 12%, ROE > 5%) are still computed and still
-shown, but no longer required — a company added on moat, guidance or PAT
-turnaround alone, having failed one of these, carries the same "added on request
+shown, but no longer required — a company added on any one of the five above
+alone, having failed one of these, carries the same "added on request
 — gates it does not clear"
 disclosure a manually-added company gets, listing exactly what it failed.
+
+Both new signals also show up as **Screen filters** (`Capacity utilisation
+ramping up`, `Product-mix pivot / new venture`) and a card badge, so any
+company — auto-added or researched by hand — can be flagged this way, not
+just what the daily screen finds.
 
 The best 10 by the board's six-pillar score go live, badged **AUTO-ADDED**,
 with the matched sentences and links to where they came from, and a

@@ -101,8 +101,8 @@
   .f1{transform:translateX(12vw)}.f2{transform:translateX(66vw)}.f3{transform:translateX(38vw)}.f4{transform:translateX(18vw)}.f5{transform:translateX(74vw)}.sp-school{transform:translateX(56vw)}
 }
 </style>
-<link rel="stylesheet" href="/static/style.css?v=59">
-<link rel="stylesheet" href="/static/dark.css?v=59">
+<link rel="stylesheet" href="/static/style.css?v=60">
+<link rel="stylesheet" href="/static/dark.css?v=60">
 </head>
 <body>
 <div id="ds-splash" role="status" aria-live="polite" aria-label="Loading Deep Sweep">
@@ -415,13 +415,15 @@
 <section class="dashboard-section research-filter-section" id="research-filters" data-views="filters" aria-labelledby="research-filter-title">
   <div class="section-heading"><div><span class="eyebrow">RESEARCH</span><h2 id="research-filter-title">Screen filters</h2><p class="section-copy">Click a filter to show only the companies that match it.</p></div><span class="section-note">One filter at a time · click again to clear</span></div>
   <div class="filter-panel">
-    <div class="tglab">THE THREE NEW LENSES</div>
+    <div class="tglab">SCREEN LENSES</div>
     <div class="toggles">
       <button class="btn" data-tg="overhang">⚑ High P/E + heavy CWIP</button>
       <button class="btn" data-tg="heavycap">🏗 CWIP ≥ 25% of net block</button>
       <button class="btn" data-tg="guide15">▲ Management guides &gt; 15%</button>
       <button class="btn" data-tg="guideany">▲ Any forward growth statement</button>
       <button class="btn" data-tg="turn">↻ PAT turned positive from negative</button>
+      <button class="btn" data-tg="caputil" title="Management has stated capacity utilisation will rise from a named near-term period (next quarter, a specific FY quarter) -- an operating-leverage inflection still to come.">⚙ Capacity utilisation ramping up</button>
+      <button class="btn" data-tg="pivot" title="Management has described a product-mix change or new venture explicitly tied to a shift in market or industry demand.">⇄ Product-mix pivot / new venture</button>
       <button class="btn" data-tg="haslens">Only names with the new data pulled</button>
       <button class="btn" data-tg="ipo" title="Names whose own research note calls them an SME IPO or a recent listing.">&#127381; Recent listing / SME IPO</button>
       <button class="btn" data-tg="asme" data-label="ASME certified" title="Board companies that hold an active ASME certificate (boiler, pressure vessel, nuclear component stamps), from the weekly scan of ASME's own directory.">&#9878; ASME certified <span class="tc" id="asme-filter-n"></span></button>
@@ -553,6 +555,6 @@
 <div class="modal" id="modal" role="dialog" aria-modal="true"><div class="mbox"><button class="close" id="mclose" aria-label="Close">&times;</button><div id="mbody"></div></div></div>
 
 <script src="/static/asme-certified.js?v=5" defer></script>
-<script src="/static/app.js?v=59" defer></script>
+<script src="/static/app.js?v=60" defer></script>
 </body>
 </html>

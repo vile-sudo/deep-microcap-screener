@@ -27,7 +27,7 @@ any page is fetched.
 
 The rules (the board's own, applied to screener.in's public company page)
 -------------------------------------------------------------------------
-A candidate is added if it clears ANY ONE of three, independent of the
+A candidate is added if it clears ANY ONE of five, independent of the
 others -- the whole point is to catch a company financials alone would
 never surface. Two things every path still needs, neither skippable, because
 neither is a quality bar the way the fundamentals gates below are --
@@ -40,7 +40,7 @@ they're what "hidden" actually means:
     current holder count (HMT Ltd: 1.6% ROCE, a real "first_mover" moat
     match, and a shareholder base thinned out by decades of decline --
     still not hidden by any reasonable meaning of the word), fails here
-    regardless of which of the three below it would otherwise clear.
+    regardless of which of the five below it would otherwise clear.
 
 1. Moat evidence -- the company describing itself, first in its "About" and
    "Key Points" text on screener.in and, when that says nothing, in its
@@ -60,11 +60,21 @@ they're what "hidden" actually means:
    forward-looking growth statement in the annual report (see find_guidance()).
 3. PAT turnaround -- the latest reported period profitable after a loss in
    one of the PAT_LOOKBACK periods before it (see pat_turnaround()).
+4. Capacity utilisation guidance -- a self-referencing statement that
+   capacity utilisation will rise, tied to a named near-term period ("from
+   the next quarter", "from Q3 FY27", "going forward") -- an operating-
+   leverage inflection still to come, not one already reported (see
+   find_capacity_util()). "Utilisation should improve" with no timeframe
+   does not count; neither does a capacity EXPANSION on its own.
+5. Product-mix pivot -- a self-referencing statement describing a strategic
+   move (diversifying, foraying, pivoting, a new product/business line)
+   explicitly tied to a shift in market or industry demand, not routine
+   capacity addition on the same product (see find_product_pivot()).
 
 None of that requires the fundamentals gates below to pass -- financials are
-deliberately not a blocker for a company that clears one of the three above;
+deliberately not a blocker for a company that clears one of the five above;
 this is a "find it despite the numbers" screen, not a quality floor. A
-candidate that clears one of the three above ONLY because of it, having
+candidate that clears one of the five above ONLY because of it, having
 failed a fundamentals gate, is added anyway, with exactly which gate it
 failed recorded (gate_failures) for the same honest "added on request, gates
 it does not clear" disclosure a manually-added company gets.
@@ -228,6 +238,61 @@ GUIDANCE_FLAG_RX = re.compile(r"\b(?:revenue|sales|turnover)\b[^.;]{0,40}?\bguid
                               r"\bexpects? (?:revenue|sales|turnover) (?:to grow|growth)\b|"
                               r"\bexpects? to grow(?: (?:revenue|sales|turnover))?\b|"
                               r"\btargets? (?:revenue |sales |turnover )?growth of\b|\baims? to (?:grow|double|triple)\b", re.I)
+
+# capacity utilisation guidance: self-referencing, names utilisation, says it will
+# rise, and ties that to a near-term period -- "we expect utilisation to improve"
+# with no timeframe is not this; an operating-leverage inflection still to come,
+# not one already reported, is the point.
+CAPACITY_UTIL_RX = re.compile(r"\bcapacity utili[sz]ation\b|\butili[sz]ation (?:levels?|rates?)\b", re.I)
+CAPACITY_RISE_RX = re.compile(r"\b(?:ramp(?:s|ing|[- ]?up)?|increas\w*|improv\w*|ris\w*|higher|pick(?:s|ing)?[- ]?up|"
+                              r"scal\w*[- ]?up|reach\w*)\b", re.I)
+NEAR_TERM_RX = re.compile(r"\bfrom (?:the )?next quarter\b|\bnext quarter onwards?\b|"
+                          r"\bfrom (?:the )?(?:upcoming|coming) quarter\b|\bfrom Q[1-4]\s?(?:of\s+)?(?:FY)?\s?'?\d{2,4}\b|"
+                          r"\bfrom (?:H1|H2)\s?(?:of\s+)?FY\s?'?\d{2,4}\b|"
+                          r"\bin the (?:coming|next|upcoming) (?:quarter|few quarters|months)\b|"
+                          r"\bfrom (?:the )?(?:current|next|this) fiscal\b|\bfrom FY\s?'?\d{2,4}\b|"
+                          r"\bgoing forward\b|\bin the near term\b", re.I)
+
+# product-mix pivot / new venture: self-referencing, names a strategic move
+# (diversify, foray, pivot, new line) AND ties it explicitly to a change in
+# market or industry demand -- routine capacity addition on the same product
+# is not this; the point is a company repositioning for where demand is going.
+PIVOT_VERB_RX = re.compile(r"\bdiversify(?:ing|ied)?\b|\bforay(?:ing|ed)?(?: into)?\b|\bpivot(?:ing|ed)?(?: to| towards)?\b|"
+                           r"\bventur\w* into\b|\benter(?:ing|ed)? into (?:the |a )?(?:new )?(?:business|segment|market|space)\b|"
+                           r"\bexpand(?:ing|ed)? into\b|\bnew (?:product|business) (?:line|segment|vertical|category)\b|"
+                           r"\bshift(?:ing|ed)? (?:its |our )?(?:product )?(?:mix|focus)\b|"
+                           r"\btransition(?:ing|ed)? (?:to|towards)\b|\brepositioning\b", re.I)
+DEMAND_SHIFT_RX = re.compile(r"\bgrowing demand\b|\brising demand\b|\bincreasing demand\b|\bemerging demand\b|"
+                             r"\bnew (?:demand|opportunit\w+)\b|\bcapitali[sz]e? on\b|"
+                             r"\btap(?:ping)? (?:into )?(?:the )?(?:growing|rising|new) (?:demand|market|opportunity)\b|"
+                             r"\bchanging (?:industry|market) (?:dynamics|landscape|trends?)\b|"
+                             r"\bshift(?:ing)? (?:consumer|market|industry) (?:preferences?|trends?)\b|"
+                             r"\bindustry (?:shift|transition)\b|\bemerging (?:segment|technology|trend)\b|"
+                             r"\bnext[- ]generation\b", re.I)
+
+
+def find_capacity_util(text: str, name: str | None, source: str) -> dict | None:
+    """A self-referencing sentence saying capacity utilisation is set to rise
+    from a named near-term period (Logic Gates concept: an operating-leverage
+    inflection the market hasn't priced in yet, not one already reported)."""
+    short = _short_name(name)
+    self_rx = re.compile(SELF.pattern + (r"|\b" + re.escape(short) + r"\b" if short else ""), re.I)
+    for sent in sentences(text):
+        if self_rx.search(sent) and CAPACITY_UTIL_RX.search(sent) and CAPACITY_RISE_RX.search(sent) \
+                and NEAR_TERM_RX.search(sent):
+            return {"text": sent, "source": source}
+    return None
+
+
+def find_product_pivot(text: str, name: str | None, source: str) -> dict | None:
+    """A self-referencing sentence describing a product-mix change or new
+    venture explicitly tied to a shift in market/industry demand."""
+    short = _short_name(name)
+    self_rx = re.compile(SELF.pattern + (r"|\b" + re.escape(short) + r"\b" if short else ""), re.I)
+    for sent in sentences(text):
+        if self_rx.search(sent) and PIVOT_VERB_RX.search(sent) and DEMAND_SHIFT_RX.search(sent):
+            return {"text": sent, "source": source}
+    return None
 
 
 def load_gates() -> dict:
@@ -586,26 +651,33 @@ def annual_report_text(url: str) -> str:
             pass
 
 
-def moat_evidence(p: dict, soup: BeautifulSoup | None = None) -> tuple[dict[str, dict], dict | None]:
+def moat_evidence(p: dict, soup: BeautifulSoup | None = None) -> tuple[dict[str, dict], dict | None, dict | None, dict | None]:
     found = find_evidence(p.get("about", "") + " " + p.get("key_points", ""), p.get("name"),
                           "screener.in company profile", need_self=False)
     if any(k in found for k in STRONG) or soup is None:
-        return found, None
+        return found, None, None, None
     link = annual_report_link(soup)
     if not link:
-        return found, None
+        return found, None, None, None
     try:
         text = annual_report_text(link[0])
     except (requests.RequestException, subprocess.SubprocessError, OSError):
-        return found, None
+        return found, None, None, None
     for key, val in find_evidence(text, p.get("name"), link[1], need_self=True).items():
         found.setdefault(key, {**val, "url": link[0]})
-    # guidance can only be read from the annual report -- the profile/key-points
-    # blurb is too short to carry a genuine forward-looking statement
+    # guidance, capacity-utilisation and product-pivot statements can only be read
+    # from the annual report -- the profile/key-points blurb is too short to carry
+    # a genuine forward-looking statement
     guidance = find_guidance(text, p.get("name"), link[1])
     if guidance:
         guidance["url"] = link[0]
-    return found, guidance
+    capacity_util = find_capacity_util(text, p.get("name"), link[1])
+    if capacity_util:
+        capacity_util["url"] = link[0]
+    product_pivot = find_product_pivot(text, p.get("name"), link[1])
+    if product_pivot:
+        product_pivot["url"] = link[0]
+    return found, guidance, capacity_util, product_pivot
 
 
 def pat_turnaround(series: list) -> bool:
@@ -662,7 +734,8 @@ def score(p: dict, ev: dict, tier: int) -> tuple[float, dict, list[str]]:
 
 
 def record(code: str, cand: dict, p: dict, ev: dict, tier: int, theme: str, today: str,
-           guidance: dict | None = None, fails: list[str] | None = None) -> dict:
+           guidance: dict | None = None, fails: list[str] | None = None,
+           capacity_util: dict | None = None, product_pivot: dict | None = None) -> dict:
     final, parts, penalty_detail = score(p, ev, tier)
     path = p.get("sector_path") or []
     evidence_lines = [f"{LABEL[k]} ({v['source']}): “{v['text']}”" for k, v in ev.items()]
@@ -678,14 +751,18 @@ def record(code: str, cand: dict, p: dict, ev: dict, tier: int, theme: str, toda
         moat_note = "Auto-screen found the company describing itself with: " + " · ".join(evidence_lines)
     elif turned:
         moat_note = "No moat evidence found -- added on the PAT-turnaround gate alone (see pat_turnaround below)."
+    elif capacity_util:
+        moat_note = "No moat evidence found -- added on the capacity-utilisation gate alone (see capacity_util_note below)."
+    elif product_pivot:
+        moat_note = "No moat evidence found -- added on the product-pivot gate alone (see product_pivot_note below)."
     else:
         moat_note = "No moat evidence found -- added on the management-guidance gate alone (see guidance_note below)."
     warn = ["Auto-added by the daily screen: numbers are from screener.in and the moat evidence is the "
             "company's own description (profile or annual report) matched by rules. Nobody has researched this company yet."]
     if fails:
-        warn.append("Added despite failing the fundamentals gates below -- it cleared moat, guidance or "
-                     "PAT-turnaround on its own, which this screen treats as sufficient by itself; financials "
-                     "are not a blocker for that path.")
+        warn.append("Added despite failing the fundamentals gates below -- it cleared moat, guidance, PAT-turnaround, "
+                     "capacity-utilisation or product-pivot on its own, which this screen treats as sufficient by "
+                     "itself; financials are not a blocker for that path.")
     return {
         "code": code,
         "name": p.get("name") or cand.get("name"),
@@ -717,6 +794,12 @@ def record(code: str, cand: dict, p: dict, ev: dict, tier: int, theme: str, toda
         "guidance_over15": guidance_pct is not None and guidance_pct > GUIDANCE_OVER_PCT,
         "guidance_flag": guidance is not None,
         "guidance_note": (f"Auto-detected, unverified ({guidance['source']}): “{guidance['text']}”" if guidance and guidance.get("text") else None),
+        "capacity_util_flag": capacity_util is not None,
+        "capacity_util_note": (f"Auto-detected, unverified ({capacity_util['source']}): “{capacity_util['text']}”"
+                               if capacity_util else None),
+        "product_pivot_flag": product_pivot is not None,
+        "product_pivot_note": (f"Auto-detected, unverified ({product_pivot['source']}): “{product_pivot['text']}”"
+                               if product_pivot else None),
         "evidence_sources": sorted({v.get("url") or "https://www.screener.in/company/" + code + "/" for v in ev.values()}),
         "final_score": final,
         "adj_score": final,
@@ -808,16 +891,18 @@ def main() -> int:
         if not theme:
             outcomes[cand["isin"]] = ("sector", " / ".join(p.get("sector_path") or []) or "no sector")
             continue
-        ev, guidance = moat_evidence(p, soup)
+        ev, guidance, capacity_util, product_pivot = moat_evidence(p, soup)
         turned = pat_turnaround(p.get("pat_series_cr") or [])
         guidance_pct = guidance.get("pct") if guidance else None
         over_guidance = guidance_pct is not None and guidance_pct > GUIDANCE_OVER_PCT
-        if not (ev or turned or over_guidance):
-            outcomes[cand["isin"]] = ("no moat, guidance or PAT turnaround", "; ".join(fails) if fails else "")
+        if not (ev or turned or over_guidance or capacity_util or product_pivot):
+            outcomes[cand["isin"]] = ("no moat, guidance, PAT turnaround, capacity util or product pivot",
+                                       "; ".join(fails) if fails else "")
             continue
-        rec = record(code, cand, p, ev, tier, theme, today, guidance, fails)
+        rec = record(code, cand, p, ev, tier, theme, today, guidance, fails, capacity_util, product_pivot)
         passes.append((rec, cand))
-        why = ', '.join(ev) or ('PAT turnaround' if turned else f'guidance {guidance_pct}%')
+        why = ', '.join(ev) or ('PAT turnaround' if turned else
+              'capacity utilisation' if capacity_util else 'product pivot' if product_pivot else f'guidance {guidance_pct}%')
         print(f"  PASS {code:<12} {rec['name'][:40]:<40} score {rec['final_score']:>5}  {theme}  [{why}]"
               + (f"  GATES FAILED: {'; '.join(fails)}" if fails else ""))
 

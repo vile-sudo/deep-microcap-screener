@@ -226,7 +226,8 @@ function listingYear(d){
   return m ? (m[1]||m[2]) : null;
 }
 
-const TG = {overhang:false, heavycap:false, guide15:false, guideany:false, turn:false, haslens:false, ipo:false, asme:false, auto:false,
+const TG = {overhang:false, heavycap:false, guide15:false, guideany:false, turn:false, caputil:false, pivot:false,
+            haslens:false, ipo:false, asme:false, auto:false,
             nolens:false, watch:false,
             nosme:false, nopledge:false, realsub:false, cheap:false, ongate:false};
 /* The watchlist is the one piece of state that belongs to the reader rather than to the
@@ -253,9 +254,10 @@ let sortKey='final_score', sortDir=-1;
 const VIEWS=['overview','themes','market','watchlist','companies','filters','gallery','reports','sectors','movers','news','method'];
 const NAV={'overview-link':'overview','themes-link':'themes','market-link':'market','watchlist-link':'watchlist',
            'companies-link':'companies','filters-link':'filters','gallery-link':'gallery','reports-link':'reports','sectors-link':'sectors','movers-link':'movers','news-link':'news'};
-const LENSES=['overhang','heavycap','guide15','guideany','turn','haslens','ipo','asme','auto'];
+const LENSES=['overhang','heavycap','guide15','guideany','turn','caputil','pivot','haslens','ipo','asme','auto'];
 const TILE_LABEL={all:'Companies on the board',overhang:'High P/E + heavy CWIP',guide15:'Management guides > 15%',
-                  turn:'PAT turned positive',nolens:'Awaiting the capex pass'};
+                  turn:'PAT turned positive',caputil:'Capacity utilisation ramping up',pivot:'Product-mix pivot',
+                  nolens:'Awaiting the capex pass'};
 let VIEW='overview', NAVID='overview-link', TILE=null;
 
 function setView(v, opts){
@@ -433,6 +435,8 @@ function pass(d){
   if(TG.guide15  && !d.guidance_over15) return false;
   if(TG.guideany && !d.guidance_flag) return false;
   if(TG.turn     && !d.pat_turnaround) return false;
+  if(TG.caputil  && !d.capacity_util_flag) return false;
+  if(TG.pivot    && !d.product_pivot_flag) return false;
   if(TG.haslens  && !d.has_lens_data) return false;
   if(TG.ipo      && !isRecentListing(d)) return false;
   if(TG.asme     && !ASME_BY_CODE[d.code]) return false;
@@ -454,6 +458,8 @@ function sigBadges(d, full){
   if(d.guidance_over15) h+=`<span class="badge b-guide" title="Management guides revenue growth above 15%">▲ ${fmt(d.guidance_pct,0)}%</span>`;
   else if(d.guidance_flag) h+=`<span class="badge nd" title="Management made a forward growth statement but did not quantify it">▲ outlook</span>`;
   if(d.pat_turnaround) h+=`<span class="badge b-turn" title="Latest reported period profitable after a loss in the prior three">↻ PAT+</span>`;
+  if(d.capacity_util_flag) h+=`<span class="badge nd" title="${esc(d.capacity_util_note||'Management has stated capacity utilisation will rise from a named near-term period')}">⚙ util↑</span>`;
+  if(d.product_pivot_flag) h+=`<span class="badge nd" title="${esc(d.product_pivot_note||'Management has described a product-mix change tied to a shift in market demand')}">⇄ pivot</span>`;
   if(full && d.source==='user') h+=`<span class="badge b-user">added on request</span>`;
   return h || '<span class="nd">—</span>';
 }
@@ -1192,6 +1198,8 @@ const CSVCOLS=[
   ['High P/E + heavy CWIP', d=>d.capex_overhang?'yes':''],
   ['Guides above 15%', d=>d.guidance_over15?'yes':''],
   ['PAT turned positive', d=>d.pat_turnaround?'yes':''],
+  ['Capacity utilisation ramping up', d=>d.capacity_util_flag?'yes':''],
+  ['Product-mix pivot', d=>d.product_pivot_flag?'yes':''],
   ['Watchlisted', d=>WATCH.has(d.code)?'yes':''],
   ['Screener.in', d=>scrURL(d)],
 ];
@@ -3711,7 +3719,7 @@ function rpRenderDoc(code){
     rpRow('CWIP / net block', nz(d.cwip_pct_net_block)===null?'':fmt(d.cwip_pct_net_block,1)+'%'),
     rpRow('Guided growth', nz(d.guidance_pct)===null?'':fmt(d.guidance_pct,0)+'%'),
   ].join('');
-  const flags=[d.capex_overhang&&'High P/E with heavy CWIP', d.capex_heavy&&'CWIP ≥ 25% of net block', d.guidance_over15&&'Management guides above 15%', d.pat_turnaround&&'Profit turned positive'].filter(Boolean);
+  const flags=[d.capex_overhang&&'High P/E with heavy CWIP', d.capex_heavy&&'CWIP ≥ 25% of net block', d.guidance_over15&&'Management guides above 15%', d.pat_turnaround&&'Profit turned positive', d.capacity_util_flag&&'Capacity utilisation ramping up', d.product_pivot_flag&&'Product-mix pivot'].filter(Boolean);
 
   doc.innerHTML=`
   <div class="rp-toolbar">
