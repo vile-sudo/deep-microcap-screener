@@ -22,6 +22,23 @@ LOGGER = logging.getLogger(__name__)
 BULK_URL = "https://nsearchives.nseindia.com/content/equities/bulk.csv"
 BLOCK_URL = "https://nsearchives.nseindia.com/content/equities/block.csv"
 
+# The real NSE-website date-range API behind the interactive report at
+# nseindia.com/report-detail/display-bulk-and-block-deals -- not the same host
+# as BULK_URL/BLOCK_URL above (those are the static, latest-session-only
+# archive). www.nseindia.com sits behind Akamai bot protection that a plain
+# User-Agent does not clear (confirmed: a bare request gets 403/503); it needs
+# a full browser-shaped header set and a real page fetch first, for the
+# Akamai cookies. Without &csv=true the JSON response is silently paginated
+# to 70 rows regardless of how many days are in range (confirmed: a known day
+# with 212 real bulk deals came back as exactly 70) -- csv=true bypasses that
+# and returns the true count.
+HIST_URL = "https://www.nseindia.com/api/historicalOR/bulk-block-short-deals"
+HIST_REPORT_PAGE = "https://www.nseindia.com/report-detail/display-bulk-and-block-deals"
+HIST_HEADERS = {
+    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36",
+    "Accept-Language": "en-US,en;q=0.9",
+}
+
 DEFAULT_CACHE_DIR = Path(__file__).resolve().parent.parent.parent / ".movers_cache" / "deals"
 
 
@@ -90,12 +107,58 @@ def _parse(text: str, kind: str, trade_date: date | None) -> list[Deal]:
 
 
 def all_deals() -> list[Deal]:
-    """Every bulk and block deal in NSE's current rolling archive -- whatever
-    window nsearchives.nseindia.com happens to be serving right now (typically
-    the last several weeks), newest first. For scripts/run_deals.py's own
-    dashboard section, not the per-session lookup deals_for() below does."""
+    """Every bulk and block deal nsearchives.nseindia.com's static archive is
+    currently serving -- in practice only the latest settled session (checked
+    by fetching it directly; despite being named an archive it does not hold
+    a rolling window), newest first. For scripts/run_deals.py's nightly run;
+    see historical_deals() below for a real date-range backfill."""
     bulk_text, block_text = _fetch(BULK_URL), _fetch(BLOCK_URL)
     found = _parse(bulk_text, "bulk", None) + _parse(block_text, "block", None)
+    found.sort(key=lambda d: (d.trade_date, d.value_crore), reverse=True)
+    return found
+
+
+def _parse_hist_csv(text: str, kind: str) -> list[Deal]:
+    """historicalOR's &csv=true export -- same fields as the archive CSVs,
+    but padded column names ("Date ", "Symbol ", ...) and Indian-grouped
+    numbers ("1,29,600"), so its own small parser rather than reusing _parse()."""
+    deals: list[Deal] = []
+    for row in csv.DictReader(io.StringIO(text)):
+        clean = {(key or "").strip(): (value.strip() if isinstance(value, str) else value) for key, value in row.items()}
+        try:
+            row_date = datetime.strptime(clean.get("Date", ""), "%d-%b-%Y").date()
+            quantity = int(float(clean.get("Quantity Traded", "0").replace(",", "")))
+            price = float(clean.get("Trade Price / Wght. Avg. Price", "0").replace(",", ""))
+        except (TypeError, ValueError):
+            continue
+        symbol = str(clean.get("Symbol") or "").strip()
+        if not symbol or quantity <= 0 or price <= 0:
+            continue
+        deals.append(Deal(symbol=symbol, kind=kind, client=str(clean.get("Client Name") or "").strip(),
+                          side=str(clean.get("Buy / Sell") or "").strip().upper(),
+                          quantity=quantity, price=price, trade_date=row_date))
+    return deals
+
+
+def historical_deals(from_date: date, to_date: date, timeout: int = 30) -> list[Deal]:
+    """Every bulk and block deal NSE actually has on record for [from_date,
+    to_date] -- the real date-range report behind the dashboard's own
+    "display-bulk-and-block-deals" page, for a one-off backfill beyond what
+    the nightly accumulation (run_deals.py, all_deals() above) has built up
+    so far. Not part of the nightly run: a much heavier fetch (Akamai
+    handshake against www.nseindia.com, not the plain archive host), and
+    only ever needed once to seed history, or occasionally to heal a gap."""
+    session = requests.Session()
+    session.headers.update(HIST_HEADERS)
+    session.get(HIST_REPORT_PAGE, timeout=timeout)   # Akamai cookies, same as a real page load
+    found: list[Deal] = []
+    for option_type, kind in (("bulk_deals", "bulk"), ("block_deals", "block")):
+        r = session.get(HIST_URL, params={"optionType": option_type, "from": from_date.strftime("%d-%m-%Y"),
+                                          "to": to_date.strftime("%d-%m-%Y"), "csv": "true"},
+                        headers={"Accept": "application/json, text/plain, */*", "Referer": HIST_REPORT_PAGE},
+                        timeout=timeout)
+        r.raise_for_status()
+        found += _parse_hist_csv(r.content.decode("utf-8-sig"), kind)
     found.sort(key=lambda d: (d.trade_date, d.value_crore), reverse=True)
     return found
 

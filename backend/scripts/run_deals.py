@@ -3,7 +3,8 @@ Bulk & block deals: NSE's own report (nseindia.com/report-detail/display-
 bulk-and-block-deals), rebuilt for the dashboard.
 
     cd backend
-    python scripts/run_deals.py
+    python scripts/run_deals.py                       # today's session (the nightly run)
+    python scripts/run_deals.py --backfill-days 30    # a real date-range fetch, one-off
 
 Runs inside .github/workflows/daily.yml (step 1b, right after the
 fundamentals refresh), on that workflow's 02:00 IST schedule -- so this
@@ -13,13 +14,21 @@ app/routers/deals.py serves to the dashboard's Bulk & Block Deals page.
 NSE's bulk.csv/block.csv turn out to serve only the LATEST settled session,
 not a rolling multi-week window (checked by fetching them directly -- every
 row came back dated the same day). So this script accumulates its own
-history across runs: today's fetch is merged into whatever is already
-saved, deduped, and anything older than RETENTION_DAYS is dropped -- the
-same "merge in, prune the tail" shape as the exchange's own daily bhavcopy
-cache elsewhere in this codebase, just for a much smaller file.
+history across nightly runs: today's fetch is merged into whatever is
+already saved, deduped, and anything older than RETENTION_DAYS is dropped --
+the same "merge in, prune the tail" shape as the exchange's own daily
+bhavcopy cache elsewhere in this codebase, just for a much smaller file.
+
+--backfill-days seeds (or heals a gap in) that history immediately, using
+the real date-range report behind NSE's own dashboard page instead of
+waiting weeks for the nightly accumulation to build it up one day at a
+time. Not run automatically -- a much heavier fetch (an Akamai handshake
+against www.nseindia.com, not the plain archive host all_deals() uses),
+and normally only needed once. See app/movers/deals.py:historical_deals().
 """
 from __future__ import annotations
 
+import argparse
 import json
 import sys
 from datetime import datetime, timedelta, timezone
@@ -27,7 +36,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 from app.movers.companies import board_map, name_lookup  # noqa: E402
-from app.movers.deals import all_deals  # noqa: E402
+from app.movers.deals import all_deals, historical_deals  # noqa: E402
 
 BACKEND_DIR = Path(__file__).resolve().parent.parent
 OUT_FILE = BACKEND_DIR / "data" / "deals" / "latest.json"
@@ -39,8 +48,16 @@ def _key(r: dict) -> tuple:
 
 
 def main() -> int:
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--backfill-days", type=int, help="fetch this many days of real history instead of just today")
+    args = ap.parse_args()
+
     try:
-        deals = all_deals()
+        if args.backfill_days:
+            today = datetime.now(timezone.utc).date()
+            deals = historical_deals(today - timedelta(days=args.backfill_days), today)
+        else:
+            deals = all_deals()
     except Exception as e:  # noqa: BLE001 - NSE unreachable must not crash the workflow
         deals = []
         print(f"run_deals: could not fetch bulk/block deals ({e}); keeping the existing history")
