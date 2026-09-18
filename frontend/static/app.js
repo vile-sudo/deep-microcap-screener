@@ -246,14 +246,15 @@ let sortKey='final_score', sortDir=-1;
    The board is one page at a time, following the sidebar:
      overview  - the stat tiles; a tile shows only the companies behind it
      themes    - the theme folders; a folder shows only that theme's companies
-     companies - the search box; a search shows only the companies it names
-     filters   - the screen filters; a filter shows only the companies it matches
+     filters   - Screens: the search box and the filter lenses together, in one
+                 place -- a search, a lens, or both at once shows only the
+                 companies that match (used to be two separate pages)
      method    - how the scores work
    Moving to another page clears whatever was picked on the last one, so a theme
-   chosen on Themes never quietly narrows what Screen filters shows. */
-const VIEWS=['overview','themes','market','watchlist','companies','filters','gallery','reports','sectors','movers','deals','news','method'];
+   chosen on Themes never quietly narrows what Screens shows. */
+const VIEWS=['overview','themes','market','watchlist','filters','gallery','reports','sectors','movers','deals','news','method'];
 const NAV={'overview-link':'overview','themes-link':'themes','market-link':'market','watchlist-link':'watchlist',
-           'companies-link':'companies','filters-link':'filters','gallery-link':'gallery','reports-link':'reports','sectors-link':'sectors','movers-link':'movers','deals-link':'deals','news-link':'news'};
+           'filters-link':'filters','gallery-link':'gallery','reports-link':'reports','sectors-link':'sectors','movers-link':'movers','deals-link':'deals','news-link':'news'};
 const LENSES=['overhang','heavycap','guide15','guideany','turn','caputil','pivot','haslens','ipo','asme','auto'];
 const TILE_LABEL={all:'Companies on the board',overhang:'High P/E + heavy CWIP',guide15:'Management guides > 15%',
                   turn:'PAT turned positive',caputil:'Capacity utilisation ramping up',pivot:'Product-mix pivot',
@@ -278,7 +279,7 @@ function setView(v, opts){
   if(VIEW==='deals') openDeals();
   if(VIEW==='news') openNews();
   const ts=document.getElementById('top-search');
-  if(ts && VIEW!=='companies') ts.value='';
+  if(ts && VIEW!=='filters') ts.value='';
 }
 Object.keys(NAV).forEach(id=>{
   const link=document.getElementById(id);
@@ -289,8 +290,7 @@ Object.keys(NAV).forEach(id=>{
 function sliderMoved(){ return SL.some(s=>s.inv ? s.v<s.max : s.v>s.min); }
 function showResults(){
   if(VIEW==='overview')  return TILE!==null;
-  if(VIEW==='companies') return QTERMS.length>0 || !!NEWSINCE;
-  if(VIEW==='filters')   return LENSES.some(k=>TG[k]) || sliderMoved();
+  if(VIEW==='filters')   return QTERMS.length>0 || !!NEWSINCE || LENSES.some(k=>TG[k]) || sliderMoved();
   return false;
 }
 
@@ -360,12 +360,12 @@ document.querySelectorAll('[data-tg]').forEach(b=>{
 });
 /* ---------- search ---------- */
 const qIn=document.getElementById('q'), qWrap=document.getElementById('swrap');
-/* Top bar: logo goes home, the search box opens Companies with the query,
+/* Top bar: logo goes home, the search box opens Screens with the query,
    footer links follow the same routes as the tabs. */
 (function(){
   const ts=document.getElementById('top-search');
   let timer=0;
-  const go=()=>{ const v=ts.value; if(VIEW!=='companies') setView('companies'); setQuery(v); ts.focus(); };
+  const go=()=>{ const v=ts.value; if(VIEW!=='filters') setView('filters'); setQuery(v); ts.focus(); };
   ts.oninput=()=>{ clearTimeout(timer); timer=setTimeout(go,160); };
   ts.onkeydown=e=>{ if(e.key==='Enter'){ clearTimeout(timer); go(); } if(e.key==='Escape'){ ts.value=''; go(); } };
   document.getElementById('brand-link').onclick=()=>setView('overview');
@@ -3255,13 +3255,13 @@ async function openUpdates(){
           <div class="upd-foot"><span>${dayIN(i.date)}</span>${action}</div></div>
       </li>`;}).join(''):'<li class="view-hint">Nothing new yet.</li>'}</ol>`;
   mbody.querySelectorAll('[data-upd-report]').forEach(b=>b.onclick=()=>{ closeModal(); openReport(b.dataset.updReport); });
-  mbody.querySelectorAll('[data-upd-new]').forEach(b=>b.onclick=()=>{ closeModal(); setView('companies',{nav:'companies-link'}); NEWSINCE=b.dataset.updNew; render(); });
+  mbody.querySelectorAll('[data-upd-new]').forEach(b=>b.onclick=()=>{ closeModal(); setView('filters',{nav:'filters-link'}); NEWSINCE=b.dataset.updNew; render(); });
   mbody.querySelectorAll('[data-upd-view]').forEach(b=>b.onclick=()=>{ closeModal(); setView(b.dataset.updView); });
   if(j.unread){ api('/api/me/updates/seen','POST').then(()=>{ ACCT.unread=0; badges(); }).catch(()=>{}); }
 }
 
 /* ---------- saved filters ---------- */
-const VIEW_NAME={overview:'Overview',themes:'Themes',market:'Market',watchlist:'Watchlist',companies:'Companies',filters:'Screens',gallery:'Screen any Chart',reports:'Reports',method:'How it works'};
+const VIEW_NAME={overview:'Overview',themes:'Themes',market:'Market',watchlist:'Watchlist',filters:'Screens',gallery:'Screen any Chart',reports:'Reports',method:'How it works'};
 function describeState(state){
   const p=new URLSearchParams(state), bits=[];
   bits.push(VIEW_NAME[p.get('v')||'overview']||'Overview');
