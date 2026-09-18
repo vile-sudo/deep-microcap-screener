@@ -167,15 +167,26 @@ def _save_state(state: dict) -> None:
     STATE_FILE.write_text(json.dumps(state, indent=1), encoding="utf-8")
 
 
+SKIP_SYMBOLS = {"NSE"}   # the exchange's own listing -- not a name to write an investment brief on
+
+
 def due_list(issues: list, force_symbol: str | None, force: bool = False) -> list:
     """Every currently-open issue not yet covered -- open_issues() already
     guarantees "open", so this alone means "as soon as it opens": the first
     nightly run after an issue appears in that feed is the one that writes
-    it, not one timed against how soon it closes."""
+    it, not one timed against how soon it closes.
+
+    Two exclusions, on request: SKIP_SYMBOLS by name, and anything closing
+    today or already closed -- once there's no time left to act on it,
+    writing the report is pointless, not just late. Neither exclusion
+    hides the issue from the calendar (write_calendar() lists every open
+    issue regardless); it only means no report is written for it."""
     if force_symbol:
         return [i for i in issues if i.symbol == force_symbol.upper()]
+    today = datetime.now(IST).date()
     state = _load_state()
-    return [i for i in issues if force or i.symbol not in state.get("covered", {})]
+    return [i for i in issues if (force or i.symbol not in state.get("covered", {}))
+            and i.symbol not in SKIP_SYMBOLS and i.close_date > today]
 
 
 def write_calendar(issues: list, state: dict) -> int:
