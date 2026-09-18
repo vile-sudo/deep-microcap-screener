@@ -2526,26 +2526,43 @@ async function openIpoReports(){
   else iporRenderLib();
 }
 
+/* Calendar day-diff in whole days, ignoring time of day -- "today" and an
+   issue's own open/close dates are all plain calendar dates, never times. */
+function iporDayDiff(iso){
+  const [y,m,d]=iso.split('-').map(Number);
+  const target=new Date(y,m-1,d), today=new Date(); today.setHours(0,0,0,0);
+  return Math.round((target-today)/86400000);
+}
+
 function iporRenderCalendar(){
   const body=document.getElementById('iporcal-body');
   const rows=IPR.calendar.slice().sort((a,b)=>a.close_date.localeCompare(b.close_date)||a.open_date.localeCompare(b.open_date));
   document.getElementById('iporcal-count').textContent=`${fmtI(rows.length)} currently open`;
-  body.innerHTML = rows.length ? `<div class="mv-tablewrap"><table class="mv-table"><thead><tr>
-      <th>Company</th><th>Board</th><th>Open</th><th>Close</th><th>Price band</th><th>Report</th>
-    </tr></thead><tbody>${rows.map(iporCalRowHtml).join('')}</tbody></table></div>`
+  body.innerHTML = rows.length ? `<div class="ipor-cal-grid">${rows.map(iporCalCard).join('')}</div>`
     : `<p class="view-hint">No mainboard or SME issue is currently open for subscription.</p>`;
   body.querySelectorAll('[data-iporcalgo]').forEach(b=>b.onclick=()=>openIpoReport(b.dataset.iporcalgo));
 }
 
-function iporCalRowHtml(i){
-  return `<tr>
-    <td><b class="mv-tick">${esc(i.symbol)}</b><span class="mv-name">${esc(i.company||i.symbol)}</span></td>
-    <td><span class="mv-badge ${i.board==='sme'?'mv-med':'mv-high'}">${i.board==='sme'?'SME':'Mainboard'}</span></td>
-    <td>${esc(mvDay(i.open_date))}</td>
-    <td>${esc(mvDay(i.close_date))}</td>
-    <td>${esc(i.price_band||'—')}</td>
-    <td>${i.has_report?`<button type="button" class="btn" data-iporcalgo="${esc(i.symbol)}">Read report</button>`:'<span class="view-hint">Writing soon</span>'}</td>
-  </tr>`;
+function iporCalCard(i){
+  const openD=iporDayDiff(i.open_date), closeD=iporDayDiff(i.close_date);
+  const span=Math.max(1, closeD+Math.abs(openD)); // total days the window covers, floor of 1 to avoid /0
+  const elapsed=Math.min(1, Math.max(0, (span-closeD)/span));
+  const urgency = closeD<=0 ? 'urgent' : closeD<=1 ? 'soon' : 'ok';
+  const days = closeD<=0 ? (closeD===0?'Closes today':`Closed ${Math.abs(closeD)}d ago`) : `Closes in ${closeD}d`;
+  return `<article class="ipor-cal-card ipor-cal-${urgency}">
+    <div class="ipor-cal-top">
+      <span class="rp-tag ${i.board==='sme'?'rp-tag':'rp-deep'}">${i.board==='sme'?'SME':'Mainboard'}</span>
+      <span class="ipor-cal-days ipor-cal-${urgency}">${esc(days)}</span>
+    </div>
+    <h3 class="ipor-cal-name">${esc(i.company||i.symbol)}</h3>
+    <div class="ipor-cal-meta">${esc(i.symbol)} · ${esc(i.price_band||'price band not yet known')}</div>
+    <div class="ipor-cal-progress" title="${esc(mvDay(i.open_date))} to ${esc(mvDay(i.close_date))}">
+      <div class="ipor-cal-track"><div class="ipor-cal-fill ipor-cal-${urgency}" style="width:${(elapsed*100).toFixed(0)}%"></div></div>
+      <div class="ipor-cal-dates"><span>${esc(mvDay(i.open_date))}</span><span>${esc(mvDay(i.close_date))}</span></div>
+    </div>
+    <div class="ipor-cal-action">${i.has_report?`<button type="button" class="btn on" data-iporcalgo="${esc(i.symbol)}">Read report ›</button>`
+      :'<span class="ipor-cal-pending">⏳ Report writing soon</span>'}</div>
+  </article>`;
 }
 
 function iporBuildControls(){

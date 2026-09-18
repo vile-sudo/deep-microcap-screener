@@ -836,6 +836,32 @@ td .thm{font-size:10.5px;text-transform:uppercase;letter-spacing:.05em;color:var
 .ipor-subh{margin:22px 0 4px;padding-top:18px;border-top:1px solid var(--grid);font-size:15px;font-weight:700;color:var(--ink)}
 .ipor-subh:first-child{margin-top:0;padding-top:0;border-top:0}
 
+/* IPO calendar cards */
+.ipor-cal-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px;margin-top:4px}
+.ipor-cal-card{position:relative;display:flex;flex-direction:column;gap:8px;padding:16px;border:1px solid var(--grid);
+  border-radius:14px;background:var(--surface,#fff);box-shadow:var(--shadow-soft);overflow:hidden}
+.ipor-cal-card::before{content:"";position:absolute;inset:0 0 auto 0;height:4px}
+.ipor-cal-card.ipor-cal-urgent::before{background:linear-gradient(90deg,#dc2626,#f08b5a)}
+.ipor-cal-card.ipor-cal-soon::before{background:linear-gradient(90deg,#d97706,#f4ba49)}
+.ipor-cal-card.ipor-cal-ok::before{background:linear-gradient(90deg,#0b3954,#0a73a8 55%,#2db6dd)}
+.ipor-cal-top{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.ipor-cal-days{font-size:11px;font-weight:700;letter-spacing:.02em;padding:3px 9px;border-radius:99px;white-space:nowrap}
+.ipor-cal-days.ipor-cal-urgent{background:#fdeeee;color:#dc2626}
+.ipor-cal-days.ipor-cal-soon{background:#fff7e8;color:#b45309}
+.ipor-cal-days.ipor-cal-ok{background:#eef7fc;color:#0a73a8}
+.ipor-cal-name{margin:0;font-size:16px;font-weight:700;color:var(--ink);line-height:1.3}
+.ipor-cal-meta{font-size:12.5px;color:var(--muted)}
+.ipor-cal-progress{margin-top:2px}
+.ipor-cal-track{position:relative;height:6px;border-radius:99px;background:var(--surface-2,#eef2f5);overflow:hidden}
+.ipor-cal-fill{position:absolute;inset:0 auto 0 0;border-radius:99px;transition:width .3s}
+.ipor-cal-fill.ipor-cal-urgent{background:linear-gradient(90deg,#dc2626,#f08b5a)}
+.ipor-cal-fill.ipor-cal-soon{background:linear-gradient(90deg,#d97706,#f4ba49)}
+.ipor-cal-fill.ipor-cal-ok{background:linear-gradient(90deg,#0a73a8,#2db6dd)}
+.ipor-cal-dates{display:flex;justify-content:space-between;margin-top:4px;font-size:10.5px;color:var(--muted);letter-spacing:.01em}
+.ipor-cal-action{margin-top:4px}
+.ipor-cal-action .btn{width:100%;text-align:center}
+.ipor-cal-pending{font-size:12.5px;color:var(--muted);display:inline-flex;align-items:center;gap:5px}
+
 /* Bulk & Block Deals / Announcements tab switcher */
 .dl-tabs{display:flex;gap:8px;margin:14px 0}
 .dl-tab{padding:8px 16px;border-radius:99px;border:1px solid var(--ring);background:var(--surface);color:var(--ink2);
