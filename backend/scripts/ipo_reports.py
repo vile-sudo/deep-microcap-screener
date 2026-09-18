@@ -44,6 +44,7 @@ from app.movers.ipo_calendar import open_issues  # noqa: E402
 
 BACKEND = Path(__file__).resolve().parent.parent
 OUT_DIR = BACKEND / "data" / "ipo_reports"
+CALENDAR_FILE = OUT_DIR / "calendar.json"
 STATE_FILE = BACKEND.parent / "automation" / "data" / "ipo-reports.json"
 IST = timezone(timedelta(hours=5, minutes=30))
 TOOLS = "Read,Grep,Glob,Write,Edit,WebSearch,WebFetch"
@@ -164,16 +165,35 @@ def _save_state(state: dict) -> None:
     STATE_FILE.write_text(json.dumps(state, indent=1), encoding="utf-8")
 
 
-def due_list(force_symbol: str | None, force: bool = False) -> list:
+def due_list(issues: list, force_symbol: str | None, force: bool = False) -> list:
     """Every currently-open issue not yet covered -- open_issues() already
     guarantees "open", so this alone means "as soon as it opens": the first
     nightly run after an issue appears in that feed is the one that writes
     it, not one timed against how soon it closes."""
-    issues = open_issues()
     if force_symbol:
         return [i for i in issues if i.symbol == force_symbol.upper()]
     state = _load_state()
     return [i for i in issues if force or i.symbol not in state.get("covered", {})]
+
+
+def write_calendar(issues: list, state: dict) -> int:
+    """The raw IPO calendar, independent of whether a report exists yet --
+    app/routers/ipo_reports.py's own page inside Upcoming IPO Reports, not
+    gated on report generation the way index.json (reports actually
+    written) is. Same file every run, no history to accumulate: an issue
+    that closes just drops out of NSE's own feed on its own."""
+    covered = (state or {}).get("covered", {})
+    rows = [{"symbol": i.symbol, "company": i.company, "board": i.board,
+            "open_date": i.open_date.isoformat(), "close_date": i.close_date.isoformat(),
+            "price_band": i.price_band, "status": i.status, "has_report": i.symbol in covered}
+           for i in issues]
+    rows.sort(key=lambda r: (r["close_date"], r["open_date"]))
+    CALENDAR_FILE.parent.mkdir(parents=True, exist_ok=True)
+    CALENDAR_FILE.write_text(json.dumps({
+        "fetched_at": datetime.now(timezone.utc).isoformat(timespec="seconds"),
+        "count": len(rows), "issues": rows,
+    }, separators=(",", ":")), encoding="utf-8")
+    return len(rows)
 
 
 def run(issue) -> str:
@@ -240,15 +260,20 @@ def main() -> int:
         return 0
 
     try:
-        due = due_list(args.symbol, args.force)
+        issues = open_issues()
     except Exception as e:  # noqa: BLE001 - NSE unreachable must not crash the workflow
         print(f"ipo-reports: could not fetch the IPO calendar ({e})")
         return 0
+
+    state = _load_state()
+    n_cal = write_calendar(issues, state)
+    print(f"ipo-reports: {n_cal} issue(s) currently open -> {CALENDAR_FILE}")
+
+    due = due_list(issues, args.symbol, args.force)
     if not due:
         print("ipo-reports: nothing due today")
         return 0
 
-    state = _load_state()
     done = 0
     for issue in due:
         if done >= args.max:

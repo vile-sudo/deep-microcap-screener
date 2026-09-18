@@ -833,6 +833,9 @@ td .thm{font-size:10.5px;text-transform:uppercase;letter-spacing:.05em;color:var
 .gc-thin{color:var(--s4)}   /* under Rs 5 lakh a day: barely tradeable */
 .gal-more{grid-column:1/-1;justify-self:center;margin-top:6px;padding:9px 22px}
 
+.ipor-subh{margin:22px 0 4px;padding-top:18px;border-top:1px solid var(--grid);font-size:15px;font-weight:700;color:var(--ink)}
+.ipor-subh:first-child{margin-top:0;padding-top:0;border-top:0}
+
 /* Bulk & Block Deals / Announcements tab switcher */
 .dl-tabs{display:flex;gap:8px;margin:14px 0}
 .dl-tab{padding:8px 16px;border-radius:99px;border:1px solid var(--ring);background:var(--surface);color:var(--ink2);

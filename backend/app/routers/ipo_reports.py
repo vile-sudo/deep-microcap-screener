@@ -1,13 +1,16 @@
 """
 Upcoming IPO report endpoints.
 
-GET /api/ipo-reports          every IPO report on record (index.json)
-GET /api/ipo-reports/{symbol} that one report
+GET /api/ipo-reports              every IPO report on record (index.json)
+GET /api/ipo-reports/calendar     every currently-open mainboard/SME issue,
+                                  whether or not it has a report yet
+GET /api/ipo-reports/{symbol}     that one report
 
 Written by scripts/ipo_reports.py into backend/data/ipo_reports/ (one file
 per issue -- unlike the quarterly deep-dives, an IPO report is a one-time
 thing, not a recurring series), shipped with the deploy; this router only
-reads files.
+reads files. /calendar is registered before /{symbol} so "calendar" is
+never swallowed as a symbol.
 """
 import json
 import re
@@ -38,6 +41,11 @@ def _load(path: Path) -> dict | None:
 @router.get("")
 def ipo_report_index():
     return _load(DIR / "index.json") or {"reports": []}
+
+
+@router.get("/calendar")
+def ipo_calendar():
+    return _load(DIR / "calendar.json") or {"fetched_at": None, "count": 0, "issues": []}
 
 
 @router.get("/{symbol}")

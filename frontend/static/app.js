@@ -2506,7 +2506,7 @@ function anRowHtml(a){
    drBlocks/drText from the deep-dive renderer above, since both share the
    same {sections:[{id,title,subsections:[{title,blocks}]}]} shape.
    ================================================================== */
-const IPR={index:null, built:false, symbol:null, q:'', board:'', verdict:''};
+const IPR={index:null, calendar:null, built:false, symbol:null, q:'', board:'', verdict:''};
 const IPR_VERDICT={invest:['Invest','good'], avoid:['Avoid','bad'], track:['Track','warn']};
 
 async function openIpoReports(){
@@ -2515,9 +2515,37 @@ async function openIpoReports(){
     let j; try{ j=await fetchJSON('/api/ipo-reports'); }catch(e){ j=null; }
     IPR.index=(j&&j.reports)||[];
   }
+  if(!IPR.calendar){
+    document.getElementById('iporcal-body').innerHTML='<p class="view-hint">Loading…</p>';
+    let c; try{ c=await fetchJSON('/api/ipo-reports/calendar'); }catch(e){ c=null; }
+    IPR.calendar=(c&&c.issues)||[];
+    iporRenderCalendar();
+  }
   if(!IPR.built) iporBuildControls();
   if(IPR.symbol) iporRenderDoc(IPR.symbol);
   else iporRenderLib();
+}
+
+function iporRenderCalendar(){
+  const body=document.getElementById('iporcal-body');
+  const rows=IPR.calendar.slice().sort((a,b)=>a.close_date.localeCompare(b.close_date)||a.open_date.localeCompare(b.open_date));
+  document.getElementById('iporcal-count').textContent=`${fmtI(rows.length)} currently open`;
+  body.innerHTML = rows.length ? `<div class="mv-tablewrap"><table class="mv-table"><thead><tr>
+      <th>Company</th><th>Board</th><th>Open</th><th>Close</th><th>Price band</th><th>Report</th>
+    </tr></thead><tbody>${rows.map(iporCalRowHtml).join('')}</tbody></table></div>`
+    : `<p class="view-hint">No mainboard or SME issue is currently open for subscription.</p>`;
+  body.querySelectorAll('[data-iporcalgo]').forEach(b=>b.onclick=()=>openIpoReport(b.dataset.iporcalgo));
+}
+
+function iporCalRowHtml(i){
+  return `<tr>
+    <td><b class="mv-tick">${esc(i.symbol)}</b><span class="mv-name">${esc(i.company||i.symbol)}</span></td>
+    <td><span class="mv-badge ${i.board==='sme'?'mv-med':'mv-high'}">${i.board==='sme'?'SME':'Mainboard'}</span></td>
+    <td>${esc(mvDay(i.open_date))}</td>
+    <td>${esc(mvDay(i.close_date))}</td>
+    <td>${esc(i.price_band||'—')}</td>
+    <td>${i.has_report?`<button type="button" class="btn" data-iporcalgo="${esc(i.symbol)}">Read report</button>`:'<span class="view-hint">Writing soon</span>'}</td>
+  </tr>`;
 }
 
 function iporBuildControls(){

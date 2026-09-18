@@ -101,8 +101,8 @@
   .f1{transform:translateX(12vw)}.f2{transform:translateX(66vw)}.f3{transform:translateX(38vw)}.f4{transform:translateX(18vw)}.f5{transform:translateX(74vw)}.sp-school{transform:translateX(56vw)}
 }
 </style>
-<link rel="stylesheet" href="/static/style.css?v=61">
-<link rel="stylesheet" href="/static/dark.css?v=61">
+<link rel="stylesheet" href="/static/style.css?v=62">
+<link rel="stylesheet" href="/static/dark.css?v=62">
 </head>
 <body>
 <div id="ds-splash" role="status" aria-live="polite" aria-label="Loading Deep Sweep">
@@ -447,6 +447,12 @@
 <section class="dashboard-section ipor-section" data-views="ipor" aria-labelledby="ipor-title">
   <div class="section-heading"><div><span class="eyebrow">RESEARCH</span><h2 id="ipor-title">Upcoming IPO Reports</h2><p class="section-copy">A research report on every mainboard and SME IPO before it lists — the DRHP/RHP, financials, objects of the issue, valuation against listed peers, promoters and risk factors, researched on the web and ending in an explicit call: invest, avoid, or track. Written automatically as soon as an issue opens for subscription, while there's still time to act on it.</p></div><span class="section-note" id="ipor-note"></span></div>
   <div id="ipor-lib">
+    <h3 class="ipor-subh">IPO calendar — currently open</h3>
+    <p class="view-hint">Every mainboard and SME issue NSE currently shows as open for subscription, straight from the exchange — whether or not its report has been written yet.</p>
+    <div class="mv-count" id="iporcal-count"></div>
+    <div id="iporcal-body"><p class="view-hint">Loading…</p></div>
+
+    <h3 class="ipor-subh">Reports</h3>
     <div class="gal-controls">
       <input id="iporq" class="gal-search" type="search" autocomplete="off" spellcheck="false" placeholder="Search — company or ticker">
       <select id="iporboard" class="gal-select" aria-label="Board">
@@ -642,6 +648,6 @@
 <div class="modal" id="modal" role="dialog" aria-modal="true"><div class="mbox"><button class="close" id="mclose" aria-label="Close">&times;</button><div id="mbody"></div></div></div>
 
 <script src="/static/asme-certified.js?v=5" defer></script>
-<script src="/static/app.js?v=64" defer></script>
+<script src="/static/app.js?v=65" defer></script>
 </body>
 </html>
