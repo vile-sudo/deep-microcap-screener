@@ -251,9 +251,9 @@ let sortKey='final_score', sortDir=-1;
      method    - how the scores work
    Moving to another page clears whatever was picked on the last one, so a theme
    chosen on Themes never quietly narrows what Screen filters shows. */
-const VIEWS=['overview','themes','market','watchlist','companies','filters','gallery','reports','sectors','movers','news','method'];
+const VIEWS=['overview','themes','market','watchlist','companies','filters','gallery','reports','sectors','movers','deals','news','method'];
 const NAV={'overview-link':'overview','themes-link':'themes','market-link':'market','watchlist-link':'watchlist',
-           'companies-link':'companies','filters-link':'filters','gallery-link':'gallery','reports-link':'reports','sectors-link':'sectors','movers-link':'movers','news-link':'news'};
+           'companies-link':'companies','filters-link':'filters','gallery-link':'gallery','reports-link':'reports','sectors-link':'sectors','movers-link':'movers','deals-link':'deals','news-link':'news'};
 const LENSES=['overhang','heavycap','guide15','guideany','turn','caputil','pivot','haslens','ipo','asme','auto'];
 const TILE_LABEL={all:'Companies on the board',overhang:'High P/E + heavy CWIP',guide15:'Management guides > 15%',
                   turn:'PAT turned positive',caputil:'Capacity utilisation ramping up',pivot:'Product-mix pivot',
@@ -275,6 +275,7 @@ function setView(v, opts){
   if(VIEW==='reports'){ if(!opts.keep) RP.code=null; openReports(); }
   if(VIEW==='sectors'){ if(!opts.keep){ SC.slug=null; SC.edition=null; } openSectors(); }
   if(VIEW==='movers') openMovers();
+  if(VIEW==='deals') openDeals();
   if(VIEW==='news') openNews();
   const ts=document.getElementById('top-search');
   if(ts && VIEW!=='companies') ts.value='';
@@ -2314,6 +2315,92 @@ function mvWireRefresh(){
       disable(j.cooldown_seconds||1800);
     }catch(err){ msg.textContent=err.message; btn.disabled=false; }
   };
+}
+
+/* ==================================================================
+   Bulk & Block Deals — NSE's own report, rebuilt by scripts/run_deals.py
+   into backend/data/deals/latest.json (a rolling 120-day history this
+   dashboard accumulates itself, since NSE's own CSV only ever serves the
+   latest session). Fetched once; every filter runs client-side, same
+   shape as News Channel below. */
+const DL={data:null, built:false, boardOnly:false};
+
+async function openDeals(){
+  const body=document.getElementById('dl-body');
+  if(!DL.data){
+    body.innerHTML='<p class="view-hint">Loading…</p>';
+    let j; try{ j=await fetchJSON('/api/deals'); }catch(e){ j=null; }
+    if(!j || !j.deals || !j.deals.length){ body.innerHTML='<p class="view-hint">No deals scan has run yet. It runs automatically, twice a day.</p>'; return; }
+    DL.data=j;
+  }
+  if(!DL.built) dlBuildControls();
+  document.getElementById('dl-asof').textContent =
+    `${mvDay(DL.data.from_date)} – ${mvDay(DL.data.to_date)} · ${fmtI(DL.data.count)} deals · ${fmtI(DL.data.board_count)} on the board`;
+  dlRenderTable();
+}
+
+function dlBuildControls(){
+  DL.built=true;
+  const dates=[...new Set(DL.data.deals.map(d=>d.date))].sort().reverse();
+  const dateSel=document.getElementById('dl-date');
+  dateSel.innerHTML='<option value="">Every day on record</option>'+
+    dates.map(d=>`<option value="${d}">${esc(mvDay(d))}${d===dates[0]?' (latest)':''}</option>`).join('');
+  dateSel.onchange=dlRenderTable;
+  let t=0;
+  document.getElementById('dl-q').oninput=()=>{ clearTimeout(t); t=setTimeout(dlRenderTable,120); };
+  ['dl-kind','dl-side','dl-sort'].forEach(id=>document.getElementById(id).onchange=dlRenderTable);
+  const boardBtn=document.getElementById('dl-board');
+  boardBtn.onclick=()=>{ DL.boardOnly=!DL.boardOnly; boardBtn.classList.toggle('on',DL.boardOnly);
+    boardBtn.setAttribute('aria-pressed',String(DL.boardOnly)); dlRenderTable(); };
+  document.getElementById('dl-clear').onclick=()=>{
+    document.getElementById('dl-q').value=''; document.getElementById('dl-date').value='';
+    document.getElementById('dl-kind').value=''; document.getElementById('dl-side').value='';
+    document.getElementById('dl-sort').value='value';
+    DL.boardOnly=false; boardBtn.classList.remove('on'); boardBtn.setAttribute('aria-pressed','false');
+    dlRenderTable();
+  };
+}
+
+function dlRows(){
+  if(!DL.data) return [];
+  const q=(document.getElementById('dl-q')||{}).value?.trim().toLowerCase()||'';
+  const dateF=(document.getElementById('dl-date')||{}).value||'';
+  const kind=(document.getElementById('dl-kind')||{}).value||'';
+  const side=(document.getElementById('dl-side')||{}).value||'';
+  const sort=(document.getElementById('dl-sort')||{}).value||'value';
+  let rows=DL.data.deals.filter(d=>{
+    if(dateF && d.date!==dateF) return false;
+    if(kind && d.kind!==kind) return false;
+    if(side && d.side!==side) return false;
+    if(DL.boardOnly && !d.board_code) return false;
+    if(q && !(d.symbol.toLowerCase()+' '+(d.name||'').toLowerCase()+' '+(d.client||'').toLowerCase()).includes(q)) return false;
+    return true;
+  });
+  rows=rows.slice().sort(sort==='date' ? (a,b)=>b.date.localeCompare(a.date)||b.value_cr-a.value_cr : (a,b)=>b.value_cr-a.value_cr);
+  return rows;
+}
+
+function dlRenderTable(){
+  const body=document.getElementById('dl-body'); if(!body) return;
+  const rows=dlRows();
+  document.getElementById('dl-count').textContent=`${fmtI(rows.length)} of ${fmtI(DL.data.deals.length)}`;
+  body.innerHTML = rows.length ? `<div class="mv-tablewrap"><table class="mv-table"><thead><tr>
+      <th>Date</th><th>Company</th><th>Type</th><th>Client</th><th>Side</th><th class="n">Quantity</th><th class="n">Price</th><th class="n">Value ₹cr</th>
+    </tr></thead><tbody>${rows.map(dlRowHtml).join('')}</tbody></table></div>`
+    : `<p class="view-hint">No deal matches — clear the search or pick another filter.</p>`;
+}
+
+function dlRowHtml(d){
+  return `<tr>
+    <td>${esc(mvDay(d.date))}</td>
+    <td><b class="mv-tick">${esc(d.symbol)}</b><span class="mv-name">${esc(d.name||d.symbol)}</span>${d.board_code?'<span class="mv-onboard">On the board</span>':''}</td>
+    <td><span class="mv-badge ${d.kind==='block'?'mv-med':'mv-high'}">${d.kind==='block'?'Block':'Bulk'}</span></td>
+    <td>${esc(d.client||'—')}</td>
+    <td><span class="${d.side==='BUY'?'up':d.side==='SELL'?'dn':''}">${esc(d.side||'—')}</span></td>
+    <td class="n">${fmtI(d.quantity)}</td>
+    <td class="n">${bpInr(d.price,2)}</td>
+    <td class="n">${fmt(d.value_cr,2)}</td>
+  </tr>`;
 }
 
 /* ==================================================================

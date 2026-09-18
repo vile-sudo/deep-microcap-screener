@@ -10,7 +10,7 @@ import csv
 import io
 import logging
 from dataclasses import dataclass
-from datetime import date
+from datetime import date, datetime
 from pathlib import Path
 
 import requests
@@ -33,6 +33,7 @@ class Deal:
     side: str
     quantity: int
     price: float
+    trade_date: date
 
     @property
     def value_crore(self) -> float:
@@ -48,7 +49,10 @@ def _fetch(url: str, timeout: int = 30) -> str:
     return response.text
 
 
-def _parse(text: str, kind: str, trade_date: date) -> list[Deal]:
+def _parse(text: str, kind: str, trade_date: date | None) -> list[Deal]:
+    """Rows matching `trade_date`, or every row when `trade_date` is None --
+    used by deals_for() (one session) and all_deals() (the whole rolling
+    archive NSE currently serves) respectively."""
     deals: list[Deal] = []
     for row in csv.DictReader(io.StringIO(text)):
         clean = {
@@ -56,12 +60,13 @@ def _parse(text: str, kind: str, trade_date: date) -> list[Deal]:
             for key, value in row.items()
         }
         raw_date = clean.get("date", "")
-        # The archives use DD-MM-YYYY.
-        parts = raw_date.split("-")
-        if len(parts) != 3:
-            continue
+        # The archives use DD-MMM-YYYY ("17-SEP-2026"), a month abbreviation,
+        # not a numeric month -- int(parts[1]) raised ValueError on every row
+        # and was silently swallowed by the except below, so this never
+        # actually matched anything before.
         try:
-            if date(int(parts[2]), int(parts[1]), int(parts[0])) != trade_date:
+            row_date = datetime.strptime(raw_date, "%d-%b-%Y").date()
+            if trade_date is not None and row_date != trade_date:
                 continue
             quantity = int(float(clean.get("quantity traded", "0").replace(",", "")))
             price = float(clean.get("trade price / wght. avg. price", "0").replace(",", ""))
@@ -78,9 +83,21 @@ def _parse(text: str, kind: str, trade_date: date) -> list[Deal]:
                 side=str(clean.get("buy/sell") or "").strip().upper(),
                 quantity=quantity,
                 price=price,
+                trade_date=row_date,
             )
         )
     return deals
+
+
+def all_deals() -> list[Deal]:
+    """Every bulk and block deal in NSE's current rolling archive -- whatever
+    window nsearchives.nseindia.com happens to be serving right now (typically
+    the last several weeks), newest first. For scripts/run_deals.py's own
+    dashboard section, not the per-session lookup deals_for() below does."""
+    bulk_text, block_text = _fetch(BULK_URL), _fetch(BLOCK_URL)
+    found = _parse(bulk_text, "bulk", None) + _parse(block_text, "block", None)
+    found.sort(key=lambda d: (d.trade_date, d.value_crore), reverse=True)
+    return found
 
 
 def deals_for(trade_date: date, *, cache_dir: Path = DEFAULT_CACHE_DIR) -> dict[str, list[Deal]]:

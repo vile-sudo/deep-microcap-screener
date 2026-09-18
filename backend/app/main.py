@@ -13,7 +13,7 @@ from .auth import AccountGateMiddleware, ensure_admin
 from .config import get_settings
 from .database import Base, engine
 from .seed import seed_if_changed
-from .routers import account, alerts, asme, auth as auth_routes, charts, companies, logic_gates, market, meta, movers, news_channel, reports, sectors, watchlist
+from .routers import account, alerts, asme, auth as auth_routes, charts, companies, deals, logic_gates, market, meta, movers, news_channel, reports, sectors, watchlist
 
 settings = get_settings()
 
@@ -66,6 +66,7 @@ app.include_router(alerts.router)
 app.include_router(sectors.router)
 app.include_router(logic_gates.router)
 app.include_router(movers.router)
+app.include_router(deals.router)
 app.include_router(news_channel.router)
 
 
