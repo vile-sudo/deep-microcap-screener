@@ -14,6 +14,14 @@ name: Movers scan
 #
 # Commits by this workflow use GITHUB_TOKEN, which never re-triggers
 # workflows, so nothing here can loop.
+#
+# Two schedule times, not one: GitHub documents that a `schedule` trigger can
+# be delayed or, during high platform load, dropped entirely, with no retry
+# of its own -- and this already happened once (07:00 IST silently did not
+# fire on 2026-09-18). 10:00 IST re-runs the same day's scan as a backup; if
+# 07:00 already succeeded this is a genuine no-op (run_movers.py overwrites
+# the same date's file with nothing new to say, and the commit step's
+# `git diff --cached --quiet` check skips the commit and the deploy).
 
 permissions:
   contents: write
@@ -21,6 +29,7 @@ permissions:
 on:
   schedule:
     - cron: '30 1 * * *'      # 07:00 IST, every day (01:30 UTC)
+    - cron: '30 4 * * *'      # 10:00 IST backup, in case 07:00 was dropped (04:30 UTC)
   workflow_dispatch:
     inputs:
       date:
