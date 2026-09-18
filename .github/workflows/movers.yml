@@ -1,11 +1,5 @@
 name: Movers scan
 
-# Also runs scripts/run_deals.py (Bulk & Block Deals) right after the movers
-# scan -- same NSE source (nsearchives.nseindia.com), same schedule, so that
-# page needed no workflow or cron of its own; see that script's own
-# docstring for why it accumulates its own history rather than trusting
-# NSE's archive to hold more than the latest session.
-#
 # Keeps the Movers page current with no one touching it: on its own schedule
 # at 07:00 IST every morning -- separately from daily.yml's 02:00 IST run,
 # and on purpose. News coverage of yesterday's move is often published the
@@ -75,22 +69,18 @@ jobs:
             python scripts/run_movers.py
           fi
 
-      - name: Run the deals scan
-        working-directory: ./backend
-        run: python scripts/run_deals.py
-
       - name: Commit
         id: commit
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add backend/data/movers backend/data/deals
+          git add backend/data/movers
           if git diff --cached --quiet; then
-            echo "No movers or deals changes"
+            echo "No movers changes"
             echo "changed=false" >> "$GITHUB_OUTPUT"
             exit 0
           fi
-          git commit -m "Movers + deals scan"
+          git commit -m "Movers scan"
           for i in 1 2 3; do
             git pull --rebase origin ${{ github.ref_name }} && git push origin HEAD:${{ github.ref_name }} && break
             sleep 5

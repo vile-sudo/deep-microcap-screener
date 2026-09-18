@@ -5,9 +5,9 @@ bulk-and-block-deals), rebuilt for the dashboard.
     cd backend
     python scripts/run_deals.py
 
-Runs inside .github/workflows/movers.yml, right after the Movers scan --
-same NSE source, same schedule (07:00 IST, 10:00 IST backup), so this needed
-no new cron of its own. Writes backend/data/deals/latest.json, which
+Runs inside .github/workflows/daily.yml (step 1b, right after the
+fundamentals refresh), on that workflow's 02:00 IST schedule -- so this
+needed no new cron of its own. Writes backend/data/deals/latest.json, which
 app/routers/deals.py serves to the dashboard's Bulk & Block Deals page.
 
 NSE's bulk.csv/block.csv turn out to serve only the LATEST settled session,

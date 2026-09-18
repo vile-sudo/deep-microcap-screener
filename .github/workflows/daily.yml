@@ -6,6 +6,8 @@ name: Daily 2 AM update
 #
 #   1. fundamentals   price, market cap, P/E, ROCE, ROE and holdings for every
 #                     board company, from screener.in   (scripts/refresh_data.py)
+#   1b. deals         NSE's own bulk & block deals report, accumulated into a
+#                     rolling 120-day history                (scripts/run_deals.py)
 #   2. discovery      new NSE / BSE / SME listings and their prospectuses ->
 #                     the Candidates queue               (automation/update-weekly.mjs)
 #   3. auto-screen    checks listed companies against the board's gates and
@@ -99,6 +101,13 @@ jobs:
         timeout-minutes: 50
         working-directory: ./backend
         run: python scripts/refresh_data.py
+
+      - name: 1b. Bulk & Block Deals
+        id: deals
+        continue-on-error: true
+        timeout-minutes: 15
+        working-directory: ./backend
+        run: python scripts/run_deals.py
 
       - name: 2. Discovery scan
         id: discovery
@@ -236,7 +245,7 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add backend/data/companies_raw.json backend/data/candidates_raw.json backend/data/build_stamp.json \
-                  backend/data/asme_raw.json backend/chart_data \
+                  backend/data/asme_raw.json backend/data/deals backend/chart_data \
                   automation/data/candidates-queue.json automation/data/reviewed-symbols.json \
                   automation/data/listings-snapshot.json automation/data/asme-scan.json
           for f in automation/data/auto-screen.json automation/data/weekly-report.md automation/data/profiles \
@@ -276,6 +285,7 @@ jobs:
             echo "| stage | result |"
             echo "|---|---|"
             echo "| fundamentals | ${{ steps.fundamentals.outcome }} |"
+            echo "| deals | ${{ steps.deals.outcome }} |"
             echo "| discovery | ${{ steps.discovery.outcome }} |"
             echo "| auto-screen | ${{ steps.autoscreen.outcome }} |"
             echo "| ASME | ${{ steps.asme.outcome }} |"
@@ -292,7 +302,7 @@ jobs:
             python -c "import json;r=json.load(open('automation/data/auto-screen.json'))['runs'][-1];print('\nAuto-screen:', r)" >> "$GITHUB_STEP_SUMMARY"
           fi
           failed=""
-          for o in "${{ steps.fundamentals.outcome }}" "${{ steps.discovery.outcome }}" "${{ steps.autoscreen.outcome }}" "${{ steps.asme.outcome }}" "${{ steps.charts.outcome }}" "${{ steps.sectors.outcome }}" "${{ steps.sectornums.outcome }}" "${{ steps.sectorlatest.outcome }}" "${{ steps.reports.outcome }}" "${{ steps.pdfs.outcome }}"; do
+          for o in "${{ steps.fundamentals.outcome }}" "${{ steps.deals.outcome }}" "${{ steps.discovery.outcome }}" "${{ steps.autoscreen.outcome }}" "${{ steps.asme.outcome }}" "${{ steps.charts.outcome }}" "${{ steps.sectors.outcome }}" "${{ steps.sectornums.outcome }}" "${{ steps.sectorlatest.outcome }}" "${{ steps.reports.outcome }}" "${{ steps.pdfs.outcome }}"; do
             if [ "$o" = "failure" ]; then failed=1; fi
           done
           if [ -n "$failed" ]; then echo "::error::a stage failed -- see the table above"; exit 1; fi
