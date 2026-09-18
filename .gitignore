@@ -38,6 +38,12 @@ backend/.bhav_cache/
 backend/universe_charts/
 backend/universe-charts.tar.gz
 
+# scripts/backfill_full_history.py: full listing-to-date OHLCV for every
+# actively traded NSE/BSE company (~1996 to today), a local research dataset.
+# Its own raw-day cache and output are both far too big to commit.
+backend/.bhav_cache_full/
+backend/full_history/
+
 # Movers: bhavcopy, corporate actions, announcements, deals and news, cached
 # per trading day while scripts/run_movers.py runs. Rebuildable from NSE and
 # Google News in a few minutes; only the scan's own output, backend/data/movers/,
