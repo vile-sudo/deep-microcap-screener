@@ -252,9 +252,9 @@ let sortKey='final_score', sortDir=-1;
      method    - how the scores work
    Moving to another page clears whatever was picked on the last one, so a theme
    chosen on Themes never quietly narrows what Screens shows. */
-const VIEWS=['overview','themes','market','watchlist','filters','gallery','reports','sectors','movers','deals','news','method'];
+const VIEWS=['overview','themes','market','watchlist','filters','gallery','reports','ipor','sectors','movers','deals','news','method'];
 const NAV={'overview-link':'overview','themes-link':'themes','market-link':'market','watchlist-link':'watchlist',
-           'filters-link':'filters','gallery-link':'gallery','reports-link':'reports','sectors-link':'sectors','movers-link':'movers','deals-link':'deals','news-link':'news'};
+           'filters-link':'filters','gallery-link':'gallery','reports-link':'reports','ipor-link':'ipor','sectors-link':'sectors','movers-link':'movers','deals-link':'deals','news-link':'news'};
 const LENSES=['overhang','heavycap','guide15','guideany','turn','caputil','pivot','haslens','ipo','asme','auto'];
 const TILE_LABEL={all:'Companies on the board',overhang:'High P/E + heavy CWIP',guide15:'Management guides > 15%',
                   turn:'PAT turned positive',caputil:'Capacity utilisation ramping up',pivot:'Product-mix pivot',
@@ -277,6 +277,7 @@ function setView(v, opts){
   if(VIEW==='sectors'){ if(!opts.keep){ SC.slug=null; SC.edition=null; } openSectors(); }
   if(VIEW==='movers') openMovers();
   if(VIEW==='deals') openDeals();
+  if(VIEW==='ipor') openIpoReports();
   if(VIEW==='news') openNews();
   const ts=document.getElementById('top-search');
   if(ts && VIEW!=='filters') ts.value='';
@@ -2495,6 +2496,139 @@ function anRowHtml(a){
     <td><span class="an-cat">${esc(a.kind)}</span></td>
     <td class="an-summary">${a.url?`<a href="${esc(a.url)}" target="_blank" rel="noopener">${esc(a.summary||a.category)} ↗</a>`:esc(a.summary||a.category)}</td>
   </tr>`;
+}
+
+/* ==================================================================
+   Upcoming IPO Reports -- scripts/ipo_reports.py's one-shot, per-issue
+   reports (not a recurring series like the quarterly deep-dives, so no
+   period picker: one report per symbol). Library grid reuses Sector
+   Research's .sc-card look; the document itself reuses drSectionHTML/
+   drBlocks/drText from the deep-dive renderer above, since both share the
+   same {sections:[{id,title,subsections:[{title,blocks}]}]} shape.
+   ================================================================== */
+const IPR={index:null, built:false, symbol:null, q:'', board:'', verdict:''};
+const IPR_VERDICT={invest:['Invest','good'], avoid:['Avoid','bad'], track:['Track','warn']};
+
+async function openIpoReports(){
+  if(!IPR.index){
+    document.getElementById('iporgrid').innerHTML='<p class="view-hint">Loading…</p>';
+    let j; try{ j=await fetchJSON('/api/ipo-reports'); }catch(e){ j=null; }
+    IPR.index=(j&&j.reports)||[];
+  }
+  if(!IPR.built) iporBuildControls();
+  if(IPR.symbol) iporRenderDoc(IPR.symbol);
+  else iporRenderLib();
+}
+
+function iporBuildControls(){
+  IPR.built=true;
+  let t=0;
+  document.getElementById('iporq').oninput=()=>{ clearTimeout(t); t=setTimeout(()=>{ IPR.q=document.getElementById('iporq').value.trim().toLowerCase(); iporRenderLib(); },140); };
+  document.getElementById('iporboard').onchange=e=>{ IPR.board=e.target.value; iporRenderLib(); };
+  document.getElementById('iporverdict').onchange=e=>{ IPR.verdict=e.target.value; iporRenderLib(); };
+  document.getElementById('iporclear').onclick=()=>{
+    document.getElementById('iporq').value=''; document.getElementById('iporboard').value=''; document.getElementById('iporverdict').value='';
+    IPR.q=''; IPR.board=''; IPR.verdict=''; iporRenderLib();
+  };
+  document.getElementById('iporgrid').onclick=e=>{
+    const card=e.target.closest('[data-ipor]'); if(card) openIpoReport(card.dataset.ipor);
+  };
+  document.getElementById('iporgrid').onkeydown=e=>{
+    const card=e.target.closest('[data-ipor]'); if(card && (e.key==='Enter'||e.key===' ')){ e.preventDefault(); openIpoReport(card.dataset.ipor); }
+  };
+}
+
+function iporFiltered(){
+  return IPR.index.filter(r=>{
+    if(IPR.board && r.board!==IPR.board) return false;
+    if(IPR.verdict && r.verdict!==IPR.verdict) return false;
+    if(IPR.q && !((r.company||'').toLowerCase()+' '+(r.symbol||'').toLowerCase()).includes(IPR.q)) return false;
+    return true;
+  });
+}
+
+function iporCard(r){
+  const v=IPR_VERDICT[r.verdict]||['—','info'];
+  return `<article class="sc-card" data-ipor="${esc(r.symbol)}" tabindex="0" aria-label="IPO report: ${esc(r.company)}">
+    <div class="rp-card-top"><span class="rp-tag ${r.board==='sme'?'rp-tag':'rp-deep'}">${r.board==='sme'?'SME':'Mainboard'}</span>
+      <span class="rp-tag dr-${v[1]}">${esc(v[0])}</span></div>
+    <h3>${esc(r.company)}</h3>
+    <div class="rp-card-sub">${esc(r.symbol)} · ${esc(r.price_band||'—')}</div>
+    <p class="view-hint">${esc(r.one_line||'')}</p>
+    <div class="rp-card-sub">Closes ${esc(mvDay(r.close_date))}</div>
+  </article>`;
+}
+
+function iporRenderLib(){
+  document.getElementById('ipor-doc').hidden=true;
+  document.getElementById('ipor-lib').hidden=false;
+  const rows=iporFiltered();
+  document.getElementById('iporcount').textContent=`${fmtI(rows.length)} of ${fmtI(IPR.index.length)}`;
+  document.getElementById('iporgrid').innerHTML = rows.length ? rows.map(iporCard).join('')
+    : `<p class="view-hint">${IPR.index.length?'No report matches — clear the search or pick another filter.':'No IPO reports yet — one is written automatically once an issue is within 2 days of its subscription closing.'}</p>`;
+}
+
+async function openIpoReport(symbol){
+  IPR.symbol=symbol;
+  window.scrollTo({top:0});
+  await iporRenderDoc(symbol);
+}
+
+async function iporRenderDoc(symbol){
+  const doc=document.getElementById('ipor-doc');
+  document.getElementById('ipor-lib').hidden=true;
+  doc.hidden=false;
+  doc.innerHTML='<p class="view-hint">Loading…</p>';
+  let rep; try{ rep=await fetchJSON('/api/ipo-reports/'+encodeURIComponent(symbol)); }catch(e){ rep=null; }
+  if(!rep){ doc.innerHTML='<p class="view-hint">Could not load this report.</p>'; return; }
+  const src=rep.sources||[], sm=rep.summary||{}, ver=rep.verdict||{}, v=IPR_VERDICT[ver.call]||['—','info'];
+  const secs=(rep.sections||[]).map((s,n)=>`<section class="rp-block dr-sec" id="dr-${esc(s.id)}"><h2><span class="rp-n">${n+2}</span>${esc(s.title)}</h2>${drSectionHTML(s,src)}</section>`).join('');
+  doc.innerHTML=`
+  <div class="rp-toolbar">
+    <button type="button" class="theme-back" id="ipor-back">‹ All IPO reports</button>
+    <span class="rp-tools"><button type="button" class="btn rp-print" id="ipor-print">Print / save PDF</button></span>
+  </div>
+  <header class="rp-cover dr-cover">
+    <div class="rp-cover-main">
+      <span class="rp-eyebrow">${esc((rep.board||'').toUpperCase())} IPO REPORT</span>
+      <h1>${esc(rep.company)}</h1>
+      <div class="rp-cover-sub">${esc(rep.symbol)} · ${esc(rep.price_band||'price band not yet known')} · opens ${esc(mvDay(rep.open_date))} · closes ${esc(mvDay(rep.close_date))}</div>
+      <div class="rp-cover-meta"><span class="rp-dateline">Written ${esc((rep.generated_at||'').slice(0,10))} · ${src.length} sources</span></div>
+    </div>
+    <div class="dr-cover-fv">
+      <span>Verdict</span>
+      <div class="dr-cover-trio"><div><b class="dr-${v[1]}" style="font-size:22px">${esc(v[0])}</b></div></div>
+      <small>Not investment advice — see the reasoning below</small>
+    </div>
+  </header>
+  <div class="dr-layout">
+    <nav class="dr-toc" aria-label="Report sections"><b>Contents</b><ol>
+      <li><a href="#dr-summary" data-dr="summary">Summary &amp; verdict</a></li>
+      ${(rep.sections||[]).map(s=>`<li><a href="#dr-${esc(s.id)}" data-dr="${esc(s.id)}">${esc(s.title)}</a></li>`).join('')}
+      <li><a href="#dr-sources" data-dr="sources">Sources</a></li>
+    </ol></nav>
+    <div class="dr-body">
+      <section class="rp-block dr-sec" id="dr-summary">
+        <h2><span class="rp-n">1</span>Summary &amp; verdict</h2>
+        ${sm.one_line?`<p class="dr-lede">${drText(sm.one_line,src)}</p>`:''}
+        <div class="dr-callout dr-${v[1]}"><b>${esc(v[0])}</b>${ver.reasoning&&ver.reasoning.length?`<ul>${ver.reasoning.map(x=>`<li>${drText(x,src)}</li>`).join('')}</ul>`:''}</div>
+        <div class="dr-sumgrid">
+          <div class="dr-sum good"><h4>The bull case</h4><ul>${(sm.bull_points||[]).map(x=>`<li>${drText(x,src)}</li>`).join('')}</ul></div>
+          <div class="dr-sum bad"><h4>The bear case</h4><ul>${(sm.bear_points||[]).map(x=>`<li>${drText(x,src)}</li>`).join('')}</ul></div>
+          <div class="dr-sum watch"><h4>What to watch</h4><ul>${(sm.watch_points||[]).map(x=>`<li>${drText(x,src)}</li>`).join('')}</ul></div>
+        </div>
+      </section>
+      ${secs}
+      <section class="rp-block dr-sec" id="dr-sources">
+        <h2><span class="rp-n">${(rep.sections||[]).length+2}</span>Sources</h2>
+        <ol class="dr-sources">${src.map(s=>`<li><b>${esc(s.id)}</b> — ${s.url?`<a href="${esc(s.url)}" target="_blank" rel="noopener">${esc(s.title||s.id)} ↗</a>`:esc(s.title||'')}${s.date?` · ${esc(s.date)}`:''}</li>`).join('')}</ol>
+        ${rep.method?`<p class="dr-muted">${esc(rep.method)}</p>`:''}
+        <p class="dr-muted">Machine-written from public sources by Claude; not investment advice — verify anything you act on against the DRHP/RHP itself.</p>
+      </section>
+    </div>
+  </div>`;
+  document.getElementById('ipor-back').onclick=()=>{ IPR.symbol=null; iporRenderLib(); window.scrollTo({top:0}); };
+  document.getElementById('ipor-print').onclick=()=>window.print();
 }
 
 /* ==================================================================

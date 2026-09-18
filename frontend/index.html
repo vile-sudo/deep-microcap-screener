@@ -219,6 +219,7 @@
       <button class="side-link" id="filters-link" type="button" title="Screen filters"><svg viewBox="0 0 24 24"><path d="M3 12h4l2.5-5 4 10 2.5-5H21"/></svg>Screens</button>
       <button class="side-link" id="gallery-link" type="button" title="Screen any Chart"><svg viewBox="0 0 24 24"><rect x="4" y="4.5" width="16" height="15" rx="2"/><path d="M8 15l3-3.5 2.5 2 3-4.5"/></svg>Screen any Chart<span class="side-count" id="gallery-count"></span></button>
       <button class="side-link" id="reports-link" type="button" title="Research Reports"><svg viewBox="0 0 24 24"><path d="M7 3.5h7.5L19 8v12.5H7z"/><path d="M14.5 3.5V8H19"/><path d="M10 12h6M10 15.5h6M10 19h3.5"/></svg>Reports</button>
+      <button class="side-link" id="ipor-link" type="button" title="Upcoming IPO Reports"><svg viewBox="0 0 24 24"><path d="M12 3v6l4 2"/><circle cx="12" cy="12" r="9"/></svg>Upcoming IPO Reports</button>
       <button class="side-link" id="sectors-link" type="button" title="Sector Research"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><path d="M4 12h16M12 4c2.5 2.6 2.5 13.4 0 16M12 4c-2.5 2.6-2.5 13.4 0 16"/></svg>Sectors</button>
       <button class="side-link" id="movers-link" type="button" title="Movers"><svg viewBox="0 0 24 24"><path d="M3 17l5-6 4 4 8-9"/><path d="M14 6h6v6"/></svg>Movers</button>
       <button class="side-link" id="deals-link" type="button" title="Bulk &amp; Block Deals"><svg viewBox="0 0 24 24"><path d="M4 4h16v6H4z"/><path d="M4 14h7v6H4z"/><path d="M13 14h7v6h-7z"/></svg>Bulk &amp; Block Deals</button>
@@ -443,6 +444,30 @@
   <article class="rp-doc" id="rp-doc" hidden></article>
 </section>
 
+<section class="dashboard-section ipor-section" data-views="ipor" aria-labelledby="ipor-title">
+  <div class="section-heading"><div><span class="eyebrow">RESEARCH</span><h2 id="ipor-title">Upcoming IPO Reports</h2><p class="section-copy">A research report on every mainboard and SME IPO before it lists — the DRHP/RHP, financials, objects of the issue, valuation against listed peers, promoters and risk factors, researched on the web and ending in an explicit call: invest, avoid, or track. Written automatically once an issue's subscription window is within 2 days of closing, so it's ready before you'd need to decide.</p></div><span class="section-note" id="ipor-note"></span></div>
+  <div id="ipor-lib">
+    <div class="gal-controls">
+      <input id="iporq" class="gal-search" type="search" autocomplete="off" spellcheck="false" placeholder="Search — company or ticker">
+      <select id="iporboard" class="gal-select" aria-label="Board">
+        <option value="">Mainboard and SME</option>
+        <option value="mainboard">Mainboard only</option>
+        <option value="sme">SME only</option>
+      </select>
+      <select id="iporverdict" class="gal-select" aria-label="Verdict">
+        <option value="">Any verdict</option>
+        <option value="invest">Invest</option>
+        <option value="track">Track</option>
+        <option value="avoid">Avoid</option>
+      </select>
+      <button class="theme-back" id="iporclear" type="button">Clear</button>
+    </div>
+    <div class="gal-count" id="iporcount"></div>
+    <div class="sc-grid" id="iporgrid"></div>
+  </div>
+  <article class="rp-doc" id="ipor-doc" hidden></article>
+</section>
+
 <section class="dashboard-section research-filter-section" id="research-filters" data-views="filters" aria-labelledby="research-filter-title">
   <div class="section-heading"><div><span class="eyebrow">RESEARCH</span><h2 id="research-filter-title">Screens</h2><p class="section-copy">Search a company by name or ticker, click a filter lens, or both together — either one shows only the companies that match.</p></div><span class="section-note">Search and filters combine · click a lens again to clear it</span></div>
 
@@ -606,7 +631,7 @@
   <p><b>Important.</b> Deep Sweep is a stock research and screening board for Indian equities — not investment advice, and not a SEBI-registered adviser or research analyst. Stages, scores and flags follow fixed rules over exchange data and company filings, which can lag or be wrong; verify before acting, and consult a SEBI-registered adviser before investing.</p>
   <div class="site-foot-row">
     <nav aria-label="Footer">
-      <button type="button" data-foot="overview-link">Overview</button><button type="button" data-foot="market-link">Market</button><button type="button" data-foot="filters-link">Screens</button><button type="button" data-foot="gallery-link">Screen any Chart</button><button type="button" data-foot="reports-link">Reports</button><button type="button" data-foot="sectors-link">Sectors</button><button type="button" data-foot="movers-link">Movers</button><button type="button" data-foot="deals-link">Bulk &amp; Block Deals</button><button type="button" data-foot="method">How it works</button>
+      <button type="button" data-foot="overview-link">Overview</button><button type="button" data-foot="market-link">Market</button><button type="button" data-foot="filters-link">Screens</button><button type="button" data-foot="gallery-link">Screen any Chart</button><button type="button" data-foot="reports-link">Reports</button><button type="button" data-foot="ipor-link">Upcoming IPO Reports</button><button type="button" data-foot="sectors-link">Sectors</button><button type="button" data-foot="movers-link">Movers</button><button type="button" data-foot="deals-link">Bulk &amp; Block Deals</button><button type="button" data-foot="method">How it works</button>
     </nav>
     <span>© 2026 Deep Sweep</span>
   </div>
@@ -617,6 +642,6 @@
 <div class="modal" id="modal" role="dialog" aria-modal="true"><div class="mbox"><button class="close" id="mclose" aria-label="Close">&times;</button><div id="mbody"></div></div></div>
 
 <script src="/static/asme-certified.js?v=5" defer></script>
-<script src="/static/app.js?v=63" defer></script>
+<script src="/static/app.js?v=64" defer></script>
 </body>
 </html>

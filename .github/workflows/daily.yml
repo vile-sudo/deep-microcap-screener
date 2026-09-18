@@ -28,6 +28,9 @@ name: Daily 2 AM update
 #                     developments" at the top of each report (scripts/sector_latest.py)
 #   8. deep-dive      quarterly research reports for companies that filed
 #                     new results (a few a day)         (scripts/deep_reports.py)
+#   8b. IPO reports   mainboard/SME IPO research reports, written once an
+#                     issue is within 2 days of its subscription closing
+#                                                          (scripts/ipo_reports.py)
 #   9. report PDFs    printed from the dashboard's report page and uploaded
 #                     to the "reports" release          (automation/render-report-pdfs.mjs)
 #  10. one commit, one Render deploy
@@ -228,6 +231,15 @@ jobs:
           if [ -z "$ANTHROPIC_API_KEY" ]; then unset ANTHROPIC_API_KEY; fi
           python scripts/deep_reports.py --out-list ../reports-today.txt
 
+      - name: 8b. Upcoming IPO reports
+        id: iporeports
+        continue-on-error: true
+        timeout-minutes: 90
+        working-directory: ./backend
+        env:
+          CLAUDE_CODE_OAUTH_TOKEN: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+        run: python scripts/ipo_reports.py
+
       - name: 9. Report PDFs
         id: pdfs
         continue-on-error: true
@@ -259,7 +271,8 @@ jobs:
                   automation/data/candidates-queue.json automation/data/reviewed-symbols.json \
                   automation/data/listings-snapshot.json automation/data/asme-scan.json
           for f in automation/data/auto-screen.json automation/data/weekly-report.md automation/data/profiles \
-                   backend/reports backend/sectors automation/data/deep-reports.json; do
+                   backend/reports backend/sectors automation/data/deep-reports.json \
+                   backend/data/ipo_reports automation/data/ipo-reports.json; do
             if [ -e "$f" ]; then git add "$f"; fi
           done
           if git diff --cached --quiet; then
@@ -306,6 +319,7 @@ jobs:
             echo "| sector numbers | ${{ steps.sectornums.outcome }} |"
             echo "| sector latest developments | ${{ steps.sectorlatest.outcome }} |"
             echo "| deep-dive reports | ${{ steps.reports.outcome }} |"
+            echo "| IPO reports | ${{ steps.iporeports.outcome }} |"
             echo "| report PDFs | ${{ steps.pdfs.outcome }} |"
           } >> "$GITHUB_STEP_SUMMARY"
           if [ -s reports-today.txt ]; then { echo; echo "Deep-dive reports written:"; sed 's/^/- /' reports-today.txt; } >> "$GITHUB_STEP_SUMMARY"; fi
@@ -313,7 +327,7 @@ jobs:
             python -c "import json;r=json.load(open('automation/data/auto-screen.json'))['runs'][-1];print('\nAuto-screen:', r)" >> "$GITHUB_STEP_SUMMARY"
           fi
           failed=""
-          for o in "${{ steps.fundamentals.outcome }}" "${{ steps.deals.outcome }}" "${{ steps.announcements.outcome }}" "${{ steps.discovery.outcome }}" "${{ steps.autoscreen.outcome }}" "${{ steps.asme.outcome }}" "${{ steps.charts.outcome }}" "${{ steps.sectors.outcome }}" "${{ steps.sectornums.outcome }}" "${{ steps.sectorlatest.outcome }}" "${{ steps.reports.outcome }}" "${{ steps.pdfs.outcome }}"; do
+          for o in "${{ steps.fundamentals.outcome }}" "${{ steps.deals.outcome }}" "${{ steps.announcements.outcome }}" "${{ steps.discovery.outcome }}" "${{ steps.autoscreen.outcome }}" "${{ steps.asme.outcome }}" "${{ steps.charts.outcome }}" "${{ steps.sectors.outcome }}" "${{ steps.sectornums.outcome }}" "${{ steps.sectorlatest.outcome }}" "${{ steps.reports.outcome }}" "${{ steps.iporeports.outcome }}" "${{ steps.pdfs.outcome }}"; do
             if [ "$o" = "failure" ]; then failed=1; fi
           done
           if [ -n "$failed" ]; then echo "::error::a stage failed -- see the table above"; exit 1; fi
