@@ -28,9 +28,8 @@ name: Daily 2 AM update
 #                     developments" at the top of each report (scripts/sector_latest.py)
 #   8. deep-dive      quarterly research reports for companies that filed
 #                     new results (a few a day)         (scripts/deep_reports.py)
-#   8b. IPO reports   mainboard/SME IPO research reports, written once an
-#                     issue is within 2 days of its subscription closing
-#                                                          (scripts/ipo_reports.py)
+#   8b. IPO reports   mainboard/SME IPO research reports, written as soon as
+#                     an issue opens for subscription    (scripts/ipo_reports.py)
 #   9. report PDFs    printed from the dashboard's report page and uploaded
 #                     to the "reports" release          (automation/render-report-pdfs.mjs)
 #  10. one commit, one Render deploy

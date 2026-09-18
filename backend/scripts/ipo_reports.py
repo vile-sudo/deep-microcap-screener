@@ -1,10 +1,12 @@
 """
 Upcoming IPO reports: a research report on a mainboard/SME IPO, written by
-Claude Code (Claude Pro / Max plan) with web search, timed to be ready
-IPO_LEAD_DAYS before the issue's subscription CLOSES -- by definition an
-issue closing within that window is already open, so app.movers.ipo_calendar's
-live-issue feed alone is enough to know what is due, with no separate
-"upcoming, not yet open" list needed.
+Claude Code (Claude Pro / Max plan) with web search, as soon as the issue
+OPENS for subscription -- while an investor can still act on it, not once
+it's nearly too late to apply. Concretely: due = currently open (per
+app.movers.ipo_calendar's live-issue feed) and not yet covered; since that
+feed only ever lists issues that have already opened, checking "not yet
+covered" on every nightly run is enough by itself -- the first run after an
+issue opens is the one that writes it.
 
     cd backend
     python scripts/ipo_reports.py                    # whatever is due tonight
@@ -48,7 +50,6 @@ TOOLS = "Read,Grep,Glob,Write,Edit,WebSearch,WebFetch"
 BLOCK_TYPES = {"p", "bullets", "table", "callout"}
 VERDICTS = {"invest", "avoid", "track"}
 
-IPO_LEAD_DAYS = 2          # a report is due once the issue closes within this many days
 MAX_REPORTS = int(os.environ.get("IPO_REPORTS_PER_RUN", "4"))
 SESSION_MINUTES = int(os.environ.get("IPO_REPORT_SESSION_MINUTES", "60"))
 
@@ -124,10 +125,12 @@ Today is {datetime.now(IST).date().isoformat()}. This is a {issue.board} issue, 
 - Risk factors: the DRHP's own risk-factor section is long and partly boilerplate -- pull out the 5-8 that would
   actually change an investor's decision, not the generic ones every prospectus carries.
   {"SME promoters and pre-IPO shareholders are typically locked in for a shorter period than mainboard (check the actual DRHP terms, don't assume) -- note it if relevant." if issue.board == "sme" else ""}
-- Subscription and demand, if the issue has already opened: retail/NII/QIB subscription figures, anchor investor
-  list and their lock-in, any credible news coverage of investor interest. Grey market premium is unofficial and
-  often unreliable -- you may cite it if credible news reports a specific figure, always labelled as unofficial and
-  never treated as a valuation signal on its own.
+- Subscription and demand so far: this report is written the day the issue opens, so day-1 subscription figures
+  (retail/NII/QIB) will be partial at best -- report whatever is out there and say plainly that it's early, don't
+  imply a fuller picture than exists yet. Anchor investor list and their lock-in, if any, is usually announced
+  before opening and worth including. Grey market premium is unofficial and often unreliable -- you may cite it if
+  credible news reports a specific figure, always labelled as unofficial and never treated as a valuation signal
+  on its own.
 
 ## Evidence rules (non-negotiable)
 - Every number and every non-obvious claim carries a citation like (S3) pointing to an entry in "sources". Cite
@@ -162,13 +165,15 @@ def _save_state(state: dict) -> None:
 
 
 def due_list(force_symbol: str | None, force: bool = False) -> list:
-    today = datetime.now(IST).date()
+    """Every currently-open issue not yet covered -- open_issues() already
+    guarantees "open", so this alone means "as soon as it opens": the first
+    nightly run after an issue appears in that feed is the one that writes
+    it, not one timed against how soon it closes."""
     issues = open_issues()
     if force_symbol:
         return [i for i in issues if i.symbol == force_symbol.upper()]
     state = _load_state()
-    return [i for i in issues if (i.close_date - today).days <= IPO_LEAD_DAYS
-            and (force or i.symbol not in state.get("covered", {}))]
+    return [i for i in issues if force or i.symbol not in state.get("covered", {})]
 
 
 def run(issue) -> str:
