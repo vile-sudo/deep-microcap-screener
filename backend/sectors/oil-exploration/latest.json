@@ -1,38 +1,129 @@
 {
- "updated": "2026-09-18T15:42+05:30",
+ "updated": "2026-09-19T04:58+05:30",
  "figures": [
   {
    "label": "Brent crude",
-   "value": "$103.18/bbl",
+   "value": "$103.17/bbl",
    "as_of": "2026-09-18",
-   "note": "-1.57% on the day, 3rd straight session of falls",
+   "note": "-1.6% on the day, third straight decline",
    "source": {
-    "publisher": "Trading Economics",
-    "url": "https://tradingeconomics.com/commodity/brent-crude-oil"
+    "publisher": "5paisa",
+    "url": "https://www.5paisa.com/blog/crude-oil-price-today-18-sep-26"
    }
   },
   {
    "label": "WTI crude",
-   "value": "$99.75/bbl",
-   "as_of": "2026-09-17",
-   "note": "-2.6% on the day",
+   "value": "$101.30/bbl",
+   "as_of": "2026-09-18",
+   "note": "-0.6% on the day",
    "source": {
-    "publisher": "gCaptain",
-    "url": "https://gcaptain.com/oil-extends-drop-as-saudi-arabia-moves-to-restore-vital-pipeline/"
+    "publisher": "5paisa",
+    "url": "https://www.5paisa.com/blog/crude-oil-price-today-18-sep-26"
    }
   },
   {
-   "label": "Saudi East-West pipeline",
-   "value": "~50% capacity restoring",
+   "label": "Hormuz daily transits",
+   "value": "4 vessels",
    "as_of": "2026-09-17",
-   "note": "targeted within days, after 11 Sep drone attack",
+   "note": "vs 10-day average of ~16; pre-crisis baseline 85/day",
    "source": {
-    "publisher": "gCaptain",
-    "url": "https://gcaptain.com/oil-extends-drop-as-saudi-arabia-moves-to-restore-vital-pipeline/"
+    "publisher": "CNBC",
+    "url": "https://www.cnbc.com/2026/09/17/oil-prices-today-wti-brent-hormuz-iran-war.html"
+   }
+  },
+  {
+   "label": "VLCC freight, AG-India",
+   "value": "$61.9/tonne",
+   "as_of": "2026-09-14",
+   "note": "vs $34.6 in Aug, $10.6 in Feb (Drewry)",
+   "source": {
+    "publisher": "ThePrint",
+    "url": "https://theprint.in/economy/iran-war-risk-pushes-tanker-freight-higher-for-india-even-alternative-crude-routes-not-immune/3046010/"
    }
   }
  ],
  "items": [
+  {
+   "date": "2026-09-18",
+   "title": "Brent eases to $103.17 for a third day as Saudi reroutes crude, but Hormuz attacks continue",
+   "text": "Brent crude fell 1.6% to $103.17/bbl on 18 September, its third straight decline from the $108 peak hit after the 11 September Saudi pipeline attack, as Saudi Arabia ramped up ship-to-ship crude sales via Oman's Sohar port and moved to restore part of its East-West pipeline within days. The US Navy escorted a record 40 tankers carrying 18 million barrels through the Strait of Hormuz on 17 September, even as Iran's IRGC struck a Togo-flagged tanker off Oman's Khasab the same day, showing supply risk remains elevated despite the price relief. Lower crude eases near-term price pressure but still leaves realisations for ONGC, Oil India, Vedanta and RIL's upstream business well above budgeted levels, while helping IOC, BPCL and HPCL on cost.",
+   "tone": "watch",
+   "companies": [
+    "ONGC",
+    "OIL",
+    "VOGL",
+    "RELIANCE",
+    "IOC",
+    "BPCL",
+    "HINDPETRO"
+   ],
+   "sources": [
+    {
+     "publisher": "CNBC",
+     "title": "Oil prices fall as Saudi Arabia reportedly offers more crude via Hormuz after pipeline attack",
+     "url": "https://www.cnbc.com/2026/09/17/oil-prices-today-wti-brent-hormuz-iran-war.html",
+     "date": "2026-09-17"
+    },
+    {
+     "publisher": "5paisa",
+     "title": "Crude Oil Price Today: Brent Falls to $103.17, WTI at $101.30 on September 18",
+     "url": "https://www.5paisa.com/blog/crude-oil-price-today-18-sep-26",
+     "date": "2026-09-18"
+    },
+    {
+     "publisher": "Eastern Herald",
+     "title": "Brent Crude Falls Third Day: US Navy Escorts 40 Tankers Through Hormuz",
+     "url": "https://easternherald.com/market/brent-crude-oil-price-september-18-2026-centcom-hormuz-escort/",
+     "date": "2026-09-18"
+    },
+    {
+     "publisher": "GlobalSecurity.org (IRNA)",
+     "title": "Iran halts violating tanker Trend in Strait of Hormuz",
+     "url": "https://www.globalsecurity.org/wmd/library/news/iran/2026/09/iran-260918-irna01.htm",
+     "date": "2026-09-18"
+    }
+   ],
+   "added": "2026-09-19"
+  },
+  {
+   "date": "2026-09-18",
+   "title": "India-bound VLCC freight nearly doubles since August as Hormuz war-risk persists",
+   "text": "VLCC freight on the Arabian Gulf-India route jumped to $61.9 per tonne on 14 September, up from $34.6 in August and just $10.6 in February before the crisis began, according to Drewry Maritime Research cited by ThePrint on 18 September. These spot rates exclude war-risk premiums charged separately, so actual landed costs for Indian refiners are higher still. The trend adds to India's import bill even as benchmark crude eases, and is a tailwind for tanker owners such as Great Eastern Shipping.",
+   "tone": "watch",
+   "companies": [
+    "GESHIP",
+    "IOC",
+    "BPCL",
+    "HINDPETRO"
+   ],
+   "sources": [
+    {
+     "publisher": "ThePrint",
+     "title": "Iran war-risk pushes tanker freight higher for India. Even alternative crude routes not immune",
+     "url": "https://theprint.in/economy/iran-war-risk-pushes-tanker-freight-higher-for-india-even-alternative-crude-routes-not-immune/3046010/",
+     "date": "2026-09-18"
+    }
+   ],
+   "added": "2026-09-19"
+  },
+  {
+   "date": "2026-09-18",
+   "title": "Oil India targets 10 MMTOE output by 2030 at 67th AGM, flags record Q1 FY27 crude rate",
+   "text": "At its 67th AGM on 18 September, Oil India set out a roadmap to reach about 10 MMTOE of combined oil and gas production by 2030, tying its offshore push to the Rs 84,084-crore Samudra Manthan scheme. It said Q1 FY27 crude output rose 11% year-on-year to 0.950 MMT with a record daily rate of 10,921 tonnes (about 84,109 bbl/d), after FY26 group capex of over Rs 21,673 crore across E&P, refining and pipelines, including expanding Numaligarh Refinery capacity from 3 to 9 MMTPA. The company also flagged a FY26 dividend of Rs 11.50 per share.",
+   "tone": "good",
+   "companies": [
+    "OIL"
+   ],
+   "sources": [
+    {
+     "publisher": "Indian Masterminds",
+     "title": "Oil India Unveils Growth Roadmap at 67th AGM, Targets 10 MMTOE Oil and Gas Production by 2030",
+     "url": "https://indianmasterminds.com/news/oil-india-67th-agm-10-mmtoe-production-target-2030-234115/",
+     "date": "2026-09-18"
+    }
+   ],
+   "added": "2026-09-19"
+  },
   {
    "date": "2026-09-16",
    "title": "Brent falls 2.7% as US says Saudi pipeline could restart 'within days'",

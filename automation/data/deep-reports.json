@@ -151,6 +151,17 @@
    "skipped": {
     "VIMTALABS": "already covers Dec 2024"
    }
+  },
+  {
+   "on": "2026-09-19",
+   "written": [
+    "ACCENTMIC:FY26-Q4",
+    "TRITURBINE:FY27-Q1"
+   ],
+   "spent_usd": null,
+   "skipped": {
+    "VIMTALABS": "already covers Dec 2024"
+   }
   }
  ],
  "seen_new_results": {
@@ -285,6 +296,24 @@
    "cost_usd": null,
    "api_equivalent_usd": 18.132,
    "minutes": 35.4
+  },
+  "ACCENTMIC": {
+   "period": "FY26-Q4",
+   "on": "2026-09-19",
+   "engine": "claude-code",
+   "tokens_out": 171196,
+   "cost_usd": null,
+   "api_equivalent_usd": 13.456,
+   "minutes": 34.5
+  },
+  "TRITURBINE": {
+   "period": "FY27-Q1",
+   "on": "2026-09-19",
+   "engine": "claude-code",
+   "tokens_out": 203908,
+   "cost_usd": null,
+   "api_equivalent_usd": 20.107,
+   "minutes": 40.9
   }
  }
 }
