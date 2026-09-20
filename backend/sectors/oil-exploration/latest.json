@@ -1,48 +1,79 @@
 {
- "updated": "2026-09-19T04:58+05:30",
+ "updated": "2026-09-20T04:51+05:30",
  "figures": [
   {
-   "label": "Brent crude",
-   "value": "$103.17/bbl",
+   "label": "Brent crude (settle)",
+   "value": "$103.87/bbl",
    "as_of": "2026-09-18",
-   "note": "-1.6% on the day, third straight decline",
+   "note": "-0.91% on the day as Saudi pipeline repairs progressed",
    "source": {
-    "publisher": "5paisa",
-    "url": "https://www.5paisa.com/blog/crude-oil-price-today-18-sep-26"
+    "publisher": "Rio Times Online",
+    "url": "https://www.riotimesonline.com/oil-markets-latam-saturday-september-19-2026"
    }
   },
   {
-   "label": "WTI crude",
-   "value": "$101.30/bbl",
+   "label": "WTI crude (settle)",
+   "value": "$100.30/bbl",
    "as_of": "2026-09-18",
-   "note": "-0.6% on the day",
+   "note": "-1.58% on the day",
    "source": {
-    "publisher": "5paisa",
-    "url": "https://www.5paisa.com/blog/crude-oil-price-today-18-sep-26"
+    "publisher": "Rio Times Online",
+    "url": "https://www.riotimesonline.com/oil-markets-latam-saturday-september-19-2026"
    }
   },
   {
-   "label": "Hormuz daily transits",
-   "value": "4 vessels",
-   "as_of": "2026-09-17",
-   "note": "vs 10-day average of ~16; pre-crisis baseline 85/day",
+   "label": "Strait of Hormuz daily transits",
+   "value": "8 vessels",
+   "as_of": "2026-09-13",
+   "note": "vs pre-crisis baseline of ~85/day; ~435 vessels stranded in region",
    "source": {
-    "publisher": "CNBC",
-    "url": "https://www.cnbc.com/2026/09/17/oil-prices-today-wti-brent-hormuz-iran-war.html"
-   }
-  },
-  {
-   "label": "VLCC freight, AG-India",
-   "value": "$61.9/tonne",
-   "as_of": "2026-09-14",
-   "note": "vs $34.6 in Aug, $10.6 in Feb (Drewry)",
-   "source": {
-    "publisher": "ThePrint",
-    "url": "https://theprint.in/economy/iran-war-risk-pushes-tanker-freight-higher-for-india-even-alternative-crude-routes-not-immune/3046010/"
+    "publisher": "Straits Daily Brief",
+    "url": "https://straits.live/briefs/2026-09-19"
    }
   }
  ],
  "items": [
+  {
+   "date": "2026-09-19",
+   "title": "Hormuz oil and LNG shipments hit six-month high, says US CENTCOM commander",
+   "text": "US Central Command's Admiral Brad Cooper said oil and LNG shipments through the Strait of Hormuz over the past two weeks reached their highest level in six months, with more than 1 billion barrels of crude having moved through the strait in recent months under US naval escort and mine-clearance support. Brent still traded near $104/bbl on the day and the strait remains far below its pre-crisis baseline of about 85 daily transits, so this is an early signal rather than a resolution. A sustained pickup in Hormuz flows would ease the supply-shock premium that has lifted Indian crude-basket costs and freight since the crisis began in February 2026 -- a positive for refiners' import bill but a headwind to the elevated realisations that have boosted ONGC and Oil India.",
+   "tone": "watch",
+   "companies": [
+    "ONGC",
+    "OIL",
+    "RELIANCE",
+    "IOC",
+    "BPCL",
+    "HINDPETRO"
+   ],
+   "sources": [
+    {
+     "publisher": "The Spokesman-Review",
+     "title": "Hormuz oil shipments hit six-month high, U.S. commander says",
+     "url": "https://www.spokesman.com/stories/2026/sep/19/hormuz-oil-shipments-hit-six-month-high-us-command/",
+     "date": "2026-09-19"
+    }
+   ],
+   "added": "2026-09-20"
+  },
+  {
+   "date": "2026-09-18",
+   "title": "ONGC disputes unsolicited CRISIL ESG rating, contests board-attendance claim",
+   "text": "ONGC formally challenged an unsolicited ESG assessment by CRISIL that scored the company 57 (CRISIL ESG) and 65 (CRISIL Core ESG), saying it had neither appointed CRISIL nor taken part in preparing the report. The company disputed a claim on independent-director attendance, stating attendance was 100% (about 92.3% after one approved leave of absence), and pointed to its Business Responsibility and Sustainability Report and 2038 net-zero target as evidence its record was mischaracterised. It is a governance and reputational matter rather than a financial one, but it is relevant for ESG-screened investors who reference third-party ratings on India's largest oil producer.",
+   "tone": "info",
+   "companies": [
+    "ONGC"
+   ],
+   "sources": [
+    {
+     "publisher": "IndianPSU",
+     "title": "ONGC Challenges Unsolicited CRISIL ESG Rating, Disputes Scores and Board Attendance Claims",
+     "url": "https://indianpsu.com/ongc-challenges-crisil-esg-rating-report/",
+     "date": "2026-09-19"
+    }
+   ],
+   "added": "2026-09-20"
+  },
   {
    "date": "2026-09-18",
    "title": "Brent eases to $103.17 for a third day as Saudi reroutes crude, but Hormuz attacks continue",

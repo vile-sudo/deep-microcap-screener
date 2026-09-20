@@ -162,6 +162,17 @@
    "skipped": {
     "VIMTALABS": "already covers Dec 2024"
    }
+  },
+  {
+   "on": "2026-09-20",
+   "written": [
+    "HBLENGINE:FY27-Q1",
+    "CUMMINSIND:FY27-Q1"
+   ],
+   "spent_usd": null,
+   "skipped": {
+    "VIMTALABS": "already covers Dec 2024"
+   }
   }
  ],
  "seen_new_results": {
@@ -314,6 +325,24 @@
    "cost_usd": null,
    "api_equivalent_usd": 20.107,
    "minutes": 40.9
+  },
+  "HBLENGINE": {
+   "period": "FY27-Q1",
+   "on": "2026-09-20",
+   "engine": "claude-code",
+   "tokens_out": 148872,
+   "cost_usd": null,
+   "api_equivalent_usd": 13.399,
+   "minutes": 28.6
+  },
+  "CUMMINSIND": {
+   "period": "FY27-Q1",
+   "on": "2026-09-20",
+   "engine": "claude-code",
+   "tokens_out": 263038,
+   "cost_usd": null,
+   "api_equivalent_usd": 34.258,
+   "minutes": 54.7
   }
  }
 }

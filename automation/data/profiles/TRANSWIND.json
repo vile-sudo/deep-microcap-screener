@@ -1,0 +1,217 @@
+{
+ "symbol": "TRANSWIND",
+ "company": "Transwind Infrastructures Limited",
+ "isin": "INE792X01016",
+ "board": "SME",
+ "source": {
+  "document": "final prospectus",
+  "url": "https://nsearchives.nseindia.com/emerge/corporates/content/TIL_PROSP.pdf",
+  "filed": "03-Jul-2017",
+  "pdf_bytes": 3901117,
+  "extracted_chars": 946681
+ },
+ "grade": "company-stated",
+ "verified_against": null,
+ "claims": {
+  "ip": {
+   "count": 3,
+   "dropped_as_industry_commentary": 7,
+   "terms": [
+    "Patents",
+    "trademark",
+    "PATENTS"
+   ],
+   "evidence": [
+    {
+     "match": "Patents",
+     "sentence": "In accordance with section 32(1), the Company can claim depreciation on specified tangible assets (being Building, Plant and Machinery, Furniture, Computer and vehicles) and intangible assets (being Knowhow, Copyrights, Patents, Trademarks, Licenses, Franchise or any other business or commercial rights of similar nature acquired on and after 1st April, 1998) owed by it and used for the purpose of its business."
+    },
+    {
+     "match": "trademark",
+     "sentence": "Intellectual Property Rights Our Company is having trademark under class No."
+    },
+    {
+     "match": "PATENTS",
+     "sentence": "WE HAVE EXAMINED VARIOUS DOCUMENTS INCLUDING THOSE RELATING TO LITIGATION LIKE COMMERCIAL DISPUTES, PATENTS DISPUTES, DISPUTES WITH COLLABORATORS, ETC."
+    }
+   ]
+  }
+ },
+ "risk_factors": {
+  "customer_concentration": {
+   "count": 2,
+   "dropped_as_industry_commentary": 0,
+   "terms": [
+    "top 10 customers",
+    "top ten customers"
+   ],
+   "evidence": [
+    {
+     "match": "top 10 customers",
+     "sentence": "Currently, a significant portion of our revenue is accounted for by sales to our top 10 customers."
+    },
+    {
+     "match": "top ten customers",
+     "sentence": "Our top ten customers contributed 100% and 100% of our total revenue of operations for the period ended December 31, 2016 and for the year ended March 31, 2016 respectively."
+    }
+   ]
+  },
+  "promoter_litigation": {
+   "count": 7,
+   "dropped_as_industry_commentary": 0,
+   "terms": [
+    "Criminal Cases",
+    "criminal cases",
+    "Criminal Case",
+    "Criminal Complaint"
+   ],
+   "evidence": [
+    {
+     "match": "Criminal Cases",
+     "sentence": "The summary of outstanding legal and other proceedings are given in the following table: Particular Nature of cases No of outstanding cases (` in Lakh) Amount involved excluding the Interest amount Civil Case Criminal Cases Tax Related Litigations 12 1 1 749."
+    },
+    {
+     "match": "Criminal Cases",
+     "sentence": "51 Litigation by Company Litigation against Company Litigation by Promoter Litigation against Promoter 8 Particular Nature of cases No of outstanding cases Amount involved excluding the Interest amount Civil Case Criminal Cases Tax Related Litigations 14 1 5 3079."
+    },
+    {
+     "match": "Criminal Cases",
+     "sentence": "73 Civil Case Labour Cases Labour Cases Criminal Cases 9 3 11 2 789."
+    }
+   ]
+  },
+  "related_party": {
+   "count": 22,
+   "dropped_as_industry_commentary": 0,
+   "terms": [
+    "Related Party Transaction",
+    "related party transactions",
+    "Related Party Transactions",
+    "RELATED PARTY TRANSACTIONS",
+    "Related Parties Transactions",
+    "related party transaction"
+   ],
+   "evidence": [
+    {
+     "match": "Related Party Transaction",
+     "sentence": "127 and the Annexure 33 ―Related Party Transaction‖ under the section ―Financial Information's‖ on page no."
+    },
+    {
+     "match": "related party transactions",
+     "sentence": "We have entered into related party transactions and may continue to do so in the future."
+    },
+    {
+     "match": "related party transactions",
+     "sentence": "Furthermore, it is likely that we will enter into related party transactions in the future."
+    }
+   ]
+  }
+ },
+ "objects_of_the_issue": {
+  "offer_for_sale": {
+   "count": 4,
+   "dropped_as_industry_commentary": 0,
+   "terms": [
+    "Offer for Sale",
+    "offer for sale"
+   ],
+   "evidence": [
+    {
+     "match": "Offer for Sale",
+     "sentence": "1 Initial public offer (IPO) An IPO means an offer of specified securities by an unlisted Issuer to the public for subscription and may include an Offer for Sale of specified securities to the public by any existing holder of such securities in an unlisted Issuer."
+    },
+    {
+     "match": "Offer for Sale",
+     "sentence": "tors or FVCIs (Foreign Venture Capital Investors) Regulations, 2000 IPO Initial public offering Issue Public Issue of Equity Shares of the Issuer including the Offer for Sale if applicable Issuer/ Company The Issuer proposing the initial public offering/further public offering as applicable Issue Price The final price, less discount (if applicable) at which the Equity Shares may be Allotted in terms of the Prospectus."
+    },
+    {
+     "match": "Offer for Sale",
+     "sentence": "ectly and which was in existence on October 3, 2003 and immediately before such date had taken benefits under the general permission granted to OCBs under FEMA Offer for Sale Public offer of such number of Equity Shares as disclosed in the Prospectus through an offer for sale by the Selling Shareholder Other Investors Investors other than Retail Individual Investors in a Fixed Price Issue."
+    }
+   ]
+  },
+  "fresh_issue": {
+   "count": 1,
+   "dropped_as_industry_commentary": 0,
+   "terms": [
+    "Fresh Issue"
+   ],
+   "evidence": [
+    {
+     "match": "Fresh Issue",
+     "sentence": "FUND REQUIREMENTS We intend to utilize the proceeds of the Fresh Issue, in the manner set forth below: Requirement of Funds Sr."
+    }
+   ]
+  },
+  "capital_expenditure": {
+   "count": 8,
+   "dropped_as_industry_commentary": 0,
+   "terms": [
+    "capital expenditure",
+    "Capital Expenditure"
+   ],
+   "evidence": [
+    {
+     "match": "capital expenditure",
+     "sentence": "Further implementing new technology may require us to incur huge capital expenditure which could affect our cash flows and result of operations."
+    },
+    {
+     "match": "Capital Expenditure",
+     "sentence": "Working Capital Requirement; Capital Expenditure; General Corporate Purpose; Meeting Public Issue Expenses."
+    },
+    {
+     "match": "Capital Expenditure",
+     "sentence": "Particulars Working Capital Requirement Capital Expenditure General Corporate Purpose Public Issue Expenses Total Amount 289."
+    }
+   ]
+  },
+  "working_capital": {
+   "count": 15,
+   "dropped_as_industry_commentary": 0,
+   "terms": [
+    "working capital requirement",
+    "working capital requirements",
+    "Working Capital Requirement",
+    "Working Capital Requirements"
+   ],
+   "evidence": [
+    {
+     "match": "working capital requirement",
+     "sentence": "The net working capital requirement as on March 31, 2016 is ` 338."
+    },
+    {
+     "match": "working capital requirements",
+     "sentence": "We operate in a working capital intense industry therefore our business demands substantial funds towards working capital requirements."
+    },
+    {
+     "match": "working capital requirement",
+     "sentence": "In case there are insufficient cash flows to meet our working capital requirement or we are unable to arrange the same from other sources or there are delays in disbursement of arranged funds, or we are unable to procure funds on favorable terms, at a fu"
+    }
+   ]
+  },
+  "general_corporate": {
+   "count": 6,
+   "dropped_as_industry_commentary": 0,
+   "terms": [
+    "General Corporate Purpose",
+    "GENERAL CORPORATE PURPOSE",
+    "general corporate purposes"
+   ],
+   "evidence": [
+    {
+     "match": "General Corporate Purpose",
+     "sentence": "Working Capital Requirement; Capital Expenditure; General Corporate Purpose; Meeting Public Issue Expenses."
+    },
+    {
+     "match": "General Corporate Purpose",
+     "sentence": "Particulars Working Capital Requirement Capital Expenditure General Corporate Purpose Public Issue Expenses Total Amount 289."
+    },
+    {
+     "match": "GENERAL CORPORATE PURPOSE",
+     "sentence": "80 Unit Batching Plant 30 Cum/Hr Set Cement SILO 100 MT With All Accessories Concrete Pump SP1800 With 200 Pipeline Concrete Pump SP1400 With 200 Pipeline Transit Mixer 06 Cum Total Amount Quotation No (` in Lakh) Quotatio Quota n tion Validity Date Date 3) GENERAL CORPORATE PURPOSE : The application of the Issue proceeds for general corporate purposes would include but not be restricted to financing our working capital requirements, capital expenditure, deposits for hiring or otherwise acquiring business premises, meeting exigencies etc."
+    }
+   ]
+  }
+ },
+ "profiled_on": "2026-09-19"
+}

@@ -1,0 +1,197 @@
+{
+ "symbol": "DRONE",
+ "company": "Drone Destination Limited",
+ "isin": "INE0P7201019",
+ "board": "SME",
+ "source": {
+  "document": "final prospectus",
+  "url": "https://nsearchives.nseindia.com/emerge/corporates/content/DroneDL_PROSP.pdf",
+  "filed": "18-Jul-2023",
+  "pdf_bytes": 3881819,
+  "extracted_chars": 1035599
+ },
+ "grade": "company-stated",
+ "verified_against": null,
+ "claims": {
+  "ip": {
+   "count": 1,
+   "dropped_as_industry_commentary": 14,
+   "terms": [
+    "trademark"
+   ],
+   "evidence": [
+    {
+     "match": "trademark",
+     "sentence": "Our inability to get the trademark registered or renew registration of our trademark and loss of such trademark could have an adverse effect on our business and operation and may harm the ability to brand image and recognition in the industry."
+    }
+   ]
+  }
+ },
+ "risk_factors": {
+  "promoter_litigation": {
+   "count": 8,
+   "dropped_as_industry_commentary": 0,
+   "terms": [
+    "criminal proceedings",
+    "proceedings against our Promoter",
+    "proceedings involving our Promoters",
+    "criminal proceeding",
+    "Criminal Proceedings"
+   ],
+   "evidence": [
+    {
+     "match": "criminal proceedings",
+     "sentence": "The summary of outstanding matters set out below includes details of criminal proceedings, tax proceedings, statutory and regulatory action and other material pending litigation involving our Company, Promoters, and Directors (for further details please refer Outstanding Litigation and Material Developments section on page no."
+    },
+    {
+     "match": "criminal proceedings",
+     "sentence": "The details of outstanding matters including the details of criminal proceedings and tax proceedings involving our group companies are given in section Outstanding Litigation and Material Developments beginning on page no."
+    },
+    {
+     "match": "proceedings against our Promoter",
+     "sentence": "There are outstanding tax proceedings against our Promoter, Ms."
+    }
+   ]
+  },
+  "related_party": {
+   "count": 21,
+   "dropped_as_industry_commentary": 0,
+   "terms": [
+    "RELATED PARTY TRANSACTION",
+    "related party transactions",
+    "RELATED PARTY TRANSACTIONS",
+    "related party transaction",
+    "Related Party Transactions",
+    "Related Party Transaction"
+   ],
+   "evidence": [
+    {
+     "match": "RELATED PARTY TRANSACTION",
+     "sentence": "178 RELATED PARTY TRANSACTION."
+    },
+    {
+     "match": "related party transactions",
+     "sentence": "In terms of SEBI ICDR Regulations, the term “Group Companies” includes companies (other than promoters and subsidiary) with which there were related party transactions as disclosed in the Restated Financial Statements as covered under the applicable accounting standards, and any other companies as considered material by our Board, in accordance with the Materiality Policy, as described in “Our Group Companies” on page 178 of this Prospectus."
+    },
+    {
+     "match": "RELATED PARTY TRANSACTIONS",
+     "sentence": "SUMMARY OF RELATED PARTY TRANSACTIONS Page 23 of 378 Following are the details as per the Restated Financial Information as at and for the Financial Year ended on March 31, 2023, March 31, 2022, and March 31, 2021."
+    }
+   ]
+  }
+ },
+ "objects_of_the_issue": {
+  "offer_for_sale": {
+   "count": 2,
+   "dropped_as_industry_commentary": 0,
+   "terms": [
+    "Offer for Sale"
+   ],
+   "evidence": [
+    {
+     "match": "Offer for Sale",
+     "sentence": "*OFS: Offer for Sale Details of OFS by Promoter(s)/ Promoter Group/ Other Selling Shareholders (upto maximum of 10 shareholders) No."
+    },
+    {
+     "match": "Offer for Sale",
+     "sentence": "However, in case the Offer is in the nature of Offer for Sale only, then minimum subscription may not be applicable."
+    }
+   ]
+  },
+  "fresh_issue": {
+   "count": 7,
+   "dropped_as_industry_commentary": 0,
+   "terms": [
+    "Fresh Issue",
+    "Fresh issue",
+    "fresh issue"
+   ],
+   "evidence": [
+    {
+     "match": "Fresh Issue",
+     "sentence": "SHASHI BALA DETAILS OF OFFER TO PUBLIC, PROMOTERS/ SELLING SHAREHOLDERS Type Fresh Issue Fresh Issue Size (by No."
+    },
+    {
+     "match": "Fresh Issue",
+     "sentence": "Unless the context otherwise requires, allotment of the Equity Shares pursuant tothe Fresh Issue to the successful Applicants."
+    },
+    {
+     "match": "Fresh issue",
+     "sentence": "55/- per share Consisting of: Fresh issue of 68,00,000 Equity Shares of face value of Rs."
+    }
+   ]
+  },
+  "capital_expenditure": {
+   "count": 6,
+   "dropped_as_industry_commentary": 0,
+   "terms": [
+    "Capital Expenditure",
+    "Capital expenditure",
+    "setting up of"
+   ],
+   "evidence": [
+    {
+     "match": "Capital Expenditure",
+     "sentence": "Capital Expenditure 20,470."
+    },
+    {
+     "match": "Capital Expenditure",
+     "sentence": "To meet out the Capital Expenditure Requirement."
+    },
+    {
+     "match": "Capital Expenditure",
+     "sentence": "Capital Expenditure Our company intends to deploy Net Proceeds aggregating to Rs."
+    }
+   ]
+  },
+  "working_capital": {
+   "count": 20,
+   "dropped_as_industry_commentary": 0,
+   "terms": [
+    "working capital requirements",
+    "Working Capital Requirement",
+    "working capital requirement",
+    "Working Capital requirements",
+    "Working Capital Requirements"
+   ],
+   "evidence": [
+    {
+     "match": "working capital requirements",
+     "sentence": " our ability to manage our working capital cycles and generate sufficient cash flow to satisfy any additional working capital requirements;  our inability to maintain quality standards in our services;  our inability to successfully implement strategy, growth and expansion plans;  our ability to attract an"
+    },
+    {
+     "match": "Working Capital Requirement",
+     "sentence": "Working Capital Requirement 85,000."
+    },
+    {
+     "match": "working capital requirement",
+     "sentence": "Our business requires substantial working capital requirement and may require additional financing to meet working capital requirement in the future."
+    }
+   ]
+  },
+  "general_corporate": {
+   "count": 9,
+   "dropped_as_industry_commentary": 0,
+   "terms": [
+    "General Corporate Purposes",
+    "general corporate purposes",
+    "General Corporate Purpose"
+   ],
+   "evidence": [
+    {
+     "match": "General Corporate Purposes",
+     "sentence": "General Corporate Purposes** 1,10,500."
+    },
+    {
+     "match": "general corporate purposes",
+     "sentence": "00% *&* The amount utilized for general corporate purposes shall not exceed 25% of the gross proceeds of the Issue."
+    },
+    {
+     "match": "general corporate purposes",
+     "sentence": "We propose to utilize the Net Proceeds towards general corporate purposes in the manner specified in ‘Objects of the Offer’ on page 79."
+    }
+   ]
+  }
+ },
+ "profiled_on": "2026-09-19"
+}

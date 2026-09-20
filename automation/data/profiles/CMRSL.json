@@ -1,0 +1,229 @@
+{
+ "symbol": "CMRSL",
+ "company": "Cyber Media Research & Services Limited",
+ "isin": "INE075Z01011",
+ "board": "SME",
+ "source": {
+  "document": "final prospectus",
+  "url": "https://nsearchives.nseindia.com/emerge/corporates/content/CyberMediaResearch_PROSP.pdf",
+  "filed": "04-Apr-2022",
+  "pdf_bytes": 10178742,
+  "extracted_chars": 1165595
+ },
+ "grade": "company-stated",
+ "verified_against": null,
+ "claims": {
+  "ip": {
+   "count": 8,
+   "dropped_as_industry_commentary": 3,
+   "terms": [
+    "trademark",
+    "trademarks",
+    "Trademarks"
+   ],
+   "evidence": [
+    {
+     "match": "trademark",
+     "sentence": "We do not own our trademark as on date of Prospectus."
+    },
+    {
+     "match": "trademark",
+     "sentence": "We do not own our trademark as on the date of Prospectus."
+    },
+    {
+     "match": "trademark",
+     "sentence": "As such, we do not enjoy the statutory protections accorded to a registered trademark as on date."
+    }
+   ]
+  }
+ },
+ "risk_factors": {
+  "customer_concentration": {
+   "count": 3,
+   "dropped_as_industry_commentary": 0,
+   "terms": [
+    "top ten customers",
+    "Top 5 customers"
+   ],
+   "evidence": [
+    {
+     "match": "top ten customers",
+     "sentence": "We derive a significant portion of our revenues from our top ten customers approximate to 85."
+    },
+    {
+     "match": "top ten customers",
+     "sentence": "Our top ten customers contribute approximately 85."
+    },
+    {
+     "match": "Top 5 customers",
+     "sentence": "The following table illustrates the concentration of our revenues among our top customers Particular Top 5 customers Top 10 customers Fiscal 2022 Revenue In % 2637."
+    }
+   ]
+  },
+  "promoter_litigation": {
+   "count": 10,
+   "dropped_as_industry_commentary": 0,
+   "terms": [
+    "Criminal Complaints",
+    "criminal cases",
+    "criminal proceedings"
+   ],
+   "evidence": [
+    {
+     "match": "Criminal Complaints",
+     "sentence": "Cases against our Company Nature of Cases No of Outstanding Cases Amount involved (In Lakhs) Criminal Complaints --Statutory/ Regulatory Authorities --Other Litigation 1* 1425."
+    },
+    {
+     "match": "Criminal Complaints",
+     "sentence": "Cases by our Company Nature of Cases Criminal Complaints Statutory/ Regulatory Authorities Other Litigation No of Outstanding Cases --11 Litigation involving Our Promoters: 18 Amount involved (In Lakhs) --69."
+    },
+    {
+     "match": "Criminal Complaints",
+     "sentence": "Cases against our Promoters Nature of Cases No of Outstanding Cases Amount involved (In Lakhs) Criminal Complaints --Statutory/ Regulatory Authorities --Taxation Liability 4 231."
+    }
+   ]
+  },
+  "related_party": {
+   "count": 17,
+   "dropped_as_industry_commentary": 0,
+   "terms": [
+    "related party transactions",
+    "RELATED PARTY TRANSACTIONS",
+    "related party transaction",
+    "Related Party Transactions"
+   ],
+   "evidence": [
+    {
+     "match": "related party transactions",
+     "sentence": "Companies with which there were related party transactions as disclosed in the Restated Financial Statements as covered under the applicable accounting standards, and also other companies as considered material by our Board of the issuer as disclosed in “Information with respect to Group Companies” on page 182 of this Prospectus."
+    },
+    {
+     "match": "RELATED PARTY TRANSACTIONS",
+     "sentence": "SUMMARY OF RELATED PARTY TRANSACTIONS Restated Consolidated Related Party Disclosure Related parties and their relationships at 31."
+    },
+    {
+     "match": "related party transaction",
+     "sentence": "66 For details of Restated related party transaction, please refer chapter titled “Restated Financial Statements” beginning on page no."
+    }
+   ]
+  }
+ },
+ "objects_of_the_issue": {
+  "offer_for_sale": {
+   "count": 29,
+   "dropped_as_industry_commentary": 0,
+   "terms": [
+    "OFFER FOR SALE",
+    "Offer for Sale",
+    "offer for sale"
+   ],
+   "evidence": [
+    {
+     "match": "OFFER FOR SALE",
+     "sentence": "net FRESH ISSUE OFFER FOR SALE ELIGIBILITY AND SHARE RESERVATION AMONG QIBs, NIIs AND RIIs The Offer is being made pursuant to Regulation ICDR Regulations."
+    },
+    {
+     "match": "Offer for Sale",
+     "sentence": "Fresh Issue & Offer for Sale Up to 4,08,000 Equity Shares aggregating up to ₹ 734."
+    },
+    {
+     "match": "OFFER FOR SALE",
+     "sentence": "40 LAKHS (“FRESH ISSUE”) AND AN OFFER FOR SALE OF UP TO 3,72,000 EQUITY SHARES (“OFFERED SHARES”) AGGREGATING UP TO ₹ 669."
+    }
+   ]
+  },
+  "fresh_issue": {
+   "count": 28,
+   "dropped_as_industry_commentary": 0,
+   "terms": [
+    "FRESH ISSUE",
+    "Fresh Issue",
+    "fresh issue"
+   ],
+   "evidence": [
+    {
+     "match": "FRESH ISSUE",
+     "sentence": "net FRESH ISSUE OFFER FOR SALE ELIGIBILITY AND SHARE RESERVATION AMONG QIBs, NIIs AND RIIs The Offer is being made pursuant to Regulation ICDR Regulations."
+    },
+    {
+     "match": "Fresh Issue",
+     "sentence": "Fresh Issue & Offer for Sale Up to 4,08,000 Equity Shares aggregating up to ₹ 734."
+    },
+    {
+     "match": "FRESH ISSUE",
+     "sentence": "THE OFFER COMPRISES A FRESH ISSUE OF UP TO 4,08,000 EQUITY SHARES AGGREGATING UP TO ₹ 734."
+    }
+   ]
+  },
+  "capital_expenditure": {
+   "count": 5,
+   "dropped_as_industry_commentary": 0,
+   "terms": [
+    "capital expenditure",
+    "Setting up of"
+   ],
+   "evidence": [
+    {
+     "match": "capital expenditure",
+     "sentence": "Our ability to meet our capital expenditure requirements; 13."
+    },
+    {
+     "match": "capital expenditure",
+     "sentence": "32 Cash flow of a company is a key indicator to show the extent of cash generated from operations to meet capital expenditure, pay dividends, repay loans and make new investments without raising finance from external resources."
+    },
+    {
+     "match": "capital expenditure",
+     "sentence": "Our ability to pay dividends in the future will depend on our earnings, financial condition, cash flow, working capital requirements, capital expenditure and restrictive covenants of our financing arrangements."
+    }
+   ]
+  },
+  "working_capital": {
+   "count": 11,
+   "dropped_as_industry_commentary": 0,
+   "terms": [
+    "working capital requirements",
+    "Working Capital requirement",
+    "working capital requirement"
+   ],
+   "evidence": [
+    {
+     "match": "working capital requirements",
+     "sentence": "Funding the working capital requirements 2."
+    },
+    {
+     "match": "working capital requirements",
+     "sentence": "Our ability to pay dividends in the future will depend on our earnings, financial condition, working capital requirements, capital expenditures and restrictive covenants of our financing arrangements."
+    },
+    {
+     "match": "working capital requirements",
+     "sentence": "Our leverage has several important consequences, including the following:  A portion of our cash flow will be used towards repayment of debt, which will reduce the availability of cash to fund working capital requirements, capital expenditures and other general corporate purposes;  Our borrowing cost and the existence of encumbrances on a significant portion of our immovable properties may constrain."
+    }
+   ]
+  },
+  "general_corporate": {
+   "count": 13,
+   "dropped_as_industry_commentary": 0,
+   "terms": [
+    "general corporate purposes",
+    "General Corporate Purposes",
+    "general corporate purpose",
+    "General Corporate Purpose"
+   ],
+   "evidence": [
+    {
+     "match": "general corporate purposes",
+     "sentence": "Funding investments in new projects and general corporate purposes 3."
+    },
+    {
+     "match": "general corporate purposes",
+     "sentence": "Our leverage has several important consequences, including the following:  A portion of our cash flow will be used towards repayment of debt, which will reduce the availability of cash to fund working capital requirements, capital expenditures and other general corporate purposes;  Our borrowing cost and the existence of encumbrances on a significant portion of our immovable properties may constrain."
+    },
+    {
+     "match": "general corporate purposes",
+     "sentence": "Our Company has not identified any alternate source of funding for our working capital requirement and for general corporate purposes and hence any failure or delay on our part to mobilize the required resources or any shortfall in the Offer proceeds can adversely affect our growth plan and profitability."
+    }
+   ]
+  }
+ },
+ "profiled_on": "2026-09-19"
+}

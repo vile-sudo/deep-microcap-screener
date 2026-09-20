@@ -1,0 +1,240 @@
+{
+ "symbol": "VMOBILE",
+ "company": "Vinit Mobile Limited",
+ "isin": "INE27V201011",
+ "board": "SME",
+ "source": {
+  "document": "red herring prospectus",
+  "url": "https://nsearchives.nseindia.com/emerge/corporates/content/VinitMobileLimited_RHP.zip",
+  "filed": "23-Jun-2026",
+  "pdf_bytes": 7204761,
+  "extracted_chars": 1208428
+ },
+ "grade": "company-stated",
+ "verified_against": null,
+ "claims": {
+  "ip": {
+   "count": 12,
+   "dropped_as_industry_commentary": 6,
+   "terms": [
+    "trademark",
+    "trademarks",
+    "Trademarks"
+   ],
+   "evidence": [
+    {
+     "match": "trademark",
+     "sentence": "Any failure to protect or enforce our rights to own or use our trademark could have an adverse effect on our business and competitive position."
+    },
+    {
+     "match": "trademark",
+     "sentence": "Our Company had applied for various brand name/logo/trademark with Trademark Registry Intellectual property India, Ahmedabad and as on date of this Red Herring Prospectus, we have not registered our logo under the Trademarks Act, 1999."
+    },
+    {
+     "match": "trademarks",
+     "sentence": "Further we have acquired several trademarks from our promoter Mr."
+    }
+   ]
+  }
+ },
+ "risk_factors": {
+  "customer_concentration": {
+   "count": 11,
+   "dropped_as_industry_commentary": 0,
+   "terms": [
+    "top ten customers",
+    "Top 2 Customers",
+    "customer concentration",
+    "Top 5 Customers",
+    "Top 10 Customers",
+    "top 2 customers",
+    "top 10 customers",
+    "Top 2 customers"
+   ],
+   "evidence": [
+    {
+     "match": "top ten customers",
+     "sentence": "The contribution of our top two, top five and top ten customers in our sales as a percentage of the revenue from operations during for period ended December 31, 2025, and Fiscal 2025, 2024 and 2023 are disclosed hereunder: (₹ in Lakhs) Sr."
+    },
+    {
+     "match": "Top 2 Customers",
+     "sentence": "1 2 3 Top Customers Top 2 Customers Top 5 Customers Top 10 Customers For period ended December 31, 2025 Amoun % of t (₹ in Revenu Lakhs) e Fiscal 2025 Fiscal 2023* Fiscal 2024 Amoun t (₹in Lakhs) % of Revenu e Amoun t (₹ in Lakhs) % of Revenu e Amoun t (₹ in Lakhs) % of Revenu e 753."
+    },
+    {
+     "match": "customer concentration",
+     "sentence": "We cannot assure you that we will be able to maintain historical levels of business and/or negotiate and execute long-term contracts on terms that are commercially viable with our significant customers or that we will be able to significantly reduce customer concentration in the future."
+    }
+   ]
+  },
+  "promoter_litigation": {
+   "count": 14,
+   "dropped_as_industry_commentary": 0,
+   "terms": [
+    "criminal proceedings",
+    "Criminal proceeding",
+    "Criminal proceedings",
+    "criminal cases"
+   ],
+   "evidence": [
+    {
+     "match": "criminal proceedings",
+     "sentence": "A summary of outstanding matters set out below includes details of civil and criminal proceedings, tax proceedings, statutory and regulatory actions and other material pending litigation involving us, our Subsidiary, Directors, Promoter, KMPs and SMPs as at the date of this Red Herring Prospectus."
+    },
+    {
+     "match": "Criminal proceeding",
+     "sentence": "A classification of these outstanding proceedings is given in the following table: Nature of Cases Litigation involving our Company Criminal proceeding against our Company Criminal proceedings by our Company Material civil litigation against our Company Material civil litigation by our Company Actions by statutory or regulatory Au"
+    },
+    {
+     "match": "Criminal proceeding",
+     "sentence": "Material civil litigation by our Company Actions by statutory or regulatory Authorities Direct and indirect tax proceedings Litigation involving our Subsidiary Criminal proceeding against our Subsidiary Criminal proceedings by our Subsidiary Material civil litigation against our Subsidiary Material civil litigation by our Subsidiary Actions by statutory or r"
+    }
+   ]
+  },
+  "related_party": {
+   "count": 22,
+   "dropped_as_industry_commentary": 0,
+   "terms": [
+    "RELATED PARTY TRANSACTIONS",
+    "related party transactions",
+    "related party transaction",
+    "Related Party Transactions"
+   ],
+   "evidence": [
+    {
+     "match": "RELATED PARTY TRANSACTIONS",
+     "sentence": "69 SUMMARY OF RELATED PARTY TRANSACTIONS ."
+    },
+    {
+     "match": "related party transactions",
+     "sentence": "Our Company has entered into related party transactions in the past and may continue to enter into related party transactions in the future, which may potentially involve conflicts of interest with the Equity Shareholders."
+    },
+    {
+     "match": "related party transactions",
+     "sentence": "Our Company has entered into certain related party transactions with our Promoters, members of the Promoter Group, and Directors in the past, which are in compliance with the applicable provisions of the Companies Act, 2013, and all other applicable laws."
+    }
+   ]
+  }
+ },
+ "objects_of_the_issue": {
+  "offer_for_sale": {
+   "count": 3,
+   "dropped_as_industry_commentary": 0,
+   "terms": [
+    "Offer For Sale",
+    "offer for sale"
+   ],
+   "evidence": [
+    {
+     "match": "Offer For Sale",
+     "sentence": "In accordance with Regulation 230 (1) (f) of the SEBI (ICDR) Regulations, 2018 and SEBI ICDR (Amendment) Regulations, 2026, there is no Offer For Sale (OFS)."
+    },
+    {
+     "match": "Offer For Sale",
+     "sentence": "In accordance with Regulation 230 (1) (g) of the SEBI (ICDR) Regulations, 2018 and SEBI ICDR (Amendment) Regulations, 2026, there is no Offer For Sale (OFS)."
+    },
+    {
+     "match": "offer for sale",
+     "sentence": "of the offer through offer document (except in case of an offer for sale of specified securities) on the date of closure of the issue, or if the subscription level falls below ninety per cent."
+    }
+   ]
+  },
+  "fresh_issue": {
+   "count": 11,
+   "dropped_as_industry_commentary": 0,
+   "terms": [
+    "FRESH ISSUE",
+    "Fresh Issue",
+    "fresh issue"
+   ],
+   "evidence": [
+    {
+     "match": "FRESH ISSUE",
+     "sentence": "SHWETA JALAN TYPE FRESH ISSUE SIZE OFS SIZE DETAILS OF ISSUE TO PUBLIC TOTAL ISSUE SIZE ELIGIBILITY Fresh Issue Up to 21,60,000 Equity Up to 21,60,000 Equity The issue is being made pursuant to Regulation 229(1) of Cha"
+    },
+    {
+     "match": "FRESH ISSUE",
+     "sentence": "DETAILS OF ISSUE FOR SALE AND THEIR AVERAGE COST OF ACQUISITION – NOT APPLICABLE AS THE ENTIRE ISSUE CONSTITUTES FRESH ISSUE OF EQUITY SHARES RISKS IN RELATION TO THE FIRST ISSUE This being the first public Issue of our Company, there has been no formal market for the securities of our company."
+    },
+    {
+     "match": "Fresh Issue",
+     "sentence": "[The Remainder of this Page has intentionally been left blank] 97 SECTION IV – PARTICULARS OF THE ISSUE OBJECTS OF THE ISSUE This Issue comprises of Fresh Issue of up to 21,60,000 Equity Shares by our Company aggregating to ₹ [●] Lakhs."
+    }
+   ]
+  },
+  "capital_expenditure": {
+   "count": 10,
+   "dropped_as_industry_commentary": 0,
+   "terms": [
+    "capital expenditure",
+    "expansion of our",
+    "Setting up of",
+    "Expansion of Our"
+   ],
+   "evidence": [
+    {
+     "match": "capital expenditure",
+     "sentence": "18 - Cash flows of a Company is a key indicator to show the extent of cash generated from the operations of a Company to meet capital expenditure, pay dividends, repay loans and make new investments without raising finance from external resources."
+    },
+    {
+     "match": "expansion of our",
+     "sentence": "43x, on account of availing loan facilities to fund the expansion of our retail operations and meet working capital requirements."
+    },
+    {
+     "match": "expansion of our",
+     "sentence": "We may retain all our future earnings, if any, for use in the operations and expansion of our Business."
+    }
+   ]
+  },
+  "working_capital": {
+   "count": 23,
+   "dropped_as_industry_commentary": 0,
+   "terms": [
+    "working capital requirements",
+    "Working Capital Requirements",
+    "working capital requirement",
+    "Working Capital Requirement",
+    "Working capital requirement"
+   ],
+   "evidence": [
+    {
+     "match": "working capital requirements",
+     "sentence": "• Our inability to maintain or enhance our brand recognition; • Our ability to meet our working capital requirements; • Our ability to manage risks that arise from these factors; and • Our ability to adapt to the changing technology in our industry of operation may adversely affect our b"
+    },
+    {
+     "match": "working capital requirements",
+     "sentence": "43x, on account of availing loan facilities to fund the expansion of our retail operations and meet working capital requirements."
+    },
+    {
+     "match": "working capital requirements",
+     "sentence": "Our ability to pay dividends will depend upon future earnings, financial condition, cash flow, working capital requirements, capital expenditures and other factors."
+    }
+   ]
+  },
+  "general_corporate": {
+   "count": 14,
+   "dropped_as_industry_commentary": 0,
+   "terms": [
+    "General Corporate Purpose",
+    "general corporate purpose",
+    "General corporate purposes",
+    "General Corporate Purposes",
+    "general corporate purposes"
+   ],
+   "evidence": [
+    {
+     "match": "General Corporate Purpose",
+     "sentence": "tors” “First” or “Sole Applicant” “Foreign Venture Capital Investors” “FPI” or “Foreign Portfolio Investor” “Fraudulent Borrower” “Fugitive Economic Offender” “General Corporate Purpose” Description Exchange and issued in accordance with the SEBI ICDR Regulations Qualified Foreign Investors from such jurisdictions outside India where it is not unlawful to ma"
+    },
+    {
+     "match": "general corporate purpose",
+     "sentence": "n 12 of the Fugitive Economic Offenders Act, 2018 Include such identified purposes for which no specific amount is allocated or any amount so specified towards general corporate purpose or any such purpose by whatever name called, in the offer document."
+    },
+    {
+     "match": "general corporate purpose",
+     "sentence": "Provided that any Issue related expenses shall not be considered as a part of general corporate purpose merely because no specific amount has been allocated for such expenses in the Issue 7 Term “General Information Document” or “GID” “Gross Proceeds” “Individual Investor Porti"
+    }
+   ]
+  }
+ },
+ "profiled_on": "2026-09-19"
+}
