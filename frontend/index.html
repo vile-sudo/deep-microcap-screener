@@ -221,7 +221,6 @@
       <button class="side-link" id="reports-link" type="button" title="Research Reports"><svg viewBox="0 0 24 24"><path d="M7 3.5h7.5L19 8v12.5H7z"/><path d="M14.5 3.5V8H19"/><path d="M10 12h6M10 15.5h6M10 19h3.5"/></svg>Reports</button>
       <button class="side-link" id="ipor-link" type="button" title="Upcoming IPO Reports"><svg viewBox="0 0 24 24"><path d="M12 3v6l4 2"/><circle cx="12" cy="12" r="9"/></svg>Upcoming IPO Reports</button>
       <button class="side-link" id="sectors-link" type="button" title="Sector Research"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><path d="M4 12h16M12 4c2.5 2.6 2.5 13.4 0 16M12 4c-2.5 2.6-2.5 13.4 0 16"/></svg>Sectors</button>
-      <button class="side-link" id="movers-link" type="button" title="Movers"><svg viewBox="0 0 24 24"><path d="M3 17l5-6 4 4 8-9"/><path d="M14 6h6v6"/></svg>Movers</button>
       <button class="side-link" id="deals-link" type="button" title="Bulk &amp; Block Deals"><svg viewBox="0 0 24 24"><path d="M4 4h16v6H4z"/><path d="M4 14h7v6H4z"/><path d="M13 14h7v6h-7z"/></svg>Bulk &amp; Block Deals</button>
       <button class="side-link" id="news-link" type="button" title="News Channel"><svg viewBox="0 0 24 24"><path d="M4 5.5h16v13h-16z"/><path d="M8 9.5h8M8 13h8M8 16.5h5"/></svg>News Channel<span class="side-count" id="news-badge" hidden></span></button>
     </nav>
@@ -310,41 +309,6 @@
   <div class="section-heading" id="sc-heading"><div><span class="eyebrow">RESEARCH</span><h2 id="sectors-title">Sector Research</h2><p class="section-copy">Deep, source-confirmed research on one sector at a time: what is happening around the world, what is happening in India, and what it means for Indian listed companies across the value chain. Every figure is cited to official statistics, research houses, company disclosures or news; the research is refreshed monthly and the company numbers every day.</p></div></div>
   <div id="sc-lib"><div class="sc-grid" id="sc-grid"></div></div>
   <article class="rp-doc sc-doc" id="sc-doc" hidden></article>
-</section>
-
-<section class="dashboard-section movers-section" data-views="movers" aria-labelledby="movers-title">
-  <div class="section-heading"><div><span class="eyebrow">MOVERS</span><h2 id="movers-title">Movers</h2><p class="section-copy">Every NSE stock that closed 4% or more up or down, one trading day at a time — not just the number, but why: filings, news coverage and bulk/block deals behind the move, checked against NSE's own disclosures. A corporate action going ex that day (a dividend, bonus or split) is adjusted out first, so the list shows what actually traded, not arithmetic. Board companies are marked and link to their scorecard.</p></div><span class="section-note" id="mv-asof"></span></div>
-  <div class="mv-toolbar">
-    <select class="gal-select" id="mv-date" aria-label="Trading day"></select>
-    <input id="mv-q" class="gal-search" type="search" autocomplete="off" spellcheck="false" placeholder="Search symbol or company">
-    <select class="gal-select" id="mv-dir" aria-label="Direction">
-      <option value="">Up and down</option>
-      <option value="UP">Up only</option>
-      <option value="DOWN">Down only</option>
-    </select>
-    <select class="gal-select" id="mv-why" aria-label="Why">
-      <option value="">Any reason</option>
-      <option value="high">High confidence</option>
-      <option value="medium">Medium confidence</option>
-      <option value="low">Low confidence</option>
-      <option value="mechanical">Mechanical (corporate action)</option>
-      <option value="none">No disclosed reason</option>
-    </select>
-    <select class="gal-select" id="mv-board" aria-label="Board">
-      <option value="">All companies</option>
-      <option value="board">Board companies only</option>
-    </select>
-    <select class="gal-select" id="mv-sort" aria-label="Sort">
-      <option value="size">Sort: biggest move</option>
-      <option value="up">Sort: gainers first</option>
-      <option value="down">Sort: losers first</option>
-      <option value="deliv">Sort: delivery %</option>
-      <option value="name">Sort: name</option>
-    </select>
-    <button class="theme-back" id="mv-clear" type="button">Clear</button>
-  </div>
-  <div class="mv-count" id="mv-count"></div>
-  <div id="mv-body"><p class="view-hint">Loading…</p></div>
 </section>
 
 <section class="dashboard-section deals-section" data-views="deals" aria-labelledby="deals-title">
@@ -477,6 +441,12 @@
 <section class="dashboard-section research-filter-section" id="research-filters" data-views="filters" aria-labelledby="research-filter-title">
   <div class="section-heading"><div><span class="eyebrow">RESEARCH</span><h2 id="research-filter-title">Screens</h2><p class="section-copy">Search a company by name or ticker, click a filter lens, or both together — either one shows only the companies that match.</p></div><span class="section-note">Search and filters combine · click a lens again to clear it</span></div>
 
+  <div class="dl-tabs" role="tablist">
+    <button class="dl-tab on" type="button" data-fltab="filters" role="tab" aria-selected="true">Filters</button>
+    <button class="dl-tab" type="button" data-fltab="movers" role="tab" aria-selected="false">Movers</button>
+  </div>
+
+  <div id="fltab-filters">
   <div class="card filters" id="filters">
     <div class="searchbar">
       <div class="searchwrap" id="swrap">
@@ -524,6 +494,43 @@
     </div>
     <div class="slider-heading"><span class="tglab">NUMERIC FILTERS</span></div>
     <div class="sliders" id="sliders"></div>
+  </div>
+  </div>
+
+  <div id="fltab-movers" hidden>
+    <p class="section-copy">Every NSE stock that closed 4% or more up or down, one trading day at a time — not just the number, but why: filings, news coverage and bulk/block deals behind the move, checked against NSE's own disclosures. A corporate action going ex that day (a dividend, bonus or split) is adjusted out first, so the list shows what actually traded, not arithmetic. Board companies are marked and link to their scorecard.</p>
+    <span class="section-note" id="mv-asof"></span>
+    <div class="mv-toolbar">
+      <select class="gal-select" id="mv-date" aria-label="Trading day"></select>
+      <input id="mv-q" class="gal-search" type="search" autocomplete="off" spellcheck="false" placeholder="Search symbol or company">
+      <select class="gal-select" id="mv-dir" aria-label="Direction">
+        <option value="">Up and down</option>
+        <option value="UP">Up only</option>
+        <option value="DOWN">Down only</option>
+      </select>
+      <select class="gal-select" id="mv-why" aria-label="Why">
+        <option value="">Any reason</option>
+        <option value="high">High confidence</option>
+        <option value="medium">Medium confidence</option>
+        <option value="low">Low confidence</option>
+        <option value="mechanical">Mechanical (corporate action)</option>
+        <option value="none">No disclosed reason</option>
+      </select>
+      <select class="gal-select" id="mv-board" aria-label="Board">
+        <option value="">All companies</option>
+        <option value="board">Board companies only</option>
+      </select>
+      <select class="gal-select" id="mv-sort" aria-label="Sort">
+        <option value="size">Sort: biggest move</option>
+        <option value="up">Sort: gainers first</option>
+        <option value="down">Sort: losers first</option>
+        <option value="deliv">Sort: delivery %</option>
+        <option value="name">Sort: name</option>
+      </select>
+      <button class="theme-back" id="mv-clear" type="button">Clear</button>
+    </div>
+    <div class="mv-count" id="mv-count"></div>
+    <div id="mv-body"><p class="view-hint">Loading…</p></div>
   </div>
 </section>
 
@@ -637,7 +644,7 @@
   <p><b>Important.</b> Deep Sweep is a stock research and screening board for Indian equities — not investment advice, and not a SEBI-registered adviser or research analyst. Stages, scores and flags follow fixed rules over exchange data and company filings, which can lag or be wrong; verify before acting, and consult a SEBI-registered adviser before investing.</p>
   <div class="site-foot-row">
     <nav aria-label="Footer">
-      <button type="button" data-foot="overview-link">Overview</button><button type="button" data-foot="market-link">Market</button><button type="button" data-foot="filters-link">Screens</button><button type="button" data-foot="gallery-link">Screen any Chart</button><button type="button" data-foot="reports-link">Reports</button><button type="button" data-foot="ipor-link">Upcoming IPO Reports</button><button type="button" data-foot="sectors-link">Sectors</button><button type="button" data-foot="movers-link">Movers</button><button type="button" data-foot="deals-link">Bulk &amp; Block Deals</button><button type="button" data-foot="method">How it works</button>
+      <button type="button" data-foot="overview-link">Overview</button><button type="button" data-foot="market-link">Market</button><button type="button" data-foot="filters-link">Screens</button><button type="button" data-foot="gallery-link">Screen any Chart</button><button type="button" data-foot="reports-link">Reports</button><button type="button" data-foot="ipor-link">Upcoming IPO Reports</button><button type="button" data-foot="sectors-link">Sectors</button><button type="button" data-foot="deals-link">Bulk &amp; Block Deals</button><button type="button" data-foot="method">How it works</button>
     </nav>
     <span>© 2026 Deep Sweep</span>
   </div>
@@ -648,6 +655,6 @@
 <div class="modal" id="modal" role="dialog" aria-modal="true"><div class="mbox"><button class="close" id="mclose" aria-label="Close">&times;</button><div id="mbody"></div></div></div>
 
 <script src="/static/asme-certified.js?v=5" defer></script>
-<script src="/static/app.js?v=67" defer></script>
+<script src="/static/app.js?v=68" defer></script>
 </body>
 </html>
