@@ -42,11 +42,11 @@ import time
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
-sys.path.insert(0, str(Path(__file__).resolve().parent))
+BACKEND = Path(__file__).resolve().parent.parent
+sys.path.insert(0, str(Path(__file__).resolve().parent))   # scripts/ -- for deep_report
+sys.path.insert(0, str(BACKEND))                            # backend/ -- for app.*
 from deep_report import claude_code  # noqa: E402
 from app.movers.ipo_calendar import open_issues  # noqa: E402
-
-BACKEND = Path(__file__).resolve().parent.parent
 OUT_DIR = BACKEND / "data" / "ipo_reports"
 CALENDAR_FILE = OUT_DIR / "calendar.json"
 STATE_FILE = BACKEND.parent / "automation" / "data" / "ipo-reports.json"
