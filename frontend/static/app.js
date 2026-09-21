@@ -269,6 +269,8 @@ function setView(v, opts){
   document.body.dataset.view=VIEW;
   document.querySelectorAll('[data-views]').forEach(el=>{ el.hidden=!el.dataset.views.split(' ').includes(VIEW); });
   document.querySelectorAll('.side-link').forEach(l=>l.classList.toggle('active', l.id===NAVID));
+  const activeLink=document.getElementById(NAVID);
+  if(activeLink) activeLink.scrollIntoView({block:'nearest', inline:'nearest'});
   if(!opts.keep) window.scrollTo({top:0,behavior:'smooth'});
   render();
   if(VIEW==='gallery') openGallery();
@@ -286,6 +288,32 @@ Object.keys(NAV).forEach(id=>{
   const link=document.getElementById(id);
   if(link) link.onclick=e=>{ e.preventDefault(); setView(NAV[id],{nav:id}); };
 });
+
+/* Enough tabs have piled up that the row can silently overflow on ordinary
+   window widths (style.css has fought this same problem a few times as tabs
+   were added). A hidden-scrollbar overflow means whichever tab is right-most
+   -- newest first, so News Channel today -- can end up scrolled out of view
+   with nothing on screen suggesting it exists. Fade the clipped edge and
+   let a plain mouse wheel move the row, on top of the now-visible scrollbar
+   in the CSS. */
+(function(){
+  const nt=document.querySelector('.nav-tabs');
+  if(!nt) return;
+  const update=()=>{
+    const max=nt.scrollWidth-nt.clientWidth;
+    nt.classList.toggle('ov-l', nt.scrollLeft>4);
+    nt.classList.toggle('ov-r', nt.scrollLeft<max-4);
+  };
+  update();
+  nt.addEventListener('scroll', update, {passive:true});
+  window.addEventListener('resize', update);
+  if(window.ResizeObserver) new ResizeObserver(update).observe(nt);
+  nt.addEventListener('wheel', e=>{
+    if(!e.deltaY || e.shiftKey) return;
+    nt.scrollLeft+=e.deltaY;
+    e.preventDefault();
+  }, {passive:false});
+})();
 
 /* Does the current page have a picked set of companies to list? */
 function sliderMoved(){ return SL.some(s=>s.inv ? s.v<s.max : s.v>s.min); }

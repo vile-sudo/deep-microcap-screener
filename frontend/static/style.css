@@ -597,13 +597,24 @@ tbody tr:hover{background:color-mix(in srgb, var(--s1) 10%, transparent)}
 .tiles .tile:nth-child(n+7){animation-delay:.24s}
 
 /* --- scrollbars in the page's own palette --- */
-.tablewrap,.drawer,.pop,.modal{scrollbar-width:thin;scrollbar-color:var(--axis) transparent}
-.tablewrap::-webkit-scrollbar,.drawer::-webkit-scrollbar,.pop::-webkit-scrollbar{width:10px;height:10px}
-.tablewrap::-webkit-scrollbar-thumb,.drawer::-webkit-scrollbar-thumb,.pop::-webkit-scrollbar-thumb{
+.tablewrap,.drawer,.pop,.modal,.nav-tabs{scrollbar-width:thin;scrollbar-color:var(--axis) transparent}
+.tablewrap::-webkit-scrollbar,.drawer::-webkit-scrollbar,.pop::-webkit-scrollbar,.nav-tabs::-webkit-scrollbar{width:10px;height:10px}
+.tablewrap::-webkit-scrollbar-thumb,.drawer::-webkit-scrollbar-thumb,.pop::-webkit-scrollbar-thumb,.nav-tabs::-webkit-scrollbar-thumb{
   background:var(--axis);border-radius:99px;border:3px solid transparent;background-clip:content-box;
 }
 .tablewrap::-webkit-scrollbar-thumb:hover,.drawer::-webkit-scrollbar-thumb:hover{background-clip:content-box;background-color:var(--muted)}
 .tablewrap::-webkit-scrollbar-track{background:transparent}
+
+/* nav-tabs can still overflow its row on ordinary window widths once enough
+   tabs pile up (see the "unconditional now" note further down) -- the
+   scrollbar above makes that state visible instead of silently hidden, and
+   these masks fade the clipped edge so "there's more this way" reads at a
+   glance. .ov-l/.ov-r are toggled by app.js from the container's own scroll
+   position. News Channel, the newest and right-most tab, is exactly what
+   used to vanish off-screen with no hint it existed. */
+.nav-tabs.ov-r{-webkit-mask-image:linear-gradient(to right,#000 calc(100% - 28px),transparent 100%);mask-image:linear-gradient(to right,#000 calc(100% - 28px),transparent 100%)}
+.nav-tabs.ov-l{-webkit-mask-image:linear-gradient(to left,#000 calc(100% - 28px),transparent 100%);mask-image:linear-gradient(to left,#000 calc(100% - 28px),transparent 100%)}
+.nav-tabs.ov-l.ov-r{-webkit-mask-image:linear-gradient(to right,transparent,#000 28px,#000 calc(100% - 28px),transparent 100%);mask-image:linear-gradient(to right,transparent,#000 28px,#000 calc(100% - 28px),transparent 100%)}
 
 ::selection{background:color-mix(in srgb,var(--s1) 26%,transparent)}
 
@@ -1293,8 +1304,7 @@ body{font-size:15px;color:var(--ink);background:#fff}
    is content-based, which is what let ten tabs push the account menu off the
    right edge of the screen entirely); overflow-x:auto means it scrolls
    internally instead, so the search box and account controls never move. */
-.nav-tabs{display:flex;align-items:center;gap:4px;margin-left:auto;min-width:0;overflow-x:auto;scrollbar-width:none}
-.nav-tabs::-webkit-scrollbar{display:none}
+.nav-tabs{display:flex;align-items:center;gap:4px;margin-left:auto;min-width:0;overflow-x:auto}
 .nav .nav-tabs .side-link{display:inline-flex;align-items:center;gap:7px;width:auto;min-height:38px;margin:0;padding:0 12px;border:0;border-radius:8px;background:none;color:#6b7480;font:inherit;font-size:14px;font-weight:500;white-space:nowrap;cursor:pointer}
 .nav .nav-tabs .side-link svg{width:17px;height:17px;flex:none;fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
 .nav .nav-tabs .side-link:hover{background:#f7f8fa;color:var(--ink)}
@@ -1809,8 +1819,7 @@ tbody tr:hover,tbody tr:nth-child(even):hover{background:#f2f9fd}
 .nav-search{order:2;max-width:none}
 .nav-upd{order:1;margin-left:auto}
 .nav-user{order:1}
-.nav-tabs{order:3;width:100%;margin-left:0;overflow-x:auto;scrollbar-width:none;padding-bottom:2px}
-.nav-tabs::-webkit-scrollbar{display:none}
+.nav-tabs{order:3;width:100%;margin-left:0;overflow-x:auto;padding-bottom:6px}
 .nav .nav-tabs .side-link svg{display:block}
 @media (max-width:640px){ .nav-tabs{order:4} .nav-search{order:3} }
 /* report tables: plain rows, not the board table's header style */
