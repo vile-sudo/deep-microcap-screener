@@ -1,7 +1,7 @@
 {
  "trade_date": "2026-09-18",
  "threshold_percent": 4.0,
- "generated_at": "2026-09-21T12:35:12+05:30",
+ "generated_at": "2026-09-21T15:54:17+05:30",
  "stats": {
   "scanned": 3387,
   "flagged": 468,
@@ -1424,17 +1424,9 @@
    "raw_pct_change": 7.21,
    "corporate_action": null,
    "why": {
-    "headline": "M&A Or Stake (Scanx)",
-    "confidence": "low",
-    "evidence": [
-     {
-      "tier": "news",
-      "kind": "M&A or stake",
-      "detail": "Vigilance Security raises Visaka Industries stake to 5.00% via open market buy",
-      "url": "https://news.google.com/rss/articles/CBMivAFBVV95cUxPLWJ4eG9qZTNyUkdMU2o3Ti1hWGxrYU85akdJQW9OVm10aWMxOG85S243QncyLWtPb2taZ0g5OEwwZjRSNVcyU3Rmb2pkYjN6QzdfOU9yM1VzU2xraExrS29kRWxmRW9IVzhJb3RXaG5adktiUDB2by1SWl9SLXBON0JzZG54QVJkSEduMVEzY294OVVnNkd6b2h2QmV2WDZSaXZkOUlNcHc3VUQxc0xYd3NkcjZpQ1VSc3FnSA?oc=5",
-      "source": "Scanx"
-     }
-    ]
+    "headline": "No disclosed reason",
+    "confidence": "none",
+    "evidence": []
    },
    "news_checked": true
   },
@@ -2018,6 +2010,13 @@
       "kind": "fundraise or deal",
       "detail": "JSW Infrastructure Completes ₹7,503 Crore QIP; HSBC Maintains Hold at ₹290",
       "url": "https://news.google.com/rss/articles/CBMixAFBVV95cUxNYU52R2pDOGRhbWVHS2pLUERzajFmSVRoTWR3d3FfWENRMWJBMG1LMkdtSDdQcEpwbGlrN1J1TFlobm5pNjQwNXN6bXR3a0lMZk55eHVaSHpfWFVobEZMQnZhWjQ2ZkhJN2t6RVFzM0FzMWZjQ2V0cG4zd0xhS2w3WkNBRmFPZ09mczF1bV9TRV9hcnZyR0hWSFZSVFFTSVMzVDZwN0FoVElNNDJ2bkJQYXJ5bzZrenBqU0NiY1Z5Ym9qaF9j?oc=5",
+      "source": "Scanx"
+     },
+     {
+      "tier": "news",
+      "kind": "results",
+      "detail": "JSW Infrastructure Files Audited Standalone and Consolidated Results for FY26",
+      "url": "https://news.google.com/rss/articles/CBMi5wFBVV95cUxPbFdQbzBZekYxM2FRUnFzMzFDU2pCX1lNWU42SWplUVlPMjJHZDdrTFZtOVlYLWhsbDFQNzAxMVpKSUZEb2tSNjZFM25sM0RfUGJzc2dEM2ZHWE0tTmlwdHFMTVJFRXY3VXhiREJnX0JYMU1PN25xY3djTmEtVGJyZ2MzaWczZTF3aDRkb1IybGZHd2dsQVhvQkNaSXFwdk82UHBtRDBoMHJJdmlqSDhpU1FBNnUyT0kyZ2tENWFZek9ZNmRXQXJNN3ZQcV82ZFB4eDJ6YVoxZ1ZLVmRwcEdZLUotM1lkUkE?oc=5",
       "source": "Scanx"
      }
     ]
@@ -2886,16 +2885,16 @@
      {
       "tier": "news",
       "kind": "operations",
-      "detail": "ACME Solar shares gain 6% as HSBC raises target; BESS project commissioned",
-      "url": "https://news.google.com/rss/articles/CBMivwFBVV95cUxQdmxwUzJyM2FkVUpwd1FzRmdOZzVUeXhnYk52RnQwMVlyM1ZFbWwxc0JQYjVOSVdyMEEyRDZib2JRNjVBYUpRVW9LZFJucDYtUENqT0M2YnFXSV9oeU5PbHIxNUNPX3dvcEZtRUc3WWtnNlRkTndUallEUmxCYVJvMURUZXpJRjRtVUpGU1QzUkRLdWJOZ0tfeE9uT29ZR2VEcVl6c1h1VFZpcXdzT3lXQzFaTm9Sa2szWmhnNG8zZ9IBxAFBVV95cUxQT1BIX0VuaXMzbmtlc1FVY0EweW51X1UwR280OGFhTVcxV3h4Y0U2SGtvd096enlxY1NRQnRnNDFfRnM2UjJZR3diLTlBbW5ZX2xZTDN6Q3pzT1liZGJFTko0Y2xtdlFGYlcyVjZwampOM0hPVk9BOXg2UnpFUWkybGhkVmc4VkR3VUpNbWQwMzAxQXNYb2x6NnQtNEZxLW5wUm4zU0daMzl0d2Z2VGEtOTIzbVI1Z0VFSmQ1UmU2Q3dPR1hl?oc=5",
-      "source": "CNBC TV18"
+      "detail": "ACME Solar commissions 66.68 MW solar, 300 MWh BESS in Rajasthan",
+      "url": "https://news.google.com/rss/articles/CBMixwFBVV95cUxOeDhDWnhteE42dGJBUXozc08tek5lOGVMc1RDdk5aN2s5VjQ4SmRRWUdGbFU4OW1zb05ueHJ4aEIzeGtjd2pWRFNMXzgzWEdIVHJMWmNyUmx2R0d3QVdyV0hxeGM5UVZCT0VhNC0tZ242SEhLemRQT2VPeFUwTEwzZVlVSDNEUFRwc1lzU09YQmk2UEtGaHM0UXRFWFNQQ2FnMFpnT0xYTnlpWU9jcDA1ZVg1M2hMMURqTnBCM1dQOHI0WFBxcmtz0gHMAUFVX3lxTFBoZFBxVTJfZEE2dWhTUFloRWpWRUZnTlZobjVQZHVyeU9tZTJXS29QMlRFcGhaWFIxc2xxZ0dMd1FRQThpaGpCVDFnNUpJMm40YmEzYlFuUTRvc1lLbk52cnZXTWwxR3RtbnlvdXYtVXFzcWNhUFNpQmhqUUxXTENZS0hwY2pLdktMR1d2WjI2bEJFLUR5YTUzWXFmNXZybEh5NHJ5N0JCUTN0NHZaWGdlRHFIbUNCdEIybkpNVUd0dk9Jek9QeXM4am4zNw?oc=5",
+      "source": "Economic Times"
      },
      {
       "tier": "news",
       "kind": "operations",
-      "detail": "ACME Solar commissions 66.7MW solar, 300MWh BESS capacity in Rajasthan",
-      "url": "https://news.google.com/rss/articles/CBMi6wFBVV95cUxNZVdFMDJUZkJnNXBWLU1BYmVLQk80NVVTTDlTUUlYSWdRTHJWS2V0Z092bUVsN2xwTTJucUNseFZ2cjg0VkVvZEJLTG5RTEV1aHJTQUo1VzEzaE1LMEhMczZzVVQ5Q1RqLTdaT1Y3NmxGTUFtQ0hzbFpiNkw4R1d6REg2azZWcmNMUks3YnFtTGNQRlRsUm9pUjJ5Zk94dWNlT3RtaDhxdERUWGxMdjh6WWJ3d0VDY2dGazc2b2dpeFB6WDlGRlozNG5QRFE1M2Q1SThhOXIxZW9FNC13YzQzX0c2WUliU2J2U2RV0gHwAUFVX3lxTE5FMVI3emlDaWFLTXdXNTloLXphZWxrWGQzekhOU2hrendQTFB2cE9KSzctMnIwVExQRUpycVZtbThibFhybVF5c2dWOVVIU1BzWE5LcDB4cFZvZ1FhWS1JLXcxOGhQcXZWeUR1THBYUTJNNExCOEl0V0lFQUo5UENIaEpGTHAxckdqeUd0WDhTQlU2eTdnTHhxT0NDX0RPcnRqdTB4ME04VWF6NGQ3QXduQ29GWGFIWUp1MUNzTW5ES0V2UVRNeHFncmZKdnppRUNrRl9vUjREeVVpQzNPUFRyaVNhOUVpRGdwY0ZqVENqZw?oc=5",
-      "source": "Times of India"
+      "detail": "ACME Solar shares gain 6% as HSBC raises target; BESS project commissioned",
+      "url": "https://news.google.com/rss/articles/CBMivwFBVV95cUxQdmxwUzJyM2FkVUpwd1FzRmdOZzVUeXhnYk52RnQwMVlyM1ZFbWwxc0JQYjVOSVdyMEEyRDZib2JRNjVBYUpRVW9LZFJucDYtUENqT0M2YnFXSV9oeU5PbHIxNUNPX3dvcEZtRUc3WWtnNlRkTndUallEUmxCYVJvMURUZXpJRjRtVUpGU1QzUkRLdWJOZ0tfeE9uT29ZR2VEcVl6c1h1VFZpcXdzT3lXQzFaTm9Sa2szWmhnNG8zZ9IBxAFBVV95cUxQT1BIX0VuaXMzbmtlc1FVY0EweW51X1UwR280OGFhTVcxV3h4Y0U2SGtvd096enlxY1NRQnRnNDFfRnM2UjJZR3diLTlBbW5ZX2xZTDN6Q3pzT1liZGJFTko0Y2xtdlFGYlcyVjZwampOM0hPVk9BOXg2UnpFUWkybGhkVmc4VkR3VUpNbWQwMzAxQXNYb2x6NnQtNEZxLW5wUm4zU0daMzl0d2Z2VGEtOTIzbVI1Z0VFSmQ1UmU2Q3dPR1hl?oc=5",
+      "source": "CNBC TV18"
      }
     ]
    },
@@ -3188,6 +3187,13 @@
       "kind": "results",
       "detail": "APL Apollo Tubes schedules Q1FY27 earnings call for Aug 3 at 11:30 AM",
       "url": "https://news.google.com/rss/articles/CBMivgFBVV95cUxQNWdKT3Y3NndrYUg3eXVteklyVW5kUmZxVDhSR3k0S0R4TnFDNTNxd2pRem44ZzVsbTFkY2RWS1JXX1hIQ1FuZGtDcTFvT005NUExOWgtbkI3QkhaVXB4emFUTUl5UE1lSkI4VTBNbDY2dTkxRXVuRi11WHo3RVRhbkFDZnFQdjVDUHNaVU9EUGhRc2phZ0llTUVCSVhPM3JmSzEzZG5DUGhLdFB2LS1DcDFIV2dCS3BtQXd0QXp3?oc=5",
+      "source": "Scanx"
+     },
+     {
+      "tier": "news",
+      "kind": "results",
+      "detail": "APL Apollo Tubes Q4FY26: Profit Up 20.9%; EBITDA/Ton ₹5,500 Sustainable, FY27 Guidance Intact",
+      "url": "https://news.google.com/rss/articles/CBMi0AFBVV95cUxQZ0doSUUxSy1xR05TcWEzZmI0ZVhvQmlIMDN1WkMxdXhPaHZDRDlZeFJHZUtBY0hLSGRpZUFKY0dLRGZQOTQzN0FaMHlDeFo5SW5PTEZuNUJjRG13Q0l2aUlpMUVDNmlWZUFXWXVRVFRJTHpIQ0ZXYjdpbXd1U3o3c2RPT0JSTk1sUzB3bnRxdzNuaFc2ZmFTVWpxN2V6TTYzTk9uX1MzemRIUmF1anRQcldXaFFPd25Wczk5ak1oMlhHREJFQlpWb2g1N1pUazdD?oc=5",
       "source": "Scanx"
      }
     ]
@@ -3755,22 +3761,22 @@
    "raw_pct_change": 5.11,
    "corporate_action": null,
    "why": {
-    "headline": "Fundraise Or Deal (Mint)",
+    "headline": "Fundraise Or Deal (Moneycontrol)",
     "confidence": "medium",
     "evidence": [
-     {
-      "tier": "news",
-      "kind": "fundraise or deal",
-      "detail": "Final day to buy Hero Motors, SS Retail, Jindal Supreme: Which issue has highest IPO GMP? Check subscription, review",
-      "url": "https://news.google.com/rss/articles/CBMigAJBVV95cUxPYmJmeHM5dlZWT2hXWFNvdEJ2dFlwd0JIS29qaTQzYUR4TXZUdUJTUlA4RHlvaU55SEJQa0t4aEV0THZFNWN0dTNfMkIzZGVNT3JnWkFXNmtyVkYyc1ZHQjMxcTRaZWpCakpMQlpLTURZQzUtXzhoNmZ3bHB1NUU0aTVBSGlRSXl5djRQNGJNOWthMUZLUFgzRnZKbFRwbno4RkZpRDJlRkFmMkoxaXhFWE1xY21LY19Lak5jdk5jME8xeGFrYmdzYjhsMVNnVEY3QjJpajVlS0FNMFp2TFo5ZjltWWw4bFp4RWY2Vi1mNFRnRjBvaS0yUGVFcU9nZi1t0gGGAkFVX3lxTE1tRFA4ZzJGQzdlNDNjVkdHLUk1QXhYQzd6UktZVHUtVDdqSDhwU2tpcXNZMF9MM19rNndUMDVnTERNb1k2a3FZbzNRaklzcmJQaFVXMWE1SGlSdWphdGcyWGRaLXZFTmotSVViOU5ESElmOWwxMlVoSUZPYTZvWnhKdWZmNDRWVXRsZmlLRkZMZTlod3VBUl9tNHJnUHNIV1BJSHY3aS1pZVRZSDVudEJUM1A0aTM0OHF5N1RhVWZHQTdvVnNyYjd1UnNURWZZUHBDWHBuTTRSSWdOZ0J0aWxVSDJyT2dBZUtCNmdXQWoydFI5ZUFOQUVlQlJfWnlUbGtJdlZEM0E?oc=5",
-      "source": "Mint"
-     },
      {
       "tier": "news",
       "kind": "fundraise or deal",
       "detail": "SS Retail IPO subscribed 103x on last day of bidding; GMP rises to 33%",
       "url": "https://news.google.com/rss/articles/CBMi1wFBVV95cUxQN2FIZFItbHYyY3YxSVpQZVRoTHluSktaX0ZRTm00U0REdFVHcm1za2ZmQTlHOVRrUnQtTFY1aDFWUkFUckJqS0xtQzFDNW9Fczd5NFRoZnFUS1JZM05JZDVkZjgtQ1dLcUYyTGxxSEtDRTN6R1FEZ3VCWmZtRV9sUlhuVDhTcnNMWUp4d25fWktPMkdNWjZIUVRHYkFxcGhKMGNRaF9nYTdnSlZ4ajBhX2h3SXh1TU5QalEyY05DaGMyZzFMNFdScl81RGV1ckZoWVdNZzBoa9IB3AFBVV95cUxNTFozU3JFc0lqcTBiTVlqWDdRVmM0RXBKNUZVeVdQa0phNng5X25RSDRpTEs0ekwyUFdwY2IyUm5Sa0hVd1ExYlNsWS1sX3Q5UHJ2NTUtd1hfbkM2N1RNcEFyclhKUEtXUzd1R01mcGxSS29QY1NVcExTTDVzZlpLNzdfWWRjYWQwOFpfM1UxQnQycm93a21wZ2xkeWJEQzBKVl8xMGk3TEw2MlAzVEpHZXV2R0QxeDJCd2ZKaHk4RmhXSEY5bEVFVjlNSU5XWTBnOFlRUDI0OHpoSlNM?oc=5",
       "source": "Moneycontrol"
+     },
+     {
+      "tier": "news",
+      "kind": "fundraise or deal",
+      "detail": "Final day to buy Hero Motors, SS Retail, Jindal Supreme: Which issue has highest IPO GMP? Check subscription, review",
+      "url": "https://news.google.com/rss/articles/CBMigAJBVV95cUxPYmJmeHM5dlZWT2hXWFNvdEJ2dFlwd0JIS29qaTQzYUR4TXZUdUJTUlA4RHlvaU55SEJQa0t4aEV0THZFNWN0dTNfMkIzZGVNT3JnWkFXNmtyVkYyc1ZHQjMxcTRaZWpCakpMQlpLTURZQzUtXzhoNmZ3bHB1NUU0aTVBSGlRSXl5djRQNGJNOWthMUZLUFgzRnZKbFRwbno4RkZpRDJlRkFmMkoxaXhFWE1xY21LY19Lak5jdk5jME8xeGFrYmdzYjhsMVNnVEY3QjJpajVlS0FNMFp2TFo5ZjltWWw4bFp4RWY2Vi1mNFRnRjBvaS0yUGVFcU9nZi1t0gGGAkFVX3lxTE1tRFA4ZzJGQzdlNDNjVkdHLUk1QXhYQzd6UktZVHUtVDdqSDhwU2tpcXNZMF9MM19rNndUMDVnTERNb1k2a3FZbzNRaklzcmJQaFVXMWE1SGlSdWphdGcyWGRaLXZFTmotSVViOU5ESElmOWwxMlVoSUZPYTZvWnhKdWZmNDRWVXRsZmlLRkZMZTlod3VBUl9tNHJnUHNIV1BJSHY3aS1pZVRZSDVudEJUM1A0aTM0OHF5N1RhVWZHQTdvVnNyYjd1UnNURWZZUHBDWHBuTTRSSWdOZ0J0aWxVSDJyT2dBZUtCNmdXQWoydFI5ZUFOQUVlQlJfWnlUbGtJdlZEM0E?oc=5",
+      "source": "Mint"
      },
      {
       "tier": "news",
@@ -5190,9 +5196,17 @@
    "raw_pct_change": 4.92,
    "corporate_action": null,
    "why": {
-    "headline": "No disclosed reason",
-    "confidence": "none",
-    "evidence": []
+    "headline": "Operations (Economic Times)",
+    "confidence": "medium",
+    "evidence": [
+     {
+      "tier": "news",
+      "kind": "operations",
+      "detail": "Etihad launches Corporate Care for priority support to business travellers",
+      "url": "https://news.google.com/rss/articles/CBMi7AFBVV95cUxPSkttU2praTFCUHR0ZUFYYmgteU5KTGw3UElQTm8wdUcyUGwzWUY1dVE4dThVU3lWWm1EZnhKMXVNNHZmRkREQXNqVWJ0c0tSOWxaQ1BkOV9RNzNvM1B6WjZaVUFlNldhV3Q5bUxyQmwxa0ZvUFNLbUZXNDJQMVI0QWltWm56cG5IUmlhQkRoOEVuZVlRakJKNmJOVlAwUi1NaF9sOXUzQzNWTUtQWGo4cWtSckVsdWFIZW9wcmhuSXZTS083ZjhwcHhVUDFsaDQxZ1RsTGUtbDZKZUJYTFBkQTNzc09nYnk3QXFEa9IB8AFBVV95cUxPTFR3eldWdE1GWE53QUdRXzBCbWpXLUFzeVlNR2ZJSlljQTV1Q00ta1ctQUN0UWpMWklGLW5HeXVvX3Vja2t6RXRmU1dLSk1nMjBMdDQ1NlRpdVFfTUFOZHNhMnRSb0NZZ2IwNmI1RGZoVU9QLWo4TTRhUHJoWlNUalFzVS1iS19iRWEzQW9GRDU2WW85YlhXNUtsNDlZbFVuaDIzX2Q5aV9OWmhCQW5maE03c3BaQzBvcld3OTI4cnFMLWRST0Flc1MzMF9RbVlIeW5Sc0xHNFRkdDU1M0t5Q25Ha3BLU05QYnVtUnBkd20?oc=5",
+      "source": "Economic Times"
+     }
+    ]
    },
    "news_checked": true
   },
@@ -8092,17 +8106,17 @@
      },
      {
       "tier": "news",
-      "kind": "broker action",
-      "detail": "Paytm shares upgraded, Pine Labs target raised by JPMorgan after MDR decision",
-      "url": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxQTVcybnRCSngtUWwyX1J6UjlEdUdSVHh6TmNnOHNVdUxjNVZkckNjc2FkRjlZbnU5VC1oLUhaMVNhRkJmZWJBam9WVXdGQkNvSFJQeDZlSnRITjBJZVZZeTNTZjBVTjQxQWo5bkdfMHpIRFZPQXlhLWdLTHBCSWVtWmQweElrdmpLZHprVFFvY09nUEpxRElrQ0lzNHkwOHZGSHVLRWd6d2ZFdzlPS2dDM3ExaE1ISTNtc2M40gHAAUFVX3lxTE5MNzNFc2FIRFdnV2kxYXNGNUtrN3V5S2ZoZnFiQk9EUHNFem1KajlVdlJJUXRLN1B0VGZGcUNIOWtrUmVGSlM5cHM3aERLSjAxY0ZKcGhQN2xUdE5mY3FvaThhTHpjMm41aktjT1E0MmowSlk5NzZ2Y3Q0V2hUckV2cHRJcER4VG94N2tveGh0NjZ4Ty1KeXRubWh6allKMmlzM2E4LVBfUE1xLXdWMVpXUDVYY3pXNUNtQmk5dEsxMA?oc=5",
-      "source": "CNBC TV18"
-     },
-     {
-      "tier": "news",
       "kind": "order win",
       "detail": "UPI MDR bonanza: Why Paytm may win bigger, but Pine Labs could gain faster",
       "url": "https://news.google.com/rss/articles/CBMi3wFBVV95cUxNNFUzT2JWU21vRFNnZVZ2dFlGLW93QXpBRDYtZ1pPR21nZGZPMmNVWUhIU2RSTVNZRVZRT3NCSGNtUGVNZE1hZS1Xa1g0ejVaRWNFcmlRNTNtbld4cWNOb2UtdXE3U0JuemhzczA4Y184eExiQUhjMjMzMUxBdl9IcFVFNEI0UVhnOWsxSmFqUlRfR2ZYbmNBQlpOeDh2VTFSYmlzZ25aUE9RNWpJSU85OFlZYXgxZkJTRzlLN3BJR2tDX3h6UnRtWVlDZzR1WjlUX0JDTjFiWThzNHJjWWxr0gHkAUFVX3lxTE9DVFBFbDdMenFWWHlZMGl3ZW9iTFYtODVIUWVUbjYtczVOU1R3Y1NSSC0yb192SUp1Wlp2ZDM2ZDlMOXd5UUJkSkZxS3lNV1JLVTlUOG01MUE0eG8tSjdUX1c4c0htY081VzE4aXM3c19LdTBUclZlUGFzd2I4OWY3MTlLVjc3eXQ0R0VWZVBKTlNFRXIxOE5zY1p1Mk9Tam9wSXoyUjh6WWFZbTZqRXdFU2V1bk5Ic2ExTS05TEtDbl84dGhUX0o4bTc3a242R1lPdUlJZE1HTDBveVB3VUY5d1M2UQ?oc=5",
       "source": "Economic Times"
+     },
+     {
+      "tier": "news",
+      "kind": "results",
+      "detail": "Pine Labs share price jumps 5%: Why new UPI MDR rules could boost earnings - Check new target",
+      "url": "https://news.google.com/rss/articles/CBMi8AFBVV95cUxORVBpNV81dXN2MkVZTWJHR2xDcU9kRFZtZjdfNjVGa2EwQmE5TG1sRWNuVXVyLUI0dk1ZdHE1VXZ1TTBqcnhwY19YY3NXRmtDMTExQUtDOXh0cWFWMmdhZE0xN0pvaXRuZUVjVDhTWUdxcnpxXzlTM1B2Vk43UF91b1VQSjNRcXFMMWdSbVBpbzgyTUVndTJ1MlNfVURzZzVIc2l3cnBMTDlwV3JnR1liSGxLYkczMndfRm51Z3BlRkR4bWVCM3pXdy1KZVZicDEwUm9UbjJtNURrZFVDd19kLWxqOUVNaV9ZMTlfODM2VzTSAfYBQVVfeXFMTWlnZlJzWWc1bkJ6c2hKU2ZjaExmZmZyMldRbWpsMWh0MVJJTE1rOWlEWVRUc2NzNnVmNDh1SFRNN0JhUThJRmxsLS1MY1g3MUFDSEpLaGJ5ZklNVGlHLXRlU1FPNnhkb2tWdFdMRjlqcU96T0cxaGFYWGoxNGVlUXN4LXB2aWIxWGV1SEFCNlRlWUYwZEtLLUNkcnI2QzVsTXlNU0hzZi1fdlVxaTZfMTRjcmN0M2t4eWViN0NLQjZUcW4tUHVsRzZrTWpwNnlTazlEaW9TWm56cTI0YVo4VFNmX1p1VWs1QWdmdGFtWnZQLVNZTDN3?oc=5",
+      "source": "Mint"
      },
      {
       "tier": "deal",
@@ -9579,15 +9593,15 @@
    "raw_pct_change": -4.8,
    "corporate_action": null,
    "why": {
-    "headline": "M&A Or Stake (Economic Times)",
-    "confidence": "medium",
+    "headline": "M&A Or Stake (Goodreturns)",
+    "confidence": "low",
     "evidence": [
      {
       "tier": "news",
       "kind": "M&A or stake",
-      "detail": "Empower India signs non-binding term sheet to acquire 100% stake in Valiance Engineers",
-      "url": "https://news.google.com/rss/articles/CBMi7AFBVV95cUxOZmFfMVBPM0pLZGFjRXJOczNFWTMyVHJhS1hSSzREbFJyUURwZTZEMVFoaHN3Ry1sSjhUZ1pwWWRJQkV0M0lqdEQ2MTI4cGluSWpmTFYtVTdhTXZpLXJpaDJrdmdVWnpqTW83SGxkdFV2bFBlOE5FdlFmSk1RVy1lSm5vdEhhTmd2UmM0Q2FsYk9nZk9RX1pJMVUtV1BwOUpETnpXRGsxa1ZUczVPU3F0WGhIY3dxYm1rejN6Vjdtd3lxQTVtdERJMXZ2WGs3ZFh4YnQ1Y1hVeTgxLWFVOW9qWHFaNFlnUEtjTmpBZNIB8gFBVV95cUxPREtFV1hLRHJnQWRFbkRqWmNUdlByVE1CZjBmT1pFY0sxaGNwNzBod3E1R29oRml6andvMWF3ZV84ejZPRHE3eVJwT2NBZV9DNE4tTVVnOVVXZjlxaV9peTg2MVdVSEtiWXRPOXVZX0dpbXUxeDQ1bzdZN1BPVVNKQmozYUF0ZzVGR1pLRHdaYThWZTF3S21tN1ZpM1NFelZPOWhEQnFfSExuTGNPVVZaSkFQUEtab2tnYnVhUjN4Z2NXc2NOSHJZcWUxNXRydTF4UE94dEYxVlhsYS1Hb0ZRTW1QckZRaXZxZGJsbURYOEVxdw?oc=5",
-      "source": "Economic Times"
+      "detail": "Empower India Shares Hit 5% Upper Circuit After Acquisition Plan; Company To Buy 100% Of Valiance Engineers",
+      "url": "https://news.google.com/rss/articles/CBMi2gFBVV95cUxOREQwMkZkbUtmNm1WdEpWdzJzTS1aOEdUVzJRY0U4UWczSGJYZ2kzTlQ3UWpGTmF0Vy1UUjc4MUwxZ3pHV1RDd2NQZlNibzNtTXZia2JGVnluczBzZnU5OG5maUxhVEVLd2poWHpmSEhTS0ZTTENpN050SG1hbElMX2NsQ3VBWGZ1emhPbkl5dWVGUlRnaS15dFNuN2Z0RXhxa2FwWWtEN3FMTGRESlRleTJCbnNQSHlCUVVSeUF5RHVwQkV3TVpIdFdjN09adnB6THdoRHdEcl9HUQ?oc=5",
+      "source": "Goodreturns"
      }
     ]
    },
@@ -9710,6 +9724,13 @@
       "detail": "OnMobile Global Appoints Independent Law Firm to Probe Former Consultant's Claims",
       "url": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxPRVN4ajBFd3pGLTBEMmlYakFTaEJHTERuRTk5cjNuSDNIaWxSMm5BVk5Sd0o5OXF3VVdtVWhDWHQyNXJ3dkVYcWJZN2xmRjkxbS1JaTFDUG51UHZWTS1QWTZPNzM3b1ZPUUw0ejcxRXctbHVSNjRzb053d2ZvVk1ySjNWWlpDTE4zZV9sNFJLMzloeDF2RE1Xd1Z6bXN3dllla0FwQTdvWXUzVmM?oc=5",
       "source": "Sahi"
+     },
+     {
+      "tier": "news",
+      "kind": "fundraise or deal",
+      "detail": "OnMobile Global allots NCDs worth ₹65 Cr via private placement",
+      "url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxQZ1oweENsU0lUcTM5Z2dWU1JSSU9NQzRfbHJjOC12NWFtaGtlQ2RybWpuT0c1cG1YMzloVlVPRHgxOXI4MmYwX3FNbHZkNXllelZraGxqUndtOHh0Yzd5WkJPU2V0dmdpcFFDbTZ1bTdWZ2czOWd2T0tIXzdRaXl3SDFmN1pCUWdZRTRfNDNkTDhGLUV6MmZ5TmNudm1sR1ViY3pnS2F3N202YzZoU1lmd282ZXd4OE83dVE?oc=5",
+      "source": "Scanx"
      }
     ]
    },
@@ -9880,9 +9901,16 @@
    "raw_pct_change": -4.94,
    "corporate_action": null,
    "why": {
-    "headline": "Fundraise Or Deal (Mint)",
+    "headline": "Regulatory Or Legal (Hindu BusinessLine)",
     "confidence": "medium",
     "evidence": [
+     {
+      "tier": "news",
+      "kind": "regulatory or legal",
+      "detail": "SEBI board may take up changes to PMS, settlement regulations",
+      "url": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxPS1hwb29qNGljQ25KYVhqS1lHR1hacWZ5MktlLUFkY1FFNVNnU05CNm0yWEloQUxkS0pYM3NlVTRJNWF6SnBac0FjNk5Fak5JaVZmZVpxN1o5MUlVeE9Ha2c2dDBLdmdwYTBXV2d0WGkyOTlNNkxQcDByWnhkOVF5MGFiQ1dISWlRcEtBaXlLZEVjOWZBZXVLRUJ3cndveDdZdHA2WmJaM0REMGNGWjRsbkdfcnBtYnZJTFpLWHhmVk5hcTDSAcoBQVVfeXFMTkxtRGhWSHlvbGp3OEVtalUzUDJua1NvbXZqUEZDNmMwdmZ5WF95NFNxVHBuOS12dlJTeDhId1RvQ0FMTlJoTEVKM2RfSncwWjc1SDJ0TUh1Q3FnVTZaYzU1ckJWdXplR1N2M085TFVBaGM5N3MyNUpPMk5TQjhXbnNnR1Zna2ZyRlFRTGl5cmw5Q1ZCak0wS2xjUTEzNEpwaUxZT1Y2a29LUnU4R3FaVHNFMG9MRjVVRkVUNVA4eFBHMnhwSjR1SzF3Zw?oc=5",
+      "source": "Hindu BusinessLine"
+     },
      {
       "tier": "news",
       "kind": "fundraise or deal",
@@ -9893,9 +9921,9 @@
      {
       "tier": "news",
       "kind": "regulatory or legal",
-      "detail": "Bengal SIR tribunals may take 12 years to decide on appeals",
-      "url": "https://news.google.com/rss/articles/CBMixgFBVV95cUxPWnYzOE80UmNBZTBUSkRSLUpCdTQ2RHFXUVVld1hJTGpoWkM3WHl4bjJUSDMxWG9qaEJMR3U4NEN2RlF0OTMtZTQ3aFE3RW5TbGcxWmprMmJVaUk3MjNLOTZhWDB2SXNydFUyUUpITVR3MnR2NEk3cTVQbkg1YXR5MjNDMGdRX3k4NnhUeThkMWdGenZvSTVQdWhBUk1LTDVmWkFaMDF0VmhKU0k5OU1CWU0tQXdhdW1CckJwZmNTVmVYaUJBLXfSAcsBQVVfeXFMT1dlekJtd2lhdzM4X0UtQTVzeTU3S1FFaC1vVUtHNnRmY2VrWjhOQ2tNMTZmbDFyV1ByZG5SY1Q2VzRJVDV2V2tuR1YzbU1TSDhCZ2FSUWpZLVo5cl93Wlh2ajN6d0p4M25BZGN0UXpRQW10aGZJR1IyZTdOeTVjdDJqbUw5T0YyR1VOcnFlcVc3X3Qwelp2eUU2ZzFnc2pjR0NxQkJpOUYyRjhGbk1EdzRSOGszSFRKVlFhNWwwemRUN0w5bm5BS1A2bTA?oc=5",
-      "source": "Times of India"
+      "detail": "Sebi may take up PMS regulation overhaul at September 24 board meeting",
+      "url": "https://news.google.com/rss/articles/CBMi0wFBVV95cUxORVlDTTdIV0ZtYmNyd3cxQldudkxwV0dvTWliMGltVC0zbmZla1V5ZDQyRjNPV1B5bEtkalVOS2JqRTlHMTNZanhyVmFuTkJzWXJKME51T29INVh1SFpBZnJfeG96RWtYQ3JSQko1S2ZCZDRSTVlJX1JiNUpWTDZWWnRRdDBMRkxZVEpfV2RfWjNDby1TVmJQRG5FLV9HUFpUOXREVWxxeVJMck9PTXo3dnJmLXB5R1hFa0kzNUREX2ExcTZHVjBIUkV3dndXcGdNZ3F3?oc=5",
+      "source": "Business Standard"
      }
     ]
    },
@@ -10602,6 +10630,13 @@
       "kind": "operations",
       "detail": "Filatex Fashions Completes EGM Notice Publication Following Board Approvals",
       "url": "https://news.google.com/rss/articles/CBMi2wFBVV95cUxOTFIwLUI4UHRfaXVRSkgwblcxYTNtSjVJeU1PUlpjYnB3TXFIVVY3QkVXb2ZkZ3dzN1NyLTZCd2dBRDdnRWhYR2ZpbTU2X0ZURjl1bkhzMGQtU0tYajRtS1loN3YzOGk0TUNzcjhrRldoQ2tyenppWFUwZC10U24yOS1iRzNNNEZvUzVqOG8xZ0VUSk1RMFRINGphaF9ma1VYZ3V0aktkVnp1azJjZ2hMUG9oWG42dGlpYlotYlRDZHZfWkNHbGRYMTIzVHRrbGc0ZERERjhzc2g2ckE?oc=5",
+      "source": "Scanx"
+     },
+     {
+      "tier": "news",
+      "kind": "management change",
+      "detail": "Filatex Fashions appoints CS, Independent Director, reshuffles board",
+      "url": "https://news.google.com/rss/articles/CBMiywFBVV95cUxPcWVZT0NqRG1WajF5RzBPbjZoRUNHOWFoanFVYUlwM2prdUJMQjRIeDZYTGNlS1ZNb192N1NVQUkyaGdUWmtvWXNoUXBRZlhyRlV0d1htUVNXMjFsemtJeUlTMDhmQWpRUDZNOTFPeTBYdWhTV3JzdW5ULUl4WjhTeVhibm1mN3VJeGJ6WjJxb2lpbUp5YTRwMTVRQTI2cjRmcTFJM2ctS2JWclpNSTI3a2czTWZseEpUaXBPc2FjaHU1aEQtTGdnMWcxOA?oc=5",
       "source": "Scanx"
      }
     ]
