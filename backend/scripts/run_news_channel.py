@@ -6,9 +6,9 @@ backend/data/news_channel/latest.json.
     python scripts/run_news_channel.py
 
 Run by .github/workflows/news_channel.yml on a schedule, and on demand via
-POST /api/admin/news-channel/run-now. See app/news_channel.py for the rules
-and why this only ever makes 3 requests (one per country) against
-newsdata.io's 200-requests/day free plan.
+POST /api/admin/news-channel/run-now. See app/news_channel.py for the two
+sources (Google News RSS, always; newsdata.io, only when
+NEWSDATA_API_KEY is set) and the rules behind each.
 """
 import sys
 from pathlib import Path
@@ -20,9 +20,6 @@ from app.config import get_settings  # noqa: E402
 
 def main() -> int:
     key = get_settings().newsdata_api_key
-    if not key:
-        print("news channel: NEWSDATA_API_KEY not set; nothing to do")
-        return 0
     payload = news_channel.write(key)
     msg = f"news channel: {payload['count']} items"
     if payload.get("errors"):
