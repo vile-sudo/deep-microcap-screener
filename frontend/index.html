@@ -215,7 +215,6 @@
       <button class="side-link active" id="overview-link" type="button"><svg viewBox="0 0 24 24"><path d="M3 11.5 12 4l9 7.5"/><path d="M5.5 10v9.5h13V10"/></svg>Overview</button>
       <button class="side-link" id="themes-link" type="button"><svg viewBox="0 0 24 24"><path d="M3.5 7.5h6l2 2h9v10h-17z"/></svg>Themes</button>
       <button class="side-link" id="market-link" type="button"><svg viewBox="0 0 24 24"><path d="M4 19.5h16"/><path d="M7 16v-5"/><path d="M12 16V7"/><path d="M17 16v-8"/></svg>Market</button>
-      <button class="side-link" id="watchlist-link" type="button"><svg viewBox="0 0 24 24"><path d="M12 4.5l2.3 4.7 5.2.8-3.8 3.6.9 5.2L12 16.4l-4.6 2.4.9-5.2-3.8-3.6 5.2-.8z"/></svg>Watchlist<span class="side-count" id="wcount"></span></button>
       <button class="side-link" id="filters-link" type="button" title="Screen filters"><svg viewBox="0 0 24 24"><path d="M3 12h4l2.5-5 4 10 2.5-5H21"/></svg>Screens</button>
       <button class="side-link" id="gallery-link" type="button" title="Screen any Chart"><svg viewBox="0 0 24 24"><rect x="4" y="4.5" width="16" height="15" rx="2"/><path d="M8 15l3-3.5 2.5 2 3-4.5"/></svg>Screen any Chart<span class="side-count" id="gallery-count"></span></button>
       <button class="side-link" id="reports-link" type="button" title="Research Reports"><svg viewBox="0 0 24 24"><path d="M7 3.5h7.5L19 8v12.5H7z"/><path d="M14.5 3.5V8H19"/><path d="M10 12h6M10 15.5h6M10 19h3.5"/></svg>Reports</button>
@@ -444,6 +443,7 @@
   <div class="dl-tabs" role="tablist">
     <button class="dl-tab on" type="button" data-fltab="filters" role="tab" aria-selected="true">Filters</button>
     <button class="dl-tab" type="button" data-fltab="movers" role="tab" aria-selected="false">Movers</button>
+    <button class="dl-tab" type="button" data-fltab="watchlist" role="tab" aria-selected="false">Watchlist <span class="tc" id="wcount"></span></button>
   </div>
 
   <div id="fltab-filters">
@@ -532,12 +532,12 @@
     <div class="mv-count" id="mv-count"></div>
     <div id="mv-body"><p class="view-hint">Loading…</p></div>
   </div>
-</section>
 
-<section class="dashboard-section" data-views="watchlist" aria-labelledby="watchlist-title">
-  <div class="section-heading"><div><span class="eyebrow">MARKET</span><h2 id="watchlist-title">Watchlist</h2><p class="section-copy">Every company you starred. Click the ☆ beside any company to add it here, or × to remove it.</p></div></div>
+  <div id="fltab-watchlist" hidden>
+    <p class="section-copy">Every company you starred. Click the ☆ beside any company to add it here, or × to remove it.</p>
+    <div class="card wl" id="wl"></div>
+  </div>
 </section>
-<section class="card wl" id="wl" data-views="watchlist" aria-label="My watchlist"></section>
 
 <div class="results-head" id="results-head" hidden></div>
 <div class="card" id="research" style="padding:0;overflow:hidden" hidden>
@@ -655,6 +655,6 @@
 <div class="modal" id="modal" role="dialog" aria-modal="true"><div class="mbox"><button class="close" id="mclose" aria-label="Close">&times;</button><div id="mbody"></div></div></div>
 
 <script src="/static/asme-certified.js?v=5" defer></script>
-<script src="/static/app.js?v=68" defer></script>
+<script src="/static/app.js?v=69" defer></script>
 </body>
 </html>

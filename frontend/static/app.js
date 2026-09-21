@@ -252,21 +252,26 @@ let sortKey='final_score', sortDir=-1;
      method    - how the scores work
    Moving to another page clears whatever was picked on the last one, so a theme
    chosen on Themes never quietly narrows what Screens shows. */
-const VIEWS=['overview','themes','market','watchlist','filters','gallery','reports','ipor','sectors','deals','news','method'];
-const NAV={'overview-link':'overview','themes-link':'themes','market-link':'market','watchlist-link':'watchlist',
+const VIEWS=['overview','themes','market','filters','gallery','reports','ipor','sectors','deals','news','method'];
+const NAV={'overview-link':'overview','themes-link':'themes','market-link':'market',
            'filters-link':'filters','gallery-link':'gallery','reports-link':'reports','ipor-link':'ipor','sectors-link':'sectors','deals-link':'deals','news-link':'news'};
 const LENSES=['overhang','heavycap','guide15','guideany','turn','caputil','pivot','haslens','ipo','asme','auto'];
 const TILE_LABEL={all:'Companies on the board',overhang:'High P/E + heavy CWIP',guide15:'Management guides > 15%',
                   turn:'PAT turned positive',caputil:'Capacity utilisation ramping up',pivot:'Product-mix pivot',
                   nolens:'Awaiting the capex pass'};
 let VIEW='overview', NAVID='overview-link', TILE=null;
-/* Movers lives as a tab inside Screens now, not its own top-level nav
-   entry -- one less tab competing for room in the top nav row. */
+/* Movers and Watchlist live as tabs inside Screens now, not their own
+   top-level nav entries -- two fewer tabs competing for room in the top
+   nav row. */
 const FL={tab:'filters'};
 
 function setView(v, opts){
   opts=opts||{};
-  VIEW = VIEWS.includes(v) ? v : 'overview';
+  /* 'movers'/'watchlist' are old top-level views, now tabs inside Screens
+     -- accept either name as an alias so any caller still asking for them
+     by name (a stale "what's new" log entry, old code) lands correctly. */
+  if(v==='movers' || v==='watchlist'){ VIEW='filters'; FL.tab=v; }
+  else VIEW = VIEWS.includes(v) ? v : 'overview';
   NAVID = opts.nav || VIEW+'-link';
   if(!opts.keep) clearFilters();
   document.body.dataset.view=VIEW;
@@ -558,12 +563,12 @@ const HINT={overview:'Click a tile above to see the companies behind that number
 function renderResultsFrame(){
   const show=showResults();
   const asmeList = show && VIEW==='filters' && TG.asme;
-  const onMovers = VIEW==='filters' && FL.tab==='movers';
+  const otherTab = VIEW==='filters' && FL.tab!=='filters';
   const head=document.getElementById('results-head'), cnt=document.getElementById('count');
-  document.getElementById('research').hidden=!show || asmeList || onMovers;
-  cnt.hidden = !(show || HINT[VIEW]) || asmeList || onMovers;
+  document.getElementById('research').hidden=!show || asmeList || otherTab;
+  cnt.hidden = !(show || HINT[VIEW]) || asmeList || otherTab;
   cnt.classList.toggle('view-hint', !show);
-  if(!show) cnt.textContent = onMovers ? '' : (HINT[VIEW] || '');
+  if(!show) cnt.textContent = otherTab ? '' : (HINT[VIEW] || '');
   let label='';
   if(show && VIEW==='overview') label = TILE_LABEL[TILE] || '';
   if(show && VIEW==='filters'){
@@ -1133,10 +1138,10 @@ document.getElementById('reset').onclick=()=>{ clearFilters(); render(); };
    be sent to someone else (or bookmarked) and reopened exactly as it was. */
 function syncURL(){
   const p=new URLSearchParams();
-  /* 'movers' is kept as the URL's view token even though it's a tab inside
-     Screens now, not its own VIEW -- old copied/bookmarked links still
-     land on the right place (see applyState below). */
-  if(VIEW==='filters' && FL.tab==='movers') p.set('v','movers');
+  /* 'movers'/'watchlist' are kept as URL view tokens even though they're
+     tabs inside Screens now, not their own VIEW -- old copied/bookmarked
+     links still land on the right place (see applyState below). */
+  if(VIEW==='filters' && FL.tab!=='filters') p.set('v',FL.tab);
   else if(VIEW!=='overview') p.set('v',VIEW);
   if(VIEW==='sectors' && SC.slug){ p.set('s',SC.slug); if(SC.edition) p.set('se',SC.edition); }
   if(VIEW==='reports' && RP.code){ p.set('r',RP.code); if(DR.period) p.set('rp',DR.period); if(DR.tab==='board') p.set('rt','board'); }
@@ -1157,7 +1162,7 @@ function applyState(){
   const raw=location.hash.replace(/^#/,''); if(!raw) return;
   const p=new URLSearchParams(raw);
   const get=k=>p.get(k);
-  if(get('v')==='movers'){ VIEW='filters'; FL.tab='movers'; }
+  if(get('v')==='movers' || get('v')==='watchlist'){ VIEW='filters'; FL.tab=get('v'); }
   else if(VIEWS.includes(get('v'))) VIEW=get('v');
   if(get('r')) RP.code=get('r');
   if(get('s') && /^[a-z0-9-]+$/.test(get('s'))) SC.slug=get('s');
@@ -2194,6 +2199,7 @@ function flSyncTabs(){
   });
   document.getElementById('fltab-filters').hidden = FL.tab!=='filters';
   document.getElementById('fltab-movers').hidden = FL.tab!=='movers';
+  document.getElementById('fltab-watchlist').hidden = FL.tab!=='watchlist';
 }
 let FL_TABS_WIRED=false;
 function flWireTabs(){
