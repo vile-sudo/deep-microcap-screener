@@ -395,21 +395,30 @@ downstream (a Chinese API price hike is a margin story for the Indian
 bulk-drug makers who buy from it; a US tariff reroutes demand; a China+1
 shift is a tailwind for the Indian maker competing for that order).
 
-- **Provider:** [newsdata.io](https://newsdata.io/), whose free plan is
-  **200 requests/day** and caps the search query at 100 characters -- both
-  binding constraints on the design. Set `NEWSDATA_API_KEY` as an env var
-  on the server and as a GitHub Actions secret (never commit it).
-- **One request per country, not per sector:** `app/news_channel.py` sends
-  each country a short `q` of OR'd sector keywords (under the 100-character
-  cap) alongside `category=business` and `prioritydomain=top` (drops
-  press-release wire noise), then does the real filtering itself,
-  client-side, the same way `app/movers/news.py` already does for company
-  news -- a headline only survives if it actually contains one of the
-  sector's own keyword phrases (title only, not the description, to keep
-  an incidental mention from counting), and is flagged `price_move` if it
-  reads like an actual price event (a `%`, or a rise/fall/hike/cut/ban/curb
-  word), not just general sector coverage.
-- **Sectors tracked per country:**
+- **Two providers, fanned into the same filter:** `app/news_channel.py` does
+  the real filtering client-side either way, the same way `app/movers/news.py`
+  already does for company news -- a headline only survives if it actually
+  contains one of the sector's own keyword phrases (title only, not the
+  description), and is flagged `price_move` if it reads like an actual price
+  event (a `%`, or a rise/fall/hike/cut/ban/curb word), not just general
+  sector coverage.
+  - **Google News RSS** -- no API key, no documented daily quota, ~100
+    results per query. One query per sector *per country* (not one OR'd
+    blob per country the way newsdata.io needs), reusing each sector's own
+    keyword list. Unofficial (Google could change or throttle it without
+    notice; its own feed restricts use to "personal, non-commercial"),
+    paced half a second between requests. Runs regardless of whether
+    `NEWSDATA_API_KEY` is set.
+  - **[newsdata.io](https://newsdata.io/)** -- kept as a second, independent
+    source, not replaced. Free plan is **200 requests/day** and hard-caps
+    results at **10 per call** regardless of what's requested, plus a
+    100-character query limit -- both real ceilings Google News doesn't
+    have, which is why it isn't the primary source anymore. Set
+    `NEWSDATA_API_KEY` as an env var on the server and as a GitHub Actions
+    secret (never commit it); `category=business` and `prioritydomain=top`
+    drop press-release wire noise. Optional -- the feed still runs on
+    Google News alone if this key is ever unset.
+- **Sectors tracked per country** (the same list drives both sources' queries):
   - **China** -- specialty chemicals, pharma APIs/bulk drugs, rare earths &
     critical minerals, solar, battery/EV materials, steel, electronics
     components.
@@ -417,17 +426,20 @@ shift is a tailwind for the Indian maker competing for that order).
     jewellery, agrochemicals, auto components.
   - **USA** -- semiconductors, biotech/FDA, defence & aerospace, agri
     commodities, oil & gas/shale, tariffs & trade policy.
-- **Quota budget:** 3 requests a run, so the default **every-12-hours**
-  schedule (`news_channel.yml`) costs only 6/day -- about 3% of the free
-  plan, well clear of exhausting it. Each run merges its results into the existing feed rather than
-  replacing it (a single request only returns newsdata's latest ~10 hits
-  per country) and prunes anything over 48 hours old.
+- **Schedule:** hourly (`news_channel.yml`). At that cadence, newsdata.io
+  costs 24 x 3 = 72 requests/day (well under its 200/day ceiling; `DAILY_CAP`
+  stops it short of that regardless of schedule or admin clicks), and Google
+  News costs roughly 24 x 19 sector queries -- there's no published quota to
+  floor under on that side, so a query that starts failing just drops into
+  that run's `errors` list rather than breaking anything. Each run merges
+  its results into the existing feed rather than replacing it, and prunes
+  anything over 48 hours old.
 - **Data:** `backend/data/news_channel/latest.json`, committed like Movers;
   `GET /api/news-channel` serves it. An admin can also fire a fetch from
   the dashboard ("Refresh now" on the News Channel page →
   `POST /api/admin/news-channel/run-now`, needs `GH_DISPATCH_TOKEN` like
   Sector Research's "Refresh now" -- rate-limited server-side so repeat
-  clicks don't chip into the quota).
+  clicks don't stack up runs).
 - **Run it by hand:** `cd backend && python scripts/run_news_channel.py`.
 
 ## Market view (automated stage screen)
@@ -567,11 +579,12 @@ workflow*): `fundamentals.yml`, `auto-screen.yml`, `discovery.yml`, `asme.yml`, 
 Claude usage, and running it later catches more of the previous session's
 overnight news coverage (see the Movers section above).
 
-**News Channel** also runs separately, every **12 hours** (`news_channel.yml`)
--- news is time-sensitive in a way the rest of the dashboard's once-a-day
-data isn't, but the cadence stays conservative to keep the newsdata.io free
-plan's 200-request/day quota nowhere near exhausted (see the News Channel
-section above).
+**News Channel** also runs separately, **hourly** (`news_channel.yml`) --
+news is time-sensitive in a way the rest of the dashboard's once-a-day data
+isn't, and Google News RSS (its primary source since it needs no API key
+and has no daily quota to protect) makes that cadence cheap; newsdata.io,
+the second source, stays comfortably under its own 200-request/day ceiling
+even at 24 runs a day (see the News Channel section above).
 
 ### Auto-added companies
 

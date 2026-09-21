@@ -1,12 +1,18 @@
 name: News Channel
 
 # China/India/USA news for the sectors each dominates globally -- see
-# backend/app/news_channel.py for the rules and why this only ever costs 3
-# newsdata.io requests (the free plan is 200/day). Runs every 12 hours --
-# comfortably same-day coverage while keeping the quota nowhere near
-# exhausted (6 requests/day, 3% of the free plan) -- plus on demand via
-# "Refresh now" on the dashboard (POST /api/admin/news-channel/run-now) or
-# this workflow run by hand from the Actions tab.
+# backend/app/news_channel.py for the two sources. Runs hourly: at that
+# cadence newsdata.io costs 24 x 3 = 72 requests/day (well under its
+# 200/day free-plan ceiling, DAILY_CAP=180 stops it short of that
+# regardless), and Google News RSS -- no key, no documented quota -- costs
+# roughly 24 x 19 sector queries = ~450 requests/day, paced half a second
+# apart within a run. Nothing enforces a daily ceiling on that side the way
+# DAILY_CAP does for newsdata.io, since there is no published limit to
+# floor under; if Google ever starts throttling it, each query already
+# fails independently into `errors` without breaking the run.
+# Also runs on demand via "Refresh now" on the dashboard
+# (POST /api/admin/news-channel/run-now) or this workflow run by hand from
+# the Actions tab.
 #
 # Commits by this workflow use GITHUB_TOKEN, which never re-triggers
 # workflows, so nothing here can loop.
@@ -16,7 +22,7 @@ permissions:
 
 on:
   schedule:
-    - cron: '15 */12 * * *'
+    - cron: '15 * * * *'
   workflow_dispatch:
 
 concurrency:
