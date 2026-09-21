@@ -134286,5 +134286,742 @@
   "source": "sweep",
   "moat_signal": null,
   "moat_evidence": null
+ },
+ {
+  "sym": "MANIKA",
+  "name": "Manika Plastech Limited",
+  "board": "NSE",
+  "isin": "INE0KWF01020",
+  "listed": "21-SEP-2026",
+  "hint": null,
+  "why": "sector unknown, SME platform",
+  "plausible": false,
+  "verdict": null,
+  "seen_on": "2026-09-20",
+  "source": "new-listing",
+  "moat_signal": null,
+  "moat_evidence": null,
+  "profile": {
+   "symbol": "MANIKA",
+   "company": "Manika Plastech Limited",
+   "isin": "INE0KWF01020",
+   "board": "NSE",
+   "source": {
+    "document": "final prospectus",
+    "url": "https://nsearchives.nseindia.com/corporate/FP_INE0KWF01020_18SEP2026.pdf",
+    "filed": "18-Sep-2026",
+    "pdf_bytes": 8091085,
+    "extracted_chars": 1767775
+   },
+   "grade": "company-stated",
+   "verified_against": null,
+   "claims": {
+    "accreditation": {
+     "count": 18,
+     "dropped_as_industry_commentary": 23,
+     "terms": [
+      "ISO 22000",
+      "ISO 9001",
+      "ISO 15378",
+      "ISO 13485",
+      "ISO 45001",
+      "BIS",
+      "ISO 14001"
+     ],
+     "evidence": [
+      {
+       "match": "ISO 22000",
+       "sentence": "• LEED Gold certification Golden Peacock Sustainability Award • • ISO 9001:2015 • ISO 14001 • ISO 45001 • ISO 15378:2017 • FSSC 220000 • DMF • ISO 50001:2018 • ISO 22000 • • • • • • 185 • • • • • • • • • • • • • ISO 9001:2015 BRCGSGS certified ISO 15378:2017 ISO 13485:2016 FDA registered DMF SEDEX SMETA 4 Pillar Compliance ISO 9001-2015 ISO 15378:2017 US-DMF"
+      },
+      {
+       "match": "ISO 9001",
+       "sentence": "ity Award • • ISO 9001:2015 • ISO 14001 • ISO 45001 • ISO 15378:2017 • FSSC 220000 • DMF • ISO 50001:2018 • ISO 22000 • • • • • • 185 • • • • • • • • • • • • • ISO 9001:2015 BRCGSGS certified ISO 15378:2017 ISO 13485:2016 FDA registered DMF SEDEX SMETA 4 Pillar Compliance ISO 9001-2015 ISO 15378:2017 US-DMF and Health Canada DMF ISO/TS 22002- 4:2013 FSSC 220"
+      },
+      {
+       "match": "ISO 15378",
+       "sentence": "O 14001 • ISO 45001 • ISO 15378:2017 • FSSC 220000 • DMF • ISO 50001:2018 • ISO 22000 • • • • • • 185 • • • • • • • • • • • • • ISO 9001:2015 BRCGSGS certified ISO 15378:2017 ISO 13485:2016 FDA registered DMF SEDEX SMETA 4 Pillar Compliance ISO 9001-2015 ISO 15378:2017 US-DMF and Health Canada DMF ISO/TS 22002- 4:2013 FSSC 22000 / ISO 22000 3 registered pate"
+      }
+     ]
+    },
+    "ip": {
+     "count": 8,
+     "dropped_as_industry_commentary": 6,
+     "terms": [
+      "trademark",
+      "patent",
+      "trademarks",
+      "patents"
+     ],
+     "evidence": [
+      {
+       "match": "trademark",
+       "sentence": "Our Company has registered corporate trademark and 30 designs for battery containers and battery lids under the Designs Act, 2000."
+      },
+      {
+       "match": "patent",
+       "sentence": "We may not be able to prevent others from unauthorised use of our intellectual property and may in the future become subject to patent, trademark and/or other intellectual property infringement claims."
+      },
+      {
+       "match": "trademark",
+       "sentence": "We have registered a trademark in our name for protecting our name ‘Manika’ and logo ‘ ’."
+      }
+     ]
+    }
+   },
+   "risk_factors": {
+    "customer_concentration": {
+     "count": 16,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "top five customers",
+      "top ten customers",
+      "Top five customer",
+      "customer concentration",
+      "top 10 customers"
+     ],
+     "evidence": [
+      {
+       "match": "top five customers",
+       "sentence": "Certain important factors that could cause actual results to differ materially from our Company’s expectations include, but are not limited to, the following: • About 58%-69% of our operating revenue came from our top five customers, though we served between 168 - 242 customers during the three months ended June 30, 2026, and the prior three Fiscals."
+      },
+      {
+       "match": "top five customers",
+       "sentence": "About 58%-69% of our operating revenue came from our top five customers, though we served between 168 – 242 customers during the three months ended June 30, 2026, and the prior three Fiscals."
+      },
+      {
+       "match": "top five customers",
+       "sentence": "While we served 168, 242, 214, and 184 customers, respectively during the three month period ended June 30, 2026 and the Fiscal 2026, Fiscal 2025 and Fiscal 2024, respectively and about 58%-69% of our revenue from operations came from our top five customers during the said periods."
+      }
+     ]
+    },
+    "promoter_litigation": {
+     "count": 7,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "Criminal Proceedings",
+      "criminal proceedings",
+      "Criminal proceedings"
+     ],
+     "evidence": [
+      {
+       "match": "Criminal Proceedings",
+       "sentence": "of Criminal Proceedings No."
+      },
+      {
+       "match": "criminal proceedings",
+       "sentence": "375 SECTION VI – LEGAL AND OTHER INFORMATION OUTSTANDING LITIGATION AND MATERIAL DEVELOPMENTS Except as disclosed in this section, there are no outstanding (i) criminal proceedings, including such matters which are at the first information report (“FIR”) stage even if no/ some cognizance has been taken by any court or any other judicial authority; (ii) actio"
+      },
+      {
+       "match": "criminal proceedings",
+       "sentence": "Further, except as disclosed in this Prospectus, there are no outstanding, (i) criminal proceedings; and (ii) actions by regulatory authorities and statutory authorities, against any Key Managerial Personnel and Senior Management of our Company."
+      }
+     ]
+    },
+    "related_party": {
+     "count": 32,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "RELATED PARTY TRANSACTIONS",
+      "related party transactions",
+      "Related party transaction",
+      "Related Party Transactions"
+     ],
+     "evidence": [
+      {
+       "match": "RELATED PARTY TRANSACTIONS",
+       "sentence": "76 SUMMARY OF RELATED PARTY TRANSACTIONS ."
+      },
+      {
+       "match": "RELATED PARTY TRANSACTIONS",
+       "sentence": "371 RELATED PARTY TRANSACTIONS ."
+      },
+      {
+       "match": "related party transactions",
+       "sentence": "We have in past entered into related party transactions and we may continue to do so in the future."
+      }
+     ]
+    }
+   },
+   "objects_of_the_issue": {
+    "offer_for_sale": {
+     "count": 49,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "Offer for Sale",
+      "OFFER FOR SALE",
+      "Offer for sale",
+      "offer for sale"
+     ],
+     "evidence": [
+      {
+       "match": "Offer for Sale",
+       "sentence": "RVATION FOR SALE AMONG QIBS, NIIS & RIIS Fresh Issue and 21,511,627^ Equity 7,674,418 29,186,045^ Equity Shares The Offer was being made pursuant to Regulation Offer for Sale Shares of face Equity of face 6(1) of the Securities and Exchange Board of India value of ₹ 2/- each Shares of value of ₹ 2/- each (Issue of Capital and Disclosure Requirements) aggregating to ₹ face value of aggregating to ₹ 1,255."
+      },
+      {
+       "match": "OFFER FOR SALE",
+       "sentence": "^Subject to finalisation of Basis of Allotment NAME OF SELLING SHAREHOLDER VRIDAA Holding Trust TYPE DETAILS OF OFFER FOR SALE NUMBER OF EQUITY SHARES OFFERED Promoter Selling Shareholder 7,674,418 Equity Shares of face value of ₹ 2/- each aggregating to ₹ 330."
+      },
+      {
+       "match": "Offer for Sale",
+       "sentence": "Further, the Promoter Selling Shareholder accepts responsibility for, and confirms, that the statements specifically made or confirmed by it in this Prospectus, to the extent that the statements and information specifically pertain to it and the Equity Shares offered by the Promoter Selling Shareholder under the Offer for Sale, are true and correct in all material respects and are not misleading in any material respect."
+      }
+     ]
+    },
+    "fresh_issue": {
+     "count": 42,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "FRESH ISSUE",
+      "Fresh Issue",
+      "Fresh issue",
+      "fresh issue"
+     ],
+     "evidence": [
+      {
+       "match": "FRESH ISSUE",
+       "sentence": "com OUR PROMOTERS: NIKUNJ MOHANLAL KAPADIA, MUNJAL NIKUNJ KAPADIA, MIHIR NIKUNJ KAPADIA, PRATIK NIKUNJ KAPADIA AND VRIDAA HOLDING TRUST DETAILS OF THE OFFER TYPE FRESH ISSUE OFFER OFFER SIZE ELIGIBILITY AND SHARE RESERVATION FOR SALE AMONG QIBS, NIIS & RIIS Fresh Issue and 21,511,627^ Equity 7,674,418 29,186,045^ Equity Shares The Offer was being made pursuant"
+      },
+      {
+       "match": "FRESH ISSUE",
+       "sentence": "00^ MILLION (THE “OFFER”) COMPRISING A FRESH ISSUE OF 21,511,627^ EQUITY SHARES OF FACE VALUE OF ₹2/- EACH AGGREGATING TO ₹ 925."
+      },
+      {
+       "match": "FRESH ISSUE",
+       "sentence": "00 MILLION BY OUR COMPANY (THE “FRESH ISSUE”) AND AN OFFER FOR SALE OF 7,674,418 EQUITY SHARES OF FACE VALUE OF ₹ 2/- EACH AGGREGATING TO ₹ 330."
+      }
+     ]
+    },
+    "capital_expenditure": {
+     "count": 50,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "capital expenditure",
+      "expansion of our",
+      "purchase of machinery",
+      "Capital expenditure",
+      "Capital Expenditure",
+      "setting up of"
+     ],
+     "evidence": [
+      {
+       "match": "capital expenditure",
+       "sentence": "For further details, please refer to “Our Business - Our Business Strategies – Scaling Production Capabilities and Diversifying Product Offerings” and “Objects of the Offer – Funding the capital expenditure towards purchase of plant and machinery” on pages 208 and 111, respectively, of this Prospectus."
+      },
+      {
+       "match": "capital expenditure",
+       "sentence": "In the event the lease is not renewed or is terminated prematurely, or if we are unable to comply with the conditions of the lease, we may be forced to relocate our operations, which could disrupt our manufacturing activities and result in additional capital expenditure and time delays."
+      },
+      {
+       "match": "capital expenditure",
+       "sentence": "For more details, see “Our Business - Our Business Strategies – Scaling Production Capabilities and Diversifying Product Offerings” and “Objects of the Offer – Funding the capital expenditure towards purchase of plant and machinery” on pages 208 and 111, respectively."
+      }
+     ]
+    },
+    "working_capital": {
+     "count": 9,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "working capital requirements",
+      "working capital requirement"
+     ],
+     "evidence": [
+      {
+       "match": "working capital requirements",
+       "sentence": "Our working capital requirements may increase if the payment terms in purchase orders received include reduced or zero advance payments or longer payment schedules, or if there is delayed realization from our customers."
+      },
+      {
+       "match": "working capital requirement",
+       "sentence": "Our Company has significant working capital requirement."
+      },
+      {
+       "match": "working capital requirements",
+       "sentence": "Our inability to meet our working capital requirements including failure to realize receivables and inventories may have an adverse effect on our results of operations and overall business."
+      }
+     ]
+    },
+    "general_corporate": {
+     "count": 11,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "general corporate purposes",
+      "General Corporate Purposes"
+     ],
+     "evidence": [
+      {
+       "match": "general corporate purposes",
+       "sentence": "We propose to utilize the Net Proceeds for (i) funding capital expenditure towards purchase of plant and machinery, (ii) repayment and/or pre-payment, in part or full, of certain borrowings availed by our Company, and (iii) general corporate purposes."
+      },
+      {
+       "match": "General Corporate Purposes",
+       "sentence": "Funding the capital expenditure towards purchase of plant and machinery; Repayment and/or pre-payment, in part or full, of certain borrowings availed by our Company; and General Corporate Purposes."
+      },
+      {
+       "match": "General Corporate Purposes",
+       "sentence": "General Corporate Purposes* Net Proceeds Estimated amount 549."
+      }
+     ]
+    }
+   },
+   "profiled_on": "2026-09-20"
+  }
+ },
+ {
+  "sym": "500650",
+  "name": "Excel Industries Ltd",
+  "board": "BSE",
+  "isin": "INE369A01029",
+  "listed": null,
+  "hint": "industrial & capital goods",
+  "why": "small-cap sweep",
+  "mktcap_cr": 1196.6,
+  "plausible": true,
+  "verdict": null,
+  "seen_on": "2026-09-20",
+  "source": "sweep",
+  "moat_signal": null,
+  "moat_evidence": null
+ },
+ {
+  "sym": "531633",
+  "name": "Lincoln Pharmaceuticals Ltd",
+  "board": "BSE",
+  "isin": "INE405C01035",
+  "listed": null,
+  "hint": "pharma & healthcare",
+  "why": "small-cap sweep",
+  "mktcap_cr": 1214.6,
+  "plausible": true,
+  "verdict": null,
+  "seen_on": "2026-09-20",
+  "source": "sweep",
+  "moat_signal": null,
+  "moat_evidence": null
+ },
+ {
+  "sym": "544497",
+  "name": "Anlon Healthcare Ltd",
+  "board": "BSE",
+  "isin": "INE0Y8W01025",
+  "listed": null,
+  "hint": "pharma & healthcare",
+  "why": "small-cap sweep",
+  "mktcap_cr": 1219.3,
+  "plausible": true,
+  "verdict": null,
+  "seen_on": "2026-09-20",
+  "source": "sweep",
+  "moat_signal": true,
+  "moat_evidence": [
+   "monopoly claim: \"We are one of the few manufacturers of loxoprofen sodium dihydrate in India, which is a notable API widely used in treatment of pain/inflammation association with conditions including rheumatoid arthritis, o\" (prospectus, company-stated)",
+   "monopoly claim: \"The Company is one of the few manufacturers of Loxoprofen Sodium Dihydrate, which is a notable API that is widely used in treatment of pain /inflammation association with conditions including rheumatoid arthritis, o\" (prospectus, company-stated)",
+   "monopoly claim: \"APIs serves as a raw material for preparation of various formulation for animal health medicine We are one of the few manufacturers of loxoprofen sodium dihydrate in India, which is a notable API that is widely used in treatment of pain/inflammation association with conditions including rheumatoid arth\" (prospectus, company-stated)"
+  ],
+  "profile": {
+   "symbol": "544497",
+   "company": "Anlon Healthcare Limited",
+   "isin": "INE0Y8W01017",
+   "board": "BSE",
+   "source": {
+    "document": "final prospectus",
+    "url": "https://nsearchives.nseindia.com/corporate/FP_INE0Y8W01017_01SEP2025.pdf",
+    "filed": "01-Sep-2025",
+    "pdf_bytes": 6046659,
+    "extracted_chars": 1268129
+   },
+   "grade": "company-stated",
+   "verified_against": null,
+   "claims": {
+    "accreditation": {
+     "count": 21,
+     "dropped_as_industry_commentary": 19,
+     "terms": [
+      "ISO 9001",
+      "ANVISA",
+      "US FDA"
+     ],
+     "evidence": [
+      {
+       "match": "ISO 9001",
+       "sentence": "Our Manufacturing Facility, which holds ISO 9001:2015, GMP, and WHO-GMP certifications, is frequently subjected to audits and inspections by our customers or their representatives."
+      },
+      {
+       "match": "ANVISA",
+       "sentence": "Our Manufacturing Facility was recently audited and approved by the Brazilian Health Regulatory Agency (ANVISA), and we successfully received the Brazilian Drug Master Files (DMF) for Loxoprofen Sodium Dihydrate with zero discrepancies."
+      },
+      {
+       "match": "ANVISA",
+       "sentence": "In order to obtain the necessary approval from ANVISA, our Company was required to implement corrective actions and comply with these recommendations."
+      }
+     ]
+    },
+    "monopoly_claim": {
+     "count": 4,
+     "dropped_as_industry_commentary": 6,
+     "terms": [
+      "one of the few manufacturers"
+     ],
+     "evidence": [
+      {
+       "match": "one of the few manufacturers",
+       "sentence": "We are one of the few manufacturers of loxoprofen sodium dihydrate in India, which is a notable API widely used in treatment of pain/inflammation association with conditions including rheumatoid arthritis, o"
+      },
+      {
+       "match": "one of the few manufacturers",
+       "sentence": "The Company is one of the few manufacturers of Loxoprofen Sodium Dihydrate, which is a notable API that is widely used in treatment of pain /inflammation association with conditions including rheumatoid arthritis, o"
+      },
+      {
+       "match": "one of the few manufacturers",
+       "sentence": "APIs serves as a raw material for preparation of various formulation for animal health medicine We are one of the few manufacturers of loxoprofen sodium dihydrate in India, which is a notable API that is widely used in treatment of pain/inflammation association with conditions including rheumatoid arth"
+      }
+     ]
+    },
+    "ip": {
+     "count": 5,
+     "dropped_as_industry_commentary": 39,
+     "terms": [
+      "trademark",
+      "Trademark",
+      "trademarks"
+     ],
+     "evidence": [
+      {
+       "match": "trademark",
+       "sentence": "As on date of this Prospectus, our Company is not the registered owner of logo and the trademark that we are using and has made application for registration of our trademarks including our logo with the Registrar of Trademarks under the Trademarks Act, 1999 which as on date is objected."
+      },
+      {
+       "match": "trademark",
+       "sentence": "While we intend to pursue the registration process and address the objection in accordance with applicable law, there can be no assurance that the trademark will be registered in our favour or that we will not face litigation or commercial risks in connection with the use of the mark."
+      },
+      {
+       "match": "trademark",
+       "sentence": "Intellectual Property As on date of this Prospectus, our Company is not the registered owner of logo and the trademark that we are using and has made application for registration of our trademarks including our logo with the Registrar of Trademarks under the Trademarks Act, 1999 which is at formality check p"
+      }
+     ]
+    }
+   },
+   "risk_factors": {
+    "customer_concentration": {
+     "count": 13,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "Dependence on a limited number of customers",
+      "top 10 customers",
+      "customer concentration",
+      "Top 10 Customers",
+      "Top 10 Customer"
+     ],
+     "evidence": [
+      {
+       "match": "Dependence on a limited number of customers",
+       "sentence": "• Dependence on a limited number of customers makes us vulnerable to significant revenue loss if we lose any key customer."
+      },
+      {
+       "match": "top 10 customers",
+       "sentence": "Period Revenue from operations Revenue contribution of our top 10 customers % Revenue contribution of our top 10 customers* Fiscal 2025 12,028."
+      },
+      {
+       "match": "top 10 customers",
+       "sentence": "88% * While more than 50% of our revenue from operations originates from our top 10 customers, our Company is unable to disclose the names of these customers due to reasons of confidentiality and the absence of requisite consents from the respective customers."
+      }
+     ]
+    },
+    "promoter_litigation": {
+     "count": 15,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "Criminal proceedings",
+      "criminal proceedings"
+     ],
+     "evidence": [
+      {
+       "match": "Criminal proceedings",
+       "sentence": "Summary of outstanding litigation A summary of outstanding litigation proceedings involving our Company, our Directors, and our Promoters as on the date of this Prospectus is provided below: Nature of Cases Number of outstanding cases Litigation involving our Company Criminal proceedings against our Company Criminal proceedings by our Company Material civil litigation against our Company Material civil litigation by our Company Actions by statutory or regulatory A"
+      },
+      {
+       "match": "Criminal proceedings",
+       "sentence": "ion by our Company Actions by statutory or regulatory Authorities Direct and indirect tax proceedings Litigation involving our Directors (other than Promoters) Criminal proceedings against our Directors Criminal proceedings by our Directors Material civil litigation against our Director Material civil litigation by our Director Actions by statutory or regula"
+      },
+      {
+       "match": "Criminal proceedings",
+       "sentence": "regulatory Authorities Direct and indirect tax proceedings Litigation involving our Directors (other than Promoters) Criminal proceedings against our Directors Criminal proceedings by our Directors Material civil litigation against our Director Material civil litigation by our Director Actions by statutory or regulatory authorities Direct and indirect tax pr"
+      }
+     ]
+    },
+    "single_site": {
+     "count": 2,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "single Manufacturing Facility"
+     ],
+     "evidence": [
+      {
+       "match": "single Manufacturing Facility",
+       "sentence": "We operate out of a single Manufacturing Facility, located at Rajkot, Gujarat which exposes our operations to potential geographical concentration risks arising from local and regional factors which may adversely affect our operations and in turn our business, results of operations and cash flows."
+      },
+      {
+       "match": "single Manufacturing Facility",
+       "sentence": "Manufacturing Facility We operate through single Manufacturing Facility situated at Survey No."
+      }
+     ]
+    },
+    "related_party": {
+     "count": 17,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "Related Party Transactions",
+      "related party transactions"
+     ],
+     "evidence": [
+      {
+       "match": "Related Party Transactions",
+       "sentence": "Summary of Related Party Transactions (a) Key managerial Personal Sr."
+      },
+      {
+       "match": "related party transactions",
+       "sentence": "For further details of the related party transactions and as reported in the Restated Financial Statements, see \"Restated Financial Statements\" on page 261."
+      },
+      {
+       "match": "related party transactions",
+       "sentence": "We have in the past entered into a number of related party transactions and may continue to enter into related party transactions in the future on an arm’s length basis, and there can be no assurance that we could not have achieved more favourable terms if such transactions had not been entered into with related parties."
+      }
+     ]
+    }
+   },
+   "objects_of_the_issue": {
+    "offer_for_sale": {
+     "count": 3,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "OFFER FOR SALE",
+      "offer for sale"
+     ],
+     "evidence": [
+      {
+       "match": "OFFER FOR SALE",
+       "sentence": "RASADIA, MEET ATULKUMAR VACHHANI AND MAMATA PUNITKUMAR RASADIA DETAILS OF THE PUBLIC ISSUE TYPE FRESH ISSUE SIZE OFFER FOR SALE SIZE TOTAL ISSUE SIZE ELIGIBILITY Fresh Issue Fresh Issue of up to 1,33,00,000* Equity Not Applicable Up to 1,33,00,000* Equity This Issue was made through the Book Building Process in accordance Shares aggregating up to ₹12,103."
+      },
+      {
+       "match": "offer for sale",
+       "sentence": "Reproduction of a copyrighted software for sale or hire or commercial rental, offer for sale or commercial rental, issuing copy(is) of the computer programme or making an adaptation of the work without consent of the copyright owner amount to infringement of the copyright."
+      },
+      {
+       "match": "offer for sale",
+       "sentence": "Details of guarantees given to third parties by our Promoters offering their Equity Shares in the offer for sale This is a fresh issue of Equity Shares and our Promoters are not offering their Equity Shares in the Issue."
+      }
+     ]
+    },
+    "fresh_issue": {
+     "count": 8,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "FRESH ISSUE",
+      "Fresh Issue",
+      "fresh Issue",
+      "fresh issue"
+     ],
+     "evidence": [
+      {
+       "match": "FRESH ISSUE",
+       "sentence": "RASADIA, MEET ATULKUMAR VACHHANI AND MAMATA PUNITKUMAR RASADIA DETAILS OF THE PUBLIC ISSUE TYPE FRESH ISSUE SIZE OFFER FOR SALE SIZE TOTAL ISSUE SIZE ELIGIBILITY Fresh Issue Fresh Issue of up to 1,33,00,000* Equity Not Applicable Up to 1,33,00,000* Equity This Issue was made through the Book Building Process in accordance Shares aggregating up to ₹12,103."
+      },
+      {
+       "match": "Fresh Issue",
+       "sentence": "6 Term “Escrow Collection Bank(s)” or “Anchor Escrow Bank” “First or Sole Bidder” “Floor Price” “Fraudulent Borrower” “Fresh Issue” Description Banks which are clearing members and registered with SEBI as bankers to an issue under the Securities and Exchange Board of India (Bankers to an Issue) Regulations, 1994 and with whom the Escrow Accounts will be opened, in this case being Axis Bank Limited."
+      },
+      {
+       "match": "Fresh Issue",
+       "sentence": "31 Since the Issue only comprises of a Fresh Issue, there are no selling shareholders in the Company."
+      }
+     ]
+    },
+    "capital_expenditure": {
+     "count": 27,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "Capital expenditure",
+      "capital expenditure",
+      "purchase of equipment",
+      "expansion of our",
+      "setting up of",
+      "Expansion of our",
+      "Purchase of plant"
+     ],
+     "evidence": [
+      {
+       "match": "Capital expenditure",
+       "sentence": "Compound Annual Growth Rate, Capex Capital expenditure CDSCO CIF Central Drugs Standard Control Organization, India’s national regulatory body for pharmaceuticals and medical devices."
+      },
+      {
+       "match": "capital expenditure",
+       "sentence": "Objects Funding capital expenditure requirements for the expansion of our Manufacturing Facility 2."
+      },
+      {
+       "match": "capital expenditure",
+       "sentence": "Additionally, regulatory bodies may impose more stringent standards in the future, requiring us to undertake further modifications or upgrades to our facility, which could lead to increased capital expenditure, additional compliance costs, and operational downtime."
+      }
+     ]
+    },
+    "working_capital": {
+     "count": 34,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "Working capital requirement",
+      "working capital requirements",
+      "Working Capital requirement",
+      "working capital requirement"
+     ],
+     "evidence": [
+      {
+       "match": "Working capital requirement",
+       "sentence": "Funding the Working capital requirement 4."
+      },
+      {
+       "match": "working capital requirements",
+       "sentence": "Delays in receiving payments from customers could negatively impact our cash flow and hinder our ability to meet working capital requirements."
+      },
+      {
+       "match": "working capital requirements",
+       "sentence": "Any such reduction or discontinuation of purchases by our key customers could lead to underutilization of our manufacturing facilities, inventory accumulation, increased working capital requirements, and pressure on margins."
+      }
+     ]
+    },
+    "general_corporate": {
+     "count": 13,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "General corporate purposes",
+      "general corporate purposes",
+      "general corporate purpose"
+     ],
+     "evidence": [
+      {
+       "match": "General corporate purposes",
+       "sentence": "General corporate purposes* Total utilization of net proceeds * (₹ in lakhs) Estimated Amount 3,071."
+      },
+      {
+       "match": "general corporate purposes",
+       "sentence": "95 The amount utilised for general corporate purposes does not exceed 25% of the Gross Proceeds from the Issue."
+      },
+      {
+       "match": "general corporate purposes",
+       "sentence": "We intend to use Net Proceeds from the Issue towards (a) funding working capital requirements of our Company; (b) Proposed Expansion (c) prepayment or repayment of all or a portion of certain outstanding borrowings availed by our Company; and (d) general corporate purposes."
+      }
+     ]
+    }
+   },
+   "profiled_on": "2026-09-20"
+  }
+ },
+ {
+  "sym": "500279",
+  "name": "Onida Electronics Ltd",
+  "board": "BSE",
+  "isin": "INE831A01028",
+  "listed": null,
+  "hint": "electronics & electricals",
+  "why": "small-cap sweep",
+  "mktcap_cr": 1220.1,
+  "plausible": true,
+  "verdict": null,
+  "seen_on": "2026-09-20",
+  "source": "sweep",
+  "moat_signal": null,
+  "moat_evidence": null
+ },
+ {
+  "sym": "531795",
+  "name": "Atul Auto Ltd",
+  "board": "BSE",
+  "isin": "INE951D01028",
+  "listed": null,
+  "hint": "auto & mobility",
+  "why": "small-cap sweep",
+  "mktcap_cr": 1238.96,
+  "plausible": true,
+  "verdict": null,
+  "seen_on": "2026-09-20",
+  "source": "sweep",
+  "moat_signal": null,
+  "moat_evidence": null
+ },
+ {
+  "sym": "513119",
+  "name": "Onix Solar Energy Ltd",
+  "board": "BSE",
+  "isin": "INE173M01012",
+  "listed": null,
+  "hint": "renewable & power",
+  "why": "small-cap sweep",
+  "mktcap_cr": 1315.45,
+  "plausible": true,
+  "verdict": null,
+  "seen_on": "2026-09-20",
+  "source": "sweep",
+  "moat_signal": null,
+  "moat_evidence": null
+ },
+ {
+  "sym": "506618",
+  "name": "Punjab Chemicals & Crop Protection Ltd",
+  "board": "BSE",
+  "isin": "INE277B01014",
+  "listed": null,
+  "hint": "chemicals",
+  "why": "small-cap sweep",
+  "mktcap_cr": 1317.27,
+  "plausible": true,
+  "verdict": null,
+  "seen_on": "2026-09-20",
+  "source": "sweep",
+  "moat_signal": null,
+  "moat_evidence": null
+ },
+ {
+  "sym": "590065",
+  "name": "India Motor Parts & Accessories Ltd",
+  "board": "BSE",
+  "isin": "INE547E01014",
+  "listed": null,
+  "hint": "auto & mobility",
+  "why": "small-cap sweep",
+  "mktcap_cr": 1336.42,
+  "plausible": true,
+  "verdict": null,
+  "seen_on": "2026-09-20",
+  "source": "sweep",
+  "moat_signal": null,
+  "moat_evidence": null
+ },
+ {
+  "sym": "532629",
+  "name": "McNally Bharat Engineering Company Ltd",
+  "board": "BSE",
+  "isin": "INE748A01024",
+  "listed": null,
+  "hint": "precision engineering",
+  "why": "small-cap sweep",
+  "mktcap_cr": 1338.23,
+  "plausible": true,
+  "verdict": null,
+  "seen_on": "2026-09-20",
+  "source": "sweep",
+  "moat_signal": null,
+  "moat_evidence": null
+ },
+ {
+  "sym": "517380",
+  "name": "Igarashi Motors India Ltd",
+  "board": "BSE",
+  "isin": "INE188B01013",
+  "listed": null,
+  "hint": "auto & mobility",
+  "why": "small-cap sweep",
+  "mktcap_cr": 1358.62,
+  "plausible": true,
+  "verdict": null,
+  "seen_on": "2026-09-20",
+  "source": "sweep",
+  "moat_signal": null,
+  "moat_evidence": null
  }
 ]

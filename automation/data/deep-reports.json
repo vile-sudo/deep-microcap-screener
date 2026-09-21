@@ -173,6 +173,17 @@
    "skipped": {
     "VIMTALABS": "already covers Dec 2024"
    }
+  },
+  {
+   "on": "2026-09-21",
+   "written": [
+    "ABB:FY27-Q1",
+    "SIMPLEXCAS:FY22-Q2"
+   ],
+   "spent_usd": null,
+   "skipped": {
+    "VIMTALABS": "already covers Dec 2024"
+   }
   }
  ],
  "seen_new_results": {
@@ -343,6 +354,24 @@
    "cost_usd": null,
    "api_equivalent_usd": 34.258,
    "minutes": 54.7
+  },
+  "ABB": {
+   "period": "FY27-Q1",
+   "on": "2026-09-21",
+   "engine": "claude-code",
+   "tokens_out": 180640,
+   "cost_usd": null,
+   "api_equivalent_usd": 16.93,
+   "minutes": 36.5
+  },
+  "SIMPLEXCAS": {
+   "period": "FY22-Q2",
+   "on": "2026-09-21",
+   "engine": "claude-code",
+   "tokens_out": 161567,
+   "cost_usd": null,
+   "api_equivalent_usd": 13.6,
+   "minutes": 31.2
   }
  }
 }

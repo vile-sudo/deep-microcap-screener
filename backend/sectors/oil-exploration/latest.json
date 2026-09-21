@@ -1,34 +1,24 @@
 {
- "updated": "2026-09-20T04:51+05:30",
+ "updated": "2026-09-21T04:38+05:30",
  "figures": [
   {
-   "label": "Brent crude (settle)",
-   "value": "$103.87/bbl",
-   "as_of": "2026-09-18",
-   "note": "-0.91% on the day as Saudi pipeline repairs progressed",
+   "label": "Brent crude",
+   "value": "$103.7/bbl",
+   "as_of": "2026-09-20",
+   "note": "-0.9% on the day, easing further from the $113.48 Hormuz-crisis spike on 9 Sep",
    "source": {
-    "publisher": "Rio Times Online",
-    "url": "https://www.riotimesonline.com/oil-markets-latam-saturday-september-19-2026"
+    "publisher": "Trading Economics",
+    "url": "https://tradingeconomics.com/commodity/brent-crude-oil"
    }
   },
   {
-   "label": "WTI crude (settle)",
-   "value": "$100.30/bbl",
+   "label": "Asian spot LNG (JKM)",
+   "value": "$27.51/MMBtu",
    "as_of": "2026-09-18",
-   "note": "-1.58% on the day",
+   "note": "+2.8% on the day, up 142% year-on-year as Hormuz disruption tightens supply",
    "source": {
-    "publisher": "Rio Times Online",
-    "url": "https://www.riotimesonline.com/oil-markets-latam-saturday-september-19-2026"
-   }
-  },
-  {
-   "label": "Strait of Hormuz daily transits",
-   "value": "8 vessels",
-   "as_of": "2026-09-13",
-   "note": "vs pre-crisis baseline of ~85/day; ~435 vessels stranded in region",
-   "source": {
-    "publisher": "Straits Daily Brief",
-    "url": "https://straits.live/briefs/2026-09-19"
+    "publisher": "Trading Economics",
+    "url": "https://tradingeconomics.com/commodity/liquefied-natural-gas-japan-korea"
    }
   }
  ],
