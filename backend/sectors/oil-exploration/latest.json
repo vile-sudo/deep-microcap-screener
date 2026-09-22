@@ -1,28 +1,173 @@
 {
- "updated": "2026-09-21T04:38+05:30",
+ "updated": "2026-09-22T05:31+05:30",
  "figures": [
   {
-   "label": "Brent crude",
-   "value": "$103.7/bbl",
-   "as_of": "2026-09-20",
-   "note": "-0.9% on the day, easing further from the $113.48 Hormuz-crisis spike on 9 Sep",
+   "label": "Brent crude (Nov'26 futures)",
+   "value": "$101.38/bbl",
+   "as_of": "2026-09-21",
+   "note": "4th straight daily decline, from ~$104 on 17 Sep",
    "source": {
-    "publisher": "Trading Economics",
-    "url": "https://tradingeconomics.com/commodity/brent-crude-oil"
+    "publisher": "Kotak Securities",
+    "url": "https://www.kotakneo.com/news/market-news/closing-bell-21-september-2026/"
    }
   },
   {
-   "label": "Asian spot LNG (JKM)",
-   "value": "$27.51/MMBtu",
-   "as_of": "2026-09-18",
-   "note": "+2.8% on the day, up 142% year-on-year as Hormuz disruption tightens supply",
+   "label": "WTI crude (Oct'26 futures)",
+   "value": "$93.74/bbl",
+   "as_of": "2026-09-21",
+   "note": "",
    "source": {
-    "publisher": "Trading Economics",
-    "url": "https://tradingeconomics.com/commodity/liquefied-natural-gas-japan-korea"
+    "publisher": "Kotak Securities",
+    "url": "https://www.kotakneo.com/news/market-news/closing-bell-21-september-2026/"
+   }
+  },
+  {
+   "label": "India Russian crude imports",
+   "value": "~1.9 mb/d, >35% of total",
+   "as_of": "2026-09-21",
+   "note": "lowest since April 2026, at risk from new US sanctions law",
+   "source": {
+    "publisher": "Business Today",
+    "url": "https://www.businesstoday.in/india/story/will-india-cut-down-on-russian-crude-purchases-due-to-us-tariffs-heres-what-we-know-556830-2026-09-21"
+   }
+  },
+  {
+   "label": "Saudi crude exports",
+   "value": ">4 mb/d",
+   "as_of": "2026-09-21",
+   "note": "up from ~2.4 mb/d in August as pipeline/port disruptions ease",
+   "source": {
+    "publisher": "HDFC Sky",
+    "url": "https://hdfcsky.com/news/brent-crude-oil-price-today-september-21-2026-brent-crude-falls-to-101-5-wti-at-97-9-as-supply-concerns-ease"
    }
   }
  ],
  "items": [
+  {
+   "date": "2026-09-21",
+   "title": "Brent falls for 4th straight day below $102 as Saudi exports recover, Iran talks hoped for",
+   "text": "Brent crude fell to around $100-101.5/bbl on 21 September, its lowest since 10 September and a fourth consecutive daily decline, as Saudi Arabia's crude exports recovered to more than 4 million bpd (from about 2.4 million bpd in August) despite a Houthi missile and drone attack on Riyadh and an Aramco site at Yanbu. Prices eased further on hopes that President Trump could meet Iran's president at the UN General Assembly this week, reducing the war-risk premium. Brent November futures settled at $101.38/bbl and WTI October futures at $93.74/bbl. Lower crude is a relief for India's import bill and refiners' marketing losses, but reduces near-term realisations for producers.",
+   "tone": "watch",
+   "companies": [
+    "ONGC",
+    "OIL",
+    "RELIANCE",
+    "VOGL",
+    "IOC",
+    "BPCL",
+    "HINDPETRO"
+   ],
+   "sources": [
+    {
+     "publisher": "HDFC Sky",
+     "title": "Brent Crude Oil Price Today September 21, 2026: Brent Crude Falls to $101.5, WTI at $97.9 as Supply Concerns Ease",
+     "url": "https://hdfcsky.com/news/brent-crude-oil-price-today-september-21-2026-brent-crude-falls-to-101-5-wti-at-97-9-as-supply-concerns-ease",
+     "date": "2026-09-21"
+    },
+    {
+     "publisher": "Kotak Securities",
+     "title": "Closing Bell, 21 September 2026: Sensex, Nifty End Higher As Oil Prices Decline",
+     "url": "https://www.kotakneo.com/news/market-news/closing-bell-21-september-2026/",
+     "date": "2026-09-21"
+    }
+   ],
+   "added": "2026-09-22"
+  },
+  {
+   "date": "2026-09-21",
+   "title": "Indian refiners eye alternatives to Russian crude after new US sanctions law",
+   "text": "Indian refiners have begun exploring alternative crude sources after the US signed a sanctions law authorising tariffs of up to 100% on countries buying Russian oil and gas, with the list of targeted buyers reassessed every 180 days. India's Russian crude imports were already down to about 1.9 million bpd in September, the lowest since April 2026 and still over 35% of India's total crude imports. Russian Urals delivered to India cost around $133/bbl last week versus higher-priced Middle Eastern grades, so replacing these volumes would raise India's import bill.",
+   "tone": "watch",
+   "companies": [
+    "IOC",
+    "BPCL",
+    "HINDPETRO",
+    "RELIANCE"
+   ],
+   "sources": [
+    {
+     "publisher": "Business Today",
+     "title": "Will India cut down on Russian crude purchases due to US tariffs? Here's what we know",
+     "url": "https://www.businesstoday.in/india/story/will-india-cut-down-on-russian-crude-purchases-due-to-us-tariffs-heres-what-we-know-556830-2026-09-21",
+     "date": "2026-09-21"
+    },
+    {
+     "publisher": "Bloomberg",
+     "title": "India's Oil Buyers May Cut Russian Cargoes in Wake of US Threats",
+     "url": "https://www.bloomberg.com/news/articles/2026-09-21/india-s-oil-buyers-may-cut-russian-cargoes-in-wake-of-us-threats",
+     "date": "2026-09-21"
+    }
+   ],
+   "added": "2026-09-22"
+  },
+  {
+   "date": "2026-09-21",
+   "title": "ONGC strikes gas at first Mahanadi deepwater well under Samudra Manthan",
+   "text": "ONGC struck gas at the MN-DW18-1-H-D well in the Mahanadi offshore basin, about 43 km off Konark (Odisha), at an interval of 1,441-1,452 metres after drilling to a target depth of 1,623 metres. It is the company's first deepwater well in the Mahanadi basin under the government's ₹84,084 crore Samudra Manthan campaign, and ONGC said the well has been flowing gas with encouraging flow and reservoir pressure for three days. The find's proximity to shore could support faster monetisation via shared infrastructure, subject to appraisal. ONGC shares closed 1.22% higher at ₹235.63 the same day, with the announcement made after market hours.",
+   "tone": "good",
+   "companies": [
+    "ONGC"
+   ],
+   "sources": [
+    {
+     "publisher": "PSU Watch",
+     "title": "ONGC strikes gas at its first Mahanadi deepwater well under Samudra Manthan",
+     "url": "https://psuwatch.com/newsupdates/ongc-strikes-gas-at-its-first-mahanadi-deepwater-well-under-samudra-manthan",
+     "date": "2026-09-21"
+    },
+    {
+     "publisher": "Upstox",
+     "title": "Oil and Natural Gas Corp strikes gas at deepwater well in Mahanadi offshore Basin; key details",
+     "url": "https://upstox.com/news/market-news/stocks/ongc-shares-in-focus-on-striking-gas-at-deepwater-well-in-mahanadi-offshore-basin-key-details/article-200612/",
+     "date": "2026-09-21"
+    }
+   ],
+   "added": "2026-09-22"
+  },
+  {
+   "date": "2026-09-21",
+   "title": "OMC stocks rally as four-day Brent slide eases under-recovery pressure",
+   "text": "Shares of Indian Oil, BPCL and HPCL rose as Brent's four-day, roughly 4% decline lowered crude procurement costs for the state refiners, which have been holding petrol and diesel prices steady despite high crude. BPCL gained about 3% over four sessions to ₹315.75 (from ₹306.80 on 17 September), Indian Oil rose 2.68% to ₹137.70 (from ₹134.10), and HPCL gained about 2.5% to a high of ₹359.55 (from ₹350.45).",
+   "tone": "good",
+   "companies": [
+    "IOC",
+    "BPCL",
+    "HINDPETRO"
+   ],
+   "sources": [
+    {
+     "publisher": "Business Today",
+     "title": "Indian Oil, HPCL, BPCL shares rise as brent crude prices fall for fourth day",
+     "url": "https://www.businesstoday.in/markets/stocks/story/indian-oil-hpcl-bpcl-shares-rise-as-brent-crude-prices-fall-for-fourth-day-556822-2026-09-21",
+     "date": "2026-09-21"
+    }
+   ],
+   "added": "2026-09-22"
+  },
+  {
+   "date": "2026-09-20",
+   "title": "Welspun Corp's Saudi associate EPIC wins ₹2,000 crore Aramco pipe order",
+   "text": "Welspun Corp said its Saudi associate company East Pipes Integrated Company (EPIC), in which Welspun holds a 22% stake, signed a contract with Saudi Aramco to manufacture and supply steel pipes worth about SAR 771 million (~₹2,000 crore including VAT), to be executed over six months with financial impact spread from Q4 FY27 through Q1 FY28. Welspun Corp shares jumped about 5% to a record high of ₹2,797.60 on the news.",
+   "tone": "good",
+   "companies": [
+    "WELCORP"
+   ],
+   "sources": [
+    {
+     "publisher": "Business Standard",
+     "title": "Welspun Corp's associate company bags Rs 2,000-cr contract from Aramco",
+     "url": "https://www.business-standard.com/markets/capital-market-news/welspun-corp-s-associate-company-bags-rs-2-000-cr-contract-from-aramco-126092100420_1.html",
+     "date": "2026-09-21"
+    },
+    {
+     "publisher": "Business Today",
+     "title": "Welspun Corp stock in focus as arm wins 'large' order from Saudi Aramco",
+     "url": "https://www.businesstoday.in/markets/stocks/story/welspun-corp-stock-in-focus-as-arm-wins-large-order-from-saudi-aramco-556727-2026-09-21",
+     "date": "2026-09-21"
+    }
+   ],
+   "added": "2026-09-22"
+  },
   {
    "date": "2026-09-19",
    "title": "Hormuz oil and LNG shipments hit six-month high, says US CENTCOM commander",

@@ -10232,6 +10232,55 @@
    "on": "2026-09-19",
    "result": "added",
    "detail": "CUBEXTUB"
+  },
+  "INE252C01023": {
+   "on": "2026-09-22",
+   "result": "sector",
+   "detail": "Services / Commercial Services & Supplies / Trading & Distributors"
+  },
+  "INE224E01028": {
+   "on": "2026-09-22",
+   "result": "known to the public",
+   "detail": "210,822 shareholders -- already public knowledge, over the 25,000.0 limit"
+  },
+  "INE123D01024": {
+   "on": "2026-09-22",
+   "result": "no moat, guidance, PAT turnaround, capacity util or product pivot",
+   "detail": "ROCE None% under 12.0%; ROE None% not above 5.0%"
+  },
+  "INE426Z01016": {
+   "on": "2026-09-22",
+   "result": "no moat, guidance, PAT turnaround, capacity util or product pivot",
+   "detail": "ROCE -1.26% under 12.0%; ROE -8.63% not above 5.0%"
+  },
+  "INE0CLI01024": {
+   "on": "2026-09-22",
+   "result": "known to the public",
+   "detail": "90,004 shareholders -- already public knowledge, over the 25,000.0 limit"
+  },
+  "INE0RNZ01014": {
+   "on": "2026-09-22",
+   "result": "no moat, guidance, PAT turnaround, capacity util or product pivot"
+  },
+  "INE1OSW01015": {
+   "on": "2026-09-22",
+   "result": "sector",
+   "detail": "Consumer Discretionary / Media, Entertainment & Publication / Media / Web based media and service"
+  },
+  "INE0KWF01020": {
+   "on": "2026-09-22",
+   "result": "known to the public",
+   "detail": "30,285 shareholders -- already public knowledge, over the 25,000.0 limit"
+  },
+  "INE1JJF01019": {
+   "on": "2026-09-22",
+   "result": "no moat, guidance, PAT turnaround, capacity util or product pivot",
+   "detail": "promoter None% under 40.0%"
+  },
+  "INE500C01017": {
+   "on": "2026-09-22",
+   "result": "added",
+   "detail": "540788"
   }
  },
  "runs": [
@@ -10371,6 +10420,17 @@
    "on": "2026-09-21",
    "fetched": 0,
    "added_codes": []
+  },
+  {
+   "on": "2026-09-22",
+   "fetched": 10,
+   "sector": 2,
+   "known to the public": 3,
+   "no moat, guidance, PAT turnaround, capacity util or product pivot": 4,
+   "added": 1,
+   "added_codes": [
+    "540788"
+   ]
   }
  ]
 }

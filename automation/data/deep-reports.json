@@ -184,12 +184,28 @@
    "skipped": {
     "VIMTALABS": "already covers Dec 2024"
    }
+  },
+  {
+   "on": "2026-09-22",
+   "written": [
+    "KSB:FY27-Q1",
+    "NATIONALUM:FY27-Q1"
+   ],
+   "spent_usd": null,
+   "skipped": {
+    "VIMTALABS": "already covers Dec 2024",
+    "SIMPLEXCAS": "already covers Sep 2021"
+   }
   }
  ],
  "seen_new_results": {
   "VIMTALABS": {
    "quarter": "Jun 2026",
    "on": "2026-09-15"
+  },
+  "SIMPLEXCAS": {
+   "quarter": "Jun 2026",
+   "on": "2026-09-22"
   }
  },
  "reports": {
@@ -372,6 +388,24 @@
    "cost_usd": null,
    "api_equivalent_usd": 13.6,
    "minutes": 31.2
+  },
+  "KSB": {
+   "period": "FY27-Q1",
+   "on": "2026-09-22",
+   "engine": "claude-code",
+   "tokens_out": 183865,
+   "cost_usd": null,
+   "api_equivalent_usd": 18.231,
+   "minutes": 39.7
+  },
+  "NATIONALUM": {
+   "period": "FY27-Q1",
+   "on": "2026-09-22",
+   "engine": "claude-code",
+   "tokens_out": 219499,
+   "cost_usd": null,
+   "api_equivalent_usd": 23.696,
+   "minutes": 50.0
   }
  }
 }
