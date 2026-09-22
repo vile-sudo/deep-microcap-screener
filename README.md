@@ -426,14 +426,18 @@ shift is a tailwind for the Indian maker competing for that order).
     jewellery, agrochemicals, auto components.
   - **USA** -- semiconductors, biotech/FDA, defence & aerospace, agri
     commodities, oil & gas/shale, tariffs & trade policy.
-- **Schedule:** hourly (`news_channel.yml`). At that cadence, newsdata.io
-  costs 24 x 3 = 72 requests/day (well under its 200/day ceiling; `DAILY_CAP`
-  stops it short of that regardless of schedule or admin clicks), and Google
-  News costs roughly 24 x 19 sector queries -- there's no published quota to
+- **Schedule:** every 5 minutes (`news_channel.yml`), GitHub Actions' own
+  shortest supported interval. At that cadence newsdata.io would cost
+  288 x 3 = 864 requests/day, well past its 200/day ceiling, but `DAILY_CAP`
+  is a hard floor independent of schedule or admin clicks: newsdata.io
+  simply stops being called once the day's 180 are used, typically within
+  the first few hours. Google News has no such cap and costs roughly
+  288 x 19 sector queries/day (~5,500) -- there's no published quota to
   floor under on that side, so a query that starts failing just drops into
-  that run's `errors` list rather than breaking anything. Each run merges
-  its results into the existing feed rather than replacing it, and prunes
-  anything over 48 hours old.
+  that run's `errors` list rather than breaking anything, and the worst
+  case under sustained throttling is a stale feed, not a broken one. Each
+  run merges its results into the existing feed rather than replacing it,
+  and prunes anything over 48 hours old.
 - **Data:** `backend/data/news_channel/latest.json`, committed like Movers;
   `GET /api/news-channel` serves it. An admin can also fire a fetch from
   the dashboard ("Refresh now" on the News Channel page →
@@ -579,12 +583,13 @@ workflow*): `fundamentals.yml`, `auto-screen.yml`, `discovery.yml`, `asme.yml`, 
 Claude usage, and running it later catches more of the previous session's
 overnight news coverage (see the Movers section above).
 
-**News Channel** also runs separately, **hourly** (`news_channel.yml`) --
-news is time-sensitive in a way the rest of the dashboard's once-a-day data
-isn't, and Google News RSS (its primary source since it needs no API key
-and has no daily quota to protect) makes that cadence cheap; newsdata.io,
-the second source, stays comfortably under its own 200-request/day ceiling
-even at 24 runs a day (see the News Channel section above).
+**News Channel** also runs separately, **every 5 minutes**
+(`news_channel.yml`) -- news is time-sensitive in a way the rest of the
+dashboard's once-a-day data isn't, and Google News RSS (its primary source
+since it needs no API key and has no daily quota to protect) makes that
+cadence viable; newsdata.io, the second source, is kept under its own
+200-request/day ceiling by `DAILY_CAP` regardless of how often the workflow
+fires (see the News Channel section above).
 
 ### Auto-added companies
 

@@ -1,15 +1,18 @@
 name: News Channel
 
 # China/India/USA news for the sectors each dominates globally -- see
-# backend/app/news_channel.py for the two sources. Runs hourly: at that
-# cadence newsdata.io costs 24 x 3 = 72 requests/day (well under its
-# 200/day free-plan ceiling, DAILY_CAP=180 stops it short of that
-# regardless), and Google News RSS -- no key, no documented quota -- costs
-# roughly 24 x 19 sector queries = ~450 requests/day, paced half a second
-# apart within a run. Nothing enforces a daily ceiling on that side the way
-# DAILY_CAP does for newsdata.io, since there is no published limit to
-# floor under; if Google ever starts throttling it, each query already
-# fails independently into `errors` without breaking the run.
+# backend/app/news_channel.py for the two sources. Runs every 5 minutes --
+# GitHub Actions' own shortest supported schedule interval. At that cadence
+# newsdata.io would cost 288 runs x 3 requests = 864/day, well past its
+# 200/day free-plan ceiling, but DAILY_CAP=180 in news_channel.py is a hard
+# floor independent of how often this fires: newsdata.io simply stops being
+# called once the day's 180 are used (in practice within the first few
+# hours), so it can never go over regardless of schedule. Google News RSS --
+# no key, no documented quota -- has no such cap and costs roughly
+# 288 x 19 sector queries = ~5,500 requests/day, paced half a second apart
+# within a run; if Google starts throttling at that volume, each query
+# already fails independently into `errors` without breaking the run, so
+# the worst case is a stale feed, not a broken one.
 # Also runs on demand via "Refresh now" on the dashboard
 # (POST /api/admin/news-channel/run-now) or this workflow run by hand from
 # the Actions tab.
@@ -22,7 +25,7 @@ permissions:
 
 on:
   schedule:
-    - cron: '15 * * * *'
+    - cron: '*/5 * * * *'
   workflow_dispatch:
 
 concurrency:
