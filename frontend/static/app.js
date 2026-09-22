@@ -2788,7 +2788,7 @@ async function openNews(){
   if(!NEWS.data){
     body.innerHTML='<p class="view-hint">Loading…</p>';
     const j=await newsFetch();
-    if(!j || !j.items){ body.innerHTML='<p class="view-hint">No news fetched yet. It runs automatically every 12 hours.</p>'; return; }
+    if(!j || !j.items){ body.innerHTML='<p class="view-hint">No news fetched yet. It runs automatically every 5 minutes.</p>'; return; }
     NEWS.data=j;
   }
   if(!NEWS.built) newsBuildControls();
@@ -2814,6 +2814,24 @@ function newsBuildControls(){
   document.getElementById('news-clear').onclick=()=>{
     cc.value=''; sc.value=''; document.getElementById('news-pm').checked=false; newsRender();
   };
+  document.getElementById('news-reload').onclick=newsReload;
+}
+
+/* Pulls whatever the server currently has, for every reader -- not the
+   admin-only "Refresh now" below, which kicks off a brand new fetch from
+   Google News/newsdata.io. newsFetch() caches its promise for the life of
+   the page (openNews() only ever calls it once), so with the feed now
+   updating server-side every 5 minutes there was otherwise no way to see
+   newer items short of a full page reload. */
+async function newsReload(){
+  const btn=document.getElementById('news-reload');
+  if(btn){ btn.disabled=true; btn.textContent='Reloading…'; }
+  const j=await fetchJSON('/api/news-channel').catch(()=>null);
+  NEWS.loading=Promise.resolve(j);
+  if(j && j.items){ NEWS.data=j; newsBadgeUpdate(); }
+  newsRender();
+  newsMarkSeen();
+  if(btn){ btn.disabled=false; btn.innerHTML='&#8635; Reload'; }
 }
 
 function newsRows(){
