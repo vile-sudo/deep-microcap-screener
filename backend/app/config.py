@@ -74,6 +74,19 @@ class Settings(BaseSettings):
     github_branch: str = "main"
     gh_dispatch_token: str = ""
 
+    # --- External cron pinger (News Channel, real 5-minute freshness) ----
+    # GitHub's own `schedule:` trigger doesn't reliably fire on a tight
+    # interval -- it can silently skip runs under load, with no catch-up and
+    # no SLA (see news_channel.yml's history: even an hourly cron drifted to
+    # every 3-5 hours in practice). A `workflow_dispatch` trigger doesn't
+    # have that problem -- it fires within seconds. So a real external timer
+    # (any free HTTP cron service) hits POST /api/cron/news-channel?key=...
+    # every 5 minutes instead, which just calls the same dispatch the admin
+    # "Refresh now" button uses. cron_key is a password you make up -- set
+    # it here and as that service's query-string key, never commit it.
+    # Leave empty and the endpoint explains how to set it up.
+    cron_key: str = ""
+
     # --- Data seeding ----------------------------------------------------
     seed_file: Path = BASE_DIR / "data" / "companies_raw.json"
     meta_file: Path = BASE_DIR / "data" / "meta_raw.json"

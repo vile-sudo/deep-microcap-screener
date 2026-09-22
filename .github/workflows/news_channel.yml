@@ -1,11 +1,22 @@
 name: News Channel
 
 # China/India/USA news for the sectors each dominates globally -- see
-# backend/app/news_channel.py for the two sources. Runs every 5 minutes --
-# GitHub Actions' own shortest supported schedule interval. At that cadence
-# newsdata.io would cost 288 runs x 3 requests = 864/day, well past its
-# 200/day free-plan ceiling, but DAILY_CAP=180 in news_channel.py is a hard
-# floor independent of how often this fires: newsdata.io simply stops being
+# backend/app/news_channel.py for the two sources. The schedule below is set
+# to every 5 minutes, GitHub Actions' own shortest supported interval, but
+# GitHub does NOT reliably honor that in practice -- schedule: triggers are
+# best-effort with no SLA and can be silently skipped under load (this repo's
+# own run history showed even an hourly cron drifting to every 3-5 hours).
+# Real 5-minute freshness comes from an external cron service hitting
+# POST /api/cron/news-channel instead (see CRON_KEY in backend/app/config.py
+# and the News Channel section of README.md) -- that calls workflow_dispatch,
+# which does fire within seconds. This schedule: entry is left in place as a
+# free fallback for whenever the external pinger isn't configured or is down,
+# not as the primary trigger.
+#
+# At full 5-minute cadence (whichever trigger achieves it), newsdata.io
+# would cost 288 runs x 3 requests = 864/day, well past its 200/day
+# free-plan ceiling, but DAILY_CAP=180 in news_channel.py is a hard floor
+# independent of how often this fires: newsdata.io simply stops being
 # called once the day's 180 are used (in practice within the first few
 # hours), so it can never go over regardless of schedule. Google News RSS --
 # no key, no documented quota -- has no such cap and costs roughly

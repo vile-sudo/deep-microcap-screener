@@ -426,18 +426,38 @@ shift is a tailwind for the Indian maker competing for that order).
     jewellery, agrochemicals, auto components.
   - **USA** -- semiconductors, biotech/FDA, defence & aerospace, agri
     commodities, oil & gas/shale, tariffs & trade policy.
-- **Schedule:** every 5 minutes (`news_channel.yml`), GitHub Actions' own
-  shortest supported interval. At that cadence newsdata.io would cost
-  288 x 3 = 864 requests/day, well past its 200/day ceiling, but `DAILY_CAP`
-  is a hard floor independent of schedule or admin clicks: newsdata.io
-  simply stops being called once the day's 180 are used, typically within
-  the first few hours. Google News has no such cap and costs roughly
-  288 x 19 sector queries/day (~5,500) -- there's no published quota to
-  floor under on that side, so a query that starts failing just drops into
-  that run's `errors` list rather than breaking anything, and the worst
-  case under sustained throttling is a stale feed, not a broken one. Each
-  run merges its results into the existing feed rather than replacing it,
-  and prunes anything over 48 hours old.
+- **Schedule:** `news_channel.yml`'s own cron is set to every 5 minutes
+  (`*/5 * * * *`, GitHub Actions' shortest supported interval), but in
+  practice **GitHub doesn't honor that** -- scheduled (`schedule:`) triggers
+  are best-effort and can be silently skipped under load, with no catch-up
+  and no published SLA. Real run history on this repo showed even an
+  *hourly* cron drifting to every 3-5 hours. A `workflow_dispatch` trigger
+  doesn't have that problem (it fires within seconds), which is why real
+  5-minute freshness comes from an **external cron pinger** instead, not
+  GitHub's own schedule (see below). At full 5-minute cadence, newsdata.io
+  would cost 288 x 3 = 864 requests/day, well past its 200/day ceiling, but
+  `DAILY_CAP` is a hard floor independent of how often it's actually
+  called: newsdata.io simply stops being called once the day's 180 are
+  used, typically within the first few hours. Google News has no such cap
+  and costs roughly 288 x 19 sector queries/day (~5,500) if every tick
+  lands -- there's no published quota to floor under on that side, so a
+  query that starts failing just drops into that run's `errors` list
+  rather than breaking anything, and the worst case under sustained
+  throttling is a stale feed, not a broken one. Each run merges its
+  results into the existing feed rather than replacing it, and prunes
+  anything over 48 hours old.
+- **External cron pinger (the thing that actually delivers 5-minute
+  freshness):** set `CRON_KEY` as an env var on the server (a password you
+  make up, never commit it), then point any free HTTP cron service (e.g.
+  [cron-job.org](https://cron-job.org), no credit card) at
+  `POST https://<your-host>/api/cron/news-channel?key=<CRON_KEY>` every 5
+  minutes. That endpoint is the same GitHub Actions dispatch the admin
+  "Refresh now" button uses, just gated by the shared secret instead of a
+  login -- server-side rate-limited to once per 4 minutes so a slightly-early
+  tick still goes through but a misconfigured hammer can't. Needs
+  `GH_DISPATCH_TOKEN` set too (see below). Leave `CRON_KEY` unset and the
+  endpoint returns 503 explaining how to turn it on; nothing breaks either
+  way, the feed just falls back to whatever GitHub's own schedule manages.
 - **Data:** `backend/data/news_channel/latest.json`, committed like Movers;
   `GET /api/news-channel` serves it. An admin can also fire a fetch from
   the dashboard ("Refresh now" on the News Channel page →

@@ -5,23 +5,54 @@ GET /api/news-channel                  the latest fetched feed
 POST /api/admin/news-channel/run-now    admin: dispatch the fetch right now
                                         instead of waiting for the next
                                         scheduled run
+POST /api/cron/news-channel             shared-secret: same dispatch, for an
+                                        external cron pinger -- see cron_key
+                                        in config.py for why this exists
 
 Written by scripts/run_news_channel.py into backend/data/news_channel/latest.json
 (see .github/workflows/news_channel.yml for the schedule, app/news_channel.py
 for the rules); this router only reads it.
 """
+import hmac
 import time
 
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 
 from .. import github_dispatch, news_channel
+from ..config import get_settings
 from ..database import get_db
 from ..models import MetaKV
 from .auth import require_admin
 
 router = APIRouter(tags=["news-channel"])
-REFRESH_COOLDOWN = 15 * 60   # 3 newsdata.io requests -- normally done in well under a minute
+REFRESH_COOLDOWN = 15 * 60   # human clicks: 3 newsdata.io requests, normally done in well under a minute
+CRON_COOLDOWN = 4 * 60       # machine pings: a little under the external timer's own 5-minute interval,
+                             # so a slightly-early tick still goes through but a misconfigured hammer can't
+
+
+def _dispatch_if_due(db: Session, kv_key: str, cooldown: int) -> dict:
+    if not github_dispatch.configured():
+        raise HTTPException(status_code=503, detail="Not set up: add GH_DISPATCH_TOKEN on the server (see README) to enable this.")
+
+    row = db.get(MetaKV, kv_key)
+    last = float(((row.value if row else None) or {}).get("last", 0))
+    now = time.time()
+    if now - last < cooldown:
+        wait = int(cooldown - (now - last))
+        raise HTTPException(status_code=429, detail=f"Already refreshed recently -- try again in about {max(1, wait // 60)} min.")
+
+    try:
+        github_dispatch.dispatch("news_channel.yml", {})
+    except github_dispatch.DispatchError as e:
+        raise HTTPException(status_code=502, detail=f"Could not start the refresh: {e}") from e
+
+    if row is None:
+        db.add(MetaKV(key=kv_key, value={"last": now}))
+    else:
+        row.value = {"last": now}
+    db.commit()
+    return {"status": "queued", "cooldown_seconds": cooldown}
 
 
 @router.get("/api/news-channel")
@@ -34,24 +65,19 @@ def run_now(admin: dict = Depends(require_admin), db: Session = Depends(get_db))
     """Admin only: dispatch scripts/run_news_channel.py right now via GitHub
     Actions. Rate-limited server-side so repeat clicks don't chip away at
     the 200-request/day newsdata.io quota."""
-    if not github_dispatch.configured():
-        raise HTTPException(status_code=503, detail="Not set up: add GH_DISPATCH_TOKEN on the server (see README) to enable Run now.")
+    return _dispatch_if_due(db, "NEWS_CHANNEL_REFRESH", REFRESH_COOLDOWN)
 
-    row = db.get(MetaKV, "NEWS_CHANNEL_REFRESH")
-    last = float(((row.value if row else None) or {}).get("last", 0))
-    now = time.time()
-    if now - last < REFRESH_COOLDOWN:
-        wait = int(REFRESH_COOLDOWN - (now - last))
-        raise HTTPException(status_code=429, detail=f"Already refreshed recently -- try again in about {max(1, wait // 60)} min.")
 
-    try:
-        github_dispatch.dispatch("news_channel.yml", {})
-    except github_dispatch.DispatchError as e:
-        raise HTTPException(status_code=502, detail=f"Could not start the refresh: {e}") from e
-
-    if row is None:
-        db.add(MetaKV(key="NEWS_CHANNEL_REFRESH", value={"last": now}))
-    else:
-        row.value = {"last": now}
-    db.commit()
-    return {"status": "queued", "cooldown_seconds": REFRESH_COOLDOWN}
+@router.post("/api/cron/news-channel")
+def cron_ping(key: str = "", db: Session = Depends(get_db)):
+    """For an external cron service, not the dashboard -- GitHub's own
+    `schedule:` trigger in news_channel.yml doesn't fire reliably on a tight
+    interval (see cron_key in config.py), so a real external timer calls
+    this instead, every 5 minutes. Same dispatch as admin "Refresh now",
+    gated by a shared secret instead of a login."""
+    configured = get_settings().cron_key
+    if not configured:
+        raise HTTPException(status_code=503, detail="Not set up: add CRON_KEY on the server (see README) to enable the external pinger.")
+    if not hmac.compare_digest(key or "", configured):
+        raise HTTPException(status_code=403, detail="Wrong or missing key")
+    return _dispatch_if_due(db, "NEWS_CHANNEL_CRON", CRON_COOLDOWN)
