@@ -1,7 +1,7 @@
 {
  "trade_date": "2026-09-21",
  "threshold_percent": 4.0,
- "generated_at": "2026-09-22T12:22:33+05:30",
+ "generated_at": "2026-09-22T15:12:10+05:30",
  "stats": {
   "scanned": 3417,
   "flagged": 451,
@@ -325,9 +325,16 @@
    "raw_pct_change": 14.32,
    "corporate_action": null,
    "why": {
-    "headline": "Operations (Economic Times)",
+    "headline": "M&A Or Stake (Economic Times)",
     "confidence": "medium",
     "evidence": [
+     {
+      "tier": "news",
+      "kind": "M&A or stake",
+      "detail": "Ashiana Housing eyes ₹2,400 crore sales bookings, over ₹1,000 crore land acquisitions in FY27",
+      "url": "https://news.google.com/rss/articles/CBMi7AFBVV95cUxPa2Nqa3FBeHVpdG5GYV9QYTEyVTVNLS1WbFA0WEtEU3F5WkFHa1JySW5hSmN4ZHpLRTlKemVjVlppT25Lc3pyX01GdkY3QmVzR1czWFNqcUs4UmhDcWhtRFE0YTJXanNuWUUzNGo3cUFRS2dRbGdlcGNYd002YUFwMVNTT1dWM0ZpYzJaeWUzdnFBQ1FRbURKbXg5MXIyWkRGeTRWX0Y1TUpidmZuRzkzaEV1NGxIOGFJOFFYSW12bUdBQTB2aHk5a25xVHB1WFNyWUVqcXI3VTNCS1ZCZWlvZ3o3QnhQOHNkYnNrQtIB8gFBVV95cUxNdEp2ZGxtclFIazZWb3cwS1B3SWFTTnFHWEVUYVpQTktvZHlLTWFGemZUUkgzQ2RrMDNmU1ZaamdvQU9xLTEwX3lkNkh0SDVHQjUtTlczUnlHdl9nZ2JidzhVUmRXc2xTSlhzcGZsNXoweUx2SjcwaGxybmJNV3hranJDTncxdzJ1TlBLUlRNT2FFS21OVHlEUEEzV1pzeDZ2cWVRUnJ1aHFoSDJIWk5VSDJLSG1pS3JLYjE2Nkl2WjN0N3FOb1VUdjVlRU91eGNKSGV6VS04WDJWSUlkemJUc2xqc3ZZeEdHclcwSFpBRW5kQQ?oc=5",
+      "source": "Economic Times"
+     },
      {
       "tier": "news",
       "kind": "operations",
@@ -431,9 +438,16 @@
    "raw_pct_change": 12.99,
    "corporate_action": null,
    "why": {
-    "headline": "Capital Action (Goodreturns)",
-    "confidence": "low",
+    "headline": "Regulatory Or Legal (Business Upturn)",
+    "confidence": "medium",
     "evidence": [
+     {
+      "tier": "news",
+      "kind": "regulatory or legal",
+      "detail": "KPI Green Energy clarifies compliance with SEBI regulations",
+      "url": "https://news.google.com/rss/articles/CBMinAFBVV95cUxNblF4a0lXa3VVbnJYREF1V1RWWE9zZjBXTEVKZXR3bHMwM0F0OTRPNjBxN016cW1xaXdPYV8taEdhUzNaZ0hhUDhnTjRyMU5VMjVfS0RLaUxGZG0wRlR5RUhhbjM1VnlDV0I3eXB3Nm5tZC02Nm0zaGNxcWE4SjFyYXdJRk5yOEFWZmV3SFltdFg1QzQzaEhmZW9wVmw?oc=5",
+      "source": "Business Upturn"
+     },
      {
       "tier": "news",
       "kind": "capital action",
@@ -974,9 +988,9 @@
      },
      {
       "tier": "news",
-      "kind": "operations",
-      "detail": "Marine Electricals inaugurates new plant in Goa to expand capacity",
-      "url": "https://news.google.com/rss/articles/CBMipgFBVV95cUxOOGc1T0drZTVLdElLcFRweG5UUlhSWVo5bVRTMGhsdE50TURleXhXY2hRUHRyQ1pMa05DUDBaTHhoRllxQkNoY0FaTmg3d3JSVFRKSnZHSUkyMkdmOUszSUhwR0RxT3p4VVhsbDI1TDNsVExOZXdvRHJQTjJTMUxHMC1aV1FfRVo4Z0I1RENROVNheVBwMmpCZTlJMXNMclBqclZlVk9B?oc=5",
+      "kind": "results",
+      "detail": "Marine Electricals (India) reports robust Rs. 259 crore revenue in Q1 FY27",
+      "url": "https://news.google.com/rss/articles/CBMirAFBVV95cUxPVC1TcFJWRk1YY0ZCajdSQTlQVDdNdDhNb0lXWTlIejNqRzU5Q2dZeG02RDl4UmtpMDRXeUV1YklVUmtxSEZkc1lYdDlmTW5YVkRjYVU5Q19WTGgtOHNQUjJUZl9Va1htU25TN0xJYkMtbndkd1Z4c2JGVms3aDFDSnJNa01hS2xoNHZEYk1CbHoxVjFSd2xITXQwMFlLel94RC1jTlh0YW9ydVZP?oc=5",
       "source": "Business Upturn"
      }
     ]
@@ -1015,7 +1029,7 @@
    "raw_pct_change": 9.57,
    "corporate_action": null,
    "why": {
-    "headline": "Regulatory Or Legal, reported by CNBC TV18",
+    "headline": "Regulatory Or Legal, reported by Business Standard",
     "confidence": "high",
     "evidence": [
      {
@@ -1028,13 +1042,6 @@
      {
       "tier": "news",
       "kind": "order win",
-      "detail": "Tega Industries shares surge nearly 10% on ₹126 crore Kalpataru Projects contract",
-      "url": "https://news.google.com/rss/articles/CBMi1gFBVV95cUxPVlM3VEtzR29oa0RVcC1TZWRWLW9XX3RQdkFfSFVGUTlzTXFOSkVRVU1XMV9JY1hab1hJYldsZ29mLVBmVWtNTENMbmdYVkRuT1d5YnBCdWhvRGpQUHpTTVYzSDlyYmF4NEN2WU8xWktwOXRyR04taGRVVTlvRnFpVTdMMDdmbVVCQS1TRWVCZWJZYzQ0cGRxTlBJS2ROdS11V1lZVFpTTk9feDVpcUlWSzBYaHN5eEM5cE5NZ0Q1eW5DXzlVckozaEM5NHBoMUFmRGR3VUdn0gHbAUFVX3lxTFBYVnRXSFZNMkJqR1kwck9ZOVVyNGZoaVVMeHZtV010TjFTa250akZxMlEwdC11dGZCYnItOTBQUENxNDIwZk1wY3R4Y1pVd044RXU5Ykl4dnBGR1JvN0Fxa3F6RmhOa0xGSlZSc3kwdnNZeGo2enY3OTVoUDAwdlBidzN0eElMWUEybElSYXUwSUV2aG4wRDJBZUpOSy1JRDdwMWxqTnd0bTdaclRrWExoZmNQZWk2WVNvZjllV0E0TEZOUlZXSlkyTV9sTkVkanlGWXNNelMzZkFyYw?oc=5",
-      "source": "CNBC TV18"
-     },
-     {
-      "tier": "news",
-      "kind": "order win",
       "detail": "Tega Industries jumps as Tega McNally bags Rs 126 crore order",
       "url": "https://news.google.com/rss/articles/CBMi2wFBVV95cUxPbzJmSDE2OUExMmlUUnkzSjBYbFNmVTNUX1lmWXFEMTl6SGRrX0VDaXJMZmpaTDZ1V2F1bFg1UG5La0gwUTJibzNyQmw5cVU2ZmtBZ09rQ2ZwcEpfd0xKQXVjOXhmX0ZwX1lwaDE5NGZ1NG9mel85X25BWndCVXg1N2pXNGk0X3dCeXRfaWQ5R0FKOGRqeW1rejVzb3g5UmZvTG53dHZ3NWxwUl94dDZqZlZFaWowcnFiTG1IS1JLb2tueWJJM1k3bXVZMjNZLTV4Yk9ueFBpVlRXdm_SAeABQVVfeXFMUHpYdVQzZVRZd0xSWS1wS2Vrc0NzVVFDSkhZNkRNZUlldFhUNVN5Z0xQak5Jc0MtYV9LWkszOGR5Uk9xMlE3YTlYRDBZVlQ2cE5WS0xITEI1bTV2NENfbnAyM3kwUzNtMENoQUJYeW1zb09MblZxSW01UkljUE84bHQ3ZXZHX0h0S1htWGZJS21FOVBLYTB3elkzT0NFb0RxSkZNaXl2MU4tOUZNa184S0xPSUd4V3FpNGxHUE5lVlJYRGNJR3FtVVdzLWtZTFdnOGNNekdOM09jcm1vWUlHbzI?oc=5",
       "source": "Business Standard"
@@ -1042,8 +1049,15 @@
      {
       "tier": "news",
       "kind": "order win",
+      "detail": "Tega Industries shares surge nearly 10% on ₹126 crore Kalpataru Projects contract",
+      "url": "https://news.google.com/rss/articles/CBMi2wFBVV95cUxQWFZ0V0hWTTJCakdZMHJPWTlVcjRmaGlVTHh2bVdNdE4xU2tudGpGcTJRMHQtdXRmQmJyLTkwUFBDcTQyMGZNcGN0eGNaVXdOOEV1OWJJeHZwRkdSbzdBcWtxekZoTmtMRkpWUnN5MHZzWXhqNnp2Nzk1aFAwMHZQYnczdHhJTFlBMmxJUmF1MElFdmhuMEQyQWVKTkstSUQ3cDFsak53dG03WnJUa1hMaGZjUGVpNllTb2Y5ZVdBNExGTlJWV0pZMk1fbE5FZGp5RllzTXpTM2ZBcmPSAdsBQVVfeXFMUFhWdFdIVk0yQmpHWTByT1k5VXI0ZmhpVUx4dm1XTXROMVNrbnRqRnEyUTB0LXV0ZkJici05MFBQQ3E0MjBmTXBjdHhjWlV3TjhFdTliSXh2cEZHUm83QXFrcXpGaE5rTEZKVlJzeTB2c1l4ajZ6djc5NWhQMDB2UGJ3M3R4SUxZQTJsSVJhdTBJRXZobjBEMkFlSk5LLUlEN3AxbGpOd3RtN1pyVGtYTGhmY1BlaTZZU29mOWVXQTRMRk5SVldKWTJNX2xORWRqeUZZc016UzNmQXJj?oc=5",
+      "source": "CNBC TV18"
+     },
+     {
+      "tier": "news",
+      "kind": "order win",
       "detail": "Tega Industries shares in focus on September 21 after subsidiary wins Rs 1,260 crore contract",
-      "url": "https://news.google.com/rss/articles/CBMi1AFBVV95cUxOQnRxOGg0dmlQWEs2TzhESk9JQUhHTzdMcVVTdjlSNGdpRk5Tb3g4QmpmTGw0Zl9JUmhRdlFnOGVqZFgwNnpNMGUxQXdpaHlWX1VTWjJMZlVSV0dHSWpnb1JrWVVieE9zNm5yUEg3eDhnb3hDLWNHUTA1TXNJeE1WV0MzSWVkb0dZeC1PdWtUMnZJY014Yjh1eWJyRUFFTk9QVFduWTFydHM3cTBWSUFNQmd2WXQ2aDhueV8yLTh0U2R1cXd1YmtCQXRUV29RLUo0Nm5sbA?oc=5",
+      "url": "https://news.google.com/rss/articles/CBMi2gFBVV95cUxOMFJ1V0V5NFVIcEZmNVZyNFdaakg0QmJ0UkJKdUYzMDJ4d21ZWUEwWFg4RmI2ZHFTUWlfM3V5VUpPa1ZUUTZwUER0RWpkYnJzT3JkSV83S3BYV01CTkpFVEFFdm9RZnV6bmhUSzYtNlRBSDBLTW5KV21tQ2xwT205bUR6WVYwSGhFcjJaYXF2UUpKSm83eHFxdFJvdklFNm5lUVF3dFNlVUdyNERBZ1dCUklPWWV2azVHSVk3QXBJck50Q3RsdHBQVXJ0SERQaGk3eERMRGh1ZlRadw?oc=5",
       "source": "Business Upturn"
      }
     ]
@@ -2089,16 +2103,16 @@
      {
       "tier": "news",
       "kind": "order win",
-      "detail": "Engineers India order book hits record ₹15,109 crore as FY26 profit jumps 37%",
-      "url": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxNQjZfZVNUcUlvRWduOTJsOWllVy1FWHNJZVZVVDhpX2pRaE8xN0xWYVJBSFdRZEFKUFBFbGtDRzRkOWEwUjNjZGdNMGs3aGtKbDlOVTYzUDdWeU9Ic2RIQU52RllsOUI5Q0tEcVkyYlRzUWVLdW43MzdKMTlJVjRadjhBX2JJSlhmR09vLUJ3SXF0dm9NMkRoeFpSUXhBQkQ0d3ZJdmNldm9FZ2lmMDNvUXNRbkdxT1o3UGlZeDR4T3Fxd9IBzwFBVV95cUxNeXZRV3N4aTVxamlpRDZnQjMzYW9sUnlYd3VKU3NVQWJKX3BHMmhNODFrbnlLbXNGR3J4djFoclNJbEtQSmdab2lQUGFhbmFSMTJhaERNcTFsZUI2MGxPck9WTDRReXhXaWpaemtZREJrQmtQUlhTamtVN0gxdTd3S3lhRElpcHJTSE5VeTBvRFJmVlBpeHhzUDJLNmNBZjhTQmtkaUVXSV9qUzZ1enpsRkxWX19JUDZuMUlTMzFJTkhfTkpHTGwzTDVzU3BNa2c?oc=5",
-      "source": "Fortune India"
+      "detail": "Engineers India bags order worth ₹4,300 crore from Dangote Group for petrochemical project",
+      "url": "https://news.google.com/rss/articles/CBMiiwJBVV95cUxPc2tyVW50Mm5GV21YblJMTmd4enZrRmNTbmpsckt0M0NjQnpWTnNFdF9Ubi0zM0h5ck9aTWxYcEplLVM4dDlMdTh2WDdEcFEyQlJLZHlHRGxtQnZnWHBjTmxZTmtwcW9hMU01REZxcnVJbzZyY0FtNV9RUVVqcU13YnRQN3E3RTN6LUw2OHh2cElTaXZrMUk1Z2lsdnhTdUk0dWNFTkdLYnVyZFRmZ2NtMjF3UktOd19nbUJSNkREQXptYTQzY0RreFBDTkJ0Q19RMGdyTUE0aWhrUDJwdXJjTV9FN3NRcUxDZ0NQbjdqekIyU1p5YWRhd1dlLUFfWU5lQzZCQklHVXJmVzjSAYsCQVVfeXFMT3NrclVudDJuRldtWG5STE5neHp2a0ZjU25qbHJLdDNDY0J6Vk5zRXRfVG4tMzNIeXJPWk1sWHBKZS1TOHQ5THU4dlg3RHBRMkJSS2R5R0RsbUJ2Z1hwY05sWU5rcHFvYTFNNURGcXJ1SW82cmNBbTVfUVFVanFNd2J0UDdxN0Uzei1MNjh4dnBJU2l2azFJNWdpbHZ4U3VJNHVjRU5HS2J1cmRUZmdjbTIxd1JLTndfZ21CUjZEREF6bWE0M2NEa3hQQ05CdENfUTBnck1BNGloa1AycHVyY01fRTdzUXFMQ2dDUG43anpCMlNaeWFkYXdXZS1BX1lOZUM2QkJJR1VyZlc4?oc=5",
+      "source": "CNBC TV18"
      },
      {
       "tier": "news",
-      "kind": "capital action",
-      "detail": "Dividend Alert: 170+ Stocks to Turn Ex-Dividend This Week; Engineers India, IRCTC, BEML in Focus",
-      "url": "https://news.google.com/rss/articles/CBMi5gFBVV95cUxQSEJpU2VtSWRnX1RaSG9mUlVzamxOU0NHMGpKU3VVenNjOU1tY25Yc2k2V1l0Zlo4aWxkOHFvNlVqemkxbGxBZUI3bDBseVBJdXlYZ3k2bVh5azhJTFVnb1pVNjRFM0NhbG9jR21DVDNXQ2xfTTN4eklkOV9NclhBRm9EY2NYMEpIYlFyQ3NpRzFGdGxJbjB4SmNxVHI2ZG1fWGlpVTlWZUxHelA0Mnc4NmxKRFUxQnpRTWtPTENoVzJ1ck5oY1AzbDNZMnNLN1FzYTNTRjYxeEhXdlpIaXVoM2tLVTR6Z9IB7AFBVV95cUxPdUZTM2owMjlSSWxXVVJBdzRZdkVDU1hsOE1HaVpXTW1kVVR6SDlONHJZSjc0MkMtZnh1X3NmaWJyMFo4d0RzVzFka1EwSVVaNkwzdXg4YWFMS29fWncwSjRDdEtsZVR6VEd3Y0Z6NHVXUXJMa2VyZ2M1ekQtNVhTWUpicjBod0c4RU5RM1M1NWRVTU9sdk0ydWg5VGYtNkVvUXRhS3p0WHQ1SWNwYWF0dmoxWXltUnozSEpkYW1tamNGN3h5MHpPX1JzVzFfYUdPbTEwNUdLTjJfVjFiQ3ZxejZMMUR4cENFNGZjTw?oc=5",
-      "source": "Financial Express"
+      "kind": "order win",
+      "detail": "Engineers India order book hits record ₹15,109 crore as FY26 profit jumps 37%",
+      "url": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxNQjZfZVNUcUlvRWduOTJsOWllVy1FWHNJZVZVVDhpX2pRaE8xN0xWYVJBSFdRZEFKUFBFbGtDRzRkOWEwUjNjZGdNMGs3aGtKbDlOVTYzUDdWeU9Ic2RIQU52RllsOUI5Q0tEcVkyYlRzUWVLdW43MzdKMTlJVjRadjhBX2JJSlhmR09vLUJ3SXF0dm9NMkRoeFpSUXhBQkQ0d3ZJdmNldm9FZ2lmMDNvUXNRbkdxT1o3UGlZeDR4T3Fxd9IBzwFBVV95cUxNeXZRV3N4aTVxamlpRDZnQjMzYW9sUnlYd3VKU3NVQWJKX3BHMmhNODFrbnlLbXNGR3J4djFoclNJbEtQSmdab2lQUGFhbmFSMTJhaERNcTFsZUI2MGxPck9WTDRReXhXaWpaemtZREJrQmtQUlhTamtVN0gxdTd3S3lhRElpcHJTSE5VeTBvRFJmVlBpeHhzUDJLNmNBZjhTQmtkaUVXSV9qUzZ1enpsRkxWX19JUDZuMUlTMzFJTkhfTkpHTGwzTDVzU3BNa2c?oc=5",
+      "source": "Fortune India"
      }
     ]
    },
@@ -2566,21 +2580,21 @@
       "tier": "news",
       "kind": "broker action",
       "detail": "Mankind Pharma shares get an upgrade from Kotak; Price target among top five on the street",
-      "url": "https://news.google.com/rss/articles/CBMi6gFBVV95cUxNbDVXLXJnM3ZBbUhwOE5ZVWFnNnU5X1c0VFo4bW9aaVZSaFZWRlIzRFAyVU9hclEwcHdGNHFGcGJFU1FfeDZDU0QxT0xuM3FIQnRMZThVMTB0LUhwQzJNemFEWFRNRFZnYWVobzNURUhITGtTRWZWbWsyVHZWcUNXaEtBMjRzMlNJNGRnb25DUmdaa0NySjB0UDBIeVRUc2lMLTAwRG9oZTlIaFNzbUNkRDkwNFJUeDJuaHZkTkJXaktJbFJrQ2dGb0VydGVyaUFNTnFTZFZ0NVAtdEk0SklXSExjdVdEeTFPTEHSAeoBQVVfeXFMTWw1Vy1yZzN2QW1IcDhOWVVhZzZ1OV9XNFRaOG1vWmlWUmhWVkZSM0RQMlVPYXJRMHB3RjRxRnBiRVNRX3g2Q1NEMU9MbjNxSEJ0TGU4VTEwdC1IcEMyTXphRFhUTURWZ2FlaG8zVEVISExrU0VmVm1rMlR2VnFDV2hLQTI0czJTSTRkZ29uQ1JnWmtDckowdFAwSHlUVHNpTC0wMERvaGU5SGhTc21DZEQ5MDRSVHgybmh2ZE5CV2pLSWxSa0NnRm9FcnRlcmlBTU5xU2RWdDVQLXRJNEpJV0hMY3VXRHkxT0xB?oc=5",
+      "url": "https://news.google.com/rss/articles/CBMi5AFBVV95cUxPN0IyLXM0a2xsT0lsVkVrUGpVS2FoQlUzc1RHSy1GSm4yOGJJb19TUHlvczBUU2FxOWhoSl9HVy1DUU9jT3JyNG9RYWhFSTZ0SGNXeFloaDFrRzdhN2hlV1JuaTNwbnpNb25XNmlxanplU09CU1A0ZG9DM2lUZlBia19rdWFaUEpGVGlHZnVKRWpRUVd3aW80YVcyNmt1TGpzWDB6SEg0NUVuWTdWRXFvM1EzZHdybE9sTDFxZUVPOUxzSVYwbEYtVDRfSW9xUTJub2VjTWxKc2s1NEhnaUktN0hXOTHSAeoBQVVfeXFMTWw1Vy1yZzN2QW1IcDhOWVVhZzZ1OV9XNFRaOG1vWmlWUmhWVkZSM0RQMlVPYXJRMHB3RjRxRnBiRVNRX3g2Q1NEMU9MbjNxSEJ0TGU4VTEwdC1IcEMyTXphRFhUTURWZ2FlaG8zVEVISExrU0VmVm1rMlR2VnFDV2hLQTI0czJTSTRkZ29uQ1JnWmtDckowdFAwSHlUVHNpTC0wMERvaGU5SGhTc21DZEQ5MDRSVHgybmh2ZE5CV2pLSWxSa0NnRm9FcnRlcmlBTU5xU2RWdDVQLXRJNEpJV0hMY3VXRHkxT0xB?oc=5",
       "source": "CNBC TV18"
      },
      {
       "tier": "news",
       "kind": "broker action",
-      "detail": "Mankind Pharma Stock Gains As Kotak Upgrades Stock To ‘Buy’, Raises Target To Rs 3,000",
-      "url": "https://news.google.com/rss/articles/CBMixgFBVV95cUxObXRaSzBPX3pjYjN6WTg0cEJFUVdLTUhOa2NWUWlDVXRlM3RsWHlrZDBoZ1dqVC0tOHNVWGQ0eFRNVF95dG5JN3A3U1dfblg4TXlMZ2ZtUE1wTWdDSVlHRWgtVU1vR0hEcGhjOVRKdElaUkJETnRFVkVqdmdFbExET1BaRmVXMjdURDg5eDZYZ3NYbnl5VWdZdno5UDlOQTIxYUp5NEt6NUNqZ3lOZTVVMjNfY21CekU1bVVtVkxjVFVlajhxRHc?oc=5",
-      "source": "Businessworld"
+      "detail": "Mankind Pharma shares up 10% in just 4 sessions; Kotak upgrades the stock - Target, share price trend",
+      "url": "https://news.google.com/rss/articles/CBMiiAJBVV95cUxNVGxhYXRnbWZXZkRFckxBSEZkR3FRanZpV3NybFJHY2taTGg1ZFQ1THNHX0prNThweWVwMHlSX3NjYW9uVUVFSUlhWlN1bHFnbkhpSkJpWnJEeXVzU3ZuZFNOOEwtNFB6emFMSERYSjJOUC1PdFdEOU5LNmZyZ0MwaUJ4QzMyMlJsY0VaUEtqQWk1NGVnUjdjcDVkQjJVbWdhOUttVDNfXzJFck5YSi1KUjQzN09lX1Vmc3hiYmEwVU9xOEFQbnVUTDhBRjhzZFNtQWJWWElSWEdJbndZdlVaeG5laTJadGdGWWtjc2F2ajI4YmpjdHcxZmxzcHY4aGV6WVRhcE4yUEzSAY4CQVVfeXFMTm42VkNPVG1JZlVNSHJmRUZ4MmxwRDBBbnpjVVlHcDh5bWdlMHVCWVBvdXFFSzJ4NTFwb1pRcUpxajVqUFRtVDFmZkJQQk9XT2g3d2dfMUhvX25UWjFyQlNpV09YNE5SVWFHQklHRks2WE40ZzZ2TFlrRFdZNEJGSFZ5Y25GTk9fYWhocWFkV3g2Q0Y4c0dETk9IU3BxM3dBWVlfVjd0bDE5Wk8xcmNaa3YyOVhHTzV6YlVDNUxwMXpaeDgwNlF0TzlkT2FXRnFpRy1HdEI0OGEtTTJPNjBMczNuNkRPTy1TcnJoY0QtbkMybkppb21nQWs5MVN3b1Bycm9TM1MwZkFCZzMzbk5B?oc=5",
+      "source": "Mint"
      },
      {
       "tier": "news",
       "kind": "broker action",
       "detail": "Kotak upgrades Mankind Pharma to Buy, sees 23% upside",
-      "url": "https://news.google.com/rss/articles/CBMi3wFBVV95cUxPWkprVVBZSHdXYTRJVHJNWXZoYW1obFVBUkpUVS1JaUlTc21xR2FMR1JxRU5udTliVS10cl8wM3Zkb2pNcnVqeEJQeElqTVRBOG9YRVByLXV2LXljdFd1alhzMVUxOWQyM0hWZEwxd0d1eUhVQkxfRUVvZnRVVVNNclUxVW9ScDFwTkRVdUxQS0FjSFE4cmhOR19wZkw5SFFPb3FGOVBCc1pzaU1MQlVybFl4SVB0MDZjOVpYU2hPOUd6aHNfdkhZanBfYzJHd3g1UDRvUkFvdF8tRjRSY3h3?oc=5",
+      "url": "https://news.google.com/rss/articles/CBMi2gFBVV95cUxOemd6MWF0NGUzQ1ZiSFpWTGVWaTFuR0dBdG9UTXYzMXppelU0X1J6WEdnSjgyNDhVQURnMTFvM1QyRnh0d2Y1NlFPOGY0SGRudUVaYkVlWGhmNWhROTlMZy15a1dBamN0MzV2WUF0Ulc1QXpuaExzYzFQd1ZxRjFPWlR4RTJ0TUVDd1Jpc0kwR01jd1NzZXJNaU80NFdRUmVrZXJhNG9rc3FYaEpXTjVuM3lwMjc2cHp1enl3NldsTGxGQkZBTW5IbUdGdkRDaWVXNW5NMlBxTW9mZw?oc=5",
       "source": "Business Upturn"
      }
     ]
@@ -5254,13 +5268,6 @@
       "detail": "Fascinate Textiles Q1 Results 2026 - Find Fascinate Textiles Q1 Earnings Result | FASCINATE Q1 results",
       "url": "https://news.google.com/rss/articles/CBMiiwFBVV95cUxPYWEzN1cxTngtQWI3X3o3SllmTWZIbHo4ZWFtNksxd2pRbk1VaUo0bFRvZWwxMFNvbzMzVkphRWlIUG5oU2YtZ1J1YWtpVDFBUXhYeHRzeENrSF9hTE0wejZ6RHhRMWFPNTFXQW81aU80bnZHMGZaNVFCM2xvaTBFMm9iYm9Ra0ZEbkZF?oc=5",
       "source": "Mint"
-     },
-     {
-      "tier": "news",
-      "kind": "results",
-      "detail": "Fascinate Textiles Q3 Results 2026 - Find Fascinate Textiles Q3 Earnings Result | FASCINATE Q3 results",
-      "url": "https://news.google.com/rss/articles/CBMiiwFBVV95cUxPQlhCUmR6NjhpYWIycnpBMFZnbGRVaEFEell3S3BsN0dQN0hEQi1sR2JsemhUV05UYXdDajV6dEYyZHYyNDVMUVdlUEZ3N2NMOUd1TTQwc3NfUXRfOXotVUJUQUl4WUx3eXo2QlVZR2NwWW5WOUctSUFSazZ0S2R5MFhTX0JPVlBMTV8w?oc=5",
-      "source": "Mint"
      }
     ]
    },
@@ -7858,9 +7865,17 @@
    "raw_pct_change": -4.3,
    "corporate_action": null,
    "why": {
-    "headline": "No disclosed reason",
-    "confidence": "none",
-    "evidence": []
+    "headline": "Operations (Economic Times)",
+    "confidence": "medium",
+    "evidence": [
+     {
+      "tier": "news",
+      "kind": "operations",
+      "detail": "Dish TV’s Vzy launches linear TV streaming with 200+ channels, 29+ OTT platforms",
+      "url": "https://news.google.com/rss/articles/CBMi-wFBVV95cUxQWFdhMEFlVnBFV09RTnJuNm1RNXhzRTN3N1c0aUE2TGpYVTVsRS1aSTd2aC1uMWF1OUdEaHhjU3VVaElUWTBEc184dE84WDlJb01uemtGNm9xZ1F4Zm5nMGZNdFV6a0RJWmE2QkxhMWpVMHROWkstZGJjMEFfeEx3NzY1Qy1QVzFaa25NTTVVelpBLUlmZjV4dVBPRDB2cGFkaEZiY2FvMDF6bmlsb2R0eEFtNXpiOVAzRDJjcDVXQ01BMFk5VnBSdjFpVmZzLVhEN1Z6Zi1YVy1HZEkwRktPNFI4M2I2RkZid1hGZk1yRXk5OTlFY0ViVmF2Y9IB9AFBVV95cUxQS0RzZEk5ek5FWGlHc3MxTFNqNFByZHNaRmVBQTVFZ3FQUEJBOWtycTQxcElfRHFCOFV2WnFEQ083X0ZiYXV6X0dRSG5NUEs0eXBPancyekRMSTZCQmRaWFhtZUpPSU1wdEJEOWRseDZMUEsyWXZpRE9kLVhqQWdTQzhyaUg3Tzd1U0lzdUFvMkhfZW5vcFduUXpMQzVCWm9pcjdmYVI0QmRzN1l1ai1CMGFpcWlIa3JZU2s2Nnhmc2V2TDNPQ2JpLWlpeDBFNXVlN0pfd01sNXlkOC1qLV9ncXVuR182WDRZVmxVVnNRZmMtOXpH?oc=5",
+      "source": "Economic Times"
+     }
+    ]
    },
    "news_checked": true
   },
@@ -7883,7 +7898,7 @@
      {
       "tier": "news",
       "kind": "capital action",
-      "detail": "Comfort Intech declares ₹0.05 per share final dividend for FY26",
+      "detail": "Comfort Intech shareholders approve ₹0.05 dividend and related party deals",
       "url": "https://news.google.com/rss/articles/CBMitgFBVV95cUxNWjlfRUN5V1VRc2pUekhtejRVMEpVcGtXakNfdlFQckhlWU9wNXZlYlVhemswOFcxdC10WU9TR3hfTHg4Qm9aMFlDZ1dCTjBaSkNjZEpmSUZnLU1zb090WWQ1cHRzclo5Tzh0OWJEZ3VDajROWHFkRlFvZFB1YVpLU1paTkxLVWpKZWF3Q2tyU2wyWDhMMHNRby01QVBoaUpIaFhmd01HOXEtODVETXJPc0N6N180dw?oc=5",
       "source": "Scanx"
      },
@@ -8218,7 +8233,7 @@
       "tier": "news",
       "kind": "order win",
       "detail": "Welspun Enterprises arm wins ₹351 crore sewer projects from Ahmedabad Municipal Corporation",
-      "url": "https://news.google.com/rss/articles/CBMi2gFBVV95cUxPLUtZRC11aEJrbi1XMG04anVmdnlzRXJSeDY4T05GUXR4bWJTR0pFZjFxcU5ENGx5M0loYXdIYnJ5QXV3S21TVkhDMmVnQndza0tnVHJSQ1luMGEwTFR5NWtPVVpPaFBhXzd2YzBuYW41bWRzZk5qTVR4M21PX3VSWXNOeV9jX29IVG9OU1JkT3FlWkI3LWZqRlZmblppb295QXN1UmlYcFlJRmtGZV9FMEwxQ2wxSGs4UGhTQTMyUFJ2UlhtRFJBOUdERU9QSmhzdGY3ZnZuVXVQd9IB2gFBVV95cUxPLUtZRC11aEJrbi1XMG04anVmdnlzRXJSeDY4T05GUXR4bWJTR0pFZjFxcU5ENGx5M0loYXdIYnJ5QXV3S21TVkhDMmVnQndza0tnVHJSQ1luMGEwTFR5NWtPVVpPaFBhXzd2YzBuYW41bWRzZk5qTVR4M21PX3VSWXNOeV9jX29IVG9OU1JkT3FlWkI3LWZqRlZmblppb295QXN1UmlYcFlJRmtGZV9FMEwxQ2wxSGs4UGhTQTMyUFJ2UlhtRFJBOUdERU9QSmhzdGY3ZnZuVXVQdw?oc=5",
+      "url": "https://news.google.com/rss/articles/CBMi1AFBVV95cUxONDhyZjF6UE96bmNsLTFlRWxSUVdpLWxsVTNvVDlDbGRib2w3V2dyMk5wT0FGSnR2b2VrWjlUUGEwcWV2VHJveGl5UjFfTUhKRHByS3F0NkEwdlN0dXpQZXktZEs3WC0wQ1lVeWVuZ0xCb1NsTzF1bXh5UXlPVVZlM2VTY2tjUnBGaGtYYzNydjZBd0xtZGZMNUVqbkFDOWdZZEFVT0N5ZTFyUDlsR2NYdVp6d1N0RHhCcW5GQ3hjRU83S1cybjR1N3VvNWpKQUVSdXYwWNIB2gFBVV95cUxPLUtZRC11aEJrbi1XMG04anVmdnlzRXJSeDY4T05GUXR4bWJTR0pFZjFxcU5ENGx5M0loYXdIYnJ5QXV3S21TVkhDMmVnQndza0tnVHJSQ1luMGEwTFR5NWtPVVpPaFBhXzd2YzBuYW41bWRzZk5qTVR4M21PX3VSWXNOeV9jX29IVG9OU1JkT3FlWkI3LWZqRlZmblppb295QXN1UmlYcFlJRmtGZV9FMEwxQ2wxSGs4UGhTQTMyUFJ2UlhtRFJBOUdERU9QSmhzdGY3ZnZuVXVQdw?oc=5",
       "source": "CNBC TV18"
      },
      {
@@ -8467,6 +8482,13 @@
       "detail": "Tirupati Forge Secures Industrial License For 155mm Artillery Shells; Pilot Production In December 2026",
       "url": "https://news.google.com/rss/articles/CBMixwFBVV95cUxOd1ZaSUdMZnNtYm4wdG1KaUkwT0FuOXVWbDZvUDk0cE1uazhnRE5NaEp3Z1pNVVBSdEFaaEhzb3pxenl0TXBoOVBFamRCdU96X0hHaGZSX0N3MGlSV1lpQXh1YVczRWR4RGlzMFFIdmx4LVpMR2xGYVdYNkhJUV9UM3dNQUF6c0Y5cDhaeTdlYUE5X0VKUXRxMEFFeHhmM0RJcDk4SnZTWmRnUmNZLTRBSlVJcW5UQzBNdVc1azNBMVA2NGJ3R3pR?oc=5",
       "source": "Sahi"
+     },
+     {
+      "tier": "news",
+      "kind": "M&A or stake",
+      "detail": "Tirupati Foam promoter Kalpesh Kothari sells 0.311% stake",
+      "url": "https://news.google.com/rss/articles/CBMiswFBVV95cUxNZEhuTkVQbXM3S0tQYUhmbi00Nk5idGJDSGk4dlNQTDFkWWFSYmJKaEV1MlBnWE9Ld1I5MklqM3pjeUV5clZmdTR0X0lVTWpQRF9yZjl4dmt0UXZKM3VuNG1FQjFUUWpFaWt5VzU2TFo0LUhCRDlCUGR3UXhQdWVJSWNHdnRxTjB4c3p4MlBEbWZqZW9WbktFWEd0ZWNBVmtwcnBQZkJzQTdTVDlGNWdpRWYtcw?oc=5",
+      "source": "Scanx"
      }
     ]
    },
@@ -9403,15 +9425,15 @@
      {
       "tier": "news",
       "kind": "fundraise or deal",
-      "detail": "Neogen Chemicals: 1st ever QIP raises ₹600 cr; oversubscribed by 6.5x at ₹2,255 share price, stock up 102% in 2026",
-      "url": "https://news.google.com/rss/articles/CBMilwJBVV95cUxOV0U0cW9MQ3JsT212UzZOMzBldFo2Uzl2M1NGQjU5cTFpcENqbVlYZTVibXdCMDRWMHB6bmFkaTlXdWkybC1OTXdWeFZHd3VUVHZjUDF2N3RhTDJOdXVKZVFYZXRSYjdUQjR1YmdLTDBraUNpa3l4ejRQSkkxZklhdmlFU0ZSdm51cExtWXNUZ1lkeVNGcEhpQXRqekpwa0pDMWFsT19rQzlCeTR0OEtlMk1fQ21wR0dKUlFPS3pEVWhMSHZncnA4RzYtVzBqbzZibnBhM1hNSEZqazR6dDdBdG43ZmptTndZVnhnZHlmNzRBUWZBRVpWUy1WblExX0RIZTgtRTROblVuOEdlcE5HY1pvWWxoR0nSAZcCQVVfeXFMTldFNHFvTENybE9tdlM2TjMwZXRaNlM5djNTRkI1OXExaXBDam1ZWGU1Ym13QjA0VjBwem5hZGk5V3VpMmwtTk13VnhWR3d1VFR2Y1Axdjd0YUwyTnV1SmVRWGV0UmI3VEI0dWJnS0wwa2lDaWt5eHo0UEpJMWZJYXZpRVNGUnZudXBMbVlzVGdZZHlTRnBIaUF0anpKcGtKQzFhbE9fa0M5Qnk0dDhLZTJNX0NtcEdHSlJRT0t6RFVoTEh2Z3JwOEc2LVcwam82Ym5wYTNYTUhGams0enQ3QXRuN2ZqbU53WVZ4Z2R5Zjc0QVFmQUVaVlMtVm5RMV9ESGU4LUU0Tm5VbjhHZXBOR2Nab1lsaEdJ?oc=5",
-      "source": "Mint"
+      "detail": "Neogen Chemicals Share Price Rises Over 1% After Rs 600 Crore QIP Receives Strong Demand",
+      "url": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxQVkl1WUVzb0RzWWtaVmwyYi1nOHJvNldRZTlGS2NubUN0TU4zTWJNelYxN2hMdmpNZ2t2eHdrWlUtX2hETmtyV1ZVUWdtNFRiLVo4WmN2REFGTnp1S2JyME1yR1VSZFJOdFpjWXE5VFF3M3FvZC1XaXdaeXN0SXVJdEhUMy03SHhROHpIRGxnekM4QXYzc1Bib0tRNmNmRnJUWWdjTDZMSXNkZlVMYk1wYnFSd0FObF84RERVOGJXUF9Gd9IBygFBVV95cUxOdEVUR0R6Wk9USGw1aDhmUjEzT0NmMnFFdDlENDhLbTFoc1MtcGFsOWxKMXhZUEduSzhKbC1iVkZYVGh5QzR0a25PVzJWRnp3LW40VFBlNmNvMVBpbDNyY25OV0lBZzZrTFdZNmNYWHhfR19odjVhQTBrRHNSVU03QnFYY1RNOXFwbnVHOGNxajdCZ0Q4UjdnNUJsT1k2clVQU2JISFpweHdXbDdrZHJ3VHlIaFpVc2hvR1lNb2dTbU1iYlJDbFZfVFZB?oc=5",
+      "source": "NDTV Profit"
      },
      {
       "tier": "news",
       "kind": "fundraise or deal",
-      "detail": "Neogen Chemicals Share Price Rises Over 1% After Rs 600 Crore QIP Receives Strong Demand",
-      "url": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxQVkl1WUVzb0RzWWtaVmwyYi1nOHJvNldRZTlGS2NubUN0TU4zTWJNelYxN2hMdmpNZ2t2eHdrWlUtX2hETmtyV1ZVUWdtNFRiLVo4WmN2REFGTnp1S2JyME1yR1VSZFJOdFpjWXE5VFF3M3FvZC1XaXdaeXN0SXVJdEhUMy03SHhROHpIRGxnekM4QXYzc1Bib0tRNmNmRnJUWWdjTDZMSXNkZlVMYk1wYnFSd0FObF84RERVOGJXUF9Gd9IBygFBVV95cUxOdEVUR0R6Wk9USGw1aDhmUjEzT0NmMnFFdDlENDhLbTFoc1MtcGFsOWxKMXhZUEduSzhKbC1iVkZYVGh5QzR0a25PVzJWRnp3LW40VFBlNmNvMVBpbDNyY25OV0lBZzZrTFdZNmNYWHhfR19odjVhQTBrRHNSVU03QnFYY1RNOXFwbnVHOGNxajdCZ0Q4UjdnNUJsT1k2clVQU2JISFpweHdXbDdrZHJ3VHlIaFpVc2hvR1lNb2dTbU1iYlJDbFZfVFZB?oc=5",
+      "detail": "Video | Neogen QIP Raises Rs 600 Crore, Oversubscribed 6.5x; ICICI Prudential MF Among Key Investors",
+      "url": "https://news.google.com/rss/articles/CBMi2gFBVV95cUxOX01IbVFkM1hySk9NRDZWUVEzU3FlU3o4WWJiYWt1c21tUUNZaEYtVWdsTFBKd3o2XzFWZGt4ZkMweXlMMGdhdGMyS1dSZnZRVi02bjVQSWNjcWlVVWZETmdnVUpOR0dYQ3JoU2s0b21XaVEySzJ1UG9Icm1VT01fTHJPVTUxWVNtSVVBR0RBMVdTWi0wVUdxSGNTTjk4NTBEOHg5TGpfQngzSGR4VzF1M0wzWmEwckx4d2hSQlE0bEI0QUp6YlkxUF83NkdQNkVmUnVneVEtaFUyZw?oc=5",
       "source": "NDTV Profit"
      }
     ]
@@ -9446,6 +9468,13 @@
       "kind": "capital action",
       "detail": "Cupid Limited Sets March 9 Record Date for 4:1 Bonus Share Allotment",
       "url": "https://news.google.com/rss/articles/CBMi0gFBVV95cUxNTWFZWmpRZm56ZEJhWERINDFjdEYzQ3B6MTlDQU4yRlFjc21TbTNvYmRvLUhRcDc3U0czSm5CbW1pZlZSUGsxVV9Ra0dzQWNZY21ZZHY5LVdMSXZ2LTRrU1ZaNlpLcU1WTlp2cG1XeWZFcnNIa1M0bHRyY2ZKQXpOS0FKMDM5TEhLRTVSdDRrc2VkQXAwZnZ1NnQ1UzNjQVdfVE1jNC1vX0RIOXJhM2QzVU9LU1U3R1NxRlNqa1RvYllRN3ljeFI3SDFoRnhFY1NEcWc?oc=5",
+      "source": "Scanx"
+     },
+     {
+      "tier": "news",
+      "kind": "M&A or stake",
+      "detail": "Cupid promoter Halwasiya acquires 4.1M shares, stake rises to 34.23%",
+      "url": "https://news.google.com/rss/articles/CBMivgFBVV95cUxPT0RNMGZKXzZtNEtuUlNRWjkwa0htdmFvalpZSHhhWEx2VFFLMjE1VHZVY0RKUXVmNERBTGRoSXpnOHBCU2ZGLTZVdURjVG43QVp5TUNzYlNzWnNxaUFWZU02MW1kS0h1X0gwS2Y4NFlXSjkweXVkZEtCRllmMmxJaHY0SVdyTEgzX2xMS2NPM2hnUlRXREhRcVBHZmRpNURhUmNhd0FncXVlTmg4OGh0SnRGckg0U1p2YUtCMVVR?oc=5",
       "source": "Scanx"
      }
     ]
@@ -9727,9 +9756,17 @@
    "raw_pct_change": -5.87,
    "corporate_action": null,
    "why": {
-    "headline": "No disclosed reason",
-    "confidence": "none",
-    "evidence": []
+    "headline": "Management Change (Scanx)",
+    "confidence": "low",
+    "evidence": [
+     {
+      "tier": "news",
+      "kind": "management change",
+      "detail": "Carysil appoints Prayasvin B. Patel as independent director",
+      "url": "https://news.google.com/rss/articles/CBMisgFBVV95cUxPX1ktdjZlNkZHSWlubExQbXlJaUY3SVFKQTNsalNyWWxmODdmMVNTYVhwSG1wVThWNndUYWJZenN1TjM5TFFEZW1zcm5hQURvcmFtbVF5NUUtcVBaTWcyNE1LWVk2MWFEYWM4RXJ2c1RScmJBWHlXSllwbjdLZE5xMk9yZHRXV3dpeUxNRGNiN1NUQXdRLXNOTHJsWUMzRFdCbDRJcHhtZmxydGtQalVKUzB3?oc=5",
+      "source": "Scanx"
+     }
+    ]
    },
    "news_checked": true
   },
