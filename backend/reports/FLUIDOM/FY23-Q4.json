@@ -1,0 +1,5155 @@
+{
+ "code": "FLUIDOM",
+ "name": "Fluidomat Ltd",
+ "period": "FY23-Q4",
+ "period_label": "Q4 FY23",
+ "results_quarter": "Mar 2023",
+ "generated_at": "2026-09-23T05:34+05:30",
+ "basis": "consolidated",
+ "screener_url": "https://www.screener.in/company/522017/consolidated/",
+ "sources": [
+  {
+   "id": "NUMBERS",
+   "type": "numbers",
+   "title": "screener.in consolidated statements + computed metrics",
+   "url": "https://www.screener.in/company/522017/consolidated/",
+   "date": null
+  },
+  {
+   "id": "SCREENER",
+   "type": "profile",
+   "title": "screener.in company profile",
+   "url": "https://www.screener.in/company/522017/consolidated/",
+   "date": null
+  },
+  {
+   "id": "AR2025",
+   "type": "annual_report",
+   "title": "Annual Report 2025",
+   "url": "https://www.bseindia.com/xml-data/corpfiling/AttachHis/aec3890a-f4e0-41bf-a51a-936bb5a3753b.pdf",
+   "date": "2025"
+  },
+  {
+   "id": "PPT Jun 2026",
+   "type": "presentation",
+   "title": "Investor presentation, Jun 2026",
+   "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=57094613-c398-4e71-8971-9c10a0567396.pdf",
+   "date": "Jun 2026"
+  },
+  {
+   "id": "ANNOUNCEMENTS",
+   "type": "announcements",
+   "title": "Latest exchange announcements",
+   "url": "https://www.screener.in/company/522017/consolidated/#documents",
+   "date": null
+  },
+  {
+   "id": "BOARD",
+   "type": "board_notes",
+   "title": "This dashboard's earlier research notes (analyst notes, not company disclosure)",
+   "url": null,
+   "date": null
+  }
+ ],
+ "quant": {
+  "basis": "consolidated",
+  "units": "Rs crore unless stated",
+  "annual": {
+   "columns": [
+    "Mar 2019",
+    "Mar 2020",
+    "Mar 2021",
+    "Mar 2022",
+    "Mar 2023"
+   ],
+   "sales": [
+    26.77,
+    25.49,
+    27.81,
+    32.69,
+    45.41
+   ],
+   "expenses": [
+    23.8,
+    22.15,
+    23.05,
+    26.49,
+    33.03
+   ],
+   "ebitda": [
+    2.97,
+    3.34,
+    4.76,
+    6.2,
+    12.38
+   ],
+   "opm": [
+    11.09,
+    13.1,
+    17.12,
+    18.97,
+    27.26
+   ],
+   "other_income": [
+    1.12,
+    1.64,
+    1.36,
+    1.92,
+    1.26
+   ],
+   "interest": [
+    0.06,
+    0.06,
+    0.08,
+    0.04,
+    0.04
+   ],
+   "depreciation": [
+    0.7,
+    0.66,
+    0.64,
+    0.67,
+    0.74
+   ],
+   "pbt": [
+    3.33,
+    4.26,
+    5.4,
+    7.41,
+    12.86
+   ],
+   "tax_rate": [
+    28.23,
+    25.12,
+    26.11,
+    26.18,
+    25.27
+   ],
+   "pat": [
+    2.39,
+    3.19,
+    3.99,
+    5.48,
+    9.61
+   ],
+   "eps": [
+    4.85,
+    6.47,
+    8.1,
+    11.12,
+    19.5
+   ],
+   "payout": [
+    41.26,
+    34.77,
+    40.16,
+    31.49,
+    23.09
+   ],
+   "equity_capital": [
+    4.93,
+    4.93,
+    4.93,
+    4.93,
+    4.93
+   ],
+   "reserves": [
+    27.4,
+    27.85,
+    32.25,
+    36.39,
+    44.27
+   ],
+   "borrowings": [
+    0.0,
+    0.84,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "other_liabilities": [
+    7.36,
+    7.42,
+    7.76,
+    9.88,
+    10.73
+   ],
+   "total_assets": [
+    39.69,
+    41.04,
+    44.94,
+    51.2,
+    59.93
+   ],
+   "fixed_assets": [
+    7.11,
+    6.88,
+    6.61,
+    8.39,
+    7.26
+   ],
+   "cwip": [
+    0.18,
+    0.23,
+    0.49,
+    0.0,
+    0.02
+   ],
+   "investments": [
+    0.73,
+    0.52,
+    0.94,
+    1.2,
+    2.99
+   ],
+   "other_assets": [
+    31.67,
+    33.41,
+    36.9,
+    41.61,
+    49.66
+   ],
+   "cfo": [
+    3.3,
+    3.32,
+    2.45,
+    6.03,
+    5.08
+   ],
+   "cfi": [
+    -2.28,
+    -1.42,
+    -1.28,
+    -3.35,
+    -2.91
+   ],
+   "cff": [
+    -1.04,
+    -1.69,
+    -0.84,
+    -1.6,
+    -1.72
+   ],
+   "fcf": [
+    2.98,
+    2.79,
+    1.88,
+    4.08,
+    4.82
+   ],
+   "debtor_days": [
+    138.8,
+    117.99,
+    117.07,
+    119.58,
+    109.72
+   ],
+   "inventory_days": [
+    141.63,
+    213.87,
+    189.21,
+    140.7,
+    140.57
+   ],
+   "payable_days": [
+    78.72,
+    117.98,
+    122.81,
+    136.58,
+    91.3
+   ],
+   "ccc": [
+    201.71,
+    213.88,
+    183.47,
+    123.7,
+    158.98
+   ],
+   "wc_days": [
+    168.52,
+    170.54,
+    158.94,
+    146.27,
+    90.27
+   ],
+   "roce": [
+    null,
+    13.22,
+    15.31,
+    18.14,
+    28.52
+   ],
+   "equity": [
+    32.33,
+    32.78,
+    37.18,
+    41.32,
+    49.2
+   ],
+   "capex": [
+    0.31999999999999984,
+    0.5299999999999998,
+    0.5700000000000003,
+    1.9500000000000002,
+    0.2599999999999998
+   ]
+  },
+  "quarterly": {
+   "columns": [
+    "Jun 2020",
+    "Sep 2020",
+    "Dec 2020",
+    "Mar 2021",
+    "Jun 2021",
+    "Sep 2021",
+    "Dec 2021",
+    "Mar 2022",
+    "Jun 2022",
+    "Sep 2022",
+    "Dec 2022",
+    "Mar 2023"
+   ],
+   "sales": [
+    3.43,
+    8.17,
+    6.79,
+    9.89,
+    6.11,
+    8.16,
+    8.69,
+    11.11,
+    8.91,
+    13.03,
+    9.92,
+    14.29
+   ],
+   "ebitda": [
+    0.04,
+    2.01,
+    1.0,
+    1.64,
+    1.01,
+    1.3,
+    1.64,
+    2.23,
+    1.92,
+    3.88,
+    2.09,
+    4.45
+   ],
+   "opm": [
+    1.17,
+    24.6,
+    14.73,
+    16.58,
+    16.53,
+    15.93,
+    18.87,
+    20.07,
+    21.55,
+    29.78,
+    21.07,
+    31.14
+   ],
+   "other_income": [
+    0.31,
+    0.38,
+    0.33,
+    0.34,
+    0.56,
+    0.47,
+    0.47,
+    0.41,
+    0.35,
+    0.39,
+    0.36,
+    0.16
+   ],
+   "interest": [
+    0.01,
+    0.01,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "depreciation": [
+    0.16,
+    0.16,
+    0.16,
+    0.16,
+    0.16,
+    0.16,
+    0.18,
+    0.17,
+    0.2,
+    0.2,
+    0.2,
+    0.14
+   ],
+   "pbt": [
+    0.18,
+    2.22,
+    1.17,
+    1.82,
+    1.41,
+    1.61,
+    1.93,
+    2.47,
+    2.07,
+    4.07,
+    2.25,
+    4.47
+   ],
+   "tax_rate": [
+    33.33,
+    26.13,
+    24.79,
+    26.37,
+    21.99,
+    24.84,
+    27.46,
+    27.94,
+    25.12,
+    25.06,
+    24.0,
+    26.4
+   ],
+   "pat": [
+    0.13,
+    1.64,
+    0.88,
+    1.34,
+    1.09,
+    1.2,
+    1.4,
+    1.78,
+    1.55,
+    3.05,
+    1.71,
+    3.3
+   ],
+   "eps": [
+    0.26,
+    3.33,
+    1.79,
+    2.72,
+    2.21,
+    2.44,
+    2.84,
+    3.61,
+    3.15,
+    6.19,
+    3.47,
+    6.7
+   ],
+   "sales_yoy": [
+    null,
+    null,
+    null,
+    null,
+    78.1,
+    -0.1,
+    28.0,
+    12.3,
+    45.8,
+    59.7,
+    14.2,
+    28.6
+   ],
+   "pat_yoy": [
+    null,
+    null,
+    null,
+    null,
+    738.5,
+    -26.8,
+    59.1,
+    32.8,
+    42.2,
+    154.2,
+    22.1,
+    85.4
+   ]
+  },
+  "derived": {
+   "roe": [
+    null,
+    9.8,
+    11.4,
+    14.0,
+    21.2
+   ],
+   "debt_equity": [
+    0.0,
+    0.03,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "interest_cover": [
+    56.5,
+    72.0,
+    68.5,
+    186.2,
+    322.5
+   ],
+   "cfo_pat": [
+    1.38,
+    1.04,
+    0.61,
+    1.1,
+    0.53
+   ],
+   "capex_sales": [
+    1.2,
+    2.1,
+    2.0,
+    6.0,
+    0.6
+   ],
+   "fixed_asset_turnover": [
+    3.77,
+    3.7,
+    4.21,
+    3.9,
+    6.25
+   ],
+   "other_income_pct_pbt": [
+    33.6,
+    38.5,
+    25.2,
+    25.9,
+    9.8
+   ],
+   "cumulative": {
+    "cfo_pat_3y": 0.71,
+    "fcf_3y": 10.8,
+    "cfo_pat_5y": 0.82,
+    "fcf_5y": 16.6
+   },
+   "growth": {
+    "sales_3y": 21.2,
+    "ebitda_3y": 54.8,
+    "pat_3y": 44.4
+   },
+   "promoter_chg_1y": 0.0
+  },
+  "shareholding": {
+   "columns": [
+    "Sep 2023",
+    "Dec 2023",
+    "Mar 2024",
+    "Jun 2024",
+    "Sep 2024",
+    "Dec 2024",
+    "Mar 2025",
+    "Jun 2025",
+    "Sep 2025",
+    "Dec 2025",
+    "Mar 2026",
+    "Jun 2026"
+   ],
+   "rows": {
+    "Promoters": [
+     53.54,
+     53.46,
+     53.46,
+     53.46,
+     53.46,
+     53.43,
+     53.46,
+     53.45,
+     53.45,
+     53.45,
+     53.45,
+     53.45
+    ],
+    "FIIs": [
+     0.58,
+     0.58,
+     0.58,
+     0.58,
+     0.58,
+     0.58,
+     0.58,
+     0.58,
+     0.58,
+     0.58,
+     0.58,
+     0.58
+    ],
+    "DIIs": [
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.22,
+     0.25
+    ],
+    "Public": [
+     45.88,
+     45.97,
+     45.97,
+     45.96,
+     45.96,
+     45.99,
+     45.96,
+     45.97,
+     45.96,
+     45.98,
+     45.75,
+     45.72
+    ],
+    "No. of Shareholders": [
+     5826.0,
+     6245.0,
+     6523.0,
+     7095.0,
+     7429.0,
+     7938.0,
+     7996.0,
+     8274.0,
+     10273.0,
+     10018.0,
+     9507.0,
+     9302.0
+    ]
+   }
+  },
+  "valuation": {
+   "price": 750.0,
+   "market_cap": 370.0,
+   "high_52w": 1064.0,
+   "low_52w": 550.0,
+   "from_high_pct": -29.5,
+   "book_value": 99.9,
+   "dividend_yield": 1.0,
+   "pe_ttm": 38.5,
+   "ev": 370.0,
+   "ev_ebitda_ttm": 29.9,
+   "ev_sales_ttm": 8.15,
+   "pb": 7.51,
+   "net_debt_note": "EV = market cap + latest borrowings. Screener's public page does not split cash out of other assets, so cash is not netted off; investments are shown separately.",
+   "debt": 0,
+   "investments": 3.0,
+   "earnings_basis": "last full year (Mar 2023)",
+   "dcf": {
+    "available": true,
+    "meaningful": true,
+    "method": "5-year FCFF: EBITDA - tax on EBIT - capex - change in net working capital; growth fades linearly from the starting rate to the year-5 rate; Gordon terminal value; equity = EV - borrowings.",
+    "inputs": {
+     "base_sales_ttm": 45.4,
+     "ebitda_margin_base": 19.0,
+     "starting_growth_base": 21.2,
+     "growth_basis": "median of 3-year, 5-year and TTM sales growth, capped 0-30%",
+     "da_pct_sales": 1.6,
+     "fixed_asset_turnover": 4.21,
+     "capex_rule": "depreciation + new sales / fixed-asset turnover (median of the last three years)",
+     "wc_days": 131.8,
+     "tax_rate": 25.2,
+     "rf": 7.0,
+     "erp": 7.0,
+     "beta": 1.15,
+     "cost_of_equity": 15.0,
+     "cost_of_debt_post_tax": 7.5,
+     "debt_weight": 0.0,
+     "wacc": 15.0,
+     "terminal_growth": 5.5,
+     "shares_cr": 0.493
+    },
+    "scenarios": {
+     "bear": {
+      "assumptions": {
+       "start_growth": 8.5,
+       "growth_by_year5": 5.0,
+       "ebitda_margin": 15.0
+      },
+      "projection": [
+       {
+        "year": 1,
+        "growth": 8.5,
+        "sales": 49.3,
+        "ebitda": 7.4,
+        "fcff": 2.6,
+        "pv": 2.3
+       },
+       {
+        "year": 2,
+        "growth": 7.6,
+        "sales": 53.0,
+        "ebitda": 7.9,
+        "fcff": 3.0,
+        "pv": 2.3
+       },
+       {
+        "year": 3,
+        "growth": 6.7,
+        "sales": 56.6,
+        "ebitda": 8.5,
+        "fcff": 3.5,
+        "pv": 2.3
+       },
+       {
+        "year": 4,
+        "growth": 5.9,
+        "sales": 59.9,
+        "ebitda": 9.0,
+        "fcff": 4.0,
+        "pv": 2.3
+       },
+       {
+        "year": 5,
+        "growth": 5.0,
+        "sales": 62.9,
+        "ebitda": 9.4,
+        "fcff": 4.5,
+        "pv": 2.2
+       }
+      ],
+      "pv_explicit": 11.4,
+      "terminal_value": 47.6,
+      "pv_terminal": 23.6,
+      "ev": 35.0,
+      "equity_value": 35.0,
+      "per_share": 70.9
+     },
+     "base": {
+      "assumptions": {
+       "start_growth": 21.2,
+       "growth_by_year5": 10.0,
+       "ebitda_margin": 19.0
+      },
+      "projection": [
+       {
+        "year": 1,
+        "growth": 21.2,
+        "sales": 55.0,
+        "ebitda": 10.4,
+        "fcff": 1.4,
+        "pv": 1.2
+       },
+       {
+        "year": 2,
+        "growth": 18.4,
+        "sales": 65.2,
+        "ebitda": 12.4,
+        "fcff": 2.4,
+        "pv": 1.8
+       },
+       {
+        "year": 3,
+        "growth": 15.6,
+        "sales": 75.3,
+        "ebitda": 14.3,
+        "fcff": 3.7,
+        "pv": 2.4
+       },
+       {
+        "year": 4,
+        "growth": 12.8,
+        "sales": 85.0,
+        "ebitda": 16.1,
+        "fcff": 5.2,
+        "pv": 3.0
+       },
+       {
+        "year": 5,
+        "growth": 10.0,
+        "sales": 93.5,
+        "ebitda": 17.7,
+        "fcff": 7.0,
+        "pv": 3.5
+       }
+      ],
+      "pv_explicit": 11.9,
+      "terminal_value": 101.7,
+      "pv_terminal": 50.5,
+      "ev": 62.4,
+      "equity_value": 62.4,
+      "per_share": 126.5
+     },
+     "bull": {
+      "assumptions": {
+       "start_growth": 31.6,
+       "growth_by_year5": 13.0,
+       "ebitda_margin": 21.0
+      },
+      "projection": [
+       {
+        "year": 1,
+        "growth": 31.6,
+        "sales": 59.8,
+        "ebitda": 12.5,
+        "fcff": 0.1,
+        "pv": 0.0
+       },
+       {
+        "year": 2,
+        "growth": 27.0,
+        "sales": 75.9,
+        "ebitda": 15.9,
+        "fcff": 1.3,
+        "pv": 1.0
+       },
+       {
+        "year": 3,
+        "growth": 22.3,
+        "sales": 92.8,
+        "ebitda": 19.5,
+        "fcff": 3.3,
+        "pv": 2.2
+       },
+       {
+        "year": 4,
+        "growth": 17.7,
+        "sales": 109.2,
+        "ebitda": 22.9,
+        "fcff": 6.0,
+        "pv": 3.4
+       },
+       {
+        "year": 5,
+        "growth": 13.0,
+        "sales": 123.4,
+        "ebitda": 25.9,
+        "fcff": 9.4,
+        "pv": 4.6
+       }
+      ],
+      "pv_explicit": 11.3,
+      "terminal_value": 154.7,
+      "pv_terminal": 76.7,
+      "ev": 88.0,
+      "equity_value": 88.0,
+      "per_share": 178.4
+     }
+    },
+    "sensitivity": {
+     "wacc": [
+      13.5,
+      15.0,
+      16.5
+     ],
+     "g": [
+      4.5,
+      5.5,
+      6.5
+     ],
+     "values": [
+      [
+       145.7,
+       154.9,
+       166.6
+      ],
+      [
+       120.8,
+       126.5,
+       133.2
+      ],
+      [
+       102.6,
+       106.0,
+       110.1
+      ]
+     ]
+    },
+    "reverse_dcf": {
+     "implied_5y_sales_cagr": 86.0,
+     "base_case_5y_cagr_equivalent": 15.5,
+     "note": "Constant sales growth for five years, at the base margin and the same WACC and terminal growth, that makes the DCF equal today's EV."
+    },
+    "upside_pct": {
+     "bear": -90.5,
+     "base": -83.1,
+     "bull": -76.2
+    }
+   }
+  },
+  "red_flags": [
+   {
+    "level": "red",
+    "title": "Price needs growth well above trend",
+    "detail": "Today's price implies about 86% a year sales growth for five years, against 16% in the base case.",
+    "label": "[E]"
+   },
+   {
+    "level": "amber",
+    "title": "Cash conversion below profit",
+    "detail": "Operating cash flow was 0.71x reported profit over the last three years.",
+    "label": "[E]"
+   },
+   {
+    "level": "green",
+    "title": "Little or no debt",
+    "detail": "Borrowings are 0.00x equity.",
+    "label": "[F]"
+   },
+   {
+    "level": "green",
+    "title": "High returns on capital",
+    "detail": "ROCE 29% last year.",
+    "label": "[F]"
+   }
+  ],
+  "latest_quarter": "Mar 2023"
+ },
+ "pack_chars": 0,
+ "model_id": "claude-code:opus",
+ "sections": [
+  {
+   "id": "executive_summary",
+   "title": "Executive investment summary",
+   "subsections": [
+    {
+     "title": "What the company actually does",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "[F] Fluidomat makes fixed-speed and variable-speed hydrodynamic fluid couplings. These are the devices placed between a motor and a driven machine (conveyor, crusher, fan, boiler-feed pump, mill) that allow a soft start and protect against overload; the variable-speed versions also control speed (AR2025 p.87; PPT Jun 2026). [F] It reports a single segment, 'manufacturing of fluid couplings' (AR2025 p.38, p.89). [F] Revenue is almost entirely product sales: in FY25, Rs 71.53 cr of the Rs 72.18 cr revenue from operations was 'sale of products (including spares & components)', Rs 0.59 cr was services and Rs 0.06 cr scrap (AR2025 p.99)."
+      },
+      {
+       "type": "p",
+       "text": "[F] All manufacturing is at one plant in Dewas, Madhya Pradesh. The plant has aluminium and cast-iron foundries, CNC machining, fabrication and ten test benches (AR2025 p.68; PPT Jun 2026). [F] There were 200 permanent employees at 31 March 2025 (AR2025 p.35). [MC] Management names power, refinery and oil & gas, cement, mining, steel, material handling, chemicals and fertiliser, off-highway and marine as end markets (PPT Jun 2026). [F] No revenue split by end market, product family or customer is disclosed anywhere in the documents (AR2025 p.38; PPT Jun 2026). [F] The only geographic data point is export earnings: Rs 2.19 cr in FY25, down from Rs 2.79 cr in FY24 (AR2025 p.46, p.102). [E] That is about 3.0% of FY25 revenue, against 5.0% in FY24, so roughly 97% of sales are domestic."
+      },
+      {
+       "type": "p",
+       "text": "[MC] Management says the customer base is more than 600 industrial clients and names NTPC, Coal India, ONGC, BPCL, HPCL and Adani as key clients (PPT Jun 2026). [MC] It also cites refinery case studies at BPCL Bina, MRPL, Numaligarh Refinery, IOCL Barauni and Petronas Malaysia (PPT Jun 2026). [AI] From these names, the customer profile looks like public-sector utilities and refiners plus EPC contractors and heavy-industry owners. Revenue per customer is not disclosed, so concentration cannot be measured."
+      },
+      {
+       "type": "callout",
+       "tone": "warn",
+       "text": "**Evidence-base caveat.** [F] Our statements data covers FY19 to FY23 only, with the latest quarter at March 2023 (NUMBERS). [F] The company's own documents run to FY26 (March 2026): the audited FY25 annual report and an unaudited FY26 investor presentation dated 29 June 2026 (AR2025 p.83-85; PPT Jun 2026). [F] The FY26 annual report was filed on 2 September 2026 and the Q1 FY27 results were published on 15 August 2026, but neither document was available to us (ANNOUNCEMENTS). [AI] Every valuation metric and DCF in this report rests on the March 2023 base. Company-reported revenue has since risen from Rs 45.41 cr to Rs 72.46 cr, so the model inputs are stale, and we flag this wherever it matters."
+      },
+      {
+       "type": "p",
+       "text": "[F] Listing status: the company is an established BSE listing (scrip 522017), not a recent IPO (AR2025 p.67). [F] Its CIN, L74210MP1978PLC001452, records a 1978 registration (AR2025 p.9). [MC] Management and the screener profile give 1971 as the founding year (SCREENER; PPT Jun 2026). [AI] No prospectus was available. There are no IPO lock-ins or use-of-proceeds issues to track."
+      }
+     ]
+    },
+    {
+     "title": "Bull thesis",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "Bull thesis drivers (labels inside cells)",
+       "columns": [
+        "#",
+        "Thesis",
+        "Evidence",
+        "Financial impact",
+        "Time horizon",
+        "Confidence"
+       ],
+       "rows": [
+        [
+         "1",
+         "Niche indigenous technology with high reported margins",
+         "[F] FY25 PAT margin 30.8% [E], operating EBITDA margin about 37.8% [E] from the audited P&L (AR2025 p.84); [MC] 'one of only 5 countries' with indigenous fluid-coupling capability (PPT Jun 2026)",
+         "[E] Every 1 pt of operating margin is worth about Rs 0.72 cr of EBITDA on FY26 revenue",
+         "Ongoing",
+         "Medium: margins are proven for FY25 and FY26 only"
+        ],
+        [
+         "2",
+         "Debt-free, cash-rich balance sheet",
+         "[F] Borrowings nil; FDs, mutual funds and cash of about Rs 58 cr at March 2026 [E] on company-reported figures (PPT Jun 2026); [F] borrowings 0.00x equity (NUMBERS)",
+         "[E] Treasury assets are about 16% of the Rs 370 cr market cap in our data; they fund the Rs 35 cr capex without dilution",
+         "Now",
+         "High"
+        ],
+        [
+         "3",
+         "Capacity expansion from 1,500 to 3,500 units",
+         "[MC] Rs 35 cr programme, internally funded, 40% capital subsidy eligibility, existing utilisation about 96% (PPT Jun 2026)",
+         "[E] Capacity would rise 2.3x; revenue effect depends on demand and mix, and is not guided",
+         "FY27-FY29",
+         "Low to medium: no order backlog disclosed"
+        ],
+        [
+         "4",
+         "Power, coal and refinery capex cycle in India",
+         "[MC] 25 new thermal power plants and 15 coal-mining projects announced; the company has booked orders on 7 projects tendered so far (AR2025 p.36)",
+         "[AI] Project-linked demand spikes; not quantified by the company",
+         "1-3 years",
+         "Low: order values are not disclosed"
+        ],
+        [
+         "5",
+         "Installed base and aftermarket annuity",
+         "[MC] More than 60,000 fixed-speed and 5,000 variable-speed units installed; spares, retrofit and AMC described as recurring (PPT Jun 2026); [F] services revenue only Rs 0.59 cr in FY25 (AR2025 p.99)",
+         "[AI] Spares sit inside product sales and are not split out, so the size of the annuity is unknown",
+         "Ongoing",
+         "Low: not separately disclosed"
+        ],
+        [
+         "6",
+         "Shareholder returns",
+         "[F] Dividend of Rs 7.50 per share for FY25 (AR2025 p.27) and again proposed for FY26 (PPT Jun 2026); [F] no equity issuance, 4.927 mn shares unchanged (AR2025 p.96)",
+         "[E] Payout of about 17-18% of PAT",
+         "Annual",
+         "High"
+        ]
+       ]
+      },
+      {
+       "type": "p",
+       "text": "[AI] Driver classification: #1 (indigenous niche) and #2 (balance sheet) are company-specific. #4 (power, coal and refinery capex) is cyclical. #3 (capacity) is company-specific, but whether it pays off depends on the cycle. #5 (aftermarket) would be structural if it were ever disclosed; today it is a claim. #6 is company-specific."
+      }
+     ]
+    },
+    {
+     "title": "Bear thesis: reasons not to own it",
+     "blocks": [
+      {
+       "type": "bullets",
+       "items": [
+        "1. **Growth has stalled.** [F] FY26 revenue was Rs 72.46 cr against Rs 72.18 cr in FY25, flat, and PAT fell from Rs 22.22 cr to Rs 20.06 cr (PPT Jun 2026). [E] Read from the chart, Q4 FY26 revenue was about Rs 21 cr against about Rs 29 cr in Q4 FY25, and quarterly EPS fell from Rs 20.8 to Rs 13.0 (PPT Jun 2026).",
+        "2. **Order intake has been below sales.** [F] Orders booked in FY25 were Rs 58.16 cr, down 3.1% from Rs 60.03 cr in FY24 (AR2025 p.27). [E] FY25 book-to-bill was therefore about 0.81x, against about 1.08x in FY24. That pattern is consistent with the backlog being drawn down to reach FY25 revenue, followed by a flat FY26.",
+        "3. **Receivables are growing much faster than sales.** [F] Trade receivables rose from Rs 13.47 cr (March 2024) to Rs 22.46 cr (March 2025) and Rs 29.63 cr (March 2026) (AR2025 p.83; PPT Jun 2026). [E] Debtor days on revenue went from about 89 to 114 to 149. [F] Operating cash flow was Rs 14.30 cr against PAT of Rs 22.22 cr in FY25 (AR2025 p.85).",
+        "4. **Valuation is far above every DCF scenario.** [F] At Rs 750, the price is above the bull-case value of Rs 178.4 per share, and the reverse DCF implies about 86% annual sales growth for five years (NUMBERS). [AI] The model's base is stale and its 19% margin is conservative, but even allowing for that, the gap is large.",
+        "5. **FY25 margins may have been a peak.** [F] Management itself calls FY26 a 'normalisation of margins from the elevated levels of FY25', attributed to product and customer mix and input cost pressure (PPT Jun 2026). [E] Operating EBITDA margin moved from about 26.8% (FY24) to 37.8% (FY25) and about 33.0% (FY26).",
+        "6. **Exports are small and shrinking despite the 'global footprint' pitch.** [F] Export earnings fell from Rs 2.79 cr to Rs 2.19 cr in FY25 (AR2025 p.46). [MC] The presentation says the company exports to '15+ countries' (PPT Jun 2026).",
+        "7. **Family-run governance with rising pay.** [F] Three promoter-family executive directors were paid Rs 2.49 cr in FY25 [E, about 11% of PAT]. Four more relatives or family members sit in senior roles, among them the CFO and the heads of marketing and international business (AR2025 p.35, p.52, p.104). [F] Shareholders were asked to raise pay caps and to approve pay above the 5%-of-net-profit threshold for promoter executives (AR2025 p.5-8).",
+        "8. **Disclosure quality is inconsistent.** [F] The P&L reports EPS of Rs 45.15, while the EPS note computes Rs 45.10 on PAT and shows Rs 45.15 only after adding other comprehensive income. For FY24 the figures are Rs 28.23 against Rs 26.50 (AR2025 p.84, p.102). [F] CSR spend is given as Rs 19.95 lakh in one place and Rs 25.15 lakh in another (AR2025 p.33, p.44). [F] R&D expenditure is reported as NIL, although the presentation cites 'continuous R&D' (AR2025 p.46; PPT Jun 2026).",
+        "9. **Cyclical, lumpy, public-sector-linked demand.** [MC] Growth is tied to thermal power, coal mining and refinery projects (AR2025 p.36). [F] The company had to file an insolvency petition against BGR Energy Systems in 2022 to recover dues; it settled in October 2024 (AR2025 p.38-39).",
+        "10. **Single site, rising capital intensity.** [F] All production is in Dewas (AR2025 p.68). [MC] The Rs 35 cr capex is about 1.4x the FY25 gross block of Rs 25.10 cr [E] (AR2025 p.93; PPT Jun 2026)."
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Key debates",
+     "blocks": [
+      {
+       "type": "bullets",
+       "items": [
+        "**Is the FY26 flatness a pause or a peak?** [MC] Management calls it 'a transitional phase' (PPT Jun 2026). [AI] Order intake below sales in FY25 and a weaker Q4 FY26 support the peak reading. The capex announcement and the 96% utilisation claim support the pause reading. Neither side is proven.",
+        "**Are the margins structural?** [AI] Bull view: a niche, indigenous product with an engineering-heavy mix supports margins above 30%. [AI] Bear view: FY25 at about 37.8% operating margin followed a mix shift; FY23-FY24 were about 27% (NUMBERS; AR2025 p.84). Management's own word is 'normalisation'.",
+        "**Does the market over- or under-price the cash?** [F] The EV in our data is not net of cash (NUMBERS). [AI] About Rs 58 cr of treasury assets at March 2026 makes EV-based multiples look richer than they are. The market may be under-crediting the balance sheet.",
+        "**Is the stale DCF misleading in both directions?** [AI] The model starts from FY23 sales of Rs 45.4 cr at a 19% margin (NUMBERS). Company-reported FY26 sales of Rs 72.46 cr already exceed the model's year-2 base-case sales of Rs 65.2 cr. That makes the model conservative on scale and margin. Even so, a price about 4x the bull value still needs growth that the flat FY26 does not show.",
+        "**Is the receivable build a collection issue or a timing issue?** [AI] Public-sector and EPC billing tends to be back-ended, and the ageing shows Rs 19.60 cr of the Rs 22.46 cr (March 2025) under six months overdue from the due date (AR2025 p.95). The March 2026 ageing is not available to us."
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Variant perception",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "[AI] The market appears to be paying for the FY25 step-up in scale and margin, with the capacity plan as proof that the step-up continues. Our read of the evidence is narrower. FY25 looks like a year of backlog execution: book-to-bill was about 0.81x [E] (AR2025 p.27). It was followed by flat FY26 sales, lower PAT and a sharp rise in receivables (PPT Jun 2026). The business is clearly profitable, cash-rich and ungeared. What is unproven is the growth. No backlog, order-inflow or customer data is disclosed that would let an investor underwrite the doubling in capacity. The variant view is that the balance sheet makes the downside less severe than the DCF gap implies, while the missing disclosure on orders makes the upside harder to underwrite than the price implies."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "company_history",
+   "title": "Corporate history and group structure",
+   "subsections": [
+    {
+     "title": "Corporate timeline",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "Timeline (decade-level entries are from the company's 'Journey' slide and are approximate)",
+       "columns": [
+        "Date",
+        "Event"
+       ],
+       "rows": [
+        [
+         "1971",
+         "[MC] Founded in Indore, MP; India's first fluid-coupling manufacture with indigenous technology (PPT Jun 2026)"
+        ],
+        [
+         "11 Dec 1975",
+         "[F] Ashok Jain appointed director; MCA records show 01.07.2005 (AR2025 p.71)"
+        ],
+        [
+         "1978",
+         "[F] Registration year embedded in the CIN L74210MP1978PLC001452 (AR2025 p.9). [AI] Not reconciled with the 1971 founding date; possibly the date of conversion or incorporation of the present entity"
+        ],
+        [
+         "1980s",
+         "[MC] Manufacturing moved to Dewas, MP, into a new shed on a new site (PPT Jun 2026)"
+        ],
+        [
+         "1990s",
+         "[MC] ISO 9001 certification; product range expanded (PPT Jun 2026)"
+        ],
+        [
+         "2000s",
+         "[MC] Variable-fill couplings: FNIC type for combustion engines and FNCT type for industrial drives (PPT Jun 2026)"
+        ],
+        [
+         "1 May 2007",
+         "[F] Kunal Jain appointed director (AR2025 p.71)"
+        ],
+        [
+         "2010s",
+         "[MC] Steel-body and water-filled couplings for mining and hazardous areas; CNC machines added; supplies to Australia, Indonesia and Africa (PPT Jun 2026)"
+        ],
+        [
+         "10 Feb 2014",
+         "[F] Radhica Sharma appointed director (AR2025 p.71)"
+        ],
+        [
+         "12 Feb 2021",
+         "[F] CSR committee dissolved; the board oversees CSR directly (AR2025 p.44)"
+        ],
+        [
+         "29 Jun 2022",
+         "[F] IBC Section 9 petition filed against BGR Energy Systems as operational creditor (AR2025 p.38-39)"
+        ],
+        [
+         "26 Sep 2022",
+         "[F] J.P. Saraf & Co. LLP appointed statutory auditor for five years, to the 2027 AGM (AR2025 p.30)"
+        ],
+        [
+         "14 Aug 2023",
+         "[F] Three new independent directors appointed: A.K. Patni, S. Panot, S. Modi (AR2025 p.54, p.71)"
+        ],
+        [
+         "FY24",
+         "[F] Wholly owned subsidiary Fluidomat UK Pvt Ltd closed; Rs 13.70 lakh repatriated (AR2025 p.46, p.104)"
+        ],
+        [
+         "8 Oct 2024",
+         "[F] Full and final settlement with BGR Energy; NCLT petition withdrawn (AR2025 p.39)"
+        ],
+        [
+         "FY25",
+         "[F] Revenue Rs 72.18 cr, PAT Rs 22.22 cr, the company's 'best-ever performance' (AR2025 p.26)"
+        ],
+        [
+         "1 Oct 2025",
+         "[F] Radhica Sharma redesignated Joint MD; pay caps raised to Rs 7 lakh per month, subject to the AGM (AR2025 p.7-8)"
+        ],
+        [
+         "Feb 2026",
+         "[MC] Board approves Rs 35 cr modernisation and capacity expansion (PPT Jun 2026)"
+        ],
+        [
+         "29 Jun 2026",
+         "[F] FY26 investor presentation filed: revenue Rs 72.46 cr, PAT Rs 20.1 cr (PPT Jun 2026)"
+        ],
+        [
+         "15 Aug 2026",
+         "[F] Q1 FY27 results published; content not available to us (ANNOUNCEMENTS)"
+        ],
+        [
+         "26 Sep 2026",
+         "[F] 50th AGM; dividend; Ashok Jain reappointed CMD for 3 years (ANNOUNCEMENTS)"
+        ]
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Subsidiaries and group structure",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "Group entities as disclosed",
+       "columns": [
+        "Entity",
+        "Incorporated",
+        "Business",
+        "Latest revenue",
+        "Latest PAT"
+       ],
+       "rows": [
+        [
+         "Fluidomat Ltd",
+         "[F] CIN year 1978; founded 1971 per management",
+         "Fluid couplings",
+         "[F] Rs 72.46 cr FY26 (PPT Jun 2026)",
+         "[F] Rs 20.06 cr FY26 (PPT Jun 2026)"
+        ],
+        [
+         "Fluidomat UK Pvt Ltd (former wholly owned subsidiary)",
+         "Not disclosed",
+         "Not disclosed; closed",
+         "Not disclosed",
+         "Not disclosed"
+        ],
+        [
+         "Redwood Packaging Pvt Ltd (directors interested)",
+         "Not disclosed",
+         "Not disclosed",
+         "Not disclosed",
+         "Not disclosed"
+        ],
+        [
+         "Focus Eye Technocraft Pvt Ltd (relative of director is a director)",
+         "Not disclosed",
+         "Supplier: goods purchases of Rs 2.69 lakh in FY25",
+         "Not disclosed",
+         "Not disclosed"
+        ],
+        [
+         "M/s Manav Enterprises (director is a partner)",
+         "Not disclosed",
+         "Not disclosed",
+         "Not disclosed",
+         "Not disclosed"
+        ]
+       ]
+      },
+      {
+       "type": "p",
+       "text": "[F] The company has had no subsidiary, associate or joint venture since the UK subsidiary closed, and prepares standalone accounts only (AR2025 p.31, p.104). [AI] Our statements data is labelled 'consolidated' (NUMBERS). For FY24 onward that is in substance standalone."
+      }
+     ]
+    },
+    {
+     "title": "What the timeline reveals",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "[AI] This is a 50-year-old business. What is new is its profitability. [F] Revenue was Rs 25-33 cr from FY19 to FY22, with operating margins of 11-19% (NUMBERS). It then moved to Rs 45 cr in FY23, Rs 55 cr in FY24 and Rs 72 cr in FY25-FY26, with margins of 27-38% [E] (AR2025 p.84; PPT Jun 2026). [AI] The high-margin, Rs 70 cr-plus business therefore has a two-year record, FY25 and FY26, and the second of those years was flat. The long history gives evidence of technical survival, not of the current earnings power."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "business_model",
+   "title": "Business model and production chain",
+   "subsections": [
+    {
+     "title": "Production chain, step by step",
+     "blocks": [
+      {
+       "type": "bullets",
+       "items": [
+        "1. Enquiry and application engineering: [MC] each drive is sized to power and RPM; the company offers 'customized drive solutions and full lifecycle support from design to commissioning' (PPT Jun 2026). [F] Kunal Jain leads the design department (AR2025 p.21).",
+        "2. Approvals: [MC] products are 'approved by internationally recognized engineering consultants and EPC majors'; ATEX approval covers hazardous zones (PPT Jun 2026). [F] Tender and vendor-registration fees appear in a combined expense line with bad debts and liquidated damages, Rs 0.48 cr in FY25 (AR2025 p.101).",
+        "3. Casting: [MC] in-house aluminium and cast-iron foundries, each with pouring capacity of 50 tonnes per month (PPT Jun 2026). [F] FY25 raw materials: aluminium Rs 3.32 cr, cast iron and steel Rs 7.73 cr (AR2025 p.100).",
+        "4. Machining and fabrication: [MC] CNC turning and vertical milling; GMAW-certified welders (PPT Jun 2026). [F] Job-work charges were Rs 1.00 cr in FY25, so some machining is outsourced (AR2025 p.101).",
+        "5. Bought-out components: [F] Rs 11.14 cr in FY25, about half of material cost (AR2025 p.100).",
+        "6. Assembly and testing: [MC] 10 test benches from 15 kW to 400 kW; every unit is tested (PPT Jun 2026).",
+        "7. Dispatch and invoicing: [F] revenue is recognised at a point in time, on shipment or delivery (AR2025 p.90). [F] Bank guarantees against advance and performance obligations are backed by fixed deposits held as 100% margin (AR2025 p.104).",
+        "8. Aftermarket: [MC] spares, retrofit and AMC (PPT Jun 2026). [F] Services revenue was Rs 0.59 cr in FY25 (AR2025 p.99)."
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Capability by process stage",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "In-house versus outsourced by stage",
+       "columns": [
+        "Stage",
+        "In-house?",
+        "Evidence",
+        "Label"
+       ],
+       "rows": [
+        [
+         "Design / application engineering",
+         "Yes",
+         "Design department; R&D expenditure reported NIL (AR2025 p.21, p.46)",
+         "[F]"
+        ],
+        [
+         "Aluminium casting",
+         "Yes",
+         "50 t/month pouring capacity (PPT Jun 2026)",
+         "[MC]"
+        ],
+        [
+         "Cast-iron casting",
+         "Yes",
+         "50 t/month pouring capacity (PPT Jun 2026)",
+         "[MC]"
+        ],
+        [
+         "Machining",
+         "Partly",
+         "CNC in-house; job-work Rs 1.00 cr in FY25 (AR2025 p.101)",
+         "[F]"
+        ],
+        [
+         "Components",
+         "Largely bought out",
+         "Rs 11.14 cr of Rs 22.18 cr materials in FY25 (AR2025 p.100)",
+         "[F]"
+        ],
+        [
+         "Testing",
+         "Yes",
+         "10 test benches, up to 400 kW (PPT Jun 2026)",
+         "[MC]"
+        ],
+        [
+         "Service / aftermarket",
+         "Yes",
+         "Services revenue Rs 0.59 cr (AR2025 p.99)",
+         "[F]"
+        ]
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Where value is captured",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "[E] Gross margin, measured as revenue less materials and inventory change, was about 62% in FY24, 69% in FY25 and 67% in FY26 (AR2025 p.84; PPT Jun 2026). [AI] Materials are only about a third of revenue, so most of the value comes from design, sizing, testing and approvals rather than from metal conversion. That fits an engineered-to-order component whose cost is small relative to the motor, gearbox and process it protects. [MC] Management claims a 3-5 year payback for customers from energy and maintenance savings (PPT Jun 2026). No customer data verifies this."
+      }
+     ]
+    },
+    {
+     "title": "Outsourcing and capital intensity",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "[F] The FY25 gross block, including intangibles, was Rs 25.10 cr, against Rs 72.18 cr of revenue (AR2025 p.93). [F] Fixed-asset turnover was 3.7-6.3x over FY19-FY23 (NUMBERS). [F] Capex was below Rs 2 cr a year in FY19-FY24, then Rs 6.44 cr in FY25 (NUMBERS; AR2025 p.85). [MC] Rs 35 cr is planned over FY26-FY29 (PPT Jun 2026). [AI] Historically the business has been asset-light. The planned capex is a step change in intensity."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "products",
+   "title": "Product portfolio",
+   "subsections": [
+    {
+     "title": "Product families",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "Product family matrix; growth and margin columns are our qualitative inference, as no product-level data is disclosed",
+       "columns": [
+        "Product",
+        "Application",
+        "Segment",
+        "Customer",
+        "Competitive intensity",
+        "Growth outlook",
+        "Margin potential"
+       ],
+       "rows": [
+        [
+         "SC series: scoop-controlled variable speed [MC]",
+         "Fans, boiler-feed pumps, compressors, conveyors, crushers (PPT Jun 2026)",
+         "Fluid couplings (single segment)",
+         "Power utilities, refineries [MC]",
+         "[AI] Medium: global specialists exist",
+         "[AI] Tied to power and refinery capex",
+         "[AI] Higher: engineered, high-kW"
+        ],
+        [
+         "SM / HF series: fixed speed, delay-fill [MC]",
+         "Conveyor and crusher drives, 'more than 50 key applications' (PPT Jun 2026)",
+         "Same",
+         "Mining, cement, steel, material handling [MC]",
+         "[AI] Higher: standardised",
+         "[AI] Replacement-driven plus projects",
+         "[AI] Moderate"
+        ],
+        [
+         "WF / CBSF series: hazardous area, water-filled / fire-proof [MC]",
+         "Underground mining, Zone 0/1 refineries and chemicals (PPT Jun 2026)",
+         "Same",
+         "Coal mining, refiners [MC]",
+         "[AI] Lower: needs ATEX approval",
+         "[AI] Linked to coal and refinery projects",
+         "[AI] Higher"
+        ],
+        [
+         "FNIC / FNCT series: IC-engine drive [MC]",
+         "Off-highway, mobile crushers, pumps (PPT Jun 2026)",
+         "Same",
+         "OEMs, off-highway [MC]",
+         "[AI] Medium",
+         "[AI] Not evidenced",
+         "[AI] Not determinable"
+        ],
+        [
+         "Spares, retrofit, service [MC]",
+         "Installed base of 60,000+ units (PPT Jun 2026)",
+         "Same",
+         "Existing users",
+         "[AI] Low for OEM spares",
+         "[AI] Steady if the base is real",
+         "[AI] Typically highest; not disclosed"
+        ]
+       ]
+      },
+      {
+       "type": "p",
+       "text": "[F] The documents give three different maximum power ratings: 'up to 3500 KW' (SCREENER), 'up to 3800kw' (AR2025 p.87) and 'up to 6,000 kW' (PPT Jun 2026). These are not reconciled. [AI] The 6,000 kW figure may reflect newer designs, but no document says so."
+      }
+     ]
+    },
+    {
+     "title": "Commodity-like versus differentiated",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "[AI] Fixed-speed couplings for conveyors and crushers are the most standardised lines and are probably the most price-competitive in tenders. The scoop-controlled variable-speed units for boiler-feed pumps and fans, the ATEX-rated hazardous-area units and high-kW refinery retrofits are the differentiated lines, where approvals and references matter. [AI] The refinery case studies (BPCL, MRPL, NRL, IOCL, Petronas) are all SC-type or high-kW applications, which suggests management sees differentiation there (PPT Jun 2026). [F] No revenue mix is disclosed, so we cannot tell how much of the business sits in each bucket."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "segments",
+   "title": "Segment analysis",
+   "subsections": [
+    {
+     "title": "Segment revenue",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "Single reportable segment: total revenue from operations (Rs cr)",
+       "columns": [
+        "Year",
+        "Revenue",
+        "Mix %",
+        "YoY growth",
+        "Source"
+       ],
+       "rows": [
+        [
+         "FY23",
+         "45.41",
+         "100% fluid couplings",
+         "[E] +38.9%",
+         "[F] (NUMBERS)"
+        ],
+        [
+         "FY24",
+         "55.49",
+         "100%",
+         "[E] +22.2%",
+         "[F] (AR2025 p.84)"
+        ],
+        [
+         "FY25",
+         "72.18",
+         "100%",
+         "[E] +30.1%",
+         "[F] (AR2025 p.84)"
+        ],
+        [
+         "FY26",
+         "72.46",
+         "100%",
+         "[E] +0.4%",
+         "[F] (PPT Jun 2026)"
+        ]
+       ]
+      },
+      {
+       "type": "p",
+       "text": "[F] Segment margins are not disclosed because there is only one segment (AR2025 p.89). [F] Revenue by type for FY25/FY24: sale of products Rs 71.53 / 55.20 cr, services Rs 0.59 / 0.19 cr, scrap Rs 0.06 / 0.11 cr (AR2025 p.99). [F] No end-market or product-family split is disclosed."
+      }
+     ]
+    },
+    {
+     "title": "Why revenue moved",
+     "blocks": [
+      {
+       "type": "bullets",
+       "items": [
+        "FY25 (+30%): [MC] management credits 'improved business scenario', 'better sales realization' and new projects in power and mining (AR2025 p.36, p.106). [AI] Our read: with FY25 order booking of Rs 58.16 cr below FY25 revenue of Rs 72.18 cr, the FY24 intake of Rs 60.03 cr must have been partly executed in FY25. The growth was backlog conversion rather than a new run-rate (AR2025 p.27).",
+        "FY26 (+0.4%): [MC] management says revenue 'remained stable', with margins hit by 'a shift in product and customer mix, alongside input cost pressures' (PPT Jun 2026). [AI] Our read: flat revenue after a year of sub-1x book-to-bill is what one would expect. FY26 order intake is not disclosed in the documents available."
+       ]
+      },
+      {
+       "type": "p",
+       "text": "[AI] Order-driven versus organic: project supplies for thermal plants, coal mines and refineries (AR2025 p.36) are order-driven and lumpy. Spares, replacements and standard fixed-speed couplings for cement, steel and material handling are closer to organic run-rate demand. The split is not disclosed."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "revenue_bridge",
+   "title": "Revenue bridge",
+   "subsections": [
+    {
+     "title": "FY24 to FY25 revenue bridge",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "FY25 versus FY24 revenue bridge (Rs cr)",
+       "columns": [
+        "Driver",
+        "Impact Rs cr",
+        "Basis"
+       ],
+       "rows": [
+        [
+         "FY24 revenue from operations",
+         "55.49",
+         "[F] (AR2025 p.84)"
+        ],
+        [
+         "Change in sale of products (domestic + export)",
+         "+16.33",
+         "[F] Rs 71.53 cr vs Rs 55.20 cr (AR2025 p.99)"
+        ],
+        [
+         "of which: change in export earnings",
+         "-0.60",
+         "[F] Rs 2.19 cr vs Rs 2.79 cr, FOB basis (AR2025 p.102)"
+        ],
+        [
+         "of which: domestic product sales (residual)",
+         "+16.93",
+         "[E] Residual; assumes export FOB approximates export revenue"
+        ],
+        [
+         "Change in services income",
+         "+0.41",
+         "[F] Rs 0.59 cr vs Rs 0.19 cr (AR2025 p.99)"
+        ],
+        [
+         "Change in scrap sales",
+         "-0.05",
+         "[F] (AR2025 p.99)"
+        ],
+        [
+         "Price vs volume split",
+         "Not disclosed",
+         "[F] 'better sales realization' cited without numbers (AR2025 p.106)"
+        ],
+        [
+         "FY25 revenue from operations",
+         "72.18",
+         "[F] (AR2025 p.84)"
+        ]
+       ]
+      }
+     ]
+    },
+    {
+     "title": "FY26 and the current year",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "[F] FY26 revenue was Rs 72.46 cr, up Rs 0.28 cr (PPT Jun 2026). No driver split is disclosed; the whole movement is residual. [E] Read from the chart, Q4 FY26 revenue was about Rs 21 cr against about Rs 29 cr in Q4 FY25 (PPT Jun 2026); the chart extraction is imperfect and the exact figures should be checked against the filed results. [F] Q1 FY27 (June 2026 quarter) results were published on 15 August 2026, but we did not have the document (ANNOUNCEMENTS). [F] Management has given no numerical revenue guidance for FY27 (PPT Jun 2026). No deferred or carried-forward order value is disclosed."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "export_domestic",
+   "title": "Export versus domestic",
+   "subsections": [
+    {
+     "title": "Geography",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "Geographic revenue as disclosed (Rs cr)",
+       "columns": [
+        "Region",
+        "FY24",
+        "FY25",
+        "% of FY25 revenue",
+        "CAGR"
+       ],
+       "rows": [
+        [
+         "Exports (FOB, incl. Nepal sales realised in INR)",
+         "[F] 2.79",
+         "[F] 2.19",
+         "[E] 3.0%",
+         "[E] -21.5% YoY (one year only)"
+        ],
+        [
+         "Domestic (residual)",
+         "[E] 52.70",
+         "[E] 69.99",
+         "[E] 97.0%",
+         "[E] +32.8% YoY"
+        ],
+        [
+         "Country-level split",
+         "Not disclosed",
+         "Not disclosed",
+         "-",
+         "-"
+        ],
+        [
+         "FY26 exports",
+         "-",
+         "Not disclosed (FY26 annual report not available)",
+         "-",
+         "-"
+        ]
+       ]
+      },
+      {
+       "type": "p",
+       "text": "[MC] The presentation lists a presence in Malaysia, Indonesia, Thailand, Korea, UAE, Saudi Arabia, Oman, Africa, Australia, New Zealand, North America, Brazil and the Netherlands, and an installed base in '15+ countries' (PPT Jun 2026). [F] The audited export figure is small and fell in FY25 (AR2025 p.102). [AI] The 'global footprint' describes where units have been installed over decades. It does not describe current revenue. [MC] The Rs 35 cr capex is partly justified as a way to 'enter new geographies and attract export/foreign buyers' (PPT Jun 2026), so export growth is an aspiration."
+      }
+     ]
+    },
+    {
+     "title": "Currency, tariff and location risk",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "[F] Foreign-exchange outgo was Rs 7.79 lakh in FY25, all travel; imported raw materials were nil against Rs 0.73 lakh in FY24 (AR2025 p.46, p.102). [F] The FX gain was Rs 2.43 lakh (AR2025 p.100). [F] The company does not hedge commodity or currency exposure (AR2025 p.68). [AI] Currency exposure is immaterial. [F] No tariff or trade-policy exposure is discussed in the documents. [AI] At 3% exports, tariff risk is minor. [F] Manufacturing is at a single plant in Dewas (AR2025 p.68). [AI] Any fire, labour or regulatory disruption there would halt all output; insurance expense was only Rs 0.07 cr (AR2025 p.101)."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "customer_forensics",
+   "title": "Customer forensics",
+   "subsections": [
+    {
+     "title": "Concentration",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "Customer concentration as disclosed",
+       "columns": [
+        "Metric",
+        "FY24",
+        "FY25",
+        "FY26"
+       ],
+       "rows": [
+        [
+         "Top-1 customer share",
+         "Not disclosed",
+         "Not disclosed",
+         "Not disclosed"
+        ],
+        [
+         "Top-5 customer share",
+         "Not disclosed",
+         "Not disclosed",
+         "Not disclosed"
+        ],
+        [
+         "Top-10 customer share",
+         "Not disclosed",
+         "Not disclosed",
+         "Not disclosed"
+        ],
+        [
+         "Number of clients",
+         "-",
+         "-",
+         "[MC] 'More than 600 industrial clients' (PPT Jun 2026)"
+        ],
+        [
+         "Credit-risk statement",
+         "-",
+         "[F] 'None of the financial instruments ... result in material concentrations of credit risks' (AR2025 p.107)",
+         "-"
+        ]
+       ]
+      },
+      {
+       "type": "p",
+       "text": "[AI] Both readings are possible. The optimistic one: more than 600 clients and the auditor-reviewed credit-risk note point to a diversified base. The pessimistic one: in a project business, a handful of EPC or PSU orders can drive a year, as the lumpy quarterly sales in our data suggest (Q2 FY23 Rs 13.03 cr, Q3 Rs 9.92 cr, Q4 Rs 14.29 cr) (NUMBERS). Without disclosure, neither can be confirmed."
+      }
+     ]
+    },
+    {
+     "title": "Named customers",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "Customers named in the documents; no revenue by customer is disclosed",
+       "columns": [
+        "Customer",
+        "Relationship years",
+        "Revenue by year"
+       ],
+       "rows": [
+        [
+         "BPCL (Bina refinery)",
+         "Not disclosed",
+         "Not disclosed; [MC] case study: PA and SA fan retrofit (PPT Jun 2026)"
+        ],
+        [
+         "MRPL Mangalore",
+         "Not disclosed",
+         "Not disclosed; [MC] ID-fan case study (PPT Jun 2026)"
+        ],
+        [
+         "Numaligarh Refinery",
+         "Not disclosed",
+         "Not disclosed; [MC] boiler-feed pumps (PPT Jun 2026)"
+        ],
+        [
+         "IOCL Barauni",
+         "Not disclosed",
+         "Not disclosed; [MC] boiler-feed pumps (PPT Jun 2026)"
+        ],
+        [
+         "Petronas Malaysia",
+         "Not disclosed",
+         "Not disclosed; [MC] water-injection pump (PPT Jun 2026)"
+        ],
+        [
+         "NTPC, Coal India, ONGC, HPCL, Adani",
+         "[MC] 'these clients don't switch' (PPT Jun 2026)",
+         "Not disclosed"
+        ],
+        [
+         "BGR Energy Systems",
+         "[F] Customer; disputed dues led to an IBC petition in 2022, settled Oct 2024 (AR2025 p.38-39)",
+         "Not disclosed; settlement amount not disclosed"
+        ]
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Contracts and the direction of concentration",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "[F] No long-term supply agreements are disclosed. The company states it has no long-term contracts with material foreseeable losses (AR2025 p.75). [AI] The business appears to run on individual purchase orders and tenders, which the tender and vendor-registration fee line supports (AR2025 p.101). [F] Receivables over one year past due rose from Rs 1.62 cr to Rs 2.11 cr in FY25 (AR2025 p.95). [AI] We cannot say whether concentration is improving or worsening; that is itself the finding."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "client_analysis",
+   "title": "Client analysis",
+   "subsections": [
+    {
+     "title": "Client-by-client view",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "Identifiable clients; approval, duration and wallet share are largely not disclosed",
+       "columns": [
+        "Client",
+        "What they do",
+        "Why they buy from the company",
+        "Product",
+        "Approved supplier?",
+        "Duration",
+        "Sticky?",
+        "Growing?",
+        "Wallet-share upside"
+       ],
+       "rows": [
+        [
+         "BPCL",
+         "State oil refiner",
+         "[MC] Energy saving: 2,800 MWh a year, about USD 0.27 mn a year (PPT Jun 2026)",
+         "1510/1135 kW fan couplings",
+         "Not disclosed",
+         "Not disclosed",
+         "[AI] Likely once installed",
+         "Not disclosed",
+         "[AI] Other refineries and units"
+        ],
+        [
+         "MRPL",
+         "Refiner",
+         "[MC] Process stability, energy saving (PPT Jun 2026)",
+         "400 kW ID-fan couplings",
+         "Not disclosed",
+         "Not disclosed",
+         "[AI] Likely",
+         "Not disclosed",
+         "[AI] Unknown"
+        ],
+        [
+         "Numaligarh Refinery",
+         "Refiner",
+         "[MC] 'zero unplanned downtime' (PPT Jun 2026)",
+         "1025 kW BFP coupling",
+         "Not disclosed",
+         "Not disclosed",
+         "[AI] Likely",
+         "Not disclosed",
+         "[AI] Unknown"
+        ],
+        [
+         "IOCL",
+         "State oil refiner",
+         "[MC] Torque control, seal life (PPT Jun 2026)",
+         "550 kW BFP coupling",
+         "Not disclosed",
+         "Not disclosed",
+         "[AI] Likely",
+         "Not disclosed",
+         "[AI] Other IOCL refineries"
+        ],
+        [
+         "Petronas",
+         "Malaysian oil major",
+         "[MC] Vibration reduction (PPT Jun 2026)",
+         "750 kW pump coupling",
+         "Not disclosed",
+         "Not disclosed",
+         "[AI] Unknown",
+         "[F] Exports fell in FY25 (AR2025 p.46)",
+         "[AI] Export reference"
+        ],
+        [
+         "NTPC / thermal EPCs",
+         "Power generation",
+         "[MC] Part of 7 project orders booked (AR2025 p.36)",
+         "Not disclosed",
+         "[MC] 'Certified, tested, trusted' (PPT Jun 2026)",
+         "Not disclosed",
+         "[MC] Claimed",
+         "Not disclosed",
+         "[AI] Linked to 25 announced plants"
+        ],
+        [
+         "Coal India / mining",
+         "Coal mining",
+         "[MC] Hazardous-area couplings (PPT Jun 2026)",
+         "WF/CBSF, SM",
+         "Not disclosed",
+         "Not disclosed",
+         "[MC] Claimed",
+         "Not disclosed",
+         "[AI] 15 announced mining projects"
+        ]
+       ]
+      },
+      {
+       "type": "p",
+       "text": "[AI] Overall read: the client list is credible for a niche engineering supplier and the case studies are specific (kW, RPM, site). Nothing tells us how much each client contributes, whether the relationships are growing, or what the company's share of any client's coupling spend is. The stickiness claims are plausible for an installed component with an OEM spares tail, but they are unverified."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "order_book",
+   "title": "Order book forensics",
+   "subsections": [
+    {
+     "title": "What is disclosed",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "[F] No closing order book or backlog figure is disclosed. The only order metric is annual order booking: 'The company has booked the orders of Rs.5815.76 lakhs during the financial year 2024-25 as compared to the order booking of Rs.6003.22 lakhs in the previous financial year, which is lower by 3.12%' (AR2025 p.27). [MC] 'At present, the company is making good order bookings due to her extraordinary effort' (AR2025 p.23), referring to the Joint MD. [MC] '...25 new thermal power plants and 15 coal mining projects ... your company has booked orders for 7 number projects for which tenders were issued so far' (AR2025 p.36). [F] The FY26 presentation gives no order-book or order-intake figure (PPT Jun 2026). No L1 positions are disclosed."
+      }
+     ]
+    },
+    {
+     "title": "Order metrics",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "Order metrics",
+       "columns": [
+        "Metric",
+        "FY24",
+        "FY25",
+        "FY26"
+       ],
+       "rows": [
+        [
+         "Order booking (Rs cr)",
+         "[F] 60.03 (AR2025 p.27)",
+         "[F] 58.16 (AR2025 p.27)",
+         "Not disclosed"
+        ],
+        [
+         "Revenue (Rs cr)",
+         "[F] 55.49",
+         "[F] 72.18",
+         "[F] 72.46 (PPT Jun 2026)"
+        ],
+        [
+         "Book-to-bill",
+         "[E] 1.08x",
+         "[E] 0.81x",
+         "Not computable"
+        ],
+        [
+         "Closing order book",
+         "Not disclosed",
+         "Not disclosed",
+         "Not disclosed"
+        ],
+        [
+         "Visibility (months of revenue)",
+         "Not computable",
+         "Not computable",
+         "Not computable"
+        ],
+        [
+         "Advances from customers (Rs cr)",
+         "[F] 0.55",
+         "[F] 1.07 (AR2025 p.99)",
+         "Not disclosed"
+        ]
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Order execution timeline",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "Quantified orders",
+       "columns": [
+        "Order",
+        "Value",
+        "Booked",
+        "Expected execution",
+        "Status"
+       ],
+       "rows": [
+        [
+         "7 thermal / coal-mining project orders",
+         "Not disclosed",
+         "[MC] By FY25 (AR2025 p.36)",
+         "Not disclosed",
+         "Not disclosed"
+        ],
+        [
+         "No individually quantified order disclosed",
+         "-",
+         "-",
+         "-",
+         "-"
+        ]
+       ]
+      }
+     ]
+    },
+    {
+     "title": "A-F classification of revenue visibility",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "Separating confirmed revenue from pipeline and narrative",
+       "columns": [
+        "Class",
+        "Description",
+        "Amount / evidence",
+        "Label"
+       ],
+       "rows": [
+        [
+         "A. Confirmed revenue",
+         "Recognised revenue, latest year",
+         "Rs 72.46 cr FY26 (PPT Jun 2026); Rs 72.18 cr FY25 audited (AR2025 p.84)",
+         "[F]"
+        ],
+        [
+         "B. Contracted, not recognised",
+         "Closing order backlog",
+         "Not disclosed; only customer advances of Rs 1.07 cr at March 2025 (AR2025 p.99)",
+         "[F]"
+        ],
+        [
+         "C. Qualified opportunity",
+         "Orders on 7 of the tendered projects",
+         "Value not disclosed (AR2025 p.36)",
+         "[MC]"
+        ],
+        [
+         "D. Tender pipeline",
+         "25 thermal plants and 15 coal-mining projects announced by the government",
+         "No value, no win-rate (AR2025 p.36)",
+         "[MC]"
+        ],
+        [
+         "E. Management aspiration",
+         "3,500-unit capacity; exports; aftermarket growth; 'medium-term growth outlook'",
+         "No numbers (PPT Jun 2026)",
+         "[MC]"
+        ],
+        [
+         "F. Industry TAM",
+         "Rs 11+ lakh cr infrastructure pipeline, 300 MTPA steel target, 500 GW power",
+         "Context only; not company revenue (PPT Jun 2026)",
+         "[MC]"
+        ]
+       ]
+      },
+      {
+       "type": "callout",
+       "tone": "bad",
+       "text": "[AI] Only class A is quantified. No backlog is disclosed, and the one order metric available (FY25 intake of Rs 58.16 cr) was below FY25 revenue. Revenue visibility beyond the current quarter cannot be established from the documents (AR2025 p.27)."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "business_line_deep_dives",
+   "title": "Business line deep dives",
+   "subsections": [
+    {
+     "title": "Thermal power and coal-mining projects",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "[AI] Position in the value chain: a Tier-2 component supplier to EPC contractors and plant owners, supplying couplings for boiler-feed pumps, draft fans (PA/SA/ID/FD), coal-handling conveyors and crushers (PPT Jun 2026). [MC] Existing today: orders on 7 announced projects (AR2025 p.36). [F] Exposure to government-linked customers is not quantified. The BGR Energy dispute shows the EPC counterparty risk that comes with this channel (AR2025 p.38-39)."
+      },
+      {
+       "type": "table",
+       "caption": "Opportunity framing, power and mining",
+       "columns": [
+        "Figure",
+        "Basis"
+       ],
+       "rows": [
+        [
+         "25 new thermal power plants, 15 coal-mining projects",
+         "[MC] Government announcements cited by management (AR2025 p.36)"
+        ],
+        [
+         "500 GW power; coal ramp-up",
+         "[MC] Presentation context (PPT Jun 2026); TAM, not revenue"
+        ],
+        [
+         "Orders on 7 projects",
+         "[MC] Value not disclosed (AR2025 p.36)"
+        ],
+        [
+         "Company revenue from power/mining",
+         "Not disclosed"
+        ],
+        [
+         "Realistic opportunity",
+         "[AI] Not quantifiable from the documents"
+        ]
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Refinery, oil & gas and hazardous-area couplings",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "[MC] 'Your company has penetrated successfully in Oil and petroleum refinery sector and it will bring new opportunities in future' (AR2025 p.36). [MC] The case studies are BPCL, MRPL, Numaligarh, IOCL and Petronas; ATEX approval for Zone 0/1 is described as 'the global export passport' (PPT Jun 2026). [AI] This is the most differentiated niche: high-kW, high-RPM retrofits with measurable energy-saving claims. It is also the newest narrative, and there is no revenue disclosure to size it."
+      },
+      {
+       "type": "table",
+       "caption": "Opportunity framing, refinery",
+       "columns": [
+        "Figure",
+        "Basis"
+       ],
+       "rows": [
+        [
+         "Five named refinery reference sites",
+         "[MC] (PPT Jun 2026)"
+        ],
+        [
+         "BPCL retrofit saving of about USD 0.27 mn a year",
+         "[MC] Customer benefit, not company revenue (PPT Jun 2026)"
+        ],
+        [
+         "Refinery revenue share",
+         "Not disclosed"
+        ]
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Aftermarket and installed base",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "[MC] More than 60,000 fixed-speed and 5,000 variable-speed units in the field; 'Replacement market grows every year regardless of new project cycle' (PPT Jun 2026). [F] Spares are included in 'sale of products (including spares & components)'; services were Rs 0.59 cr in FY25 (AR2025 p.99). [AI] Strategic implication: if spares were a large share of revenue, the business would be much less cyclical than project-linked peers. That is the single most useful disclosure management could add. As things stand, the annuity thesis is unproven."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "capacity",
+   "title": "Capacity and utilisation",
+   "subsections": [
+    {
+     "title": "Facility map",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "Facilities as disclosed",
+       "columns": [
+        "Facility",
+        "Location",
+        "Process",
+        "Installed capacity",
+        "Utilisation",
+        "Notes"
+       ],
+       "rows": [
+        [
+         "Head office and works",
+         "[F] 7C-8J, I.S. Gajra Industrial Area, A.B. Road, Dewas, MP (AR2025 p.68)",
+         "[MC] Aluminium foundry, CI foundry, CNC machining, fabrication, testing (PPT Jun 2026)",
+         "[MC] 1,500 coupling units a year; foundries 50 t/month each (PPT Jun 2026)",
+         "[MC] About 96% (PPT Jun 2026)",
+         "[MC] 9,300 sq m of shed; 7,800 sq m being added (PPT Jun 2026)"
+        ],
+        [
+         "Registered office",
+         "[F] Navneet Darshan, Old Palasia, Indore (AR2025 p.9)",
+         "Administration",
+         "-",
+         "-",
+         "[F] Office premises rented from Kunal Jain, lease rent Rs 2.48 lakh in FY25 (AR2025 p.25, p.104)"
+        ],
+        [
+         "Sales offices",
+         "[MC] Mumbai, Delhi, Chennai, Kolkata (PPT Jun 2026)",
+         "Sales",
+         "-",
+         "-",
+         "[F] Rent Rs 9.82 lakh in FY25 (AR2025 p.101)"
+        ],
+        [
+         "Test benches",
+         "Dewas",
+         "[MC] 10 benches, 15 kW to 400 kW (PPT Jun 2026)",
+         "-",
+         "Not disclosed",
+         "[MC] High-kW test beds are part of the capex plan"
+        ]
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Utilisation trend and drivers",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "[F] Only one utilisation figure is disclosed: 'existing utilisation already at ~96%' (PPT Jun 2026). No historical utilisation or production volumes are given in the annual report. [AI] A trend cannot be built. [AI] A 96% utilisation claim sits oddly beside flat FY26 revenue: if the plant was full, FY26 growth was capped by capacity, not demand. That would support the capex case, but it does not fit an FY25 order intake below sales (AR2025 p.27). The two readings are not reconciled in the documents."
+      }
+     ]
+    },
+    {
+     "title": "Revenue potential from capacity (sensitivity, not base case)",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "[E] Sensitivity only: FY26 revenue of Rs 72.46 cr over about 1,440 units (96% of 1,500) implies about Rs 5.0 lakh of revenue per unit. At the same realisation and utilisation, 3,500 units would mechanically correspond to about Rs 169 cr of revenue (PPT Jun 2026). [AI] This is not a forecast. Management describes the 2,000 added units as 'higher-range coupling units', so the mix and realisation will differ. The unit definition is not disclosed. Demand at that scale is not evidenced by any order book."
+      }
+     ]
+    },
+    {
+     "title": "Leases and land",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "[F] Freehold land is carried at Rs 1.36 cr and leasehold land at Rs 0.02 cr, amortised over the lease term (AR2025 p.93). [F] The lease expiry date is not disclosed. [F] An 'advance against sale of land (free hold)' of Rs 1.69 cr sat in current liabilities at March 2025, up from Rs 0.40 cr (AR2025 p.99). [AI] The company appears to be selling a parcel of freehold land. Which parcel, its book value and the expected gain are not disclosed. Net PPE fell from Rs 11.74 cr to Rs 10.44 cr in FY26 despite the capex programme (PPT Jun 2026), which may reflect that disposal."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "capex_forensics",
+   "title": "Capex forensics",
+   "subsections": [
+    {
+     "title": "Historical capex",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "Capex history (Rs cr). FY19-FY23 from our statements data (derived); FY24-FY25 are cash capex from the audited cash-flow statement, so the bases differ.",
+       "columns": [
+        "Year",
+        "Capex",
+        "Capex / revenue",
+        "Capex / EBITDA",
+        "Capital commitments",
+        "Source"
+       ],
+       "rows": [
+        [
+         "FY19",
+         "0.32",
+         "1.2%",
+         "[E] 10.8%",
+         "Not available",
+         "[F] (NUMBERS)"
+        ],
+        [
+         "FY20",
+         "0.53",
+         "2.1%",
+         "[E] 15.9%",
+         "Not available",
+         "[F] (NUMBERS)"
+        ],
+        [
+         "FY21",
+         "0.57",
+         "2.0%",
+         "[E] 12.0%",
+         "Not available",
+         "[F] (NUMBERS)"
+        ],
+        [
+         "FY22",
+         "1.95",
+         "6.0%",
+         "[E] 31.5%",
+         "Not available",
+         "[F] (NUMBERS)"
+        ],
+        [
+         "FY23",
+         "0.26",
+         "0.6%",
+         "[E] 2.1%",
+         "Not available",
+         "[F] (NUMBERS)"
+        ],
+        [
+         "FY24",
+         "1.70",
+         "[E] 3.1%",
+         "[E] 11.5% of operating EBITDA",
+         "[F] 0.41",
+         "[F] (AR2025 p.85, p.102)"
+        ],
+        [
+         "FY25",
+         "6.44",
+         "[E] 8.9%",
+         "[E] 23.6% of operating EBITDA",
+         "[F] 0.60",
+         "[F] (AR2025 p.85, p.102)"
+        ],
+        [
+         "FY26",
+         "Not disclosed",
+         "-",
+         "-",
+         "Not disclosed",
+         "[F] CWIP rose from Rs 1.89 cr to Rs 4.22 cr (PPT Jun 2026)"
+        ]
+       ]
+      },
+      {
+       "type": "p",
+       "text": "[F] FY25 additions were Rs 4.58 cr of plant and machinery and Rs 1.89 cr of building shed under construction in CWIP (AR2025 p.93). [F] CWIP ageing shows no overdue or over-budget projects (AR2025 p.105). [F] Our earlier board notes flagged rising CWIP (BOARD). [F] The documents show CWIP of Rs 0.22 cr at March 2024, Rs 1.89 cr at March 2025 and Rs 4.22 cr at March 2026 (AR2025 p.83; PPT Jun 2026), which is consistent with that note."
+      }
+     ]
+    },
+    {
+     "title": "Incremental revenue versus incremental capital",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "[E] From FY23 to FY25, revenue rose by Rs 26.77 cr against cumulative cash capex of Rs 8.14 cr over FY24-FY25, about 3.3x incremental revenue per rupee of capex (NUMBERS; AR2025 p.85). [AI] That growth used existing capacity and cost little capital. The next leg is different: management plans Rs 35 cr, about 1.4x the FY25 gross block of Rs 25.10 cr [E] (AR2025 p.93; PPT Jun 2026)."
+      }
+     ]
+    },
+    {
+     "title": "Planned capex and funding",
+     "blocks": [
+      {
+       "type": "bullets",
+       "items": [
+        "[MC] Rs 35 cr gross capex approved in February 2026: 86,988 sq ft of civil construction, modernisation of the aluminium and CI foundries, CNC machines, high-kW test beds and a materials lab (PPT Jun 2026).",
+        "[MC] Funding is 'entirely through internal accruals'; 'zero debt raised' (PPT Jun 2026). [E] Treasury assets were about Rs 58 cr at March 2026 (PPT Jun 2026), so funding capacity exists.",
+        "[MC] 'Eligible to receive a 40% capital subsidy on qualifying production machines and civil' (PPT Jun 2026). [F] Grants are netted against the carrying amount of the asset (AR2025 p.90). [AI] The subsidy's value, timing and conditions are not disclosed. Eligibility is not receipt.",
+        "[F] The timelines conflict: 'Expected completion by end 2027' on the Journey slide; '2-3 Yrs' and 'FY26-FY29E' on the capex slide (PPT Jun 2026). Not reconciled.",
+        "[F] Area figures also differ slightly: 7,800 sq m of shed addition against 86,988 sq ft of civil construction (PPT Jun 2026). [E] 86,988 sq ft is about 8,080 sq m."
+       ]
+      },
+      {
+       "type": "p",
+       "text": "[AI] Classification: historically asset-light, with fixed-asset turnover of 3.7-6.3x (NUMBERS). Moving to moderate capital intensity for FY26-FY29. If the subsidy materialises, the net outlay would be lower."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "raw_materials",
+   "title": "Raw materials and input costs",
+   "subsections": [
+    {
+     "title": "Key inputs and import dependence",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "Material consumption (Rs cr)",
+       "columns": [
+        "Input",
+        "FY24",
+        "FY25",
+        "Source"
+       ],
+       "rows": [
+        [
+         "Aluminium",
+         "2.34",
+         "3.32",
+         "[F] (AR2025 p.100)"
+        ],
+        [
+         "Cast iron and steel",
+         "6.59",
+         "7.73",
+         "[F] (AR2025 p.100)"
+        ],
+        [
+         "Bought-out components",
+         "11.83",
+         "11.14",
+         "[F] (AR2025 p.100)"
+        ],
+        [
+         "Total materials consumed",
+         "20.77",
+         "22.18",
+         "[F] (AR2025 p.100)"
+        ],
+        [
+         "Imported share",
+         "0.04%",
+         "0.00%",
+         "[F] (AR2025 p.100)"
+        ],
+        [
+         "Imports, CIF",
+         "0.01",
+         "0.00",
+         "[F] (AR2025 p.102)"
+        ],
+        [
+         "FY26 total materials",
+         "-",
+         "[F] 23.13 in FY26 (PPT Jun 2026)",
+         "Split not available"
+        ]
+       ]
+      },
+      {
+       "type": "p",
+       "text": "[F] Import dependence is effectively nil, and no country split is relevant (AR2025 p.100). [F] Stores and spares are 100% indigenous (AR2025 p.102). [F] The documents give no commodity price data. They mention only 'broad-based cost pressures' in FY25 (AR2025 p.37) and 'input cost pressures' in FY26 (PPT Jun 2026)."
+      }
+     ]
+    },
+    {
+     "title": "Pass-through: claim versus evidence",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "[F] Policy: 'Usual policy is to sell its products at prevailing market prices, and not to enter into price hedging arrangements' (AR2025 p.68). [MC] The Joint MD is credited with 'reduction in the cost related to raw material & other purchase' (AR2025 p.22). [E] Materials plus inventory change were 37.7% of revenue in FY24, 31.2% in FY25 and 32.8% in FY26 (AR2025 p.84; PPT Jun 2026). [AI] The FY26 rise, which management attributes partly to input cost, shows pass-through is not instant. In a fixed-price tender business, costs incurred between bid and delivery sit with the supplier."
+      }
+     ]
+    },
+    {
+     "title": "EBITDA sensitivity to input costs",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "Input-cost shock sensitivity [E]; raw materials are about a third of revenue",
+       "columns": [
+        "Basis",
+        "Cost base shocked",
+        "+5% shock: EBITDA impact",
+        "+5%: resulting margin",
+        "+10% shock: EBITDA impact",
+        "+10%: resulting margin"
+       ],
+       "rows": [
+        [
+         "FY23, our statements data, all operating costs (Rs 33.03 cr)",
+         "All expenses",
+         "[E] -Rs 1.65 cr (-13.3%)",
+         "[E] 23.6% (from 27.3%)",
+         "[E] -Rs 3.30 cr (-26.7%)",
+         "[E] 20.0%"
+        ],
+        [
+         "FY25 audited, materials only (Rs 22.53 cr)",
+         "Materials",
+         "[E] -Rs 1.13 cr (-4.1%)",
+         "[E] 36.2% (from 37.8%)",
+         "[E] -Rs 2.25 cr (-8.3%)",
+         "[E] 34.7%"
+        ],
+        [
+         "FY26 reported, materials only (Rs 23.75 cr)",
+         "Materials",
+         "[E] -Rs 1.19 cr (-5.0%)",
+         "[E] 31.4% (from 33.0%)",
+         "[E] -Rs 2.38 cr (-9.9%)",
+         "[E] 29.7%"
+        ]
+       ]
+      },
+      {
+       "type": "p",
+       "text": "[AI] With margins above 30%, a materials shock alone is manageable. The larger risk is cost inflation across the board, including employee costs, which were about 20% of FY26 revenue [E], combined with flat pricing."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "margin_analysis",
+   "title": "Margin analysis",
+   "subsections": [
+    {
+     "title": "Margin trend",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "Margin trend (Rs cr). FY19-FY23 and Q4 FY23 from our statements data; FY24-FY25 audited; FY26 and Q4 FY26 company-reported and unaudited. EBITDA for FY24-FY26 is our operating calculation, which excludes other income.",
+       "columns": [
+        "Period",
+        "Revenue",
+        "Gross margin proxy",
+        "EBITDA",
+        "EBITDA %",
+        "PAT",
+        "PAT %"
+       ],
+       "rows": [
+        [
+         "FY19",
+         "26.77",
+         "n.a.",
+         "2.97",
+         "11.1%",
+         "2.39",
+         "[E] 8.9%"
+        ],
+        [
+         "FY20",
+         "25.49",
+         "n.a.",
+         "3.34",
+         "13.1%",
+         "3.19",
+         "[E] 12.5%"
+        ],
+        [
+         "FY21",
+         "27.81",
+         "n.a.",
+         "4.76",
+         "17.1%",
+         "3.99",
+         "[E] 14.3%"
+        ],
+        [
+         "FY22",
+         "32.69",
+         "n.a.",
+         "6.20",
+         "19.0%",
+         "5.48",
+         "[E] 16.8%"
+        ],
+        [
+         "FY23",
+         "45.41",
+         "n.a.",
+         "12.38",
+         "27.3%",
+         "9.61",
+         "[E] 21.2%"
+        ],
+        [
+         "FY24",
+         "55.49",
+         "[E] 62.3%",
+         "[E] 14.87",
+         "[E] 26.8%",
+         "13.05",
+         "[E] 23.5%"
+        ],
+        [
+         "FY25",
+         "72.18",
+         "[E] 68.8%",
+         "[E] 27.28",
+         "[E] 37.8%",
+         "22.22",
+         "[E] 30.8%"
+        ],
+        [
+         "FY26",
+         "72.46",
+         "[E] 67.2%",
+         "[E] 23.92",
+         "[E] 33.0%",
+         "20.06",
+         "[E] 27.7%"
+        ],
+        [
+         "Q4 FY23",
+         "14.29",
+         "n.a.",
+         "4.45",
+         "31.1%",
+         "3.30",
+         "[E] 23.1%"
+        ],
+        [
+         "Q4 FY26 (chart-read)",
+         "[E] about 21",
+         "n.a.",
+         "[E] about 9",
+         "Not reconciled",
+         "[E] about 6.4 (EPS 13.0)",
+         "[E] about 31%"
+        ]
+       ]
+      },
+      {
+       "type": "p",
+       "text": "[F] Company-reported EBITDA figures differ from ours. FY25 'EBIDTA' of Rs 30.74 cr and a 40.64% margin include other income of Rs 3.46 cr (AR2025 p.26, p.37). [F] FY26 EBITDA is stated as Rs 25.67 cr at 35% (PPT Jun 2026). [E] The same presentation's P&L gives Rs 23.92 cr excluding other income or Rs 28.07 cr including it, so the Rs 25.67 cr figure does not reconcile to the company's own P&L."
+      }
+     ]
+    },
+    {
+     "title": "Drivers by year",
+     "blocks": [
+      {
+       "type": "bullets",
+       "items": [
+        "FY21-FY23: [F] margin rose from 17.1% to 27.3% as revenue rose 63% (NUMBERS). [AI] Operating leverage on a largely fixed employee base. Probably structural up to a point.",
+        "FY24: [E] margin held at about 26.8% on 22% growth, with material cost at 37.7% of revenue (AR2025 p.84).",
+        "FY25: [E] margin jumped to about 37.8%. Material cost fell to 31.2% of revenue and employee cost to 17.9% on 30% growth (AR2025 p.84). [MC] 'better sales realization' (AR2025 p.106). [AI] Mix plus operating leverage, possibly from high-value refinery or project orders. Partly temporary.",
+        "FY26: [E] margin fell to about 33.0% on flat revenue. Material cost rose to 32.8% and employee cost to 19.9% of revenue (PPT Jun 2026). [MC] 'shift in product and customer mix, alongside input cost pressures' (PPT Jun 2026). [F] Commission, discounts and rebates had already risen 65% in FY25, from Rs 0.92 cr to Rs 1.52 cr (AR2025 p.101)."
+       ]
+      },
+      {
+       "type": "p",
+       "text": "[AI] Bottom line: the move from teens margins (FY19-FY22) to the high 20s looks structural, since it has held for four years (FY23-FY26). The FY25 peak near 38% does not, and management's own 'normalisation' language concedes as much. A sustainable range of roughly 27-33% is our inference, not guidance."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "unit_economics",
+   "title": "Unit economics",
+   "subsections": [
+    {
+     "title": "What can and cannot be built",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "[F] Disclosed: an installed capacity of 1,500 units, about 96% utilisation, and FY26 revenue and cost lines (PPT Jun 2026). [F] Not disclosed: actual units sold, realisation by product family, kW mix, spares share. [AI] Any per-unit figure is therefore a blended average across couplings that range from a few kW to several MW. It is useful for scale, not for pricing analysis."
+      },
+      {
+       "type": "table",
+       "caption": "Blended FY26 per-unit economics [E]. Method: FY26 line items divided by about 1,440 units (1,500 capacity x 96% claimed utilisation).",
+       "columns": [
+        "Item",
+        "Rs lakh per unit",
+        "Basis"
+       ],
+       "rows": [
+        [
+         "Revenue",
+         "[E] 5.03",
+         "Rs 72.46 cr / 1,440 (PPT Jun 2026)"
+        ],
+        [
+         "Materials plus inventory change",
+         "[E] 1.65",
+         "Rs 23.75 cr / 1,440"
+        ],
+        [
+         "Contribution after materials",
+         "[E] 3.38",
+         "Difference"
+        ],
+        [
+         "Employee plus other expenses",
+         "[E] 1.72",
+         "Rs 24.79 cr / 1,440"
+        ],
+        [
+         "Operating EBITDA",
+         "[E] 1.66",
+         "Rs 23.92 cr / 1,440"
+        ]
+       ]
+      }
+     ]
+    },
+    {
+     "title": "What would have to be true for unit economics to improve",
+     "blocks": [
+      {
+       "type": "bullets",
+       "items": [
+        "[AI] The mix shifts towards higher-kW, variable-speed and ATEX units, which management targets with the 'higher-range' capacity (PPT Jun 2026).",
+        "[AI] Spares and service grow faster than new units; services were only Rs 0.59 cr in FY25 (AR2025 p.99).",
+        "[AI] Foundry modernisation lowers scrap and job-work; job-work was Rs 1.00 cr in FY25 (AR2025 p.101).",
+        "[AI] Fixed costs are absorbed over higher volume without a matching rise in headcount; there were 200 employees in FY25 (AR2025 p.35)."
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "financial_forensics",
+   "title": "Financial statement forensics",
+   "subsections": [
+    {
+     "title": "Data availability caveat",
+     "blocks": [
+      {
+       "type": "callout",
+       "tone": "warn",
+       "text": "[F] Our statements data ends at FY23 (March 2023), with 12 quarters to March 2023 (NUMBERS). [F] We have audited FY24-FY25 figures from the FY25 annual report (AR2025 p.83-85), and FY26 P&L and balance-sheet figures from an unaudited investor presentation (PPT Jun 2026). [F] There is no FY26 cash-flow statement, no FY26 notes and no quarterly data after March 2023 beyond chart values (PPT Jun 2026). [AI] Every conclusion on FY26 cash conversion is therefore provisional."
+      }
+     ]
+    },
+    {
+     "title": "Income statement observations",
+     "blocks": [
+      {
+       "type": "bullets",
+       "items": [
+        "[F] Revenue CAGR FY19-FY23 was 21.2% over three years (NUMBERS). [E] FY23-FY26 was about 16.8% a year, but back-loaded: +22% in FY24, +30% in FY25, +0.4% in FY26 (AR2025 p.84; PPT Jun 2026).",
+        "[F] Other income was Rs 3.46 cr in FY25, of which bank-deposit interest was Rs 2.90 cr and other non-operating income Rs 0.55 cr (AR2025 p.100). [E] It was 11.6% of PBT in FY25 and 15.4% in FY26 (Rs 4.15 cr) (PPT Jun 2026). [F] It had been 33.6% of PBT in FY19 (NUMBERS).",
+        "[F] Depreciation is on the written-down-value method, Rs 0.94 cr in FY25 (AR2025 p.88, p.84). [AI] It is low relative to a Rs 35 cr capex plan; the depreciation charge will step up.",
+        "[F] Tax rate is about 25% throughout (NUMBERS; AR2025 p.84). No tax holidays.",
+        "[F] 'Bad debts/liquidated damages/Tender/Vendor Registration fee' was Rs 0.48 cr in FY25 against Rs 0.38 cr (AR2025 p.101). [AI] Combining bad debts with liquidated damages and tender fees in one line hides the credit-loss figure.",
+        "[F] There are no exceptional items, ESOPs or capitalised R&D (AR2025 p.84, p.104)."
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Balance sheet observations",
+     "blocks": [
+      {
+       "type": "bullets",
+       "items": [
+        "[F] Equity was Rs 80.45 cr at March 2025 and Rs 96.37 cr at March 2026; borrowings nil (AR2025 p.83; PPT Jun 2026).",
+        "[F] Fixed deposits of Rs 25.18 cr with maturity over 12 months were non-current at March 2025. By March 2026 non-current financial assets had fallen to Rs 0.61 cr and current 'other financial assets' had risen to Rs 44.71 cr (AR2025 p.94; PPT Jun 2026). [AI] This looks like maturity reclassification, not cash generation.",
+        "[F] The equity mutual-fund book was Rs 8.32 cr across about 30 schemes, many of them small-cap and regular-plan (AR2025 p.94-95). [F] Investment return fell from 38.78% to 3.72% (AR2025 p.106). [AI] An operating company running a diversified equity-fund portfolio, in regular plans that carry distributor commissions, is an unusual treasury choice. It adds market risk to reported equity.",
+        "[F] The advance against sale of freehold land was Rs 1.69 cr (AR2025 p.99). Not explained."
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Cash flow observations",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "Cash-flow summary (Rs cr)",
+       "columns": [
+        "Item",
+        "FY23",
+        "FY24",
+        "FY25",
+        "Source"
+       ],
+       "rows": [
+        [
+         "CFO",
+         "5.08",
+         "10.31",
+         "14.30",
+         "[F] (NUMBERS; AR2025 p.85)"
+        ],
+        [
+         "Change in receivables and other",
+         "n.a.",
+         "+0.33",
+         "-9.17",
+         "[F] (AR2025 p.85)"
+        ],
+        [
+         "Capex",
+         "0.26",
+         "1.70",
+         "6.44",
+         "[F] (NUMBERS; AR2025 p.85)"
+        ],
+        [
+         "FCF (CFO - capex)",
+         "4.82",
+         "[E] 8.61",
+         "[E] 7.86",
+         "[E]"
+        ],
+        [
+         "Net placement in FDs",
+         "n.a.",
+         "-9.59",
+         "-5.86",
+         "[F] (AR2025 p.85)"
+        ],
+        [
+         "Dividends paid",
+         "n.a.",
+         "-2.22",
+         "-2.71",
+         "[F] (AR2025 p.85)"
+        ]
+       ]
+      },
+      {
+       "type": "p",
+       "text": "[F] FCF over three years (FY21-FY23) was Rs 10.8 cr and over five years Rs 16.6 cr (NUMBERS). [F] The FY25 working-capital build absorbed Rs 9.17 cr of receivables and other items (AR2025 p.85). [AI] That is why FY25 CFO/PAT was only about 0.64 despite record profits."
+      }
+     ]
+    },
+    {
+     "title": "Ratio suite",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "[F] Company-reported ROE was 31.44% in FY25 (23.70% in FY24) and ROCE 36.94% (28.76%); the current ratio was 4.53 (AR2025 p.106). [F] The FY26 figures are ROCE 30% and ROE 23% (PPT Jun 2026). [F] Our data shows ROCE of 28.5% and ROE of 21.2% for FY23; interest cover is not meaningful (NUMBERS). [AI] ROE is diluted by the cash pile. Returns on operating capital are well above the reported ROE."
+      }
+     ]
+    },
+    {
+     "title": "Discrepancies between sources (shown side by side, not reconciled)",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "Source discrepancies",
+       "columns": [
+        "Item",
+        "Source A",
+        "Source B",
+        "Comment"
+       ],
+       "rows": [
+        [
+         "FY24 EPS",
+         "[F] Rs 28.23 on the P&L face (AR2025 p.84)",
+         "[F] Rs 26.50 on PAT, EPS note (AR2025 p.102); Rs 26.5 in the chart (PPT Jun 2026)",
+         "[AI] The P&L EPS includes OCI. Not reconciled."
+        ],
+        [
+         "FY25 EPS",
+         "[F] Rs 45.15 (AR2025 p.84)",
+         "[F] Rs 45.10 on PAT (AR2025 p.102)",
+         "[AI] Same issue."
+        ],
+        [
+         "FY25 EBITDA",
+         "[F] Rs 30.74 cr, 40.64% incl. other income (AR2025 p.26, p.37)",
+         "[E] Rs 27.28 cr, 37.8% operating; [F] about Rs 29 cr, 40% in the chart (PPT Jun 2026)",
+         "Not reconciled"
+        ],
+        [
+         "FY26 EBITDA",
+         "[F] Rs 25.67 cr, 35% (PPT Jun 2026)",
+         "[E] Rs 23.92 cr excl. OI / Rs 28.07 cr incl. OI from the same P&L",
+         "Not reconciled"
+        ],
+        [
+         "FY25 CSR spent",
+         "[F] Rs 19.95 lakh, shortfall Rs 5.18-5.20 lakh (AR2025 p.33, p.103)",
+         "[F] Rs 25.15 lakh, excess Rs 2,207 (AR2025 p.44-45)",
+         "Not reconciled"
+        ],
+        [
+         "Maximum rating",
+         "[F] 3,500 kW (SCREENER)",
+         "[F] 3,800 kW (AR2025 p.87); 6,000 kW (PPT Jun 2026)",
+         "Not reconciled"
+        ],
+        [
+         "Promoter-group holding",
+         "[F] 53.45% (NUMBERS); 53.5% (PPT Jun 2026)",
+         "[F] 'Kunal Jain along with his relatives' 51.07%; 'she along with her relatives' 51.71% (AR2025 p.25)",
+         "[AI] Different relative definitions; not reconciled"
+        ],
+        [
+         "Market cap",
+         "[F] Rs 370 cr at Rs 750 (NUMBERS)",
+         "[F] Rs 411 cr at 25 June 2026 (PPT Jun 2026)",
+         "Different dates"
+        ],
+        [
+         "Founding / incorporation",
+         "[MC] 1971 (PPT Jun 2026; SCREENER)",
+         "[F] CIN year 1978 (AR2025 p.9)",
+         "Not reconciled"
+        ],
+        [
+         "R&D",
+         "[F] R&D expenditure NIL (AR2025 p.46)",
+         "[MC] 'Continuous R&D', 'In-house R&D and prototyping' (PPT Jun 2026)",
+         "Not reconciled"
+        ],
+        [
+         "ISO 9001 version",
+         "[F] ISO 9001:2008 (AR2025 p.87)",
+         "[F] ISO 9001:2015 (AR2025 p.37)",
+         "Minor"
+        ],
+        [
+         "Technology origin",
+         "[F] Our earlier board notes mention 'Fluidomat's own licensor lineage' with European majors (BOARD)",
+         "[F] 'no ... Foreign Collaboration'; imported technology NIL (AR2025 p.24, p.46)",
+         "[AI] The board-note claim is unsupported by company documents"
+        ],
+        [
+         "Equity, March 2023",
+         "[F] Rs 49.20 cr (NUMBERS)",
+         "[F] Rs 49.22 cr (AR2025 p.86 opening balance)",
+         "Consistent"
+        ]
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "working_capital",
+   "title": "Working capital",
+   "subsections": [
+    {
+     "title": "Why headline days mislead",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "[F] Our data shows working-capital days falling from 168.5 (FY19) to 90.3 (FY23), and a cash conversion cycle of 159 days in FY23 (NUMBERS). [AI] The headline figures move with the year-end order mix and include payables and advances. The real signal is receivables growing faster than revenue, which the component build below shows."
+      }
+     ]
+    },
+    {
+     "title": "Component build",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "Working-capital components. FY19-FY23 days from our statements data (their method); FY24-FY26 our calculation on revenue for debtors and inventory and on purchases or materials for payables, so the two blocks are not comparable.",
+       "columns": [
+        "Year",
+        "Inventories Rs cr",
+        "Receivables Rs cr",
+        "Payables Rs cr",
+        "Debtor days",
+        "Inventory days",
+        "Payable days",
+        "CCC"
+       ],
+       "rows": [
+        [
+         "FY19",
+         "n.a.",
+         "n.a.",
+         "n.a.",
+         "138.8",
+         "141.6",
+         "78.7",
+         "201.7"
+        ],
+        [
+         "FY21",
+         "n.a.",
+         "n.a.",
+         "n.a.",
+         "117.1",
+         "189.2",
+         "122.8",
+         "183.5"
+        ],
+        [
+         "FY23",
+         "n.a.",
+         "n.a.",
+         "n.a.",
+         "109.7",
+         "140.6",
+         "91.3",
+         "159.0"
+        ],
+        [
+         "FY24",
+         "[F] 6.45",
+         "[F] 13.47",
+         "[F] 4.02",
+         "[E] 88.6",
+         "[E] 42.4",
+         "[E] 70.3",
+         "[E] 60.7"
+        ],
+        [
+         "FY25",
+         "[F] 5.17",
+         "[F] 22.46",
+         "[F] 3.25",
+         "[E] 113.6",
+         "[E] 26.1",
+         "[E] 55.9",
+         "[E] 83.8"
+        ],
+        [
+         "FY26",
+         "[F] 5.47",
+         "[F] 29.63",
+         "[F] 3.95",
+         "[E] 149.3",
+         "[E] 27.6",
+         "[E] 62.3",
+         "[E] 114.6"
+        ]
+       ]
+      },
+      {
+       "type": "p",
+       "text": "[F] Sources: FY24-FY25 (AR2025 p.83); FY26 (PPT Jun 2026). [E] Receivables grew 67% in FY25 and 32% in FY26, against revenue growth of 30% and 0.4%."
+      }
+     ]
+    },
+    {
+     "title": "Drivers and evidence",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "[MC] The only management comment is that the Joint MD's efforts mean 'the company is able to recover debt' (AR2025 p.22). [F] FY25 ageing: Rs 19.60 cr was under six months past due, Rs 0.74 cr six to twelve months, and Rs 2.11 cr over one year. All is classed undisputed and considered good, with no expected-credit-loss provision (AR2025 p.95). [AI] Zero provisioning against Rs 2.11 cr that is more than a year overdue, including Rs 0.46 cr more than three years overdue, is generous for a business that has litigated against an EPC customer before. [F] Inventory fell from Rs 6.45 cr to Rs 5.17 cr in FY25 (AR2025 p.94). [MC] The fall is credited to 'Higher Turnover and reduction in Inventory' (AR2025 p.106)."
+      }
+     ]
+    },
+    {
+     "title": "Cash conversion and bank limits",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "[F] CFO/PAT was 1.38 in FY19, 0.61 in FY21, 0.53 in FY23; the 3-year cumulative figure is 0.71 (NUMBERS). [E] It was 0.79 in FY24 and 0.64 in FY25 (AR2025 p.84-85). [AI] Given the FY26 receivable build of Rs 7.17 cr on flat revenue, FY26 conversion is likely to be weak as well; this is unconfirmed until the FY26 cash-flow statement is seen. [F] There are no borrowings and no working-capital limits above Rs 5 cr (AR2025 p.77). [F] Bank guarantees are backed by fixed deposits held at 100% margin, Rs 5.27 cr at March 2025 (AR2025 p.96, p.104). There are no covenant implications."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "balance_sheet_quality",
+   "title": "Balance sheet quality",
+   "subsections": [
+    {
+     "title": "Asset composition",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "Asset composition [E] (Rs cr; % of total assets)",
+       "columns": [
+        "Category",
+        "March 2025",
+        "% FY25",
+        "March 2026",
+        "% FY26"
+       ],
+       "rows": [
+        [
+         "Hard assets (PPE, CWIP, intangibles)",
+         "13.73",
+         "14.8%",
+         "14.70",
+         "13.4%"
+        ],
+        [
+         "Treasury (FDs incl. lien-marked, MFs, cash)",
+         "50.39",
+         "54.2%",
+         "58.46",
+         "53.2%"
+        ],
+        [
+         "Working capital (inventory, receivables, other current)",
+         "28.24",
+         "30.4%",
+         "35.10",
+         "31.9%"
+        ],
+        [
+         "Other / soft (deposits, tax, other)",
+         "0.63",
+         "0.7%",
+         "1.65",
+         "1.5%"
+        ],
+        [
+         "Total assets",
+         "92.97",
+         "100%",
+         "109.91",
+         "100%"
+        ]
+       ]
+      },
+      {
+       "type": "p",
+       "text": "[F] Sources: (AR2025 p.83, p.94, p.96); (PPT Jun 2026). [AI] More than half the balance sheet is treasury. That is safe, but it dilutes returns, and part of it (Rs 5.27 cr at March 2025) is lien-marked against guarantees."
+      }
+     ]
+    },
+    {
+     "title": "Liabilities, contingencies and off-balance-sheet items",
+     "blocks": [
+      {
+       "type": "bullets",
+       "items": [
+        "[F] Borrowings nil. Total liabilities were Rs 12.52 cr at March 2025: payables Rs 3.25 cr, other current liabilities Rs 6.50 cr (including customer advances of Rs 1.07 cr and the land-sale advance of Rs 1.69 cr), provisions of Rs 1.88 cr (AR2025 p.83, p.98-99).",
+        "[F] Contingent liabilities: counter-guarantees to banks of Rs 3.88 cr; disputed labour claims of Rs 0.05 cr (AR2025 p.102).",
+        "[F] Capital commitments were Rs 0.60 cr at March 2025 (AR2025 p.102). [AI] The Rs 35 cr programme approved in February 2026 will raise this; the March 2026 figure is not available.",
+        "[F] Two old charges remain unsatisfied on the MCA index because the charge holders cannot be traced (AR2025 p.105).",
+        "[F] The registered office is leased from a promoter director (Kunal Jain) for Rs 2.48 lakh a year and is not capitalised under the Ind AS 116 low-value exemption (AR2025 p.90, p.104)."
+       ]
+      },
+      {
+       "type": "p",
+       "text": "[AI] Assessment: high quality and very liquid. The soft spots are the receivables that carry no provision, the equity mutual-fund exposure and the unexplained land sale."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "accounting_quality",
+   "title": "Accounting quality",
+   "subsections": [
+    {
+     "title": "Audit opinion and reports",
+     "blocks": [
+      {
+       "type": "bullets",
+       "items": [
+        "[F] Statutory auditor: J.P. Saraf & Co. LLP, Indore, in its first term from the 2022 AGM to the 2027 AGM (AR2025 p.30). [F] The FY25 opinion is unmodified, with no qualification, reservation or adverse remark (AR2025 p.30, p.73). The predecessor auditor is not named in the documents.",
+        "[F] Key audit matters: the report carries the KAM heading and definition but describes no matter (AR2025 p.73). [AI] That is unusual even for a small company.",
+        "[F] There is no emphasis of matter in the statutory audit report (AR2025 p.73-76). [F] The secretarial auditor includes a 'Matter of Emphasis' on unspent CSR of Rs 5.20 lakh (AR2025 p.42).",
+        "[F] The internal financial controls opinion is unmodified (AR2025 p.82).",
+        "[F] Audit trail (edit log) was operated throughout the year with no tampering found (AR2025 p.76).",
+        "[F] Audit fee was Rs 2.00 lakh, plus Rs 3.70 lakh for certification (AR2025 p.65, p.101). [AI] That is very low for a Rs 72 cr listed company and limits the audit effort that can be expected."
+       ]
+      }
+     ]
+    },
+    {
+     "title": "CARO and other observations",
+     "blocks": [
+      {
+       "type": "bullets",
+       "items": [
+        "[F] CARO: statutory dues regular except Kolkata professional-tax arrears of Rs 15,780; no loans, no deposits, no fraud reported, no whistle-blower complaints (AR2025 p.77-79).",
+        "[F] CARO (xx): unspent CSR had not been transferred at the report date but was within the time limit (AR2025 p.80). [F] It was later transferred to the PM National Relief Fund on 6 August 2025 (AR2025 p.44).",
+        "[F] Restatements: none; 'There were no revisions in the Financial Statement' (AR2025 p.39). Prior-year figures regrouped where necessary (AR2025 p.106).",
+        "[F] Mutual-fund fair-value gains go through OCI: Rs 0.85 cr in FY24 and Rs 0.02 cr in FY25 (AR2025 p.102). [AI] Mutual-fund units usually fail the Ind AS 109 cash-flow test and would normally be at fair value through P&L. If so, FY24 profit would have been higher and FY25 profit roughly unchanged. We flag this as a policy question, not a finding of error.",
+        "[F] EPS on the face of the P&L includes OCI, while the note computes it on PAT (AR2025 p.84, p.102). [AI] Ind AS 33 bases EPS on profit or loss. This is a presentation error.",
+        "[F] There are no common-control transactions, business combinations or ESOP charges (AR2025 p.39, p.104)."
+       ]
+      },
+      {
+       "type": "p",
+       "text": "[AI] Overall: there are no red-flag accounting events. The quality of the numbers is adequate, but the presentation is careless. The EPS, CSR and EBITDA inconsistencies, together with the thin audit fee and blank KAM section, argue for applying a discount to the reliability of the disclosures. [F] Not covered by the documents: auditor history before 2022, FY26 audit report, internal audit findings, cost audit (not applicable) (AR2025 p.30)."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "group_structure_rpt",
+   "title": "Group structure and related-party transactions",
+   "subsections": [
+    {
+     "title": "Subsidiaries and related entities",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "Entities and roles",
+       "columns": [
+        "Entity",
+        "Role",
+        "Status"
+       ],
+       "rows": [
+        [
+         "Fluidomat UK Pvt Ltd",
+         "[F] Former wholly owned subsidiary",
+         "[F] Closed; Rs 13.70 lakh repatriated in FY24 (AR2025 p.46, p.104)"
+        ],
+        [
+         "Redwood Packaging Pvt Ltd",
+         "[F] Ashok Jain and Kunal Jain hold directorships (AR2025 p.54)",
+         "[F] No transactions disclosed in FY25 (AR2025 p.104)"
+        ],
+        [
+         "Focus Eye Technocraft Pvt Ltd",
+         "[F] Supplier; Sandeep Sharma is a director (AR2025 p.104)",
+         "[F] Purchases Rs 2.69 lakh (FY24 Rs 4.30 lakh)"
+        ],
+        [
+         "M/s Manav Enterprises",
+         "[F] A director is a partner (AR2025 p.103)",
+         "[F] No transactions disclosed"
+        ]
+       ]
+      },
+      {
+       "type": "p",
+       "text": "[F] The documents contain no non-compete or common-pursuit disclosure. [F] The company states it has no subsidiary, associate or JV (AR2025 p.63)."
+      }
+     ]
+    },
+    {
+     "title": "Related-party transactions",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "FY25 related-party transactions (Rs lakh)",
+       "columns": [
+        "Category",
+        "Amount"
+       ],
+       "rows": [
+        [
+         "Executive directors' remuneration (Ashok Jain 91.10, Kunal Jain 78.16, Radhica Sharma 80.16)",
+         "[F] 249.42 (AR2025 p.104)"
+        ],
+        [
+         "Relatives' remuneration (Pramila Jain 21.04, Sandeep Sharma 23.70, Sunaina Jain 12.89)",
+         "[F] 57.63 (AR2025 p.104)"
+        ],
+        [
+         "CFO Monica Jain (daughter of the CMD)",
+         "[F] 17.60 (AR2025 p.55, p.104)"
+        ],
+        [
+         "Company Secretary",
+         "[F] 14.00 (AR2025 p.104)"
+        ],
+        [
+         "Independent directors' sitting fees",
+         "[F] 1.89 (AR2025 p.104)"
+        ],
+        [
+         "Lease rent to Kunal Jain",
+         "[F] 2.48 (AR2025 p.104)"
+        ],
+        [
+         "Purchases from Focus Eye Technocraft",
+         "[F] 2.69 (AR2025 p.104)"
+        ]
+       ]
+      },
+      {
+       "type": "p",
+       "text": "[E] Family remuneration (three executive directors, three relatives and the CFO) totalled about Rs 3.25 cr, or 14.6% of FY25 PAT (AR2025 p.104). [F] Executive-director pay rose 8.9-20.1% in FY25 against a 5% rise in median employee pay (AR2025 p.35). [F] The caps were raised again to Rs 7 lakh a month each from October 2025 (AR2025 p.5-8). [AI] The commercial RPTs (rent, purchases) are trivial. The economic related-party flow is compensation. It is not abusive at this scale, but it is growing faster than the employee base's pay and needs special resolutions because it exceeds the 5%-of-profit limit."
+      },
+      {
+       "type": "p",
+       "text": "[F] Promoter-group guarantees: none disclosed. The company itself gives counter-guarantees to banks for its own performance guarantees (AR2025 p.102). [F] There are no loans to promoters or related parties (AR2025 p.104)."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "management",
+   "title": "Management and promoter assessment",
+   "subsections": [
+    {
+     "title": "Leadership",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "Board and key management (ages as stated in the FY25 annual report)",
+       "columns": [
+        "Role",
+        "Name",
+        "Age",
+        "Since",
+        "Background"
+       ],
+       "rows": [
+        [
+         "Chairman & Managing Director (promoter)",
+         "Ashok Jain",
+         "[F] 76 (AR2025 p.52)",
+         "[F] Director since 11 Dec 1975; current term 1 Jul 2024 to 30 Jun 2027 (AR2025 p.61, p.71)",
+         "[F] BE Mechanical, 52 years' experience; holds 20.66% (AR2025 p.52, p.54)"
+        ],
+        [
+         "Joint MD from 1 Oct 2025, earlier Dy MD (promoter group)",
+         "Radhica Sharma",
+         "[F] 46 (AR2025 p.52)",
+         "[F] Director since 10 Feb 2014 (AR2025 p.71)",
+         "[F] BBA, PGDBM; runs sales, procurement, receivables and exports; daughter of the CMD (AR2025 p.22, p.55)"
+        ],
+        [
+         "Whole-time / Executive Director (promoter)",
+         "Kunal Jain",
+         "[F] 43 (AR2025 p.52)",
+         "[F] Director since 1 May 2007; reappointed from 1 May 2026 (AR2025 p.6, p.71)",
+         "[F] B.Com; heads design; son of the CMD; holds 24.34% (AR2025 p.21-22, p.55)"
+        ],
+        [
+         "CFO",
+         "Monica Jain",
+         "[F] 50 (AR2025 p.52)",
+         "[F] Employed since 1 Sep 2012 (AR2025 p.52)",
+         "[F] MBA (Finance), CFA; daughter of the CMD (AR2025 p.52, p.55)"
+        ],
+        [
+         "Company Secretary",
+         "Devendra Kumar Sahu",
+         "[F] 37 (AR2025 p.52)",
+         "[F] 22 May 2015 (AR2025 p.52)",
+         "[F] CS, LLB; formerly at the Madhya Pradesh Stock Exchange (AR2025 p.52)"
+        ],
+        [
+         "Business Head, International Trade",
+         "Sandeep Sharma",
+         "[F] 51 (AR2025 p.52)",
+         "[F] 18 Oct 2004 (AR2025 p.52)",
+         "[F] Husband of the Joint MD (AR2025 p.24)"
+        ],
+        [
+         "VP Marketing",
+         "Pramila Jain",
+         "[F] 72 (AR2025 p.52)",
+         "[F] 1 Jul 1986 (AR2025 p.52)",
+         "[F] Relative of the directors; joint holder with Ashok Jain (AR2025 p.52, p.54)"
+        ],
+        [
+         "VP Finance & Accounts",
+         "Pramod Kumar Jain",
+         "[F] 59 (AR2025 p.52)",
+         "[F] 16 Dec 1995 (AR2025 p.52)",
+         "[F] M.Com, LLB; not a relative (AR2025 p.52)"
+        ],
+        [
+         "Independent directors",
+         "A.K. Patni (CA, Audit Committee chair), Sharad Panot, Samyak Modi",
+         "[F] Born 1960, 1965, 1982 (AR2025 p.54)",
+         "[F] All appointed 14 Aug 2023 (AR2025 p.71)",
+         "[F] CA / finance; BE Mech / operations; industry management (AR2025 p.54)"
+        ]
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Governance timeline",
+     "blocks": [
+      {
+       "type": "bullets",
+       "items": [
+        "[F] 26 Sep 2022: J.P. Saraf & Co. LLP appointed statutory auditor (AR2025 p.30).",
+        "[F] 1 May 2023: Kunal Jain reappointed for three years; his pay cap was raised from Rs 4.5 lakh to Rs 6 lakh a month from October 2023 (AR2025 p.21).",
+        "[F] 14 Aug 2023: the independent directors were replaced; the previous IDs (P.R. Turakhia, M.K. Shah, K.C. Jain) drew sitting fees in FY24 only (AR2025 p.71, p.104). [AI] The reason for a full turnover of independent directors is not explained.",
+        "[F] 1 Jul 2024: Ashok Jain reappointed for three years (AR2025 p.61).",
+        "[F] 10 Feb 2025: Radhica Sharma reappointed for three years (AR2025 p.61).",
+        "[F] 13 Aug 2025: the board proposed higher pay for Kunal Jain and Radhica Sharma, her redesignation as Joint MD, and Kunal Jain's reappointment from 1 May 2026 (AR2025 p.4-9).",
+        "[F] 26 Aug 2026: the 50th AGM notice includes Ashok Jain's reappointment as CMD for three years (ANNOUNCEMENTS). [AI] This comes before his current term ends in June 2027, and he is 76.",
+        "[F] No KMP changes in FY25 (AR2025 p.27)."
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Alignment and skin in the game",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "[F] Promoter holding was 53.54% in September 2023 and 53.45% in June 2026, with no change over the past year (NUMBERS). [F] Promoter holders are Kunal Jain 24.34%, Ashok Jain 20.66%, Pramila Jain 4.27%, Ashok Jain HUF 1.80%, the Kotharis 1.75% and Sandeep Sharma 0.64% (AR2025 p.97). [F] Kunal Jain added 1,434 shares in FY25 (AR2025 p.97). [F] The documents give no pledge information, and our data does not report pledges (NUMBERS). [AI] Treat pledge status as unverified. [F] FII holding is 0.58% and DII holding 0.25%. Shareholder numbers rose from 5,826 (September 2023) to a peak of 10,273 (September 2025) before easing to 9,302 (June 2026) (NUMBERS)."
+      }
+     ]
+    },
+    {
+     "title": "Compensation and self-dealing indicators",
+     "blocks": [
+      {
+       "type": "bullets",
+       "items": [
+        "[F] FY25 pay was Rs 91.10 lakh for the CMD, Rs 78.16 lakh for Kunal Jain and Rs 80.16 lakh for Radhica Sharma, or 28.4x, 24.4x and 25.0x the median employee (AR2025 p.35).",
+        "[F] Managerial pay rose 12.85% on average against 7-10% for other employees (AR2025 p.35).",
+        "[F] Special resolutions were sought so that aggregate promoter-executive pay can exceed 5% of net profit (AR2025 p.5-8).",
+        "[F] Family members hold the CFO, VP Marketing, Business Head International and GM Costing roles (AR2025 p.52, p.66).",
+        "[F] Commercial related-party dealings are small: lease rent of Rs 2.48 lakh and purchases of Rs 2.69 lakh (AR2025 p.104).",
+        "[F] The CFO does not attend Audit Committee meetings, although other permanent invitees do (AR2025 p.57). [AI] That is unusual."
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Management and promoter scorecard",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "Scorecard (1 = poor, 10 = excellent) [AI]",
+       "columns": [
+        "Factor",
+        "Score 1-10",
+        "Rationale"
+       ],
+       "rows": [
+        [
+         "Promoter skin in the game",
+         "8",
+         "[F] 53.45% stake, stable (NUMBERS)"
+        ],
+        [
+         "Capital allocation",
+         "6",
+         "[F] No debt, steady dividends (AR2025 p.27); [AI] idle cash in equity mutual funds; Rs 35 cr capex not yet tested"
+        ],
+        [
+         "Pay discipline",
+         "4",
+         "[F] Pay rising faster than employee pay; special resolutions above the 5% limit (AR2025 p.5-8, p.35)"
+        ],
+        [
+         "Board independence",
+         "5",
+         "[F] 3 of 6 directors independent, all appointed the same day in 2023; executive chairman (AR2025 p.52, p.65)"
+        ],
+        [
+         "Disclosure quality",
+         "3",
+         "[F] No order backlog, customer or segment data; EPS, CSR and EBITDA inconsistencies (AR2025 p.27, p.33, p.44, p.84, p.102)"
+        ],
+        [
+         "Related-party discipline",
+         "7",
+         "[F] Trivial commercial RPTs; no loans (AR2025 p.104)"
+        ],
+        [
+         "Succession",
+         "6",
+         "[F] Next generation in executive roles (AR2025 p.55); [AI] concentration of power in one family"
+        ],
+        [
+         "Execution record",
+         "6",
+         "[F] Revenue up 2.7x FY19-FY26, but FY26 flat (NUMBERS; PPT Jun 2026)"
+        ],
+        [
+         "Investor communication",
+         "4",
+         "[F] One annual presentation; no earnings-call transcripts were available to us (PPT Jun 2026)"
+        ],
+        [
+         "Simple average",
+         "5.4",
+         "[E] 49 / 9"
+        ]
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "competitive_landscape",
+   "title": "Competitive landscape",
+   "subsections": [
+    {
+     "title": "Disclosed peer set",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "Peer set as disclosed by the company",
+       "columns": [
+        "Peer",
+        "Revenue",
+        "Margins",
+        "RoNW",
+        "P/E"
+       ],
+       "rows": [
+        [
+         "No peer set disclosed in any document",
+         "Not disclosed",
+         "Not disclosed",
+         "Not disclosed",
+         "Not disclosed"
+        ]
+       ]
+      },
+      {
+       "type": "p",
+       "text": "[F] Neither the annual report nor the presentation names a competitor or a peer group (AR2025 p.36-38; PPT Jun 2026). [MC] Management refers generally to 'competitor strategies' as a risk (AR2025 p.37). It also claims India is 'among only five countries globally capable of independently designing and producing this critical technology' (PPT Jun 2026). That claim is not sourced."
+      }
+     ]
+    },
+    {
+     "title": "Competitors and listed comparables",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "[F] Our earlier board notes name Voith and Transfluid-type couplings as imported competition in cement, steel, mining and power drives (BOARD). [AI] These are analyst notes, not company disclosure. The notes' claim of a Voith 'licensor lineage' conflicts with the annual report's statement of no foreign collaboration (AR2025 p.24). [AI] No listed comparable data is in our evidence set. We do not introduce peer multiples, and the peer-relative valuation is left as 'not assessable'."
+      }
+     ]
+    },
+    {
+     "title": "Assessment",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "[AI] Fluidomat competes in a niche where global drive-train specialists and smaller domestic fabricators coexist. Its apparent edges are ATEX approvals, references with Indian public-sector refiners and power utilities, and a local cost base. Its constraints are scale (Rs 72 cr of revenue), a single plant and no evident R&D spend (AR2025 p.46). Margins above 30% suggest limited direct price competition in its chosen applications. The FY26 margin 'normalisation' on a 'customer mix' shift (PPT Jun 2026) hints that competition bites in some tenders."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "moat",
+   "title": "Moat assessment",
+   "subsections": [
+    {
+     "title": "Moat-factor scorecard",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "Moat factors (1 = none, 10 = very strong) [AI]",
+       "columns": [
+        "Factor",
+        "Score 1-10",
+        "Rationale"
+       ],
+       "rows": [
+        [
+         "Brand",
+         "6",
+         "[MC] 55-year name, 60,000+ units installed (PPT Jun 2026); unverified"
+        ],
+        [
+         "Switching costs",
+         "6",
+         "[MC] 'these clients don't switch fluid coupling vendors after successful installations' (PPT Jun 2026); [AI] plausible for spares, less so for new tenders"
+        ],
+        [
+         "Regulatory / approval barriers",
+         "6",
+         "[MC] ATEX approval; approvals by EPC majors and consultants (PPT Jun 2026)"
+        ],
+        [
+         "Technology / IP",
+         "5",
+         "[MC] Indigenous design; [F] R&D spend NIL, no patents disclosed (AR2025 p.46)"
+        ],
+        [
+         "Scale / cost",
+         "3",
+         "[F] Rs 72 cr revenue; 200 employees; single plant (AR2025 p.35, p.68)"
+        ],
+        [
+         "Relationship durability",
+         "6",
+         "[MC] Named PSU refiners and utilities (PPT Jun 2026); [F] BGR dispute shows counterparty friction (AR2025 p.38-39)"
+        ],
+        [
+         "Network effects",
+         "1",
+         "[AI] None in an industrial component"
+        ],
+        [
+         "Input control",
+         "5",
+         "[MC] In-house aluminium and CI foundries (PPT Jun 2026); [F] half of materials are bought-out components (AR2025 p.100)"
+        ],
+        [
+         "Simple average",
+         "4.75",
+         "[E] 38 / 8"
+        ]
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Two questions the scores cannot answer",
+     "blocks": [
+      {
+       "type": "bullets",
+       "items": [
+        "[AI] What share of revenue is spares and replacement for the installed base, as against new project tenders won on price? This determines whether switching costs are real in revenue terms.",
+        "[AI] Are the margins above 30% earned on approved, specification-led business, or on a few high-value orders in FY25? No mix data is disclosed to decide."
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Conclusion",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "[AI] A narrow, niche moat built on approvals, references and application know-how. That is enough to sustain above-average margins in a small market, but not enough to protect against project cyclicality or to justify extrapolating growth. The moat is plausible but unquantified."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "industry_structure",
+   "title": "Industry structure",
+   "subsections": [
+    {
+     "title": "Headline TAM figures as stated",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "Market-size statements in the documents (none is a fluid-coupling market size)",
+       "columns": [
+        "Figure",
+        "Stated by",
+        "Label"
+       ],
+       "rows": [
+        [
+         "India's Rs 11+ lakh cr infrastructure pipeline",
+         "(PPT Jun 2026)",
+         "[MC]"
+        ],
+        [
+         "300 MTPA steel target",
+         "(PPT Jun 2026)",
+         "[MC]"
+        ],
+        [
+         "500 GW power",
+         "(PPT Jun 2026)",
+         "[MC]"
+        ],
+        [
+         "25 new thermal power plants and 15 coal-mining projects announced",
+         "(AR2025 p.36)",
+         "[MC]"
+        ],
+        [
+         "India 'among only five countries' able to design fluid couplings independently",
+         "(PPT Jun 2026)",
+         "[MC]"
+        ],
+        [
+         "Fluid-coupling market size (India or global)",
+         "Not disclosed",
+         "-"
+        ]
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Why TAM cannot become revenue",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "[E] Illustrative arithmetic only: FY26 revenue of Rs 72.46 cr is about 0.007% of the Rs 11 lakh cr infrastructure pipeline (PPT Jun 2026). [AI] The ratio is meaningless. The pipeline is total project capex, and couplings are a small fraction of the drive-train, which is itself a fraction of plant cost. No document gives coupling content per MW, per tonne of steel or per mine. Any conversion from TAM to company revenue would be fabrication."
+      }
+     ]
+    },
+    {
+     "title": "A bottom-up framing instead",
+     "blocks": [
+      {
+       "type": "bullets",
+       "items": [
+        "[AI] Unit capacity: 1,500 units today and 3,500 targeted [MC] (PPT Jun 2026). This caps revenue more tightly than any TAM does.",
+        "[AI] Project wins: orders on 7 of the announced power and mining projects [MC] (AR2025 p.36). Tracking the number and value of such wins would be the right leading indicator.",
+        "[AI] Replacement demand: the installed base of more than 60,000 units [MC] (PPT Jun 2026). With a replacement cycle (not disclosed), this would give a floor.",
+        "[AI] Exports: Rs 2.19 cr [F] (AR2025 p.102). Starting from a low base."
+       ]
+      },
+      {
+       "type": "p",
+       "text": "[AI] Channel structure: sales run directly and through EPC contractors via tenders and vendor registration [F] (AR2025 p.101), with regional sales offices [MC] (PPT Jun 2026). [F] Commission, discounts and rebates were Rs 1.52 cr in FY25 (AR2025 p.101), which suggests some agent-led sales. Industry concentration is not disclosed."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "structural_themes",
+   "title": "Structural themes",
+   "subsections": [
+    {
+     "title": "Themes supported by company evidence",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "Theme versus evidence",
+       "columns": [
+        "Theme",
+        "Supporting evidence",
+        "Evidence strength"
+       ],
+       "rows": [
+        [
+         "Power and coal capex cycle",
+         "[MC] Orders on 7 announced projects (AR2025 p.36); [F] FY24-FY25 revenue +22% and +30% (AR2025 p.84)",
+         "Moderate"
+        ],
+        [
+         "Import substitution / indigenous technology",
+         "[F] Imported materials nil; no foreign collaboration (AR2025 p.24, p.100)",
+         "Moderate: supply side proven; share gain against imports not evidenced"
+        ],
+        [
+         "Refinery / energy-efficiency retrofits",
+         "[MC] Five refinery case studies with kW and savings (PPT Jun 2026)",
+         "Weak to moderate: no revenue data"
+        ],
+        [
+         "Capital-light high returns",
+         "[F] ROCE 36.9% FY25, debt nil (AR2025 p.106)",
+         "Strong historically; the capex plan changes this"
+        ]
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Themes in the narrative but not supported",
+     "blocks": [
+      {
+       "type": "bullets",
+       "items": [
+        "[MC] 'Global footprint' and 'ATEX is the global export passport' (PPT Jun 2026). [F] Exports were 3% of revenue and falling (AR2025 p.102).",
+        "[MC] 'Aftermarket annuity' (PPT Jun 2026). [F] Not separately disclosed; services were Rs 0.59 cr (AR2025 p.99).",
+        "[MC] 'Continuous R&D' (PPT Jun 2026). [F] R&D expenditure NIL (AR2025 p.46).",
+        "[MC] 'Diversified end-market exposure provides resilient demand visibility' (PPT Jun 2026). [F] No end-market split, and FY26 was flat (PPT Jun 2026)."
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Net structural assessment",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "[AI] The only structural tailwind the evidence clearly supports is Indian core-sector capex, and that is cyclical rather than secular. The export, aftermarket and R&D themes are narrative until they are disclosed in numbers."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "guidance_tracker",
+   "title": "Guidance tracker",
+   "subsections": [
+    {
+     "title": "Guidance given this period",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "Guidance items (FY26 investor presentation and FY25 annual report)",
+       "columns": [
+        "Item",
+        "Guidance given?",
+        "What management said",
+        "Status vs actuals"
+       ],
+       "rows": [
+        [
+         "Revenue",
+         "No numeric guidance",
+         "[MC] 'confidence in our medium-term growth outlook' (PPT Jun 2026)",
+         "[F] FY26 revenue flat at Rs 72.46 cr (PPT Jun 2026); Q1 FY27 not available"
+        ],
+        [
+         "Margins",
+         "Qualitative",
+         "[MC] FY26 normalisation is 'a transitional phase' (PPT Jun 2026)",
+         "Pending; [E] FY26 operating margin about 33.0%"
+        ],
+        [
+         "Order book",
+         "No",
+         "[MC] 'the company is making good order bookings' (AR2025 p.23)",
+         "[F] FY25 intake Rs 58.16 cr, down 3.1% (AR2025 p.27)"
+        ],
+        [
+         "Capex",
+         "Yes",
+         "[MC] Rs 35 cr, internal accruals, 2-3 years, FY26-FY29E; 'Expected completion by end 2027' (PPT Jun 2026)",
+         "[F] CWIP Rs 4.22 cr at March 2026 (PPT Jun 2026); pending"
+        ],
+        [
+         "Capacity / utilisation",
+         "Yes",
+         "[MC] 1,500 to 3,500 units; current utilisation about 96% (PPT Jun 2026)",
+         "Pending"
+        ],
+        [
+         "Capital subsidy",
+         "Yes",
+         "[MC] Eligible for 40% subsidy on machines and civil (PPT Jun 2026)",
+         "Pending; not yet received"
+        ],
+        [
+         "New products",
+         "Qualitative",
+         "[MC] R&D 'for higher kW and RPM'; range up to 6,000 kW (PPT Jun 2026)",
+         "Unverified; R&D spend NIL in FY25 (AR2025 p.46)"
+        ],
+        [
+         "Exports",
+         "Qualitative",
+         "[MC] Capex to 'enter new geographies and attract export/foreign buyers' (PPT Jun 2026)",
+         "[F] FY25 exports down 21.5% (AR2025 p.102)"
+        ],
+        [
+         "Aftermarket",
+         "Qualitative",
+         "[MC] 'committed to expanding our aftermarket services and spares business' (PPT Jun 2026)",
+         "Not measurable"
+        ],
+        [
+         "Fund-raising",
+         "Yes",
+         "[MC] 'Zero debt raised'; internal funding (PPT Jun 2026)",
+         "[F] No issuance; borrowings nil (PPT Jun 2026)"
+        ],
+        [
+         "Dividend",
+         "Yes",
+         "[MC] Rs 7.50 per share final for FY26, subject to the AGM (PPT Jun 2026)",
+         "[F] Dividend proposed at the 26 Sep 2026 AGM (ANNOUNCEMENTS)"
+        ]
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Prior-quarter guidance and pattern",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "[F] No previous report exists for this company in our coverage, so there is no prior guidance to test. [AI] Pattern: management gives qualitative, directional statements and one capex plan. There are no numbers on revenue, margins or orders, which makes accountability hard. The one hard data point, FY25 order booking, was disclosed without comment on its decline."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "earnings_quality",
+   "title": "Earnings quality",
+   "subsections": [
+    {
+     "title": "PAT versus cash",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "PAT vs CFO (Rs cr). FY19-FY23 from our statements data; FY24-FY25 audited; FY26 cash flow not available.",
+       "columns": [
+        "Year",
+        "PAT",
+        "CFO",
+        "CFO - PAT",
+        "CFO / PAT"
+       ],
+       "rows": [
+        [
+         "FY19",
+         "2.39",
+         "3.30",
+         "[E] +0.91",
+         "1.38"
+        ],
+        [
+         "FY20",
+         "3.19",
+         "3.32",
+         "[E] +0.13",
+         "1.04"
+        ],
+        [
+         "FY21",
+         "3.99",
+         "2.45",
+         "[E] -1.54",
+         "0.61"
+        ],
+        [
+         "FY22",
+         "5.48",
+         "6.03",
+         "[E] +0.55",
+         "1.10"
+        ],
+        [
+         "FY23",
+         "9.61",
+         "5.08",
+         "[E] -4.53",
+         "0.53"
+        ],
+        [
+         "FY24",
+         "13.05",
+         "10.31",
+         "[E] -2.74",
+         "[E] 0.79"
+        ],
+        [
+         "FY25",
+         "22.22",
+         "14.30",
+         "[E] -7.92",
+         "[E] 0.64"
+        ],
+        [
+         "FY26",
+         "20.06",
+         "Not available",
+         "-",
+         "-"
+        ],
+        [
+         "FY19-FY25 cumulative",
+         "[E] 59.93",
+         "[E] 44.79",
+         "[E] -15.14",
+         "[E] 0.75"
+        ]
+       ]
+      },
+      {
+       "type": "p",
+       "text": "[F] Sources: (NUMBERS); (AR2025 p.84-85); (PPT Jun 2026)."
+      }
+     ]
+    },
+    {
+     "title": "Composition of profit",
+     "blocks": [
+      {
+       "type": "bullets",
+       "items": [
+        "[F] Other income, mainly FD interest, was Rs 3.46 cr in FY25 and Rs 4.15 cr in FY26 (AR2025 p.100; PPT Jun 2026). [E] That is 11.6% and 15.4% of PBT; in FY19 it was 33.6% (NUMBERS).",
+        "[F] One-offs: none disclosed. A mutual-fund gain of Rs 0.38 cr sits in operating adjustments, and OCI mutual-fund fair-value gains were Rs 0.85 cr in FY24 (AR2025 p.85, p.102).",
+        "[F] ESOP charge: none (AR2025 p.104).",
+        "[F] Tax rate about 25.4% in FY25 (Rs 7.58 cr on Rs 29.81 cr) and 25.3% in FY26 (AR2025 p.84; PPT Jun 2026). Normal."
+       ]
+      },
+      {
+       "type": "p",
+       "text": "[AI] Conclusion: the profits are real, taxed at full rates and not flattered by one-offs. Cash conversion is persistently below 1x because receivables absorb growth, about 0.75x cumulatively over seven years [E]. Treasury income is a meaningful and rising prop to PBT as operating profit dips. Earnings quality is adequate but not high."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "forecast",
+   "title": "Forecast framework",
+   "subsections": [
+    {
+     "title": "Methodology",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "[F] Our DCF model projects five years of free cash flow to the firm (FCFF) from a trailing sales base of Rs 45.4 cr, which is FY23. FCFF is EBITDA less tax on EBIT, capex and the change in working capital. Growth fades linearly from a starting rate to a year-5 rate, and a Gordon terminal value is added (NUMBERS). [F] Base-case inputs: starting growth 21.2% (the median of 3-year, 5-year and TTM sales growth), EBITDA margin 19.0%, working capital of 131.8 days, capex equal to depreciation plus new sales divided by 4.21x fixed-asset turnover, tax 25.2%, WACC 15.0% (cost of equity 15.0%, no debt), terminal growth 5.5% and 0.493 cr shares (NUMBERS). [AI] Because the base is FY23, model years 1-5 correspond to FY24-FY28, and three of those years have now been reported."
+      }
+     ]
+    },
+    {
+     "title": "Base-case projection",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "Base-case projection from our DCF model (Rs cr), with company-reported actuals alongside for the years already reported",
+       "columns": [
+        "Model year (fiscal)",
+        "Growth",
+        "Sales",
+        "EBITDA",
+        "FCFF",
+        "Reported sales",
+        "Reported operating EBITDA"
+       ],
+       "rows": [
+        [
+         "Y1 (FY24)",
+         "21.2%",
+         "55.0",
+         "10.4",
+         "1.4",
+         "[F] 55.49 (AR2025 p.84)",
+         "[E] 14.87"
+        ],
+        [
+         "Y2 (FY25)",
+         "18.4%",
+         "65.2",
+         "12.4",
+         "2.4",
+         "[F] 72.18 (AR2025 p.84)",
+         "[E] 27.28"
+        ],
+        [
+         "Y3 (FY26)",
+         "15.6%",
+         "75.3",
+         "14.3",
+         "3.7",
+         "[F] 72.46 (PPT Jun 2026)",
+         "[E] 23.92"
+        ],
+        [
+         "Y4 (FY27)",
+         "12.8%",
+         "85.0",
+         "16.1",
+         "5.2",
+         "-",
+         "-"
+        ],
+        [
+         "Y5 (FY28)",
+         "10.0%",
+         "93.5",
+         "17.7",
+         "7.0",
+         "-",
+         "-"
+        ],
+        [
+         "Terminal value / PV",
+         "5.5% g",
+         "-",
+         "-",
+         "TV 101.7; PV 50.5",
+         "-",
+         "-"
+        ]
+       ]
+      },
+      {
+       "type": "p",
+       "text": "[F] Base-case EV is Rs 62.4 cr: Rs 11.9 cr from the explicit period and Rs 50.5 cr from the terminal value, which is 81% of EV. That gives Rs 126.5 per share (NUMBERS). [AI] Actual sales have tracked the model's scale path within a few percent through FY26. Actual operating EBITDA has run at roughly 1.4-2.2x the model's figure, because the model assumes 19% margins against a reported 27-38% [E]. The model's cash-flow shape is also depressed by the 131.8 working-capital days and by the capex rule."
+      }
+     ]
+    },
+    {
+     "title": "Key driver tree",
+     "blocks": [
+      {
+       "type": "bullets",
+       "items": [
+        "Revenue = units shipped x blended realisation. [MC] Capacity is 1,500 units at about 96% utilisation (PPT Jun 2026). Realisation depends on the kW mix, which is not disclosed.",
+        "Units shipped = project orders (power, coal, refinery) + replacement and spares + exports. [MC] Orders on 7 projects (AR2025 p.36); [F] exports Rs 2.19 cr (AR2025 p.102).",
+        "EBITDA margin = 1 - materials (about 31-33%) - employees (about 18-20%) - other (about 13-14%) [E] (AR2025 p.84; PPT Jun 2026).",
+        "FCFF = EBITDA - tax - capex (Rs 35 cr programme [MC]) - working capital (receivables at about 149 days in FY26 [E]).",
+        "Equity value = EV + treasury assets (not netted in the model [F], NUMBERS) - nil debt."
+       ]
+      }
+     ]
+    },
+    {
+     "title": "What the forecast deliberately does not assume",
+     "blocks": [
+      {
+       "type": "bullets",
+       "items": [
+        "[F] It does not assume the reported 30%+ margins; it uses 19% (NUMBERS).",
+        "[F] It does not add the Rs 35 cr capex or the 3,500-unit capacity as a discrete step; capex follows a turnover rule (NUMBERS).",
+        "[F] It does not credit cash and treasury assets; EV equals equity value (NUMBERS).",
+        "[AI] It does not assume any order-book-driven acceleration, because no backlog is disclosed.",
+        "[AI] It does not include the 40% capital subsidy or the land-sale proceeds."
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "scenarios",
+   "title": "Scenario analysis",
+   "subsections": [
+    {
+     "title": "Bull, base and bear",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "Scenarios from our DCF model (per-share values in Rs)",
+       "columns": [
+        "Scenario",
+        "Narrative",
+        "Starting growth",
+        "Growth by year 5",
+        "EBITDA margin",
+        "Year-5 sales / EBITDA (Rs cr)",
+        "Per-share value"
+       ],
+       "rows": [
+        [
+         "Bear",
+         "[AI] Core-sector capex slows; FY26 flatness persists; margins revert",
+         "8.5%",
+         "5.0%",
+         "15.0%",
+         "62.9 / 9.4",
+         "70.9"
+        ],
+        [
+         "Base",
+         "[AI] Growth at the historical median, fading",
+         "21.2%",
+         "10.0%",
+         "19.0%",
+         "93.5 / 17.7",
+         "126.5"
+        ],
+        [
+         "Bull",
+         "[AI] Capacity expansion filled; power, coal and refinery orders compound",
+         "31.6%",
+         "13.0%",
+         "21.0%",
+         "123.4 / 25.9",
+         "178.4"
+        ]
+       ]
+      },
+      {
+       "type": "p",
+       "text": "[F] Source: (NUMBERS). [AI] One comparison stands out. The bull case's year-5 (FY28) EBITDA of Rs 25.9 cr is roughly what the company already reports: Rs 25.67 cr on its FY26 definition (PPT Jun 2026), and Rs 23.92 cr on our operating definition [E]. On profitability, the company is already running near the model's bull outcome. On sales, FY26 (Rs 72.46 cr) sits between the base (Rs 75.3 cr) and bear (Rs 56.6 cr) year-3 paths."
+      }
+     ]
+    },
+    {
+     "title": "Probability weighting",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "[AI] We do not assign numeric probabilities. Qualitatively, the evidence argues against both extremes as the model defines them. The bear case's 15% margin is well below anything reported since FY22. The bull case's 31.6% starting growth conflicts with flat FY26 sales and a sub-1x FY25 book-to-bill. The base case's scale path has been closest to reality, while its margin has been too low."
+      }
+     ]
+    },
+    {
+     "title": "Sensitivity",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "Base-case value per share (Rs): WACC vs terminal growth (NUMBERS)",
+       "columns": [
+        "WACC \\ g",
+        "4.5%",
+        "5.5%",
+        "6.5%"
+       ],
+       "rows": [
+        [
+         "13.5%",
+         "145.7",
+         "154.9",
+         "166.6"
+        ],
+        [
+         "15.0%",
+         "120.8",
+         "126.5",
+         "133.2"
+        ],
+        [
+         "16.5%",
+         "102.6",
+         "106.0",
+         "110.1"
+        ]
+       ]
+      },
+      {
+       "type": "p",
+       "text": "[F] The full grid spans Rs 102.6 to Rs 166.6 per share (NUMBERS). [AI] Discount-rate and terminal-growth choices move the base value by about -19% to +32% [E]. The Rs 750 price is not within reach of any cell in the grid. The gap therefore lies in the operating assumptions (base year, margin, working capital) and in how the market is pricing growth, not in the discount rate."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "valuation",
+   "title": "Valuation",
+   "subsections": [
+    {
+     "title": "Current trading context",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "Market data and multiples from our statements data; earnings basis is the last full year in the data, FY23",
+       "columns": [
+        "Metric",
+        "Value",
+        "Label / source"
+       ],
+       "rows": [
+        [
+         "Share price",
+         "Rs 750",
+         "[F] (NUMBERS)"
+        ],
+        [
+         "Market cap",
+         "Rs 370 cr",
+         "[F] (NUMBERS); [F] Rs 411 cr on 25 June 2026 per company (PPT Jun 2026)"
+        ],
+        [
+         "52-week range",
+         "Rs 550 - Rs 1,064",
+         "[F] (NUMBERS)"
+        ],
+        [
+         "From 52-week high",
+         "-29.5%",
+         "[F] (NUMBERS)"
+        ],
+        [
+         "P/E (FY23 earnings)",
+         "38.5x",
+         "[F] (NUMBERS)"
+        ],
+        [
+         "EV/EBITDA (FY23)",
+         "29.9x",
+         "[F] (NUMBERS)"
+        ],
+        [
+         "EV/Sales (FY23)",
+         "8.15x",
+         "[F] (NUMBERS)"
+        ],
+        [
+         "P/B (book Rs 99.9 per share, FY23)",
+         "7.51x",
+         "[F] (NUMBERS)"
+        ],
+        [
+         "Dividend yield",
+         "1.0%",
+         "[F] (NUMBERS)"
+        ],
+        [
+         "EV",
+         "Rs 370 cr, not net of cash; investments Rs 3.0 cr shown separately",
+         "[F] (NUMBERS)"
+        ]
+       ]
+      },
+      {
+       "type": "callout",
+       "tone": "warn",
+       "text": "[AI] Every multiple above uses FY23 earnings and book value. Since then, company-reported FY26 EPS is Rs 40.7, about 2.1x the FY23 EPS of Rs 19.5, and equity has risen from Rs 49.2 cr to Rs 96.4 cr (NUMBERS; PPT Jun 2026). On current fundamentals, the trailing multiples in our data overstate how expensive the stock is. We do not compute replacement multiples. EV also ignores about Rs 58 cr of company-reported treasury assets [E] (PPT Jun 2026)."
+      }
+     ]
+    },
+    {
+     "title": "Multiples versus peers",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "[F] The company discloses no peer set, and our evidence contains no peer multiples (AR2025; PPT Jun 2026). [AI] A peer-relative valuation is therefore not assessable, and we do not introduce outside figures."
+      }
+     ]
+    },
+    {
+     "title": "Interpreting the DCF",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "[F] The DCF fair values sit 90.5% (bear), 83.1% (base) and 76.2% (bull) below the current price (NUMBERS). [AI] Three assumptions bias the model downward relative to the reported business. It starts from FY23 sales; it uses a 19% margin; and it does not credit treasury assets. A fourth assumption, 131.8 working-capital days, may be close to reality, given receivables at about 149 days in FY26 [E]. [AI] Even allowing for these biases, the model's structure (15% WACC, 5.5% terminal growth) means the price implies either sustained high growth or a much lower discount rate than the model uses. The DCF should be read as directional evidence that expectations are high, not as a point estimate of value."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "priced_in",
+   "title": "What the price implies",
+   "subsections": [
+    {
+     "title": "Reverse DCF",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "Implied growth against history and scenarios",
+       "columns": [
+        "Measure",
+        "Value",
+        "Label / source"
+       ],
+       "rows": [
+        [
+         "Implied 5-year sales CAGR at today's EV (base margin, same WACC and terminal growth)",
+         "86.0%",
+         "[F] (NUMBERS)"
+        ],
+        [
+         "Base-case 5-year CAGR equivalent",
+         "15.5%",
+         "[F] (NUMBERS)"
+        ],
+        [
+         "Bull starting growth",
+         "31.6%",
+         "[F] (NUMBERS)"
+        ],
+        [
+         "Historical 3-year sales CAGR (FY20-FY23)",
+         "21.2%",
+         "[F] (NUMBERS)"
+        ],
+        [
+         "Reported FY23-FY26 sales CAGR",
+         "about 16.8%",
+         "[E] (NUMBERS; PPT Jun 2026)"
+        ],
+        [
+         "Reported FY26 growth",
+         "+0.4%",
+         "[E] (PPT Jun 2026)"
+        ]
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Key forensic conclusion",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "[AI] As mechanically computed, the price requires five years of roughly 86% annual sales growth at a 19% margin. That is about four times the best three-year run in the company's history, and it comes after a flat year. Some of this is an artefact of the stale FY23 base and the low margin assumption. The direction of the conclusion holds anyway: the market is capitalising the FY25-FY26 profit level at a multiple that assumes the capacity expansion is filled profitably. No order book or customer data is disclosed that would let that assumption be verified."
+      }
+     ]
+    },
+    {
+     "title": "Strongest counter-argument",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "[AI] A reverse DCF anchored at FY23 sales and a 19% margin tests a business that no longer exists. Revenue is 60% higher, margins are 33-38% [E], and there is about Rs 58 cr of cash and investments that the EV ignores. If investors capitalise FY26 EBITDA of Rs 24-26 cr at a lower cost of equity than 15%, with ungeared balance-sheet optionality and a doubling of capacity, the required growth is much lower than 86%. Our model cannot quantify how much lower, so we leave that as an open question, not a number."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "catalysts",
+   "title": "Catalysts and overhangs",
+   "subsections": [
+    {
+     "title": "Near term (0-3 months, to December 2026)",
+     "blocks": [
+      {
+       "type": "bullets",
+       "items": [
+        "[F] 26 Sep 2026: 50th AGM, covering the FY26 dividend and Ashok Jain's reappointment as CMD for three years (ANNOUNCEMENTS).",
+        "[F] The FY26 annual report, filed 2 Sep 2026, should contain the FY26 cash-flow statement, order booking, receivable ageing, export earnings and related-party transactions (ANNOUNCEMENTS). [AI] Not yet reviewed by us; it is the most important near-term evidence.",
+        "[F] Q1 FY27 results were published 15 Aug 2026; not available to us (ANNOUNCEMENTS).",
+        "[AI] Q2 FY27 results are due by mid-November 2026 under the usual 45-day listing timeline; the FY26 calendar used 14 November (AR2025 p.67)."
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Medium term (3-12 months)",
+     "blocks": [
+      {
+       "type": "bullets",
+       "items": [
+        "[AI] Q3 FY27 (February 2027) and FY27 results (May 2027): the first test of whether FY26 was a pause.",
+        "[MC] Capex milestones and capital subsidy sanction (PPT Jun 2026).",
+        "[F] Completion of the freehold land sale; the advance was Rs 1.69 cr (AR2025 p.99)."
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Longer term (1-3 years)",
+     "blocks": [
+      {
+       "type": "bullets",
+       "items": [
+        "[MC] Capacity expansion to 3,500 units, 'expected completion by end 2027' or FY29E (PPT Jun 2026).",
+        "[F] Statutory auditor's first term ends at the 2027 AGM (AR2025 p.30).",
+        "[MC] Execution on the 25 thermal and 15 coal-mining projects (AR2025 p.36)."
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Overhangs, distinct from catalysts",
+     "blocks": [
+      {
+       "type": "bullets",
+       "items": [
+        "[F] No lock-ins, convertibles or planned dilution; capital unchanged at 4,927,000 shares (AR2025 p.27).",
+        "[F] Pledges: not disclosed in the documents; unverified.",
+        "[F] Litigation: disputed labour claims of Rs 5.32 lakh only; the BGR IBC matter was settled (AR2025 p.39, p.102).",
+        "[AI] Liquidity: 9,302 shareholders and a 45.7% public float (NUMBERS) point to thin trading, which can amplify moves either way.",
+        "[F] Rising promoter-executive pay approved via special resolutions (AR2025 p.5-8)."
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "risks_matrix",
+   "title": "Risk matrix",
+   "subsections": [
+    {
+     "title": "Risks ranked",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "Risk matrix, most serious first (severity and likelihood 1-5) [AI]",
+       "columns": [
+        "Risk",
+        "Category",
+        "Evidence",
+        "Severity 1-5",
+        "Likelihood 1-5"
+       ],
+       "rows": [
+        [
+         "Expectations far above fundamentals-based value",
+         "Valuation",
+         "[F] Price Rs 750 vs bull Rs 178.4; implied 86% CAGR (NUMBERS)",
+         "5",
+         "4"
+        ],
+        [
+         "Growth stall / demand peak",
+         "Business",
+         "[F] FY26 revenue flat; FY25 intake 0.81x revenue [E] (PPT Jun 2026; AR2025 p.27)",
+         "5",
+         "4"
+        ],
+        [
+         "Receivable build and collection",
+         "Financial",
+         "[E] Debtor days 89 to 149; [F] no ECL provision on Rs 2.11 cr over one year overdue (AR2025 p.95)",
+         "4",
+         "3"
+        ],
+        [
+         "Margin mean reversion",
+         "Financial",
+         "[MC] 'normalisation'; [E] 37.8% to 33.0% (PPT Jun 2026)",
+         "4",
+         "3"
+        ],
+        [
+         "Core-sector capex slowdown",
+         "Macro",
+         "[MC] Dependence on power, coal and refinery projects (AR2025 p.36)",
+         "4",
+         "3"
+        ],
+        [
+         "Weak disclosure / presentation errors",
+         "Governance",
+         "[F] EPS, CSR and EBITDA inconsistencies; blank KAM (AR2025 p.33, p.44, p.73, p.84)",
+         "3",
+         "4"
+        ],
+        [
+         "Capex execution / under-absorption",
+         "Operational",
+         "[MC] Rs 35 cr, 2.3x capacity without a disclosed order book (PPT Jun 2026)",
+         "3",
+         "3"
+        ],
+        [
+         "Key-person and succession",
+         "Governance",
+         "[F] CMD aged 76, reappointed for three more years (AR2025 p.52; ANNOUNCEMENTS)",
+         "3",
+         "3"
+        ],
+        [
+         "Low liquidity / small float",
+         "Market",
+         "[F] Market cap Rs 370 cr; 9,302 holders (NUMBERS)",
+         "3",
+         "4"
+        ],
+        [
+         "EPC / PSU counterparty risk",
+         "Credit",
+         "[F] BGR Energy IBC petition, 2022-2024 (AR2025 p.38-39)",
+         "3",
+         "2"
+        ],
+        [
+         "Tender competition from global specialists",
+         "Competitive",
+         "[F] Board notes cite imported alternatives (BOARD); [MC] 'customer mix' pressure (PPT Jun 2026)",
+         "3",
+         "3"
+        ],
+        [
+         "Promoter pay escalation",
+         "Governance",
+         "[F] Caps raised to Rs 7 lakh a month each (AR2025 p.5-8)",
+         "2",
+         "4"
+        ],
+        [
+         "Treasury market risk (equity mutual funds)",
+         "Financial",
+         "[F] Rs 8.32 cr in about 30 equity schemes (AR2025 p.94-95)",
+         "2",
+         "3"
+        ],
+        [
+         "Single-plant disruption",
+         "Operational",
+         "[F] All production at Dewas (AR2025 p.68)",
+         "4",
+         "1"
+        ]
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "thesis_breakers",
+   "title": "Thesis breakers",
+   "subsections": [
+    {
+     "title": "Measurable thesis breakers",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "What would change the view",
+       "columns": [
+        "Thesis breaker",
+        "Measurable threshold",
+        "What it would confirm"
+       ],
+       "rows": [
+        [
+         "Revenue decline",
+         "FY27 revenue below FY26's Rs 72.46 cr, or H1 FY27 down YoY",
+         "[AI] FY25 was a cyclical peak"
+        ],
+        [
+         "Margin reversion",
+         "Operating EBITDA margin below 27% for two consecutive half-years",
+         "[AI] The FY25-FY26 margin step-up was not structural"
+        ],
+        [
+         "Collections",
+         "Debtor days above 150 at March 2027, or receivables over one year overdue above Rs 3 cr",
+         "[AI] A credit or collection problem, not timing"
+        ],
+        [
+         "Cash conversion",
+         "CFO/PAT below 0.6 in FY26 or FY27",
+         "[AI] Earnings quality weaker than reported profits imply"
+        ],
+        [
+         "Order intake",
+         "Annual order booking below Rs 55 cr, or book-to-bill below 0.8x",
+         "[AI] Demand weakening ahead of new capacity"
+        ],
+        [
+         "Capex discipline",
+         "Capex above Rs 35 cr, debt raised, or completion later than FY29",
+         "[AI] Execution and capital-allocation risk"
+        ],
+        [
+         "Alignment",
+         "Promoter stake down more than 1 pt, or any pledge disclosed",
+         "[AI] Weakening promoter alignment"
+        ],
+        [
+         "Audit",
+         "Auditor resignation, qualification or emphasis of matter",
+         "[AI] Accounting-quality concern"
+        ]
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Thesis-confirming signals",
+     "blocks": [
+      {
+       "type": "bullets",
+       "items": [
+        "[AI] Disclosure of a closing order backlog above 1x revenue.",
+        "[AI] H1 FY27 revenue growth above 15% with operating margin at or above 30%.",
+        "[AI] FY26 CFO/PAT at or above 0.9 despite the receivable build.",
+        "[AI] Export earnings rising above the FY24 level of Rs 2.79 cr.",
+        "[AI] Capital subsidy sanctioned and capex on schedule without debt."
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "monitoring_dashboard",
+   "title": "Monitoring dashboard",
+   "subsections": [
+    {
+     "title": "Quarterly monitoring",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "Metrics to track",
+       "columns": [
+        "Metric",
+        "Source",
+        "Latest value with period",
+        "What to watch"
+       ],
+       "rows": [
+        [
+         "Revenue",
+         "Quarterly results",
+         "[F] Rs 72.46 cr FY26; Q4 FY26 about Rs 21 cr [E] (PPT Jun 2026)",
+         "Return to YoY growth"
+        ],
+        [
+         "Operating EBITDA margin",
+         "Quarterly results",
+         "[E] 33.0% FY26",
+         "Holding above 30%"
+        ],
+        [
+         "PAT",
+         "Quarterly results",
+         "[F] Rs 20.06 cr FY26 (PPT Jun 2026)",
+         "Trend versus FY25's Rs 22.22 cr"
+        ],
+        [
+         "Trade receivables",
+         "Half-year balance sheet",
+         "[F] Rs 29.63 cr, March 2026 (PPT Jun 2026)",
+         "Growth versus revenue"
+        ],
+        [
+         "Debtor days",
+         "Calculated",
+         "[E] 149 days, FY26",
+         "Back below 120"
+        ],
+        [
+         "CFO / PAT",
+         "Annual cash flow",
+         "[E] 0.64, FY25 (AR2025 p.85)",
+         "FY26 figure in the new annual report"
+        ],
+        [
+         "Order booking",
+         "Annual report",
+         "[F] Rs 58.16 cr, FY25 (AR2025 p.27)",
+         "FY26 intake; any backlog disclosure"
+        ],
+        [
+         "CWIP / capex",
+         "Balance sheet",
+         "[F] CWIP Rs 4.22 cr, March 2026 (PPT Jun 2026)",
+         "Spend against the Rs 35 cr plan"
+        ],
+        [
+         "Treasury assets",
+         "Balance sheet",
+         "[E] About Rs 58 cr, March 2026 (PPT Jun 2026)",
+         "Drawdown for capex"
+        ],
+        [
+         "Export earnings",
+         "Annual report",
+         "[F] Rs 2.19 cr, FY25 (AR2025 p.102)",
+         "Evidence of the export strategy"
+        ],
+        [
+         "Promoter holding / pledges",
+         "Shareholding pattern",
+         "[F] 53.45%, June 2026 (NUMBERS)",
+         "Any change or pledge"
+        ],
+        [
+         "Other income as % of PBT",
+         "Results",
+         "[E] 15.4%, FY26",
+         "Rising share signals weakening core"
+        ]
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "red_flag_checklist",
+   "title": "Red flag checklist",
+   "subsections": [
+    {
+     "title": "GREEN",
+     "blocks": [
+      {
+       "type": "bullets",
+       "items": [
+        "[F] Little or no debt: borrowings 0.00x equity (NUMBERS).",
+        "[F] High returns on capital: ROCE 29% in FY23 (NUMBERS); 36.94% in FY25 (AR2025 p.106).",
+        "[F] Unmodified audit opinion and IFC opinion; audit trail operated (AR2025 p.73, p.76, p.82).",
+        "[F] No equity dilution; share count unchanged (AR2025 p.96).",
+        "[F] Commercial related-party transactions immaterial; no loans to related parties (AR2025 p.104).",
+        "[F] Full-rate tax and no one-off gains in PBT (AR2025 p.84)."
+       ]
+      }
+     ]
+    },
+    {
+     "title": "AMBER",
+     "blocks": [
+      {
+       "type": "bullets",
+       "items": [
+        "[E] Cash conversion below profit: CFO/PAT 0.71x over three years (NUMBERS); 0.64x in FY25 (AR2025 p.85).",
+        "[E] Debtor days up from about 89 to 149 over FY24-FY26; no ECL provision (AR2025 p.95; PPT Jun 2026).",
+        "[F] EPS on the P&L includes OCI (AR2025 p.84, p.102).",
+        "[F] Contradictory CSR figures (AR2025 p.33, p.44).",
+        "[F] KAM section with no matters; audit fee Rs 2.00 lakh (AR2025 p.65, p.73).",
+        "[F] Family pay rising faster than employee pay; special resolutions above the 5% limit (AR2025 p.5-8, p.35).",
+        "[F] Mutual-fund fair-value gains through OCI (AR2025 p.102). [AI] A policy question.",
+        "[F] Unexplained advance against sale of freehold land, Rs 1.69 cr (AR2025 p.99).",
+        "[F] The company's EBITDA figures do not reconcile to its own P&L (PPT Jun 2026)."
+       ]
+      }
+     ]
+    },
+    {
+     "title": "RED",
+     "blocks": [
+      {
+       "type": "bullets",
+       "items": [
+        "[E] The price needs growth far above trend: about 86% a year for five years, against 16% in the base case (NUMBERS).",
+        "[E] FY25 order booking was about 0.81x revenue and fell 3.1% YoY (AR2025 p.27).",
+        "[F] FY26 revenue was flat and PAT fell 9.7% [E]; Q4 FY26 was weaker than Q4 FY25 (PPT Jun 2026).",
+        "[F] No order backlog, customer concentration or end-market split is disclosed while a 2.3x capacity expansion is under way (AR2025 p.27; PPT Jun 2026)."
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "management_questions",
+   "title": "Questions for management",
+   "subsections": [
+    {
+     "title": "Orders and demand",
+     "blocks": [
+      {
+       "type": "bullets",
+       "items": [
+        "1. What was the closing order book at March 2025 and March 2026, and what was FY26 order intake?",
+        "2. FY25 order booking (Rs 58.16 cr) was below FY25 revenue (Rs 72.18 cr). How much FY24 backlog was executed in FY25?",
+        "3. What is the value of the orders on the 7 thermal and coal-mining projects cited in the FY25 MD&A, and over what period will they be delivered?",
+        "4. Why was Q4 FY26 revenue (about Rs 21 cr on the chart) below Q4 FY25 (about Rs 29 cr)? Were any dispatches deferred?",
+        "5. How did Q1 FY27 order intake compare with Q1 FY26?"
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Customers and markets",
+     "blocks": [
+      {
+       "type": "bullets",
+       "items": [
+        "6. What share of revenue came from the top 1, top 5 and top 10 customers in FY24-FY26?",
+        "7. What is the revenue split by end market (power, refinery, mining, cement, steel, other)?",
+        "8. What share of revenue is spares, retrofit and service for the installed base?",
+        "9. Exports fell to Rs 2.19 cr in FY25. What are the FY26 exports, and which countries account for them?"
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Margins and costs",
+     "blocks": [
+      {
+       "type": "bullets",
+       "items": [
+        "10. Please reconcile the FY26 EBITDA of Rs 25.67 cr in the presentation to the P&L in the same presentation.",
+        "11. Which product or customer mix shift drove the FY26 margin decline, and is it expected to reverse?",
+        "12. Commission, discounts and rebates rose 65% in FY25. Who receives commissions, and on what basis?",
+        "13. R&D expenditure is reported as NIL. How is R&D for 6,000 kW and high-RPM designs funded and accounted for?"
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Working capital and cash",
+     "blocks": [
+      {
+       "type": "bullets",
+       "items": [
+        "14. Receivables rose to Rs 29.63 cr on flat revenue. What is the ageing at March 2026, and which customers are overdue?",
+        "15. Why is there no expected-credit-loss provision against Rs 2.11 cr that is more than a year overdue?",
+        "16. What was FY26 operating cash flow?",
+        "17. Why is surplus cash held in about 30 regular-plan equity mutual-fund schemes, and who selects them?"
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Capex, capacity and assets",
+     "blocks": [
+      {
+       "type": "bullets",
+       "items": [
+        "18. How is the 1,500-unit capacity defined (size range), and what were actual units dispatched in FY25 and FY26?",
+        "19. Is capex completion due by end-2027 or in FY29? What is the phasing of the Rs 35 cr by year?",
+        "20. Which scheme provides the 40% capital subsidy, what are its conditions, and has it been sanctioned?",
+        "21. Which freehold land is being sold against the Rs 1.69 cr advance, and what are its book value and expected gain?"
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Governance and disclosure",
+     "blocks": [
+      {
+       "type": "bullets",
+       "items": [
+        "22. Why does the P&L EPS include OCI, and will FY24-FY25 EPS be restated to PAT-based figures?",
+        "23. Which CSR figure is correct for FY25, Rs 19.95 lakh or Rs 25.15 lakh?",
+        "24. Why did all three independent directors change on 14 August 2023, and why does the CFO not attend Audit Committee meetings?",
+        "25. What is the succession plan for the CMD, who is 76 and is being reappointed for three years, and will the board consider a non-executive chairman?"
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "investment_scorecard",
+   "title": "Investment scorecard",
+   "subsections": [
+    {
+     "title": "Scorecard (not a rating)",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "Fifteen-factor scorecard (1 = weak, 10 = strong) [AI]",
+       "columns": [
+        "#",
+        "Factor",
+        "Score 1-10",
+        "Basis"
+       ],
+       "rows": [
+        [
+         "1",
+         "Revenue visibility",
+         "2",
+         "[F] No backlog disclosed; FY25 book-to-bill about 0.81x [E] (AR2025 p.27)"
+        ],
+        [
+         "2",
+         "Customer concentration",
+         "4",
+         "[F] Not disclosed; [MC] 600+ clients (PPT Jun 2026)"
+        ],
+        [
+         "3",
+         "Margin quality",
+         "7",
+         "[E] 27-38% operating margins for four years; FY26 normalising"
+        ],
+        [
+         "4",
+         "Earnings quality",
+         "5",
+         "[E] Cumulative CFO/PAT about 0.75; full tax; no one-offs"
+        ],
+        [
+         "5",
+         "Balance sheet",
+         "9",
+         "[F] Nil debt; about Rs 58 cr treasury assets [E] (PPT Jun 2026)"
+        ],
+        [
+         "6",
+         "Working capital",
+         "4",
+         "[E] Debtor days rising to about 149"
+        ],
+        [
+         "7",
+         "Accounting quality",
+         "5",
+         "[F] Unmodified opinion, but presentation errors and a thin audit (AR2025 p.65, p.73, p.84)"
+        ],
+        [
+         "8",
+         "Governance",
+         "5",
+         "[F] Family-dominated; independent directors installed together in 2023 (AR2025 p.71)"
+        ],
+        [
+         "9",
+         "Related-party discipline",
+         "7",
+         "[F] Trivial commercial RPTs; pay is the main flow (AR2025 p.104)"
+        ],
+        [
+         "10",
+         "Moat durability",
+         "5",
+         "[AI] Niche approvals-based moat; unquantified"
+        ],
+        [
+         "11",
+         "Growth durability",
+         "3",
+         "[F] FY26 flat; intake below sales (PPT Jun 2026; AR2025 p.27)"
+        ],
+        [
+         "12",
+         "Capacity / optionality",
+         "6",
+         "[MC] 2.3x capacity, internally funded (PPT Jun 2026)"
+        ],
+        [
+         "13",
+         "Valuation vs base DCF",
+         "1",
+         "[F] Price about 6x base value (NUMBERS)"
+        ],
+        [
+         "14",
+         "Valuation vs bull DCF",
+         "1",
+         "[F] Price about 4x bull value (NUMBERS)"
+        ],
+        [
+         "15",
+         "Disclosure candour",
+         "3",
+         "[F] Qualitative guidance only; inconsistencies (PPT Jun 2026; AR2025)"
+        ],
+        [
+         "",
+         "Simple average",
+         "4.5",
+         "[E] 67 / 15"
+        ]
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "final_thesis",
+   "title": "Final thesis",
+   "subsections": [
+    {
+     "title": "The case for owning",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "[AI] A 50-year-old niche engineering company that has moved to a Rs 70 cr-plus revenue level with operating margins around 33% [E]. It carries no debt and about Rs 58 cr of treasury assets [E], pays a rising dividend (Rs 7.50) and is funding a 2.3x capacity expansion from its own cash (PPT Jun 2026). If Indian power, coal and refinery capex keeps running and the new capacity is filled, today's earnings base will rise considerably. The stale DCF understates both scale and margin."
+      }
+     ]
+    },
+    {
+     "title": "The case against",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "[AI] Growth stopped in FY26. The last disclosed order intake was below revenue. Receivables are climbing. Management's own language concedes margin normalisation. The price sits above every scenario in our DCF, and the reverse DCF demands growth the company has never delivered (NUMBERS; AR2025 p.27; PPT Jun 2026). Disclosure on orders, customers and mix is too thin to underwrite the expansion, and the numbers that are disclosed contain avoidable inconsistencies."
+      }
+     ]
+    },
+    {
+     "title": "What the market may be missing",
+     "blocks": [
+      {
+       "type": "bullets",
+       "items": [
+        "[AI] On the upside: the balance sheet. About Rs 58 cr of treasury assets is not netted in EV, and the company is already earning at the model's bull-case year-5 EBITDA level.",
+        "[AI] On the downside: FY25 looks like backlog conversion (book-to-bill about 0.81x [E]), so the FY25-FY26 profit level may be the top of a cycle rather than a new floor."
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Upside / downside framing",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "Fair value per share from our DCF model against the Rs 750 price",
+       "columns": [
+        "Scenario",
+        "Fair value per share",
+        "vs current price"
+       ],
+       "rows": [
+        [
+         "Bear",
+         "Rs 70.9",
+         "-90.5%"
+        ],
+        [
+         "Base",
+         "Rs 126.5",
+         "-83.1%"
+        ],
+        [
+         "Bull",
+         "Rs 178.4",
+         "-76.2%"
+        ]
+       ]
+      },
+      {
+       "type": "p",
+       "text": "[F] Source: (NUMBERS)."
+      }
+     ]
+    },
+    {
+     "title": "Five-year possibility space",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "[AI] Across our DCF scenarios, five-year sales range from Rs 62.9 cr (bear) to Rs 123.4 cr (bull), with EBITDA of Rs 9.4-25.9 cr (NUMBERS). Company-reported FY26 sales of Rs 72.46 cr and EBITDA of about Rs 24-26 cr already sit inside that space, near the bull EBITDA end (PPT Jun 2026). [AI] The wider possibility space depends on factors outside the model: whether the 3,500-unit capacity is filled, the capex cycle, and whether margins settle nearer 27% or 35%. None of these can be sized from the disclosures."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "final_conclusion",
+   "title": "Research conclusion",
+   "subsections": [
+    {
+     "title": "Where the price sits and why",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "[F] At Rs 750, the share price is 4.2x the bull-case fair value of Rs 178.4, 5.9x the base case of Rs 126.5 and 10.6x the bear case of Rs 70.9 (NUMBERS). [AI] The gap has two sources. The first is the model: it is anchored on FY23, with a 19% margin and no credit for cash, and so understates the business the company now reports. The second is the market: it is extrapolating the FY25 step-up and the capacity plan, although FY26 was flat and order intake is not visible. Our view is that the fundamentals are real but ex-growth for now, and the price discounts a growth resumption the documents do not yet evidence. This is not a rating or a price target."
+      }
+     ]
+    },
+    {
+     "title": "Horizon and re-review triggers",
+     "blocks": [
+      {
+       "type": "bullets",
+       "items": [
+        "[AI] Horizon: a multi-year holding would be a bet on the capex cycle and capacity fill (FY27-FY29). There is no near-term evidence base for a shorter one.",
+        "[AI] Re-review on the FY26 annual report (filed 2 Sep 2026): FY26 cash flow, order booking, receivable ageing, exports [F] (ANNOUNCEMENTS).",
+        "[AI] Re-review on Q1 and Q2 FY27 results (Q2 due by mid-November 2026): revenue growth, margin, receivables.",
+        "[AI] Re-review on refreshed statements data: our DCF and multiples must be re-based to FY26 before any valuation conclusion is firmed up."
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "changes_since_last",
+   "title": "Changes since last report",
+   "subsections": [
+    {
+     "title": "Initial coverage",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "[F] This is our initial coverage of Fluidomat Ltd. No previous report exists against which to measure changes in numbers, disclosures, guidance delivery, risks or thesis. [AI] The guidance tracker in this report sets the baseline for next quarter's comparison: capex timing and subsidy, utilisation, margin normalisation, dividend, and the absence of numerical revenue or order guidance."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "quality_control",
+   "title": "Quality control",
+   "subsections": [
+    {
+     "title": "Second-pass review",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "QC checks",
+       "columns": [
+        "Check",
+        "Result",
+        "Note"
+       ],
+       "rows": [
+        [
+         "TAM / revenue conflation",
+         "Pass",
+         "TAM figures are labelled [MC] context; share arithmetic is labelled illustrative [E]"
+        ],
+        [
+         "Order book / pipeline conflation",
+         "Pass",
+         "A-F table separates confirmed revenue from the unquantified pipeline; no backlog is disclosed"
+        ],
+        [
+         "Management claims labelled",
+         "Pass",
+         "Presentation claims carry [MC] throughout"
+        ],
+        [
+         "Customer concentration shown both ways",
+         "Pass, with thin evidence",
+         "No concentration data disclosed; both readings shown"
+        ],
+        [
+         "Cash-flow and working-capital completeness",
+         "Partial",
+         "FY26 cash-flow statement not available; FY26 is balance-sheet based only"
+        ],
+        [
+         "Current share count and market cap used",
+         "Pass, with caveat",
+         "0.493 cr shares and Rs 370 cr from our data; company cites Rs 411 cr on 25 June 2026"
+        ],
+        [
+         "Structural vs temporary distinction",
+         "Pass",
+         "Margin analysis separates the FY23-FY26 step-up from the FY25 peak"
+        ],
+        [
+         "Measurable thesis breakers",
+         "Pass",
+         "Eight numeric thresholds"
+        ],
+        [
+         "No fabrication",
+         "Pass",
+         "Undisclosed items stated as 'not disclosed'; Q4 FY26 chart values flagged as approximate"
+        ],
+        [
+         "Labelling discipline",
+         "Pass",
+         "Every statement labelled [F]/[MC]/[AI]/[E]"
+        ],
+        [
+         "Discrepancies flagged",
+         "Pass",
+         "Twelve source discrepancies tabulated, not reconciled"
+        ],
+        [
+         "Valuation transparency",
+         "Pass, with caveat",
+         "All valuation figures from our DCF model; model staleness (FY23 base) disclosed prominently"
+        ],
+        [
+         "Bull case vs reverse DCF",
+         "Pass",
+         "Bull starting growth of 31.6% vs 86% implied shown side by side"
+        ],
+        [
+         "Balance",
+         "Pass",
+         "Bull table, bear list and counter-argument to the reverse DCF included"
+        ],
+        [
+         "Tone",
+         "Pass",
+         "No rating, no price target, no marketing adjectives"
+        ],
+        [
+         "Evidence thinness",
+         "Flag",
+         "Statements data ends FY23; no earnings-call transcripts, FY26 annual report or Q1 FY27 results were available; no prospectus applies"
+        ]
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "summary": {
+  "one_line": "Fluidomat, a debt-free, cash-rich niche maker of fluid couplings, has made a real FY25 step-up to about Rs 72 cr of revenue at margins above 30%, but FY26 was flat, order intake is not visible and receivables are climbing, while the Rs 750 share price sits above every scenario in our FY23-based DCF (reverse DCF about 86% implied growth), so the market is pricing a growth resumption the documents do not yet evidence.",
+  "bull_points": [
+   "[F] Operating profitability has stepped up: PAT rose from Rs 9.61 cr (FY23) to Rs 22.22 cr (FY25) and Rs 20.06 cr (FY26), with operating EBITDA margins of about 33-38% [E] (NUMBERS; AR2025 p.84; PPT Jun 2026).",
+   "[F] No borrowings and about Rs 58 cr of FDs, mutual funds and cash at March 2026 [E], which our EV does not net off (PPT Jun 2026; NUMBERS).",
+   "[MC] A Rs 35 cr, internally funded expansion lifts capacity from 1,500 to 3,500 units, with existing utilisation at about 96% and eligibility for a 40% capital subsidy (PPT Jun 2026).",
+   "[MC] Orders booked on 7 of the 25 thermal and 15 coal-mining projects announced, and a growing position in refinery retrofits at BPCL, IOCL, MRPL and NRL (AR2025 p.36; PPT Jun 2026).",
+   "[AI] The DCF is stale: the company already reports EBITDA near the model's bull-case year-5 level, so the model understates current scale and margin (NUMBERS; PPT Jun 2026)."
+  ],
+  "bear_points": [
+   "[F] FY26 revenue was flat at Rs 72.46 cr and PAT fell to Rs 20.06 cr; Q4 FY26 was weaker than Q4 FY25 on company charts (PPT Jun 2026).",
+   "[F] FY25 order booking of Rs 58.16 cr fell 3.1% YoY and was about 0.81x FY25 revenue [E]; no backlog is disclosed (AR2025 p.27).",
+   "[E] Debtor days rose from about 89 (FY24) to 149 (FY26); FY25 CFO/PAT was 0.64, with no credit-loss provision on Rs 2.11 cr more than a year overdue (AR2025 p.85, p.95; PPT Jun 2026).",
+   "[F] The price of Rs 750 compares with DCF values of Rs 70.9 / 126.5 / 178.4, and the reverse DCF implies about 86% annual sales growth for five years (NUMBERS).",
+   "[F] Disclosure is weak: no customer, segment or end-market data; EPS on the P&L includes OCI; CSR figures conflict; the company's EBITDA does not reconcile to its own P&L (AR2025 p.33, p.44, p.84, p.102; PPT Jun 2026)."
+  ],
+  "watch_points": [
+   "FY26 annual report (filed 2 Sep 2026): FY26 operating cash flow, order booking, receivable ageing and export earnings.",
+   "Q1 and Q2 FY27 results (Q2 due by mid-November 2026): whether revenue returns to YoY growth and operating margin holds above 30%.",
+   "Trade receivables against the Rs 29.63 cr at March 2026, and any expected-credit-loss provisioning.",
+   "Capex progress against the Rs 35 cr plan (CWIP Rs 4.22 cr at March 2026), subsidy sanction and completion timing (end-2027 vs FY29E).",
+   "Outcome of the 26 Sep 2026 AGM (dividend, CMD reappointment) and any promoter holding or pledge change from 53.45%."
+  ],
+  "guidance": [
+   "Capex: Rs 35 cr modernisation and capacity expansion approved Feb 2026, 'financed entirely through internal accruals', over 'approximately 2-3 years' / 'FY26-FY29E'; 'Expected completion by end 2027' (PPT Jun 2026).",
+   "Capacity: 'augment annual production capacity from 1,500 units to 3,500 units'; 2,000 'higher-range coupling units' added (PPT Jun 2026).",
+   "Utilisation: 'existing utilisation already at ~96%' (PPT Jun 2026).",
+   "Subsidy: 'eligible to receive a 40% capital subsidy on qualifying production machines and civil' (PPT Jun 2026).",
+   "Margins: FY26 margin normalisation described as 'a transitional phase' (PPT Jun 2026).",
+   "Growth: 'confidence in our medium-term growth outlook'; no numeric revenue guidance (PPT Jun 2026).",
+   "Aftermarket: 'committed to expanding our aftermarket services and spares business' (PPT Jun 2026).",
+   "Exports: capex rationale includes 'enter new geographies and attract export/foreign buyers' (PPT Jun 2026).",
+   "Funding: 'Zero debt raised' (PPT Jun 2026).",
+   "Dividend: Rs 7.50 per share final dividend for FY26, subject to AGM (PPT Jun 2026).",
+   "Orders (FY25 annual report): 'the company is making good order bookings'; orders booked for 7 of the announced thermal and coal-mining projects (AR2025 p.23, p.36)."
+  ]
+ },
+ "usage": {
+  "engine": "claude-code",
+  "model": "opus",
+  "sessions": 1,
+  "turns": 42,
+  "estimated_api_cost_usd": 5.127,
+  "input_tokens": 62,
+  "output_tokens": 95887,
+  "cache_read_input_tokens": 5346689,
+  "cache_creation_input_tokens": 267437,
+  "cost_usd": null
+ }
+}

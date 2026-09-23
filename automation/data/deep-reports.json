@@ -196,6 +196,18 @@
     "VIMTALABS": "already covers Dec 2024",
     "SIMPLEXCAS": "already covers Sep 2021"
    }
+  },
+  {
+   "on": "2026-09-23",
+   "written": [
+    "MODISONLTD:FY27-Q1",
+    "FLUIDOM:FY23-Q4"
+   ],
+   "spent_usd": null,
+   "skipped": {
+    "VIMTALABS": "already covers Dec 2024",
+    "SIMPLEXCAS": "already covers Sep 2021"
+   }
   }
  ],
  "seen_new_results": {
@@ -406,6 +418,24 @@
    "cost_usd": null,
    "api_equivalent_usd": 23.696,
    "minutes": 50.0
+  },
+  "MODISONLTD": {
+   "period": "FY27-Q1",
+   "on": "2026-09-23",
+   "engine": "claude-code",
+   "tokens_out": 144559,
+   "cost_usd": null,
+   "api_equivalent_usd": 7.717,
+   "minutes": 19.3
+  },
+  "FLUIDOM": {
+   "period": "FY23-Q4",
+   "on": "2026-09-23",
+   "engine": "claude-code",
+   "tokens_out": 95887,
+   "cost_usd": null,
+   "api_equivalent_usd": 5.127,
+   "minutes": 13.4
   }
  }
 }

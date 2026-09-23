@@ -1,48 +1,118 @@
 {
- "updated": "2026-09-22T05:31+05:30",
+ "updated": "2026-09-23T05:14+05:30",
  "figures": [
   {
-   "label": "Brent crude (Nov'26 futures)",
-   "value": "$101.38/bbl",
-   "as_of": "2026-09-21",
-   "note": "4th straight daily decline, from ~$104 on 17 Sep",
+   "label": "Brent crude (Nov future)",
+   "value": "$99.94/bbl",
+   "as_of": "2026-09-22",
+   "note": "-0.40% in early trade, fell further intraday toward $98/bbl on Hormuz reopening ",
    "source": {
-    "publisher": "Kotak Securities",
-    "url": "https://www.kotakneo.com/news/market-news/closing-bell-21-september-2026/"
+    "publisher": "BNN Bloomberg",
+    "url": "https://www.bnnbloomberg.ca/markets/oil/2026/09/22/oil-falls-to-two-week-low-as-gulf-supply-outlook-improves/"
    }
   },
   {
-   "label": "WTI crude (Oct'26 futures)",
-   "value": "$93.74/bbl",
-   "as_of": "2026-09-21",
-   "note": "",
+   "label": "India crude import bill, Apr-Aug FY27",
+   "value": "$74.8 billion",
+   "as_of": "2026-09-22",
+   "note": "+48.4% YoY vs $50.4 bn; PPAC data",
    "source": {
-    "publisher": "Kotak Securities",
-    "url": "https://www.kotakneo.com/news/market-news/closing-bell-21-september-2026/"
+    "publisher": "The Tribune",
+    "url": "https://www.tribuneindia.com/news/business/indias-crude-oil-imports-bill-increased-by-48-4-to-usd74-8-billion-during-april-august-due-to-higher-global-prices"
    }
   },
   {
-   "label": "India Russian crude imports",
-   "value": "~1.9 mb/d, >35% of total",
-   "as_of": "2026-09-21",
-   "note": "lowest since April 2026, at risk from new US sanctions law",
+   "label": "Indian crude basket, Aug 2026 avg",
+   "value": "$90.19/bbl",
+   "as_of": "2026-09-22",
+   "note": "+30.5% YoY from $69.11; PPAC via The Tribune",
    "source": {
-    "publisher": "Business Today",
-    "url": "https://www.businesstoday.in/india/story/will-india-cut-down-on-russian-crude-purchases-due-to-us-tariffs-heres-what-we-know-556830-2026-09-21"
+    "publisher": "The Tribune",
+    "url": "https://www.tribuneindia.com/news/business/indias-crude-oil-imports-bill-increased-by-48-4-to-usd74-8-billion-during-april-august-due-to-higher-global-prices"
    }
   },
   {
-   "label": "Saudi crude exports",
-   "value": ">4 mb/d",
+   "label": "VLCC freight, Persian Gulf-Asia",
+   "value": "~$1.1 million/day",
    "as_of": "2026-09-21",
-   "note": "up from ~2.4 mb/d in August as pipeline/port disruptions ease",
+   "note": "~12x jump within months from 20-yr avg of $29,900/day",
    "source": {
-    "publisher": "HDFC Sky",
-    "url": "https://hdfcsky.com/news/brent-crude-oil-price-today-september-21-2026-brent-crude-falls-to-101-5-wti-at-97-9-as-supply-concerns-ease"
+    "publisher": "ThePrint",
+    "url": "https://theprint.in/economy/1-million-a-day-oil-tankers-cost-of-hiring-oil-tankers-has-spiralled-amid-west-asia-crisis/3048529/"
    }
   }
  ],
  "items": [
+  {
+   "date": "2026-09-22",
+   "title": "Iran offers to reopen Hormuz in 7 days as Saudi restarts pipeline; Brent hits 2-week low",
+   "text": "A senior Iranian official said Tehran could reopen the Strait of Hormuz within seven days if the US eases military pressure and lifts its blockade on Iranian ports, an offer President Pezeshkian pressed at the UN General Assembly; Iran's Fars News Agency later disputed the report. Saudi Arabia separately restarted its East-West pipeline after a drone-strike shutdown and resumed loading crude at Yanbu, lifting Hormuz-transiting flows back to about 2.9 mb/d from August's 700,000 b/d. Brent fell to a two-week low, trading near $98-100/bbl intraday, on the twin developments. Sustained lower or more volatile crude would ease cost pressure for refiners but cut realisations for ONGC, Oil India and Vedanta's Cairn Oil & Gas.",
+   "tone": "watch",
+   "companies": [
+    "ONGC",
+    "OIL",
+    "VOGL",
+    "IOC",
+    "BPCL",
+    "HINDPETRO"
+   ],
+   "sources": [
+    {
+     "publisher": "BNN Bloomberg",
+     "title": "Oil Falls to Two-Week Low as Gulf Supply Outlook Improves",
+     "url": "https://www.bnnbloomberg.ca/markets/oil/2026/09/22/oil-falls-to-two-week-low-as-gulf-supply-outlook-improves/",
+     "date": "2026-09-22"
+    },
+    {
+     "publisher": "CoinDesk",
+     "title": "Live Updates: Oil Falls as Iran Signals Possible Hormuz Reopening; Bitcoin Holds Near $86,000",
+     "url": "https://www.coindesk.com/markets/2026/09/22/live-updates-oil-falls-as-iran-signals-possible-hormuz-reopening-bitcoin-holds-near-usd86-000",
+     "date": "2026-09-22"
+    }
+   ],
+   "added": "2026-09-23"
+  },
+  {
+   "date": "2026-09-22",
+   "title": "India's crude import bill jumps 48% to $74.8 bn in April-August FY27",
+   "text": "India's crude oil import bill rose 48.4% year-on-year to $74.8 billion in April-August FY27, from $50.4 billion a year earlier, PPAC data show, even as import volumes slipped to 100.7 MMT from 101.1 MMT. August alone cost $11.7 billion, up 18.2% YoY, as the Indian crude basket averaged $90.19/bbl versus $69.11 a year ago. The rise is almost entirely price-driven by the Hormuz-crisis spike in crude, widening India's trade deficit and the cost burden on state refiners.",
+   "tone": "bad",
+   "companies": [
+    "IOC",
+    "BPCL",
+    "HINDPETRO"
+   ],
+   "sources": [
+    {
+     "publisher": "The Tribune",
+     "title": "India's crude oil imports bill increased by 48.4% to USD 74.8 billion during April-August due to higher global prices",
+     "url": "https://www.tribuneindia.com/news/business/indias-crude-oil-imports-bill-increased-by-48-4-to-usd74-8-billion-during-april-august-due-to-higher-global-prices",
+     "date": "2026-09-22"
+    }
+   ],
+   "added": "2026-09-23"
+  },
+  {
+   "date": "2026-09-21",
+   "title": "Hormuz-risk VLCC freight rockets to $1.1 million/day, 12x pre-crisis levels",
+   "text": "Very large crude carrier rates on the Persian Gulf-to-Asia route have surged to about $1.1 million a day, a roughly 12-fold jump within months from a 20-year average of $29,900/day, as fewer vessels are willing to transit the Strait of Hormuz. Shipping crude out of the Gulf now costs over $22/bbl versus about $2/bbl a year ago, a cost that ultimately falls on Indian refiners on top of already-elevated crude prices. High charter rates are a tailwind for Indian tanker owners such as Great Eastern Shipping.",
+   "tone": "watch",
+   "companies": [
+    "GESHIP",
+    "IOC",
+    "BPCL",
+    "HINDPETRO"
+   ],
+   "sources": [
+    {
+     "publisher": "ThePrint",
+     "title": "$1 million-a-day oil tankers: Cost of hiring oil tankers has spiralled amid West Asia crisis",
+     "url": "https://theprint.in/economy/1-million-a-day-oil-tankers-cost-of-hiring-oil-tankers-has-spiralled-amid-west-asia-crisis/3048529/",
+     "date": "2026-09-21"
+    }
+   ],
+   "added": "2026-09-23"
+  },
   {
    "date": "2026-09-21",
    "title": "Brent falls for 4th straight day below $102 as Saudi exports recover, Iran talks hoped for",
