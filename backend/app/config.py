@@ -99,6 +99,14 @@ class Settings(BaseSettings):
     candidates_file: Path = BASE_DIR / "data" / "candidates_raw.json"
     build_stamp_file: Path = BASE_DIR / "data" / "build_stamp.json"
 
+    # US market's own seed files (see backend/scripts/us_auto_screen.py and
+    # app/seed.py's per-market seed()) -- same shape as the India ones
+    # above, a separate pair so seeding one market never touches the other.
+    # Missing is fine: seed_if_changed() skips a market whose file isn't
+    # there yet rather than failing the whole startup seed.
+    seed_file_us: Path = BASE_DIR / "data" / "companies_us_raw.json"
+    meta_file_us: Path = BASE_DIR / "data" / "meta_us_raw.json"
+
     @property
     def sqlalchemy_url(self) -> str:
         """Render hands out postgres:// URLs; SQLAlchemy wants postgresql+psycopg2://."""

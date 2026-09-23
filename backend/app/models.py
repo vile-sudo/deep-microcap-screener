@@ -27,6 +27,12 @@ from .database import Base
 class Company(Base):
     __tablename__ = "companies"
 
+    # market+code is the real identity -- code alone is NOT unique across
+    # markets (an Indian NSE/BSE code and a US ticker can collide as bare
+    # strings). code itself is left exactly as every India record already
+    # has it (no "US:" prefix mangling) so every existing screener.in link,
+    # CSV, bookmark and filter keeps working unchanged.
+    market: Mapped[str] = mapped_column(String(8), primary_key=True, default="IN")
     code: Mapped[str] = mapped_column(String, primary_key=True)
     name: Mapped[str] = mapped_column(String, index=True)
     sector: Mapped[str | None] = mapped_column(String, index=True, nullable=True)
@@ -47,6 +53,16 @@ class Company(Base):
     num_shareholders: Mapped[int | None] = mapped_column(Integer, nullable=True)
     cwip_pct_net_block: Mapped[float | None] = mapped_column(Float, nullable=True)
     guidance_pct: Mapped[float | None] = mapped_column(Float, nullable=True)
+
+    # US-market equivalents -- kept as separate columns rather than reusing
+    # the India ones above (which stay null for US rows, and vice versa):
+    # nothing ranks a US company against an India one on the same numeric
+    # scale, so there's no cross-market FX normalization to do here, and
+    # e.g. "insider %" is a different concept from "promoter %", not just a
+    # renamed one -- see backend/scripts/us_auto_screen.py.
+    market_cap_usd: Mapped[float | None] = mapped_column(Float, index=True, nullable=True)
+    insider_pct: Mapped[float | None] = mapped_column(Float, nullable=True)
+    inst_pct: Mapped[float | None] = mapped_column(Float, nullable=True)
 
     capex_overhang: Mapped[bool] = mapped_column(Boolean, default=False)
     capex_heavy: Mapped[bool] = mapped_column(Boolean, default=False)
@@ -110,10 +126,11 @@ class WatchItem(Base):
     the same on every device they log in from."""
 
     __tablename__ = "watchlist_items"
-    __table_args__ = (UniqueConstraint("user_id", "code", name="uq_watch_user_code"),)
+    __table_args__ = (UniqueConstraint("user_id", "market", "code", name="uq_watch_user_market_code"),)
 
     id: Mapped[int] = mapped_column(Integer, primary_key=True)
     user_id: Mapped[int] = mapped_column(Integer, ForeignKey("users.id", ondelete="CASCADE"), index=True)
+    market: Mapped[str] = mapped_column(String(8), default="IN")
     code: Mapped[str] = mapped_column(String(40))
     added_at: Mapped[datetime] = mapped_column(DateTime)
 
@@ -136,6 +153,7 @@ class SavedFilter(Base):
 
     id: Mapped[int] = mapped_column(Integer, primary_key=True)
     user_id: Mapped[int] = mapped_column(Integer, ForeignKey("users.id", ondelete="CASCADE"), index=True)
+    market: Mapped[str] = mapped_column(String(8), default="IN")
     name: Mapped[str] = mapped_column(String(80))
     state: Mapped[str] = mapped_column(String(2000))
     created_at: Mapped[datetime] = mapped_column(DateTime)

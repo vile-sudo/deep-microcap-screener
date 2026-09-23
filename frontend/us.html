@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Deep Sweep — US</title>
+<meta name="description" content="Deep Sweep US — a research board for US micro/small-cap names with a self-described moat, sourced from SEC filings.">
+<link rel="icon" type="image/svg+xml" href="/static/favicon.svg?v=1">
+<link rel="icon" type="image/png" sizes="32x32" href="/static/favicon-32.png?v=1">
+<link rel="icon" href="/favicon.ico?v=1" sizes="48x48">
+<meta name="theme-color" content="#0a73a8">
+<script>try{if(localStorage.getItem("dms.mode")==="dark")document.documentElement.dataset.mode="dark"}catch(e){}</script>
+<link rel="stylesheet" href="/static/style.css?v=64">
+<link rel="stylesheet" href="/static/dark.css?v=64">
+<style>
+  /* Phase 2 MVP: a smaller page than the India dashboard (see main.py's
+     /us route comment for why) -- these are the few rules its simpler
+     layout needs that aren't already covered by the shared stylesheet. */
+  .us-topbar{display:flex;align-items:center;gap:16px;flex-wrap:wrap;padding:14px 20px;border-bottom:1px solid var(--ring);background:var(--surface)}
+  .us-brand{font-weight:700;font-size:17px;display:flex;align-items:center;gap:8px}
+  .us-brand em{font-style:normal;color:var(--s1)}
+  .us-badge{font-size:11px;font-weight:700;letter-spacing:.04em;padding:2px 8px;border-radius:999px;background:var(--s1);color:#fff}
+  .us-topbar-right{margin-left:auto;display:flex;align-items:center;gap:10px}
+  .us-toolbar{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:14px}
+  .us-toolbar .searchwrap{flex:1;min-width:240px}
+  .us-count{font-size:12.5px;color:var(--muted);margin-bottom:10px}
+  #us-tbl th{cursor:pointer;white-space:nowrap;position:sticky;top:0;background:var(--surface);text-align:left}
+  #us-tbl td,#us-tbl th{white-space:nowrap;text-align:left}
+  #us-tbl td.n,#us-tbl th.n{text-align:right}
+  #us-tbl td.us-wrap{white-space:normal;max-width:340px;text-align:left}
+  .us-empty{padding:40px 20px;text-align:center;color:var(--muted)}
+  .us-star{border:0;background:none;cursor:pointer;font-size:16px;color:var(--muted);padding:0 4px}
+  .us-star.on{color:#f5b400}
+  .us-tag{display:inline-block;font-size:11px;padding:1px 7px;border-radius:999px;border:1px solid var(--ring);color:var(--muted)}
+  .us-drawer-body h3{margin:0 0 6px}
+  .us-drawer-row{margin:10px 0}
+  .us-drawer-row b{display:block;font-size:11px;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);margin-bottom:3px}
+</style>
+</head>
+<body>
+
+<header class="nav" id="topnav">
+  <div class="nav-in us-topbar">
+    <div class="us-brand"><b>Deep <em>Sweep</em></b><span class="us-badge">US</span></div>
+    <div class="us-topbar-right">
+      <a class="btn" href="/" title="Back to the India board">&larr; India board</a>
+      <button class="btn" id="us-dark-toggle" type="button" title="Toggle dark mode">&#9728;</button>
+      <button class="btn" id="us-logout" type="button">Log out</button>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+<div class="dashboard-shell">
+<main class="dashboard-main">
+
+<section class="dashboard-section">
+  <div class="section-heading">
+    <div><span class="eyebrow">US MICRO/SMALL-CAP</span><h1>Screens</h1>
+      <p class="section-copy">US-listed companies that describe their own moat in an SEC 10-K, found by the same "does the company state it itself" rule the India board uses -- see each row's Moat evidence for the exact quote and source. Auto-added, company-stated, not yet hand-researched.</p>
+    </div>
+    <span class="section-note" id="us-asof"></span>
+  </div>
+
+  <div class="card">
+    <div class="us-toolbar">
+      <div class="searchwrap" id="us-swrap">
+        <span class="ic">&#9906;</span>
+        <input id="us-q" type="search" autocomplete="off" spellcheck="false" placeholder="Search companies — name or ticker…">
+        <button class="clr" id="us-qclear" title="Clear search">&times;</button>
+      </div>
+      <select class="gal-select" id="us-sector" aria-label="Sector"><option value="">All sectors</option></select>
+      <label class="btn" style="display:flex;align-items:center;gap:6px;cursor:pointer">
+        <input type="checkbox" id="us-watch-only" style="margin:0"> Watchlist only
+      </label>
+      <button class="btn" id="us-csv" title="Download every US company on the board as CSV">&#8681; Export CSV</button>
+    </div>
+    <div class="us-count" id="us-count"></div>
+    <div class="tablewrap">
+      <table id="us-tbl">
+        <thead><tr>
+          <th></th>
+          <th data-k="name">Company</th>
+          <th data-k="sector">Sector</th>
+          <th data-k="final_score" class="n">Score</th>
+          <th data-k="market_cap_usd" class="n">Mkt cap $m</th>
+          <th data-k="pe" class="n">P/E</th>
+          <th data-k="roe_pct" class="n">ROE %</th>
+          <th data-k="insider_pct" class="n">Insider %</th>
+          <th>Moat evidence</th>
+        </tr></thead>
+        <tbody id="us-tbody"></tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+</main>
+</div>
+</div>
+
+<div class="scrim" id="us-scrim"></div>
+<aside class="drawer" id="us-drawer" aria-label="Company detail"></aside>
+
+<script src="/static/us.js?v=1" defer></script>
+</body>
+</html>

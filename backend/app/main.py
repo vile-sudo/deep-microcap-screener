@@ -99,3 +99,14 @@ if FRONTEND_DIR.exists():
     @app.get("/login", include_in_schema=False)
     def login_page():
         return FileResponse(FRONTEND_DIR / "login.html")
+
+    @app.get("/us", include_in_schema=False)
+    def us_index():
+        # Phase 2 of US-market support: a separate, smaller page rather than
+        # a market flag threaded through index.html/app.js -- those ~4800
+        # lines of closures assume one homogeneous India dataset (currency
+        # formatting, NSE/BSE fields, ...) at nearly every line, so a
+        # parallel page sharing only the CSS/login shell is the change that
+        # doesn't fight that coupling. Requires login exactly like / does
+        # (not in AccountGateMiddleware's PUBLIC_PATHS).
+        return FileResponse(FRONTEND_DIR / "us.html")

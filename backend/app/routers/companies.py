@@ -30,16 +30,22 @@ router = APIRouter(prefix="/api/companies", tags=["companies"])
 # Auto-added companies an admin took off the board. They stay in
 # companies_raw.json (the server can't edit the repo) and are left out here;
 # the daily auto-screen never re-adds a company it has added once.
+# Per-market: India keeps the original unprefixed key (no forced reseed of
+# an existing production MetaKV row), other markets get a prefixed one.
 HIDDEN_KEY = "HIDDEN_CODES"
 
 
-def hidden_codes(db: Session) -> set[str]:
-    row = db.get(MetaKV, HIDDEN_KEY)
+def hidden_key(market: str) -> str:
+    return HIDDEN_KEY if market == "IN" else f"{market}_{HIDDEN_KEY}"
+
+
+def hidden_codes(db: Session, market: str = "IN") -> set[str]:
+    row = db.get(MetaKV, hidden_key(market))
     return set(row.value or []) if row else set()
 
 SORTABLE = {
-    "final_score", "score", "market_cap_cr", "pe", "roce_pct", "roe_pct",
-    "promoter_pct", "fii_pct", "dii_pct", "num_shareholders",
+    "final_score", "score", "market_cap_cr", "market_cap_usd", "pe", "roce_pct", "roe_pct",
+    "promoter_pct", "fii_pct", "dii_pct", "insider_pct", "inst_pct", "num_shareholders",
     "cwip_pct_net_block", "guidance_pct", "rank", "name",
 }
 
@@ -69,9 +75,33 @@ CSV_COLUMNS = [
     ("PAT turned positive", "pat_turnaround"),
 ]
 
+# US column set is deliberately different, not a reuse of the India one --
+# CWIP/promoter/FII/DII aren't US filing concepts, see
+# backend/scripts/us_auto_screen.py for what insider_pct/inst_pct mean.
+CSV_COLUMNS_US = [
+    ("Rank", "rank"),
+    ("Company", "name"),
+    ("Ticker", "code"),
+    ("Screen", "screen"),
+    ("Theme", "theme"),
+    ("Sector", "sector"),
+    ("Score", "final_score"),
+    ("Rubric", "rubric"),
+    ("Claim grade", "claim_grade"),
+    ("Market cap $m", "market_cap_usd"),
+    ("P/E", "pe"),
+    ("Guidance %", "guidance_pct"),
+    ("Insider %", "insider_pct"),
+    ("Institutional %", "inst_pct"),
+    ("ROE %", "roe_pct"),
+    ("Guides above 15%", "guidance_over15"),
+    ("PAT turned positive", "pat_turnaround"),
+]
+
 
 def _apply_filters(
     q,
+    market: str,
     sector: Optional[str],
     theme: Optional[str],
     screen: Optional[str],
@@ -82,6 +112,7 @@ def _apply_filters(
     search: Optional[str],
     codes: Optional[str],
 ):
+    q = q.filter(Company.market == market)
     if sector:
         q = q.filter(Company.sector == sector)
     if theme:
@@ -108,6 +139,7 @@ def _apply_filters(
 
 @router.get("")
 def list_companies(
+    market: str = Query("in", pattern="^(in|us)$"),
     sector: Optional[str] = None,
     theme: Optional[str] = None,
     screen: Optional[str] = None,
@@ -123,15 +155,16 @@ def list_companies(
     offset: int = Query(0, ge=0),
     db: Session = Depends(get_db),
 ):
+    mkt = market.upper()
     q = db.query(Company)
-    q = _apply_filters(q, sector, theme, screen, rubric, min_score, max_pe, min_roce, search, codes)
+    q = _apply_filters(q, mkt, sector, theme, screen, rubric, min_score, max_pe, min_roce, search, codes)
 
     sort_col = getattr(Company, sort_by if sort_by in SORTABLE else "final_score")
     order = desc(sort_col) if sort_dir == "desc" else asc(sort_col)
     # NULLs last regardless of direction, matching the frontend's own sort behaviour
     q = q.order_by(sort_col.is_(None), order)
 
-    hidden = hidden_codes(db)
+    hidden = hidden_codes(db, mkt)
     if hidden:
         q = q.filter(Company.code.notin_(hidden))
     if offset:
@@ -144,6 +177,7 @@ def list_companies(
 
 @router.get("/export.csv")
 def export_csv(
+    market: str = Query("in", pattern="^(in|us)$"),
     sector: Optional[str] = None,
     theme: Optional[str] = None,
     screen: Optional[str] = None,
@@ -155,19 +189,21 @@ def export_csv(
     codes: Optional[str] = None,
     db: Session = Depends(get_db),
 ):
+    mkt = market.upper()
     q = db.query(Company)
-    q = _apply_filters(q, sector, theme, screen, rubric, min_score, max_pe, min_roce, search, codes)
-    hidden = hidden_codes(db)
+    q = _apply_filters(q, mkt, sector, theme, screen, rubric, min_score, max_pe, min_roce, search, codes)
+    hidden = hidden_codes(db, mkt)
     rows = [c for c in q.all() if c.code not in hidden]
 
+    cols = CSV_COLUMNS if mkt == "IN" else CSV_COLUMNS_US
     buf = io.StringIO()
     writer = csv.writer(buf)
-    writer.writerow([label for label, _ in CSV_COLUMNS])
+    writer.writerow([label for label, _ in cols])
     for c in rows:
         d = c.data
         writer.writerow([
             ("yes" if d.get(key) is True else "" if isinstance(d.get(key), bool) else d.get(key, ""))
-            for _, key in CSV_COLUMNS
+            for _, key in cols
         ])
 
     buf.seek(0)
@@ -179,39 +215,44 @@ def export_csv(
 
 
 @router.get("/hidden")
-def list_hidden(admin: dict = Depends(require_admin), db: Session = Depends(get_db)):
-    codes = sorted(hidden_codes(db))
-    names = {c.code: c.name for c in db.query(Company).filter(Company.code.in_(codes))} if codes else {}
+def list_hidden(market: str = Query("in", pattern="^(in|us)$"), admin: dict = Depends(require_admin), db: Session = Depends(get_db)):
+    mkt = market.upper()
+    codes = sorted(hidden_codes(db, mkt))
+    names = {c.code: c.name for c in db.query(Company).filter(Company.market == mkt, Company.code.in_(codes))} if codes else {}
     return [{"code": c, "name": names.get(c)} for c in codes]
 
 
 @router.post("/{code}/{action}")
-def hide_company(code: str, action: str, admin: dict = Depends(require_admin), db: Session = Depends(get_db)):
+def hide_company(code: str, action: str, market: str = Query("in", pattern="^(in|us)$"),
+                  admin: dict = Depends(require_admin), db: Session = Depends(get_db)):
     """Admins: take an auto-added company off the board ("remove") or put it back ("restore")."""
     if action not in ("remove", "restore"):
         raise HTTPException(status_code=404, detail="Unknown action")
-    company = db.get(Company, code)
+    mkt = market.upper()
+    company = db.get(Company, (mkt, code))
     if not company:
         raise HTTPException(status_code=404, detail=f"No company with code '{code}'")
     if company.screen != "auto":
         raise HTTPException(status_code=400, detail="Only auto-added companies can be removed here; researched companies are edited in the data files")
-    codes = hidden_codes(db)
+    codes = hidden_codes(db, mkt)
     if action == "remove":
         codes.add(code)
     else:
         codes.discard(code)
-    row = db.get(MetaKV, HIDDEN_KEY)
+    key = hidden_key(mkt)
+    row = db.get(MetaKV, key)
     if row:
         row.value = sorted(codes)
     else:
-        db.add(MetaKV(key=HIDDEN_KEY, value=sorted(codes)))
+        db.add(MetaKV(key=key, value=sorted(codes)))
     db.commit()
     return {"code": code, "hidden": code in codes}
 
 
 @router.get("/{code}")
-def get_company(code: str, db: Session = Depends(get_db)):
-    company = db.get(Company, code)
-    if not company or company.code in hidden_codes(db):
+def get_company(code: str, market: str = Query("in", pattern="^(in|us)$"), db: Session = Depends(get_db)):
+    mkt = market.upper()
+    company = db.get(Company, (mkt, code))
+    if not company or company.code in hidden_codes(db, mkt):
         raise HTTPException(status_code=404, detail=f"No company with code '{code}'")
     return company.data

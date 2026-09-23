@@ -79,7 +79,7 @@ def chart_for(code: str, db: Session = Depends(get_db)):
     series = charts.load_series(code)
     source = "exchange"
     if series is None:
-        company = db.get(Company, code)
+        company = db.get(Company, ("IN", code))  # charts is India-only for now (bhavcopy-sourced)
         if company is None:
             raise HTTPException(status_code=404, detail="Company not on the board")
         series, source = _live(code, company.data or {}), "live"
