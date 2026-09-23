@@ -107,6 +107,103 @@ server {
 
 Then `certbot --nginx -d your-domain.com` for HTTPS.
 
+## Option E — Your own AWS EC2 box + Hostinger domain (this project's setup)
+
+This is Option D above, filled in with AWS/Hostinger specifics and wired
+into the existing GitHub Actions workflows so every automated data update
+(News Channel, Movers, deep-dive reports, ...) redeploys your box the same
+way it already redeploys Render — via `git pull && docker compose up -d
+--build` over SSH, not a raw systemd+venv setup. It runs **alongside**
+Render rather than replacing it until you're ready to cut over: every
+workflow's deploy step now tries *both* the Render hook and this SSH
+deploy, and either one is skipped cleanly if its secrets aren't set.
+
+### 1. On the EC2 instance
+
+Security group: allow inbound **22** (SSH, ideally locked to your own IP),
+**80** and **443** (HTTP/HTTPS, from anywhere) from the AWS console.
+
+```bash
+# SSH in, then:
+sudo apt-get update && sudo apt-get install -y docker.io docker-compose-plugin nginx certbot python3-certbot-nginx
+sudo usermod -aG docker $USER && newgrp docker   # so `docker` works without sudo
+
+sudo mkdir -p /opt/screener-app && sudo chown $USER /opt/screener-app
+git clone https://github.com/vile-sudo/deep-microcap-screener /opt/screener-app
+cd /opt/screener-app
+cp .env.example .env
+nano .env   # fill in ADMIN_EMAIL, ADMIN_PASSWORD, GH_DISPATCH_TOKEN, NEWSDATA_API_KEY, CRON_KEY -- whatever you use
+
+docker compose up -d --build
+curl localhost:8000/healthz   # should print {"status":"ok",...}
+```
+
+### 2. nginx + HTTPS for pkresearch.in
+
+```bash
+sudo cp deploy/nginx-pkresearch.in.conf /etc/nginx/sites-available/pkresearch.in
+sudo ln -s /etc/nginx/sites-available/pkresearch.in /etc/nginx/sites-enabled/
+sudo nginx -t && sudo systemctl reload nginx
+sudo certbot --nginx -d pkresearch.in -d www.pkresearch.in   # rewrites the site file to add HTTPS
+```
+
+### 3. Hostinger DNS
+
+Hostinger → your domain → **DNS / Nameservers** → edit the **A record**:
+point `pkresearch.in` (host `@`) and `www` at the EC2 instance's public IP
+(use an **Elastic IP**, not the default public IP, so it survives a
+stop/start). DNS can take a few minutes to a few hours to propagate —
+until then the site is only reachable by the raw IP.
+
+### 4. Wire up the SSH auto-deploy (GitHub Actions)
+
+Every workflow that commits data (`daily.yml`, `news_channel.yml`,
+`movers.yml`, `charts.yml`, etc.) now has a **"Deploy to AWS"** step that
+SSHes in and runs `git pull --ff-only && docker compose up -d --build`.
+It's a no-op until these repo secrets exist (**Settings → Secrets and
+variables → Actions**):
+
+```bash
+# generate a deploy key with no passphrase (locally, not on the server)
+ssh-keygen -t ed25519 -f deploy_key -N ""
+# copy the PUBLIC half onto the server
+ssh-copy-id -i deploy_key.pub ubuntu@<your-ec2-ip>
+# (or: cat deploy_key.pub, paste it into ~/.ssh/authorized_keys on the box)
+```
+
+Then set:
+
+| Secret | Value |
+|---|---|
+| `AWS_HOST` | the EC2 instance's IP or `pkresearch.in` once DNS is live |
+| `AWS_SSH_KEY` | the *private* half, `cat deploy_key` — the whole file including the `BEGIN`/`END` lines |
+| `AWS_SSH_USER` | optional, defaults to `ubuntu` (Amazon Linux uses `ec2-user`) |
+| `AWS_DEPLOY_PATH` | optional, defaults to `/opt/screener-app` |
+
+Delete `deploy_key`/`deploy_key.pub` locally once `AWS_SSH_KEY` is saved —
+GitHub's secret store is now the only copy that matters.
+
+### 5. Verify, then cut over
+
+With both Render and AWS deploying on every push, open the EC2 box's IP
+(or `pkresearch.in` once DNS resolves) directly and confirm it matches
+Render's dashboard — same company count, same "Last fetched" times on
+News Channel/Movers. Once you're confident:
+
+- Point Hostinger's DNS fully at AWS (if you started with a subdomain for
+  testing) and give it time to propagate.
+- Optionally remove the `RENDER_DEPLOY_HOOK` secret (or leave it — an
+  empty/missing secret already makes that step a no-op) and pause or
+  delete the Render service.
+
+Accounts created while both were live only exist on whichever database
+each was pointed at — Render's Postgres and AWS's SQLite (per `.env.example`)
+don't sync with each other. If you need existing sign-ups to carry over,
+export them from Render's Postgres and import into the new database before
+cutting over; the admin login itself (`ADMIN_EMAIL`/`ADMIN_PASSWORD`) is
+recreated fresh on every startup regardless of database, so that one just
+works on both.
+
 ## Switching to Postgres (recommended once more than one instance runs)
 
 SQLite is fine for a single instance / low-traffic personal dashboard.
