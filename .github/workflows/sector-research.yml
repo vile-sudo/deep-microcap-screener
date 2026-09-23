@@ -77,7 +77,6 @@ jobs:
         run: python scripts/sector_numbers.py
       - name: Commit and deploy
         env:
-          RENDER_DEPLOY_HOOK: ${{ secrets.RENDER_DEPLOY_HOOK }}
           AWS_HOST: ${{ secrets.AWS_HOST }}
           AWS_SSH_KEY: ${{ secrets.AWS_SSH_KEY }}
           AWS_SSH_USER: ${{ secrets.AWS_SSH_USER }}
@@ -89,7 +88,6 @@ jobs:
           if git diff --cached --quiet; then echo "Nothing changed"; exit 0; fi
           git commit -m "Sector research update $(TZ=Asia/Kolkata date +%F)"
           for i in 1 2 3; do git pull --rebase origin ${{ github.ref_name }} && git push origin HEAD:${{ github.ref_name }} && break; sleep 5; done
-          if [ -n "$RENDER_DEPLOY_HOOK" ]; then curl -fsSL --retry 3 -X POST "$RENDER_DEPLOY_HOOK" > /dev/null; echo "Render deploy triggered"; fi
           if [ -n "$AWS_HOST" ] && [ -n "$AWS_SSH_KEY" ]; then
             mkdir -p ~/.ssh
             printf '%s\n' "$AWS_SSH_KEY" > ~/.ssh/deploy_key

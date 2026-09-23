@@ -111,12 +111,15 @@ Then `certbot --nginx -d your-domain.com` for HTTPS.
 
 This is Option D above, filled in with AWS/Hostinger specifics and wired
 into the existing GitHub Actions workflows so every automated data update
-(News Channel, Movers, deep-dive reports, ...) redeploys your box the same
-way it already redeploys Render — via `git pull && docker compose up -d
---build` over SSH, not a raw systemd+venv setup. It runs **alongside**
-Render rather than replacing it until you're ready to cut over: every
-workflow's deploy step now tries *both* the Render hook and this SSH
-deploy, and either one is skipped cleanly if its secrets aren't set.
+(News Channel, Movers, deep-dive reports, ...) redeploys your box on every
+push — via `git pull && docker compose up -d --build` over SSH, not a raw
+systemd+venv setup. Skipped cleanly if `AWS_HOST`/`AWS_SSH_KEY` aren't set.
+
+(This project ran AWS and Render in parallel for a while during the
+initial cutover -- each workflow briefly had both a "Trigger Render
+deploy" and a "Deploy to AWS" step. That's gone now that AWS is the one
+live deployment; if you ever want a second target again, the SSH deploy
+step below is the pattern to copy.)
 
 ### 1. On the EC2 instance
 
@@ -186,15 +189,20 @@ GitHub's secret store is now the only copy that matters.
 ### 5. Verify, then cut over
 
 With both Render and AWS deploying on every push, open the EC2 box's IP
-(or `pkresearch.in` once DNS resolves) directly and confirm it matches
+(or your domain once DNS resolves) directly and confirm it matches
 Render's dashboard — same company count, same "Last fetched" times on
 News Channel/Movers. Once you're confident:
 
 - Point Hostinger's DNS fully at AWS (if you started with a subdomain for
   testing) and give it time to propagate.
-- Optionally remove the `RENDER_DEPLOY_HOOK` secret (or leave it — an
-  empty/missing secret already makes that step a no-op) and pause or
-  delete the Render service.
+- Remove the `RENDER_DEPLOY_HOOK` secret and the "Trigger Render deploy"
+  step from every workflow (each one only has "Deploy to AWS" left now —
+  see the note at the top of Option E) before you actually suspend or
+  delete the Render service. Do this first: with the Render step still
+  in place, a suspended Render's deploy hook returning an error would
+  fail that step, and GitHub Actions skips every step after a failed one
+  by default -- including "Deploy to AWS" right after it. Removing the
+  Render step avoids that trap entirely.
 
 Accounts created while both were live only exist on whichever database
 each was pointed at — Render's Postgres and AWS's SQLite (per `.env.example`)
