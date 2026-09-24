@@ -208,6 +208,19 @@
     "VIMTALABS": "already covers Dec 2024",
     "SIMPLEXCAS": "already covers Sep 2021"
    }
+  },
+  {
+   "on": "2026-09-24",
+   "written": [
+    "CFF:FY26-Q4",
+    "544823:2026-09-24"
+   ],
+   "spent_usd": null,
+   "skipped": {
+    "VIMTALABS": "already covers Dec 2024",
+    "SIMPLEXCAS": "already covers Sep 2021",
+    "FLUIDOM": "already covers Mar 2023"
+   }
   }
  ],
  "seen_new_results": {
@@ -218,6 +231,10 @@
   "SIMPLEXCAS": {
    "quarter": "Jun 2026",
    "on": "2026-09-22"
+  },
+  "FLUIDOM": {
+   "quarter": "Jun 2026",
+   "on": "2026-09-24"
   }
  },
  "reports": {
@@ -436,6 +453,24 @@
    "cost_usd": null,
    "api_equivalent_usd": 5.127,
    "minutes": 13.4
+  },
+  "CFF": {
+   "period": "FY26-Q4",
+   "on": "2026-09-24",
+   "engine": "claude-code",
+   "tokens_out": 58363,
+   "cost_usd": null,
+   "api_equivalent_usd": 2.165,
+   "minutes": 8.4
+  },
+  "544823": {
+   "period": "2026-09-24",
+   "on": "2026-09-24",
+   "engine": "claude-code",
+   "tokens_out": 79427,
+   "cost_usd": null,
+   "api_equivalent_usd": 2.791,
+   "minutes": 11.0
   }
  }
 }

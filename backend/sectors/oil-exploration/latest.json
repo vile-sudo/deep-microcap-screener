@@ -1,48 +1,93 @@
 {
- "updated": "2026-09-23T05:14+05:30",
+ "updated": "2026-09-24T05:10+05:30",
  "figures": [
   {
-   "label": "Brent crude (Nov future)",
-   "value": "$99.94/bbl",
-   "as_of": "2026-09-22",
-   "note": "-0.40% in early trade, fell further intraday toward $98/bbl on Hormuz reopening ",
+   "label": "Brent crude",
+   "value": "$102.83/bbl",
+   "as_of": "2026-09-23",
+   "note": "+3.86% on the day, snapping a 5-day losing streak",
    "source": {
-    "publisher": "BNN Bloomberg",
-    "url": "https://www.bnnbloomberg.ca/markets/oil/2026/09/22/oil-falls-to-two-week-low-as-gulf-supply-outlook-improves/"
+    "publisher": "Trading Economics",
+    "url": "https://tradingeconomics.com/commodity/brent-crude-oil"
    }
   },
   {
-   "label": "India crude import bill, Apr-Aug FY27",
-   "value": "$74.8 billion",
-   "as_of": "2026-09-22",
-   "note": "+48.4% YoY vs $50.4 bn; PPAC data",
-   "source": {
-    "publisher": "The Tribune",
-    "url": "https://www.tribuneindia.com/news/business/indias-crude-oil-imports-bill-increased-by-48-4-to-usd74-8-billion-during-april-august-due-to-higher-global-prices"
-   }
-  },
-  {
-   "label": "Indian crude basket, Aug 2026 avg",
-   "value": "$90.19/bbl",
-   "as_of": "2026-09-22",
-   "note": "+30.5% YoY from $69.11; PPAC via The Tribune",
-   "source": {
-    "publisher": "The Tribune",
-    "url": "https://www.tribuneindia.com/news/business/indias-crude-oil-imports-bill-increased-by-48-4-to-usd74-8-billion-during-april-august-due-to-higher-global-prices"
-   }
-  },
-  {
-   "label": "VLCC freight, Persian Gulf-Asia",
-   "value": "~$1.1 million/day",
+   "label": "Indian crude basket",
+   "value": "$117.40/bbl",
    "as_of": "2026-09-21",
-   "note": "~12x jump within months from 20-yr avg of $29,900/day",
+   "note": "vs FY26 average of about $66/bbl",
    "source": {
-    "publisher": "ThePrint",
-    "url": "https://theprint.in/economy/1-million-a-day-oil-tankers-cost-of-hiring-oil-tankers-has-spiralled-amid-west-asia-crisis/3048529/"
+    "publisher": "Business Today",
+    "url": "https://www.businesstoday.in/latest/economy/story/why-are-oil-marketing-companies-facing-rs-530-crore-losses-daily-557375-2026-09-23"
+   }
+  },
+  {
+   "label": "OMC daily fuel-sale loss",
+   "value": "Rs 530 crore/day",
+   "as_of": "2026-09-23",
+   "note": "ICRA estimate; about Rs 8/litre on petrol, Rs 9/litre on diesel",
+   "source": {
+    "publisher": "Business Today",
+    "url": "https://www.businesstoday.in/latest/economy/story/why-are-oil-marketing-companies-facing-rs-530-crore-losses-daily-557375-2026-09-23"
+   }
+  },
+  {
+   "label": "Strait of Hormuz transits",
+   "value": "1/day vs 85/day baseline",
+   "as_of": "2026-09-20",
+   "note": "about 1% of pre-crisis traffic; IMF PortWatch data",
+   "source": {
+    "publisher": "Straits Daily Brief",
+    "url": "https://straits.live/briefs/2026-09-23"
    }
   }
  ],
  "items": [
+  {
+   "date": "2026-09-23",
+   "title": "ICRA: state fuel retailers losing Rs 530 crore/day as crude tops $117; govt holds pump prices",
+   "text": "ICRA estimates Indian Oil, BPCL and HPCL are together losing about Rs 530 crore a day, with marketing losses of roughly Rs 8/litre on petrol and Rs 9/litre on diesel plus an LPG under-recovery near Rs 300/cylinder, after the Indian crude basket climbed to $117.4/bbl on 21 September versus a FY26 average of about $66. Government officials said there is no proposal yet to raise retail petrol or diesel prices, but the state may consider financial support for the OMCs if crude stays elevated. Sustained losses would pressure OMC cash flow and raise their working-capital borrowing.",
+   "tone": "bad",
+   "companies": [
+    "IOC",
+    "BPCL",
+    "HINDPETRO"
+   ],
+   "sources": [
+    {
+     "publisher": "Business Today",
+     "title": "Why are oil marketing companies facing Rs 530 crore losses daily?",
+     "url": "https://www.businesstoday.in/latest/economy/story/why-are-oil-marketing-companies-facing-rs-530-crore-losses-daily-557375-2026-09-23",
+     "date": "2026-09-23"
+    },
+    {
+     "publisher": "Business Today",
+     "title": "No petrol, diesel price hike proposal yet; govt may support OMCs if crude stays high",
+     "url": "https://www.businesstoday.in/india/story/no-petrol-diesel-price-hike-proposal-yet-govt-may-support-omcs-if-crude-stays-high-557309-2026-09-23",
+     "date": "2026-09-23"
+    }
+   ],
+   "added": "2026-09-24"
+  },
+  {
+   "date": "2026-09-23",
+   "title": "Kotak: Oil India's valuation premium over ONGC not backed by fundamentals",
+   "text": "Kotak Institutional Equities said Oil India's outperformance over ONGC - a roughly 15-percentage-point gap since end-February and 14 points since end-June - mainly reflects investor rotation into mid-caps rather than superior fundamentals, since ONGC retains a structural edge in reserve-to-production ratio for both oil and gas. The brokerage flagged that ONGC's stock fell even as crude prices rallied sharply, calling the valuation gap a mispricing that could narrow if sentiment shifts back toward large-caps.",
+   "tone": "info",
+   "companies": [
+    "ONGC",
+    "OIL"
+   ],
+   "sources": [
+    {
+     "publisher": "Whalesbook",
+     "title": "Kotak Questions Oil India Premium Over ONGC",
+     "url": "https://www.whalesbook.com/news/English/brokerage-reports/Kotak-Questions-Oil-India-Premium-Over-ONGC/6ab398a65aacb956d07df62f",
+     "date": "2026-09-23"
+    }
+   ],
+   "added": "2026-09-24"
+  },
   {
    "date": "2026-09-22",
    "title": "Iran offers to reopen Hormuz in 7 days as Saudi restarts pipeline; Brent hits 2-week low",
