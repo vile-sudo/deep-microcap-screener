@@ -1,3 +1,4 @@
+import asyncio
 import logging
 import os
 from contextlib import asynccontextmanager
@@ -13,11 +14,29 @@ from .auth import AccountGateMiddleware, ensure_admin
 from .config import get_settings
 from .database import Base, engine
 from .seed import seed_if_changed
+from . import news_channel as news_feed
 from .routers import account, alerts, asme, auth as auth_routes, charts, companies, deals, ipo_reports, logic_gates, market, meta, movers, news_channel, reports, sectors, watchlist
 
 settings = get_settings()
 
 FRONTEND_DIR = Path(__file__).resolve().parent.parent.parent / "frontend"
+
+
+NEWS_REFRESH_SECONDS = 300
+
+
+async def _news_refresher():
+    """Keeps the News Channel feed fresh from the server itself every 5
+    minutes -- see news_channel.refresh_if_stale for why."""
+    log = logging.getLogger("deepsweep")
+    await asyncio.sleep(20)   # let startup finish first
+    while True:
+        try:
+            if await asyncio.to_thread(news_feed.refresh_if_stale, settings.newsdata_api_key or None, NEWS_REFRESH_SECONDS - 30):
+                log.info("news channel refreshed")
+        except Exception as e:  # noqa: BLE001
+            log.warning("news channel refresh failed: %s", e)
+        await asyncio.sleep(60)
 
 
 @asynccontextmanager
@@ -32,7 +51,11 @@ async def lifespan(app: FastAPI):
         logging.getLogger("deepsweep").warning("create_all at startup: %s", e)
     seed_if_changed()
     ensure_admin()
-    yield
+    news_task = asyncio.create_task(_news_refresher())
+    try:
+        yield
+    finally:
+        news_task.cancel()
 
 
 app = FastAPI(

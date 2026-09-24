@@ -2740,9 +2740,9 @@ async function iporRenderDoc(symbol){
 
 /* ==================================================================
    News Channel — China/India/USA news for the sectors each one
-   dominates globally (see backend/app/news_channel.py: at most 3
-   newsdata.io requests a run, refreshed every 12 hours). A flat feed,
-   fetched once; every filter here runs client-side against it. */
+   dominates globally (see backend/app/news_channel.py: the server
+   re-fetches every 5 minutes). A flat feed; every filter here runs
+   client-side against it, and the page re-polls the server while open. */
 const NEWS_COUNTRY={cn:'China', in:'India', us:'USA'};
 const NEWS={data:null, loading:null, built:false, seen:undefined};
 
@@ -2817,6 +2817,19 @@ function newsBuildControls(){
   document.getElementById('news-reload').onclick=newsReload;
 }
 
+/* While the News page is on screen, quietly re-pull every 3 minutes so new
+   items appear without a reload (only re-renders when the server's as_of
+   actually moved, so an open filter or scroll position isn't disturbed for
+   nothing). */
+setInterval(async ()=>{
+  const body=document.getElementById('news-body');
+  if(!NEWS.built || document.hidden || !body || !body.offsetParent) return;
+  const j=await fetchJSON('/api/news-channel').catch(()=>null);
+  if(!j || !j.items || (NEWS.data && j.as_of===NEWS.data.as_of)) return;
+  NEWS.loading=Promise.resolve(j); NEWS.data=j;
+  newsRender(); newsMarkSeen();
+}, 180000);
+
 /* Pulls whatever the server currently has, for every reader -- not the
    admin-only "Refresh now" below, which kicks off a brand new fetch from
    Google News/newsdata.io. newsFetch() caches its promise for the life of
@@ -2825,6 +2838,7 @@ function newsBuildControls(){
    newer items short of a full page reload. */
 async function newsReload(){
   const btn=document.getElementById('news-reload');
+  if(btn && btn.disabled) return;
   if(btn){ btn.disabled=true; btn.textContent='Reloading…'; }
   const j=await fetchJSON('/api/news-channel').catch(()=>null);
   NEWS.loading=Promise.resolve(j);

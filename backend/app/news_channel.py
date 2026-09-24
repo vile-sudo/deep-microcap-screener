@@ -38,6 +38,7 @@ companies, setups, or any other screen.
 from __future__ import annotations
 
 import json
+import os
 import re
 import time
 import xml.etree.ElementTree as ET
@@ -196,8 +197,12 @@ def fetch_google_sector(code: str, sector_name: str, keywords: list[str], sessio
     source an item came from."""
     cfg = COUNTRIES[code]
     q = _gnews_query(cfg["name"], keywords)
-    r = session.get(GOOGLE_RSS_URL, params={"q": q, "hl": "en-IN", "gl": "IN", "ceid": "IN:en"},
-                    headers=GOOGLE_HEADERS, timeout=20)
+    for attempt in range(3):   # Google throttles in bursts (503/429); a short backoff usually clears it
+        r = session.get(GOOGLE_RSS_URL, params={"q": q, "hl": "en-IN", "gl": "IN", "ceid": "IN:en"},
+                        headers=GOOGLE_HEADERS, timeout=20)
+        if r.status_code not in (429, 503) or attempt == 2:
+            break
+        time.sleep(3 * (attempt + 1))
     r.raise_for_status()
     root = ET.fromstring(r.content)
     out = []
@@ -275,8 +280,53 @@ def write(api_key: str | None) -> dict:
                "count": len(merged), "items": merged, "errors": errors,
                "quota": {"date": time.strftime("%Y-%m-%d", time.gmtime()), "calls": calls_today}}
     NEWS_FILE.parent.mkdir(parents=True, exist_ok=True)
-    NEWS_FILE.write_text(json.dumps(payload, indent=1), encoding="utf-8")
+    tmp = NEWS_FILE.with_name(NEWS_FILE.name + f".{os.getpid()}.tmp")   # atomic: the API reads this file while a refresh writes it
+    tmp.write_text(json.dumps(payload, indent=1), encoding="utf-8")
+    os.replace(tmp, NEWS_FILE)
     return payload
+
+
+LOCK_FILE = NEWS_FILE.with_name(".refresh.lock")
+
+
+def age_seconds() -> float:
+    """Seconds since the feed was last written, inf if there is none yet."""
+    try:
+        return max(0.0, time.time() - NEWS_FILE.stat().st_mtime)
+    except OSError:
+        return float("inf")
+
+
+def refresh_if_stale(api_key: str | None, max_age: int) -> bool:
+    """Server-side refresh, so the feed no longer depends on GitHub's
+    schedule (which fires every 3-6 hours in practice) or on the committed
+    copy reaching a Docker volume that shadows the image's data dir. Safe
+    with several gunicorn workers: a lock file (O_EXCL, ignored once 10
+    minutes old in case a worker died holding it) lets only one fetch at a
+    time. Returns True if it actually fetched."""
+    if age_seconds() < max_age:
+        return False
+    LOCK_FILE.parent.mkdir(parents=True, exist_ok=True)
+    try:
+        if time.time() - LOCK_FILE.stat().st_mtime > 600:
+            LOCK_FILE.unlink()
+    except OSError:
+        pass
+    try:
+        fd = os.open(LOCK_FILE, os.O_CREAT | os.O_EXCL | os.O_WRONLY)
+    except FileExistsError:
+        return False
+    try:
+        os.close(fd)
+        if age_seconds() < max_age:   # another worker finished between our check and the lock
+            return False
+        write(api_key)
+        return True
+    finally:
+        try:
+            LOCK_FILE.unlink()
+        except OSError:
+            pass
 
 
 def load() -> dict:
