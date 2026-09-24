@@ -1,12 +1,12 @@
 """
-News Channel: China, India and USA news for the sectors each one dominates
+News Channel: China, India, USA and Japan news for the sectors each one dominates
 globally -- a leading indicator for Indian listed companies downstream (a
 Chinese API price hike is a margin story for the Indian bulk-drug makers who
 buy from it; a US tariff on steel reroutes demand; and so on).
 
-Two sources, fanned into the same filter/tag pipeline (sector tagging,
+Three sources (Google News, newsdata.io, BusinessLine), fanned into the same filter/tag pipeline (sector tagging,
 source quality, "is this actually a price move" -- the same client-side
-work app/movers/news.py already does for company news), not two separate
+work app/movers/news.py already does for company news), not separate
 feeds:
 
 - Google News RSS (fetch_google_sector) -- no API key, no formal daily
@@ -20,6 +20,13 @@ feeds:
   <copyright> tag restricts it to "personal, non-commercial use", which
   this dashboard is) -- paced at half a second between requests and left
   to fail silently into `errors` per query, never allowed to break the run.
+- BusinessLine RSS (fetch_businessline) -- thehindubusinessline.com's own
+  section feeds, no key, no quota. An Indian desk covering all four
+  countries, so each headline is assigned to a country by who it is about
+  (_COUNTRY_HINTS). Exists because Google's sector queries only find what
+  their keywords name: "India starts anti-dumping probe into Chinese
+  Glycine imports" matched nothing until trade-remedy language (TRADE_REMEDY)
+  and this direct feed were added.
 - newsdata.io (fetch_country) -- kept as a second, independent source, not
   replaced: one request per country per run (COUNTRIES below), same 100-char
   query cap as before. Optional now -- write() runs Google News regardless
@@ -51,6 +58,8 @@ NEWS_FILE = BACKEND_DIR / "data" / "news_channel" / "latest.json"
 API_URL = "https://newsdata.io/api/1/latest"
 GOOGLE_RSS_URL = "https://news.google.com/rss/search"
 GOOGLE_HEADERS = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126 Safari/537.36"}
+BL_FEEDS = ["economy", "economy/policy", "companies", "markets", "news", "news/world", "economy/agri-business"]
+BL_URL = "https://www.thehindubusinessline.com/{}/feeder/default.rss"   # ~60 latest items each
 GOOGLE_WINDOW_DAYS = 3     # the query's own "when:Nd" -- wider than LOOKBACK_HOURS so a story near the
                            # edge still gets picked up; LOOKBACK_HOURS is still what decides what's kept
 MAX_PER_COUNTRY = 10       # one page per country per run -- 1 credit each
@@ -105,7 +114,40 @@ COUNTRIES = {
             ("Tariffs & trade policy", ["tariff", "trade deal", "trade war", "sanction"]),
         ],
     },
+    "jp": {
+        "name": "Japan",
+        "keywords": 'semiconductor OR robot OR "machine tool" OR MLCC OR "carbon fiber" OR steel OR toyota OR ship',
+        "sectors": [
+            ("Semiconductor materials & equipment", ["semiconductor", "photoresist", "silicon wafer", "chip equipment",
+                                                      "chipmaking", "chip material"]),
+            ("Robotics & machine tools", ["robot", "machine tool", "factory automation", "fanuc", "yaskawa"]),
+            ("Auto & EV", ["toyota", "honda", "nissan", "suzuki", "auto maker", "automaker", "hybrid car"]),
+            ("Electronic components", ["mlcc", "capacitor", "electronic component", "image sensor", "murata", "tdk"]),
+            ("Specialty chemicals & materials", ["specialty chemical", "carbon fiber", "polyimide", "fluorine",
+                                                  "advanced material"]),
+            ("Steel & shipbuilding", ["steel", "shipbuilding", "shipbuilder"]),
+        ],
+    },
 }
+
+# Trade-remedy news (anti-dumping probes, countervailing/safeguard duties) is
+# a direct, tradeable catalyst for the Indian maker on the protected side, and
+# the goods involved (glycine, say) are often too obscure for any product
+# keyword list to name -- so this is matched on the action, not the product.
+# Added to every country's sector list below.
+TRADE_REMEDY = ("Trade remedies / anti-dumping",
+                ["anti-dumping", "antidumping", "anti dumping", "countervailing", "safeguard duty", "dgtr"])
+for _cfg in COUNTRIES.values():
+    _cfg["sectors"].append(TRADE_REMEDY)
+
+# BusinessLine is an Indian desk covering every country, so its feed is
+# sorted into a country by who the headline is about, not by where it was
+# published. First match wins; nothing matched = India.
+_COUNTRY_HINTS = (
+    ("cn", ("china", "chinese", "beijing")),
+    ("jp", ("japan", "japanese", "tokyo")),
+    ("us", (" u.s.", " us ", " usa ", "american", "trump", "washington", " fda ")),
+)
 
 # Two cheap tells that a headline is about an actual price move, not just
 # sector news in general -- either is enough to flag it, no proximity check
@@ -183,8 +225,12 @@ def _gnews_published(raw: str | None) -> str:
     if not raw:
         return ""
     try:
+        from datetime import timezone
         from email.utils import parsedate_to_datetime
-        return parsedate_to_datetime(raw).strftime("%Y-%m-%d %H:%M:%S")
+        dt = parsedate_to_datetime(raw)
+        if dt.tzinfo is not None:
+            dt = dt.astimezone(timezone.utc)   # BusinessLine sends +0530; the feed is UTC throughout
+        return dt.strftime("%Y-%m-%d %H:%M:%S")
     except (TypeError, ValueError):
         return ""
 
@@ -225,6 +271,39 @@ def fetch_google_sector(code: str, sector_name: str, keywords: list[str], sessio
     return out
 
 
+def _bl_country(title: str) -> str:
+    low = f" {title.lower()} "
+    for code, words in _COUNTRY_HINTS:
+        if any(w in low for w in words):
+            return code
+    return "in"
+
+
+def fetch_businessline(section: str, session: requests.Session) -> list[dict]:
+    """One BusinessLine section feed (thehindubusinessline.com RSS -- no key,
+    no quota, latest ~60 items). Same output shape and same sector gate as
+    the other two sources; only the country tag is worked out per headline
+    (see _COUNTRY_HINTS)."""
+    r = session.get(BL_URL.format(section), headers=GOOGLE_HEADERS, timeout=20)
+    r.raise_for_status()
+    root = ET.fromstring(r.content)
+    out = []
+    for item in root.findall(".//item"):
+        title = (item.findtext("title") or "").strip()
+        link = (item.findtext("link") or "").strip()
+        if not title or not link:
+            continue
+        code = _bl_country(title)
+        sectors = _sector_matches(title, COUNTRIES[code]["sectors"])
+        if not sectors:
+            continue
+        out.append({
+            "country": code, "sectors": sectors, "title": title, "link": link, "source": "BusinessLine",
+            "published": _gnews_published(item.findtext("pubDate")), "price_move": _is_price_move(title),
+        })
+    return out
+
+
 def _quota_today(prev: dict) -> int:
     """Requests already made today (UTC), 0 if this is the first run of a
     new day. Persisted in NEWS_FILE itself since a GitHub Actions run has
@@ -254,6 +333,13 @@ def write(api_key: str | None) -> dict:
                 errors.append(f"Google News [{cfg['name']}/{sector_name}]: {exc}")
             time.sleep(0.5)   # polite pacing -- this endpoint is unofficial, no documented quota to respect instead
 
+    for section in BL_FEEDS:
+        try:
+            fresh.extend(fetch_businessline(section, session))
+        except Exception as exc:                                   # noqa: BLE001
+            errors.append(f"BusinessLine [{section}]: {exc}")
+        time.sleep(0.3)
+
     calls_today = _quota_today(prev)
     if not api_key:
         errors.append("newsdata.io: NEWSDATA_API_KEY not set -- Google News only this run")
@@ -271,10 +357,12 @@ def write(api_key: str | None) -> dict:
     cutoff = time.strftime("%Y-%m-%d %H:%M:%S", time.gmtime(time.time() - LOOKBACK_HOURS * 3600))
     seen, merged = set(), []
     for it in sorted(fresh + (prev.get("items") or []), key=lambda x: x.get("published") or "", reverse=True):
-        key = it["link"] or it["title"]
-        if key in seen or (it.get("published") or "") < cutoff:
+        # by link and by headline: the same story arrives from BusinessLine,
+        # Google News and newsdata.io under three different URLs
+        keys = {it["link"] or it["title"], "t:" + re.sub(r"[^a-z0-9]+", "", it["title"].lower())}
+        if keys & seen or (it.get("published") or "") < cutoff:
             continue
-        seen.add(key)
+        seen |= keys
         merged.append(it)
     payload = {"as_of": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
                "count": len(merged), "items": merged, "errors": errors,
