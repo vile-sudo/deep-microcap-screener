@@ -1,0 +1,132 @@
+# CI for mobile/ (the Capacitor Android/iOS wrapper around
+# https://deepsweep.pkresearch.in -- see mobile/README.md and
+# MOBILE_SETUP.md). Builds happen entirely on Codemagic's own machines
+# (including a macOS one for the iOS build), so nothing here needs a local
+# Mac, Android Studio or Xcode -- see MOBILE_SETUP.md for the one-time
+# account setup this depends on (Codemagic project, Firebase project,
+# Google Play Console, Apple Developer + App Store Connect API key).
+#
+# Deliberately NOT triggered on every push: this repo's `main` branch gets
+# pushed to constantly by unrelated automation (News Channel, Movers, daily
+# screens -- see .github/workflows/), which has nothing to do with the app
+# shell and would burn Codemagic build minutes for no reason. Triggered
+# instead by pushing a tag like mobile-v1.0.0, or a manual "Start new build"
+# in the Codemagic dashboard.
+
+workflows:
+  android-release:
+    name: Deep Sweep -- Android release (AAB)
+    max_build_duration: 30
+    instance_type: linux_x2
+    triggering:
+      events: []                       # manual / tag-triggered only, see note above
+      tag_patterns:
+        - pattern: 'mobile-v*'
+          include: true
+    environment:
+      groups:
+        - deepsweep_mobile              # create in Codemagic: Team settings -> Environment variables
+                                         # holds GOOGLE_SERVICES_JSON_BASE64 (see MOBILE_SETUP.md)
+      android_signing:
+        - deepsweep_keystore             # the name you give the keystore when you upload it in
+                                          # Codemagic's Code signing identities -- auto-provides
+                                          # CM_KEYSTORE_PATH/PASSWORD/CM_KEY_ALIAS/CM_KEY_PASSWORD,
+                                          # which mobile/android/app/build.gradle already reads
+      node: 20.11.1
+    scripts:
+      - name: Write google-services.json
+        script: |
+          echo "$GOOGLE_SERVICES_JSON_BASE64" | base64 -d > "$CM_BUILD_DIR/mobile/android/app/google-services.json"
+      - name: npm install
+        script: cd mobile && npm ci
+      - name: Capacitor sync (android)
+        script: cd mobile && npx cap sync android
+      - name: Build signed AAB
+        script: |
+          cd mobile/android
+          chmod +x gradlew
+          ./gradlew bundleRelease
+    artifacts:
+      - mobile/android/app/build/outputs/**/*.aab
+      - mobile/android/app/build/outputs/**/mapping.txt
+    publishing:
+      email:
+        recipients:
+          - researchpkinvestment@gmail.com
+        notify:
+          success: true
+          failure: true
+      # Uncomment once the app exists in Play Console (see MOBILE_SETUP.md --
+      # the very first upload has to be done by hand; the API can't create a
+      # brand-new app listing) and you've added a "deepsweep_play" service
+      # account integration under Codemagic Team settings -> Integrations.
+      # google_play:
+      #   credentials: $CM_GOOGLE_PLAY_SERVICE_ACCOUNT_CREDENTIALS
+      #   track: internal
+      #   submit_as_draft: true
+
+  ios-release:
+    name: Deep Sweep -- iOS release (App Store)
+    max_build_duration: 60
+    instance_type: mac_mini_m2
+    triggering:
+      events: []
+      tag_patterns:
+        - pattern: 'mobile-v*'
+          include: true
+    integrations:
+      app_store_connect: deepsweep_asc   # the name you give the App Store Connect API key when you
+                                          # add it in Codemagic Team settings -> Integrations -- this
+                                          # is what lets Codemagic sign and upload with no local Mac
+    environment:
+      groups:
+        - deepsweep_mobile               # holds GOOGLE_SERVICE_INFO_PLIST_BASE64
+      ios_signing:
+        distribution_type: app_store
+        bundle_identifier: in.pkresearch.deepsweep
+      vars:
+        XCODE_WORKSPACE: 'ios/App/App.xcworkspace'
+        XCODE_SCHEME: 'App'
+      node: 20.11.1
+      xcode: latest
+      cocoapods: default
+    scripts:
+      - name: Write GoogleService-Info.plist
+        script: |
+          echo "$GOOGLE_SERVICE_INFO_PLIST_BASE64" | base64 -d > "$CM_BUILD_DIR/mobile/ios/App/App/GoogleService-Info.plist"
+      - name: npm install
+        script: cd mobile && npm ci
+      - name: Capacitor sync (ios)
+        script: cd mobile && npx cap sync ios
+      - name: Wire Firebase into the Xcode project
+        script: |
+          cd mobile/ios
+          gem install xcodeproj --no-document
+          ruby inject_firebase.rb
+      - name: CocoaPods install
+        script: cd mobile/ios/App && pod install
+      - name: Fetch signing files
+        script: |
+          xcode-project use-profiles
+      - name: Build ipa
+        script: |
+          cd mobile
+          xcode-project build-ipa \
+            --workspace "$XCODE_WORKSPACE" \
+            --scheme "$XCODE_SCHEME"
+    artifacts:
+      - mobile/build/ios/ipa/*.ipa
+      - /tmp/xcodebuild_logs/*.log
+    publishing:
+      email:
+        recipients:
+          - researchpkinvestment@gmail.com
+        notify:
+          success: true
+          failure: true
+      app_store_connect:
+        auth: integration
+        submit_to_testflight: true
+        # submit_to_app_store: true      # flip on once you're ready to submit for review
+        # (the app record itself still has to be created once by hand in
+        # App Store Connect first -- see MOBILE_SETUP.md)

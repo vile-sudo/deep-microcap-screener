@@ -2739,11 +2739,11 @@ async function iporRenderDoc(symbol){
 }
 
 /* ==================================================================
-   News Channel — China/India/USA news for the sectors each one
+   News Channel — China/India/USA/Japan news for the sectors each one
    dominates globally (see backend/app/news_channel.py: the server
    re-fetches every 5 minutes). A flat feed; every filter here runs
    client-side against it, and the page re-polls the server while open. */
-const NEWS_COUNTRY={cn:'China', in:'India', us:'USA'};
+const NEWS_COUNTRY={cn:'China', in:'India', us:'USA', jp:'Japan'};
 const NEWS={data:null, loading:null, built:false, seen:undefined};
 
 function newsFetch(){
@@ -3495,6 +3495,40 @@ function setDark(on, save){
   if(VIEW==='gallery' || VIEW==='market') render();
 }
 
+/* ---------- mobile/ app push notifications ----------------------------
+   No-ops in a plain browser: window.Capacitor only exists when this same
+   page is loaded inside the mobile/ Android/iOS shell (Capacitor injects
+   its runtime into the WebView regardless of local or remote content --
+   see mobile/capacitor.config.json's server.url). Uses the Firebase
+   Messaging plugin (@capacitor-firebase/messaging), not the plain
+   @capacitor/push-notifications one -- it converts the iOS APNs token
+   into a real FCM token on-device, so app/push.py can send one Firebase
+   call that reaches both platforms. Server side: routers/push.py stores
+   the token, app/push.py sends to it (News Channel for now). */
+let MOBILE_PUSH_TOKEN=null;
+async function mobilePushRegister(){
+  const cap=window.Capacitor;
+  if(!cap || !cap.isNativePlatform || !cap.isNativePlatform()) return;
+  try{
+    const {FirebaseMessaging}=cap.Plugins;
+    let perm=await FirebaseMessaging.checkPermissions();
+    if(perm.receive!=='granted') perm=await FirebaseMessaging.requestPermissions();
+    if(perm.receive!=='granted') return;
+    const {token}=await FirebaseMessaging.getToken();
+    MOBILE_PUSH_TOKEN=token;
+    await api('/api/push/register','POST',{token, platform: cap.getPlatform()});
+    FirebaseMessaging.addListener('tokenReceived', async e=>{   // Firebase can rotate the token later
+      MOBILE_PUSH_TOKEN=e.token;
+      try{ await api('/api/push/register','POST',{token: e.token, platform: cap.getPlatform()}); }catch(err){}
+    });
+  }catch(e){ console.warn('push setup failed', e); }
+}
+async function mobilePushUnregister(){
+  if(!MOBILE_PUSH_TOKEN) return;
+  try{ await api('/api/push/register','DELETE',{token: MOBILE_PUSH_TOKEN}); }catch(e){}
+  MOBILE_PUSH_TOKEN=null;
+}
+
 async function initUserMenu(){
   let me=null;
   try{ me=await fetchJSON('/api/auth/me'); }catch(e){ return; }
@@ -3502,6 +3536,7 @@ async function initUserMenu(){
   const u=me.user, box=document.getElementById('nav-user');
   ME=u;
   drawUserMenu();
+  mobilePushRegister();
   try{ const j=await api('/api/me/settings'); ACCT.prefs=j.prefs||{}; if(typeof ACCT.prefs.dark==='boolean') setDark(ACCT.prefs.dark,false); }catch(e){}
   refreshUpdatesBadge();
   setInterval(refreshUpdatesBadge, 15*60*1000);
@@ -3548,7 +3583,7 @@ function drawUserMenu(){
     else if(a==='users') openUsers();
     else if(a==='messages') openMessages();
     else if(a==='logicgates') openLogicGates();
-    else if(a==='logout'){ try{ await fetch('/api/auth/logout',{method:'POST',credentials:'same-origin'}); }catch(e){} location.href='/login'; }
+    else if(a==='logout'){ await mobilePushUnregister(); try{ await fetch('/api/auth/logout',{method:'POST',credentials:'same-origin'}); }catch(e){} location.href='/login'; }
   });
   badges();
 }

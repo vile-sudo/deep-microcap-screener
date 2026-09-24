@@ -1,0 +1,20 @@
+{
+  "appId": "in.pkresearch.deepsweep",
+  "appName": "Deep Sweep",
+  "webDir": "www",
+  "server": {
+    "url": "https://deepsweep.pkresearch.in",
+    "cleartext": false
+  },
+  "plugins": {
+    "SplashScreen": {
+      "launchShowDuration": 1200,
+      "backgroundColor": "#0a73a8",
+      "androidSplashResourceName": "splash",
+      "showSpinner": false
+    },
+    "FirebaseMessaging": {
+      "presentationOptions": ["badge", "sound", "alert"]
+    }
+  }
+}

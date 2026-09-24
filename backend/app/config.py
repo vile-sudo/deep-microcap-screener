@@ -58,7 +58,7 @@ class Settings(BaseSettings):
     kite_api_secret: str = ""
     kite_admin_key: str = ""
 
-    # --- News Channel (China/India/USA monopoly-sector news) -------------
+    # --- News Channel (China/India/USA/Japan monopoly-sector news) -------------
     # From https://newsdata.io/ -- the free plan is 200 requests/day. Set as
     # an env var on the host (never commit it); also needed as a GitHub
     # Actions secret (NEWSDATA_API_KEY) for scripts/run_news_channel.py's
@@ -86,6 +86,21 @@ class Settings(BaseSettings):
     # it here and as that service's query-string key, never commit it.
     # Leave empty and the endpoint explains how to set it up.
     cron_key: str = ""
+
+    # --- Push notifications (mobile/ Android/iOS app only) ----------------
+    # The Capacitor wrapper in mobile/ registers each install's device with
+    # POST /api/push/register (routers/push.py); app/push.py sends to them
+    # via Firebase Cloud Messaging, the one push backend that reaches both
+    # Android and iOS. The plain website is unaffected either way -- there
+    # is no web push here, only these two settings.
+    #
+    # firebase_credentials_json is the *entire contents* of the service
+    # account JSON file Firebase Console gives you (Project settings ->
+    # Service accounts -> Generate new private key), pasted as one env var
+    # -- easier to set as a platform secret than a file path on every host.
+    # Leave empty and app/push.py silently no-ops: registration still works,
+    # nothing ever actually sends.
+    firebase_credentials_json: str = ""
 
     # --- Data seeding ----------------------------------------------------
     seed_file: Path = BASE_DIR / "data" / "companies_raw.json"

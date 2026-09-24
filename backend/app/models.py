@@ -175,3 +175,24 @@ class Feedback(Base):
     status: Mapped[str] = mapped_column(String(12), default="new", index=True)   # new | read | done
     created_at: Mapped[datetime] = mapped_column(DateTime)
 
+
+class DeviceToken(Base):
+    """One installed copy of the mobile app (mobile/, the Capacitor
+    Android/iOS wrapper around this same dashboard) registered for push
+    notifications -- see app/push.py for what gets sent and
+    routers/push.py for how a token lands here. The plain website never
+    creates rows here; there is no web push.
+
+    A token is unique to one device/app-install, not to one user: logging
+    out and back in on the same phone reuses the row and just swaps
+    user_id (see routers/push.py's upsert), so a shared device only ever
+    holds one live registration."""
+
+    __tablename__ = "device_tokens"
+
+    token: Mapped[str] = mapped_column(String(255), primary_key=True)
+    user_id: Mapped[int] = mapped_column(Integer, ForeignKey("users.id", ondelete="CASCADE"), index=True)
+    platform: Mapped[str] = mapped_column(String(8))          # android | ios
+    created_at: Mapped[datetime] = mapped_column(DateTime)
+    last_seen_at: Mapped[datetime] = mapped_column(DateTime)
+

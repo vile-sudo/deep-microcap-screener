@@ -12,10 +12,11 @@ from fastapi.responses import FileResponse
 
 from .auth import AccountGateMiddleware, ensure_admin
 from .config import get_settings
-from .database import Base, engine
+from .database import Base, SessionLocal, engine
 from .seed import seed_if_changed
 from . import news_channel as news_feed
-from .routers import account, alerts, asme, auth as auth_routes, charts, companies, deals, ipo_reports, logic_gates, market, meta, movers, news_channel, reports, sectors, watchlist
+from . import push
+from .routers import account, alerts, asme, auth as auth_routes, charts, companies, deals, ipo_reports, logic_gates, market, meta, movers, news_channel, push as push_routes, reports, sectors, watchlist
 
 settings = get_settings()
 
@@ -25,6 +26,30 @@ FRONTEND_DIR = Path(__file__).resolve().parent.parent.parent / "frontend"
 NEWS_REFRESH_SECONDS = 300
 
 
+def _refresh_news_and_push() -> bool:
+    """Runs on a worker thread (see asyncio.to_thread below): fetches if
+    stale, and -- only for the mobile app, see push.py -- notifies every
+    registered device when that fetch actually added something new. Counts
+    before/after rather than trusting refresh_if_stale's own True/False,
+    because a run can fetch successfully and still add nothing (every
+    story already seen)."""
+    before = news_feed.load().get("count", 0)
+    if not news_feed.refresh_if_stale(settings.newsdata_api_key or None, NEWS_REFRESH_SECONDS - 30):
+        return False
+    payload = news_feed.load()
+    # count can also fall (old stories aging out past the 48h cutoff), so a
+    # net drop is clamped to 0 rather than pushing a nonsensical negative
+    added = max(0, payload.get("count", 0) - before)
+    if added > 0 and push.configured():
+        db = SessionLocal()
+        try:
+            push.send_to_all(db, "News Channel", f"{added} new stor{'y' if added == 1 else 'ies'} just in",
+                              {"type": "news_channel"})
+        finally:
+            db.close()
+    return True
+
+
 async def _news_refresher():
     """Keeps the News Channel feed fresh from the server itself every 5
     minutes -- see news_channel.refresh_if_stale for why."""
@@ -32,7 +57,7 @@ async def _news_refresher():
     await asyncio.sleep(20)   # let startup finish first
     while True:
         try:
-            if await asyncio.to_thread(news_feed.refresh_if_stale, settings.newsdata_api_key or None, NEWS_REFRESH_SECONDS - 30):
+            if await asyncio.to_thread(_refresh_news_and_push):
                 log.info("news channel refreshed")
         except Exception as e:  # noqa: BLE001
             log.warning("news channel refresh failed: %s", e)
@@ -92,6 +117,7 @@ app.include_router(logic_gates.router)
 app.include_router(movers.router)
 app.include_router(deals.router)
 app.include_router(news_channel.router)
+app.include_router(push_routes.router)
 
 
 @app.get("/healthz", tags=["ops"])
@@ -122,6 +148,12 @@ if FRONTEND_DIR.exists():
     @app.get("/login", include_in_schema=False)
     def login_page():
         return FileResponse(FRONTEND_DIR / "login.html")
+
+    @app.get("/privacy", include_in_schema=False)
+    def privacy_page():
+        # Public (see auth.PUBLIC_PATHS) -- linked from the App Store/Play
+        # Store listings, which need this reachable with no account at all.
+        return FileResponse(FRONTEND_DIR / "privacy.html")
 
     @app.get("/us", include_in_schema=False)
     def us_index():

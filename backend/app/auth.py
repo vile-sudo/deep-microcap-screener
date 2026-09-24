@@ -44,7 +44,7 @@ log = logging.getLogger("deepsweep.auth")
 
 COOKIE = "ds_session"
 PUBLIC_PREFIXES = ("/static/", "/api/auth/")
-PUBLIC_PATHS = {"/login", "/healthz", "/favicon.ico", "/api/meta/logic-gates", "/api/cron/news-channel"}
+PUBLIC_PATHS = {"/login", "/healthz", "/favicon.ico", "/api/meta/logic-gates", "/api/cron/news-channel", "/privacy"}
 # /api/meta/logic-gates (GET) is public because it's already documented on the
 # board's own "How this board is built" page, and the daily auto-screen reads
 # it over plain HTTP from GitHub Actions, which has no session cookie.
@@ -53,6 +53,8 @@ PUBLIC_PATHS = {"/login", "/healthz", "/favicon.ico", "/api/meta/logic-gates", "
 # unauthenticated at this layer because the route itself gates on the
 # CRON_KEY shared secret (see routers/news_channel.py) -- same model as
 # Market view's kite_admin_key, just reachable without a login at all.
+# /privacy is public because the App Store and Play Store listings both
+# link to it before anyone has an account, let alone a session cookie.
 
 
 def utcnow() -> datetime:

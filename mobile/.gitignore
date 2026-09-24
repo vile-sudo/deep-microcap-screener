@@ -1,0 +1,15 @@
+node_modules/
+
+# Firebase config -- identifies your Firebase project (not a secret exactly,
+# but keep it out of a public repo like everything else project-specific);
+# Codemagic decodes these from secure env vars at build time instead (see
+# ../codemagic.yaml and MOBILE_SETUP.md).
+android/app/google-services.json
+ios/App/App/GoogleService-Info.plist
+
+# Signing material -- never commit these under any circumstances
+*.keystore
+*.jks
+*.p8
+*.p12
+*.mobileprovision
