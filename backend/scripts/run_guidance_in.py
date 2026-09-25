@@ -48,6 +48,7 @@ DELAY = 1.0
 MAX_PAGES = 120
 MAX_STATEMENTS_PER_CALL = 10
 RETRY_DAYS = 30
+EXTRACTOR_VERSION = 2          # bump when the reading rules improve: calls read with an older version are read again
 MONTHS = {m: i for i, m in enumerate(["jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec"], 1)}
 
 NUM = r"(\d{1,3}(?:,\d{3})+(?:\.\d+)?|\d+(?:\.\d+)?)"
@@ -61,8 +62,8 @@ FORWARD = re.compile(r"\b(expect\w*|guid(?:e|ed|es|ing|ance)|target\w*|aim\w*|an
                      r"looking (?:at|to|for)|going to|confident|endeavou?r\w*|retain(?:s|ing)?|maintain(?:s|ing)?|budget\w*|hope\w*|likely)\b", re.I)
 STRONG_FWD = re.compile(r"\b(expect\w*|guid(?:e|ed|es|ing|ance)|target\w*|aim\w*|anticipat\w+|project\w*|will|on track|confident|retain(?:s|ing)?|maintain(?:s|ing)?|budget\w*)\b", re.I)
 # an analyst's question or a comparison with past guidance, not a statement of a target
-QUESTION_LIKE = re.compile(r"\b(question|given that|could you|can you|would you|may i|sir|madam|higher than|lower than|compared (?:to|with)|as against|versus|guided number|thank you)\b", re.I)
-PAST = re.compile(r"\b(grew|achieved|reported|delivered|registered|clocked|clocking|posted|recorded|saw|was|were|had been|reached|closed|stood at|came in|ended)\b", re.I)
+QUESTION_LIKE = re.compile(r"\b(question|given that|could you|can you|would you|may i|sir|madam|higher than|lower than|compared (?:to|with)|as against|versus|guided number|thank you|you had|you have|you said|you mentioned|you guided|previously guided|had guided|earlier guided|improve upon)\b", re.I)
+PAST = re.compile(r"\b(grew|achieved|reported|delivered|registered|clocked|clocking|posted|recorded|saw|was|were|had been|reached|reaching|closed|stood at|came in|ended|demonstrated|expanding to|expanded to|improved to)\b", re.I)
 # a percentage right after these words is a cost ratio, tax rate, payout... not a business target
 NOISY_BEFORE = re.compile(r"(employee|cost|expense|tax|dividend|payout|debt|interest|utili[sz]ation|depreciation|discount|inflation|gst|duty|commission|rate)\w*\W+(?:\w+\W+){0,4}$", re.I)
 # a target for one part of the business, not the company: kept out rather than mis-checked against company totals
@@ -73,8 +74,8 @@ CMP_MIN = re.compile(r"(more than|greater than|at least|over|above|minimum|upwar
 CMP_MAX = re.compile(r"(up to|less than|below|under|maximum|at most|not more than|within)\s*$", re.I)
 CMP_APPROX = re.compile(r"(around|about|approximately|approx\.?|roughly|close to|almost|nearly|~|circa)\s*$", re.I)
 
-REV_NOUN = r"(?:revenue|revenues|sales|top ?line|turnover)"
-PROFIT_NOUN = r"(?:pat|net profit|profit after tax|profits|earnings|ebitda|ebidta)"
+REV_NOUN = r"\b(?:revenue|revenues|sales|top ?line|turnover)\b"
+PROFIT_NOUN = r"\b(?:pat|net profit|profit after tax|profits|earnings|ebitda|ebidta)\b"
 GROWTH = r"(?:grow\w*|growth|increase\w*|cagr|expan\w*|rise|rising)"
 MARGIN_KINDS = [("ebitda_margin", r"(?:ebitda|ebidta|operating|opm|ebit)\s*(?:profit\s*)?margins?"), ("pat_margin", r"(?:pat|net|net profit)\s*margins?"),
                 ("gross_margin", r"gross\s*(?:profit\s*)?margins?")]
@@ -109,7 +110,7 @@ def find_horizon(s: str, call_ym: str) -> dict | None:
         return {"quarter": True}
     if re.search(r"next (?:two|three|four|five|2|3|4|5|\d+)\s*(?:to\s*\w+\s*)?years?|over the (?:next|medium|long)|medium[- ]term|long[- ]term|cagr|coming (?:two|three|five|2|3|5) years|3[-–]5 years", s, re.I):
         return {"multi": True}
-    if re.search(r"coming years|upcoming (?:times|years)|next few years|couple of years|in the years ahead", s, re.I):
+    if re.search(r"coming years|upcoming (?:times|years)|next few years|couple of years|in the years ahead|vision (?:for |of )?20\d\d|\bby (?:the year )?20\d\d\b|beyond 20\d\d", s, re.I):
         return {"multi": True}
     if re.search(r"\b(?:this|current|ongoing) (?:financial )?(?:year|fiscal)|for the year\b|current fy\b|for fy\b", s, re.I):
         return {"fy": fy_current(call_ym)}
@@ -177,8 +178,8 @@ def extract(text: str, call_ym: str, url: str) -> list[dict]:
         horizon = find_horizon(s, call_ym)
         if horizon is None and GUIDANCE_CTX.search(s):        # "we retain revenue growth of more than 15%": this year's guidance
             horizon = {"fy": fy_current(call_ym)}
-        if horizon and horizon.get("fy") and horizon["fy"] < fy_current(call_ym) and not re.search(r"expect\w*|guid\w*|target\w*|will\b", s, re.I):
-            continue                                          # a year already over, no forward word: results, not a target
+        if horizon and horizon.get("fy") and horizon["fy"] < fy_current(call_ym):
+            continue                                          # a year already over when the call happened: results, not a target
 
         # growth targets: revenue / profit growth with a percentage after the growth word
         for noun_re, metric in ((REV_NOUN, "revenue_growth"), (PROFIT_NOUN, "profit_growth")):
@@ -329,19 +330,20 @@ def main() -> int:
             done = (companies.get(code) or {}).get("calls") or {}
             for rank, call in enumerate((results.get(code) or {}).get("concalls") or []):
                 prev = done.get(call["transcript"])
-                if prev and (not prev.get("error") or (prev.get("at") or "") > retry_before):
+                outdated = bool(prev) and not prev.get("error") and prev.get("v") != EXTRACTOR_VERSION
+                if prev and not outdated and (not prev.get("error") or (prev.get("at") or "") > retry_before):
                     continue
                 if call_ym(call["date"]):
-                    work.append((rank, code, call))
-        work.sort(key=lambda w: (w[0], w[1]))
+                    work.append((rank, 1 if outdated else 0, code, call))
+        work.sort(key=lambda w: (w[1], w[0], w[2]))          # unread calls first (newest first), then calls to re-read
         work = work[: args.budget]
 
     session = requests.Session()
     session.headers.update(HEADERS)
     read = failed = 0
-    for rank, code, call in work:
+    for rank, _old, code, call in work:
         ent = companies.setdefault(code, {"calls": {}, "statements": []})
-        rec = {"date": call["date"], "at": now.isoformat(timespec="seconds")}
+        rec = {"date": call["date"], "at": now.isoformat(timespec="seconds"), "v": EXTRACTOR_VERSION}
         try:
             r = session.get(call["transcript"], timeout=90)
             if r.status_code != 200 or not r.content.startswith(b"%PDF"):
