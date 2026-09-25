@@ -2519,7 +2519,13 @@ function mvWireRefresh(){
    dashboard accumulates itself, since NSE's own CSV only ever serves the
    latest session). Fetched once; every filter runs client-side, same
    shape as News Channel below. */
-const DL={data:null, built:false, boardOnly:false};
+const DL={data:null, built:false, boardOnly:false, pendingQuery:null};
+/* jump straight to Bulk & Block Deals pre-filtered to one symbol -- used by the Alerts bell's deal-cluster
+   rows ("Deals" button), so reading the cluster and seeing every underlying disclosed trade is one click */
+function openDealsFor(symbol){
+  DL.pendingQuery=symbol;
+  setView('deals');
+}
 
 let DL_TABS_WIRED=false;
 function dlWireTabs(){
@@ -2547,6 +2553,10 @@ async function openDeals(){
   if(!DL.built) dlBuildControls();
   document.getElementById('dl-asof').textContent =
     `${mvDay(DL.data.from_date)} – ${mvDay(DL.data.to_date)} · ${fmtI(DL.data.count)} deals · ${fmtI(DL.data.board_count)} on the board`;
+  if(DL.pendingQuery!=null){
+    document.getElementById('dl-q').value=DL.pendingQuery;
+    DL.pendingQuery=null;
+  }
   dlRenderTable();
 }
 
@@ -3966,7 +3976,7 @@ async function openMessages(){
    and "seen up to" are saved to the account, or to this browser with accounts off. */
 const AL_WINDOWS=['1D','1W','1M','6M','1Y'];
 const AL_WLABEL={'1D':'1-day','1W':'1-week','1M':'1-month','6M':'6-month','1Y':'1-year'};
-const AL_DEFAULT={highs:['1W','1M','6M','1Y'], lows:['1W','1M','6M','1Y'], ipo:true, vcp:true, scope:'board', notify:false};
+const AL_DEFAULT={highs:['1W','1M','6M','1Y'], lows:['1W','1M','6M','1Y'], ipo:true, vcp:true, deals:true, scope:'board', notify:false};
 const AL={prefs:null, seen:null, data:null, type:'all'};
 
 function alPrefs(){
@@ -3990,7 +4000,7 @@ function alMarkSeen(date){
   else { try{ localStorage.setItem('dms.alerts.seen', date); }catch(e){} }
 }
 function alQuery(p, sessions){
-  const q=new URLSearchParams({highs:p.highs.join(','), lows:p.lows.join(','), ipo:p.ipo?'1':'0', vcp:p.vcp?'1':'0', scope:p.scope, sessions:String(sessions||5)});
+  const q=new URLSearchParams({highs:p.highs.join(','), lows:p.lows.join(','), ipo:p.ipo?'1':'0', vcp:p.vcp?'1':'0', deals:p.deals?'1':'0', scope:p.scope, sessions:String(sessions||5)});
   if(AL.seen) q.set('seen', AL.seen);
   if(p.scope==='watchlist' && WMODE!=='server') q.set('codes',[...WATCH].join(','));
   return '/api/alerts?'+q.toString();
@@ -4007,6 +4017,7 @@ async function alertsInit(){
   const btn=document.getElementById('alerts-btn'); if(!btn) return;
   btn.hidden=false;
   btn.onclick=()=>openAlerts();
+  wpCheckStatus();   /* kicked off early, not awaited -- usually resolved well before anyone opens the panel */
   try{ await (ACCT.loaded||Promise.resolve()); }catch(e){}
   AL.prefs=null; alPrefs();
   const j=await alRefresh();
@@ -4018,15 +4029,44 @@ async function alertsInit(){
   setInterval(alRefresh, 30*60*1000);
 }
 
-const AL_TYPES=[['all','All'],['high','New highs'],['low','New lows'],['ipo_breakout','IPO base breakouts'],['vcp_breakout','Base breakouts']];
+const AL_TYPES=[['all','All'],['high','New highs'],['low','New lows'],['ipo_breakout','IPO base breakouts'],['vcp_breakout','Base breakouts'],
+  ['deal_buy','Buying clusters'],['deal_sell','Selling clusters']];
 function alLabel(it){
   if(it.type==='ipo_breakout') return `<span class="al-chip al-ipo">&#9650; IPO base breakout</span>`;
   if(it.type==='vcp_breakout') return `<span class="al-chip al-vcp">&#9650; Base breakout</span>`;
+  if(it.type==='deal_buy') return `<span class="al-chip al-dbuy">&#9650; Buying cluster</span><span class="al-wins">${fmt(it.dominance_pct,0)}% of ₹${fmt(it.total_value_cr,1)} cr</span>`;
+  if(it.type==='deal_sell') return `<span class="al-chip al-dsell">&#9660; Selling cluster</span><span class="al-wins">${fmt(it.dominance_pct,0)}% of ₹${fmt(it.total_value_cr,1)} cr</span>`;
   const hi=it.type==='high', top=AL_WLABEL[it.top]||it.top;
   return `<span class="al-chip ${hi?'al-hi':'al-lo'}">${hi?'&#9650;':'&#9660;'} New ${it.since_listing?'since-listing':top} ${hi?'high':'low'}</span>`
     + `<span class="al-wins">${(it.windows||[]).map(w=>`<i>${w}</i>`).join('')}</span>`;
 }
+/* Institutional deal clusters (app/deal_clusters.py): who is on the dominant side, and a same-day
+   filing that might explain it -- offered as a lead, never asserted as the actual reason. */
+function alDealRow(it, byCode){
+  const d=it.code && byCode[it.code], on=d && WATCH.has(d.code);
+  const buySide=it.type==='deal_buy';
+  const names=(list)=>(list||[]).slice(0,3).map(x=>`${esc(x.client)} (₹${fmt(x.value_cr,1)} cr)`).join(', ')+((list||[]).length>3?` +${list.length-3} more`:'');
+  const ctx=it.context ? `<div class="al-ctx" title="A same-day filing that MIGHT explain this -- not confirmed, check it yourself">Possible context: <b>${esc(it.context.category||'filing')}</b> — ${esc(it.context.summary||'')}${it.context.url?` <a href="${esc(it.context.url)}" target="_blank" rel="noopener">read ↗</a>`:''}</div>` : '';
+  return `<li class="al-row">
+    <div class="al-main">
+      <div class="al-name">${d?`<button type="button" class="al-link" data-al-open="${esc(d.code)}">${esc(d.name)}</button>`:`<b>${esc(it.name)}</b>`}
+        <span class="al-sym">${esc(it.symbol||'')}</span>${it.scope==='market'?'<span class="al-mkt" title="Not on your board">market</span>':''}</div>
+      <div class="al-what">${alLabel(it)}</div>
+      <div class="al-detail">${it.deals} disclosed deal${it.deals===1?'':'s'} · bought ₹${fmt(it.buy_value_cr,1)} cr (${it.buy_clients}) vs sold ₹${fmt(it.sell_value_cr,1)} cr (${it.sell_clients})</div>
+      <div class="al-detail">${buySide?'Buyers':'Sellers'}: ${names(buySide?it.top_buyers:it.top_sellers)}</div>
+      ${ctx}
+    </div>
+    <div class="al-side">${it.close!=null?`<b>${galPx(it.close)}</b>${it.chg_pct!=null?`<span class="${it.chg_pct>=0?'up':'dn'}">${it.chg_pct>=0?'+':''}${it.chg_pct.toFixed(2)}%</span>`:''}`:''}
+      <div class="al-acts">
+        <button type="button" class="btn" data-al-deals="${esc(it.symbol)}">Deals</button>
+        ${d?`<button type="button" class="al-star${on?' on':''}" data-al-star="${esc(d.code)}" title="${on?'Remove from':'Add to'} watchlist">${on?'&#9733;':'&#9734;'}</button>`
+          :`<a class="btn" href="https://www.screener.in/company/${encodeURIComponent(it.symbol)}/" target="_blank" rel="noopener">screener &#8599;</a>`}
+      </div>
+    </div>
+  </li>`;
+}
 function alRow(it, byCode){
+  if(it.type==='deal_buy' || it.type==='deal_sell') return alDealRow(it, byCode);
   const d=it.code && byCode[it.code], on=d && WATCH.has(d.code);
   const chg=it.chg_pct==null?'':`<span class="${it.chg_pct>=0?'up':'dn'}">${it.chg_pct>=0?'+':''}${it.chg_pct.toFixed(2)}%</span>`;
   const detail = it.type.endsWith('breakout')
@@ -4046,9 +4086,97 @@ function alRow(it, byCode){
     </div>
   </li>`;
 }
+/* ---------- Desktop notifications (Web Push) ----------
+   Standard browser push: works even when Deep Sweep is not the open tab, unlike the "in this tab" browser
+   Notification above. One opt-in checkbox in the Alerts settings panel; app/webpush.py delivers, a service
+   worker (static/sw.js) shows the OS notification and focuses/opens the dashboard on click. Subscribing
+   needs no account -- the subscription belongs to the browser. */
+const WP={ready:null, supported:'serviceWorker' in navigator && 'PushManager' in window, serverKey:null, subscribed:false, busy:false};
+function wpCheckStatus(){
+  if(WP.ready) return WP.ready;
+  WP.ready=(async()=>{
+    if(!WP.supported) return;
+    try{
+      const [keyRes, reg] = await Promise.all([
+        fetchJSON('/api/webpush/public-key').catch(()=>({key:''})),
+        navigator.serviceWorker.getRegistration('/static/sw.js').catch(()=>null),
+      ]);
+      WP.serverKey=keyRes.key||'';
+      const sub = reg ? await reg.pushManager.getSubscription().catch(()=>null) : null;
+      WP.subscribed=!!sub;
+    }catch(e){ /* leave WP.subscribed as-is; the row explains what it can */ }
+  })();
+  return WP.ready;
+}
+function urlB64ToUint8Array(b64){
+  const pad='='.repeat((4-b64.length%4)%4);
+  const raw=atob((b64+pad).replace(/-/g,'+').replace(/_/g,'/'));
+  const out=new Uint8Array(raw.length);
+  for(let i=0;i<raw.length;i++) out[i]=raw.charCodeAt(i);
+  return out;
+}
+function wpRow(){
+  if(!WP.supported) return `<label class="al-tg" style="opacity:.55"><input type="checkbox" id="al-desktop-push" disabled>Desktop notifications <span class="al-note-inline">— not supported in this browser</span></label>`;
+  if(WP.serverKey===null) return `<label class="al-tg" style="opacity:.55"><input type="checkbox" id="al-desktop-push" disabled>Desktop notifications <span class="al-note-inline">— checking…</span></label>`;
+  if(!WP.serverKey) return `<label class="al-tg" style="opacity:.55"><input type="checkbox" id="al-desktop-push" disabled>Desktop notifications <span class="al-note-inline">— not set up on this server yet</span></label>`;
+  return `<label class="al-tg${WP.subscribed?' on':''}"><input type="checkbox" id="al-desktop-push" ${WP.subscribed?'checked':''} ${WP.busy?'disabled':''}>Desktop notifications</label>`;
+}
+/* A timeout so the settings checkbox can never get stuck disabled forever -- a slow/ignored permission
+   prompt, a slow network, or (seen in one headless-browser test rig) a service worker that never reports
+   itself "ready" should surface as a plain error the visitor can retry, not a frozen control. subscribe()
+   itself waits out its service worker's activation per spec, so registration alone is enough here -- no
+   explicit `navigator.serviceWorker.ready` wait, which is one more thing that can hang. */
+const WP_TIMEOUT_MS=20000;
+function wpTimeout(){ return new Promise((_,reject)=>setTimeout(()=>reject(new Error('That took too long — try again.')), WP_TIMEOUT_MS)); }
+async function wpSubscribe(){
+  const work=(async()=>{
+    const reg = await navigator.serviceWorker.register('/static/sw.js');
+    if(Notification.permission!=='granted'){
+      const r=await Notification.requestPermission();
+      if(r!=='granted') throw new Error('Notifications are blocked for this site in your browser settings.');
+    }
+    const sub = await reg.pushManager.subscribe({userVisibleOnly:true, applicationServerKey:urlB64ToUint8Array(WP.serverKey)});
+    const r=await fetch('/api/webpush/subscribe',{method:'POST',credentials:'same-origin',headers:{'Content-Type':'application/json'},body:JSON.stringify({subscription:sub.toJSON()})});
+    if(!r.ok) throw new Error('The server did not accept the subscription.');
+  })();
+  await Promise.race([work, wpTimeout()]);
+}
+async function wpUnsubscribe(){
+  const work=(async()=>{
+    const reg = await navigator.serviceWorker.getRegistration('/static/sw.js');
+    const sub = reg && await reg.pushManager.getSubscription();
+    if(sub){
+      const endpoint=sub.endpoint;
+      await sub.unsubscribe().catch(()=>{});
+      await fetch('/api/webpush/subscribe',{method:'DELETE',credentials:'same-origin',headers:{'Content-Type':'application/json'},body:JSON.stringify({endpoint})}).catch(()=>{});
+    }
+  })();
+  await Promise.race([work, wpTimeout()]);
+}
+/* Binds the desktop-push checkbox each time the settings panel is (re)drawn -- called right after the
+   generic `#al-settings input onchange=changed` wiring, whose assignment it deliberately overrides for
+   this one control, since subscribing/unsubscribing is async and needs its own error handling. */
+function wpWire(afterChange){
+  const cb=document.getElementById('al-desktop-push');
+  if(!cb || cb.disabled) return;
+  cb.onchange=async()=>{
+    WP.busy=true; const want=cb.checked; cb.disabled=true;
+    try{
+      if(want) await wpSubscribe(); else await wpUnsubscribe();
+      WP.subscribed=want;
+    }catch(e){
+      cb.checked=!want;
+      alert(e.message||'That did not work — try again, or check the notification permission for this site in your browser settings.');
+    }
+    WP.busy=false;
+    await afterChange();
+  };
+}
+
 async function openAlerts(showSettings){
   const p=alPrefs();
   openModal('<h3>Alerts</h3><p class="view-hint">Loading…</p>');
+  await wpCheckStatus();
   const j=await alRefresh();
   if(!j){ mbody.innerHTML='<h3>Alerts</h3><p class="view-hint">Could not load alerts.</p>'; return; }
   const byCode={}; DATA.forEach(d=>byCode[d.code]=d);
@@ -4066,10 +4194,14 @@ async function openAlerts(showSettings){
         <div class="al-set-row"><b>Breakouts</b><div class="al-toggles">
           <label class="al-tg${p.ipo?' on':''}"><input type="checkbox" id="al-ipo" ${p.ipo?'checked':''}>IPO base</label>
           <label class="al-tg${p.vcp?' on':''}"><input type="checkbox" id="al-vcp" ${p.vcp?'checked':''}>Base (VCP)</label></div></div>
+        <div class="al-set-row"><b>Institutional deals</b><div class="al-toggles">
+          <label class="al-tg${p.deals?' on':''}" title="A stock where several institutions were on the same side (buying or selling) of NSE's disclosed bulk/block deals"><input type="checkbox" id="al-deals" ${p.deals?'checked':''}>Deal clusters</label></div></div>
         <div class="al-set-row"><b>Which stocks</b><div class="al-toggles">
           ${[['watchlist','My watchlist'],['board','Board companies'],['market','Whole market']].map(([v,l])=>`<label class="al-tg${p.scope===v?' on':''}"><input type="radio" name="al-scope" value="${v}" ${p.scope===v?'checked':''}>${l}</label>`).join('')}</div></div>
-        <p class="al-note">Whole market adds every actively traded NSE/BSE company that is not on the board — the same universe as Screen any Chart. For those: base and IPO base breakouts across all of it, plus 6-month and 1-year highs and lows for the liquid NSE subset. 1D = above yesterday's high / below yesterday's low.</p>
-        <div class="al-set-row"><b>Notify me</b><div class="al-toggles"><label class="al-tg${p.notify?' on':''}"><input type="checkbox" id="al-notify" ${p.notify?'checked':''}>Browser notification when I open the dashboard and there are new alerts</label></div></div>
+        <p class="al-note">Whole market adds every actively traded NSE/BSE company that is not on the board — the same universe as Screen any Chart. For those: base and IPO base breakouts across all of it, plus 6-month and 1-year highs and lows for the liquid NSE subset. 1D = above yesterday's high / below yesterday's low. Deal clusters always cover the whole NSE market (most flagged names are not on the board), whichever of these three you pick.</p>
+        <div class="al-set-row"><b>In this tab</b><div class="al-toggles"><label class="al-tg${p.notify?' on':''}"><input type="checkbox" id="al-notify" ${p.notify?'checked':''}>Browser notification when I open the dashboard and there are new alerts</label></div></div>
+        <div class="al-set-row"><b>Desktop</b><div class="al-toggles">${wpRow()}</div></div>
+        <p class="al-note">Desktop notifications work even when Deep Sweep isn't the open tab — they arrive as an OS notification, once a day when the alert data refreshes (about 2 AM IST). "In this tab" above only ever fires while you have the dashboard open.</p>
       </div>
       <div class="al-types">${AL_TYPES.map(([k,l])=>`<button type="button" class="al-type${AL.type===k?' on':''}" data-al-type="${k}">${l} <span>${count(k)}</span></button>`).join('')}</div>
       ${sessions.map((s,n)=>`<section class="al-session${n?' earlier':''}">
@@ -4082,6 +4214,7 @@ async function openAlerts(showSettings){
       p.highs=AL_WINDOWS.filter(w=>mbody.querySelector(`[data-al-hi="${w}"]`).checked);
       p.lows=AL_WINDOWS.filter(w=>mbody.querySelector(`[data-al-lo="${w}"]`).checked);
       p.ipo=document.getElementById('al-ipo').checked; p.vcp=document.getElementById('al-vcp').checked;
+      p.deals=document.getElementById('al-deals').checked;
       p.scope=(mbody.querySelector('input[name="al-scope"]:checked')||{}).value||'board';
       const wantNotify=document.getElementById('al-notify').checked;
       if(wantNotify && 'Notification' in window && Notification.permission!=='granted'){
@@ -4092,8 +4225,10 @@ async function openAlerts(showSettings){
       await alRefresh(); draw(); document.getElementById('al-settings').hidden=false;
     };
     mbody.querySelectorAll('#al-settings input').forEach(i=>i.onchange=changed);
+    wpWire(async ()=>{ await alRefresh(); draw(); document.getElementById('al-settings').hidden=false; });   /* overrides the generic wiring above for the desktop-push control(s) specifically */
     mbody.querySelectorAll('[data-al-open]').forEach(b=>b.onclick=()=>{ closeModal(); CURRENT=[byCode[b.dataset.alOpen]]; openDrawer(byCode[b.dataset.alOpen]); });
     mbody.querySelectorAll('[data-al-chart]').forEach(b=>b.onclick=()=>openChart(b.dataset.alChart));
+    mbody.querySelectorAll('[data-al-deals]').forEach(b=>b.onclick=()=>{ closeModal(); openDealsFor(b.dataset.alDeals); });
     mbody.querySelectorAll('[data-al-star]').forEach(b=>b.onclick=()=>{ togglePin(b.dataset.alStar); const on=WATCH.has(b.dataset.alStar); b.classList.toggle('on',on); b.innerHTML=on?'&#9733;':'&#9734;'; });
   };
   draw();

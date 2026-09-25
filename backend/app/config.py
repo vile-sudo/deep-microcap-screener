@@ -102,6 +102,30 @@ class Settings(BaseSettings):
     # nothing ever actually sends.
     firebase_credentials_json: str = ""
 
+    # --- Web push (desktop/browser notifications, the plain website) ------
+    # A visitor can turn on "Desktop notifications" in the Alerts settings panel
+    # (India board) so new alerts (highs/lows, breakouts, institutional deal
+    # clusters) show up as an OS notification even when Deep Sweep is not the
+    # open tab -- standard Web Push, no app to install. Needs one VAPID keypair
+    # for this deployment (not per-user): generate it once with
+    #     python -c "from py_vapid import Vapid02; import base64; v=Vapid02(); v.generate_keys(); \
+    #       from cryptography.hazmat.primitives.serialization import Encoding, PublicFormat; \
+    #       priv=v.private_key.private_numbers().private_value.to_bytes(32,'big'); \
+    #       print('VAPID_PUBLIC_KEY='+base64.urlsafe_b64encode(v.public_key.public_bytes(Encoding.X962, PublicFormat.UncompressedPoint)).decode().rstrip('=')); \
+    #       print('VAPID_PRIVATE_KEY='+base64.urlsafe_b64encode(priv).decode().rstrip('='))"
+    # then set VAPID_PUBLIC_KEY, VAPID_PRIVATE_KEY and VAPID_SUBJECT (a
+    # mailto: or https: contact URL push services may use if they need to
+    # reach you about this deployment) as env vars on the server. Leave empty
+    # and app/webpush.py silently no-ops: the toggle explains it isn't set up
+    # yet, and nothing else is affected.
+    vapid_public_key: str = ""
+    vapid_private_key: str = ""
+    vapid_subject: str = ""
+
+    @property
+    def vapid_configured(self) -> bool:
+        return bool(self.vapid_public_key and self.vapid_private_key and self.vapid_subject)
+
     # --- Data seeding ----------------------------------------------------
     seed_file: Path = BASE_DIR / "data" / "companies_raw.json"
     meta_file: Path = BASE_DIR / "data" / "meta_raw.json"

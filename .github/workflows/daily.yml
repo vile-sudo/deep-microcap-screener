@@ -11,6 +11,9 @@ name: Daily 2 AM update
 #   1c. announcements NSE's own corporate announcements, classified and
 #                     accumulated into a rolling 45-day history
 #                                                       (scripts/run_announcements.py)
+#   1d. deal clusters unusually one-sided bulk/block deal activity in a stock
+#                     (several institutions on one side), surfaced in the
+#                     Alerts bell                (scripts/run_deal_clusters.py)
 #   2. discovery      new NSE / BSE / SME listings and their prospectuses ->
 #                     the Candidates queue               (automation/update-weekly.mjs)
 #   3. auto-screen    checks listed companies against the board's gates and
@@ -120,6 +123,13 @@ jobs:
         timeout-minutes: 20
         working-directory: ./backend
         run: python scripts/run_announcements.py
+
+      - name: 1d. Institutional deal clusters
+        id: dealclusters
+        continue-on-error: true
+        timeout-minutes: 5
+        working-directory: ./backend
+        run: python scripts/run_deal_clusters.py
 
       - name: 2. Discovery scan
         id: discovery

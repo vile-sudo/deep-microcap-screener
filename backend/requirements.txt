@@ -9,3 +9,4 @@ requests==2.32.3
 beautifulsoup4==4.12.3
 psycopg2-binary>=2.9.10,<3
 firebase-admin==6.6.0    # push notifications to the mobile/ app -- see app/push.py; a no-op with FIREBASE_CREDENTIALS_JSON unset
+pywebpush==2.5.0         # desktop/browser push notifications, the plain website -- see app/webpush.py; a no-op with no VAPID_* keys set
