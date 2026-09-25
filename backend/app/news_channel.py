@@ -66,7 +66,7 @@ GOOGLE_WINDOW_DAYS = 3     # the query's own "when:Nd" -- wider than LOOKBACK_HO
                            # edge still gets picked up; LOOKBACK_HOURS is still what decides what's kept
 MAX_PER_COUNTRY = 10       # one page per country per run -- 1 credit each
 LOOKBACK_HOURS = 48        # older stories are dropped from the LIVE feed on write (they are kept in the archive)
-ARCHIVE_DAYS = 30          # how far back the day-by-day archive goes
+ARCHIVE_DAYS = 90          # how far back the day-by-day archive goes
 DAILY_CAP = 180            # newsdata.io's real ceiling is 200/day; this stops
                             # well short of it, on purpose, so a scheduling
                             # mistake or a burst of "Refresh now" clicks can
@@ -315,6 +315,12 @@ def _quota_today(prev: dict) -> int:
     return q.get("calls", 0) if q.get("date") == time.strftime("%Y-%m-%d", time.gmtime()) else 0
 
 
+def _scrub(msg: str) -> str:
+    """Error text from `requests` includes the full request URL -- and newsdata.io's URL carries the
+    API key. The errors list is written to a committed, publicly served file, so strip it."""
+    return re.sub(r"(apikey|api_key|token)=[^&\s'\"]+", r"\1=***", str(msg), flags=re.I)
+
+
 def _item_keys(it: dict) -> set:
     # by link and by headline: the same story arrives from BusinessLine,
     # Google News and newsdata.io under three different URLs
@@ -424,7 +430,7 @@ def write(api_key: str | None) -> dict:
         seen |= keys
         merged.append(it)
     payload = {"as_of": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
-               "count": len(merged), "items": merged, "errors": errors,
+               "count": len(merged), "items": merged, "errors": [_scrub(e) for e in errors],
                "quota": {"date": time.strftime("%Y-%m-%d", time.gmtime()), "calls": calls_today}}
     NEWS_FILE.parent.mkdir(parents=True, exist_ok=True)
     tmp = NEWS_FILE.with_name(NEWS_FILE.name + f".{os.getpid()}.tmp")   # atomic: the API reads this file while a refresh writes it

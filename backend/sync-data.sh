@@ -14,8 +14,12 @@ cd /app/backend
 SRC=data-dist
 [ -d data-live ] && SRC=data-live
 [ -d "$SRC" ] || exit 0
-(cd "$SRC" && find . -type f ! -name 'screener.db*' ! -name '.refresh.lock' ! -name '.us_alerts.lock') | while read -r f; do
+# news_channel/ is written by the server itself every five minutes (as well as by the GitHub job), so it
+# is merged below rather than copied: copying the repo's older latest.json over the server's threw away
+# every story fetched since the job last ran (see app/news_sync.py).
+(cd "$SRC" && find . -type f ! -name 'screener.db*' ! -name '.refresh.lock' ! -name '.us_alerts.lock' ! -path './news_channel/*') | while read -r f; do
   cmp -s "$SRC/$f" "data/$f" 2>/dev/null && continue
   mkdir -p "data/$(dirname "$f")"
   cp -f "$SRC/$f" "data/$f"
 done
+[ -d "$SRC/news_channel" ] && python -m app.news_sync "$SRC/news_channel" || true
