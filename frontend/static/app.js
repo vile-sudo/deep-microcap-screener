@@ -2752,7 +2752,7 @@ async function iporRenderDoc(symbol){
    re-fetches every 5 minutes). A flat feed; every filter here runs
    client-side against it, and the page re-polls the server while open. */
 const NEWS_COUNTRY={cn:'China', in:'India', us:'USA', jp:'Japan'};
-const NEWS={data:null, loading:null, built:false, seen:undefined, view:'', arch:{}, days:[], rows:[], map:{}};
+const NEWS={data:null, loading:null, built:false, seen:undefined, view:'', arch:{}, days:[]};
 
 function newsFetch(){
   NEWS.loading = NEWS.loading || fetchJSON('/api/news-channel').catch(()=>null);
@@ -2904,55 +2904,6 @@ async function newsLoadDays(){
   sel.value=NEWS.view;
 }
 
-/* ---------- news -> Indian beneficiary stocks ----------
-   Click "Indian beneficiaries" on a headline: the server matches the product in the story against what
-   every listed Indian company says it makes (app/beneficiaries.py) and this lists them, ranked, with
-   why, today's move and how far each is from its 52-week high. Companies already on your board are
-   marked and open their scorecard. It finds companies connected to the story; it is not a forecast. */
-async function newsToggleMap(idx, btn){
-  const it=NEWS.rows[idx], box=document.getElementById('nm-'+idx);
-  if(!it || !box) return;
-  if(!box.hidden){ box.hidden=true; btn.textContent='Indian beneficiaries ▸'; return; }
-  box.hidden=false; btn.textContent='Indian beneficiaries ▾';
-  const key=it.title;
-  if(!NEWS.map[key]){
-    box.innerHTML='<p class="view-hint">Matching the story to Indian companies…</p>';
-    const q='title='+encodeURIComponent(it.title)+'&country='+encodeURIComponent(it.country||'')+'&sectors='+encodeURIComponent((it.sectors||[]).join('|'));
-    NEWS.map[key]=await fetchJSON('/api/news-channel/beneficiaries?'+q).catch(()=>null);
-  }
-  newsRenderMap(box, NEWS.map[key]);
-}
-function newsRenderMap(box, r){
-  if(!r){ box.innerHTML='<p class="view-hint">Could not reach the server — try again.</p>'; return; }
-  if(!r.index_size){
-    box.innerHTML='<p class="view-hint">The company index is still being built (it fills in over a few daily runs). Check back soon.</p>'; return;
-  }
-  const dir=r.direction||{};
-  const chip = dir.signal==='benefit' ? 'nm-good' : dir.signal==='pressure' ? 'nm-bad' : 'nm-flat';
-  if(!r.companies.length){
-    box.innerHTML=`<p class="view-hint">No listed Indian company matched a product in this headline${r.terms.length?'':' (it does not name a specific product)'}.</p>`; return;
-  }
-  const byCode={}; DATA.forEach(d=>{ [d.code,d.nse_code,d.bse_code].filter(Boolean).forEach(c=>{ byCode[String(c).toUpperCase()]=d; }); });
-  const pct=v=>v===null||v===undefined?'—':`<span class="${v>0?'ov-up':v<0?'ov-dn':''}">${v>0?'+':''}${fmt(v,1)}%</span>`;
-  const rows=r.companies.map(c=>{
-    const d=byCode[String(c.symbol).toUpperCase()];
-    const mc = c.mcap_cr ? '₹'+fmtI(c.mcap_cr)+' cr' : '—';
-    return `<tr>
-      <td><b>${d?`<a href="#" data-nm-open="${esc(d.code)}">${esc(c.name)}</a>`:esc(c.name)}</b>${d?` <span class="nm-tag" title="On your board — click for the scorecard">on board · ${fmt(d.final_score,0)}</span>`:''}
-        <small>${esc((c.industry||[]).join(' › '))}</small></td>
-      <td class="nm-match"><span class="nm-bar"><i style="width:${c.match}%"></i></span> ${c.match}</td>
-      <td class="nm-why">${(c.why||[]).map(w=>`<span class="nm-w">${esc(w)}</span>`).join('')}</td>
-      <td class="n">${mc}</td><td class="n">${pct(c.chg_pct)}</td><td class="n" title="Distance from the 52-week high">${pct(c.from_high_pct)}</td>
-      <td><a href="${esc(c.url)}" target="_blank" rel="noopener">screener.in ↗</a></td></tr>`;
-  }).join('');
-  box.innerHTML=`<div class="nm-head"><span class="nm-chip ${chip}">${esc(dir.label||'')}</span>
-      ${dir.buyers?`<small>${esc(dir.buyers)}</small>`:''}</div>
-    ${(r.themes||[]).slice(0,2).map(t=>`<p class="nm-note">${esc(t.note)}</p>`).join('')}
-    <div class="mv-tablewrap"><table class="mv-table"><thead><tr><th>Company</th><th>Match</th><th>Why it is linked</th><th class="n">M-cap</th><th class="n">Today</th><th class="n">vs 52w high</th><th></th></tr></thead><tbody>${rows}</tbody></table></div>
-    <p class="nm-foot">Matched on what each company says it makes (screener.in) against the product in the story, ${r.index_size.toLocaleString('en-IN')} listed companies searched. This finds companies connected to the story — not a price forecast. Read the story, then check the company.</p>`;
-  box.querySelectorAll('[data-nm-open]').forEach(a=>a.onclick=e=>{ e.preventDefault(); const d=byCode[String(a.dataset.nmOpen).toUpperCase()]||DATA.find(x=>x.code===a.dataset.nmOpen); if(d){ CURRENT=[d]; openDrawer(d); } });
-}
-
 function newsRows(){
   const items=newsItems();
   const country=(document.getElementById('news-country')||{}).value||'';
@@ -2983,7 +2934,7 @@ function newsAgoISO(iso){
 }
 const newsAgo = pub => pub ? newsAgoISO(pub.replace(' ','T')+'Z') : '';
 
-function newsItemHtml(it, idx){
+function newsItemHtml(it){
   return `<article class="news-item">
     <a class="news-title" href="${esc(it.link)}" target="_blank" rel="noopener">${esc(it.title)}</a>
     <div class="news-meta">
@@ -2992,9 +2943,7 @@ function newsItemHtml(it, idx){
       ${(it.sectors||[]).map(s=>`<span class="news-tag news-sector-tag">${esc(s)}</span>`).join('')}
       ${it.price_move?'<span class="news-tag news-move-tag">Price move</span>':''}
       <span>${esc(it.source||'')}</span><span>${esc(newsAgo(it.published))}</span>
-      <button type="button" class="news-map" data-news-map="${idx}" title="Which listed Indian companies make (or use) the product this story is about">Indian beneficiaries ▸</button>
     </div>
-    <div class="news-map-box" id="nm-${idx}" hidden></div>
   </article>`;
 }
 
@@ -3006,18 +2955,17 @@ function newsRender(){
   document.getElementById('news-count').textContent=`${fmtI(rows.length)} of ${fmtI(all.length)}${viewLabel}`;
   document.getElementById('news-asof').textContent = NEWS.data.as_of ? 'Last fetched: '+newsAgoISO(NEWS.data.as_of) : '';
   /* a heading each time the (India) day changes, so a long list reads as days */
-  let lastDay=''; NEWS.rows=[];
+  let lastDay='';
   const listHtml=rows.map(it=>{
     const day=newsDayHead(it.published), head=day && day!==lastDay ? `<div class="news-day">${esc(day)}</div>` : '';
     lastDay=day||lastDay;
-    return head+newsItemHtml(it, NEWS.rows.push(it)-1);
+    return head+newsItemHtml(it);
   }).join('');
   body.innerHTML = rows.length ? `<div class="news-list">${listHtml}</div>`
     + (ME&&ME.is_admin?`<div class="mv-admin"><button type="button" class="btn" id="news-refresh">Refresh now</button><span class="mv-refresh-msg" id="news-refresh-msg"></span></div>`:'')
     : (NEWS.view!=='' && !all.length ? '<p class="view-hint">Nothing was archived for that period. The archive started on the day this feature went live and grows by a day at a time, up to 90 days.</p>' : '<p class="view-hint">No news matches — try a different keyword, clear the filters, or wait for the next scheduled fetch.</p>');
   const btn=document.getElementById('news-refresh');
   if(btn) newsWireRefresh();
-  body.querySelectorAll('[data-news-map]').forEach(el=>{ el.onclick=()=>newsToggleMap(+el.dataset.newsMap, el); });
 }
 
 function newsWireRefresh(){
