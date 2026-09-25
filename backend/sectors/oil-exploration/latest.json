@@ -1,48 +1,125 @@
 {
- "updated": "2026-09-24T05:10+05:30",
+ "updated": "2026-09-25T05:22+05:30",
  "figures": [
   {
    "label": "Brent crude",
-   "value": "$102.83/bbl",
-   "as_of": "2026-09-23",
-   "note": "+3.86% on the day, snapping a 5-day losing streak",
+   "value": "$106.60/bbl",
+   "as_of": "2026-09-24",
+   "note": "+3.4% on the day; session high $108.23",
    "source": {
-    "publisher": "Trading Economics",
-    "url": "https://tradingeconomics.com/commodity/brent-crude-oil"
-   }
-  },
-  {
-   "label": "Indian crude basket",
-   "value": "$117.40/bbl",
-   "as_of": "2026-09-21",
-   "note": "vs FY26 average of about $66/bbl",
-   "source": {
-    "publisher": "Business Today",
-    "url": "https://www.businesstoday.in/latest/economy/story/why-are-oil-marketing-companies-facing-rs-530-crore-losses-daily-557375-2026-09-23"
-   }
-  },
-  {
-   "label": "OMC daily fuel-sale loss",
-   "value": "Rs 530 crore/day",
-   "as_of": "2026-09-23",
-   "note": "ICRA estimate; about Rs 8/litre on petrol, Rs 9/litre on diesel",
-   "source": {
-    "publisher": "Business Today",
-    "url": "https://www.businesstoday.in/latest/economy/story/why-are-oil-marketing-companies-facing-rs-530-crore-losses-daily-557375-2026-09-23"
+    "publisher": "CNBC",
+    "url": "https://www.cnbc.com/2026/09/24/oil-iran-crude-kepler-trump-us-un-.html"
    }
   },
   {
    "label": "Strait of Hormuz transits",
-   "value": "1/day vs 85/day baseline",
+   "value": "1/day",
    "as_of": "2026-09-20",
-   "note": "about 1% of pre-crisis traffic; IMF PortWatch data",
+   "note": "vs pre-crisis baseline of 85/day (IMF PortWatch)",
    "source": {
     "publisher": "Straits Daily Brief",
-    "url": "https://straits.live/briefs/2026-09-23"
+    "url": "https://straits.live/briefs/2026-09-24"
+   }
+  },
+  {
+   "label": "Nifty 50",
+   "value": "23,063.10",
+   "as_of": "2026-09-24",
+   "note": "-1.64% (-383.70 pts) as crude rally, bond yields weigh",
+   "source": {
+    "publisher": "Business Standard",
+    "url": "https://www.business-standard.com/markets/news/stock-market-live-september-24-sensex-today-nifty-gift-nifty-nse-share-price-brent-crude-oil-price-126092400122_1.html"
    }
   }
  ],
  "items": [
+  {
+   "date": "2026-09-24",
+   "title": "Iran offers phased Hormuz reopening at UN talks; Brent swings to $108 then eases to $106.60",
+   "text": "At UN-mediated talks in New York on 23 September, Iran presented the US a roadmap for a regionwide ceasefire of up to 60 days and a phased reopening of the Strait of Hormuz, with hardline security official Mohsen Rezaei saying Washington had four to five days to accept; Donald Trump ruled out lifting the naval blockade before Iran shows 'goodwill'. Brent then spiked to a session high of $108.23 on 24 September after Houthi missiles hit Saudi cities including Yanbu and Taif, before easing to close up 3.4% at $106.60 as markets weighed the reopening talk. Continued volatility keeps upstream realisations elevated but sustains pressure on Indian refiners' under-recoveries.",
+   "tone": "watch",
+   "companies": [
+    "ONGC",
+    "OIL",
+    "RELIANCE",
+    "IOC",
+    "BPCL",
+    "HINDPETRO"
+   ],
+   "sources": [
+    {
+     "publisher": "Al Jazeera",
+     "title": "US, Iran hold mediated UNGA talks on ending war, opening Strait of Hormuz",
+     "url": "https://www.aljazeera.com/news/2026/9/23/us-iran-hold-mediated-unga-talks-on-ending-war-opening-strait-of-hormuz",
+     "date": "2026-09-23"
+    },
+    {
+     "publisher": "The National",
+     "title": "Iran 'presents US with road map for regionwide ceasefire and Hormuz reopening'",
+     "url": "https://www.thenationalnews.com/news/mena/2026/09/23/iran-us-meeting-new-york/",
+     "date": "2026-09-23"
+    },
+    {
+     "publisher": "CNBC",
+     "title": "Oil prices pull back from session highs after report of talks for phased reopening of Strait of Hormuz",
+     "url": "https://www.cnbc.com/2026/09/24/oil-iran-crude-kepler-trump-us-un-.html",
+     "date": "2026-09-24"
+    },
+    {
+     "publisher": "OilPrice.com",
+     "title": "Brent Holds Above $102 as Iran Talks Stall Over Hormuz Conditions",
+     "url": "https://oilprice.com/Latest-Energy-News/World-News/Brent-Holds-Above-102-as-Iran-Talks-Stall-Over-Hormuz-Conditions.html",
+     "date": "2026-09-24"
+    }
+   ],
+   "added": "2026-09-25"
+  },
+  {
+   "date": "2026-09-24",
+   "title": "Sensex, Nifty slide over 1.6% as Brent rally and bond yields spike; ONGC bucks the trend",
+   "text": "The Sensex fell 1,247.71 points (-1.67%) to 73,580.54 and the Nifty 50 dropped 383.70 points (-1.64%) to 23,063.10 on 24 September as Brent's rally past $106 combined with a surge in US 10-year bond yields and a weaker rupee to hit broader sentiment. ONGC was one of the few Nifty gainers on the day even as banking stocks led the selloff, underlining how upstream producers continue to be treated as a hedge against the ongoing crude spike. Oil marketing companies remain the flip side of the same trade, as sustained high crude keeps pressure on their margins.",
+   "tone": "watch",
+   "companies": [
+    "ONGC",
+    "IOC",
+    "BPCL",
+    "HINDPETRO",
+    "RELIANCE"
+   ],
+   "sources": [
+    {
+     "publisher": "Business Standard",
+     "title": "Stock Market Close: RIL, financials drag Sensex 1248 pts down, Nifty at 23,063",
+     "url": "https://www.business-standard.com/markets/news/stock-market-live-september-24-sensex-today-nifty-gift-nifty-nse-share-price-brent-crude-oil-price-126092400122_1.html",
+     "date": "2026-09-24"
+    }
+   ],
+   "added": "2026-09-25"
+  },
+  {
+   "date": "2026-09-23",
+   "title": "Indian seafarer killed as bulk carrier Cape Dao struck near Strait of Hormuz",
+   "text": "The Antigua and Barbuda-flagged bulk carrier Cape Dao, carrying 20 Indian seafarers, was hit by an unknown projectile near Oman's Musandam peninsula on 23 September, killing one Indian crew member and setting the vessel on fire; India's foreign ministry confirmed the death and condemned the attack. The incident adds to the toll on shipping transiting the Strait of Hormuz and underscores the elevated war-risk premiums and freight costs Indian-bound tankers and bulk carriers continue to face.",
+   "tone": "bad",
+   "companies": [
+    "GESHIP"
+   ],
+   "sources": [
+    {
+     "publisher": "Business Standard",
+     "title": "Cargo ship MV Cape Dao hit in Strait of Hormuz, 1 Indian on board killed",
+     "url": "https://www.business-standard.com/world-news/cargo-ship-mv-cape-dao-hit-in-strait-of-hormuz-1-indian-on-board-killed-126092301565_1.html",
+     "date": "2026-09-23"
+    },
+    {
+     "publisher": "TradeWinds",
+     "title": "Indian seafarer dies as capesize bulker struck in Strait of Hormuz",
+     "url": "https://www.tradewindsnews.com/casualties/indian-seafarer-dies-as-capesize-bulker-struck-in-strait-of-hormuz/2-1-2048130",
+     "date": "2026-09-23"
+    }
+   ],
+   "added": "2026-09-25"
+  },
   {
    "date": "2026-09-23",
    "title": "ICRA: state fuel retailers losing Rs 530 crore/day as crude tops $117; govt holds pump prices",

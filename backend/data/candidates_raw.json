@@ -3738,5 +3738,292 @@
    },
    "profiled_on": "2026-09-23"
   }
+ },
+ {
+  "sym": "544938",
+  "name": "Sonaselection India Ltd",
+  "board": "BSE",
+  "isin": "INE0LLZ01011",
+  "listed": null,
+  "hint": null,
+  "why": "sector unknown, SME platform",
+  "plausible": false,
+  "verdict": null,
+  "seen_on": "2026-09-24",
+  "source": "new-listing",
+  "moat_signal": true,
+  "moat_evidence": [
+   "import substitution: \"BI RIPS RMG RoDTEP RoSCTL SAMARTH SAP SDP SEZ SHGs SITP SMEs TCDS TPI TUFS USD US VSF ZLD Projected Provisional Estimates Private Final Consumption Expenditure Production Linked Incentive Prime Minister Mega Integrated Textile Region and Apparel Personal Protective Equipment kits Parts Per Million Polyester Staple Fibre Polyvinyl Alcohol Research and Develop\" (prospectus, company-stated)"
+  ],
+  "profile": {
+   "symbol": "544938",
+   "company": "Sonaselection India Limited",
+   "isin": "INE0LLZ01011",
+   "board": "BSE",
+   "source": {
+    "document": "final prospectus",
+    "url": "https://nsearchives.nseindia.com/corporate/FP_INE0LLZ01011_22SEP2026.pdf",
+    "filed": "22-Sep-2026",
+    "pdf_bytes": 12876200,
+    "extracted_chars": 1567540
+   },
+   "grade": "company-stated",
+   "verified_against": null,
+   "claims": {
+    "import_substitution": {
+     "count": 1,
+     "dropped_as_industry_commentary": 16,
+     "terms": [
+      "Production Linked Incentive"
+     ],
+     "evidence": [
+      {
+       "match": "Production Linked Incentive",
+       "sentence": "BI RIPS RMG RoDTEP RoSCTL SAMARTH SAP SDP SEZ SHGs SITP SMEs TCDS TPI TUFS USD US VSF ZLD Projected Provisional Estimates Private Final Consumption Expenditure Production Linked Incentive Prime Minister Mega Integrated Textile Region and Apparel Personal Protective Equipment kits Parts Per Million Polyester Staple Fibre Polyvinyl Alcohol Research and Develop"
+      }
+     ]
+    },
+    "ip": {
+     "count": 3,
+     "dropped_as_industry_commentary": 23,
+     "terms": [
+      "trademarks"
+     ],
+     "evidence": [
+      {
+       "match": "trademarks",
+       "sentence": "59 Our Company currently does not own or hold any registered intellectual property rights such as trademarks, copyrights, patents or designs in relation to our brand name, logo, trade dress, technology, know-how, business processes or other proprietary information."
+      },
+      {
+       "match": "trademarks",
+       "sentence": "Our Company has made applications for registration of 20 trademarks in respect of the name and logo of our Company under the Trade Marks Act, 1999."
+      },
+      {
+       "match": "trademarks",
+       "sentence": "However, our Company has made applications for registration of 20 trademarks in respect of the name and logo of our Company under the Trademarks Act, 1999."
+      }
+     ]
+    }
+   },
+   "risk_factors": {
+    "customer_concentration": {
+     "count": 9,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "top ten customers",
+      "Top 5 customers",
+      "top 10 customers",
+      "customer concentration"
+     ],
+     "evidence": [
+      {
+       "match": "top ten customers",
+       "sentence": "A major portion of our revenue from operations is dependent upon a limited number of customers, our revenue from our top ten customers is ₹1,522."
+      },
+      {
+       "match": "Top 5 customers",
+       "sentence": "Particulars Top 1 customers Top 5 customers Top 10 customers (₹ in million, unless stated otherwise) Fiscal 2025 Fiscal 2024 % of % of revenue revenue Amount Amount from from operations operations Fiscal 2026 % of revenue Amount from operations 240."
+      },
+      {
+       "match": "top 10 customers",
+       "sentence": "Further, the details of our top 10 customers along with the revenue attributable to them for Fiscal 2026, is as follows: (in ₹ million) Name of the Customer* Amount 1."
+      }
+     ]
+    },
+    "promoter_litigation": {
+     "count": 17,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "criminal proceedings",
+      "Criminal Proceeding",
+      "criminal complaint",
+      "Criminal Case"
+     ],
+     "evidence": [
+      {
+       "match": "criminal proceedings",
+       "sentence": "A summary of pending material civil, tax and criminal proceedings involving our Company, Subsidiary, Directors, Promoters, KMPs and SMPs in accordance with the SEBI ICDR Regulations and as per the Materiality Policy adopted by our Board is provi"
+      },
+      {
+       "match": "Criminal Proceeding",
+       "sentence": "t applicable Not applicable 1 1 Not applicable Not applicable Nil Nil Not applicable Not applicable Not applicable Not applicable Not applicable Not applicable Criminal Proceeding s To the extent quantifiable and ascertainable Further, as on the date of this Prospectus, there are no outstanding litigations involving the Group Companies which may have a material impact on our Company."
+      },
+      {
+       "match": "criminal complaint",
+       "sentence": "Uma Nuwal, Shri Harshil Nuwal and one 42 of our senior managerial, Shri Rajnikant Saraswat are parties to a criminal complaint based on FIR No."
+      }
+     ]
+    },
+    "single_site": {
+     "count": 5,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "single manufacturing facility",
+      "single Manufacturing Facility",
+      "single unit"
+     ],
+     "evidence": [
+      {
+       "match": "single manufacturing facility",
+       "sentence": "Our Company currently carries out its business operations from a single manufacturing facility located at Bhilwara, Rajasthan."
+      },
+      {
+       "match": "single Manufacturing Facility",
+       "sentence": "As on the date of this Prospectus, our Company operates a single Manufacturing Facility located in Bhilwara, Rajasthan."
+      },
+      {
+       "match": "single manufacturing facility",
+       "sentence": "Given our reliance on a single manufacturing facility, any disruption could disproportionately impact our ability to meet customer demand, thereby affecting revenues, profitability, and customer confidence."
+      }
+     ]
+    },
+    "related_party": {
+     "count": 27,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "RELATED PARTY TRANSACTIONS",
+      "related party transactions",
+      "Related Party Transactions",
+      "related party transaction"
+     ],
+     "evidence": [
+      {
+       "match": "RELATED PARTY TRANSACTIONS",
+       "sentence": "94 SUMMARY OF RELATED PARTY TRANSACTIONS."
+      },
+      {
+       "match": "related party transactions",
+       "sentence": "Group Companies in terms of SEBI ICDR Regulations ‘shall include such companies (other than promoter(s) and subsidiary/subsidiaries) with which there were related party transactions, during the period for “Group Company” which financial information is disclosed, as covered under the applicable accounting standards, and also other companies as considered material by the board of the issuer’."
+      },
+      {
+       "match": "related party transactions",
+       "sentence": "We enter into certain related party transactions in the ordinary course of our business and we cannot assure you that such transactions will not adversely affect our business, results of operations, profitability and margins, cash flows and financial condition."
+      }
+     ]
+    }
+   },
+   "objects_of_the_issue": {
+    "offer_for_sale": {
+     "count": 3,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "OFFER FOR SALE"
+     ],
+     "evidence": [
+      {
+       "match": "OFFER FOR SALE",
+       "sentence": "com Hamirgarh, Bhilwara- 311025, Company Secretary and Telephone: +91 1482-286043 Rajasthan, India Compliance Officer THE PROMOTERS OF OUR COMPANY HARSHIL NUWAL, SUBHASH CHANDRA NUWAL, UMA NUWAL, DEEPANK BHANDARI AND SONA POLYSPIN PRIVATE LIMITED DETAILS OF THE ISSUE OFFER FOR SALE TOTAL ISSUE TYPE FRESH ISSUE SIZE ELIGIBILITY AND RESERVATION SIZE SIZE* Fresh Issue Fresh issue of up NIL Up to 14,300,000 The Issue was made in accordance with to 14,300,000* Equity S"
+      },
+      {
+       "match": "OFFER FOR SALE",
+       "sentence": "DETAILS OF THE OFFER FOR SALE NOT APPLICABLE RISKS IN RELATION TO THE FIRST ISSUE This being the first public issue of Equity Shares of face value of ₹ 10/- each of our Company, there has been no formal market for our Equity Shares."
+      },
+      {
+       "match": "OFFER FOR SALE",
+       "sentence": "DETAILS OF GUARANTEES GIVEN TO THIRD PARTIES BY PROMOTERS OFFERING EQUITY SHARESS IN THE PROPOSED OFFER FOR SALE Considering that this Issue consists of a fresh issue of Equity Shares only, there are no selling shareholders."
+      }
+     ]
+    },
+    "fresh_issue": {
+     "count": 14,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "FRESH ISSUE",
+      "Fresh Issue",
+      "Fresh issue",
+      "fresh Issue",
+      "fresh issue"
+     ],
+     "evidence": [
+      {
+       "match": "FRESH ISSUE",
+       "sentence": "com Hamirgarh, Bhilwara- 311025, Company Secretary and Telephone: +91 1482-286043 Rajasthan, India Compliance Officer THE PROMOTERS OF OUR COMPANY HARSHIL NUWAL, SUBHASH CHANDRA NUWAL, UMA NUWAL, DEEPANK BHANDARI AND SONA POLYSPIN PRIVATE LIMITED DETAILS OF THE ISSUE OFFER FOR SALE TOTAL ISSUE TYPE FRESH ISSUE SIZE ELIGIBILITY AND RESERVATION SIZE SIZE* Fresh Issue Fresh issue of up NIL Up to 14,300,000 The Issue was made in accordance with to 14,300,000* Equity Shares of Regulation 6(1) of the"
+      },
+      {
+       "match": "Fresh Issue",
+       "sentence": "DEEPANK BHANDARI AND SONA POLYSPIN PRIVATE LIMITED DETAILS OF THE ISSUE OFFER FOR SALE TOTAL ISSUE TYPE FRESH ISSUE SIZE ELIGIBILITY AND RESERVATION SIZE SIZE* Fresh Issue Fresh issue of up NIL Up to 14,300,000 The Issue was made in accordance with to 14,300,000* Equity Shares of Regulation 6(1) of the Securities and Exchange Equity Shares of face value of ₹"
+      },
+      {
+       "match": "Fresh issue",
+       "sentence": "DARI AND SONA POLYSPIN PRIVATE LIMITED DETAILS OF THE ISSUE OFFER FOR SALE TOTAL ISSUE TYPE FRESH ISSUE SIZE ELIGIBILITY AND RESERVATION SIZE SIZE* Fresh Issue Fresh issue of up NIL Up to 14,300,000 The Issue was made in accordance with to 14,300,000* Equity Shares of Regulation 6(1) of the Securities and Exchange Equity Shares of face value of ₹ 10/- Board"
+      }
+     ]
+    },
+    "capital_expenditure": {
+     "count": 27,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "capital expenditure",
+      "purchase of equipment",
+      "expansion of our",
+      "Capital expenditure",
+      "purchase of plant",
+      "setting up of"
+     ],
+     "evidence": [
+      {
+       "match": "capital expenditure",
+       "sentence": "Our financing agreements include certain covenants that require us to obtain lender consents prior to carrying out certain corporate activities and entering into certain transactions, such as, incurring any additional borrowings, undertaking capital expenditure, diversifying business, advance or repay loans, effect any dividend pay-out in case of delays in debt servicing, effect any change in shareholding pattern and management control of the Company, amongst others."
+      },
+      {
+       "match": "capital expenditure",
+       "sentence": "We intend to use Net Proceeds from the Issue towards (a) repayment and/or pre-payment, in full or part, of certain borrowings; (b) funding of capital expenditure towards purchase of plant and machineries; and (iii) general corporate purposes."
+      },
+      {
+       "match": "purchase of equipment",
+       "sentence": "Absence of a definitive agreement or formal orders for purchase of equipment may lead to non-availability of equipment at commercially acceptable terms or at the prices currently specified in the quotation."
+      }
+     ]
+    },
+    "working_capital": {
+     "count": 15,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "working capital requirements",
+      "working capital requirement",
+      "Working Capital Requirements"
+     ],
+     "evidence": [
+      {
+       "match": "working capital requirements",
+       "sentence": "The increase in our working capital requirements was primarily driven by a significant rise in sales from ₹3,159."
+      },
+      {
+       "match": "working capital requirements",
+       "sentence": "Sustained negative cash flows may limit our ability to meet our operating expenses, service debt, fund working capital requirements, invest in strategic initiatives or respond to competitive pressures."
+      },
+      {
+       "match": "working capital requirements",
+       "sentence": "We have significant working capital requirements and our inability to meet such working capital requirements may have an adverse effect on our results of operations."
+      }
+     ]
+    },
+    "general_corporate": {
+     "count": 11,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "general corporate purposes",
+      "General Corporate purposes",
+      "General Corporate Purposes",
+      "General corporate purposes"
+     ],
+     "evidence": [
+      {
+       "match": "general corporate purposes",
+       "sentence": "We intend to use Net Proceeds from the Issue towards (a) repayment and/or pre-payment, in full or part, of certain borrowings; (b) funding of capital expenditure towards purchase of plant and machineries; and (iii) general corporate purposes."
+      },
+      {
+       "match": "General Corporate purposes",
+       "sentence": "d machineries at the existing Manufacturing Facility situated at located at 18th K M Stone, Chittorgarh Road, Hamirgarh, Bhilwara- 311025 Rajasthan, India; and General Corporate purposes."
+      },
+      {
+       "match": "General Corporate Purposes",
+       "sentence": "UTILISATION OF NET PROCEEDS The Net Proceeds are proposed to be utilised in the following manner: Particulars Repayment and/or pre-payment, in full or part, of certain borrowings Funding of capital expenditure towards purchase of plant and machineries General Corporate Purposes (1) Grand Total(1) (1) (₹ in million) Amount 800."
+      }
+     ]
+    }
+   },
+   "profiled_on": "2026-09-24"
+  }
  }
 ]
