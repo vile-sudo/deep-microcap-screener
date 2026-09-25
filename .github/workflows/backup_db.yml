@@ -4,7 +4,7 @@ name: Database backup
 # Docker volume on the server. Nightly this workflow:
 #   1. asks the running container for a consistent copy (SQLite online backup, no
 #      downtime) and checks it (backend/scripts/backup_db.py);
-#   2. keeps the last 14 copies on the server, in /opt/screener-backups;
+#   2. keeps the last 14 copies on the server, in ~/screener-backups (the SSH user's home);
 #   3. carries tonight's copy off the server as a GitHub Actions artifact, kept for 30
 #      days, so losing the server does not lose the accounts.
 #
@@ -60,10 +60,10 @@ jobs:
 
           # 1. copy inside the container (script comes in over stdin), then out to the host
           $SSH "cd $P && docker compose exec -T screener python -" < backend/scripts/backup_db.py
-          $SSH "cd $P && mkdir -p ../screener-backups && docker compose cp screener:/tmp/backup.db ../screener-backups/screener-$STAMP.db && docker compose exec -T screener rm -f /tmp/backup.db && ls -1t ../screener-backups/screener-*.db | tail -n +15 | xargs -r rm -f"
+          $SSH "cd $P && mkdir -p \$HOME/screener-backups && docker compose cp screener:/tmp/backup.db \$HOME/screener-backups/screener-$STAMP.db && docker compose exec -T screener rm -f /tmp/backup.db && ls -1t \$HOME/screener-backups/screener-*.db | tail -n +15 | xargs -r rm -f"
 
           # 2. carry it off the server
-          scp -i ~/.ssh/deploy_key -o StrictHostKeyChecking=yes "${AWS_SSH_USER:-ubuntu}@$AWS_HOST:$P/../screener-backups/screener-$STAMP.db" "screener-$STAMP.db"
+          scp -i ~/.ssh/deploy_key -o StrictHostKeyChecking=yes "${AWS_SSH_USER:-ubuntu}@$AWS_HOST:screener-backups/screener-$STAMP.db" "screener-$STAMP.db"
           gzip -9 "screener-$STAMP.db"
           OUT="screener-$STAMP.db.gz"
           if [ -n "$BACKUP_PASSPHRASE" ]; then
