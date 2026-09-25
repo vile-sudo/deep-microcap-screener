@@ -9,9 +9,10 @@ Configured from VAPID_PUBLIC_KEY / VAPID_PRIVATE_KEY / VAPID_SUBJECT (see config
 to generate them) -- unset, every function here silently no-ops, so a server with no VAPID keys behaves
 exactly as it did before this module existed, and the settings-panel toggle explains that it isn't set up.
 
-Caller: main.py's `_desktop_push_loop`, which watches for new alerts (highs/lows, breakouts, institutional
-deal clusters) and sends one summary push per new session -- see that function for the "what changed"
-logic; this module only knows how to deliver a message once given one.
+Callers: main.py's `_desktop_push_loop` (watches for new alerts -- highs/lows, breakouts, institutional
+deal clusters -- and sends one summary push per new session) and `_refresh_news_and_push` (one push per
+News Channel refresh that actually added stories); this module only knows how to deliver a message once
+given one.
 """
 from __future__ import annotations
 

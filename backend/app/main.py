@@ -30,11 +30,11 @@ NEWS_REFRESH_SECONDS = 300
 
 def _refresh_news_and_push() -> bool:
     """Runs on a worker thread (see asyncio.to_thread below): fetches if
-    stale, and -- only for the mobile app, see push.py -- notifies every
-    registered device when that fetch actually added something new. Counts
-    before/after rather than trusting refresh_if_stale's own True/False,
-    because a run can fetch successfully and still add nothing (every
-    story already seen)."""
+    stale, and notifies every registered device (mobile, via push.py) and
+    every subscribed browser (desktop, via webpush.py) when that fetch
+    actually added something new. Counts before/after rather than trusting
+    refresh_if_stale's own True/False, because a run can fetch successfully
+    and still add nothing (every story already seen)."""
     before = news_feed.load().get("count", 0)
     if not news_feed.refresh_if_stale(settings.newsdata_api_key or None, NEWS_REFRESH_SECONDS - 30):
         return False
@@ -42,13 +42,20 @@ def _refresh_news_and_push() -> bool:
     # count can also fall (old stories aging out past the 48h cutoff), so a
     # net drop is clamped to 0 rather than pushing a nonsensical negative
     added = max(0, payload.get("count", 0) - before)
-    if added > 0 and push.configured():
-        db = SessionLocal()
-        try:
-            push.send_to_all(db, "News Channel", f"{added} new stor{'y' if added == 1 else 'ies'} just in",
-                              {"type": "news_channel"})
-        finally:
-            db.close()
+    if added > 0:
+        body = f"{added} new stor{'y' if added == 1 else 'ies'} just in"
+        if push.configured():
+            db = SessionLocal()
+            try:
+                push.send_to_all(db, "News Channel", body, {"type": "news_channel"})
+            finally:
+                db.close()
+        if webpush.configured():
+            db = SessionLocal()
+            try:
+                webpush.send_to_all(db, "News Channel", body, url="/#v=news", tag="news-channel")
+            finally:
+                db.close()
     return True
 
 
