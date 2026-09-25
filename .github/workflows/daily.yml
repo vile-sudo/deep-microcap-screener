@@ -14,6 +14,7 @@ name: Daily 2 AM update
 #   1d. deal clusters unusually one-sided bulk/block deal activity in a stock
 #                     (several institutions on one side), surfaced in the
 #                     Alerts bell                (scripts/run_deal_clusters.py)
+#                     -- steps 1b-1d also re-run same-day evening, see deals_evening.yml
 #   2. discovery      new NSE / BSE / SME listings and their prospectuses ->
 #                     the Candidates queue               (automation/update-weekly.mjs)
 #   3. auto-screen    checks listed companies against the board's gates and

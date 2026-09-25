@@ -1,0 +1,100 @@
+name: Deals evening update
+
+# NSE publishes the day's bulk & block deals same-day, not the next morning: nsearchives.nseindia.com's
+# bulk.csv/block.csv show a Last-Modified around 18:30 IST on a trading day (checked directly). daily.yml
+# already covers this ground at 02:00 IST, but that means a stock like SEDEMAC having an unusually
+# one-sided pile of institutional deals sits unflagged for 7+ hours after the data was actually
+# available, and a whole trading day before anyone reads about it -- exactly the "stay ahead of the
+# market" case the deal-cluster Alerts feature exists for. This workflow re-runs just that slice
+# (deals, announcements, deal clusters -- not the rest of daily.yml's much heavier fundamentals/screening
+# work) same evening, so a subscribed browser's desktop notification (main.py's _desktop_push_loop,
+# checking every minute) can reasonably fire the same evening instead of after next day's 02:00 run.
+#
+# Two schedule times, not one, same reasoning as movers.yml: a GitHub `schedule:` trigger can be delayed
+# or silently dropped, and NSE's own publish time isn't perfectly fixed either. 20:00 IST re-runs the
+# same scan; if 19:00 already succeeded this is a genuine no-op (the scripts here only write/commit when
+# content actually changed).
+#
+# Commits by this workflow use GITHUB_TOKEN, which never re-triggers workflows, so nothing here can loop.
+
+permissions:
+  contents: write
+
+on:
+  schedule:
+    - cron: '30 13 * * *'      # 19:00 IST, every day (13:30 UTC)
+    - cron: '30 14 * * *'      # 20:00 IST backup, in case 19:00 was dropped or NSE published late (14:30 UTC)
+  workflow_dispatch:
+
+concurrency:
+  group: deals-evening
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Check out repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: pip install requests
+
+      - name: Deals
+        working-directory: ./backend
+        run: python scripts/run_deals.py
+
+      - name: Announcements
+        working-directory: ./backend
+        run: python scripts/run_announcements.py
+
+      - name: Deal clusters
+        working-directory: ./backend
+        run: python scripts/run_deal_clusters.py
+
+      - name: Commit
+        id: commit
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add backend/data/deals backend/data/announcements
+          if git diff --cached --quiet; then
+            echo "No changes"
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          git commit -m "Deals evening update"
+          for i in 1 2 3; do
+            git pull --rebase origin ${{ github.ref_name }} && git push origin HEAD:${{ github.ref_name }} && break
+            sleep 5
+          done
+          echo "changed=true" >> "$GITHUB_OUTPUT"
+
+      # Data-only: nothing here needs a rebuild or restart, and the desktop push loop already polls
+      # data/deals/clusters.json every minute (main.py's _desktop_push_tick).
+      - name: Deploy to AWS
+        if: ${{ steps.commit.outputs.changed == 'true' }}
+        env:
+          AWS_HOST: ${{ secrets.AWS_HOST }}
+          AWS_SSH_KEY: ${{ secrets.AWS_SSH_KEY }}
+          AWS_SSH_USER: ${{ secrets.AWS_SSH_USER }}
+          AWS_DEPLOY_PATH: ${{ secrets.AWS_DEPLOY_PATH }}
+        run: |
+          if [ -z "$AWS_HOST" ] || [ -z "$AWS_SSH_KEY" ]; then
+            echo "AWS_HOST/AWS_SSH_KEY secrets not set; skipping AWS deploy"
+            exit 0
+          fi
+          mkdir -p ~/.ssh
+          printf '%s\n' "$AWS_SSH_KEY" > ~/.ssh/deploy_key
+          chmod 600 ~/.ssh/deploy_key
+          ssh-keyscan -H "$AWS_HOST" >> ~/.ssh/known_hosts 2>/dev/null
+          ssh -i ~/.ssh/deploy_key -o StrictHostKeyChecking=yes "${AWS_SSH_USER:-ubuntu}@$AWS_HOST" \
+            "flock /tmp/screener-deploy.lock sh -c 'cd ${AWS_DEPLOY_PATH:-/opt/screener-app} && git pull --ff-only && (docker compose exec -T screener test -x /app/sync-data.sh && docker compose exec -T screener /app/sync-data.sh || docker compose up -d --build)'"
+          echo "AWS data deploy done"
