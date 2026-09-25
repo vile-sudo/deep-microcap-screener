@@ -2955,7 +2955,7 @@ function newsRender(){
   }).join('');
   body.innerHTML = rows.length ? `<div class="news-list">${listHtml}</div>`
     + (ME&&ME.is_admin?`<div class="mv-admin"><button type="button" class="btn" id="news-refresh">Refresh now</button><span class="mv-refresh-msg" id="news-refresh-msg"></span></div>`:'')
-    : (NEWS.view!=='' && !all.length ? '<p class="view-hint">Nothing was archived for that period. The archive started on the day this feature went live and grows by a day at a time, up to 90 days.</p>' : '<p class="view-hint">No news matches — try a different keyword, clear the filters, or wait for the next scheduled fetch.</p>');
+    : (NEWS.view!=='' && !all.length ? '<p class="view-hint">Nothing was archived for that period. The archive started on the day this feature went live and grows by a day at a time, up to 30 days.</p>' : '<p class="view-hint">No news matches — try a different keyword, clear the filters, or wait for the next scheduled fetch.</p>');
   const btn=document.getElementById('news-refresh');
   if(btn) newsWireRefresh();
 }

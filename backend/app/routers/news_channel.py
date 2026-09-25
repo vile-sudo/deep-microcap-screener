@@ -4,7 +4,7 @@ News Channel endpoints.
 GET /api/news-channel                  the latest fetched feed (last 48 hours)
 GET /api/news-channel/dates            the days the archive holds, newest first, with a count each
 GET /api/news-channel/archive/{date}   every item published that India (IST) day, YYYY-MM-DD
-GET /api/news-channel/archive?days=N   the last N days together (1-90), for searching history
+GET /api/news-channel/archive?days=N   the last N days together (1-30), for searching history
 POST /api/admin/news-channel/run-now    admin: dispatch the fetch right now
                                         instead of waiting for the next
                                         scheduled run
@@ -99,7 +99,7 @@ def archive_dates():
 
 
 @router.get("/api/news-channel/archive")
-def archive_range(days: int = Query(7, ge=1, le=90)):
+def archive_range(days: int = Query(7, ge=1, le=30)):
     today = datetime.now(timezone.utc) + timedelta(hours=5, minutes=30)
     items = []
     for i in range(days):

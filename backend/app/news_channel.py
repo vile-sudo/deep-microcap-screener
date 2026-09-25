@@ -66,7 +66,7 @@ GOOGLE_WINDOW_DAYS = 3     # the query's own "when:Nd" -- wider than LOOKBACK_HO
                            # edge still gets picked up; LOOKBACK_HOURS is still what decides what's kept
 MAX_PER_COUNTRY = 10       # one page per country per run -- 1 credit each
 LOOKBACK_HOURS = 48        # older stories are dropped from the LIVE feed on write (they are kept in the archive)
-ARCHIVE_DAYS = 90          # how far back the day-by-day archive goes
+ARCHIVE_DAYS = 30          # how far back the day-by-day archive goes
 DAILY_CAP = 180            # newsdata.io's real ceiling is 200/day; this stops
                             # well short of it, on purpose, so a scheduling
                             # mistake or a burst of "Refresh now" clicks can
