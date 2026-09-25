@@ -1,0 +1,94 @@
+name: Database backup
+
+# The site keeps its accounts, watchlists and saved views in one SQLite file inside a
+# Docker volume on the server. Nightly this workflow:
+#   1. asks the running container for a consistent copy (SQLite online backup, no
+#      downtime) and checks it (backend/scripts/backup_db.py);
+#   2. keeps the last 14 copies on the server, in /opt/screener-backups;
+#   3. carries tonight's copy off the server as a GitHub Actions artifact, kept for 30
+#      days, so losing the server does not lose the accounts.
+#
+# If the repo secret BACKUP_PASSPHRASE is set the off-server copy is AES-256 encrypted
+# with it (recommended: the file holds password hashes). Without it the copy is stored
+# as is; the artifact is only visible to people who can read this repo.
+# Restore: see the comment at the end of this file.
+#
+# Needs the same AWS_HOST / AWS_SSH_KEY secrets the deploy steps use; without them the
+# run is skipped.
+
+permissions:
+  contents: read
+
+on:
+  schedule:
+    - cron: '15 3 * * *'
+  workflow_dispatch:
+
+concurrency:
+  group: db-backup
+  cancel-in-progress: false
+
+jobs:
+  backup:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Check out repo
+        uses: actions/checkout@v4
+
+      - name: Back up the database over SSH
+        id: backup
+        env:
+          AWS_HOST: ${{ secrets.AWS_HOST }}
+          AWS_SSH_KEY: ${{ secrets.AWS_SSH_KEY }}
+          AWS_SSH_USER: ${{ secrets.AWS_SSH_USER }}
+          AWS_DEPLOY_PATH: ${{ secrets.AWS_DEPLOY_PATH }}
+          BACKUP_PASSPHRASE: ${{ secrets.BACKUP_PASSPHRASE }}
+        run: |
+          if [ -z "$AWS_HOST" ] || [ -z "$AWS_SSH_KEY" ]; then
+            echo "AWS_HOST/AWS_SSH_KEY secrets not set; skipping the backup"
+            echo "ok=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          mkdir -p ~/.ssh
+          printf '%s\n' "$AWS_SSH_KEY" > ~/.ssh/deploy_key
+          chmod 600 ~/.ssh/deploy_key
+          ssh-keyscan -H "$AWS_HOST" >> ~/.ssh/known_hosts 2>/dev/null
+          SSH="ssh -i $HOME/.ssh/deploy_key -o StrictHostKeyChecking=yes ${AWS_SSH_USER:-ubuntu}@$AWS_HOST"
+          P="${AWS_DEPLOY_PATH:-/opt/screener-app}"
+          STAMP=$(date -u +%Y%m%d-%H%M)
+
+          # 1. copy inside the container (script comes in over stdin), then out to the host
+          $SSH "cd $P && docker compose exec -T screener python -" < backend/scripts/backup_db.py
+          $SSH "cd $P && mkdir -p ../screener-backups && docker compose cp screener:/tmp/backup.db ../screener-backups/screener-$STAMP.db && docker compose exec -T screener rm -f /tmp/backup.db && ls -1t ../screener-backups/screener-*.db | tail -n +15 | xargs -r rm -f"
+
+          # 2. carry it off the server
+          scp -i ~/.ssh/deploy_key -o StrictHostKeyChecking=yes "${AWS_SSH_USER:-ubuntu}@$AWS_HOST:$P/../screener-backups/screener-$STAMP.db" "screener-$STAMP.db"
+          gzip -9 "screener-$STAMP.db"
+          OUT="screener-$STAMP.db.gz"
+          if [ -n "$BACKUP_PASSPHRASE" ]; then
+            openssl enc -aes-256-cbc -pbkdf2 -salt -pass env:BACKUP_PASSPHRASE -in "$OUT" -out "$OUT.enc"
+            rm "$OUT"
+            OUT="$OUT.enc"
+            echo "encrypted with BACKUP_PASSPHRASE"
+          else
+            echo "::warning::BACKUP_PASSPHRASE is not set: the off-server copy is not encrypted"
+          fi
+          ls -l "$OUT"
+          echo "file=$OUT" >> "$GITHUB_OUTPUT"
+          echo "ok=true" >> "$GITHUB_OUTPUT"
+
+      - name: Keep the off-server copy for 30 days
+        if: ${{ steps.backup.outputs.ok == 'true' }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: screener-db-backup
+          path: ${{ steps.backup.outputs.file }}
+          retention-days: 30
+
+# Restore (on the server, from a downloaded artifact):
+#   gunzip screener-....db.gz        # or: openssl enc -d -aes-256-cbc -pbkdf2 -in screener-....db.gz.enc | gunzip > screener.db
+#   cd /opt/screener-app && docker compose stop screener
+#   docker run --rm -v screener-app_screener_data:/d -v "$PWD":/b alpine cp /b/screener.db /d/screener.db
+#   docker compose start screener
+# (the volume name is `<project>_screener_data`; `docker volume ls` shows it.)

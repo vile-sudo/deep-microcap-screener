@@ -1,13 +1,16 @@
 name: Uptime check
 
-# Every 10 minutes: is the live dashboard (pkresearch.in, behind Caddy)
-# answering? Retries for about three minutes before failing, and a failed
-# scheduled run makes GitHub email the repo owner.
+# Every 10 minutes: is the live dashboard answering, and is the APP healthy?
+# Retries for about three minutes before failing; a failed scheduled run makes GitHub
+# email the repo owner.
 #
-# Caddy sits in front of the app and answers 401 to anyone without the site
-# login -- even /healthz -- so 401 is treated as "up" here. That proves the
-# server and Caddy are reachable (a dead host, or a TLS/DNS failure, still
-# fails), but not that the app container behind Caddy is healthy.
+# Two probes:
+#   1. https://deepsweep.pkresearch.in/healthz -- the app itself. That host is not behind
+#      Caddy's basic-auth prompt, so this returns the app's own {"status":"ok"} and
+#      proves the container is up and serving, not just that Caddy is.
+#   2. https://pkresearch.in/healthz -- the main domain behind Caddy. It answers 401 to
+#      anyone without the site login, which still proves DNS, TLS and Caddy are alive.
+# Either failing fails the run.
 
 permissions:
   contents: read
@@ -24,17 +27,26 @@ concurrency:
 jobs:
   ping:
     runs-on: ubuntu-latest
-    timeout-minutes: 6
+    timeout-minutes: 8
     steps:
-      - name: Check /healthz
-        env:
-          SITE: https://pkresearch.in
+      - name: App health (deepsweep.pkresearch.in)
         run: |
           for i in 1 2 3 4 5 6; do
-            code=$(curl -s -o body.txt -w '%{http_code}' -m 40 "$SITE/healthz" || echo 000)
+            code=$(curl -s -o body.txt -w '%{http_code}' -m 40 "https://deepsweep.pkresearch.in/healthz" || echo 000)
             echo "attempt $i: HTTP $code $(cat body.txt 2>/dev/null)"
-            if [ "$code" = "200" ] || [ "$code" = "401" ]; then exit 0; fi
+            if [ "$code" = "200" ] && grep -q '"status":"ok"' body.txt; then exit 0; fi
             sleep 30
           done
-          echo "::error::$SITE has not answered /healthz for about three minutes"
+          echo "::error::the app has not reported healthy at deepsweep.pkresearch.in/healthz for about three minutes"
+          exit 1
+
+      - name: Main domain reachable (pkresearch.in, behind Caddy)
+        run: |
+          for i in 1 2 3; do
+            code=$(curl -s -o /dev/null -w '%{http_code}' -m 40 "https://pkresearch.in/healthz" || echo 000)
+            echo "attempt $i: HTTP $code"
+            if [ "$code" = "200" ] || [ "$code" = "401" ]; then exit 0; fi
+            sleep 20
+          done
+          echo "::error::pkresearch.in is not answering"
           exit 1
