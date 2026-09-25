@@ -84,6 +84,8 @@ jobs:
           done
           echo "changed=true" >> "$GITHUB_OUTPUT"
 
+      # Data-only: the server refreshes its own news every five minutes, so this job only has to hand it
+      # the stories it fetched (merged, never overwritten -- app/news_sync.py). No image rebuild, no restart.
       - name: Deploy to AWS
         if: ${{ steps.commit.outputs.changed == 'true' }}
         env:
@@ -101,5 +103,5 @@ jobs:
           chmod 600 ~/.ssh/deploy_key
           ssh-keyscan -H "$AWS_HOST" >> ~/.ssh/known_hosts 2>/dev/null
           ssh -i ~/.ssh/deploy_key -o StrictHostKeyChecking=yes "${AWS_SSH_USER:-ubuntu}@$AWS_HOST" \
-            "cd ${AWS_DEPLOY_PATH:-/opt/screener-app} && git pull --ff-only && docker compose up -d --build"
-          echo "AWS deploy triggered"
+            "cd ${AWS_DEPLOY_PATH:-/opt/screener-app} && git pull --ff-only && (docker compose exec -T screener test -x /app/sync-data.sh && docker compose exec -T screener /app/sync-data.sh || docker compose up -d --build)"
+          echo "AWS data deploy done"
