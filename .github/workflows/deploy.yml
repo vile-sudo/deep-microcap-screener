@@ -33,6 +33,22 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 20
     steps:
+      # A broken import (a module deleted while something still imports it) used to reach the server, crash
+      # both workers and leave the site on a 502 until the next fix. Refuse to deploy an app that cannot start.
+      - name: Check out repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: The app must import
+        working-directory: ./backend
+        run: |
+          pip install -q -r requirements.txt
+          python -c "import app.main; print('app imports fine')"
+
       - name: Pull and rebuild on the server
         env:
           AWS_HOST: ${{ secrets.AWS_HOST }}
