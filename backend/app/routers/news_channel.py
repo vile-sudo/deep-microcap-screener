@@ -1,7 +1,10 @@
 """
 News Channel endpoints.
 
-GET /api/news-channel                  the latest fetched feed
+GET /api/news-channel                  the latest fetched feed (last 48 hours)
+GET /api/news-channel/dates            the days the archive holds, newest first, with a count each
+GET /api/news-channel/archive/{date}   every item published that India (IST) day, YYYY-MM-DD
+GET /api/news-channel/archive?days=N   the last N days together (1-90), for searching history
 POST /api/admin/news-channel/run-now    admin: dispatch the fetch right now
                                         instead of waiting for the next
                                         scheduled run
@@ -14,9 +17,12 @@ Written by scripts/run_news_channel.py into backend/data/news_channel/latest.jso
 for the rules); this router only reads it.
 """
 import hmac
+import json
+import re
 import time
+from datetime import datetime, timedelta, timezone
 
-from fastapi import APIRouter, Depends, HTTPException
+from fastapi import APIRouter, Depends, HTTPException, Query
 from sqlalchemy.orm import Session
 
 from .. import github_dispatch, news_channel
@@ -58,6 +64,60 @@ def _dispatch_if_due(db: Session, kv_key: str, cooldown: int) -> dict:
 @router.get("/api/news-channel")
 def latest():
     return news_channel.load()
+
+
+_DAY = re.compile(r"^\d{4}-\d{2}-\d{2}$")
+_cache: dict[str, tuple[float, dict]] = {}     # path -> (mtime, parsed): the day files are ~100 KB each
+
+
+def _day_file(day: str) -> dict | None:
+    path = news_channel.ARCHIVE_DIR / f"{day}.json"
+    try:
+        mtime = path.stat().st_mtime
+    except OSError:
+        return None
+    hit = _cache.get(day)
+    if hit and hit[0] == mtime:
+        return hit[1]
+    try:
+        data = json.loads(path.read_text(encoding="utf-8"))
+    except (OSError, ValueError):
+        return None
+    _cache[day] = (mtime, data)
+    return data
+
+
+@router.get("/api/news-channel/dates")
+def archive_dates():
+    days = sorted((p.stem for p in news_channel.ARCHIVE_DIR.glob("*.json") if _DAY.match(p.stem)), reverse=True)
+    out = []
+    for d in days:
+        data = _day_file(d)
+        if data:
+            out.append({"date": d, "count": data.get("count", len(data.get("items") or []))})
+    return {"days": out}
+
+
+@router.get("/api/news-channel/archive")
+def archive_range(days: int = Query(7, ge=1, le=90)):
+    today = datetime.now(timezone.utc) + timedelta(hours=5, minutes=30)
+    items = []
+    for i in range(days):
+        data = _day_file((today - timedelta(days=i)).strftime("%Y-%m-%d"))
+        if data:
+            items.extend(data.get("items") or [])
+    items.sort(key=lambda x: x.get("published") or "", reverse=True)
+    return {"days": days, "count": len(items), "items": items}
+
+
+@router.get("/api/news-channel/archive/{day}")
+def archive_day(day: str):
+    if not _DAY.match(day):
+        raise HTTPException(status_code=400, detail="Use a date like 2026-09-25")
+    data = _day_file(day)
+    if data is None:
+        return {"date": day, "count": 0, "items": []}
+    return data
 
 
 @router.post("/api/admin/news-channel/run-now")

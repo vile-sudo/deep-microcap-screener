@@ -101,7 +101,7 @@
   .f1{transform:translateX(12vw)}.f2{transform:translateX(66vw)}.f3{transform:translateX(38vw)}.f4{transform:translateX(18vw)}.f5{transform:translateX(74vw)}.sp-school{transform:translateX(56vw)}
 }
 </style>
-<link rel="stylesheet" href="/static/style.css?v=65">
+<link rel="stylesheet" href="/static/style.css?v=66">
 <link rel="stylesheet" href="/static/dark.css?v=65">
 </head>
 <body>
@@ -381,6 +381,9 @@
   <div class="mv-toolbar">
     <input id="news-q" class="gal-search" type="search" autocomplete="off" spellcheck="false" placeholder="Search news by keyword — e.g. tariff, API, copper, defence" aria-label="Search news by keyword">
     <button class="btn" id="news-search" type="button" title="Search the headlines">Search</button>
+    <select class="gal-select" id="news-date" aria-label="Date" title="Pick a past day, or the last 7 / 30 days, to read (and search) older news">
+      <option value="">Live — last 48 hours</option>
+    </select>
     <select class="gal-select" id="news-country" aria-label="Country">
       <option value="">All countries</option>
     </select>
@@ -659,6 +662,6 @@
 <div class="modal" id="modal" role="dialog" aria-modal="true"><div class="mbox"><button class="close" id="mclose" aria-label="Close">&times;</button><div id="mbody"></div></div></div>
 
 <script src="/static/asme-certified.js?v=5" defer></script>
-<script src="/static/app.js?v=72" defer></script>
+<script src="/static/app.js?v=73" defer></script>
 </body>
 </html>

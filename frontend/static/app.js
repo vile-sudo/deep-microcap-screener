@@ -2744,7 +2744,7 @@ async function iporRenderDoc(symbol){
    re-fetches every 5 minutes). A flat feed; every filter here runs
    client-side against it, and the page re-polls the server while open. */
 const NEWS_COUNTRY={cn:'China', in:'India', us:'USA', jp:'Japan'};
-const NEWS={data:null, loading:null, built:false, seen:undefined};
+const NEWS={data:null, loading:null, built:false, seen:undefined, view:'', arch:{}, days:[]};
 
 function newsFetch(){
   NEWS.loading = NEWS.loading || fetchJSON('/api/news-channel').catch(()=>null);
@@ -2818,9 +2818,12 @@ function newsBuildControls(){
   nq.onkeydown=e=>{ if(e.key==='Enter'){ clearTimeout(nqTimer); newsRender(); } if(e.key==='Escape'){ nq.value=''; newsRender(); } };
   document.getElementById('news-search').onclick=()=>{ clearTimeout(nqTimer); newsRender(); nq.focus(); };
   document.getElementById('news-clear').onclick=()=>{
-    cc.value=''; sc.value=''; nq.value=''; document.getElementById('news-pm').checked=false; newsRender();
+    cc.value=''; sc.value=''; nq.value=''; document.getElementById('news-pm').checked=false;
+    document.getElementById('news-date').value=''; newsPickView('');
   };
   document.getElementById('news-reload').onclick=newsReload;
+  document.getElementById('news-date').onchange=e=>newsPickView(e.target.value);
+  newsLoadDays();
 }
 
 /* While the News page is on screen, quietly re-pull every 3 minutes so new
@@ -2854,8 +2857,47 @@ async function newsReload(){
   if(btn){ btn.disabled=false; btn.innerHTML='&#8635; Reload'; }
 }
 
+/* the live 48-hour feed, or the archived day / last-7 / last-30 the date menu picked */
+function newsItems(){
+  if(NEWS.view==='') return (NEWS.data && NEWS.data.items) || [];
+  return NEWS.arch[NEWS.view] || [];
+}
+const NEWS_IST={timeZone:'Asia/Kolkata'};
+const newsTs = pub => Date.parse(String(pub||'').replace(' ','T')+'Z');
+/* '25 Sep 2026, 12:01 pm' in India time, from the feed's UTC timestamp */
+function newsDateFull(pub){
+  const t=newsTs(pub); if(isNaN(t)) return '';
+  return new Date(t).toLocaleString('en-IN',{...NEWS_IST, day:'2-digit', month:'short', year:'numeric', hour:'2-digit', minute:'2-digit', hour12:true});
+}
+function newsDayHead(pub){
+  const t=newsTs(pub); if(isNaN(t)) return '';
+  return new Date(t).toLocaleDateString('en-IN',{...NEWS_IST, weekday:'short', day:'2-digit', month:'short', year:'numeric'});
+}
+async function newsPickView(v){
+  NEWS.view=v;
+  const body=document.getElementById('news-body');
+  if(v && !NEWS.arch[v]){
+    if(body) body.innerHTML='<p class="view-hint">Loading the archive…</p>';
+    const url = v==='d7' ? '/api/news-channel/archive?days=7' : v==='d30' ? '/api/news-channel/archive?days=30' : '/api/news-channel/archive/'+encodeURIComponent(v);
+    const j=await fetchJSON(url).catch(()=>null);
+    if(NEWS.view!==v) return;   /* the reader moved on while it loaded */
+    NEWS.arch[v]=(j && j.items) || [];
+  }
+  newsRender();
+}
+async function newsLoadDays(){
+  const sel=document.getElementById('news-date');
+  const j=await fetchJSON('/api/news-channel/dates').catch(()=>null);
+  NEWS.days=(j && j.days) || [];
+  const dayLabel=d=>new Date(d.date+'T12:00:00Z').toLocaleDateString('en-IN',{timeZone:'UTC', weekday:'short', day:'2-digit', month:'short', year:'numeric'});
+  sel.innerHTML='<option value="">Live — last 48 hours</option>'
+    + (NEWS.days.length>1 ? '<option value="d7">Last 7 days</option><option value="d30">Last 30 days</option>' : '')
+    + NEWS.days.map(d=>`<option value="${esc(d.date)}">${esc(dayLabel(d))} (${fmtI(d.count)})</option>`).join('');
+  sel.value=NEWS.view;
+}
+
 function newsRows(){
-  const items=(NEWS.data && NEWS.data.items) || [];
+  const items=newsItems();
   const country=(document.getElementById('news-country')||{}).value||'';
   const sector=(document.getElementById('news-sector')||{}).value||'';
   const pmOnly=(document.getElementById('news-pm')||{}).checked;
@@ -2888,6 +2930,7 @@ function newsItemHtml(it){
   return `<article class="news-item">
     <a class="news-title" href="${esc(it.link)}" target="_blank" rel="noopener">${esc(it.title)}</a>
     <div class="news-meta">
+      <span class="news-date" title="India time">${esc(newsDateFull(it.published))}</span>
       <span class="news-tag news-country-tag">${esc(NEWS_COUNTRY[it.country]||it.country)}</span>
       ${(it.sectors||[]).map(s=>`<span class="news-tag news-sector-tag">${esc(s)}</span>`).join('')}
       ${it.price_move?'<span class="news-tag news-move-tag">Price move</span>':''}
@@ -2899,11 +2942,20 @@ function newsItemHtml(it){
 function newsRender(){
   const body=document.getElementById('news-body');
   const rows=newsRows();
-  document.getElementById('news-count').textContent=`${fmtI(rows.length)} of ${fmtI((NEWS.data.items||[]).length)}`;
+  const all=newsItems();
+  const viewLabel = NEWS.view==='' ? '' : NEWS.view==='d7' ? ' · last 7 days' : NEWS.view==='d30' ? ' · last 30 days' : ' · archive';
+  document.getElementById('news-count').textContent=`${fmtI(rows.length)} of ${fmtI(all.length)}${viewLabel}`;
   document.getElementById('news-asof').textContent = NEWS.data.as_of ? 'Last fetched: '+newsAgoISO(NEWS.data.as_of) : '';
-  body.innerHTML = rows.length ? `<div class="news-list">${rows.map(newsItemHtml).join('')}</div>`
+  /* a heading each time the (India) day changes, so a long list reads as days */
+  let lastDay='';
+  const listHtml=rows.map(it=>{
+    const day=newsDayHead(it.published), head=day && day!==lastDay ? `<div class="news-day">${esc(day)}</div>` : '';
+    lastDay=day||lastDay;
+    return head+newsItemHtml(it);
+  }).join('');
+  body.innerHTML = rows.length ? `<div class="news-list">${listHtml}</div>`
     + (ME&&ME.is_admin?`<div class="mv-admin"><button type="button" class="btn" id="news-refresh">Refresh now</button><span class="mv-refresh-msg" id="news-refresh-msg"></span></div>`:'')
-    : '<p class="view-hint">No news matches — try a different keyword, clear the filters, or wait for the next scheduled fetch.</p>';
+    : (NEWS.view!=='' && !all.length ? '<p class="view-hint">Nothing was archived for that period. The archive started on the day this feature went live and grows by a day at a time, up to 90 days.</p>' : '<p class="view-hint">No news matches — try a different keyword, clear the filters, or wait for the next scheduled fetch.</p>');
   const btn=document.getElementById('news-refresh');
   if(btn) newsWireRefresh();
 }

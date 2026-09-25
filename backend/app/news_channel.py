@@ -44,6 +44,7 @@ companies, setups, or any other screen.
 """
 from __future__ import annotations
 
+import calendar
 import json
 import os
 import re
@@ -55,6 +56,7 @@ import requests
 
 BACKEND_DIR = Path(__file__).resolve().parent.parent
 NEWS_FILE = BACKEND_DIR / "data" / "news_channel" / "latest.json"
+ARCHIVE_DIR = NEWS_FILE.parent / "archive"      # one file per India (IST) calendar day: YYYY-MM-DD.json
 API_URL = "https://newsdata.io/api/1/latest"
 GOOGLE_RSS_URL = "https://news.google.com/rss/search"
 GOOGLE_HEADERS = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126 Safari/537.36"}
@@ -63,7 +65,8 @@ BL_URL = "https://www.thehindubusinessline.com/{}/feeder/default.rss"   # ~60 la
 GOOGLE_WINDOW_DAYS = 3     # the query's own "when:Nd" -- wider than LOOKBACK_HOURS so a story near the
                            # edge still gets picked up; LOOKBACK_HOURS is still what decides what's kept
 MAX_PER_COUNTRY = 10       # one page per country per run -- 1 credit each
-LOOKBACK_HOURS = 48        # older stories are dropped from the feed on write
+LOOKBACK_HOURS = 48        # older stories are dropped from the LIVE feed on write (they are kept in the archive)
+ARCHIVE_DAYS = 90          # how far back the day-by-day archive goes
 DAILY_CAP = 180            # newsdata.io's real ceiling is 200/day; this stops
                             # well short of it, on purpose, so a scheduling
                             # mistake or a burst of "Refresh now" clicks can
@@ -312,6 +315,62 @@ def _quota_today(prev: dict) -> int:
     return q.get("calls", 0) if q.get("date") == time.strftime("%Y-%m-%d", time.gmtime()) else 0
 
 
+def _item_keys(it: dict) -> set:
+    # by link and by headline: the same story arrives from BusinessLine,
+    # Google News and newsdata.io under three different URLs
+    return {it["link"] or it["title"], "t:" + re.sub(r"[^a-z0-9]+", "", it["title"].lower())}
+
+
+def ist_day(published: str) -> str:
+    """'2026-09-25 22:40:00' (UTC, as the feed stores it) -> '2026-09-26', the India calendar day."""
+    try:
+        t = calendar.timegm(time.strptime(published, "%Y-%m-%d %H:%M:%S"))
+    except (ValueError, TypeError):
+        return ""
+    return time.strftime("%Y-%m-%d", time.gmtime(t + 5.5 * 3600))
+
+
+def archive(items: list[dict]) -> int:
+    """File each item under the day it was published (India time), merged with what that day's
+    file already holds, so a story stays reachable after the 48-hour live feed drops it. A file is
+    only rewritten when it gained something. Days older than ARCHIVE_DAYS are deleted.
+    Returns how many day-files were written."""
+    by_day: dict[str, list] = {}
+    for it in items:
+        day = ist_day(it.get("published") or "")
+        if day:
+            by_day.setdefault(day, []).append(it)
+    written = 0
+    ARCHIVE_DIR.mkdir(parents=True, exist_ok=True)
+    for day, rows in by_day.items():
+        path = ARCHIVE_DIR / f"{day}.json"
+        try:
+            existing = json.loads(path.read_text(encoding="utf-8")).get("items") or []
+        except (OSError, ValueError):
+            existing = []
+        seen, merged = set(), []
+        for it in sorted(rows + existing, key=lambda x: x.get("published") or "", reverse=True):
+            keys = _item_keys(it)
+            if keys & seen:
+                continue
+            seen |= keys
+            merged.append(it)
+        if len(merged) == len(existing):        # nothing new for that day
+            continue
+        tmp = path.with_name(path.name + f".{os.getpid()}.tmp")
+        tmp.write_text(json.dumps({"date": day, "count": len(merged), "items": merged}, separators=(",", ":")), encoding="utf-8")
+        os.replace(tmp, path)
+        written += 1
+    cutoff = time.strftime("%Y-%m-%d", time.gmtime(time.time() + 5.5 * 3600 - ARCHIVE_DAYS * 86400))
+    for old in ARCHIVE_DIR.glob("*.json"):
+        if re.fullmatch(r"\d{4}-\d{2}-\d{2}", old.stem) and old.stem < cutoff:
+            try:
+                old.unlink()
+            except OSError:
+                pass
+    return written
+
+
 def write(api_key: str | None) -> dict:
     """Fetches every sector of every country from Google News (no key needed,
     always runs) plus one request per country from newsdata.io (only when
@@ -359,7 +418,7 @@ def write(api_key: str | None) -> dict:
     for it in sorted(fresh + (prev.get("items") or []), key=lambda x: x.get("published") or "", reverse=True):
         # by link and by headline: the same story arrives from BusinessLine,
         # Google News and newsdata.io under three different URLs
-        keys = {it["link"] or it["title"], "t:" + re.sub(r"[^a-z0-9]+", "", it["title"].lower())}
+        keys = _item_keys(it)
         if keys & seen or (it.get("published") or "") < cutoff:
             continue
         seen |= keys
@@ -371,6 +430,10 @@ def write(api_key: str | None) -> dict:
     tmp = NEWS_FILE.with_name(NEWS_FILE.name + f".{os.getpid()}.tmp")   # atomic: the API reads this file while a refresh writes it
     tmp.write_text(json.dumps(payload, indent=1), encoding="utf-8")
     os.replace(tmp, NEWS_FILE)
+    try:
+        archive(merged)
+    except Exception:                                    # noqa: BLE001 - the archive must never break the live feed
+        pass
     return payload
 
 
