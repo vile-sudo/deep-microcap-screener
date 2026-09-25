@@ -76,5 +76,5 @@ jobs:
           chmod 600 ~/.ssh/deploy_key
           ssh-keyscan -H "$AWS_HOST" >> ~/.ssh/known_hosts 2>/dev/null
           ssh -i ~/.ssh/deploy_key -o StrictHostKeyChecking=yes "${AWS_SSH_USER:-ubuntu}@$AWS_HOST" \
-            "cd ${AWS_DEPLOY_PATH:-/opt/screener-app} && git pull --ff-only && docker compose up -d --build"
+            "flock /tmp/screener-deploy.lock sh -c 'cd ${AWS_DEPLOY_PATH:-/opt/screener-app} && git pull --ff-only && docker compose up -d --build'"
           echo "AWS deploy triggered"
