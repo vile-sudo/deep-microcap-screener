@@ -23,20 +23,20 @@
   "evidence_sources": [
    "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001018979&type=10-K"
   ],
-  "final_score": 49,
-  "adj_score": 49,
+  "final_score": 64,
+  "adj_score": 64,
   "penalty_detail": [],
   "gate_failures": [],
   "warnings": [
    "Auto-added by the daily US screen: numbers are from Finnhub and SEC EDGAR, the moat evidence is the company's own description in its 10-K (2026) matched by rules. Nobody has researched this company yet."
   ],
-  "score_rationale": "Automated five-pillar score (out of 85 -- no institutional-ownership pillar on Finnhub's free tier) from Finnhub/SEC numbers and matched moat statements (see backend/scripts/us_auto_screen.py).",
+  "score_rationale": "Automated six-pillar score (out of 100) from Finnhub/SEC numbers, matched statements and SEC Form 13F institutional ownership (see backend/scripts/us_auto_screen.py and the How this board is built page).",
   "s_moat": 20,
   "s_reshoring": 0,
   "s_insider": 6,
   "s_undercovered": 13,
   "s_financials": 10,
-  "score": 49,
+  "score": 64,
   "risk_penalty": 0,
   "cwip_usd_m": null,
   "cwip_pct_net_block": null,
@@ -77,7 +77,9 @@
   "capacity_util_note": null,
   "product_pivot_flag": false,
   "product_pivot_note": null,
-  "lens_updated": "2026-09-25"
+  "lens_updated": "2026-09-25",
+  "s_institutional": 15,
+  "inst_pct": 100.0
  },
  {
   "code": "IRMD",
@@ -103,20 +105,20 @@
   "evidence_sources": [
    "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001325618&type=10-K"
   ],
-  "final_score": 48,
-  "adj_score": 48,
+  "final_score": 63,
+  "adj_score": 63,
   "penalty_detail": [],
   "gate_failures": [],
   "warnings": [
    "Auto-added by the daily US screen: numbers are from Finnhub and SEC EDGAR, the moat evidence is the company's own description in its 10-K (2026) matched by rules. Nobody has researched this company yet."
   ],
-  "score_rationale": "Automated five-pillar score (out of 85 -- no institutional-ownership pillar on Finnhub's free tier) from Finnhub/SEC numbers and matched moat statements (see backend/scripts/us_auto_screen.py).",
+  "score_rationale": "Automated six-pillar score (out of 100) from Finnhub/SEC numbers, matched statements and SEC Form 13F institutional ownership (see backend/scripts/us_auto_screen.py and the How this board is built page).",
   "s_moat": 13,
   "s_reshoring": 0,
   "s_insider": 15,
   "s_undercovered": 10,
   "s_financials": 10,
-  "score": 48,
+  "score": 63,
   "risk_penalty": 0,
   "cwip_usd_m": null,
   "cwip_pct_net_block": null,
@@ -157,7 +159,9 @@
   "capacity_util_note": null,
   "product_pivot_flag": false,
   "product_pivot_note": null,
-  "lens_updated": "2026-09-25"
+  "lens_updated": "2026-09-25",
+  "s_institutional": 15,
+  "inst_pct": 68.62
  },
  {
   "code": "CRI",
@@ -183,20 +187,20 @@
   "evidence_sources": [
    "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001060822&type=10-K"
   ],
-  "final_score": 46,
-  "adj_score": 46,
+  "final_score": 61,
+  "adj_score": 61,
   "penalty_detail": [],
   "gate_failures": [],
   "warnings": [
    "Auto-added by the daily US screen: numbers are from Finnhub and SEC EDGAR, the moat evidence is the company's own description in its 10-K (2026) matched by rules. Nobody has researched this company yet."
   ],
-  "score_rationale": "Automated five-pillar score (out of 85 -- no institutional-ownership pillar on Finnhub's free tier) from Finnhub/SEC numbers and matched moat statements (see backend/scripts/us_auto_screen.py).",
+  "score_rationale": "Automated six-pillar score (out of 100) from Finnhub/SEC numbers, matched statements and SEC Form 13F institutional ownership (see backend/scripts/us_auto_screen.py and the How this board is built page).",
   "s_moat": 20,
   "s_reshoring": 0,
   "s_insider": 6,
   "s_undercovered": 10,
   "s_financials": 10,
-  "score": 46,
+  "score": 61,
   "risk_penalty": 0,
   "cwip_usd_m": 11.2,
   "cwip_pct_net_block": 6.3,
@@ -237,7 +241,9 @@
   "capacity_util_note": null,
   "product_pivot_flag": false,
   "product_pivot_note": null,
-  "lens_updated": "2026-09-25"
+  "lens_updated": "2026-09-25",
+  "s_institutional": 15,
+  "inst_pct": 100.0
  },
  {
   "code": "DFIN",
@@ -263,20 +269,20 @@
   "evidence_sources": [
    "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001669811&type=10-K"
   ],
-  "final_score": 43,
-  "adj_score": 43,
+  "final_score": 48,
+  "adj_score": 48,
   "penalty_detail": [],
   "gate_failures": [],
   "warnings": [
    "Auto-added by the daily US screen: numbers are from Finnhub and SEC EDGAR, the moat evidence is the company's own description in its 10-K (2026) matched by rules. Nobody has researched this company yet."
   ],
-  "score_rationale": "Automated five-pillar score (out of 85 -- no institutional-ownership pillar on Finnhub's free tier) from Finnhub/SEC numbers and matched moat statements (see backend/scripts/us_auto_screen.py).",
+  "score_rationale": "Automated six-pillar score (out of 100) from Finnhub/SEC numbers, matched statements and SEC Form 13F institutional ownership (see backend/scripts/us_auto_screen.py and the How this board is built page).",
   "s_moat": 14,
   "s_reshoring": 0,
   "s_insider": 15,
   "s_undercovered": 10,
   "s_financials": 4,
-  "score": 43,
+  "score": 48,
   "risk_penalty": 0,
   "cwip_usd_m": null,
   "cwip_pct_net_block": null,
@@ -317,7 +323,9 @@
   "capacity_util_note": null,
   "product_pivot_flag": false,
   "product_pivot_note": null,
-  "lens_updated": "2026-09-25"
+  "lens_updated": "2026-09-25",
+  "s_institutional": 5,
+  "inst_pct": 1.68
  },
  {
   "code": "TBCH",
@@ -343,8 +351,8 @@
   "evidence_sources": [
    "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001493761&type=10-K"
   ],
-  "final_score": 42,
-  "adj_score": 42,
+  "final_score": 57,
+  "adj_score": 57,
   "penalty_detail": [],
   "gate_failures": [
    "ROE -2.96% not above 5%"
@@ -353,13 +361,13 @@
    "Auto-added by the daily US screen: numbers are from Finnhub and SEC EDGAR, the moat evidence is the company's own description in its 10-K (2026) matched by rules. Nobody has researched this company yet.",
    "Added despite failing the fundamentals gates below -- it cleared moat evidence on its own, which this screen treats as sufficient by itself; financials are not a blocker for that path."
   ],
-  "score_rationale": "Automated five-pillar score (out of 85 -- no institutional-ownership pillar on Finnhub's free tier) from Finnhub/SEC numbers and matched moat statements (see backend/scripts/us_auto_screen.py).",
+  "score_rationale": "Automated six-pillar score (out of 100) from Finnhub/SEC numbers, matched statements and SEC Form 13F institutional ownership (see backend/scripts/us_auto_screen.py and the How this board is built page).",
   "s_moat": 10,
   "s_reshoring": 0,
   "s_insider": 15,
   "s_undercovered": 15,
   "s_financials": 2,
-  "score": 42,
+  "score": 57,
   "risk_penalty": 0,
   "cwip_usd_m": null,
   "cwip_pct_net_block": null,
@@ -400,7 +408,9 @@
   "capacity_util_note": null,
   "product_pivot_flag": false,
   "product_pivot_note": null,
-  "lens_updated": "2026-09-25"
+  "lens_updated": "2026-09-25",
+  "s_institutional": 15,
+  "inst_pct": 72.66
  },
  {
   "code": "PKOH",
@@ -426,20 +436,20 @@
   "evidence_sources": [
    "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0000076282&type=10-K"
   ],
-  "final_score": 40,
-  "adj_score": 40,
+  "final_score": 55,
+  "adj_score": 55,
   "penalty_detail": [],
   "gate_failures": [],
   "warnings": [
    "Auto-added by the daily US screen: numbers are from Finnhub and SEC EDGAR, the moat evidence is the company's own description in its 10-K (2026) matched by rules. Nobody has researched this company yet."
   ],
-  "score_rationale": "Automated five-pillar score (out of 85 -- no institutional-ownership pillar on Finnhub's free tier) from Finnhub/SEC numbers and matched moat statements (see backend/scripts/us_auto_screen.py).",
+  "score_rationale": "Automated six-pillar score (out of 100) from Finnhub/SEC numbers, matched statements and SEC Form 13F institutional ownership (see backend/scripts/us_auto_screen.py and the How this board is built page).",
   "s_moat": 10,
   "s_reshoring": 0,
   "s_insider": 15,
   "s_undercovered": 13,
   "s_financials": 2,
-  "score": 40,
+  "score": 55,
   "risk_penalty": 0,
   "cwip_usd_m": null,
   "cwip_pct_net_block": null,
@@ -480,7 +490,9 @@
   "capacity_util_note": null,
   "product_pivot_flag": false,
   "product_pivot_note": null,
-  "lens_updated": "2026-09-25"
+  "lens_updated": "2026-09-25",
+  "s_institutional": 15,
+  "inst_pct": 55.97
  },
  {
   "code": "BWMN",
@@ -506,8 +518,8 @@
   "evidence_sources": [
    "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001847590&type=10-K"
   ],
-  "final_score": 40,
-  "adj_score": 40,
+  "final_score": 55,
+  "adj_score": 55,
   "penalty_detail": [],
   "gate_failures": [
    "ROE 2.86% not above 5%"
@@ -516,13 +528,13 @@
    "Auto-added by the daily US screen: numbers are from Finnhub and SEC EDGAR, the moat evidence is the company's own description in its 10-K (2026) matched by rules. Nobody has researched this company yet.",
    "Added despite failing the fundamentals gates below -- it cleared moat evidence on its own, which this screen treats as sufficient by itself; financials are not a blocker for that path."
   ],
-  "score_rationale": "Automated five-pillar score (out of 85 -- no institutional-ownership pillar on Finnhub's free tier) from Finnhub/SEC numbers and matched moat statements (see backend/scripts/us_auto_screen.py).",
+  "score_rationale": "Automated six-pillar score (out of 100) from Finnhub/SEC numbers, matched statements and SEC Form 13F institutional ownership (see backend/scripts/us_auto_screen.py and the How this board is built page).",
   "s_moat": 10,
   "s_reshoring": 0,
   "s_insider": 15,
   "s_undercovered": 13,
   "s_financials": 2,
-  "score": 40,
+  "score": 55,
   "risk_penalty": 0,
   "cwip_usd_m": null,
   "cwip_pct_net_block": null,
@@ -563,7 +575,9 @@
   "capacity_util_note": null,
   "product_pivot_flag": false,
   "product_pivot_note": null,
-  "lens_updated": "2026-09-25"
+  "lens_updated": "2026-09-25",
+  "s_institutional": 15,
+  "inst_pct": 61.88
  },
  {
   "code": "PRCH",
@@ -589,8 +603,8 @@
   "evidence_sources": [
    "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001784535&type=10-K"
   ],
-  "final_score": 37,
-  "adj_score": 37,
+  "final_score": 52,
+  "adj_score": 52,
   "penalty_detail": [],
   "gate_failures": [
    "ROE -171.82999999999998% not above 5%"
@@ -599,13 +613,13 @@
    "Auto-added by the daily US screen: numbers are from Finnhub and SEC EDGAR, the moat evidence is the company's own description in its 10-K (2026) matched by rules. Nobody has researched this company yet.",
    "Added despite failing the fundamentals gates below -- it cleared moat evidence on its own, which this screen treats as sufficient by itself; financials are not a blocker for that path."
   ],
-  "score_rationale": "Automated five-pillar score (out of 85 -- no institutional-ownership pillar on Finnhub's free tier) from Finnhub/SEC numbers and matched moat statements (see backend/scripts/us_auto_screen.py).",
+  "score_rationale": "Automated six-pillar score (out of 100) from Finnhub/SEC numbers, matched statements and SEC Form 13F institutional ownership (see backend/scripts/us_auto_screen.py and the How this board is built page).",
   "s_moat": 10,
   "s_reshoring": 0,
   "s_insider": 15,
   "s_undercovered": 10,
   "s_financials": 2,
-  "score": 37,
+  "score": 52,
   "risk_penalty": 0,
   "cwip_usd_m": null,
   "cwip_pct_net_block": null,
@@ -646,7 +660,9 @@
   "capacity_util_note": null,
   "product_pivot_flag": false,
   "product_pivot_note": null,
-  "lens_updated": "2026-09-25"
+  "lens_updated": "2026-09-25",
+  "s_institutional": 15,
+  "inst_pct": 77.31
  },
  {
   "code": "COLL",
@@ -672,20 +688,20 @@
   "evidence_sources": [
    "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001267565&type=10-K"
   ],
-  "final_score": 37,
-  "adj_score": 37,
+  "final_score": 52,
+  "adj_score": 52,
   "penalty_detail": [],
   "gate_failures": [],
   "warnings": [
    "Auto-added by the daily US screen: numbers are from Finnhub and SEC EDGAR, the moat evidence is the company's own description in its 10-K (2026) matched by rules. Nobody has researched this company yet."
   ],
-  "score_rationale": "Automated five-pillar score (out of 85 -- no institutional-ownership pillar on Finnhub's free tier) from Finnhub/SEC numbers and matched moat statements (see backend/scripts/us_auto_screen.py).",
+  "score_rationale": "Automated six-pillar score (out of 100) from Finnhub/SEC numbers, matched statements and SEC Form 13F institutional ownership (see backend/scripts/us_auto_screen.py and the How this board is built page).",
   "s_moat": 10,
   "s_reshoring": 0,
   "s_insider": 6,
   "s_undercovered": 13,
   "s_financials": 8,
-  "score": 37,
+  "score": 52,
   "risk_penalty": 0,
   "cwip_usd_m": null,
   "cwip_pct_net_block": null,
@@ -726,7 +742,9 @@
   "capacity_util_note": null,
   "product_pivot_flag": false,
   "product_pivot_note": null,
-  "lens_updated": "2026-09-25"
+  "lens_updated": "2026-09-25",
+  "s_institutional": 15,
+  "inst_pct": 100.0
  },
  {
   "code": "TROX",
@@ -752,8 +770,8 @@
   "evidence_sources": [
    "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001530804&type=10-K"
   ],
-  "final_score": 34,
-  "adj_score": 34,
+  "final_score": 49,
+  "adj_score": 49,
   "penalty_detail": [
    "only 57 holders of record (-5)"
   ],
@@ -764,13 +782,13 @@
    "Auto-added by the daily US screen: numbers are from Finnhub and SEC EDGAR, the moat evidence is the company's own description in its 10-K (2026) matched by rules. Nobody has researched this company yet.",
    "Added despite failing the fundamentals gates below -- it cleared moat evidence on its own, which this screen treats as sufficient by itself; financials are not a blocker for that path."
   ],
-  "score_rationale": "Automated five-pillar score (out of 85 -- no institutional-ownership pillar on Finnhub's free tier) from Finnhub/SEC numbers and matched moat statements (see backend/scripts/us_auto_screen.py).",
+  "score_rationale": "Automated six-pillar score (out of 100) from Finnhub/SEC numbers, matched statements and SEC Form 13F institutional ownership (see backend/scripts/us_auto_screen.py and the How this board is built page).",
   "s_moat": 18,
   "s_reshoring": 0,
   "s_insider": 6,
   "s_undercovered": 13,
   "s_financials": 2,
-  "score": 39,
+  "score": 54,
   "risk_penalty": 5,
   "cwip_usd_m": 341.0,
   "cwip_pct_net_block": 17.2,
@@ -811,7 +829,9 @@
   "capacity_util_note": null,
   "product_pivot_flag": false,
   "product_pivot_note": null,
-  "lens_updated": "2026-09-25"
+  "lens_updated": "2026-09-25",
+  "s_institutional": 15,
+  "inst_pct": 79.16
  },
  {
   "code": "PBYI",
@@ -839,14 +859,14 @@
   "evidence_sources": [
    "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001401667&type=10-K"
   ],
-  "final_score": 50,
-  "adj_score": 50,
+  "final_score": 65,
+  "adj_score": 65,
   "penalty_detail": [],
   "gate_failures": [],
   "warnings": [
    "Auto-added by the daily US screen: numbers are from Finnhub and SEC EDGAR, the evidence is the company's own words in its 10-K (2026) and latest earnings release matched by rules. Nobody has researched this company yet."
   ],
-  "score_rationale": "Automated five-pillar score (out of 85 -- no institutional-ownership pillar on Finnhub's free tier) from Finnhub/SEC numbers and matched statements (see backend/scripts/us_auto_screen.py and the How this board is built page).",
+  "score_rationale": "Automated six-pillar score (out of 100) from Finnhub/SEC numbers, matched statements and SEC Form 13F institutional ownership (see backend/scripts/us_auto_screen.py and the How this board is built page).",
   "has_lens_data": true,
   "cwip_usd_m": null,
   "cwip_pct_net_block": null,
@@ -893,8 +913,10 @@
   "s_insider": 15,
   "s_undercovered": 13,
   "s_financials": 10,
-  "score": 50,
-  "risk_penalty": 0
+  "score": 65,
+  "risk_penalty": 0,
+  "s_institutional": 15,
+  "inst_pct": 75.07
  },
  {
   "code": "CDRE",
@@ -922,14 +944,14 @@
   "evidence_sources": [
    "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001860543&type=10-K"
   ],
-  "final_score": 47,
-  "adj_score": 47,
+  "final_score": 62,
+  "adj_score": 62,
   "penalty_detail": [],
   "gate_failures": [],
   "warnings": [
    "Auto-added by the daily US screen: numbers are from Finnhub and SEC EDGAR, the evidence is the company's own words in its 10-K (2026) and latest earnings release matched by rules. Nobody has researched this company yet."
   ],
-  "score_rationale": "Automated five-pillar score (out of 85 -- no institutional-ownership pillar on Finnhub's free tier) from Finnhub/SEC numbers and matched statements (see backend/scripts/us_auto_screen.py and the How this board is built page).",
+  "score_rationale": "Automated six-pillar score (out of 100) from Finnhub/SEC numbers, matched statements and SEC Form 13F institutional ownership (see backend/scripts/us_auto_screen.py and the How this board is built page).",
   "has_lens_data": true,
   "cwip_usd_m": null,
   "cwip_pct_net_block": null,
@@ -976,8 +998,10 @@
   "s_insider": 15,
   "s_undercovered": 10,
   "s_financials": 4,
-  "score": 47,
-  "risk_penalty": 0
+  "score": 62,
+  "risk_penalty": 0,
+  "s_institutional": 15,
+  "inst_pct": 73.41
  },
  {
   "code": "MG",
@@ -1004,14 +1028,14 @@
   "evidence_sources": [
    "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001436126&type=10-K"
   ],
-  "final_score": 46,
-  "adj_score": 46,
+  "final_score": 61,
+  "adj_score": 61,
   "penalty_detail": [],
   "gate_failures": [],
   "warnings": [
    "Auto-added by the daily US screen: numbers are from Finnhub and SEC EDGAR, the evidence is the company's own words in its 10-K (2026) and latest earnings release matched by rules. Nobody has researched this company yet."
   ],
-  "score_rationale": "Automated five-pillar score (out of 85 -- no institutional-ownership pillar on Finnhub's free tier) from Finnhub/SEC numbers and matched statements (see backend/scripts/us_auto_screen.py and the How this board is built page).",
+  "score_rationale": "Automated six-pillar score (out of 100) from Finnhub/SEC numbers, matched statements and SEC Form 13F institutional ownership (see backend/scripts/us_auto_screen.py and the How this board is built page).",
   "has_lens_data": true,
   "cwip_usd_m": null,
   "cwip_pct_net_block": null,
@@ -1058,8 +1082,10 @@
   "s_insider": 15,
   "s_undercovered": 13,
   "s_financials": 4,
-  "score": 46,
-  "risk_penalty": 0
+  "score": 61,
+  "risk_penalty": 0,
+  "s_institutional": 15,
+  "inst_pct": 59.71
  },
  {
   "code": "RMTI",
@@ -1086,8 +1112,8 @@
   "evidence_sources": [
    "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001041024&type=10-K"
   ],
-  "final_score": 42,
-  "adj_score": 42,
+  "final_score": 47,
+  "adj_score": 47,
   "penalty_detail": [],
   "gate_failures": [
    "ROE -14.030000000000001% not above 5%"
@@ -1096,7 +1122,7 @@
    "Auto-added by the daily US screen: numbers are from Finnhub and SEC EDGAR, the evidence is the company's own words in its 10-K (2026) and latest earnings release matched by rules. Nobody has researched this company yet.",
    "Added despite failing the fundamentals gates below -- it cleared one of the five paths (moat, guidance, PAT turnaround, capacity utilisation, product pivot) on its own, which this screen treats as sufficient by itself; financials are not a blocker for that path."
   ],
-  "score_rationale": "Automated five-pillar score (out of 85 -- no institutional-ownership pillar on Finnhub's free tier) from Finnhub/SEC numbers and matched statements (see backend/scripts/us_auto_screen.py and the How this board is built page).",
+  "score_rationale": "Automated six-pillar score (out of 100) from Finnhub/SEC numbers, matched statements and SEC Form 13F institutional ownership (see backend/scripts/us_auto_screen.py and the How this board is built page).",
   "has_lens_data": true,
   "cwip_usd_m": null,
   "cwip_pct_net_block": null,
@@ -1143,8 +1169,10 @@
   "s_insider": 15,
   "s_undercovered": 15,
   "s_financials": 2,
-  "score": 42,
-  "risk_penalty": 0
+  "score": 47,
+  "risk_penalty": 0,
+  "s_institutional": 5,
+  "inst_pct": 1.72
  },
  {
   "code": "RYM",
@@ -1173,8 +1201,8 @@
   "evidence_sources": [
    "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001800637&type=10-K"
   ],
-  "final_score": 42,
-  "adj_score": 42,
+  "final_score": 51,
+  "adj_score": 51,
   "penalty_detail": [],
   "gate_failures": [
    "ROE -12.61% not above 5%"
@@ -1183,7 +1211,7 @@
    "Auto-added by the daily US screen: numbers are from Finnhub and SEC EDGAR, the evidence is the company's own words in its 10-K (2026) and latest earnings release matched by rules. Nobody has researched this company yet.",
    "Added despite failing the fundamentals gates below -- it cleared one of the five paths (moat, guidance, PAT turnaround, capacity utilisation, product pivot) on its own, which this screen treats as sufficient by itself; financials are not a blocker for that path."
   ],
-  "score_rationale": "Automated five-pillar score (out of 85 -- no institutional-ownership pillar on Finnhub's free tier) from Finnhub/SEC numbers and matched statements (see backend/scripts/us_auto_screen.py and the How this board is built page).",
+  "score_rationale": "Automated six-pillar score (out of 100) from Finnhub/SEC numbers, matched statements and SEC Form 13F institutional ownership (see backend/scripts/us_auto_screen.py and the How this board is built page).",
   "has_lens_data": true,
   "cwip_usd_m": null,
   "cwip_pct_net_block": null,
@@ -1230,8 +1258,10 @@
   "s_insider": 15,
   "s_undercovered": 15,
   "s_financials": 2,
-  "score": 42,
-  "risk_penalty": 0
+  "score": 51,
+  "risk_penalty": 0,
+  "s_institutional": 9,
+  "inst_pct": 7.53
  },
  {
   "code": "IMDX",
@@ -1258,8 +1288,8 @@
   "evidence_sources": [
    "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001642380&type=10-K"
   ],
-  "final_score": 40,
-  "adj_score": 40,
+  "final_score": 42,
+  "adj_score": 42,
   "penalty_detail": [
    "only 170 holders of record (-5)"
   ],
@@ -1270,7 +1300,7 @@
    "Auto-added by the daily US screen: numbers are from Finnhub and SEC EDGAR, the evidence is the company's own words in its 10-K (2026) and latest earnings release matched by rules. Nobody has researched this company yet.",
    "Added despite failing the fundamentals gates below -- it cleared one of the five paths (moat, guidance, PAT turnaround, capacity utilisation, product pivot) on its own, which this screen treats as sufficient by itself; financials are not a blocker for that path."
   ],
-  "score_rationale": "Automated five-pillar score (out of 85 -- no institutional-ownership pillar on Finnhub's free tier) from Finnhub/SEC numbers and matched statements (see backend/scripts/us_auto_screen.py and the How this board is built page).",
+  "score_rationale": "Automated six-pillar score (out of 100) from Finnhub/SEC numbers, matched statements and SEC Form 13F institutional ownership (see backend/scripts/us_auto_screen.py and the How this board is built page).",
   "has_lens_data": true,
   "cwip_usd_m": null,
   "cwip_pct_net_block": null,
@@ -1317,8 +1347,10 @@
   "s_insider": 10,
   "s_undercovered": 15,
   "s_financials": 2,
-  "score": 45,
-  "risk_penalty": 5
+  "score": 47,
+  "risk_penalty": 5,
+  "s_institutional": 2,
+  "inst_pct": 0.02
  },
  {
   "code": "SKYH",
@@ -1345,8 +1377,8 @@
   "evidence_sources": [
    "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001823587&type=10-K"
   ],
-  "final_score": 37,
-  "adj_score": 37,
+  "final_score": 42,
+  "adj_score": 42,
   "penalty_detail": [],
   "gate_failures": [
    "ROE 0.75% not above 5%"
@@ -1355,7 +1387,7 @@
    "Auto-added by the daily US screen: numbers are from Finnhub and SEC EDGAR, the evidence is the company's own words in its 10-K (2026) and latest earnings release matched by rules. Nobody has researched this company yet.",
    "Added despite failing the fundamentals gates below -- it cleared one of the five paths (moat, guidance, PAT turnaround, capacity utilisation, product pivot) on its own, which this screen treats as sufficient by itself; financials are not a blocker for that path."
   ],
-  "score_rationale": "Automated five-pillar score (out of 85 -- no institutional-ownership pillar on Finnhub's free tier) from Finnhub/SEC numbers and matched statements (see backend/scripts/us_auto_screen.py and the How this board is built page).",
+  "score_rationale": "Automated six-pillar score (out of 100) from Finnhub/SEC numbers, matched statements and SEC Form 13F institutional ownership (see backend/scripts/us_auto_screen.py and the How this board is built page).",
   "has_lens_data": true,
   "cwip_usd_m": null,
   "cwip_pct_net_block": null,
@@ -1402,8 +1434,10 @@
   "s_insider": 15,
   "s_undercovered": 10,
   "s_financials": 2,
-  "score": 37,
-  "risk_penalty": 0
+  "score": 42,
+  "risk_penalty": 0,
+  "s_institutional": 5,
+  "inst_pct": 1.41
  },
  {
   "code": "STRT",
@@ -1430,14 +1464,14 @@
   "evidence_sources": [
    "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0000933034&type=10-K"
   ],
-  "final_score": 36,
-  "adj_score": 36,
+  "final_score": 51,
+  "adj_score": 51,
   "penalty_detail": [],
   "gate_failures": [],
   "warnings": [
    "Auto-added by the daily US screen: numbers are from Finnhub and SEC EDGAR, the evidence is the company's own words in its 10-K (2026) and latest earnings release matched by rules. Nobody has researched this company yet."
   ],
-  "score_rationale": "Automated five-pillar score (out of 85 -- no institutional-ownership pillar on Finnhub's free tier) from Finnhub/SEC numbers and matched statements (see backend/scripts/us_auto_screen.py and the How this board is built page).",
+  "score_rationale": "Automated six-pillar score (out of 100) from Finnhub/SEC numbers, matched statements and SEC Form 13F institutional ownership (see backend/scripts/us_auto_screen.py and the How this board is built page).",
   "has_lens_data": true,
   "cwip_usd_m": null,
   "cwip_pct_net_block": null,
@@ -1484,8 +1518,10 @@
   "s_insider": 6,
   "s_undercovered": 15,
   "s_financials": 4,
-  "score": 36,
-  "risk_penalty": 0
+  "score": 51,
+  "risk_penalty": 0,
+  "s_institutional": 15,
+  "inst_pct": 27.15
  },
  {
   "code": "EVEX",
@@ -1598,8 +1634,8 @@
   "evidence_sources": [
    "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001176334&type=10-K"
   ],
-  "final_score": 35,
-  "adj_score": 35,
+  "final_score": 37,
+  "adj_score": 37,
   "penalty_detail": [
    "only 150 holders of record (-5)"
   ],
@@ -1607,7 +1643,7 @@
   "warnings": [
    "Auto-added by the daily US screen: numbers are from Finnhub and SEC EDGAR, the evidence is the company's own words in its 10-K (2026) and latest earnings release matched by rules. Nobody has researched this company yet."
   ],
-  "score_rationale": "Automated five-pillar score (out of 85 -- no institutional-ownership pillar on Finnhub's free tier) from Finnhub/SEC numbers and matched statements (see backend/scripts/us_auto_screen.py and the How this board is built page).",
+  "score_rationale": "Automated six-pillar score (out of 100) from Finnhub/SEC numbers, matched statements and SEC Form 13F institutional ownership (see backend/scripts/us_auto_screen.py and the How this board is built page).",
   "has_lens_data": true,
   "cwip_usd_m": 8.5,
   "cwip_pct_net_block": 2.1,
@@ -1654,8 +1690,10 @@
   "s_insider": 15,
   "s_undercovered": 15,
   "s_financials": 4,
-  "score": 40,
-  "risk_penalty": 5
+  "score": 42,
+  "risk_penalty": 5,
+  "s_institutional": 2,
+  "inst_pct": 0.01
  },
  {
   "code": "PRLD",
@@ -1682,8 +1720,8 @@
   "evidence_sources": [
    "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001678660&type=10-K"
   ],
-  "final_score": 35,
-  "adj_score": 35,
+  "final_score": 50,
+  "adj_score": 50,
   "penalty_detail": [
    "only 20 holders of record (-5)"
   ],
@@ -1694,7 +1732,7 @@
    "Auto-added by the daily US screen: numbers are from Finnhub and SEC EDGAR, the evidence is the company's own words in its 10-K (2026) and latest earnings release matched by rules. Nobody has researched this company yet.",
    "Added despite failing the fundamentals gates below -- it cleared one of the five paths (moat, guidance, PAT turnaround, capacity utilisation, product pivot) on its own, which this screen treats as sufficient by itself; financials are not a blocker for that path."
   ],
-  "score_rationale": "Automated five-pillar score (out of 85 -- no institutional-ownership pillar on Finnhub's free tier) from Finnhub/SEC numbers and matched statements (see backend/scripts/us_auto_screen.py and the How this board is built page).",
+  "score_rationale": "Automated six-pillar score (out of 100) from Finnhub/SEC numbers, matched statements and SEC Form 13F institutional ownership (see backend/scripts/us_auto_screen.py and the How this board is built page).",
   "has_lens_data": true,
   "cwip_usd_m": null,
   "cwip_pct_net_block": null,
@@ -1741,8 +1779,10 @@
   "s_insider": 15,
   "s_undercovered": 13,
   "s_financials": 2,
-  "score": 40,
-  "risk_penalty": 5
+  "score": 55,
+  "risk_penalty": 5,
+  "s_institutional": 15,
+  "inst_pct": 62.0
  },
  {
   "code": "POSC",
@@ -1851,8 +1891,8 @@
   "evidence_sources": [
    "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0000315374&type=10-K"
   ],
-  "final_score": 34,
-  "adj_score": 34,
+  "final_score": 46,
+  "adj_score": 46,
   "penalty_detail": [],
   "gate_failures": [
    "ROE -3.37% not above 5%"
@@ -1861,7 +1901,7 @@
    "Auto-added by the daily US screen: numbers are from Finnhub and SEC EDGAR, the evidence is the company's own words in its 10-K (2026) and latest earnings release matched by rules. Nobody has researched this company yet.",
    "Added despite failing the fundamentals gates below -- it cleared one of the five paths (moat, guidance, PAT turnaround, capacity utilisation, product pivot) on its own, which this screen treats as sufficient by itself; financials are not a blocker for that path."
   ],
-  "score_rationale": "Automated five-pillar score (out of 85 -- no institutional-ownership pillar on Finnhub's free tier) from Finnhub/SEC numbers and matched statements (see backend/scripts/us_auto_screen.py and the How this board is built page).",
+  "score_rationale": "Automated six-pillar score (out of 100) from Finnhub/SEC numbers, matched statements and SEC Form 13F institutional ownership (see backend/scripts/us_auto_screen.py and the How this board is built page).",
   "has_lens_data": true,
   "cwip_usd_m": null,
   "cwip_pct_net_block": null,
@@ -1908,8 +1948,10 @@
   "s_insider": 15,
   "s_undercovered": 15,
   "s_financials": 2,
-  "score": 34,
-  "risk_penalty": 0
+  "score": 46,
+  "risk_penalty": 0,
+  "s_institutional": 12,
+  "inst_pct": 10.01
  },
  {
   "code": "FTCI",
@@ -1936,8 +1978,8 @@
   "evidence_sources": [
    "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001828161&type=10-K"
   ],
-  "final_score": 34,
-  "adj_score": 34,
+  "final_score": 43,
+  "adj_score": 43,
   "penalty_detail": [],
   "gate_failures": [
    "ROE -253.16% not above 5%"
@@ -1946,7 +1988,7 @@
    "Auto-added by the daily US screen: numbers are from Finnhub and SEC EDGAR, the evidence is the company's own words in its 10-K (2026) and latest earnings release matched by rules. Nobody has researched this company yet.",
    "Added despite failing the fundamentals gates below -- it cleared one of the five paths (moat, guidance, PAT turnaround, capacity utilisation, product pivot) on its own, which this screen treats as sufficient by itself; financials are not a blocker for that path."
   ],
-  "score_rationale": "Automated five-pillar score (out of 85 -- no institutional-ownership pillar on Finnhub's free tier) from Finnhub/SEC numbers and matched statements (see backend/scripts/us_auto_screen.py and the How this board is built page).",
+  "score_rationale": "Automated six-pillar score (out of 100) from Finnhub/SEC numbers, matched statements and SEC Form 13F institutional ownership (see backend/scripts/us_auto_screen.py and the How this board is built page).",
   "has_lens_data": true,
   "cwip_usd_m": null,
   "cwip_pct_net_block": null,
@@ -1993,8 +2035,10 @@
   "s_insider": 15,
   "s_undercovered": 15,
   "s_financials": 2,
-  "score": 34,
-  "risk_penalty": 0
+  "score": 43,
+  "risk_penalty": 0,
+  "s_institutional": 9,
+  "inst_pct": 8.66
  },
  {
   "code": "LSF",
@@ -2021,8 +2065,8 @@
   "evidence_sources": [
    "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001650696&type=10-K"
   ],
-  "final_score": 34,
-  "adj_score": 34,
+  "final_score": 46,
+  "adj_score": 46,
   "penalty_detail": [],
   "gate_failures": [
    "ROE -5.35% not above 5%"
@@ -2031,7 +2075,7 @@
    "Auto-added by the daily US screen: numbers are from Finnhub and SEC EDGAR, the evidence is the company's own words in its 10-K (2026) and latest earnings release matched by rules. Nobody has researched this company yet.",
    "Added despite failing the fundamentals gates below -- it cleared one of the five paths (moat, guidance, PAT turnaround, capacity utilisation, product pivot) on its own, which this screen treats as sufficient by itself; financials are not a blocker for that path."
   ],
-  "score_rationale": "Automated five-pillar score (out of 85 -- no institutional-ownership pillar on Finnhub's free tier) from Finnhub/SEC numbers and matched statements (see backend/scripts/us_auto_screen.py and the How this board is built page).",
+  "score_rationale": "Automated six-pillar score (out of 100) from Finnhub/SEC numbers, matched statements and SEC Form 13F institutional ownership (see backend/scripts/us_auto_screen.py and the How this board is built page).",
   "has_lens_data": true,
   "cwip_usd_m": null,
   "cwip_pct_net_block": null,
@@ -2078,8 +2122,10 @@
   "s_insider": 15,
   "s_undercovered": 15,
   "s_financials": 2,
-  "score": 34,
-  "risk_penalty": 0
+  "score": 46,
+  "risk_penalty": 0,
+  "s_institutional": 12,
+  "inst_pct": 16.99
  },
  {
   "code": "REPX",
@@ -2106,8 +2152,8 @@
   "evidence_sources": [
    "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001001614&type=10-K"
   ],
-  "final_score": 34,
-  "adj_score": 34,
+  "final_score": 46,
+  "adj_score": 46,
   "penalty_detail": [
    "only 231 holders of record (-5)"
   ],
@@ -2115,7 +2161,7 @@
   "warnings": [
    "Auto-added by the daily US screen: numbers are from Finnhub and SEC EDGAR, the evidence is the company's own words in its 10-K (2026) and latest earnings release matched by rules. Nobody has researched this company yet."
   ],
-  "score_rationale": "Automated five-pillar score (out of 85 -- no institutional-ownership pillar on Finnhub's free tier) from Finnhub/SEC numbers and matched statements (see backend/scripts/us_auto_screen.py and the How this board is built page).",
+  "score_rationale": "Automated six-pillar score (out of 100) from Finnhub/SEC numbers, matched statements and SEC Form 13F institutional ownership (see backend/scripts/us_auto_screen.py and the How this board is built page).",
   "has_lens_data": true,
   "cwip_usd_m": null,
   "cwip_pct_net_block": null,
@@ -2162,8 +2208,10 @@
   "s_insider": 15,
   "s_undercovered": 10,
   "s_financials": 10,
-  "score": 39,
-  "risk_penalty": 5
+  "score": 51,
+  "risk_penalty": 5,
+  "s_institutional": 12,
+  "inst_pct": 11.99
  },
  {
   "code": "JSDA",
@@ -2276,8 +2324,8 @@
   "evidence_sources": [
    "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001077688&type=10-K"
   ],
-  "final_score": 33,
-  "adj_score": 33,
+  "final_score": 45,
+  "adj_score": 45,
   "penalty_detail": [],
   "gate_failures": [
    "ROE -10.59% not above 5%"
@@ -2286,7 +2334,7 @@
    "Auto-added by the daily US screen: numbers are from Finnhub and SEC EDGAR, the evidence is the company's own words in its 10-K (2026) and latest earnings release matched by rules. Nobody has researched this company yet.",
    "Added despite failing the fundamentals gates below -- it cleared one of the five paths (moat, guidance, PAT turnaround, capacity utilisation, product pivot) on its own, which this screen treats as sufficient by itself; financials are not a blocker for that path."
   ],
-  "score_rationale": "Automated five-pillar score (out of 85 -- no institutional-ownership pillar on Finnhub's free tier) from Finnhub/SEC numbers and matched statements (see backend/scripts/us_auto_screen.py and the How this board is built page).",
+  "score_rationale": "Automated six-pillar score (out of 100) from Finnhub/SEC numbers, matched statements and SEC Form 13F institutional ownership (see backend/scripts/us_auto_screen.py and the How this board is built page).",
   "has_lens_data": true,
   "cwip_usd_m": null,
   "cwip_pct_net_block": null,
@@ -2333,8 +2381,10 @@
   "s_insider": 6,
   "s_undercovered": 15,
   "s_financials": 2,
-  "score": 33,
-  "risk_penalty": 0
+  "score": 45,
+  "risk_penalty": 0,
+  "s_institutional": 12,
+  "inst_pct": 16.97
  },
  {
   "code": "SMRT",
@@ -2361,8 +2411,8 @@
   "evidence_sources": [
    "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001837014&type=10-K"
   ],
-  "final_score": 33,
-  "adj_score": 33,
+  "final_score": 48,
+  "adj_score": 48,
   "penalty_detail": [],
   "gate_failures": [
    "ROE -8.5% not above 5%"
@@ -2371,7 +2421,7 @@
    "Auto-added by the daily US screen: numbers are from Finnhub and SEC EDGAR, the evidence is the company's own words in its 10-K (2026) and latest earnings release matched by rules. Nobody has researched this company yet.",
    "Added despite failing the fundamentals gates below -- it cleared one of the five paths (moat, guidance, PAT turnaround, capacity utilisation, product pivot) on its own, which this screen treats as sufficient by itself; financials are not a blocker for that path."
   ],
-  "score_rationale": "Automated five-pillar score (out of 85 -- no institutional-ownership pillar on Finnhub's free tier) from Finnhub/SEC numbers and matched statements (see backend/scripts/us_auto_screen.py and the How this board is built page).",
+  "score_rationale": "Automated six-pillar score (out of 100) from Finnhub/SEC numbers, matched statements and SEC Form 13F institutional ownership (see backend/scripts/us_auto_screen.py and the How this board is built page).",
   "has_lens_data": true,
   "cwip_usd_m": null,
   "cwip_pct_net_block": null,
@@ -2418,8 +2468,10 @@
   "s_insider": 6,
   "s_undercovered": 15,
   "s_financials": 2,
-  "score": 33,
-  "risk_penalty": 0
+  "score": 48,
+  "risk_penalty": 0,
+  "s_institutional": 15,
+  "inst_pct": 65.81
  },
  {
   "code": "UP",
@@ -2446,8 +2498,8 @@
   "evidence_sources": [
    "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001819516&type=10-K"
   ],
-  "final_score": 32,
-  "adj_score": 32,
+  "final_score": 47,
+  "adj_score": 47,
   "penalty_detail": [
    "only 110 holders of record (-5)"
   ],
@@ -2458,7 +2510,7 @@
    "Auto-added by the daily US screen: numbers are from Finnhub and SEC EDGAR, the evidence is the company's own words in its 10-K (2026) and latest earnings release matched by rules. Nobody has researched this company yet.",
    "Added despite failing the fundamentals gates below -- it cleared one of the five paths (moat, guidance, PAT turnaround, capacity utilisation, product pivot) on its own, which this screen treats as sufficient by itself; financials are not a blocker for that path."
   ],
-  "score_rationale": "Automated five-pillar score (out of 85 -- no institutional-ownership pillar on Finnhub's free tier) from Finnhub/SEC numbers and matched statements (see backend/scripts/us_auto_screen.py and the How this board is built page).",
+  "score_rationale": "Automated six-pillar score (out of 100) from Finnhub/SEC numbers, matched statements and SEC Form 13F institutional ownership (see backend/scripts/us_auto_screen.py and the How this board is built page).",
   "has_lens_data": true,
   "cwip_usd_m": null,
   "cwip_pct_net_block": null,
@@ -2505,8 +2557,10 @@
   "s_insider": 10,
   "s_undercovered": 15,
   "s_financials": 2,
-  "score": 37,
-  "risk_penalty": 5
+  "score": 52,
+  "risk_penalty": 5,
+  "s_institutional": 15,
+  "inst_pct": 81.65
  },
  {
   "code": "INNV",
@@ -2534,8 +2588,8 @@
   "evidence_sources": [
    "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001834376&type=10-K"
   ],
-  "final_score": 32,
-  "adj_score": 32,
+  "final_score": 44,
+  "adj_score": 44,
   "penalty_detail": [],
   "gate_failures": [
    "ROE -1.05% not above 5%"
@@ -2544,7 +2598,7 @@
    "Auto-added by the daily US screen: numbers are from Finnhub and SEC EDGAR, the evidence is the company's own words in its 10-K (2026) and latest earnings release matched by rules. Nobody has researched this company yet.",
    "Added despite failing the fundamentals gates below -- it cleared one of the five paths (moat, guidance, PAT turnaround, capacity utilisation, product pivot) on its own, which this screen treats as sufficient by itself; financials are not a blocker for that path."
   ],
-  "score_rationale": "Automated five-pillar score (out of 85 -- no institutional-ownership pillar on Finnhub's free tier) from Finnhub/SEC numbers and matched statements (see backend/scripts/us_auto_screen.py and the How this board is built page).",
+  "score_rationale": "Automated six-pillar score (out of 100) from Finnhub/SEC numbers, matched statements and SEC Form 13F institutional ownership (see backend/scripts/us_auto_screen.py and the How this board is built page).",
   "has_lens_data": true,
   "cwip_usd_m": 15.4,
   "cwip_pct_net_block": 8.3,
@@ -2591,8 +2645,10 @@
   "s_insider": 10,
   "s_undercovered": 10,
   "s_financials": 2,
-  "score": 32,
-  "risk_penalty": 0
+  "score": 44,
+  "risk_penalty": 0,
+  "s_institutional": 12,
+  "inst_pct": 13.53
  },
  {
   "code": "CLFD",
@@ -2619,8 +2675,8 @@
   "evidence_sources": [
    "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0000796505&type=10-K"
   ],
-  "final_score": 32,
-  "adj_score": 32,
+  "final_score": 47,
+  "adj_score": 47,
   "penalty_detail": [],
   "gate_failures": [
    "ROE -2.9000000000000004% not above 5%"
@@ -2629,7 +2685,7 @@
    "Auto-added by the daily US screen: numbers are from Finnhub and SEC EDGAR, the evidence is the company's own words in its 10-K (2025) and latest earnings release matched by rules. Nobody has researched this company yet.",
    "Added despite failing the fundamentals gates below -- it cleared one of the five paths (moat, guidance, PAT turnaround, capacity utilisation, product pivot) on its own, which this screen treats as sufficient by itself; financials are not a blocker for that path."
   ],
-  "score_rationale": "Automated five-pillar score (out of 85 -- no institutional-ownership pillar on Finnhub's free tier) from Finnhub/SEC numbers and matched statements (see backend/scripts/us_auto_screen.py and the How this board is built page).",
+  "score_rationale": "Automated six-pillar score (out of 100) from Finnhub/SEC numbers, matched statements and SEC Form 13F institutional ownership (see backend/scripts/us_auto_screen.py and the How this board is built page).",
   "has_lens_data": true,
   "cwip_usd_m": null,
   "cwip_pct_net_block": null,
@@ -2676,8 +2732,10 @@
   "s_insider": 15,
   "s_undercovered": 13,
   "s_financials": 2,
-  "score": 32,
-  "risk_penalty": 0
+  "score": 47,
+  "risk_penalty": 0,
+  "s_institutional": 15,
+  "inst_pct": 58.54
  },
  {
   "code": "SENS",
@@ -2704,8 +2762,8 @@
   "evidence_sources": [
    "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001616543&type=10-K"
   ],
-  "final_score": 32,
-  "adj_score": 32,
+  "final_score": 47,
+  "adj_score": 47,
   "penalty_detail": [],
   "gate_failures": [
    "ROE -165.83% not above 5%"
@@ -2714,7 +2772,7 @@
    "Auto-added by the daily US screen: numbers are from Finnhub and SEC EDGAR, the evidence is the company's own words in its 10-K (2026) and latest earnings release matched by rules. Nobody has researched this company yet.",
    "Added despite failing the fundamentals gates below -- it cleared one of the five paths (moat, guidance, PAT turnaround, capacity utilisation, product pivot) on its own, which this screen treats as sufficient by itself; financials are not a blocker for that path."
   ],
-  "score_rationale": "Automated five-pillar score (out of 85 -- no institutional-ownership pillar on Finnhub's free tier) from Finnhub/SEC numbers and matched statements (see backend/scripts/us_auto_screen.py and the How this board is built page).",
+  "score_rationale": "Automated six-pillar score (out of 100) from Finnhub/SEC numbers, matched statements and SEC Form 13F institutional ownership (see backend/scripts/us_auto_screen.py and the How this board is built page).",
   "has_lens_data": true,
   "cwip_usd_m": null,
   "cwip_pct_net_block": null,
@@ -2761,8 +2819,10 @@
   "s_insider": 15,
   "s_undercovered": 13,
   "s_financials": 2,
-  "score": 32,
-  "risk_penalty": 0
+  "score": 47,
+  "risk_penalty": 0,
+  "s_institutional": 15,
+  "inst_pct": 40.16
  },
  {
   "code": "PHR",
@@ -2789,8 +2849,8 @@
   "evidence_sources": [
    "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001412408&type=10-K"
   ],
-  "final_score": 31,
-  "adj_score": 31,
+  "final_score": 46,
+  "adj_score": 46,
   "penalty_detail": [
    "only 32 holders of record (-5)"
   ],
@@ -2801,7 +2861,7 @@
    "Auto-added by the daily US screen: numbers are from Finnhub and SEC EDGAR, the evidence is the company's own words in its 10-K (2026) and latest earnings release matched by rules. Nobody has researched this company yet.",
    "Added despite failing the fundamentals gates below -- it cleared one of the five paths (moat, guidance, PAT turnaround, capacity utilisation, product pivot) on its own, which this screen treats as sufficient by itself; financials are not a blocker for that path."
   ],
-  "score_rationale": "Automated five-pillar score (out of 85 -- no institutional-ownership pillar on Finnhub's free tier) from Finnhub/SEC numbers and matched statements (see backend/scripts/us_auto_screen.py and the How this board is built page).",
+  "score_rationale": "Automated six-pillar score (out of 100) from Finnhub/SEC numbers, matched statements and SEC Form 13F institutional ownership (see backend/scripts/us_auto_screen.py and the How this board is built page).",
   "has_lens_data": true,
   "cwip_usd_m": null,
   "cwip_pct_net_block": null,
@@ -2848,8 +2908,10 @@
   "s_insider": 15,
   "s_undercovered": 13,
   "s_financials": 2,
-  "score": 36,
-  "risk_penalty": 5
+  "score": 51,
+  "risk_penalty": 5,
+  "s_institutional": 15,
+  "inst_pct": 94.11
  },
  {
   "code": "ATEX",
@@ -2876,14 +2938,14 @@
   "evidence_sources": [
    "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001304492&type=10-K"
   ],
-  "final_score": 31,
-  "adj_score": 31,
+  "final_score": 46,
+  "adj_score": 46,
   "penalty_detail": [],
   "gate_failures": [],
   "warnings": [
    "Auto-added by the daily US screen: numbers are from Finnhub and SEC EDGAR, the evidence is the company's own words in its 10-K (2026) and latest earnings release matched by rules. Nobody has researched this company yet."
   ],
-  "score_rationale": "Automated five-pillar score (out of 85 -- no institutional-ownership pillar on Finnhub's free tier) from Finnhub/SEC numbers and matched statements (see backend/scripts/us_auto_screen.py and the How this board is built page).",
+  "score_rationale": "Automated six-pillar score (out of 100) from Finnhub/SEC numbers, matched statements and SEC Form 13F institutional ownership (see backend/scripts/us_auto_screen.py and the How this board is built page).",
   "has_lens_data": true,
   "cwip_usd_m": null,
   "cwip_pct_net_block": null,
@@ -2930,7 +2992,9 @@
   "s_insider": 6,
   "s_undercovered": 10,
   "s_financials": 10,
-  "score": 31,
-  "risk_penalty": 0
+  "score": 46,
+  "risk_penalty": 0,
+  "s_institutional": 15,
+  "inst_pct": 99.37
  }
 ]

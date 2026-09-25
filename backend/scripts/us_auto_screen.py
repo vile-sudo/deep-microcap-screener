@@ -71,6 +71,7 @@ SCRIPTS = Path(__file__).resolve().parent
 BACKEND = SCRIPTS.parent
 ROOT = BACKEND.parent
 COMPANIES_US = BACKEND / "data" / "companies_us_raw.json"
+INSTITUTIONS_US = BACKEND / "data" / "institutions_us" / "latest.json"   # scripts/run_institutions_us.py (SEC 13F)
 STATE = ROOT / "automation" / "data" / "us-auto-screen.json"
 
 FINNHUB_KEY = os.environ.get("FINNHUB_API_KEY", "")
@@ -367,6 +368,44 @@ def score(cap_m, roe, roi, insider_pct, holders, ev, pe=None) -> tuple[float, di
     return round(raw - pen, 1), {**pillars, "score": raw, "risk_penalty": pen}, [f"{t} (-{v})" for t, v in penalties]
 
 
+PILLAR_KEYS = ("s_moat", "s_reshoring", "s_insider", "s_undercovered", "s_financials")
+
+
+def institutional_points(pct: float) -> int:
+    """The sixth pillar, out of 15: how much institutional money has already looked at the
+    company. India's board scores the same idea (its 'institutional' pillar, Tier 1 vs Tier 2);
+    a 13F-reported holding is independent validation that someone with research capacity
+    owns it. Tiers, from the share of shares outstanding the 13F filers report: 20%+ -> 15,
+    10-20% -> 12, 5-10% -> 9, 1-5% -> 5, under 1% -> 2."""
+    return 15 if pct >= 20 else 12 if pct >= 10 else 9 if pct >= 5 else 5 if pct >= 1 else 2
+
+
+def apply_institutional(companies: list[dict]) -> int:
+    """Add the institutional pillar to every board company the 13F job has data for, and
+    recompute its score from the pillars (so it can be run every day and always gives the same
+    answer). Companies 13F cannot be matched to keep their five-pillar score out of 85 -- an
+    unmatched name is not penalised for what could not be looked up. Returns how many changed."""
+    try:
+        data = (json.loads(INSTITUTIONS_US.read_text(encoding="utf-8")).get("companies")) or {}
+    except (OSError, ValueError):
+        return 0
+    changed = 0
+    for c in companies:
+        e = data.get(c.get("code"))
+        if not e or e.get("inst_pct") is None:
+            continue
+        pts = institutional_points(e["inst_pct"])
+        base = sum(c.get(k) or 0 for k in PILLAR_KEYS)
+        final = round(base + pts - (c.get("risk_penalty") or 0), 1)
+        new = {"s_institutional": pts, "inst_pct": e["inst_pct"], "score": base + pts, "final_score": final, "adj_score": final,
+               "score_rationale": "Automated six-pillar score (out of 100) from Finnhub/SEC numbers, matched statements and SEC Form 13F "
+                                  "institutional ownership (see backend/scripts/us_auto_screen.py and the How this board is built page)."}
+        if any(c.get(k) != v for k, v in new.items()):
+            c.update(new)
+            changed += 1
+    return changed
+
+
 def qualifying_paths(ev: dict, lens: dict) -> list[str]:
     """Which of India's five independent paths this company clears -- any one
     is enough (see auto_screen.py's docstring): moat evidence, guidance above
@@ -512,6 +551,7 @@ def main() -> int:
     recheck_before = (date.fromisoformat(today) - timedelta(days=RECHECK_DAYS)).isoformat()
 
     enriched = 0 if args.no_enrich else enrich_board(companies, today)
+    enriched += apply_institutional(companies)
     if args.enrich_only:
         if enriched and not args.dry_run:
             COMPANIES_US.write_text(json.dumps(companies, indent=1, ensure_ascii=False) + "\n", encoding="utf-8")

@@ -96,6 +96,7 @@ function rowHtml(d) {
     <td class="n">${fmtN(d.insider_pct)}</td>
     <td class="n">${d.cwip_pct_net_block == null ? "—" : fmtN(d.cwip_pct_net_block) + "%"}</td>
     <td class="n">${d.guidance_pct == null ? "—" : fmtN(d.guidance_pct) + "%"}</td>
+    <td class="n ${posNeg(d.since_added_pct)}">${d.since_added_pct == null ? "—" : pctTxt(d.since_added_pct)}</td>
     <td class="us-wrap">${signalsHtml(d)}</td>
     <td class="us-wrap">${moatEvidenceLine(d)}</td>
   </tr>`;
@@ -148,7 +149,7 @@ function render() {
   }
   tbody.innerHTML = rows.length
     ? rows.map(rowHtml).join("")
-    : '<tr><td colspan="12" class="us-empty">No company matches these filters.</td></tr>';
+    : '<tr><td colspan="13" class="us-empty">No company matches these filters.</td></tr>';
   tbody.querySelectorAll("tr[data-code]").forEach(tr => {
     tr.onclick = e => { if (!e.target.closest("[data-star]")) openDrawer(tr.dataset.code, rows); };
     tr.style.cursor = "pointer";
@@ -179,8 +180,8 @@ async function toggleStar(code) {
    trajectory, score breakdown, business, moat, flags. All of it comes from the same
    record the table row does (backend/scripts/us_auto_screen.py, us_lenses.py). */
 const US_PILLARS = [["Moat", "s_moat", 25], ["Reshoring", "s_reshoring", 20], ["Insider", "s_insider", 15],
-  ["Under-covered", "s_undercovered", 15], ["Financials", "s_financials", 10]];
-const US_SERIES = ["--s1", "--s2", "--s3", "--s4", "--s5"];
+  ["Under-covered", "s_undercovered", 15], ["Financials", "s_financials", 10], ["Institutional", "s_institutional", 15]];
+const US_SERIES = ["--s1", "--s2", "--s3", "--s4", "--s5", "--s6"];
 const US_MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 let DRAWER_LIST = [];
 
@@ -236,6 +237,8 @@ function usDrawerBody(d) {
       <div><span>Added</span><b style="font-size:13px">${esc(d.added_on || "—")}</b></div>
     </div>`;
 
+  out += usPerformanceSection(d);
+
   if (auto) {
     out += `<div class="sec auto-sec"><h4>Auto-added by the daily US screen</h4>
       <p>Added on ${esc(d.added_on || "")} because the company describes a moat in its own SEC 10-K and the numbers clear the board's gates.
@@ -273,10 +276,10 @@ function usDrawerBody(d) {
       <p class="caveat">Not pulled for this name yet. The capex, guidance and quarterly-profit pass runs daily after the screen and covers new names the day after they are added.</p></div>`;
   }
 
-  out += usEarningsSection(d) + usInstitutionsSection(d) + usNewsSection(d);
+  out += usEarningsSection(d) + usFundamentalsSection(d) + usInstitutionsSection(d) + usAnalystsSection(d) + usShortSection(d) + usInsiderSection(d) + usNewsSection(d);
 
   if (US_PILLARS.some(p => d[p[1]] != null)) {
-    out += `<div class="sec"><h4>Score breakdown</h4>` + US_PILLARS.map(([l, k, mx], i) => {
+    out += `<div class="sec"><h4>Score breakdown</h4>` + US_PILLARS.filter(p => p[1] !== "s_institutional" || d.s_institutional != null).map(([l, k, mx], i) => {
       const v = +d[k] || 0, pct = Math.max(2, v / mx * 100);
       return `<div class="bar"><i>${l}</i><span class="track"><span class="fill" style="width:${pct}%;background:var(${US_SERIES[i]})"></span></span>
         <b>${v.toFixed(1)}<span style="color:var(--muted);font-weight:400">/${mx}</span></b></div>`;
@@ -477,7 +480,7 @@ function galFetchIndex() {
   return GAL_LOADING;
 }
 
-const US_TABS = ["overview", "screens", "themes", "market", "earnings", "news", "gallery", "insider", "method"];
+const US_TABS = ["overview", "screens", "themes", "market", "earnings", "news", "ipo", "gallery", "insider", "method"];
 /* tab switching: showUsTab(), further down */
 
 async function openGallery() {
@@ -1567,9 +1570,10 @@ function usEarningsSection(d) {
    manual refresh: when a job commits new data and the server picks it
    up, the next page load shows it.
    ================================================================ */
-const AUX = {news: null, inst: null, ins: null, ann: null, setups: null};
+const AUX = {news: null, inst: null, ins: null, ann: null, setups: null, fund: null, analysts: null, short: null, perf: null, ipo: null};
 const AUX_URL = {news: "/api/news-us", inst: "/api/institutions-us", ins: "/api/insider-us",
-  ann: "/api/announcements-us", setups: "/api/market/setups?market=us"};
+  ann: "/api/announcements-us", setups: "/api/market/setups?market=us", fund: "/api/fundamentals-us", analysts: "/api/analysts-us",
+  short: "/api/short-us", perf: "/api/performance-us", ipo: "/api/ipo-us"};
 const AUX_LOADING = {};
 function auxLoad(k) {
   AUX_LOADING[k] = AUX_LOADING[k] || fetchJSON(AUX_URL[k]).then(j => (AUX[k] = j)).catch(() => null);
@@ -1579,6 +1583,8 @@ function auxLoadAll() {
   return Promise.all([earnLoad(), ...Object.keys(AUX_URL).map(auxLoad)]).then(refreshDerived);
 }
 function refreshDerived() {
+  if (AUX.perf && AUX.perf.companies) DATA.forEach(d => { const e = AUX.perf.companies[d.code]; d.since_added_pct = e ? e.since_added_pct : null; });
+  render();
   renderOverview();
   updateAlerts();
   if (NEWSUI.built) newsRender();
@@ -1604,6 +1610,7 @@ function showUsTab(tab) {
   if (tab === "themes") openThemes();
   if (tab === "earnings") openEarnings();
   if (tab === "news") openNews();
+  if (tab === "ipo") openIpo();
   if (tab === "market" && !MKT.data) openMarket();
   if (tab === "insider" && !INS.data) openInsider();
   window.scrollTo({top: 0, behavior: "smooth"});
@@ -1686,6 +1693,12 @@ function renderOverview() {
   const HI = new Set(["results", "order win", "M&A", "management change", "regulatory or legal", "fundraise"]);
   const filings = ((AUX.ann && AUX.ann.announcements) || []).filter(a => HI.has(a.category)).slice(0, 5);
 
+  const perf = ((AUX.perf && AUX.perf.companies) || {}), tracked = DATA.filter(d => perf[d.code] && perf[d.code].since_added_pct != null && (perf[d.code].history || []).length >= 2)
+    .sort((a, b) => perf[b.code].since_added_pct - perf[a.code].since_added_pct);
+  const sinceRow = d => `<li data-ov-code="${esc(d.code)}"><span><b>${esc(d.name)}</b><small>added ${esc(insDay(perf[d.code].added_on))}</small></span><span class="r ${posNeg(perf[d.code].since_added_pct)}">${pctTxt(perf[d.code].since_added_pct)}</span></li>`;
+  const sinceAdded = tracked.length >= 2
+    ? `<ul class="ov-list">${tracked.slice(0, 3).map(sinceRow).join("")}${tracked.length > 6 ? '<li style="cursor:default;color:var(--muted);justify-content:center;font-size:11px">· · ·</li>' : ""}${tracked.slice(-3).reverse().map(sinceRow).join("")}</ul>`
+    : '<p class="ov-empty">Building up: the board records each company\'s price daily and shows the return since it was added once a few days of history exist.</p>';
   const card = (title, go, goLabel, inner) => `<div class="ov-card"><h3><span>${title}</span>${go ? `<button type="button" data-ov-go="${go}">${goLabel} →</button>` : ""}</h3>${inner}</div>`;
   const list = (rows, empty) => rows.length ? `<ul class="ov-list">${rows.join("")}</ul>` : `<p class="ov-empty">${empty}</p>`;
   const li = (code, left, sub, right) => `<li data-ov-code="${esc(code)}"><span><b>${left}</b>${sub ? `<small>${sub}</small>` : ""}</span><span class="r">${right}</span></li>`;
@@ -1693,8 +1706,9 @@ function renderOverview() {
     card("Top ranked", "screens", "All screens", list(top.map(d => li(d.code, esc(d.name), esc(d.sector || ""), fmtN(d.final_score))), "No scored companies yet."))
     + card("Reporting soon", "earnings", "Earnings calendar", list(soon.map(x => li(x.code, esc(x.d.name), `${esc(earnHour(x.e.next.hour))} · ${esc(earnQ(x.e.next.quarter, x.e.next.year))}`, `${esc(earnDay(x.e.next.date))}<small>${esc(earnIn(x.e.next.date))}</small>`)), "No upcoming dates yet — the earnings scan runs nightly."))
     + card("Latest headlines", "news", "All news", list(news.map(i => li(i.symbol, esc(i.headline), `${esc(i.symbol)} · ${esc(i.source)}`, esc(ago(i.datetime)))), "No headlines yet — the news job runs every three hours."))
-    + card("Insider buying", "insider", "Board disclosures", list(buyRows.map(t => li(t.symbol, esc(t.name || t.symbol), `${esc(t.insider)}${t.relationship ? " · " + esc(t.relationship) : ""}`, `${compactUSD(t.value_usd)}<small>${esc(insDay(t.trade_date))}</small>`)), "No open-market insider purchases in the last 14 days."))
+    + card("Insider buying", "insider", "Board disclosures", list(buyRows.map(t => li(t.symbol, esc(t.name || t.symbol) + (insClusters().some(c => c.symbol === t.symbol) ? ' <span class="us-sig" title="two or more insiders bought within 14 days">cluster</span>' : ""), `${esc(t.insider)}${t.relationship ? " · " + esc(t.relationship) : ""}`, `${compactUSD(t.value_usd)}<small>${esc(insDay(t.trade_date))}</small>`)), "No open-market insider purchases in the last 14 days."))
     + card("Material filings", "insider", "Board disclosures", list(filings.map(a => li(a.symbol, esc(a.name || a.symbol), esc(a.category) + " — " + esc(unent(a.summary).slice(0, 70)), esc(insDay(a.date)))), "No recent material 8-K filings."))
+    + card("Since added", "screens", "All screens", sinceAdded)
     + card("Just added", "screens", "All screens", list(added.map(d => li(d.code, esc(d.name), esc(d.sector || ""), esc(insDay(d.added_on)))), "Nothing added yet."));
   grid.querySelectorAll("[data-ov-code]").forEach(el => { el.onclick = () => openDrawer(el.dataset.ovCode); });
   grid.querySelectorAll("[data-ov-go]").forEach(el => { el.onclick = () => (el.dataset.ovGo === "screens" ? goScreens(null) : showUsTab(el.dataset.ovGo)); });
@@ -1830,6 +1844,11 @@ function buildAlerts() {
         sub: `${t.relationship || "Insider"} · ${insDay(t.trade_date)} at ${fmtUSD(t.price)}`});
     });
   }
+  insClusters().forEach(c => {
+    if (!by[c.symbol]) return;
+    A.push({id: `cluster:${c.symbol}:${c.latest}`, code: c.symbol, kind: "Insider cluster", rank: 90,
+      title: `${c.insiders} insiders bought ${compactUSD(c.value)} of ${c.symbol}`, sub: `open-market purchases in the last 14 days · latest ${insDay(c.latest)}`});
+  });
   if (AUX.ann && AUX.ann.announcements) {
     AUX.ann.announcements.forEach(a => {
       if (!by[a.symbol] || !ALERT_8K.has(a.category)) return;
@@ -1926,4 +1945,164 @@ function usNewsSection(d) {
   if (!items.length) return "";
   return `<div class="sec"><h4>Recent news</h4>` + items.map(i =>
     `<div class="us-news-item" style="padding:8px 0"><div class="meta">${esc(i.source)} · ${esc(ago(i.datetime))}</div><a class="hl" style="font-size:13.5px" href="${esc(safeUrl(i.url))}" target="_blank" rel="noopener noreferrer">${esc(i.headline)}</a></div>`).join("") + "</div>";
+}
+
+/* ================================================================
+   Research sections in the scorecard, and the IPO tab. Data files:
+   fundamentals_us (SEC XBRL), analysts_us and ipo_us (Finnhub), short_us
+   (FINRA), performance_us (own daily snapshots) -- all written by
+   .github/workflows/us_analytics.yml and read-only here.
+   ================================================================ */
+const usCo = (k, d) => AUX[k] && AUX[k].companies && AUX[k].companies[d.code];
+const usM = v => v == null ? "—" : fmtUSDShort(v / 1e6);
+const pctTxt = (v, dp = 1) => v == null ? "—" : (v > 0 ? "+" : "") + v.toFixed(dp) + "%";
+const posNeg = v => v == null ? "" : v > 0 ? "earn-beat" : v < 0 ? "earn-miss" : "";
+
+/* tiny bars for one series: [[label, value], ...] */
+function usBars(pts, title) {
+  const vals = pts.map(p => p[1]).filter(v => v != null);
+  if (vals.length < 2) return "";
+  const W = 250, H = 84, B = 22, T = 8;
+  const hi = Math.max(0, ...vals), lo = Math.min(0, ...vals), span = (hi - lo) || 1;
+  const zero = T + (hi / span) * (H - T - B), step = W / pts.length, bw = Math.min(30, step - 8);
+  let s = `<div style="flex:1 1 240px;min-width:220px"><div class="qsrc" style="margin-bottom:2px">${esc(title)}</div><svg viewBox="0 0 ${W} ${H}" style="width:100%;height:auto" role="img" aria-label="${esc(title)}">`;
+  s += `<line x1="0" x2="${W}" y1="${zero}" y2="${zero}" stroke="var(--axis)" stroke-width="1"/>`;
+  pts.forEach(([lab, v], i) => {
+    if (v == null) return;
+    const cx = i * step + step / 2, h = Math.max(1.5, Math.abs(v) / span * (H - T - B)), y = v >= 0 ? zero - h : zero;
+    s += `<rect x="${cx - bw / 2}" y="${y}" width="${bw}" height="${h}" rx="2" fill="${v < 0 ? "var(--crit)" : i === pts.length - 1 ? "var(--s1)" : "var(--s3)"}" fill-opacity="${i === pts.length - 1 ? .95 : .62}"><title>${esc(lab)}: ${usM(v)}</title></rect>`;
+    s += `<text x="${cx}" y="${H - 8}" text-anchor="middle" class="tk" style="font-size:9px">${esc(lab)}</text>`;
+  });
+  return s + "</svg></div>";
+}
+function usSpark(vals, color) {
+  if (vals.length < 2) return "";
+  const W = 260, H = 46, lo = Math.min(...vals), hi = Math.max(...vals), span = (hi - lo) || 1;
+  const pts = vals.map((v, i) => `${(i / (vals.length - 1) * (W - 6) + 3).toFixed(1)},${(H - 6 - (v - lo) / span * (H - 12)).toFixed(1)}`).join(" ");
+  return `<svg viewBox="0 0 ${W} ${H}" style="width:100%;max-width:${W}px;height:auto" role="img" aria-label="trend"><polyline points="${pts}" fill="none" stroke="${color || "var(--s1)"}" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/></svg>`;
+}
+
+function usFundamentalsSection(d) {
+  const e = usCo("fund", d);
+  const ys = e && e.years;
+  if (!ys || !ys.length) return "";
+  const yl = y => "FY" + String(y.fy).slice(2);
+  const margin = (y, k) => y.revenue && y[k] != null ? y[k] / y.revenue * 100 : null;
+  const first = ys.find(y => y.revenue), last = [...ys].reverse().find(y => y.revenue);
+  const n = first && last ? ys.indexOf(last) - ys.indexOf(first) : 0;
+  const cagr = n >= 1 && first.revenue > 0 && last.revenue > 0 ? (Math.pow(last.revenue / first.revenue, 1 / n) - 1) * 100 : null;
+  const row = (label, f, cls) => `<tr><td>${label}</td>${ys.map(y => { const v = f(y); return `<td class="n ${cls ? cls(v) : ""}">${v == null ? "—" : typeof v === "string" ? v : v}</td>`; }).join("")}</tr>`;
+  const pc = v => v == null ? null : v.toFixed(1) + "%";
+  return `<div class="sec"><h4>Financial trend — SEC filings, fiscal years</h4>`
+    + `<div style="display:flex;gap:14px;flex-wrap:wrap">${usBars(ys.map(y => [yl(y), y.revenue]), "Revenue")}${usBars(ys.map(y => [yl(y), y.net_income]), "Net income")}</div>`
+    + (cagr != null ? `<p style="margin-top:6px">Revenue grew at <b class="${posNeg(cagr)}">${pctTxt(cagr)} a year</b> over ${n} year${n === 1 ? "" : "s"} (${esc(yl(first))}–${esc(yl(last))}).</p>` : "")
+    + `<div class="mv-tablewrap" style="margin-top:8px"><table class="mv-table"><thead><tr><th></th>${ys.map(y => `<th class="n" title="fiscal year ended ${esc(y.end)}">${esc(yl(y))}</th>`).join("")}</tr></thead><tbody>`
+    + row("Gross margin", y => pc(margin(y, "gross_profit")))
+    + row("Operating margin", y => pc(margin(y, "operating_income")), v => v && v.startsWith("-") ? "earn-miss" : "")
+    + row("Net margin", y => pc(margin(y, "net_income")), v => v && v.startsWith("-") ? "earn-miss" : "")
+    + row("Operating cash flow", y => y.operating_cash_flow == null ? null : usM(y.operating_cash_flow))
+    + row("Long-term debt", y => y.debt == null ? null : usM(y.debt))
+    + row("Cash", y => y.cash == null ? null : usM(y.cash))
+    + row("Equity", y => y.equity == null ? null : usM(y.equity))
+    + `</tbody></table></div><p class="caveat" style="margin-top:8px">Straight from the company's 10-K XBRL tags; a line the company does not tag is left blank, never estimated.</p></div>`;
+}
+
+function usAnalystsSection(d) {
+  const e = usCo("analysts", d);
+  if (!e) return "";
+  const m = (e.months || [])[0];
+  if (!e.covered || !m) {
+    return `<div class="sec"><h4>Analyst coverage</h4><p class="nd">No analyst is tracked on this stock. For a board that looks for under-covered companies that is part of the case — and part of the risk: less research, thinner trading, bigger surprises.</p></div>`;
+  }
+  const tot = e.analysts, seg = [["strong_buy", "Strong buy", "var(--good-ink,#157347)"], ["buy", "Buy", "#5ab28a"], ["hold", "Hold", "var(--muted)"], ["sell", "Sell", "#e08a5a"], ["strong_sell", "Strong sell", "var(--crit)"]];
+  return `<div class="sec"><h4>Analyst coverage</h4><p><b>${tot}</b> analyst${tot === 1 ? "" : "s"} · ${seg.filter(s => m[s[0]]).map(s => `${s[1]} <b>${m[s[0]]}</b>`).join(" · ")} <span class="qsrc">(as of ${esc(m.period)})</span></p>`
+    + `<div style="display:flex;height:9px;border-radius:4px;overflow:hidden;margin-top:6px">${seg.filter(s => m[s[0]]).map(s => `<span title="${s[1]} ${m[s[0]]}" style="width:${m[s[0]] / tot * 100}%;background:${s[2]}"></span>`).join("")}</div></div>`;
+}
+
+function usShortSection(d) {
+  const e = usCo("short", d);
+  if (!e || e.short_shares == null) return "";
+  return `<div class="sec"><h4>Short interest — FINRA</h4><p><b>${Math.round(e.short_shares).toLocaleString("en-US")}</b> shares sold short`
+    + `${e.short_pct_shares != null ? ` — <b>${fmtN(e.short_pct_shares)}%</b> of shares outstanding` : ""}${e.days_to_cover != null ? `, <b>${fmtN(e.days_to_cover)}</b> days of average volume to cover` : ""}`
+    + `${e.change_pct != null ? `; <b class="${e.change_pct > 0 ? "earn-miss" : "earn-beat"}">${pctTxt(e.change_pct)}</b> since the previous report` : ""}. `
+    + `<span class="qsrc">Settlement ${esc(insDay(AUX.short.settlement_date))}; published twice a month.</span></p></div>`;
+}
+
+function usPerformanceSection(d) {
+  const e = usCo("perf", d);
+  if (!e) return "";
+  const first = e.added_source === "first-seen";
+  const sc = (e.history || []).filter(h => h[2] != null).map(h => h[2]);
+  return `<div class="sec"><h4>Since it was added</h4><p><b class="${posNeg(e.since_added_pct)}" style="font-size:16px">${pctTxt(e.since_added_pct)}</b> `
+    + `from $${fmtN(e.added_price, 2)} to $${fmtN(e.price, 2)} · added ${esc(insDay(e.added_on))}`
+    + `${first ? ` <span class="qsrc">(tracking began ${esc(insDay(e.tracking_from))}, the first day this board recorded its price)</span>` : ""}</p>`
+    + (sc.length >= 2 ? `<div style="margin-top:8px"><div class="qsrc">Score, daily: ${fmtN(sc[0])} → <b>${fmtN(sc[sc.length - 1])}</b></div>${usSpark(sc)}</div>`
+                     : `<p class="qsrc" style="margin-top:6px">Score history builds up one point a day.</p>`) + "</div>";
+}
+
+function usInsiderSection(d) {
+  const rows = ((AUX.ins && AUX.ins.transactions) || []).filter(t => t.symbol === d.code && t.is_market).slice(0, 6);
+  if (!rows.length) return "";
+  const cl = insClusters().find(c => c.symbol === d.code);
+  return `<div class="sec"><h4>Insider trades — open market</h4>${cl ? `<p style="color:var(--good-ink);font-size:12.5px"><b>● Cluster buy:</b> ${cl.insiders} insiders bought ${compactUSD(cl.value)} in the last 14 days.</p>` : ""}`
+    + `<div class="mv-tablewrap"><table class="mv-table"><thead><tr><th>Date</th><th>Insider</th><th>Side</th><th class="n">Value</th></tr></thead><tbody>`
+    + rows.map(t => `<tr><td>${esc(insDay(t.trade_date))}</td><td>${esc(t.insider)}</td><td><span class="${t.side === "BUY" ? "up" : "dn"}">${esc(t.side)}</span></td><td class="n">${compactUSD(t.value_usd)}</td></tr>`).join("")
+    + "</tbody></table></div></div>";
+}
+
+/* several different insiders buying the same company within two weeks is a stronger signal than one purchase */
+function insClusters() {
+  const by = {};
+  ((AUX.ins && AUX.ins.transactions) || []).forEach(t => {
+    if (!t.is_market || t.side !== "BUY" || t.value_usd < 10000 || daysSince(t.trade_date) > 14) return;
+    (by[t.symbol] = by[t.symbol] || []).push(t);
+  });
+  return Object.entries(by).map(([symbol, rows]) => ({
+    symbol, insiders: new Set(rows.map(r => r.insider)).size, value: rows.reduce((s, r) => s + r.value_usd, 0),
+    latest: rows.map(r => r.trade_date).sort().pop(),
+  })).filter(c => c.insiders >= 2).sort((a, b) => b.value - a.value);
+}
+
+/* ================================================================
+   IPO tab -- the market-wide US IPO calendar, with the SEC filing one click away
+   ================================================================ */
+const IPOUI = {built: false};
+async function openIpo() {
+  const body = document.getElementById("ipo-body");
+  if (!AUX.ipo) body.innerHTML = '<p class="view-hint">Loading…</p>';
+  await auxLoad("ipo");
+  if (!AUX.ipo || !AUX.ipo.items || !AUX.ipo.items.length) {
+    body.innerHTML = '<p class="view-hint">No IPO calendar yet. It refreshes automatically every morning.</p>';
+    return;
+  }
+  if (!IPOUI.built) {
+    IPOUI.built = true;
+    let t = 0;
+    document.getElementById("ipo-q").oninput = () => { clearTimeout(t); t = setTimeout(ipoRender, 120); };
+    document.getElementById("ipo-status").onchange = ipoRender;
+    document.getElementById("ipo-clear").onclick = () => { document.getElementById("ipo-q").value = ""; document.getElementById("ipo-status").value = "ahead"; ipoRender(); };
+  }
+  ipoRender();
+}
+function ipoRender() {
+  const body = document.getElementById("ipo-body");
+  const q = document.getElementById("ipo-q").value.trim().toLowerCase(), st = document.getElementById("ipo-status").value;
+  const today = new Date().toISOString().slice(0, 10);
+  let rows = AUX.ipo.items.filter(i => {
+    if (st === "ahead" && (i.date < today || i.status === "withdrawn")) return false;
+    if (st === "priced" && i.status !== "priced") return false;
+    if (st === "withdrawn" && i.status !== "withdrawn") return false;
+    return !q || (i.name + " " + i.symbol).toLowerCase().includes(q);
+  });
+  rows = rows.sort((a, b) => st === "ahead" ? a.date.localeCompare(b.date) : b.date.localeCompare(a.date));
+  document.getElementById("ipo-count").textContent = `${rows.length} of ${AUX.ipo.count}`;
+  document.getElementById("ipo-asof").textContent = AUX.ipo.fetched_at ? "Updated " + ago(AUX.ipo.fetched_at) : "";
+  const price = i => i.price_low == null ? "—" : i.price_low === i.price_high ? "$" + fmtN(i.price_low, 2) : `$${fmtN(i.price_low, 2)}–${fmtN(i.price_high, 2)}`;
+  body.innerHTML = rows.length ? `<div class="mv-tablewrap"><table class="mv-table"><thead><tr><th>Date</th><th>Company</th><th>Exchange</th><th>Status</th><th class="n">Price range</th><th class="n">Shares</th><th class="n">Deal size</th><th>Filings</th></tr></thead><tbody>`
+    + rows.map(i => `<tr><td><b>${esc(insDay(i.date))}</b>${i.date >= today ? ` <span class="us-sig grey">${esc(earnIn(i.date))}</span>` : ""}</td>`
+      + `<td><b class="mv-tick">${esc(i.symbol || "—")}</b><span class="mv-name">${esc(i.name)}</span></td><td>${esc(i.exchange || "—")}</td>`
+      + `<td><span class="mv-badge ${i.status === "priced" ? "mv-high" : i.status === "withdrawn" ? "mv-low" : "mv-med"}">${esc(i.status || "—")}</span></td>`
+      + `<td class="n">${price(i)}</td><td class="n">${i.shares ? Math.round(i.shares).toLocaleString("en-US") : "—"}</td><td class="n">${i.deal_value ? usM(i.deal_value) : "—"}</td>`
+      + `<td><a href="${esc(safeUrl(i.sec_url))}" target="_blank" rel="noopener noreferrer">SEC filings ↗</a></td></tr>`).join("")
+    + "</tbody></table></div>" : '<p class="view-hint">No IPO matches — change the status or clear the search.</p>';
 }

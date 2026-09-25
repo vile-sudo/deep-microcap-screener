@@ -133,6 +133,7 @@
   <button class="dl-tab" type="button" data-ustab="market" role="tab" aria-selected="false">Market</button>
   <button class="dl-tab" type="button" data-ustab="earnings" role="tab" aria-selected="false">Earnings</button>
   <button class="dl-tab" type="button" data-ustab="news" role="tab" aria-selected="false">News</button>
+  <button class="dl-tab" type="button" data-ustab="ipo" role="tab" aria-selected="false">IPOs</button>
   <button class="dl-tab" type="button" data-ustab="gallery" role="tab" aria-selected="false">Chart Gallery</button>
   <button class="dl-tab" type="button" data-ustab="insider" role="tab" aria-selected="false">Board Disclosures</button>
   <button class="dl-tab" type="button" data-ustab="method" role="tab" aria-selected="false">How this board is built</button>
@@ -193,6 +194,7 @@
           <th data-k="insider_pct" class="n">Insider %</th>
           <th data-k="cwip_pct_net_block" class="n" title="Construction-in-progress as % of net PP&amp;E -- blank when the company reports no CIP line">CWIP %NB</th>
           <th data-k="guidance_pct" class="n" title="Revenue growth guided in the latest earnings release">Guide %</th>
+          <th data-k="since_added_pct" class="n" title="Price return since the company was added to the board (from the first day its price was recorded where earlier candles are not available)">Since added</th>
           <th>Signals</th>
           <th>Evidence</th>
         </tr></thead>
@@ -314,6 +316,32 @@
     </div>
     <div class="mv-count" id="news-count"></div>
     <div id="news-body"><p class="view-hint">Loading…</p></div>
+  </div>
+</section>
+
+<section class="dashboard-section" id="us-tab-ipo" hidden>
+  <div class="section-heading">
+    <div><span class="eyebrow">IPO CALENDAR</span><h1>US IPOs</h1>
+      <p class="section-copy">Companies about to list, or that listed in the last 30 days, on US exchanges — the names that could reach this board next. Each row links to the company's SEC filings, where the prospectus (S-1 / 424B) has the business, the risks and the use of proceeds. IPOs are market-wide, not board companies. Dates and price ranges move until the deal prices.</p>
+    </div>
+    <span class="section-note" id="ipo-asof"></span>
+  </div>
+  <div class="card">
+    <div class="mv-toolbar">
+      <div class="searchwrap" id="ipo-swrap">
+        <span class="ic">&#9906;</span>
+        <input id="ipo-q" type="search" autocomplete="off" spellcheck="false" placeholder="Search company or ticker…">
+      </div>
+      <select class="gal-select" id="ipo-status" aria-label="Status">
+        <option value="ahead">Upcoming (and today)</option>
+        <option value="priced">Priced</option>
+        <option value="withdrawn">Withdrawn</option>
+        <option value="">Everything on the calendar</option>
+      </select>
+      <button class="theme-back" id="ipo-clear" type="button">Clear</button>
+    </div>
+    <div class="mv-count" id="ipo-count"></div>
+    <div id="ipo-body"><p class="view-hint">Loading…</p></div>
   </div>
 </section>
 
@@ -445,7 +473,7 @@
       <thead><tr><th>Screen</th><th class="n">Names</th><th>What it was looking for, and what its score means</th></tr></thead>
       <tbody>
         <tr><td><b>US auto-screen</b></td><td class="n" id="us-method-n">&mdash;</td>
-          <td>Companies that clear <b>at least one of five independent paths</b> (below) inside a size band of $30m&ndash;$2,000m, in a sector the board covers, that the public doesn't already hold in the tens of thousands. Scored out of <b>85</b> on five pillars (India's institutional-ownership pillar has no free US data source and is left out rather than faked, so the total is not rescaled to 100). Every name is auto-added and <b>nobody has researched it yet</b>: the moat text is the company's own words in its 10-K, matched by rules.</td></tr>
+          <td>Companies that clear <b>at least one of five independent paths</b> (below) inside a size band of $30m&ndash;$2,000m, in a sector the board covers, that the public doesn't already hold in the tens of thousands. Scored out of <b>100</b> on six pillars; the sixth, institutional ownership, comes from SEC Form 13F filings and is scored once a company can be matched there &mdash; a name that cannot be matched keeps its five-pillar score out of 85 rather than being marked down for data that was not found. Every name is auto-added and <b>nobody has researched it yet</b>: the moat text is the company's own words in its 10-K, matched by rules.</td></tr>
         <tr><td><b>India's research rounds</b><br><span class="section-copy">v3 deep, v4 moat, v5&ndash;v8 sweeps, triage, added on request</span></td><td class="n">&mdash;</td>
           <td>No US counterpart yet. Those are hand-run research passes with their own rubrics; the US board has only the automated screen, so there is nothing to compare across.</td></tr>
       </tbody>
@@ -515,7 +543,7 @@
         <tr><td>Insider</td><td class="n">15</td><td>Insider (officer and director) ownership: 5&ndash;25% scores highest; above 25% less; known but under 5% low; unknown lowest. From Finnhub's insider filings, so it is an approximation.</td></tr>
         <tr><td>Under-covered</td><td class="n">15</td><td>A smaller market cap and fewer holders of record score higher: the names the crowd hasn't found.</td></tr>
         <tr><td>Financials</td><td class="n">10</td><td>ROE and return on investment.</td></tr>
-        <tr><td><i>Institutional</i></td><td class="n">&mdash;</td><td>India scores 15 here. Not scored in the US (no free data), which is why the maximum is 85, not 100.</td></tr>
+        <tr><td>Institutional</td><td class="n">15</td><td>How much institutional money has already looked at the company, from the SEC's quarterly Form 13F filings: 20% or more of shares outstanding scores 15, 10&ndash;20% scores 12, 5&ndash;10% scores 9, 1&ndash;5% scores 5, under 1% scores 2. A company 13F cannot be matched to is not scored here and keeps a maximum of 85.</td></tr>
       </tbody>
     </table></div>
 
@@ -538,6 +566,6 @@
 <aside class="drawer" id="us-drawer" aria-label="Company detail"></aside>
 
 <script src="/static/klinecharts.min.js" defer></script>
-<script src="/static/us.js?v=13" defer></script>
+<script src="/static/us.js?v=15" defer></script>
 </body>
 </html>

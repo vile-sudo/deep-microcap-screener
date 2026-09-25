@@ -9,6 +9,7 @@ company on their US watchlist -- so an earnings date, an insider purchase or a m
 Rules (keep in step with buildAlerts in us.js):
   * earnings      the company reports in the next 7 days
   * insider buy   an open-market purchase of $25k or more in the last 14 days
+  * insider cluster  two or more insiders buying (>= $10k each) within 14 days
   * 8-K filing    a material 8-K (results, order win, M&A, management change,
                   regulatory or legal, fundraise) in the last 7 days
   * price signal  the chart job's feed (new 52-week high/low, breakout) for a board name
@@ -73,7 +74,19 @@ def compute_alerts(board: dict[str, str], today: date | None = None) -> list[dic
             out.append({"id": f"earn:{code}:{n['date']}", "code": code, "kind": "Earnings",
                         "title": f"{board[code]} reports {when}", "sub": n["date"]})
 
-    for t in _load(DATA / "insider_us" / "latest.json").get("transactions") or []:
+    txns = _load(DATA / "insider_us" / "latest.json").get("transactions") or []
+    buys: dict[str, list] = {}
+    for t in txns:
+        if t.get("symbol") in board and t.get("is_market") and t.get("side") == "BUY" and (t.get("value_usd") or 0) >= 10000                 and _days_since(t["trade_date"], today) <= 14:
+            buys.setdefault(t["symbol"], []).append(t)
+    for sym, rows in buys.items():                     # several insiders buying within two weeks
+        if len({r.get("insider") for r in rows}) >= 2:
+            latest = max(r["trade_date"] for r in rows)
+            out.append({"id": f"cluster:{sym}:{latest}", "code": sym, "kind": "Insider cluster",
+                        "title": f"{len({r.get('insider') for r in rows})} insiders bought {_compact(sum(r['value_usd'] for r in rows))} of {sym}",
+                        "sub": latest})
+
+    for t in txns:
         if t.get("symbol") in board and t.get("is_market") and t.get("side") == "BUY" and (t.get("value_usd") or 0) >= 25000 \
                 and _days_since(t["trade_date"], today) <= 14:
             out.append({"id": f"ins:{t.get('accession')}:{t.get('insider')}:{t.get('shares')}", "code": t["symbol"],
