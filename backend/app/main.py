@@ -97,7 +97,7 @@ async def _us_alerts_loop():
         await asyncio.sleep(US_ALERTS_SECONDS)
 
 
-DESKTOP_PUSH_SECONDS = 600
+DESKTOP_PUSH_SECONDS = 60
 DESKTOP_PUSH_STATE_KEY = "DESKTOP_PUSH_LAST"
 DEAL_TYPES = ("deal_buy", "deal_sell")
 
@@ -154,9 +154,12 @@ def _desktop_push_tick() -> int:
 
 
 async def _desktop_push_loop():
-    """Every 10 minutes: push a summary to every browser that opted into desktop notifications, when the
+    """Every minute: push a summary to every browser that opted into desktop notifications, when the
     Alerts feed has moved on since the last check. See webpush.py for delivery, _desktop_push_tick above
-    for the "what's new" logic."""
+    for the "what's new" logic. (The Alerts feed itself -- chart_data/alerts.json and
+    data/deals/clusters.json -- only regenerates once a day, at 02:00 IST via daily.yml, so this mostly
+    just narrows how long after that daily run a subscribed browser finds out, from up to 10 minutes down
+    to up to 1; it does not make anything intraday.)"""
     log = logging.getLogger("deepsweep")
     await asyncio.sleep(30)
     while True:
