@@ -760,6 +760,123 @@ function patChart(d){
 
 /* ---------- drawer ---------- */
 const drawer=document.getElementById('drawer'), scrim=document.getElementById('scrim');
+
+/* ---------- Quarterly results trend and the guidance tracker (scorecard) ----------
+   results_in: eight quarters of sales / margin / profit per company, from screener.in, refreshed daily
+   (scripts/run_results_in.py). guidance_in: numeric targets management stated on earnings calls, the
+   exact sentence, and whether each came true once the year was reported (scripts/run_guidance_in.py).
+   Both are written by the daily India job and only read here. */
+const INTEL={res:null, gd:null};
+let DRAWER_D=null;
+Promise.all([fetchJSON('/api/results-in').catch(()=>null), fetchJSON('/api/guidance-in').catch(()=>null)]).then(([r,g])=>{
+  INTEL.res=r; INTEL.gd=g;
+  if(drawer.classList.contains('on') && DRAWER_D) openDrawer(DRAWER_D);   /* the scorecard was opened before the data arrived */
+});
+const MON_S={jan:'Jan',feb:'Feb',mar:'Mar',apr:'Apr',may:'May',jun:'Jun',jul:'Jul',aug:'Aug',sep:'Sep',oct:'Oct',nov:'Nov',dec:'Dec'};
+const qLabel = p => { const m=/([A-Za-z]{3})\w*\s+(\d{4})/.exec(p||''); return m ? m[1].slice(0,3)+" '"+m[2].slice(2) : (p||''); };
+const cr = v => v===null||v===undefined ? '—' : Math.abs(v)>=100000 ? fmt(v/100000,2)+' L cr' : Math.abs(v)>=10000 ? fmt(v/1000,1)+'k' : fmtI(v);
+const yoyTxt = v => v===null||v===undefined ? '—' : `<span class="${v>0?'ov-up':v<0?'ov-dn':''}">${v>0?'+':''}${fmt(v,0)}%</span>`;
+
+/* bars for one series: pts = [[label, value], ...]; negative values red, the latest quarter solid */
+function qBars(pts, title){
+  const vals=pts.map(p=>p[1]).filter(v=>v!==null && v!==undefined);
+  if(vals.length<2) return '';
+  const W=300,H=96,B=22,T=12;
+  const hi=Math.max(0,...vals), lo=Math.min(0,...vals), span=(hi-lo)||1;
+  const zero=T+(hi/span)*(H-T-B), step=W/pts.length, bw=Math.min(24,step-6);
+  let s=`<div style="flex:1 1 280px;min-width:250px"><div class="qsrc" style="margin-bottom:2px">${esc(title)}</div><svg viewBox="0 0 ${W} ${H}" style="width:100%;height:auto" role="img" aria-label="${esc(title)}">`;
+  s+=`<line x1="0" x2="${W}" y1="${zero}" y2="${zero}" stroke="var(--axis)" stroke-width="1"/>`;
+  pts.forEach(([lab,v],i)=>{
+    if(v===null||v===undefined) return;
+    const cx=i*step+step/2, h=Math.max(1.5,Math.abs(v)/span*(H-T-B)), y=v>=0?zero-h:zero;
+    s+=`<rect x="${cx-bw/2}" y="${y}" width="${bw}" height="${h}" rx="2" fill="${v<0?'var(--crit)':i===pts.length-1?'var(--s1)':'var(--s3)'}" fill-opacity="${i===pts.length-1?.95:.62}"><title>${esc(lab)}: ₹${cr(v)} cr</title></rect>`;
+    s+=`<text x="${cx}" y="${H-8}" text-anchor="middle" class="tk" style="font-size:8.5px">${esc(lab)}</text>`;
+    s+=`<text x="${cx}" y="${v>=0?y-3:y+h+9}" text-anchor="middle" class="tk" style="font-size:8.5px">${cr(v)}</text>`;
+  });
+  return s+'</svg></div>';
+}
+/* the operating margin as a line with its values */
+function qLine(pts, title){
+  const vals=pts.map(p=>p[1]).filter(v=>v!==null&&v!==undefined);
+  if(vals.length<2) return '';
+  const W=300,H=96,B=22,T=14, lo=Math.min(...vals), hi=Math.max(...vals), span=(hi-lo)||1, step=W/pts.length;
+  const xy=pts.map(([l,v],i)=>v===null||v===undefined?null:[i*step+step/2, T+(1-(v-lo)/span)*(H-T-B)]);
+  const path=xy.filter(Boolean).map(p=>p[0].toFixed(1)+','+p[1].toFixed(1)).join(' ');
+  let s=`<div style="flex:1 1 280px;min-width:250px"><div class="qsrc" style="margin-bottom:2px">${esc(title)}</div><svg viewBox="0 0 ${W} ${H}" style="width:100%;height:auto" role="img" aria-label="${esc(title)}">`;
+  s+=`<polyline points="${path}" fill="none" stroke="var(--s2)" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>`;
+  pts.forEach(([lab,v],i)=>{ const p=xy[i]; if(!p) return;
+    s+=`<circle cx="${p[0]}" cy="${p[1]}" r="3" fill="var(--s2)"><title>${esc(lab)}: ${fmt(v,1)}%</title></circle>`;
+    s+=`<text x="${p[0]}" y="${p[1]-6}" text-anchor="middle" class="tk" style="font-size:8.5px">${fmt(v,0)}%</text>`;
+    s+=`<text x="${p[0]}" y="${H-8}" text-anchor="middle" class="tk" style="font-size:8.5px">${esc(lab)}</text>`; });
+  return s+'</svg></div>';
+}
+
+function quarterlyHtml(d){
+  const e=INTEL.res && INTEL.res.companies && INTEL.res.companies[d.code];
+  if(!e || !e.quarters || !e.quarters.periods) return '';
+  const q=e.quarters, n=q.periods.length, from=Math.max(0,n-8);
+  const idx=[]; for(let i=from;i<n;i++) idx.push(i);
+  const g=(k,i)=>{ const a=q[k]; return a && i>=0 && i<a.length ? a[i] : null; };
+  const yoy=(k,i)=>{ const a=g(k,i), b=g(k,i-4); return a!==null && b!==null && b>0 ? (a/b-1)*100 : null; };
+  const lab=i=>qLabel(q.periods[i]);
+  const last=n-1, sy=yoy('sales',last), py=yoy('net_profit',last);
+  const rows=(name,f)=>`<tr><td>${name}</td>${idx.map(i=>`<td class="n">${f(i)}</td>`).join('')}</tr>`;
+  return `<div class="sec"><h4>Quarterly results — last ${idx.length} quarters (₹ crore${e.basis?', '+esc(e.basis):''})</h4>
+    <div style="display:flex;gap:14px;flex-wrap:wrap">
+      ${qBars(idx.map(i=>[lab(i),g('sales',i)]),'Sales')}${qBars(idx.map(i=>[lab(i),g('net_profit',i)]),'Net profit')}${qLine(idx.map(i=>[lab(i),g('opm',i)]),'Operating margin')}
+    </div>
+    <p style="margin-top:6px">${esc(qLabel(q.periods[last]))}: sales <b>₹${cr(g('sales',last))} cr</b> (${yoyTxt(sy)} YoY), operating margin <b>${g('opm',last)===null?'—':fmt(g('opm',last),0)+'%'}</b>, net profit <b>₹${cr(g('net_profit',last))} cr</b> (${yoyTxt(py)} YoY).</p>
+    <div class="mv-tablewrap" style="margin-top:8px"><table class="mv-table"><thead><tr><th></th>${idx.map(i=>`<th class="n">${esc(lab(i))}</th>`).join('')}</tr></thead><tbody>
+      ${rows('Sales',i=>cr(g('sales',i)))}${rows('YoY %',i=>yoyTxt(yoy('sales',i)))}${rows('Operating margin',i=>g('opm',i)===null?'—':fmt(g('opm',i),0)+'%')}
+      ${rows('Net profit',i=>cr(g('net_profit',i)))}${rows('YoY %',i=>yoyTxt(yoy('net_profit',i)))}${rows('EPS (₹)',i=>g('eps',i)===null?'—':fmt(g('eps',i),2))}
+    </tbody></table></div>
+    <p class="caveat" style="margin-top:8px">Figures as published on screener.in, refreshed daily; year-on-year compares with the same quarter a year earlier.</p></div>`;
+}
+
+const GT_METRIC={revenue_growth:'Revenue growth', profit_growth:'Profit growth', ebitda_margin:'EBITDA margin', pat_margin:'PAT margin',
+                 revenue_amount:'Revenue', capex:'Capex', order_inflow:'Order inflow', gross_margin:'Gross margin'};
+const GT_CMP={min:'more than ', max:'up to ', approx:'around ', about:''};
+function gtTarget(s){
+  const cmp=GT_CMP[s.cmp]||'';
+  const v = s.unit==='%' ? (s.low===s.high ? fmt(s.low,1)+'%' : fmt(s.low,1)+'–'+fmt(s.high,1)+'%')
+                         : (s.low===s.high ? '₹'+fmtI(s.low)+' cr' : '₹'+fmtI(s.low)+'–'+fmtI(s.high)+' cr');
+  const h=s.horizon||{};
+  const when = h.fy ? 'FY'+String(h.fy).slice(2) : h.multi ? 'multi-year' : h.quarter ? 'a quarter' : 'no period stated';
+  return `<b>${GT_METRIC[s.metric]||esc(s.metric)}</b> ${cmp}${v}<small>${when}</small>`;
+}
+const GT_STATUS={met:['Met','gt-met'], narrow_miss:['Narrowly missed','gt-near'], missed:['Missed','gt-miss'], pending:['Not yet reported','gt-pend'],
+                 long_term:['Multi-year','gt-pend'], quarter:['Quarterly','gt-pend'], no_horizon:['No period stated','gt-pend'], not_checkable:['Not checkable from results','gt-pend']};
+function gtRow(s){
+  const st=s.verify||{}, m=GT_STATUS[st.status]||['—','gt-pend'];
+  const actual = st.actual!==undefined && st.actual!==null ? `<small>actual ${s.unit==='%'?fmt(st.actual,1)+'%':'₹'+fmtI(st.actual)+' cr'} (FY${String(st.fy).slice(2)})</small>` : '';
+  const q=s.quote.length>230 ? s.quote.slice(0,229)+'…' : s.quote;
+  return `<tr><td>${['','Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'][+s.call.slice(5,7)]+' '+s.call.slice(0,4)}</td>
+    <td class="gt-q">“${esc(q)}” <a href="${esc(s.source)}" target="_blank" rel="noopener">transcript ↗</a></td>
+    <td>${gtTarget(s)}</td><td><span class="gt-badge ${m[1]}">${m[0]}</span>${actual}</td></tr>`;
+}
+function guidanceHtml(d){
+  const e=INTEL.gd && INTEL.gd.companies && INTEL.gd.companies[d.code];
+  const calls=(INTEL.res && INTEL.res.companies && INTEL.res.companies[d.code] || {}).concalls || [];
+  if(!e || !e.statements || !e.statements.length){
+    if(!e || !Object.keys(e.calls||{}).length) return calls.length && INTEL.gd ? `<div class="sec"><h4>Management guidance tracker</h4><p class="nd">${calls.length} earnings-call transcript${calls.length===1?'':'s'} on file; not read yet — the tracker fills in over the next few daily runs.</p></div>` : '';
+    return `<div class="sec"><h4>Management guidance tracker</h4><p class="nd">${Object.keys(e.calls).length} transcript${Object.keys(e.calls).length===1?'':'s'} read; no numeric target (a growth %, margin %, revenue or capex figure) was stated in a form the reader could pick up.</p></div>`;
+  }
+  const sts=e.statements;
+  const checked=sts.filter(s=>['met','narrow_miss','missed'].includes((s.verify||{}).status));
+  const cnt=k=>checked.filter(s=>s.verify.status===k).length;
+  const main=sts.filter(s=>['met','narrow_miss','missed','pending','long_term'].includes((s.verify||{}).status));
+  const rest=sts.filter(s=>!main.includes(s));
+  const head=a=>`<table class="mv-table gt-table"><thead><tr><th>Call</th><th>What management said</th><th>Target</th><th>Outcome</th></tr></thead><tbody>${a.map(gtRow).join('')}</tbody></table>`;
+  const summary = checked.length
+    ? `Of <b>${checked.length}</b> target${checked.length===1?'':'s'} that can be checked against reported results: <span class="ov-up"><b>${cnt('met')} met</b></span> · <b>${cnt('narrow_miss')}</b> narrowly missed · <span class="ov-dn"><b>${cnt('missed')} missed</b></span>.`
+    : 'No target has been reported on yet — the ones below are waiting for the year they cover to close.';
+  return `<div class="sec"><h4>Management guidance tracker — what was said on earnings calls, and what happened</h4>
+    <p>${summary}</p>
+    ${main.length?`<div class="mv-tablewrap" style="margin-top:8px">${head(main)}</div>`:''}
+    ${rest.length?`<details style="margin-top:8px"><summary class="qsrc" style="cursor:pointer">${rest.length} other numeric statement${rest.length===1?'':'s'} (no period stated, quarterly, or not checkable from results) — not held against management</summary><div class="mv-tablewrap" style="margin-top:6px">${head(rest)}</div></details>`:''}
+    <p class="caveat" style="margin-top:8px">Read by rule from each earnings-call transcript: the exact sentence is shown so you can judge it, and some targets will be missed by the reader or, rarely, misread. A target is checked only when it names a fiscal year and compares to a figure in the reported annual results (revenue growth, profit growth, operating or net margin, total revenue). Capex, order inflow and multi-year ambitions are shown but never counted for or against.</p></div>`;
+}
+
 const PILL_BASE=[['Moat','s_moat',25],['Import substitution','s_import_sub',20],['Promoter','s_promoter',15],
             ['Institutional','s_institutional',15]];
 const PILL_TAIL=[['Financials','s_financials',10]];
@@ -772,6 +889,7 @@ function pillarsFor(d){
   return [...PILL_BASE, mid, ...PILL_TAIL];
 }
 function openDrawer(d){
+  DRAWER_D=d;
   const inst=(nz(d.fii_pct)||0)+(nz(d.dii_pct)||0);
   const warns=(d.warnings||[]).filter(Boolean);
   const gates=(d.gate_failures||[]).filter(Boolean);
@@ -847,6 +965,9 @@ function openDrawer(d){
      <div class="sec"><h4>Capex, guidance &amp; profit trajectory</h4>
        <p class="caveat">Not pulled for this name yet. The CWIP, management-guidance and quarterly-PAT pass has been completed for the v3 deep-dive names, the fresh v5 sweep and the names you added by hand. It is still outstanding for the v4 moat cohort, the v3 screening-pass names and the triage list.</p>
      </div>`}
+
+     ${quarterlyHtml(d)}
+     ${guidanceHtml(d)}
 
      ${d.pricing_power_note?`<div class="sec"><h4>Pricing power — the five-year margin record</h4><p>${hl(d.pricing_power_note)}</p></div>`:''}
      ${d.v3_gates?`<div class="sec"><h4>How it fares against the v3 gates</h4><p>${hl(d.v3_gates)}</p></div>`:''}

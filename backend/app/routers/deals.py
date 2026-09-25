@@ -44,6 +44,10 @@ GET /api/fundamentals-us  five fiscal years of revenue, profit, cash flow, debt
                           and equity from SEC XBRL (scripts/run_fundamentals_us.py)
 GET /api/analysts-us      analyst coverage and rating counts (scripts/run_analysts_us.py)
 GET /api/short-us         FINRA short interest (scripts/run_short_us.py)
+GET /api/results-in       India board: last 12 quarters and 8 fiscal years of sales, margin,
+                          profit, plus each company's earnings-call list (scripts/run_results_in.py)
+GET /api/guidance-in      India board: numeric targets management stated on earnings calls, with the
+                          exact sentence, and whether each came true (scripts/run_guidance_in.py)
 GET /api/ipo-us           the US IPO calendar (scripts/run_ipo_us.py)
 GET /api/performance-us   return since added and score history per board company
                           (scripts/run_performance_us.py)
@@ -72,6 +76,8 @@ ANALYSTS_US_FILE = BASE_DIR / "data" / "analysts_us" / "latest.json"
 SHORT_US_FILE = BASE_DIR / "data" / "short_us" / "latest.json"
 IPO_US_FILE = BASE_DIR / "data" / "ipo_us" / "latest.json"
 PERFORMANCE_US_FILE = BASE_DIR / "data" / "performance_us" / "latest.json"
+RESULTS_IN_FILE = BASE_DIR / "data" / "results_in" / "latest.json"
+GUIDANCE_IN_FILE = BASE_DIR / "data" / "guidance_in" / "latest.json"
 
 
 @router.get("/api/deals")
@@ -134,6 +140,16 @@ def _company_file(name: str, path):
 for _name, _path in (("fundamentals", FUNDAMENTALS_US_FILE), ("analysts", ANALYSTS_US_FILE),
                      ("short", SHORT_US_FILE), ("performance", PERFORMANCE_US_FILE)):
     _company_file(_name, _path)
+
+
+@router.get("/api/results-in")
+def results_in(request: Request):
+    return file_response(request, RESULTS_IN_FILE, {"fetched_at": None, "companies": {}})
+
+
+@router.get("/api/guidance-in")
+def guidance_in(request: Request):
+    return file_response(request, GUIDANCE_IN_FILE, {"fetched_at": None, "companies": {}})
 
 
 @router.get("/api/ipo-us")
