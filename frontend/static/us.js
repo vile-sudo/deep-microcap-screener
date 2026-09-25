@@ -149,7 +149,7 @@ function render() {
     ? rows.map(rowHtml).join("")
     : '<tr><td colspan="12" class="us-empty">No company matches these filters.</td></tr>';
   tbody.querySelectorAll("tr[data-code]").forEach(tr => {
-    tr.onclick = e => { if (!e.target.closest("[data-star]")) openDrawer(tr.dataset.code); };
+    tr.onclick = e => { if (!e.target.closest("[data-star]")) openDrawer(tr.dataset.code, rows); };
     tr.style.cursor = "pointer";
   });
   tbody.querySelectorAll("[data-star]").forEach(btn => {
@@ -171,61 +171,186 @@ async function toggleStar(code) {
   }
 }
 
-function pillarsHtml(d) {
-  const P = [["Moat", d.s_moat, 25], ["Reshoring", d.s_reshoring, 20], ["Insider", d.s_insider, 15],
-    ["Under-covered", d.s_undercovered, 15], ["Financials", d.s_financials, 10]];
-  if (P.every(p => p[1] == null)) return "";
-  return `<div class="us-pillars">${P.map(([n, v, max]) => `<div>${n}<b>${v == null ? "—" : v}<span style="font-weight:400;font-size:11px;color:var(--muted)"> / ${max}</span></b></div>`).join("")}</div>`;
+/* ---------- company detail: the same scorecard layout as the India board ----------
+   Header (theme, rank, links, prev/next through the list you are looking at), a grid
+   of the headline numbers, then one section per question: capex, guidance, profit
+   trajectory, score breakdown, business, moat, flags. All of it comes from the same
+   record the table row does (backend/scripts/us_auto_screen.py, us_lenses.py). */
+const US_PILLARS = [["Moat", "s_moat", 25], ["Reshoring", "s_reshoring", 20], ["Insider", "s_insider", 15],
+  ["Under-covered", "s_undercovered", 15], ["Financials", "s_financials", 10]];
+const US_SERIES = ["--s1", "--s2", "--s3", "--s4", "--s5"];
+const US_MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+let DRAWER_LIST = [];
+
+function usRank(d) {
+  if (d.final_score == null) return null;
+  return DATA.filter(x => x.final_score != null && x.final_score > d.final_score).length + 1;
 }
 
-function lensDetailHtml(d) {
-  const q = (label, note) => note ? `<div class="us-drawer-row"><b>${label}</b><div class="us-quote">${esc(note)}</div></div>` : "";
-  let out = "";
-  if (d.pat_series_usd_m && d.pat_series_usd_m.length) {
-    out += `<div class="us-drawer-row"><b>Net income by quarter ($m)${d.pat_turnaround ? " &mdash; turned positive" : ""}</b>`
-      + d.pat_series_usd_m.map(([e, v]) => `<span class="us-sig ${v < 0 ? "warn" : ""}" title="quarter ended ${esc(e)}">${esc(e.slice(0, 7))}: ${v}</span>`).join("") + "</div>";
+/* quarterly net income, $m: bars from a zero line, red below it, latest quarter solid */
+function usPatChart(d) {
+  const p = d.pat_series_usd_m || [];
+  if (!p.length) return '<p class="nd" style="font-size:12.5px;margin:0">No quarterly profit data published yet.</p>';
+  const W = 520, H = 112, B = 26, T = 10;
+  const vals = p.map(x => x[1]);
+  const hi = Math.max(0, ...vals), lo = Math.min(0, ...vals), span = (hi - lo) || 1;
+  const zero = T + (hi / span) * (H - T - B);
+  const step = (W - 8) / p.length, bw = Math.min(46, step - 8);
+  let s = `<svg viewBox="0 0 ${W} ${H}" style="width:100%;height:auto" role="img" aria-label="Net income by quarter">`;
+  s += `<line x1="0" x2="${W}" y1="${zero}" y2="${zero}" stroke="var(--axis)" stroke-width="1"/>`;
+  p.forEach((x, i) => {
+    const v = x[1], cx = 4 + i * step + step / 2;
+    const y = v >= 0 ? zero - (v / span) * (H - T - B) : zero;
+    const h = Math.max(1.5, Math.abs(v) / span * (H - T - B));
+    const col = v < 0 ? "var(--crit)" : (i === p.length - 1 ? "var(--s1)" : "var(--s3)");
+    const m = String(x[0]).slice(0, 7).split("-");
+    const lab = m.length === 2 ? US_MONTHS[+m[1] - 1] + " '" + m[0].slice(2) : String(x[0]);
+    s += `<rect x="${cx - bw / 2}" y="${y}" width="${bw}" height="${h}" rx="2" fill="${col}" fill-opacity="${i === p.length - 1 ? .95 : .62}"><title>quarter ended ${esc(x[0])}: $${v}m</title></rect>`;
+    s += `<text x="${cx}" y="${H - 12}" text-anchor="middle" class="tk" style="font-size:9px">${esc(lab)}</text>`;
+    s += `<text x="${cx}" y="${v >= 0 ? y - 3 : y + h + 9}" text-anchor="middle" class="tk" style="font-size:9px">${v}</text>`;
+  });
+  return s + "</svg>";
+}
+
+function usDrawerBody(d) {
+  const gates = (d.gate_failures || []).filter(Boolean);
+  const pen = (d.penalty_detail || []).filter(Boolean);
+  const warns = (d.warnings || []).filter(Boolean);
+  const auto = d.source === "us-auto" || d.screen === "us-auto";
+  const sources = (d.evidence_sources || []).map(u => `<a class="lnk" href="${esc(u)}" target="_blank" rel="noopener">${/sec\.gov/i.test(u) ? "SEC filings" : "source"} ↗</a>`).join(" ");
+  const netPpe = d.cwip_usd_m != null && d.cwip_pct_net_block ? d.cwip_usd_m / d.cwip_pct_net_block * 100 : null;
+  let out = `<div class="kv">
+      <div><span>Composite score</span><b style="color:var(--s1)">${fmtN(d.final_score)}</b></div>
+      <div><span>Market cap</span><b>${fmtUSDShort(d.market_cap_usd)}</b></div>
+      <div><span>Price</span><b>${d.price ? "$" + fmtN(d.price, 2) : "—"}</b></div>
+      <div><span>P/E</span><b>${fmtN(d.pe)}</b></div>
+      <div><span>CWIP</span><b>${d.cwip_usd_m == null ? "—" : "$" + fmtN(d.cwip_usd_m) + "m"}</b></div>
+      <div><span>CWIP / net PP&amp;E</span><b${d.capex_overhang ? ' style="color:var(--crit)"' : ""}>${d.cwip_pct_net_block == null ? "—" : fmtN(d.cwip_pct_net_block) + "%"}</b></div>
+      <div><span>Insider ownership</span><b>${d.insider_pct == null ? "—" : fmtN(d.insider_pct) + "%"}</b></div>
+      <div><span>Institutions</span><b>${d.inst_pct == null ? "—" : fmtN(d.inst_pct) + "%"}</b></div>
+      <div><span>ROE</span><b>${d.roe_pct == null ? "—" : fmtN(d.roe_pct) + "%"}</b></div>
+      <div><span>Holders of record</span><b>${d.num_shareholders ? Number(d.num_shareholders).toLocaleString("en-US") : "—"}</b></div>
+      <div><span>Guided growth</span><b>${d.guidance_pct == null ? "—" : fmtN(d.guidance_pct, 0) + "%"}</b></div>
+      <div><span>Added</span><b style="font-size:13px">${esc(d.added_on || "—")}</b></div>
+    </div>`;
+
+  if (auto) {
+    out += `<div class="sec auto-sec"><h4>Auto-added by the daily US screen</h4>
+      <p>Added on ${esc(d.added_on || "")} because the company describes a moat in its own SEC 10-K and the numbers clear the board's gates.
+      The figures are from Finnhub and SEC EDGAR and the moat is the company's own wording, matched by rules &mdash;
+      nobody has researched it yet, so read it as a lead, not a verdict.</p>
+      ${sources ? `<p class="auto-src">Evidence: ${sources}</p>` : ""}</div>`;
   }
-  if (d.cwip_pct_net_block != null) {
-    out += `<div class="us-drawer-row"><b>Construction in progress</b>$${fmtN(d.cwip_usd_m)}m &mdash; ${fmtN(d.cwip_pct_net_block)}% of net PP&amp;E${d.capex_overhang ? " &middot; P/E above 40 too (PE+CWIP)" : d.capex_heavy ? " &middot; heavy capex" : ""}</div>`;
+  if (gates.length) {
+    out += `<div class="sec"><h4>Fails the fundamentals gates on</h4><ul class="gates">${gates.map(g => `<li>✕ ${esc(g)}</li>`).join("")}</ul></div>`;
   }
-  out += q("Guidance", d.guidance_note);
-  out += q("Capacity utilization", d.capacity_util_note);
-  out += q("Product-mix pivot", d.product_pivot_note);
+
+  if (d.has_lens_data) {
+    out += `<div class="sec"><h4>Capex &amp; CWIP — capacity that is not earning yet</h4>`
+      + (d.cwip_usd_m == null
+        ? '<p class="nd">No construction-in-progress balance was found in the latest filing.</p>'
+        : `<p><b>$${fmtN(d.cwip_usd_m)}m</b> in construction in progress${netPpe ? ` against net PP&amp;E of <b>$${fmtN(netPpe, 0)}m</b> &mdash; ${fmtN(d.cwip_pct_net_block)}%` : ""}.</p>`)
+      + (d.capex_overhang ? `<p style="margin-top:9px;color:var(--crit);font-size:12.5px"><b>⚑ Flagged.</b> A P/E of ${fmtN(d.pe)} is being paid while ${fmtN(d.cwip_pct_net_block, 0)}% of the asset base is still under construction &mdash; the multiple assumes the new capacity works.</p>`
+        : d.capex_heavy ? '<p style="margin-top:9px;font-size:12.5px"><b>Heavy capex:</b> construction in progress is at least 25% of net PP&amp;E.</p>' : "")
+      + "</div>";
+
+    out += `<div class="sec"><h4>Management's own growth outlook</h4>`
+      + (d.guidance_note
+        ? `<p class="quote">${esc(d.guidance_note)}</p><p class="qsrc">${d.guidance_pct != null ? `implies <b style="color:${d.guidance_over15 ? "var(--good-ink)" : "var(--ink2)"}">${fmtN(d.guidance_pct, 0)}% revenue growth</b>${d.guidance_derived ? " (derived from the guided dollar range)" : ""}` : "no percentage given"}</p>`
+        : '<p class="nd">No forward revenue-growth statement from management was found in filings, earnings calls or investor presentations. Backlog announcements and capacity expansions were checked and deliberately not counted as guidance.</p>')
+      + "</div>";
+
+    if (d.capacity_util_note) out += `<div class="sec"><h4>Capacity utilization</h4><p class="quote">${esc(d.capacity_util_note)}</p></div>`;
+    if (d.product_pivot_note) out += `<div class="sec"><h4>Product-mix pivot</h4><p class="quote">${esc(d.product_pivot_note)}</p></div>`;
+
+    out += `<div class="sec"><h4>Profit trajectory · quarterly net income, $m</h4>${usPatChart(d)}`
+      + (d.pat_turnaround ? '<p style="margin-top:8px;color:var(--s1);font-size:12.5px"><b>↻ Latest quarter profitable after a loss in one of the previous three.</b></p>' : "")
+      + "</div>";
+  } else {
+    out += `<div class="sec"><h4>Capex, guidance &amp; profit trajectory</h4>
+      <p class="caveat">Not pulled for this name yet. The capex, guidance and quarterly-profit pass runs daily after the screen and covers new names the day after they are added.</p></div>`;
+  }
+
+  if (US_PILLARS.some(p => d[p[1]] != null)) {
+    out += `<div class="sec"><h4>Score breakdown</h4>` + US_PILLARS.map(([l, k, mx], i) => {
+      const v = +d[k] || 0, pct = Math.max(2, v / mx * 100);
+      return `<div class="bar"><i>${l}</i><span class="track"><span class="fill" style="width:${pct}%;background:var(${US_SERIES[i]})"></span></span>
+        <b>${v.toFixed(1)}<span style="color:var(--muted);font-weight:400">/${mx}</span></b></div>`;
+    }).join("")
+      + (pen.length ? `<p style="margin-top:10px;font-size:12px;color:var(--ink2)"><b style="color:var(--crit)">Risk penalty −${fmtN(d.risk_penalty, 0)}:</b> ${pen.map(esc).join(" · ")}</p>` : "")
+      + (d.score_rationale ? `<p class="caveat" style="margin-top:8px">${esc(d.score_rationale)}</p>` : "")
+      + "</div>";
+  }
+
+  if (d.business) out += `<div class="sec"><h4>What the business actually does</h4><p>${esc(d.business)}</p></div>`;
+  if (d.moat_note) out += `<div class="sec"><h4>The moat — the company's own words</h4><p>${esc(d.moat_note)}</p></div>`;
+  if (d.why_obscure) out += `<div class="sec"><h4>Why the market ignores it</h4><p>${esc(d.why_obscure)}</p></div>`;
+  if (d.risk_note) out += `<div class="sec"><h4>The biggest risk</h4><p>${esc(d.risk_note)}</p></div>`;
+  if (warns.length) out += `<div class="sec"><h4>Flags &amp; risks</h4><ul class="warns">${warns.map(w => `<li>⚠ ${esc(w)}</li>`).join("")}</ul></div>`;
   return out;
 }
 
-function openDrawer(code) {
+function openDrawer(code, list) {
   const d = DATA.find(x => x.code === code);
   if (!d) return;
+  if (list) DRAWER_LIST = list;
+  else if (!DRAWER_LIST.some(x => x.code === code)) DRAWER_LIST = currentRows();
+  const i = DRAWER_LIST.findIndex(x => x.code === code);
   const drawer = document.getElementById("us-drawer"), scrim = document.getElementById("us-scrim");
-  const sources = (d.evidence_sources || []).map(u => `<a href="${esc(u)}" target="_blank" rel="noopener">${esc(u)}</a>`).join("<br>");
+  const rank = usRank(d), starred = WATCH.has(d.code);
+  const auto = d.source === "us-auto" || d.screen === "us-auto";
+  const secUrl = ((d.evidence_sources || []).find(u => /sec\.gov/i.test(u)))
+    || `https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=${encodeURIComponent(d.code)}&type=10-K`;
+  drawer.dataset.kind = "company";
   drawer.innerHTML = `
-    <button class="close" id="us-drawer-close" aria-label="Close">&times;</button>
-    <div class="us-drawer-body">
-      <h3>${esc(d.name)} <span class="us-tag">${esc(d.code)}</span></h3>
-      <p class="section-copy">${esc(d.sector || "")}${d.claim_grade ? " · claim grade: " + esc(d.claim_grade) : ""}</p>
-      <div class="us-drawer-row"><b>Score</b>${fmtN(d.final_score)} <span class="section-copy">of a possible 85 (the institutional-ownership pillar isn't scored -- see How this board is built)</span></div>
-      ${pillarsHtml(d)}
-      ${d.penalty_detail && d.penalty_detail.length ? `<div class="us-drawer-row"><b>Risk penalties (already subtracted)</b>${d.penalty_detail.map(esc).join("<br>")}</div>` : ""}
-      <div class="us-drawer-row"><b>Market cap</b>${fmtUSDShort(d.market_cap_usd)}</div>
-      <div class="us-drawer-row"><b>P/E</b>${fmtN(d.pe)} &nbsp; <b style="display:inline">ROE %</b> ${fmtN(d.roe_pct)} &nbsp; <b style="display:inline">Insider %</b> ${fmtN(d.insider_pct)}${d.num_shareholders ? ` &nbsp; <b style="display:inline">Holders of record</b> ${Number(d.num_shareholders).toLocaleString("en-US")}` : ""}</div>
-      ${d.cleared_paths && d.cleared_paths.length ? `<div class="us-drawer-row"><b>Cleared the screen on</b>${d.cleared_paths.map(x => `<span class="us-sig">${esc(x)}</span>`).join("")}</div>` : ""}
-      <div class="us-drawer-row"><b>Moat evidence</b>${esc(d.moat_note || "—")}</div>
-      ${lensDetailHtml(d)}
-      ${d.gate_failures && d.gate_failures.length ? `<div class="us-drawer-row"><b>Fails the fundamentals gates on</b>${d.gate_failures.map(esc).join("; ")}</div>` : ""}
-      ${d.warnings && d.warnings.length ? `<div class="us-drawer-row"><b>Warnings</b>${d.warnings.map(esc).join("<br>")}</div>` : ""}
-      ${sources ? `<div class="us-drawer-row"><b>Sources</b>${sources}</div>` : ""}
-      <div class="us-drawer-row"><b>Added</b>${esc(d.added_on || "—")}</div>
-    </div>`;
+    <div class="dhead">
+      <button class="close" id="us-drawer-close" aria-label="Close">&times;</button>
+      <div class="dnav">
+        <span class="dpos">${i >= 0 ? `${i + 1} of ${DRAWER_LIST.length}` : ""}</span>
+        <button class="dpin${starred ? " on" : ""}" id="us-dpin" title="${starred ? "Remove from" : "Add to"} watchlist">${starred ? "★" : "☆"}</button>
+        <button id="us-dprev" title="Previous company (←)"${i <= 0 ? " disabled" : ""}>‹</button>
+        <button id="us-dnext" title="Next company (→)"${i < 0 || i >= DRAWER_LIST.length - 1 ? " disabled" : ""}>›</button>
+      </div>
+      <div class="thm" style="margin-bottom:6px">${esc(d.theme || d.sector || "")}${rank ? " · rank " + rank : " · unranked"}<span class="tierbadge">${auto ? "US auto-screen · not yet researched" : "US board"}</span></div>
+      <h2 style="margin:0 0 3px;font-size:19px">${esc(d.name)}</h2>
+      <div class="tc">${esc(d.code)}${d.sector ? " · " + esc(d.sector) : ""}</div>
+      <div style="margin-top:9px">
+        ${d.claim_grade ? `<span class="cg" style="margin-right:4px">claim: ${esc(d.claim_grade)}</span>` : ""}
+        ${d.has_lens_data ? (signalsHtml(d).replace(/^—$/, "")) : '<span class="pend" style="font-size:11px">capex / guidance pass pending</span>'}
+      </div>
+      <div class="links">
+        <button type="button" class="lnk lnk-report" id="us-dchart">Price chart ›</button>
+        <a class="lnk" href="${esc(secUrl)}" target="_blank" rel="noopener">SEC filings (10-K) ↗</a>
+        <a class="lnk" href="https://finance.yahoo.com/quote/${encodeURIComponent(d.code)}" target="_blank" rel="noopener">Yahoo Finance ↗</a>
+        <a class="lnk" href="https://www.google.com/search?q=${encodeURIComponent(d.name + " " + d.code + " stock news")}" target="_blank" rel="noopener">News ↗</a>
+      </div>
+    </div>
+    <div class="dbody">${usDrawerBody(d)}</div>`;
   drawer.classList.add("on");
   scrim.classList.add("on");
+  drawer.scrollTop = 0;
   document.getElementById("us-drawer-close").onclick = closeDrawer;
   scrim.onclick = closeDrawer;
+  const step = n => { const nx = DRAWER_LIST[i + n]; if (nx) openDrawer(nx.code); };
+  document.getElementById("us-dprev").onclick = () => step(-1);
+  document.getElementById("us-dnext").onclick = () => step(1);
+  document.getElementById("us-dpin").onclick = () => { toggleStar(d.code); openDrawer(d.code); };
+  document.getElementById("us-dchart").onclick = () => openChart(d.code, true);
 }
 function closeDrawer() {
-  document.getElementById("us-drawer").classList.remove("on");
+  const drawer = document.getElementById("us-drawer");
+  drawer.classList.remove("on");
+  delete drawer.dataset.kind;
   document.getElementById("us-scrim").classList.remove("on");
 }
+addEventListener("keydown", e => {
+  const drawer = document.getElementById("us-drawer");
+  if (!drawer.classList.contains("on")) return;
+  if (e.key === "Escape") { drawer.dataset.kind === "company" ? closeDrawer() : closeChart(); return; }
+  if (drawer.dataset.kind !== "company" || e.target.closest("input,select,textarea")) return;
+  if (e.key === "ArrowLeft") document.getElementById("us-dprev").click();
+  if (e.key === "ArrowRight") document.getElementById("us-dnext").click();
+});
 
 function buildSectorOptions() {
   const sel = document.getElementById("us-sector");
@@ -589,6 +714,7 @@ async function openChart(key, isBoard) {
       <p class="section-copy" id="us-chart-sub">Loading…</p>
       <div class="us-chart-box" id="us-chart-box"></div>
     </div>`;
+  drawer.dataset.kind = "chart";
   drawer.classList.add("on");
   scrim.classList.add("on");
   document.getElementById("us-chart-close").onclick = closeChart;
@@ -620,6 +746,7 @@ async function openChart(key, isBoard) {
 }
 
 function closeChart() {
+  delete document.getElementById("us-drawer").dataset.kind;
   document.getElementById("us-drawer").classList.remove("on");
   document.getElementById("us-scrim").classList.remove("on");
   if (GAL_CHART) { try { klinecharts.dispose("us-chart-box"); } catch (e) {} GAL_CHART = null; }
