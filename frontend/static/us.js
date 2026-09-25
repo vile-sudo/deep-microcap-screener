@@ -86,7 +86,8 @@ function signalsHtml(d) {
 function rowHtml(d) {
   const starred = WATCH.has(d.code);
   return `<tr data-code="${esc(d.code)}">
-    <td><button class="us-star${starred ? " on" : ""}" data-star="${esc(d.code)}" title="${starred ? "Remove from" : "Add to"} watchlist">${starred ? "★" : "☆"}</button></td>
+    <td style="white-space:nowrap"><button class="us-star${starred ? " on" : ""}" data-star="${esc(d.code)}" title="${starred ? "Remove from" : "Add to"} watchlist">${starred ? "★" : "☆"}</button>`
+    + `<label class="us-cmpbox" title="Tick to compare (up to four)"><input type="checkbox" data-cmp="${esc(d.code)}"${CMP.has(d.code) ? " checked" : ""}></label></td>
     <td><b>${esc(d.name)}</b> <span class="us-tag">${esc(d.code)}</span></td>
     <td>${esc(d.sector || "—")}</td>
     <td class="n">${fmtN(d.final_score)}</td>
@@ -151,8 +152,11 @@ function render() {
     ? rows.map(rowHtml).join("")
     : '<tr><td colspan="13" class="us-empty">No company matches these filters.</td></tr>';
   tbody.querySelectorAll("tr[data-code]").forEach(tr => {
-    tr.onclick = e => { if (!e.target.closest("[data-star]")) openDrawer(tr.dataset.code, rows); };
+    tr.onclick = e => { if (!e.target.closest("[data-star],[data-cmp],.us-cmpbox")) openDrawer(tr.dataset.code, rows); };
     tr.style.cursor = "pointer";
+  });
+  tbody.querySelectorAll("[data-cmp]").forEach(cb => {
+    cb.onchange = () => { if (!cmpToggle(cb.dataset.cmp, cb.checked)) { cb.checked = false; alert("Compare up to four companies at a time."); } };
   });
   tbody.querySelectorAll("[data-star]").forEach(btn => {
     btn.onclick = e => { e.stopPropagation(); toggleStar(btn.dataset.star); };
@@ -326,6 +330,7 @@ function openDrawer(code, list) {
         ${d.has_lens_data ? (signalsHtml(d).replace(/^—$/, "")) : '<span class="pend" style="font-size:11px">capex / guidance pass pending</span>'}
       </div>
       <div class="links">
+        <button type="button" class="lnk lnk-report" id="us-dreport">Research report ›</button>
         <button type="button" class="lnk lnk-report" id="us-dchart">Price chart ›</button>
         <a class="lnk" href="${esc(secUrl)}" target="_blank" rel="noopener">SEC filings (10-K) ↗</a>
         <a class="lnk" href="https://finance.yahoo.com/quote/${encodeURIComponent(d.code)}" target="_blank" rel="noopener">Yahoo Finance ↗</a>
@@ -343,6 +348,7 @@ function openDrawer(code, list) {
   document.getElementById("us-dnext").onclick = () => step(1);
   document.getElementById("us-dpin").onclick = () => { toggleStar(d.code); openDrawer(d.code); };
   document.getElementById("us-dchart").onclick = () => openChart(d.code, true);
+  document.getElementById("us-dreport").onclick = () => { closeDrawer(); reportOpen(d.code); };
 }
 function closeDrawer() {
   const drawer = document.getElementById("us-drawer");
@@ -1343,6 +1349,7 @@ function renderThemes() {
   results.innerHTML = `<div class="theme-results-head"><button class="theme-back" id="us-theme-back">← All themes</button>
       <div><span class="eyebrow">COMPANIES IN THEME</span><h3>${esc(TH.theme)}</h3><p>${names.length} screened compan${names.length === 1 ? "y" : "ies"}, highest score first</p></div>
       <span class="folder-count">${names.length} names</span></div>
+    ${sectorSnapshot(names)}
     <div class="company-files">${names.map(d => {
       const on = WATCH.has(d.code);
       return `<button class="company-file" data-uth-company="${esc(d.code)}"><span class="file-symbol">${esc((d.name || "?").slice(0, 1).toUpperCase())}</span>`
@@ -1583,6 +1590,7 @@ function auxLoadAll() {
   return Promise.all([earnLoad(), ...Object.keys(AUX_URL).map(auxLoad)]).then(refreshDerived);
 }
 function refreshDerived() {
+  if (!document.getElementById("us-tab-themes").hidden) renderThemes();
   if (AUX.perf && AUX.perf.companies) DATA.forEach(d => { const e = AUX.perf.companies[d.code]; d.since_added_pct = e ? e.since_added_pct : null; });
   render();
   renderOverview();
@@ -1811,6 +1819,7 @@ async function alertsAccountSync() {
     if (!r.ok) return;
     const p = (await r.json()).prefs || {};
     ACCT.ok = true;
+    viewsLoad();
     ACCT.notify = p.us_alerts_notify !== false;
     const s = alertsSeen();
     (p.us_alerts_seen || []).forEach(x => s.add(x));
@@ -2106,3 +2115,206 @@ function ipoRender() {
       + `<td><a href="${esc(safeUrl(i.sec_url))}" target="_blank" rel="noopener noreferrer">SEC filings ↗</a></td></tr>`).join("")
     + "</tbody></table></div>" : '<p class="view-hint">No IPO matches — change the status or clear the search.</p>';
 }
+
+/* ================================================================
+   Compare, saved views, the research report and the sector snapshot.
+   Everything here is built from data already loaded for the page (the
+   board record plus the AUX files), so it stays current on its own.
+   ================================================================ */
+const usModal = () => document.getElementById("us-modal");
+function openUsModal(html) {
+  usModal().querySelector("#us-mbody").innerHTML = html;
+  usModal().classList.add("on");
+  usModal().scrollTop = 0;
+}
+function closeUsModal() { usModal().classList.remove("on"); document.body.classList.remove("us-printing"); }
+document.getElementById("us-mclose").onclick = closeUsModal;
+usModal().onclick = e => { if (e.target === usModal()) closeUsModal(); };
+document.addEventListener("keydown", e => { if (e.key === "Escape" && usModal().classList.contains("on")) closeUsModal(); });
+
+/* ---------- compare: tick up to four companies on Screens, then open them side by side ---------- */
+const CMP = new Set();
+function cmpToggle(code, on) {
+  if (on) {
+    if (CMP.size >= 4) return false;
+    CMP.add(code);
+  } else CMP.delete(code);
+  cmpButton();
+  return true;
+}
+function cmpButton() {
+  const b = document.getElementById("us-cmp");
+  b.hidden = !CMP.size;
+  b.textContent = `Compare ${CMP.size}`;
+  b.disabled = CMP.size < 2;
+  b.title = CMP.size < 2 ? "Tick at least two companies" : "Put the ticked companies side by side";
+}
+function cmpMetrics(d) {
+  const fy = ((usCo("fund", d) || {}).years || []);
+  const last = [...fy].reverse().find(y => y.revenue), prevY = last ? fy[fy.indexOf(last) - 1] : null;
+  const perf = usCo("perf", d), sh = usCo("short", d), an = usCo("analysts", d), inst = instFor(d), e = usCo("earn", d) || (EARN.data && EARN.data.companies && EARN.data.companies[d.code]);
+  return {
+    score: d.final_score, cap: d.market_cap_usd, price: d.price, pe: d.pe, roe: d.roe_pct, insider: d.insider_pct,
+    inst: inst && inst.inst_pct != null ? inst.inst_pct : d.inst_pct, cwip: d.cwip_pct_net_block, guide: d.guidance_pct,
+    growth: last && prevY && prevY.revenue ? (last.revenue / prevY.revenue - 1) * 100 : null,
+    margin: last && last.revenue && last.net_income != null ? last.net_income / last.revenue * 100 : null,
+    since: perf ? perf.since_added_pct : null, short: sh ? sh.short_pct_shares : null,
+    analysts: an && an.covered ? an.analysts : 0, next: e && e.next ? e.next.date : null,
+  };
+}
+function cmpOpen() {
+  const cos = [...CMP].map(c => DATA.find(d => d.code === c)).filter(Boolean);
+  if (cos.length < 2) return;
+  const M = cos.map(cmpMetrics);
+  /* [label, key, format, which is better: 1 higher, -1 lower, 0 none] */
+  const R = [["Composite score", "score", v => fmtN(v), 1], ["Market cap", "cap", fmtUSDShort, 0], ["Price", "price", v => v == null ? "—" : "$" + fmtN(v, 2), 0],
+    ["P/E", "pe", v => fmtN(v), 0], ["ROE", "roe", v => v == null ? "—" : fmtN(v) + "%", 1], ["Revenue growth, last FY", "growth", v => pctTxt(v), 1],
+    ["Net margin, last FY", "margin", v => v == null ? "—" : fmtN(v) + "%", 1], ["Insider ownership", "insider", v => v == null ? "—" : fmtN(v) + "%", 0],
+    ["Institutional ownership", "inst", v => v == null ? "—" : fmtN(v) + "%", 0], ["CWIP / net PP&E", "cwip", v => v == null ? "—" : fmtN(v) + "%", 0],
+    ["Guided growth", "guide", v => v == null ? "—" : fmtN(v, 0) + "%", 1], ["Return since added", "since", v => pctTxt(v), 1],
+    ["Short interest, % of shares", "short", v => v == null ? "—" : fmtN(v) + "%", -1], ["Analysts covering", "analysts", v => String(v), 0],
+    ["Next earnings", "next", v => v ? earnDay(v) : "—", 0]];
+  const rows = R.map(([label, k, f, dir]) => {
+    const vals = M.map(m => m[k]).map(v => v == null ? null : (typeof v === "number" ? v : v));
+    const nums = vals.filter(v => typeof v === "number");
+    const best = dir && nums.length > 1 && nums.some(v => v !== nums[0]) ? (dir > 0 ? Math.max(...nums) : Math.min(...nums)) : null;   // a tie has no better side
+    return `<tr><td>${esc(label)}</td>${vals.map(v => `<td${best !== null && v === best ? ' class="best"' : ""}>${esc(f(v))}</td>`).join("")}</tr>`;
+  }).join("");
+  openUsModal(`<h3>Compare</h3><p class="sub">${cos.length} companies side by side. ✓ marks the better value where higher (or lower) is better; ownership and size are not ranked.</p>
+    <div style="overflow-x:auto"><table class="cmp"><thead><tr><th></th>${cos.map(d => `<th><a href="#" data-cmp-open="${esc(d.code)}" style="color:inherit">${esc(d.name)}</a><br><span class="tc">${esc(d.code)} · ${esc(d.sector || "")}</span></th>`).join("")}</tr></thead><tbody>${rows}</tbody></table></div>
+    <p style="margin-top:14px"><button class="btn" id="us-cmp-clear" type="button">Clear selection</button></p>`);
+  usModal().querySelectorAll("[data-cmp-open]").forEach(a => { a.onclick = e => { e.preventDefault(); closeUsModal(); openDrawer(a.dataset.cmpOpen); }; });
+  document.getElementById("us-cmp-clear").onclick = () => { CMP.clear(); cmpButton(); closeUsModal(); render(); };
+}
+document.getElementById("us-cmp").onclick = cmpOpen;
+
+/* ---------- saved views: the Screens filters under a name, kept in the account ---------- */
+const VIEWS = {list: [], on: false};
+function viewState() {
+  const p = new URLSearchParams();
+  const q = document.getElementById("us-q").value.trim(), sec = document.getElementById("us-sector").value;
+  if (q) p.set("uq", q);
+  if (sec) p.set("usec", sec);
+  const lens = Object.keys(UTG).filter(k => UTG[k]);
+  if (lens.length) p.set("ulens", lens.join(","));
+  if (document.getElementById("us-watch-only").checked) p.set("uwl", "1");
+  p.set("usort", SORT_KEY); p.set("udir", String(SORT_DIR));
+  return p.toString();
+}
+function viewApply(state) {
+  const p = new URLSearchParams(state);
+  for (const k in UTG) UTG[k] = false;
+  (p.get("ulens") || "").split(",").filter(k => k in UTG).forEach(k => { UTG[k] = true; });
+  document.getElementById("us-q").value = p.get("uq") || "";
+  document.getElementById("us-sector").value = p.get("usec") || "";
+  document.getElementById("us-watch-only").checked = p.get("uwl") === "1";
+  if (p.get("usort")) { SORT_KEY = p.get("usort"); SORT_DIR = +p.get("udir") === 1 ? 1 : -1; }
+  render();
+}
+async function viewsLoad() {
+  try {
+    const r = await fetch("/api/me/filters?market=us", {credentials: "same-origin"});
+    if (!r.ok) return;
+    VIEWS.list = (await r.json()).filters || [];
+    VIEWS.on = true;
+  } catch (e) { return; }
+  document.getElementById("us-views-wrap").hidden = false;
+  viewsPaint();
+}
+function viewsPaint() {
+  const sel = document.getElementById("us-views");
+  sel.innerHTML = '<option value="">Saved views…</option>' + VIEWS.list.map(v => `<option value="${v.id}">${esc(v.name)}</option>`).join("");
+  document.getElementById("us-view-del").hidden = true;
+}
+document.getElementById("us-views").onchange = e => {
+  const v = VIEWS.list.find(x => String(x.id) === e.target.value);
+  document.getElementById("us-view-del").hidden = !v;
+  if (v) viewApply(v.state);
+};
+document.getElementById("us-view-save").onclick = async () => {
+  const name = (prompt("Name this view (it keeps the search, sector, screen filters, watchlist switch and sort):") || "").trim();
+  if (!name) return;
+  const r = await fetch("/api/me/filters", {method: "POST", credentials: "same-origin", headers: {"Content-Type": "application/json"},
+    body: JSON.stringify({name, state: viewState(), market: "US"})});
+  if (!r.ok) { alert(((await r.json().catch(() => ({}))).detail) || "That view could not be saved."); return; }
+  const v = await r.json();
+  VIEWS.list.unshift(v);
+  viewsPaint();
+  document.getElementById("us-views").value = String(v.id);
+  document.getElementById("us-view-del").hidden = false;
+};
+document.getElementById("us-view-del").onclick = async () => {
+  const id = document.getElementById("us-views").value;
+  const v = VIEWS.list.find(x => String(x.id) === id);
+  if (!v || !confirm(`Delete the saved view “${v.name}”?`)) return;
+  const r = await fetch("/api/me/filters/" + encodeURIComponent(id), {method: "DELETE", credentials: "same-origin"});
+  if (r.ok) { VIEWS.list = VIEWS.list.filter(x => x !== v); viewsPaint(); }
+};
+
+/* ---------- research report: one printable page per company, written from the data ---------- */
+function reportSummary(d) {
+  const perf = usCo("perf", d), inst = instFor(d), an = usCo("analysts", d), e = EARN.data && EARN.data.companies && EARN.data.companies[d.code];
+  const fy = ((usCo("fund", d) || {}).years || []).filter(y => y.revenue);
+  const rank = usRank(d), bits = [];
+  bits.push(`${d.name} (${d.code}) is a ${d.sector ? d.sector.toLowerCase() : "US"} company with a market value of ${fmtUSDShort(d.market_cap_usd)}${d.added_on ? `, added to the board on ${insDay(d.added_on)}` : ""}.`);
+  if (d.final_score != null) bits.push(`It scores ${fmtN(d.final_score)} on the board's screen${rank ? `, ${rank}${ord(rank)} of ${DATA.length}` : ""}.`);
+  if (d.cleared_paths && d.cleared_paths.length) bits.push(`It qualified on ${d.cleared_paths.join(", ")}.`);
+  if (fy.length >= 2) {
+    const a = fy[0], z = fy[fy.length - 1], n = fy.length - 1, cagr = a.revenue > 0 && z.revenue > 0 ? (Math.pow(z.revenue / a.revenue, 1 / n) - 1) * 100 : null;
+    bits.push(`Revenue was ${usM(z.revenue)} in its latest fiscal year${cagr != null ? `, ${cagr >= 0 ? "up" : "down"} at ${Math.abs(cagr).toFixed(1)}% a year over ${n} years` : ""}${z.net_income != null ? `, with net income of ${usM(z.net_income)}` : ""}.`);
+  }
+  if (d.pe != null && d.pe > 0) bits.push(`It trades at ${fmtN(d.pe)} times earnings.`);
+  if (d.pat_turnaround) bits.push("Its latest quarter was profitable after a loss in one of the previous three.");
+  if (d.guidance_over15) bits.push(`Management has guided revenue growth above 15%${d.guidance_pct != null ? ` (${fmtN(d.guidance_pct, 0)}%)` : ""}.`);
+  if (inst && inst.inst_pct != null) bits.push(`Institutions reported holding ${inst.over_100 ? "100%+" : fmtN(inst.inst_pct) + "%"} of its shares (${inst.institutions} holders in SEC Form 13F).`);
+  if (d.insider_pct != null) bits.push(`Insiders own about ${fmtN(d.insider_pct)}%.`);
+  if (an) bits.push(an.covered ? `${an.analysts} analysts cover it.` : "No analyst covers it.");
+  if (e && e.next) bits.push(`It reports next on ${earnDay(e.next.date)} (${earnIn(e.next.date)}).`);
+  if (perf && perf.since_added_pct != null && (perf.history || []).length >= 2) bits.push(`Since it was added the shares are ${pctTxt(perf.since_added_pct)}.`);
+  return bits.join(" ");
+}
+function reportOpen(code) {
+  const d = DATA.find(x => x.code === code);
+  if (!d) return;
+  const today = new Date().toISOString().slice(0, 10);
+  openUsModal(`<div class="us-report">
+    <div class="us-report-bar"><button class="btn" id="us-print" type="button">Print / save as PDF</button></div>
+    <span class="eyebrow">DEEP SWEEP · US RESEARCH REPORT</span>
+    <h2 style="margin:2px 0 2px;font-size:24px">${esc(d.name)} <span class="us-tag">${esc(d.code)}</span></h2>
+    <div class="tc">${esc(d.sector || "")} · generated ${esc(insDay(today))}</div>
+    <p class="caveat" style="margin:12px 0">An automated report: every figure and sentence is generated from the board's data (SEC filings, Finnhub, FINRA) the moment you open it, so it is always current. Nobody has researched this company by hand, and it is not investment advice.</p>
+    <div class="sec"><h4>Summary</h4><p>${esc(reportSummary(d))}</p></div>
+    ${usDrawerBody(d)}
+    <p class="qsrc" style="margin-top:22px">Sources: SEC EDGAR (10-K, XBRL, Forms 4, 8-K, 13F), Finnhub, FINRA. Data as of ${esc(insDay(today))}.</p></div>`);
+  document.getElementById("us-print").onclick = () => { document.body.classList.add("us-printing"); window.print(); };
+}
+addEventListener("afterprint", () => document.body.classList.remove("us-printing"));
+
+/* ---------- sector snapshot, at the top of an opened theme ---------- */
+function sectorSnapshot(names) {
+  const med = a => { a = a.filter(v => v != null && isFinite(v)).sort((x, y) => x - y); return a.length ? (a.length % 2 ? a[(a.length - 1) / 2] : (a[a.length / 2 - 1] + a[a.length / 2]) / 2) : null; };
+  const scored = names.filter(d => d.final_score != null);
+  const avg = scored.length ? scored.reduce((s, d) => s + d.final_score, 0) / scored.length : null;
+  const last = d => { const ys = ((usCo("fund", d) || {}).years || []); return ys[ys.length - 1]; };
+  const fin = names.map(last).filter(Boolean), profitable = fin.filter(y => y.net_income != null);
+  const grew = names.map(d => { const ys = ((usCo("fund", d) || {}).years || []).filter(y => y.revenue); return ys.length >= 2 ? ys[ys.length - 1].revenue / ys[ys.length - 2].revenue - 1 : null; }).filter(v => v != null);
+  const res = names.map(d => { const e = EARN.data && EARN.data.companies && EARN.data.companies[d.code]; return e && e.results && e.results[0]; }).filter(Boolean);
+  const beats = res.filter(r => earnOutcome(r).kind === "beat").length;
+  const perf = names.map(d => (usCo("perf", d) || {}).since_added_pct).filter(v => v != null);
+  const codes = new Set(names.map(d => d.code));
+  const buys = insBuys14().filter(t => codes.has(t.symbol)).length;
+  const soon = (EARN.data ? earnCompanies() : []).filter(x => codes.has(x.code) && x.e.next && earnDays(x.e.next.date) >= 0 && earnDays(x.e.next.date) <= 30).length;
+  const stat = (k, v) => `<div class="earn-stat"><span>${k}</span><b>${v}</b></div>`;
+  const news = ((AUX.news && AUX.news.items) || []).filter(i => codes.has(i.symbol)).slice(0, 4);
+  return `<div style="padding:14px 17px;border-bottom:1px solid var(--grid)"><div class="us-news-day" style="margin-top:0">Sector snapshot</div><div class="earn-summary">`
+    + stat("Average score", avg == null ? "—" : fmtN(avg)) + stat("Median P/E", fmtN(med(names.map(d => d.pe).filter(v => v > 0))))
+    + stat("Median ROE", med(names.map(d => d.roe_pct)) == null ? "—" : fmtN(med(names.map(d => d.roe_pct))) + "%")
+    + stat("Profitable last FY", profitable.length ? `${profitable.filter(y => y.net_income > 0).length} of ${profitable.length}` : "—")
+    + stat("Revenue growth, median", grew.length ? pctTxt(med(grew) * 100) : "—")
+    + stat("Beat last quarter", res.length ? `${beats} of ${res.length}` : "—")
+    + stat("Reporting in 30 days", AUX && EARN.data ? soon : "—") + stat("Insider buys, 14 days", AUX.ins ? buys : "—")
+    + stat("Avg since added", perf.length ? pctTxt(perf.reduce((s, v) => s + v, 0) / perf.length) : "—") + `</div>`
+    + (news.length ? `<div class="qsrc" style="margin-top:4px">Latest headlines in this theme</div>` + news.map(i => `<div class="us-news-item" style="padding:6px 0"><div class="meta">${esc(i.symbol)} · ${esc(i.source)} · ${esc(ago(i.datetime))}</div><a class="hl" style="font-size:13px" href="${esc(safeUrl(i.url))}" target="_blank" rel="noopener noreferrer">${esc(i.headline)}</a></div>`).join("") : "")
+    + `</div>`;
+}
+const ord = n => (n % 100 > 10 && n % 100 < 14) ? "th" : ["th", "st", "nd", "rd"][n % 10 < 4 ? n % 10 : 0];

@@ -76,6 +76,17 @@
   .us-alert:not(.unseen)::before{content:"";flex:none;width:7px}
   .us-alert small{display:block;color:var(--muted);font-size:11.5px;margin-top:2px}
   .us-alert-empty{padding:22px 16px;text-align:center;color:var(--muted);font-size:13px}
+  .us-cmpbox{margin-left:4px;cursor:pointer;vertical-align:middle}
+  .us-cmpbox input{cursor:pointer}
+  .us-report{max-width:900px;margin:0 auto}
+  .us-report-bar{text-align:right;margin-bottom:6px}
+  @media print{
+    body.us-printing > *:not(#us-modal){display:none !important}
+    body.us-printing #us-modal{position:static !important;background:none !important;padding:0 !important;display:block !important;overflow:visible !important}
+    body.us-printing #us-modal .mbox{border:0 !important;box-shadow:none !important;max-width:none !important;padding:0 !important}
+    body.us-printing .us-report-bar,body.us-printing #us-mclose{display:none !important}
+    body.us-printing .sec{break-inside:avoid}
+  }
   .earn-summary{display:flex;flex-wrap:wrap;gap:10px;margin:2px 0 12px}
   .earn-stat{border:1px solid var(--ring);border-radius:10px;padding:8px 14px;min-width:120px;background:var(--surface)}
   .earn-stat > span{display:block;font-size:10.5px;text-transform:uppercase;letter-spacing:.07em;color:var(--muted)}
@@ -167,6 +178,12 @@
         <input type="checkbox" id="us-watch-only" style="margin:0"> Watchlist only
       </label>
       <button class="btn" id="us-csv" title="Download every US company on the board as CSV">&#8681; Export CSV</button>
+      <button class="btn" id="us-cmp" type="button" hidden>Compare 0</button>
+      <span id="us-views-wrap" style="display:inline-flex;gap:6px;align-items:center" hidden>
+        <select class="gal-select" id="us-views" aria-label="Saved views"><option value="">Saved views…</option></select>
+        <button class="btn" id="us-view-save" type="button" title="Save the current search, sector, screens, watchlist switch and sort under a name">Save view</button>
+        <button class="btn" id="us-view-del" type="button" title="Delete the selected saved view" hidden>Delete</button>
+      </span>
     </div>
     <div class="us-lens" id="us-lens" role="group" aria-label="Screen filters">
       <span class="us-lens-lab">Screens</span>
@@ -564,8 +581,9 @@
 
 <div class="scrim" id="us-scrim"></div>
 <aside class="drawer" id="us-drawer" aria-label="Company detail"></aside>
+<div class="modal" id="us-modal" role="dialog" aria-modal="true"><div class="mbox"><button class="close" id="us-mclose" aria-label="Close">&times;</button><div id="us-mbody"></div></div></div>
 
 <script src="/static/klinecharts.min.js" defer></script>
-<script src="/static/us.js?v=15" defer></script>
+<script src="/static/us.js?v=16" defer></script>
 </body>
 </html>

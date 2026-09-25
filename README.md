@@ -720,3 +720,24 @@ Still a person's job, by design or by necessity:
   Claude; it still runs from `run-weekly.cmd` on your PC.
 - **Zerodha** requires its account holder to log in once a day.
 - **Approving sign-ups** (account menu → Manage users).
+
+## US board: what runs by itself
+
+Everything on the US page (`/us`) is fed by scheduled GitHub Actions jobs that commit a data file and deploy it to the
+server -- nothing is refreshed by hand.
+
+| Job (workflow) | When (UTC) | Writes | Feeds |
+|---|---|---|---|
+| US auto-screen (`us_auto_screen.yml`) | daily 05:00 | `companies_us_raw.json`, lenses, institutional pillar | the board itself |
+| US chart gallery (`charts_us.yml`) | Tue-Sat 06:30 | `chart_data_us/` | Chart Gallery, Market, price alerts |
+| US board disclosures (`board_disclosures_us.yml`) | Tue-Sat 07:00 | insider (Form 4), 8-K, earnings | Board Disclosures, Earnings, alerts |
+| US institutional ownership (`institutions_us.yml`) | daily 08:30 (downloads only for a new SEC file) | `institutions_us/` (Form 13F) | scorecard, institutional pillar |
+| US analytics (`us_analytics.yml`) | daily 08:45 | fundamentals (SEC XBRL), analysts, short interest (FINRA), IPO calendar, performance | scorecard, IPOs, Since added |
+| US news (`news_us.yml`) | every 3 h | `news_us/` | News tab, scorecard, Overview |
+| Database backup (`backup_db.yml`) | daily 03:15 | encrypted-optional artifact, 14 copies on the server | disaster recovery |
+| Uptime check (`uptime.yml`) | every 10 min | -- | GitHub emails the owner on failure |
+| Deploy code (`deploy.yml`) | on every push touching the API/front end/image | -- | rebuilds the server |
+
+Frequent data jobs deploy *data only* (`git pull` then `/app/sync-data.sh` in the running container: no rebuild, no restart);
+code changes rebuild via `deploy.yml`. The server also pushes new US alerts (earnings, insider buys, material 8-Ks, price
+signals) to the phones of users who follow the company (`app/us_alerts.py`, every 15 minutes).

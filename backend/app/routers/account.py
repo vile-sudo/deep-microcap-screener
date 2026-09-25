@@ -25,7 +25,7 @@ import json
 import re
 from datetime import datetime, timedelta
 
-from fastapi import APIRouter, Depends, HTTPException, Request
+from fastapi import APIRouter, Depends, HTTPException, Request, Query
 from pydantic import BaseModel
 from sqlalchemy import delete
 from sqlalchemy.orm import Session
@@ -145,6 +145,7 @@ def change_password(body: PasswordIn, request: Request, db: Session = Depends(ge
 class FilterIn(BaseModel):
     name: str | None = None
     state: str | None = None
+    market: str | None = None      # "IN" (default, the India board) or "US" -- each board keeps its own saved views
 
 
 def _clean_state(state: str) -> str:
@@ -159,9 +160,10 @@ def _filter_out(f: SavedFilter) -> dict:
 
 
 @router.get("/api/me/filters")
-def list_filters(request: Request, db: Session = Depends(get_db)):
+def list_filters(request: Request, market: str = Query("in", pattern="^(in|us)$"), db: Session = Depends(get_db)):
     uid = _user(request)["id"]
-    rows = db.query(SavedFilter).filter(SavedFilter.user_id == uid).order_by(SavedFilter.updated_at.desc()).all()
+    rows = (db.query(SavedFilter).filter(SavedFilter.user_id == uid, SavedFilter.market == market.upper())
+            .order_by(SavedFilter.updated_at.desc()).all())
     return {"filters": [_filter_out(f) for f in rows]}
 
 
@@ -174,10 +176,13 @@ def create_filter(body: FilterIn, request: Request, db: Session = Depends(get_db
     state = _clean_state(body.state or "")
     if not state:
         raise HTTPException(status_code=400, detail="Nothing to save yet - pick some filters first")
-    if db.query(SavedFilter).filter(SavedFilter.user_id == uid).count() >= MAX_FILTERS:
+    market = (body.market or "IN").upper()
+    if market not in ("IN", "US"):
+        raise HTTPException(status_code=400, detail="Unknown market")
+    if db.query(SavedFilter).filter(SavedFilter.user_id == uid, SavedFilter.market == market).count() >= MAX_FILTERS:
         raise HTTPException(status_code=400, detail=f"You can keep up to {MAX_FILTERS} saved filters - delete one first")
     now = auth.utcnow()
-    f = SavedFilter(user_id=uid, name=name, state=state, created_at=now, updated_at=now)
+    f = SavedFilter(user_id=uid, market=market, name=name, state=state, created_at=now, updated_at=now)
     db.add(f)
     db.commit()
     return _filter_out(f)
