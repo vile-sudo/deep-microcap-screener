@@ -54,8 +54,14 @@ jobs:
       # after is quick -- see update_us_charts.py's own BACKFILL_BUDGET/
       # MIN_CALL_INTERVAL (Polygon's free tier is 5 calls/minute; one call
       # is the whole market for one day, not one call per ticker).
+      # Restore and save are separate steps on purpose. A single
+      # actions/cache step only saves when the whole job succeeds -- the
+      # first real backfill run downloaded 179 days over 40 minutes, then
+      # crashed later in the build, and the cache save was skipped: all of
+      # it was thrown away. Saving with `if: always()` (right after the
+      # build step below) keeps every downloaded day whatever happens next.
       - name: Restore Polygon cache
-        uses: actions/cache@v4
+        uses: actions/cache/restore@v4
         with:
           path: backend/.polygon_cache
           key: polygon-${{ github.run_id }}
@@ -66,6 +72,13 @@ jobs:
         env:
           POLYGON_API_KEY: ${{ secrets.POLYGON_API_KEY }}
         run: python scripts/update_us_charts.py
+
+      - name: Save Polygon cache
+        if: always()
+        uses: actions/cache/save@v4
+        with:
+          path: backend/.polygon_cache
+          key: polygon-${{ github.run_id }}
 
       # Same split as India's Screen any Chart: the full actively-traded US
       # market is too much to commit, so it rides in a release asset;

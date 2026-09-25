@@ -249,6 +249,11 @@ def rs_score(closes: list[float]) -> float | None:
     last = closes[-1]
     r = lambda k: last / closes[-1 - k] - 1 if n > k and closes[-1 - k] > 0 else None
     q1, q2, q3, q4 = r(63), r(126), r(189), r(250)
+    if q1 is None or q2 is None:
+        # a non-positive close at the 3- or 6-month mark (a bad $0 print on
+        # a thin OTC ticker -- confirmed live, it crashed the first US
+        # backfill run) leaves no return to weight; no rating, not a crash
+        return None
     q3 = q3 if q3 is not None else q2
     q4 = q4 if q4 is not None else q3
     return 0.4 * q1 + 0.2 * q2 + 0.2 * q3 + 0.2 * q4
