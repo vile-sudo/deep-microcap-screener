@@ -402,6 +402,7 @@ async function boot() {
   render();
   renderOverview();
   auxLoadAll();
+  alertsAccountSync();
 }
 boot().catch(e => {
   document.querySelector(".tablewrap").innerHTML = `<div class="us-empty">Could not load the US board: ${esc(e.message)}</div>`;
@@ -1778,6 +1779,33 @@ const lsGet = k => { try { return localStorage.getItem(k); } catch (e) { return 
 const lsSet = (k, v) => { try { localStorage.setItem(k, v); } catch (e) {} };
 function alertsSeen() { try { return new Set(JSON.parse(lsGet(ALERT_SEEN_KEY) || "[]")); } catch (e) { return new Set(); } }
 
+/* Logged in, "seen", the watchlist-only choice and the phone-notification switch also live in the
+   account (/api/me/settings), so the laptop and the phone agree and the server knows whom to push. */
+const ACCT = {ok: false, notify: true, timer: 0};
+function alertsPersist() {
+  if (!ACCT.ok) return;
+  clearTimeout(ACCT.timer);
+  ACCT.timer = setTimeout(() => {
+    fetch("/api/me/settings", {method: "PATCH", credentials: "same-origin", headers: {"Content-Type": "application/json"},
+      body: JSON.stringify({prefs: {us_alerts_seen: [...alertsSeen()].slice(-800), us_alerts_wl: lsGet(ALERT_WL_KEY) === "1", us_alerts_notify: ACCT.notify}})}).catch(() => {});
+  }, 800);
+}
+function saveSeen(s) { lsSet(ALERT_SEEN_KEY, JSON.stringify([...s].slice(-800))); alertsPersist(); }
+async function alertsAccountSync() {
+  try {
+    const r = await fetch("/api/me/settings", {credentials: "same-origin"});
+    if (!r.ok) return;
+    const p = (await r.json()).prefs || {};
+    ACCT.ok = true;
+    ACCT.notify = p.us_alerts_notify !== false;
+    const s = alertsSeen();
+    (p.us_alerts_seen || []).forEach(x => s.add(x));
+    lsSet(ALERT_SEEN_KEY, JSON.stringify([...s].slice(-800)));
+    if (typeof p.us_alerts_wl === "boolean") lsSet(ALERT_WL_KEY, p.us_alerts_wl ? "1" : "0");
+    updateAlerts();
+  } catch (e) { /* not logged in, or offline: the browser copy is enough */ }
+}
+
 function buildAlerts() {
   const by = {}; DATA.forEach(d => { by[d.code] = d; });
   const A = [];
@@ -1838,17 +1866,20 @@ function alertsPanel() {
   panel.innerHTML = `<div class="us-alerts-head"><b>Alerts</b>
       <label title="Only companies you have starred"><input type="checkbox" id="us-al-wl"${wl ? " checked" : ""}${WATCH.size ? "" : " disabled"}> My watchlist</label>
       <button type="button" id="us-al-read">Mark all seen</button></div>`
+    + (ACCT.ok ? `<div class="us-alerts-head" style="position:static;border-top:0;font-size:12px"><label title="Send new alerts on the companies you starred to the Deep Sweep mobile app"><input type="checkbox" id="us-al-notify"${ACCT.notify ? " checked" : ""}> Push new alerts to my phone (mobile app, starred companies)</label></div>` : "")
     + (rows.length ? rows.map((a, i) => `<div class="us-alert${seen.has(a.id) ? "" : " unseen"}" data-al="${i}"><div><b>${esc(a.title)}</b><small>${esc(a.kind)} · ${esc(a.sub)}</small></div></div>`).join("")
       : '<div class="us-alert-empty">Nothing needs your attention right now.<br>Earnings dates, insider buying, key filings and price signals appear here as they happen.</div>');
-  document.getElementById("us-al-wl").onchange = e => { lsSet(ALERT_WL_KEY, e.target.checked ? "1" : "0"); updateAlerts(); };
+  document.getElementById("us-al-wl").onchange = e => { lsSet(ALERT_WL_KEY, e.target.checked ? "1" : "0"); alertsPersist(); updateAlerts(); };
+  const nt = document.getElementById("us-al-notify");
+  if (nt) nt.onchange = e => { ACCT.notify = e.target.checked; alertsPersist(); };
   document.getElementById("us-al-read").onclick = () => {
     const s = alertsSeen(); ALERTS.forEach(a => s.add(a.id));
-    lsSet(ALERT_SEEN_KEY, JSON.stringify([...s].slice(-800))); updateAlerts();
+    saveSeen(s); updateAlerts();
   };
   panel.querySelectorAll("[data-al]").forEach(el => {
     el.onclick = () => {
       const a = rows[+el.dataset.al], s = alertsSeen(); s.add(a.id);
-      lsSet(ALERT_SEEN_KEY, JSON.stringify([...s].slice(-800)));
+      saveSeen(s);
       closeAlerts(); updateAlerts(); openDrawer(a.code);
     };
   });
@@ -1865,7 +1896,8 @@ document.getElementById("us-alerts-btn").onclick = e => {
   document.getElementById("us-alerts-btn").setAttribute("aria-expanded", "true");
   alertsPanel();
 };
-document.addEventListener("click", e => { if (!e.target.closest(".us-bellwrap")) closeAlerts(); });
+/* a click on something the panel just re-rendered away (Mark all seen) is still a click inside it */
+document.addEventListener("click", e => { if (e.target.isConnected && !e.target.closest(".us-bellwrap")) closeAlerts(); });
 document.addEventListener("keydown", e => { if (e.key === "Escape") closeAlerts(); });
 
 /* ================================================================

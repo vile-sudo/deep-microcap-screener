@@ -15,7 +15,7 @@ from .config import get_settings
 from .database import Base, SessionLocal, engine
 from .seed import seed_if_changed
 from . import news_channel as news_feed
-from . import push
+from . import push, us_alerts
 from .routers import account, alerts, asme, auth as auth_routes, charts, companies, deals, ipo_reports, logic_gates, market, meta, movers, news_channel, push as push_routes, reports, sectors, watchlist
 
 settings = get_settings()
@@ -64,6 +64,30 @@ async def _news_refresher():
         await asyncio.sleep(60)
 
 
+US_ALERTS_SECONDS = 900
+
+
+def _notify_us_alerts() -> int:
+    db = SessionLocal()
+    try:
+        return us_alerts.notify_new(db)
+    finally:
+        db.close()
+
+
+async def _us_alerts_loop():
+    """Every 15 minutes: push any new US alert (earnings, insider buy, material 8-K,
+    price signal) to the users who follow that company. See us_alerts.py."""
+    log = logging.getLogger("deepsweep")
+    await asyncio.sleep(45)   # after startup, and after the seed
+    while True:
+        try:
+            await asyncio.to_thread(_notify_us_alerts)
+        except Exception as e:  # noqa: BLE001
+            log.warning("us alerts check failed: %s", e)
+        await asyncio.sleep(US_ALERTS_SECONDS)
+
+
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     # Make sure tables exist even if `python -m app.seed` was never run
@@ -77,10 +101,12 @@ async def lifespan(app: FastAPI):
     seed_if_changed()
     ensure_admin()
     news_task = asyncio.create_task(_news_refresher())
+    alerts_task = asyncio.create_task(_us_alerts_loop())
     try:
         yield
     finally:
         news_task.cancel()
+        alerts_task.cancel()
 
 
 app = FastAPI(

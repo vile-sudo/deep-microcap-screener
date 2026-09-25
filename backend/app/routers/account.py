@@ -81,6 +81,10 @@ def patch_settings(body: SettingsIn, request: Request, db: Session = Depends(get
             prefs[k] = bool(v)
         elif k == "alerts_seen" and isinstance(v, str) and re.match(r"^\d{4}-\d{2}-\d{2}$", v):
             prefs[k] = v
+        elif k == "us_alerts_seen" and isinstance(v, list):
+            prefs[k] = [str(x)[:120] for x in v if isinstance(x, (str, int))][-800:]
+        elif k in ("us_alerts_wl", "us_alerts_notify"):
+            prefs[k] = bool(v)
         elif k == "alerts" and isinstance(v, dict):
             windows = ["1D", "1W", "1M", "6M", "1Y"]
             prefs[k] = {"highs": [w for w in windows if w in (v.get("highs") or [])],

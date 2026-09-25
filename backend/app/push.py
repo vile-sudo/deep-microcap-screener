@@ -11,11 +11,10 @@ with no Firebase project configured behaves exactly as it did before this
 module existed.
 
 Callers: app/news_channel.py's refresh loop (main.py's _news_refresher)
-sends "N new stories" when a refresh actually adds something. Nothing
-else calls this yet -- Alerts (watchlist highs/lows) is the natural next
-source, but that job runs in GitHub Actions (scripts/update_charts.py),
-off this server, and would need its own Firebase credentials and a way to
-know which users watch which symbols; left for a follow-up.
+sends "N new stories" when a refresh actually adds something, and
+app/us_alerts.py (main.py's _us_alerts_loop) sends each user the new US
+alerts -- earnings, insider buys, material 8-Ks, price signals -- on the
+companies on their US watchlist.
 """
 from __future__ import annotations
 
@@ -68,8 +67,19 @@ def send_to_all(db: Session, title: str, body: str, data: dict | None = None) ->
     tokens it attempted to reach (0 if push isn't configured or nobody has
     registered). Tokens Firebase reports as dead (app uninstalled, etc.)
     are removed from the database so the list doesn't grow stale forever."""
+    return _send(db, [t.token for t in db.query(DeviceToken.token)], title, body, data)
+
+
+def send_to_users(db: Session, user_ids: list[int], title: str, body: str, data: dict | None = None) -> int:
+    """Like send_to_all, but only to the devices registered by these users."""
+    if not user_ids:
+        return 0
+    return _send(db, [t.token for t in db.query(DeviceToken.token).filter(DeviceToken.user_id.in_(user_ids))],
+                 title, body, data)
+
+
+def _send(db: Session, tokens: list[str], title: str, body: str, data: dict | None) -> int:
     app = _firebase_app()
-    tokens = [t.token for t in db.query(DeviceToken.token)]
     if not app or not tokens:
         return 0
 

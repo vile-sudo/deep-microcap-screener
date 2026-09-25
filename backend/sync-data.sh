@@ -14,7 +14,7 @@ cd /app/backend
 SRC=data-dist
 [ -d data-live ] && SRC=data-live
 [ -d "$SRC" ] || exit 0
-(cd "$SRC" && find . -type f ! -name 'screener.db*' ! -name '.refresh.lock') | while read -r f; do
+(cd "$SRC" && find . -type f ! -name 'screener.db*' ! -name '.refresh.lock' ! -name '.us_alerts.lock') | while read -r f; do
   cmp -s "$SRC/$f" "data/$f" 2>/dev/null && continue
   mkdir -p "data/$(dirname "$f")"
   cp -f "$SRC/$f" "data/$f"

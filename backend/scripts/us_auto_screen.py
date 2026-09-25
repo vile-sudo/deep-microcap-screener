@@ -79,6 +79,7 @@ SEC_DATA = "https://data.sec.gov"
 SEC_WWW = "https://www.sec.gov"
 SEC_HEADERS = {"User-Agent": "Deep Sweep research contact@pkresearch.in"}
 SEC_TICKERS_URL = f"{SEC_WWW}/files/company_tickers.json"
+LISTED_EXCHANGES = {"Nasdaq", "NYSE", "NYSE American", "NYSE MKT", "NYSE Arca", "Cboe"}
 
 DELAY_FINNHUB = 1.1     # 60/min free tier -- stay comfortably under
 DELAY_SEC = 0.15        # SEC asks for a fair-use rate under ~10 req/s
@@ -236,10 +237,22 @@ def universe() -> list[dict]:
     needs a live Finnhub call before the size-band filter applies."""
     r = requests.get(SEC_TICKERS_URL, headers=SEC_HEADERS, timeout=30)
     r.raise_for_status()
+    # Which exchange each ticker trades on: OTC and unlisted names almost never have a Finnhub
+    # profile (a sixth of every run's lookups came back "no Finnhub profile"), so keep only the
+    # exchange-listed ones. If the file cannot be fetched the screen runs unfiltered, as before.
+    listed = None
+    try:
+        ex = requests.get(f"{SEC_WWW}/files/company_tickers_exchange.json", headers=SEC_HEADERS, timeout=30).json()
+        i_t, i_e = ex["fields"].index("ticker"), ex["fields"].index("exchange")
+        listed = {row[i_t] for row in ex["data"] if row[i_e] in LISTED_EXCHANGES}
+    except (requests.RequestException, ValueError, KeyError):
+        pass
     out = []
     for row in r.json().values():
         ticker, name = row.get("ticker", ""), row.get("title", "")
         if not ticker or SKIP_TICKER.search(ticker) or SKIP_NAME.search(name):
+            continue
+        if listed is not None and ticker not in listed:
             continue
         out.append({"ticker": ticker, "name": name, "cik": str(row["cik_str"]).zfill(10)})
     return out
