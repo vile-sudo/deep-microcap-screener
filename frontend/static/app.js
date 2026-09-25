@@ -110,7 +110,7 @@ const esc = s => String(s==null?'':s).replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt
 /* ---------- icons ----------
    One small line-icon set for tiles, theme folders and Market view stages.
    Paths are drawn on a 24px grid and stroked with currentColor. */
-const ICON_PATHS={
+const ICON_PATHS={calendar:'<rect x="4" y="5" width="16" height="16" rx="2"/><path d="M4 10h16M9 3v4M15 3v4"/>',
   building:'<path d="M5 20V6.5L12 3l7 3.5V20"/><path d="M9 20v-4h6v4"/><path d="M9 9.5h.01M15 9.5h.01M9 13h.01M15 13h.01"/>',
   folder:'<path d="M3.5 7h6l2 2.2h9V19h-17z"/>',
   flag:'<path d="M5.5 21V4"/><path d="M5.5 4.5h11l-2.2 3.8 2.2 3.8h-11"/>',
@@ -148,10 +148,10 @@ const THEME_ICON=[[/defen|aero/i,'shield'],[/pharma/i,'flask'],[/medical|diagnos
   [/auto|mobility/i,'car'],[/textile/i,'thread'],[/building|construct/i,'bricks'],[/consumer|appliance/i,'bag'],
   [/agri|food/i,'leaf'],[/packag|plastic/i,'box'],[/transport|logist|rail|marine/i,'truck'],[/water|environ/i,'drop'],[/process/i,'factory']];
 const themeIcon = t => icon((THEME_ICON.find(([re])=>re.test(t))||[0,'folder'])[1]);
-const TILE_ICON={all:'building', themes:'folder', overhang:'flag', guide15:'trend', turn:'cycle', nolens:'hourglass', deals:'bolt', movers:'pulse'};
+const TILE_ICON={all:'building', themes:'folder', overhang:'flag', guide15:'trend', turn:'cycle', nolens:'hourglass', deals:'bolt', movers:'pulse', rescal:'calendar'};
 
 /* data for the two data-driven tiles and the Overview panels (filled in by ovLoad, further down) */
-const OV={deals:null, ann:null, movers:null, setups:null, reports:null, ipo:null};
+const OV={deals:null, ann:null, movers:null, setups:null, reports:null, ipo:null, rescal:null};
 /* ---------- stat tiles ---------- */
 function renderTiles(){
   const n = k => DATA.filter(d=>d[k]).length;
@@ -165,19 +165,20 @@ function renderTiles(){
     [String(pending),'Awaiting the capex pass','CWIP, guidance and quarterly PAT not yet pulled for these',"var(--muted)",'nolens'],
     [OV.deals ? String(ovBoardDeals().length) : '—','Bulk & block deals, board names','Disclosed deals in the last 7 days in companies on your board',"var(--s4)",'deals'],
     [OV.movers && OV.movers.snapshot ? String(ovBoardMoves().length) : '—','Board names moving 4%+','On the latest scanned session',"var(--s3)",'movers'],
+    [OV.rescal ? String(rcWithin(10).length) : '—','Reporting in 10 days','Confirmed, expected or at the SEBI deadline — see the Results Calendar',"var(--s6)",'rescal'],
   ];
   /* Every tile that maps onto a filter is a button - the number you just read is the
      quickest route to the names behind it. */
   document.getElementById('tiles').innerHTML = t.map(([v,k,nn,c,tg])=>{
     const tag = tg ? 'button' : 'div';
-    const tip = tg==='all' ? 'Show every company on the board' : tg==='themes' ? 'Open the theme folders' : tg==='deals' ? 'Open Bulk & Block Deals' : tg==='movers' ? 'Open the Movers screen' : 'Show only these companies';
+    const tip = tg==='all' ? 'Show every company on the board' : tg==='themes' ? 'Open the theme folders' : tg==='deals' ? 'Open Bulk & Block Deals' : tg==='movers' ? 'Open the Movers screen' : tg==='rescal' ? 'Open the Results Calendar' : 'Show only these companies';
     const at  = tg ? ` type="button" class="tile" data-tile="${tg}" title="${tip}"` : ' class="tile"';
     /* A bare count leaves the reader doing arithmetic against 310. The share bar puts
        the denominator back without spending a second number on it. The first tile IS
        the denominator, and the themes tile counts themes rather than companies, so
        neither gets one. */
     const num = Number(String(v).replace(/[^0-9.]/g,''));
-    const share = (tg && tg!=='all' && tg!=='themes' && tg!=='deals' && tg!=='movers' && isFinite(num) && DATA.length) ? (num/DATA.length)*100 : null;
+    const share = (tg && tg!=='all' && tg!=='themes' && tg!=='deals' && tg!=='movers' && tg!=='rescal' && isFinite(num) && DATA.length) ? (num/DATA.length)*100 : null;
     const bar = share===null ? '' : `<div class="tbar" title="${num} of ${DATA.length} companies — ${share.toFixed(share<1?1:0)}%"><i style="width:${Math.max(share,1.2).toFixed(1)}%;background:${c||'var(--ink2)'}"></i></div>`;
     return `<${tag}${at} style="--tile:${c||'#0a73a8'}"><span class="tile-ic">${icon(TILE_ICON[tg]||'building')}</span><div class="v"${c?` style="color:${c}"`:''}>${v}</div><div class="k">${k}</div>${bar}<div class="n">${nn}</div></${tag}>`;
   }).join('');
@@ -257,9 +258,9 @@ let sortKey='final_score', sortDir=-1;
      method    - how the scores work
    Moving to another page clears whatever was picked on the last one, so a theme
    chosen on Themes never quietly narrows what Screens shows. */
-const VIEWS=['overview','themes','market','filters','gallery','reports','ipor','sectors','deals','news','method'];
+const VIEWS=['overview','themes','market','filters','gallery','reports','rescal','ipor','sectors','deals','news','method'];
 const NAV={'overview-link':'overview','themes-link':'themes','market-link':'market',
-           'filters-link':'filters','gallery-link':'gallery','reports-link':'reports','ipor-link':'ipor','sectors-link':'sectors','deals-link':'deals','news-link':'news'};
+           'filters-link':'filters','gallery-link':'gallery','reports-link':'reports','rescal-link':'rescal','ipor-link':'ipor','sectors-link':'sectors','deals-link':'deals','news-link':'news'};
 const LENSES=['overhang','heavycap','guide15','guideany','turn','caputil','pivot','haslens','ipo','asme','auto'];
 const TILE_LABEL={all:'Companies on the board',overhang:'High P/E + heavy CWIP',guide15:'Management guides > 15%',
                   turn:'PAT turned positive',caputil:'Capacity utilisation ramping up',pivot:'Product-mix pivot',
@@ -292,6 +293,7 @@ function setView(v, opts){
   if(VIEW==='sectors'){ if(!opts.keep){ SC.slug=null; SC.edition=null; } openSectors(); }
   if(VIEW==='filters'){ flWireTabs(); if(FL.tab==='movers') openMovers(); }
   if(VIEW==='deals') openDeals();
+  if(VIEW==='rescal') openResCal();
   if(VIEW==='ipor') openIpoReports();
   if(VIEW==='news') openNews();
   const ts=document.getElementById('top-search');
@@ -906,6 +908,7 @@ function openDrawer(d){
      <div class="thm" style="margin-bottom:6px">${base(d)} · ${d.screen==='auto'?'auto-added '+esc(d.added_on||''):d.final_score===null?'unranked':'rank '+d.rank}<span class="tierbadge">${d.tier===1?'Tier 1 · institutions present':'Tier 2 · no institutions yet'}</span></div>
      <h2 style="margin:0 0 3px;font-size:19px">${hl(d.name)}</h2>
      <div class="tc">${d.code||''}${d.industry?' · '+esc(d.industry):''}</div>
+     ${rcHeadLine(d)}
      <div style="margin-top:9px">
        <span class="badge ${SCREENS[d.screen].cls}" title="${SCREENS[d.screen].full}">${SCREENS[d.screen].lab}</span>
        ${d.claim_grade?`<span class="cg ${CG[d.claim_grade]||'cg-none'}" style="margin-right:4px">claim: ${esc(d.claim_grade)}</span>`:''}
@@ -1640,6 +1643,7 @@ document.getElementById('tiles').onclick=e=>{
   if(t==='themes'){ setView('themes'); return; }
   if(t==='deals'){ setView('deals'); return; }
   if(t==='movers'){ setView('movers'); return; }
+  if(t==='rescal'){ setView('rescal'); return; }
   const same = TILE===t;
   clearFilters();
   if(!same){ TILE=t; if(t!=='all') TG[t]=true; }
@@ -3856,7 +3860,7 @@ async function openUpdates(){
 }
 
 /* ---------- saved filters ---------- */
-const VIEW_NAME={overview:'Overview',themes:'Themes',market:'Market',watchlist:'Watchlist',filters:'Screens',gallery:'Screen any Chart',reports:'Reports',method:'How it works'};
+const VIEW_NAME={rescal:'Results calendar',overview:'Overview',themes:'Themes',market:'Market',watchlist:'Watchlist',filters:'Screens',gallery:'Screen any Chart',reports:'Reports',method:'How it works'};
 function describeState(state){
   const p=new URLSearchParams(state), bits=[];
   bits.push(VIEW_NAME[p.get('v')||'overview']||'Overview');
@@ -5043,7 +5047,7 @@ async function scRenderDoc(){
    by hand, so it is as current as those jobs. Picking a tile swaps the panels for that tile's
    company list, as before. */
 const OV_URL={deals:'/api/deals', ann:'/api/announcements', movers:'/api/movers', setups:'/api/market/setups',
-              reports:'/api/reports', ipo:'/api/ipo-reports/calendar'};
+              reports:'/api/reports', ipo:'/api/ipo-reports/calendar', rescal:'/api/results-calendar-in'};
 const ovByCode = () => { const m={}; DATA.forEach(d=>{ m[d.code]=d; }); return m; };
 const ovDay = iso => iso ? new Date(String(iso).slice(0,10)+'T00:00:00Z').toLocaleDateString('en-IN',{day:'2-digit',month:'short',timeZone:'UTC'}) : '';
 const ovClip = (s,n) => { s=String(s||'').replace(/\s+/g,' ').trim(); return s.length>n ? s.slice(0,n-1).trimEnd()+'…' : s; };
@@ -5083,10 +5087,12 @@ function renderOverviewPanels(){
   const reps=Object.entries(OV.reports||{}).map(([code,r])=>({code,...r})).filter(r=>r.generated_at)
     .sort((a,b)=>String(b.generated_at).localeCompare(String(a.generated_at))).slice(0,5);
   const ipos=((OV.ipo && OV.ipo.issues)||[]).filter(i=>i.status==='Active' || String(i.open_date)>=new Date().toISOString().slice(0,10)).slice(0,5);
+  const rcSoon=rcUpcoming().filter(i=>i.status!=='deadline' || rcDays(i.date)<=10).slice(0,6);
   const mine=[...WATCH].map(c=>by[c]).filter(Boolean).sort((a,b)=>(nz(b.final_score)||0)-(nz(a.final_score)||0)).slice(0,6);
 
   box.innerHTML =
     (mine.length ? card('Your watchlist',null,'',list(mine.map(d=>li(co(d.code),esc(d.name),esc(shortT(base(d))),fmt(d.final_score,1))),'')) : '')
+    + card('Reporting soon','rescal','Results calendar',list(rcSoon.map(i=>li(co(i.code),esc(i.name),`${esc(i.result)} · ${rcStatusLabel(i)}`,`${esc(rcDayShort(i.date))}<small>${esc(rcIn(i.date))}</small>`)),OV.rescal?'No results due yet — the first notices arrive about a week before results season starts.':'Loading…'))
     + card('Top ranked','filters','All screens',list(top.map(d=>li(co(d.code),esc(d.name),esc(shortT(base(d))),fmt(d.final_score,1))),'No scored companies yet.'))
     + card('Latest headlines','news','News Channel',list(news.map(it=>li(`data-ov-link="${esc(it.link)}"`,esc(it.title),`${esc(NEWS_COUNTRY[it.country]||it.country||'')} · ${esc(it.source||'')}`,esc(newsAgo(it.published)))),NEWS.data?'No headlines yet.':'Loading…'))
     + card('Bulk &amp; block deals, board names','deals','All deals',list(deals.map(x=>li(co(x.board_code),esc(x.name),`${esc(x.side)} · ${esc(ovClip(x.client,40))}`,`₹${fmt(x.value_cr,1)} cr<small>${esc(ovDay(x.date))}</small>`)),OV.deals?'No disclosed deals in board names in the last 7 days.':'Loading…'))
@@ -5105,6 +5111,108 @@ function renderOverviewPanels(){
 }
 renderOverviewPanels();
 ovLoad();
+
+/* ---------- Results calendar ----------
+   One entry per board company: its next results event, with how sure the date is -- confirmed by an NSE
+   board-meeting notice, expected (the date it reported this quarter last year), or the SEBI deadline (the latest
+   it can report). Written several times a day by scripts/run_results_calendar_in.py; read-only here. */
+const RC={built:false};
+/* function declarations, not consts: the Overview panels call these before this block has finished running */
+function rcToday(){ const n=new Date(); return Date.UTC(n.getFullYear(), n.getMonth(), n.getDate()); }
+function rcDays(iso){ return Math.round((Date.parse(iso+'T00:00:00Z')-rcToday())/86400000); }
+function rcIn(iso){ const n=rcDays(iso); return n===0?'today':n===1?'tomorrow':n===-1?'yesterday':n>0?`in ${n} days`:`${-n} days ago`; }
+function rcDayShort(iso){ return new Date(iso+'T00:00:00Z').toLocaleDateString('en-IN',{weekday:'short',day:'2-digit',month:'short',timeZone:'UTC'}); }
+function rcDayLong(iso){ return new Date(iso+'T00:00:00Z').toLocaleDateString('en-IN',{day:'2-digit',month:'short',year:'numeric',timeZone:'UTC'}); }
+function rcStatusLabel(i){ return i.status==='confirmed' ? 'confirmed' : i.status==='expected' ? 'expected' : 'by deadline'; }
+function rcItems(){ return (OV.rescal && OV.rescal.items) || []; }
+function rcUpcoming(){ const rank={confirmed:0,expected:1,deadline:2}; return rcItems().filter(i=>rcDays(i.date)>=-2).sort((a,b)=>a.date.localeCompare(b.date) || rank[a.status]-rank[b.status]); }
+function rcWithin(n){ return rcUpcoming().filter(i=>rcDays(i.date)<=n); }
+function rcFor(d){ return rcItems().find(i=>String(i.code)===String(d.code)); }
+/* the line under a company's name in its scorecard */
+function rcHeadLine(d){
+  const i=rcFor(d); if(!i) return '';
+  const n=rcDays(i.date);
+  if(i.status==='deadline' && n>75) return '';
+  const cls = i.status==='confirmed' ? 'rc-conf' : i.status==='expected' ? 'rc-exp' : 'rc-dead';
+  return `<div class="rc-next"><span class="rc-chip ${cls}" title="${esc(i.detail||'')}">Next results${i.status==='confirmed'?'':' (expected)'}</span> ${esc(i.result)} — <b>${esc(rcDayLong(i.date))}</b>, ${esc(rcIn(i.date))}${i.status==='deadline'?' <span class="qsrc">(latest date allowed; no date announced)</span>':''}</div>`;
+}
+/* how the latest reported quarter went, to set expectations for the next one */
+function rcLastQuarter(code){
+  const q=INTEL.res && INTEL.res.companies && INTEL.res.companies[code] && INTEL.res.companies[code].quarters;
+  if(!q || !q.sales || q.sales.length<5) return null;
+  const n=q.sales.length-1, a=q.sales[n], b=q.sales[n-4], p=(q.net_profit||[])[n], pb=(q.net_profit||[])[n-4];
+  return {label:qLabel(q.periods[n]), sales: a!==null&&b>0 ? (a/b-1)*100 : null, profit: p!==null&&pb>0 ? (p/pb-1)*100 : null, opm:(q.opm||[])[n]};
+}
+
+async function openResCal(){
+  const body=document.getElementById('rc-body');
+  if(!OV.rescal){
+    body.innerHTML='<p class="view-hint">Loading…</p>';
+    OV.rescal = await fetchJSON('/api/results-calendar-in').catch(()=>null);
+  }
+  if(!OV.rescal || !OV.rescal.items || !OV.rescal.items.length){
+    body.innerHTML='<p class="view-hint">The results calendar has not been built yet. It refreshes automatically several times a day.</p>'; return;
+  }
+  if(!RC.built) rcBuild();
+  rcRender();
+}
+function rcBuild(){
+  RC.built=true;
+  document.getElementById('rc-window').innerHTML=[['7','Next 7 days'],['10','Next 10 days'],['14','Next 14 days'],['30','Next 30 days'],['60','Next 60 days'],['','Everything on the calendar']].map(([v,l])=>`<option value="${v}">${l}</option>`).join('');
+  document.getElementById('rc-window').value='10';
+  document.getElementById('rc-theme').innerHTML='<option value="">All themes</option>'+THEMES.map(t=>`<option value="${esc(t)}">${esc(shortT(t))}</option>`).join('');
+  let t=0;
+  document.getElementById('rc-q').oninput=()=>{ clearTimeout(t); t=setTimeout(rcRender,140); };
+  ['rc-window','rc-status','rc-theme','rc-watch'].forEach(id=>{ document.getElementById(id).onchange=rcRender; });
+  document.getElementById('rc-clear').onclick=()=>{
+    document.getElementById('rc-q').value=''; document.getElementById('rc-window').value='10'; document.getElementById('rc-status').value='';
+    document.getElementById('rc-theme').value=''; document.getElementById('rc-watch').checked=false; rcRender();
+  };
+}
+function rcRender(){
+  const by=ovByCode(), all=rcUpcoming().filter(i=>by[i.code]);
+  const q=document.getElementById('rc-q').value.trim().toLowerCase(), win=document.getElementById('rc-window').value;
+  const st=document.getElementById('rc-status').value, th=document.getElementById('rc-theme').value, wl=document.getElementById('rc-watch').checked;
+  const rows=all.filter(i=>{
+    const d=by[i.code];
+    if(win && rcDays(i.date)>+win) return false;
+    if(st && i.status!==st) return false;
+    if(th && base(d)!==th) return false;
+    if(wl && !WATCH.has(i.code)) return false;
+    return !q || (d.name+' '+d.code+' '+(d.nse_code||'')).toLowerCase().includes(q);
+  });
+  document.getElementById('rescal-asof').textContent = OV.rescal.fetched_at ? 'Updated '+newsAgoISO(OV.rescal.fetched_at) : '';
+  const c10=all.filter(i=>rcDays(i.date)<=10).length, c30=all.filter(i=>rcDays(i.date)<=30).length, conf=all.filter(i=>i.status==='confirmed').length;
+  const earliest=all.find(i=>i.status!=='deadline');
+  document.getElementById('rc-summary').innerHTML =
+    `<div class="earn-stat"><span>Next 10 days</span><b>${c10}</b></div><div class="earn-stat"><span>Next 30 days</span><b>${c30}</b></div>`
+    + `<div class="earn-stat"><span>Dates confirmed</span><b>${conf}</b></div>`
+    + (earliest ? `<div class="earn-stat"><span>First expected</span><b style="font-size:15px">${esc(rcDayShort(earliest.date))}</b></div>` : '');
+  document.getElementById('rc-count').textContent=`${rows.length} compan${rows.length===1?'y':'ies'}`;
+  const body=document.getElementById('rc-body');
+  if(!rows.length){
+    body.innerHTML = `<p class="view-hint">${win && !all.some(i=>rcDays(i.date)<=+win)
+      ? `Nothing on the board is due in this window${earliest?` — the first results are expected around <b>${esc(rcDayLong(earliest.date))}</b>`:''}. Try a wider window.`
+      : 'No company matches — clear the search or the filters.'}</p>`;
+    return;
+  }
+  CURRENT=rows.map(i=>by[i.code]);
+  body.innerHTML=`<div class="mv-tablewrap"><table class="mv-table"><thead><tr><th>Date</th><th>Company</th><th>Theme</th><th>Results</th><th>Date is</th><th class="n">Last quarter: sales</th><th class="n">profit</th><th class="n">Score</th></tr></thead><tbody>
+    ${rows.map(i=>{
+      const d=by[i.code], lq=rcLastQuarter(i.code), n=rcDays(i.date);
+      const chip = i.status==='confirmed' ? '<span class="rc-chip rc-conf">Confirmed</span>'
+        : i.status==='expected' ? `<span class="rc-chip rc-exp" title="${esc(i.detail||'')}">Expected · ${i.last_year?'last year '+esc(rcDayShort(i.last_year)):'from history'}</span>`
+        : `<span class="rc-chip rc-dead" title="${esc(i.detail||'')}">SEBI deadline</span>`;
+      return `<tr data-rc-code="${esc(i.code)}" style="cursor:pointer">
+        <td><b>${esc(rcDayShort(i.date))}</b> <span class="rc-in ${n<=3?'rc-soon':''}">${esc(rcIn(i.date))}</span></td>
+        <td><b>${esc(d.name)}</b><small>${esc(d.code)}${d.nse_code&&d.nse_code!==d.code?' · '+esc(d.nse_code):''}</small></td>
+        <td>${esc(shortT(base(d)))}</td><td>${esc(i.result)}</td><td>${chip}${i.url?` <a href="${esc(i.url)}" target="_blank" rel="noopener" onclick="event.stopPropagation()">notice ↗</a>`:''}</td>
+        <td class="n">${lq?`${yoyTxt(lq.sales)} <small>${esc(lq.label)}</small>`:'—'}</td><td class="n">${lq?yoyTxt(lq.profit):'—'}</td>
+        <td class="n">${fmt(d.final_score,1)}</td></tr>`; }).join('')}
+    </tbody></table></div>
+    <p class="caveat" style="margin-top:8px"><b>Confirmed</b> = the company has notified NSE of a board meeting to approve results. <b>Expected</b> = no notice yet; last year's date, moved to the same weekday — companies keep a steady calendar but it can move. <b>SEBI deadline</b> = no announced date and no history; the latest it can report (45 days after quarter-end). "Last quarter" is the year-on-year change in the latest reported quarter.</p>`;
+  body.querySelectorAll('[data-rc-code]').forEach(tr=>tr.onclick=()=>{ const d=by[tr.dataset.rcCode]; if(d) openDrawer(d); });
+}
 
 ACCT.loaded=initUserMenu();
 watchSync();

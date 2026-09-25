@@ -48,6 +48,8 @@ GET /api/results-in       India board: last 12 quarters and 8 fiscal years of sa
                           profit, plus each company's earnings-call list (scripts/run_results_in.py)
 GET /api/guidance-in      India board: numeric targets management stated on earnings calls, with the
                           exact sentence, and whether each came true (scripts/run_guidance_in.py)
+GET /api/results-calendar-in  India board: each company's next results date (confirmed by NSE notice,
+                          expected from last year, or the SEBI deadline) (scripts/run_results_calendar_in.py)
 GET /api/ipo-us           the US IPO calendar (scripts/run_ipo_us.py)
 GET /api/performance-us   return since added and score history per board company
                           (scripts/run_performance_us.py)
@@ -78,6 +80,7 @@ IPO_US_FILE = BASE_DIR / "data" / "ipo_us" / "latest.json"
 PERFORMANCE_US_FILE = BASE_DIR / "data" / "performance_us" / "latest.json"
 RESULTS_IN_FILE = BASE_DIR / "data" / "results_in" / "latest.json"
 GUIDANCE_IN_FILE = BASE_DIR / "data" / "guidance_in" / "latest.json"
+RESULTS_CALENDAR_IN_FILE = BASE_DIR / "data" / "results_calendar_in" / "latest.json"
 
 
 @router.get("/api/deals")
@@ -145,6 +148,11 @@ for _name, _path in (("fundamentals", FUNDAMENTALS_US_FILE), ("analysts", ANALYS
 @router.get("/api/results-in")
 def results_in(request: Request):
     return file_response(request, RESULTS_IN_FILE, {"fetched_at": None, "companies": {}})
+
+
+@router.get("/api/results-calendar-in")
+def results_calendar_in(request: Request):
+    return file_response(request, RESULTS_CALENDAR_IN_FILE, {"fetched_at": None, "asof": None, "items": []})
 
 
 @router.get("/api/guidance-in")

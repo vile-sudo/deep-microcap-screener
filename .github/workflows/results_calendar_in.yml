@@ -1,0 +1,81 @@
+name: India results calendar
+
+# When each company on the India board reports its next results (scripts/run_results_calendar_in.py): confirmed
+# by NSE board-meeting notices (mainboard and Emerge/SME), else expected from the date it reported this quarter
+# last year, else the SEBI deadline. Notices arrive continuously -- about a week before each meeting -- so it runs
+# four times a day (03:00, 09:00, 15:00, 21:00 UTC). A run takes about a minute; the file is committed only when
+# something changed; if NSE cannot be reached the previous file is kept. Commits with GITHUB_TOKEN never
+# re-trigger workflows.
+
+permissions:
+  contents: write
+
+on:
+  schedule:
+    - cron: '0 3,9,15,21 * * *'
+  workflow_dispatch:
+
+concurrency:
+  group: results-calendar-in
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Check out repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: pip install requests
+
+      - name: Build the results calendar
+        working-directory: ./backend
+        run: python -u scripts/run_results_calendar_in.py
+
+      - name: Commit
+        id: commit
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add backend/data/results_calendar_in
+          if git diff --cached --quiet; then
+            echo "No changes"
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          git commit -m "India results calendar update"
+          for i in 1 2 3; do
+            git pull --rebase origin ${{ github.ref_name }} && git push origin HEAD:${{ github.ref_name }} && break
+            sleep 5
+          done
+          echo "changed=true" >> "$GITHUB_OUTPUT"
+
+      # Data-only deploy: pull on the server and copy the new data file into the running container
+      # (no rebuild, no restart); a full rebuild only if the container predates /app/sync-data.sh.
+      - name: Deploy to AWS
+        if: ${{ steps.commit.outputs.changed == 'true' }}
+        env:
+          AWS_HOST: ${{ secrets.AWS_HOST }}
+          AWS_SSH_KEY: ${{ secrets.AWS_SSH_KEY }}
+          AWS_SSH_USER: ${{ secrets.AWS_SSH_USER }}
+          AWS_DEPLOY_PATH: ${{ secrets.AWS_DEPLOY_PATH }}
+        run: |
+          if [ -z "$AWS_HOST" ] || [ -z "$AWS_SSH_KEY" ]; then
+            echo "AWS_HOST/AWS_SSH_KEY secrets not set; skipping AWS deploy"
+            exit 0
+          fi
+          mkdir -p ~/.ssh
+          printf '%s\n' "$AWS_SSH_KEY" > ~/.ssh/deploy_key
+          chmod 600 ~/.ssh/deploy_key
+          ssh-keyscan -H "$AWS_HOST" >> ~/.ssh/known_hosts 2>/dev/null
+          ssh -i ~/.ssh/deploy_key -o StrictHostKeyChecking=yes "${AWS_SSH_USER:-ubuntu}@$AWS_HOST" \
+            "cd ${AWS_DEPLOY_PATH:-/opt/screener-app} && git pull --ff-only && (docker compose exec -T screener test -x /app/sync-data.sh && docker compose exec -T screener /app/sync-data.sh || docker compose up -d --build)"
+          echo "AWS data deploy done"

@@ -101,7 +101,7 @@
   .f1{transform:translateX(12vw)}.f2{transform:translateX(66vw)}.f3{transform:translateX(38vw)}.f4{transform:translateX(18vw)}.f5{transform:translateX(74vw)}.sp-school{transform:translateX(56vw)}
 }
 </style>
-<link rel="stylesheet" href="/static/style.css?v=72">
+<link rel="stylesheet" href="/static/style.css?v=73">
 <link rel="stylesheet" href="/static/dark.css?v=65">
 </head>
 <body>
@@ -218,6 +218,7 @@
       <button class="side-link" id="filters-link" type="button" title="Screen filters"><svg viewBox="0 0 24 24"><path d="M3 12h4l2.5-5 4 10 2.5-5H21"/></svg>Screens</button>
       <button class="side-link" id="gallery-link" type="button" title="Screen any Chart"><svg viewBox="0 0 24 24"><rect x="4" y="4.5" width="16" height="15" rx="2"/><path d="M8 15l3-3.5 2.5 2 3-4.5"/></svg>Screen any Chart<span class="side-count" id="gallery-count"></span></button>
       <button class="side-link" id="reports-link" type="button" title="Research Reports"><svg viewBox="0 0 24 24"><path d="M7 3.5h7.5L19 8v12.5H7z"/><path d="M14.5 3.5V8H19"/><path d="M10 12h6M10 15.5h6M10 19h3.5"/></svg>Reports</button>
+      <button class="side-link" id="rescal-link" type="button" title="Results Calendar: when each company on the board reports"><svg viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="16" rx="2"/><path d="M4 10h16M9 3v4M15 3v4"/></svg>Results Calendar</button>
       <button class="side-link" id="ipor-link" type="button" title="Upcoming IPO Reports"><svg viewBox="0 0 24 24"><path d="M12 3v6l4 2"/><circle cx="12" cy="12" r="9"/></svg>Upcoming IPO Reports</button>
       <button class="side-link" id="sectors-link" type="button" title="Sector Research"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><path d="M4 12h16M12 4c2.5 2.6 2.5 13.4 0 16M12 4c-2.5 2.6-2.5 13.4 0 16"/></svg>Sectors</button>
       <button class="side-link" id="deals-link" type="button" title="Bulk &amp; Block Deals"><svg viewBox="0 0 24 24"><path d="M4 4h16v6H4z"/><path d="M4 14h7v6H4z"/><path d="M13 14h7v6h-7z"/></svg>Bulk &amp; Block Deals</button>
@@ -413,6 +414,26 @@
     <div class="rp-grid" id="rpgrid"></div>
   </div>
   <article class="rp-doc" id="rp-doc" hidden></article>
+</section>
+
+<section class="dashboard-section rescal-section" data-views="rescal" aria-labelledby="rescal-title">
+  <div class="section-heading"><div><span class="eyebrow">RESULTS</span><h2 id="rescal-title">Results Calendar</h2><p class="section-copy">When each company on the board reports its next results, so you know what is coming before it lands. A date is <b>confirmed</b> when the company has told NSE its board will meet to approve results; until then it is <b>expected</b> (the date it reported this quarter last year) or, where there is no history, shown as the SEBI <b>deadline</b> — the latest it can report. Updated several times a day; results season notices arrive about a week ahead.</p></div><span class="section-note" id="rescal-asof"></span></div>
+  <div class="mv-toolbar">
+    <input id="rc-q" class="gal-search" type="search" autocomplete="off" spellcheck="false" placeholder="Search company or ticker…">
+    <select class="gal-select" id="rc-window" aria-label="Window"></select>
+    <select class="gal-select" id="rc-status" aria-label="How sure is the date">
+      <option value="">Confirmed, expected and deadline</option>
+      <option value="confirmed">Confirmed only</option>
+      <option value="expected">Expected only</option>
+      <option value="deadline">Deadline only</option>
+    </select>
+    <select class="gal-select" id="rc-theme" aria-label="Theme"></select>
+    <label class="news-pm"><input type="checkbox" id="rc-watch"> Watchlist only</label>
+    <button class="theme-back" id="rc-clear" type="button">Clear</button>
+  </div>
+  <div class="rc-summary" id="rc-summary"></div>
+  <div class="mv-count" id="rc-count"></div>
+  <div id="rc-body"><p class="view-hint">Loading…</p></div>
 </section>
 
 <section class="dashboard-section ipor-section" data-views="ipor" aria-labelledby="ipor-title">
@@ -663,6 +684,6 @@
 <div class="modal" id="modal" role="dialog" aria-modal="true"><div class="mbox"><button class="close" id="mclose" aria-label="Close">&times;</button><div id="mbody"></div></div></div>
 
 <script src="/static/asme-certified.js?v=5" defer></script>
-<script src="/static/app.js?v=80" defer></script>
+<script src="/static/app.js?v=81" defer></script>
 </body>
 </html>
