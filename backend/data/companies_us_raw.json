@@ -812,5 +812,2125 @@
   "product_pivot_flag": false,
   "product_pivot_note": null,
   "lens_updated": "2026-09-25"
+ },
+ {
+  "code": "PBYI",
+  "market": "US",
+  "name": "Puma Biotechnology Inc",
+  "sector": "Biotechnology",
+  "theme": "Biotechnology",
+  "screen": "us-auto",
+  "source": "us-auto",
+  "rubric": "us-auto",
+  "claim_grade": "company-stated",
+  "added_on": "2026-09-25",
+  "cleared_paths": [
+   "moat evidence",
+   "PAT turnaround"
+  ],
+  "market_cap_usd": 506.90904972844834,
+  "price": 9.82,
+  "pe": 20.6,
+  "roe_pct": 20.369999999999997,
+  "insider_pct": 16.04,
+  "num_shareholders": null,
+  "business": "Biotechnology -- PUMA BIOTECHNOLOGY, INC.",
+  "moat_note": "Auto-screen found the company describing itself with: a leading US provider (10-K): “Our goal is to become a leading provider of advanced therapies for the treatment of various forms of cancer.”",
+  "evidence_sources": [
+   "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001401667&type=10-K"
+  ],
+  "final_score": 50,
+  "adj_score": 50,
+  "penalty_detail": [],
+  "gate_failures": [],
+  "warnings": [
+   "Auto-added by the daily US screen: numbers are from Finnhub and SEC EDGAR, the evidence is the company's own words in its 10-K (2026) and latest earnings release matched by rules. Nobody has researched this company yet."
+  ],
+  "score_rationale": "Automated five-pillar score (out of 85 -- no institutional-ownership pillar on Finnhub's free tier) from Finnhub/SEC numbers and matched statements (see backend/scripts/us_auto_screen.py and the How this board is built page).",
+  "has_lens_data": true,
+  "cwip_usd_m": null,
+  "cwip_pct_net_block": null,
+  "capex_overhang": false,
+  "capex_heavy": false,
+  "pat_turnaround": true,
+  "pat_series_usd_m": [
+   [
+    "2025-03-31",
+    2.97
+   ],
+   [
+    "2025-06-30",
+    5.86
+   ],
+   [
+    "2025-09-30",
+    8.84
+   ],
+   [
+    "2025-12-31",
+    13.44
+   ],
+   [
+    "2026-03-31",
+    -3.75
+   ],
+   [
+    "2026-06-30",
+    8.19
+   ]
+  ],
+  "guidance_pct": null,
+  "guidance_over15": false,
+  "guidance_flag": false,
+  "guidance_derived": false,
+  "guidance_note": null,
+  "capacity_util_flag": false,
+  "capacity_util_note": null,
+  "product_pivot_flag": false,
+  "product_pivot_note": null,
+  "s_moat": 12,
+  "s_reshoring": 0,
+  "s_insider": 15,
+  "s_undercovered": 13,
+  "s_financials": 10,
+  "score": 50,
+  "risk_penalty": 0
+ },
+ {
+  "code": "CDRE",
+  "market": "US",
+  "name": "Cadre Holdings Inc",
+  "sector": "Aerospace & Defense",
+  "theme": "Aerospace & Defense",
+  "screen": "us-auto",
+  "source": "us-auto",
+  "rubric": "us-auto",
+  "claim_grade": "company-stated",
+  "added_on": "2026-09-25",
+  "cleared_paths": [
+   "moat evidence",
+   "management guidance"
+  ],
+  "market_cap_usd": 1122.3315207947564,
+  "price": 26.21,
+  "pe": 32.5,
+  "roe_pct": 10.76,
+  "insider_pct": 22.2,
+  "num_shareholders": null,
+  "business": "Aerospace & Defense -- Cadre Holdings, Inc.",
+  "moat_note": "Auto-screen found the company describing itself with: a leading US provider (10-K): “Globally, we are a leading provider of explosive ordnance disposal technician equipment.” · only / one of a limited number of providers (10-K): “None of our competitors compete effectively in all of our product verticals, making us the only one-stop provider of critical safety equipment solutions in the market.”",
+  "evidence_sources": [
+   "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001860543&type=10-K"
+  ],
+  "final_score": 47,
+  "adj_score": 47,
+  "penalty_detail": [],
+  "gate_failures": [],
+  "warnings": [
+   "Auto-added by the daily US screen: numbers are from Finnhub and SEC EDGAR, the evidence is the company's own words in its 10-K (2026) and latest earnings release matched by rules. Nobody has researched this company yet."
+  ],
+  "score_rationale": "Automated five-pillar score (out of 85 -- no institutional-ownership pillar on Finnhub's free tier) from Finnhub/SEC numbers and matched statements (see backend/scripts/us_auto_screen.py and the How this board is built page).",
+  "has_lens_data": true,
+  "cwip_usd_m": null,
+  "cwip_pct_net_block": null,
+  "capex_overhang": false,
+  "capex_heavy": false,
+  "pat_turnaround": false,
+  "pat_series_usd_m": [
+   [
+    "2025-03-31",
+    9.25
+   ],
+   [
+    "2025-06-30",
+    12.21
+   ],
+   [
+    "2025-09-30",
+    10.94
+   ],
+   [
+    "2025-12-31",
+    11.74
+   ],
+   [
+    "2026-03-31",
+    1.98
+   ],
+   [
+    "2026-06-30",
+    11.41
+   ]
+  ],
+  "guidance_pct": 24.4,
+  "guidance_over15": true,
+  "guidance_flag": true,
+  "guidance_derived": true,
+  "guidance_note": "Auto-detected, unverified (earnings release (2026-08-05); percentage derived from the guided dollar range vs last fiscal year): “Raises Guidance to Full Year 2026 Net Sales of $749 to $769 Million and Adjusted EBITDA of $139 to $144 Million”",
+  "capacity_util_flag": false,
+  "capacity_util_note": null,
+  "product_pivot_flag": false,
+  "product_pivot_note": null,
+  "s_moat": 18,
+  "s_reshoring": 0,
+  "s_insider": 15,
+  "s_undercovered": 10,
+  "s_financials": 4,
+  "score": 47,
+  "risk_penalty": 0
+ },
+ {
+  "code": "MG",
+  "market": "US",
+  "name": "Mistras Group Inc",
+  "sector": "Professional Services",
+  "theme": "Professional Services",
+  "screen": "us-auto",
+  "source": "us-auto",
+  "rubric": "us-auto",
+  "claim_grade": "company-stated",
+  "added_on": "2026-09-25",
+  "cleared_paths": [
+   "moat evidence"
+  ],
+  "market_cap_usd": 681.1743340506208,
+  "price": 21.38,
+  "pe": 25.6,
+  "roe_pct": 11.53,
+  "insider_pct": 24.04,
+  "num_shareholders": null,
+  "business": "Professional Services -- Mistras Group, Inc.",
+  "moat_note": "Auto-screen found the company describing itself with: a leading US provider (10-K): “We believe the following competitive strengths contribute to our being a leading provider of asset protection solutions and will allow us to further capitalize on growth opportunities in our industry:” · a niche segment with a regulatory approval (10-K): “Internationally, our primary competitors are divisions of large companies, with additional competition from small independent local companies which may be limited to a specific product, service or technology and focused on a niche market or geographic region. … MISTRAS laboratories hold a wide variety of certifications, such as: Nadcap (formerly NADCAP, the National Aerospace and Defense Contractors Accreditation Program), AS9100/ISO-9001, Federal Aviation Administration Repair Station, and the International Traffic in Arms Regulations/Export Administration Regulations, which allow the Company to perform inspections that meet or exceed stringent regulatory and manufacturers' requirements.”",
+  "evidence_sources": [
+   "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001436126&type=10-K"
+  ],
+  "final_score": 46,
+  "adj_score": 46,
+  "penalty_detail": [],
+  "gate_failures": [],
+  "warnings": [
+   "Auto-added by the daily US screen: numbers are from Finnhub and SEC EDGAR, the evidence is the company's own words in its 10-K (2026) and latest earnings release matched by rules. Nobody has researched this company yet."
+  ],
+  "score_rationale": "Automated five-pillar score (out of 85 -- no institutional-ownership pillar on Finnhub's free tier) from Finnhub/SEC numbers and matched statements (see backend/scripts/us_auto_screen.py and the How this board is built page).",
+  "has_lens_data": true,
+  "cwip_usd_m": null,
+  "cwip_pct_net_block": null,
+  "capex_overhang": false,
+  "capex_heavy": false,
+  "pat_turnaround": false,
+  "pat_series_usd_m": [
+   [
+    "2025-03-31",
+    -3.19
+   ],
+   [
+    "2025-06-30",
+    3.02
+   ],
+   [
+    "2025-09-30",
+    13.11
+   ],
+   [
+    "2025-12-31",
+    3.9
+   ],
+   [
+    "2026-03-31",
+    2.39
+   ],
+   [
+    "2026-06-30",
+    7.58
+   ]
+  ],
+  "guidance_pct": null,
+  "guidance_over15": false,
+  "guidance_flag": false,
+  "guidance_derived": false,
+  "guidance_note": null,
+  "capacity_util_flag": false,
+  "capacity_util_note": null,
+  "product_pivot_flag": false,
+  "product_pivot_note": null,
+  "s_moat": 14,
+  "s_reshoring": 0,
+  "s_insider": 15,
+  "s_undercovered": 13,
+  "s_financials": 4,
+  "score": 46,
+  "risk_penalty": 0
+ },
+ {
+  "code": "RMTI",
+  "market": "US",
+  "name": "Rockwell Medical Inc",
+  "sector": "Health Care",
+  "theme": "Health Care",
+  "screen": "us-auto",
+  "source": "us-auto",
+  "rubric": "us-auto",
+  "claim_grade": "company-stated",
+  "added_on": "2026-09-25",
+  "cleared_paths": [
+   "moat evidence"
+  ],
+  "market_cap_usd": 34.541085,
+  "price": 8.57,
+  "pe": -6.4,
+  "roe_pct": -14.030000000000001,
+  "insider_pct": 7.11,
+  "num_shareholders": null,
+  "business": "Health Care -- ROCKWELL MEDICAL, INC.",
+  "moat_note": "Auto-screen found the company describing itself with: a leading US provider (10-K): “&#8226; In July 2025, we signed a multi-year product purchase agreement with Innovative Renal Care, one of the largest dialysis service providers in the United States.”",
+  "evidence_sources": [
+   "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001041024&type=10-K"
+  ],
+  "final_score": 42,
+  "adj_score": 42,
+  "penalty_detail": [],
+  "gate_failures": [
+   "ROE -14.030000000000001% not above 5%"
+  ],
+  "warnings": [
+   "Auto-added by the daily US screen: numbers are from Finnhub and SEC EDGAR, the evidence is the company's own words in its 10-K (2026) and latest earnings release matched by rules. Nobody has researched this company yet.",
+   "Added despite failing the fundamentals gates below -- it cleared one of the five paths (moat, guidance, PAT turnaround, capacity utilisation, product pivot) on its own, which this screen treats as sufficient by itself; financials are not a blocker for that path."
+  ],
+  "score_rationale": "Automated five-pillar score (out of 85 -- no institutional-ownership pillar on Finnhub's free tier) from Finnhub/SEC numbers and matched statements (see backend/scripts/us_auto_screen.py and the How this board is built page).",
+  "has_lens_data": true,
+  "cwip_usd_m": null,
+  "cwip_pct_net_block": null,
+  "capex_overhang": false,
+  "capex_heavy": false,
+  "pat_turnaround": false,
+  "pat_series_usd_m": [
+   [
+    "2025-03-31",
+    -1.51
+   ],
+   [
+    "2025-06-30",
+    -1.49
+   ],
+   [
+    "2025-09-30",
+    -1.75
+   ],
+   [
+    "2025-12-31",
+    -0.55
+   ],
+   [
+    "2026-03-31",
+    -1.6
+   ],
+   [
+    "2026-06-30",
+    -1.17
+   ]
+  ],
+  "guidance_pct": null,
+  "guidance_over15": false,
+  "guidance_flag": false,
+  "guidance_derived": false,
+  "guidance_note": null,
+  "capacity_util_flag": false,
+  "capacity_util_note": null,
+  "product_pivot_flag": false,
+  "product_pivot_note": null,
+  "s_moat": 10,
+  "s_reshoring": 0,
+  "s_insider": 15,
+  "s_undercovered": 15,
+  "s_financials": 2,
+  "score": 42,
+  "risk_penalty": 0
+ },
+ {
+  "code": "RYM",
+  "market": "US",
+  "name": "RYTHM Inc",
+  "sector": "Machinery",
+  "theme": "Machinery",
+  "screen": "us-auto",
+  "source": "us-auto",
+  "rubric": "us-auto",
+  "claim_grade": "company-stated",
+  "added_on": "2026-09-25",
+  "cleared_paths": [
+   "moat evidence",
+   "management guidance",
+   "PAT turnaround"
+  ],
+  "market_cap_usd": 48.24589268839634,
+  "price": 22.14,
+  "pe": -2.9,
+  "roe_pct": -12.61,
+  "insider_pct": 14.0,
+  "num_shareholders": null,
+  "business": "Machinery -- RYTHM, Inc.",
+  "moat_note": "Auto-screen found the company describing itself with: a leading US provider (10-K): “RYTHM has also historically been a leading provider of innovative cultivation and extraction solutions for the cannabis industry.”",
+  "evidence_sources": [
+   "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001800637&type=10-K"
+  ],
+  "final_score": 42,
+  "adj_score": 42,
+  "penalty_detail": [],
+  "gate_failures": [
+   "ROE -12.61% not above 5%"
+  ],
+  "warnings": [
+   "Auto-added by the daily US screen: numbers are from Finnhub and SEC EDGAR, the evidence is the company's own words in its 10-K (2026) and latest earnings release matched by rules. Nobody has researched this company yet.",
+   "Added despite failing the fundamentals gates below -- it cleared one of the five paths (moat, guidance, PAT turnaround, capacity utilisation, product pivot) on its own, which this screen treats as sufficient by itself; financials are not a blocker for that path."
+  ],
+  "score_rationale": "Automated five-pillar score (out of 85 -- no institutional-ownership pillar on Finnhub's free tier) from Finnhub/SEC numbers and matched statements (see backend/scripts/us_auto_screen.py and the How this board is built page).",
+  "has_lens_data": true,
+  "cwip_usd_m": null,
+  "cwip_pct_net_block": null,
+  "capex_overhang": false,
+  "capex_heavy": false,
+  "pat_turnaround": true,
+  "pat_series_usd_m": [
+   [
+    "2025-03-31",
+    -1.63
+   ],
+   [
+    "2025-06-30",
+    -7.36
+   ],
+   [
+    "2025-09-30",
+    -10.66
+   ],
+   [
+    "2025-12-31",
+    -13.61
+   ],
+   [
+    "2026-03-31",
+    19.92
+   ],
+   [
+    "2026-06-30",
+    1.18
+   ]
+  ],
+  "guidance_pct": 73.0,
+  "guidance_over15": true,
+  "guidance_flag": true,
+  "guidance_derived": false,
+  "guidance_note": "Auto-detected, unverified (earnings release (2026-08-04)): ““The Company delivered a record second quarter, with revenue growing 73% sequentially and exceeding prior guidance of 65% growth.”",
+  "capacity_util_flag": false,
+  "capacity_util_note": null,
+  "product_pivot_flag": false,
+  "product_pivot_note": null,
+  "s_moat": 10,
+  "s_reshoring": 0,
+  "s_insider": 15,
+  "s_undercovered": 15,
+  "s_financials": 2,
+  "score": 42,
+  "risk_penalty": 0
+ },
+ {
+  "code": "IMDX",
+  "market": "US",
+  "name": "Insight Molecular Diagnostics Inc",
+  "sector": "Biotechnology",
+  "theme": "Biotechnology",
+  "screen": "us-auto",
+  "source": "us-auto",
+  "rubric": "us-auto",
+  "claim_grade": "company-stated",
+  "added_on": "2026-09-25",
+  "cleared_paths": [
+   "moat evidence"
+  ],
+  "market_cap_usd": 129.2609142838875,
+  "price": 3.95,
+  "pe": -2.7,
+  "roe_pct": -426.68,
+  "insider_pct": 40.86,
+  "num_shareholders": 170,
+  "business": "Biotechnology -- Insight Molecular Diagnostics Inc.",
+  "moat_note": "Auto-screen found the company describing itself with: only / one of a limited number of providers (10-K): “Additionally, the chemical reagents used with the testing equipment we choose are available only from the equipment manufacturer.” · a leading US provider (10-K): “We partner with leading cybersecurity advisors and service providers to conduct periodic risk assessments and to monitor and maintain the performance and effectiveness of security controls used in our environment.”",
+  "evidence_sources": [
+   "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001642380&type=10-K"
+  ],
+  "final_score": 40,
+  "adj_score": 40,
+  "penalty_detail": [
+   "only 170 holders of record (-5)"
+  ],
+  "gate_failures": [
+   "ROE -426.68% not above 5%"
+  ],
+  "warnings": [
+   "Auto-added by the daily US screen: numbers are from Finnhub and SEC EDGAR, the evidence is the company's own words in its 10-K (2026) and latest earnings release matched by rules. Nobody has researched this company yet.",
+   "Added despite failing the fundamentals gates below -- it cleared one of the five paths (moat, guidance, PAT turnaround, capacity utilisation, product pivot) on its own, which this screen treats as sufficient by itself; financials are not a blocker for that path."
+  ],
+  "score_rationale": "Automated five-pillar score (out of 85 -- no institutional-ownership pillar on Finnhub's free tier) from Finnhub/SEC numbers and matched statements (see backend/scripts/us_auto_screen.py and the How this board is built page).",
+  "has_lens_data": true,
+  "cwip_usd_m": null,
+  "cwip_pct_net_block": null,
+  "capex_overhang": false,
+  "capex_heavy": false,
+  "pat_turnaround": false,
+  "pat_series_usd_m": [
+   [
+    "2025-03-31",
+    -6.67
+   ],
+   [
+    "2025-06-30",
+    -9.74
+   ],
+   [
+    "2025-09-30",
+    -10.85
+   ],
+   [
+    "2025-12-31",
+    27.22
+   ],
+   [
+    "2026-03-31",
+    -4.29
+   ],
+   [
+    "2026-06-30",
+    -11.26
+   ]
+  ],
+  "guidance_pct": null,
+  "guidance_over15": false,
+  "guidance_flag": false,
+  "guidance_derived": false,
+  "guidance_note": null,
+  "capacity_util_flag": false,
+  "capacity_util_note": null,
+  "product_pivot_flag": false,
+  "product_pivot_note": null,
+  "s_moat": 18,
+  "s_reshoring": 0,
+  "s_insider": 10,
+  "s_undercovered": 15,
+  "s_financials": 2,
+  "score": 45,
+  "risk_penalty": 5
+ },
+ {
+  "code": "SKYH",
+  "market": "US",
+  "name": "Sky Harbour Group Corp",
+  "sector": "Transportation Infrastructure",
+  "theme": "Transportation Infrastructure",
+  "screen": "us-auto",
+  "source": "us-auto",
+  "rubric": "us-auto",
+  "claim_grade": "company-stated",
+  "added_on": "2026-09-25",
+  "cleared_paths": [
+   "moat evidence"
+  ],
+  "market_cap_usd": 802.4180561316584,
+  "price": 9.83,
+  "pe": -74.8,
+  "roe_pct": 0.75,
+  "insider_pct": 12.83,
+  "num_shareholders": null,
+  "business": "Transportation Infrastructure -- Sky Harbour Group Corp",
+  "moat_note": "Auto-screen found the company describing itself with: only / one of a limited number of providers (10-K): “Our home base operator campuses do not have the right to be the sole provider of services at any airport.”",
+  "evidence_sources": [
+   "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001823587&type=10-K"
+  ],
+  "final_score": 37,
+  "adj_score": 37,
+  "penalty_detail": [],
+  "gate_failures": [
+   "ROE 0.75% not above 5%"
+  ],
+  "warnings": [
+   "Auto-added by the daily US screen: numbers are from Finnhub and SEC EDGAR, the evidence is the company's own words in its 10-K (2026) and latest earnings release matched by rules. Nobody has researched this company yet.",
+   "Added despite failing the fundamentals gates below -- it cleared one of the five paths (moat, guidance, PAT turnaround, capacity utilisation, product pivot) on its own, which this screen treats as sufficient by itself; financials are not a blocker for that path."
+  ],
+  "score_rationale": "Automated five-pillar score (out of 85 -- no institutional-ownership pillar on Finnhub's free tier) from Finnhub/SEC numbers and matched statements (see backend/scripts/us_auto_screen.py and the How this board is built page).",
+  "has_lens_data": true,
+  "cwip_usd_m": null,
+  "cwip_pct_net_block": null,
+  "capex_overhang": false,
+  "capex_heavy": false,
+  "pat_turnaround": false,
+  "pat_series_usd_m": [
+   [
+    "2025-03-31",
+    -6.38
+   ],
+   [
+    "2025-06-30",
+    17.45
+   ],
+   [
+    "2025-09-30",
+    -1.88
+   ],
+   [
+    "2025-12-31",
+    9.62
+   ],
+   [
+    "2026-03-31",
+    -5.58
+   ],
+   [
+    "2026-06-30",
+    -1.24
+   ]
+  ],
+  "guidance_pct": null,
+  "guidance_over15": false,
+  "guidance_flag": false,
+  "guidance_derived": false,
+  "guidance_note": null,
+  "capacity_util_flag": false,
+  "capacity_util_note": null,
+  "product_pivot_flag": false,
+  "product_pivot_note": null,
+  "s_moat": 10,
+  "s_reshoring": 0,
+  "s_insider": 15,
+  "s_undercovered": 10,
+  "s_financials": 2,
+  "score": 37,
+  "risk_penalty": 0
+ },
+ {
+  "code": "STRT",
+  "market": "US",
+  "name": "Strattec Security Corp",
+  "sector": "Auto Components",
+  "theme": "Auto Components",
+  "screen": "us-auto",
+  "source": "us-auto",
+  "rubric": "us-auto",
+  "claim_grade": "company-stated",
+  "added_on": "2026-09-25",
+  "cleared_paths": [
+   "moat evidence"
+  ],
+  "market_cap_usd": 262.13416914452074,
+  "price": 65.78,
+  "pe": 13.2,
+  "roe_pct": 8.7,
+  "insider_pct": 2.78,
+  "num_shareholders": null,
+  "business": "Auto Components -- STRATTEC SECURITY CORP",
+  "moat_note": "Auto-screen found the company describing itself with: a leading US provider (10-K): “Strattec Security Corporation (the \"Company\" or \"Strattec\"), headquartered in Milwaukee, Wisconsin, is a leading global manufacturer and provider of highly engineered advanced automotive access and security products and solutions.”",
+  "evidence_sources": [
+   "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0000933034&type=10-K"
+  ],
+  "final_score": 36,
+  "adj_score": 36,
+  "penalty_detail": [],
+  "gate_failures": [],
+  "warnings": [
+   "Auto-added by the daily US screen: numbers are from Finnhub and SEC EDGAR, the evidence is the company's own words in its 10-K (2026) and latest earnings release matched by rules. Nobody has researched this company yet."
+  ],
+  "score_rationale": "Automated five-pillar score (out of 85 -- no institutional-ownership pillar on Finnhub's free tier) from Finnhub/SEC numbers and matched statements (see backend/scripts/us_auto_screen.py and the How this board is built page).",
+  "has_lens_data": true,
+  "cwip_usd_m": null,
+  "cwip_pct_net_block": null,
+  "capex_overhang": false,
+  "capex_heavy": false,
+  "pat_turnaround": false,
+  "pat_series_usd_m": [
+   [
+    "2025-03-30",
+    5.4
+   ],
+   [
+    "2025-06-29",
+    8.27
+   ],
+   [
+    "2025-09-28",
+    8.53
+   ],
+   [
+    "2025-12-28",
+    4.95
+   ],
+   [
+    "2026-03-29",
+    3.24
+   ],
+   [
+    "2026-06-28",
+    3.88
+   ]
+  ],
+  "guidance_pct": null,
+  "guidance_over15": false,
+  "guidance_flag": false,
+  "guidance_derived": false,
+  "guidance_note": null,
+  "capacity_util_flag": false,
+  "capacity_util_note": null,
+  "product_pivot_flag": false,
+  "product_pivot_note": null,
+  "s_moat": 11,
+  "s_reshoring": 0,
+  "s_insider": 6,
+  "s_undercovered": 15,
+  "s_financials": 4,
+  "score": 36,
+  "risk_penalty": 0
+ },
+ {
+  "code": "EVEX",
+  "market": "US",
+  "name": "Eve Holding Inc",
+  "sector": "Aerospace & Defense",
+  "theme": "Aerospace & Defense",
+  "screen": "us-auto",
+  "source": "us-auto",
+  "rubric": "us-auto",
+  "claim_grade": "company-stated",
+  "added_on": "2026-09-25",
+  "cleared_paths": [
+   "moat evidence"
+  ],
+  "market_cap_usd": 728.3364624567306,
+  "price": 2.09,
+  "pe": -3.4,
+  "roe_pct": -221.18,
+  "insider_pct": 72.44,
+  "num_shareholders": null,
+  "business": "Aerospace & Defense -- Eve Holding, Inc.",
+  "moat_note": "Auto-screen found the company describing itself with: only / one of a limited number of providers (10-K): “We or ERJ are also, in some cases, subject to sole source suppliers for certain parts and other components for which we rely on, or may be reliant on, to achieve our projected type certification.”",
+  "evidence_sources": [
+   "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001823652&type=10-K"
+  ],
+  "final_score": 35,
+  "adj_score": 35,
+  "penalty_detail": [],
+  "gate_failures": [
+   "ROE -221.18% not above 5%"
+  ],
+  "warnings": [
+   "Auto-added by the daily US screen: numbers are from Finnhub and SEC EDGAR, the evidence is the company's own words in its 10-K (2026) and latest earnings release matched by rules. Nobody has researched this company yet.",
+   "Added despite failing the fundamentals gates below -- it cleared one of the five paths (moat, guidance, PAT turnaround, capacity utilisation, product pivot) on its own, which this screen treats as sufficient by itself; financials are not a blocker for that path."
+  ],
+  "score_rationale": "Automated five-pillar score (out of 85 -- no institutional-ownership pillar on Finnhub's free tier) from Finnhub/SEC numbers and matched statements (see backend/scripts/us_auto_screen.py and the How this board is built page).",
+  "has_lens_data": true,
+  "cwip_usd_m": null,
+  "cwip_pct_net_block": null,
+  "capex_overhang": false,
+  "capex_heavy": false,
+  "pat_turnaround": false,
+  "pat_series_usd_m": [
+   [
+    "2025-03-31",
+    -48.78
+   ],
+   [
+    "2025-06-30",
+    -64.69
+   ],
+   [
+    "2025-09-30",
+    -46.87
+   ],
+   [
+    "2025-12-31",
+    -63.92
+   ],
+   [
+    "2026-03-31",
+    -68.81
+   ],
+   [
+    "2026-06-30",
+    -34.23
+   ]
+  ],
+  "guidance_pct": null,
+  "guidance_over15": false,
+  "guidance_flag": false,
+  "guidance_derived": false,
+  "guidance_note": null,
+  "capacity_util_flag": false,
+  "capacity_util_note": null,
+  "product_pivot_flag": false,
+  "product_pivot_note": null,
+  "s_moat": 10,
+  "s_reshoring": 0,
+  "s_insider": 10,
+  "s_undercovered": 13,
+  "s_financials": 2,
+  "score": 35,
+  "risk_penalty": 0
+ },
+ {
+  "code": "MMLP",
+  "market": "US",
+  "name": "Martin Midstream Partners LP",
+  "sector": "Energy",
+  "theme": "Energy",
+  "screen": "us-auto",
+  "source": "us-auto",
+  "rubric": "us-auto",
+  "claim_grade": "company-stated",
+  "added_on": "2026-09-25",
+  "cleared_paths": [
+   "moat evidence",
+   "PAT turnaround"
+  ],
+  "market_cap_usd": 87.24805035662696,
+  "price": 2.23,
+  "pe": -5.6,
+  "roe_pct": 14.77,
+  "insider_pct": 8.49,
+  "num_shareholders": 150,
+  "business": "Energy -- MARTIN MIDSTREAM PARTNERS L.P.",
+  "moat_note": "Auto-screen found the company describing itself with: a niche segment with a regulatory approval (10-K): “We believe that we have become an integral part of the value chain for our customers by providing them with high value, niche services. … We conduct thorough and annual security assessments of all third-party file transfer protocols, and we perform in-depth reviews of hosted applications including, but not limited to, confirmation of SOC 2, ISO 27001, or other relevant security certifications.”",
+  "evidence_sources": [
+   "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001176334&type=10-K"
+  ],
+  "final_score": 35,
+  "adj_score": 35,
+  "penalty_detail": [
+   "only 150 holders of record (-5)"
+  ],
+  "gate_failures": [],
+  "warnings": [
+   "Auto-added by the daily US screen: numbers are from Finnhub and SEC EDGAR, the evidence is the company's own words in its 10-K (2026) and latest earnings release matched by rules. Nobody has researched this company yet."
+  ],
+  "score_rationale": "Automated five-pillar score (out of 85 -- no institutional-ownership pillar on Finnhub's free tier) from Finnhub/SEC numbers and matched statements (see backend/scripts/us_auto_screen.py and the How this board is built page).",
+  "has_lens_data": true,
+  "cwip_usd_m": 8.5,
+  "cwip_pct_net_block": 2.1,
+  "capex_overhang": false,
+  "capex_heavy": false,
+  "pat_turnaround": true,
+  "pat_series_usd_m": [
+   [
+    "2025-03-31",
+    -1.03
+   ],
+   [
+    "2025-06-30",
+    -2.41
+   ],
+   [
+    "2025-09-30",
+    -8.41
+   ],
+   [
+    "2025-12-31",
+    -2.89
+   ],
+   [
+    "2026-03-31",
+    -6.76
+   ],
+   [
+    "2026-06-30",
+    2.65
+   ]
+  ],
+  "guidance_pct": null,
+  "guidance_over15": false,
+  "guidance_flag": false,
+  "guidance_derived": false,
+  "guidance_note": null,
+  "capacity_util_flag": false,
+  "capacity_util_note": null,
+  "product_pivot_flag": false,
+  "product_pivot_note": null,
+  "s_moat": 6,
+  "s_reshoring": 0,
+  "s_insider": 15,
+  "s_undercovered": 15,
+  "s_financials": 4,
+  "score": 40,
+  "risk_penalty": 5
+ },
+ {
+  "code": "PRLD",
+  "market": "US",
+  "name": "Prelude Therapeutics Inc",
+  "sector": "Biotechnology",
+  "theme": "Biotechnology",
+  "screen": "us-auto",
+  "source": "us-auto",
+  "rubric": "us-auto",
+  "claim_grade": "company-stated",
+  "added_on": "2026-09-25",
+  "cleared_paths": [
+   "moat evidence"
+  ],
+  "market_cap_usd": 318.41589279118335,
+  "price": 3.99,
+  "pe": -5.4,
+  "roe_pct": -75.35,
+  "insider_pct": 6.03,
+  "num_shareholders": 20,
+  "business": "Biotechnology -- Prelude Therapeutics Inc",
+  "moat_note": "Auto-screen found the company describing itself with: only / one of a limited number of providers (10-K): “In addition, we are dependent on a sole supplier for certain components of our manufacturing process.”",
+  "evidence_sources": [
+   "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001678660&type=10-K"
+  ],
+  "final_score": 35,
+  "adj_score": 35,
+  "penalty_detail": [
+   "only 20 holders of record (-5)"
+  ],
+  "gate_failures": [
+   "ROE -75.35% not above 5%"
+  ],
+  "warnings": [
+   "Auto-added by the daily US screen: numbers are from Finnhub and SEC EDGAR, the evidence is the company's own words in its 10-K (2026) and latest earnings release matched by rules. Nobody has researched this company yet.",
+   "Added despite failing the fundamentals gates below -- it cleared one of the five paths (moat, guidance, PAT turnaround, capacity utilisation, product pivot) on its own, which this screen treats as sufficient by itself; financials are not a blocker for that path."
+  ],
+  "score_rationale": "Automated five-pillar score (out of 85 -- no institutional-ownership pillar on Finnhub's free tier) from Finnhub/SEC numbers and matched statements (see backend/scripts/us_auto_screen.py and the How this board is built page).",
+  "has_lens_data": true,
+  "cwip_usd_m": null,
+  "cwip_pct_net_block": null,
+  "capex_overhang": false,
+  "capex_heavy": false,
+  "pat_turnaround": false,
+  "pat_series_usd_m": [
+   [
+    "2025-03-31",
+    -32.09
+   ],
+   [
+    "2025-06-30",
+    -31.23
+   ],
+   [
+    "2025-09-30",
+    -19.73
+   ],
+   [
+    "2025-12-31",
+    -16.46
+   ],
+   [
+    "2026-03-31",
+    -10.38
+   ],
+   [
+    "2026-06-30",
+    -13.92
+   ]
+  ],
+  "guidance_pct": null,
+  "guidance_over15": false,
+  "guidance_flag": false,
+  "guidance_derived": false,
+  "guidance_note": null,
+  "capacity_util_flag": false,
+  "capacity_util_note": null,
+  "product_pivot_flag": false,
+  "product_pivot_note": null,
+  "s_moat": 10,
+  "s_reshoring": 0,
+  "s_insider": 15,
+  "s_undercovered": 13,
+  "s_financials": 2,
+  "score": 40,
+  "risk_penalty": 5
+ },
+ {
+  "code": "POSC",
+  "market": "US",
+  "name": "Positron Corp",
+  "sector": "Health Care",
+  "theme": "Health Care",
+  "screen": "us-auto",
+  "source": "us-auto",
+  "rubric": "us-auto",
+  "claim_grade": "company-stated",
+  "added_on": "2026-09-25",
+  "cleared_paths": [
+   "product-mix pivot"
+  ],
+  "market_cap_usd": 63.064944,
+  "price": 1.92,
+  "pe": -21.4,
+  "roe_pct": 508.33000000000004,
+  "insider_pct": null,
+  "num_shareholders": null,
+  "business": "Health Care -- POSITRON CORP",
+  "moat_note": "No moat evidence found -- added on the product-pivot gate alone (see product_pivot_note below).",
+  "evidence_sources": [
+   "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0000844985&type=10-K"
+  ],
+  "final_score": 34,
+  "adj_score": 34,
+  "penalty_detail": [],
+  "gate_failures": [],
+  "warnings": [
+   "Auto-added by the daily US screen: numbers are from Finnhub and SEC EDGAR, the evidence is the company's own words in its 10-K (2026) and latest earnings release matched by rules. Nobody has researched this company yet."
+  ],
+  "score_rationale": "Automated five-pillar score (out of 85 -- no institutional-ownership pillar on Finnhub's free tier) from Finnhub/SEC numbers and matched statements (see backend/scripts/us_auto_screen.py and the How this board is built page).",
+  "has_lens_data": true,
+  "cwip_usd_m": null,
+  "cwip_pct_net_block": null,
+  "capex_overhang": false,
+  "capex_heavy": false,
+  "pat_turnaround": false,
+  "pat_series_usd_m": [
+   [
+    "2015-06-30",
+    -0.38
+   ],
+   [
+    "2015-09-30",
+    -0.26
+   ],
+   [
+    "2025-03-31",
+    -1.51
+   ],
+   [
+    "2025-06-30",
+    -1.19
+   ],
+   [
+    "2026-03-31",
+    -1.38
+   ],
+   [
+    "2026-06-30",
+    -0.82
+   ]
+  ],
+  "guidance_pct": null,
+  "guidance_over15": false,
+  "guidance_flag": false,
+  "guidance_derived": false,
+  "guidance_note": null,
+  "capacity_util_flag": false,
+  "capacity_util_note": null,
+  "product_pivot_flag": true,
+  "product_pivot_note": "Auto-detected, unverified (10-K (2026)): “The Company plans to expand into the oncology imaging market through its next-generation PET-CT systems, which are designed to support multi-disciplinary imaging applications.”",
+  "s_moat": 5,
+  "s_reshoring": 0,
+  "s_insider": 4,
+  "s_undercovered": 15,
+  "s_financials": 10,
+  "score": 34,
+  "risk_penalty": 0
+ },
+ {
+  "code": "HURC",
+  "market": "US",
+  "name": "Hurco Companies Inc",
+  "sector": "Machinery",
+  "theme": "Machinery",
+  "screen": "us-auto",
+  "source": "us-auto",
+  "rubric": "us-auto",
+  "claim_grade": "company-stated",
+  "added_on": "2026-09-25",
+  "cleared_paths": [
+   "PAT turnaround"
+  ],
+  "market_cap_usd": 140.08284343160375,
+  "price": 21.63,
+  "pe": -21.1,
+  "roe_pct": -3.37,
+  "insider_pct": 10.32,
+  "num_shareholders": null,
+  "business": "Machinery -- HURCO COMPANIES INC",
+  "moat_note": "No moat evidence found -- added on the PAT-turnaround gate alone (see pat_series_usd_m).",
+  "evidence_sources": [
+   "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0000315374&type=10-K"
+  ],
+  "final_score": 34,
+  "adj_score": 34,
+  "penalty_detail": [],
+  "gate_failures": [
+   "ROE -3.37% not above 5%"
+  ],
+  "warnings": [
+   "Auto-added by the daily US screen: numbers are from Finnhub and SEC EDGAR, the evidence is the company's own words in its 10-K (2026) and latest earnings release matched by rules. Nobody has researched this company yet.",
+   "Added despite failing the fundamentals gates below -- it cleared one of the five paths (moat, guidance, PAT turnaround, capacity utilisation, product pivot) on its own, which this screen treats as sufficient by itself; financials are not a blocker for that path."
+  ],
+  "score_rationale": "Automated five-pillar score (out of 85 -- no institutional-ownership pillar on Finnhub's free tier) from Finnhub/SEC numbers and matched statements (see backend/scripts/us_auto_screen.py and the How this board is built page).",
+  "has_lens_data": true,
+  "cwip_usd_m": null,
+  "cwip_pct_net_block": null,
+  "capex_overhang": false,
+  "capex_heavy": false,
+  "pat_turnaround": true,
+  "pat_series_usd_m": [
+   [
+    "2025-04-30",
+    -4.06
+   ],
+   [
+    "2025-07-31",
+    -3.69
+   ],
+   [
+    "2025-10-31",
+    -3.04
+   ],
+   [
+    "2026-01-31",
+    -3.47
+   ],
+   [
+    "2026-04-30",
+    -2.37
+   ],
+   [
+    "2026-07-31",
+    2.31
+   ]
+  ],
+  "guidance_pct": null,
+  "guidance_over15": false,
+  "guidance_flag": false,
+  "guidance_derived": false,
+  "guidance_note": null,
+  "capacity_util_flag": false,
+  "capacity_util_note": null,
+  "product_pivot_flag": false,
+  "product_pivot_note": null,
+  "s_moat": 2,
+  "s_reshoring": 0,
+  "s_insider": 15,
+  "s_undercovered": 15,
+  "s_financials": 2,
+  "score": 34,
+  "risk_penalty": 0
+ },
+ {
+  "code": "FTCI",
+  "market": "US",
+  "name": "FTC Solar Inc",
+  "sector": "Electrical Equipment",
+  "theme": "Electrical Equipment",
+  "screen": "us-auto",
+  "source": "us-auto",
+  "rubric": "us-auto",
+  "claim_grade": "company-stated",
+  "added_on": "2026-09-25",
+  "cleared_paths": [
+   "management guidance"
+  ],
+  "market_cap_usd": 44.27734250393701,
+  "price": 2.68,
+  "pe": -0.7,
+  "roe_pct": -253.16,
+  "insider_pct": 17.07,
+  "num_shareholders": null,
+  "business": "Electrical Equipment -- FTC Solar, Inc.",
+  "moat_note": "No moat evidence found -- added on the management-guidance gate alone (see guidance_note below).",
+  "evidence_sources": [
+   "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001828161&type=10-K"
+  ],
+  "final_score": 34,
+  "adj_score": 34,
+  "penalty_detail": [],
+  "gate_failures": [
+   "ROE -253.16% not above 5%"
+  ],
+  "warnings": [
+   "Auto-added by the daily US screen: numbers are from Finnhub and SEC EDGAR, the evidence is the company's own words in its 10-K (2026) and latest earnings release matched by rules. Nobody has researched this company yet.",
+   "Added despite failing the fundamentals gates below -- it cleared one of the five paths (moat, guidance, PAT turnaround, capacity utilisation, product pivot) on its own, which this screen treats as sufficient by itself; financials are not a blocker for that path."
+  ],
+  "score_rationale": "Automated five-pillar score (out of 85 -- no institutional-ownership pillar on Finnhub's free tier) from Finnhub/SEC numbers and matched statements (see backend/scripts/us_auto_screen.py and the How this board is built page).",
+  "has_lens_data": true,
+  "cwip_usd_m": null,
+  "cwip_pct_net_block": null,
+  "capex_overhang": false,
+  "capex_heavy": false,
+  "pat_turnaround": false,
+  "pat_series_usd_m": [
+   [
+    "2025-03-31",
+    -3.82
+   ],
+   [
+    "2025-06-30",
+    -15.43
+   ],
+   [
+    "2025-09-30",
+    -23.94
+   ],
+   [
+    "2025-12-31",
+    -36.39
+   ],
+   [
+    "2026-03-31",
+    32.6
+   ],
+   [
+    "2026-06-30",
+    -27.12
+   ]
+  ],
+  "guidance_pct": 24.0,
+  "guidance_over15": true,
+  "guidance_flag": true,
+  "guidance_derived": false,
+  "guidance_note": "Auto-detected, unverified (earnings release (2026-08-05)): “The company expects third quarter revenue to grow by roughly 24% relative to the second quarter, based on the midpoint of the guidance range.”",
+  "capacity_util_flag": false,
+  "capacity_util_note": null,
+  "product_pivot_flag": false,
+  "product_pivot_note": null,
+  "s_moat": 2,
+  "s_reshoring": 0,
+  "s_insider": 15,
+  "s_undercovered": 15,
+  "s_financials": 2,
+  "score": 34,
+  "risk_penalty": 0
+ },
+ {
+  "code": "LSF",
+  "market": "US",
+  "name": "Laird Superfood Inc",
+  "sector": "Food Products",
+  "theme": "Food Products",
+  "screen": "us-auto",
+  "source": "us-auto",
+  "rubric": "us-auto",
+  "claim_grade": "company-stated",
+  "added_on": "2026-09-25",
+  "cleared_paths": [
+   "management guidance"
+  ],
+  "market_cap_usd": 39.39894916991643,
+  "price": 3.52,
+  "pe": -13.1,
+  "roe_pct": -5.35,
+  "insider_pct": 9.4,
+  "num_shareholders": null,
+  "business": "Food Products -- Laird Superfood, Inc.",
+  "moat_note": "No moat evidence found -- added on the management-guidance gate alone (see guidance_note below).",
+  "evidence_sources": [
+   "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001650696&type=10-K"
+  ],
+  "final_score": 34,
+  "adj_score": 34,
+  "penalty_detail": [],
+  "gate_failures": [
+   "ROE -5.35% not above 5%"
+  ],
+  "warnings": [
+   "Auto-added by the daily US screen: numbers are from Finnhub and SEC EDGAR, the evidence is the company's own words in its 10-K (2026) and latest earnings release matched by rules. Nobody has researched this company yet.",
+   "Added despite failing the fundamentals gates below -- it cleared one of the five paths (moat, guidance, PAT turnaround, capacity utilisation, product pivot) on its own, which this screen treats as sufficient by itself; financials are not a blocker for that path."
+  ],
+  "score_rationale": "Automated five-pillar score (out of 85 -- no institutional-ownership pillar on Finnhub's free tier) from Finnhub/SEC numbers and matched statements (see backend/scripts/us_auto_screen.py and the How this board is built page).",
+  "has_lens_data": true,
+  "cwip_usd_m": null,
+  "cwip_pct_net_block": null,
+  "capex_overhang": false,
+  "capex_heavy": false,
+  "pat_turnaround": false,
+  "pat_series_usd_m": [
+   [
+    "2025-03-31",
+    -0.16
+   ],
+   [
+    "2025-06-30",
+    -0.36
+   ],
+   [
+    "2025-09-30",
+    -0.98
+   ],
+   [
+    "2025-12-31",
+    -1.76
+   ],
+   [
+    "2026-03-31",
+    1.75
+   ],
+   [
+    "2026-06-30",
+    -1.81
+   ]
+  ],
+  "guidance_pct": 186.6,
+  "guidance_over15": true,
+  "guidance_flag": true,
+  "guidance_derived": true,
+  "guidance_note": "Auto-detected, unverified (earnings release (2026-08-13); percentage derived from the guided dollar range vs last fiscal year): “For fiscal year 2026, the Company continues to expect consolidated Net sales in the range of $138 to $148 million, reflecting a full year of Laird Superfood and the post-acquisition contributions of Navitas and Terrasoul.”",
+  "capacity_util_flag": false,
+  "capacity_util_note": null,
+  "product_pivot_flag": false,
+  "product_pivot_note": null,
+  "s_moat": 2,
+  "s_reshoring": 0,
+  "s_insider": 15,
+  "s_undercovered": 15,
+  "s_financials": 2,
+  "score": 34,
+  "risk_penalty": 0
+ },
+ {
+  "code": "REPX",
+  "market": "US",
+  "name": "Riley Exploration Permian Inc",
+  "sector": "Energy",
+  "theme": "Energy",
+  "screen": "us-auto",
+  "source": "us-auto",
+  "rubric": "us-auto",
+  "claim_grade": "company-stated",
+  "added_on": "2026-09-25",
+  "cleared_paths": [
+   "PAT turnaround"
+  ],
+  "market_cap_usd": 923.5913190328706,
+  "price": 41.69,
+  "pe": 7.5,
+  "roe_pct": 19.88,
+  "insider_pct": 15.98,
+  "num_shareholders": 231,
+  "business": "Energy -- Riley Exploration Permian, Inc.",
+  "moat_note": "No moat evidence found -- added on the PAT-turnaround gate alone (see pat_series_usd_m).",
+  "evidence_sources": [
+   "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001001614&type=10-K"
+  ],
+  "final_score": 34,
+  "adj_score": 34,
+  "penalty_detail": [
+   "only 231 holders of record (-5)"
+  ],
+  "gate_failures": [],
+  "warnings": [
+   "Auto-added by the daily US screen: numbers are from Finnhub and SEC EDGAR, the evidence is the company's own words in its 10-K (2026) and latest earnings release matched by rules. Nobody has researched this company yet."
+  ],
+  "score_rationale": "Automated five-pillar score (out of 85 -- no institutional-ownership pillar on Finnhub's free tier) from Finnhub/SEC numbers and matched statements (see backend/scripts/us_auto_screen.py and the How this board is built page).",
+  "has_lens_data": true,
+  "cwip_usd_m": null,
+  "cwip_pct_net_block": null,
+  "capex_overhang": false,
+  "capex_heavy": false,
+  "pat_turnaround": true,
+  "pat_series_usd_m": [
+   [
+    "2025-03-31",
+    28.63
+   ],
+   [
+    "2025-06-30",
+    30.47
+   ],
+   [
+    "2025-09-30",
+    16.34
+   ],
+   [
+    "2025-12-31",
+    85.4
+   ],
+   [
+    "2026-03-31",
+    -70.43
+   ],
+   [
+    "2026-06-30",
+    87.37
+   ]
+  ],
+  "guidance_pct": null,
+  "guidance_over15": false,
+  "guidance_flag": false,
+  "guidance_derived": false,
+  "guidance_note": null,
+  "capacity_util_flag": false,
+  "capacity_util_note": null,
+  "product_pivot_flag": false,
+  "product_pivot_note": null,
+  "s_moat": 4,
+  "s_reshoring": 0,
+  "s_insider": 15,
+  "s_undercovered": 10,
+  "s_financials": 10,
+  "score": 39,
+  "risk_penalty": 5
+ },
+ {
+  "code": "JSDA",
+  "market": "US",
+  "name": "Jones Soda Co",
+  "sector": "Beverages",
+  "theme": "Beverages",
+  "screen": "us-auto",
+  "source": "us-auto",
+  "rubric": "us-auto",
+  "claim_grade": "company-stated",
+  "added_on": "2026-09-25",
+  "cleared_paths": [
+   "management guidance"
+  ],
+  "market_cap_usd": 32.174341346,
+  "price": 0.2555,
+  "pe": -7.4,
+  "roe_pct": -207.46000000000004,
+  "insider_pct": 14.99,
+  "num_shareholders": null,
+  "business": "Beverages -- JONES SODA CO.",
+  "moat_note": "No moat evidence found -- added on the management-guidance gate alone (see guidance_note below).",
+  "evidence_sources": [
+   "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001083522&type=10-K"
+  ],
+  "final_score": 34,
+  "adj_score": 34,
+  "penalty_detail": [],
+  "gate_failures": [
+   "ROE -207.46000000000004% not above 5%"
+  ],
+  "warnings": [
+   "Auto-added by the daily US screen: numbers are from Finnhub and SEC EDGAR, the evidence is the company's own words in its 10-K (2026) and latest earnings release matched by rules. Nobody has researched this company yet.",
+   "Added despite failing the fundamentals gates below -- it cleared one of the five paths (moat, guidance, PAT turnaround, capacity utilisation, product pivot) on its own, which this screen treats as sufficient by itself; financials are not a blocker for that path."
+  ],
+  "score_rationale": "Automated five-pillar score (out of 85 -- no institutional-ownership pillar on Finnhub's free tier) from Finnhub/SEC numbers and matched statements (see backend/scripts/us_auto_screen.py and the How this board is built page).",
+  "has_lens_data": true,
+  "cwip_usd_m": null,
+  "cwip_pct_net_block": null,
+  "capex_overhang": false,
+  "capex_heavy": false,
+  "pat_turnaround": false,
+  "pat_series_usd_m": [
+   [
+    "2025-03-31",
+    -0.85
+   ],
+   [
+    "2025-06-30",
+    2.61
+   ],
+   [
+    "2025-09-30",
+    -1.43
+   ],
+   [
+    "2025-12-31",
+    -2.11
+   ],
+   [
+    "2026-03-31",
+    0.12
+   ],
+   [
+    "2026-06-30",
+    -0.65
+   ]
+  ],
+  "guidance_pct": 60.0,
+  "guidance_over15": true,
+  "guidance_flag": true,
+  "guidance_derived": false,
+  "guidance_note": "Auto-detected, unverified (earnings release (2026-04-01)): “Additionally, the Company expects that its growth rate on 2025 full year revenues to exceed 60% in fiscal 2026.”",
+  "capacity_util_flag": false,
+  "capacity_util_note": null,
+  "product_pivot_flag": false,
+  "product_pivot_note": null,
+  "s_moat": 2,
+  "s_reshoring": 0,
+  "s_insider": 15,
+  "s_undercovered": 15,
+  "s_financials": 2,
+  "score": 34,
+  "risk_penalty": 0
+ },
+ {
+  "code": "HOFT",
+  "market": "US",
+  "name": "Hooker Furnishings Corp",
+  "sector": "Consumer products",
+  "theme": "Consumer products",
+  "screen": "us-auto",
+  "source": "us-auto",
+  "rubric": "us-auto",
+  "claim_grade": "company-stated",
+  "added_on": "2026-09-25",
+  "cleared_paths": [
+   "moat evidence",
+   "PAT turnaround"
+  ],
+  "market_cap_usd": 140.17470268965516,
+  "price": 13.11,
+  "pe": -7.8,
+  "roe_pct": -10.59,
+  "insider_pct": 2.42,
+  "num_shareholders": null,
+  "business": "Consumer products -- HOOKER FURNISHINGS Corp",
+  "moat_note": "Auto-screen found the company describing itself with: a leading US provider (10-K): “Our five largest domestic upholstery suppliers accounted for 30% of our raw materials purchases for domestic upholstered furniture manufacturing operations in fiscal 2026.”",
+  "evidence_sources": [
+   "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001077688&type=10-K"
+  ],
+  "final_score": 33,
+  "adj_score": 33,
+  "penalty_detail": [],
+  "gate_failures": [
+   "ROE -10.59% not above 5%"
+  ],
+  "warnings": [
+   "Auto-added by the daily US screen: numbers are from Finnhub and SEC EDGAR, the evidence is the company's own words in its 10-K (2026) and latest earnings release matched by rules. Nobody has researched this company yet.",
+   "Added despite failing the fundamentals gates below -- it cleared one of the five paths (moat, guidance, PAT turnaround, capacity utilisation, product pivot) on its own, which this screen treats as sufficient by itself; financials are not a blocker for that path."
+  ],
+  "score_rationale": "Automated five-pillar score (out of 85 -- no institutional-ownership pillar on Finnhub's free tier) from Finnhub/SEC numbers and matched statements (see backend/scripts/us_auto_screen.py and the How this board is built page).",
+  "has_lens_data": true,
+  "cwip_usd_m": null,
+  "cwip_pct_net_block": null,
+  "capex_overhang": false,
+  "capex_heavy": false,
+  "pat_turnaround": true,
+  "pat_series_usd_m": [
+   [
+    "2025-05-04",
+    -3.05
+   ],
+   [
+    "2025-08-03",
+    -3.28
+   ],
+   [
+    "2025-11-02",
+    -21.17
+   ],
+   [
+    "2026-02-01",
+    0.54
+   ],
+   [
+    "2026-05-03",
+    1.06
+   ],
+   [
+    "2026-08-02",
+    1.67
+   ]
+  ],
+  "guidance_pct": null,
+  "guidance_over15": false,
+  "guidance_flag": false,
+  "guidance_derived": false,
+  "guidance_note": null,
+  "capacity_util_flag": false,
+  "capacity_util_note": null,
+  "product_pivot_flag": false,
+  "product_pivot_note": null,
+  "s_moat": 10,
+  "s_reshoring": 0,
+  "s_insider": 6,
+  "s_undercovered": 15,
+  "s_financials": 2,
+  "score": 33,
+  "risk_penalty": 0
+ },
+ {
+  "code": "SMRT",
+  "market": "US",
+  "name": "SmartRent Inc",
+  "sector": "Electrical Equipment",
+  "theme": "Electrical Equipment",
+  "screen": "us-auto",
+  "source": "us-auto",
+  "rubric": "us-auto",
+  "claim_grade": "company-stated",
+  "added_on": "2026-09-25",
+  "cleared_paths": [
+   "moat evidence"
+  ],
+  "market_cap_usd": 228.01803687068963,
+  "price": 1.19,
+  "pe": -11.6,
+  "roe_pct": -8.5,
+  "insider_pct": 3.12,
+  "num_shareholders": null,
+  "business": "Electrical Equipment -- SmartRent, Inc.",
+  "moat_note": "Auto-screen found the company describing itself with: only / one of a limited number of providers (10-K): “We rely on a limited number of suppliers to manufacture and transport our products, including in some cases only a single supplier for some of our products and components.”",
+  "evidence_sources": [
+   "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001837014&type=10-K"
+  ],
+  "final_score": 33,
+  "adj_score": 33,
+  "penalty_detail": [],
+  "gate_failures": [
+   "ROE -8.5% not above 5%"
+  ],
+  "warnings": [
+   "Auto-added by the daily US screen: numbers are from Finnhub and SEC EDGAR, the evidence is the company's own words in its 10-K (2026) and latest earnings release matched by rules. Nobody has researched this company yet.",
+   "Added despite failing the fundamentals gates below -- it cleared one of the five paths (moat, guidance, PAT turnaround, capacity utilisation, product pivot) on its own, which this screen treats as sufficient by itself; financials are not a blocker for that path."
+  ],
+  "score_rationale": "Automated five-pillar score (out of 85 -- no institutional-ownership pillar on Finnhub's free tier) from Finnhub/SEC numbers and matched statements (see backend/scripts/us_auto_screen.py and the How this board is built page).",
+  "has_lens_data": true,
+  "cwip_usd_m": null,
+  "cwip_pct_net_block": null,
+  "capex_overhang": false,
+  "capex_heavy": false,
+  "pat_turnaround": false,
+  "pat_series_usd_m": [
+   [
+    "2025-03-31",
+    -40.18
+   ],
+   [
+    "2025-06-30",
+    -10.86
+   ],
+   [
+    "2025-09-30",
+    -6.27
+   ],
+   [
+    "2025-12-31",
+    -3.24
+   ],
+   [
+    "2026-03-31",
+    -4.45
+   ],
+   [
+    "2026-06-30",
+    -5.64
+   ]
+  ],
+  "guidance_pct": null,
+  "guidance_over15": false,
+  "guidance_flag": false,
+  "guidance_derived": false,
+  "guidance_note": null,
+  "capacity_util_flag": false,
+  "capacity_util_note": null,
+  "product_pivot_flag": false,
+  "product_pivot_note": null,
+  "s_moat": 10,
+  "s_reshoring": 0,
+  "s_insider": 6,
+  "s_undercovered": 15,
+  "s_financials": 2,
+  "score": 33,
+  "risk_penalty": 0
+ },
+ {
+  "code": "UP",
+  "market": "US",
+  "name": "Wheels Up Experience Inc",
+  "sector": "Airlines",
+  "theme": "Airlines",
+  "screen": "us-auto",
+  "source": "us-auto",
+  "rubric": "us-auto",
+  "claim_grade": "company-stated",
+  "added_on": "2026-09-25",
+  "cleared_paths": [
+   "moat evidence"
+  ],
+  "market_cap_usd": 143.65232619321148,
+  "price": 3.96,
+  "pe": -0.5,
+  "roe_pct": -755.12,
+  "insider_pct": 37.28,
+  "num_shareholders": 110,
+  "business": "Airlines -- Wheels Up Experience Inc.",
+  "moat_note": "Auto-screen found the company describing itself with: a leading US provider (10-K): “Wheels Up is a leading global provider of on-demand private aviation with a large, diverse aircraft fleet and a network of safety-vetted charter operators, all committed to safety and service.”",
+  "evidence_sources": [
+   "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001819516&type=10-K"
+  ],
+  "final_score": 32,
+  "adj_score": 32,
+  "penalty_detail": [
+   "only 110 holders of record (-5)"
+  ],
+  "gate_failures": [
+   "ROE -755.12% not above 5%"
+  ],
+  "warnings": [
+   "Auto-added by the daily US screen: numbers are from Finnhub and SEC EDGAR, the evidence is the company's own words in its 10-K (2026) and latest earnings release matched by rules. Nobody has researched this company yet.",
+   "Added despite failing the fundamentals gates below -- it cleared one of the five paths (moat, guidance, PAT turnaround, capacity utilisation, product pivot) on its own, which this screen treats as sufficient by itself; financials are not a blocker for that path."
+  ],
+  "score_rationale": "Automated five-pillar score (out of 85 -- no institutional-ownership pillar on Finnhub's free tier) from Finnhub/SEC numbers and matched statements (see backend/scripts/us_auto_screen.py and the How this board is built page).",
+  "has_lens_data": true,
+  "cwip_usd_m": null,
+  "cwip_pct_net_block": null,
+  "capex_overhang": false,
+  "capex_heavy": false,
+  "pat_turnaround": false,
+  "pat_series_usd_m": [
+   [
+    "2025-03-31",
+    -99.31
+   ],
+   [
+    "2025-06-30",
+    -82.3
+   ],
+   [
+    "2025-09-30",
+    -83.73
+   ],
+   [
+    "2025-12-31",
+    -28.86
+   ],
+   [
+    "2026-03-31",
+    -82.96
+   ],
+   [
+    "2026-06-30",
+    -107.25
+   ]
+  ],
+  "guidance_pct": null,
+  "guidance_over15": false,
+  "guidance_flag": false,
+  "guidance_derived": false,
+  "guidance_note": null,
+  "capacity_util_flag": false,
+  "capacity_util_note": null,
+  "product_pivot_flag": false,
+  "product_pivot_note": null,
+  "s_moat": 10,
+  "s_reshoring": 0,
+  "s_insider": 10,
+  "s_undercovered": 15,
+  "s_financials": 2,
+  "score": 37,
+  "risk_penalty": 5
+ },
+ {
+  "code": "INNV",
+  "market": "US",
+  "name": "InnovAge Holding Corp",
+  "sector": "Health Care",
+  "theme": "Health Care",
+  "screen": "us-auto",
+  "source": "us-auto",
+  "rubric": "us-auto",
+  "claim_grade": "company-stated",
+  "added_on": "2026-09-25",
+  "cleared_paths": [
+   "moat evidence",
+   "PAT turnaround"
+  ],
+  "market_cap_usd": 1206.23051744,
+  "price": 8.84,
+  "pe": -451.0,
+  "roe_pct": -1.05,
+  "insider_pct": 250.17,
+  "num_shareholders": null,
+  "business": "Health Care -- InnovAge Holding Corp.",
+  "moat_note": "Auto-screen found the company describing itself with: a leading US provider (10-K): “As of June 30, 2026, the Company served approximately 8,230 PACE participants, making it the largest PACE provider in the United States (the \"U.S.\") based on participants served, and operated 20 PACE centers across California, Colorado, Florida, New Mexico, Pennsylvania and Virginia.”",
+  "evidence_sources": [
+   "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001834376&type=10-K"
+  ],
+  "final_score": 32,
+  "adj_score": 32,
+  "penalty_detail": [],
+  "gate_failures": [
+   "ROE -1.05% not above 5%"
+  ],
+  "warnings": [
+   "Auto-added by the daily US screen: numbers are from Finnhub and SEC EDGAR, the evidence is the company's own words in its 10-K (2026) and latest earnings release matched by rules. Nobody has researched this company yet.",
+   "Added despite failing the fundamentals gates below -- it cleared one of the five paths (moat, guidance, PAT turnaround, capacity utilisation, product pivot) on its own, which this screen treats as sufficient by itself; financials are not a blocker for that path."
+  ],
+  "score_rationale": "Automated five-pillar score (out of 85 -- no institutional-ownership pillar on Finnhub's free tier) from Finnhub/SEC numbers and matched statements (see backend/scripts/us_auto_screen.py and the How this board is built page).",
+  "has_lens_data": true,
+  "cwip_usd_m": 15.4,
+  "cwip_pct_net_block": 8.3,
+  "capex_overhang": false,
+  "capex_heavy": false,
+  "pat_turnaround": true,
+  "pat_series_usd_m": [
+   [
+    "2025-03-31",
+    -11.38
+   ],
+   [
+    "2025-06-30",
+    -0.79
+   ],
+   [
+    "2025-09-30",
+    8.02
+   ],
+   [
+    "2025-12-31",
+    10.62
+   ],
+   [
+    "2026-03-31",
+    -29.46
+   ],
+   [
+    "2026-06-30",
+    8.29
+   ]
+  ],
+  "guidance_pct": null,
+  "guidance_over15": false,
+  "guidance_flag": false,
+  "guidance_derived": false,
+  "guidance_note": null,
+  "capacity_util_flag": false,
+  "capacity_util_note": null,
+  "product_pivot_flag": false,
+  "product_pivot_note": null,
+  "s_moat": 10,
+  "s_reshoring": 0,
+  "s_insider": 10,
+  "s_undercovered": 10,
+  "s_financials": 2,
+  "score": 32,
+  "risk_penalty": 0
+ },
+ {
+  "code": "CLFD",
+  "market": "US",
+  "name": "Clearfield Inc",
+  "sector": "Communications",
+  "theme": "Communications",
+  "screen": "us-auto",
+  "source": "us-auto",
+  "rubric": "us-auto",
+  "claim_grade": "company-stated",
+  "added_on": "2026-09-25",
+  "cleared_paths": [
+   "PAT turnaround"
+  ],
+  "market_cap_usd": 414.7181364711941,
+  "price": 30.53,
+  "pe": -58.8,
+  "roe_pct": -2.9000000000000004,
+  "insider_pct": 15.63,
+  "num_shareholders": null,
+  "business": "Communications -- Clearfield, Inc.",
+  "moat_note": "No moat evidence found -- added on the PAT-turnaround gate alone (see pat_series_usd_m).",
+  "evidence_sources": [
+   "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0000796505&type=10-K"
+  ],
+  "final_score": 32,
+  "adj_score": 32,
+  "penalty_detail": [],
+  "gate_failures": [
+   "ROE -2.9000000000000004% not above 5%"
+  ],
+  "warnings": [
+   "Auto-added by the daily US screen: numbers are from Finnhub and SEC EDGAR, the evidence is the company's own words in its 10-K (2025) and latest earnings release matched by rules. Nobody has researched this company yet.",
+   "Added despite failing the fundamentals gates below -- it cleared one of the five paths (moat, guidance, PAT turnaround, capacity utilisation, product pivot) on its own, which this screen treats as sufficient by itself; financials are not a blocker for that path."
+  ],
+  "score_rationale": "Automated five-pillar score (out of 85 -- no institutional-ownership pillar on Finnhub's free tier) from Finnhub/SEC numbers and matched statements (see backend/scripts/us_auto_screen.py and the How this board is built page).",
+  "has_lens_data": true,
+  "cwip_usd_m": null,
+  "cwip_pct_net_block": null,
+  "capex_overhang": false,
+  "capex_heavy": false,
+  "pat_turnaround": true,
+  "pat_series_usd_m": [
+   [
+    "2025-03-31",
+    1.33
+   ],
+   [
+    "2025-06-30",
+    1.61
+   ],
+   [
+    "2025-09-30",
+    -9.08
+   ],
+   [
+    "2025-12-31",
+    -0.61
+   ],
+   [
+    "2026-03-31",
+    -0.53
+   ],
+   [
+    "2026-06-30",
+    3.0
+   ]
+  ],
+  "guidance_pct": null,
+  "guidance_over15": false,
+  "guidance_flag": false,
+  "guidance_derived": false,
+  "guidance_note": null,
+  "capacity_util_flag": false,
+  "capacity_util_note": null,
+  "product_pivot_flag": false,
+  "product_pivot_note": null,
+  "s_moat": 2,
+  "s_reshoring": 0,
+  "s_insider": 15,
+  "s_undercovered": 13,
+  "s_financials": 2,
+  "score": 32,
+  "risk_penalty": 0
+ },
+ {
+  "code": "SENS",
+  "market": "US",
+  "name": "Senseonics Holdings Inc",
+  "sector": "Health Care",
+  "theme": "Health Care",
+  "screen": "us-auto",
+  "source": "us-auto",
+  "rubric": "us-auto",
+  "claim_grade": "company-stated",
+  "added_on": "2026-09-25",
+  "cleared_paths": [
+   "management guidance"
+  ],
+  "market_cap_usd": 546.7177384180452,
+  "price": 10.34,
+  "pe": -4.6,
+  "roe_pct": -165.83,
+  "insider_pct": 6.95,
+  "num_shareholders": null,
+  "business": "Health Care -- Senseonics Holdings, Inc.",
+  "moat_note": "No moat evidence found -- added on the management-guidance gate alone (see guidance_note below).",
+  "evidence_sources": [
+   "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001616543&type=10-K"
+  ],
+  "final_score": 32,
+  "adj_score": 32,
+  "penalty_detail": [],
+  "gate_failures": [
+   "ROE -165.83% not above 5%"
+  ],
+  "warnings": [
+   "Auto-added by the daily US screen: numbers are from Finnhub and SEC EDGAR, the evidence is the company's own words in its 10-K (2026) and latest earnings release matched by rules. Nobody has researched this company yet.",
+   "Added despite failing the fundamentals gates below -- it cleared one of the five paths (moat, guidance, PAT turnaround, capacity utilisation, product pivot) on its own, which this screen treats as sufficient by itself; financials are not a blocker for that path."
+  ],
+  "score_rationale": "Automated five-pillar score (out of 85 -- no institutional-ownership pillar on Finnhub's free tier) from Finnhub/SEC numbers and matched statements (see backend/scripts/us_auto_screen.py and the How this board is built page).",
+  "has_lens_data": true,
+  "cwip_usd_m": null,
+  "cwip_pct_net_block": null,
+  "capex_overhang": false,
+  "capex_heavy": false,
+  "pat_turnaround": false,
+  "pat_series_usd_m": [
+   [
+    "2025-03-31",
+    -14.26
+   ],
+   [
+    "2025-06-30",
+    -14.5
+   ],
+   [
+    "2025-09-30",
+    -19.53
+   ],
+   [
+    "2025-12-31",
+    -20.81
+   ],
+   [
+    "2026-03-31",
+    -32.33
+   ],
+   [
+    "2026-06-30",
+    -36.7
+   ]
+  ],
+  "guidance_pct": 81.5,
+  "guidance_over15": true,
+  "guidance_flag": true,
+  "guidance_derived": true,
+  "guidance_note": "Auto-detected, unverified (earnings release (2026-08-06); percentage derived from the guided dollar range vs last fiscal year): “● Raising full-year 2026 revenue guidance to $62 million to $66 million from $60 million to $64 million, representing year-over-year growth of 76% to 87%”",
+  "capacity_util_flag": false,
+  "capacity_util_note": null,
+  "product_pivot_flag": false,
+  "product_pivot_note": null,
+  "s_moat": 2,
+  "s_reshoring": 0,
+  "s_insider": 15,
+  "s_undercovered": 13,
+  "s_financials": 2,
+  "score": 32,
+  "risk_penalty": 0
+ },
+ {
+  "code": "PHR",
+  "market": "US",
+  "name": "Phreesia Inc",
+  "sector": "Health Care",
+  "theme": "Health Care",
+  "screen": "us-auto",
+  "source": "us-auto",
+  "rubric": "us-auto",
+  "claim_grade": "company-stated",
+  "added_on": "2026-09-25",
+  "cleared_paths": [
+   "moat evidence"
+  ],
+  "market_cap_usd": 620.7094772727272,
+  "price": 10,
+  "pe": 59.2,
+  "roe_pct": 3.01,
+  "insider_pct": 21.37,
+  "num_shareholders": 32,
+  "business": "Health Care -- Phreesia, Inc.",
+  "moat_note": "Auto-screen found the company describing itself with: a niche segment with a regulatory approval (10-K): “Our competitors range from smaller niche companies to large, well-financed and technologically-sophisticated entities, including the EHR and PM systems with which we integrate. … Food and Drug Administration (\"FDA\") may in the future determine that our technology solutions are subject to the Federal Food, Drug, and Cosmetic Act and we may face additional costs and risks as a result.”",
+  "evidence_sources": [
+   "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001412408&type=10-K"
+  ],
+  "final_score": 31,
+  "adj_score": 31,
+  "penalty_detail": [
+   "only 32 holders of record (-5)"
+  ],
+  "gate_failures": [
+   "ROE 3.01% not above 5%"
+  ],
+  "warnings": [
+   "Auto-added by the daily US screen: numbers are from Finnhub and SEC EDGAR, the evidence is the company's own words in its 10-K (2026) and latest earnings release matched by rules. Nobody has researched this company yet.",
+   "Added despite failing the fundamentals gates below -- it cleared one of the five paths (moat, guidance, PAT turnaround, capacity utilisation, product pivot) on its own, which this screen treats as sufficient by itself; financials are not a blocker for that path."
+  ],
+  "score_rationale": "Automated five-pillar score (out of 85 -- no institutional-ownership pillar on Finnhub's free tier) from Finnhub/SEC numbers and matched statements (see backend/scripts/us_auto_screen.py and the How this board is built page).",
+  "has_lens_data": true,
+  "cwip_usd_m": null,
+  "cwip_pct_net_block": null,
+  "capex_overhang": false,
+  "capex_heavy": false,
+  "pat_turnaround": false,
+  "pat_series_usd_m": [
+   [
+    "2025-04-30",
+    -3.91
+   ],
+   [
+    "2025-07-31",
+    0.65
+   ],
+   [
+    "2025-10-31",
+    4.27
+   ],
+   [
+    "2026-01-31",
+    1.29
+   ],
+   [
+    "2026-04-30",
+    2.96
+   ],
+   [
+    "2026-07-31",
+    1.92
+   ]
+  ],
+  "guidance_pct": null,
+  "guidance_over15": false,
+  "guidance_flag": false,
+  "guidance_derived": false,
+  "guidance_note": null,
+  "capacity_util_flag": false,
+  "capacity_util_note": null,
+  "product_pivot_flag": false,
+  "product_pivot_note": null,
+  "s_moat": 6,
+  "s_reshoring": 0,
+  "s_insider": 15,
+  "s_undercovered": 13,
+  "s_financials": 2,
+  "score": 36,
+  "risk_penalty": 5
+ },
+ {
+  "code": "ATEX",
+  "market": "US",
+  "name": "Anterix Inc",
+  "sector": "Telecommunication",
+  "theme": "Telecommunication",
+  "screen": "us-auto",
+  "source": "us-auto",
+  "rubric": "us-auto",
+  "claim_grade": "company-stated",
+  "added_on": "2026-09-25",
+  "cleared_paths": [
+   "PAT turnaround"
+  ],
+  "market_cap_usd": 1594.8638844559416,
+  "price": 81.33,
+  "pe": 23.2,
+  "roe_pct": 25.650000000000002,
+  "insider_pct": 1.31,
+  "num_shareholders": null,
+  "business": "Telecommunication -- Anterix Inc.",
+  "moat_note": "No moat evidence found -- added on the PAT-turnaround gate alone (see pat_series_usd_m).",
+  "evidence_sources": [
+   "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001304492&type=10-K"
+  ],
+  "final_score": 31,
+  "adj_score": 31,
+  "penalty_detail": [],
+  "gate_failures": [],
+  "warnings": [
+   "Auto-added by the daily US screen: numbers are from Finnhub and SEC EDGAR, the evidence is the company's own words in its 10-K (2026) and latest earnings release matched by rules. Nobody has researched this company yet."
+  ],
+  "score_rationale": "Automated five-pillar score (out of 85 -- no institutional-ownership pillar on Finnhub's free tier) from Finnhub/SEC numbers and matched statements (see backend/scripts/us_auto_screen.py and the How this board is built page).",
+  "has_lens_data": true,
+  "cwip_usd_m": null,
+  "cwip_pct_net_block": null,
+  "capex_overhang": false,
+  "capex_heavy": false,
+  "pat_turnaround": true,
+  "pat_series_usd_m": [
+   [
+    "2025-03-31",
+    9.21
+   ],
+   [
+    "2025-06-30",
+    25.18
+   ],
+   [
+    "2025-09-30",
+    53.54
+   ],
+   [
+    "2025-12-31",
+    -6.6
+   ],
+   [
+    "2026-03-31",
+    18.52
+   ],
+   [
+    "2026-06-30",
+    0.24
+   ]
+  ],
+  "guidance_pct": null,
+  "guidance_over15": false,
+  "guidance_flag": false,
+  "guidance_derived": false,
+  "guidance_note": null,
+  "capacity_util_flag": false,
+  "capacity_util_note": null,
+  "product_pivot_flag": false,
+  "product_pivot_note": null,
+  "s_moat": 5,
+  "s_reshoring": 0,
+  "s_insider": 6,
+  "s_undercovered": 10,
+  "s_financials": 10,
+  "score": 31,
+  "risk_penalty": 0
  }
 ]
