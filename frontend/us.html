@@ -44,6 +44,16 @@
   .us-sig.warn{background:rgba(245,199,106,.22);color:#92400e}
   .us-sig.grey{background:rgba(120,130,140,.16);color:var(--muted)}
   html[data-mode="dark"] .us-sig.warn{color:#f5c76a}
+  .earn-summary{display:flex;flex-wrap:wrap;gap:10px;margin:2px 0 12px}
+  .earn-stat{border:1px solid var(--ring);border-radius:10px;padding:8px 14px;min-width:120px;background:var(--surface)}
+  .earn-stat > span{display:block;font-size:10.5px;text-transform:uppercase;letter-spacing:.07em;color:var(--muted)}
+  .earn-stat b{font-size:19px;font-variant-numeric:tabular-nums}
+  .dbody .mv-table thead th{position:static}
+  .earn-beat{color:var(--good-ink,#157347);font-weight:600}
+  .earn-miss{color:var(--crit,#b91c1c);font-weight:600}
+  .earn-soon{background:rgba(245,199,106,.22);color:#92400e}
+  html[data-mode="dark"] .earn-soon{color:#f5c76a}
+  .earn-streak{letter-spacing:2px;font-size:13px}
   .us-pillars{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:6px;margin-top:4px}
   .us-pillars div{border:1px solid var(--ring);border-radius:8px;padding:6px 9px;font-size:12px;color:var(--muted)}
   .us-pillars b{display:block;color:var(--ink);font-size:15px}
@@ -77,7 +87,9 @@
 
 <div class="dl-tabs" role="tablist">
   <button class="dl-tab on" type="button" data-ustab="screens" role="tab" aria-selected="true">Screens</button>
+  <button class="dl-tab" type="button" data-ustab="themes" role="tab" aria-selected="false">Themes</button>
   <button class="dl-tab" type="button" data-ustab="market" role="tab" aria-selected="false">Market</button>
+  <button class="dl-tab" type="button" data-ustab="earnings" role="tab" aria-selected="false">Earnings</button>
   <button class="dl-tab" type="button" data-ustab="gallery" role="tab" aria-selected="false">Chart Gallery</button>
   <button class="dl-tab" type="button" data-ustab="insider" role="tab" aria-selected="false">Board Disclosures</button>
   <button class="dl-tab" type="button" data-ustab="method" role="tab" aria-selected="false">How this board is built</button>
@@ -139,6 +151,14 @@
   </div>
 </section>
 
+<section class="dashboard-section market-section" id="us-tab-themes" hidden>
+  <div class="section-heading" id="us-theme-heading"><div><span class="eyebrow">US MICRO/SMALL-CAP</span><h1>Themes</h1>
+    <p class="section-copy">Choose a theme to show only the US companies screened in that area. Themes are the companies' own industry classification, so a new sector appears here the day the daily screen adds its first company.</p></div>
+    <span class="section-note">Click any theme to open it</span></div>
+  <div class="theme-panel" id="us-theme-panel"><div class="tglab">THEME FOLDERS</div><div class="frow" id="us-themes"></div></div>
+  <div class="theme-results" id="us-theme-results" aria-live="polite" hidden></div>
+</section>
+
 <section class="dashboard-section bp" id="us-tab-market" hidden>
   <div class="bp-bar">
     <span class="bp-lab">Screen</span>
@@ -179,6 +199,45 @@
   <p class="bp-desc" id="us-mkt-desc"></p>
   <div id="us-mkt-results"></div>
   <p class="bp-disc">A research screen built from exchange closing prices -- not investment advice. Stages and measures follow fixed rules; they describe price and volume, not the business.</p>
+</section>
+
+<section class="dashboard-section" id="us-tab-earnings" hidden>
+  <div class="section-heading">
+    <div><span class="eyebrow">EARNINGS</span><h1>Earnings calendar &amp; results</h1>
+      <p class="section-copy">When each company on the US board reports next, and how its last quarters compared with what analysts expected. Earnings are the moments a small company's price moves most, so the calendar is the list of dates to have in mind. Dates and estimates come from Finnhub and update every night; a date can still move until the company confirms it.</p>
+    </div>
+    <span class="section-note" id="earn-asof"></span>
+  </div>
+
+  <div class="dl-tabs" role="tablist">
+    <button class="dl-tab on" type="button" data-earnsub="upcoming" role="tab" aria-selected="true">Upcoming</button>
+    <button class="dl-tab" type="button" data-earnsub="results" role="tab" aria-selected="false">Recent results</button>
+  </div>
+
+  <div class="card">
+    <div class="earn-summary" id="earn-summary"></div>
+    <div class="mv-toolbar">
+      <div class="searchwrap" id="earn-swrap">
+        <span class="ic">&#9906;</span>
+        <input id="earn-q" type="search" autocomplete="off" spellcheck="false" placeholder="Search company or ticker…">
+        <button class="clr" id="earn-qclear" title="Clear search">&times;</button>
+      </div>
+      <select class="gal-select" id="earn-sector" aria-label="Sector"><option value="">All sectors</option></select>
+      <select class="gal-select" id="earn-window" aria-label="Window"></select>
+      <select class="gal-select" id="earn-outcome" aria-label="Outcome" hidden>
+        <option value="">Beat, miss or in line</option>
+        <option value="beat">Beat estimates</option>
+        <option value="miss">Missed estimates</option>
+        <option value="inline">In line</option>
+      </select>
+      <label class="btn" style="display:flex;align-items:center;gap:6px;cursor:pointer">
+        <input type="checkbox" id="earn-watch" style="margin:0"> Watchlist only
+      </label>
+      <button class="theme-back" id="earn-clear" type="button">Clear</button>
+    </div>
+    <div class="mv-count" id="earn-count"></div>
+    <div id="earn-body"><p class="view-hint">Loading…</p></div>
+  </div>
 </section>
 
 <section class="dashboard-section" id="us-tab-gallery" hidden>
@@ -402,6 +461,6 @@
 <aside class="drawer" id="us-drawer" aria-label="Company detail"></aside>
 
 <script src="/static/klinecharts.min.js" defer></script>
-<script src="/static/us.js?v=11" defer></script>
+<script src="/static/us.js?v=12" defer></script>
 </body>
 </html>

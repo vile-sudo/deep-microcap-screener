@@ -29,10 +29,16 @@ GET /api/announcements-us the US board's counterpart to announcements --
                           free-text category. Every material 8-K on record
                           (scripts/run_announcements_us.py), newest first,
                           also always board-scoped.
+GET /api/earnings-us      the US board's earnings calendar and results --
+                          each company's next report date (before open /
+                          after close), the estimates, and its last few
+                          quarters' EPS actual vs estimate
+                          (scripts/run_earnings_us.py, Finnhub free tier)
 
 Written into backend/data/deals/latest.json,
 backend/data/announcements/latest.json, backend/data/insider_us/
-latest.json and backend/data/announcements_us/latest.json respectively;
+latest.json and backend/data/announcements_us/latest.json, and (earnings) backend/data/earnings_us/
+latest.json respectively;
 this router only reads them.
 """
 from fastapi import APIRouter, Request
@@ -45,6 +51,7 @@ DATA_FILE = BASE_DIR / "data" / "deals" / "latest.json"
 ANNOUNCEMENTS_FILE = BASE_DIR / "data" / "announcements" / "latest.json"
 INSIDER_US_FILE = BASE_DIR / "data" / "insider_us" / "latest.json"
 ANNOUNCEMENTS_US_FILE = BASE_DIR / "data" / "announcements_us" / "latest.json"
+EARNINGS_US_FILE = BASE_DIR / "data" / "earnings_us" / "latest.json"
 
 
 @router.get("/api/deals")
@@ -73,3 +80,10 @@ def announcements_us(request: Request):
     return file_response(request, ANNOUNCEMENTS_US_FILE,
                          {"fetched_at": None, "from_date": None, "to_date": None,
                           "count": 0, "companies_checked": 0, "companies_with_cik": 0, "announcements": []})
+
+
+@router.get("/api/earnings-us")
+def earnings_us(request: Request):
+    return file_response(request, EARNINGS_US_FILE,
+                         {"fetched_at": None, "asof": None, "companies_checked": 0,
+                          "companies_with_data": 0, "companies": {}})

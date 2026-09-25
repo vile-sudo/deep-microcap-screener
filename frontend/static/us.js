@@ -271,6 +271,8 @@ function usDrawerBody(d) {
       <p class="caveat">Not pulled for this name yet. The capex, guidance and quarterly-profit pass runs daily after the screen and covers new names the day after they are added.</p></div>`;
   }
 
+  out += usEarningsSection(d);
+
   if (US_PILLARS.some(p => d[p[1]] != null)) {
     out += `<div class="sec"><h4>Score breakdown</h4>` + US_PILLARS.map(([l, k, mx], i) => {
       const v = +d[k] || 0, pct = Math.max(2, v / mx * 100);
@@ -470,7 +472,7 @@ function galFetchIndex() {
   return GAL_LOADING;
 }
 
-const US_TABS = ["screens", "market", "gallery", "insider", "method"];
+const US_TABS = ["screens", "themes", "market", "earnings", "gallery", "insider", "method"];
 document.querySelectorAll('[data-ustab]').forEach(btn => {
   btn.onclick = () => {
     document.querySelectorAll('[data-ustab]').forEach(b => {
@@ -481,6 +483,8 @@ document.querySelectorAll('[data-ustab]').forEach(btn => {
     const tab = btn.dataset.ustab;
     US_TABS.forEach(t => { document.getElementById("us-tab-" + t).hidden = t !== tab; });
     if (tab === "gallery" && !GAL_DATA) openGallery();
+    if (tab === "themes") openThemes();
+    if (tab === "earnings") openEarnings();
     if (tab === "market" && !MKT.data) openMarket();
     if (tab === "insider" && !INS.data) openInsider();
   };
@@ -1302,4 +1306,271 @@ function annRowHtml(d) {
     <td>${esc((d.items || []).join(", "))}</td>
     <td>${esc(d.summary || "—")}</td>
   </tr>`;
+}
+
+/* ================================================================
+   Themes -- the US counterpart to India's Themes page (app.js's theme
+   folders). A theme is the company's own industry classification, taken
+   from the data as it stands, so a new sector shows up the day the daily
+   screen first adds a company in it -- nothing to maintain by hand.
+   Pick a folder to see only that theme's companies; the scorecard's
+   prev/next then walks that list.
+   ================================================================ */
+const TH = {theme: null};
+const THEME_FOLDER_SVG = '<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>';
+const themeOf = d => d.theme || d.sector || "Other";
+
+function openThemes() { renderThemes(); }
+
+function renderThemes() {
+  const panel = document.getElementById("us-theme-panel"), heading = document.getElementById("us-theme-heading");
+  const results = document.getElementById("us-theme-results"), box = document.getElementById("us-themes");
+  const groups = new Map();
+  DATA.forEach(d => { const t = themeOf(d); if (!groups.has(t)) groups.set(t, []); groups.get(t).push(d); });
+  if (TH.theme && !groups.has(TH.theme)) TH.theme = null;
+  panel.hidden = heading.hidden = !!TH.theme;
+  results.hidden = !TH.theme;
+
+  if (!TH.theme) {
+    if (!groups.size) { box.innerHTML = '<p class="view-hint">No US companies on the board yet — the daily screen hasn\'t added any.</p>'; return; }
+    const order = [...groups.entries()].sort((a, b) => b[1].length - a[1].length || a[0].localeCompare(b[0]));
+    box.innerHTML = order.map(([t, rows]) => {
+      const scored = rows.filter(r => r.final_score != null);
+      const avg = scored.length ? scored.reduce((s, r) => s + r.final_score, 0) / scored.length : null;
+      return `<button type="button" class="chip" data-uth="${esc(t)}" title="${rows.length} compan${rows.length === 1 ? "y" : "ies"}${avg != null ? " · average score " + avg.toFixed(1) : ""}">`
+        + `<span class="theme-ic">${THEME_FOLDER_SVG}</span><span class="theme-name">${esc(t)}</span> <span class="tc">${rows.length}</span></button>`;
+    }).join("");
+    box.querySelectorAll("[data-uth]").forEach(b => {
+      b.onclick = () => { TH.theme = b.dataset.uth; renderThemes(); window.scrollTo({top: 0, behavior: "smooth"}); };
+    });
+    return;
+  }
+
+  const names = groups.get(TH.theme).slice().sort((a, b) => (b.final_score ?? -1) - (a.final_score ?? -1) || String(a.name).localeCompare(String(b.name)));
+  results.innerHTML = `<div class="theme-results-head"><button class="theme-back" id="us-theme-back">← All themes</button>
+      <div><span class="eyebrow">COMPANIES IN THEME</span><h3>${esc(TH.theme)}</h3><p>${names.length} screened compan${names.length === 1 ? "y" : "ies"}, highest score first</p></div>
+      <span class="folder-count">${names.length} names</span></div>
+    <div class="company-files">${names.map(d => {
+      const on = WATCH.has(d.code);
+      return `<button class="company-file" data-uth-company="${esc(d.code)}"><span class="file-symbol">${esc((d.name || "?").slice(0, 1).toUpperCase())}</span>`
+        + `<span class="file-copy"><b>${esc(d.name || "Unnamed company")}</b><small>${esc(d.code)} · Score ${fmtN(d.final_score)} · ${fmtUSDShort(d.market_cap_usd)}</small></span>`
+        + `<span class="file-pin${on ? " on" : ""}" data-uth-pin="${esc(d.code)}" role="button" title="${on ? "Remove from" : "Add to"} watchlist" aria-label="Star ${esc(d.name)}">${on ? "★" : "☆"}</span><span class="file-arrow">›</span></button>`;
+    }).join("")}</div>`;
+  document.getElementById("us-theme-back").onclick = () => { TH.theme = null; renderThemes(); };
+  results.querySelectorAll("[data-uth-pin]").forEach(s => {
+    s.onclick = e => { e.stopPropagation(); toggleStar(s.dataset.uthPin).then(renderThemes); };
+  });
+  results.querySelectorAll("[data-uth-company]").forEach(b => {
+    b.onclick = () => openDrawer(b.dataset.uthCompany, names);
+  });
+}
+
+/* ================================================================
+   Earnings -- calendar and results for the board's companies. Written
+   nightly by scripts/run_earnings_us.py (Finnhub free tier) into
+   data/earnings_us/latest.json, served by /api/earnings-us. The same
+   data feeds the "Earnings" section of each company's scorecard.
+   ================================================================ */
+const EARN = {data: null, loading: null, sub: "upcoming", built: false};
+function earnLoad() {
+  EARN.loading = EARN.loading || fetchJSON("/api/earnings-us").then(j => { EARN.data = j; return j; }).catch(() => null);
+  return EARN.loading;
+}
+earnLoad().then(() => { if (EARN.built) earnRender(); });
+
+const EARN_DOW = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+function earnUtc(iso) { const [y, m, d] = String(iso).slice(0, 10).split("-").map(Number); return Date.UTC(y, m - 1, d); }
+function earnToday() { const n = new Date(); return Date.UTC(n.getFullYear(), n.getMonth(), n.getDate()); }
+function earnDays(iso) { return Math.round((earnUtc(iso) - earnToday()) / 86400000); }
+function earnDay(iso) {
+  if (!iso) return "—";
+  const t = new Date(earnUtc(iso)), [y, m, d] = String(iso).slice(0, 10).split("-").map(Number);
+  return `${EARN_DOW[t.getUTCDay()]} ${d} ${INS_MONTHS[m - 1]}${y !== new Date().getFullYear() ? " " + y : ""}`;
+}
+function earnIn(iso) {
+  const n = earnDays(iso);
+  return n === 0 ? "today" : n === 1 ? "tomorrow" : n === -1 ? "yesterday" : n > 0 ? `in ${n} days` : `${-n} days ago`;
+}
+const earnHour = h => ({bmo: "Before open", amc: "After close", dmh: "During hours"}[h] || "—");
+const earnQ = (q, y) => q && y ? `Q${q} ${y}` : "—";
+const earnEps = v => v == null ? "—" : (v < 0 ? "−" : "") + "$" + Math.abs(v).toFixed(2);
+const earnRev = v => v == null ? "—" : fmtUSDShort(v / 1e6);
+/* beat / miss / in line, from the surprise percent (or the raw numbers when no percent came back) */
+function earnOutcome(r) {
+  let p = r.surprise_pct;
+  if (p == null && r.eps_actual != null && r.eps_estimate) p = (r.eps_actual - r.eps_estimate) / Math.abs(r.eps_estimate) * 100;
+  if (p == null) return {kind: "", pct: null};
+  return {kind: p >= 1 ? "beat" : p <= -1 ? "miss" : "inline", pct: p};
+}
+function earnSurprise(r) {
+  const o = earnOutcome(r);
+  if (o.pct == null) return "—";
+  const t = (o.pct > 0 ? "+" : "") + o.pct.toFixed(1) + "%";
+  return o.kind === "beat" ? `<span class="earn-beat">▲ ${t}</span>` : o.kind === "miss" ? `<span class="earn-miss">▼ ${t}</span>` : `<span>${t}</span>`;
+}
+function earnStreak(results) {
+  return (results || []).slice(0, 4).reverse().map(r => {
+    const k = earnOutcome(r).kind;
+    return k === "beat" ? '<span class="earn-beat" title="beat">●</span>' : k === "miss" ? '<span class="earn-miss" title="missed">●</span>' : '<span title="in line or unknown" style="color:var(--muted)">○</span>';
+  }).join("");
+}
+const earnWhen = r => r.reported || r.period || "";
+
+async function openEarnings() {
+  const body = document.getElementById("earn-body");
+  if (!EARN.data) body.innerHTML = '<p class="view-hint">Loading…</p>';
+  await earnLoad();
+  const j = EARN.data;
+  if (!j || !j.companies || !Object.keys(j.companies).length) {
+    document.getElementById("earn-summary").innerHTML = "";
+    body.innerHTML = '<p class="view-hint">The earnings scan has not run yet. It runs automatically every night, and right after the daily screen adds a company.</p>';
+    return;
+  }
+  if (!EARN.built) earnBuildControls();
+  earnRender();
+}
+
+function earnBuildControls() {
+  EARN.built = true;
+  const sectors = [...new Set(DATA.map(d => d.sector).filter(Boolean))].sort();
+  document.getElementById("earn-sector").innerHTML = '<option value="">All sectors</option>' + sectors.map(s => `<option>${esc(s)}</option>`).join("");
+  document.querySelectorAll("[data-earnsub]").forEach(t => {
+    t.onclick = () => {
+      EARN.sub = t.dataset.earnsub;
+      document.querySelectorAll("[data-earnsub]").forEach(x => { x.classList.toggle("on", x === t); x.setAttribute("aria-selected", String(x === t)); });
+      earnSyncWindow();
+      earnRender();
+    };
+  });
+  let timer = 0;
+  document.getElementById("earn-q").oninput = () => { clearTimeout(timer); timer = setTimeout(earnRender, 120); };
+  document.getElementById("earn-qclear").onclick = () => { document.getElementById("earn-q").value = ""; earnRender(); };
+  ["earn-sector", "earn-window", "earn-outcome", "earn-watch"].forEach(id => { document.getElementById(id).onchange = earnRender; });
+  document.getElementById("earn-clear").onclick = () => {
+    document.getElementById("earn-q").value = "";
+    document.getElementById("earn-sector").value = "";
+    document.getElementById("earn-outcome").value = "";
+    document.getElementById("earn-watch").checked = false;
+    earnSyncWindow(true);
+    earnRender();
+  };
+  earnSyncWindow(true);
+}
+/* the window menu means "reports coming in the next…" on Upcoming and "reported in the last…" on Recent results */
+function earnSyncWindow(reset) {
+  const sel = document.getElementById("earn-window"), up = EARN.sub === "upcoming";
+  const opts = up ? [["7", "Next 7 days"], ["14", "Next 14 days"], ["30", "Next 30 days"], ["60", "Next 60 days"], ["", "Every date on record"]]
+                  : [["30", "Last 30 days"], ["60", "Last 60 days"], ["120", "Last 120 days"], ["", "Every quarter on record"]];
+  sel.innerHTML = opts.map(([v, l]) => `<option value="${v}">${l}</option>`).join("");
+  sel.value = up ? "30" : "60";
+  document.getElementById("earn-outcome").hidden = up;
+}
+
+function earnCompanies() {
+  const by = {}; DATA.forEach(d => { by[d.code] = d; });
+  return Object.entries(EARN.data.companies || {}).filter(([c]) => by[c]).map(([c, e]) => ({code: c, d: by[c], e}));
+}
+function earnFilterCompany(x) {
+  const q = document.getElementById("earn-q").value.trim().toLowerCase();
+  const sector = document.getElementById("earn-sector").value;
+  if (sector && x.d.sector !== sector) return false;
+  if (document.getElementById("earn-watch").checked && !WATCH.has(x.code)) return false;
+  if (q && !(x.d.name + " " + x.code + " " + (x.d.sector || "")).toLowerCase().includes(q)) return false;
+  return true;
+}
+
+function earnRender() {
+  const all = earnCompanies(), body = document.getElementById("earn-body");
+  const win = document.getElementById("earn-window").value;
+  document.getElementById("earn-asof").textContent = EARN.data.asof ? `Updated ${insDay(EARN.data.asof)} · ${all.length} companies` : "";
+
+  /* headline numbers, over the whole board rather than the filtered view */
+  const nextDays = all.filter(x => x.e.next).map(x => earnDays(x.e.next.date)).filter(n => n >= 0);
+  const recent = all.flatMap(x => (x.e.results || []).filter(r => earnWhen(r) && -earnDays(earnWhen(r)) <= 30 && earnDays(earnWhen(r)) <= 0));
+  const beats = recent.filter(r => earnOutcome(r).kind === "beat").length, misses = recent.filter(r => earnOutcome(r).kind === "miss").length;
+  document.getElementById("earn-summary").innerHTML =
+    `<div class="earn-stat"><span>Reporting this week</span><b>${nextDays.filter(n => n <= 7).length}</b></div>`
+    + `<div class="earn-stat"><span>Next 30 days</span><b>${nextDays.filter(n => n <= 30).length}</b></div>`
+    + `<div class="earn-stat"><span>Reported, last 30 days</span><b>${recent.length}</b></div>`
+    + `<div class="earn-stat"><span>Beat / missed</span><b><span class="earn-beat">${beats}</span> / <span class="earn-miss">${misses}</span></b></div>`;
+
+  const count = document.getElementById("earn-count");
+  if (EARN.sub === "upcoming") {
+    let rows = all.filter(x => x.e.next && earnFilterCompany(x));
+    rows = rows.filter(x => { const n = earnDays(x.e.next.date); return n >= 0 && (!win || n <= +win); });
+    rows.sort((a, b) => a.e.next.date.localeCompare(b.e.next.date) || String(a.d.name).localeCompare(String(b.d.name)));
+    count.textContent = `${rows.length} report${rows.length === 1 ? "" : "s"}`;
+    const list = rows.map(x => x.d);
+    body.innerHTML = rows.length ? `<div class="mv-tablewrap"><table class="mv-table"><thead><tr>
+        <th>Date</th><th>Company</th><th>Sector</th><th>When</th><th>Quarter</th><th class="n">EPS est.</th><th class="n">Revenue est.</th><th>Last four</th><th class="n">Last surprise</th>
+      </tr></thead><tbody>${rows.map(x => {
+        const n = x.e.next, last = (x.e.results || [])[0], soon = earnDays(n.date) <= 7;
+        return `<tr data-earn-code="${esc(x.code)}" style="cursor:pointer">
+          <td><b>${esc(earnDay(n.date))}</b> <span class="us-sig ${soon ? "earn-soon" : "grey"}">${esc(earnIn(n.date))}</span></td>
+          <td><b class="mv-tick">${esc(x.code)}</b><span class="mv-name">${esc(x.d.name)}</span></td>
+          <td>${esc(x.d.sector || "—")}</td>
+          <td>${esc(earnHour(n.hour))}</td>
+          <td>${esc(earnQ(n.quarter, n.year))}</td>
+          <td class="n">${earnEps(n.eps_estimate)}</td>
+          <td class="n">${earnRev(n.revenue_estimate)}</td>
+          <td class="earn-streak">${earnStreak(x.e.results) || "—"}</td>
+          <td class="n">${last ? earnSurprise(last) : "—"}</td>
+        </tr>`; }).join("")}</tbody></table></div>`
+      : '<p class="view-hint">No company on the board reports in this window — widen it, or clear the filters.</p>';
+    body.querySelectorAll("[data-earn-code]").forEach(tr => { tr.onclick = () => openDrawer(tr.dataset.earnCode, list); });
+    return;
+  }
+
+  const outcome = document.getElementById("earn-outcome").value;
+  let rows = all.filter(earnFilterCompany).flatMap(x => (x.e.results || []).map(r => ({...x, r})));
+  rows = rows.filter(x => {
+    const w = earnWhen(x.r);
+    if (!w || earnDays(w) > 0) return false;
+    if (win && -earnDays(w) > +win) return false;
+    return !outcome || earnOutcome(x.r).kind === outcome;
+  });
+  rows.sort((a, b) => earnWhen(b.r).localeCompare(earnWhen(a.r)) || String(a.d.name).localeCompare(String(b.d.name)));
+  count.textContent = `${rows.length} result${rows.length === 1 ? "" : "s"}`;
+  const list = [...new Map(rows.map(x => [x.code, x.d])).values()];
+  body.innerHTML = rows.length ? `<div class="mv-tablewrap"><table class="mv-table"><thead><tr>
+      <th>Reported</th><th>Company</th><th>Quarter</th><th class="n">EPS actual</th><th class="n">EPS est.</th><th class="n">Surprise</th><th class="n">Revenue</th><th class="n">Rev. est.</th><th>Last four</th>
+    </tr></thead><tbody>${rows.map(x => {
+      const r = x.r, revBeat = r.revenue_actual != null && r.revenue_estimate ? (r.revenue_actual >= r.revenue_estimate ? "earn-beat" : "earn-miss") : "";
+      return `<tr data-earn-code="${esc(x.code)}" style="cursor:pointer">
+        <td>${r.reported ? esc(earnDay(r.reported)) : `<span title="quarter ended">${esc(insDay(r.period))}*</span>`}</td>
+        <td><b class="mv-tick">${esc(x.code)}</b><span class="mv-name">${esc(x.d.name)}</span></td>
+        <td>${esc(earnQ(r.quarter, r.year))}</td>
+        <td class="n">${earnEps(r.eps_actual)}</td>
+        <td class="n">${earnEps(r.eps_estimate)}</td>
+        <td class="n">${earnSurprise(r)}</td>
+        <td class="n ${revBeat}">${earnRev(r.revenue_actual)}</td>
+        <td class="n">${earnRev(r.revenue_estimate)}</td>
+        <td class="earn-streak">${earnStreak(x.e.results) || "—"}</td>
+      </tr>`; }).join("")}</tbody></table></div>
+      <p class="section-copy" style="margin-top:8px">● beat estimates · ● missed · ○ in line or unknown — the last four quarters, oldest to newest. * the reporting date was not available, so the quarter-end date is shown.</p>`
+    : '<p class="view-hint">No results in this window — widen it, or clear the filters.</p>';
+  body.querySelectorAll("[data-earn-code]").forEach(tr => { tr.onclick = () => openDrawer(tr.dataset.earnCode, list); });
+}
+
+/* the "Earnings" section of a company's scorecard */
+function usEarningsSection(d) {
+  const e = EARN.data && EARN.data.companies && EARN.data.companies[d.code];
+  if (!e || (!e.next && !(e.results || []).length)) return "";
+  const n = e.next, res = (e.results || []).slice(0, 4);
+  let out = '<div class="sec"><h4>Earnings</h4>';
+  if (n) {
+    out += `<p><b>Next report: ${esc(earnDay(n.date))}</b> (${esc(earnIn(n.date))})${n.hour ? " · " + esc(earnHour(n.hour).toLowerCase()) : ""}`
+      + `${n.eps_estimate != null ? ` · EPS estimate <b>${earnEps(n.eps_estimate)}</b>` : ""}${n.revenue_estimate != null ? ` · revenue estimate <b>${earnRev(n.revenue_estimate)}</b>` : ""}</p>`;
+  } else {
+    out += '<p class="nd">No upcoming report date is published yet.</p>';
+  }
+  if (res.length) {
+    const beats = res.filter(r => earnOutcome(r).kind === "beat").length, known = res.filter(r => earnOutcome(r).kind).length;
+    out += `<div class="mv-tablewrap" style="margin-top:9px"><table class="mv-table"><thead><tr><th>Quarter</th><th>Reported</th><th class="n">EPS</th><th class="n">Est.</th><th class="n">Surprise</th></tr></thead><tbody>`
+      + res.map(r => `<tr><td>${esc(earnQ(r.quarter, r.year))}</td><td>${r.reported ? esc(earnDay(r.reported)) : esc(insDay(r.period)) + "*"}</td>`
+        + `<td class="n">${earnEps(r.eps_actual)}</td><td class="n">${earnEps(r.eps_estimate)}</td><td class="n">${earnSurprise(r)}</td></tr>`).join("")
+      + `</tbody></table></div>`
+      + (known ? `<p class="qsrc" style="margin-top:6px">Beat the EPS estimate in <b>${beats} of the last ${known}</b> quarters.</p>` : "");
+  }
+  return out + "</div>";
 }

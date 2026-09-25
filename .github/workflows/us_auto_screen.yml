@@ -78,6 +78,13 @@ jobs:
         working-directory: ./backend
         run: python scripts/run_announcements_us.py
 
+      - name: Fetch earnings dates for the updated board
+        continue-on-error: true
+        working-directory: ./backend
+        env:
+          FINNHUB_API_KEY: ${{ secrets.FINNHUB_API_KEY }}
+        run: python scripts/run_earnings_us.py
+
       - name: Commit and deploy
         env:
           AWS_HOST: ${{ secrets.AWS_HOST }}
@@ -88,7 +95,7 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add automation/data/us-auto-screen.json backend/data/companies_us_raw.json \
-                  backend/data/insider_us backend/data/announcements_us
+                  backend/data/insider_us backend/data/announcements_us backend/data/earnings_us
           if git diff --cached --quiet; then echo "Nothing changed"; exit 0; fi
           added=$(python -c "import json;r=json.load(open('automation/data/us-auto-screen.json'))['runs'][-1];print(len(r.get('added_codes',[])))" 2>/dev/null || echo 0)
           git commit -m "US auto-screen: ${added} added, lenses refreshed"

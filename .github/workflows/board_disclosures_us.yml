@@ -10,6 +10,7 @@ name: US board disclosures update
 #      own buy/sell disclosures      (scripts/run_insider_us.py)
 #   2. announcements          SEC Form 8-K -- material corporate events,
 #      classified by SEC's own item codes  (scripts/run_announcements_us.py)
+#   3. earnings calendar and results (Finnhub free tier) (scripts/run_earnings_us.py)
 #
 # Runs:
 #   * daily at 07:00 UTC (after the US trading day and SEC's own filing
@@ -72,12 +73,21 @@ jobs:
         working-directory: ./backend
         run: python scripts/run_announcements_us.py
 
+      # Finnhub free tier, the same key the US auto-screen uses. Without the
+      # secret the script leaves the earnings file untouched.
+      - name: Fetch US earnings calendar and results
+        continue-on-error: true
+        working-directory: ./backend
+        env:
+          FINNHUB_API_KEY: ${{ secrets.FINNHUB_API_KEY }}
+        run: python scripts/run_earnings_us.py
+
       - name: Commit board disclosures
         id: commit
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add backend/data/insider_us backend/data/announcements_us
+          git add backend/data/insider_us backend/data/announcements_us backend/data/earnings_us
           if git diff --cached --quiet; then
             echo "No changes"
             echo "changed=false" >> "$GITHUB_OUTPUT"
