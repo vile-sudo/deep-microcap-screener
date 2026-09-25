@@ -2811,8 +2811,14 @@ function newsBuildControls(){
     + Object.entries(bySector).sort((a,b)=>b[1]-a[1]).map(([s,n])=>`<option value="${esc(s)}">${esc(s)} (${n})</option>`).join('');
   [cc,sc].forEach(el=>el.onchange=newsRender);
   document.getElementById('news-pm').onchange=newsRender;
+  /* keyword search: filters as you type, and the Search button / Enter run it at once */
+  const nq=document.getElementById('news-q');
+  let nqTimer=0;
+  nq.oninput=()=>{ clearTimeout(nqTimer); nqTimer=setTimeout(newsRender,140); };
+  nq.onkeydown=e=>{ if(e.key==='Enter'){ clearTimeout(nqTimer); newsRender(); } if(e.key==='Escape'){ nq.value=''; newsRender(); } };
+  document.getElementById('news-search').onclick=()=>{ clearTimeout(nqTimer); newsRender(); nq.focus(); };
   document.getElementById('news-clear').onclick=()=>{
-    cc.value=''; sc.value=''; document.getElementById('news-pm').checked=false; newsRender();
+    cc.value=''; sc.value=''; nq.value=''; document.getElementById('news-pm').checked=false; newsRender();
   };
   document.getElementById('news-reload').onclick=newsReload;
 }
@@ -2853,10 +2859,16 @@ function newsRows(){
   const country=(document.getElementById('news-country')||{}).value||'';
   const sector=(document.getElementById('news-sector')||{}).value||'';
   const pmOnly=(document.getElementById('news-pm')||{}).checked;
+  /* every word typed must appear somewhere in the headline, source, sector tags or country */
+  const words=(((document.getElementById('news-q')||{}).value)||'').toLowerCase().split(/\s+/).filter(Boolean);
   return items.filter(it=>{
     if(country && it.country!==country) return false;
     if(sector && !(it.sectors||[]).includes(sector)) return false;
     if(pmOnly && !it.price_move) return false;
+    if(words.length){
+      const hay=(it.title+' '+(it.source||'')+' '+(it.sectors||[]).join(' ')+' '+(NEWS_COUNTRY[it.country]||it.country||'')).toLowerCase();
+      if(!words.every(w=>hay.includes(w))) return false;
+    }
     return true;
   });
 }
@@ -2891,7 +2903,7 @@ function newsRender(){
   document.getElementById('news-asof').textContent = NEWS.data.as_of ? 'Last fetched: '+newsAgoISO(NEWS.data.as_of) : '';
   body.innerHTML = rows.length ? `<div class="news-list">${rows.map(newsItemHtml).join('')}</div>`
     + (ME&&ME.is_admin?`<div class="mv-admin"><button type="button" class="btn" id="news-refresh">Refresh now</button><span class="mv-refresh-msg" id="news-refresh-msg"></span></div>`:'')
-    : '<p class="view-hint">No news matches — clear the filters, or wait for the next scheduled fetch.</p>';
+    : '<p class="view-hint">No news matches — try a different keyword, clear the filters, or wait for the next scheduled fetch.</p>';
   const btn=document.getElementById('news-refresh');
   if(btn) newsWireRefresh();
 }
