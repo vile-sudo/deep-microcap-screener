@@ -40,6 +40,13 @@ GET /api/news-us          the US board's recent headlines, newest first, a
 GET /api/institutions-us  institutional ownership from SEC Form 13F -- per
                           company: institutions holding it, share of shares
                           outstanding, top holders (scripts/run_institutions_us.py)
+GET /api/fundamentals-us  five fiscal years of revenue, profit, cash flow, debt
+                          and equity from SEC XBRL (scripts/run_fundamentals_us.py)
+GET /api/analysts-us      analyst coverage and rating counts (scripts/run_analysts_us.py)
+GET /api/short-us         FINRA short interest (scripts/run_short_us.py)
+GET /api/ipo-us           the US IPO calendar (scripts/run_ipo_us.py)
+GET /api/performance-us   return since added and score history per board company
+                          (scripts/run_performance_us.py)
 
 Written into backend/data/deals/latest.json,
 backend/data/announcements/latest.json, backend/data/insider_us/
@@ -60,6 +67,11 @@ ANNOUNCEMENTS_US_FILE = BASE_DIR / "data" / "announcements_us" / "latest.json"
 EARNINGS_US_FILE = BASE_DIR / "data" / "earnings_us" / "latest.json"
 NEWS_US_FILE = BASE_DIR / "data" / "news_us" / "latest.json"
 INSTITUTIONS_US_FILE = BASE_DIR / "data" / "institutions_us" / "latest.json"
+FUNDAMENTALS_US_FILE = BASE_DIR / "data" / "fundamentals_us" / "latest.json"
+ANALYSTS_US_FILE = BASE_DIR / "data" / "analysts_us" / "latest.json"
+SHORT_US_FILE = BASE_DIR / "data" / "short_us" / "latest.json"
+IPO_US_FILE = BASE_DIR / "data" / "ipo_us" / "latest.json"
+PERFORMANCE_US_FILE = BASE_DIR / "data" / "performance_us" / "latest.json"
 
 
 @router.get("/api/deals")
@@ -109,3 +121,21 @@ def institutions_us(request: Request):
     return file_response(request, INSTITUTIONS_US_FILE,
                          {"fetched_at": None, "source_file": None, "companies_checked": 0,
                           "companies_matched": 0, "companies": {}})
+
+
+def _company_file(name: str, path):
+    @router.get(f"/api/{name}-us")
+    def endpoint(request: Request):
+        return file_response(request, path, {"fetched_at": None, "companies": {}})
+    endpoint.__name__ = f"{name}_us"
+    return endpoint
+
+
+for _name, _path in (("fundamentals", FUNDAMENTALS_US_FILE), ("analysts", ANALYSTS_US_FILE),
+                     ("short", SHORT_US_FILE), ("performance", PERFORMANCE_US_FILE)):
+    _company_file(_name, _path)
+
+
+@router.get("/api/ipo-us")
+def ipo_us(request: Request):
+    return file_response(request, IPO_US_FILE, {"fetched_at": None, "count": 0, "items": []})
