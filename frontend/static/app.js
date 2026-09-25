@@ -148,10 +148,12 @@ const THEME_ICON=[[/defen|aero/i,'shield'],[/pharma/i,'flask'],[/medical|diagnos
   [/auto|mobility/i,'car'],[/textile/i,'thread'],[/building|construct/i,'bricks'],[/consumer|appliance/i,'bag'],
   [/agri|food/i,'leaf'],[/packag|plastic/i,'box'],[/transport|logist|rail|marine/i,'truck'],[/water|environ/i,'drop'],[/process/i,'factory']];
 const themeIcon = t => icon((THEME_ICON.find(([re])=>re.test(t))||[0,'folder'])[1]);
-const TILE_ICON={all:'building', themes:'folder', overhang:'flag', guide15:'trend', turn:'cycle', nolens:'hourglass'};
+const TILE_ICON={all:'building', themes:'folder', overhang:'flag', guide15:'trend', turn:'cycle', nolens:'hourglass', deals:'bolt', movers:'pulse'};
 
+/* data for the two data-driven tiles and the Overview panels (filled in by ovLoad, further down) */
+const OV={deals:null, ann:null, movers:null, setups:null, reports:null, ipo:null};
 /* ---------- stat tiles ---------- */
-(function(){
+function renderTiles(){
   const n = k => DATA.filter(d=>d[k]).length;
   const pending = DATA.filter(d=>!d.has_lens_data).length;
   const t = [
@@ -161,23 +163,26 @@ const TILE_ICON={all:'building', themes:'folder', overhang:'flag', guide15:'tren
     [String(n('guidance_over15')),'Management guides &gt; 15%','A further '+(n('guidance_flag')-n('guidance_over15'))+' made an unquantified forward statement',"var(--good-ink)",'guide15'],
     [String(n('pat_turnaround')),'PAT turned positive','Latest period profitable after a loss in the prior three',"var(--s1)",'turn'],
     [String(pending),'Awaiting the capex pass','CWIP, guidance and quarterly PAT not yet pulled for these',"var(--muted)",'nolens'],
+    [OV.deals ? String(ovBoardDeals().length) : '—','Bulk & block deals, board names','Disclosed deals in the last 7 days in companies on your board',"var(--s4)",'deals'],
+    [OV.movers && OV.movers.snapshot ? String(ovBoardMoves().length) : '—','Board names moving 4%+','On the latest scanned session',"var(--s3)",'movers'],
   ];
   /* Every tile that maps onto a filter is a button - the number you just read is the
      quickest route to the names behind it. */
   document.getElementById('tiles').innerHTML = t.map(([v,k,nn,c,tg])=>{
     const tag = tg ? 'button' : 'div';
-    const tip = tg==='all' ? 'Show every company on the board' : tg==='themes' ? 'Open the theme folders' : 'Show only these companies';
+    const tip = tg==='all' ? 'Show every company on the board' : tg==='themes' ? 'Open the theme folders' : tg==='deals' ? 'Open Bulk & Block Deals' : tg==='movers' ? 'Open the Movers screen' : 'Show only these companies';
     const at  = tg ? ` type="button" class="tile" data-tile="${tg}" title="${tip}"` : ' class="tile"';
     /* A bare count leaves the reader doing arithmetic against 310. The share bar puts
        the denominator back without spending a second number on it. The first tile IS
        the denominator, and the themes tile counts themes rather than companies, so
        neither gets one. */
     const num = Number(String(v).replace(/[^0-9.]/g,''));
-    const share = (tg && tg!=='all' && tg!=='themes' && isFinite(num) && DATA.length) ? (num/DATA.length)*100 : null;
+    const share = (tg && tg!=='all' && tg!=='themes' && tg!=='deals' && tg!=='movers' && isFinite(num) && DATA.length) ? (num/DATA.length)*100 : null;
     const bar = share===null ? '' : `<div class="tbar" title="${num} of ${DATA.length} companies — ${share.toFixed(share<1?1:0)}%"><i style="width:${Math.max(share,1.2).toFixed(1)}%;background:${c||'var(--ink2)'}"></i></div>`;
     return `<${tag}${at} style="--tile:${c||'#0a73a8'}"><span class="tile-ic">${icon(TILE_ICON[tg]||'building')}</span><div class="v"${c?` style="color:${c}"`:''}>${v}</div><div class="k">${k}</div>${bar}<div class="n">${nn}</div></${tag}>`;
   }).join('');
-})();
+}
+renderTiles();
 
 /* ---------- state ---------- */
 const SL = [
@@ -557,7 +562,7 @@ const SORTF = Object.fromEntries(COLS.filter(c=>c.sortf).map(c=>[c.k,c.sortf]));
 let CURRENT=[], CUR=-1, DRAWERI=-1;
 /* The table, its header and the count line belong to whichever page picked the
    companies; until something is picked the page shows a one-line hint instead. */
-const HINT={overview:'Click a tile above to see the companies behind that number.',
+const HINT={overview:'',
             companies:'Type a company name or ticker above — only the companies it names will be shown.',
             filters:'Click a filter above to see only the companies that match it.'};
 function renderResultsFrame(){
@@ -565,6 +570,7 @@ function renderResultsFrame(){
   const asmeList = show && VIEW==='filters' && TG.asme;
   const otherTab = VIEW==='filters' && FL.tab!=='filters';
   const head=document.getElementById('results-head'), cnt=document.getElementById('count');
+  const ovg=document.getElementById('ov-grid'); if(ovg) ovg.hidden = VIEW!=='overview' || show;
   document.getElementById('research').hidden=!show || asmeList || otherTab;
   cnt.hidden = !(show || HINT[VIEW]) || asmeList || otherTab;
   cnt.classList.toggle('view-hint', !show);
@@ -1511,6 +1517,8 @@ document.getElementById('tiles').onclick=e=>{
   const b=e.target.closest('[data-tile]'); if(!b) return;
   const t=b.dataset.tile;
   if(t==='themes'){ setView('themes'); return; }
+  if(t==='deals'){ setView('deals'); return; }
+  if(t==='movers'){ setView('movers'); return; }
   const same = TILE===t;
   clearFilters();
   if(!same){ TILE=t; if(t!=='all') TG[t]=true; }
@@ -4907,6 +4915,75 @@ async function scRenderDoc(){
   doc.querySelectorAll('[data-sc-card]').forEach(b=>b.onclick=()=>{ const d=DATA.find(x=>x.code===b.dataset.scCard); if(d){ CURRENT=[d]; openDrawer(d); } });
   syncURL();
 }
+
+/* ---------- Overview: what is happening to the board ----------
+   Panels under the stat tiles, built from data the scheduled jobs already write (deals, filings,
+   movers, chart signals, research reports, IPO reports, the News Channel). Nothing here is typed
+   by hand, so it is as current as those jobs. Picking a tile swaps the panels for that tile's
+   company list, as before. */
+const OV_URL={deals:'/api/deals', ann:'/api/announcements', movers:'/api/movers', setups:'/api/market/setups',
+              reports:'/api/reports', ipo:'/api/ipo-reports/calendar'};
+const ovByCode = () => { const m={}; DATA.forEach(d=>{ m[d.code]=d; }); return m; };
+const ovDay = iso => iso ? new Date(String(iso).slice(0,10)+'T00:00:00Z').toLocaleDateString('en-IN',{day:'2-digit',month:'short',timeZone:'UTC'}) : '';
+const ovClip = (s,n) => { s=String(s||'').replace(/\s+/g,' ').trim(); return s.length>n ? s.slice(0,n-1).trimEnd()+'…' : s; };
+function ovBoardDeals(){
+  const rows=(OV.deals && OV.deals.deals)||[]; if(!rows.length) return [];
+  const last=rows.reduce((m,x)=>x.date>m?x.date:m,'');
+  const from=new Date(Date.parse(last+'T00:00:00Z')-6*86400000).toISOString().slice(0,10);
+  return rows.filter(x=>x.board_code && x.date>=from);
+}
+function ovBoardMoves(){
+  const moves=(OV.movers && OV.movers.snapshot && OV.movers.snapshot.moves)||[];
+  return moves.filter(x=>x.board_code);
+}
+async function ovLoad(){
+  await Promise.all(Object.keys(OV_URL).map(k=>fetchJSON(OV_URL[k]).then(j=>{ OV[k]=j; }).catch(()=>{})));
+  if(!NEWS.data){ const j=await newsFetch().catch(()=>null); if(j && j.items) NEWS.data=j; }
+  renderTiles(); renderOverviewPanels();
+}
+function renderOverviewPanels(){
+  const box=document.getElementById('ov-grid'); if(!box) return;
+  const by=ovByCode();
+  const card=(title,go,goLabel,inner)=>`<div class="ov-card"><h3><span>${title}</span>${go?`<button type="button" data-ov-go="${go}">${goLabel} →</button>`:''}</h3>${inner}</div>`;
+  const list=(rows,empty)=>rows.length?`<ul class="ov-list">${rows.join('')}</ul>`:`<p class="ov-empty">${empty}</p>`;
+  const li=(attr,left,sub,right)=>`<li ${attr}><span><b>${left}</b>${sub?`<small>${sub}</small>`:''}</span><span class="r">${right||''}</span></li>`;
+  const co=code=>`data-ov-code="${esc(code)}"`;
+
+  const top=DATA.filter(d=>nz(d.final_score)!==null).sort((a,b)=>b.final_score-a.final_score).slice(0,6);
+  const added=DATA.filter(d=>d.added_on).sort((a,b)=>String(b.added_on).localeCompare(String(a.added_on)) || (nz(b.final_score)||0)-(nz(a.final_score)||0)).slice(0,6);
+  const news=((NEWS.data && NEWS.data.items)||[]).slice(0,6);
+  const deals=ovBoardDeals().sort((a,b)=>b.date.localeCompare(a.date) || b.value_cr-a.value_cr).slice(0,5);
+  const HI=new Set(['results','order win','M&A','capital action','fundraise','capacity or plant','management change','regulatory or legal','rating change','agreement']);
+  const filings=((OV.ann && OV.ann.announcements)||[]).filter(a=>a.board_code && by[a.board_code] && HI.has(a.kind) && a.weight>=3)
+    .sort((a,b)=>b.date.localeCompare(a.date) || b.weight-a.weight).slice(0,5);
+  const mv=ovBoardMoves().sort((a,b)=>Math.abs(b.pct_change)-Math.abs(a.pct_change)).slice(0,5);
+  const seenSig=new Set();   /* the feed can list one company under several screens: show it once */
+  const signals=((OV.setups && OV.setups.feed)||[]).filter(f=>{ if(!by[f.code]||seenSig.has(f.code)) return false; seenSig.add(f.code); return true; }).slice(0,5);
+  const reps=Object.entries(OV.reports||{}).map(([code,r])=>({code,...r})).filter(r=>r.generated_at)
+    .sort((a,b)=>String(b.generated_at).localeCompare(String(a.generated_at))).slice(0,5);
+  const ipos=((OV.ipo && OV.ipo.issues)||[]).filter(i=>i.status==='Active' || String(i.open_date)>=new Date().toISOString().slice(0,10)).slice(0,5);
+  const mine=[...WATCH].map(c=>by[c]).filter(Boolean).sort((a,b)=>(nz(b.final_score)||0)-(nz(a.final_score)||0)).slice(0,6);
+
+  box.innerHTML =
+    (mine.length ? card('Your watchlist',null,'',list(mine.map(d=>li(co(d.code),esc(d.name),esc(shortT(base(d))),fmt(d.final_score,1))),'')) : '')
+    + card('Top ranked','filters','All screens',list(top.map(d=>li(co(d.code),esc(d.name),esc(shortT(base(d))),fmt(d.final_score,1))),'No scored companies yet.'))
+    + card('Latest headlines','news','News Channel',list(news.map(it=>li(`data-ov-link="${esc(it.link)}"`,esc(it.title),`${esc(NEWS_COUNTRY[it.country]||it.country||'')} · ${esc(it.source||'')}`,esc(newsAgo(it.published)))),NEWS.data?'No headlines yet.':'Loading…'))
+    + card('Bulk &amp; block deals, board names','deals','All deals',list(deals.map(x=>li(co(x.board_code),esc(x.name),`${esc(x.side)} · ${esc(ovClip(x.client,40))}`,`₹${fmt(x.value_cr,1)} cr<small>${esc(ovDay(x.date))}</small>`)),OV.deals?'No disclosed deals in board names in the last 7 days.':'Loading…'))
+    + card('Board filings','deals','Announcements',list(filings.map(a=>li(co(a.board_code),esc(a.name),`${esc(a.kind)} — ${esc(ovClip(a.summary,70))}`,esc(ovDay(a.date)))),OV.ann?'No major filings from board names lately.':'Loading…'))
+    + card('Board names on the move','movers','Movers',list(mv.map(x=>li(co(x.board_code),esc(x.name),esc(ovClip((x.why&&x.why.headline)||'',60)),`<span class="${x.pct_change>=0?'ov-up':'ov-dn'}">${x.pct_change>0?'+':''}${fmt(x.pct_change,1)}%</span>`)),OV.movers?'No board name moved 4%+ on the latest scanned session.':'Loading…'))
+    + card('Chart signals','market','Market view',list(signals.map(f=>li(co(f.code),esc(f.name),esc(ovClip(f.text,80)),`<span class="${(f.chg_pct||0)>=0?'ov-up':'ov-dn'}">${f.chg_pct>0?'+':''}${fmt(f.chg_pct,1)}%</span>`)),OV.setups?'No signals on board names today.':'Loading…'))
+    + card('New research reports','reports','All reports',list(reps.map(r=>li(`data-ov-report="${esc(r.code)}"`,esc(r.name||r.code),`${esc(r.period_label||'')} — ${esc(ovClip(r.one_line,80))}`,esc(ovDay(String(r.generated_at).slice(0,10))))),OV.reports?'No reports yet.':'Loading…'))
+    + card('IPOs open or opening soon','ipor','IPO reports',list(ipos.map(i=>li('data-ov-go-row="ipor"',esc(i.company),`${esc(i.price_band||'')}${i.board?' · '+esc(i.board):''}`,`closes ${esc(ovDay(i.close_date))}`)),OV.ipo?'No open mainboard or SME issues right now.':'Loading…'))
+    + card('Just added','filters','All screens',list(added.map(d=>li(co(d.code),esc(d.name),esc(shortT(base(d))),esc(ovDay(d.added_on)))),'Nothing added yet.'));
+
+  box.querySelectorAll('[data-ov-code]').forEach(el=>{ el.onclick=()=>{ const d=by[el.dataset.ovCode]; if(d){ CURRENT=[d]; openDrawer(d); } }; });
+  box.querySelectorAll('[data-ov-link]').forEach(el=>{ el.onclick=()=>window.open(el.dataset.ovLink,'_blank','noopener'); });
+  box.querySelectorAll('[data-ov-report]').forEach(el=>{ el.onclick=()=>openReport(el.dataset.ovReport); });
+  box.querySelectorAll('[data-ov-go-row]').forEach(el=>{ el.onclick=()=>setView(el.dataset.ovGoRow); });
+  box.querySelectorAll('[data-ov-go]').forEach(el=>{ el.onclick=()=>setView(el.dataset.ovGo); });
+}
+renderOverviewPanels();
+ovLoad();
 
 ACCT.loaded=initUserMenu();
 watchSync();
