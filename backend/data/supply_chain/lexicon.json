@@ -1,0 +1,1807 @@
+{
+ "_about": "Domain knowledge for app/beneficiaries.py: how a product in the news connects to what Indian companies make. It holds NO company names -- companies come from the index of what each one actually says it makes (scripts/run_product_index.py), so a new listing is picked up without editing this file. Each theme: 'terms' = words in a headline that trigger it; 'expand' = [phrase, weight] to look for in a company's own description (products it makes, or the trade it is in); 'industries' = substrings of screener.in's industry classification that clearly mean the product (big rank boost), 'industries_weak' = broad ones (small boost, never enough alone); 'note' = the reason the connection exists, shown to the reader. Add a theme when a story type is missing.",
+ "themes": [
+  {
+   "id": "hydrochloric-acid",
+   "terms": [
+    "hydrochloric acid",
+    "hcl price",
+    "muriatic acid"
+   ],
+   "expand": [
+    [
+     "dye intermediates",
+     1.6
+    ],
+    [
+     "h-acid",
+     1.6
+    ],
+    [
+     "h acid",
+     1.6
+    ],
+    [
+     "dyestuff",
+     1.4
+    ],
+    [
+     "dyes",
+     1.2
+    ],
+    [
+     "pigment",
+     1.0
+    ],
+    [
+     "chlor-alkali",
+     1.4
+    ],
+    [
+     "chlor alkali",
+     1.4
+    ],
+    [
+     "caustic soda",
+     1.2
+    ],
+    [
+     "chlorine",
+     1.2
+    ],
+    [
+     "agrochemical intermediates",
+     0.9
+    ],
+    [
+     "pharma intermediates",
+     0.8
+    ],
+    [
+     "basic chemicals",
+     0.8
+    ]
+   ],
+   "industries": [
+    "dyes",
+    "pigments"
+   ],
+   "note": "Hydrochloric acid is a chlor-alkali / chlorination by-product and a feed for dye, pigment and agro-pharma intermediates. A Chinese price spike from environmental shutdowns squeezes those Chinese producers, and buyers turn to Indian makers.",
+   "industries_weak": [
+    "commodity chemicals"
+   ]
+  },
+  {
+   "id": "dyes",
+   "terms": [
+    "dye ",
+    "dyes",
+    "dyestuff",
+    "reactive dye",
+    "disperse dye",
+    "pigment",
+    "h-acid",
+    "vinyl sulphone"
+   ],
+   "expand": [
+    [
+     "dye intermediates",
+     1.6
+    ],
+    [
+     "dyestuff",
+     1.5
+    ],
+    [
+     "reactive dyes",
+     1.5
+    ],
+    [
+     "disperse dyes",
+     1.5
+    ],
+    [
+     "h-acid",
+     1.6
+    ],
+    [
+     "pigments",
+     1.2
+    ],
+    [
+     "textile chemicals",
+     0.8
+    ]
+   ],
+   "industries": [
+    "dyes",
+    "pigments"
+   ],
+   "note": "China dominates dyes and dye intermediates; its environmental curbs have repeatedly shifted orders to Indian producers."
+  },
+  {
+   "id": "chlor-alkali",
+   "terms": [
+    "caustic soda",
+    "chlor-alkali",
+    "chlor alkali",
+    "chlorine",
+    "soda ash",
+    "sodium hydroxide"
+   ],
+   "expand": [
+    [
+     "caustic soda",
+     1.6
+    ],
+    [
+     "chlor-alkali",
+     1.6
+    ],
+    [
+     "chlor alkali",
+     1.6
+    ],
+    [
+     "chlorine",
+     1.3
+    ],
+    [
+     "soda ash",
+     1.5
+    ],
+    [
+     "epichlorohydrin",
+     1.0
+    ],
+    [
+     "chloromethane",
+     1.0
+    ]
+   ],
+   "industries": [],
+   "note": "Caustic soda, chlorine and soda ash are basic inputs for alumina, paper, textiles, PVC and soaps; supply changes in China move global prices.",
+   "industries_weak": [
+    "commodity chemicals"
+   ]
+  },
+  {
+   "id": "sulphuric-acid",
+   "terms": [
+    "sulphuric acid",
+    "sulfuric acid"
+   ],
+   "expand": [
+    [
+     "sulphuric acid",
+     1.6
+    ],
+    [
+     "sulfuric acid",
+     1.6
+    ],
+    [
+     "oleum",
+     1.2
+    ],
+    [
+     "phosphoric acid",
+     1.0
+    ],
+    [
+     "fertilizer",
+     0.7
+    ],
+    [
+     "copper",
+     0.4
+    ]
+   ],
+   "industries": [
+    "fertilizers"
+   ],
+   "note": "Sulphuric acid feeds fertilisers, metals and many chemicals; smelter and regulation-driven supply cuts lift prices.",
+   "industries_weak": [
+    "commodity chemicals"
+   ]
+  },
+  {
+   "id": "fluorochemicals",
+   "terms": [
+    "fluorspar",
+    "hydrofluoric",
+    "fluorochemical",
+    "fluoropolymer",
+    "ptfe",
+    "r-32",
+    "refrigerant gas",
+    "fluorine"
+   ],
+   "expand": [
+    [
+     "fluorochemicals",
+     1.6
+    ],
+    [
+     "fluoro",
+     1.3
+    ],
+    [
+     "refrigerant",
+     1.4
+    ],
+    [
+     "ptfe",
+     1.4
+    ],
+    [
+     "fluoropolymer",
+     1.5
+    ],
+    [
+     "hydrofluoric",
+     1.4
+    ],
+    [
+     "fluorspar",
+     1.3
+    ],
+    [
+     "specialty chemicals",
+     0.5
+    ]
+   ],
+   "industries": [],
+   "note": "China controls most fluorspar and fluorochemical capacity; quota or regulation news reprices refrigerants, PTFE and battery fluorochemicals.",
+   "industries_weak": [
+    "specialty chemicals",
+    "commodity chemicals"
+   ]
+  },
+  {
+   "id": "titanium-dioxide",
+   "terms": [
+    "titanium dioxide",
+    "tio2"
+   ],
+   "expand": [
+    [
+     "titanium dioxide",
+     1.8
+    ],
+    [
+     "tio2",
+     1.8
+    ],
+    [
+     "pigment",
+     0.8
+    ],
+    [
+     "paint",
+     0.5
+    ]
+   ],
+   "industries": [
+    "pigments"
+   ],
+   "note": "China is the largest TiO2 producer; its price moves flow to paints, plastics and coatings."
+  },
+  {
+   "id": "agrochemicals",
+   "terms": [
+    "agrochemical",
+    "pesticide",
+    "herbicide",
+    "insecticide",
+    "fungicide",
+    "glyphosate",
+    "crop protection",
+    "technical grade"
+   ],
+   "expand": [
+    [
+     "agrochemical",
+     1.4
+    ],
+    [
+     "pesticide",
+     1.4
+    ],
+    [
+     "insecticide",
+     1.4
+    ],
+    [
+     "herbicide",
+     1.4
+    ],
+    [
+     "fungicide",
+     1.4
+    ],
+    [
+     "technical",
+     0.7
+    ],
+    [
+     "crop protection",
+     1.5
+    ],
+    [
+     "glyphosate",
+     1.6
+    ],
+    [
+     "agro intermediates",
+     1.2
+    ]
+   ],
+   "industries": [
+    "agrochemical",
+    "pesticide"
+   ],
+   "note": "China supplies most agrochemical technicals and intermediates; shutdowns or price hikes push global buyers towards Indian manufacturers (China+1)."
+  },
+  {
+   "id": "pharma-api",
+   "terms": [
+    "api price",
+    "bulk drug",
+    "active pharmaceutical",
+    "pharma intermediate",
+    "api export",
+    "paracetamol",
+    "ibuprofen",
+    "penicillin",
+    "6-apa",
+    "amoxicillin",
+    "azithromycin",
+    "metformin",
+    "vitamin"
+   ],
+   "expand": [
+    [
+     "active pharmaceutical",
+     1.5
+    ],
+    [
+     "api",
+     0.6
+    ],
+    [
+     "bulk drug",
+     1.5
+    ],
+    [
+     "intermediates",
+     0.9
+    ],
+    [
+     "paracetamol",
+     1.5
+    ],
+    [
+     "ibuprofen",
+     1.5
+    ],
+    [
+     "penicillin",
+     1.5
+    ],
+    [
+     "vitamin",
+     1.2
+    ],
+    [
+     "fermentation",
+     1.0
+    ],
+    [
+     "cdmo",
+     1.0
+    ]
+   ],
+   "industries": [],
+   "note": "India buys most key starting materials and many APIs from China; supply or price shocks there help Indian API makers with backward integration and hurt those dependent on imports.",
+   "industries_weak": [
+    "pharmaceuticals",
+    "drugs"
+   ]
+  },
+  {
+   "id": "lithium-battery",
+   "terms": [
+    "lithium",
+    "cobalt",
+    "cathode",
+    "anode",
+    "battery",
+    "lithium-ion",
+    "ev battery",
+    "nickel",
+    "manganese sulphate"
+   ],
+   "expand": [
+    [
+     "lithium",
+     1.6
+    ],
+    [
+     "battery",
+     1.4
+    ],
+    [
+     "batteries",
+     1.4
+    ],
+    [
+     "cathode",
+     1.5
+    ],
+    [
+     "anode",
+     1.5
+    ],
+    [
+     "cell",
+     0.5
+    ],
+    [
+     "energy storage",
+     1.2
+    ],
+    [
+     "ev ",
+     0.6
+    ],
+    [
+     "electrolyte",
+     1.4
+    ]
+   ],
+   "industries": [
+    "batter"
+   ],
+   "note": "China dominates battery materials and cells; export controls or price swings change the economics of Indian cell, pack and materials makers."
+  },
+  {
+   "id": "graphite",
+   "terms": [
+    "graphite",
+    "graphite electrode",
+    "needle coke",
+    "carbon black"
+   ],
+   "expand": [
+    [
+     "graphite",
+     1.8
+    ],
+    [
+     "graphite electrode",
+     1.8
+    ],
+    [
+     "needle coke",
+     1.5
+    ],
+    [
+     "carbon black",
+     1.5
+    ],
+    [
+     "carbon",
+     0.6
+    ],
+    [
+     "anode",
+     0.8
+    ]
+   ],
+   "industries": [
+    "graphite",
+    "carbon"
+   ],
+   "note": "Graphite is a battery-anode and steel-electrode input; Chinese export licensing directly reprices it."
+  },
+  {
+   "id": "rare-earth",
+   "terms": [
+    "rare earth",
+    "magnet export",
+    "neodymium",
+    "permanent magnet",
+    "gallium",
+    "germanium",
+    "antimony",
+    "tungsten"
+   ],
+   "expand": [
+    [
+     "rare earth",
+     1.8
+    ],
+    [
+     "magnet",
+     1.4
+    ],
+    [
+     "neodymium",
+     1.6
+    ],
+    [
+     "ferrite",
+     1.0
+    ],
+    [
+     "tungsten",
+     1.5
+    ],
+    [
+     "specialty metals",
+     1.0
+    ]
+   ],
+   "industries": [
+    "magnet"
+   ],
+   "note": "Chinese export limits on rare earths and minor metals lift demand for non-Chinese sources and for magnet substitutes.",
+   "industries_weak": [
+    "metals"
+   ]
+  },
+  {
+   "id": "solar",
+   "terms": [
+    "solar",
+    "polysilicon",
+    "photovoltaic",
+    "pv cell",
+    "solar panel",
+    "solar module",
+    "wafer",
+    "solar glass"
+   ],
+   "expand": [
+    [
+     "solar module",
+     1.8
+    ],
+    [
+     "solar cell",
+     1.8
+    ],
+    [
+     "solar panel",
+     1.6
+    ],
+    [
+     "solar",
+     1.2
+    ],
+    [
+     "polysilicon",
+     1.6
+    ],
+    [
+     "wafer",
+     1.3
+    ],
+    [
+     "solar glass",
+     1.6
+    ],
+    [
+     "inverter",
+     1.0
+    ],
+    [
+     "photovoltaic",
+     1.4
+    ],
+    [
+     "ingot",
+     1.3
+    ]
+   ],
+   "industries": [
+    "solar"
+   ],
+   "note": "Chinese polysilicon, wafer and cell prices and trade actions set the cost base for Indian module and cell makers, and duties abroad redirect demand.",
+   "industries_weak": [
+    "renewable"
+   ]
+  },
+  {
+   "id": "steel",
+   "terms": [
+    "steel",
+    "hrc",
+    "hot rolled",
+    "stainless",
+    "rebar",
+    "wire rod",
+    "steel export",
+    "steel price"
+   ],
+   "expand": [
+    [
+     "steel",
+     1.0
+    ],
+    [
+     "hot rolled",
+     1.3
+    ],
+    [
+     "stainless",
+     1.4
+    ],
+    [
+     "tmt",
+     1.3
+    ],
+    [
+     "wire rod",
+     1.3
+    ],
+    [
+     "alloy steel",
+     1.3
+    ],
+    [
+     "forgings",
+     0.8
+    ],
+    [
+     "ferro alloys",
+     0.8
+    ]
+   ],
+   "industries": [
+    "iron & steel",
+    "steel"
+   ],
+   "note": "Chinese output cuts or export curbs firm up global steel prices; anti-dumping and safeguard duties in India protect domestic producers."
+  },
+  {
+   "id": "ferro-alloys",
+   "terms": [
+    "ferro",
+    "ferrochrome",
+    "ferro chrome",
+    "manganese",
+    "silico manganese",
+    "chrome ore",
+    "ferrosilicon"
+   ],
+   "expand": [
+    [
+     "ferro alloys",
+     1.8
+    ],
+    [
+     "ferro chrome",
+     1.8
+    ],
+    [
+     "ferrochrome",
+     1.8
+    ],
+    [
+     "silico manganese",
+     1.8
+    ],
+    [
+     "manganese",
+     1.4
+    ],
+    [
+     "ferro silicon",
+     1.6
+    ],
+    [
+     "chrome",
+     1.0
+    ]
+   ],
+   "industries": [
+    "ferro"
+   ],
+   "note": "Ferro alloys follow steel demand and power cost; supply cuts in China or South Africa move prices."
+  },
+  {
+   "id": "aluminium",
+   "terms": [
+    "aluminium",
+    "aluminum",
+    "alumina",
+    "bauxite"
+   ],
+   "expand": [
+    [
+     "aluminium",
+     1.6
+    ],
+    [
+     "aluminum",
+     1.6
+    ],
+    [
+     "alumina",
+     1.5
+    ],
+    [
+     "bauxite",
+     1.5
+    ],
+    [
+     "extrusion",
+     1.0
+    ],
+    [
+     "foil",
+     1.0
+    ]
+   ],
+   "industries": [
+    "alumin"
+   ],
+   "note": "China's capacity cap and energy limits drive global aluminium prices."
+  },
+  {
+   "id": "copper-zinc",
+   "terms": [
+    "copper",
+    "zinc",
+    "lead price",
+    "brass",
+    "smelter"
+   ],
+   "expand": [
+    [
+     "copper",
+     1.5
+    ],
+    [
+     "zinc",
+     1.5
+    ],
+    [
+     "brass",
+     1.3
+    ],
+    [
+     "lead",
+     0.6
+    ],
+    [
+     "cathode",
+     0.8
+    ],
+    [
+     "wire",
+     0.6
+    ]
+   ],
+   "industries": [
+    "copper",
+    "zinc"
+   ],
+   "note": "Smelter shutdowns, ore shortages and tariffs move base-metal prices and margins for Indian processors.",
+   "industries_weak": [
+    "metals"
+   ]
+  },
+  {
+   "id": "semiconductors",
+   "terms": [
+    "semiconductor",
+    "chip export",
+    "chip ban",
+    "wafer",
+    "photoresist",
+    "chipmaking",
+    "chip equipment",
+    "osat",
+    "memory chip"
+   ],
+   "expand": [
+    [
+     "semiconductor",
+     1.6
+    ],
+    [
+     "osat",
+     1.5
+    ],
+    [
+     "pcb",
+     1.2
+    ],
+    [
+     "printed circuit",
+     1.3
+    ],
+    [
+     "electronic components",
+     1.0
+    ],
+    [
+     "ems",
+     0.8
+    ],
+    [
+     "display",
+     0.8
+    ]
+   ],
+   "industries": [
+    "semiconductor"
+   ],
+   "note": "Chip-supply policy shifts and China+1 electronics moves benefit Indian electronics manufacturing and component makers.",
+   "industries_weak": [
+    "electronic"
+   ]
+  },
+  {
+   "id": "electronics-components",
+   "terms": [
+    "mlcc",
+    "capacitor",
+    "electronic component",
+    "connector",
+    "image sensor",
+    "passive component"
+   ],
+   "expand": [
+    [
+     "capacitor",
+     1.5
+    ],
+    [
+     "connector",
+     1.2
+    ],
+    [
+     "electronic components",
+     1.5
+    ],
+    [
+     "pcb",
+     1.2
+    ],
+    [
+     "sensor",
+     1.0
+    ],
+    [
+     "magnetics",
+     1.0
+    ]
+   ],
+   "industries": [],
+   "note": "Component shortages and Japanese/Chinese supply cuts reprice electronics inputs.",
+   "industries_weak": [
+    "electronic"
+   ]
+  },
+  {
+   "id": "textiles-cotton",
+   "terms": [
+    "cotton",
+    "yarn",
+    "textile",
+    "apparel export",
+    "garment",
+    "fabric",
+    "polyester yarn",
+    "viscose"
+   ],
+   "expand": [
+    [
+     "cotton yarn",
+     1.6
+    ],
+    [
+     "yarn",
+     1.3
+    ],
+    [
+     "fabric",
+     1.2
+    ],
+    [
+     "garment",
+     1.2
+    ],
+    [
+     "viscose",
+     1.4
+    ],
+    [
+     "polyester",
+     1.2
+    ],
+    [
+     "denim",
+     1.3
+    ],
+    [
+     "spinning",
+     1.3
+    ],
+    [
+     "home textile",
+     1.3
+    ],
+    [
+     "terry towel",
+     1.3
+    ]
+   ],
+   "industries": [],
+   "note": "Cotton and polyester prices, US/EU tariffs on Asian rivals and China+1 sourcing shift work to Indian spinners and garment makers.",
+   "industries_weak": [
+    "textile",
+    "apparel"
+   ]
+  },
+  {
+   "id": "gems-jewellery",
+   "terms": [
+    "diamond",
+    "polished diamond",
+    "jewellery export",
+    "gem export",
+    "lab-grown diamond",
+    "gold jewellery"
+   ],
+   "expand": [
+    [
+     "diamond",
+     1.6
+    ],
+    [
+     "jewellery",
+     1.4
+    ],
+    [
+     "gems",
+     1.4
+    ],
+    [
+     "gold",
+     0.8
+    ],
+    [
+     "lab grown",
+     1.5
+    ]
+   ],
+   "industries": [
+    "jewel",
+    "gems"
+   ],
+   "note": "US tariffs and Russian-diamond sanctions reroute the diamond and jewellery trade through India."
+  },
+  {
+   "id": "glassware-ceramics",
+   "terms": [
+    "glassware",
+    "glass",
+    "borosilicate",
+    "opalware",
+    "tableware",
+    "ceramic",
+    "tiles",
+    "sanitaryware"
+   ],
+   "expand": [
+    [
+     "glassware",
+     1.8
+    ],
+    [
+     "borosilicate",
+     1.8
+    ],
+    [
+     "opalware",
+     1.8
+    ],
+    [
+     "tableware",
+     1.4
+    ],
+    [
+     "glass",
+     1.0
+    ],
+    [
+     "ceramic",
+     1.2
+    ],
+    [
+     "tiles",
+     1.2
+    ],
+    [
+     "sanitaryware",
+     1.4
+    ],
+    [
+     "consumerware",
+     1.4
+    ]
+   ],
+   "industries": [
+    "glass",
+    "ceramic"
+   ],
+   "note": "Anti-dumping duty or import curbs on Chinese glassware, ceramics and tiles protect domestic producers' pricing.",
+   "industries_weak": [
+    "consumer durables"
+   ]
+  },
+  {
+   "id": "fertilizers",
+   "terms": [
+    "urea",
+    "dap",
+    "potash",
+    "fertilizer",
+    "fertiliser",
+    "phosphate",
+    "npk",
+    "ammonia"
+   ],
+   "expand": [
+    [
+     "urea",
+     1.5
+    ],
+    [
+     "dap",
+     1.4
+    ],
+    [
+     "npk",
+     1.4
+    ],
+    [
+     "phosphatic",
+     1.4
+    ],
+    [
+     "fertilizer",
+     1.3
+    ],
+    [
+     "fertiliser",
+     1.3
+    ],
+    [
+     "ammonia",
+     1.2
+    ],
+    [
+     "potash",
+     1.2
+    ],
+    [
+     "water soluble",
+     1.0
+    ]
+   ],
+   "industries": [
+    "fertilizer"
+   ],
+   "note": "Chinese export quotas and gas/energy costs set global fertiliser prices; India's subsidy structure shapes who gains."
+  },
+  {
+   "id": "sugar-ethanol",
+   "terms": [
+    "sugar",
+    "ethanol",
+    "molasses",
+    "sugar export"
+   ],
+   "expand": [
+    [
+     "sugar",
+     1.5
+    ],
+    [
+     "ethanol",
+     1.5
+    ],
+    [
+     "distillery",
+     1.2
+    ],
+    [
+     "cogeneration",
+     0.8
+    ]
+   ],
+   "industries": [
+    "sugar"
+   ],
+   "note": "Export policy, crop size and ethanol blending decide sugar-company earnings."
+  },
+  {
+   "id": "edible-oil-agri",
+   "terms": [
+    "palm oil",
+    "soybean",
+    "edible oil",
+    "sunflower oil",
+    "mustard",
+    "wheat",
+    "rice export",
+    "corn",
+    "basmati"
+   ],
+   "expand": [
+    [
+     "edible oil",
+     1.6
+    ],
+    [
+     "palm oil",
+     1.6
+    ],
+    [
+     "soya",
+     1.4
+    ],
+    [
+     "soybean",
+     1.4
+    ],
+    [
+     "rice",
+     1.3
+    ],
+    [
+     "basmati",
+     1.6
+    ],
+    [
+     "wheat",
+     1.2
+    ],
+    [
+     "maize",
+     1.2
+    ],
+    [
+     "oilseed",
+     1.4
+    ],
+    [
+     "refined oil",
+     1.3
+    ]
+   ],
+   "industries": [
+    "edible oil"
+   ],
+   "note": "Import duty changes, export bans and global crop prices move edible-oil and grain processors.",
+   "industries_weak": [
+    "agricultural",
+    "food"
+   ]
+  },
+  {
+   "id": "shrimp-seafood",
+   "terms": [
+    "shrimp",
+    "seafood",
+    "prawn",
+    "aquaculture"
+   ],
+   "expand": [
+    [
+     "shrimp",
+     1.8
+    ],
+    [
+     "seafood",
+     1.6
+    ],
+    [
+     "aqua",
+     1.3
+    ],
+    [
+     "prawn",
+     1.6
+    ],
+    [
+     "marine",
+     1.0
+    ]
+   ],
+   "industries": [
+    "seafood",
+    "aqua"
+   ],
+   "note": "US tariffs and disease-driven supply cuts in rival exporters change India's shrimp trade."
+  },
+  {
+   "id": "oil-gas",
+   "terms": [
+    "crude oil",
+    "oil price",
+    "shale",
+    "lng",
+    "natural gas",
+    "refinery",
+    "brent",
+    "opec"
+   ],
+   "expand": [
+    [
+     "crude",
+     1.2
+    ],
+    [
+     "refinery",
+     1.3
+    ],
+    [
+     "oil & gas",
+     1.4
+    ],
+    [
+     "lng",
+     1.2
+    ],
+    [
+     "natural gas",
+     1.3
+    ],
+    [
+     "cng",
+     1.0
+    ],
+    [
+     "lubricant",
+     1.2
+    ],
+    [
+     "bitumen",
+     1.2
+    ],
+    [
+     "oilfield",
+     1.3
+    ]
+   ],
+   "industries": [],
+   "note": "Crude and gas price swings move refiners, gas distributors and oilfield-service companies in opposite ways.",
+   "industries_weak": [
+    "oil",
+    "gas",
+    "petro"
+   ]
+  },
+  {
+   "id": "defence",
+   "terms": [
+    "defense contract",
+    "defence contract",
+    "aerospace",
+    "military aircraft",
+    "missile",
+    "drone",
+    "warship",
+    "defence export",
+    "ammunition"
+   ],
+   "expand": [
+    [
+     "defence",
+     1.6
+    ],
+    [
+     "aerospace",
+     1.5
+    ],
+    [
+     "missile",
+     1.5
+    ],
+    [
+     "drone",
+     1.4
+    ],
+    [
+     "ammunition",
+     1.5
+    ],
+    [
+     "shipyard",
+     1.3
+    ],
+    [
+     "warship",
+     1.5
+    ],
+    [
+     "radar",
+     1.3
+    ],
+    [
+     "avionics",
+     1.4
+    ],
+    [
+     "forgings",
+     0.8
+    ]
+   ],
+   "industries": [
+    "aerospace",
+    "defence"
+   ],
+   "note": "Global rearmament and India's indigenisation push feed order books of defence suppliers."
+  },
+  {
+   "id": "autos-ev",
+   "terms": [
+    "auto component",
+    "auto parts",
+    "toyota",
+    "honda",
+    "nissan",
+    "suzuki",
+    "automaker",
+    "hybrid car",
+    "ev sales",
+    "electric vehicle",
+    "two-wheeler"
+   ],
+   "expand": [
+    [
+     "auto components",
+     1.6
+    ],
+    [
+     "automotive",
+     1.4
+    ],
+    [
+     "forgings",
+     1.0
+    ],
+    [
+     "castings",
+     1.0
+    ],
+    [
+     "ev ",
+     0.8
+    ],
+    [
+     "electric vehicle",
+     1.2
+    ],
+    [
+     "transmission",
+     1.0
+    ],
+    [
+     "braking",
+     1.2
+    ]
+   ],
+   "industries": [
+    "auto component"
+   ],
+   "note": "OEM volume, supply-chain shifts and tariffs on Chinese/Japanese parts move Indian component makers.",
+   "industries_weak": [
+    "automobile"
+   ]
+  },
+  {
+   "id": "robotics-machine-tools",
+   "terms": [
+    "robot",
+    "machine tool",
+    "factory automation",
+    "fanuc",
+    "yaskawa",
+    "cnc"
+   ],
+   "expand": [
+    [
+     "automation",
+     1.3
+    ],
+    [
+     "machine tool",
+     1.6
+    ],
+    [
+     "cnc",
+     1.4
+    ],
+    [
+     "robot",
+     1.4
+    ],
+    [
+     "industrial machinery",
+     1.0
+    ],
+    [
+     "precision",
+     0.7
+    ]
+   ],
+   "industries": [],
+   "note": "Capex cycles and China+1 factory building lift automation and machine-tool suppliers.",
+   "industries_weak": [
+    "industrial",
+    "machinery"
+   ]
+  },
+  {
+   "id": "specialty-materials",
+   "terms": [
+    "carbon fiber",
+    "polyimide",
+    "advanced material",
+    "specialty chemical",
+    "silicone",
+    "epoxy",
+    "resin",
+    "engineering plastic"
+   ],
+   "expand": [
+    [
+     "carbon fibre",
+     1.6
+    ],
+    [
+     "carbon fiber",
+     1.6
+    ],
+    [
+     "specialty chemicals",
+     1.2
+    ],
+    [
+     "epoxy",
+     1.4
+    ],
+    [
+     "resin",
+     1.2
+    ],
+    [
+     "silicone",
+     1.5
+    ],
+    [
+     "polymer",
+     1.0
+    ],
+    [
+     "composite",
+     1.2
+    ],
+    [
+     "engineering plastics",
+     1.4
+    ]
+   ],
+   "industries": [],
+   "note": "Specialty-materials supply shocks in Japan/China create openings for Indian niche makers.",
+   "industries_weak": [
+    "specialty chemicals",
+    "plastics"
+   ]
+  },
+  {
+   "id": "petrochem-polymers",
+   "terms": [
+    "pvc",
+    "polyethylene",
+    "polypropylene",
+    "pta",
+    "meg",
+    "polyester",
+    "styrene",
+    "methanol",
+    "acetic acid",
+    "phenol",
+    "acetone",
+    "benzene",
+    "toluene"
+   ],
+   "expand": [
+    [
+     "pvc",
+     1.4
+    ],
+    [
+     "polypropylene",
+     1.3
+    ],
+    [
+     "polyethylene",
+     1.3
+    ],
+    [
+     "methanol",
+     1.4
+    ],
+    [
+     "acetic acid",
+     1.5
+    ],
+    [
+     "phenol",
+     1.5
+    ],
+    [
+     "acetone",
+     1.5
+    ],
+    [
+     "formaldehyde",
+     1.4
+    ],
+    [
+     "styrene",
+     1.3
+    ],
+    [
+     "solvents",
+     1.0
+    ],
+    [
+     "pta",
+     1.2
+    ]
+   ],
+   "industries": [],
+   "note": "Feedstock cost and Chinese capacity swings decide margins of Indian commodity-chemical and polymer makers.",
+   "industries_weak": [
+    "commodity chemicals",
+    "petro",
+    "plastics"
+   ]
+  },
+  {
+   "id": "rubber-tyres",
+   "terms": [
+    "natural rubber",
+    "synthetic rubber",
+    "tyre",
+    "tire",
+    "rubber price",
+    "carbon black"
+   ],
+   "expand": [
+    [
+     "rubber",
+     1.4
+    ],
+    [
+     "tyre",
+     1.4
+    ],
+    [
+     "tire",
+     1.4
+    ],
+    [
+     "carbon black",
+     1.3
+    ],
+    [
+     "rubber chemicals",
+     1.5
+    ],
+    [
+     "conveyor belt",
+     1.0
+    ]
+   ],
+   "industries": [
+    "tyre",
+    "rubber"
+   ],
+   "note": "Rubber and carbon-black prices and anti-dumping duties on Chinese tyres decide tyre-sector margins."
+  },
+  {
+   "id": "paper-packaging",
+   "terms": [
+    "pulp",
+    "paper price",
+    "kraft",
+    "packaging",
+    "corrugated",
+    "containerboard"
+   ],
+   "expand": [
+    [
+     "kraft",
+     1.5
+    ],
+    [
+     "paper",
+     1.2
+    ],
+    [
+     "pulp",
+     1.3
+    ],
+    [
+     "corrugated",
+     1.4
+    ],
+    [
+     "packaging",
+     1.0
+    ],
+    [
+     "duplex",
+     1.0
+    ]
+   ],
+   "industries": [
+    "paper"
+   ],
+   "note": "Pulp and waste-paper prices and import competition move paper and packaging margins.",
+   "industries_weak": [
+    "packag"
+   ]
+  },
+  {
+   "id": "cement-building",
+   "terms": [
+    "cement",
+    "clinker",
+    "building material",
+    "plywood",
+    "laminate",
+    "sanitaryware",
+    "pipes"
+   ],
+   "expand": [
+    [
+     "cement",
+     1.5
+    ],
+    [
+     "clinker",
+     1.4
+    ],
+    [
+     "plywood",
+     1.4
+    ],
+    [
+     "laminate",
+     1.4
+    ],
+    [
+     "pipes",
+     0.9
+    ],
+    [
+     "ready mix",
+     1.2
+    ]
+   ],
+   "industries": [
+    "cement"
+   ],
+   "note": "Power, fuel and demand shifts move cement and building-material players.",
+   "industries_weak": [
+    "building"
+   ]
+  },
+  {
+   "id": "coal-coke",
+   "terms": [
+    "coking coal",
+    "met coke",
+    "thermal coal",
+    "coal price",
+    "coal import"
+   ],
+   "expand": [
+    [
+     "coal",
+     1.3
+    ],
+    [
+     "coke",
+     1.4
+    ],
+    [
+     "met coke",
+     1.6
+    ],
+    [
+     "coal washery",
+     1.4
+    ],
+    [
+     "sponge iron",
+     0.8
+    ]
+   ],
+   "industries": [
+    "coal"
+   ],
+   "note": "Coal and coke prices are direct cost lines for steel, sponge iron and power-intensive producers."
+  },
+  {
+   "id": "power-cables",
+   "terms": [
+    "transformer",
+    "cable",
+    "power equipment",
+    "grid",
+    "switchgear",
+    "copper wire"
+   ],
+   "expand": [
+    [
+     "transformer",
+     1.5
+    ],
+    [
+     "cables",
+     1.4
+    ],
+    [
+     "switchgear",
+     1.4
+    ],
+    [
+     "conductor",
+     1.3
+    ],
+    [
+     "power equipment",
+     1.2
+    ],
+    [
+     "insulator",
+     1.2
+    ]
+   ],
+   "industries": [
+    "cable"
+   ],
+   "note": "Grid capex and copper/aluminium prices decide power-equipment and cable makers' orders and margins.",
+   "industries_weak": [
+    "electrical"
+   ]
+  },
+  {
+   "id": "trade-remedies",
+   "terms": [
+    "anti-dumping",
+    "antidumping",
+    "anti dumping",
+    "countervailing",
+    "safeguard duty",
+    "dgtr"
+   ],
+   "expand": [],
+   "industries": [],
+   "note": "An anti-dumping or safeguard duty on imports helps the Indian producers of the same product. The product is usually named in the headline; the ranking below follows that product."
+  }
+ ]
+}

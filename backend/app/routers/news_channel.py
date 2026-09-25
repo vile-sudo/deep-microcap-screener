@@ -5,6 +5,8 @@ GET /api/news-channel                  the latest fetched feed (last 48 hours)
 GET /api/news-channel/dates            the days the archive holds, newest first, with a count each
 GET /api/news-channel/archive/{date}   every item published that India (IST) day, YYYY-MM-DD
 GET /api/news-channel/archive?days=N   the last N days together (1-90), for searching history
+GET /api/news-channel/beneficiaries    ?title=...  the Indian listed companies that make (or use) the product a
+                                        headline is about, ranked, with why -- see app/beneficiaries.py
 POST /api/admin/news-channel/run-now    admin: dispatch the fetch right now
                                         instead of waiting for the next
                                         scheduled run
@@ -25,7 +27,7 @@ from datetime import datetime, timedelta, timezone
 from fastapi import APIRouter, Depends, HTTPException, Query
 from sqlalchemy.orm import Session
 
-from .. import github_dispatch, news_channel
+from .. import beneficiaries, github_dispatch, news_channel
 from ..config import get_settings
 from ..database import get_db
 from ..models import MetaKV
@@ -141,3 +143,9 @@ def cron_ping(key: str = "", db: Session = Depends(get_db)):
     if not hmac.compare_digest(key or "", configured):
         raise HTTPException(status_code=403, detail="Wrong or missing key")
     return _dispatch_if_due(db, "NEWS_CHANNEL_CRON", CRON_COOLDOWN)
+
+
+@router.get("/api/news-channel/beneficiaries")
+def news_beneficiaries(title: str = Query(..., min_length=8, max_length=400), country: str = Query("", max_length=4),
+                       sectors: str = Query("", max_length=300)):
+    return beneficiaries.find(title, [s for s in sectors.split("|") if s], country or None)
