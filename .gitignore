@@ -39,6 +39,14 @@ backend/.bhav_cache/
 backend/universe_charts/
 backend/universe-charts.tar.gz
 
+# Same split for the US board (app/charts_us.py, scripts/update_us_charts.py,
+# .github/workflows/charts_us.yml) -- Polygon.io's own local day-cache and
+# the big per-ticker universe files, uploaded as a separate release asset
+# ("charts-us"). Only backend/chart_data_us/universe.json is committed.
+backend/.polygon_cache/
+backend/universe_charts_us/
+backend/universe-charts-us.tar.gz
+
 # scripts/backfill_full_history.py: full listing-to-date OHLCV for every
 # actively traded NSE/BSE company (~1996 to today), a local research dataset.
 # Its own raw-day cache and output are both far too big to commit.

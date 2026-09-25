@@ -35,6 +35,12 @@
   .us-drawer-body h3{margin:0 0 6px}
   .us-drawer-row{margin:10px 0}
   .us-drawer-row b{display:block;font-size:11px;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);margin-bottom:3px}
+  .us-chart-box{width:100%;height:420px;margin:10px 0}
+  /* The gallery grid itself reuses app.js's own .gal-grid/.gcard/.gc-*/.st-*/
+     .cs-* classes wholesale (see style.css) -- same card look, same mini
+     candlestick thumbnail renderer (ported into us.js as usCandleSVG since
+     this is a separate script from app.js), so the US gallery matches
+     Screen any Chart's design instead of inventing its own. */
 </style>
 </head>
 <body>
@@ -54,7 +60,14 @@
 <div class="dashboard-shell">
 <main class="dashboard-main">
 
-<section class="dashboard-section">
+<div class="dl-tabs" role="tablist">
+  <button class="dl-tab on" type="button" data-ustab="screens" role="tab" aria-selected="true">Screens</button>
+  <button class="dl-tab" type="button" data-ustab="market" role="tab" aria-selected="false">Market</button>
+  <button class="dl-tab" type="button" data-ustab="gallery" role="tab" aria-selected="false">Chart Gallery</button>
+  <button class="dl-tab" type="button" data-ustab="insider" role="tab" aria-selected="false">Board Disclosures</button>
+</div>
+
+<section class="dashboard-section" id="us-tab-screens">
   <div class="section-heading">
     <div><span class="eyebrow">US MICRO/SMALL-CAP</span><h1>Screens</h1>
       <p class="section-copy">US-listed companies that describe their own moat in an SEC 10-K, found by the same "does the company state it itself" rule the India board uses -- see each row's Moat evidence for the exact quote and source. Auto-added, company-stated, not yet hand-researched.</p>
@@ -95,6 +108,162 @@
   </div>
 </section>
 
+<section class="dashboard-section bp" id="us-tab-market" hidden>
+  <div class="bp-bar">
+    <span class="bp-lab">Screen</span>
+    <select id="us-mkt-screen" class="bp-select" aria-label="Screen">
+      <option value="vcp">Volatility Contraction Pattern (VCP)</option>
+      <option value="bluesky">Blue sky</option>
+      <option value="multiyear">Multi-year breakouts</option>
+      <option value="ipo">IPO base</option>
+    </select>
+    <select id="us-mkt-scope" class="bp-select" aria-label="Which stocks">
+      <option value="all">All US market</option>
+      <option value="board">Board companies only</option>
+    </select>
+    <select id="us-mkt-theme" class="bp-select" aria-label="Theme"><option value="">All themes</option></select>
+    <input id="us-mkt-find" class="bp-find" type="search" autocomplete="off" spellcheck="false" placeholder="Find a stock" aria-label="Find a stock">
+    <span class="bp-spacer"></span>
+    <button class="bp-mw" id="us-mkt-mw" type="button" hidden></button>
+    <span class="bp-upd" id="us-mkt-upd"></span>
+  </div>
+
+  <div class="bp-hero">
+    <h2 id="us-mkt-title">Spot the market's next leaders.</h2>
+    <p class="bp-sub" id="us-mkt-sub"></p>
+    <div class="bp-hero-grid">
+      <div class="bp-stages" id="us-mkt-stages"></div>
+      <div class="bp-feed" id="us-mkt-feed"></div>
+    </div>
+    <div class="bp-hero-foot"><span>Scanned every trading day from Polygon.io closing data</span></div>
+  </div>
+
+  <div class="bp-list-head">
+    <h2><span id="us-mkt-list-title"></span> <span class="bp-n" id="us-mkt-list-n"></span></h2>
+    <span class="bp-spacer"></span>
+    <div class="bp-seg"><button class="bp-btn on" id="us-mkt-cards-btn" type="button">&#9638; Cards</button><button class="bp-btn" id="us-mkt-list-btn" type="button">&#9776; List</button></div>
+    <label class="bp-lab" for="us-mkt-sort" style="font-size:13px;font-weight:500">Sort</label>
+    <select id="us-mkt-sort" class="bp-select"></select>
+  </div>
+  <p class="bp-desc" id="us-mkt-desc"></p>
+  <div id="us-mkt-results"></div>
+  <p class="bp-disc">A research screen built from exchange closing prices -- not investment advice. Stages and measures follow fixed rules; they describe price and volume, not the business.</p>
+</section>
+
+<section class="dashboard-section" id="us-tab-gallery" hidden>
+  <div class="section-heading">
+    <div><span class="eyebrow">CHART GALLERY</span><h1>Chart Gallery</h1>
+      <p class="section-copy">Daily candles for every actively traded US company, from Polygon.io. Board companies keep their full history; the wider market keeps about three years.</p>
+    </div>
+    <span class="section-note" id="us-gal-asof"></span>
+  </div>
+
+  <div class="card">
+    <div class="us-toolbar">
+      <div class="searchwrap" id="us-gal-swrap">
+        <span class="ic">&#9906;</span>
+        <input id="us-gal-q" type="search" autocomplete="off" spellcheck="false" placeholder="Search any US company or ticker…">
+        <button class="clr" id="us-gal-qclear" title="Clear search">&times;</button>
+      </div>
+      <select class="gal-select" id="us-gal-scope" aria-label="Which companies">
+        <option value="all">All US market</option>
+        <option value="board">Board companies only</option>
+      </select>
+      <select class="gal-select" id="us-gal-trend" aria-label="Trend"><option value="">Trend: all</option></select>
+      <select class="gal-select" id="us-gal-cross" aria-label="EMA crossover">
+        <option value="">EMA crossover: any</option>
+        <option value="bull" title="The weekly 9 EMA crossed the 21 EMA within the last 8 weeks -- its own screen, separate from Trend">&#10534; Bullish crossover</option>
+        <option value="bear" title="The weekly 9 EMA crossed the 21 EMA within the last 8 weeks -- its own screen, separate from Trend">&#10536; Bearish crossover</option>
+        <option value="forming" title="The weekly 9 and 21 EMA are converging but haven't crossed yet">&#8599; Crossover forming</option>
+      </select>
+      <select class="gal-select" id="us-gal-sort" aria-label="Sort"></select>
+      <button class="theme-back" id="us-gal-clear" type="button">Clear</button>
+    </div>
+    <div class="us-count" id="us-gal-count"></div>
+    <div class="gal-grid" id="us-gal-grid"></div>
+  </div>
+</section>
+
+<section class="dashboard-section" id="us-tab-insider" hidden>
+  <div class="section-heading">
+    <div><span class="eyebrow">BOARD DISCLOSURES</span><h1>Board Disclosures</h1>
+      <p class="section-copy">SEC filings for companies on the US board -- the closest free, automated US equivalent to India's Bulk &amp; Block Deals and Announcements, but genuinely different signals: NSE names the counterparty on <i>any</i> large trade and publishes a whole-exchange announcements feed; the US publishes neither. Insider Transactions (Form 4) only covers <i>insiders'</i> own trades; Announcements (Form 8-K) only covers this board's own companies, not the wider market.</p>
+    </div>
+    <span class="section-note" id="ins-asof"></span>
+  </div>
+
+  <div class="dl-tabs" role="tablist">
+    <button class="dl-tab on" type="button" data-inssub="insider" role="tab" aria-selected="true">Insider Transactions</button>
+    <button class="dl-tab" type="button" data-inssub="ann" role="tab" aria-selected="false">Announcements</button>
+  </div>
+
+  <div id="inssub-insider">
+    <div class="card">
+      <p class="section-copy">Every officer, director and 10%+ owner buy/sell disclosure, filed within two business days of the trade. "Purchase" and "Sale" are real open-market trades; other types (option exercises, tax withholding, awards, gifts) are also insider activity but not a market buy/sell.</p>
+      <div class="mv-toolbar">
+        <div class="searchwrap" id="ins-swrap">
+          <span class="ic">&#9906;</span>
+          <input id="ins-q" type="search" autocomplete="off" spellcheck="false" placeholder="Search company, ticker or insider…">
+          <button class="clr" id="ins-qclear" title="Clear search">&times;</button>
+        </div>
+        <select class="gal-select" id="ins-date" aria-label="Trade date"></select>
+        <select class="gal-select" id="ins-type" aria-label="Transaction type">
+          <option value="">Every type</option>
+          <option value="market">Purchase or Sale only</option>
+        </select>
+        <select class="gal-select" id="ins-side" aria-label="Side">
+          <option value="">Buy and sell</option>
+          <option value="BUY">Buy only</option>
+          <option value="SELL">Sell only</option>
+        </select>
+        <select class="gal-select" id="ins-sort" aria-label="Sort by">
+          <option value="value">Biggest value</option>
+          <option value="date">Most recent</option>
+        </select>
+        <button class="theme-back" id="ins-clear" type="button">Clear</button>
+      </div>
+      <div class="mv-count" id="ins-count"></div>
+      <div id="ins-body"><p class="view-hint">Loading…</p></div>
+    </div>
+  </div>
+
+  <div id="inssub-ann" hidden>
+    <div class="card">
+      <p class="section-copy">SEC Form 8-K: material corporate events -- results, management changes, agreements, M&amp;A and more -- classified by SEC's own reported item numbers.</p>
+      <div class="mv-toolbar">
+        <div class="searchwrap" id="ann-swrap">
+          <span class="ic">&#9906;</span>
+          <input id="ann-q" type="search" autocomplete="off" spellcheck="false" placeholder="Search company, ticker or summary…">
+          <button class="clr" id="ann-qclear" title="Clear search">&times;</button>
+        </div>
+        <select class="gal-select" id="ann-date" aria-label="Filed on"></select>
+        <select class="gal-select" id="ann-kind" aria-label="Category">
+          <option value="">Every category</option>
+          <option value="results">Results</option>
+          <option value="order win">Order win</option>
+          <option value="M&amp;A">M&amp;A</option>
+          <option value="fundraise">Fundraise</option>
+          <option value="capital action">Capital action</option>
+          <option value="rating change">Rating change</option>
+          <option value="management change">Management change</option>
+          <option value="capacity or plant">Capacity or plant</option>
+          <option value="agreement">Agreement</option>
+          <option value="regulatory or legal">Regulatory or legal</option>
+          <option value="investor meeting">Investor meeting</option>
+          <option value="other disclosure">Other disclosure</option>
+        </select>
+        <select class="gal-select" id="ann-sort" aria-label="Sort by">
+          <option value="date">Most recent</option>
+          <option value="weight">Most material</option>
+        </select>
+        <button class="theme-back" id="ann-clear" type="button">Clear</button>
+      </div>
+      <div class="mv-count" id="ann-count"></div>
+      <div id="ann-body"><p class="view-hint">Loading…</p></div>
+    </div>
+  </div>
+</section>
+
 </main>
 </div>
 </div>
@@ -102,6 +271,7 @@
 <div class="scrim" id="us-scrim"></div>
 <aside class="drawer" id="us-drawer" aria-label="Company detail"></aside>
 
-<script src="/static/us.js?v=1" defer></script>
+<script src="/static/klinecharts.min.js" defer></script>
+<script src="/static/us.js?v=9" defer></script>
 </body>
 </html>

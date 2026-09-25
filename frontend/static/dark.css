@@ -322,6 +322,8 @@ html[data-mode="dark"] .sf-list li,html[data-mode="dark"] .msg-item{background:v
 html[data-mode="dark"] .btn.danger{color:var(--crit,#eb8585)}
 html[data-mode="dark"] .msg-cat{background:var(--surface-2,#131c23)}
 html[data-mode="dark"] .msg-from a{color:var(--acc-dark,#b8e3f9)}
+html[data-mode="dark"] .nav-market-link{background:var(--surface,#0e1418)}
+html[data-mode="dark"] .nav-market-link:hover{border-color:#274451}
 html[data-mode="dark"] .nav-bell{background:var(--surface,#0e1418)}
 html[data-mode="dark"] .nav-bell:hover{border-color:#274451}
 html[data-mode="dark"] .al-settings{background:var(--surface-2,#11191f)}

@@ -22,6 +22,7 @@ from pathlib import Path
 
 BACKEND_DIR = Path(__file__).resolve().parent.parent
 CROSS_FILE = BACKEND_DIR / "chart_data" / "ema_crossover.json"
+CROSS_FILE_US = BACKEND_DIR / "chart_data_us" / "ema_crossover.json"
 
 
 def _weekly_closes(rows: list[list]) -> list[tuple[str, float]]:
@@ -107,6 +108,13 @@ def load() -> dict:
         return {"as_of": None, "count": 0, "crossovers": {}}
 
 
+def load_us() -> dict:
+    try:
+        return json.loads(CROSS_FILE_US.read_text(encoding="utf-8"))
+    except (OSError, ValueError):
+        return {"as_of": None, "count": 0, "crossovers": {}}
+
+
 def write(days: list, board: dict, universe_builder) -> int:
     """Runs the screen over every board company (keyed by its board code)
     and every other actively traded NSE/BSE stock (keyed the same way
@@ -128,6 +136,32 @@ def write(days: list, board: dict, universe_builder) -> int:
             out[key] = c
     CROSS_FILE.parent.mkdir(parents=True, exist_ok=True)
     CROSS_FILE.write_text(json.dumps({
+        "as_of": days[-1][0].isoformat() if days else None,
+        "count": len(out),
+        "crossovers": out,
+    }, separators=(",", ":")), encoding="utf-8")
+    return len(out)
+
+
+def write_us(days: list, board: dict, universe_builder) -> int:
+    """The US board's counterpart to write() -- same screen(), same weekly
+    9/21 EMA rule, keyed the same way (board code, or the bare ticker for
+    everything else). No ISIN in Polygon data, so board companies are kept
+    out of the universe scan by ticker directly (skip_codes), the same
+    dedup build_universe_us() itself already does -- rather than write()'s
+    ISIN/(exchange,key) matching, which has no US equivalent."""
+    skip_codes = frozenset(board.keys())
+    out = {}
+    for code, s in board.items():
+        c = screen(s["rows"])
+        if c:
+            out[code] = c
+    for key, s in universe_builder(days, skip_codes):
+        c = screen(s["rows"])
+        if c:
+            out[key] = c
+    CROSS_FILE_US.parent.mkdir(parents=True, exist_ok=True)
+    CROSS_FILE_US.write_text(json.dumps({
         "as_of": days[-1][0].isoformat() if days else None,
         "count": len(out),
         "crossovers": out,

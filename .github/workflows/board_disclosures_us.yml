@@ -1,0 +1,111 @@
+name: US board disclosures update
+
+# The US board's counterpart to daily.yml's deals/announcements steps --
+# a standalone workflow rather than steps tucked into another one, since
+# there's no US "daily.yml" yet (only charts_us.yml exists so far). One
+# job, two lightweight SEC EDGAR pulls that share the same board-scoped
+# shape, so they share one workflow rather than duplicating the cron/
+# commit/deploy boilerplate:
+#   1. insider transactions  SEC Form 4 -- officers/directors/10%+ owners'
+#      own buy/sell disclosures      (scripts/run_insider_us.py)
+#   2. announcements          SEC Form 8-K -- material corporate events,
+#      classified by SEC's own item codes  (scripts/run_announcements_us.py)
+#
+# Runs:
+#   * daily at 07:00 UTC (after the US trading day and SEC's own filing
+#     processing), so a Form 4 or 8-K filed after yesterday's close shows
+#     up today;
+#   * whenever the US board's company list changes, so a company added to
+#     it gets its disclosure history within minutes;
+#   * on demand (workflow_dispatch).
+#
+# See app/movers/insider_us.py's and app/movers/announcements_us.py's own
+# docstrings for why these are the closest legitimate free US equivalents
+# to India's NSE-sourced Bulk & Block Deals and Announcements -- not a
+# straight port of either (NSE's bulk/block deal disclosure in particular
+# has no US equivalent at all: no US mechanism publicly names who did a
+# large trade). Both are scoped to the US board's own companies
+# (data/companies_us_raw.json), unlike India's whole-exchange NSE feeds --
+# SEC has no single "every insider transaction / every 8-K, market-wide,
+# today" file, so each company's history is asked for individually.
+# Commits by this workflow use GITHUB_TOKEN, which never re-triggers
+# workflows, so the push trigger cannot loop.
+
+permissions:
+  contents: write
+
+on:
+  schedule:
+    - cron: '0 7 * * 2-6'
+  push:
+    branches: [main]
+    paths:
+      - backend/data/companies_us_raw.json
+  workflow_dispatch:
+
+concurrency:
+  group: board-disclosures-us
+  cancel-in-progress: false
+
+jobs:
+  update-board-disclosures-us:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+      - name: Check out repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: pip install requests
+
+      - name: Fetch US insider transactions
+        working-directory: ./backend
+        run: python scripts/run_insider_us.py
+
+      - name: Fetch US announcements
+        working-directory: ./backend
+        run: python scripts/run_announcements_us.py
+
+      - name: Commit board disclosures
+        id: commit
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add backend/data/insider_us backend/data/announcements_us
+          if git diff --cached --quiet; then
+            echo "No changes"
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          git commit -m "US board disclosures update"
+          for i in 1 2 3; do
+            git pull --rebase origin ${{ github.ref_name }} && git push origin HEAD:${{ github.ref_name }} && break
+            sleep 5
+          done
+          echo "changed=true" >> "$GITHUB_OUTPUT"
+
+      - name: Deploy to AWS
+        if: ${{ steps.commit.outputs.changed == 'true' }}
+        env:
+          AWS_HOST: ${{ secrets.AWS_HOST }}
+          AWS_SSH_KEY: ${{ secrets.AWS_SSH_KEY }}
+          AWS_SSH_USER: ${{ secrets.AWS_SSH_USER }}
+          AWS_DEPLOY_PATH: ${{ secrets.AWS_DEPLOY_PATH }}
+        run: |
+          if [ -z "$AWS_HOST" ] || [ -z "$AWS_SSH_KEY" ]; then
+            echo "AWS_HOST/AWS_SSH_KEY secrets not set; skipping AWS deploy"
+            exit 0
+          fi
+          mkdir -p ~/.ssh
+          printf '%s\n' "$AWS_SSH_KEY" > ~/.ssh/deploy_key
+          chmod 600 ~/.ssh/deploy_key
+          ssh-keyscan -H "$AWS_HOST" >> ~/.ssh/known_hosts 2>/dev/null
+          ssh -i ~/.ssh/deploy_key -o StrictHostKeyChecking=yes "${AWS_SSH_USER:-ubuntu}@$AWS_HOST" \
+            "cd ${AWS_DEPLOY_PATH:-/opt/screener-app} && git pull --ff-only && docker compose up -d --build"
+          echo "AWS deploy triggered"

@@ -1608,6 +1608,7 @@ tbody tr:hover,tbody tr:nth-child(even):hover{background:#f2f9fd}
 .user-acts{display:flex;gap:8px}
 .btn.danger{color:#b91c1c;border-color:#fecaca}.btn.danger:hover{background:#fef2f2}
 @media (max-width:640px){ .nav-user-name{display:none} }
+@media (max-width:720px){ .nav-market-link span{display:none} .nav-market-link{padding:0;width:40px;justify-content:center} }
 .user-owner{color:var(--muted);font-size:12px}
 
 /* ---------- auto-added companies ---------- */
@@ -2043,6 +2044,16 @@ tbody tr:hover,tbody tr:nth-child(even):hover{background:#f2f9fd}
 .msg-from a{color:var(--acc-dark,#075a85)}
 .msg-item p{white-space:pre-wrap;margin:8px 0;font-size:13.5px;color:var(--ink);line-height:1.55}
 @media (max-width:640px){ .acct-dl{grid-template-columns:1fr} .acct-inline{flex-direction:column} }
+
+/* Link to the US board (frontend/us.html) -- its own small pill rather than
+   reusing .nav-bell, whose unconditional width:40px/label:none rules below
+   are specific to the icon-only Alerts bell and would squash this link's
+   visible text. order:1 matches .nav-upd/.nav-user/.nav-bell below --
+   without it this defaults to order:0, the same group as .nav-brand, and
+   visually jumps to the far left of the header next to the logo instead
+   of staying with the other account-area controls on the right. */
+.nav-market-link{display:inline-flex;align-items:center;gap:6px;flex:none;height:40px;padding:0 14px;border:1px solid var(--grid);border-radius:999px;background:var(--surface,#fff);color:var(--ink);font:inherit;font-size:13.5px;font-weight:600;text-decoration:none;white-space:nowrap;cursor:pointer;order:1}
+.nav-market-link:hover{border-color:#bfe3f3;box-shadow:0 4px 12px -8px rgba(11,57,84,.45)}
 
 /* ================================================================
    Alerts bell and panel

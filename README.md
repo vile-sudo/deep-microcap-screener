@@ -389,7 +389,7 @@ changed crossing it into this dashboard) before joining the board here.
 
 ## News Channel (automated)
 
-**News Channel** tracks China, India and USA news for the sectors each one
+**News Channel** tracks China, India, USA and Japan news for the sectors each one
 dominates globally -- a leading indicator for Indian listed companies
 downstream (a Chinese API price hike is a margin story for the Indian
 bulk-drug makers who buy from it; a US tariff reroutes demand; a China+1
@@ -426,6 +426,9 @@ shift is a tailwind for the Indian maker competing for that order).
     jewellery, agrochemicals, auto components.
   - **USA** -- semiconductors, biotech/FDA, defence & aerospace, agri
     commodities, oil & gas/shale, tariffs & trade policy.
+  - **Japan** -- semiconductor materials & equipment, robotics & machine
+    tools, auto & EV, electronic components, specialty chemicals &
+    materials, steel & shipbuilding.
 - **Schedule:** `news_channel.yml`'s own cron is set to every 5 minutes
   (`*/5 * * * *`, GitHub Actions' shortest supported interval), but in
   practice **GitHub doesn't honor that** -- scheduled (`schedule:`) triggers

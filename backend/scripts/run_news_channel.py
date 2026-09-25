@@ -1,5 +1,5 @@
 """
-Fetch China/India/USA monopoly-sector news and write
+Fetch China/India/USA/Japan monopoly-sector news and write
 backend/data/news_channel/latest.json.
 
     cd backend

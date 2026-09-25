@@ -30,13 +30,14 @@ from fastapi.responses import HTMLResponse, RedirectResponse
 from pydantic import BaseModel, Field
 from sqlalchemy.orm import Session
 
-from .. import charts, kite
+from .. import charts, charts_us, kite
 from ..config import get_settings
 from ..database import get_db
 from ..json_file import file_response
 from ..models import Company
 
 router = APIRouter(tags=["market"])
+MarketQ = Query("in", pattern="^(in|us)$")
 
 _cache: dict[str, tuple[float, object]] = {}
 _cache_lock = threading.Lock()
@@ -217,18 +218,23 @@ def trending(db: Session = Depends(get_db)):
 
 # ----------------------------------------------------------------- setups
 @router.get("/api/market/setups")
-def market_setups(request: Request):
-    """Stages, measures and the what-changed feed from the daily scan (app/setups.py)."""
-    return file_response(request, charts.CHART_DIR / "setups.json",
+def market_setups(request: Request, market: str = MarketQ):
+    """Stages, measures and the what-changed feed from the daily scan
+    (app/setups.py). US board: VCP screen only for now, written by
+    scripts/update_us_charts.py's write_setups_us -- see that module's
+    docstring for what's not built yet."""
+    mod = charts if market == "in" else charts_us
+    return file_response(request, mod.CHART_DIR / "setups.json",
                          {"as_of": None, "counts": {}, "market_breakouts": [], "feed": [], "stocks": {}})
 
 
 @router.get("/api/market/setups-all")
-def market_setups_all(request: Request):
-    """The same four screens run over every actively traded NSE/BSE company
-    outside the board (scripts/update_charts.py's write_universe) -- only the
-    stocks in a setup, in the compact shape setups.compact() writes."""
-    return file_response(request, charts.CHART_DIR / "market_all.json", {"as_of": None, "feed": [], "stocks": {}})
+def market_setups_all(request: Request, market: str = MarketQ):
+    """The same screens run over every actively traded company outside the
+    board (write_universe, India and US alike) -- only the stocks in a
+    setup, in the compact shape setups.compact() writes."""
+    mod = charts if market == "in" else charts_us
+    return file_response(request, mod.CHART_DIR / "market_all.json", {"as_of": None, "feed": [], "stocks": {}})
 
 
 # ------------------------------------------------------------------- kite

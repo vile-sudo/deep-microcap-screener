@@ -1,0 +1,124 @@
+name: US Chart gallery update
+
+# The US-market counterpart to charts.yml -- see that file for the pattern
+# this mirrors. Runs:
+#   * daily at 06:30 UTC (after the US market's close + Polygon's own
+#     end-of-day processing delay), so every chart gains the previous
+#     session's candle;
+#   * whenever the US board's company list changes, so a company added to
+#     it gets its chart within minutes;
+#   * on demand (workflow_dispatch) -- the fastest way to push the initial
+#     multi-year backfill along faster than one day at a time, since each
+#     run is time-budgeted (see update_us_charts.py's BACKFILL_BUDGET) and
+#     picks up where the last one stopped.
+# Needs POLYGON_API_KEY (free tier, polygon.io/dashboard/signup) as a repo
+# secret. Commits by this workflow use GITHUB_TOKEN, which never
+# re-triggers workflows, so the push trigger cannot loop.
+
+permissions:
+  contents: write
+
+on:
+  schedule:
+    - cron: '30 6 * * 2-6'
+  push:
+    branches: [main]
+    paths:
+      - backend/data/companies_us_raw.json
+  workflow_dispatch:
+
+concurrency:
+  group: chart-gallery-us
+  cancel-in-progress: false
+
+jobs:
+  update-us-charts:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+
+    steps:
+      - name: Check out repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: pip install requests
+
+      # Up to 5 years of daily grouped-bars files. A cache hit means only
+      # the newest day (or two) is downloaded; a cache miss backfills from
+      # scratch, which is why the very first runs are slow and every run
+      # after is quick -- see update_us_charts.py's own BACKFILL_BUDGET/
+      # MIN_CALL_INTERVAL (Polygon's free tier is 5 calls/minute; one call
+      # is the whole market for one day, not one call per ticker).
+      - name: Restore Polygon cache
+        uses: actions/cache@v4
+        with:
+          path: backend/.polygon_cache
+          key: polygon-${{ github.run_id }}
+          restore-keys: polygon-
+
+      - name: Build US charts
+        working-directory: ./backend
+        env:
+          POLYGON_API_KEY: ${{ secrets.POLYGON_API_KEY }}
+        run: python scripts/update_us_charts.py
+
+      # Same split as India's Screen any Chart: the full actively-traded US
+      # market is too much to commit, so it rides in a release asset;
+      # app/universe.py fetches it once per server. Only the small search
+      # index (chart_data_us/universe.json) is committed, so searching
+      # still works even if this upload fails.
+      - name: Publish universe charts
+        id: universe
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if [ ! -d backend/universe_charts_us ]; then echo "no universe charts built"; exit 0; fi
+          tar -czf universe-charts-us.tar.gz -C backend/universe_charts_us .
+          ls -lh universe-charts-us.tar.gz
+          gh release view charts-us > /dev/null 2>&1 || gh release create charts-us --title "US chart data" \
+            --notes "Daily candles for every actively traded US company, used by the US board's Chart Gallery. Rebuilt daily from Polygon.io; not investment advice."
+          gh release upload charts-us universe-charts-us.tar.gz --clobber
+
+      - name: Commit chart data
+        id: commit
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add backend/chart_data_us
+          if git diff --cached --quiet; then
+            echo "No chart changes"
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          git commit -m "US Chart gallery update"
+          for i in 1 2 3; do
+            git pull --rebase origin ${{ github.ref_name }} && git push origin HEAD:${{ github.ref_name }} && break
+            sleep 5
+          done
+          echo "changed=true" >> "$GITHUB_OUTPUT"
+
+      - name: Deploy to AWS
+        if: ${{ steps.commit.outputs.changed == 'true' }}
+        env:
+          AWS_HOST: ${{ secrets.AWS_HOST }}
+          AWS_SSH_KEY: ${{ secrets.AWS_SSH_KEY }}
+          AWS_SSH_USER: ${{ secrets.AWS_SSH_USER }}
+          AWS_DEPLOY_PATH: ${{ secrets.AWS_DEPLOY_PATH }}
+        run: |
+          if [ -z "$AWS_HOST" ] || [ -z "$AWS_SSH_KEY" ]; then
+            echo "AWS_HOST/AWS_SSH_KEY secrets not set; skipping AWS deploy"
+            exit 0
+          fi
+          mkdir -p ~/.ssh
+          printf '%s\n' "$AWS_SSH_KEY" > ~/.ssh/deploy_key
+          chmod 600 ~/.ssh/deploy_key
+          ssh-keyscan -H "$AWS_HOST" >> ~/.ssh/known_hosts 2>/dev/null
+          ssh -i ~/.ssh/deploy_key -o StrictHostKeyChecking=yes "${AWS_SSH_USER:-ubuntu}@$AWS_HOST" \
+            "cd ${AWS_DEPLOY_PATH:-/opt/screener-app} && git pull --ff-only && docker compose up -d --build"
+          echo "AWS deploy triggered"

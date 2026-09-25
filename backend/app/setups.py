@@ -403,14 +403,20 @@ def _event_summary(s: Series, ev: dict, t: int) -> dict:
     return out
 
 
-def analyze(rows: list[list], rs_rank, listed: str | None = None, long_bases: bool = False) -> dict | None:
+def analyze(rows: list[list], rs_rank, listed: str | None = None, long_bases: bool = False,
+            fmt_money=None) -> dict | None:
     """Everything Market view shows for one company.
 
     Top level: the shared measures plus the VCP screen. `ipo`: the IPO base
     screen, present only when the company listed within the data window.
     `bluesky` / `multiyear`: only with long_bases, and a year of history --
     both need the full price history to mean anything, which the board's
-    series have and Screen any Chart's universe (UNIVERSE_SESSIONS) does not."""
+    series have and Screen any Chart's universe (UNIVERSE_SESSIONS) does not.
+
+    fmt_money formats the prices named in feed sentences -- ₹ by default
+    (_inr); the US board passes _usd. None rather than a literal default of
+    _inr since _inr is defined later in this file than analyze() is."""
+    fmt_money = fmt_money or _inr
     s = Series(rows)
     t = s.n - 1
     if s.n < 20 or (s.n < 80 and not listed):
@@ -437,11 +443,11 @@ def analyze(rows: list[list], rs_rank, listed: str | None = None, long_bases: bo
     else:
         vcp = {"stage": None, "prev_stage": None, "pivot": None, "now_vs_pivot": None, "flags": [], "verge": False}
     out.update(vcp)
-    feed = _feed(vcp, out, s, t, "vcp")
+    feed = _feed(vcp, out, s, t, "vcp", fmt_money)
     if long_bases and s.n >= BLUESKY_MIN_HISTORY:
         for kind in ("bluesky", "multiyear"):
             out[kind] = _screen_view(Screen(s, kind))
-            feed += _feed(out[kind], out, s, t, kind)
+            feed += _feed(out[kind], out, s, t, kind, fmt_money)
     if listed:
         ipo = _screen_view(Screen(s, "ipo"))
         ipo["listed"] = listed
@@ -468,11 +474,17 @@ def compact(a: dict | None) -> dict | None:
     if not a:
         return None
 
+    def _present(x) -> bool:
+        # not "if v.get(k) not in (None, [], False)" -- 0 == False in Python,
+        # so that tuple-membership test silently drops a genuine 0 (a stock
+        # exactly at its pivot, e.g.), not just truly-absent values
+        return x is not None and x != [] and x is not False
+
     def view(v: dict, extra=()) -> dict | None:
         bos = v.get("breakouts") or []
         if not v.get("stage") and not bos:
             return None
-        out = {k: v[k] for k in _VIEW_KEYS + extra if v.get(k) not in (None, [], False)}
+        out = {k: v[k] for k in _VIEW_KEYS + extra if _present(v.get(k))}
         out["stage"] = v.get("stage")
         if bos:
             out["breakouts"] = bos[:1]
@@ -511,6 +523,10 @@ def _inr(x: float) -> str:
     return f"₹{x:,.2f}".rstrip("0").rstrip(".") if x < 1000 else f"₹{x:,.1f}".rstrip("0").rstrip(".")
 
 
+def _usd(x: float) -> str:
+    return f"${x:,.2f}".rstrip("0").rstrip(".") if x < 1000 else f"${x:,.1f}".rstrip("0").rstrip(".")
+
+
 # (what it broke out of, what the pivot is called, what the base is called)
 _WORDS = {"vcp": ("its base", "pivot", "base"),
           "ipo": ("its IPO base", "post-listing high", "IPO base"),
@@ -518,13 +534,14 @@ _WORDS = {"vcp": ("its base", "pivot", "base"),
           "multiyear": ("its multi-year base", "multi-year high", "multi-year base")}
 
 
-def _feed(v: dict, common: dict, s: Series, t: int, screen: str) -> list[dict]:
+def _feed(v: dict, common: dict, s: Series, t: int, screen: str, fmt_money=None) -> list[dict]:
     """What changed for this stock on the latest session, as sentences."""
+    fmt_money = fmt_money or _inr
     items, bo, c = [], v.get("breakout"), s.c[t]
     what, pivot_name, noun = _WORDS[screen]
     if v["stage"] == "fresh" and bo and bo["sessions"] == 0:
-        items.append(("breakout", 1, f"broke out of {what}. Closed {_inr(c)} — {abs(v['now_vs_pivot'])}% above the "
-                                     f"{_inr(bo['pivot'])} {pivot_name}, on {bo['vol_x']}× its usual trading."))
+        items.append(("breakout", 1, f"broke out of {what}. Closed {fmt_money(c)} — {abs(v['now_vs_pivot'])}% above the "
+                                     f"{fmt_money(bo['pivot'])} {pivot_name}, on {bo['vol_x']}× its usual trading."))
     if v["stage"] == "climbing" and v["prev_stage"] == "fresh":
         items.append(("climbing", 2, "five sessions since its breakout — moved to Climbing."))
     if v["stage"] == "played" and v["prev_stage"] in ("fresh", "climbing", "forming") and bo and bo.get("exit", {}).get("date") == s.d[t]:
@@ -532,16 +549,16 @@ def _feed(v: dict, common: dict, s: Series, t: int, screen: str) -> list[dict]:
         why = "fell 8% under its pivot — stopped out" if x["reason"] == "stopped" else "closed under its moving average — trailed out"
         items.append(("exit", 3, f"{why} ({'+' if x['result_pct'] >= 0 else ''}{x['result_pct']}% from the breakout)."))
     if v["stage"] == "forming" and v.get("verge") and not (v["prev_stage"] == "forming" and s.c[t - 1] >= v["pivot"] * VERGE):
-        items.append(("verge", 4, f"is on the verge — {abs(v['now_vs_pivot'])}% under the {_inr(v['pivot'])} {pivot_name}"
+        items.append(("verge", 4, f"is on the verge — {abs(v['now_vs_pivot'])}% under the {fmt_money(v['pivot'])} {pivot_name}"
                                   f" after a {v['base']['weeks']}-week {noun}." if v.get("base") else ""))
     elif v["stage"] == "forming" and v["prev_stage"] != "forming" and v.get("base"):
         items.append(("forming", 5, f"started setting up — a {v['base']['weeks']}-week {noun}, "
-                                    f"{abs(v['now_vs_pivot'])}% under the {_inr(v['pivot'])} {pivot_name}."))
+                                    f"{abs(v['now_vs_pivot'])}% under the {fmt_money(v['pivot'])} {pivot_name}."))
     if screen == "vcp" and not items:
         if common["high52_today"]:
-            items.append(("high52", 6, f"made a new 52-week high at {_inr(s.h[t])}."))
+            items.append(("high52", 6, f"made a new 52-week high at {fmt_money(s.h[t])}."))
         elif common["low52_today"]:
-            items.append(("low52", 7, f"made a new 52-week low at {_inr(s.l[t])}."))
+            items.append(("low52", 7, f"made a new 52-week low at {fmt_money(s.l[t])}."))
     return [{"screen": screen, "kind": k, "order": o, "text": txt} for k, o, txt in items if txt]
 
 

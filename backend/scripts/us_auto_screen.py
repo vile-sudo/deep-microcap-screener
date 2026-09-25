@@ -56,6 +56,7 @@ from __future__ import annotations
 import argparse
 import json
 import os
+import random
 import re
 import sys
 import time
@@ -80,6 +81,7 @@ SEC_TICKERS_URL = f"{SEC_WWW}/files/company_tickers.json"
 DELAY_FINNHUB = 1.1     # 60/min free tier -- stay comfortably under
 DELAY_SEC = 0.15        # SEC asks for a fair-use rate under ~10 req/s
 RECHECK_DAYS = 90
+MAX_CONSECUTIVE_ERRORS = 8   # Finnhub failing this many times in a row = down/throttling; stop, don't grind
 
 # First-pass thresholds -- $m market cap band (US microcap convention runs
 # higher than India's Rs equivalent), ROE floor, holders-of-record ceiling.
@@ -181,8 +183,17 @@ ACQUISITION_NARRATIVE = re.compile(r"\b(?:acqui(?:re|red|ring|sitions?)|merger|c
 # leading suppliers" describes the filer's OWN VENDORS, not the filer --
 # confirmed live (Astec Industries). self_rx alone can't tell "we ARE a
 # leading X" from "we buy FROM leading X" since both contain "we".
+#
+# Widened after the first real (non-dry-run) run admitted two false
+# positives: Pioneer Power ("Our LARGEST suppliers ... included Taylor
+# Power Systems") and Beta Bionics ("Unomedical, PMC and Maxon are our ONLY
+# suppliers of infusion sets") -- both are supplier disclosures, and the
+# old "our suppliers" pattern missed any modifier between "our" and
+# "suppliers". Any sentence whose subject is the filer's supply chain is
+# out, whatever the adjective.
 VENDOR_NARRATIVE = re.compile(r"\b(?:purchase|source|sourc(?:e|ed|ing)|buy|bought|procure[ds]?|vendors?)\b.{0,120}\bfrom\b|"
-                              r"\bour (?:suppliers?|vendors?)\b", re.I)
+                              r"\b(?:our|its|their)\s+(?:[\w-]+\s+){0,3}?(?:suppliers?|vendors?|contract manufacturers?|"
+                              r"third[- ]party manufacturers?)\b", re.I)
 
 
 def find_evidence(text: str, name: str | None, need_self: bool) -> dict[str, dict]:
@@ -423,11 +434,21 @@ def main() -> int:
         if seen and (seen["result"] == "added" or seen["on"] >= recheck_before):
             continue
         pool.append(cand)
+    # SEC's own company_tickers.json is sorted by market cap descending
+    # (confirmed live: NVDA, AAPL, GOOGL, MSFT, AMZN, ... first) -- a
+    # budget-limited run that kept that order would burn its whole budget
+    # on mega-caps that can never pass CAP_MIN/CAP_MAX and never reach a
+    # real microcap candidate at all (confirmed: 1,200 fetched, 0 in the
+    # size band). Shuffled before the stable priority sort below, so
+    # "unchecked first, then oldest-checked first" still holds, just no
+    # longer correlated with market-cap rank.
+    random.shuffle(pool)
     pool.sort(key=lambda c: (c["cik"] in state["checked"], state["checked"].get(c["cik"], {}).get("on", "")))
     print(f"us-auto-screen: {len(pool)} tickers eligible to check today; budget {args.budget} Finnhub profiles, "
           f"adding at most {args.max_add}")
 
     passes, fetched, outcomes = [], 0, {}
+    consecutive_errors = 0
     for cand in pool:
         if fetched >= args.budget or len(passes) >= args.max_add * 3:
             break
@@ -435,7 +456,17 @@ def main() -> int:
             profile = finnhub_profile(cand["ticker"])
         except requests.RequestException as e:
             outcomes[cand["cik"]] = ("error", str(e)[:80])
+            consecutive_errors += 1
+            # A real run spent ~2.5 hours here: 370 of 787 calls were 20-second
+            # Finnhub read timeouts back to back. When it's failing this
+            # consistently it's down or throttling us, and grinding on only
+            # wastes the run -- stop and let the next scheduled run retry.
+            if consecutive_errors >= MAX_CONSECUTIVE_ERRORS:
+                print(f"us-auto-screen: {consecutive_errors} Finnhub failures in a row ({str(e)[:60]}); "
+                      f"stopping early, the next run will pick these up again")
+                break
             continue
+        consecutive_errors = 0
         fetched += 1
         if not profile:
             outcomes[cand["cik"]] = ("no Finnhub profile", "")
@@ -459,10 +490,20 @@ def main() -> int:
             outcomes[cand["cik"]] = ("no moat evidence", "")
             continue
 
-        quote = finnhub_quote(cand["ticker"])
-        metrics = finnhub_metrics(cand["ticker"])
+        try:
+            quote = finnhub_quote(cand["ticker"])
+            metrics = finnhub_metrics(cand["ticker"])
+            insider_pct = finnhub_insider_pct(cand["ticker"], profile.get("shareOutstanding"))
+        except requests.RequestException as e:
+            # A transient Finnhub timeout here used to crash the whole run
+            # (confirmed live: one flaky /quote call on candidate #13 lost
+            # all 12 already-found passes and every already-spent Finnhub
+            # call, dry-run or not -- state is only written at the very
+            # end). Every other per-candidate fetch above already treats a
+            # network error as "skip this one candidate", so this matches.
+            outcomes[cand["cik"]] = ("error fetching Finnhub metrics", str(e)[:80])
+            continue
         holders = find_holders(text)
-        insider_pct = finnhub_insider_pct(cand["ticker"], profile.get("shareOutstanding"))
         fails = gates(cap_m, metrics.get("roeTTM"), holders)
 
         rec = record(cand, profile, quote, metrics, ev, holders, insider_pct, today, fails, source_label)
@@ -486,7 +527,10 @@ def main() -> int:
     if args.dry_run:
         return 0
     for cik, (result, detail) in outcomes.items():
-        if result == "passed, not added today":
+        # A transient network failure is not a verdict on the company --
+        # persisting it marked 400 tickers "checked" for RECHECK_DAYS (90)
+        # after one bad Finnhub afternoon, so they'd never be retried.
+        if result == "passed, not added today" or result.startswith("error"):
             continue
         state["checked"][cik] = {"on": today, "result": result, **({"detail": detail} if detail else {})}
     state["runs"] = (state.get("runs", []) + [{"on": today, "fetched": fetched, **counts,

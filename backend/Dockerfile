@@ -16,10 +16,15 @@ RUN pip install --no-cache-dir -r backend/requirements.txt
 
 COPY backend/app ./backend/app
 COPY backend/data ./backend/data
+# second copy, outside the volume mounted over data/: docker-entrypoint.sh syncs it in at start
+COPY backend/data ./backend/data-dist
 COPY backend/chart_data ./backend/chart_data
+COPY backend/chart_data_us ./backend/chart_data_us
 COPY backend/reports ./backend/reports
 COPY backend/sectors ./backend/sectors
 COPY frontend ./frontend
+COPY backend/docker-entrypoint.sh /app/docker-entrypoint.sh
+RUN chmod +x /app/docker-entrypoint.sh
 
 WORKDIR /app/backend
 
@@ -32,5 +37,6 @@ EXPOSE 8000
 HEALTHCHECK --interval=30s --timeout=5s --start-period=10s \
     CMD curl -f http://localhost:8000/healthz || exit 1
 
+ENTRYPOINT ["/app/docker-entrypoint.sh"]
 CMD ["gunicorn", "app.main:app", "-k", "uvicorn.workers.UvicornWorker", \
      "--bind", "0.0.0.0:8000", "--workers", "2"]

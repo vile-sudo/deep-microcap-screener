@@ -1,11 +1,13 @@
 name: Uptime check
 
-# Every 10 minutes: is the live dashboard answering? Two jobs in one:
-#   * keeps a free Render instance from going to sleep (it sleeps after 15
-#     minutes without traffic, and the first visitor then waits ~a minute);
-#   * notices when the site is really down. A cold start can take a minute,
-#     so it retries for about three minutes before failing -- and a failed
-#     scheduled run makes GitHub email the repo owner.
+# Every 10 minutes: is the live dashboard (pkresearch.in, behind Caddy)
+# answering? Retries for about three minutes before failing, and a failed
+# scheduled run makes GitHub email the repo owner.
+#
+# Caddy sits in front of the app and answers 401 to anyone without the site
+# login -- even /healthz -- so 401 is treated as "up" here. That proves the
+# server and Caddy are reachable (a dead host, or a TLS/DNS failure, still
+# fails), but not that the app container behind Caddy is healthy.
 
 permissions:
   contents: read
@@ -26,12 +28,12 @@ jobs:
     steps:
       - name: Check /healthz
         env:
-          SITE: https://deep-microcap-screener.onrender.com
+          SITE: https://pkresearch.in
         run: |
           for i in 1 2 3 4 5 6; do
             code=$(curl -s -o body.txt -w '%{http_code}' -m 40 "$SITE/healthz" || echo 000)
             echo "attempt $i: HTTP $code $(cat body.txt 2>/dev/null)"
-            if [ "$code" = "200" ]; then exit 0; fi
+            if [ "$code" = "200" ] || [ "$code" = "401" ]; then exit 0; fi
             sleep 30
           done
           echo "::error::$SITE has not answered /healthz for about three minutes"

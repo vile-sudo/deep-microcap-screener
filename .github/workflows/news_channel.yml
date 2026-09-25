@@ -1,6 +1,6 @@
 name: News Channel
 
-# China/India/USA news for the sectors each dominates globally -- see
+# China/India/USA/Japan news for the sectors each dominates globally -- see
 # backend/app/news_channel.py for the two sources. The schedule below is set
 # to every 5 minutes, GitHub Actions' own shortest supported interval, but
 # GitHub does NOT reliably honor that in practice -- schedule: triggers are
