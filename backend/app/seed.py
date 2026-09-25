@@ -181,6 +181,21 @@ def seed(market: str = "IN") -> None:
                 db.add(Company(**fields))
                 inserted += 1
 
+        # US only: a company taken out of companies_us_raw.json used to stay
+        # on the live board forever, since this loop only adds and updates.
+        # Guarded so a bad or empty file can never wipe the board: it only
+        # runs when the file listed at least one company, and India's board
+        # keeps its long-standing add/update-only behaviour.
+        removed = 0
+        if market == "US":
+            keep = {rec.get("code") for rec in companies if rec.get("code")}
+            if keep:
+                stale = [c.code for c in db.query(Company).filter(Company.market == "US") if c.code not in keep]
+                if stale:
+                    db.query(WatchItem).filter(WatchItem.market == "US", WatchItem.code.in_(stale)).delete(synchronize_session=False)
+                    db.query(Company).filter(Company.market == "US", Company.code.in_(stale)).delete(synchronize_session=False)
+                    removed = len(stale)
+
         for key in ("BUILD", "SCREENS", "SHORT", "BUILD_STAMP", "CANDIDATES", "BUILD_NEW"):
             if key not in meta:
                 continue
@@ -199,7 +214,7 @@ def seed(market: str = "IN") -> None:
             db.add(MetaKV(key=hash_key, value=data_hash(market)))
         db.commit()
         print(f"Seed complete ({market}): {inserted} inserted, {updated} updated, "
-              f"{len(companies)} total companies.")
+              f"{len(companies)} total companies" + (f", {removed} removed." if removed else "."))
     finally:
         db.close()
 
@@ -464,10 +479,12 @@ def _migrate_sqlite(insp) -> None:
         conn.exec_driver_sql("BEGIN IMMEDIATE")
         try:
             _recover_sqlite(conn)
-            if "market" not in {c["name"] for c in inspect(conn).get_columns("companies")}:
-                for name, table in _SQLITE_MIGRATED_TABLES:
-                    if name == "companies" or inspect(conn).has_table(name):
-                        _rebuild_sqlite_table(conn, name, table, ("market",))
+            # Each table on its own: an earlier, raced migration could leave companies
+            # rebuilt while watchlist_items / saved_filters were still the old shape.
+            for name, table in _SQLITE_MIGRATED_TABLES:
+                insp = inspect(conn)
+                if insp.has_table(name) and "market" not in {c["name"] for c in insp.get_columns(name)}:
+                    _rebuild_sqlite_table(conn, name, table, ("market",))
             # market_cap_usd/insider_pct/inst_pct are plain nullable columns with
             # no default needed -- the rebuilt table's own schema has them; only
             # `market` needs a value backfilled.
