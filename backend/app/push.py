@@ -10,11 +10,11 @@ config.py) -- unset, every function here silently no-ops, so a server
 with no Firebase project configured behaves exactly as it did before this
 module existed.
 
-Callers: app/news_channel.py's refresh loop (main.py's _news_refresher)
-sends "N new stories" when a refresh actually adds something, and
-app/us_alerts.py (main.py's _us_alerts_loop) sends each user the new US
-alerts -- earnings, insider buys, material 8-Ks, price signals -- on the
-companies on their US watchlist.
+Callers: app/news_channel.py's refresh loop (main.py's _news_refresher) and app/news_sync.py's merge
+(a deploy handing the server stories the GitHub workflow fetched) both send "N new stories" when
+something actually gets added, and app/us_alerts.py (main.py's _us_alerts_loop) sends each user the new
+US alerts -- earnings, insider buys, material 8-Ks, price signals -- on the companies on their US
+watchlist.
 """
 from __future__ import annotations
 

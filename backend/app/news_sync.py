@@ -13,17 +13,27 @@ So news files are never copied; they are merged: every story from either side is
 (de-duplicated the way news_channel.write() does), for latest.json only the last 48 hours, for each
 archive day everything.
 
+A merge that grows latest.json also sends the same "N new stories" push (mobile + desktop) that the
+server's own _refresh_news_and_push sends -- otherwise a story that only ever arrived via the GitHub
+workflow's fetch (a different IP, so sometimes different results) would land on the dashboard with no
+notification at all, since sync-data.sh writes straight to disk with nothing else watching this path.
+_item_keys()-based dedup means a story the server already fetched itself is never counted twice here,
+so this cannot double up with the in-process loop's own push for the same item.
+
     python -m app.news_sync <repo news_channel folder>
 """
 from __future__ import annotations
 
 import json
+import logging
 import os
 import sys
 import time
 from pathlib import Path
 
 from . import news_channel as nc
+
+log = logging.getLogger("deepsweep.news_sync")
 
 
 def _read(path: Path) -> dict:
@@ -51,6 +61,26 @@ def _write(path: Path, payload: dict, indent=None) -> None:
     os.replace(tmp, path)
 
 
+def _notify_new_stories(added: int) -> None:
+    if added <= 0:
+        return
+    try:
+        from . import push, webpush
+        from .database import SessionLocal
+
+        body = f"{added} new stor{'y' if added == 1 else 'ies'} just in"
+        db = SessionLocal()
+        try:
+            if push.configured():
+                push.send_to_all(db, "News Channel", body, {"type": "news_channel"})
+            if webpush.configured():
+                webpush.send_to_all(db, "News Channel", body, url="/#v=news", tag="news-channel")
+        finally:
+            db.close()
+    except Exception as e:  # noqa: BLE001 - a notify failure must never break the data sync
+        log.warning("news sync push failed: %s", e)
+
+
 def merge(src: Path) -> dict:
     """Merge src (the repo's news_channel folder) into the server's. Returns what changed."""
     changed = {"latest": False, "archive_days": 0}
@@ -58,13 +88,15 @@ def merge(src: Path) -> dict:
     # latest.json: the live 48-hour window
     theirs, mine = _read(src / "latest.json"), _read(nc.NEWS_FILE)
     if theirs.get("items"):
+        before = mine.get("items") or []
         cutoff = time.strftime("%Y-%m-%d %H:%M:%S", time.gmtime(time.time() - nc.LOOKBACK_HOURS * 3600))
-        items = [i for i in _union(mine.get("items") or [], theirs.get("items") or []) if (i.get("published") or "") >= cutoff]
-        if len(items) != len(mine.get("items") or []):
+        items = [i for i in _union(before, theirs.get("items") or []) if (i.get("published") or "") >= cutoff]
+        if len(items) != len(before):
             newer = theirs if (theirs.get("as_of") or "") > (mine.get("as_of") or "") else mine
             payload = {**newer, "count": len(items), "items": items, "as_of": max(theirs.get("as_of") or "", mine.get("as_of") or "")}
             _write(nc.NEWS_FILE, payload, indent=1)
             changed["latest"] = True
+            _notify_new_stories(max(0, len(items) - len(before)))
 
     # archive days: everything from both sides
     for f in sorted((src / "archive").glob("*.json")):

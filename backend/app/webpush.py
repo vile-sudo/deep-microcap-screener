@@ -10,8 +10,9 @@ to generate them) -- unset, every function here silently no-ops, so a server wit
 exactly as it did before this module existed, and the settings-panel toggle explains that it isn't set up.
 
 Callers: main.py's `_desktop_push_loop` (watches for new alerts -- highs/lows, breakouts, institutional
-deal clusters -- and sends one summary push per new session) and `_refresh_news_and_push` (one push per
-News Channel refresh that actually added stories); this module only knows how to deliver a message once
+deal clusters -- and sends one summary push per new session), `_refresh_news_and_push` (one push per
+News Channel refresh that actually added stories), and news_sync.merge (the same, for stories that
+arrived via the GitHub-workflow fetch instead); this module only knows how to deliver a message once
 given one.
 """
 from __future__ import annotations
