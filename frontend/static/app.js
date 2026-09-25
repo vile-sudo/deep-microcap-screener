@@ -4034,8 +4034,14 @@ const AL_TYPES=[['all','All'],['high','New highs'],['low','New lows'],['ipo_brea
 function alLabel(it){
   if(it.type==='ipo_breakout') return `<span class="al-chip al-ipo">&#9650; IPO base breakout</span>`;
   if(it.type==='vcp_breakout') return `<span class="al-chip al-vcp">&#9650; Base breakout</span>`;
-  if(it.type==='deal_buy') return `<span class="al-chip al-dbuy">&#9650; Buying cluster</span><span class="al-wins">${fmt(it.dominance_pct,0)}% of ₹${fmt(it.total_value_cr,1)} cr</span>`;
-  if(it.type==='deal_sell') return `<span class="al-chip al-dsell">&#9660; Selling cluster</span><span class="al-wins">${fmt(it.dominance_pct,0)}% of ₹${fmt(it.total_value_cr,1)} cr</span>`;
+  if(it.type==='deal_buy' || it.type==='deal_sell'){
+    const buySide=it.type==='deal_buy';
+    const cls=buySide?'al-dbuy':'al-dsell', arrow=buySide?'&#9650;':'&#9660;', label=buySide?'Buying cluster':'Selling cluster';
+    const wins = it.basis==='clients'
+      ? `${buySide?it.buy_clients:it.sell_clients} of ${it.buy_clients+it.sell_clients} institutions · ₹${fmt(it.total_value_cr,1)} cr`
+      : `${fmt(it.dominance_pct,0)}% of ₹${fmt(it.total_value_cr,1)} cr`;
+    return `<span class="al-chip ${cls}">${arrow} ${label}</span><span class="al-wins">${wins}</span>`;
+  }
   const hi=it.type==='high', top=AL_WLABEL[it.top]||it.top;
   return `<span class="al-chip ${hi?'al-hi':'al-lo'}">${hi?'&#9650;':'&#9660;'} New ${it.since_listing?'since-listing':top} ${hi?'high':'low'}</span>`
     + `<span class="al-wins">${(it.windows||[]).map(w=>`<i>${w}</i>`).join('')}</span>`;

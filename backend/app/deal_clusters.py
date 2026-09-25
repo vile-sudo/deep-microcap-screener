@@ -9,12 +9,23 @@ and opposite block counterparty on the other -- which is exactly institutional a
 distribution. So the imbalance itself, computed from NSE's own disclosed reports with no external
 assumption, is the signal.
 
-One kind of item, deal_buy / deal_sell: directional -- one side is at least DOMINANCE of the day's
-disclosed value, with at least MIN_SIDE_CLIENTS distinct counterparties on that side (several institutions
-agreeing, not one large trade), and at least MIN_TOTAL_CR crore disclosed in the stock that session. Pure
-matched block-deal rotation with no such skew (the common case around an IPO lock-in expiry, where the
-day's buy value equals its sell value almost exactly) is deliberately left out: it is real turnover, but it
-does not point either way, so it is not an actionable "someone is accumulating/distributing" signal.
+One kind of item, deal_buy / deal_sell, triggered either of two ways (`basis` says which):
+
+  - "value": one side is at least DOMINANCE of the day's disclosed value, with at least
+    MIN_SIDE_CLIENTS distinct counterparties on that side (several institutions agreeing, not one
+    large trade).
+  - "clients": one side holds at least CLIENT_DOMINANCE of the session's distinct counterparties
+    (again, at least MIN_SIDE_CLIENTS of them) even though the value split is close to even -- the
+    common shape around an IPO anchor/lock-in expiry, where one large holder's block is absorbed by
+    many separate institutional buyers at the same matched price, so aggregate value nets close to
+    50/50 while participation is completely one-sided. That is a real "many houses are buying" signal
+    in its own right (this is what the SEDEMAC example that prompted this feature turned out to be:
+    19 buyers against 7 sellers, but only 54% of value, so a value-only test would have missed it) --
+    it is left out only when BOTH sides are similarly crowded (many institutions on each side, e.g. an
+    index rebalancing day), which "clients" would wrongly call one-sided and "value" correctly leaves
+    alone.
+
+At least MIN_TOTAL_CR crore must be disclosed in the stock that session either way.
 
 Input is the deduplicated deal rows this board already collects (data/deals/latest.json, written by
 scripts/run_deals.py): the same trade is reported under both the bulk and the block disclosure when it
@@ -32,6 +43,7 @@ from collections import defaultdict
 
 MIN_TOTAL_CR = 20.0          # a session's disclosed value in the stock must reach this to matter at all
 DOMINANCE = 0.60              # one side must be at least this share of value to call it directional
+CLIENT_DOMINANCE = 0.70       # ...or at least this share of the session's distinct counterparties
 MIN_SIDE_CLIENTS = 3          # that many distinct counterparties on the dominant side (not one whale trade)
 TOP_N = 5                     # counterparties shown per side
 
@@ -108,18 +120,24 @@ def build(deals: list[dict], announcements: list[dict] | None = None, market: di
             if total < MIN_TOTAL_CR:
                 continue
             buy_clients, sell_clients = len({r["client"] for r in buy}), len({r["client"] for r in sell})
+            total_clients = buy_clients + sell_clients
             dom_side, dom_val, dom_clients = ("BUY", buy_val, buy_clients) if buy_val >= sell_val else ("SELL", sell_val, sell_clients)
             dominance = dom_val / total
-            if not (dominance >= DOMINANCE and dom_clients >= MIN_SIDE_CLIENTS):
+            client_share = dom_clients / total_clients if total_clients else 0
+            by_value = dominance >= DOMINANCE and dom_clients >= MIN_SIDE_CLIENTS
+            by_clients = client_share >= CLIENT_DOMINANCE and dom_clients >= MIN_SIDE_CLIENTS
+            if not (by_value or by_clients):
                 continue
             rec = g[0]
             item = {
                 "type": "deal_buy" if dom_side == "BUY" else "deal_sell",
+                "basis": "value" if by_value else "clients",
                 "scope": "board" if rec.get("board_code") else "market",
                 "code": rec.get("board_code"), "symbol": symbol, "name": rec.get("name") or symbol,
                 "date": day, "deals": len(g),
                 "buy_value_cr": round(buy_val, 2), "sell_value_cr": round(sell_val, 2), "total_value_cr": round(total, 2),
                 "buy_clients": buy_clients, "sell_clients": sell_clients, "dominance_pct": round(dominance * 100, 1),
+                "client_share_pct": round(client_share * 100, 1),
                 "top_buyers": _top(g, "BUY"), "top_sellers": _top(g, "SELL"),
                 "context": _find_context(announcements, symbol, day),
             }
