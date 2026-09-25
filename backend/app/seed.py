@@ -237,6 +237,17 @@ def _seed_market_if_changed(market: str, required: bool) -> None:
     want = data_hash(market)
     hash_key = _mkey("SEED_HASH", market)
 
+    def seeded(conn):
+        """The hash matches AND that market actually has companies -- a matching hash over an
+        emptied table (see _recover_sqlite) must not stop the reseed."""
+        if current_hash(conn) != want:
+            return False
+        try:
+            return bool(conn.execute(text("SELECT COUNT(*) FROM companies WHERE market = :m"), {"m": market}).scalar())
+        except Exception:  # noqa: BLE001
+            conn.rollback()
+            return False
+
     def current_hash(conn):
         try:
             v = conn.execute(text("SELECT value FROM meta_kv WHERE key = :k"), {"k": hash_key}).scalar()
@@ -247,7 +258,7 @@ def _seed_market_if_changed(market: str, required: bool) -> None:
 
     if engine.dialect.name != "postgresql":
         with engine.connect() as conn:
-            done = current_hash(conn) == want
+            done = seeded(conn)
         if not done:        # SQLite: the connection above is closed first, so the seed can write
             seed(market)
             log.warning("seeded the %s database at startup (data changed)", market)
@@ -257,7 +268,7 @@ def _seed_market_if_changed(market: str, required: bool) -> None:
         conn.execute(text("SELECT pg_advisory_lock(:id)"), {"id": lock_id})
         conn.commit()
         try:
-            if current_hash(conn) != want:
+            if not seeded(conn):
                 conn.commit()
                 seed(market)
                 log.warning("seeded the %s database at startup (data changed)", market)
@@ -384,6 +395,13 @@ def _rebuild_sqlite_table(conn, table_name: str, target_table, default_market_co
     old_cols = [c["name"] for c in inspect(conn).get_columns(table_name)]
     tmp_name = f"{table_name}__pre_market_migration"
     conn.execute(text(f'ALTER TABLE "{table_name}" RENAME TO "{tmp_name}"'))
+    # An index keeps its name when its table is renamed, so the copies target_table.create()
+    # is about to build ("index ix_... already exists") would collide with these. The rows
+    # live in the table, not the index; the new table gets its own indexes.
+    for (idx,) in conn.execute(text(
+            "SELECT name FROM sqlite_master WHERE type = 'index' AND tbl_name = :t AND sql IS NOT NULL"),
+            {"t": tmp_name}).all():
+        conn.execute(text(f'DROP INDEX "{idx}"'))
     target_table.create(bind=conn)
     dest_cols = old_cols + [c for c in default_market_cols if c not in old_cols]
     select_cols = ", ".join(old_cols) + "".join(f", 'IN' AS {c}" for c in default_market_cols if c not in old_cols)
@@ -394,25 +412,70 @@ def _rebuild_sqlite_table(conn, table_name: str, target_table, default_market_co
     conn.execute(text(f'DROP TABLE "{tmp_name}"'))
 
 
+_SQLITE_MIGRATED_TABLES = (("companies", Company.__table__), ("watchlist_items", WatchItem.__table__),
+                           ("saved_filters", SavedFilter.__table__))
+
+
+def _recover_sqlite(conn) -> None:
+    """Undo a migration that two workers raced through.
+
+    The rebuild is one transaction, but the gunicorn workers each ran it at the same
+    moment, and the loser could leave a new, EMPTY table beside the old one renamed to
+    <table>__pre_market_migration -- with the rows stranded in it. The board then loads
+    with no companies, and seeding did not repair it because the data hash still matched.
+    Called with the write lock held, so nothing else is mid-migration. Never deletes a
+    table that still holds rows the live one does not.
+    """
+    for name, _table in _SQLITE_MIGRATED_TABLES:
+        tmp = f"{name}__pre_market_migration"
+        insp = inspect(conn)
+        if not insp.has_table(tmp):
+            continue
+        count = lambda t: conn.execute(text(f'SELECT COUNT(*) FROM "{t}"')).scalar()  # noqa: E731
+        if not insp.has_table(name):
+            conn.execute(text(f'ALTER TABLE "{tmp}" RENAME TO "{name}"'))   # died between rename and create
+            continue
+        if count(tmp) and not count(name):
+            old = [c["name"] for c in insp.get_columns(tmp)]
+            new = [c["name"] for c in insp.get_columns(name)]
+            shared = [c for c in old if c in new]
+            fill_market = "market" in new and "market" not in old
+            dest = ", ".join(shared + (["market"] if fill_market else []))
+            src = ", ".join(shared + (["'IN'"] if fill_market else []))
+            conn.execute(text(f'INSERT INTO "{name}" ({dest}) SELECT {src} FROM "{tmp}"'))
+            if name == "companies":   # what was restored may predate the bundled data: reseed
+                conn.execute(text("DELETE FROM meta_kv WHERE key = 'SEED_HASH'"))
+            logging.getLogger("deepsweep").warning("restored %s from %s", name, tmp)
+        elif count(tmp):
+            continue   # the live table already has rows of its own; leave the old one for a human
+        for (idx,) in conn.execute(text(
+                "SELECT name FROM sqlite_master WHERE type = 'index' AND tbl_name = :t AND sql IS NOT NULL"),
+                {"t": tmp}).all():
+            conn.execute(text(f'DROP INDEX "{idx}"'))
+        conn.execute(text(f'DROP TABLE "{tmp}"'))
+
+
 def _migrate_sqlite(insp) -> None:
-    cols = {c["name"] for c in insp.get_columns("companies")}
-    if "market" in cols:
-        return  # already migrated (idempotent -- this is the only check SQLite needs,
-                 # unlike Postgres where columns and the PK rebuild are checked separately)
-    # Resolved before opening the transaction below, not with insp.has_table()
-    # from inside it -- same "database is locked" reason as _rebuild_sqlite_table's
-    # own inspect(conn) fix.
-    has_watchlist = insp.has_table("watchlist_items")
-    has_saved_filters = insp.has_table("saved_filters")
-    with engine.begin() as conn:
-        _rebuild_sqlite_table(conn, "companies", Company.__table__, ("market",))
-        # market_cap_usd/insider_pct/inst_pct are plain nullable columns with
-        # no default needed -- create_all() above already added them via the
-        # rebuilt table's own schema; only `market` needs a value backfilled.
-        if has_watchlist:
-            _rebuild_sqlite_table(conn, "watchlist_items", WatchItem.__table__, ("market",))
-        if has_saved_filters:
-            _rebuild_sqlite_table(conn, "saved_filters", SavedFilter.__table__, ("market",))
+    with engine.connect() as conn:
+        # Take SQLite's write lock before looking at anything, then decide. The workers
+        # start together; without this they all saw "no market column" and all rebuilt.
+        # The others now wait here (see the busy timeout in database.py) and, once the
+        # first commits, find the column and return.
+        conn.exec_driver_sql("BEGIN IMMEDIATE")
+        try:
+            _recover_sqlite(conn)
+            if "market" not in {c["name"] for c in inspect(conn).get_columns("companies")}:
+                for name, table in _SQLITE_MIGRATED_TABLES:
+                    if name == "companies" or inspect(conn).has_table(name):
+                        _rebuild_sqlite_table(conn, name, table, ("market",))
+            # market_cap_usd/insider_pct/inst_pct are plain nullable columns with
+            # no default needed -- the rebuilt table's own schema has them; only
+            # `market` needs a value backfilled.
+            conn.commit()
+        except BaseException:
+            conn.rollback()
+            raise
+
 
 if __name__ == "__main__":
     try:

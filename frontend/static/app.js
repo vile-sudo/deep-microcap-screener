@@ -4043,7 +4043,8 @@ const rpDate = iso => iso && /^\d{4}-\d\d-\d\d/.test(iso) ? galDay(iso.slice(0,1
 /* the first sentence or two of a research note, for summaries */
 function rpLead(s, max){
   s=String(s||'').trim(); if(!s) return '';
-  const parts=s.split(/(?<=[.!?])\s+(?=[A-Z₹(“"])/);
+  /* no lookbehind: it is a SyntaxError on Safari < 16.4, which kills the whole script */
+  const parts=s.replace(/([.!?])\s+(?=[A-Z₹(“"])/g,'$1\u0001').split('\u0001');
   let out=parts[0];
   if(out.length<90 && parts[1]) out+=' '+parts[1];
   max=max||260;
