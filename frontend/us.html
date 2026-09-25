@@ -44,11 +44,45 @@
   .us-sig.warn{background:rgba(245,199,106,.22);color:#92400e}
   .us-sig.grey{background:rgba(120,130,140,.16);color:var(--muted)}
   html[data-mode="dark"] .us-sig.warn{color:#f5c76a}
+  .ov-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:14px;margin-top:6px}
+  .ov-card{border:1px solid var(--ring);border-radius:12px;background:var(--surface);padding:14px 16px}
+  .ov-card h3{margin:0 0 8px;font-size:11px;text-transform:uppercase;letter-spacing:.09em;color:var(--muted);font-weight:700;display:flex;justify-content:space-between;gap:8px}
+  .ov-card h3 a,.ov-card h3 button{font:inherit;font-size:11px;letter-spacing:0;text-transform:none;color:var(--s1);background:none;border:0;padding:0;cursor:pointer}
+  .ov-list{list-style:none;margin:0;padding:0}
+  .ov-list li{display:flex;align-items:baseline;justify-content:space-between;gap:12px;padding:7px 0;border-top:1px solid var(--grid);font-size:13px;cursor:pointer}
+  .ov-list li:first-child{border-top:0}
+  .ov-list li:hover b{color:var(--s1)}
+  .ov-list small{display:block;color:var(--muted);font-size:11.5px;margin-top:1px;font-weight:400}
+  .ov-list .r{white-space:nowrap;text-align:right;font-variant-numeric:tabular-nums;font-size:12.5px}
+  .ov-empty{color:var(--muted);font-size:12.5px;margin:4px 0}
+  .us-news-day{font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin:16px 0 6px;font-weight:700}
+  .us-news-item{padding:11px 0;border-top:1px solid var(--grid)}
+  .us-news-item .meta{font-size:11.5px;color:var(--muted);margin-bottom:3px}
+  .us-news-item .meta b{color:var(--ink);cursor:pointer}
+  .us-news-item a.hl{font-size:14.5px;font-weight:600;color:var(--ink);text-decoration:none}
+  .us-news-item a.hl:hover{color:var(--s1);text-decoration:underline}
+  .us-news-item p{margin:4px 0 0;font-size:12.5px;color:var(--ink2);line-height:1.5}
+  .us-bellwrap{position:relative}
+  .us-bell{display:inline-flex;align-items:center;gap:6px}
+  .us-bell-n{background:#dc2626;color:#fff;border-radius:999px;font-size:10.5px;font-weight:700;padding:1px 6px;min-width:18px;text-align:center}
+  .us-alerts{position:absolute;right:0;top:calc(100% + 8px);width:min(420px,92vw);max-height:70vh;overflow:auto;background:var(--surface);border:1px solid var(--ring);border-radius:12px;box-shadow:0 18px 40px -18px rgba(0,0,0,.45);z-index:60;text-align:left}
+  .us-alerts-head{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:12px 14px;border-bottom:1px solid var(--grid);position:sticky;top:0;background:var(--surface);font-size:13px}
+  .us-alerts-head label{display:flex;align-items:center;gap:5px;font-size:12px;color:var(--ink2);cursor:pointer}
+  .us-alerts-head button{font:inherit;font-size:12px;color:var(--s1);background:none;border:0;cursor:pointer;padding:0}
+  .us-alert{display:flex;gap:10px;padding:10px 14px;border-top:1px solid var(--grid);cursor:pointer;font-size:13px}
+  .us-alert:first-of-type{border-top:0}
+  .us-alert:hover{background:var(--grid)}
+  .us-alert.unseen::before{content:"";flex:none;width:7px;height:7px;border-radius:50%;background:var(--s1);margin-top:6px}
+  .us-alert:not(.unseen)::before{content:"";flex:none;width:7px}
+  .us-alert small{display:block;color:var(--muted);font-size:11.5px;margin-top:2px}
+  .us-alert-empty{padding:22px 16px;text-align:center;color:var(--muted);font-size:13px}
   .earn-summary{display:flex;flex-wrap:wrap;gap:10px;margin:2px 0 12px}
   .earn-stat{border:1px solid var(--ring);border-radius:10px;padding:8px 14px;min-width:120px;background:var(--surface)}
   .earn-stat > span{display:block;font-size:10.5px;text-transform:uppercase;letter-spacing:.07em;color:var(--muted)}
   .earn-stat b{font-size:19px;font-variant-numeric:tabular-nums}
   .dbody .mv-table thead th{position:static}
+  .dbody .mv-table td:first-child{white-space:normal;word-break:break-word}
+  .dbody .mv-table{font-size:12px}
   .earn-beat{color:var(--good-ink,#157347);font-weight:600}
   .earn-miss{color:var(--crit,#b91c1c);font-weight:600}
   .earn-soon{background:rgba(245,199,106,.22);color:#92400e}
@@ -75,6 +109,13 @@
     <div class="us-brand"><b>Deep <em>Sweep</em></b><span class="us-badge">US</span></div>
     <div class="us-topbar-right">
       <a class="btn" href="/" title="Back to the India board">&larr; India board</a>
+      <div class="us-bellwrap">
+        <button class="btn us-bell" id="us-alerts-btn" type="button" title="Alerts: earnings, insider buying, filings and price signals" aria-haspopup="true" aria-expanded="false">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 16.5V11a6 6 0 0 1 12 0v5.5l1.5 2h-15z"/><path d="M10 20.5a2.2 2.2 0 0 0 4 0"/></svg>
+          <span>Alerts</span><span class="us-bell-n" id="us-alerts-n" hidden></span>
+        </button>
+        <div class="us-alerts" id="us-alerts-panel" role="dialog" aria-label="Alerts" hidden></div>
+      </div>
       <button class="btn" id="us-dark-toggle" type="button" title="Toggle dark mode">&#9728;</button>
       <button class="btn" id="us-logout" type="button">Log out</button>
     </div>
@@ -86,16 +127,26 @@
 <main class="dashboard-main">
 
 <div class="dl-tabs" role="tablist">
-  <button class="dl-tab on" type="button" data-ustab="screens" role="tab" aria-selected="true">Screens</button>
+  <button class="dl-tab on" type="button" data-ustab="overview" role="tab" aria-selected="true">Overview</button>
+  <button class="dl-tab" type="button" data-ustab="screens" role="tab" aria-selected="false">Screens</button>
   <button class="dl-tab" type="button" data-ustab="themes" role="tab" aria-selected="false">Themes</button>
   <button class="dl-tab" type="button" data-ustab="market" role="tab" aria-selected="false">Market</button>
   <button class="dl-tab" type="button" data-ustab="earnings" role="tab" aria-selected="false">Earnings</button>
+  <button class="dl-tab" type="button" data-ustab="news" role="tab" aria-selected="false">News</button>
   <button class="dl-tab" type="button" data-ustab="gallery" role="tab" aria-selected="false">Chart Gallery</button>
   <button class="dl-tab" type="button" data-ustab="insider" role="tab" aria-selected="false">Board Disclosures</button>
   <button class="dl-tab" type="button" data-ustab="method" role="tab" aria-selected="false">How this board is built</button>
 </div>
 
-<section class="dashboard-section" id="us-tab-screens">
+<section class="dashboard-section" id="us-tab-overview">
+  <div class="section-heading"><div><span class="eyebrow">START</span><h1>US board overview</h1>
+    <p class="section-copy">A concise view of the US companies currently on the board, and what is happening to them. Click a tile to see the companies behind it; click any name below to open its scorecard.</p></div>
+    <span class="section-note" id="ov-asof"></span></div>
+  <div class="tiles" id="us-tiles"></div>
+  <div class="ov-grid" id="ov-grid"></div>
+</section>
+
+<section class="dashboard-section" id="us-tab-screens" hidden>
   <div class="section-heading">
     <div><span class="eyebrow">US MICRO/SMALL-CAP</span><h1>Screens</h1>
       <p class="section-copy">US-listed companies that describe their own moat in an SEC 10-K, found by the same "does the company state it itself" rule the India board uses -- see each row's Moat evidence for the exact quote and source. Auto-added, company-stated, not yet hand-researched.</p>
@@ -237,6 +288,32 @@
     </div>
     <div class="mv-count" id="earn-count"></div>
     <div id="earn-body"><p class="view-hint">Loading…</p></div>
+  </div>
+</section>
+
+<section class="dashboard-section" id="us-tab-news" hidden>
+  <div class="section-heading">
+    <div><span class="eyebrow">NEWS</span><h1>News on the US board</h1>
+      <p class="section-copy">Recent headlines for every company on the board, from Finnhub's news feed, refreshed every three hours and kept for two weeks. Click a headline to read it at the publisher; click a ticker to open the company's scorecard.</p>
+    </div>
+    <span class="section-note" id="news-asof"></span>
+  </div>
+  <div class="card">
+    <div class="mv-toolbar">
+      <div class="searchwrap" id="news-swrap">
+        <span class="ic">&#9906;</span>
+        <input id="news-q" type="search" autocomplete="off" spellcheck="false" placeholder="Search headlines, company or ticker…">
+        <button class="clr" id="news-qclear" title="Clear search">&times;</button>
+      </div>
+      <select class="gal-select" id="news-company" aria-label="Company"><option value="">All companies</option></select>
+      <select class="gal-select" id="news-sector" aria-label="Sector"><option value="">All sectors</option></select>
+      <label class="btn" style="display:flex;align-items:center;gap:6px;cursor:pointer">
+        <input type="checkbox" id="news-watch" style="margin:0"> Watchlist only
+      </label>
+      <button class="theme-back" id="news-clear" type="button">Clear</button>
+    </div>
+    <div class="mv-count" id="news-count"></div>
+    <div id="news-body"><p class="view-hint">Loading…</p></div>
   </div>
 </section>
 
@@ -461,6 +538,6 @@
 <aside class="drawer" id="us-drawer" aria-label="Company detail"></aside>
 
 <script src="/static/klinecharts.min.js" defer></script>
-<script src="/static/us.js?v=12" defer></script>
+<script src="/static/us.js?v=13" defer></script>
 </body>
 </html>

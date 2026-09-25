@@ -34,6 +34,12 @@ GET /api/earnings-us      the US board's earnings calendar and results --
                           after close), the estimates, and its last few
                           quarters' EPS actual vs estimate
                           (scripts/run_earnings_us.py, Finnhub free tier)
+GET /api/news-us          the US board's recent headlines, newest first, a
+                          rolling two weeks (scripts/run_news_us.py, every
+                          three hours)
+GET /api/institutions-us  institutional ownership from SEC Form 13F -- per
+                          company: institutions holding it, share of shares
+                          outstanding, top holders (scripts/run_institutions_us.py)
 
 Written into backend/data/deals/latest.json,
 backend/data/announcements/latest.json, backend/data/insider_us/
@@ -52,6 +58,8 @@ ANNOUNCEMENTS_FILE = BASE_DIR / "data" / "announcements" / "latest.json"
 INSIDER_US_FILE = BASE_DIR / "data" / "insider_us" / "latest.json"
 ANNOUNCEMENTS_US_FILE = BASE_DIR / "data" / "announcements_us" / "latest.json"
 EARNINGS_US_FILE = BASE_DIR / "data" / "earnings_us" / "latest.json"
+NEWS_US_FILE = BASE_DIR / "data" / "news_us" / "latest.json"
+INSTITUTIONS_US_FILE = BASE_DIR / "data" / "institutions_us" / "latest.json"
 
 
 @router.get("/api/deals")
@@ -87,3 +95,17 @@ def earnings_us(request: Request):
     return file_response(request, EARNINGS_US_FILE,
                          {"fetched_at": None, "asof": None, "companies_checked": 0,
                           "companies_with_data": 0, "companies": {}})
+
+
+@router.get("/api/news-us")
+def news_us(request: Request):
+    return file_response(request, NEWS_US_FILE,
+                         {"fetched_at": None, "count": 0, "companies_checked": 0,
+                          "companies_with_news": 0, "items": []})
+
+
+@router.get("/api/institutions-us")
+def institutions_us(request: Request):
+    return file_response(request, INSTITUTIONS_US_FILE,
+                         {"fetched_at": None, "source_file": None, "companies_checked": 0,
+                          "companies_matched": 0, "companies": {}})

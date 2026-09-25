@@ -8,6 +8,9 @@ services:
     volumes:
       # Persist the SQLite DB across container restarts/rebuilds.
       - screener_data:/app/backend/data
+      # The repo's own data files, read-only: `git pull` on the host followed by
+      # /app/sync-data.sh in the container deploys new data with no rebuild/restart.
+      - ./backend/data:/app/backend/data-live:ro
     # Everything else (ADMIN_EMAIL, GH_DISPATCH_TOKEN, NEWSDATA_API_KEY,
     # CRON_KEY, ...) comes from .env in this same directory -- copy
     # .env.example to .env and fill in what you need; it's gitignored.

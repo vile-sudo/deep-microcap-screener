@@ -17,6 +17,7 @@ from SEC's Form 8-K instructions.
 """
 from __future__ import annotations
 
+import html
 import re
 import time
 from dataclasses import dataclass, field
@@ -127,7 +128,8 @@ def _summary(text: str, target_item: str | None) -> str:
         return ""
     start = starts[target_item] + 1
     end = next((i for i in range(start, len(blocks)) if _ITEM_HEADING.match(blocks[i])), len(blocks))
-    body = " ".join(blocks[start:end]).strip()
+    # SEC text carries HTML entities (&#8203;, &amp;, ...) and zero-width spaces
+    body = re.sub(r"[\u200b\u200c\u200d\ufeff]", "", html.unescape(" ".join(blocks[start:end]))).strip()
     return body[:SUMMARY_MAX] + ("…" if len(body) > SUMMARY_MAX else "")
 
 

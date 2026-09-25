@@ -23,8 +23,8 @@ COPY backend/chart_data_us ./backend/chart_data_us
 COPY backend/reports ./backend/reports
 COPY backend/sectors ./backend/sectors
 COPY frontend ./frontend
-COPY backend/docker-entrypoint.sh /app/docker-entrypoint.sh
-RUN chmod +x /app/docker-entrypoint.sh
+COPY backend/docker-entrypoint.sh backend/sync-data.sh /app/
+RUN chmod +x /app/docker-entrypoint.sh /app/sync-data.sh
 
 WORKDIR /app/backend
 

@@ -55,7 +55,7 @@ function moatEvidenceLine(d) {
    seven are lenses and work one at a time, exactly like India's (clicking
    one switches to it, clicking it again clears it); the last two stack. */
 const UTG = {overhang: false, heavycap: false, guide15: false, guideany: false, turn: false, caputil: false,
-  pivot: false, haslens: false, ongate: false};
+  pivot: false, haslens: false, ongate: false, nolens: false};
 const ULENSES = ["overhang", "heavycap", "guide15", "guideany", "turn", "caputil", "pivot"];
 const UTG_TEST = {
   overhang: d => !!d.capex_overhang,
@@ -67,6 +67,7 @@ const UTG_TEST = {
   pivot: d => !!d.product_pivot_flag,
   haslens: d => !!d.has_lens_data,
   ongate: d => !(d.gate_failures || []).length,
+  nolens: d => !d.has_lens_data,
 };
 
 function signalsHtml(d) {
@@ -161,6 +162,7 @@ async function toggleStar(code) {
   const on = !WATCH.has(code);
   if (on) WATCH.add(code); else WATCH.delete(code);
   render();
+  updateAlerts();
   try {
     await fetch("/api/watchlist/" + encodeURIComponent(code) + "?market=us", {
       method: on ? "POST" : "DELETE", credentials: "same-origin",
@@ -227,7 +229,7 @@ function usDrawerBody(d) {
       <div><span>CWIP</span><b>${d.cwip_usd_m == null ? "—" : "$" + fmtN(d.cwip_usd_m) + "m"}</b></div>
       <div><span>CWIP / net PP&amp;E</span><b${d.capex_overhang ? ' style="color:var(--crit)"' : ""}>${d.cwip_pct_net_block == null ? "—" : fmtN(d.cwip_pct_net_block) + "%"}</b></div>
       <div><span>Insider ownership</span><b>${d.insider_pct == null ? "—" : fmtN(d.insider_pct) + "%"}</b></div>
-      <div><span>Institutions</span><b>${d.inst_pct == null ? "—" : fmtN(d.inst_pct) + "%"}</b></div>
+      <div><span>Institutions</span><b>${instCell(d)}</b></div>
       <div><span>ROE</span><b>${d.roe_pct == null ? "—" : fmtN(d.roe_pct) + "%"}</b></div>
       <div><span>Holders of record</span><b>${d.num_shareholders ? Number(d.num_shareholders).toLocaleString("en-US") : "—"}</b></div>
       <div><span>Guided growth</span><b>${d.guidance_pct == null ? "—" : fmtN(d.guidance_pct, 0) + "%"}</b></div>
@@ -271,7 +273,7 @@ function usDrawerBody(d) {
       <p class="caveat">Not pulled for this name yet. The capex, guidance and quarterly-profit pass runs daily after the screen and covers new names the day after they are added.</p></div>`;
   }
 
-  out += usEarningsSection(d);
+  out += usEarningsSection(d) + usInstitutionsSection(d) + usNewsSection(d);
 
   if (US_PILLARS.some(p => d[p[1]] != null)) {
     out += `<div class="sec"><h4>Score breakdown</h4>` + US_PILLARS.map(([l, k, mx], i) => {
@@ -398,6 +400,8 @@ async function boot() {
   const mn = document.getElementById("us-method-n");
   if (mn) mn.textContent = DATA.length;
   render();
+  renderOverview();
+  auxLoadAll();
 }
 boot().catch(e => {
   document.querySelector(".tablewrap").innerHTML = `<div class="us-empty">Could not load the US board: ${esc(e.message)}</div>`;
@@ -472,23 +476,8 @@ function galFetchIndex() {
   return GAL_LOADING;
 }
 
-const US_TABS = ["screens", "themes", "market", "earnings", "gallery", "insider", "method"];
-document.querySelectorAll('[data-ustab]').forEach(btn => {
-  btn.onclick = () => {
-    document.querySelectorAll('[data-ustab]').forEach(b => {
-      const on = b === btn;
-      b.classList.toggle("on", on);
-      b.setAttribute("aria-selected", String(on));
-    });
-    const tab = btn.dataset.ustab;
-    US_TABS.forEach(t => { document.getElementById("us-tab-" + t).hidden = t !== tab; });
-    if (tab === "gallery" && !GAL_DATA) openGallery();
-    if (tab === "themes") openThemes();
-    if (tab === "earnings") openEarnings();
-    if (tab === "market" && !MKT.data) openMarket();
-    if (tab === "insider" && !INS.data) openInsider();
-  };
-});
+const US_TABS = ["overview", "screens", "themes", "market", "earnings", "news", "gallery", "insider", "method"];
+/* tab switching: showUsTab(), further down */
 
 async function openGallery() {
   const grid = document.getElementById("us-gal-grid");
@@ -1567,4 +1556,342 @@ function usEarningsSection(d) {
       + (known ? `<p class="qsrc" style="margin-top:6px">Beat the EPS estimate in <b>${beats} of the last ${known}</b> quarters.</p>` : "");
   }
   return out + "</div>";
+}
+
+/* ================================================================
+   Shared data for the Overview, News, Alerts and scorecard sections.
+   Every file below is written by a scheduled job (see .github/workflows/
+   news_us.yml, institutions_us.yml, board_disclosures_us.yml,
+   charts_us.yml) and only read here, so nothing on this page needs a
+   manual refresh: when a job commits new data and the server picks it
+   up, the next page load shows it.
+   ================================================================ */
+const AUX = {news: null, inst: null, ins: null, ann: null, setups: null};
+const AUX_URL = {news: "/api/news-us", inst: "/api/institutions-us", ins: "/api/insider-us",
+  ann: "/api/announcements-us", setups: "/api/market/setups?market=us"};
+const AUX_LOADING = {};
+function auxLoad(k) {
+  AUX_LOADING[k] = AUX_LOADING[k] || fetchJSON(AUX_URL[k]).then(j => (AUX[k] = j)).catch(() => null);
+  return AUX_LOADING[k];
+}
+function auxLoadAll() {
+  return Promise.all([earnLoad(), ...Object.keys(AUX_URL).map(auxLoad)]).then(refreshDerived);
+}
+function refreshDerived() {
+  renderOverview();
+  updateAlerts();
+  if (NEWSUI.built) newsRender();
+}
+
+const unent = s => String(s || "").replace(/&#(\d+);/g, (m, n) => String.fromCharCode(+n)).replace(/&amp;/g, "&").replace(/&quot;/g, '"').replace(/&nbsp;/g, " ").replace(/[\u200b\u200c\u200d\ufeff]/g, "");
+const safeUrl = u => /^https?:\/\//i.test(u || "") ? u : "#";
+function ago(iso) {
+  const m = Math.max(0, Math.round((Date.now() - Date.parse(iso)) / 60000));
+  return m < 60 ? `${m}m ago` : m < 1440 ? `${Math.round(m / 60)}h ago` : `${Math.round(m / 1440)}d ago`;
+}
+const daysSince = iso => Math.floor((earnToday() - earnUtc(iso)) / 86400000);
+const compactUSD = v => v >= 1e6 ? "$" + (v / 1e6).toFixed(v >= 1e7 ? 0 : 1) + "M" : v >= 1e3 ? "$" + Math.round(v / 1e3) + "k" : "$" + Math.round(v);
+function showUsTab(tab) {
+  document.querySelectorAll("[data-ustab]").forEach(b => {
+    const on = b.dataset.ustab === tab;
+    b.classList.toggle("on", on);
+    b.setAttribute("aria-selected", String(on));
+  });
+  US_TABS.forEach(t => { document.getElementById("us-tab-" + t).hidden = t !== tab; });
+  if (tab === "overview") renderOverview();
+  if (tab === "gallery" && !GAL_DATA) openGallery();
+  if (tab === "themes") openThemes();
+  if (tab === "earnings") openEarnings();
+  if (tab === "news") openNews();
+  if (tab === "market" && !MKT.data) openMarket();
+  if (tab === "insider" && !INS.data) openInsider();
+  window.scrollTo({top: 0, behavior: "smooth"});
+}
+document.querySelectorAll("[data-ustab]").forEach(btn => { btn.onclick = () => showUsTab(btn.dataset.ustab); });
+
+/* ================================================================
+   Overview -- the stat tiles and "what is happening" panels. A tile is
+   a shortcut: it opens Screens with exactly that filter applied.
+   ================================================================ */
+const OV_ICON = {
+  building: '<path d="M4 21V5a1 1 0 0 1 1-1h8a1 1 0 0 1 1 1v16M14 9h5a1 1 0 0 1 1 1v11M8 8h2M8 12h2M8 16h2M3 21h18"/>',
+  folder: '<path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>',
+  flag: '<path d="M5 21V4M5 4h11l-2 4 2 4H5"/>',
+  trend: '<path d="M3 17l6-6 4 4 8-8M15 7h6v6"/>',
+  cycle: '<path d="M20 12a8 8 0 1 1-2.3-5.7M20 4v4h-4"/>',
+  hourglass: '<path d="M6 3h12M6 21h12M7 3c0 5 5 6 5 9s-5 4-5 9M17 3c0 5-5 6-5 9s5 4 5 9"/>',
+  calendar: '<rect x="4" y="5" width="16" height="16" rx="2"/><path d="M4 10h16M9 3v4M15 3v4"/>',
+  buy: '<path d="M12 20V6M6 12l6-6 6 6"/>',
+};
+const ovIcon = n => `<svg class="ic-svg" viewBox="0 0 24 24" aria-hidden="true">${OV_ICON[n] || OV_ICON.folder}</svg>`;
+
+/* open Screens with one filter on (or none) */
+function goScreens(key) {
+  for (const k in UTG) UTG[k] = false;
+  document.getElementById("us-q").value = "";
+  document.getElementById("us-sector").value = "";
+  document.getElementById("us-watch-only").checked = false;
+  if (key) UTG[key] = true;
+  showUsTab("screens");
+  render();
+}
+function insBuys14() {
+  const rows = (AUX.ins && AUX.ins.transactions) || [];
+  return rows.filter(t => t.is_market && t.side === "BUY" && daysSince(t.trade_date) <= 14);
+}
+function earnThisWeek() {
+  if (!EARN.data || !EARN.data.companies) return null;
+  return earnCompanies().filter(x => x.e.next && earnDays(x.e.next.date) >= 0 && earnDays(x.e.next.date) <= 7);
+}
+
+function renderOverview() {
+  const tiles = document.getElementById("us-tiles"), grid = document.getElementById("ov-grid");
+  if (!tiles || !DATA.length) {
+    if (tiles) { tiles.innerHTML = ""; grid.innerHTML = '<p class="view-hint">No US companies on the board yet — the daily screen hasn\'t added any.</p>'; }
+    return;
+  }
+  const n = k => DATA.filter(d => d[k]).length, themes = new Set(DATA.map(themeOf)).size;
+  const wk = earnThisWeek(), buys = AUX.ins ? insBuys14() : null;
+  const T = [
+    [DATA.length, "Companies on the board", `${themes} themes · added by the daily US screen`, null, "building", "all"],
+    [themes, "Themes covered", "Industry folders; new ones appear as the screen finds them", "var(--s6)", "folder", "themes"],
+    [n("capex_overhang"), "High P/E + heavy CWIP", "P/E &gt; 40 and CWIP &#8805; 15% of net PP&amp;E", "var(--crit)", "flag", "overhang"],
+    [n("guidance_over15"), "Management guides &gt; 15%", `A further ${n("guidance_flag") - n("guidance_over15")} made an unquantified forward statement`, "var(--good-ink)", "trend", "guide15"],
+    [n("pat_turnaround"), "Profit turned positive", "Latest quarter profitable after a loss in the prior three", "var(--s1)", "cycle", "turn"],
+    [DATA.filter(d => !d.has_lens_data).length, "Awaiting the capex pass", "Capex, guidance and quarterly profit not pulled yet", "var(--muted)", "hourglass", "nolens"],
+    [wk ? wk.length : "—", "Reporting this week", "Earnings dates in the next 7 days", "var(--s4)", "calendar", "earnings"],
+    [buys ? buys.length : "—", "Insider purchases, 14 days", "Open-market buys by officers and directors", "var(--good-ink)", "buy", "insider"],
+  ];
+  tiles.innerHTML = T.map(([v, k, note, c, ic, tg]) => {
+    const share = ["overhang", "guide15", "turn", "nolens"].includes(tg) && DATA.length ? v / DATA.length * 100 : null;
+    const bar = share === null ? "" : `<div class="tbar" title="${v} of ${DATA.length} companies"><i style="width:${Math.max(share, 1.2).toFixed(1)}%;background:${c || "var(--ink2)"}"></i></div>`;
+    return `<button type="button" class="tile" data-utile="${tg}" title="Show these" style="--tile:${c || "#0a73a8"}"><span class="tile-ic">${ovIcon(ic)}</span>`
+      + `<div class="v"${c ? ` style="color:${c}"` : ""}>${v}</div><div class="k">${k}</div>${bar}<div class="n">${note}</div></button>`;
+  }).join("");
+  tiles.querySelectorAll("[data-utile]").forEach(b => {
+    b.onclick = () => {
+      const t = b.dataset.utile;
+      if (t === "themes" || t === "earnings" || t === "insider") return showUsTab(t);
+      goScreens(t === "all" ? null : t);
+    };
+  });
+
+  const top = DATA.filter(d => d.final_score != null).sort((a, b) => b.final_score - a.final_score).slice(0, 6);
+  const added = DATA.filter(d => d.added_on).sort((a, b) => b.added_on.localeCompare(a.added_on) || (b.final_score || 0) - (a.final_score || 0)).slice(0, 6);
+  const soon = (EARN.data && EARN.data.companies ? earnCompanies() : []).filter(x => x.e.next && earnDays(x.e.next.date) >= 0)
+    .sort((a, b) => a.e.next.date.localeCompare(b.e.next.date)).slice(0, 6);
+  const news = ((AUX.news && AUX.news.items) || []).filter(i => DATA.some(d => d.code === i.symbol)).slice(0, 6);
+  const buyRows = buys ? buys.slice().sort((a, b) => b.trade_date.localeCompare(a.trade_date) || b.value_usd - a.value_usd).slice(0, 5) : [];
+  const HI = new Set(["results", "order win", "M&A", "management change", "regulatory or legal", "fundraise"]);
+  const filings = ((AUX.ann && AUX.ann.announcements) || []).filter(a => HI.has(a.category)).slice(0, 5);
+
+  const card = (title, go, goLabel, inner) => `<div class="ov-card"><h3><span>${title}</span>${go ? `<button type="button" data-ov-go="${go}">${goLabel} →</button>` : ""}</h3>${inner}</div>`;
+  const list = (rows, empty) => rows.length ? `<ul class="ov-list">${rows.join("")}</ul>` : `<p class="ov-empty">${empty}</p>`;
+  const li = (code, left, sub, right) => `<li data-ov-code="${esc(code)}"><span><b>${left}</b>${sub ? `<small>${sub}</small>` : ""}</span><span class="r">${right}</span></li>`;
+  grid.innerHTML =
+    card("Top ranked", "screens", "All screens", list(top.map(d => li(d.code, esc(d.name), esc(d.sector || ""), fmtN(d.final_score))), "No scored companies yet."))
+    + card("Reporting soon", "earnings", "Earnings calendar", list(soon.map(x => li(x.code, esc(x.d.name), `${esc(earnHour(x.e.next.hour))} · ${esc(earnQ(x.e.next.quarter, x.e.next.year))}`, `${esc(earnDay(x.e.next.date))}<small>${esc(earnIn(x.e.next.date))}</small>`)), "No upcoming dates yet — the earnings scan runs nightly."))
+    + card("Latest headlines", "news", "All news", list(news.map(i => li(i.symbol, esc(i.headline), `${esc(i.symbol)} · ${esc(i.source)}`, esc(ago(i.datetime)))), "No headlines yet — the news job runs every three hours."))
+    + card("Insider buying", "insider", "Board disclosures", list(buyRows.map(t => li(t.symbol, esc(t.name || t.symbol), `${esc(t.insider)}${t.relationship ? " · " + esc(t.relationship) : ""}`, `${compactUSD(t.value_usd)}<small>${esc(insDay(t.trade_date))}</small>`)), "No open-market insider purchases in the last 14 days."))
+    + card("Material filings", "insider", "Board disclosures", list(filings.map(a => li(a.symbol, esc(a.name || a.symbol), esc(a.category) + " — " + esc(unent(a.summary).slice(0, 70)), esc(insDay(a.date)))), "No recent material 8-K filings."))
+    + card("Just added", "screens", "All screens", list(added.map(d => li(d.code, esc(d.name), esc(d.sector || ""), esc(insDay(d.added_on)))), "Nothing added yet."));
+  grid.querySelectorAll("[data-ov-code]").forEach(el => { el.onclick = () => openDrawer(el.dataset.ovCode); });
+  grid.querySelectorAll("[data-ov-go]").forEach(el => { el.onclick = () => (el.dataset.ovGo === "screens" ? goScreens(null) : showUsTab(el.dataset.ovGo)); });
+  const asof = (AUX.news && AUX.news.fetched_at) || (EARN.data && EARN.data.fetched_at);
+  document.getElementById("ov-asof").textContent = asof ? "Data refreshed " + ago(asof) : "";
+}
+
+/* ================================================================
+   News tab
+   ================================================================ */
+const NEWSUI = {built: false, limit: 60};
+async function openNews() {
+  const body = document.getElementById("news-body");
+  if (!AUX.news) body.innerHTML = '<p class="view-hint">Loading…</p>';
+  await auxLoad("news");
+  if (!AUX.news || !AUX.news.items || !AUX.news.items.length) {
+    body.innerHTML = '<p class="view-hint">No headlines yet. The news job runs automatically every three hours.</p>';
+    return;
+  }
+  if (!NEWSUI.built) newsBuild();
+  newsRender();
+}
+function newsBuild() {
+  NEWSUI.built = true;
+  const withNews = [...new Map(AUX.news.items.map(i => [i.symbol, i.name])).entries()].sort((a, b) => String(a[1]).localeCompare(String(b[1])));
+  document.getElementById("news-company").innerHTML = '<option value="">All companies</option>' + withNews.map(([s, n]) => `<option value="${esc(s)}">${esc(n)} (${esc(s)})</option>`).join("");
+  document.getElementById("news-sector").innerHTML = '<option value="">All sectors</option>' + [...new Set(DATA.map(d => d.sector).filter(Boolean))].sort().map(s => `<option>${esc(s)}</option>`).join("");
+  let t = 0;
+  document.getElementById("news-q").oninput = () => { clearTimeout(t); t = setTimeout(() => { NEWSUI.limit = 60; newsRender(); }, 120); };
+  document.getElementById("news-qclear").onclick = () => { document.getElementById("news-q").value = ""; NEWSUI.limit = 60; newsRender(); };
+  ["news-company", "news-sector", "news-watch"].forEach(id => { document.getElementById(id).onchange = () => { NEWSUI.limit = 60; newsRender(); }; });
+  document.getElementById("news-clear").onclick = () => {
+    document.getElementById("news-q").value = ""; document.getElementById("news-company").value = "";
+    document.getElementById("news-sector").value = ""; document.getElementById("news-watch").checked = false;
+    NEWSUI.limit = 60; newsRender();
+  };
+}
+function newsRender() {
+  const body = document.getElementById("news-body");
+  if (!AUX.news || !AUX.news.items) return;
+  const by = {}; DATA.forEach(d => { by[d.code] = d; });
+  const q = document.getElementById("news-q").value.trim().toLowerCase();
+  const co = document.getElementById("news-company").value, sec = document.getElementById("news-sector").value;
+  const wl = document.getElementById("news-watch").checked;
+  const rows = AUX.news.items.filter(i => {
+    const d = by[i.symbol];
+    if (!d) return false;
+    if (co && i.symbol !== co) return false;
+    if (sec && d.sector !== sec) return false;
+    if (wl && !WATCH.has(i.symbol)) return false;
+    return !q || (i.headline + " " + i.summary + " " + i.name + " " + i.symbol).toLowerCase().includes(q);
+  });
+  document.getElementById("news-count").textContent = `${rows.length} of ${AUX.news.count} headlines`;
+  document.getElementById("news-asof").textContent = AUX.news.fetched_at ? "Updated " + ago(AUX.news.fetched_at) : "";
+  if (!rows.length) { body.innerHTML = '<p class="view-hint">No headline matches — clear the search or pick another filter.</p>'; return; }
+  const shown = rows.slice(0, NEWSUI.limit);
+  let day = "", html = "";
+  shown.forEach(i => {
+    const dd = i.datetime.slice(0, 10), n = daysSince(dd);
+    if (dd !== day) { day = dd; html += `<div class="us-news-day">${n <= 0 ? "Today" : n === 1 ? "Yesterday" : esc(insDay(dd))}</div>`; }
+    html += `<article class="us-news-item"><div class="meta"><b data-news-code="${esc(i.symbol)}" title="Open scorecard">${esc(i.symbol)}</b> · ${esc(i.name)} · ${esc(i.source)} · ${esc(ago(i.datetime))}</div>`
+      + `<a class="hl" href="${esc(safeUrl(i.url))}" target="_blank" rel="noopener noreferrer">${esc(i.headline)}</a>${i.summary ? `<p>${esc(i.summary)}</p>` : ""}</article>`;
+  });
+  if (rows.length > shown.length) html += `<p style="text-align:center;margin-top:12px"><button class="btn" id="news-more">Show ${Math.min(60, rows.length - shown.length)} more</button></p>`;
+  body.innerHTML = html;
+  body.querySelectorAll("[data-news-code]").forEach(el => { el.onclick = () => openDrawer(el.dataset.newsCode); });
+  const more = document.getElementById("news-more");
+  if (more) more.onclick = () => { NEWSUI.limit += 60; newsRender(); };
+}
+
+/* ================================================================
+   Alerts -- a bell over data the nightly jobs already write: earnings
+   in the next week, insider open-market purchases, material 8-Ks, and
+   price signals from the chart job. Computed here, so an alert appears
+   the moment its source data does; which ones you have seen is kept in
+   this browser.
+   ================================================================ */
+const ALERT_SEEN_KEY = "us.alerts.seen", ALERT_WL_KEY = "us.alerts.wl";
+const ALERT_8K = new Set(["results", "order win", "M&A", "management change", "regulatory or legal", "fundraise"]);
+let ALERTS = [];
+const lsGet = k => { try { return localStorage.getItem(k); } catch (e) { return null; } };
+const lsSet = (k, v) => { try { localStorage.setItem(k, v); } catch (e) {} };
+function alertsSeen() { try { return new Set(JSON.parse(lsGet(ALERT_SEEN_KEY) || "[]")); } catch (e) { return new Set(); } }
+
+function buildAlerts() {
+  const by = {}; DATA.forEach(d => { by[d.code] = d; });
+  const A = [];
+  if (EARN.data && EARN.data.companies) {
+    earnCompanies().forEach(x => {
+      const n = x.e.next;
+      if (!n) return;
+      const dd = earnDays(n.date);
+      if (dd < 0 || dd > 7) return;
+      A.push({id: `earn:${x.code}:${n.date}`, code: x.code, kind: "Earnings", rank: dd,
+        title: `${x.d.name} reports ${earnIn(n.date)}`,
+        sub: `${earnDay(n.date)}${n.hour ? " · " + earnHour(n.hour).toLowerCase() : ""}${n.eps_estimate != null ? " · EPS est. " + earnEps(n.eps_estimate) : ""}`});
+    });
+  }
+  if (AUX.ins && AUX.ins.transactions) {
+    AUX.ins.transactions.forEach(t => {
+      if (!by[t.symbol] || !t.is_market || t.side !== "BUY" || t.value_usd < 25000) return;
+      const dd = daysSince(t.trade_date);
+      if (dd > 14) return;
+      A.push({id: `ins:${t.accession}:${t.insider}:${t.shares}`, code: t.symbol, kind: "Insider buy", rank: 100 + dd,
+        title: `${t.insider} bought ${compactUSD(t.value_usd)} of ${t.symbol}`,
+        sub: `${t.relationship || "Insider"} · ${insDay(t.trade_date)} at ${fmtUSD(t.price)}`});
+    });
+  }
+  if (AUX.ann && AUX.ann.announcements) {
+    AUX.ann.announcements.forEach(a => {
+      if (!by[a.symbol] || !ALERT_8K.has(a.category)) return;
+      const dd = daysSince(a.date);
+      if (dd > 7) return;
+      A.push({id: `ann:${a.accession}:${a.symbol}`, code: a.symbol, kind: "8-K filing", rank: 100 + dd,
+        title: `${a.name || a.symbol}: ${a.category}`, sub: `${insDay(a.date)} · ${unent(a.summary).slice(0, 90)}`});
+    });
+  }
+  if (AUX.setups && AUX.setups.feed) {
+    AUX.setups.feed.forEach(f => {
+      if (!by[f.code]) return;
+      A.push({id: `feed:${f.code}:${f.kind}:${AUX.setups.as_of}`, code: f.code, kind: "Price signal", rank: 100,
+        title: `${f.name || f.code} ${f.text}`, sub: `${f.chg_pct != null ? (f.chg_pct > 0 ? "+" : "") + f.chg_pct + "% · " : ""}close ${fmtUSD(f.close)}`});
+    });
+  }
+  return A.sort((a, b) => (WATCH.has(b.code) - WATCH.has(a.code)) || a.rank - b.rank);
+}
+
+function alertsVisible() {
+  return lsGet(ALERT_WL_KEY) === "1" && WATCH.size ? ALERTS.filter(a => WATCH.has(a.code)) : ALERTS;
+}
+function updateAlerts() {
+  ALERTS = buildAlerts();
+  const seen = alertsSeen(), unseen = alertsVisible().filter(a => !seen.has(a.id)).length;
+  const badge = document.getElementById("us-alerts-n");
+  badge.hidden = !unseen;
+  badge.textContent = unseen > 99 ? "99+" : unseen;
+  if (!document.getElementById("us-alerts-panel").hidden) alertsPanel();
+}
+function alertsPanel() {
+  const panel = document.getElementById("us-alerts-panel"), seen = alertsSeen();
+  const wl = lsGet(ALERT_WL_KEY) === "1", rows = alertsVisible();
+  panel.innerHTML = `<div class="us-alerts-head"><b>Alerts</b>
+      <label title="Only companies you have starred"><input type="checkbox" id="us-al-wl"${wl ? " checked" : ""}${WATCH.size ? "" : " disabled"}> My watchlist</label>
+      <button type="button" id="us-al-read">Mark all seen</button></div>`
+    + (rows.length ? rows.map((a, i) => `<div class="us-alert${seen.has(a.id) ? "" : " unseen"}" data-al="${i}"><div><b>${esc(a.title)}</b><small>${esc(a.kind)} · ${esc(a.sub)}</small></div></div>`).join("")
+      : '<div class="us-alert-empty">Nothing needs your attention right now.<br>Earnings dates, insider buying, key filings and price signals appear here as they happen.</div>');
+  document.getElementById("us-al-wl").onchange = e => { lsSet(ALERT_WL_KEY, e.target.checked ? "1" : "0"); updateAlerts(); };
+  document.getElementById("us-al-read").onclick = () => {
+    const s = alertsSeen(); ALERTS.forEach(a => s.add(a.id));
+    lsSet(ALERT_SEEN_KEY, JSON.stringify([...s].slice(-800))); updateAlerts();
+  };
+  panel.querySelectorAll("[data-al]").forEach(el => {
+    el.onclick = () => {
+      const a = rows[+el.dataset.al], s = alertsSeen(); s.add(a.id);
+      lsSet(ALERT_SEEN_KEY, JSON.stringify([...s].slice(-800)));
+      closeAlerts(); updateAlerts(); openDrawer(a.code);
+    };
+  });
+}
+function closeAlerts() {
+  document.getElementById("us-alerts-panel").hidden = true;
+  document.getElementById("us-alerts-btn").setAttribute("aria-expanded", "false");
+}
+document.getElementById("us-alerts-btn").onclick = e => {
+  e.stopPropagation();
+  const panel = document.getElementById("us-alerts-panel");
+  if (!panel.hidden) return closeAlerts();
+  panel.hidden = false;
+  document.getElementById("us-alerts-btn").setAttribute("aria-expanded", "true");
+  alertsPanel();
+};
+document.addEventListener("click", e => { if (!e.target.closest(".us-bellwrap")) closeAlerts(); });
+document.addEventListener("keydown", e => { if (e.key === "Escape") closeAlerts(); });
+
+/* ================================================================
+   Scorecard sections: institutions (SEC 13F) and recent news
+   ================================================================ */
+function instFor(d) { return AUX.inst && AUX.inst.companies && AUX.inst.companies[d.code]; }
+function instCell(d) {
+  if (d.inst_pct != null) return fmtN(d.inst_pct) + "%";
+  const i = instFor(d);
+  return i && i.inst_pct != null ? (i.over_100 ? "100%+" : fmtN(i.inst_pct) + "%") : "—";
+}
+function usInstitutionsSection(d) {
+  const i = instFor(d);
+  if (!i) return "";
+  const per = i.period ? insDay(i.period) : "the latest quarter";
+  let out = `<div class="sec"><h4>Institutional holders — SEC Form 13F</h4><p><b>${i.institutions.toLocaleString("en-US")}</b> institutions reported holding <b>${Math.round(i.shares_held).toLocaleString("en-US")}</b> shares`
+    + (i.inst_pct != null ? `, about <b>${i.over_100 ? "100%+" : fmtN(i.inst_pct) + "%"}</b> of shares outstanding` : "") + ` (as of ${esc(per)}).</p>`;
+  if (i.top && i.top.length) {
+    out += `<div class="mv-tablewrap" style="margin-top:9px"><table class="mv-table"><thead><tr><th>Largest holders</th><th class="n">Shares</th><th class="n">% of company</th></tr></thead><tbody>`
+      + i.top.map(t => `<tr><td>${esc(t.name)}</td><td class="n">${Math.round(t.shares).toLocaleString("en-US")}</td><td class="n">${t.pct == null ? "—" : fmtN(t.pct) + "%"}</td></tr>`).join("") + "</tbody></table></div>";
+  }
+  return out + `<p class="caveat" style="margin-top:8px">13F is a quarterly snapshot filed up to 45 days after quarter-end and leaves out small positions, so read the percentage as “at least this much”. Where several entities of one manager report the same shares it can overstate.</p></div>`;
+}
+function usNewsSection(d) {
+  const items = ((AUX.news && AUX.news.items) || []).filter(i => i.symbol === d.code).slice(0, 5);
+  if (!items.length) return "";
+  return `<div class="sec"><h4>Recent news</h4>` + items.map(i =>
+    `<div class="us-news-item" style="padding:8px 0"><div class="meta">${esc(i.source)} · ${esc(ago(i.datetime))}</div><a class="hl" style="font-size:13.5px" href="${esc(safeUrl(i.url))}" target="_blank" rel="noopener noreferrer">${esc(i.headline)}</a></div>`).join("") + "</div>";
 }

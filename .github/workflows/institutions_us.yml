@@ -1,0 +1,80 @@
+name: US institutional ownership
+
+# The US board's institutional ownership (SEC Form 13F bulk data sets, free) --
+# scripts/run_institutions_us.py. Checked daily but only does the ~100 MB download when
+# the SEC has published a newer quarterly file or a company was added to the board
+# since the last run; otherwise it exits in seconds. Runs after the 05:00 UTC auto-screen.
+
+permissions:
+  contents: write
+
+on:
+  schedule:
+    - cron: '30 8 * * *'
+  workflow_dispatch:
+
+concurrency:
+  group: us-institutions
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+      - name: Check out repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: pip install requests
+
+      - name: Refresh institutional ownership from SEC Form 13F
+        working-directory: ./backend
+        run: python scripts/run_institutions_us.py
+
+      - name: Commit
+        id: commit
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add backend/data/institutions_us
+          if git diff --cached --quiet; then
+            echo "No changes"
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          git commit -m "US institutional ownership update"
+          for i in 1 2 3; do
+            git pull --rebase origin ${{ github.ref_name }} && git push origin HEAD:${{ github.ref_name }} && break
+            sleep 5
+          done
+          echo "changed=true" >> "$GITHUB_OUTPUT"
+
+      # Data-only deploy: pull on the server and copy the new data files into the
+      # running container (no rebuild, no restart). Falls back to a full rebuild
+      # the first time, when the container predates /app/sync-data.sh.
+      - name: Deploy to AWS
+        if: ${{ steps.commit.outputs.changed == 'true' }}
+        env:
+          AWS_HOST: ${{ secrets.AWS_HOST }}
+          AWS_SSH_KEY: ${{ secrets.AWS_SSH_KEY }}
+          AWS_SSH_USER: ${{ secrets.AWS_SSH_USER }}
+          AWS_DEPLOY_PATH: ${{ secrets.AWS_DEPLOY_PATH }}
+        run: |
+          if [ -z "$AWS_HOST" ] || [ -z "$AWS_SSH_KEY" ]; then
+            echo "AWS_HOST/AWS_SSH_KEY secrets not set; skipping AWS deploy"
+            exit 0
+          fi
+          mkdir -p ~/.ssh
+          printf '%s\n' "$AWS_SSH_KEY" > ~/.ssh/deploy_key
+          chmod 600 ~/.ssh/deploy_key
+          ssh-keyscan -H "$AWS_HOST" >> ~/.ssh/known_hosts 2>/dev/null
+          ssh -i ~/.ssh/deploy_key -o StrictHostKeyChecking=yes "${AWS_SSH_USER:-ubuntu}@$AWS_HOST" \
+            "cd ${AWS_DEPLOY_PATH:-/opt/screener-app} && git pull --ff-only && (docker compose exec -T screener test -x /app/sync-data.sh && docker compose exec -T screener /app/sync-data.sh || docker compose up -d --build)"
+          echo "AWS data deploy done"
