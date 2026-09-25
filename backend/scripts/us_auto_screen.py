@@ -65,6 +65,8 @@ from pathlib import Path
 
 import requests
 
+import us_lenses as lenses   # the guidance / PAT / capacity / pivot / CWIP lenses (shares India's rules)
+
 SCRIPTS = Path(__file__).resolve().parent
 BACKEND = SCRIPTS.parent
 ROOT = BACKEND.parent
@@ -323,7 +325,7 @@ def gates(cap_m: float | None, roe: float | None, holders: int | None) -> list[s
     return fails
 
 
-def score(cap_m, roe, roi, insider_pct, holders, ev) -> tuple[float, dict, list[str]]:
+def score(cap_m, roe, roi, insider_pct, holders, ev, pe=None) -> tuple[float, dict, list[str]]:
     """Five pillars, not six -- institutional ownership is left out rather
     than faked (see module docstring: not on Finnhub's free tier). Scored
     out of a possible 85, not rescaled to 100, so the gap is honest rather
@@ -343,6 +345,8 @@ def score(cap_m, roe, roi, insider_pct, holders, ev) -> tuple[float, dict, list[
     penalties = []
     if holders is not None and holders < 1000:
         penalties.append((f"only {holders:,} holders of record", 5))
+    if pe is not None and pe > PE_PENALTY_MIN:
+        penalties.append((f"P/E {pe} above {PE_PENALTY_MIN}", 3))
     raw = s_moat + s_reshoring + s_insider + s_cov + s_fin
     pen = sum(v for _, v in penalties)
     pillars = {"s_moat": s_moat, "s_reshoring": s_reshoring, "s_insider": s_insider,
@@ -350,22 +354,57 @@ def score(cap_m, roe, roi, insider_pct, holders, ev) -> tuple[float, dict, list[
     return round(raw - pen, 1), {**pillars, "score": raw, "risk_penalty": pen}, [f"{t} (-{v})" for t, v in penalties]
 
 
+def qualifying_paths(ev: dict, lens: dict) -> list[str]:
+    """Which of India's five independent paths this company clears -- any one
+    is enough (see auto_screen.py's docstring): moat evidence, guidance above
+    GUIDANCE_OVER_PCT, a PAT turnaround, a capacity-utilisation ramp, a
+    product-mix pivot."""
+    paths = []
+    if ev:
+        paths.append("moat evidence")
+    if lens.get("guidance_over15"):
+        paths.append("management guidance")
+    if lens.get("pat_turnaround"):
+        paths.append("PAT turnaround")
+    if lens.get("capacity_util_flag"):
+        paths.append("capacity utilisation")
+    if lens.get("product_pivot_flag"):
+        paths.append("product-mix pivot")
+    return paths
+
+
 def record(cand: dict, profile: dict, quote: dict, metrics: dict, ev: dict, holders: int | None,
-           insider_pct: float | None, today: str, fails: list[str], source_label: str) -> dict:
+           insider_pct: float | None, today: str, fails: list[str], source_label: str,
+           lens: dict | None = None) -> dict:
+    lens = lens or {}
     cap_m = profile.get("marketCapitalization")
     roe = metrics.get("roeTTM")
     roi = metrics.get("roiTTM") or metrics.get("roiAnnual")
     pe = quote.get("c") / metrics["epsTTM"] if quote.get("c") and metrics.get("epsTTM") else None
-    final, parts, penalty_detail = score(cap_m, roe, roi, insider_pct, holders, ev)
+    pe = round(pe, 1) if pe else None
+    # the CWIP flags need the P/E, which is only known once Finnhub has answered
+    lens = {**lens, **dict(zip(("capex_overhang", "capex_heavy"), lenses.india.capex_flags(pe, lens.get("cwip_pct_net_block"))))}
+    final, parts, penalty_detail = score(cap_m, roe, roi, insider_pct, holders, ev, pe)
+    paths = qualifying_paths(ev, lens)
 
     evidence_lines = [f"{LABEL[k]} ({v['source']}): “{v['text']}”" for k, v in ev.items()]
-    moat_note = ("Auto-screen found the company describing itself with: " + " · ".join(evidence_lines)
-                 if evidence_lines else "No moat evidence found in the latest 10-K.")
-    warn = [f"Auto-added by the daily US screen: numbers are from Finnhub and SEC EDGAR, the moat evidence is "
-            f"the company's own description in its {source_label} matched by rules. Nobody has researched this company yet."]
+    if evidence_lines:
+        moat_note = "Auto-screen found the company describing itself with: " + " · ".join(evidence_lines)
+    elif "PAT turnaround" in paths:
+        moat_note = "No moat evidence found -- added on the PAT-turnaround gate alone (see pat_series_usd_m)."
+    elif "capacity utilisation" in paths:
+        moat_note = "No moat evidence found -- added on the capacity-utilisation gate alone (see capacity_util_note below)."
+    elif "product-mix pivot" in paths:
+        moat_note = "No moat evidence found -- added on the product-pivot gate alone (see product_pivot_note below)."
+    else:
+        moat_note = "No moat evidence found -- added on the management-guidance gate alone (see guidance_note below)."
+    warn = [f"Auto-added by the daily US screen: numbers are from Finnhub and SEC EDGAR, the evidence is the "
+            f"company's own words in its {source_label} and latest earnings release matched by rules. "
+            f"Nobody has researched this company yet."]
     if fails:
-        warn.append("Added despite failing the fundamentals gates below -- it cleared moat evidence on its own, "
-                    "which this screen treats as sufficient by itself; financials are not a blocker for that path.")
+        warn.append("Added despite failing the fundamentals gates below -- it cleared one of the five paths "
+                    "(moat, guidance, PAT turnaround, capacity utilisation, product pivot) on its own, which this "
+                    "screen treats as sufficient by itself; financials are not a blocker for that path.")
 
     return {
         "code": cand["ticker"],
@@ -378,14 +417,13 @@ def record(cand: dict, profile: dict, quote: dict, metrics: dict, ev: dict, hold
         "rubric": "us-auto",
         "claim_grade": "company-stated",
         "added_on": today,
-        "has_lens_data": False,
+        "cleared_paths": paths,
         "market_cap_usd": cap_m,
         "price": quote.get("c"),
-        "pe": round(pe, 1) if pe else None,
+        "pe": pe,
         "roe_pct": roe,
         "insider_pct": insider_pct,
         "num_shareholders": holders,
-        "guidance_pct": None,
         "business": (profile.get("finnhubIndustry") or "") + " -- " + (cand.get("name") or ""),
         "moat_note": moat_note,
         "evidence_sources": [f"https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK={cand['cik']}&type=10-K"],
@@ -395,8 +433,9 @@ def record(cand: dict, profile: dict, quote: dict, metrics: dict, ev: dict, hold
         "gate_failures": fails,
         "warnings": warn,
         "score_rationale": "Automated five-pillar score (out of 85 -- no institutional-ownership pillar on "
-                           "Finnhub's free tier) from Finnhub/SEC numbers and matched moat statements "
-                           "(see backend/scripts/us_auto_screen.py).",
+                           "Finnhub's free tier) from Finnhub/SEC numbers and matched statements "
+                           "(see backend/scripts/us_auto_screen.py and the How this board is built page).",
+        **lens,
         **parts,
     }
 
@@ -409,11 +448,44 @@ def load_json(path: Path, default):
         return default
 
 
+def enrich_board(companies: list[dict], today: str) -> int:
+    """Refresh the lens fields (guidance, PAT turnaround, capacity ramp, product
+    pivot, CWIP) on every company already on the US board, the way India's
+    nightly refresh keeps its board current -- without this the columns
+    would only ever be filled for a company on the day it was added.
+    Only the lens fields are touched: scores, evidence and anything hand-
+    edited stay as they are. A failed fetch leaves that company's old
+    values in place."""
+    try:
+        listing = requests.get(SEC_TICKERS_URL, headers=SEC_HEADERS, timeout=30).json()
+    except (requests.RequestException, ValueError) as e:
+        print(f"us-auto-screen: could not fetch SEC's ticker map ({e}); board lenses not refreshed")
+        return 0
+    ciks = {r["ticker"].upper(): str(r["cik_str"]).zfill(10) for r in listing.values()}
+    n = 0
+    for c in companies:
+        cik = ciks.get(str(c.get("code", "")).upper())
+        if not cik:
+            continue
+        try:
+            lens = lenses.lens_fields(cik, c.get("name"), c.get("pe"), latest_10k_text(cik))
+        except requests.RequestException as e:
+            print(f"  enrich {c.get('code')}: {str(e)[:70]}")
+            continue
+        c.update(lens)
+        c["lens_updated"] = today
+        n += 1
+    print(f"us-auto-screen: refreshed lenses on {n} of {len(companies)} board companies")
+    return n
+
+
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--max-add", type=int, default=10)
     ap.add_argument("--budget", type=int, default=300, help="most candidates to fetch Finnhub profiles for in one run")
     ap.add_argument("--dry-run", action="store_true")
+    ap.add_argument("--enrich-only", action="store_true", help="only refresh the lens fields on the current board; add nothing")
+    ap.add_argument("--no-enrich", action="store_true", help="skip refreshing the current board's lens fields")
     args = ap.parse_args()
 
     if not FINNHUB_KEY:
@@ -425,6 +497,12 @@ def main() -> int:
     on_board = {str(c.get("code", "")).upper() for c in companies}
     state = load_json(STATE, {"checked": {}, "runs": []})
     recheck_before = (date.fromisoformat(today) - timedelta(days=RECHECK_DAYS)).isoformat()
+
+    enriched = 0 if args.no_enrich else enrich_board(companies, today)
+    if args.enrich_only:
+        if enriched and not args.dry_run:
+            COMPANIES_US.write_text(json.dumps(companies, indent=1, ensure_ascii=False) + "\n", encoding="utf-8")
+        return 0
 
     pool = []
     for cand in universe():
@@ -475,6 +553,14 @@ def main() -> int:
         if cap_m is None or not (CAP_MIN <= cap_m <= CAP_MAX):
             outcomes[cand["cik"]] = ("outside size band", f"${cap_m}m")
             continue
+        # India skips finance, real estate, hospitality, media, software,
+        # retail, utilities... by sector before fetching anything -- same
+        # list, applied to Finnhub's industry (the first real run admitted
+        # an insurer and a financial-services firm without it).
+        industry = profile.get("finnhubIndustry") or ""
+        if lenses.india.EXCLUDED_SECTORS.search(industry):
+            outcomes[cand["cik"]] = ("excluded sector", industry)
+            continue
 
         try:
             filing = latest_10k_text(cand["cik"])
@@ -485,9 +571,21 @@ def main() -> int:
             outcomes[cand["cik"]] = ("no 10-K found", "")
             continue
         text, source_label = filing
-        ev = find_evidence(text, profile.get("name") or cand["name"], need_self=True)
-        if not ev:
-            outcomes[cand["cik"]] = ("no moat evidence", "")
+        # India's known_to_public(): a hidden-ness test that no path can skip.
+        holders = find_holders(text)
+        if holders is not None and holders >= HOLDERS_MAX:
+            outcomes[cand["cik"]] = ("known to the public", f"{holders:,} holders of record")
+            continue
+        name = profile.get("name") or cand["name"]
+        ev = find_evidence(text, name, need_self=True)
+        try:
+            lens = lenses.lens_fields(cand["cik"], name, None, filing)
+        except requests.RequestException as e:
+            outcomes[cand["cik"]] = ("error fetching SEC facts", str(e)[:80])
+            continue
+        # any ONE of the five paths is enough -- see qualifying_paths()
+        if not qualifying_paths(ev, lens):
+            outcomes[cand["cik"]] = ("no qualifying evidence", "")
             continue
 
         try:
@@ -503,12 +601,11 @@ def main() -> int:
             # network error as "skip this one candidate", so this matches.
             outcomes[cand["cik"]] = ("error fetching Finnhub metrics", str(e)[:80])
             continue
-        holders = find_holders(text)
         fails = gates(cap_m, metrics.get("roeTTM"), holders)
 
-        rec = record(cand, profile, quote, metrics, ev, holders, insider_pct, today, fails, source_label)
+        rec = record(cand, profile, quote, metrics, ev, holders, insider_pct, today, fails, source_label, lens)
         passes.append((rec, cand))
-        print(f"  PASS {cand['ticker']:<8} {rec['name'][:40]:<40} score {rec['final_score']:>5}  [{', '.join(ev)}]"
+        print(f"  PASS {cand['ticker']:<8} {rec['name'][:40]:<40} score {rec['final_score']:>5}  [{', '.join(rec['cleared_paths'])}]"
               + (f"  GATES FAILED: {'; '.join(fails)}" if fails else ""))
 
     passes.sort(key=lambda x: -x[0]["final_score"])
@@ -537,7 +634,7 @@ def main() -> int:
                                                 "added_codes": [r["code"] for r, _ in added]}])[-60:]
     STATE.parent.mkdir(parents=True, exist_ok=True)
     STATE.write_text(json.dumps(state, indent=1, ensure_ascii=False) + "\n", encoding="utf-8")
-    if added:
+    if added or enriched:
         companies.extend(r for r, _ in added)
         COMPANIES_US.write_text(json.dumps(companies, indent=1, ensure_ascii=False) + "\n", encoding="utf-8")
     return 0

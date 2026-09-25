@@ -95,7 +95,14 @@ CSV_COLUMNS_US = [
     ("Institutional %", "inst_pct"),
     ("ROE %", "roe_pct"),
     ("Guides above 15%", "guidance_over15"),
+    ("Any forward growth statement", "guidance_flag"),
     ("PAT turned positive", "pat_turnaround"),
+    ("CWIP $m", "cwip_usd_m"),
+    ("CWIP % of net PP&E", "cwip_pct_net_block"),
+    ("PE+CWIP flag", "capex_overhang"),
+    ("Heavy capex (CWIP >= 25%)", "capex_heavy"),
+    ("Capacity utilization ramp", "capacity_util_flag"),
+    ("Product-mix pivot", "product_pivot_flag"),
 ]
 
 

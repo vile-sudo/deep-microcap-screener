@@ -50,6 +50,38 @@ function moatEvidenceLine(d) {
   return esc(short);
 }
 
+/* The screen filters -- the same nine India's Screens page offers, over the
+   same field names (backend/scripts/us_lenses.py fills them). The first
+   seven are lenses and work one at a time, exactly like India's (clicking
+   one switches to it, clicking it again clears it); the last two stack. */
+const UTG = {overhang: false, heavycap: false, guide15: false, guideany: false, turn: false, caputil: false,
+  pivot: false, haslens: false, ongate: false};
+const ULENSES = ["overhang", "heavycap", "guide15", "guideany", "turn", "caputil", "pivot"];
+const UTG_TEST = {
+  overhang: d => !!d.capex_overhang,
+  heavycap: d => !!d.capex_heavy,
+  guide15: d => !!d.guidance_over15,
+  guideany: d => !!d.guidance_flag,
+  turn: d => !!d.pat_turnaround,
+  caputil: d => !!d.capacity_util_flag,
+  pivot: d => !!d.product_pivot_flag,
+  haslens: d => !!d.has_lens_data,
+  ongate: d => !(d.gate_failures || []).length,
+};
+
+function signalsHtml(d) {
+  const s = [];
+  if (d.capex_overhang) s.push('<span class="us-sig warn" title="P/E above 40 and CWIP at least 15% of net PP&amp;E">&#9873; PE+CWIP</span>');
+  else if (d.capex_heavy) s.push('<span class="us-sig warn" title="CWIP at least 25% of net PP&amp;E">&#127959; heavy capex</span>');
+  if (d.guidance_over15) s.push(`<span class="us-sig" title="Revenue growth guided above 15%${d.guidance_derived ? " (derived from the guided dollar range)" : ""}">&#9650; guides &gt;15%</span>`);
+  else if (d.guidance_flag) s.push('<span class="us-sig grey" title="A forward revenue statement, not quantified as growth above 15%">&#9650; guidance</span>');
+  if (d.pat_turnaround) s.push('<span class="us-sig" title="Latest quarter profitable after a loss in one of the previous three">&#8635; PAT+</span>');
+  if (d.capacity_util_flag) s.push('<span class="us-sig" title="Management says capacity utilization will rise from a near-term period">&#9881; capacity</span>');
+  if (d.product_pivot_flag) s.push('<span class="us-sig" title="A product-mix change or new venture tied to a shift in demand">&#8644; pivot</span>');
+  if ((d.gate_failures || []).length) s.push(`<span class="us-sig grey" title="${esc(d.gate_failures.join("; "))}">fails ${d.gate_failures.length} gate${d.gate_failures.length > 1 ? "s" : ""}</span>`);
+  return s.join("") || "—";
+}
+
 function rowHtml(d) {
   const starred = WATCH.has(d.code);
   return `<tr data-code="${esc(d.code)}">
@@ -61,6 +93,9 @@ function rowHtml(d) {
     <td class="n">${fmtN(d.pe)}</td>
     <td class="n">${fmtN(d.roe_pct)}</td>
     <td class="n">${fmtN(d.insider_pct)}</td>
+    <td class="n">${d.cwip_pct_net_block == null ? "—" : fmtN(d.cwip_pct_net_block) + "%"}</td>
+    <td class="n">${d.guidance_pct == null ? "—" : fmtN(d.guidance_pct) + "%"}</td>
+    <td class="us-wrap">${signalsHtml(d)}</td>
     <td class="us-wrap">${moatEvidenceLine(d)}</td>
   </tr>`;
 }
@@ -72,6 +107,7 @@ function currentRows() {
   let rows = DATA.filter(d => {
     if (sector && d.sector !== sector) return false;
     if (watchOnly && !WATCH.has(d.code)) return false;
+    for (const k in UTG) if (UTG[k] && !UTG_TEST[k](d)) return false;
     if (q) {
       const hay = (d.name + " " + d.code + " " + (d.sector || "")).toLowerCase();
       if (!hay.includes(q)) return false;
@@ -91,7 +127,17 @@ function currentRows() {
   return rows;
 }
 
+function syncLensButtons() {
+  document.querySelectorAll("[data-ustg]").forEach(b => {
+    const k = b.dataset.ustg;
+    b.classList.toggle("on", !!UTG[k]);
+    const n = b.querySelector(".tc");
+    if (n) n.textContent = DATA.filter(UTG_TEST[k]).length;
+  });
+}
+
 function render() {
+  syncLensButtons();
   const rows = currentRows();
   document.getElementById("us-count").textContent = `${rows.length} of ${DATA.length} companies`;
   const tbody = document.getElementById("us-tbody");
@@ -101,7 +147,7 @@ function render() {
   }
   tbody.innerHTML = rows.length
     ? rows.map(rowHtml).join("")
-    : '<tr><td colspan="9" class="us-empty">No company matches these filters.</td></tr>';
+    : '<tr><td colspan="12" class="us-empty">No company matches these filters.</td></tr>';
   tbody.querySelectorAll("tr[data-code]").forEach(tr => {
     tr.onclick = e => { if (!e.target.closest("[data-star]")) openDrawer(tr.dataset.code); };
     tr.style.cursor = "pointer";
@@ -125,6 +171,29 @@ async function toggleStar(code) {
   }
 }
 
+function pillarsHtml(d) {
+  const P = [["Moat", d.s_moat, 25], ["Reshoring", d.s_reshoring, 20], ["Insider", d.s_insider, 15],
+    ["Under-covered", d.s_undercovered, 15], ["Financials", d.s_financials, 10]];
+  if (P.every(p => p[1] == null)) return "";
+  return `<div class="us-pillars">${P.map(([n, v, max]) => `<div>${n}<b>${v == null ? "—" : v}<span style="font-weight:400;font-size:11px;color:var(--muted)"> / ${max}</span></b></div>`).join("")}</div>`;
+}
+
+function lensDetailHtml(d) {
+  const q = (label, note) => note ? `<div class="us-drawer-row"><b>${label}</b><div class="us-quote">${esc(note)}</div></div>` : "";
+  let out = "";
+  if (d.pat_series_usd_m && d.pat_series_usd_m.length) {
+    out += `<div class="us-drawer-row"><b>Net income by quarter ($m)${d.pat_turnaround ? " &mdash; turned positive" : ""}</b>`
+      + d.pat_series_usd_m.map(([e, v]) => `<span class="us-sig ${v < 0 ? "warn" : ""}" title="quarter ended ${esc(e)}">${esc(e.slice(0, 7))}: ${v}</span>`).join("") + "</div>";
+  }
+  if (d.cwip_pct_net_block != null) {
+    out += `<div class="us-drawer-row"><b>Construction in progress</b>$${fmtN(d.cwip_usd_m)}m &mdash; ${fmtN(d.cwip_pct_net_block)}% of net PP&amp;E${d.capex_overhang ? " &middot; P/E above 40 too (PE+CWIP)" : d.capex_heavy ? " &middot; heavy capex" : ""}</div>`;
+  }
+  out += q("Guidance", d.guidance_note);
+  out += q("Capacity utilization", d.capacity_util_note);
+  out += q("Product-mix pivot", d.product_pivot_note);
+  return out;
+}
+
 function openDrawer(code) {
   const d = DATA.find(x => x.code === code);
   if (!d) return;
@@ -135,12 +204,14 @@ function openDrawer(code) {
     <div class="us-drawer-body">
       <h3>${esc(d.name)} <span class="us-tag">${esc(d.code)}</span></h3>
       <p class="section-copy">${esc(d.sector || "")}${d.claim_grade ? " · claim grade: " + esc(d.claim_grade) : ""}</p>
-      <div class="us-drawer-row"><b>Score</b>${fmtN(d.final_score)}</div>
-      <div class="us-drawer-row"><b>Market cap</b>${fmtUSD(d.market_cap_usd)}m</div>
-      <div class="us-drawer-row"><b>P/E</b>${fmtN(d.pe)}</div>
-      <div class="us-drawer-row"><b>ROE %</b>${fmtN(d.roe_pct)}</div>
-      <div class="us-drawer-row"><b>Insider %</b>${fmtN(d.insider_pct)}</div>
+      <div class="us-drawer-row"><b>Score</b>${fmtN(d.final_score)} <span class="section-copy">of a possible 85 (the institutional-ownership pillar isn't scored -- see How this board is built)</span></div>
+      ${pillarsHtml(d)}
+      ${d.penalty_detail && d.penalty_detail.length ? `<div class="us-drawer-row"><b>Risk penalties (already subtracted)</b>${d.penalty_detail.map(esc).join("<br>")}</div>` : ""}
+      <div class="us-drawer-row"><b>Market cap</b>${fmtUSDShort(d.market_cap_usd)}</div>
+      <div class="us-drawer-row"><b>P/E</b>${fmtN(d.pe)} &nbsp; <b style="display:inline">ROE %</b> ${fmtN(d.roe_pct)} &nbsp; <b style="display:inline">Insider %</b> ${fmtN(d.insider_pct)}${d.num_shareholders ? ` &nbsp; <b style="display:inline">Holders of record</b> ${Number(d.num_shareholders).toLocaleString("en-US")}` : ""}</div>
+      ${d.cleared_paths && d.cleared_paths.length ? `<div class="us-drawer-row"><b>Cleared the screen on</b>${d.cleared_paths.map(x => `<span class="us-sig">${esc(x)}</span>`).join("")}</div>` : ""}
       <div class="us-drawer-row"><b>Moat evidence</b>${esc(d.moat_note || "—")}</div>
+      ${lensDetailHtml(d)}
       ${d.gate_failures && d.gate_failures.length ? `<div class="us-drawer-row"><b>Fails the fundamentals gates on</b>${d.gate_failures.map(esc).join("; ")}</div>` : ""}
       ${d.warnings && d.warnings.length ? `<div class="us-drawer-row"><b>Warnings</b>${d.warnings.map(esc).join("<br>")}</div>` : ""}
       ${sources ? `<div class="us-drawer-row"><b>Sources</b>${sources}</div>` : ""}
@@ -171,6 +242,15 @@ document.querySelectorAll("#us-tbl thead th[data-k]").forEach(th => {
     render();
   };
 });
+/* Lens filters are one at a time (like India's); the two stacking ones toggle freely. */
+document.querySelectorAll("[data-ustg]").forEach(b => {
+  b.onclick = () => {
+    const k = b.dataset.ustg, on = !UTG[k];
+    if (ULENSES.includes(k)) ULENSES.forEach(x => { UTG[x] = false; });
+    UTG[k] = on;
+    render();
+  };
+});
 document.getElementById("us-q").oninput = render;
 document.getElementById("us-qclear").onclick = () => { document.getElementById("us-q").value = ""; render(); };
 document.getElementById("us-sector").onchange = render;
@@ -188,6 +268,8 @@ async function boot() {
   document.title = "Deep Sweep US — " + DATA.length + " companies";
   document.getElementById("us-asof").textContent = meta.build_new ? "Updated " + meta.build_new : "";
   buildSectorOptions();
+  const mn = document.getElementById("us-method-n");
+  if (mn) mn.textContent = DATA.length;
   render();
 }
 boot().catch(e => {
@@ -263,7 +345,7 @@ function galFetchIndex() {
   return GAL_LOADING;
 }
 
-const US_TABS = ["screens", "market", "gallery", "insider"];
+const US_TABS = ["screens", "market", "gallery", "insider", "method"];
 document.querySelectorAll('[data-ustab]').forEach(btn => {
   btn.onclick = () => {
     document.querySelectorAll('[data-ustab]').forEach(b => {

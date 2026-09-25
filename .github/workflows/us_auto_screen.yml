@@ -1,0 +1,104 @@
+name: US auto-screen
+
+# The US board's counterpart to India's nightly auto-screen (daily.yml step 3
+# / auto-screen.yml) -- what keeps the US board growing, and its lenses
+# current, without anyone running a script by hand:
+#   1. refresh the lens fields (guidance, PAT turnaround, capacity ramp,
+#      product pivot, CWIP) on every company already on the board;
+#   2. screen new US-listed companies against the five paths (moat evidence,
+#      guidance, PAT turnaround, capacity utilization, product pivot) and add
+#      the best few (backend/scripts/us_auto_screen.py);
+#   3. pull the SEC insider transactions and 8-K announcements for the
+#      updated board straight away, so a company added today shows its
+#      disclosures today rather than at the next 07:00 UTC run.
+#
+# Runs daily at 05:00 UTC -- before board_disclosures_us.yml (07:00) and
+# charts_us.yml (06:30), so a company added here is picked up by both the
+# same morning. Needs the FINNHUB_API_KEY repo secret (free tier,
+# finnhub.io/register; 60 calls/min, which is what paces the run).
+# Commits by this workflow use GITHUB_TOKEN, which never re-triggers
+# workflows, so no loop.
+
+permissions:
+  contents: write
+
+on:
+  schedule:
+    - cron: '0 5 * * *'
+  workflow_dispatch:
+    inputs:
+      max_add:
+        description: 'Most companies to add'
+        required: false
+        default: '10'
+      budget:
+        description: 'Most Finnhub company profiles to fetch'
+        required: false
+        default: '300'
+
+concurrency:
+  group: us-auto-screen
+  cancel-in-progress: false
+
+jobs:
+  screen:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+
+    steps:
+      - name: Check out repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: pip install requests beautifulsoup4
+
+      - name: Screen US companies and refresh the board's lenses
+        working-directory: ./backend
+        env:
+          FINNHUB_API_KEY: ${{ secrets.FINNHUB_API_KEY }}
+          MAX_ADD: ${{ github.event.inputs.max_add || '10' }}
+          BUDGET: ${{ github.event.inputs.budget || '300' }}
+        run: python -u scripts/us_auto_screen.py --max-add "$MAX_ADD" --budget "$BUDGET"
+
+      # continue-on-error: a flaky SEC fetch here must not throw away the
+      # screen's additions -- the 07:00 UTC board_disclosures_us.yml run
+      # catches these up anyway.
+      - name: Fetch insider transactions for the updated board
+        continue-on-error: true
+        working-directory: ./backend
+        run: python scripts/run_insider_us.py
+
+      - name: Fetch announcements for the updated board
+        continue-on-error: true
+        working-directory: ./backend
+        run: python scripts/run_announcements_us.py
+
+      - name: Commit and deploy
+        env:
+          AWS_HOST: ${{ secrets.AWS_HOST }}
+          AWS_SSH_KEY: ${{ secrets.AWS_SSH_KEY }}
+          AWS_SSH_USER: ${{ secrets.AWS_SSH_USER }}
+          AWS_DEPLOY_PATH: ${{ secrets.AWS_DEPLOY_PATH }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add automation/data/us-auto-screen.json backend/data/companies_us_raw.json \
+                  backend/data/insider_us backend/data/announcements_us
+          if git diff --cached --quiet; then echo "Nothing changed"; exit 0; fi
+          added=$(python -c "import json;r=json.load(open('automation/data/us-auto-screen.json'))['runs'][-1];print(len(r.get('added_codes',[])))" 2>/dev/null || echo 0)
+          git commit -m "US auto-screen: ${added} added, lenses refreshed"
+          for i in 1 2 3; do git pull --rebase origin ${{ github.ref_name }} && git push origin HEAD:${{ github.ref_name }} && break; sleep 5; done
+          if [ -n "$AWS_HOST" ] && [ -n "$AWS_SSH_KEY" ]; then
+            mkdir -p ~/.ssh
+            printf '%s\n' "$AWS_SSH_KEY" > ~/.ssh/deploy_key
+            chmod 600 ~/.ssh/deploy_key
+            ssh-keyscan -H "$AWS_HOST" >> ~/.ssh/known_hosts 2>/dev/null
+            ssh -i ~/.ssh/deploy_key -o StrictHostKeyChecking=yes "${AWS_SSH_USER:-ubuntu}@$AWS_HOST" \
+              "cd ${AWS_DEPLOY_PATH:-/opt/screener-app} && git pull --ff-only && docker compose up -d --build"
+            echo "AWS deploy triggered"
+          fi

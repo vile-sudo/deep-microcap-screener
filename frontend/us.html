@@ -36,6 +36,21 @@
   .us-drawer-row{margin:10px 0}
   .us-drawer-row b{display:block;font-size:11px;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);margin-bottom:3px}
   .us-chart-box{width:100%;height:420px;margin:10px 0}
+  .us-lens{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:2px 0 14px}
+  .us-lens-lab{font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-right:2px}
+  .us-lens .btn.on{background:var(--s1);border-color:var(--s1);color:#fff}
+  .us-lens .btn .tc{opacity:.75;margin-left:4px}
+  .us-sig{display:inline-block;margin:0 3px 3px 0;padding:1px 7px;border-radius:999px;font-size:11px;font-weight:600;white-space:nowrap;background:rgba(10,115,168,.12);color:var(--s1)}
+  .us-sig.warn{background:rgba(245,199,106,.22);color:#92400e}
+  .us-sig.grey{background:rgba(120,130,140,.16);color:var(--muted)}
+  html[data-mode="dark"] .us-sig.warn{color:#f5c76a}
+  .us-pillars{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:6px;margin-top:4px}
+  .us-pillars div{border:1px solid var(--ring);border-radius:8px;padding:6px 9px;font-size:12px;color:var(--muted)}
+  .us-pillars b{display:block;color:var(--ink);font-size:15px}
+  .us-method .mv-table tbody tr{cursor:default}
+  .us-method h3{margin:0 0 6px}
+  .us-method .card{margin-bottom:16px}
+  .us-quote{margin:4px 0 0;padding:6px 10px;border-left:3px solid var(--ring);font-size:12.5px;color:var(--muted)}
   /* The gallery grid itself reuses app.js's own .gal-grid/.gcard/.gc-*/.st-*/
      .cs-* classes wholesale (see style.css) -- same card look, same mini
      candlestick thumbnail renderer (ported into us.js as usCandleSVG since
@@ -65,6 +80,7 @@
   <button class="dl-tab" type="button" data-ustab="market" role="tab" aria-selected="false">Market</button>
   <button class="dl-tab" type="button" data-ustab="gallery" role="tab" aria-selected="false">Chart Gallery</button>
   <button class="dl-tab" type="button" data-ustab="insider" role="tab" aria-selected="false">Board Disclosures</button>
+  <button class="dl-tab" type="button" data-ustab="method" role="tab" aria-selected="false">How this board is built</button>
 </div>
 
 <section class="dashboard-section" id="us-tab-screens">
@@ -88,6 +104,18 @@
       </label>
       <button class="btn" id="us-csv" title="Download every US company on the board as CSV">&#8681; Export CSV</button>
     </div>
+    <div class="us-lens" id="us-lens" role="group" aria-label="Screen filters">
+      <span class="us-lens-lab">Screens</span>
+      <button class="btn" type="button" data-ustg="overhang" title="P/E above 40 and construction-in-progress at least 15% of net PP&amp;E: the market already pays a rich multiple while a real slice of the asset base isn't earning yet. Only companies that report a CIP line can match.">&#9873; High P/E + heavy CWIP <span class="tc"></span></button>
+      <button class="btn" type="button" data-ustg="heavycap" title="Construction-in-progress at least 25% of net PP&amp;E, whatever the multiple. Only companies that report a CIP line can match.">&#127959; CWIP &ge; 25% of net PP&amp;E <span class="tc"></span></button>
+      <button class="btn" type="button" data-ustg="guide15" title="The latest earnings release guides revenue growth above 15% (stated, or derived from a guided dollar range against last fiscal year).">&#9650; Management guides &gt; 15% <span class="tc"></span></button>
+      <button class="btn" type="button" data-ustg="guideany" title="The latest earnings release makes a forward revenue statement, quantified or not.">&#9650; Any forward growth statement <span class="tc"></span></button>
+      <button class="btn" type="button" data-ustg="turn" title="Net income in the latest quarter is positive and at least one of the previous three quarters was a loss (from SEC XBRL filings).">&#8635; Profit turned positive <span class="tc"></span></button>
+      <button class="btn" type="button" data-ustg="caputil" title="Management says capacity utilization will rise from a named near-term period -- an operating-leverage inflection still to come.">&#9881; Capacity utilization ramping <span class="tc"></span></button>
+      <button class="btn" type="button" data-ustg="pivot" title="Management describes a product-mix change or new venture explicitly tied to a shift in market demand.">&#8644; Product-mix pivot / new venture <span class="tc"></span></button>
+      <button class="btn" type="button" data-ustg="haslens" title="Companies whose lens data (SEC financial facts and earnings release) has been pulled.">Only names with lens data <span class="tc"></span></button>
+      <button class="btn" type="button" data-ustg="ongate" title="Hide companies that fail a fundamentals gate (market cap band, ROE above 5%, holders of record).">Passes every gate <span class="tc"></span></button>
+    </div>
     <div class="us-count" id="us-count"></div>
     <div class="tablewrap">
       <table id="us-tbl">
@@ -100,7 +128,10 @@
           <th data-k="pe" class="n">P/E</th>
           <th data-k="roe_pct" class="n">ROE %</th>
           <th data-k="insider_pct" class="n">Insider %</th>
-          <th>Moat evidence</th>
+          <th data-k="cwip_pct_net_block" class="n" title="Construction-in-progress as % of net PP&amp;E -- blank when the company reports no CIP line">CWIP %NB</th>
+          <th data-k="guidance_pct" class="n" title="Revenue growth guided in the latest earnings release">Guide %</th>
+          <th>Signals</th>
+          <th>Evidence</th>
         </tr></thead>
         <tbody id="us-tbody"></tbody>
       </table>
@@ -264,6 +295,105 @@
   </div>
 </section>
 
+<section class="dashboard-section us-method" id="us-tab-method" hidden>
+  <div class="section-heading">
+    <div><span class="eyebrow">METHOD</span><h1>Research screens &mdash; reading a score</h1>
+      <p class="section-copy">This is the US board's counterpart to India's "How this board is built" page, and it follows the same structure. Where the US version deliberately differs from India's, the row says so. Every threshold below is the one <code>backend/scripts/us_auto_screen.py</code> and <code>us_lenses.py</code> actually apply.</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>Screens</h3>
+    <p class="section-copy">Scores are comparable within a screen and misleading across one. Every row carries its screen.</p>
+    <div class="mv-tablewrap"><table class="mv-table">
+      <thead><tr><th>Screen</th><th class="n">Names</th><th>What it was looking for, and what its score means</th></tr></thead>
+      <tbody>
+        <tr><td><b>US auto-screen</b></td><td class="n" id="us-method-n">&mdash;</td>
+          <td>Companies that clear <b>at least one of five independent paths</b> (below) inside a size band of $30m&ndash;$2,000m, in a sector the board covers, that the public doesn't already hold in the tens of thousands. Scored out of <b>85</b> on five pillars (India's institutional-ownership pillar has no free US data source and is left out rather than faked, so the total is not rescaled to 100). Every name is auto-added and <b>nobody has researched it yet</b>: the moat text is the company's own words in its 10-K, matched by rules.</td></tr>
+        <tr><td><b>India's research rounds</b><br><span class="section-copy">v3 deep, v4 moat, v5&ndash;v8 sweeps, triage, added on request</span></td><td class="n">&mdash;</td>
+          <td>No US counterpart yet. Those are hand-run research passes with their own rubrics; the US board has only the automated screen, so there is nothing to compare across.</td></tr>
+      </tbody>
+    </table></div>
+
+    <h3 style="margin-top:22px">Claim grade</h3>
+    <div class="mv-tablewrap"><table class="mv-table">
+      <thead><tr><th>Claim grade</th><th>What it means</th></tr></thead>
+      <tbody>
+        <tr><td><b>company-stated</b></td><td>The only grade the US screen produces. The company says it, in a filing, and nothing has contradicted it. An assertion in a 10-K is the strongest form of this, but it is still the company describing itself.</td></tr>
+        <tr><td>verified</td><td>Not produced yet. It needs an independent third party (a regulator's database, a rating agency) and that is a research step, not something a keyword rule can grant.</td></tr>
+        <tr><td>none claimed / DEBUNKED</td><td>Not produced yet; both come from a human reading the claim against a primary source.</td></tr>
+      </tbody>
+    </table></div>
+  </div>
+
+  <div class="card">
+    <h3>The five paths &mdash; any one is enough</h3>
+    <p class="section-copy">Same rule as India: the point is to find a company that financials alone would never surface, so clearing <i>one</i> path is sufficient and the fundamentals gates never block it (they are still computed, and the card lists exactly which it fails). Two things every path still needs: an allowed sector, and a holder-of-record count under 25,000.</p>
+    <div class="mv-tablewrap"><table class="mv-table">
+      <thead><tr><th>Path</th><th>What it needs</th></tr></thead>
+      <tbody>
+        <tr><td><b>1. Moat evidence</b></td><td>The company describing itself, in its latest 10-K, as a leading or largest provider, holding a stated market share, the only or one of a limited number of providers, first or a pioneer, or in a niche segment that carries a regulatory approval (FDA, FAA, UL, ISO, NRC and similar). Reshoring / reduced dependence on Chinese suppliers replaces India's import substitution. Only sentences about the company itself count &mdash; not its suppliers, an acquired subsidiary, or an industry overview.</td></tr>
+        <tr><td><b>2. Management guidance</b></td><td>The latest earnings release guides revenue growth above 15%. A stated percentage counts; so does a guided dollar range, converted against last fiscal year's revenue (marked <i>derived</i>). Guidance is read from the earnings release only, because US companies give it there and a 10-K's risk-factor boilerplate is misread by the shared patterns.</td></tr>
+        <tr><td><b>3. PAT turnaround</b></td><td>Net income in the latest quarter is positive and at least one of the previous three quarters was a loss, from SEC's XBRL filings. Q4 is never reported on its own, so it is derived as the fiscal year minus the first three quarters.</td></tr>
+        <tr><td><b>4. Capacity-utilization ramp</b></td><td>A sentence about the company saying utilization will rise, tied to a named near-term period. A capacity <i>expansion</i> alone does not count, and neither does "utilization should improve" with no timeframe.</td></tr>
+        <tr><td><b>5. Product-mix pivot</b></td><td>A sentence about the company describing a strategic move (diversifying, entering a new segment, a new product line) explicitly tied to a shift in market demand. Routine capacity on the same product does not count.</td></tr>
+      </tbody>
+    </table></div>
+    <p class="section-copy">Paths 2, 4 and 5 are text matches: the matched sentence travels with the flag, labelled <i>Auto-detected, unverified</i>, so you can read it before believing it.</p>
+  </div>
+
+  <div class="card">
+    <h3>The columns and badges</h3>
+    <div class="mv-tablewrap"><table class="mv-table">
+      <thead><tr><th>Column</th><th>Definition and how to read it</th></tr></thead>
+      <tbody>
+        <tr><td><b>CWIP %NB</b></td><td>Construction in progress as a percentage of net property, plant and equipment, from the PP&amp;E note in the 10-K. Money already spent on plant that isn't producing yet. <b>Blank is normal in the US</b>: most companies don't report a CIP line (2 of the 10 on the board today do), and SEC's structured feed leaves it out, so this reads the row from the filing text and leaves the field empty rather than guessing.</td></tr>
+        <tr><td><b>&#9873; PE+CWIP</b></td><td>P/E above 40 <i>and</i> CWIP at least 15% of net PP&amp;E: the market is paying a rich multiple on earnings that exist while a real slice of the asset base isn't earning yet. It cuts both ways &mdash; growth genuinely ahead of earnings, or a price that has run ahead of a plant that isn't proven.</td></tr>
+        <tr><td><b>&#127959; heavy capex</b></td><td>A softer, valuation-blind version: CWIP at least 25% of net PP&amp;E, whatever the multiple.</td></tr>
+        <tr><td><b>&#9650; guides &gt;15%</b></td><td>The latest earnings release guides revenue growth above 15%. The Guide % column carries the number. Where the release gave only a dollar range, the percentage is derived from it and last fiscal year's revenue and the card says so. A forward statement that refuses to quantify shows as a grey <i>guidance</i> badge with no number, and is found under "Any forward growth statement".</td></tr>
+        <tr><td><b>&#8635; PAT+</b></td><td>Latest quarter profitable after a loss in one of the previous three. The drawer lists the last quarters so you can see what actually swung &mdash; some turnarounds are one-off gains rather than operating recovery.</td></tr>
+        <tr><td><b>&#9881; capacity / &#8644; pivot</b></td><td>Paths 4 and 5 above.</td></tr>
+        <tr><td><b>fails N gates</b></td><td>The company cleared a path but not the fundamentals gates (market cap band, ROE above 5%, holders of record). Hover to see which. Added anyway by design; the score is not adjusted for it.</td></tr>
+      </tbody>
+    </table></div>
+  </div>
+
+  <div class="card">
+    <h3>How the score is built</h3>
+    <p class="section-copy">Before scoring, a company must clear the hard filters below. Survivors are scored on five pillars.</p>
+    <div class="mv-tablewrap"><table class="mv-table">
+      <thead><tr><th>Hard filter</th><th>Threshold</th></tr></thead>
+      <tbody>
+        <tr><td>Size &amp; obscurity</td><td>Market cap $30m&ndash;$2,000m, and fewer than 25,000 holders of record. The holder cap is required by every path (India's <i>known to the public</i> test). Holder counts run low in the US because most shares sit in street name, so it is a weaker signal here than India's shareholder count.</td></tr>
+        <tr><td>Sector</td><td>Finance, banking, insurance, real estate, hotels, restaurants, media, entertainment, software, retail and utilities are skipped, the same list India uses, applied to Finnhub's industry.</td></tr>
+        <tr><td>Quality floor (recorded, not required)</td><td>ROE above 5%. A company that clears a path but not this is still added and the failed gate is shown on its card.</td></tr>
+        <tr><td>Promoter, institutional, public float</td><td><b>Not applied.</b> The US has no promoter concept, and institutional ownership (13F) isn't on Finnhub's free tier. Insider ownership is scored as a pillar instead.</td></tr>
+      </tbody>
+    </table></div>
+
+    <div class="mv-tablewrap" style="margin-top:14px"><table class="mv-table">
+      <thead><tr><th>Pillar</th><th class="n">Weight</th><th>What it measures</th></tr></thead>
+      <tbody>
+        <tr><td>Moat</td><td class="n">25</td><td>8 points per strong statement (leading provider, stated share, sole provider, first mover), plus 4 for a qualified niche, plus 2&ndash;5 for return on investment as evidence the barrier is real.</td></tr>
+        <tr><td>Reshoring</td><td class="n">20</td><td>The company describes reduced dependence on overseas suppliers or a domestic-supply-chain advantage. All or nothing; India's import-substitution pillar scores how concrete the claim is.</td></tr>
+        <tr><td>Insider</td><td class="n">15</td><td>Insider (officer and director) ownership: 5&ndash;25% scores highest; above 25% less; known but under 5% low; unknown lowest. From Finnhub's insider filings, so it is an approximation.</td></tr>
+        <tr><td>Under-covered</td><td class="n">15</td><td>A smaller market cap and fewer holders of record score higher: the names the crowd hasn't found.</td></tr>
+        <tr><td>Financials</td><td class="n">10</td><td>ROE and return on investment.</td></tr>
+        <tr><td><i>Institutional</i></td><td class="n">&mdash;</td><td>India scores 15 here. Not scored in the US (no free data), which is why the maximum is 85, not 100.</td></tr>
+      </tbody>
+    </table></div>
+
+    <div class="mv-tablewrap" style="margin-top:14px"><table class="mv-table">
+      <thead><tr><th>Adjustment</th><th>Effect</th><th>Why</th></tr></thead>
+      <tbody>
+        <tr><td>Risk penalty</td><td>&minus;3 to &minus;8</td><td>Subtracted after scoring: fewer than 1,000 holders of record (&minus;5), P/E above 60 (&minus;3). Every penalty is itemised on the company's card. India's other penalties (pledge, Tier 2, red-flag count) have no US data behind them.</td></tr>
+        <tr><td>Confidence adjustment</td><td>none</td><td>India scales a hand-researched record by how complete its data is. An auto-screen record has one fixed shape, so there is nothing to scale.</td></tr>
+      </tbody>
+    </table></div>
+    <p class="section-copy">Every flag on this board is a rule matching a company's own words or SEC's numbers. Rules make mistakes &mdash; read the quoted sentence on the card, and treat a score as a reason to look, not a conclusion.</p>
+  </div>
+</section>
+
 </main>
 </div>
 </div>
@@ -272,6 +402,6 @@
 <aside class="drawer" id="us-drawer" aria-label="Company detail"></aside>
 
 <script src="/static/klinecharts.min.js" defer></script>
-<script src="/static/us.js?v=9" defer></script>
+<script src="/static/us.js?v=10" defer></script>
 </body>
 </html>
