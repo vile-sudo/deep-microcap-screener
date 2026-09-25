@@ -1405,7 +1405,7 @@ function earnOutcome(r) {
 function earnSurprise(r) {
   const o = earnOutcome(r);
   if (o.pct == null) return "—";
-  const t = (o.pct > 0 ? "+" : "") + o.pct.toFixed(1) + "%";
+  const t = Math.abs(o.pct) >= 1000 ? (o.pct > 0 ? "> +1000%" : "< −1000%") : (o.pct > 0 ? "+" : "") + o.pct.toFixed(1) + "%";   /* a near-zero estimate makes the percent meaningless */
   return o.kind === "beat" ? `<span class="earn-beat">▲ ${t}</span>` : o.kind === "miss" ? `<span class="earn-miss">▼ ${t}</span>` : `<span>${t}</span>`;
 }
 function earnStreak(results) {
@@ -1414,7 +1414,6 @@ function earnStreak(results) {
     return k === "beat" ? '<span class="earn-beat" title="beat">●</span>' : k === "miss" ? '<span class="earn-miss" title="missed">●</span>' : '<span title="in line or unknown" style="color:var(--muted)">○</span>';
   }).join("");
 }
-const earnWhen = r => r.reported || r.period || "";
 
 async function openEarnings() {
   const body = document.getElementById("earn-body");
@@ -1460,9 +1459,9 @@ function earnBuildControls() {
 function earnSyncWindow(reset) {
   const sel = document.getElementById("earn-window"), up = EARN.sub === "upcoming";
   const opts = up ? [["7", "Next 7 days"], ["14", "Next 14 days"], ["30", "Next 30 days"], ["60", "Next 60 days"], ["", "Every date on record"]]
-                  : [["30", "Last 30 days"], ["60", "Last 60 days"], ["120", "Last 120 days"], ["", "Every quarter on record"]];
+                  : [["1", "Latest quarter"], ["2", "Last 2 quarters"], ["4", "Last 4 quarters"], ["", "Every quarter on record"]];
   sel.innerHTML = opts.map(([v, l]) => `<option value="${v}">${l}</option>`).join("");
-  sel.value = up ? "30" : "60";
+  sel.value = up ? "60" : "1";
   document.getElementById("earn-outcome").hidden = up;
 }
 
@@ -1486,13 +1485,13 @@ function earnRender() {
 
   /* headline numbers, over the whole board rather than the filtered view */
   const nextDays = all.filter(x => x.e.next).map(x => earnDays(x.e.next.date)).filter(n => n >= 0);
-  const recent = all.flatMap(x => (x.e.results || []).filter(r => earnWhen(r) && -earnDays(earnWhen(r)) <= 30 && earnDays(earnWhen(r)) <= 0));
-  const beats = recent.filter(r => earnOutcome(r).kind === "beat").length, misses = recent.filter(r => earnOutcome(r).kind === "miss").length;
+  const latest = all.map(x => (x.e.results || [])[0]).filter(Boolean);
+  const beats = latest.filter(r => earnOutcome(r).kind === "beat").length, misses = latest.filter(r => earnOutcome(r).kind === "miss").length;
   document.getElementById("earn-summary").innerHTML =
     `<div class="earn-stat"><span>Reporting this week</span><b>${nextDays.filter(n => n <= 7).length}</b></div>`
     + `<div class="earn-stat"><span>Next 30 days</span><b>${nextDays.filter(n => n <= 30).length}</b></div>`
-    + `<div class="earn-stat"><span>Reported, last 30 days</span><b>${recent.length}</b></div>`
-    + `<div class="earn-stat"><span>Beat / missed</span><b><span class="earn-beat">${beats}</span> / <span class="earn-miss">${misses}</span></b></div>`;
+    + `<div class="earn-stat"><span>Beat last quarter</span><b class="earn-beat">${beats}</b></div>`
+    + `<div class="earn-stat"><span>Missed last quarter</span><b class="earn-miss">${misses}</b></div>`;
 
   const count = document.getElementById("earn-count");
   if (EARN.sub === "upcoming") {
@@ -1522,24 +1521,19 @@ function earnRender() {
   }
 
   const outcome = document.getElementById("earn-outcome").value;
-  let rows = all.filter(earnFilterCompany).flatMap(x => (x.e.results || []).map(r => ({...x, r})));
-  rows = rows.filter(x => {
-    const w = earnWhen(x.r);
-    if (!w || earnDays(w) > 0) return false;
-    if (win && -earnDays(w) > +win) return false;
-    return !outcome || earnOutcome(x.r).kind === outcome;
-  });
-  rows.sort((a, b) => earnWhen(b.r).localeCompare(earnWhen(a.r)) || String(a.d.name).localeCompare(String(b.d.name)));
+  let rows = all.filter(earnFilterCompany).flatMap(x => (x.e.results || []).slice(0, win ? +win : undefined).map(r => ({...x, r})));
+  rows = rows.filter(x => !outcome || earnOutcome(x.r).kind === outcome);
+  rows.sort((a, b) => String(b.r.period || b.r.reported || "").localeCompare(String(a.r.period || a.r.reported || "")) || String(a.d.name).localeCompare(String(b.d.name)));
   count.textContent = `${rows.length} result${rows.length === 1 ? "" : "s"}`;
   const list = [...new Map(rows.map(x => [x.code, x.d])).values()];
   body.innerHTML = rows.length ? `<div class="mv-tablewrap"><table class="mv-table"><thead><tr>
-      <th>Reported</th><th>Company</th><th>Quarter</th><th class="n">EPS actual</th><th class="n">EPS est.</th><th class="n">Surprise</th><th class="n">Revenue</th><th class="n">Rev. est.</th><th>Last four</th>
+      <th>Company</th><th>Sector</th><th>Quarter</th><th class="n">EPS actual</th><th class="n">EPS est.</th><th class="n">Surprise</th><th class="n">Revenue</th><th class="n">Rev. est.</th><th>Last four</th>
     </tr></thead><tbody>${rows.map(x => {
       const r = x.r, revBeat = r.revenue_actual != null && r.revenue_estimate ? (r.revenue_actual >= r.revenue_estimate ? "earn-beat" : "earn-miss") : "";
       return `<tr data-earn-code="${esc(x.code)}" style="cursor:pointer">
-        <td>${r.reported ? esc(earnDay(r.reported)) : `<span title="quarter ended">${esc(insDay(r.period))}*</span>`}</td>
         <td><b class="mv-tick">${esc(x.code)}</b><span class="mv-name">${esc(x.d.name)}</span></td>
-        <td>${esc(earnQ(r.quarter, r.year))}</td>
+        <td>${esc(x.d.sector || "—")}</td>
+        <td><b>${esc(earnQ(r.quarter, r.year))}</b><span class="mv-name">${r.period ? "ended " + esc(insDay(r.period)) : ""}${r.reported ? " · reported " + esc(earnDay(r.reported)) : ""}</span></td>
         <td class="n">${earnEps(r.eps_actual)}</td>
         <td class="n">${earnEps(r.eps_estimate)}</td>
         <td class="n">${earnSurprise(r)}</td>
@@ -1547,8 +1541,8 @@ function earnRender() {
         <td class="n">${earnRev(r.revenue_estimate)}</td>
         <td class="earn-streak">${earnStreak(x.e.results) || "—"}</td>
       </tr>`; }).join("")}</tbody></table></div>
-      <p class="section-copy" style="margin-top:8px">● beat estimates · ● missed · ○ in line or unknown — the last four quarters, oldest to newest. * the reporting date was not available, so the quarter-end date is shown.</p>`
-    : '<p class="view-hint">No results in this window — widen it, or clear the filters.</p>';
+      <p class="section-copy" style="margin-top:8px">● beat estimates · ● missed · ○ in line or unknown — the last four quarters, oldest to newest. Revenue is shown only where the data feed carries it.</p>`
+    : '<p class="view-hint">No results match — widen the quarters shown, or clear the filters.</p>';
   body.querySelectorAll("[data-earn-code]").forEach(tr => { tr.onclick = () => openDrawer(tr.dataset.earnCode, list); });
 }
 
@@ -1566,8 +1560,8 @@ function usEarningsSection(d) {
   }
   if (res.length) {
     const beats = res.filter(r => earnOutcome(r).kind === "beat").length, known = res.filter(r => earnOutcome(r).kind).length;
-    out += `<div class="mv-tablewrap" style="margin-top:9px"><table class="mv-table"><thead><tr><th>Quarter</th><th>Reported</th><th class="n">EPS</th><th class="n">Est.</th><th class="n">Surprise</th></tr></thead><tbody>`
-      + res.map(r => `<tr><td>${esc(earnQ(r.quarter, r.year))}</td><td>${r.reported ? esc(earnDay(r.reported)) : esc(insDay(r.period)) + "*"}</td>`
+    out += `<div class="mv-tablewrap" style="margin-top:9px"><table class="mv-table"><thead><tr><th>Quarter</th><th>Quarter ended</th><th class="n">EPS</th><th class="n">Est.</th><th class="n">Surprise</th></tr></thead><tbody>`
+      + res.map(r => `<tr><td>${esc(earnQ(r.quarter, r.year))}</td><td>${r.period ? esc(insDay(r.period)) : r.reported ? esc(earnDay(r.reported)) : "—"}</td>`
         + `<td class="n">${earnEps(r.eps_actual)}</td><td class="n">${earnEps(r.eps_estimate)}</td><td class="n">${earnSurprise(r)}</td></tr>`).join("")
       + `</tbody></table></div>`
       + (known ? `<p class="qsrc" style="margin-top:6px">Beat the EPS estimate in <b>${beats} of the last ${known}</b> quarters.</p>` : "");
