@@ -1,38 +1,96 @@
 {
- "updated": "2026-09-25T05:22+05:30",
+ "updated": "2026-09-26T05:30+05:30",
  "figures": [
   {
    "label": "Brent crude",
-   "value": "$106.60/bbl",
-   "as_of": "2026-09-24",
-   "note": "+3.4% on the day; session high $108.23",
+   "value": "$105.81/bbl",
+   "as_of": "2026-09-25",
+   "note": "-0.74% on the day, on US-Iran talk hopes",
    "source": {
-    "publisher": "CNBC",
-    "url": "https://www.cnbc.com/2026/09/24/oil-iran-crude-kepler-trump-us-un-.html"
+    "publisher": "HDFC Sky",
+    "url": "https://hdfcsky.com/news/stock-market-open-report-today-september-25-2026-sensex-nifty-open-in-green-as-iran-talks-progress-crude-slides-asian-stocks-slip"
    }
   },
   {
-   "label": "Strait of Hormuz transits",
-   "value": "1/day",
-   "as_of": "2026-09-20",
-   "note": "vs pre-crisis baseline of 85/day (IMF PortWatch)",
+   "label": "WTI crude",
+   "value": "$93.19/bbl",
+   "as_of": "2026-09-25",
+   "note": "-1.54% on the day",
    "source": {
-    "publisher": "Straits Daily Brief",
-    "url": "https://straits.live/briefs/2026-09-24"
+    "publisher": "HDFC Sky",
+    "url": "https://hdfcsky.com/news/stock-market-open-report-today-september-25-2026-sensex-nifty-open-in-green-as-iran-talks-progress-crude-slides-asian-stocks-slip"
    }
   },
   {
-   "label": "Nifty 50",
-   "value": "23,063.10",
-   "as_of": "2026-09-24",
-   "note": "-1.64% (-383.70 pts) as crude rally, bond yields weigh",
+   "label": "Petrol, national average",
+   "value": "₹111.21/litre",
+   "as_of": "2026-09-25",
+   "note": "unchanged; govt has no proposal to raise pump prices",
    "source": {
-    "publisher": "Business Standard",
-    "url": "https://www.business-standard.com/markets/news/stock-market-live-september-24-sensex-today-nifty-gift-nifty-nse-share-price-brent-crude-oil-price-126092400122_1.html"
+    "publisher": "Business Today",
+    "url": "https://www.businesstoday.in/india/story/petrol-diesel-prices-today-september-25-check-latest-rates-in-delhi-mumbai-chennai-kolkata-more-557703-2026-09-25"
+   }
+  },
+  {
+   "label": "Welspun Corp global order book",
+   "value": "~$4.7 bn (~₹45,000 cr)",
+   "as_of": "2026-09-25",
+   "note": "record high after new US pipe order",
+   "source": {
+    "publisher": "HDFC Sky",
+    "url": "https://hdfcsky.com/news/welspun-corp-wins-rs-4000-crore-us-pipe-order-shares-rise-3-45-percent"
    }
   }
  ],
  "items": [
+  {
+   "date": "2026-09-25",
+   "title": "Iran's FM details 7-day Hormuz reopening plan at UN; Brent eases to ~$105-106",
+   "text": "Iran's Foreign Minister Abbas Araghchi told delegates at the UN General Assembly that Tehran has offered Washington a plan to reopen the Strait of Hormuz to shipping within seven days if the US lifts its naval blockade, waives sanctions on Iranian oil sales and observes a ceasefire including Lebanon; initial steps would take 4-5 days, with the strait opening on day six. Brent eased on the news, trading around $105.81/bbl (-0.74%) at Thursday's open and near $105-106 through the session, while WTI fell 1.54% to $93.19, as traders stayed cautious given past failed talks. A sustained reopening would ease India's elevated import bill and OMC under-recoveries but would also pull down crude realisations for ONGC, Oil India and Reliance.",
+   "tone": "watch",
+   "companies": [
+    "ONGC",
+    "OIL",
+    "RELIANCE",
+    "VOGL",
+    "IOC",
+    "BPCL",
+    "HINDPETRO"
+   ],
+   "sources": [
+    {
+     "publisher": "Al Jazeera",
+     "title": "What's in Iran's seven-day plan to reopen the Strait of Hormuz?",
+     "url": "https://www.aljazeera.com/news/2026/9/25/whats-in-irans-seven-day-plan-to-reopen-the-strait-of-hormuz",
+     "date": "2026-09-25"
+    },
+    {
+     "publisher": "HDFC Sky",
+     "title": "Stock Market Open Report Today, September 25, 2026: Sensex, Nifty open in green as Iran talks progress, crude slides, Asian stocks slip",
+     "url": "https://hdfcsky.com/news/stock-market-open-report-today-september-25-2026-sensex-nifty-open-in-green-as-iran-talks-progress-crude-slides-asian-stocks-slip",
+     "date": "2026-09-25"
+    }
+   ],
+   "added": "2026-09-26"
+  },
+  {
+   "date": "2026-09-25",
+   "title": "Welspun Corp's US arm wins record $412.5 mn pipe order; order book hits $4.7 bn",
+   "text": "Welspun Tubular LLC, the US subsidiary of Welspun Corp, won its largest-ever HFIW pipe order worth about $412.5 million (~₹4,000 crore), for pipes to evacuate over 3 billion cubic feet of gas from the Permian Basin to the US Gulf Coast, to be manufactured at its upgraded Little Rock, Arkansas mill and executed across FY28-FY29. The win takes Welspun Corp's global order book to a record ~$4.7 billion (~₹45,000 crore), and shares rose as much as 5% on the news. It follows the company's ₹2,000 crore Aramco order via its Saudi associate EPIC earlier in the month, underlining strong overseas demand for Indian line-pipe capacity.",
+   "tone": "good",
+   "companies": [
+    "WELCORP"
+   ],
+   "sources": [
+    {
+     "publisher": "HDFC Sky",
+     "title": "Welspun Corp Wins ₹4,000 Crore US Pipe Order; Shares Rise 3.45%",
+     "url": "https://hdfcsky.com/news/welspun-corp-wins-rs-4000-crore-us-pipe-order-shares-rise-3-45-percent",
+     "date": "2026-09-25"
+    }
+   ],
+   "added": "2026-09-26"
+  },
   {
    "date": "2026-09-24",
    "title": "Iran offers phased Hormuz reopening at UN talks; Brent swings to $108 then eases to $106.60",

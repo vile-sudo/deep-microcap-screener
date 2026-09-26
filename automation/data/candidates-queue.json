@@ -139989,5 +139989,686 @@
   "source": "sweep",
   "moat_signal": null,
   "moat_evidence": null
+ },
+ {
+  "sym": "AXIOMGAS",
+  "name": "Axiom Gas Engineering Limited",
+  "board": "SME",
+  "isin": "INE16J201028",
+  "listed": "25-Sep-26",
+  "hint": "precision engineering",
+  "why": "sector plausible",
+  "plausible": true,
+  "verdict": null,
+  "seen_on": "2026-09-25",
+  "source": "new-listing",
+  "moat_signal": null,
+  "moat_evidence": null,
+  "profile": {
+   "symbol": "AXIOMGAS",
+   "company": "Axiom Gas Engineering Limited",
+   "isin": "INE16J201028",
+   "board": "SME",
+   "source": {
+    "document": "draft prospectus",
+    "url": "https://nsearchives.nseindia.com/emerge/corporates/content/AD_IPO_6423_10122025173635.zip",
+    "filed": "19-Dec-2024",
+    "pdf_bytes": 12368304,
+    "extracted_chars": 1127416
+   },
+   "grade": "company-stated",
+   "verified_against": null,
+   "claims": {
+    "ip": {
+     "count": 7,
+     "dropped_as_industry_commentary": 11,
+     "terms": [
+      "trademark",
+      "trademarks",
+      "Trademark"
+     ],
+     "evidence": [
+      {
+       "match": "trademark",
+       "sentence": "We presently do not own the trademark or logo under which we currently operate and if third parties infringe the trademark, logo and intellectual property that we use, our business and reputation would be adversely affected."
+      },
+      {
+       "match": "trademark",
+       "sentence": "Our Company has applied for trademark registration in relation to the logos of our Company."
+      },
+      {
+       "match": "trademark",
+       "sentence": "The details of our trademark applications are as follows: Particulars PRIMEFUEL Trademark Image Type trademark Device mark of Class Date Application 25/11/2019 4 29 ofCurrent Status Objected Application No."
+      }
+     ]
+    }
+   },
+   "risk_factors": {
+    "promoter_litigation": {
+     "count": 7,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "Criminal Proceedings",
+      "proceedings involving our promoter",
+      "criminal proceedings",
+      "proceedings involving our Promoters",
+      "criminal cases"
+     ],
+     "evidence": [
+      {
+       "match": "Criminal Proceedings",
+       "sentence": "SUMMARY OF OUTSTANDING LITIGATIONS & MATERIAL DEVELOPMENTS Particulars Criminal Proceedings Tax Proceedings Statutory or regulatory proceedings Disciplinary actions by SEBI or stock exchanges against our Promoters Material civil litigations Amount Involved (₹ in Lakhs) Nil Nil 2 Nil Nil 2 Nil Nil Nil Unascertaina ble 7."
+      },
+      {
+       "match": "proceedings involving our promoter",
+       "sentence": "There are certain outstanding legal proceedings involving our promoter which are pending at different levels of adjudication before various courts, tribunals and other authorities."
+      },
+      {
+       "match": "criminal proceedings",
+       "sentence": "A summary of outstanding matters set out below includes details of civil and criminal proceedings, tax proceedings, statutory and regulatory actions and other material pending litigation involving us, our Subsidiary, Directors, Promoters and Group Companies, as at the date of this Draft Red Herring Prospectus."
+      }
+     ]
+    },
+    "related_party": {
+     "count": 16,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "RELATED PARTY TRANSACTIONS",
+      "Related Party Transaction",
+      "related party transactions",
+      "Related party Transactions",
+      "Related Party Transactions"
+     ],
+     "evidence": [
+      {
+       "match": "RELATED PARTY TRANSACTIONS",
+       "sentence": "Income Tax Outstanding Demand SUMMARY OF RELATED PARTY TRANSACTIONS (₹ In Lakhs) Nature of Transaction Name of Related Parties 20 For the Year Ended on March 31 2025 Director Remuneration & Salaries Director Remuneration & Salaries March 31 2024 Alpesh Patel Mohammed Saddique Banani 12."
+      },
+      {
+       "match": "Related Party Transaction",
+       "sentence": "00 - - For details of Related Party Transaction, please refer Annexure VII mentioned in “Restated Financial Information”, as Restated beginning on page 174 of this Draft Red Herring Prospectus."
+      },
+      {
+       "match": "related party transactions",
+       "sentence": "We have in the past entered into related party transactions and may continue to do so in the future, which may potentially involve conflicts of interest with the equity shareholders."
+      }
+     ]
+    }
+   },
+   "objects_of_the_issue": {
+    "offer_for_sale": {
+     "count": 3,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "OFFER FOR SALE",
+      "offer for sale"
+     ],
+     "evidence": [
+      {
+       "match": "OFFER FOR SALE",
+       "sentence": "com PROMOTERS OF OUR COMPANY ALPESHKUMAR NAGINBHAI PATEL, KINNARI ALPESHKUMAR PATEL, SADIQUE ABDUL KADAR BANANI AND ASMA MOHAMAD SADIQUE BANANI DETAILS OF THE ISSUE TYPE FRESH ISSUE OFFER FOR SALE (₹ IN LAKHS) TOTAL ISSUE ELIGIBILITY & SHARE ALLOCATION This issue is being made in terms of Regulation 229(2) of Chapter IX of the SEBI (ICDR) Regulations, 2018 as Fresh Issue Up to ₹ [●] Lakhs amended."
+      },
+      {
+       "match": "OFFER FOR SALE",
+       "sentence": "DETAILS OF OFFER FOR SALE, SELLING SHAREHOLDERS AND THEIR AVERAGE COST OF ACQUISITION - NA RISK IN RELATION TO THE FIRST ISSUE The face value of the Equity Shares is ₹ 5/- each."
+      },
+      {
+       "match": "offer for sale",
+       "sentence": "The Issue only comprises of a Fresh Issue and an offer for sale is not contemplated."
+      }
+     ]
+    },
+    "fresh_issue": {
+     "count": 15,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "FRESH ISSUE",
+      "Fresh Issue",
+      "fresh issue"
+     ],
+     "evidence": [
+      {
+       "match": "FRESH ISSUE",
+       "sentence": "com PROMOTERS OF OUR COMPANY ALPESHKUMAR NAGINBHAI PATEL, KINNARI ALPESHKUMAR PATEL, SADIQUE ABDUL KADAR BANANI AND ASMA MOHAMAD SADIQUE BANANI DETAILS OF THE ISSUE TYPE FRESH ISSUE OFFER FOR SALE (₹ IN LAKHS) TOTAL ISSUE ELIGIBILITY & SHARE ALLOCATION This issue is being made in terms of Regulation 229(2) of Chapter IX of the SEBI (ICDR) Regulations, 2018 as Fresh Issue Up to ₹ [●] Lakhs amended."
+      },
+      {
+       "match": "Fresh Issue",
+       "sentence": "LAKHS) TOTAL ISSUE ELIGIBILITY & SHARE ALLOCATION This issue is being made in terms of Regulation 229(2) of Chapter IX of the SEBI (ICDR) Regulations, 2018 as Fresh Issue Up to ₹ [●] Lakhs amended."
+      },
+      {
+       "match": "Fresh Issue",
+       "sentence": "Allotment/ Allot/ Allotted Unless the context otherwise requires, allotment of the Equity Shares pursuant to the Fresh Issue to the successful Applicants."
+      }
+     ]
+    },
+    "capital_expenditure": {
+     "count": 19,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "Capital Expenditure",
+      "expansion of our",
+      "capital expenditure",
+      "CAPITAL EXPENDITURE",
+      "Capital expenditure",
+      "Setting up of"
+     ],
+     "evidence": [
+      {
+       "match": "Capital Expenditure",
+       "sentence": "Capital Expenditure Prepayment or repayment of a portion of certain outstanding borrowings availed by our Company 3."
+      },
+      {
+       "match": "expansion of our",
+       "sentence": "Our business depends on third-party service providers, independent contractors, and suppliers for the setup and construction of our Auto LPG Dispensing Stations, which are essential for the expansion of our network infrastructure."
+      },
+      {
+       "match": "capital expenditure",
+       "sentence": "Our Company will utilize a portion of the Net Proceeds towards deployment of the Objects of the Issue, which are (i) funding capital expenditure requirements for (ii) prepayment or repayment of all or a portion of certain outstanding borrowings availed by our Company; and (iii) general corporate purposes."
+      }
+     ]
+    },
+    "working_capital": {
+     "count": 1,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "working capital requirements"
+     ],
+     "evidence": [
+      {
+       "match": "working capital requirements",
+       "sentence": "While our declaration of dividends is at the discretion of our Board and subject to Shareholder approval as set out in the section titled “Dividend Policy” on page 173 and the amount of future dividend payments by our Company, if any, will depend upon our future earnings, financial condition, cash flows, working capital requirements, capital expenditures, applicable Indian legal restrictions and other factors."
+      }
+     ]
+    },
+    "general_corporate": {
+     "count": 12,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "General corporate purposes",
+      "general corporate purposes",
+      "General Corporate Purposes",
+      "GENERAL CORPORATE PURPOSE",
+      "general corporate purpose",
+      "General Corporate Purpose"
+     ],
+     "evidence": [
+      {
+       "match": "General corporate purposes",
+       "sentence": "General corporate purposes* 2700."
+      },
+      {
+       "match": "general corporate purposes",
+       "sentence": "00 [●] [●] Total *The amount utilized for general corporate purposes shall be capped to 15% of amount being raised by the issuer or ₹ 10 crores, whichever is lower."
+      },
+      {
+       "match": "general corporate purposes",
+       "sentence": "Our Company will utilize a portion of the Net Proceeds towards deployment of the Objects of the Issue, which are (i) funding capital expenditure requirements for (ii) prepayment or repayment of all or a portion of certain outstanding borrowings availed by our Company; and (iii) general corporate purposes."
+      }
+     ]
+    }
+   },
+   "profiled_on": "2026-09-25"
+  }
+ },
+ {
+  "sym": "890239",
+  "name": "ALAN SCOTT ENTERPRISES Ltd",
+  "board": "BSE",
+  "isin": "IN9273F01038",
+  "listed": null,
+  "hint": null,
+  "why": "sector unknown, SME platform",
+  "plausible": false,
+  "verdict": null,
+  "seen_on": "2026-09-25",
+  "source": "new-listing",
+  "moat_signal": null,
+  "moat_evidence": null
+ },
+ {
+  "sym": "543997",
+  "name": "Organic Recycling Systems Ltd",
+  "board": "BSE-SME",
+  "isin": "INE0MIO01019",
+  "listed": null,
+  "hint": "chemicals",
+  "why": "small-cap sweep",
+  "mktcap_cr": 308,
+  "plausible": true,
+  "verdict": null,
+  "seen_on": "2026-09-25",
+  "source": "sweep",
+  "moat_signal": null,
+  "moat_evidence": null
+ },
+ {
+  "sym": "542857",
+  "name": "Greenpanel Industries Ltd",
+  "board": "BSE",
+  "isin": "INE08ZM01014",
+  "listed": null,
+  "hint": "industrial & capital goods",
+  "why": "small-cap sweep",
+  "mktcap_cr": 1989.02,
+  "plausible": true,
+  "verdict": null,
+  "seen_on": "2026-09-25",
+  "source": "sweep",
+  "moat_signal": null,
+  "moat_evidence": null
+ },
+ {
+  "sym": "537392",
+  "name": "Keto Motors Ltd",
+  "board": "BSE",
+  "isin": "INE392H01026",
+  "listed": null,
+  "hint": "auto & mobility",
+  "why": "small-cap sweep",
+  "mktcap_cr": 2007.73,
+  "plausible": true,
+  "verdict": null,
+  "seen_on": "2026-09-25",
+  "source": "sweep",
+  "moat_signal": null,
+  "moat_evidence": null
+ },
+ {
+  "sym": "513554",
+  "name": "Mahamaya Steel Industries Ltd",
+  "board": "BSE",
+  "isin": "INE451L01014",
+  "listed": null,
+  "hint": "industrial & capital goods",
+  "why": "small-cap sweep",
+  "mktcap_cr": 2051.34,
+  "plausible": true,
+  "verdict": null,
+  "seen_on": "2026-09-25",
+  "source": "sweep",
+  "moat_signal": null,
+  "moat_evidence": null
+ },
+ {
+  "sym": "506022",
+  "name": "Prakash Industries Ltd",
+  "board": "BSE",
+  "isin": "INE603A01013",
+  "listed": null,
+  "hint": "industrial & capital goods",
+  "why": "small-cap sweep",
+  "mktcap_cr": 2126.6,
+  "plausible": true,
+  "verdict": null,
+  "seen_on": "2026-09-25",
+  "source": "sweep",
+  "moat_signal": null,
+  "moat_evidence": null
+ },
+ {
+  "sym": "533262",
+  "name": "Ramky Infrastructure Ltd",
+  "board": "BSE",
+  "isin": "INE874I01013",
+  "listed": null,
+  "hint": "construction & building materials",
+  "why": "small-cap sweep",
+  "mktcap_cr": 2169.35,
+  "plausible": true,
+  "verdict": null,
+  "seen_on": "2026-09-25",
+  "source": "sweep",
+  "moat_signal": null,
+  "moat_evidence": null
+ },
+ {
+  "sym": "544814",
+  "name": "Knack Packaging Ltd",
+  "board": "BSE",
+  "isin": "INE17QZ01016",
+  "listed": null,
+  "hint": "packaging & plastics",
+  "why": "small-cap sweep",
+  "mktcap_cr": 2214.81,
+  "plausible": true,
+  "verdict": null,
+  "seen_on": "2026-09-25",
+  "source": "sweep",
+  "moat_signal": true,
+  "moat_evidence": [
+   "monopoly claim: \"The table below sets forth the aggregate contribution of our largest supplier, our top 5 suppliers and top 10 suppliers (determined based on cost of material consumed attributable to such suppliers) to our total raw materials purchased for the periods stated: P\" (prospectus, company-stated)",
+   "monopoly claim: \"such suppliers) to our total raw materials purchased for the periods stated: Particulars Fiscal 2026 Amount (₹ % of total million) raw materials purchased Our largest Supplier Top 5 Suppliers Top 10 Suppliers Fiscal 2025 % of total Amount (₹ raw materials million) purchased Fiscal 2024 % of total Amount (₹ raw materials million) purchased 1,807.\" (prospectus, company-stated)",
+   "monopoly claim: \"We are also one of the early movers in the manufacturing of BOPP/ PLWPP bags, and the first company in India (and Asia) to provide laser cut and easy-open feature integrated into their PLWPP pinch bottom bags (Source: Technopak Report).\" (prospectus, company-stated)"
+  ],
+  "profile": {
+   "symbol": "544814",
+   "company": "Knack Packaging Limited",
+   "isin": "INE17QZ01016",
+   "board": "BSE",
+   "source": {
+    "document": "final prospectus",
+    "url": "https://nsearchives.nseindia.com/corporate/FP_INE17QZ01016_06JUL2026.pdf",
+    "filed": "06-Jul-2026",
+    "pdf_bytes": 13725220,
+    "extracted_chars": 1556515
+   },
+   "grade": "company-stated",
+   "verified_against": null,
+   "claims": {
+    "accreditation": {
+     "count": 2,
+     "dropped_as_industry_commentary": 20,
+     "terms": [
+      "ISO 90001"
+     ],
+     "evidence": [
+      {
+       "match": "ISO 90001",
+       "sentence": "Our company has globally recognized certifications such as ISO 90001:2015 for quality management systems, ISO 14001:2015 for environment management systems, ISO 45001:2015 for occupational health and safety management systems, issued by ISOQAR and EN 15343 for recycled plastic content traceability."
+      },
+      {
+       "match": "ISO 90001",
+       "sentence": "Our commitment to quality and responsible manufacturing is demonstrated by our certifications such as ISO 90001:2015 for quality management systems, ISO 14001:2015 for environment management systems, ISO 45001:2015 for occupational health and safety management systems, issued by ISOQAR and EN 15343 for recycled plastic content traceability."
+      }
+     ]
+    },
+    "monopoly_claim": {
+     "count": 3,
+     "dropped_as_industry_commentary": 11,
+     "terms": [
+      "largest supplier",
+      "largest Supplier",
+      "first company in India"
+     ],
+     "evidence": [
+      {
+       "match": "largest supplier",
+       "sentence": "The table below sets forth the aggregate contribution of our largest supplier, our top 5 suppliers and top 10 suppliers (determined based on cost of material consumed attributable to such suppliers) to our total raw materials purchased for the periods stated: P"
+      },
+      {
+       "match": "largest Supplier",
+       "sentence": "such suppliers) to our total raw materials purchased for the periods stated: Particulars Fiscal 2026 Amount (₹ % of total million) raw materials purchased Our largest Supplier Top 5 Suppliers Top 10 Suppliers Fiscal 2025 % of total Amount (₹ raw materials million) purchased Fiscal 2024 % of total Amount (₹ raw materials million) purchased 1,807."
+      },
+      {
+       "match": "first company in India",
+       "sentence": "We are also one of the early movers in the manufacturing of BOPP/ PLWPP bags, and the first company in India (and Asia) to provide laser cut and easy-open feature integrated into their PLWPP pinch bottom bags (Source: Technopak Report)."
+      }
+     ]
+    },
+    "ip": {
+     "count": 9,
+     "dropped_as_industry_commentary": 11,
+     "terms": [
+      "trademarks",
+      "trademark",
+      "Trademarks",
+      "Trademark"
+     ],
+     "evidence": [
+      {
+       "match": "trademarks",
+       "sentence": "We have registered our logo / trademarks under class 16 before the Registrar of Trademarks, under The Trade Marks Act, 1999."
+      },
+      {
+       "match": "trademark",
+       "sentence": "We have also made an application for revision of our logo / trademark as ."
+      },
+      {
+       "match": "trademark",
+       "sentence": "We do not have any control over the registration of a trademark and a trademark may also be opposed by third parties that claim to have prior or superior rights."
+      }
+     ]
+    }
+   },
+   "risk_factors": {
+    "customer_concentration": {
+     "count": 15,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "top 10 customers",
+      "top 5 customers",
+      "customer concentration"
+     ],
+     "evidence": [
+      {
+       "match": "top 10 customers",
+       "sentence": "We also derive a substantial portion of our revenue from operations from our top 10 customers."
+      },
+      {
+       "match": "top 5 customers",
+       "sentence": "The table below sets forth details of aggregate contribution of our largest customer, our top 5 customers and top 10 customers to our revenue from operations for the periods stated: Particulars Our largest customer Top 5 customer Top 10 customer Fiscal 2026 Amount (₹ % of revenue million) from operations 1,377."
+      },
+      {
+       "match": "top 10 customers",
+       "sentence": "16 Further, we do not have any contractual arrangements with our top 10 customers and neither of these customers are our related parties."
+      }
+     ]
+    },
+    "promoter_litigation": {
+     "count": 13,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "criminal proceedings",
+      "Criminal proceedings"
+     ],
+     "evidence": [
+      {
+       "match": "criminal proceedings",
+       "sentence": "A summary of pending material civil, tax and criminal proceedings involving our Company, Directors, Promoters, Subsidiary, KMPs and SMPs, as identified by our Company pursuant to the Materiality Policy adopted by our Board is provided below: Nam"
+      },
+      {
+       "match": "Criminal proceedings",
+       "sentence": "Nil Name of entity Criminal proceedings Tax proceedings Against our Key Managerial Personnel and Senior Management Nil N."
+      },
+      {
+       "match": "criminal proceedings",
+       "sentence": "411 SECTION VI – LEGAL AND OTHER INFORMATION OUTSTANDING LITIGATION AND MATERIAL DEVELOPMENTS Except as stated below as on the date of this Prospectus, there are no outstanding (i) criminal proceedings (including any notices threatening criminal action, matters which are at first information reports (“FIRs”) stage even if no cognizance has been taken by any court) involving our"
+      }
+     ]
+    },
+    "single_site": {
+     "count": 1,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "single facility"
+     ],
+     "evidence": [
+      {
+       "match": "single facility",
+       "sentence": "Vertical Integration in PLWPP Manufacturing: Companies control multiple stages of production—from PP granule processing into tape yarn extrusion, weaving of fabric, BOPP film extrusion, printing, lamination, cutting, stitching, and even in-house design and logistics —all within a single facility."
+      }
+     ]
+    },
+    "related_party": {
+     "count": 25,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "RELATED PARTY TRANSACTIONS",
+      "Related Party Transactions",
+      "related party transactions"
+     ],
+     "evidence": [
+      {
+       "match": "RELATED PARTY TRANSACTIONS",
+       "sentence": "86 SUMMARY OF RELATED PARTY TRANSACTIONS ."
+      },
+      {
+       "match": "Related Party Transactions",
+       "sentence": "75 For further details, see “Our Business – Properties” and “Restated Consolidated Financial Information – Note 46 – Related Party Transactions” on pages 272 and 316."
+      },
+      {
+       "match": "related party transactions",
+       "sentence": "We have in the past entered into related party transactions and may continue to do so in the future."
+      }
+     ]
+    }
+   },
+   "objects_of_the_issue": {
+    "offer_for_sale": {
+     "count": 42,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "OFFER FOR SALE",
+      "Offer for Sale",
+      "offer for sale"
+     ],
+     "evidence": [
+      {
+       "match": "OFFER FOR SALE",
+       "sentence": "com and Compliance Officer THE PROMOTERS OF OUR COMPANY ARE ALPESH TULSIBHAI PATEL, PRAVINKUMAR AMBALAL PATEL AND RASHMINBHAI TULSIBHAI PATEL DETAILS OF THE SELLING SHAREHOLDERS, OFFER FOR SALE AND WEIGHTED AVERAGE COST OF ACQUISITION PER EQUITY SHARE TYPE FRESH ISSUE OFFER FOR TOTAL OFFER ELIGIBILITY AND SHARE RESERVATION AMONG QIBs, SIZE SALE SIZE SIZE NIBs, RIBs AND ELIGIBL"
+      },
+      {
+       "match": "OFFER FOR SALE",
+       "sentence": "million*^ million* REGISTERED AND CORPORATE OFFICE *Subject to finalisation of Basis of Allotment ^An Employee Discount of ₹ 16 per Equity Share was offered to Eligible Employees Bidding in the Employee Reservation Portion DETAILS OF THE OFFER FOR SALE NAME OF SELLING TYPE NUMBER OF EQUITY SHARES WEIGHTED AVERAGE COST OF SHAREHOLDERS OFFERED / AMOUNT ACQUISITION PER EQUITY SHARE (IN ₹)** Alpesh Tulsibhai Patel Promoter Selling Shareholder 675,750* Equity Shares of Face value 0."
+      },
+      {
+       "match": "OFFER FOR SALE",
+       "sentence": "00 MILLION*^ (THE “FRESH ISSUE”) AND AN OFFER FOR SALE OF 3,500,000* EQUITY SHARES, AGGREGATING TO ₹ 595."
+      }
+     ]
+    },
+    "fresh_issue": {
+     "count": 45,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "FRESH ISSUE",
+      "Fresh Issue",
+      "fresh issue"
+     ],
+     "evidence": [
+      {
+       "match": "FRESH ISSUE",
+       "sentence": "com and Compliance Officer THE PROMOTERS OF OUR COMPANY ARE ALPESH TULSIBHAI PATEL, PRAVINKUMAR AMBALAL PATEL AND RASHMINBHAI TULSIBHAI PATEL DETAILS OF THE SELLING SHAREHOLDERS, OFFER FOR SALE AND WEIGHTED AVERAGE COST OF ACQUISITION PER EQUITY SHARE TYPE FRESH ISSUE OFFER FOR TOTAL OFFER ELIGIBILITY AND SHARE RESERVATION AMONG QIBs, SIZE SALE SIZE SIZE NIBs, RIBs AND ELIGIBLE EMPLOYEES* Fresh Issue and Offer 22,365,164* 3,500,000* 25,865,164* Equity T"
+      },
+      {
+       "match": "Fresh Issue",
+       "sentence": "ON PER EQUITY SHARE TYPE FRESH ISSUE OFFER FOR TOTAL OFFER ELIGIBILITY AND SHARE RESERVATION AMONG QIBs, SIZE SALE SIZE SIZE NIBs, RIBs AND ELIGIBLE EMPLOYEES* Fresh Issue and Offer 22,365,164* 3,500,000* 25,865,164* Equity This Offer has been made in compliance with Regulation 6(1) of the for Sale Equity Shares of Equity Shares Shares of face value of Secur"
+      },
+      {
+       "match": "FRESH ISSUE",
+       "sentence": "00 MILLION*^, COMPRISING OF A FRESH ISSUE OF 22,365,164* EQUITY SHARES, AGGREGATING TO ₹ 3,800."
+      }
+     ]
+    },
+    "capital_expenditure": {
+     "count": 29,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "capital expenditure",
+      "expansion of our",
+      "setting up of",
+      "Capital Expenditure",
+      "Setting up of"
+     ],
+     "evidence": [
+      {
+       "match": "capital expenditure",
+       "sentence": "s in this region, or changes in the policies of the state or local governments of this region or the Government of India, could require us to incur significant capital expenditure and change our business strategy."
+      },
+      {
+       "match": "expansion of our",
+       "sentence": "The increase in our trade receivables over the years is primarily attributable to the growth in our revenue from operations, in line with the expansion of our business activities and customer base."
+      },
+      {
+       "match": "capital expenditure",
+       "sentence": "The level of long-term borrowings is comparatively lower, as major capital expenditure, requirements have already been funded, and any incremental capex is expected to be met through the Company’s internal accruals, resulting in limited need for additional long-term financing during the relevant period."
+      }
+     ]
+    },
+    "working_capital": {
+     "count": 11,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "working capital requirements"
+     ],
+     "evidence": [
+      {
+       "match": "working capital requirements",
+       "sentence": "Our Company extends credit facilities to customers, which may expose us to counterparty risks, adversely impact our cash flows and increase our working capital requirements."
+      },
+      {
+       "match": "working capital requirements",
+       "sentence": "Any significant delay or default in payment by customers may result in increased working capital requirements, impact our ability to manage day-to-day operations, and lead to a mismatch between our cash inflows and outflows."
+      },
+      {
+       "match": "working capital requirements",
+       "sentence": "Our inability to meet our working capital requirements including failure to realise receivables and inventories may have an adverse effect on our results of operations and overall business."
+      }
+     ]
+    },
+    "general_corporate": {
+     "count": 11,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "General corporate purposes",
+      "general corporate purposes",
+      "General Corporate Purposes"
+     ],
+     "evidence": [
+      {
+       "match": "General corporate purposes",
+       "sentence": "Partial funding of capital expenditure towards setting up of new manufacturing facility at Borisana situated at Kadi, Mehsana, Gujarat (“Project Site”); and General corporate purposes."
+      },
+      {
+       "match": "General corporate purposes",
+       "sentence": "49 Particulars General corporate purposes(1) Net Proceeds(1) *Subject to finalisation of Basis of Allotment."
+      },
+      {
+       "match": "general corporate purposes",
+       "sentence": "The amount utilised for general corporate purposes does not exceed 25% of the Gross Proceeds."
+      }
+     ]
+    }
+   },
+   "profiled_on": "2026-09-25"
+  }
+ },
+ {
+  "sym": "533080",
+  "name": "Mold-Tek Packaging Ltd",
+  "board": "BSE",
+  "isin": "INE893J01029",
+  "listed": null,
+  "hint": "packaging & plastics",
+  "why": "small-cap sweep",
+  "mktcap_cr": 2228.66,
+  "plausible": true,
+  "verdict": null,
+  "seen_on": "2026-09-25",
+  "source": "sweep",
+  "moat_signal": null,
+  "moat_evidence": null
+ },
+ {
+  "sym": "524743",
+  "name": "Fischer Medical Ventures Ltd",
+  "board": "BSE",
+  "isin": "INE771F01041",
+  "listed": null,
+  "hint": "pharma & healthcare",
+  "why": "small-cap sweep",
+  "mktcap_cr": 2239.75,
+  "plausible": true,
+  "verdict": null,
+  "seen_on": "2026-09-25",
+  "source": "sweep",
+  "moat_signal": null,
+  "moat_evidence": null
+ },
+ {
+  "sym": "590086",
+  "name": "Orissa Minerals Development Company Ltd",
+  "board": "BSE",
+  "isin": "INE725E01024",
+  "listed": null,
+  "hint": "metals & mining",
+  "why": "small-cap sweep",
+  "mktcap_cr": 2242.05,
+  "plausible": true,
+  "verdict": null,
+  "seen_on": "2026-09-25",
+  "source": "sweep",
+  "moat_signal": null,
+  "moat_evidence": null
  }
 ]

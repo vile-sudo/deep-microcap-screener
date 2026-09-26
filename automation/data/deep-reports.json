@@ -234,6 +234,19 @@
     "SIMPLEXCAS": "already covers Sep 2021",
     "FLUIDOM": "already covers Mar 2023"
    }
+  },
+  {
+   "on": "2026-09-26",
+   "written": [
+    "HINDZINC:FY27-Q1",
+    "SCHAEFFLER:FY27-Q1"
+   ],
+   "spent_usd": null,
+   "skipped": {
+    "VIMTALABS": "already covers Dec 2024",
+    "SIMPLEXCAS": "already covers Sep 2021",
+    "FLUIDOM": "already covers Mar 2023"
+   }
   }
  ],
  "seen_new_results": {
@@ -502,6 +515,24 @@
    "cost_usd": null,
    "api_equivalent_usd": 2.373,
    "minutes": 8.9
+  },
+  "HINDZINC": {
+   "period": "FY27-Q1",
+   "on": "2026-09-26",
+   "engine": "claude-code",
+   "tokens_out": 63455,
+   "cost_usd": null,
+   "api_equivalent_usd": 11.975,
+   "minutes": 15.0
+  },
+  "SCHAEFFLER": {
+   "period": "FY27-Q1",
+   "on": "2026-09-26",
+   "engine": "claude-code",
+   "tokens_out": 88589,
+   "cost_usd": null,
+   "api_equivalent_usd": 9.279,
+   "minutes": 16.8
   }
  }
 }
