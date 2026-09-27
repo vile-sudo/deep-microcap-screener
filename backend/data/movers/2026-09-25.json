@@ -1,7 +1,7 @@
 {
  "trade_date": "2026-09-25",
  "threshold_percent": 4.0,
- "generated_at": "2026-09-26T15:11:48+05:30",
+ "generated_at": "2026-09-27T12:37:51+05:30",
  "stats": {
   "scanned": 3390,
   "flagged": 377,
@@ -304,9 +304,23 @@
    "raw_pct_change": 14.15,
    "corporate_action": null,
    "why": {
-    "headline": "Bulk deal of Rs 7.4 crore",
-    "confidence": "medium",
+    "headline": "Capital Action (Scanx)",
+    "confidence": "low",
     "evidence": [
+     {
+      "tier": "news",
+      "kind": "capital action",
+      "detail": "TGV Sraac shareholders approve ₹1 final dividend for FY26",
+      "url": "https://news.google.com/rss/articles/CBMirgFBVV95cUxPd1hHVmtPR3hsUncyRkV3QU9Yd0xoRm5McEF1MGY3TkctamtiRnBiOHJwOW82ZjcxT29Yei1yVXozUHZOT3BJYVVLTUcweHRVaFRZampmSWY4YnlDSUlZWUtKZnVyMXE1WjJ0YVdfbWZnSlhXaTc2bFBIei03bG1nOEdPOVdISlFCME52cGtPTUJKci1XZlZJZWRxMVlIYTVxLWgwcVZIV2dTV21kaWc?oc=5",
+      "source": "Scanx"
+     },
+     {
+      "tier": "news",
+      "kind": "operations",
+      "detail": "TGV Sraac adds 2.5 MWp solar capacity, total reaches 65.40 MWp",
+      "url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxOeVUzWU5ZM001Sk9KNzR1NzBWNWllS0FIRXNuSDBHNnctRmpjRWZTOVNhWHViczRtbTdmVmdpX2RqNjZxa2w4V0laNlA2Zko2cWN1a1AtMjhJVlhIMEl1VF9SWF9xdmhQTkNkdzg0RXMwQXZtZFNXUFYxTjNsWnpSbnpiVG5YMXh5WmY1Y3VBYmhuNDRmdkFMY2xvWWNCcDB3TFo1YnI0S1JQTERpdFRyZGQ3UldXRWY2bXc?oc=5",
+      "source": "Scanx"
+     },
      {
       "tier": "deal",
       "kind": "bulk deal",
@@ -830,7 +844,7 @@
    "raw_pct_change": 9.98,
    "corporate_action": null,
    "why": {
-    "headline": "M&A Or Stake, reported by Scanx",
+    "headline": "General Updates disclosed to the exchange",
     "confidence": "high",
     "evidence": [
      {
@@ -839,13 +853,6 @@
       "detail": "Anlon Healthcare Limited has informed the Exchange about General Updates",
       "url": "https://nsearchives.nseindia.com/corporate/ANLON2013_24092026185119_AHLIntimationArihantConference24092026Signed.pdf",
       "source": "24 Sep 18:51"
-     },
-     {
-      "tier": "news",
-      "kind": "M&A or stake",
-      "detail": "Anlon Healthcare sets ₹17.85 floor price for share swap acquisitions",
-      "url": "https://news.google.com/rss/articles/CBMivAFBVV95cUxOeGV4MENUa0VtWERpcjhldDZvbmp3d25UUm41LUYwZ3QxdGN3S3F6b2stNFQ1T0JMMy1kTHI5bW94cWZPcUZjZW0wVzdpNlMxaXVlNmFsMExPNzduaFpmc0JkNWlReGdqVTZIcDZKYzkxYXBkSW1uRXR3eVFNcm5INnIyRXQwSXJWLWprekZuRndkUFhSM2wyRGZTWnNOMlVZUEdaODhNU2V3OXFHSFhBc0RzeGJhNlA0RE5FNA?oc=5",
-      "source": "Scanx"
      },
      {
       "tier": "deal",
@@ -1071,7 +1078,7 @@
    "raw_pct_change": 9.41,
    "corporate_action": null,
    "why": {
-    "headline": "Investor Meeting, reported by Scanx",
+    "headline": "Investor Meeting disclosed to the exchange",
     "confidence": "high",
     "evidence": [
      {
@@ -1080,13 +1087,6 @@
       "detail": "Quadrant Future Tek Limited has informed the Exchange regarding Proceedings of Annual General Meeting held on September 25, 2026",
       "url": "https://nsearchives.nseindia.com/corporate/QUADRANT_25092026144836_Intimation_Outcome_AGM.pdf",
       "source": "25 Sep 14:48"
-     },
-     {
-      "tier": "news",
-      "kind": "regulatory or legal",
-      "detail": "Quadrant Televentures Submits Q4FY26 SEBI Compliance Certificate Under CIRP",
-      "url": "https://news.google.com/rss/articles/CBMi2wFBVV95cUxOQ0d6ZGNOWFZ4R1lVRzhpMFMtMU92ME9rY0c5VHZXSzlxQl9QT2N2ZlBGb3FlbFpyZy1QZzVZVkVUcmtGLXg1QVczUDB2aFRtbEZMOGNNMTBRdlo1V09RWDZzQUNTWC15WGdXZ1dWMmxVTVZUNjdwQXRGTkIzUmFaSHJ6SkQ0b3IyM1BVSUhoY3ZaWmhVWndiaU9CSEdXX2w4YTFfbElpMkxyNWg4VGhwb3pJTGsxYXRWVnV2SUktQnZlc3JnNFdwMElJbzlidDVhb0FRdHhTVFozZ0k?oc=5",
-      "source": "Scanx"
      }
     ]
    },
@@ -1371,9 +1371,16 @@
    "raw_pct_change": 7.67,
    "corporate_action": null,
    "why": {
-    "headline": "M&A Or Stake (Moneycontrol)",
+    "headline": "M&A Or Stake (Business Standard)",
     "confidence": "medium",
     "evidence": [
+     {
+      "tier": "news",
+      "kind": "explainer",
+      "detail": "Whirlpool of India zooms 33% in 3 days; what's driving stock price?",
+      "url": "https://news.google.com/rss/articles/CBMiywFBVV95cUxOdEFXYUlFMnh4WkJZM2hpWkRtWE4zaDM3QXRLVkQwbVRhdmFBOGF4eUVoNXh4Szg1U0lIbldmRVdIS21XLWdiQ1dMTmhqSTVYdU01QkgyaTIxSlE2SzV1VHJhd0QyRGJKR1FoYWx4S1lScGFlckJVX0d3V0dMZUtXci1Xa2pqQ21wR2YyX2ptT2Zad19XNVJ1YWp6RDJfeXJWaDlKTHZ1ZDZZQ0xVSkszQnJwU3ZQNm1ZcThud3BteU1TZzZWZkpTemJTa9IB0AFBVV95cUxOdU42c3BRWS1jLVJDZHMxNWhPOVBsSTZ4WVd4MUpPeXlzenVMSzB6Tkt5QlRBVVV3MUFBZVZFWjVHRUVlUUdfUjZETGhYd0RQWjY1dHBCQ1FJa0ZEQy1fWU1ZWm9MTGVfc2pMSUEwNGFNRkRUV3U5VTBoZDdmSy14YnBsR1JQcVZjZGViZTRqU0JIajAzNVJtRm9ic3FOOWhWVlZwVXBfLUl1WTVXUDdsWnQ4czItaHRlQ0ZUU25yNWxObUlXX190RW9DN1E5bVRN?oc=5",
+      "source": "Business Standard"
+     },
      {
       "tier": "news",
       "kind": "M&A or stake",
@@ -1387,13 +1394,6 @@
       "detail": "Whirlpool of India stock soars 20% to hit upper circuit on promoter stake sale buzz",
       "url": "https://news.google.com/rss/articles/CBMi7AFBVV95cUxON1gtRndnWFlMUWdkYjI1b2lHRFBJX1FaMThXOU5WZ0xMNmE1VHQzSXE3MndZR05LRTdRYXdyWXlBdEhRSWVIWUpObXZybVRoWHF1c2VzT0ZnYm5yM3hNV05RQ094M3Y1cjBWRl9RNEdXUEN3bEFsN2cxSURNWGxyaUN3VVV1RFhjY092Vy1PeTRoUDJRTXdNQU9ucVJGVlFmSFdIbmd3MW9Bc3pTYTg4QjA1dUZTLWZZVEhHa0I5eDZSOXhnOWZUUnpadkhXRlk3V01LSXhVMWtVRjAwcjI1aGlEdkE1aVVPd2dSMNIB8gFBVV95cUxNMjM1NmFxTVF1YlJpeEpkSUVST0VOa1psaVhoeXRHUHNoQ0FwaDRScVJKMVByTDEtbWc4SHllUW9iT3JZT2JmeFRQczdBTzNZSk9pclFUeHlIYlEtYU42UUNpcUJjRm1KYzhtdC1Ed2xmYmpwb3hwUmJDY3o4bENGZEZnSzgtclF4b0FTd2pDdDNoY25wc2IxRVQ4M3ZJYkgwSERFWFFBeTFpcENMS3hJU1pJZlZ1ejZJazE5NWFrbm5YQVBpaHRpbXRUVWJNNjlOZ2FPRnROUWtXcjBFUU9JekRpV0hrOGF5eXZScnVQYjV3UQ?oc=5",
       "source": "Economic Times"
-     },
-     {
-      "tier": "news",
-      "kind": "explainer",
-      "detail": "Whirlpool of India zooms 33% in 3 days; what's driving stock price?",
-      "url": "https://news.google.com/rss/articles/CBMiywFBVV95cUxOdEFXYUlFMnh4WkJZM2hpWkRtWE4zaDM3QXRLVkQwbVRhdmFBOGF4eUVoNXh4Szg1U0lIbldmRVdIS21XLWdiQ1dMTmhqSTVYdU01QkgyaTIxSlE2SzV1VHJhd0QyRGJKR1FoYWx4S1lScGFlckJVX0d3V0dMZUtXci1Xa2pqQ21wR2YyX2ptT2Zad19XNVJ1YWp6RDJfeXJWaDlKTHZ1ZDZZQ0xVSkszQnJwU3ZQNm1ZcThud3BteU1TZzZWZkpTemJTa9IB0AFBVV95cUxOdU42c3BRWS1jLVJDZHMxNWhPOVBsSTZ4WVd4MUpPeXlzenVMSzB6Tkt5QlRBVVV3MUFBZVZFWjVHRUVlUUdfUjZETGhYd0RQWjY1dHBCQ1FJa0ZEQy1fWU1ZWm9MTGVfc2pMSUEwNGFNRkRUV3U5VTBoZDdmSy14YnBsR1JQcVZjZGViZTRqU0JIajAzNVJtRm9ic3FOOWhWVlZwVXBfLUl1WTVXUDdsWnQ4czItaHRlQ0ZUU25yNWxObUlXX190RW9DN1E5bVRN?oc=5",
-      "source": "Business Standard"
      },
      {
       "tier": "deal",
@@ -2093,7 +2093,7 @@
    "raw_pct_change": 6.09,
    "corporate_action": null,
    "why": {
-    "headline": "Investor Meeting, reported by Scanx",
+    "headline": "Investor Meeting disclosed to the exchange",
     "confidence": "high",
     "evidence": [
      {
@@ -2102,13 +2102,6 @@
       "detail": "Dhampur Sugar Mills Limited has informed the Exchange about Shareholders meeting",
       "url": "https://nsearchives.nseindia.com/corporate/DHAMPURSUG_24092026165717_91stAGMMinutes.pdf",
       "source": "24 Sep 16:58"
-     },
-     {
-      "tier": "news",
-      "kind": "capital action",
-      "detail": "Dhampur Sugar Mills shareholders adopt FY26 financials, confirm ₹2.00 dividend",
-      "url": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxQcHpRbmlOTGU2R0xVeWx1Nm9DQzVFb240dS1qQnRtbEdEVWRGbjNpSERpcDBObWNxazJZUjd5VzNMY3BIWWlnR3BraUEteWEtbUlsRXhISTFuN085c2g4MHNrdmk2eUgwQWtwdE9rcEtpY05OYmpsdTNiU1g2V0kyRFpBZVBXNkR1OGJIVHBfWjVDMnB6V3hSUkYycUJQMHA3VW1EVUJkWXlDbm8zaVJaaHlFZklrNi03SUVuX0EwNjF6QQ?oc=5",
-      "source": "Scanx"
      }
     ]
    },
@@ -2253,7 +2246,7 @@
    "raw_pct_change": 5.84,
    "corporate_action": null,
    "why": {
-    "headline": "Investor Meeting, reported by Scanx",
+    "headline": "Investor Meeting disclosed to the exchange",
     "confidence": "high",
     "evidence": [
      {
@@ -2262,13 +2255,6 @@
       "detail": "Greaves Cotton Limited has informed the Exchange about Schedule of meet",
       "url": "https://nsearchives.nseindia.com/corporate/GREAVESCOT_24092026173304_GCL_SEintimation_Analystmeet_29092026sd.pdf",
       "source": "24 Sep 17:39"
-     },
-     {
-      "tier": "news",
-      "kind": "M&A or stake",
-      "detail": "Greaves Cotton takes full control of Excel Controllinkage as acquisition completes",
-      "url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxQaWc2UXBJTTBTdXpubkZNVkFac3JSRzBBMmI2MVVYeUJjRHpxRnlMMzRYYVVPbVBES2dIcUxEaGFXNlNmbEVyS21aek1ZLXYwNHVzZzRGUjVqZ1BRQkJHYWRWa1ljNXNiWDUyaUlVb1dFX0hXbFFLVEFZTml1NUxoeGJUSUREY09QbGx6XzVIdWtFekxNdUNWZXFsczFVYzZIUmFGY19YOUgtR1Fhb3NvZEZvNmtvTjEyVUE?oc=5",
-      "source": "Scanx"
      }
     ]
    },
@@ -2602,9 +2588,9 @@
      {
       "tier": "news",
       "kind": "fundraise or deal",
-      "detail": "Double QIP action: Inox Green, Wheels India shares soar as fundraises kick off- Check floor price, discount, other info",
-      "url": "https://news.google.com/rss/articles/CBMikgJBVV95cUxNakZnMWYyYXUycnRXUnBCTXdIWnA0cWREbTlwUkhCQ1BNbzg4ck9wNVVvT2Rob0tZTDNDdExlRVMybkcwOExHUGNnM1cxR0J3TkZjenl3cGo2blNYQjZEWEZIQXNfYlBoSTRsNlpsNDJ0NjRWLTAtZUFwblFGeUp4WXhWUU9aeFlsa3dGQ0tLdlVjTk9IZmptYW5CcUo2UGp5MG9nek12SWlscEREbnNJaGJzV0hwYmdzMk5DYjZuRWxfTWNKMEhZVEVBcW5NdHRWRjhTczhtY24tWkpTeUJxRENnb1NRUE5kazBRTkY3TjE2MDlud2RlRWdjcXgzeEp3OG9vR0lCUms5RFJMUmZFRWpn0gGXAkFVX3lxTFBmZzVrUERPQ0IyMThWaG9hMzdYUFdnY1JKMUpIZW9kNWpyU3h4OHdadFloOE5vZ2wwZ1I1ZjlqSWtLTE9DZGFrM0NWbl8xbXNsS0hKWEhWWnVOamgwNmhvZ3ZubVZXOTBHY0dIWDR0RjhsamNwVzlYTnZUWkdLeC1ZNld4U25RMHkyRy1BeDRobW15LXliT3NOZ2c5djh0ZjdjSnk5S2hSSGRRUGsybXRLMVNubjFfWjMtZEVSZEg3NWxIZ2pWZkZVZnRJdkF6R0p0ZDZ5Q3VmZU4xR05Rb29SYnF5RWt5UkdSYUFzVHZDMDhyam0zaFhPUlVuekZ6dmhBdjRHaDI2ZkFUVUo1bEZJSTliUTk2NA?oc=5",
-      "source": "Mint"
+      "detail": "Wheels India allots 11.97 lakh equity shares under QIP issue",
+      "url": "https://news.google.com/rss/articles/CBMi2gFBVV95cUxQXzY4M2dyZkpTYUtSYUhoUlYzdXpSblI5N0xRU0JaQkpIaHFwTlB1M0d2MV9JMkZ4NkExWjItQ2ZFUkl2bGtmOUtvOHdZRWwwT1I3UWRFZG9FYV96cl93ME9YWkJKRGZ4QUhCdTd5Zno5RkE4NjVZOG9LTFRkci10MlJhVlkxZDVxYmNva3VvOERUVjNXTE8zeU93SVFadU1SZjFNTERUekFtSnhLbkZERVd6MGFJTlBWSW12UGJuMl9CSkl2RGFsYWdrZFVQaElhaGlIdVhrd2U4d9IB3wFBVV95cUxNdW91bEx2VmNnaDhrdVR0RGpCeGFpX0ZodDZPWXZ0cFpkZXRmRkRITXdGNjY2UTZteDdBcGZQNU1valVJU2RHRXlnOFhHbS1Dd05McU1HWnNSNEtzLThHdEJKRG1tdFJMQTdNVmJiUU9EZmdtdFgza1laaXlQSF81Z1ZJOW9oZGJFR0JNcDE5ck1BX3dzU0JzZ2ctZzlMMU5Ob05nMXk0Tlp5T3RlbEVaUkd5dDRldm96UkRTUldSSUotaVdSZWxqdWJaSWczdnRIVFlRZGI2N1ZaN0RocEZz?oc=5",
+      "source": "Business Standard"
      }
     ]
    },
@@ -3032,7 +3018,7 @@
    "raw_pct_change": 5.0,
    "corporate_action": null,
    "why": {
-    "headline": "Operations, reported by Scanx",
+    "headline": "General Updates disclosed to the exchange",
     "confidence": "high",
     "evidence": [
      {
@@ -3048,13 +3034,6 @@
       "detail": "Rbz Jewellers Limited has informed the Exchange regarding a press release dated September 24, 2026, titled \"Press release on opening of new showroom of Company at Surat. \".",
       "url": "https://nsearchives.nseindia.com/corporate/RBZ_24092026193231_SignedReg30PressRelease24092026.pdf",
       "source": "24 Sep 19:32"
-     },
-     {
-      "tier": "news",
-      "kind": "operations",
-      "detail": "RBZ Jewellers to hold media interaction for Surat showroom launch",
-      "url": "https://news.google.com/rss/articles/CBMitgFBVV95cUxPMV9CcEN6dWVNSUdQbjMwelI5cHVweURHZDFWNGp2YTREY2plTUlKaW1KU2k1Zi0tTkZnaG5UU3dOUHAzYnpUNzhjTmV1ejczeVpGdDZnWXUzUV92Qy1pbE9FVnduV3o3UmZ1UmhleVNHM2xLR1lTZEd4SlA0eUlNLVJzS3ZsSFlSRE5rX3J1U3RhbVZ2dGdaMV84c1BNOTg0Tzd4ZTBFYWgwdlJLbVpJWGwxeUNzZw?oc=5",
-      "source": "Scanx"
      }
     ]
    },
@@ -3422,8 +3401,8 @@
      {
       "tier": "news",
       "kind": "results",
-      "detail": "Spectraa Technology Solutions Q2 Results",
-      "url": "https://news.google.com/rss/articles/CBMimgFBVV95cUxNMS14T1doY2R0cndPeHNDWE5CRU80WHp1bGdEMnlMa0VqNFVaZlViZE56eU5wakwtSmdianNKZl9xQXBtSGUtUmRwUE5xZlV5ZjNwQlBxelhzdXZmbVVFLUd0c19wU0ZMZURhUi1aNkpBcWhHZkQxZFpDV0dDbEFoUUxOckhPSnFNNndKQ3I5TDI5UEcxZFB3TDhR?oc=5",
+      "detail": "Spectraa Technology Solutions Q1 Results",
+      "url": "https://news.google.com/rss/articles/CBMimgFBVV95cUxPeW03ZGNIRkxTbDE1aEJWYzVKVmg1YmpMaHRxR19pb0lnNmJwME1CU2xBVmxIdXdTWFpIb2ItclM2U2tYck9tMHhnMGxfTjBCUENxQm5lQzQ3cFNUREpMdk96TDJwaGIxNThOWWJhdzBKZTFxMjEzRm8zR01vV1M5eU9xakFEU2ZVWHlrcVl0bUJPYzdWUTJjWjl3?oc=5",
       "source": "Mint"
      },
      {
@@ -3701,9 +3680,17 @@
    "raw_pct_change": 4.98,
    "corporate_action": null,
    "why": {
-    "headline": "No disclosed reason",
-    "confidence": "none",
-    "evidence": []
+    "headline": "Fundraise Or Deal (Economic Times)",
+    "confidence": "medium",
+    "evidence": [
+     {
+      "tier": "news",
+      "kind": "fundraise or deal",
+      "detail": "Metalic Technoforge Ltd. IPO",
+      "url": "https://news.google.com/rss/articles/CBMikAFBVV95cUxQckp2aGpJeFBwWERFUFZlU1hpYnQ2aWhtOUFydGRQNTItY2RIN0ZUaHAzT3NXdDM4OUVvczVZN2IxNXlTeVEtVXN3NnlyLThIZmIwbThFMDZpVHZ2cmdob01ybFpWZkhoUXMzdTlVaTYzYlVLNjBRM09LLXB1LXoxdllBemo5LThLRDBmR2w3SGw?oc=5",
+      "source": "Economic Times"
+     }
+    ]
    },
    "news_checked": true
   },
@@ -4690,7 +4677,7 @@
    "raw_pct_change": 4.69,
    "corporate_action": null,
    "why": {
-    "headline": "Investor Meeting, reported by Business Upturn",
+    "headline": "Investor Meeting, reported by Sahi",
     "confidence": "high",
     "evidence": [
      {
@@ -4709,10 +4696,17 @@
      },
      {
       "tier": "news",
+      "kind": "operations",
+      "detail": "Garware Hi-Tech Partners With Lubrizol, Investing ₹118 Crore To Expand PPF Capacity",
+      "url": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxPOWY3MlA5dVU2Z2ZET2xDTHI0NS1xRHMwckdxR0tIOG54S2NmaVVTWllYWlQ3aGtabDJpdWZrQUJ4ZnFUNkNrZUdKbS1qQjBmckpDVDkzYVRYVTFlVWdib05KcEpCXzAzR1lQSjdEM2dwcGdfVU1lcFpZUnlNODNyYUJGNGhudUdRU3R0WnJ3ZmIwUG1zSWRTa3B0aldnSlhHeWxQbWFhcVFBQ2c?oc=5",
+      "source": "Sahi"
+     },
+     {
+      "tier": "news",
       "kind": "results",
-      "detail": "Garware Hi-Tech Films, Lubrizol sign TPU film MoU; ₹118 crore investment to support PPF capacity and margins",
-      "url": "https://news.google.com/rss/articles/CBMiggJBVV95cUxQMWZxZ0hPTDU2cndKZDlMdEdTNXJLMHZnX3Y3YnJmZWdQS1VEZW82OVE2N01zOVJtMmJtLUhGcU91VFU2Y2RadFJKRnlYdWtGT2s5d3VtOFNGQmR4MXhidzVORnpkWUFxYWVzV1pTUllSbHZ1V1NINnFxdXhCNTNRb2M1TFl6c3EzZFNxakVBMXUzRW9iTkJDUllpWFZGVFRnVS1ITlFuMmFmZ3lwTFpaamF5R21sMERxajN2czdwV3dTZmVXNzBZQ0xSaGtzT1p1V2VYVHg0VVFlX2laVXZEUnZYX0Jmb0pmWUtDUmY0N013STdkek5SVzhpNDRtdnpZUEE?oc=5",
-      "source": "Business Upturn"
+      "detail": "Garware Hi-Tech Films Q1FY27 Results: Net profit up 60% to ₹133 crore",
+      "url": "https://news.google.com/rss/articles/CBMivAFBVV95cUxPanZrakFKN3F4dkFJUmlrNGtUWVBldVZPcU5hdV9IY1k1a1Q4dVJib0RNdUZsX2ZQMkJoLWxFdUNEeG9OWlVfOW10UVhocTlmZ04wUTN4NmxXZXFkeHFVeEJ0OS1UNUhuX0VUeE8tVW5aT3U0SzU0ODFnck5wVE5vUXZ6YjlJQlUzQ0RJaDQxSk5DX2l2NDlvQWgyUGFBcXNxYUlwWVAxaFg2T0RFS0tSNy1vOTJwSzRQMmxpSQ?oc=5",
+      "source": "Scanx"
      }
     ]
    },
@@ -5066,17 +5060,9 @@
    "raw_pct_change": 4.51,
    "corporate_action": null,
    "why": {
-    "headline": "Results (Economic Times)",
-    "confidence": "medium",
-    "evidence": [
-     {
-      "tier": "news",
-      "kind": "results",
-      "detail": "Sambandam Spin Nine Monthly Results, Nine Monthly Earnings for Sambandam Spin",
-      "url": "https://news.google.com/rss/articles/CBMinwFBVV95cUxOQndEbU41RlE2OG9SU1p3WkwzY1NFSW5mZHBEMjNsTjZFNm8yaTBxQ1d4UlM0b1dWOGdDc19TZy1MNmZwR1hNY1g1aTF1Ym1uU05NTmNlX1B2X0VuUGJhekNEcHZmM2d1M19MUmhFWDIySFdWOTR3OWhkT183NUxYdnhzS0NPVlhUenJxTXRWUzN6TWh6clBXMWFRbGZ6MVk?oc=5",
-      "source": "Economic Times"
-     }
-    ]
+    "headline": "No disclosed reason",
+    "confidence": "none",
+    "evidence": []
    },
    "news_checked": true
   },
@@ -5376,16 +5362,16 @@
      {
       "tier": "news",
       "kind": "order win",
-      "detail": "Vascon Engineering bags order worth ₹660 crore from Qualcomm",
-      "url": "https://news.google.com/rss/articles/CBMizgFBVV95cUxPb3dKRm9GZjF2WEMzY2VaUXg0czBfWmI4QS1uN1ptSHRIUE55VjVVY2hYb2V4OUZPa2ZKaEZ3aGFyTlpKQ2pITUFsZno4YjNKcEJLRWVCVkR1eUpRU2gtV1VpRjdpdWZSVEhrYjNvVGFfZG5Dbmx4d1BqcHJVcGFrbmZHZ3RaTXg0THYtUE4tcFk4Qm93c2x1a05pYUwyTV8yX0x0Ymp2dGZnRWI2WmZZNjNKQkFuQW1CX29xb0toWnNfd29rZTFsQ25YZVVXQdIB1AFBVV95cUxOUzJnSlZPQmFOWW1MaUh0b2NSTFVrWVdzTmRHU0k2b0hhQ3VEUVBxLXQxUmdxMXdRcHg3aTlpNDY3UlJUSTVNMWtORnRkN1NHeTY3bi1OZms2Q1o0X3pEYm1iMEZVMi1pQkRic1NXSVl5bWpQcE5oYXEyR0lRZThHYlJqT19lR2hmb3hLZms4R2x3STlpemhYOTNxbk0xRXFQRjBIOFFqREdSNFAzbHBuMGdidV91bmFGbTlPQXpiNGZWZ21pN05GemljTFJhYkl2X3hjcw?oc=5",
-      "source": "Hindu BusinessLine"
+      "detail": "Vascon Engineering receives order worth ₹660 crore from Qualcomm India",
+      "url": "https://news.google.com/rss/articles/CBMi1AFBVV95cUxOaEh6ajduOTNJa0ZNOUtzS3NKeFdmSlc5VVV0eEpocTlVRkZPdHgtdmdXLTRBT2Jrb1p3eTVBZFlWVXVnU2lRNkstTjk4TTlSNkJCb1pLRGROcWVka1hOSXVzTDU4MXN4aG56S25nVERmOUdsTWxzaS12blNxdkFMY3VnM1lVLU5BZlNoejVTbVM1NmU2TW9wUjNCbjItT2s2Ym1QRU93OS1DVTdIV0Fqb1B6RWtlVHdmOFQ1NjJrYW9SMXQtOGhaTXU4S01fT0w4MWdCadIB2gFBVV95cUxPdXlSQjRsQjcyUUZHR1RWdm5sMVVPX2V6RGZBTmtReHluTnBQeGYxajJfX2xTaEdOcEJVc2E2LXkzeDdXbDAtZkdpUVhHeFcxdEFuY3M4OExyTDNqYUFzeTdZZ1JWTUdnTGtGZF9fdlhheDltcE42U3doc0F3U21xTjVFMGh5dWNsMFVwN25VUzRFWlhzanlPZFpLaWEzS0E1dzBxUEtIVWhTLVdnbTMwSjVHazlFeHpIa0t1M3RvSWdxZnV6WVRoM1FLOTJyMENtUUVQOVdJc01hdw?oc=5",
+      "source": "Business Standard"
      },
      {
       "tier": "news",
       "kind": "order win",
-      "detail": "Vascon Engineers gains on securing work contract worth Rs 661 crore from Qualcomm India",
-      "url": "https://news.google.com/rss/articles/CBMijgJBVV95cUxNTTRucHFRTlRKRUNXak5lRDR3dUF5dlA0Q010enFZSUhIY2N6bUg2bExVaXhKb29FVGthV0sydmJxOUdFOGliSm9DMGFldWJKMmpyOEhVOE5kZnRJNlU2cEp5VmZ1Mm9EMFF1Szl6NnBRNWl3TFozR1FGTm5NSmdYQjI1azFvZzg2OGw3a25wT2F4emlrSkwtMFJfbzFWZjlWTWc1YzJkcTQyc1dGdUpiXzl3QVZHOUQ0d09KTzVMZVZzS2F4VnFUcU5STlJ3R2k0R3RRQlJyUHBaT3dxck4wNVJ0N3BwLWt1LVJQOGYwUGV0TURwR2RCU3BpNEgtWXBiM0lBZEVoaEhXQWVZVFHSAY4CQVVfeXFMTU00bnBxUU5USkVDV2pOZUQ0d3VBeXZQNENNdHpxWUlISGNjem1INmxMVWl4Sm9vRVRrYVdLMnZicTlHRThpYkpvQzBhZXViSjJqcjhIVThOZGZ0STZVNnBKeVZmdTJvRDBRdUs5ejZwUTVpd0xaM0dRRk5uTUpnWEIyNWsxb2c4NjhsN2tucE9heHppa0pMLTBSX28xVmY5Vk1nNWMyZHE0MnNXRnVKYl85d0FWRzlENHdPSk81TGVWc0theFZxVHFOUk5Sd0dpNEd0UUJSclBwWk93cXJOMDVSdDdwcC1rdS1SUDhmMFBldE1EcEdkQlNwaTRILVlwYjNJQWRFaGhIV0FlWVRR?oc=5",
-      "source": "Business Standard"
+      "detail": "Vascon Engineering bags order worth ₹660 crore from Qualcomm",
+      "url": "https://news.google.com/rss/articles/CBMizgFBVV95cUxPb3dKRm9GZjF2WEMzY2VaUXg0czBfWmI4QS1uN1ptSHRIUE55VjVVY2hYb2V4OUZPa2ZKaEZ3aGFyTlpKQ2pITUFsZno4YjNKcEJLRWVCVkR1eUpRU2gtV1VpRjdpdWZSVEhrYjNvVGFfZG5Dbmx4d1BqcHJVcGFrbmZHZ3RaTXg0THYtUE4tcFk4Qm93c2x1a05pYUwyTV8yX0x0Ymp2dGZnRWI2WmZZNjNKQkFuQW1CX29xb0toWnNfd29rZTFsQ25YZVVXQdIB1AFBVV95cUxOUzJnSlZPQmFOWW1MaUh0b2NSTFVrWVdzTmRHU0k2b0hhQ3VEUVBxLXQxUmdxMXdRcHg3aTlpNDY3UlJUSTVNMWtORnRkN1NHeTY3bi1OZms2Q1o0X3pEYm1iMEZVMi1pQkRic1NXSVl5bWpQcE5oYXEyR0lRZThHYlJqT19lR2hmb3hLZms4R2x3STlpemhYOTNxbk0xRXFQRjBIOFFqREdSNFAzbHBuMGdidV91bmFGbTlPQXpiNGZWZ21pN05GemljTFJhYkl2X3hjcw?oc=5",
+      "source": "Hindu BusinessLine"
      }
     ]
    },
@@ -5489,9 +5475,9 @@
      {
       "tier": "news",
       "kind": "management change",
-      "detail": "Sonam Wangchuk fears encounter, seeks Amit Shah's resignation over Ladakh deaths",
-      "url": "https://news.google.com/rss/articles/CBMixgFBVV95cUxOWXhJeWhvR0oxSnVhNF9yV3pQajY3X0F4dDFqQkxTU2xKN1Z6M3FIUVFaVzdHbThXcXM4RDNvOThzRXYxbWdPYXNoVC1TOENZNlMwU09mTnFGYS1OWUttYno3anVvQW1xTWoyUkdVRGY4MGpJZHFHS1ZzS3hUU0NHejlTVTRUS1JJM3VwYmpjdlV3S3pXVy05T3N4RnFVWkVBRkpwdlBFbkVFYlVJUXNGREV1M1VrMkgwRTRCNUN2bWxiOWdqS1HSAcsBQVVfeXFMTnBKc0o1aE1IQkF4ejU0UlBfeGRiT2tkMVN3Uy1xcFpGQmh5a3pZeWMxa21faXhOd0thaTZHQ3UwVzNkcjl0MG4wcHJtLWhGYkVjZGxzYlRSbHpBQ09qbU1idFAyM2o5NmdfcHdlQThBdmUyYUFrdERsMTd6X0lDbmhPTDMtRVdTc2JCd1VaZDdlVkt0Y3pDOF9YalZfTEk5N1NPTUZEVDlCMkdXWUxfQWNlUlBYZlFyUjRnM3hkalN2cVdoT293VGhOdTA?oc=5",
-      "source": "India Today"
+      "detail": "‘Amit Shah must resign’: Sonam Wangchuk on Ladakh violence, one year on",
+      "url": "https://news.google.com/rss/articles/CBMitAFBVV95cUxPOE5WTWZNdXNHOEVYOHhPUVVaWnRtaV9lN3FCb2p3LUhhMFl2X2I0dTdxRUVBUE8yRlJRQzQ2Y1JYWEwtcllIWl81V2tvakd1TjRTRGhKaVFkV0dET094c0VFOUFwcExRR25OMURiUFBhckZzdHVsX25pRS1Zd1R6UTJodmFhNXg5eDNzQ3NyVFRXZC0yWEp3dHhFQzloQWNnRUJzZzNfbUJvN3g3cVc2V3hrWmfSAbsBQVVfeXFMTTRPdXhyX1hPYWVnM2Z1ZEtkeHpHUHVvYm15d2hVNmg2OVhOb1J5Q1ppLUV0N1IzR0E2Qm1pWFNWRkdfUVZhYVZTMG8xa2pQNGcwTmI5cmZHMXI3NUdvSkNwck1nSll5UmQ3cVNqTlExeDFFVzVDVHFBLTJIbmpqclNIYUo3ZklJVG1RRHBTdUR5U0J0cnJUN0h1WlJKYXA1QkVMcmZiQ3VWZkRMUmhvb1RtMjBvMFJib19oTQ?oc=5",
+      "source": "Indian Express"
      }
     ]
    },
@@ -6511,17 +6497,17 @@
      },
      {
       "tier": "news",
-      "kind": "regulatory or legal",
-      "detail": "Fortis loses Supreme Court challenge against forensic audit in Daiichi-Singh brothers case",
-      "url": "https://news.google.com/rss/articles/CBMi4AFBVV95cUxQUGN3UkgwVnVfNENNbm5lNGRlUUhnQVdlcnlUakpHTkVlMXhVZjM0RURNM3JLTXNmNXVJOEE1a3YtTTFaOTBic19ac1lYQ1ZvWkkzZDZPa25SakphcE1pdDJrMGNGb1R6eFJnRjZlelhUaGJnRWVTLVh2SnZERFZ5T2l0NFJGTVo5aWRUOFNLVDBnb01vNGpOUjVJZVVrazJjZ1dSUk1tdG9OVWNfOXVPREJ4SktCbFc5SDV5Q21rVVFXOFFxTktQQUdPbXI4d1c0U093ZjhzWlFCbWZUOTR5MdIB5gFBVV95cUxPWWhzczhCMDFQYlB3OElXaHZ3NmIwXzdMeEo3YVc0a3hROUFJbkM0dXYwOE9zM1hrUUpMa1pabXppQVFEd0tYU3ljeFctV3JsQ3FkLVNxeG9BRXNGWFpZUjdPcllFbWZjQ1c1N1JSbV9wZm9aeTREOXdhQzVuY2VVYVFXOC1IMEFaZFdRdDZvSFJEbWNrT3VpLThScnhhdXRrNDVacWU2UEN0V2xXRXZpNmM5eF8xVklFU1FwV0pDRk1CRUZlOHp2NHJWX2dwekk5VEdlSnZZVlk5enVFRlZUV1JWdU5fZw?oc=5",
-      "source": "Mint"
-     },
-     {
-      "tier": "news",
       "kind": "order win",
       "detail": "Fortis shareholders flag legal cloud after Delhi court order",
       "url": "https://news.google.com/rss/articles/CBMiygFBVV95cUxPM1FnaTlnWWZ2ekZFTkItY1Q1Q3ZQOEZINlBRYl95RDFqUk1iVWN5WXc4V09XYXFadi1TUVFzSEEyS3NWMU1FSV9ab2lCbUNYVEMtUmc1VUhZd2Y4LWJiMmU1cjVYd0Vxa3NCOGdiQUZ5WDJSV3Y0OW9Hd2hTZ1g3bG9Gb2F4a1BlS2dTY2FjSVNHa2VaVXBvZnAzb2tib0NJbjhvaGJhZ1l1bUZobmNhMUk2WHZ3NUxFdEYtTUhtcHM0U3FoNTVPWWpn0gHOAUFVX3lxTE9KUlVnMXVkUzdKTmJJcW5Sb09fUUN5eDM5eTVpRVpZME5RZFNsTFRqVGExRUlnTVQyWTZZaEhLTlZUY1g1LWtsQ0hzWUpGS25qRnFvM0RneGtJQWwtMHYwTEdIckZsZ2gtNjJ6TVZCc3lDRWxBdUIyVG5uX1VVUnBmcWd2dHRYV0k5MWlRaDNjYnhuZ1VHWnhPLWxHc0ZFZ2VsVUlNdjk3b2Exa2swUmtBdnUxVmhpNHEtejRUdjZlV0VaWDBwRkhqbTFMcE1B?oc=5",
       "source": "Economic Times"
+     },
+     {
+      "tier": "news",
+      "kind": "regulatory or legal",
+      "detail": "Fortis loses Supreme Court challenge against forensic audit in Daiichi-Singh brothers case",
+      "url": "https://news.google.com/rss/articles/CBMi4AFBVV95cUxQUGN3UkgwVnVfNENNbm5lNGRlUUhnQVdlcnlUakpHTkVlMXhVZjM0RURNM3JLTXNmNXVJOEE1a3YtTTFaOTBic19ac1lYQ1ZvWkkzZDZPa25SakphcE1pdDJrMGNGb1R6eFJnRjZlelhUaGJnRWVTLVh2SnZERFZ5T2l0NFJGTVo5aWRUOFNLVDBnb01vNGpOUjVJZVVrazJjZ1dSUk1tdG9OVWNfOXVPREJ4SktCbFc5SDV5Q21rVVFXOFFxTktQQUdPbXI4d1c0U093ZjhzWlFCbWZUOTR5MdIB5gFBVV95cUxPWWhzczhCMDFQYlB3OElXaHZ3NmIwXzdMeEo3YVc0a3hROUFJbkM0dXYwOE9zM1hrUUpMa1pabXppQVFEd0tYU3ljeFctV3JsQ3FkLVNxeG9BRXNGWFpZUjdPcllFbWZjQ1c1N1JSbV9wZm9aeTREOXdhQzVuY2VVYVFXOC1IMEFaZFdRdDZvSFJEbWNrT3VpLThScnhhdXRrNDVacWU2UEN0V2xXRXZpNmM5eF8xVklFU1FwV0pDRk1CRUZlOHp2NHJWX2dwekk5VEdlSnZZVlk5enVFRlZUV1JWdU5fZw?oc=5",
+      "source": "Mint"
      }
     ]
    },
@@ -7463,7 +7449,7 @@
       "tier": "news",
       "kind": "M&A or stake",
       "detail": "Waaree Energies approves Indosolar merger; shareholders to get 1 share for every 11",
-      "url": "https://news.google.com/rss/articles/CBMi4AFBVV95cUxNOW1jS1AxV0JEckRSOUxkcWpuRExhQXRmR25KNUotNkVuazVYZzFEWkJvVUlRUDdsN2l0Z050MWhUSVhybmhrWlZJVUVTVFk0TG1aYzB4WExCcnNuenZwOGFCZVRYNWIxME5mRGYwWlZzNlk4V3VraEt3N3FCY0R1am1Ycy1mR3EwVl9vMnM0NHNOck8yVFFveTluRERGYWFsSV9VNF96OGJjWGFpTjMyNWR5YThKa25Ta0dLWFc0QkQ1cjZ0MHlZMVZnQmx0MkNzck9ELXdfTHFEdEo1aXFLS9IB4AFBVV95cUxNOW1jS1AxV0JEckRSOUxkcWpuRExhQXRmR25KNUotNkVuazVYZzFEWkJvVUlRUDdsN2l0Z050MWhUSVhybmhrWlZJVUVTVFk0TG1aYzB4WExCcnNuenZwOGFCZVRYNWIxME5mRGYwWlZzNlk4V3VraEt3N3FCY0R1am1Ycy1mR3EwVl9vMnM0NHNOck8yVFFveTluRERGYWFsSV9VNF96OGJjWGFpTjMyNWR5YThKa25Ta0dLWFc0QkQ1cjZ0MHlZMVZnQmx0MkNzck9ELXdfTHFEdEo1aXFLSw?oc=5",
+      "url": "https://news.google.com/rss/articles/CBMi2gFBVV95cUxOcjRtR3ZtT2tjemxPVzAwWURidk5yWURoQVloUVRKRzFEZDNJNkJ4QVFmaHRCLXJVUDVRZ3VRRlhjYzljeDdFaGZ1ZkhuTGRrM3BMQmFKX1ZHTnJneVFoUDhvaUN2NWhTMXB3UDJ2SHdUT1FzMnBCNnVIbGJSUEFqbWJLUEJPczdGeUc2cDc3cWM5bzNnS2lwSVY1Y096OGV5M3hIanVQUG13Zl9wVUpxSG04aU5WYndVMXhiaThUeWdBc3FUem92eXMtVlBoYjNPWVk5eEsyTFlhZ9IB4AFBVV95cUxNOW1jS1AxV0JEckRSOUxkcWpuRExhQXRmR25KNUotNkVuazVYZzFEWkJvVUlRUDdsN2l0Z050MWhUSVhybmhrWlZJVUVTVFk0TG1aYzB4WExCcnNuenZwOGFCZVRYNWIxME5mRGYwWlZzNlk4V3VraEt3N3FCY0R1am1Ycy1mR3EwVl9vMnM0NHNOck8yVFFveTluRERGYWFsSV9VNF96OGJjWGFpTjMyNWR5YThKa25Ta0dLWFc0QkQ1cjZ0MHlZMVZnQmx0MkNzck9ELXdfTHFEdEo1aXFLSw?oc=5",
       "source": "Financial Express"
      },
      {
@@ -7670,16 +7656,16 @@
      {
       "tier": "news",
       "kind": "results",
-      "detail": "ESDS Software share price hits 5% lower circuit after Q1 results; stock still up 310% from IPO price - Should you buy?",
-      "url": "https://news.google.com/rss/articles/CBMijwJBVV95cUxOT0lPSkowS0EyN1EycUlQXzZtR1Q3MFZacVRkTlRPcTJvV2xMR2Q2ZHFWYXJOQnlyc3FpRzVFM0lES21PX3hZb0RBTTRIcVBoRVEwTnV0RzFIWTZON1hJMjlCRXZfcnRKRU82UVNWdExZYW0ycDlzU2JZWWxMM3kwUk9QM1hhRURYbzBSb2I1aFhFZm9PdGMtMDNsRXktR2I1OE9qd3Z2LUdnQ2hTTEplZTBHWHRuRmtVM0NjNkNnMDlBQjdhcEJfVU5NQVQxRFp3QkJHaXFlcDlQZnREcUFHMWdSMDk2VkZFeVZ3N1RBVjEtcWZ6cDlfX0V6amVKR2pfaVVqa1hlOG8zMWhMNEdz0gGUAkFVX3lxTFBZbnZKU01wMDRBTDJ5eEFPWk4tTlN1ZkItbko4SklNOEs4bXdpRERlSWZ1VmhrYk5ZdFBQaW9GLVplVDFtMkJfbmdtOWdWVU1EcUtUTWNMTG1sWHVHaUF1alpFZGR5MWtwYTU1R2g5X3NZOXQwQXdjcXdUY3Z5OHFReC1qbjJLcFpUcERoM0JaNlBvUmd6STZULVo3TlVVQ1I3QVZjN2dmY1FmYjdZQWtSM0FCYzQxZkRuTW5MLVhFTzZjd0hiREtDQkQ2dV8xc2NCbHZDc1V1SmR4Q25WTG5oWGZRSjEwS1d5b0hJR1JCaDE3NXNaQ29ybi1jeWRTSnpDQlNHdFQ3S0JSSDg2aFlGOE8yYw?oc=5",
-      "source": "Mint"
+      "detail": "ESDS shares hit 5% lower circuit as Q1 PAT halves; up 310% from IPO price",
+      "url": "https://news.google.com/rss/articles/CBMi2gFBVV95cUxOQ1BoM1lKeFhfZE5KSWVyTS1Mc1hSYnFXWHR6S19Qcjh4Mmp0WkEyclpIU0w0MWIxN1YtSHR3dWpBbEx2Y2M3NGg5ZWo4M1JSRFBXN29Wa2I0R2ZNaWNjVEo2WTg5U3RQa1R0THhuLXhuWnRmNzVOaGdRNnZ0ZTR0dTJUME1ncXBMbFpobXFTTEF0bGJkZ3hEYW01T1hLTWQ0MWJZMjl3MlNxQWRodUJILWJpYlM1Sm1yYlhDUWx1ckZtVnRyNl9USFAtak1EVjdJQVRXOUZEb0sxUdIB3wFBVV95cUxPNFBNbl9oNWhnaXI0dVVOcFRWX3FOaHQ1LTRpRHBvNVRBdU5aLXJIR2NzWEdxR3lRR3ZTSHRtN1pSaTNIWTRpaDJMM1VpbXo4bHFPa2NoeXZzSjB4NktXWl94X2kzSVlfR3B3ejRUM0x2aG16c21PTkU1WmVsUGRWQUNhREVVREFBcmhfb05qTkRsS0JEZFpKaVlTYmUxRnJxUlo0Qkd5UDBLTVJOUEtkSHB0eUNTbFFaU0t5YWZPUVg4MzBoblhfRUdaTWtnWHdZV3loSzdUR3U5TWd5dzBr?oc=5",
+      "source": "Business Standard"
      },
      {
       "tier": "news",
       "kind": "results",
-      "detail": "ESDS shares hit 5% lower circuit as Q1 PAT halves; up 310% from IPO price",
-      "url": "https://news.google.com/rss/articles/CBMi2gFBVV95cUxOQ1BoM1lKeFhfZE5KSWVyTS1Mc1hSYnFXWHR6S19Qcjh4Mmp0WkEyclpIU0w0MWIxN1YtSHR3dWpBbEx2Y2M3NGg5ZWo4M1JSRFBXN29Wa2I0R2ZNaWNjVEo2WTg5U3RQa1R0THhuLXhuWnRmNzVOaGdRNnZ0ZTR0dTJUME1ncXBMbFpobXFTTEF0bGJkZ3hEYW01T1hLTWQ0MWJZMjl3MlNxQWRodUJILWJpYlM1Sm1yYlhDUWx1ckZtVnRyNl9USFAtak1EVjdJQVRXOUZEb0sxUdIB3wFBVV95cUxPNFBNbl9oNWhnaXI0dVVOcFRWX3FOaHQ1LTRpRHBvNVRBdU5aLXJIR2NzWEdxR3lRR3ZTSHRtN1pSaTNIWTRpaDJMM1VpbXo4bHFPa2NoeXZzSjB4NktXWl94X2kzSVlfR3B3ejRUM0x2aG16c21PTkU1WmVsUGRWQUNhREVVREFBcmhfb05qTkRsS0JEZFpKaVlTYmUxRnJxUlo0Qkd5UDBLTVJOUEtkSHB0eUNTbFFaU0t5YWZPUVg4MzBoblhfRUdaTWtnWHdZV3loSzdUR3U5TWd5dzBr?oc=5",
-      "source": "Business Standard"
+      "detail": "ESDS Software share price hits 5% lower circuit after Q1 results; stock still up 310% from IPO price - Should you buy?",
+      "url": "https://news.google.com/rss/articles/CBMijwJBVV95cUxOT0lPSkowS0EyN1EycUlQXzZtR1Q3MFZacVRkTlRPcTJvV2xMR2Q2ZHFWYXJOQnlyc3FpRzVFM0lES21PX3hZb0RBTTRIcVBoRVEwTnV0RzFIWTZON1hJMjlCRXZfcnRKRU82UVNWdExZYW0ycDlzU2JZWWxMM3kwUk9QM1hhRURYbzBSb2I1aFhFZm9PdGMtMDNsRXktR2I1OE9qd3Z2LUdnQ2hTTEplZTBHWHRuRmtVM0NjNkNnMDlBQjdhcEJfVU5NQVQxRFp3QkJHaXFlcDlQZnREcUFHMWdSMDk2VkZFeVZ3N1RBVjEtcWZ6cDlfX0V6amVKR2pfaVVqa1hlOG8zMWhMNEdz0gGUAkFVX3lxTFBZbnZKU01wMDRBTDJ5eEFPWk4tTlN1ZkItbko4SklNOEs4bXdpRERlSWZ1VmhrYk5ZdFBQaW9GLVplVDFtMkJfbmdtOWdWVU1EcUtUTWNMTG1sWHVHaUF1alpFZGR5MWtwYTU1R2g5X3NZOXQwQXdjcXdUY3Z5OHFReC1qbjJLcFpUcERoM0JaNlBvUmd6STZULVo3TlVVQ1I3QVZjN2dmY1FmYjdZQWtSM0FCYzQxZkRuTW5MLVhFTzZjd0hiREtDQkQ2dV8xc2NCbHZDc1V1SmR4Q25WTG5oWGZRSjEwS1d5b0hJR1JCaDE3NXNaQ29ybi1jeWRTSnpDQlNHdFQ3S0JSSDg2aFlGOE8yYw?oc=5",
+      "source": "Mint"
      }
     ]
    },
@@ -8163,17 +8149,17 @@
      },
      {
       "tier": "news",
-      "kind": "fundraise or deal",
-      "detail": "Meesho shares worth ₹900 cr change hands in SoftBank arm's mega block deal",
-      "url": "https://news.google.com/rss/articles/CBMi1wFBVV95cUxPMXNXbnRqYnIyOGRyLW9MU2VTS2FySmE0c0hWTjRzS2hlcm1SenhqZTVURnc3ck9qa3ZWVmVRM3RwaTA5MG1mbF9HeXR3M1BEdm1QYnZaTGl3VTVlM2FJdlhUNlpZVFdBRHdFZUREV0QtT0ZLaTVyTjBkTmNwSEQ5REs0SE5JRE5GQ0pIOFRJY3RJM2J3aUlxRFZ4VGc0MXhHY2VwTzVXNUVwZWo5Y1NpZWNWS3FlRElFS09YZ3BjakZmS3pSdHNsTUlkVjNNYjlzYmFvWGxNY9IB3AFBVV95cUxQR2lRdXFwaElWci1mX29yQW81NGdrQjZrcVhvamdYRFlWdFBKRWE2c21pTWVXZVRmaHBjM3k3WURCdU5WdUM3QmtjM2JfbVBXVUhQd0FzckhDcTRUQkNuRUFsR0tNaTJZRVdKWm5TMjJmQ0FLWlQ3Yk02dkMzRXJVNm81Rkw4VzlZT09iM1ZHemhEbjJjSkJFUzNTZVJ5a0NUS05WdkRyQk1GeS1xNW5QT1NVdEZaZmZJY2ZtS3htV19nLW9BamU5MDQ0NUd2aUNIcTRVUFJZYmVBOHJC?oc=5",
-      "source": "Business Standard"
-     },
-     {
-      "tier": "news",
       "kind": "results",
       "detail": "Advertising margin holds the key to Meesho’s profitability",
       "url": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxPdDdmMFBVMGN3Y3JnVUk2WVZOUl9tOWF0UWo5eHV3NVpMWVJPNDEzV3BPZDNjYkFjakwwb1NwRElOM0pCeC05VFhBZlFYdmJaNnVlU2liNVhVSkNFZXNxZXZ3aFFZM05QSmU4U1dMeENsS0x1QldJckpFWGFpcHBqY3BYMklsc0tnMzVsREx6ZEFpZUNOVndkT2FWNU52bENnSFExZUFfMlhNUGVwVTdtOWpGQ2thWk9NZFlEbVRMV1BWQlXSAcgBQVVfeXFMTmFWeVRfMlVUYWFxRnZuT3oxSTA1dkZReFFveHEzVHFfTWM3MVFKUlVVbFpBU3dWTU8yTjVGZHRzaFVSMVRlaFM1NXlrN3MyMFFMdFd2M0VUWGNvOF9CU1JxcFRxbTlXdnNwaTlCODRrVnQ3Rnk4WnlxVEJpZmlmY0NtVzc5ZVdqUE51VUJEdlFvaXFpQ1ZCc2RZWGJzV1k3cU16c3ZmbzFDbFM3b0ZrcUhWOEpYdEpVc1o2YTNka0JEQTk1anRMczU?oc=5",
       "source": "Mint"
+     },
+     {
+      "tier": "news",
+      "kind": "broker action",
+      "detail": "Meesho shares fall 6% as Nomura warns of premium valuation, initiates 'Reduce' with Rs 167 target price",
+      "url": "https://news.google.com/rss/articles/CBMi6AFBVV95cUxPOHN2bTdwcVFHSVF3WHJ2ak5JUnhvTUxSQ2dZNlpaNHhTWFJUUFk3clZQUzVCMlhBXzV1NnBZclYzaUlEY2p6VVRYa0M1RFNqQy1Md1VkN1AyOUV3ejhSU290bkVoOUNYa0JkYnpoNlI2Z1RVOU80b3l3SVFraWtuWGg4VlBnQ05jTzNhcWloZXJPZTY4eFdnZmhaZUExSkxjNHo4T04wcWUwc0ZiLUt3TG9PUEVaVHQ3Nk4xM2RzSUpPcDN6dktMYWNBTk9GZjlRLVNrNC1mWnpCQXg3Wnh6R1ZKRHo1U29F0gHuAUFVX3lxTE1iLWMxR0EtaU9WQzNRbkhfNGczSFM4aHRYTDJzZmZPUno2NHlMR1lEbG80dXdNQ3NKY3pZeFUwVU5leEdNZ2lZX3YwZ21jbzY4NUlDcWlFNlZ1Mk1QbzhlcGthb0JjajlHNExyWjFKb0lCUTNGVXpoX0NJTVBwTzhPVDlRTVgxdV9MZ0hoWFNBYjRWOTN0Z3ZWbGlBMEx3eUZRSzk1V3p0MXZPNzlSaVpiVkVTZzJTV1liMXRqT29SazZua0R1cUxyZkRIY3M4eTFHQlBnTnRVbWllS1ZyTmZTZ3JfYWp5cWx5N2U5ZXc?oc=5",
+      "source": "Moneycontrol"
      }
     ]
    },
@@ -8481,8 +8467,8 @@
       "tier": "news",
       "kind": "capital action",
       "detail": "Aastha Spintex to allot 4.41 crore bonus shares",
-      "url": "https://news.google.com/rss/articles/CBMi3AFBVV95cUxPdmZadjEyT1VieUVGZFRneE5keXFLTEVPa0pMdGhqWWJ0bmFjQTBvdVJucUN5YVR1N3pJWFFGS0JFdXQ3TDd0ZmNWQzRzcUR6MEZuY3doUktYcnZ5SG1mQ0ZKTkRmUnNjeHE1NjF0dWlqcFloalp1eFlwd0phX3ZwMFQ5TllnbDlaNjkzSVdoMnlBWm5JUVpfWmZRUzJMalFWcEE1U2NneXJDYlhkTmVsSWlpZFRXSUFicWREVExhYjllcldnOGRPOGNSSXF5ZnVFb3BvVm9mY21aeGVq0gHiAUFVX3lxTE1DOVRfSFI0Xzl4TFJzRTQzUHpwdzh0bGp5d21lekhZU2RTdWhvczBIYUZCVVpBdFJjSmdTS1VWRlBBOGt6eVJKenR5Y0pkMWNRUlE3akc4YUJfekNJYVp2MVU3R3BmUllfNklIaTd3ZmZtbkNiZUFSbm1rcGdrWmZJRy1DeTJpTnc3VndkUVp2b1NCcDZmNDlhcmRaSTN2RC1fYloyWUpFUVRsb0xvMi1lcnk4bDI5V3ZReS01cEhucmZfU3prb1N3WlVmQUF5WURlVEd1UjBjM2ZyZXFTWnpoV3c?oc=5",
-      "source": "Economic Times"
+      "url": "https://news.google.com/rss/articles/CBMipwFBVV95cUxNS3ppRHdfM3dNU05LY1Z1WnhLQVV6MnVYbzNJNHdJODBYbUI1RnJpRkd0c3JjNEFyaVQ1NkV1cDFwbGtQTjNSX183WEFYQnBGYlZaNGd0M2JlQzY0MnJ2Z0VoeEZIc2kyelc1bGVHeFlybmF5MEt5X21QVzhjcEU4dHd3Si1rd096Ui14UU5SQ1A2MmtCSDJ2ZXZtc0x2Yi1TNlFYbnI1d9IBrAFBVV95cUxQVFV1am5tODlWQjlDQm0tdEV0Y1dLVGRoU1lyeXBmc0xuM3Y0ZVdyVEx4WUd0bEhwLUI2QTFyS183UDhwTnBLR3BjN2JuR1NUdmRkY19GRWFCLW1DN05LMTVqUjV4UmVBQUxGNXhSRDFtZ2lDdFV4TGktVUxtTE5IM2RJaV9QSkY0Y1J2SUttUkJKVlR5b3l4cW9Nbzk1VldJQVREMzBMRjZ2Y19L?oc=5",
+      "source": "Moneycontrol"
      },
      {
       "tier": "deal",
