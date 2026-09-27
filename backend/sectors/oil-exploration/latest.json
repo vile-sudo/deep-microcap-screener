@@ -1,48 +1,58 @@
 {
- "updated": "2026-09-26T05:30+05:30",
+ "updated": "2026-09-27T05:10+05:30",
  "figures": [
   {
    "label": "Brent crude",
-   "value": "$105.81/bbl",
+   "value": "$104.32/bbl",
    "as_of": "2026-09-25",
-   "note": "-0.74% on the day, on US-Iran talk hopes",
+   "note": "-2.14% ($2.28) on hopes of a phased US-Iran deal to reopen Hormuz",
    "source": {
-    "publisher": "HDFC Sky",
-    "url": "https://hdfcsky.com/news/stock-market-open-report-today-september-25-2026-sensex-nifty-open-in-green-as-iran-talks-progress-crude-slides-asian-stocks-slip"
+    "publisher": "TradingEconomics",
+    "url": "https://tradingeconomics.com/commodity/brent-crude-oil"
    }
   },
   {
-   "label": "WTI crude",
-   "value": "$93.19/bbl",
-   "as_of": "2026-09-25",
-   "note": "-1.54% on the day",
+   "label": "Vessels queued off Hormuz",
+   "value": "313 AIS-visible vessels",
+   "as_of": "2026-09-26",
+   "note": "holding position away from berth in the watch area amid the 7-month closure",
    "source": {
-    "publisher": "HDFC Sky",
-    "url": "https://hdfcsky.com/news/stock-market-open-report-today-september-25-2026-sensex-nifty-open-in-green-as-iran-talks-progress-crude-slides-asian-stocks-slip"
-   }
-  },
-  {
-   "label": "Petrol, national average",
-   "value": "₹111.21/litre",
-   "as_of": "2026-09-25",
-   "note": "unchanged; govt has no proposal to raise pump prices",
-   "source": {
-    "publisher": "Business Today",
-    "url": "https://www.businesstoday.in/india/story/petrol-diesel-prices-today-september-25-check-latest-rates-in-delhi-mumbai-chennai-kolkata-more-557703-2026-09-25"
-   }
-  },
-  {
-   "label": "Welspun Corp global order book",
-   "value": "~$4.7 bn (~₹45,000 cr)",
-   "as_of": "2026-09-25",
-   "note": "record high after new US pipe order",
-   "source": {
-    "publisher": "HDFC Sky",
-    "url": "https://hdfcsky.com/news/welspun-corp-wins-rs-4000-crore-us-pipe-order-shares-rise-3-45-percent"
+    "publisher": "Straits Daily Brief",
+    "url": "https://straits.live/briefs/2026-09-26"
    }
   }
  ],
  "items": [
+  {
+   "date": "2026-09-26",
+   "title": "Trump rejects Iran's 7-day roadmap to reopen the Strait of Hormuz",
+   "text": "President Trump said on 26 September he had rejected Iran's proposal, relayed via Qatar, to reopen the Strait of Hormuz within seven days in return for the US lifting its naval blockade of Iranian ports, waiving oil-sanctions and releasing frozen assets, telling reporters \"I reject their proposal.\" The strait has been effectively closed since 28 February, with Al Jazeera's correspondent calling the roadmap \"dead in the water\" and only a handful of vessels transiting daily versus a normal ~85. The rejection extends the uncertainty India faces on Gulf-transiting crude and LNG cargoes, keeping freight costs and crude prices exposed to renewed spikes; it is a tailwind for realisations at upstream producers ONGC, Oil India, Vedanta and Reliance but prolongs under-recovery pain for state refiners IOC, BPCL and HPCL, whose pump prices remain frozen.",
+   "tone": "watch",
+   "companies": [
+    "ONGC",
+    "OIL",
+    "VOGL",
+    "RELIANCE",
+    "IOC",
+    "BPCL",
+    "HINDPETRO"
+   ],
+   "sources": [
+    {
+     "publisher": "Al Jazeera",
+     "title": "Trump rejects Iran's seven-day roadmap to reopen Strait of Hormuz",
+     "url": "https://www.aljazeera.com/news/2026/9/26/trump-rejects-irans-seven-day-roadmap-to-reopen-strait-of-hormuz",
+     "date": "2026-09-26"
+    },
+    {
+     "publisher": "Straits Daily Brief",
+     "title": "Strait of Hormuz Status: September 26, 2026",
+     "url": "https://straits.live/briefs/2026-09-26",
+     "date": "2026-09-26"
+    }
+   ],
+   "added": "2026-09-27"
+  },
   {
    "date": "2026-09-25",
    "title": "Iran's FM details 7-day Hormuz reopening plan at UN; Brent eases to ~$105-106",
