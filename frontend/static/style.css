@@ -1310,8 +1310,8 @@ body{font-size:15px;color:var(--ink);background:#fff}
    right edge of the screen entirely); overflow-x:auto means it scrolls
    internally instead, so the search box and account controls never move. */
 .nav-tabs{display:flex;align-items:center;gap:4px;margin-left:auto;min-width:0;overflow-x:auto}
-.nav .nav-tabs .side-link{display:inline-flex;align-items:center;gap:7px;width:auto;min-height:38px;margin:0;padding:0 12px;border:0;border-radius:8px;background:none;color:#6b7480;font:inherit;font-size:14px;font-weight:500;white-space:nowrap;cursor:pointer}
-.nav .nav-tabs .side-link svg{width:17px;height:17px;flex:none;fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+.nav .nav-tabs .side-link{display:inline-flex;align-items:center;gap:5px;width:auto;min-height:34px;margin:0;padding:0 9px;border:0;border-radius:8px;background:none;color:#6b7480;font:inherit;font-size:12.5px;font-weight:500;white-space:nowrap;cursor:pointer}
+.nav .nav-tabs .side-link svg{width:14px;height:14px;flex:none;fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
 .nav .nav-tabs .side-link:hover{background:#f7f8fa;color:var(--ink)}
 .nav .nav-tabs .side-link.active{background:var(--tab-on);color:var(--acc-dark);font-weight:600}
 .nav .side-count{margin-left:1px;min-width:0;padding:0 6px;border-radius:999px;background:#eef0f3;color:#3f4652;font-size:11px;font-weight:600;line-height:18px}
@@ -1408,8 +1408,6 @@ td .thm{color:#6b7480}
 body::before{display:none}
 header.nav{display:block;flex-wrap:nowrap;gap:0}
 .nav-search{max-width:440px;min-width:220px}
-.nav .nav-tabs .side-link{padding:0 11px}
-@media (max-width:1280px){ .nav .nav-tabs .side-link svg{display:none} }
 .nav-in{gap:14px}
 .nav-search{max-width:400px}
 .nav-tabs{gap:2px}
