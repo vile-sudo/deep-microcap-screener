@@ -3773,9 +3773,23 @@ async function bpIndices(){
       const tick=p && p.last!=null && it.last!=null && it.last!==p.last ? (it.last>p.last?' tick-up':' tick-dn') : '';
       const tip=`${it.name} · ${live?(j.market_open?'live':'Zerodha, market closed'):'delayed'} · O ${it.open==null?'—':mvNum(it.open)} H ${it.high==null?'—':mvNum(it.high)} L ${it.low==null?'—':mvNum(it.low)} · prev close ${it.prev_close==null?'—':mvNum(it.prev_close)}`;
       return `<span class="bp-ix${tick}" title="${esc(tip)}"><i class="${live&&j.market_open?'live':''}"></i><b>${esc(it.name)}</b><span>${it.last==null?'—':mvNum(it.last)}</span><small class="${(it.change||0)>=0?'up':'dn'}">${it.change_pct==null?'':bpPct(it.change_pct)}</small></span>`;
-    }).join('');
+    }).join('') + bpFiiDiiChips();
   }
   bpSchedule('indices', bpIndices, j && j.source==='zerodha' && j.market_open ? 3000 : 60000);
+}
+/* FII/DII net cash-market flow (app/movers/fii_dii.py, /api/fii-dii) shown as two more chips at the end
+   of the same index bar -- fetched once (this updates once a day, not worth the indices' own live-poll
+   schedule) and cached in BP.fiidii, so every re-render of the bar above (every 3-60s while Market is
+   open) reuses it rather than re-fetching. */
+function bpFiiDiiChips(){
+  if(BP.fiidii===undefined){
+    BP.fiidii=null;   /* fetching: render nothing this pass, not a stale/empty state */
+    fetchJSON('/api/fii-dii').then(j=>{ BP.fiidii=(j.rows&&j.rows[0])||null; bpIndices(); }).catch(()=>{ BP.fiidii=null; });
+    return '';
+  }
+  const r=BP.fiidii; if(!r) return '';
+  const chip=(label,v)=>`<span class="bp-ix" title="${label==='FII'?'Foreign':'Domestic'} institutional net cash-market flow, ${esc(mvDay(r.date))} (NSE, BSE &amp; MSEI combined)"><b>${label}</b><span class="${v>=0?'up':'dn'}">${v>=0?'+':''}${fmt(v,0)} cr</span></span>`;
+  return chip('FII', r.fii_net_cr) + chip('DII', r.dii_net_cr);
 }
 const mvNum=(v,d=2)=>v==null?'—':(+v).toLocaleString('en-IN',{minimumFractionDigits:d,maximumFractionDigits:d});
 
@@ -5343,7 +5357,7 @@ async function scRenderDoc(){
    by hand, so it is as current as those jobs. Picking a tile swaps the panels for that tile's
    company list, as before. */
 const OV_URL={deals:'/api/deals', ann:'/api/announcements', movers:'/api/movers', setups:'/api/market/setups',
-              reports:'/api/reports', ipo:'/api/ipo-reports/calendar', rescal:'/api/results-calendar-in', fiidii:'/api/fii-dii'};
+              reports:'/api/reports', ipo:'/api/ipo-reports/calendar', rescal:'/api/results-calendar-in'};
 const ovByCode = () => { const m={}; DATA.forEach(d=>{ m[d.code]=d; }); return m; };
 const ovDay = iso => iso ? new Date(String(iso).slice(0,10)+'T00:00:00Z').toLocaleDateString('en-IN',{day:'2-digit',month:'short',timeZone:'UTC'}) : '';
 const ovClip = (s,n) => { s=String(s||'').replace(/\s+/g,' ').trim(); return s.length>n ? s.slice(0,n-1).trimEnd()+'…' : s; };
@@ -5385,17 +5399,12 @@ function renderOverviewPanels(){
   const ipos=((OV.ipo && OV.ipo.issues)||[]).filter(i=>i.status==='Active' || String(i.open_date)>=new Date().toISOString().slice(0,10)).slice(0,5);
   const rcSoon=rcUpcoming().filter(i=>i.status!=='deadline' || rcDays(i.date)<=10).slice(0,6);
   const mine=[...WATCH].map(c=>by[c]).filter(Boolean).sort((a,b)=>(nz(b.final_score)||0)-(nz(a.final_score)||0)).slice(0,6);
-  const flow=((OV.fiidii && OV.fiidii.rows)||[]).slice(0,5);
 
   box.innerHTML =
     (mine.length ? card('Your watchlist',null,'',list(mine.map(d=>li(co(d.code),esc(d.name),esc(shortT(base(d))),fmt(d.final_score,1))),'')) : '')
     + card('Reporting soon','rescal','Results calendar',list(rcSoon.map(i=>li(co(i.code),esc(i.name),`${esc(i.result)} · ${rcStatusLabel(i)}`,`${esc(rcDayShort(i.date))}<small>${esc(rcIn(i.date))}</small>`)),OV.rescal?'No results due yet — the first notices arrive about a week before results season starts.':'Loading…'))
     + card('Top ranked','filters','All screens',list(top.map(d=>li(co(d.code),esc(d.name),esc(shortT(base(d))),fmt(d.final_score,1))),'No scored companies yet.'))
     + card('Latest headlines','news','News Channel',list(news.map(it=>li(`data-ov-link="${esc(it.link)}"`,esc(it.title),`${esc(NEWS_COUNTRY[it.country]||it.country||'')} · ${esc(it.source||'')}`,esc(newsAgo(it.published)))),NEWS.data?'No headlines yet.':'Loading…'))
-    + card('FII / DII flow — NSE, BSE &amp; MSEI',null,'',list(flow.map(r=>li('',esc(ovDay(r.date)),
-        `FII <span class="${r.fii_net_cr>=0?'ov-up':'ov-dn'}">${r.fii_net_cr>=0?'+':''}${fmt(r.fii_net_cr,0)}</span> cr`,
-        `DII <span class="${r.dii_net_cr>=0?'ov-up':'ov-dn'}">${r.dii_net_cr>=0?'+':''}${fmt(r.dii_net_cr,0)}</span> cr`)),
-      OV.fiidii?'No FII/DII data yet.':'Loading…'))
     + card('Bulk &amp; block deals, board names','deals','All deals',list(deals.map(x=>li(co(x.board_code),esc(x.name),`${esc(x.side)} · ${esc(ovClip(x.client,40))}`,`₹${fmt(x.value_cr,1)} cr<small>${esc(ovDay(x.date))}</small>`)),OV.deals?'No disclosed deals in board names in the last 7 days.':'Loading…'))
     + card('Board filings','deals','Announcements',list(filings.map(a=>li(co(a.board_code),esc(a.name),`${esc(a.kind)} — ${esc(ovClip(a.summary,70))}`,esc(ovDay(a.date)))),OV.ann?'No major filings from board names lately.':'Loading…'))
     + card('Board names on the move','movers','Movers',list(mv.map(x=>li(co(x.board_code),esc(x.name),esc(ovClip((x.why&&x.why.headline)||'',60)),`<span class="${x.pct_change>=0?'ov-up':'ov-dn'}">${x.pct_change>0?'+':''}${fmt(x.pct_change,1)}%</span>`)),OV.movers?'No board name moved 4%+ on the latest scanned session.':'Loading…'))
