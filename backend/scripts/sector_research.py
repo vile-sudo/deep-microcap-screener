@@ -136,9 +136,15 @@ Write out/report.json - one JSON object in exactly this format (valid JSON, doub
 {fmt}
 Sections, in order: {", ".join(SECTION_ORDER)} - each with 1-3 subsections, tables where the data is tabular and
 a chart only where it genuinely helps (not required in every section). Include the Indian listed companies from
-the brief's universe that the research supports (8-20). Use 10-25 sources: enough to back every material claim,
-not a source count to hit for its own sake. Keep it tight -- a short, well-cited report finished today beats a
-long one that isn't. Read the file back once and fix any JSON error. Reply DONE when finished.
+the brief's universe that the research supports, plus any other genuinely qualifying Indian listed company your
+own research turns up that the brief's universe doesn't already list -- a real, cited source for its involvement
+or adjacency is required either way, same bar as everything else here (8-20 total). Actively check across small,
+mid and large cap rather than settling for whichever names come up first, which tend to skew toward the biggest,
+most-covered companies -- but do not add a company just to fill out a size tier if nothing genuinely qualifies at
+that size; a real gap in market-cap coverage is sometimes just the honest state of a narrow or early niche, say so
+if so rather than force a weak fit. Use 10-25 sources: enough to back every material claim, not a source count to
+hit for its own sake. Keep it tight -- a short, well-cited report finished today beats a long one that isn't.
+Read the file back once and fix any JSON error. Reply DONE when finished.
 """
 
 
