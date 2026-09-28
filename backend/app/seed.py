@@ -340,12 +340,30 @@ def migrate_schema() -> None:
     that happen to collide as bare strings.
     """
     insp = inspect(engine)
+    _migrate_webpush_columns(insp)
     if not insp.has_table("companies"):
         return  # brand new database; create_all() builds the current schema directly
     if engine.dialect.name == "postgresql":
         _migrate_postgres(insp)
     elif engine.dialect.name == "sqlite":
         _migrate_sqlite(insp)
+
+
+def _migrate_webpush_columns(insp) -> None:
+    """Adds notify_india/notify_us to web_push_subscriptions for a database that predates the US
+    board's desktop push (both boards used to share one implicit "India only" subscription). A plain
+    ADD COLUMN, both engines: unlike the companies.market migration above, neither column changes a
+    primary key or a constraint, so no table rebuild is needed even on SQLite."""
+    if not insp.has_table("web_push_subscriptions"):
+        return   # brand new database; create_all() builds the current schema directly
+    cols = {c["name"] for c in insp.get_columns("web_push_subscriptions")}
+    with engine.connect() as conn:
+        if "notify_india" not in cols:
+            conn.execute(text("ALTER TABLE web_push_subscriptions ADD COLUMN notify_india BOOLEAN DEFAULT 1"))
+            conn.execute(text("UPDATE web_push_subscriptions SET notify_india = 1 WHERE notify_india IS NULL"))
+        if "notify_us" not in cols:
+            conn.execute(text("ALTER TABLE web_push_subscriptions ADD COLUMN notify_us BOOLEAN DEFAULT 0"))
+        conn.commit()
 
 
 def _migrate_postgres(insp) -> None:

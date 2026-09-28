@@ -412,10 +412,41 @@ async function boot() {
   renderOverview();
   auxLoadAll();
   alertsAccountSync();
+  if (DEEP_LINK_AL) usAlertAct(DEEP_LINK_AL);
 }
 boot().catch(e => {
   document.querySelector(".tablewrap").innerHTML = `<div class="us-empty">Could not load the US board: ${esc(e.message)}</div>`;
 });
+
+/* Clicking a desktop notification for a single new US alert (webpush.us_alert_target() on the server)
+   lands here with an al= param on the hash: al=stock:<code> opens that company's drawer directly, al=modal
+   (several different companies at once, no single one to point at) opens the Alerts panel. Read and
+   stripped from the hash immediately (this page has no syncURL()-style rebuild to race, unlike the India
+   board, but stripping early keeps a refresh from reopening the same thing) and acted on once DATA is
+   loaded (see the end of boot() above). A 'hashchange' listener covers the other real path a click can
+   take: the service worker steering an ALREADY-OPEN tab to this same page with just the hash different,
+   which is a same-document navigation (no reload), same reasoning as the India board's own fix for this. */
+function usAlertAct(al) {
+  if (al === "modal") {
+    const panel = document.getElementById("us-alerts-panel");
+    panel.hidden = false;
+    document.getElementById("us-alerts-btn").setAttribute("aria-expanded", "true");
+    alertsPanel();
+    return;
+  }
+  const [kind, code] = al.split(":");
+  if (kind === "stock" && code) openDrawer(code);
+}
+function usStripAlHash() {
+  const p = new URLSearchParams(location.hash.replace(/^#/, ""));
+  const al = p.get("al");
+  if (!al) return null;
+  p.delete("al");
+  try { history.replaceState(null, "", location.pathname + location.search + (p.toString() ? "#" + p.toString() : "")); } catch (e) {}
+  return al;
+}
+const DEEP_LINK_AL = usStripAlHash();
+window.addEventListener("hashchange", () => { const al = usStripAlHash(); if (al) usAlertAct(al); });
 
 /* ================================================================
    Chart Gallery -- candles for the US board + the wider actively-traded
@@ -1888,16 +1919,99 @@ function updateAlerts() {
   badge.textContent = unseen > 99 ? "99+" : unseen;
   if (!document.getElementById("us-alerts-panel").hidden) alertsPanel();
 }
+/* Desktop web push for the US board -- same VAPID/service-worker mechanism as the India board's
+   "Desktop notifications" (backend/app/webpush.py), just its own opt-in: one physical browser
+   subscription can follow either board's alerts, both, or neither (notify_india/notify_us on
+   WebPushSubscription), so turning this on here never affects the India board's own toggle and vice
+   versa. Requires an account, same as "push to my phone" above it -- US alerts are per-user-watchlist-
+   scoped server-side (us_alerts.py), so an anonymous subscription would never match anything. */
+const WP = {ready: null, supported: "serviceWorker" in navigator && "PushManager" in window, serverKey: null, subscribed: false, busy: false};
+function wpCheckStatus() {
+  if (WP.ready) return WP.ready;
+  WP.ready = (async () => {
+    if (!WP.supported) return;
+    try {
+      const [keyRes, reg] = await Promise.all([
+        fetchJSON("/api/webpush/public-key").catch(() => ({key: ""})),
+        navigator.serviceWorker.getRegistration("/static/sw.js").catch(() => null),
+      ]);
+      WP.serverKey = keyRes.key || "";
+      const sub = reg ? await reg.pushManager.getSubscription().catch(() => null) : null;
+      WP.subscribed = !!sub;
+    } catch (e) { /* leave WP.subscribed as-is; the row explains what it can */ }
+  })();
+  return WP.ready;
+}
+function usUrlB64ToUint8Array(b64) {
+  const pad = "=".repeat((4 - b64.length % 4) % 4);
+  const raw = atob((b64 + pad).replace(/-/g, "+").replace(/_/g, "/"));
+  const out = new Uint8Array(raw.length);
+  for (let i = 0; i < raw.length; i++) out[i] = raw.charCodeAt(i);
+  return out;
+}
+function wpRow() {
+  if (!WP.supported) return `<label style="opacity:.55"><input type="checkbox" id="us-al-desktop" disabled> Desktop notifications <small>— not supported in this browser</small></label>`;
+  if (WP.serverKey === null) return `<label style="opacity:.55"><input type="checkbox" id="us-al-desktop" disabled> Desktop notifications <small>— checking…</small></label>`;
+  if (!WP.serverKey) return `<label style="opacity:.55"><input type="checkbox" id="us-al-desktop" disabled> Desktop notifications <small>— not set up on this server yet</small></label>`;
+  return `<label><input type="checkbox" id="us-al-desktop" ${WP.subscribed ? "checked" : ""} ${WP.busy ? "disabled" : ""}> Desktop notifications</label>`;
+}
+const WP_TIMEOUT_MS = 20000;
+function wpTimeout() { return new Promise((_, reject) => setTimeout(() => reject(new Error("That took too long — try again.")), WP_TIMEOUT_MS)); }
+async function wpSubscribe() {
+  const work = (async () => {
+    const reg = await navigator.serviceWorker.register("/static/sw.js");
+    if (Notification.permission !== "granted") {
+      const r = await Notification.requestPermission();
+      if (r !== "granted") throw new Error("Notifications are blocked for this site in your browser settings.");
+    }
+    const sub = await reg.pushManager.subscribe({userVisibleOnly: true, applicationServerKey: usUrlB64ToUint8Array(WP.serverKey)});
+    const r = await fetch("/api/webpush/subscribe", {method: "POST", credentials: "same-origin", headers: {"Content-Type": "application/json"},
+      body: JSON.stringify({subscription: sub.toJSON(), board: "us"})});
+    if (!r.ok) throw new Error("The server did not accept the subscription.");
+  })();
+  await Promise.race([work, wpTimeout()]);
+}
+async function wpUnsubscribe() {
+  const work = (async () => {
+    const reg = await navigator.serviceWorker.getRegistration("/static/sw.js");
+    const sub = reg && await reg.pushManager.getSubscription();
+    if (sub) {
+      const endpoint = sub.endpoint;
+      await sub.unsubscribe().catch(() => {});
+      await fetch("/api/webpush/subscribe", {method: "DELETE", credentials: "same-origin", headers: {"Content-Type": "application/json"},
+        body: JSON.stringify({endpoint, board: "us"})}).catch(() => {});
+    }
+  })();
+  await Promise.race([work, wpTimeout()]);
+}
+function wpWire() {
+  const cb = document.getElementById("us-al-desktop");
+  if (!cb || cb.disabled) return;
+  cb.onchange = async () => {
+    WP.busy = true; const want = cb.checked; cb.disabled = true;
+    try {
+      if (want) await wpSubscribe(); else await wpUnsubscribe();
+      WP.subscribed = want;
+    } catch (e) {
+      cb.checked = !want;
+      alert(e.message || "That did not work — try again, or check the notification permission for this site in your browser settings.");
+    }
+    WP.busy = false;
+    alertsPanel();
+  };
+}
+
 function alertsPanel() {
   const panel = document.getElementById("us-alerts-panel"), seen = alertsSeen();
   const wl = lsGet(ALERT_WL_KEY) === "1", rows = alertsVisible();
   panel.innerHTML = `<div class="us-alerts-head"><b>Alerts</b>
       <label title="Only companies you have starred"><input type="checkbox" id="us-al-wl"${wl ? " checked" : ""}${WATCH.size ? "" : " disabled"}> My watchlist</label>
       <button type="button" id="us-al-read">Mark all seen</button></div>`
-    + (ACCT.ok ? `<div class="us-alerts-head" style="position:static;border-top:0;font-size:12px"><label title="Send new alerts on the companies you starred to the Deep Sweep mobile app"><input type="checkbox" id="us-al-notify"${ACCT.notify ? " checked" : ""}> Push new alerts to my phone (mobile app, starred companies)</label></div>` : "")
+    + (ACCT.ok ? `<div class="us-alerts-head" style="position:static;border-top:0;font-size:12px"><label title="Send new alerts on the companies you starred to the Deep Sweep mobile app"><input type="checkbox" id="us-al-notify"${ACCT.notify ? " checked" : ""}> Push new alerts to my phone (mobile app, starred companies)</label> ${wpRow()}</div>` : "")
     + (rows.length ? rows.map((a, i) => `<div class="us-alert${seen.has(a.id) ? "" : " unseen"}" data-al="${i}"><div><b>${esc(a.title)}</b><small>${esc(a.kind)} · ${esc(a.sub)}</small></div></div>`).join("")
       : '<div class="us-alert-empty">Nothing needs your attention right now.<br>Earnings dates, insider buying, key filings and price signals appear here as they happen.</div>');
   document.getElementById("us-al-wl").onchange = e => { lsSet(ALERT_WL_KEY, e.target.checked ? "1" : "0"); alertsPersist(); updateAlerts(); };
+  if (ACCT.ok) { wpCheckStatus().then(() => { const el = document.getElementById("us-al-desktop"); if (el) { el.outerHTML = wpRow(); wpWire(); } }); wpWire(); }
   const nt = document.getElementById("us-al-notify");
   if (nt) nt.onchange = e => { ACCT.notify = e.target.checked; alertsPersist(); };
   document.getElementById("us-al-read").onclick = () => {

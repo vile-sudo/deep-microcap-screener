@@ -18,7 +18,7 @@ So each company gets:
 """
 from datetime import datetime
 
-from sqlalchemy import Boolean, DateTime, Float, ForeignKey, Integer, JSON, String, Text, UniqueConstraint
+from sqlalchemy import Boolean, DateTime, Float, ForeignKey, Integer, JSON, String, Text, UniqueConstraint, text
 from sqlalchemy.orm import Mapped, mapped_column
 
 from .database import Base
@@ -199,11 +199,14 @@ class DeviceToken(Base):
 
 
 class WebPushSubscription(Base):
-    """One browser that turned on "Desktop notifications" in the India board's Alerts settings (the plain
-    website, not the mobile app -- see DeviceToken above for that). Standard Web Push: the browser's own
-    push service (Chrome -> FCM, Firefox -> Mozilla's, ...) holds the actual delivery endpoint; this row is
-    just what app/webpush.py needs to address it (`endpoint` + the two keys the browser generated) and,
-    optionally, whose account asked for it -- accounts are optional on this site, so user_id may be null.
+    """One browser that turned on "Desktop notifications" -- on the India board's Alerts settings, the US
+    board's Alerts panel, or both (notify_india/notify_us below) -- not the mobile app, see DeviceToken
+    above for that. Standard Web Push: the browser's own push service (Chrome -> FCM, Firefox ->
+    Mozilla's, ...) holds the actual delivery endpoint; this row is just what app/webpush.py needs to
+    address it (`endpoint` + the two keys the browser generated) and, optionally, whose account asked for
+    it -- accounts are optional on the India board, so user_id may be null there, but US alerts are
+    per-user-watchlist-scoped (see us_alerts.py), so a null user_id row never receives them regardless of
+    notify_us.
 
     Keyed by the endpoint URL itself (unique per browser+origin subscription), not by the user: the same
     person logged in on two computers gets two rows, each notified independently, and a subscription
@@ -220,4 +223,11 @@ class WebPushSubscription(Base):
     auth: Mapped[str] = mapped_column(String(255))
     created_at: Mapped[datetime] = mapped_column(DateTime)
     last_seen_at: Mapped[datetime] = mapped_column(DateTime)
+    # Which board(s) this browser wants pushes for -- one subscription (one endpoint) can
+    # follow both, e.g. someone who reads both boards from the same browser. notify_india
+    # defaults true so the rows that existed before this column did (India-only, the
+    # original desktop push) keep behaving exactly as they already were; notify_us defaults
+    # false since it is a new opt-in, not something to silently switch existing rows on for.
+    notify_india: Mapped[bool] = mapped_column(Boolean, default=True, server_default=text("1"))
+    notify_us: Mapped[bool] = mapped_column(Boolean, default=False, server_default=text("0"))
 

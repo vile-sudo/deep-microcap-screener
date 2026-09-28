@@ -1,23 +1,25 @@
-"""US-board alerts, computed on the server so they can reach a phone.
+"""US-board alerts, computed on the server so they can reach a phone or a desktop browser.
 
 The US page's alert bell (frontend/static/us.js, buildAlerts) works out its list in the
 browser from the files the nightly jobs write. This module applies the SAME rules on the
-server, and pushes the ones that are new to the devices of the users who have that
-company on their US watchlist -- so an earnings date, an insider purchase or a material
-8-K on a company you follow reaches the mobile app without opening the site.
+server, and pushes the ones that are new to the users who have that company on their US
+watchlist -- so an earnings date, an insider purchase or a material 8-K on a company you
+follow reaches you without opening the site, on whichever of a registered phone
+(push.py, Firebase) and a subscribed browser (webpush.py, notify_us) you have set up;
+either, both, or neither work independently.
 
 Rules (keep in step with buildAlerts in us.js):
   * earnings      the company reports in the next 7 days
   * insider buy   an open-market purchase of $25k or more in the last 14 days
-  * insider cluster  two or more insiders buying (>= $10k each) within 14 days
+  * insider cluster  two or more insiders on the same side (>= $10k each), buying or
+                  selling, within 14 days
   * 8-K filing    a material 8-K (results, order win, M&A, management change,
                   regulatory or legal, fundraise) in the last 7 days
   * price signal  the chart job's feed (new 52-week high/low, breakout) for a board name
 
 Which alerts have already been pushed is remembered in MetaKV (US_ALERTS_NOTIFIED). The
 first run only records what exists, so switching this on never floods anyone with the
-backlog. Nothing is sent unless Firebase is configured (push.py) and the user has a
-registered device. Runs every 15 minutes from main.py; reading four small files is cheap.
+backlog. Runs every 15 minutes from main.py; reading four small files is cheap.
 """
 from __future__ import annotations
 
@@ -30,9 +32,9 @@ from pathlib import Path
 
 from sqlalchemy.orm import Session
 
-from . import push
+from . import push, webpush
 from .config import BASE_DIR
-from .models import Company, DeviceToken, MetaKV, UserSettings, WatchItem
+from .models import Company, DeviceToken, MetaKV, UserSettings, WatchItem, WebPushSubscription
 
 log = logging.getLogger("deepsweep.us_alerts")
 
@@ -75,16 +77,18 @@ def compute_alerts(board: dict[str, str], today: date | None = None) -> list[dic
                         "title": f"{board[code]} reports {when}", "sub": n["date"]})
 
     txns = _load(DATA / "insider_us" / "latest.json").get("transactions") or []
-    buys: dict[str, list] = {}
-    for t in txns:
-        if t.get("symbol") in board and t.get("is_market") and t.get("side") == "BUY" and (t.get("value_usd") or 0) >= 10000                 and _days_since(t["trade_date"], today) <= 14:
-            buys.setdefault(t["symbol"], []).append(t)
-    for sym, rows in buys.items():                     # several insiders buying within two weeks
-        if len({r.get("insider") for r in rows}) >= 2:
-            latest = max(r["trade_date"] for r in rows)
-            out.append({"id": f"cluster:{sym}:{latest}", "code": sym, "kind": "Insider cluster",
-                        "title": f"{len({r.get('insider') for r in rows})} insiders bought {_compact(sum(r['value_usd'] for r in rows))} of {sym}",
-                        "sub": latest})
+    for side, verb, kind in (("BUY", "bought", "Insider cluster"), ("SELL", "sold", "Insider selling cluster")):
+        by_sym: dict[str, list] = {}
+        for t in txns:
+            if t.get("symbol") in board and t.get("is_market") and t.get("side") == side and (t.get("value_usd") or 0) >= 10000 \
+                    and _days_since(t["trade_date"], today) <= 14:
+                by_sym.setdefault(t["symbol"], []).append(t)
+        for sym, rows in by_sym.items():                # several insiders on the same side within two weeks
+            if len({r.get("insider") for r in rows}) >= 2:
+                latest = max(r["trade_date"] for r in rows)
+                out.append({"id": f"cluster:{side}:{sym}:{latest}", "code": sym, "kind": kind,
+                            "title": f"{len({r.get('insider') for r in rows})} insiders {verb} {_compact(sum(r['value_usd'] for r in rows))} of {sym}",
+                            "sub": latest})
 
     for t in txns:
         if t.get("symbol") in board and t.get("is_market") and t.get("side") == "BUY" and (t.get("value_usd") or 0) >= 25000 \
@@ -152,15 +156,24 @@ def _notify_new(db: Session) -> int:
         return 0
     row.value = (list(row.value or []) + [a["id"] for a in fresh])[-KEEP_IDS:]
     db.commit()
-    if not push.configured():
+    if not push.configured() and not webpush.configured():
         return 0
 
-    # who follows what, and who has a phone registered and has not switched notifications off
-    devices = {uid for (uid,) in db.query(DeviceToken.user_id).distinct()}
-    off = {s.user_id for s in db.query(UserSettings) if (s.prefs or {}).get("us_alerts_notify") is False}
+    # who follows what, and through which channel(s) they can actually be reached -- mobile (a
+    # registered device, opted in via `us_alerts_notify`) and desktop (a browser subscribed with
+    # notify_us, its own independent opt-in/out) are independent channels with independent settings;
+    # `us_alerts_notify` is specifically the "push to my phone" checkbox (see us.js's alertsPanel), so it
+    # must only gate mobile -- turning that off must not silently also stop a separately-opted-in
+    # desktop subscription, and a browser-only visitor with no phone must not be skipped just because
+    # push.configured() checks Firebase, and vice versa.
+    mobile_off = {s.user_id for s in db.query(UserSettings) if (s.prefs or {}).get("us_alerts_notify") is False}
+    mobile_devices = ({uid for (uid,) in db.query(DeviceToken.user_id).distinct()} - mobile_off) if push.configured() else set()
+    desktop_users = ({uid for (uid,) in db.query(WebPushSubscription.user_id)
+                      .filter(WebPushSubscription.user_id.isnot(None), WebPushSubscription.notify_us.is_(True)).distinct()}
+                     if webpush.configured() else set())
     follows: dict[int, set[str]] = {}
     for uid, code in db.query(WatchItem.user_id, WatchItem.code).filter(WatchItem.market == "US"):
-        if uid in devices and uid not in off:
+        if uid in mobile_devices or uid in desktop_users:
             follows.setdefault(uid, set()).add(code)
 
     sent = 0
@@ -168,8 +181,12 @@ def _notify_new(db: Session) -> int:
         mine = [a for a in fresh if a["code"] in codes]
         if not mine:
             continue
-        title = mine[0]["title"] if len(mine) == 1 else f"{len(mine)} new alerts on your US watchlist"
-        body = mine[0]["sub"] if len(mine) == 1 else "; ".join(a["title"] for a in mine[:3]) + ("…" if len(mine) > 3 else "")
-        sent += push.send_to_users(db, [uid], title, body, {"type": "us_alert", "code": mine[0]["code"]})
+        if uid in mobile_devices:
+            title = mine[0]["title"] if len(mine) == 1 else f"{len(mine)} new alerts on your US watchlist"
+            body = mine[0]["sub"] if len(mine) == 1 else "; ".join(a["title"] for a in mine[:3]) + ("…" if len(mine) > 3 else "")
+            sent += push.send_to_users(db, [uid], title, body, {"type": "us_alert", "code": mine[0]["code"]})
+        if uid in desktop_users:
+            dtitle, dbody, durl, dtag = webpush.us_alert_target(mine)
+            sent += webpush.send_to_user(db, uid, dtitle, dbody, url=durl, tag=dtag)
     log.info("us alerts: %d new, %d notifications sent", len(fresh), sent)
     return sent

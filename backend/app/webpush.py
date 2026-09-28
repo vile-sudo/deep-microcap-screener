@@ -9,12 +9,17 @@ Configured from VAPID_PUBLIC_KEY / VAPID_PRIVATE_KEY / VAPID_SUBJECT (see config
 to generate them) -- unset, every function here silently no-ops, so a server with no VAPID keys behaves
 exactly as it did before this module existed, and the settings-panel toggle explains that it isn't set up.
 
-Callers: main.py's `_desktop_push_loop` (watches for new alerts -- highs/lows, breakouts, institutional
-deal/insider clusters) and `_refresh_news_and_push` (News Channel refreshes that actually added stories),
-plus news_sync.merge (the same, for stories that arrived via the GitHub-workflow fetch instead); this
-module only knows how to deliver a message once given one, and (news_target/alert_target) how to shape
-it -- a single new item deep-links straight to itself, several fall back to a summary that opens the
-relevant view."""
+Callers: main.py's `_desktop_push_loop` (watches for new India alerts -- highs/lows, breakouts,
+institutional deal/insider clusters), `_refresh_news_and_push` (News Channel refreshes that actually
+added stories), news_sync.merge (the same, for stories that arrived via the GitHub-workflow fetch
+instead), and us_alerts._notify_new (US board alerts, per user -- see send_to_user below, the one thing
+India's broadcast-style send_to_all does not need); this module only knows how to deliver a message once
+given one, and (news_target/alert_target/us_alert_target) how to shape it -- a single new item deep-links
+straight to itself, several fall back to a summary that opens the relevant view.
+
+Two boards, one subscription list (WebPushSubscription), one browser can want either or both --
+notify_india/notify_us on each row say which; send_to_all/send_to_user filter on whichever this call is
+for, so turning off one board's toggle never silently affects the other."""
 from __future__ import annotations
 
 import json
@@ -74,14 +79,46 @@ def alert_target(new_items: list[dict]) -> tuple[str, str, str, str]:
     return "Deep Sweep alerts", f"{len(new_items)} new alerts", "/#v=overview&al=modal", "deep-sweep-alerts"
 
 
-def send_to_all(db: Session, title: str, body: str, url: str = "/", tag: str | None = None) -> int:
-    """Sends one notification to every subscribed browser. Returns how many it attempted to reach (0 if
-    web push isn't configured or nobody has subscribed). A subscription the push service reports as gone
-    (404/410 -- the browser unsubscribed, cleared site data, or the endpoint expired) is removed so the
-    list doesn't grow stale forever."""
+def us_alert_target(new_items: list[dict]) -> tuple[str, str, str, str]:
+    """(title, body, url, tag) for a batch of newly-arrived US board alerts (see us_alerts.py's
+    compute_alerts -- earnings/insider buy/insider cluster/8-K/price signal). Unlike the India board,
+    every alert kind here already opens the same thing when clicked in-app (that company's own drawer,
+    see us.js's alertsPanel), so there is only one kind of deep-link target, not several: exactly one new
+    item (or several that are all the SAME company) opens that company's drawer; different companies at
+    once has no single one to point at, so it opens the Alerts panel instead."""
+    codes = {it.get("code") for it in new_items if it.get("code")}
+    if len(codes) == 1:
+        code = codes.pop()
+        it = new_items[0]
+        if len(new_items) == 1:
+            return it.get("title") or "US board alert", f"{it.get('kind', 'Alert')} · {it.get('sub', '')}", f"/us#al=stock:{code}", "us-alert-" + code
+        return f"{len(new_items)} new alerts on {code}", it.get("title") or "", f"/us#al=stock:{code}", "us-alert-" + code
+    return "US board alerts", f"{len(new_items)} new alerts", "/us#al=modal", "us-alerts"
+
+
+def send_to_all(db: Session, title: str, body: str, url: str = "/", tag: str | None = None, board: str = "in") -> int:
+    """Sends one notification to every browser subscribed for `board` ("in" or "us" -- notify_india/
+    notify_us on WebPushSubscription). Returns how many it attempted to reach (0 if web push isn't
+    configured or nobody has subscribed for that board). See _send() for delivery/cleanup."""
     if not configured():
         return 0
-    subs = db.query(WebPushSubscription).all()
+    col = WebPushSubscription.notify_india if board == "in" else WebPushSubscription.notify_us
+    subs = db.query(WebPushSubscription).filter(col.is_(True)).all()
+    return _send(db, subs, title, body, url, tag)
+
+
+def send_to_user(db: Session, user_id: int, title: str, body: str, url: str = "/", tag: str | None = None) -> int:
+    """Sends to just this one user's US-board-subscribed browsers (there may be more than one -- two
+    computers, say). US alerts are per-user-watchlist-scoped (us_alerts.py), unlike India's board-wide
+    broadcast, so this is the one place a single user_id needs targeting rather than every subscriber."""
+    if not configured():
+        return 0
+    subs = db.query(WebPushSubscription).filter(WebPushSubscription.user_id == user_id,
+                                                 WebPushSubscription.notify_us.is_(True)).all()
+    return _send(db, subs, title, body, url, tag)
+
+
+def _send(db: Session, subs: list[WebPushSubscription], title: str, body: str, url: str, tag: str | None) -> int:
     if not subs:
         return 0
 
