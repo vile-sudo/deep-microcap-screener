@@ -1,0 +1,29 @@
+{
+ "slug": "semiconductor-chemicals",
+ "name": "Semiconductor Specialty Chemicals",
+ "icon": "chip",
+ "scope": "India's semiconductor push (fabs, ATMP/OSAT, the India Semiconductor Mission) is creating a new domestic market for the electronic-grade chemicals, gases and materials chip-making needs -- photoresists, ultra-pure cleaning agents, etchants, specialty gases and polyimide/dianhydride intermediates -- more than 70% of which India currently imports from Taiwan, South Korea and China. This tracks the Indian listed companies developing, qualifying or capacity-building for this chemistry.",
+ "questions": [
+  "What is this theme in plain terms: what does a semiconductor fab or ATMP/packaging plant actually need from the chemicals industry (photoresists, ultra-pure cleaning/etching chemicals, specialty gases, polyimide and other high-purity intermediates), and why is purity/qualification the hard part rather than the base chemistry?",
+  "How big is India's import dependence today for these electronic-grade chemicals and gases, from which countries, and how is that expected to change as India's own fabs/ATMP capacity comes online (12 approved semiconductor projects and counting)?",
+  "How can India actually participate given it has no domestic history of qualifying chemicals to semiconductor-grade purity: is it starting via JVs/tie-ups with established Korean, Japanese, US or European players (technology and qualification transfer), via acquiring overseas capability (e.g. US/other acquisitions), or via organic capacity-building, and which path is which company taking?",
+  "For each Indian listed company in the universe: what exactly are they doing for this chemistry (which specific chemical/material, what stage -- R&D, first commercial batch qualified, plant commissioned, at scale), what capex have they committed and over what timeline, and any joint venture or partnership with an international company (partner name, equity split, investment size, plant location, what technology/market access it brings).",
+  "Beyond the chemistry itself, which companies are building adjacent infrastructure the ecosystem needs (ultra-pure industrial/specialty gases, compound-semiconductor fabs like SiC, high-purity intermediates for polymers) and how do they fit the same beneficiary map.",
+  "Government policy and incentives: India Semiconductor Mission fiscal support, PLI-linked schemes, and any specific scheme support named companies have received or applied for.",
+  "For each company, a reasoned case for why it could be a strong beneficiary (technology/qualification lead, first-mover status, customer relationships, balance-sheet capacity to fund the capex, parent-group backing) and the counter-case / execution risks (qualification can fail or take years, semiconductor-grade revenue is still a small fraction of most of these companies' total sales, valuations may already price in success).",
+  "Valuation and market reaction so far: how have these stocks performed and re-rated as the theme has played out, and what does current forward valuation imply the market is already pricing in.",
+  "Research houses and analysts: what named brokers and analysts say about the theme and the specific stocks, including rating/coverage skew.",
+  "Risks, near-term catalysts with dates (plant commissioning, capacity expansions, new qualification milestones, government scheme announcements), and the things an investor should watch quarter to quarter."
+ ],
+ "bucket_labels": {
+  "chemical_makers": ["Specialty chemical & photoresist makers", "Developing or qualifying semiconductor-grade chemicals, photoresist inputs and high-purity intermediates"],
+  "gases_and_materials": ["Industrial & specialty gas suppliers", "Ultra-pure gases and other non-chemical inputs a fab needs"],
+  "fabs_and_packaging": ["Fabs, ATMP & packaging", "Building actual chip fabrication, assembly, test or packaging capacity"]
+ },
+ "universe": {
+  "chemical_makers": ["ACUTAAS", "TATVA", "AETHER", "ANURAS", "NAVINFLUOR", "FLUOROCHEM", "SRF", "TATACHEM"],
+  "gases_and_materials": ["LINDEINDIA", "STALLION"],
+  "fabs_and_packaging": ["ACI"]
+ },
+ "refresh": "monthly"
+}

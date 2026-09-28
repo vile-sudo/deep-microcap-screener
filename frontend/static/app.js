@@ -5161,7 +5161,8 @@ const SC_BUCKET={producer:['Producers (E&P)','Find and pump oil & gas'], service
   equipment:['Equipment, pipes & engineering','Pipes, tubulars, engineering for upstream'], gas_chain:['Gas value chain','Gas transmission, LNG, city gas'],
   downstream:['Refiners & fuel retailers','Buy crude, sell fuels'], other:['Other','']};
 const SC_KIND={primary:'Official statistics & regulators', company:'Company disclosures', research:'Research houses & analysts', news:'News & media', other:'Other sources'};
-const scIcon = k => ({oil:'<path d="M12 3.5c3 4.2 5.5 7.3 5.5 10.5a5.5 5.5 0 0 1-11 0c0-3.2 2.5-6.3 5.5-10.5z"/><path d="M9.5 14.5a2.6 2.6 0 0 0 2.5 2.5"/>'}[k]
+const scIcon = k => ({oil:'<path d="M12 3.5c3 4.2 5.5 7.3 5.5 10.5a5.5 5.5 0 0 1-11 0c0-3.2 2.5-6.3 5.5-10.5z"/><path d="M9.5 14.5a2.6 2.6 0 0 0 2.5 2.5"/>',
+  chip:ICON_PATHS.chip, flask:ICON_PATHS.flask}[k]
   || '<circle cx="12" cy="12" r="8"/><path d="M4 12h16M12 4c2.5 2.6 2.5 13.4 0 16M12 4c-2.5 2.6-2.5 13.4 0 16"/>');
 
 function scLoadIndex(){
@@ -5214,11 +5215,16 @@ function scCompanies(r){
   const nums=(r.numbers&&r.numbers.companies)||{}, byCode={}; DATA.forEach(d=>byCode[d.code]=d);
   const groups={};
   (r.companies||[]).forEach(c=>{ (groups[c.bucket]||(groups[c.bucket]=[])).push(c); });
-  const order=['producer','services','equipment','gas_chain','downstream','other'];
+  /* Each report carries its own bucket vocabulary (a semiconductor-chemicals sector has no "gas_chain" or
+     "downstream" refiner the way oil-exploration does) -- fall back to the old hardcoded map only for a
+     report saved before bucket_labels existed, and never silently drop a group the report actually used. */
+  const labels=r.bucket_labels||SC_BUCKET;
+  const order=[...Object.keys(labels), ...Object.keys(groups).filter(k=>!labels[k])];
+  const bl = k => labels[k] || [k.replace(/_/g,' ').replace(/^\w/,c=>c.toUpperCase()), ''];
   return `${r.numbers?`<p class="dr-muted">Company numbers from screener.in, refreshed ${esc((r.numbers.as_of||'').slice(0,10))}. Sorted by market cap within each group. Research text is from the ${esc(scMonth(r.edition))} edition.</p>`:''}
     ${order.filter(k=>groups[k]).map(k=>{
       const list=groups[k].slice().sort((a,b)=>((nums[b.nse||b.bse]||{}).market_cap||0)-((nums[a.nse||a.bse]||{}).market_cap||0));
-      return `<h3>${esc(SC_BUCKET[k][0])} <span class="dr-muted">${esc(SC_BUCKET[k][1])}</span></h3>
+      return `<h3>${esc(bl(k)[0])} <span class="dr-muted">${esc(bl(k)[1])}</span></h3>
       <div class="dr-tablewrap"><table class="dr-table sc-cos"><thead><tr><th>Company</th><th>Role in the value chain</th><th>What the sector trend means for it</th><th class="n">M-cap ₹cr</th><th class="n">P/E</th><th class="n">ROCE %</th><th class="n">Sales 3y CAGR</th><th class="n">From 52w high</th><th></th></tr></thead>
       <tbody>${list.map(c=>{ const key=c.nse||c.bse, n=nums[key]||{}, bc=n.board_code&&byCode[n.board_code];
         return `<tr><td><b>${esc(c.name)}</b><div class="dr-muted">${esc(c.nse||c.bse||'')}${bc?' · <span class="sc-onboard">on your board</span>':''}</div></td>
