@@ -1,0 +1,802 @@
+{
+ "slug": "semiconductor-chemicals",
+ "name": "Semiconductor Specialty Chemicals",
+ "icon": "chip",
+ "edition": "2026-09",
+ "updated": "2026-09-28",
+ "scope": "Indian listed companies developing, qualifying or building capacity for the electronic-grade chemicals, gases and materials that India's new fabs and ATMP/OSAT plants need, and the policy (ISM 1.0 / Semicon 2.0) behind the demand.",
+ "summary": {
+  "one_line": "India's chip plants are real now, but 85-90% of the specialty chemicals they use are still imported. Semicon 2.0's 30% capex incentive for materials, chemicals and gases opens the door for local makers. Among listed companies, only Acutaas (Korea plant commissioned), Tatva Chintan (first commercial batch qualified) and Stallion (gas facility running) have reached a hard milestone so far.",
+  "key_points": [
+   "India has 12 approved semiconductor manufacturing projects under ISM 1.0 with an investment pipeline of about ₹1.64 lakh crore, backed by a ₹76,000 crore incentive framework (S2). Micron (Sanand), Kaynes and the CG Power-Renesas JV are already shipping commercially (S1).",
+   "Semicon 2.0, approved on 15 July 2026 with an outlay of ₹1,27,500 crore, adds a machines-and-materials pillar that gives specialty-chemical, industrial-gas and equipment makers a flat 30% incentive on project cost (S1, S2).",
+   "Import dependence is severe. More than 90% of equipment and 85-90% of specialty chemicals used by India's chip plants are imported (S1). India imports nearly 100% of its ultra-pure process chemicals, neon, krypton, arsine and high-purity HF (S4). Electronic specialty gas imports are estimated at USD 800-1,100 mn in 2026, or 65-70% of that market (S5).",
+   "Purity is the barrier, not the chemistry. Industrial grade is about 99.9% pure, while semiconductor grade (9N) is 99.9999999% (S4). Tatva Chintan says it spent about 8-9 years in R&D before delivering its first commercial-scale semiconductor chemical in Q1 FY27 (S10).",
+   "Indian companies are entering by three routes. Acutaas built a 75:25 Korean JV (Indichem, KRW 30 bn / ~₹200 crore) that refines and qualifies products next to its customers (S7). Anupam Rasayan bought US-based Jayhawk for USD 150 mn (S9). Tatva, Aether, Navin and Stallion are building capability organically (S10, S11, S14, S19).",
+   "Global incumbents are moving in too. Sumitomo Chemical signed an MoU on 18 Sep 2026 to supply photoresists and high-purity H2O2, IPA, ammonia water and sulfuric acid to Tata Electronics' USD 11 bn Dholera fab, and to explore making them in India (S6). That creates competition as well as a template.",
+   "The market has already re-rated the early movers. Aether is up 109% in CY2026 (S13), Acutaas up about 127% over a year (S25), and Tatva hit a 20% upper circuit on 20 Jul 2026 after its semiconductor qualification (S10). For most of these companies, semiconductor revenue is still negligible."
+  ],
+  "for_investors": [
+   {
+    "title": "Who benefits",
+    "tone": "good",
+    "points": [
+     "Acutaas: its Korean plant (Gongju, commissioned 29 Aug 2026) sits inside the customer ecosystem, which is the fastest route to qualification (S7). JM Financial expects the specialty-chemicals revenue line to rise from ₹170 crore to ₹730 crore over FY26-30 (S8).",
+     "Tatva Chintan: first commercial-scale semiconductor chemical qualified at the most stringent grade, with five more products under development (S10).",
+     "Gas suppliers are tied to plant start-ups rather than to qualifying a new molecule. Linde India is building gas plants at Dholera (ASU due H2 2027) and Sanand (S17, S18). Stallion's Khalapur semiconductor-gas facility started commercial operation on 21 Sep 2026 (S19).",
+     "Archean (ACI): its subsidiary SiCSem holds a signed ISM fiscal-support agreement for India's first SiC compound fab plus ATMP (S21)."
+    ]
+   },
+   {
+    "title": "Who is hurt / risks",
+    "tone": "bad",
+    "points": [
+     "Qualification takes years and can fail. Tatva's first batch took 8-9 years (S10). JM Financial's Acutaas forecasts depend on the Korean facility ramping up (S8).",
+     "Global incumbents may localise. Sumitomo is exploring Indian manufacturing for the Tata fab (S6), which would squeeze space for new domestic entrants.",
+     "Valuations have moved ahead of revenue. Aether +109% CY2026 (S13) and Acutaas +127% over a year (S25), while semiconductor sales are still at validation or early commercial stage (S11, S12).",
+     "Leading-edge domestic demand arrives late. Tata's Dholera fab is expected to start commercial production only in mid-2028 (S1), so early sales are mostly exports to Japan, Korea and Taiwan (S11)."
+    ]
+   },
+   {
+    "title": "What to watch",
+    "tone": "watch",
+    "points": [
+     "Indichem (Acutaas) customer validation in FY27, which management calls a transition year, and a 'decent' revenue contribution expected from FY28 (S26).",
+     "Aether's Site 5 semiconductor production block, targeted for Q3 FY27 (S12).",
+     "Navin Fluorine's advanced-materials adoption capacity (₹90 crore, due Q2 FY28), which covers electronic-grade HF (S14).",
+     "Semicon 2.0 guidelines and the first approvals under the materials/chemicals/gases pillar (S1, S2).",
+     "Linde's Dholera ASU in H2 2027 (S17) and SiCSem construction progress (S21, S22)."
+    ]
+   }
+  ]
+ },
+ "kpis": [
+  {
+   "label": "ISM 1.0 approved projects",
+   "value": "12",
+   "sub": "investment pipeline ~₹1.64 lakh cr, 2026 (S2)"
+  },
+  {
+   "label": "Semicon 2.0 outlay",
+   "value": "₹1,27,500 cr",
+   "sub": "approved 15 Jul 2026 (S1)"
+  },
+  {
+   "label": "Materials/chemicals/gases incentive",
+   "value": "30% of project cost",
+   "sub": "Semicon 2.0 pillar (S1)"
+  },
+  {
+   "label": "Specialty chemicals imported",
+   "value": "85-90%",
+   "sub": "share used by India's chip plants, Aug 2026 (S1)"
+  },
+  {
+   "label": "Acutaas Korea JV investment",
+   "value": "KRW 30 bn (~₹200 cr)",
+   "sub": "Indichem, commissioned Aug 2026 (S7)"
+  },
+  {
+   "label": "SiCSem (Archean) project cost",
+   "value": "₹2,066.7 cr",
+   "sub": "per ISM fiscal-support agreement, May 2026 (S21)"
+  }
+ ],
+ "sections": [
+  {
+   "id": "theme_explainer",
+   "title": "What the theme is",
+   "subsections": [
+    {
+     "title": "What a fab or ATMP plant needs from chemistry",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "A wafer fab uses up four families of inputs:\n- photoresists and their monomer/photo-acid-generator building blocks, used in lithography;\n- ultra-pure wet chemicals for cleaning and etching, such as hydrogen peroxide, isopropyl alcohol, ammonia water, sulfuric acid and hydrofluoric acid;\n- electronic specialty gases, such as NF3, CF4, SF6, neon and arsine;\n- bulk high-purity gases (nitrogen, oxygen, argon).\nThe Sumitomo-Tata Electronics MoU names exactly this basket for the Dholera fab: photoresists, functional chemicals, and high-purity H2O2, IPA, ammonia water and sulfuric acid (S6). Acutaas describes its Korean JV's products as ultra-high-purity semiconductor materials, with impurities measured in parts per billion (S7)."
+      },
+      {
+       "type": "callout",
+       "tone": "info",
+       "text": "Why purity is the hard part: industrial-grade chemicals are around 99.9% pure, while semiconductor grade (9N) is 99.9999999%. Advanced logic nodes need 'Grade 5' hydrofluoric acid (S4). A supplier must also pass the customer's multi-stage qualification before any volume is sold. At Tatva Chintan this took about 8-9 years of R&D before the first commercial batch (S10)."
+      }
+     ]
+    },
+    {
+     "title": "Import dependence today",
+     "blocks": [
+      {
+       "type": "bullets",
+       "items": [
+        "85-90% of the specialty chemicals and more than 90% of the equipment used by India's chip plants are imported, mainly from Japan, Germany, the US and the Netherlands (S1).",
+        "India imports nearly 100% of its ultra-pure process chemicals, neon, krypton, arsine and high-purity hydrogen fluoride. Japan's Stella Chemifa and Morita are named as HF suppliers (S4).",
+        "IndexBox estimates electronic specialty gas imports at USD 800-1,100 mn in 2026 (65-70% of market value), sourced from the US, Japan, South Korea, China, Germany and Taiwan. It projects import dependence to stay above 60% through 2030 (S5).",
+        "The brief's figure of more than 70% imported is consistent with these estimates. Estimates vary with scope: about 65-70% for gases (S5) and 85-90% for specialty chemicals (S1)."
+       ]
+      }
+     ]
+    },
+    {
+     "title": "How India is getting in: three routes",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "Entry routes by company",
+       "columns": [
+        "Route",
+        "Company",
+        "Vehicle / partner",
+        "Source"
+       ],
+       "rows": [
+        [
+         "Overseas JV close to customers",
+         "Acutaas",
+         "Indichem Inc. (Gongju, Korea): 75% Acutaas Advance Material, 25% J & Materials Co.; synthesis in India, purification and qualification in Korea",
+         "S7"
+        ],
+        [
+         "Overseas acquisition",
+         "Anupam Rasayan",
+         "Jayhawk Fine Chemicals (Galena, Kansas, US), acquired for USD 150 mn",
+         "S9"
+        ],
+        [
+         "Organic R&D and qualification",
+         "Tatva Chintan, Aether",
+         "In-house development; validation batches supplied to clients in Japan, Korea and Taiwan",
+         "S10, S11"
+        ],
+        [
+         "Technology tie-up (organic plant)",
+         "Navin Fluorine",
+         "Buss ChemTech AG (Switzerland) for solar/electronic-grade HF; advanced-materials adoption capacity",
+         "S14"
+        ],
+        [
+         "Supply agreements with a global major",
+         "SRF",
+         "Chemours agreements on fluoropolymers and specialty fluorochemicals for semiconductor/electronics uses",
+         "S15"
+        ],
+        [
+         "Foreign-technology fab",
+         "Archean (SiCSem)",
+         "Clas-SiC Wafer Fab Ltd (UK) collaboration for SiC compound fab plus ATMP",
+         "S3"
+        ]
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "policy_and_capex",
+   "title": "Policy and capex",
+   "subsections": [
+    {
+     "title": "ISM 1.0 to Semicon 2.0",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "Under ISM 1.0, 12 semiconductor manufacturing projects were approved with an investment pipeline of about ₹1.64 lakh crore. The ₹76,000 crore incentive framework offered fiscal support of up to 50% for silicon fabs, compound-semiconductor facilities and assembly/test units (S2). Swarajya reported that the ₹76,000 crore corpus was fully committed by 2025 (S4). Semicon 2.0 was approved on 15 July 2026 with an outlay of ₹1,27,500 crore (about USD 13.4 bn) (S1). It has six pillars, one of which covers manufacturing and R&D of semiconductor equipment, materials, chemicals and gases (S2). TechTimes reports a flat 30% incentive on project cost for these suppliers (S1). The notified scheme text on ism.gov.in could not be opened for this edition, so the rate should be confirmed against the guidelines."
+      },
+      {
+       "type": "chart",
+       "title": "Central semiconductor incentive outlays",
+       "unit": "₹ crore",
+       "series": [
+        {
+         "name": "Outlay",
+         "points": [
+          [
+           "ISM 1.0",
+           76000
+          ],
+          [
+           "Semicon 2.0",
+           127500
+          ]
+         ]
+        }
+       ],
+       "source": "Source: NextIAS summary of ISM (S2); TechTimes (S1)"
+      }
+     ]
+    },
+    {
+     "title": "Scheme support to named companies",
+     "blocks": [
+      {
+       "type": "bullets",
+       "items": [
+        "SiCSem (Archean's step-down subsidiary): the Cabinet approved it under ISM in Aug 2025 (S3). It signed a Fiscal Support Agreement with ISM, Neun Infra and Archean on 11 May 2026 for a 5,000 wafer-starts-per-month SiC fab and an ATMP line of 8 mn units/month, at a project cost of about ₹2,066.7 crore (S21). In Sep 2026 Odisha cleared the unit at ₹3,406 crore, with a central ISM ceiling of ₹700 crore and a recommended ₹350 crore of state support (S22). The two project-cost figures differ and are shown as reported.",
+        "Odisha has said it will give an extra 25% capex support to chip units aligned with Semicon 2.0 (S22).",
+        "No listed chemical maker in this universe has yet publicly confirmed an approval under the Semicon 2.0 materials pillar. The scheme is too new."
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "listed_company_impact",
+   "title": "Listed company impact",
+   "subsections": [
+    {
+     "title": "Specialty chemical and photoresist makers",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "What each chemical maker is doing (as of Sep 2026)",
+       "columns": [
+        "Company",
+        "Chemistry",
+        "Stage",
+        "Capex / deal",
+        "Partner",
+        "Source"
+       ],
+       "rows": [
+        [
+         "Acutaas (ACUTAAS)",
+         "Photoresist chemicals; ultra-high-purity semiconductor materials",
+         "Korean plant commissioned 29 Aug 2026; FY27 is a validation/transition year, with meaningful revenue expected from FY28",
+         "KRW 30 bn (~₹200 cr) in Indichem",
+         "J & Materials Co. (Korea), 25%",
+         "S7, S8, S26"
+        ],
+        [
+         "Tatva Chintan (TATVA)",
+         "Key starting raw material for semiconductor manufacturing",
+         "First commercial-scale batch delivered and qualified in Q1 FY27; 5 products in development",
+         "Not disclosed",
+         "None disclosed",
+         "S10"
+        ],
+        [
+         "Aether (AETHER)",
+         "Semiconductor electronic chemicals under a CEM contract",
+         "Validation batches dispatched (Feb 2026); dedicated Site 5 block targeted for Q3 FY27",
+         "~₹83 cr capex at Site 5 in Q1 FY27",
+         "Clients in Japan, Korea, Taiwan",
+         "S11, S12"
+        ],
+        [
+         "Anupam Rasayan (ANURAS)",
+         "N-1 molecules for electronics and semiconductors (via Jayhawk)",
+         "Acquisition closed 28 Feb 2026",
+         "USD 150 mn (USD 109 mn equity, USD 41 mn debt)",
+         "Jayhawk (US), 100%",
+         "S9"
+        ],
+        [
+         "Navin Fluorine (NAVINFLUOR)",
+         "Electronic-grade HF; advanced materials for chip fabrication and cooling",
+         "5 products lab-approved; adoption capacity due Q2 FY28",
+         "₹90 cr (advanced materials)",
+         "Buss ChemTech AG (tech); Chemours (cooling fluid)",
+         "S14"
+        ],
+        [
+         "Gujarat Fluorochemicals (FLUOROCHEM)",
+         "Fluoropolymers; new semiconductor and advanced-materials subsidiary",
+         "Subsidiary incorporated 26 Jun 2026",
+         "₹1 lakh initial",
+         "None disclosed",
+         "S16"
+        ],
+        [
+         "SRF (SRF)",
+         "Fluoropolymers and specialty fluorochemicals for semiconductor/electronics uses",
+         "Supply and production agreements with Chemours (Aug 2025)",
+         "FY27 group capex ~₹2,500 cr (not semiconductor-specific)",
+         "Chemours",
+         "S15, S24"
+        ],
+        [
+         "Tata Chemicals (TATACHEM)",
+         "Dense soda ash and nano zinc oxide marketed to electronics and semiconductors",
+         "No semiconductor-grade programme disclosed",
+         "None disclosed",
+         "Group company Tata Electronics has an MoU with Sumitomo Chemical",
+         "S23, S6"
+        ]
+       ]
+      },
+      {
+       "type": "callout",
+       "tone": "warn",
+       "text": "Tata Chemicals is on the watch-list mainly because of its group link. The semiconductor-chemicals MoU with Sumitomo is at Tata Electronics, not Tata Chemicals (S6). Tata Chemicals' own electronics products are not described as semiconductor-grade (S23)."
+      }
+     ]
+    },
+    {
+     "title": "Gases, compound fabs and adjacent infrastructure",
+     "blocks": [
+      {
+       "type": "bullets",
+       "items": [
+        "Linde India (LINDEINDIA): building an air separation unit at Dholera, due H2 2027, to supply the Tata fab (S17). Gasworld reports a USD 58 mn electronic-specialty-gas hub planned at Dholera (S18). On 28 Sep 2026 it secured about 8 acres in Sanand for a high-purity packaging-gas facility to serve Micron, CG Power and Kaynes (S17).",
+        "Stallion (STALLION): its semiconductor and specialty gas debulking and blending facility at Khalapur (1,200 tonnes per year) started commercial operations on 21 Sep 2026 (S19). The filing describes this as execution of the capex plan in the company's IPO prospectus (S19). This is blending and repackaging, not synthesis of electronic gases.",
+        "Archean (ACI): building a SiC compound-semiconductor fab plus ATMP through SiCSem with Clas-SiC (UK). Capacity is 60,000 wafers a year plus 96 mn packaged units, and the plant is expected to be operational in 2027-28 (S3, S21)."
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Market reaction",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "Share-price moves reported around theme milestones",
+       "columns": [
+        "Stock",
+        "Move",
+        "Period / trigger",
+        "Source"
+       ],
+       "rows": [
+        [
+         "Aether",
+         "+109%",
+         "CY2026 to 25 Sep 2026",
+         "S13"
+        ],
+        [
+         "Acutaas",
+         "+126.8% (1 yr); +53.5% (6 m)",
+         "to Sep 2026; 52-week range ₹1,302-3,740",
+         "S25"
+        ],
+        [
+         "Acutaas",
+         "+6.7% to ₹3,451",
+         "10 Sep 2026, JM Financial upgrade",
+         "S8"
+        ],
+        [
+         "Tatva Chintan",
+         "+20% to ₹1,714 (52-week high)",
+         "20 Jul 2026, Q1 FY27 and semiconductor qualification",
+         "S10"
+        ]
+       ]
+      },
+      {
+       "type": "p",
+       "text": "What the market is pricing in: the rallies have come at the first-qualification stage, before any meaningful semiconductor revenue has been disclosed. At Acutaas, JM Financial's forecasts explicitly depend on the Korean facility ramping up (S8). Forward-multiple data for this edition comes from the dashboard's screener numbers and is not repeated here."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "research_house_views",
+   "title": "Research house views",
+   "subsections": [
+    {
+     "title": "Named broker views",
+     "blocks": [
+      {
+       "type": "bullets",
+       "items": [
+        "JM Financial on Acutaas (10 Sep 2026): upgraded from 'Add' to 'Buy'. It forecasts specialty chemicals rising from ₹170 crore to ₹730 crore (45% CAGR, FY26-30), with electrolyte additives alone reaching about ₹400 crore. It notes photoresist exposure through BFC and Indichem, conditional on the Korean ramp-up (S8).",
+        "ICICI Securities on Tatva Chintan (20 Jul 2026): issued a price objective after Q1 FY27, when profit rose 140% to ₹16 crore and revenue rose 43% to ₹167.1 crore (S10).",
+        "Coverage skew: the named broker actions found for this edition were positive, but coverage of the semiconductor angle is thin. Brokers treat it as optionality within wider CDMO or specialty-chemicals stories rather than modelling it as a separate segment (S8, S10)."
+       ]
+      },
+      {
+       "type": "callout",
+       "tone": "info",
+       "text": "This report does not issue ratings or price targets. Broker views are attributed and shown for context only."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "risks_and_catalysts",
+   "title": "Risks and catalysts",
+   "subsections": [
+    {
+     "title": "Key risks",
+     "blocks": [
+      {
+       "type": "bullets",
+       "items": [
+        "Qualification timelines: semiconductor chemicals took Tatva about 8-9 years to first commercial batch (S10). Customer audits can reset the clock.",
+        "Incumbent localisation: Sumitomo is exploring Indian manufacturing of photoresists and high-purity chemicals for the Tata fab (S6). Linde is building local gas capacity (S17).",
+        "Demand timing: Tata's Dholera fab is expected in mid-2028 at 90 nm (S1). Until then, domestic wet-chemical demand comes mostly from ATMP units, which use far less than front-end fabs.",
+        "Revenue materiality: semiconductor lines are at validation or early commercial stage at Aether, Tatva and Navin (S11, S10, S14). They are a small share of consolidated sales.",
+        "Conflicting project data: SiCSem is reported at both ₹2,066.7 crore (S21) and ₹3,406 crore (S22)."
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Dated catalysts",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "Catalyst calendar",
+       "columns": [
+        "Timing",
+        "Event",
+        "Company",
+        "Source"
+       ],
+       "rows": [
+        [
+         "Q3 FY27 (Oct-Dec 2026)",
+         "Site 5 semiconductor production block commercialised",
+         "Aether",
+         "S12"
+        ],
+        [
+         "FY27-FY28",
+         "Indichem Korea completes customer validation (FY27); decent revenue contribution expected from FY28",
+         "Acutaas",
+         "S26"
+        ],
+        [
+         "Ongoing FY27",
+         "Ramp-up of Khalapur semiconductor gas facility",
+         "Stallion",
+         "S19"
+        ],
+        [
+         "2026-27",
+         "Semicon 2.0 guidelines and first materials-pillar approvals",
+         "Sector",
+         "S1, S2"
+        ],
+        [
+         "H2 2027",
+         "Dholera ASU operational for Tata fab",
+         "Linde India",
+         "S17"
+        ],
+        [
+         "Q2 FY28 (Jul-Sep 2027)",
+         "Advanced-materials adoption capacity, including electronic-grade HF path",
+         "Navin Fluorine",
+         "S14"
+        ],
+        [
+         "2027-28",
+         "SiCSem SiC fab and ATMP operational",
+         "Archean",
+         "S3"
+        ],
+        [
+         "Mid-2028",
+         "Tata Electronics Dholera fab commercial production",
+         "Tata group (demand driver)",
+         "S1"
+        ]
+       ]
+      },
+      {
+       "type": "bullets",
+       "items": [
+        "Watch each quarter: disclosed semiconductor revenue or volumes, new customer qualifications, capex spend against plan, Semicon 2.0 approvals naming listed companies, and new JV or technology tie-ups with Japanese, Korean or US suppliers."
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "companies": [
+  {
+   "name": "Acutaas Chemicals",
+   "nse": "ACUTAAS",
+   "bse": null,
+   "bucket": "chemical_makers",
+   "role": "Makes photoresist-linked and ultra-high-purity semiconductor materials. Synthesis is done in India; refining and qualification happen at the Indichem Inc. plant in Gongju, Korea (75% owned; J & Materials holds 25%; KRW 30 bn invested), commissioned 29 Aug 2026 (S7).",
+   "impact": "The most advanced qualification route in the universe. JM Financial expects specialty chemicals to reach ₹730 crore by FY30, contingent on the Korean ramp-up (S8). Management calls FY27 a transition year for validation and expects a decent revenue contribution from FY28, possibly growing to a double-digit USD mn level (S26). The stock is up about 127% over a year (S25)."
+  },
+  {
+   "name": "Tatva Chintan Pharma Chem",
+   "nse": "TATVA",
+   "bse": null,
+   "bucket": "chemical_makers",
+   "role": "Delivered and qualified its first commercial-scale semiconductor chemical (a key starting raw material, most stringent grade) in Q1 FY27, after about 8-9 years of R&D. Five more products are in development (S10).",
+   "impact": "A first-mover with qualification proven. The stock hit a 20% upper circuit on 20 Jul 2026 (S10). The segment is still small against ₹167 crore of quarterly revenue."
+  },
+  {
+   "name": "Aether Industries",
+   "nse": "AETHER",
+   "bse": "543534",
+   "bucket": "chemical_makers",
+   "role": "Semiconductor electronic chemicals under a contract-exclusive-manufacturing deal at Site 5, for clients in Japan, Korea and Taiwan. Validation batches were dispatched by Feb 2026 (S11).",
+   "impact": "A dedicated semiconductor block is targeted for Q3 FY27, with about ₹83 crore spent at Site 5 in Q1 FY27 (S12). The stock is up 109% in CY2026, so a lot of the story is priced in (S13)."
+  },
+  {
+   "name": "Anupam Rasayan India",
+   "nse": "ANURAS",
+   "bse": null,
+   "bucket": "chemical_makers",
+   "role": "Acquired US-based Jayhawk Fine Chemicals for USD 150 mn (closed 28 Feb 2026). Jayhawk makes N-1 molecules for electronics, semiconductors and aviation, and about 65% of its revenue comes from performance materials (S9).",
+   "impact": "Took the acquisition route: it bought US manufacturing and existing customer qualifications instead of building them. The risk lies in integration and in debt and investor funding, with Oaktree providing USD 129 mn (S9)."
+  },
+  {
+   "name": "Navin Fluorine International",
+   "nse": "NAVINFLUOR",
+   "bse": null,
+   "bucket": "chemical_makers",
+   "role": "Developing electronic-grade HF with technology partner Buss ChemTech AG. It is building a ₹90 crore advanced-materials adoption capacity (due Q2 FY28) for data-centre, electronics and semiconductor uses; five products are lab-approved (S14).",
+   "impact": "HF integration gives it a natural route into etchants, but it is still at the pre-commercial stage. Near-term growth comes from HPP, specialty and CDMO rather than semiconductors (S14)."
+  },
+  {
+   "name": "Gujarat Fluorochemicals",
+   "nse": "FLUOROCHEM",
+   "bse": null,
+   "bucket": "chemical_makers",
+   "role": "Makes fluoropolymers (PTFE, PVDF, FEP and others) used in semiconductor equipment. Incorporated GFCL Semiconductor and Advanced Materials Ltd on 26 Jun 2026 with ₹1 lakh of initial capital (S16).",
+   "impact": "Early optionality only. No product, capex or partner has been disclosed for the new subsidiary (S16). Swarajya lists GFL among domestic players with fluorspar-to-fluoropolymer integration (S4)."
+  },
+  {
+   "name": "SRF",
+   "nse": "SRF",
+   "bse": null,
+   "bucket": "chemical_makers",
+   "role": "Signed supply and production agreements with Chemours (Aug 2025) covering fluoropolymers and specialty fluorochemicals for semiconductor manufacturing and electronics (S15).",
+   "impact": "Semiconductor exposure is indirect and small against ₹5,033 crore of Q1 FY27 revenue. FY27 group capex is about ₹2,500 crore, mostly for refrigerants and fluoropolymers (S24)."
+  },
+  {
+   "name": "Tata Chemicals",
+   "nse": "TATACHEM",
+   "bse": null,
+   "bucket": "chemical_makers",
+   "role": "Markets dense soda ash and nano zinc oxide to electronics and semiconductor manufacturing, but does not describe them as semiconductor-grade (S23).",
+   "impact": "No disclosed semiconductor-chemical programme. The link is its group: Tata Electronics' Dholera fab has an MoU with Sumitomo Chemical for photoresists and high-purity chemicals (S6), and it is not with Tata Chemicals."
+  },
+  {
+   "name": "Linde India",
+   "nse": "LINDEINDIA",
+   "bse": null,
+   "bucket": "gases_and_materials",
+   "role": "Building an air separation unit at Dholera, due H2 2027, to supply the Tata fab. It has also secured about 8 acres in Sanand for a high-purity packaging-gas facility to serve Micron, CG Power and Kaynes (S17).",
+   "impact": "A direct and relatively low-risk beneficiary: bulk-gas supply is tied to fab and ATMP start-ups rather than new-molecule qualification. Gasworld reports a USD 58 mn electronic-specialty-gas hub planned at Dholera (S18)."
+  },
+  {
+   "name": "Stallion India Fluorochemicals",
+   "nse": "STALLION",
+   "bse": null,
+   "bucket": "gases_and_materials",
+   "role": "Debulks and blends semiconductor and specialty gases (such as CF4 and SF6) at Khalapur, Maharashtra (1,200 tonnes per year). Commercial operations started on 21 Sep 2026 (S19).",
+   "impact": "The first listed Indian company with dedicated semiconductor-gas handling capacity. The facility carries out the capex plan set out in its IPO prospectus (S19). Its model is processing and blending, not synthesis, so margins depend on sourcing."
+  },
+  {
+   "name": "Archean Chemical Industries",
+   "nse": "ACI",
+   "bse": null,
+   "bucket": "fabs_and_packaging",
+   "role": "Its step-down subsidiary SiCSem is building India's first commercial SiC compound-semiconductor fab plus ATMP in Odisha with Clas-SiC (UK). Capacity is 5,000 wafer starts per month (fab) and 8 mn units per month (ATMP), under an ISM fiscal-support agreement signed 11 May 2026 (S3, S21).",
+   "impact": "Direct ISM beneficiary. Project cost is reported at ₹2,066.7 crore (S21) and at ₹3,406 crore (S22). Operations are expected in 2027-28 (S3). It is a large bet relative to the core bromine and salt business."
+  }
+ ],
+ "sources": [
+  {
+   "id": "S1",
+   "publisher": "Tech Times",
+   "title": "India's 12 Chip Sites Show Assembly Works: Semicon 2.0 Bets on Materials and Machines",
+   "url": "https://www.techtimes.com/articles/322695/20260802/indias-12-chip-sites-show-assembly-works-semicon-20-bets-materials-machines.htm",
+   "date": "2026-08-02",
+   "kind": "news"
+  },
+  {
+   "id": "S2",
+   "publisher": "NextIAS (summary of Govt of India scheme)",
+   "title": "Semicon 2.0 Scheme: India Approves ₹1.27 Lakh Crore Outlay",
+   "url": "https://www.nextias.com/ca/current-affairs/01-09-2026/semicon-2-0-scheme",
+   "date": "2026-09-01",
+   "kind": "other"
+  },
+  {
+   "id": "S3",
+   "publisher": "EE Times",
+   "title": "India Approves $550M for Semiconductor Expansion Across Three States",
+   "url": "https://www.eetimes.com/india-approves-550m-for-semiconductor-expansion-across-three-states/",
+   "date": "2025-08-15",
+   "kind": "news"
+  },
+  {
+   "id": "S4",
+   "publisher": "Swarajya",
+   "title": "The Hidden Chemistry Problem Holding Back India's Semiconductor Sovereignty",
+   "url": "https://swarajyamag.com/tech/indias-existential-gamble-on-microchips-is-its-hardest-strategic-test",
+   "date": "2025-12-15",
+   "kind": "news"
+  },
+  {
+   "id": "S5",
+   "publisher": "IndexBox",
+   "title": "Electronic Specialty Gases Market in India (search-result summary)",
+   "url": "https://www.indexbox.io/store/india-electronic-specialty-gases-market-analysis-forecast-size-trends-and-insights/",
+   "date": "2026-09-28",
+   "kind": "research"
+  },
+  {
+   "id": "S6",
+   "publisher": "Tata Electronics",
+   "title": "Tata Electronics and Sumitomo Chemical Sign MoU for High-Quality Semiconductor Materials",
+   "url": "https://www.tataelectronics.com/w/tata-electronics-and-sumitomo-chemical-sign-mou-for-high-quality-semiconductor-materials",
+   "date": "2026-09-18",
+   "kind": "company"
+  },
+  {
+   "id": "S7",
+   "publisher": "Indian Chemical News",
+   "title": "Acutaas Chemicals' Korea unit opens semiconductor materials plant in Gongju",
+   "url": "https://www.indianchemicalnews.com/chemical/acutaas-chemicals-korea-unit-opens-semiconductor-materials-plant-in-gongju-31679",
+   "date": "2026-08-29",
+   "kind": "news"
+  },
+  {
+   "id": "S8",
+   "publisher": "Analytics Insight",
+   "title": "Acutaas Chemicals Shares Jump 7% After JM Financial Gives 'Buy' Rating",
+   "url": "https://www.analyticsinsight.net/news/acutaas-chemicals-shares-jump-7-after-jm-financial-gives-buy-rating",
+   "date": "2026-09-10",
+   "kind": "news"
+  },
+  {
+   "id": "S9",
+   "publisher": "Indian Chemical News",
+   "title": "Anupam Rasayan completes $150M acquisition of US-based Jayhawk Fine Chemicals",
+   "url": "https://www.indianchemicalnews.com/chemical/anupam-rasayan-completes-150m-acquisition-of-us-based-jayhawk-fine-chemicals-29517",
+   "date": "2026-02-28",
+   "kind": "news"
+  },
+  {
+   "id": "S10",
+   "publisher": "Business Today / Business Standard",
+   "title": "Tatva Chintan Pharma shares hit upper circuit; ICICI Securities shares price target",
+   "url": "https://www.businesstoday.in/markets/stocks/story/tatva-chintan-pharma-shares-hit-upper-circuit-icici-securities-shares-price-target-543963-2026-07-20",
+   "date": "2026-07-20",
+   "kind": "news"
+  },
+  {
+   "id": "S11",
+   "publisher": "AlphaStreet",
+   "title": "Aether Industries Q3 FY26 Earnings Call Transcript",
+   "url": "https://alphastreet.com/india/aether-industries-ltd-aether-q3-2026-earnings-call-transcript/",
+   "date": "2026-02-04",
+   "kind": "company"
+  },
+  {
+   "id": "S12",
+   "publisher": "ScanX / Investing.com",
+   "title": "Aether Industries Q1FY27 net profit rises 33.6% on CEM surge",
+   "url": "https://scanx.trade/stock-market-news/companies/aether-industries-q1-results-net-profit-rises-to-628m-rupees-up-33-6-yoy/47025789",
+   "date": "2026-09-28",
+   "kind": "news"
+  },
+  {
+   "id": "S13",
+   "publisher": "Business Standard",
+   "title": "Aether Industries rallies 9%; stock up 109% thus far in CY2026",
+   "url": "https://www.business-standard.com/markets/news/aether-industries-rallies-9-stock-up-109-thus-far-in-cy2026-126092500660_1.html",
+   "date": "2026-09-25",
+   "kind": "news"
+  },
+  {
+   "id": "S14",
+   "publisher": "QuarterMark",
+   "title": "Navin Fluorine International Q1 FY27 Earnings Call Transcript",
+   "url": "https://quartermark.in/companies/NAVINFLUOR/earnings-calls/Q1-FY27/transcript",
+   "date": "2026-08-05",
+   "kind": "company"
+  },
+  {
+   "id": "S15",
+   "publisher": "Business Wire (Chemours / SRF)",
+   "title": "Chemours and SRF Limited Announce Strategic Agreements in India to Support Market Needs for Essential Applications by 2026",
+   "url": "https://www.businesswire.com/news/home/20250819039600/en/Chemours-and-SRF-Limited-Announce-Strategic-Agreements-in-India-to-Support-Market-Needs-for-Essential-Applications-by-2026",
+   "date": "2025-08-19",
+   "kind": "company"
+  },
+  {
+   "id": "S16",
+   "publisher": "Whalesbook",
+   "title": "Gujarat Fluorochemicals Incorporates Semiconductor Subsidiary for ₹1 Lakh",
+   "url": "https://www.whalesbook.com/corporate-news/English/industrial-goodsservices/Gujarat-Fluorochemicals-Incorporates-Semiconductor-Subsidiary-for-indian-rupee1-Lakh/6a3e6f267465030c38ba6b7b",
+   "date": "2026-06-26",
+   "kind": "news"
+  },
+  {
+   "id": "S17",
+   "publisher": "Sahi",
+   "title": "Linde India Secures Sanand Land For Semiconductor Gas Facility",
+   "url": "https://www.sahi.com/news/linde-india-secures-sanand-land-for-semiconductor-gas-facility",
+   "date": "2026-09-28",
+   "kind": "news"
+  },
+  {
+   "id": "S18",
+   "publisher": "gasworld",
+   "title": "Linde set to supply industrial gases to Tata's $11bn chip fab in India (search-result summary)",
+   "url": "https://www.gasworld.com/story/linde-set-to-supply-industrial-gases-to-tatas-11bn-chip-fab-in-india/2164316.article/",
+   "date": "2026-09-28",
+   "kind": "news"
+  },
+  {
+   "id": "S19",
+   "publisher": "Whalesbook (exchange filing summary)",
+   "title": "Stallion India Starts Semiconductor Gas Facility Operations",
+   "url": "https://www.whalesbook.com/corporate-news/English/chemicals/Stallion-India-Starts-Semiconductor-Gas-Facility-Operations/6aae89acf2017017ae6e127f",
+   "date": "2026-09-21",
+   "kind": "news"
+  },
+  {
+   "id": "S21",
+   "publisher": "SCC Online",
+   "title": "Cyril Amarchand Mangaldas advised SiCSem Private Limited on availing fiscal support from the Government of India",
+   "url": "https://www.scconline.com/blog/post/2026/05/20/cam-advises-sicsem-on-government-fiscal-support-for-semiconductor-project/",
+   "date": "2026-05-20",
+   "kind": "news"
+  },
+  {
+   "id": "S22",
+   "publisher": "Business Standard",
+   "title": "FSEZ clears ₹3,406 crore SiCSem semiconductor unit near Bhubaneswar (search-result summary)",
+   "url": "https://www.business-standard.com/industry/news/odisha-sicsem-silicon-carbide-semiconductor-unit-bhubaneswar-ism-126091600089_1.html",
+   "date": "2026-09-16",
+   "kind": "news"
+  },
+  {
+   "id": "S23",
+   "publisher": "Tata Chemicals",
+   "title": "Products for Electronics & Semiconductors",
+   "url": "https://www.tatachemicals.com/products-and-applications/industries/electronics-and-semiconductors",
+   "date": "2026-09-28",
+   "kind": "company"
+  },
+  {
+   "id": "S24",
+   "publisher": "SRF",
+   "title": "SRF Limited Delivers Robust Q1FY27 Results Driven by Strong Performance Across Businesses (search-result summary)",
+   "url": "https://www.srf.com/news/srf-limited-delivers-robust-q1fy27-results-driven-by-strong-performance-across-businesses",
+   "date": "2026-07-23",
+   "kind": "company"
+  },
+  {
+   "id": "S25",
+   "publisher": "INDmoney",
+   "title": "Acutaas Chemicals share price data (search-result summary)",
+   "url": "https://www.indmoney.com/stocks/acutaas-chemicals-ltd-share-price",
+   "date": "2026-09-28",
+   "kind": "other"
+  },
+  {
+   "id": "S26",
+   "publisher": "Trade Brains",
+   "title": "How Is This Semiconductor Stock Targeting Korea's $1 Bn Specialty Chemicals Market?",
+   "url": "https://tradebrains.in/indian-markets/how-is-this-semiconductor-stock-targeting-koreas-1-bn-specialty-chemicals-market-12478960",
+   "date": "2026-09-01",
+   "kind": "news"
+  }
+ ],
+ "method": "First edition, researched on 28 Sep 2026 with web search and direct page fetches. Company facts come from exchange filings, company releases and earnings-call transcripts where these could be opened, and otherwise from trade and financial press. Some pages (Business Standard, gasworld, PIB, ism.gov.in, some NSE PDFs) blocked direct fetch. For those, only facts shown in search-result snippets are used, and the sources are marked 'search-result summary'. Where a publication date could not be confirmed, the access date (2026-09-28) is shown. Where sources conflict (SiCSem project cost; import-share estimates), both figures are shown. Broker views are attributed by name. This report issues no ratings or price targets. Valuation multiples come from the dashboard's screener data and are not restated.",
+ "bucket_labels": {
+  "chemical_makers": [
+   "Specialty chemical & photoresist makers",
+   "Developing or qualifying semiconductor-grade chemicals, photoresist inputs and high-purity intermediates"
+  ],
+  "gases_and_materials": [
+   "Industrial & specialty gas suppliers",
+   "Ultra-pure gases and other non-chemical inputs a fab needs"
+  ],
+  "fabs_and_packaging": [
+   "Fabs, ATMP & packaging",
+   "Building actual chip fabrication, assembly, test or packaging capacity"
+  ],
+  "other": [
+   "Other",
+   ""
+  ]
+ }
+}
