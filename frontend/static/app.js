@@ -5513,10 +5513,44 @@ function rcRender(){
 ACCT.loaded=initUserMenu();
 watchSync();
 
+/* Clicking a desktop notification for a single new item (webpush.alert_target() on the server) lands
+   here with an al= param on the hash: al=deals:<symbol> / al=insiders:<symbol> jump straight to that
+   cluster's tab pre-filtered, al=stock:<code> opens that company's own drawer, al=modal (several new
+   items at once, no single one to point at) just opens the Alerts panel. Two ways this can arrive:
+   - a fresh tab: boot() is about to call setView/render below, which call syncURL() and would silently
+     drop this unrecognised param -- so it is read and stripped from the hash FIRST, saved, and acted on
+     later once DATA/alertsInit are ready.
+   - an already-open tab the service worker steers here (sw.js's client.navigate(url)) to the same
+     origin+path with just the hash different -- browsers treat that as a same-document navigation, no
+     reload, so boot() never runs again; only a 'hashchange' event fires, caught by the listener below,
+     which reads+strips+acts in one go since there is no later syncURL() call racing it this time. */
+function alAct(al){
+  if(al==='modal'){ openAlerts(); return; }
+  const [kind,val]=al.split(':');
+  if(kind==='deals' && val) openDealsFor(val);
+  else if(kind==='insiders' && val) openInsiderTradesFor(val);
+  else if(kind==='stock' && val){
+    const byCode={}; DATA.forEach(d=>byCode[d.code]=d);
+    if(byCode[val]) openDrawer(byCode[val]); else openAlerts();
+  }
+}
+function alStripHash(){
+  const p=new URLSearchParams(location.hash.replace(/^#/,''));
+  const al=p.get('al');
+  if(!al) return null;
+  p.delete('al');
+  try{ history.replaceState(null,'',location.pathname+location.search+(p.toString()?'#'+p.toString():'')); }catch(e){}
+  return al;
+}
+const DEEP_LINK_AL=alStripHash();
+window.addEventListener('hashchange', ()=>{ const al=alStripHash(); if(al) alAct(al); });
+
 BUSY=true; buildColPop(); applyState(); BUSY=false;
 setView(VIEW,{keep:true});
 if(window.dsSplashDone) window.dsSplashDone();   /* the ocean loading scene in index.html */
 alertsInit();
+
+if(DEEP_LINK_AL) alAct(DEEP_LINK_AL);
 
 }
 

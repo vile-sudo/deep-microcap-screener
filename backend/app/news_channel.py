@@ -369,7 +369,7 @@ def _scrub(msg: str) -> str:
     return re.sub(r"(apikey|api_key|token)=[^&\s'\"]+", r"\1=***", str(msg), flags=re.I)
 
 
-def _item_keys(it: dict) -> set:
+def item_keys(it: dict) -> set:
     # by link and by headline: the same story arrives from BusinessLine,
     # Google News and newsdata.io under three different URLs
     return {it["link"] or it["title"], "t:" + re.sub(r"[^a-z0-9]+", "", it["title"].lower())}
@@ -404,7 +404,7 @@ def archive(items: list[dict]) -> int:
             existing = []
         seen, merged = set(), []
         for it in sorted(rows + existing, key=lambda x: x.get("published") or "", reverse=True):
-            keys = _item_keys(it)
+            keys = item_keys(it)
             if keys & seen:
                 continue
             seen |= keys
@@ -472,7 +472,7 @@ def write(api_key: str | None) -> dict:
     for it in sorted(fresh + (prev.get("items") or []), key=lambda x: x.get("published") or "", reverse=True):
         # by link and by headline: the same story arrives from BusinessLine,
         # Google News and newsdata.io under three different URLs
-        keys = _item_keys(it)
+        keys = item_keys(it)
         if keys & seen or (it.get("published") or "") < cutoff:
             continue
         seen |= keys

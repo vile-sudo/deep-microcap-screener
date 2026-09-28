@@ -17,7 +17,7 @@ A merge that grows latest.json also sends the same "N new stories" push (mobile 
 server's own _refresh_news_and_push sends -- otherwise a story that only ever arrived via the GitHub
 workflow's fetch (a different IP, so sometimes different results) would land on the dashboard with no
 notification at all, since sync-data.sh writes straight to disk with nothing else watching this path.
-_item_keys()-based dedup means a story the server already fetched itself is never counted twice here,
+item_keys()-based dedup means a story the server already fetched itself is never counted twice here,
 so this cannot double up with the in-process loop's own push for the same item.
 
     python -m app.news_sync <repo news_channel folder>
@@ -46,7 +46,7 @@ def _read(path: Path) -> dict:
 def _union(*lists: list[dict]) -> list[dict]:
     seen, out = set(), []
     for it in sorted((i for lst in lists for i in lst), key=lambda x: x.get("published") or "", reverse=True):
-        keys = nc._item_keys(it)
+        keys = nc.item_keys(it)
         if keys & seen:
             continue
         seen |= keys
@@ -61,20 +61,21 @@ def _write(path: Path, payload: dict, indent=None) -> None:
     os.replace(tmp, path)
 
 
-def _notify_new_stories(added: int) -> None:
-    if added <= 0:
+def _notify_new_stories(new_items: list[dict]) -> None:
+    if not new_items:
         return
     try:
         from . import push, webpush
         from .database import SessionLocal
 
-        body = f"{added} new stor{'y' if added == 1 else 'ies'} just in"
+        n = len(new_items)
         db = SessionLocal()
         try:
             if push.configured():
-                push.send_to_all(db, "News Channel", body, {"type": "news_channel"})
+                push.send_to_all(db, "News Channel", f"{n} new stor{'y' if n == 1 else 'ies'} just in", {"type": "news_channel"})
             if webpush.configured():
-                webpush.send_to_all(db, "News Channel", body, url="/#v=news", tag="news-channel")
+                title, body, url, tag = webpush.news_target(new_items)
+                webpush.send_to_all(db, title, body, url=url, tag=tag)
         finally:
             db.close()
     except Exception as e:  # noqa: BLE001 - a notify failure must never break the data sync
@@ -96,7 +97,9 @@ def merge(src: Path) -> dict:
             payload = {**newer, "count": len(items), "items": items, "as_of": max(theirs.get("as_of") or "", mine.get("as_of") or "")}
             _write(nc.NEWS_FILE, payload, indent=1)
             changed["latest"] = True
-            _notify_new_stories(max(0, len(items) - len(before)))
+            before_keys = {frozenset(nc.item_keys(i)) for i in before}
+            new_items = [i for i in items if frozenset(nc.item_keys(i)) not in before_keys]
+            _notify_new_stories(new_items)
 
     # archive days: everything from both sides
     for f in sorted((src / "archive").glob("*.json")):

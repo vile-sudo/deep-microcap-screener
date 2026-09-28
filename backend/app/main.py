@@ -33,9 +33,12 @@ def _refresh_news_and_push() -> bool:
     """Runs on a worker thread (see asyncio.to_thread below): fetches if
     stale, and notifies every registered device (mobile, via push.py) and
     every subscribed browser (desktop, via webpush.py) when that fetch
-    actually added something new. Counts before/after rather than trusting
-    refresh_if_stale's own True/False, because a run can fetch successfully
-    and still add nothing (every story already seen).
+    actually added something new. Diffs by news_feed.item_keys() rather than
+    trusting refresh_if_stale's own True/False (a run can fetch successfully
+    and still add nothing, every story already seen) or a bare count (an old
+    story aging out of the 48h window can mask a new one arriving in the same
+    tick) -- and having the actual new items, not just how many, is what lets
+    webpush.news_target() deep-link a single new story straight to itself.
 
     At NEWS_REFRESH_SECONDS=120, newsdata.io's own DAILY_CAP (see
     news_channel.py) is used up in about an hour instead of the ~2.5 hours a
@@ -45,25 +48,25 @@ def _refresh_news_and_push() -> bool:
     and already the higher-volume sources, keep running all day regardless,
     so overall freshness still improves; it is only newsdata.io's own share
     of it that front-loads into the first hour."""
-    before = news_feed.load().get("count", 0)
+    before_keys = {frozenset(news_feed.item_keys(it)) for it in (news_feed.load().get("items") or [])}
     if not news_feed.refresh_if_stale(settings.newsdata_api_key or None, NEWS_REFRESH_SECONDS - 30):
         return False
     payload = news_feed.load()
-    # count can also fall (old stories aging out past the 48h cutoff), so a
-    # net drop is clamped to 0 rather than pushing a nonsensical negative
-    added = max(0, payload.get("count", 0) - before)
-    if added > 0:
-        body = f"{added} new stor{'y' if added == 1 else 'ies'} just in"
+    items = payload.get("items") or []
+    new_items = [it for it in items if frozenset(news_feed.item_keys(it)) not in before_keys]
+    if new_items:
+        n = len(new_items)
         if push.configured():
             db = SessionLocal()
             try:
-                push.send_to_all(db, "News Channel", body, {"type": "news_channel"})
+                push.send_to_all(db, "News Channel", f"{n} new stor{'y' if n == 1 else 'ies'} just in", {"type": "news_channel"})
             finally:
                 db.close()
         if webpush.configured():
+            title, body, url, tag = webpush.news_target(new_items)
             db = SessionLocal()
             try:
-                webpush.send_to_all(db, "News Channel", body, url="/#v=news", tag="news-channel")
+                webpush.send_to_all(db, title, body, url=url, tag=tag)
             finally:
                 db.close()
     return True
@@ -109,16 +112,24 @@ async def _us_alerts_loop():
 
 DESKTOP_PUSH_SECONDS = 60
 DESKTOP_PUSH_STATE_KEY = "DESKTOP_PUSH_LAST"
-DEAL_TYPES = ("deal_buy", "deal_sell")
-INSIDER_TYPES = ("insider_buy", "insider_sell")
+
+def _alert_key(it: dict) -> str:
+    """Identifies an alert item across runs (the list itself is recomputed fresh each script run, so
+    position cannot be used): type + whichever of code/symbol/key names the stock + its window set (a
+    high/low gaining a new window, e.g. becoming a 1-month high too, is genuinely new information, not
+    the same item, so the key changes with it)."""
+    ident = it.get("code") or it.get("symbol") or it.get("key") or ""
+    windows = ",".join(sorted(it.get("windows") or ()))
+    return f"{it['type']}:{ident}:{windows}"
 
 
 def _desktop_push_tick() -> int:
     """Runs on a worker thread: if the India Alerts feed (chart_data/alerts.json +
-    data/deals/clusters.json -- see routers/alerts.load()) has a newer or bigger
-    latest session than last time this checked, sends one summary push to every
-    subscribed browser. First run only records the current state and sends
-    nothing, so turning this on never replays the whole alert history as one
+    data/deals/clusters.json + data/insider_trades/clusters.json -- see routers/alerts.load()) has new
+    items in its latest session compared to last time this checked, sends one push to every subscribed
+    browser -- deep-linked straight to the single new item when there is exactly one (see
+    webpush.alert_target()), a summary that opens the Alerts panel otherwise. First run only records the
+    current state and sends nothing, so turning this on never replays the whole alert history as one
     notification. Returns how many browsers were sent to."""
     from .models import MetaKV
     from .routers.alerts import load as load_alerts
@@ -136,32 +147,23 @@ def _desktop_push_tick() -> int:
     try:
         row = db.get(MetaKV, DESKTOP_PUSH_STATE_KEY)
         prev = row.value if row else None
-        state = {"date": date, "count": len(items)}
+        keys = [_alert_key(it) for it in items]
+        state = {"date": date, "keys": keys}
         if prev is None:
             db.add(MetaKV(key=DESKTOP_PUSH_STATE_KEY, value=state))
             db.commit()
             return 0
         if state == prev:
             return 0
-        new_count = state["count"] - prev["count"] if prev.get("date") == date else state["count"]
+        prev_keys = set(prev.get("keys") or []) if prev.get("date") == date else set()
+        new_items = [it for it, k in zip(items, keys) if k not in prev_keys]
         row.value = state          # row exists whenever prev is not None (the branch above returns first)
         db.commit()
-        if new_count <= 0:
+        if not new_items:
             return 0
 
-        hi = sum(1 for it in items if it["type"] == "high")
-        lo = sum(1 for it in items if it["type"] == "low")
-        bo = sum(1 for it in items if it["type"].endswith("breakout"))
-        deals_n = sum(1 for it in items if it["type"] in DEAL_TYPES)
-        insiders_n = sum(1 for it in items if it["type"] in INSIDER_TYPES)
-        bits = []
-        if hi: bits.append(f"{hi} new high{'s' if hi != 1 else ''}")
-        if lo: bits.append(f"{lo} new low{'s' if lo != 1 else ''}")
-        if bo: bits.append(f"{bo} breakout{'s' if bo != 1 else ''}")
-        if deals_n: bits.append(f"{deals_n} deal cluster{'s' if deals_n != 1 else ''}")
-        if insiders_n: bits.append(f"{insiders_n} insider cluster{'s' if insiders_n != 1 else ''}")
-        body = ", ".join(bits) if bits else f"{len(items)} alerts"
-        return webpush.send_to_all(db, "Deep Sweep alerts", body, url="/#v=overview", tag="deep-sweep-alerts")
+        title, body, url, tag = webpush.alert_target(new_items)
+        return webpush.send_to_all(db, title, body, url=url, tag=tag)
     finally:
         db.close()
 
