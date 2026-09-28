@@ -14,7 +14,11 @@ POST /api/cron/news-channel             shared-secret: same dispatch, for an
 
 Written by scripts/run_news_channel.py into backend/data/news_channel/latest.json
 (see .github/workflows/news_channel.yml for the schedule, app/news_channel.py
-for the rules); this router only reads it.
+for the rules); this router only reads it -- except for one thing news_channel.py
+deliberately stays clear of (see its own docstring): every item served here also
+gets a `companies` field, board companies the story might affect, added at serve
+time by news_company_match.py so the fetch/tag module itself never has to know
+board data exists.
 """
 import hmac
 import json
@@ -25,7 +29,7 @@ from datetime import datetime, timedelta, timezone
 from fastapi import APIRouter, Depends, HTTPException, Query
 from sqlalchemy.orm import Session
 
-from .. import github_dispatch, news_channel
+from .. import github_dispatch, news_channel, news_company_match
 from ..config import get_settings
 from ..database import get_db
 from ..models import MetaKV
@@ -63,7 +67,8 @@ def _dispatch_if_due(db: Session, kv_key: str, cooldown: int) -> dict:
 
 @router.get("/api/news-channel")
 def latest():
-    return news_channel.load()
+    payload = news_channel.load()
+    return {**payload, "items": news_company_match.enrich(payload.get("items") or [])}
 
 
 _DAY = re.compile(r"^\d{4}-\d{2}-\d{2}$")
@@ -107,7 +112,7 @@ def archive_range(days: int = Query(7, ge=1, le=90)):
         if data:
             items.extend(data.get("items") or [])
     items.sort(key=lambda x: x.get("published") or "", reverse=True)
-    return {"days": days, "count": len(items), "items": items}
+    return {"days": days, "count": len(items), "items": news_company_match.enrich(items)}
 
 
 @router.get("/api/news-channel/archive/{day}")
@@ -117,7 +122,7 @@ def archive_day(day: str):
     data = _day_file(day)
     if data is None:
         return {"date": day, "count": 0, "items": []}
-    return data
+    return {**data, "items": news_company_match.enrich(data.get("items") or [])}
 
 
 @router.post("/api/admin/news-channel/run-now")

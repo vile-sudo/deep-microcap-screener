@@ -3070,6 +3070,11 @@ function newsAgoISO(iso){
 const newsAgo = pub => pub ? newsAgoISO(pub.replace(' ','T')+'Z') : '';
 
 function newsItemHtml(it){
+  const affects = (it.companies||[]).length
+    ? `<div class="news-affects" title="Board companies whose own disclosed business touches this same theme -- a lead to check yourself, not a confirmed impact">May affect: ${
+        it.companies.map(c=>`<button type="button" class="news-co-link" data-news-company="${esc(c.code)}">${esc(c.name)}</button>`).join(', ')
+      }</div>`
+    : '';
   return `<article class="news-item">
     <a class="news-title" href="${esc(it.link)}" target="_blank" rel="noopener">${esc(it.title)}</a>
     <div class="news-meta">
@@ -3079,6 +3084,7 @@ function newsItemHtml(it){
       ${it.price_move?'<span class="news-tag news-move-tag">Price move</span>':''}
       <span>${esc(it.source||'')}</span><span>${esc(newsAgo(it.published))}</span>
     </div>
+    ${affects}
   </article>`;
 }
 
@@ -3101,6 +3107,12 @@ function newsRender(){
     : (NEWS.view!=='' && !all.length ? '<p class="view-hint">Nothing was archived for that period. The archive started on the day this feature went live and grows by a day at a time, up to 90 days.</p>' : '<p class="view-hint">No news matches — try a different keyword, clear the filters, or wait for the next scheduled fetch.</p>');
   const btn=document.getElementById('news-refresh');
   if(btn) newsWireRefresh();
+  if(body.querySelector('[data-news-company]')){
+    const byCode={}; DATA.forEach(d=>byCode[d.code]=d);
+    body.querySelectorAll('[data-news-company]').forEach(b=>b.onclick=()=>{
+      const d=byCode[b.dataset.newsCompany]; if(d) openDrawer(d);
+    });
+  }
 }
 
 function newsWireRefresh(){
