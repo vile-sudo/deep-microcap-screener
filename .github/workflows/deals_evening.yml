@@ -6,11 +6,12 @@ name: Deals evening update
 # one-sided pile of institutional deals sits unflagged for 7+ hours after the data was actually
 # available, and a whole trading day before anyone reads about it -- exactly the "stay ahead of the
 # market" case the deal-cluster Alerts feature exists for. This workflow re-runs just that slice
-# (deals, announcements, deal clusters, insider trading/SAST -- not the rest of daily.yml's much heavier
-# fundamentals/screening work) same evening, so a subscribed browser's desktop notification (main.py's
-# _desktop_push_loop, checking every minute) can reasonably fire the same evening instead of after next
-# day's 02:00 run. Insider trading disclosures are filed continuously through market hours (not an
-# end-of-day-only report like bulk/block), so this slice benefits from the evening re-run even more.
+# (deals, FII/DII flow, announcements, deal clusters, insider trading/SAST -- not the rest of daily.yml's
+# much heavier fundamentals/screening work) same evening, so a subscribed browser's desktop notification
+# (main.py's _desktop_push_loop, checking every minute) can reasonably fire the same evening instead of
+# after next day's 02:00 run. Insider trading disclosures are filed continuously through market hours
+# (not an end-of-day-only report like bulk/block), so this slice benefits from the evening re-run even
+# more. FII/DII flow is NSE's own "provisional" end-of-day figure, same timing profile as bulk/block.
 #
 # Two schedule times, not one, same reasoning as movers.yml: a GitHub `schedule:` trigger can be delayed
 # or silently dropped, and NSE's own publish time isn't perfectly fixed either. 20:00 IST re-runs the
@@ -53,6 +54,10 @@ jobs:
         working-directory: ./backend
         run: python scripts/run_deals.py
 
+      - name: FII/DII flow
+        working-directory: ./backend
+        run: python scripts/run_fii_dii.py
+
       - name: Announcements
         working-directory: ./backend
         run: python scripts/run_announcements.py
@@ -74,7 +79,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add backend/data/deals backend/data/announcements backend/data/insider_trades
+          git add backend/data/deals backend/data/fii_dii backend/data/announcements backend/data/insider_trades
           if git diff --cached --quiet; then
             echo "No changes"
             echo "changed=false" >> "$GITHUB_OUTPUT"

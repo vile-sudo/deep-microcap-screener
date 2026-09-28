@@ -8,6 +8,9 @@ name: Daily 2 AM update
 #                     board company, from screener.in   (scripts/refresh_data.py)
 #   1b. deals         NSE's own bulk & block deals report, accumulated into a
 #                     rolling 120-day history                (scripts/run_deals.py)
+#   1b2. FII/DII flow NSE's own combined FII/FPI & DII cash-market flow report,
+#                     accumulated into a rolling 120-day history
+#                                                          (scripts/run_fii_dii.py)
 #   1c. announcements NSE's own corporate announcements, classified and
 #                     accumulated into a rolling 45-day history
 #                                                       (scripts/run_announcements.py)
@@ -124,6 +127,13 @@ jobs:
         timeout-minutes: 15
         working-directory: ./backend
         run: python scripts/run_deals.py
+
+      - name: 1b2. FII/DII flow
+        id: fiidii
+        continue-on-error: true
+        timeout-minutes: 5
+        working-directory: ./backend
+        run: python scripts/run_fii_dii.py
 
       - name: 1c. Corporate announcements
         id: announcements
@@ -298,7 +308,7 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add backend/data/companies_raw.json backend/data/candidates_raw.json backend/data/build_stamp.json \
-                  backend/data/asme_raw.json backend/data/deals backend/data/announcements backend/data/insider_trades backend/chart_data \
+                  backend/data/asme_raw.json backend/data/deals backend/data/fii_dii backend/data/announcements backend/data/insider_trades backend/chart_data \
                   automation/data/candidates-queue.json automation/data/reviewed-symbols.json \
                   automation/data/listings-snapshot.json automation/data/asme-scan.json
           for f in automation/data/auto-screen.json automation/data/weekly-report.md automation/data/profiles \

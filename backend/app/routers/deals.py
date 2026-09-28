@@ -6,6 +6,9 @@ GET /api/deals            every deal on record (scripts/run_deals.py),
                           newest first -- symbol, client, side, quantity,
                           price, value, and the board code when the symbol
                           is on this board
+GET /api/fii-dii          India board: daily FII/FPI and DII cash-market flow, NSE's
+                          own combined report (scripts/run_fii_dii.py), newest first --
+                          buy/sell/net value in crore for each, one row per session
 GET /api/announcements    every non-routine filing on record
                           (scripts/run_announcements.py), newest first --
                           category, a one-line summary, the filing PDF, and
@@ -77,6 +80,7 @@ from ..config import BASE_DIR
 
 router = APIRouter(tags=["deals"])
 DATA_FILE = BASE_DIR / "data" / "deals" / "latest.json"
+FII_DII_FILE = BASE_DIR / "data" / "fii_dii" / "latest.json"
 ANNOUNCEMENTS_FILE = BASE_DIR / "data" / "announcements" / "latest.json"
 INSIDER_TRADES_FILE = BASE_DIR / "data" / "insider_trades" / "latest.json"
 INSIDER_US_FILE = BASE_DIR / "data" / "insider_us" / "latest.json"
@@ -100,6 +104,11 @@ def deals(request: Request):
     return file_response(request, DATA_FILE,
                          {"fetched_at": None, "from_date": None, "to_date": None,
                           "count": 0, "board_count": 0, "deals": []})
+
+
+@router.get("/api/fii-dii")
+def fii_dii(request: Request):
+    return file_response(request, FII_DII_FILE, {"fetched_at": None, "count": 0, "rows": []})
 
 
 @router.get("/api/announcements")
