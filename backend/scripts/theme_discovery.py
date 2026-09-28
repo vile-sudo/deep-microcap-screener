@@ -124,14 +124,21 @@ CURRENT driver -- either of these shapes both count equally:
       semiconductor packaging", a specialty gas, a battery material, a niche component tied to EVs, renewables,
       electronics or another growing end market) -- these are often narrower and less obvious than macro
       business news, and are exactly the kind of theme worth surfacing here.
-Either way you need at least 5-8 India-listed companies with real, evidenced grounds to be called a beneficiary:
-prefer companies with checkable evidence of involvement already (capex announced, a JV signed, a facility
-commissioned, a product qualified, a regulatory filing); where the niche is early enough globally that no Indian
-company has announced anything yet, a company with a genuine, cited adjacency -- an existing manufacturing
-capability, chemistry, process or customer relationship that plausibly lets it move into this niche as it grows
--- is acceptable, but say so plainly (this is visibility/potential, not a done deal) and still cite the source
-for that capability. Do not include a company only because it is broadly "in the same sector" with no specific
-connection to this niche.
+## Non-negotiable: this only matters if an Indian listed company can actually be in it
+This board is for buying India-listed stocks, not for admiring a global trend from the sidelines. However real
+and interesting the global driver is, a theme is only valid here if you can find genuine Indian listed
+participation -- if a niche is real worldwide but you cannot find any Indian listed company with real, evidenced
+involvement OR a genuine, cited adjacency (not a guess), that is not a usable theme for this board: keep looking,
+or skip the day. Do not force a fit by including a company only because it is broadly "in the same sector" with
+no specific connection to this niche.
+
+For the companies you do include, prefer real evidence of involvement already (capex announced, a JV signed, a
+facility commissioned, a product qualified, a regulatory filing); a genuine, cited adjacency -- an existing
+manufacturing capability, chemistry, process or customer relationship that plausibly lets a company move into
+this niche as it grows -- is acceptable where the niche is early enough globally that nobody has announced
+anything concrete yet, but say so plainly (this is visibility/potential, not a done deal). List as many companies
+as genuinely qualify -- that could be just 2-3 for a very early or narrow niche, or a dozen for a broad one; do
+not pad the list with tenuous names to hit a target count. Quality and genuineness matter far more than count.
 
 ## The whole point: get there before the market does
 The goal is not just a real theme -- it's a theme the market hasn't fully priced in yet, so there's still room to
@@ -167,11 +174,12 @@ This is a judgment call, not a hard rule -- verify it with search rather than as
 {FORMAT}
    - bucket_labels: 2-4 groups that fit THIS theme's actual value chain (do not reuse another theme's groups
      unless they genuinely apply) plus you do not need to add "other" -- it is always available automatically.
-   - universe: 5-15 real NSE/BSE symbols total, grouped under the same keys as bucket_labels.
-4. If, after searching, nothing clears the bar (no current driver, no real company evidence or genuine cited
-   adjacency, or everything you found is already widely known and re-rated with nothing earlier available),
-   write out/brief.json as {{"slug": null}} and stop -- a skipped day is better than a weak, duplicate, or
-   already-obvious theme.
+   - universe: real NSE/BSE symbols only, grouped under the same keys as bucket_labels -- as many as genuinely
+     qualify (see the non-negotiable section above), not a count to hit.
+4. If, after searching, nothing clears the bar (no current driver, no genuine Indian listed participation, or
+   everything you found is already widely known and re-rated with nothing earlier available), write out/brief.json
+   as {{"slug": null}} and stop -- a skipped day is better than a weak, duplicate, India-less, or already-obvious
+   theme.
 
 Read the file back once and fix any JSON error. Reply DONE when finished.
 """
@@ -197,8 +205,9 @@ def validate(brief: dict) -> list[str]:
         if k not in bl and k != "other":
             errs.append(f"universe key {k!r} has no matching bucket_labels entry")
     total_symbols = sum(len(v) for v in uni.values() if isinstance(v, list))
-    if total_symbols < 5:
-        errs.append(f"only {total_symbols} symbols in universe (need at least 5)")
+    if total_symbols < 2:
+        errs.append(f"only {total_symbols} symbol(s) in universe -- need genuine Indian listed participation "
+                     "(at least 2; a real early niche can be this narrow, but zero or one isn't a theme)")
     return errs
 
 
