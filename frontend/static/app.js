@@ -5188,7 +5188,7 @@ function scRenderLib(){
   const j=SC.index||{sectors:[],planned:[]};
   document.getElementById('sc-grid').innerHTML = (j.sectors.length ? j.sectors.map(s=>`
     <article class="sc-card" data-sc="${esc(s.slug)}" tabindex="0">
-      <div class="sc-card-top"><span class="sc-ic"><svg viewBox="0 0 24 24">${scIcon(s.icon)}</svg></span><span>Sector research · ${esc(scMonth(s.edition))}</span></div>
+      <div class="sc-card-top"><span class="sc-ic"><svg viewBox="0 0 24 24">${scIcon(s.icon)}</svg></span><span>Sector & Themes research · ${esc(scMonth(s.edition))}</span></div>
       <h3>${esc(s.name)}</h3>
       <p>${esc((s.one_line||'').replace(/\s*\(S\d+(?:;\s*S\d+)*\)/g,''))}</p>
       ${s.latest&&s.latest.items.length?`<div class="sc-card-latest"><b>Latest · ${esc(scDay(s.latest.items[0].date))}</b><span>${esc(s.latest.items[0].title)}</span></div>`:''}
