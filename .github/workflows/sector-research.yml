@@ -1,8 +1,10 @@
-name: Sector research (by hand)
+name: Sector & Themes research (by hand)
 
-# Writes a sector's latest developments or its weekly research edition with Claude Code on the owner's Claude Max
-# plan (CLAUDE_CODE_OAUTH_TOKEN secret), refreshes the sector company numbers,
-# commits and deploys. The daily workflow does the same once a week on its own.
+# Writes a sector/theme's latest developments, its weekly research edition, or finds and
+# publishes a brand-new theme, with Claude Code on the owner's Claude Max plan
+# (CLAUDE_CODE_OAUTH_TOKEN secret), refreshes the sector company numbers, commits and
+# deploys. The daily workflow does the same on its own (weekly editions, and one new
+# theme a day) -- this is for running one right now instead of waiting.
 
 permissions:
   contents: write
@@ -13,14 +15,14 @@ on:
       job:
         description: 'What to run'
         type: choice
-        options: ['latest developments', 'weekly edition']
+        options: ['latest developments', 'weekly edition', 'theme discovery']
         default: 'latest developments'
       sector:
-        description: 'Sector slug (blank = every sector whose edition for this month is missing)'
+        description: 'Sector slug for latest developments/weekly edition (blank = every sector due); ignored for theme discovery, which always finds a new one'
         required: false
         default: ''
       force:
-        description: 'Run even if already done today / this month'
+        description: 'Run even if already done today / this week (theme discovery: publish another theme even if one was already created today)'
         type: boolean
         default: false
 
@@ -72,6 +74,17 @@ jobs:
           if [ -n "$SECTOR" ]; then args+=(--sector "$SECTOR"); fi
           if [ "$FORCE" = "true" ]; then args+=(--force); fi
           python scripts/sector_research.py "${args[@]}"
+      - name: Theme discovery
+        if: ${{ github.event.inputs.job == 'theme discovery' }}
+        working-directory: ./backend
+        env:
+          CLAUDE_CODE_OAUTH_TOKEN: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+          THEME_DISCOVERY_MODEL: ${{ vars.THEME_DISCOVERY_MODEL || 'sonnet' }}
+          FORCE: ${{ github.event.inputs.force }}
+        run: |
+          args=()
+          if [ "$FORCE" = "true" ]; then args+=(--force); fi
+          python scripts/theme_discovery.py "${args[@]}"
       - name: Sector company numbers
         working-directory: ./backend
         run: python scripts/sector_numbers.py
@@ -86,7 +99,7 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add backend/sectors
           if git diff --cached --quiet; then echo "Nothing changed"; exit 0; fi
-          git commit -m "Sector research update $(TZ=Asia/Kolkata date +%F)"
+          git commit -m "Sector & Themes update $(TZ=Asia/Kolkata date +%F)"
           for i in 1 2 3; do git pull --rebase origin ${{ github.ref_name }} && git push origin HEAD:${{ github.ref_name }} && break; sleep 5; done
           if [ -n "$AWS_HOST" ] && [ -n "$AWS_SSH_KEY" ]; then
             mkdir -p ~/.ssh
