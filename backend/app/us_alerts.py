@@ -20,6 +20,12 @@ Rules (keep in step with buildAlerts in us.js):
                   shown while its quarter is still the latest one on file (~45 days,
                   13F's own reporting lag) -- much rarer than the others (13F updates
                   quarterly), but real disclosed institutional conviction
+  * short interest  reported short position moved 35%+ since the previous FINRA
+                  report (bi-monthly), shown for ~20 days after that settlement date
+  * analyst sentiment  Finnhub's monthly "bullish share" (strong buy + buy, as a
+                  percentage of every rating that month) swung 25+ points since the
+                  prior month -- a consensus shift, not a specific analyst's
+                  upgrade/downgrade (Finnhub's free tier only gives the aggregate)
 
 Which alerts have already been pushed is remembered in MetaKV (US_ALERTS_NOTIFIED). The
 first run only records what exists, so switching this on never floods anyone with the
@@ -45,6 +51,14 @@ log = logging.getLogger("deepsweep.us_alerts")
 STATE_KEY = "US_ALERTS_NOTIFIED"
 KEEP_IDS = 3000
 MATERIAL_8K = {"results", "order win", "M&A", "management change", "regulatory or legal", "fundraise"}
+SHORT_INTEREST_MOVE_PCT = 35.0   # a rise (bearish building) or fall (covering) at least this large,
+                                  # calibrated against a real settlement: at 35% roughly the top ~13% of
+                                  # the board's own reported moves, not the routine day-to-day noise
+ANALYST_SHIFT_PTS = 25.0         # percentage-point swing in the "bullish" share of Finnhub's monthly
+                                  # consensus (see _bullish_pct) -- calibrated against real board data:
+                                  # this caught the two genuine consensus reversals in a real month
+                                  # (both 80+ point swings) and excluded four companies whose count only
+                                  # moved by a single analyst (under 12 points)
 DATA = BASE_DIR / "data"
 SETUPS = BASE_DIR / "chart_data_us" / "setups.json"
 LOCK_FILE = DATA / ".us_alerts.lock"
@@ -59,6 +73,15 @@ def _load(path: Path) -> dict:
 
 def _days_since(iso: str, today: date) -> int:
     return (today - date.fromisoformat(str(iso)[:10])).days
+
+
+def _bullish_pct(month: dict) -> float | None:
+    """(strong buy + buy) as a share of every analyst's rating that month -- Finnhub's free tier gives
+    only this monthly aggregate count, not which analyst changed their rating or when, so "consensus
+    shifted" is the honest framing here, not "upgraded"/"downgraded" (a specific rating-action claim this
+    data cannot support)."""
+    n = sum(month.get(k, 0) for k in ("strong_buy", "buy", "hold", "sell", "strong_sell"))
+    return (month.get("strong_buy", 0) + month.get("buy", 0)) / n * 100 if n else None
 
 
 def _compact(v: float) -> str:
@@ -124,6 +147,33 @@ def compute_alerts(board: dict[str, str], today: date | None = None) -> list[dic
             out.append({"id": f"instflow:{code}:{f.get('period')}", "code": code, "kind": "Institutional flow",
                         "title": f"{board[code]}: {' · '.join(bits)} institution{'s' if sum(len(f[k]) for k in ('new','exited','increased','decreased'))!=1 else ''}",
                         "sub": f"13F for {f.get('period') or 'the latest quarter'}, vs {f.get('prev_period') or 'the prior one'}"})
+
+    short_doc = _load(DATA / "short_us" / "latest.json")
+    settle = short_doc.get("settlement_date")
+    if settle and _days_since(settle, today) <= 20:   # FINRA's own ~twice-a-month cadence, plus a few days' slack
+        for code, s in (short_doc.get("companies") or {}).items():
+            pct = s.get("change_pct")
+            if code in board and pct is not None and abs(pct) >= SHORT_INTEREST_MOVE_PCT:
+                direction = "up" if pct > 0 else "down"
+                out.append({"id": f"short:{code}:{settle}", "code": code, "kind": "Short interest",
+                            "title": f"{board[code]}: short interest {direction} {abs(pct):.0f}% since the last report",
+                            "sub": f"settlement {settle}" + (f" · {s['short_pct_shares']:.1f}% of shares outstanding" if s.get("short_pct_shares") is not None else "")})
+
+    for code, e in (_load(DATA / "analysts_us" / "latest.json").get("companies") or {}).items():
+        if code not in board or not e.get("covered"):
+            continue
+        months = e.get("months") or []
+        if len(months) < 2 or _days_since(months[0]["period"], today) > 45:   # Finnhub's own monthly cadence
+            continue
+        cur, prev = _bullish_pct(months[0]), _bullish_pct(months[1])
+        if cur is None or prev is None:
+            continue
+        shift = cur - prev
+        if abs(shift) >= ANALYST_SHIFT_PTS:
+            direction = "improved" if shift > 0 else "worsened"
+            out.append({"id": f"analyst:{code}:{months[0]['period']}", "code": code, "kind": "Analyst sentiment",
+                        "title": f"{board[code]}: analyst consensus {direction} ({prev:.0f}% → {cur:.0f}% bullish)",
+                        "sub": f"{months[0]['period']} vs {months[1]['period']}"})
     return out
 
 

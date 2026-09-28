@@ -1916,6 +1916,30 @@ function buildAlerts() {
         sub: `13F for ${f.period || "the latest quarter"}, vs ${f.prev_period || "the prior one"}`});
     });
   }
+  if (AUX.short && AUX.short.settlement_date && daysSince(AUX.short.settlement_date) <= 20) {
+    Object.entries(AUX.short.companies || {}).forEach(([code, s]) => {
+      if (!by[code] || s.change_pct == null || Math.abs(s.change_pct) < 35) return;
+      const dir = s.change_pct > 0 ? "up" : "down";
+      A.push({id: `short:${code}:${AUX.short.settlement_date}`, code, kind: "Short interest", rank: 150,
+        title: `${by[code].name}: short interest ${dir} ${Math.abs(s.change_pct).toFixed(0)}% since the last report`,
+        sub: `settlement ${insDay(AUX.short.settlement_date)}` + (s.short_pct_shares != null ? ` · ${fmtN(s.short_pct_shares)}% of shares outstanding` : "")});
+    });
+  }
+  const bullishPct = m => { const n = ["strong_buy","buy","hold","sell","strong_sell"].reduce((s, k) => s + (m[k] || 0), 0);
+    return n ? (m.strong_buy + m.buy) / n * 100 : null; };
+  if (AUX.analysts && AUX.analysts.companies) {
+    Object.entries(AUX.analysts.companies).forEach(([code, e]) => {
+      if (!by[code] || !e.covered || !e.months || e.months.length < 2) return;
+      if (daysSince(e.months[0].period) > 45) return;
+      const cur = bullishPct(e.months[0]), prev = bullishPct(e.months[1]);
+      if (cur == null || prev == null) return;
+      const shift = cur - prev;
+      if (Math.abs(shift) < 25) return;
+      A.push({id: `analyst:${code}:${e.months[0].period}`, code, kind: "Analyst sentiment", rank: 160,
+        title: `${by[code].name}: analyst consensus ${shift > 0 ? "improved" : "worsened"} (${prev.toFixed(0)}% → ${cur.toFixed(0)}% bullish)`,
+        sub: `${e.months[0].period} vs ${e.months[1].period}`});
+    });
+  }
   return A.sort((a, b) => (WATCH.has(b.code) - WATCH.has(a.code)) || a.rank - b.rank);
 }
 
