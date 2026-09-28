@@ -105,28 +105,46 @@ def task(existing: list[dict]) -> str:
     return f"""# Find one new investment theme for Indian equity investors
 
 Today is {today().isoformat()}. You are looking for ONE genuinely new, structurally-driven investment theme --
-the kind a sharp reader spots in a news article and immediately asks "which listed companies benefit from this
-and what are they actually doing about it". A good theme has: a real catalyst (policy change, technology shift,
-global supply-chain move, regulatory approval, a capex cycle) that is CURRENT (breaking or developing in roughly
-the last 1-3 months, not old news), and at least 5-8 India-listed companies with real, checkable evidence of
-involvement (capex announced, a JV signed, a facility commissioned, a product qualified, a regulatory filing) --
-not just companies that could theoretically be affected.
+the kind a sharp reader spots in a news article or an industry market-research report and immediately asks
+"which listed companies benefit from this, and can any of them actually participate". A good theme has a real,
+CURRENT driver -- either of these shapes both count equally:
+  (a) a broad catalyst: policy change, technology shift, global supply-chain move, regulatory approval, a capex
+      cycle, developing in roughly the last 1-3 months, not old news; or
+  (b) a specific product/material/component/equipment niche that industry market-research is flagging as
+      entering a demand growth phase (the kind of report IndexBox, Mordor Intelligence, Fortune Business
+      Insights, MarketsandMarkets, GlobalData and similar publish -- e.g. "epoxy encapsulation compounds for
+      semiconductor packaging", a specialty gas, a battery material, a niche component tied to EVs, renewables,
+      electronics or another growing end market) -- these are often narrower and less obvious than macro
+      business news, and are exactly the kind of theme worth surfacing here.
+Either way you need at least 5-8 India-listed companies with real, evidenced grounds to be called a beneficiary:
+prefer companies with checkable evidence of involvement already (capex announced, a JV signed, a facility
+commissioned, a product qualified, a regulatory filing); where the niche is early enough globally that no Indian
+company has announced anything yet, a company with a genuine, cited adjacency -- an existing manufacturing
+capability, chemistry, process or customer relationship that plausibly lets it move into this niche as it grows
+-- is acceptable, but say so plainly (this is visibility/potential, not a done deal) and still cite the source
+for that capability. Do not include a company only because it is broadly "in the same sector" with no specific
+connection to this niche.
 
 ## Do not propose any of these -- already covered or already on the backlog
 {avoid or "(nothing yet -- this is the first theme)"}
 
 ## What to do
-1. Search recent Indian business and financial news/analysis (similar to what a market newsletter, a broking
-   house's morning note, or a business paper would cover) for candidate themes.
+1. Search both: (i) recent Indian business and financial news/analysis (what a market newsletter, a broking
+   house's morning note, or a business paper would cover), and (ii) global industry/market-research reports and
+   trade publications on specific product, material, component or equipment categories and their growth drivers
+   (IndexBox-style sources, sector trade press, company/industry-association reports). Either can be where a good
+   theme comes from.
 2. Pick the single strongest one: verify with WebSearch/WebFetch that it is real and current, and that the
-   companies you plan to list actually have public evidence of involvement -- do not invent names or figures.
+   companies you plan to list actually have the evidence you're crediting them with (involvement or adjacency)
+   -- do not invent names, figures or capabilities.
 3. Write out/brief.json in exactly this format (valid JSON, double quotes):
 {FORMAT}
    - bucket_labels: 2-4 groups that fit THIS theme's actual value chain (do not reuse another theme's groups
      unless they genuinely apply) plus you do not need to add "other" -- it is always available automatically.
    - universe: 5-15 real NSE/BSE symbols total, grouped under the same keys as bucket_labels.
-4. If, after searching, nothing clears the bar (no current catalyst, or you can't find real company evidence),
-   write out/brief.json as {{"slug": null}} and stop -- a skipped day is better than a weak or duplicate theme.
+4. If, after searching, nothing clears the bar (no current driver, or you can't find real company evidence or a
+   genuine cited adjacency), write out/brief.json as {{"slug": null}} and stop -- a skipped day is better than a
+   weak or duplicate theme.
 
 Read the file back once and fix any JSON error. Reply DONE when finished.
 """
