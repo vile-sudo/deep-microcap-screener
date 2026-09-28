@@ -30,6 +30,14 @@ and $200k) are not reported: read the percentage as "at least", not exact.
 Cadence: a new file appears about quarterly. The weekly workflow calls this script;
 it does nothing unless there is a newer file than the one already used, or a board
 company that has not been looked up yet.
+
+Each company's entry also carries `holders`: every institution's name and share count,
+not just the top TOP_HOLDERS shown in the scorecard -- what app/institutions_flow_us.py
+(scripts/run_institutions_flow_us.py) diffs against the PREVIOUS quarter's snapshot
+(data/institutions_us/previous.json, written here the moment a genuinely new quarter's
+file replaces the old one, never on a same-quarter re-run) to flag new/exited/growing/
+shrinking positions -- a later, colder signal than deal/insider clusters (13F only
+updates quarterly), but real smart-money conviction, not one person's trade.
 """
 from __future__ import annotations
 
@@ -49,6 +57,7 @@ import requests
 BACKEND_DIR = Path(__file__).resolve().parent.parent
 RAW_US = BACKEND_DIR / "data" / "companies_us_raw.json"
 OUT_FILE = BACKEND_DIR / "data" / "institutions_us" / "latest.json"
+PREV_FILE = BACKEND_DIR / "data" / "institutions_us" / "previous.json"
 
 PAGE = "https://www.sec.gov/data-research/sec-markets-data/form-13f-data-sets"
 HEADERS = {"User-Agent": "Deep Sweep research contact@pkresearch.in"}
@@ -151,6 +160,16 @@ def analyse(zf: zipfile.ZipFile, board: dict) -> dict:
         total = sum(per_holder.values())
         periods = sorted(period_of[a] for a in per_holder)
         top = sorted(per_holder.items(), key=lambda kv: kv[1], reverse=True)[:TOP_HOLDERS]
+        # By manager NAME, not accession (which changes every quarter even for the same filer) --
+        # summed, since one manager can file more than one accession covering the same stock (rare,
+        # but seen: parent + a subsidiary). This is what institutions_flow_us.py diffs quarter to
+        # quarter -- every holder, not just the top TOP_HOLDERS, so a fund building a position quietly
+        # (not yet large enough for the top-5 list) is still visible as "new" the quarter it appears.
+        by_manager: dict[str, int] = defaultdict(int)
+        for a, s in per_holder.items():
+            name = (manager.get(a) or "").strip()
+            if name:
+                by_manager[name] += s
         for code in codes:
             so = board[code].get("shares_out")
             pct = round(total / so * 100, 2) if so else None
@@ -162,6 +181,7 @@ def analyse(zf: zipfile.ZipFile, board: dict) -> dict:
                 "period": periods[len(periods) // 2] if periods else None,        # the typical reported quarter
                 "top": [{"name": manager.get(a) or "—", "shares": s,
                          "pct": round(s / so * 100, 2) if so else None} for a, s in top],
+                "holders": dict(by_manager),
             }
     return out
 
@@ -210,6 +230,11 @@ def main() -> int:
         companies = analyse(zf, board)
 
     OUT_FILE.parent.mkdir(parents=True, exist_ok=True)
+    if prev.get("companies") and prev.get("source_file") and prev["source_file"] != source:
+        # A genuinely new quarter's file, not just this quarter's data filling in as board companies
+        # are added -- snapshot what we had before overwriting, so institutions_flow_us.py can diff
+        # this quarter's holders against last quarter's.
+        PREV_FILE.write_text(json.dumps(prev, separators=(",", ":")), encoding="utf-8")
     OUT_FILE.write_text(json.dumps({
         "fetched_at": datetime.now(timezone.utc).isoformat(timespec="seconds"),
         "source_file": source,

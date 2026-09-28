@@ -48,6 +48,8 @@ GET /api/news-us          the US board's recent headlines, newest first, a
 GET /api/institutions-us  institutional ownership from SEC Form 13F -- per
                           company: institutions holding it, share of shares
                           outstanding, top holders (scripts/run_institutions_us.py)
+GET /api/institutions-flow-us  quarter-over-quarter new/exited/increased/decreased
+                          13F positions (scripts/run_institutions_flow_us.py)
 GET /api/fundamentals-us  five fiscal years of revenue, profit, cash flow, debt
                           and equity from SEC XBRL (scripts/run_fundamentals_us.py)
 GET /api/analysts-us      analyst coverage and rating counts (scripts/run_analysts_us.py)
@@ -82,6 +84,7 @@ ANNOUNCEMENTS_US_FILE = BASE_DIR / "data" / "announcements_us" / "latest.json"
 EARNINGS_US_FILE = BASE_DIR / "data" / "earnings_us" / "latest.json"
 NEWS_US_FILE = BASE_DIR / "data" / "news_us" / "latest.json"
 INSTITUTIONS_US_FILE = BASE_DIR / "data" / "institutions_us" / "latest.json"
+INSTITUTIONS_FLOW_US_FILE = BASE_DIR / "data" / "institutions_us" / "flow.json"
 FUNDAMENTALS_US_FILE = BASE_DIR / "data" / "fundamentals_us" / "latest.json"
 ANALYSTS_US_FILE = BASE_DIR / "data" / "analysts_us" / "latest.json"
 SHORT_US_FILE = BASE_DIR / "data" / "short_us" / "latest.json"
@@ -145,6 +148,11 @@ def institutions_us(request: Request):
     return file_response(request, INSTITUTIONS_US_FILE,
                          {"fetched_at": None, "source_file": None, "companies_checked": 0,
                           "companies_matched": 0, "companies": {}})
+
+
+@router.get("/api/institutions-flow-us")
+def institutions_flow_us(request: Request):
+    return file_response(request, INSTITUTIONS_FLOW_US_FILE, {"fetched_at": None, "companies": {}})
 
 
 def _company_file(name: str, path):

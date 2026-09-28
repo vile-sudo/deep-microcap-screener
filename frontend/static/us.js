@@ -1608,8 +1608,8 @@ function usEarningsSection(d) {
    manual refresh: when a job commits new data and the server picks it
    up, the next page load shows it.
    ================================================================ */
-const AUX = {news: null, inst: null, ins: null, ann: null, setups: null, fund: null, analysts: null, short: null, perf: null, ipo: null};
-const AUX_URL = {news: "/api/news-us", inst: "/api/institutions-us", ins: "/api/insider-us",
+const AUX = {news: null, inst: null, instflow: null, ins: null, ann: null, setups: null, fund: null, analysts: null, short: null, perf: null, ipo: null};
+const AUX_URL = {news: "/api/news-us", inst: "/api/institutions-us", instflow: "/api/institutions-flow-us", ins: "/api/insider-us",
   ann: "/api/announcements-us", setups: "/api/market/setups?market=us", fund: "/api/fundamentals-us", analysts: "/api/analysts-us",
   short: "/api/short-us", perf: "/api/performance-us", ipo: "/api/ipo-us"};
 const AUX_LOADING = {};
@@ -1905,6 +1905,17 @@ function buildAlerts() {
         title: `${f.name || f.code} ${f.text}`, sub: `${f.chg_pct != null ? (f.chg_pct > 0 ? "+" : "") + f.chg_pct + "% · " : ""}close ${fmtUSD(f.close)}`});
     });
   }
+  if (AUX.instflow && AUX.instflow.fetched_at && daysSince(AUX.instflow.fetched_at.slice(0, 10)) <= 45) {
+    Object.entries(AUX.instflow.companies || {}).forEach(([code, f]) => {
+      if (!by[code]) return;
+      const bits = ["new", "exited", "increased", "decreased"].filter(k => (f[k] || []).length).map(k => `${f[k].length} ${k}`);
+      if (!bits.length) return;
+      const n = ["new", "exited", "increased", "decreased"].reduce((s, k) => s + (f[k] || []).length, 0);
+      A.push({id: `instflow:${code}:${f.period}`, code, kind: "Institutional flow", rank: 200,
+        title: `${by[code].name}: ${bits.join(" · ")} institution${n !== 1 ? "s" : ""}`,
+        sub: `13F for ${f.period || "the latest quarter"}, vs ${f.prev_period || "the prior one"}`});
+    });
+  }
   return A.sort((a, b) => (WATCH.has(b.code) - WATCH.has(a.code)) || a.rank - b.rank);
 }
 
@@ -2051,6 +2062,21 @@ function instCell(d) {
   const i = instFor(d);
   return i && i.inst_pct != null ? (i.over_100 ? "100%+" : fmtN(i.inst_pct) + "%") : "—";
 }
+function usInstFlowFor(d) { return AUX.instflow && AUX.instflow.companies && AUX.instflow.companies[d.code]; }
+function usInstFlowBlock(d) {
+  const f = usInstFlowFor(d);
+  if (!f) return "";
+  const rows = [];
+  (f.new || []).forEach(h => rows.push({...h, tag: "New", cls: "up"}));
+  (f.exited || []).forEach(h => rows.push({...h, tag: "Exited", cls: "dn"}));
+  (f.increased || []).forEach(h => rows.push({...h, tag: `+${fmtN(h.change_pct)}%`, cls: "up"}));
+  (f.decreased || []).forEach(h => rows.push({...h, tag: `${fmtN(h.change_pct)}%`, cls: "dn"}));
+  if (!rows.length) return "";
+  return `<div style="margin-top:11px"><b style="font-size:12.5px">Quarter over quarter</b> <small>(${esc(insDay(f.prev_period || ""))} → ${esc(insDay(f.period || ""))})</small>
+    <div class="mv-tablewrap" style="margin-top:5px"><table class="mv-table"><thead><tr><th>Institution</th><th>Change</th><th class="n">Shares now</th></tr></thead><tbody>`
+    + rows.map(h => `<tr><td>${esc(h.name)}</td><td><span class="${h.cls}">${esc(h.tag)}</span></td><td class="n">${Math.round(h.shares).toLocaleString("en-US")}</td></tr>`).join("")
+    + `</tbody></table></div></div>`;
+}
 function usInstitutionsSection(d) {
   const i = instFor(d);
   if (!i) return "";
@@ -2061,6 +2087,7 @@ function usInstitutionsSection(d) {
     out += `<div class="mv-tablewrap" style="margin-top:9px"><table class="mv-table"><thead><tr><th>Largest holders</th><th class="n">Shares</th><th class="n">% of company</th></tr></thead><tbody>`
       + i.top.map(t => `<tr><td>${esc(t.name)}</td><td class="n">${Math.round(t.shares).toLocaleString("en-US")}</td><td class="n">${t.pct == null ? "—" : fmtN(t.pct) + "%"}</td></tr>`).join("") + "</tbody></table></div>";
   }
+  out += usInstFlowBlock(d);
   return out + `<p class="caveat" style="margin-top:8px">13F is a quarterly snapshot filed up to 45 days after quarter-end and leaves out small positions, so read the percentage as “at least this much”. Where several entities of one manager report the same shares it can overstate.</p></div>`;
 }
 function usNewsSection(d) {

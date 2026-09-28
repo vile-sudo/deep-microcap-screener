@@ -16,6 +16,10 @@ Rules (keep in step with buildAlerts in us.js):
   * 8-K filing    a material 8-K (results, order win, M&A, management change,
                   regulatory or legal, fundraise) in the last 7 days
   * price signal  the chart job's feed (new 52-week high/low, breakout) for a board name
+  * institutional flow  a new/exited/grown/shrunk 13F position (app/institutions_flow_us.py),
+                  shown while its quarter is still the latest one on file (~45 days,
+                  13F's own reporting lag) -- much rarer than the others (13F updates
+                  quarterly), but real disclosed institutional conviction
 
 Which alerts have already been pushed is remembered in MetaKV (US_ALERTS_NOTIFIED). The
 first run only records what exists, so switching this on never floods anyone with the
@@ -108,6 +112,18 @@ def compute_alerts(board: dict[str, str], today: date | None = None) -> list[dic
             out.append({"id": f"feed:{f['code']}:{f.get('kind')}:{setups.get('as_of')}", "code": f["code"],
                         "kind": "Price signal", "title": f"{f.get('name') or f['code']} {f.get('text', '')}".strip(),
                         "sub": str(setups.get("as_of"))})
+
+    flow_doc = _load(DATA / "institutions_us" / "flow.json")
+    if flow_doc.get("fetched_at") and _days_since(flow_doc["fetched_at"], today) <= 45:   # 13F's own reporting lag
+        for code, f in (flow_doc.get("companies") or {}).items():
+            if code not in board:
+                continue
+            bits = [f"{len(f[k])} {k}" for k in ("new", "exited", "increased", "decreased") if f.get(k)]
+            if not bits:
+                continue
+            out.append({"id": f"instflow:{code}:{f.get('period')}", "code": code, "kind": "Institutional flow",
+                        "title": f"{board[code]}: {' · '.join(bits)} institution{'s' if sum(len(f[k]) for k in ('new','exited','increased','decreased'))!=1 else ''}",
+                        "sub": f"13F for {f.get('period') or 'the latest quarter'}, vs {f.get('prev_period') or 'the prior one'}"})
     return out
 
 

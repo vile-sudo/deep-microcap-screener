@@ -4,6 +4,10 @@ name: US institutional ownership
 # scripts/run_institutions_us.py. Checked daily but only does the ~100 MB download when
 # the SEC has published a newer quarterly file or a company was added to the board
 # since the last run; otherwise it exits in seconds. Runs after the 05:00 UTC auto-screen.
+# Then scripts/run_institutions_flow_us.py: quarter-over-quarter new/exited/increased/
+# decreased positions (app/institutions_flow_us.py), surfaced in the Alerts bell -- pure
+# computation over files already on disk, so it costs nothing extra even when the 13F
+# fetch above was itself a no-op.
 
 permissions:
   contents: write
@@ -37,6 +41,10 @@ jobs:
       - name: Refresh institutional ownership from SEC Form 13F
         working-directory: ./backend
         run: python scripts/run_institutions_us.py
+
+      - name: Institutional flow (quarter-over-quarter)
+        working-directory: ./backend
+        run: python scripts/run_institutions_flow_us.py
 
       - name: Commit
         id: commit
