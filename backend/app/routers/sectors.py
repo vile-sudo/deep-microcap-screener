@@ -4,7 +4,7 @@ Sector research endpoints.
 GET /api/sectors                       every sector: name, latest edition, headline, key stats
 GET /api/sectors/{slug}                the latest edition, its edition list, live company numbers
                                        and the daily latest developments
-GET /api/sectors/{slug}/{edition}      one edition, e.g. 2026-09
+GET /api/sectors/{slug}/{edition}      one edition, e.g. 2026-W40 (ISO year-week)
 POST /api/sectors/{slug}/refresh       admin: fire the daily latest-developments
                                        check right now instead of waiting for 2 AM
 
@@ -32,7 +32,7 @@ from .auth import require_admin
 router = APIRouter(prefix="/api/sectors", tags=["sectors"])
 SECTORS = Path(os.environ.get("SECTORS_DIR") or BASE_DIR / "sectors")
 SLUG = re.compile(r"^[a-z0-9-]{2,60}$")
-EDITION = re.compile(r"^\d{4}-\d{2}$")
+EDITION = re.compile(r"^\d{4}-W\d{2}$")
 REFRESH_COOLDOWN = 10 * 60   # a run itself takes several minutes; stop repeat clicks queuing more
 
 

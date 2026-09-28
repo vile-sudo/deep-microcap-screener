@@ -1,9 +1,9 @@
 """
-Monthly sector research editions, written by Claude Code (Claude Pro / Max plan)
-with web search, from a brief and last month's edition.
+Weekly sector/theme research editions, written by Claude Code (Claude Pro / Max plan)
+with web search, from a brief and last week's edition.
 
     cd backend
-    python scripts/sector_research.py                       # sectors whose edition is older than this month
+    python scripts/sector_research.py                       # sectors whose edition is older than this week
     python scripts/sector_research.py --sector oil-exploration --force
 
 Each sector has backend/sectors/<slug>/brief.json (name, scope, the questions the
@@ -11,7 +11,9 @@ research must answer, the company universe). The session gets that brief, the
 previous edition and today's company numbers, researches the web (official
 statistics, regulators, research houses, company disclosures, credible news)
 and writes a new edition in the dashboard's format with every figure cited.
-The output is validated before it is saved as backend/sectors/<slug>/<YYYY-MM>.json.
+The output is validated before it is saved as backend/sectors/<slug>/<YYYY-Www>.json
+(ISO year-week, e.g. 2026-W40) -- was YYYY-MM (monthly) before re-verification moved
+to weekly to keep pace with new themes being added daily (see theme_discovery.py).
 """
 from __future__ import annotations
 
@@ -43,7 +45,7 @@ SECTION_ORDER = ["theme_explainer", "policy_and_capex", "listed_company_impact",
                  "risks_and_catalysts"]
 
 FORMAT = """{{
- "slug": "...", "name": "...", "icon": "oil", "edition": "YYYY-MM", "updated": "YYYY-MM-DD",
+ "slug": "...", "name": "...", "icon": "oil", "edition": "YYYY-Www", "updated": "YYYY-MM-DD",
  "scope": "one line: what the report covers",
  "summary": {{"one_line": "...", "key_points": ["5-8 points, each cited"],
              "for_investors": [{{"title": "Who benefits", "tone": "good", "points": ["..."]}},
@@ -104,8 +106,8 @@ def validate(r: dict, brief: dict | None = None) -> list[str]:
 
 
 def task(brief: dict, previous: dict | None, edition: str) -> str:
-    prev_rule = ("- previous.json is last month's edition: re-verify what still holds, update every number, add what changed "
-                 "this month and drop anything stale." if previous else "- This is the first edition.")
+    prev_rule = ("- previous.json is last week's edition: re-verify what still holds, update every number, add what changed "
+                 "this week and drop anything stale." if previous else "- This is the first edition.")
     bucket_enum = "|".join(bucket_labels(brief))
     fmt = FORMAT.format(bucket_enum=bucket_enum)
     return f"""# Sector research: {brief['name']} - {edition} edition
@@ -145,8 +147,8 @@ def run(slug: str, force: bool) -> str:
     if not brief_path.exists():
         return "no brief.json"
     brief = json.loads(brief_path.read_text(encoding="utf-8"))
-    edition = datetime.now(IST).strftime("%Y-%m")
-    eds = sorted(p.stem for p in (SECTORS / slug).glob("????-??.json"))
+    edition = datetime.now(IST).strftime("%G-W%V")
+    eds = sorted(p.stem for p in (SECTORS / slug).glob("????-W??.json"))
     if eds and eds[-1] >= edition and not force:
         return f"{edition} edition already exists"
     previous = json.loads((SECTORS / slug / f"{eds[-1]}.json").read_text(encoding="utf-8")) if eds else None

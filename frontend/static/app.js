@@ -5179,7 +5179,17 @@ function openSectors(){
   scLoadIndex().then(()=>{ if(VIEW!=='sectors') return; SC.slug ? scRenderDoc() : scRenderLib(); });
 }
 function openSector(slug){ SC.slug=slug; SC.edition=null; setView('sectors',{nav:'sectors-link',keep:true}); window.scrollTo({top:0}); }
-const scMonth = ed => { const [y,m]=String(ed||'').split('-').map(Number); return y?`${GMONTHS[m-1]} ${y}`:ed; };
+/* Editions are ISO year-weeks ("2026-W40") since re-verification moved from monthly to
+   weekly; shown as the Monday that week starts. */
+const scMonth = ed => {
+  const m = /^(\d{4})-W(\d{2})$/.exec(String(ed||''));
+  if(!m) return ed;
+  const y=+m[1], w=+m[2];
+  const jan4 = new Date(Date.UTC(y,0,4));
+  const mondayOffset = (jan4.getUTCDay()+6)%7;
+  const mon = new Date(jan4.getTime() - mondayOffset*864e5 + (w-1)*7*864e5);
+  return `Week of ${mon.getUTCDate()} ${GMONTHS[mon.getUTCMonth()]} ${mon.getUTCFullYear()}`;
+};
 
 function scRenderLib(){
   document.getElementById('sc-heading').hidden=false;

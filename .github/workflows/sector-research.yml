@@ -1,8 +1,8 @@
 name: Sector research (by hand)
 
-# Writes a sector's latest developments or its monthly research edition with Claude Code on the owner's Claude Max
+# Writes a sector's latest developments or its weekly research edition with Claude Code on the owner's Claude Max
 # plan (CLAUDE_CODE_OAUTH_TOKEN secret), refreshes the sector company numbers,
-# commits and deploys. The daily workflow does the same once a month on its own.
+# commits and deploys. The daily workflow does the same once a week on its own.
 
 permissions:
   contents: write
@@ -13,7 +13,7 @@ on:
       job:
         description: 'What to run'
         type: choice
-        options: ['latest developments', 'monthly edition']
+        options: ['latest developments', 'weekly edition']
         default: 'latest developments'
       sector:
         description: 'Sector slug (blank = every sector whose edition for this month is missing)'
@@ -60,7 +60,7 @@ jobs:
           if [ "$FORCE" = "true" ]; then args+=(--force); fi
           python scripts/sector_latest.py "${args[@]}"
       - name: Sector research
-        if: ${{ github.event.inputs.job == 'monthly edition' }}
+        if: ${{ github.event.inputs.job == 'weekly edition' }}
         working-directory: ./backend
         env:
           CLAUDE_CODE_OAUTH_TOKEN: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}

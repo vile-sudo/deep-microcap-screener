@@ -49,7 +49,7 @@ FORMAT = """{
                "could be a beneficiary, risks, catalysts -- mirror the shape of an existing brief.json"],
  "bucket_labels": {"snake_case_key": ["Group title", "one-line description"], "...": ["...", "..."]},
  "universe": {"snake_case_key": ["SYMBOL", "..."], "...": ["..."]},
- "refresh": "monthly"
+ "refresh": "weekly"
 }"""
 
 
@@ -87,7 +87,7 @@ def newest_theme_age_days() -> int | None:
     for d in SECTORS.iterdir():
         if not d.is_dir():
             continue
-        eds = sorted(p.stem for p in d.glob("????-??.json"))
+        eds = sorted(p.stem for p in d.glob("????-W??.json"))
         if not eds:
             continue
         try:

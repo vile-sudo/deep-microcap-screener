@@ -34,8 +34,10 @@ name: Daily 2 AM update
 #   5. charts         yesterday's candles, Chart gallery and Market view
 #                     stages -- after step 3, so a company added today has
 #                     its chart today                   (scripts/update_charts.py)
-#   6. sector research  a new monthly edition for each sector in Sector
-#                     Research, once a month            (scripts/sector_research.py)
+#   5b. theme discovery  one brand-new theme a day, from a blank page, in Sector &
+#                     Themes                            (scripts/theme_discovery.py)
+#   6. sector research  a new weekly edition for each sector/theme in Sector &
+#                     Themes                            (scripts/sector_research.py)
 #   7. sector numbers screener.in numbers for the companies in each sector
 #                     report, every day                  (scripts/sector_numbers.py)
 #      + latest       a short news check per sector: dated, cited "Latest
@@ -229,12 +231,14 @@ jobs:
           SECTOR_TOTAL_MINUTES: '60'
         run: python scripts/theme_discovery.py
 
-      # Monthly sector research editions, written by Claude Code with web search on
-      # the owner's Claude Max plan. Does nothing unless a sector's edition for this
-      # month is missing (normally the 1st), and runs before the deep-dive reports so
-      # the monthly session gets the day's usage first. SECTORS_PER_RUN (default 1)
-      # caps how many sectors are written in one day; the rest follow on later days.
-      - name: 6. Sector research (monthly)
+      # Weekly sector/theme research editions, written by Claude Code with web search on
+      # the owner's Claude Max plan. Does nothing unless a sector's edition for the
+      # current ISO week is missing, and runs before the deep-dive reports so this
+      # session gets the day's usage first. SECTORS_PER_RUN (default 1) caps how many
+      # editions are written in one day; the rest follow on later days -- as the
+      # library grows (a new theme every day via theme discovery above), this may need
+      # raising so re-verification keeps pace.
+      - name: 6. Sector research (weekly)
         id: sectors
         continue-on-error: true
         timeout-minutes: 170

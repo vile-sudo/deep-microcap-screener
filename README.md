@@ -259,43 +259,60 @@ to only fetch the documents and build the work folder.
 (`REPORT_ENGINE=api` with an `ANTHROPIC_API_KEY` secret switches the writer to
 the paid API instead - `scripts/deep_report/writer.py`.)
 
-## Sector Research (automated, monthly)
+## Sector & Themes Research (automated, weekly, new themes daily)
 
-The **Sectors** tab holds deep research on one sector at a time: what is
-happening around the world, what is happening in India, and what it means for
-Indian listed companies across the value chain (producers, services, equipment,
-the gas chain, refiners...). Every figure is cited `(S12)` to a numbered source -
-official statistics and regulators, company filings, rating agencies, research
-houses and news - and the sources are listed by type at the end. Forecasts and
-broker views are attributed to whoever made them; the dashboard gives no ratings.
+The **Sector & Themes** tab holds deep research on one sector or theme at a
+time: what is happening around the world, what is happening in India, and
+what it means for Indian listed companies across the value chain. Every
+figure is cited `(S12)` to a numbered source - official statistics and
+regulators, company filings, rating agencies, research houses and news - and
+the sources are listed by type at the end. Forecasts and broker views are
+attributed to whoever made them; the dashboard gives no ratings. A "sector"
+(e.g. Oil & Exploration) and a "theme" (e.g. Semiconductor Specialty
+Chemicals) are the same underlying thing - a `brief.json` and its editions -
+just different in scope and how they came to exist (hand-curated vs.
+discovered from scratch, see below); each declares its own company-grouping
+buckets in `brief.json` rather than sharing a fixed taxonomy.
 
-Files, one folder per sector under `backend/sectors/<slug>/`:
+Files, one folder per sector/theme under `backend/sectors/<slug>/`:
 
 | File | What it is |
 |---|---|
-| `brief.json` | name, scope, the questions the research must answer, the company universe |
-| `YYYY-MM.json` | one edition per month (older editions stay selectable on the page) |
+| `brief.json` | name, scope, the questions the research must answer, the company universe, the bucket groups this one uses |
+| `YYYY-Www.json` | one edition per ISO week (e.g. `2026-W40`; older editions stay selectable on the page) |
 | `numbers.json` | today's screener.in numbers for the companies in the latest edition |
 | `latest.json` | daily "Latest developments": dated news items with their sources and the companies they affect, plus a few headline figures (last 45 days) |
 
-`backend/sectors/planned.json` lists the "coming next" cards.
+`backend/sectors/planned.json` lists the hand-curated "coming next" cards
+(separate from the automatic daily discovery below).
 
 - **Editions** - `scripts/sector_research.py` runs Claude Code (Claude Max plan,
   the same `CLAUDE_CODE_OAUTH_TOKEN` as the deep-dive reports) with web search.
-  It gets the brief, last month's edition and the company numbers, and must
-  re-verify and update every number. The output is checked (at least 20 sources,
-  every citation resolves, known block types) before it is saved. The daily run
-  writes a sector's new edition when this month's is missing, normally on the
-  1st; `SECTORS_PER_RUN` (default 1) spreads several sectors over several days.
+  It gets the brief, last week's edition and the company numbers, and must
+  re-verify and update every number. The output is checked (at least 10
+  sources, every citation resolves, known block types, companies use only the
+  brief's own buckets) before it is saved. The daily run writes a new edition
+  for whichever sector/theme's edition for the current ISO week is missing;
+  `SECTORS_PER_RUN` (default 1) spreads several over several days - as the
+  library grows (see below), this may need raising to keep pace.
+- **Theme discovery** - `scripts/theme_discovery.py`, every day: a Claude Code
+  session with web search looks for one genuinely new, structurally-driven
+  investment theme (a real catalyst, and named companies with checkable
+  evidence of involvement - capex, a JV, a qualified product, not just
+  companies that could theoretically be affected), avoiding every theme
+  already published or on the `planned.json` backlog, writes its `brief.json`,
+  and immediately calls into `sector_research.py` for its first edition - so a
+  brand-new theme goes from nothing to a published report the same day. Skips
+  the day entirely rather than force a weak or duplicate theme.
 - **Company numbers** - `scripts/sector_numbers.py`, every day.
 - **Latest developments** - `scripts/sector_latest.py`, every day: a short Claude
-  Code session per sector (Sonnet by default; repo variable `SECTOR_LATEST_MODEL`
-  to change) looks for news since the last check and writes 0-8 dated items, each
-  with the pages it came from. Items without a source URL, outside the date window
-  or already published are dropped before saving. They show at the top of the
-  sector page.
+  Code session per sector/theme (Sonnet by default; repo variable
+  `SECTOR_LATEST_MODEL` to change) looks for news since the last check and
+  writes 0-8 dated items, each with the pages it came from. Items without a
+  source URL, outside the date window or already published are dropped before
+  saving. They show at the top of the sector/theme page.
 - **By hand** - *Actions → Sector research (by hand) → Run workflow* (choose latest
-  developments or monthly edition, optionally a sector slug and *force*), or locally `cd backend && python scripts/sector_research.py --sector oil-exploration --force`.
+  developments or weekly edition, optionally a sector slug and *force*), or locally `cd backend && python scripts/sector_research.py --sector oil-exploration --force`.
 - **Refresh now (one click)** - a **Refresh now** button on each sector page (admin
   only) fires the same latest-developments check straight away, for when
   something big just happened and you don't want to wait for the 2 AM run or open
@@ -303,9 +320,12 @@ Files, one folder per sector under `backend/sectors/<slug>/`:
   scoped to this repo with "Actions: Read and write" (see `.env.example`).
   Server-side cooldown (10 min) stops repeat clicks queuing several runs.
 
-**Adding a sector**: create `backend/sectors/<slug>/brief.json` (copy
-`oil-exploration/brief.json` and change the scope, questions and universe),
-remove its card from `planned.json`, then run the manual workflow with that slug.
+**Adding a sector or theme by hand** (theme discovery above does this
+automatically once a day; do this only for one you want to curate yourself):
+create `backend/sectors/<slug>/brief.json` (copy `oil-exploration/brief.json`
+and change the scope, questions, bucket_labels and universe), remove its card
+from `planned.json` if it had one, then run the manual workflow with that
+slug.
 
 ## ASME certification (automated)
 
@@ -591,7 +611,8 @@ stages run, and marks the run failed (GitHub emails you).
 | 3. Auto-screen | `backend/scripts/auto_screen.py` | adds up to 10 companies a day that pass the board's rules, marked **Auto-added** (below) |
 | 4. ASME | `automation/scan-asme.mjs` | ASME certificate holders, certificate types and dates |
 | 5. Charts | `backend/scripts/update_charts.py` | candles, Screen any Chart, Market view stages (VCP + IPO base), breakouts, feed |
-| 6. Sector research | `backend/scripts/sector_research.py` | a new monthly edition for each sector (Claude Code, Max plan) |
+| 5b. Theme discovery | `backend/scripts/theme_discovery.py` | one brand-new theme a day, published same-day (Claude Code, Max plan) |
+| 6. Sector research | `backend/scripts/sector_research.py` | a new weekly edition for each sector/theme (Claude Code, Max plan) |
 | 7. Sector numbers | `backend/scripts/sector_numbers.py` | screener.in numbers for the companies in each sector report |
 | 7b. Sector latest | `backend/scripts/sector_latest.py` | dated, cited latest developments at the top of each sector report |
 | 8. Deep-dive reports | `backend/scripts/deep_reports.py` | quarterly deep-dive reports after new results, and their PDFs |

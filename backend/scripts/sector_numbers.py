@@ -29,7 +29,7 @@ IST = timezone(timedelta(hours=5, minutes=30))
 
 
 def latest_edition(slug: str) -> Path | None:
-    eds = sorted(p for p in (SECTORS / slug).glob("????-??.json"))
+    eds = sorted(p for p in (SECTORS / slug).glob("????-W??.json"))
     return eds[-1] if eds else None
 
 

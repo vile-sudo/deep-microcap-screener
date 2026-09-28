@@ -7,7 +7,7 @@ Claude Code session (Claude Pro / Max plan) with web search.
     python scripts/sector_latest.py --sector oil-exploration --force
     python scripts/sector_latest.py --sector oil-exploration --from-file out.json   # merge a prepared file, no Claude
 
-The monthly edition (scripts/sector_research.py) is the full, re-verified report.
+The weekly edition (scripts/sector_research.py) is the full, re-verified report.
 This adds what happened since the last update: dated news items, each with the
 pages it came from and the listed companies it matters for, plus a few
 fast-moving headline figures (e.g. the Brent price). Items are checked before
@@ -67,7 +67,7 @@ def load(path: Path, default):
 
 
 def latest_edition(slug: str) -> dict | None:
-    eds = sorted(p.stem for p in (SECTORS / slug).glob("????-??.json"))
+    eds = sorted(p.stem for p in (SECTORS / slug).glob("????-W??.json"))
     return load(SECTORS / slug / f"{eds[-1]}.json", None) if eds else None
 
 
@@ -155,7 +155,7 @@ exists; your job is only what is NEW since {since.isoformat()}. Today is {today(
 
 ## Files in this folder
 - brief.json: the sector's scope and company universe
-- edition.json: the current monthly edition's headline figures and key points (the background, not news)
+- edition.json: the current weekly edition's headline figures and key points (the background, not news)
 - companies.json: the Indian listed companies on the page (name, NSE symbol, role)
 - recent.json: developments already published - do NOT repeat these
 
