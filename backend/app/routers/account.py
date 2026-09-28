@@ -91,6 +91,7 @@ def patch_settings(body: SettingsIn, request: Request, db: Session = Depends(get
                         "lows": [w for w in windows if w in (v.get("lows") or [])],
                         "ipo": bool(v.get("ipo", True)), "vcp": bool(v.get("vcp", True)),
                         "deals": bool(v.get("deals", True)),  # institutional deal clusters (app/deal_clusters.py)
+                        "insiders": bool(v.get("insiders", True)),  # insider clusters (app/insider_clusters.py)
                         "scope": v.get("scope") if v.get("scope") in ("watchlist", "board", "market") else "board",
                         "notify": bool(v.get("notify", False))}
     row.prefs = prefs

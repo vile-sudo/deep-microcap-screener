@@ -110,6 +110,7 @@ async def _us_alerts_loop():
 DESKTOP_PUSH_SECONDS = 60
 DESKTOP_PUSH_STATE_KEY = "DESKTOP_PUSH_LAST"
 DEAL_TYPES = ("deal_buy", "deal_sell")
+INSIDER_TYPES = ("insider_buy", "insider_sell")
 
 
 def _desktop_push_tick() -> int:
@@ -152,11 +153,13 @@ def _desktop_push_tick() -> int:
         lo = sum(1 for it in items if it["type"] == "low")
         bo = sum(1 for it in items if it["type"].endswith("breakout"))
         deals_n = sum(1 for it in items if it["type"] in DEAL_TYPES)
+        insiders_n = sum(1 for it in items if it["type"] in INSIDER_TYPES)
         bits = []
         if hi: bits.append(f"{hi} new high{'s' if hi != 1 else ''}")
         if lo: bits.append(f"{lo} new low{'s' if lo != 1 else ''}")
         if bo: bits.append(f"{bo} breakout{'s' if bo != 1 else ''}")
         if deals_n: bits.append(f"{deals_n} deal cluster{'s' if deals_n != 1 else ''}")
+        if insiders_n: bits.append(f"{insiders_n} insider cluster{'s' if insiders_n != 1 else ''}")
         body = ", ".join(bits) if bits else f"{len(items)} alerts"
         return webpush.send_to_all(db, "Deep Sweep alerts", body, url="/#v=overview", tag="deep-sweep-alerts")
     finally:

@@ -65,6 +65,10 @@ jobs:
         working-directory: ./backend
         run: python scripts/run_insider_trades.py
 
+      - name: Insider clusters
+        working-directory: ./backend
+        run: python scripts/run_insider_clusters.py
+
       - name: Commit
         id: commit
         run: |

@@ -19,6 +19,9 @@ name: Daily 2 AM update
 #                     KMPs' own buy/sell/pledge transactions), the "Insider
 #                     Trading" tab of the same Bulk & Block Deals page
 #                                                (scripts/run_insider_trades.py)
+#   1f. insider clusters several different insiders on the same side within a
+#                     rolling week, surfaced in the Alerts bell
+#                                              (scripts/run_insider_clusters.py)
 #   2. discovery      new NSE / BSE / SME listings and their prospectuses ->
 #                     the Candidates queue               (automation/update-weekly.mjs)
 #   3. auto-screen    checks listed companies against the board's gates and
@@ -142,6 +145,13 @@ jobs:
         timeout-minutes: 10
         working-directory: ./backend
         run: python scripts/run_insider_trades.py
+
+      - name: 1f. Insider clusters
+        id: insiderclusters
+        continue-on-error: true
+        timeout-minutes: 5
+        working-directory: ./backend
+        run: python scripts/run_insider_clusters.py
 
       - name: 2. Discovery scan
         id: discovery

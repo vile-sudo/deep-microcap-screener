@@ -66,7 +66,7 @@ def _dedupe(deals: list[dict]) -> list[dict]:
     return out
 
 
-def _find_context(announcements: list[dict], symbol: str, date: str):
+def find_context(announcements: list[dict], symbol: str, date: str):
     import re
     pat = re.compile(r"\b(?:" + "|".join(re.escape(k) for k in CONTEXT_KEYWORDS) + r")\b", re.I)
     best = None
@@ -139,7 +139,7 @@ def build(deals: list[dict], announcements: list[dict] | None = None, market: di
                 "buy_clients": buy_clients, "sell_clients": sell_clients, "dominance_pct": round(dominance * 100, 1),
                 "client_share_pct": round(client_share * 100, 1),
                 "top_buyers": _top(g, "BUY"), "top_sellers": _top(g, "SELL"),
-                "context": _find_context(announcements, symbol, day),
+                "context": find_context(announcements, symbol, day),
             }
             m = market.get(symbol)
             if m:

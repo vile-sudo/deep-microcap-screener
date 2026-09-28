@@ -2709,7 +2709,16 @@ function anRowHtml(a){
    transactions (scripts/run_insider_trades.py), a different SEBI regulation than bulk/block deals but
    the same "who's doing what, disclosed" shape, so it lives as a third tab here rather than its own
    section. */
-const IN={data:null, built:false, boardOnly:false};
+const IN={data:null, built:false, boardOnly:false, pendingQuery:null};
+
+/* jump straight to the Insider Trading tab pre-filtered to one symbol -- used by the Alerts bell's
+   insider-cluster rows ("Insider trades" button), same pattern as openDealsFor() above. */
+function openInsiderTradesFor(symbol){
+  IN.pendingQuery=symbol;
+  setView('deals');
+  const tab=document.querySelector("[data-dltab='ins']");
+  if(tab) tab.click();
+}
 
 async function openInsiderTrades(){
   const body=document.getElementById('in-body');
@@ -2720,6 +2729,10 @@ async function openInsiderTrades(){
     IN.data=j;
   }
   if(!IN.built) inBuildControls();
+  if(IN.pendingQuery!=null){
+    document.getElementById('in-q').value=IN.pendingQuery;
+    IN.pendingQuery=null;
+  }
   document.getElementById('dl-asof').textContent =
     `${fmtI(IN.data.count)} insider trading disclosures · ${fmtI(IN.data.board_count)} on the board`;
   inRenderTable();
@@ -4083,7 +4096,7 @@ async function openMessages(){
    and "seen up to" are saved to the account, or to this browser with accounts off. */
 const AL_WINDOWS=['1D','1W','1M','6M','1Y'];
 const AL_WLABEL={'1D':'1-day','1W':'1-week','1M':'1-month','6M':'6-month','1Y':'1-year'};
-const AL_DEFAULT={highs:['1W','1M','6M','1Y'], lows:['1W','1M','6M','1Y'], ipo:true, vcp:true, deals:true, scope:'board', notify:false};
+const AL_DEFAULT={highs:['1W','1M','6M','1Y'], lows:['1W','1M','6M','1Y'], ipo:true, vcp:true, deals:true, insiders:true, scope:'board', notify:false};
 const AL={prefs:null, seen:null, data:null, type:'all'};
 
 function alPrefs(){
@@ -4107,7 +4120,7 @@ function alMarkSeen(date){
   else { try{ localStorage.setItem('dms.alerts.seen', date); }catch(e){} }
 }
 function alQuery(p, sessions){
-  const q=new URLSearchParams({highs:p.highs.join(','), lows:p.lows.join(','), ipo:p.ipo?'1':'0', vcp:p.vcp?'1':'0', deals:p.deals?'1':'0', scope:p.scope, sessions:String(sessions||5)});
+  const q=new URLSearchParams({highs:p.highs.join(','), lows:p.lows.join(','), ipo:p.ipo?'1':'0', vcp:p.vcp?'1':'0', deals:p.deals?'1':'0', insiders:p.insiders?'1':'0', scope:p.scope, sessions:String(sessions||5)});
   if(AL.seen) q.set('seen', AL.seen);
   if(p.scope==='watchlist' && WMODE!=='server') q.set('codes',[...WATCH].join(','));
   return '/api/alerts?'+q.toString();
@@ -4137,7 +4150,7 @@ async function alertsInit(){
 }
 
 const AL_TYPES=[['all','All'],['high','New highs'],['low','New lows'],['ipo_breakout','IPO base breakouts'],['vcp_breakout','Base breakouts'],
-  ['deal_buy','Buying clusters'],['deal_sell','Selling clusters']];
+  ['deal_buy','Buying clusters'],['deal_sell','Selling clusters'],['insider_buy','Insider buying'],['insider_sell','Insider selling']];
 function alLabel(it){
   if(it.type==='ipo_breakout') return `<span class="al-chip al-ipo">&#9650; IPO base breakout</span>`;
   if(it.type==='vcp_breakout') return `<span class="al-chip al-vcp">&#9650; Base breakout</span>`;
@@ -4148,6 +4161,11 @@ function alLabel(it){
       ? `${buySide?it.buy_clients:it.sell_clients} of ${it.buy_clients+it.sell_clients} institutions · ₹${fmt(it.total_value_cr,1)} cr`
       : `${fmt(it.dominance_pct,0)}% of ₹${fmt(it.total_value_cr,1)} cr`;
     return `<span class="al-chip ${cls}">${arrow} ${label}</span><span class="al-wins">${wins}</span>`;
+  }
+  if(it.type==='insider_buy' || it.type==='insider_sell'){
+    const buySide=it.type==='insider_buy';
+    const cls=buySide?'al-dbuy':'al-dsell', arrow=buySide?'&#9650;':'&#9660;', label=buySide?'Insider buying':'Insider selling';
+    return `<span class="al-chip ${cls}">${arrow} ${label}</span><span class="al-wins">${it.insiders} insiders in ${it.window_days}d · ₹${fmt(it.total_value_cr,1)} cr</span>`;
   }
   const hi=it.type==='high', top=AL_WLABEL[it.top]||it.top;
   return `<span class="al-chip ${hi?'al-hi':'al-lo'}">${hi?'&#9650;':'&#9660;'} New ${it.since_listing?'since-listing':top} ${hi?'high':'low'}</span>`
@@ -4178,8 +4196,34 @@ function alDealRow(it, byCode){
     </div>
   </li>`;
 }
+/* Insider clusters (app/insider_clusters.py): several different insiders on the same side within a
+   rolling week, and a same-day filing that might explain it -- same "possible context" framing as
+   deal clusters above. */
+function alInsiderRow(it, byCode){
+  const d=it.code && byCode[it.code], on=d && WATCH.has(d.code);
+  const people=(it.people||[]).slice(0,3).map(p=>`${esc(p.name)} (${esc(p.category)}, ₹${fmt(p.value_cr,1)} cr)`).join(', ')
+    +((it.people||[]).length>3?` +${it.people.length-3} more`:'');
+  const ctx=it.context ? `<div class="al-ctx" title="A same-day filing that MIGHT explain this -- not confirmed, check it yourself">Possible context: <b>${esc(it.context.category||'filing')}</b> — ${esc(it.context.summary||'')}${it.context.url?` <a href="${esc(it.context.url)}" target="_blank" rel="noopener">read ↗</a>`:''}</div>` : '';
+  return `<li class="al-row">
+    <div class="al-main">
+      <div class="al-name">${d?`<button type="button" class="al-link" data-al-open="${esc(d.code)}">${esc(d.name)}</button>`:`<b>${esc(it.name)}</b>`}
+        <span class="al-sym">${esc(it.symbol||'')}</span>${it.scope==='market'?'<span class="al-mkt" title="Not on your board">market</span>':''}</div>
+      <div class="al-what">${alLabel(it)}</div>
+      <div class="al-detail">${people}</div>
+      ${ctx}
+    </div>
+    <div class="al-side">${it.close!=null?`<b>${galPx(it.close)}</b>${it.chg_pct!=null?`<span class="${it.chg_pct>=0?'up':'dn'}">${it.chg_pct>=0?'+':''}${it.chg_pct.toFixed(2)}%</span>`:''}`:''}
+      <div class="al-acts">
+        <button type="button" class="btn" data-al-insiders="${esc(it.symbol)}">Insider trades</button>
+        ${d?`<button type="button" class="al-star${on?' on':''}" data-al-star="${esc(d.code)}" title="${on?'Remove from':'Add to'} watchlist">${on?'&#9733;':'&#9734;'}</button>`
+          :`<a class="btn" href="https://www.screener.in/company/${encodeURIComponent(it.symbol)}/" target="_blank" rel="noopener">screener &#8599;</a>`}
+      </div>
+    </div>
+  </li>`;
+}
 function alRow(it, byCode){
   if(it.type==='deal_buy' || it.type==='deal_sell') return alDealRow(it, byCode);
+  if(it.type==='insider_buy' || it.type==='insider_sell') return alInsiderRow(it, byCode);
   const d=it.code && byCode[it.code], on=d && WATCH.has(d.code);
   const chg=it.chg_pct==null?'':`<span class="${it.chg_pct>=0?'up':'dn'}">${it.chg_pct>=0?'+':''}${it.chg_pct.toFixed(2)}%</span>`;
   const detail = it.type.endsWith('breakout')
@@ -4309,9 +4353,11 @@ async function openAlerts(showSettings){
           <label class="al-tg${p.vcp?' on':''}"><input type="checkbox" id="al-vcp" ${p.vcp?'checked':''}>Base (VCP)</label></div></div>
         <div class="al-set-row"><b>Institutional deals</b><div class="al-toggles">
           <label class="al-tg${p.deals?' on':''}" title="A stock where several institutions were on the same side (buying or selling) of NSE's disclosed bulk/block deals"><input type="checkbox" id="al-deals" ${p.deals?'checked':''}>Deal clusters</label></div></div>
+        <div class="al-set-row"><b>Insider trading</b><div class="al-toggles">
+          <label class="al-tg${p.insiders?' on':''}" title="A stock where several different insiders (promoters/directors/KMPs) were on the same side (buying or selling) within a rolling week"><input type="checkbox" id="al-insiders" ${p.insiders?'checked':''}>Insider clusters</label></div></div>
         <div class="al-set-row"><b>Which stocks</b><div class="al-toggles">
           ${[['watchlist','My watchlist'],['board','Board companies'],['market','Whole market']].map(([v,l])=>`<label class="al-tg${p.scope===v?' on':''}"><input type="radio" name="al-scope" value="${v}" ${p.scope===v?'checked':''}>${l}</label>`).join('')}</div></div>
-        <p class="al-note">Whole market adds every actively traded NSE/BSE company that is not on the board — the same universe as Screen any Chart. For those: base and IPO base breakouts across all of it, plus 6-month and 1-year highs and lows for the liquid NSE subset. 1D = above yesterday's high / below yesterday's low. Deal clusters always cover the whole NSE market (most flagged names are not on the board), whichever of these three you pick.</p>
+        <p class="al-note">Whole market adds every actively traded NSE/BSE company that is not on the board — the same universe as Screen any Chart. For those: base and IPO base breakouts across all of it, plus 6-month and 1-year highs and lows for the liquid NSE subset. 1D = above yesterday's high / below yesterday's low. Deal clusters and insider clusters always cover the whole NSE market (most flagged names are not on the board), whichever of these three you pick.</p>
         <div class="al-set-row"><b>In this tab</b><div class="al-toggles"><label class="al-tg${p.notify?' on':''}"><input type="checkbox" id="al-notify" ${p.notify?'checked':''}>Browser notification when I open the dashboard and there are new alerts</label></div></div>
         <div class="al-set-row"><b>Desktop</b><div class="al-toggles">${wpRow()}</div></div>
         <p class="al-note">Desktop notifications work even when Deep Sweep isn't the open tab — they arrive as an OS notification, once a day when the alert data refreshes (about 2 AM IST). "In this tab" above only ever fires while you have the dashboard open.</p>
@@ -4328,6 +4374,7 @@ async function openAlerts(showSettings){
       p.lows=AL_WINDOWS.filter(w=>mbody.querySelector(`[data-al-lo="${w}"]`).checked);
       p.ipo=document.getElementById('al-ipo').checked; p.vcp=document.getElementById('al-vcp').checked;
       p.deals=document.getElementById('al-deals').checked;
+      p.insiders=document.getElementById('al-insiders').checked;
       p.scope=(mbody.querySelector('input[name="al-scope"]:checked')||{}).value||'board';
       const wantNotify=document.getElementById('al-notify').checked;
       if(wantNotify && 'Notification' in window && Notification.permission!=='granted'){
@@ -4342,6 +4389,7 @@ async function openAlerts(showSettings){
     mbody.querySelectorAll('[data-al-open]').forEach(b=>b.onclick=()=>{ closeModal(); CURRENT=[byCode[b.dataset.alOpen]]; openDrawer(byCode[b.dataset.alOpen]); });
     mbody.querySelectorAll('[data-al-chart]').forEach(b=>b.onclick=()=>openChart(b.dataset.alChart));
     mbody.querySelectorAll('[data-al-deals]').forEach(b=>b.onclick=()=>{ closeModal(); openDealsFor(b.dataset.alDeals); });
+    mbody.querySelectorAll('[data-al-insiders]').forEach(b=>b.onclick=()=>{ closeModal(); openInsiderTradesFor(b.dataset.alInsiders); });
     mbody.querySelectorAll('[data-al-star]').forEach(b=>b.onclick=()=>{ togglePin(b.dataset.alStar); const on=WATCH.has(b.dataset.alStar); b.classList.toggle('on',on); b.innerHTML=on?'&#9733;':'&#9734;'; });
   };
   draw();
