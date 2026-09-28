@@ -126,19 +126,25 @@ CURRENT driver -- either of these shapes both count equally:
       business news, and are exactly the kind of theme worth surfacing here.
 ## Non-negotiable: this only matters if an Indian listed company can actually be in it
 This board is for buying India-listed stocks, not for admiring a global trend from the sidelines. However real
-and interesting the global driver is, a theme is only valid here if you can find genuine Indian listed
-participation -- if a niche is real worldwide but you cannot find any Indian listed company with real, evidenced
-involvement OR a genuine, cited adjacency (not a guess), that is not a usable theme for this board: keep looking,
-or skip the day. Do not force a fit by including a company only because it is broadly "in the same sector" with
-no specific connection to this niche.
+and interesting the global driver is, a theme is only valid here if, for at least one Indian listed company, you
+can confirm one of these two things with a real, cited source:
+  (a) it is ALREADY WORKING in this space -- capex spent, a JV signed, a facility commissioned, a product
+      qualified, a regulatory filing, revenue from it; or
+  (b) it has PUBLICLY ANNOUNCED PLANS to enter it or set up a new facility/plant/capacity for it -- a board
+      approval, an investor-presentation slide, an exchange filing, a credit-rating rationale, reported capex
+      guidance -- even if construction hasn't started yet, as long as the company itself has said so, not you
+      guessing it might.
+If a niche is real worldwide but you cannot confirm (a) or (b) for any Indian listed company, that is not a
+usable theme for this board: keep looking, or skip the day. A genuine, cited technical/chemistry/customer
+adjacency (a company plausibly positioned to move into this niche, without yet a company-confirmed statement of
+intent) is a weaker, third-best case -- acceptable only when the niche is genuinely too early globally for any
+company statement to exist yet, and only if you say plainly that this is inference, not (a) or (b). Do not force
+a fit by including a company only because it is broadly "in the same sector" with no specific connection to this
+niche.
 
-For the companies you do include, prefer real evidence of involvement already (capex announced, a JV signed, a
-facility commissioned, a product qualified, a regulatory filing); a genuine, cited adjacency -- an existing
-manufacturing capability, chemistry, process or customer relationship that plausibly lets a company move into
-this niche as it grows -- is acceptable where the niche is early enough globally that nobody has announced
-anything concrete yet, but say so plainly (this is visibility/potential, not a done deal). List as many companies
-as genuinely qualify -- that could be just 2-3 for a very early or narrow niche, or a dozen for a broad one; do
-not pad the list with tenuous names to hit a target count. Quality and genuineness matter far more than count.
+List as many companies as genuinely qualify under (a) or (b) -- that could be just 2-3 for a very early or narrow
+niche, or a dozen for a broad one; do not pad the list with tenuous names to hit a target count. Quality and
+genuineness matter far more than count.
 
 ## The whole point: get there before the market does
 The goal is not just a real theme -- it's a theme the market hasn't fully priced in yet, so there's still room to
@@ -160,25 +166,32 @@ This is a judgment call, not a hard rule -- verify it with search rather than as
 ## Do not propose any of these -- already covered or already on the backlog
 {avoid or "(nothing yet -- this is the first theme)"}
 
-## What to do
+## What to do, in this order
 1. Search both: (i) recent Indian business and financial news/analysis (what a market newsletter, a broking
    house's morning note, or a business paper would cover), and (ii) global industry/market-research reports and
    trade publications on specific product, material, component or equipment categories and their growth drivers
    (IndexBox-style sources, sector trade press, company/industry-association reports). Either can be where a good
-   theme comes from -- (ii) is often where the earliest, least-discovered themes are.
-2. Pick the single strongest one: verify with WebSearch/WebFetch that it is real and current, that the companies
-   you plan to list actually have the evidence you're crediting them with (involvement or adjacency), and check
-   how much media/market attention and stock re-rating this has already had, per the "get there before the
-   market does" section above -- do not invent names, figures or capabilities.
-3. Write out/brief.json in exactly this format (valid JSON, double quotes):
+   theme comes from -- (ii) is often where the earliest, least-discovered themes are. Shortlist candidate themes.
+2. For your strongest candidate, VERIFY BEFORE DOING ANYTHING ELSE: is there at least one Indian listed company
+   that is (a) already working in this space, OR (b) has publicly announced plans to enter it or set up a new
+   facility/plant/capacity for it? Search specifically for this -- company announcements, exchange filings,
+   investor presentations, credit-rating rationales, news coverage of the company itself, not just of the global
+   trend. If you cannot confirm this for your top candidate, it fails the non-negotiable gate above: try your next
+   candidate theme, or if none of them clear it, skip the day (step 4). Do not move on to writing anything until
+   this is confirmed for at least one real company.
+3. Only once Indian participation is verified: confirm the theme's driver is real and current, verify every
+   company you plan to include has the evidence you're crediting it with (working in it, or planning to
+   enter/build), check how much media/market attention and stock re-rating this has already had (per "get there
+   before the market does" above), then write out/brief.json in exactly this format (valid JSON, double quotes) --
+   do not invent names, figures or capabilities:
 {FORMAT}
    - bucket_labels: 2-4 groups that fit THIS theme's actual value chain (do not reuse another theme's groups
      unless they genuinely apply) plus you do not need to add "other" -- it is always available automatically.
    - universe: real NSE/BSE symbols only, grouped under the same keys as bucket_labels -- as many as genuinely
      qualify (see the non-negotiable section above), not a count to hit.
-4. If, after searching, nothing clears the bar (no current driver, no genuine Indian listed participation, or
-   everything you found is already widely known and re-rated with nothing earlier available), write out/brief.json
-   as {{"slug": null}} and stop -- a skipped day is better than a weak, duplicate, India-less, or already-obvious
+4. If nothing clears the bar (no current driver, no confirmed Indian listed participation, or everything you
+   found is already widely known and re-rated with nothing earlier available), write out/brief.json as
+   {{"slug": null}} and stop -- a skipped day is better than a weak, duplicate, India-less, or already-obvious
    theme.
 
 Read the file back once and fix any JSON error. Reply DONE when finished.
