@@ -15,6 +15,10 @@ name: Daily 2 AM update
 #                     (several institutions on one side), surfaced in the
 #                     Alerts bell                (scripts/run_deal_clusters.py)
 #                     -- steps 1b-1d also re-run same-day evening, see deals_evening.yml
+#   1e. insider trades insider trading & SAST disclosures (promoters/directors/
+#                     KMPs' own buy/sell/pledge transactions), the "Insider
+#                     Trading" tab of the same Bulk & Block Deals page
+#                                                (scripts/run_insider_trades.py)
 #   2. discovery      new NSE / BSE / SME listings and their prospectuses ->
 #                     the Candidates queue               (automation/update-weekly.mjs)
 #   3. auto-screen    checks listed companies against the board's gates and
@@ -131,6 +135,13 @@ jobs:
         timeout-minutes: 5
         working-directory: ./backend
         run: python scripts/run_deal_clusters.py
+
+      - name: 1e. Insider trading / SAST disclosures
+        id: insidertrades
+        continue-on-error: true
+        timeout-minutes: 10
+        working-directory: ./backend
+        run: python scripts/run_insider_trades.py
 
       - name: 2. Discovery scan
         id: discovery
@@ -277,7 +288,7 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add backend/data/companies_raw.json backend/data/candidates_raw.json backend/data/build_stamp.json \
-                  backend/data/asme_raw.json backend/data/deals backend/data/announcements backend/chart_data \
+                  backend/data/asme_raw.json backend/data/deals backend/data/announcements backend/data/insider_trades backend/chart_data \
                   automation/data/candidates-queue.json automation/data/reviewed-symbols.json \
                   automation/data/listings-snapshot.json automation/data/asme-scan.json
           for f in automation/data/auto-screen.json automation/data/weekly-report.md automation/data/profiles \

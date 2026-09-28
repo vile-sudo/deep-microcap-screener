@@ -10,6 +10,14 @@ GET /api/announcements    every non-routine filing on record
                           (scripts/run_announcements.py), newest first --
                           category, a one-line summary, the filing PDF, and
                           the board code when the symbol is on this board
+GET /api/insider-trades   India board: insider trading & SAST disclosures
+                          (scripts/run_insider_trades.py), newest first --
+                          promoters/directors/KMPs' own buy/sell/pledge
+                          transactions, from NSE's own reports; the
+                          "Insider Trading" tab of the same Bulk & Block
+                          Deals section (a different SEBI regulation than
+                          bulk/block, same "who's doing what, disclosed"
+                          shape)
 GET /api/insider-us       the US board's counterpart to deals, but a
                           genuinely different signal (SEC Form 4 insider
                           disclosure, not NSE's counterparty-named bulk/
@@ -55,9 +63,9 @@ GET /api/performance-us   return since added and score history per board company
                           (scripts/run_performance_us.py)
 
 Written into backend/data/deals/latest.json,
-backend/data/announcements/latest.json, backend/data/insider_us/
-latest.json and backend/data/announcements_us/latest.json, and (earnings) backend/data/earnings_us/
-latest.json respectively;
+backend/data/announcements/latest.json, backend/data/insider_trades/latest.json,
+backend/data/insider_us/latest.json and backend/data/announcements_us/latest.json, and (earnings)
+backend/data/earnings_us/latest.json respectively;
 this router only reads them.
 """
 from fastapi import APIRouter, Request
@@ -68,6 +76,7 @@ from ..config import BASE_DIR
 router = APIRouter(tags=["deals"])
 DATA_FILE = BASE_DIR / "data" / "deals" / "latest.json"
 ANNOUNCEMENTS_FILE = BASE_DIR / "data" / "announcements" / "latest.json"
+INSIDER_TRADES_FILE = BASE_DIR / "data" / "insider_trades" / "latest.json"
 INSIDER_US_FILE = BASE_DIR / "data" / "insider_us" / "latest.json"
 ANNOUNCEMENTS_US_FILE = BASE_DIR / "data" / "announcements_us" / "latest.json"
 EARNINGS_US_FILE = BASE_DIR / "data" / "earnings_us" / "latest.json"
@@ -95,6 +104,12 @@ def announcements(request: Request):
     return file_response(request, ANNOUNCEMENTS_FILE,
                          {"fetched_at": None, "from_date": None, "to_date": None,
                           "count": 0, "board_count": 0, "announcements": []})
+
+
+@router.get("/api/insider-trades")
+def insider_trades(request: Request):
+    return file_response(request, INSIDER_TRADES_FILE,
+                         {"fetched_at": None, "count": 0, "board_count": 0, "trades": []})
 
 
 @router.get("/api/insider-us")

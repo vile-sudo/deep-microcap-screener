@@ -2535,7 +2535,9 @@ function dlWireTabs(){
     const tab=t.dataset.dltab;
     document.getElementById('dltab-deals').hidden = tab!=='deals';
     document.getElementById('dltab-ann').hidden = tab!=='ann';
+    document.getElementById('dltab-ins').hidden = tab!=='ins';
     if(tab==='ann') openAnnouncements();
+    else if(tab==='ins') openInsiderTrades();
     else if(DL.data) document.getElementById('dl-asof').textContent =
       `${mvDay(DL.data.from_date)} – ${mvDay(DL.data.to_date)} · ${fmtI(DL.data.count)} deals · ${fmtI(DL.data.board_count)} on the board`;
   });
@@ -2700,6 +2702,99 @@ function anRowHtml(a){
     <td><b class="mv-tick">${esc(a.symbol)}</b><span class="mv-name">${esc(a.name||a.symbol)}</span>${a.board_code?'<span class="mv-onboard">On the board</span>':''}</td>
     <td><span class="an-cat">${esc(a.kind)}</span></td>
     <td class="an-summary">${a.url?`<a href="${esc(a.url)}" target="_blank" rel="noopener">${esc(a.summary||a.category)} ↗</a>`:esc(a.summary||a.category)}</td>
+  </tr>`;
+}
+
+/* Insider Trading / SAST sub-tab of the same section -- promoters/directors/KMPs' own buy/sell/pledge
+   transactions (scripts/run_insider_trades.py), a different SEBI regulation than bulk/block deals but
+   the same "who's doing what, disclosed" shape, so it lives as a third tab here rather than its own
+   section. */
+const IN={data:null, built:false, boardOnly:false};
+
+async function openInsiderTrades(){
+  const body=document.getElementById('in-body');
+  if(!IN.data){
+    body.innerHTML='<p class="view-hint">Loading…</p>';
+    let j; try{ j=await fetchJSON('/api/insider-trades'); }catch(e){ j=null; }
+    if(!j || !j.trades || !j.trades.length){ body.innerHTML='<p class="view-hint">No insider trading scan has run yet. It runs automatically every night.</p>'; return; }
+    IN.data=j;
+  }
+  if(!IN.built) inBuildControls();
+  document.getElementById('dl-asof').textContent =
+    `${fmtI(IN.data.count)} insider trading disclosures · ${fmtI(IN.data.board_count)} on the board`;
+  inRenderTable();
+}
+
+function inBuildControls(){
+  IN.built=true;
+  const dates=[...new Set(IN.data.trades.map(t=>t.date))].sort().reverse();
+  const dateSel=document.getElementById('in-date');
+  dateSel.innerHTML='<option value="">Every day on record</option>'+
+    dates.map(d=>`<option value="${d}">${esc(mvDay(d))}${d===dates[0]?' (latest)':''}</option>`).join('');
+  dateSel.onchange=inRenderTable;
+  const types=[...new Set(IN.data.trades.map(t=>t.transaction_type).filter(Boolean))].sort();
+  document.getElementById('in-type').innerHTML='<option value="">Every transaction type</option>'+
+    types.map(t=>`<option value="${esc(t)}">${esc(t)}</option>`).join('');
+  const cats=[...new Set(IN.data.trades.map(t=>t.category).filter(Boolean))].sort();
+  document.getElementById('in-cat').innerHTML='<option value="">Every category</option>'+
+    cats.map(c=>`<option value="${esc(c)}">${esc(c)}</option>`).join('');
+  let t=0;
+  document.getElementById('in-q').oninput=()=>{ clearTimeout(t); t=setTimeout(inRenderTable,120); };
+  ['in-type','in-cat','in-sort'].forEach(id=>document.getElementById(id).onchange=inRenderTable);
+  const boardBtn=document.getElementById('in-board');
+  boardBtn.onclick=()=>{ IN.boardOnly=!IN.boardOnly; boardBtn.classList.toggle('on',IN.boardOnly);
+    boardBtn.setAttribute('aria-pressed',String(IN.boardOnly)); inRenderTable(); };
+  document.getElementById('in-clear').onclick=()=>{
+    document.getElementById('in-q').value=''; document.getElementById('in-date').value='';
+    document.getElementById('in-type').value=''; document.getElementById('in-cat').value='';
+    document.getElementById('in-sort').value='date';
+    IN.boardOnly=false; boardBtn.classList.remove('on'); boardBtn.setAttribute('aria-pressed','false');
+    inRenderTable();
+  };
+}
+
+function inRows(){
+  if(!IN.data) return [];
+  const q=(document.getElementById('in-q')||{}).value?.trim().toLowerCase()||'';
+  const dateF=(document.getElementById('in-date')||{}).value||'';
+  const type=(document.getElementById('in-type')||{}).value||'';
+  const cat=(document.getElementById('in-cat')||{}).value||'';
+  const sort=(document.getElementById('in-sort')||{}).value||'date';
+  let rows=IN.data.trades.filter(t=>{
+    if(dateF && t.date!==dateF) return false;
+    if(type && t.transaction_type!==type) return false;
+    if(cat && t.category!==cat) return false;
+    if(IN.boardOnly && !t.board_code) return false;
+    if(q && !(t.symbol.toLowerCase()+' '+(t.name||'').toLowerCase()+' '+(t.person||'').toLowerCase()).includes(q)) return false;
+    return true;
+  });
+  rows=rows.slice().sort(sort==='value' ? (a,b)=>b.value_cr-a.value_cr : (a,b)=>b.date.localeCompare(a.date)||b.value_cr-a.value_cr);
+  return rows;
+}
+
+function inRenderTable(){
+  const body=document.getElementById('in-body'); if(!body) return;
+  const rows=inRows();
+  document.getElementById('in-count').textContent=`${fmtI(rows.length)} of ${fmtI(IN.data.trades.length)}`;
+  body.innerHTML = rows.length ? `<div class="mv-tablewrap"><table class="mv-table"><thead><tr>
+      <th>Date</th><th>Company</th><th>Person</th><th>Category</th><th>Type</th><th class="n">Quantity</th><th class="n">Value ₹cr</th><th class="n">Holding</th>
+    </tr></thead><tbody>${rows.map(inRowHtml).join('')}</tbody></table></div>`
+    : `<p class="view-hint">No insider trading match — clear the search or pick another filter.</p>`;
+}
+
+function inRowHtml(t){
+  const cls = t.side==='BUY' ? 'up' : t.side==='SELL' ? 'dn' : '';
+  const holding = (t.pre_pct!=null && t.post_pct!=null)
+    ? `${(t.pre_pct*100).toFixed(2)}% → ${(t.post_pct*100).toFixed(2)}%` : '—';
+  return `<tr>
+    <td>${esc(mvDay(t.date))}</td>
+    <td><b class="mv-tick">${esc(t.symbol)}</b><span class="mv-name">${esc(t.name||t.symbol)}</span>${t.board_code?'<span class="mv-onboard">On the board</span>':''}</td>
+    <td>${esc(t.person||'—')}</td>
+    <td><span class="an-cat">${esc(t.category||'—')}</span></td>
+    <td><span class="${cls}">${esc(t.transaction_type||'—')}</span></td>
+    <td class="n">${fmtI(t.quantity)}</td>
+    <td class="n">${fmt(t.value_cr,2)}</td>
+    <td class="n">${holding}</td>
   </tr>`;
 }
 
