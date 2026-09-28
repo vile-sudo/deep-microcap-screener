@@ -142,6 +142,28 @@ def fetch_screener(code: str) -> dict:
         if n is not None:
             out["num_shareholders"] = int(n)
 
+    # Borrowings and net profit as full multi-period runs, not just the latest column --
+    # debt_restructuring/pat_turnaround (recomputed below in _refresh_flags) need the peak
+    # and the loss-making period, not only where things stand today. Same page, same soup,
+    # same two tables auto_screen.py already reads for a brand-new candidate.
+    bs = soup.select_one("#balance-sheet")
+    if bs:
+        for row in bs.select("table tbody tr"):
+            cells = row.select("td, th")
+            label = cells[0].get_text(" ", strip=True).lower() if cells else ""
+            if label.startswith("borrowings"):
+                out["borrowings_series_cr"] = [_num(c.get_text(strip=True)) for c in cells[1:]]
+                break
+    pl = soup.select_one("#profit-loss")
+    if pl:
+        head = pl.select_one("table thead tr")
+        has_ttm = bool(head) and head.select("th")[-1].get_text(strip=True) == "TTM"
+        row = next((r for r in pl.select("table tbody tr")
+                    if r.select("td")[0].get_text(" ", strip=True).lower().startswith("net profit")), None)
+        if row:
+            vals = [_num(c.get_text(strip=True)) for c in row.select("td")[1:]]
+            out["pat_series_cr"] = vals[:-1] if has_ttm else vals
+
     return out
 
 
@@ -165,6 +187,34 @@ def fetch_screener_any(rec: dict) -> dict:
     raise last_error or requests.RequestException("no screener.in code to try")
 
 
+# Same defaults as auto_screen.py's Logic Gates (pat_turnaround_lookback_periods,
+# debt_decline_min_pct) -- this script has no access to that admin config, and duplicating
+# two small pure functions is cheaper than importing a scraper script as a library.
+PAT_LOOKBACK = 3
+DEBT_DECLINE_MIN_PCT = 20.0
+
+
+def _pat_turnaround(series: list) -> bool:
+    vals = [v for v in (series or []) if v is not None]
+    if len(vals) < 2:
+        return False
+    latest, prior = vals[-1], vals[max(0, len(vals) - 1 - PAT_LOOKBACK):-1]
+    return latest > 0 and any(v < 0 for v in prior)
+
+
+def _debt_restructuring(borrowings_series: list, pat_series: list) -> bool:
+    debt = [v for v in (borrowings_series or []) if v is not None]
+    if len(debt) < 2:
+        return False
+    window = debt[max(0, len(debt) - 1 - PAT_LOOKBACK):]
+    if len(window) < 2:
+        return False
+    peak, latest = max(window[:-1]), window[-1]
+    if peak <= 0:
+        return False
+    return (peak - latest) / peak * 100 >= DEBT_DECLINE_MIN_PCT and _pat_turnaround(pat_series)
+
+
 def _refresh_flags(rec: dict) -> None:
     """Keep the flags that are pure functions of refreshed numbers in step.
 
@@ -173,6 +223,13 @@ def _refresh_flags(rec: dict) -> None:
     P/E side can change here, and only for names that have the CWIP data."""
     if rec.get("has_lens_data") and rec.get("pe") is not None and rec.get("cwip_pct_net_block") is not None:
         rec["capex_overhang"] = rec["pe"] > 40 and rec["cwip_pct_net_block"] >= 15
+    # pat_series_cr/borrowings_series_cr are new as of this refresh script -- every existing
+    # board company picks these up (and pat_turnaround/debt_restructuring along with them) the
+    # first time it refreshes after this change, with no separate backfill step required.
+    if rec.get("pat_series_cr"):
+        rec["pat_turnaround"] = _pat_turnaround(rec["pat_series_cr"])
+    if rec.get("borrowings_series_cr") and rec.get("pat_series_cr"):
+        rec["debt_restructuring"] = _debt_restructuring(rec["borrowings_series_cr"], rec["pat_series_cr"])
 
 
 def fetch_trendlyne(code: str) -> dict:

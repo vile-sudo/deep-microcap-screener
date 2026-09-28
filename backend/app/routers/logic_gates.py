@@ -46,7 +46,7 @@ NUMERIC_FIELDS = {
                    "public_max_pct", "roce_min_pct", "roe_min_pct", "institutional_tier1_min_pct",
                    "shareholders_max_tier1", "shareholders_max_tier2"],
     "flags": ["pe_overhang_min", "cwip_overhang_min_pct", "cwip_heavy_min_pct", "guidance_over_pct",
-              "pat_turnaround_lookback_periods", "pe_penalty_min"],
+              "pat_turnaround_lookback_periods", "pe_penalty_min", "debt_decline_min_pct"],
 }
 KEYWORD_CATEGORIES = ["import_substitution", "leading_maker", "market_share", "sole_maker", "first_mover"]
 

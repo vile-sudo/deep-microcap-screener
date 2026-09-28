@@ -149,6 +149,11 @@ INST_TIER1_MIN = 1
 HOLDERS_MAX_T1, HOLDERS_MAX_T2 = 25000, 40000
 PE_OVERHANG_MIN, CWIP_OVERHANG_MIN, CWIP_HEAVY_MIN = 40, 15, 25
 GUIDANCE_OVER_PCT, PAT_LOOKBACK, PE_PENALTY_MIN = 15, 3, 60
+# Checked against PC Jeweller's own screener.in numbers (Mar 2024-26: borrowings Rs 4,150cr ->
+# Rs 1,166cr, a 72% fall, net profit -649cr -> 575cr -> 711cr): a genuine CDR-driven deleveraging
+# clears this by a wide margin, while ordinary working-capital borrowing swings between quarters
+# don't -- 20% off the peak is well above normal noise but well under what PC Jeweller shows.
+DEBT_DECLINE_MIN_PCT = 20
 IMPORT_MATERIALS: list[str] = []
 
 SKIP_NAME = re.compile(r"\b(finance|financial|fincorp|finserv|capital|credit|leasing|investments?|holdings?|securities|"
@@ -324,7 +329,7 @@ def apply_gates(cfg: dict) -> None:
     the whole list, not an addition to the built-in fallback)."""
     global CAP_MIN, CAP_MAX_T1, CAP_MAX_T2, PROMOTER_MIN, PUBLIC_MAX, ROCE_MIN, ROE_MIN, INST_TIER1_MIN
     global HOLDERS_MAX_T1, HOLDERS_MAX_T2, PE_OVERHANG_MIN, CWIP_OVERHANG_MIN, CWIP_HEAVY_MIN
-    global GUIDANCE_OVER_PCT, PAT_LOOKBACK, PE_PENALTY_MIN, IMPORT_MATERIALS, LEGACY_BRAND
+    global GUIDANCE_OVER_PCT, PAT_LOOKBACK, PE_PENALTY_MIN, DEBT_DECLINE_MIN_PCT, IMPORT_MATERIALS, LEGACY_BRAND
     hg, fl = cfg.get("hard_gates") or {}, cfg.get("flags") or {}
     CAP_MIN = hg.get("market_cap_min_cr", CAP_MIN)
     CAP_MAX_T1 = hg.get("market_cap_max_tier1_cr", CAP_MAX_T1)
@@ -342,6 +347,7 @@ def apply_gates(cfg: dict) -> None:
     GUIDANCE_OVER_PCT = fl.get("guidance_over_pct", GUIDANCE_OVER_PCT)
     PAT_LOOKBACK = int(fl.get("pat_turnaround_lookback_periods", PAT_LOOKBACK))
     PE_PENALTY_MIN = fl.get("pe_penalty_min", PE_PENALTY_MIN)
+    DEBT_DECLINE_MIN_PCT = fl.get("debt_decline_min_pct", DEBT_DECLINE_MIN_PCT)
     IMPORT_MATERIALS = [m.strip() for m in (cfg.get("import_substitution_materials") or []) if m and m.strip()]
     brand_names = [n.strip() for n in (cfg.get("legacy_brand_names") or []) if n and n.strip()]
     if brand_names:
@@ -464,6 +470,11 @@ def parse(soup: BeautifulSoup) -> dict:
             if len(cells) < 2:
                 continue
             label = cells[0].get_text(" ", strip=True).lower()
+            if label.startswith("borrowings"):
+                # the full multi-period run, not just the latest column -- debt_restructuring()
+                # needs to see the peak before the paydown, the same way pat_series_cr does
+                out["borrowings_series_cr"] = [_num(c.get_text(strip=True)) for c in cells[1:]]
+                continue
             value = _num(cells[-1].get_text(strip=True))   # latest (rightmost) column
             if value is None:
                 continue
@@ -690,6 +701,24 @@ def pat_turnaround(series: list) -> bool:
     return latest > 0 and any(v < 0 for v in prior)
 
 
+def debt_restructuring(borrowings_series: list, pat_series: list) -> bool:
+    """Borrowings down at least DEBT_DECLINE_MIN_PCT off their peak within the last
+    PAT_LOOKBACK periods, together with pat_turnaround() on the same window -- the
+    PC Jeweller pattern (a CDR-driven paydown paired with a return to profit), not
+    just any company whose debt happens to be drifting down while it stays healthy."""
+    debt = [v for v in (borrowings_series or []) if v is not None]
+    if len(debt) < 2:
+        return False
+    window = debt[max(0, len(debt) - 1 - PAT_LOOKBACK):]
+    if len(window) < 2:
+        return False
+    peak, latest = max(window[:-1]), window[-1]
+    if peak <= 0:
+        return False
+    debt_falling = (peak - latest) / peak * 100 >= DEBT_DECLINE_MIN_PCT
+    return debt_falling and pat_turnaround(pat_series)
+
+
 def capex_flags(pe, cwip_pct_net_block) -> tuple[bool, bool]:
     """(capex_overhang, capex_heavy) -- see frontend/index.html's own definitions."""
     if cwip_pct_net_block is None:
@@ -745,6 +774,7 @@ def record(code: str, cand: dict, p: dict, ev: dict, tier: int, theme: str, toda
     cwip_pct = p.get("cwip_pct_net_block")
     capex_overhang, capex_heavy = capex_flags(p.get("pe"), cwip_pct)
     turned = pat_turnaround(p.get("pat_series_cr") or [])
+    debt_fix = debt_restructuring(p.get("borrowings_series_cr") or [], p.get("pat_series_cr") or [])
     guidance_pct = guidance.get("pct") if guidance else None
     fails = fails or []
     if evidence_lines:
@@ -790,6 +820,7 @@ def record(code: str, cand: dict, p: dict, ev: dict, tier: int, theme: str, toda
         "capex_overhang": capex_overhang,
         "capex_heavy": capex_heavy,
         "pat_turnaround": turned,
+        "debt_restructuring": debt_fix,
         "guidance_pct": guidance_pct,
         "guidance_over15": guidance_pct is not None and guidance_pct > GUIDANCE_OVER_PCT,
         "guidance_flag": guidance is not None,

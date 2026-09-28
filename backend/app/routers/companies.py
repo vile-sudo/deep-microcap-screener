@@ -73,6 +73,7 @@ CSV_COLUMNS = [
     ("High P/E + heavy CWIP", "capex_overhang"),
     ("Guides above 15%", "guidance_over15"),
     ("PAT turned positive", "pat_turnaround"),
+    ("Debt restructuring", "debt_restructuring"),
 ]
 
 # US column set is deliberately different, not a reuse of the India one --
