@@ -2882,11 +2882,11 @@ async function iporRenderDoc(symbol){
 }
 
 /* ==================================================================
-   News Channel — China/India/USA/Japan news for the sectors each one
-   dominates globally (see backend/app/news_channel.py: the server
-   re-fetches every 5 minutes). A flat feed; every filter here runs
-   client-side against it, and the page re-polls the server while open. */
-const NEWS_COUNTRY={cn:'China', in:'India', us:'USA', jp:'Japan'};
+   News Channel — China/India/USA/Japan/South Korea/Taiwan news for the
+   sectors each one dominates globally (see backend/app/news_channel.py:
+   the server re-fetches every 5 minutes). A flat feed; every filter here
+   runs client-side against it, and the page re-polls the server while open. */
+const NEWS_COUNTRY={cn:'China', in:'India', us:'USA', jp:'Japan', kr:'South Korea', tw:'Taiwan'};
 const NEWS={data:null, loading:null, built:false, seen:undefined, view:'', arch:{}, days:[]};
 
 function newsFetch(){

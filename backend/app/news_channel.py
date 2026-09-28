@@ -1,8 +1,10 @@
 """
-News Channel: China, India, USA and Japan news for the sectors each one dominates
+News Channel: China, India, USA, Japan, South Korea and Taiwan news for the sectors each one dominates
 globally -- a leading indicator for Indian listed companies downstream (a
 Chinese API price hike is a margin story for the Indian bulk-drug makers who
-buy from it; a US tariff on steel reroutes demand; and so on).
+buy from it; a US tariff on steel reroutes demand; a Taiwan foundry outage is
+a chip-supply story for every Indian electronics/auto maker waiting on parts;
+and so on).
 
 Three sources (Google News, newsdata.io, BusinessLine), fanned into the same filter/tag pipeline (sector tagging,
 source quality, "is this actually a price move" -- the same client-side
@@ -131,6 +133,34 @@ COUNTRIES = {
             ("Steel & shipbuilding", ["steel", "shipbuilding", "shipbuilder"]),
         ],
     },
+    "kr": {
+        "name": "South Korea",
+        "keywords": "semiconductor OR memory chip OR battery OR shipbuilding OR display OR steel OR petrochemical",
+        "sectors": [
+            ("Memory chips", ["memory chip", "dram", "nand flash", "chip price", "samsung electronics",
+                               "sk hynix"]),
+            ("Batteries / EV materials", ["battery", "ev battery", "lithium-ion", "battery maker",
+                                          "lg energy solution", "samsung sdi"]),
+            ("Display panels", ["oled", "display panel", "lcd panel"]),
+            ("Shipbuilding", ["shipbuilding", "shipbuilder", "hyundai heavy", "hanwha ocean", "samsung heavy"]),
+            ("Steel", ["steel", "posco"]),
+            ("Petrochemicals", ["petrochemical", "naphtha", "refinery"]),
+        ],
+    },
+    "tw": {
+        "name": "Taiwan",
+        "keywords": "semiconductor OR chip OR foundry OR TSMC OR chip shortage OR electronics",
+        "sectors": [
+            ("Semiconductor foundry", ["foundry", "tsmc", "chip fab", "wafer fab", "advanced node",
+                                        "chip capacity"]),
+            ("Chip supply chain", ["chip shortage", "chip glut", "chip supply", "semiconductor supply",
+                                    "export control"]),
+            ("Electronics contract manufacturing", ["foxconn", "electronics manufacturing",
+                                                      "contract manufacturer"]),
+            ("Semiconductor materials & equipment", ["semiconductor equipment", "chip equipment",
+                                                       "silicon wafer"]),
+        ],
+    },
 }
 
 # Trade-remedy news (anti-dumping probes, countervailing/safeguard duties) is
@@ -149,6 +179,8 @@ for _cfg in COUNTRIES.values():
 _COUNTRY_HINTS = (
     ("cn", ("china", "chinese", "beijing")),
     ("jp", ("japan", "japanese", "tokyo")),
+    ("kr", ("south korea", "korean", "seoul", "samsung", "sk hynix", "lg energy", "hyundai heavy")),
+    ("tw", ("taiwan", "taiwanese", "taipei", "tsmc", "foxconn")),
     ("us", (" u.s.", " us ", " usa ", "american", "trump", "washington", " fda ")),
 )
 
