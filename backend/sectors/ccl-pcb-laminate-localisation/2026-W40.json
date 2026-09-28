@@ -1,0 +1,779 @@
+{
+ "slug": "ccl-pcb-laminate-localisation",
+ "name": "Copper Clad Laminates & PCB Base Materials",
+ "icon": "chip",
+ "edition": "2026-W40",
+ "updated": "2026-09-29",
+ "scope": "The global CCL, glass cloth and copper foil squeeze driven by AI servers, and India's first ECMS-backed laminate plants at Ratnaveer, Kaynes and Syrma (Wipro's plant is unlisted).",
+ "summary": {
+  "one_line": "Laminate inputs are in short supply worldwide: standard 7628 glass cloth is up about 140% in a year and FR-4 sheets are up 70%+. India's first CCL lines are due between Nov 2026 and FY28. Only Ratnaveer is a real laminate play, and it has already re-rated.",
+  "key_points": [
+   "Standard 7628 glass cloth rose from $0.60/m in Q3 2025 to $1.47/m in Aug 2026, a 140% increase. FR-4 CCL went from about $16 to $27+ per sheet, and industry inventory is down to 3-10 days (S1).",
+   "Premium low-loss laminates used in AI servers (e.g. Panasonic Megtron 7) are sold on allocation only. Lead times for premium grades have doubled to 20-30 weeks, global CCL utilisation reached 92-95% in Q1 2026, and AtlasPCB expects relief only in 2027-28 (S2).",
+   "Under ECMS, laminate, copper foil and prepreg fall in the supply-chain segment (D), which gets a 25% capex incentive and no turnover-linked incentive. Multi-layer PCBs get turnover-linked incentives of up to 10% (S3). After the 17 Aug 2026 tranche, cumulative ECMS approvals reached Rs 69,548 crore across 106 applications (S20).",
+   "Ratnaveer is building a Rs 472.34 crore CCL project in Vadodara, about 60% complete, funded partly by a Rs 329.99 crore rights issue at Rs 264 that was 1.11x subscribed (S6). Order booking starts 31 Oct 2026, trial production is due in the second week of Dec 2026, and inauguration around mid-Jan 2027 (S7).",
+   "Kaynes has an ECMS grant approval of INR 32.8b covering multi-layer PCB, HDI PCB, camera modules and CCL (S5). Management says its Chennai PCB plant will be operational by Q3 FY27 and that one global player has asked for its entire capacity (S15).",
+   "Syrma's CCL, HDI and flex PCB approvals come with about Rs 800 crore of capex planned for FY28-FY30. PCB revenue is expected only from FY28 (S13), so laminates will not matter to Syrma's earnings in the near term.",
+   "The theme is partly priced in. Ratnaveer is up 103% in a year at 41x P/E, and Syrma trades at 90.7x P/E near its 52-week high. Kaynes, by contrast, has fallen 50% in a year after a Q4 FY26 guidance miss (S10, S12, S11, S17)."
+  ],
+  "for_investors": [
+   {
+    "title": "Who benefits",
+    "tone": "good",
+    "points": [
+     "Ratnaveer: its phase-1 CCL line (15.84 lakh sheets a year) starts up while global laminate prices are high. The company guides for about Rs 350 crore of CCL revenue in FY28 at a ~20% EBITDA margin, versus ~13% in its steel business (S8, S9).",
+     "Kaynes: management says PCB prices have risen about three times in the global shortage, and backward integration into CCL and prepreg should lower PCB costs, which are about 10% of its sales (S15, S5).",
+     "Domestic PCB makers generally would gain a local laminate source. India imports all its CCL today (S19)."
+    ]
+   },
+   {
+    "title": "Who is hurt / risks",
+    "tone": "bad",
+    "points": [
+     "The new Indian plants still depend on imported glass cloth, which is up 140% (S1), and on Chinese machinery and technology (S7). This squeezes laminate margins if CCL prices cool before the raw-material prices do.",
+     "Ratnaveer is a first-time CCL maker whose business so far is stainless steel products (S6). Its debtor days rose from 38 to 59.6 and the promoter holding fell 6.78% last quarter (S10).",
+     "Indian EMS makers that buy imported PCBs face higher input costs. Kaynes reported component prices up 30-35% and its Q1 FY27 PAT fell 32% YoY (S15, S16)."
+    ]
+   },
+   {
+    "title": "What to watch",
+    "tone": "watch",
+    "points": [
+     "Ratnaveer order bookings from 31 Oct 2026, trial production in the second week of Dec 2026, and inauguration in mid-Jan 2027 (S7).",
+     "Kaynes Circuits Chennai start-up in Q3 FY27 (Oct-Dec 2026) and first PCB revenue (S15).",
+     "Glass cloth prices: forecasts put 7628 at $1.75-2.19/m by Q4 2026 (S1). Also watch for further ECMS tranches (S20)."
+    ]
+   }
+  ]
+ },
+ "kpis": [
+  {
+   "label": "7628 glass cloth price",
+   "value": "$1.47/m",
+   "sub": "Aug 2026, +140% vs Q3 2025 (S1)"
+  },
+  {
+   "label": "FR-4 CCL sheet price",
+   "value": "$27+/sheet",
+   "sub": "2026 vs ~$16 in 2025 (S1)"
+  },
+  {
+   "label": "Premium laminate lead time",
+   "value": "20-30 weeks",
+   "sub": "vs 8-12 historically, Jun 2026 (S2)"
+  },
+  {
+   "label": "ECMS capex incentive for laminate/foil/prepreg",
+   "value": "25%",
+   "sub": "Segment D, no turnover incentive (S3)"
+  },
+  {
+   "label": "Cumulative ECMS approvals",
+   "value": "Rs 69,548 cr",
+   "sub": "106 applications, 17 Aug 2026 (S20)"
+  },
+  {
+   "label": "Ratnaveer 1-year return",
+   "value": "+103%",
+   "sub": "to 28 Sep 2026; P/E 41.1 (S10)"
+  }
+ ],
+ "sections": [
+  {
+   "id": "theme_explainer",
+   "title": "What CCL is and why it is tight",
+   "subsections": [
+    {
+     "title": "CCL and prepreg in the PCB value chain",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "A copper clad laminate (CCL) is the base sheet of a PCB. It is made from a reinforcement such as woven glass fibre, impregnated with a resin such as epoxy and covered with copper foil on one or both sides; FR-4 is the standard glass-epoxy grade. Prepreg is the resin-impregnated glass layer that insulates and bonds the layers of a multi-layer PCB (S5). The inputs are therefore glass cloth, copper foil and resin, and all three are now constrained (S1, S2)."
+      },
+      {
+       "type": "p",
+       "text": "AI servers and switches need low-loss laminates such as Panasonic Megtron 7 (for 112G channels), NE-glass thin cores and very-low-profile copper foil (Rz<1.5 micron). AtlasPCB lists all of these as 'allocation-only' materials (S2)."
+      }
+     ]
+    },
+    {
+     "title": "2026 shortage: prices, lead times, new capacity",
+     "blocks": [
+      {
+       "type": "chart",
+       "title": "Standard 7628 electronic glass cloth price",
+       "unit": "US$ per metre",
+       "series": [
+        {
+         "name": "7628 glass cloth",
+         "points": [
+          [
+           "Q3 2025",
+           0.6
+          ],
+          [
+           "Jul 2026",
+           1.24
+          ],
+          [
+           "Aug 2026",
+           1.47
+          ]
+         ]
+        }
+       ],
+       "source": "Source: AtlasPCB, Aug 2026 (S1); Jul 2026 is the low end of the $1.24-1.27 range"
+      },
+      {
+       "type": "table",
+       "caption": "Tightness indicators, 2026",
+       "columns": [
+        "Indicator",
+        "Value",
+        "Source"
+       ],
+       "rows": [
+        [
+         "FR-4 CCL price",
+         "~$16/sheet (2025) to $27+/sheet (2026), +70% YoY",
+         "S1"
+        ],
+        [
+         "7628 glass cloth forecast, Q4 2026",
+         "$1.75-2.19/m",
+         "S1"
+        ],
+        [
+         "Low-Dk/high-Dk specialty glass cloth, spot",
+         "$21.90-37.95/m; lead time 3-4 months",
+         "S1"
+        ],
+        [
+         "Industry laminate inventory",
+         "3-10 days vs normal 30-45 days",
+         "S1"
+        ],
+        [
+         "Premium laminate lead time",
+         "20-30 weeks vs 8-12 historically; standard FR-4 6-10 weeks",
+         "S2"
+        ],
+        [
+         "Global CCL capacity utilisation, Q1 2026",
+         "92-95%",
+         "S2"
+        ],
+        [
+         "Global CCL price rise, last 12 months (company-cited)",
+         "~325%",
+         "S8"
+        ]
+       ]
+      },
+      {
+       "type": "p",
+       "text": "Adding supply takes time. New glass weaving looms have 18-24 month lead times, and AtlasPCB expects new glass cloth capacity from mid-to-late 2027 (S1). New CCL lines take 18-24 months to build and cost $50-100M each, with relief projected for 2027-28 (S2). Only 5-7 major producers of E-glass fabric exist globally, including Nittobo (S2)."
+      },
+      {
+       "type": "callout",
+       "tone": "warn",
+       "text": "The price data comes from trade publications (AtlasPCB) and a company-cited figure (Ratnaveer, ~325%). Neither is an audited index, and the two magnitudes differ widely."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "policy_and_capex",
+   "title": "Import dependence, ECMS and Indian laminate capex",
+   "subsections": [
+    {
+     "title": "Import dependence and ECMS terms",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "India imports all of its copper clad laminate today (S19). When the government approved the first ECMS tranche on 27 Oct 2025, it described the first domestic CCL facility as a breakthrough for a material that had been imported until then (S4). ECMS was launched in April 2025 with an outlay of INR 229b; per Motilal Oswal, Union Budget 2026 raised the outlay to INR 400b. The scheme runs until March 2032 (S5)."
+      },
+      {
+       "type": "table",
+       "caption": "ECMS incentive structure for PCB and laminate segments",
+       "columns": [
+        "Segment",
+        "Products",
+        "Min. investment",
+        "Turnover-linked incentive (yrs 1-6)",
+        "Capex incentive"
+       ],
+       "rows": [
+        [
+         "B: Bare components",
+         "Multi-layer PCB, 6 layers or fewer",
+         "INR 500m",
+         "6/6/5/5/4/4%",
+         "None"
+        ],
+        [
+         "B: Bare components",
+         "Multi-layer PCB, 8 layers or more",
+         "INR 500m",
+         "10/8/7/6/5/5%",
+         "None"
+        ],
+        [
+         "C: Selected bare components",
+         "HDI / flexible PCB",
+         "INR 10b",
+         "8/7/7/6/5/4%",
+         "25%"
+        ],
+        [
+         "D: Supply chain ecosystem",
+         "Copper foil, laminate, prepreg",
+         "INR 100m",
+         "None",
+         "25%"
+        ]
+       ]
+      },
+      {
+       "type": "p",
+       "text": "Source: India Briefing summary of ECMS guidelines (S3). All incentives include an employment-linked component and are cut if job thresholds are missed (S3)."
+      }
+     ]
+    },
+    {
+     "title": "ECMS approvals relevant to laminates",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "Approved and announced CCL projects in India",
+       "columns": [
+        "Company",
+        "Listed?",
+        "Project",
+        "Investment / capex",
+        "Timing",
+        "Source"
+       ],
+       "rows": [
+        [
+         "Ratnaveer Precision",
+         "Yes",
+         "CCL, Vadodara; phase 1 15.84 lakh sheets/yr, 79.2 lakh by FY31",
+         "Rs 472.34 cr project (Rs 338 cr capex over three years per Trade Brains)",
+         "Trial Dec 2026; inauguration mid-Jan 2027",
+         "S6, S7, S9"
+        ],
+        [
+         "Kaynes (Kaynes Circuits)",
+         "Yes (subsidiary)",
+         "Multi-layer PCB, HDI PCB, camera modules, CCL, Tamil Nadu",
+         "INR 32.8b ECMS grant approval; FY27 PCB capex Rs 300 cr",
+         "PCB plant operational Q3 FY27",
+         "S5, S15"
+        ],
+        [
+         "Syrma SGS (JV with Shinhyup)",
+         "Yes",
+         "Multi-layer PCB and CCL, Naidupeta, AP; CCL/HDI/flex approvals",
+         "Rs 1,595 cr JV project; ~Rs 800 cr additional capex FY28-30",
+         "PCB phase 1 end FY27/start FY28",
+         "S13, S14"
+        ],
+        [
+         "Wipro Electronic Materials",
+         "No",
+         "CCL and prepreg, Doddaballapur, 6m+ sheets/yr",
+         "Rs 500 cr initial, plus Rs 1,033 cr approved Aug 2026",
+         "Not confirmed",
+         "S19, S20"
+        ]
+       ]
+      },
+      {
+       "type": "p",
+       "text": "The 17 Aug 2026 tranche cleared 31 applications worth Rs 7,877 crore, including enhanced investment in copper clad laminates. That brought the total to 106 approvals worth Rs 69,548 crore, above the scheme's Rs 59,350 crore investment target (S20)."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "listed_company_impact",
+   "title": "Listed company impact",
+   "subsections": [
+    {
+     "title": "Ratnaveer: a steel company adding a laminate business",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "Ratnaveer makes stainless steel washers, fasteners, wires and solar roofing hooks (S6). It describes itself as India's largest producer and exporter of stainless steel washers (S10). Its sales rose from Rs 595 crore in FY24 to Rs 1,069 crore in FY26, and net profit from Rs 31 crore to Rs 64 crore (S10)."
+      },
+      {
+       "type": "chart",
+       "title": "Ratnaveer sales before CCL",
+       "unit": "Rs crore",
+       "series": [
+        {
+         "name": "Sales",
+         "points": [
+          [
+           "FY24",
+           595
+          ],
+          [
+           "FY25",
+           892
+          ],
+          [
+           "FY26",
+           1069
+          ]
+         ]
+        }
+       ],
+       "source": "Source: Screener.in (S10)"
+      },
+      {
+       "type": "table",
+       "caption": "Ratnaveer CCL guidance from different sources",
+       "columns": [
+        "Metric",
+        "Figure",
+        "Source"
+       ],
+       "rows": [
+        [
+         "Phase-1 CCL revenue",
+         "Rs 108 cr at ~20% EBITDA",
+         "S9"
+        ],
+        [
+         "FY28 CCL revenue",
+         "~Rs 350 cr; EBITDA ~20%, PAT ~13%",
+         "S8"
+        ],
+        [
+         "FY28 stainless steel revenue",
+         "~Rs 750 cr; EBITDA ~13%",
+         "S8"
+        ],
+        [
+         "CCL revenue at scale",
+         "Rs 750+ cr by FY31",
+         "S9"
+        ],
+        [
+         "Group revenue ambition",
+         "Rs 2,500 cr by FY29; Rs 5,000 cr in five years",
+         "S8"
+        ]
+       ]
+      },
+      {
+       "type": "callout",
+       "tone": "warn",
+       "text": "In the S8 table the FY28 segment figures (Rs 750 cr steel plus Rs 350 cr CCL) do not add up to the Rs 2,100 cr consolidated FY28 figure given in the same article. Treat the guidance as indicative until the company publishes a filing."
+      },
+      {
+       "type": "p",
+       "text": "Status: the project is about 60% complete and part of a Rs 650 crore funding package (S6). The machinery has left China and is in transit (S7). The company says it has soft confirmations from customers and is discussing long-term, potentially exclusive contracts; no customers are named (S7)."
+      }
+     ]
+    },
+    {
+     "title": "Kaynes and Syrma: CCL as an input to PCB plants",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "How material laminates are to EMS earnings",
+       "columns": [
+        "Company",
+        "FY26 sales (Rs cr)",
+        "FY26 PAT (Rs cr)",
+        "PCB/CCL revenue timing",
+        "Materiality"
+       ],
+       "rows": [
+        [
+         "Kaynes",
+         "3,626",
+         "364",
+         "OSAT+PCB Rs 450-500 cr combined in FY27, from Q3",
+         "CCL is captive, for its own PCBs; not disclosed separately (S11, S15, S16)"
+        ],
+        [
+         "Syrma SGS",
+         "4,819",
+         "346",
+         "PCB contribution from FY28; CCL capex FY28-30",
+         "Negligible before FY28; ICICI Direct FY28E sales Rs 8,203 cr (S12, S13)"
+        ]
+       ]
+      },
+      {
+       "type": "p",
+       "text": "Motilal Oswal says Kaynes aims to be self-sufficient in CCL, prepregs and PCBs, and that PCBs are about 10% of Kaynes' costs (S5). It says Syrma's PCB plant targets INR 25b of annual revenue at 1-1.5x asset turnover, with a phased capex of about INR 15.6b (S5)."
+      }
+     ]
+    },
+    {
+     "title": "Can Indian plants make AI-server grades?",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "No Indian company has disclosed qualification for ultra-low-loss grades such as Megtron 7-class materials, which major Japanese, Taiwanese and US suppliers dominate (S2). Wipro lists AI infrastructure among its target sectors (S19), and Kaynes Circuits lists 'high-performance laminates' and HDI PCBs (S18). Ratnaveer has not disclosed its grades. Its equipment comes from China (S7)."
+      },
+      {
+       "type": "callout",
+       "tone": "info",
+       "text": "Our reading is that the first Indian lines will most likely serve standard FR-4 demand for consumer, auto and industrial PCBs, and that raw materials (glass cloth, copper foil, resin) will stay imported at first. No source confirms domestic supply of these inputs."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "research_house_views",
+   "title": "Research house views and valuation",
+   "subsections": [
+    {
+     "title": "Broker coverage and how much of the laminate angle it names",
+     "blocks": [
+      {
+       "type": "bullets",
+       "items": [
+        "Motilal Oswal (24 Feb 2026) explicitly names CCL for both Kaynes and Syrma. It expects its EMS coverage to grow revenue, EBITDA and adjusted PAT at 30%, 36% and 42% CAGR over FY25-28 (S5).",
+        "ICICI Direct (13 May 2026) on Syrma says multi-layer PCB, flex PCB and CCL manufacturing should support margin and RoCE improvement from FY28 onwards (S13).",
+        "After Kaynes' Q4 FY26 results, seven brokers downgraded the stock (including Avendus Spark, JM Financial and Equirus). Jefferies expects OSAT and PCB sales to come onstream in FY27 (S17).",
+        "We found no broker initiation on Ratnaveer. Its coverage is mainly press releases and retail-platform articles (S6, S7, S9)."
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Price performance and valuation (28 Sep 2026)",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "Screener.in snapshot",
+       "columns": [
+        "Company",
+        "Price (Rs)",
+        "Market cap (Rs cr)",
+        "P/E",
+        "52-week high / low (Rs)",
+        "1-year move"
+       ],
+       "rows": [
+        [
+         "Ratnaveer",
+         "331",
+         "2,775",
+         "41.1",
+         "360 / 129",
+         "+103%"
+        ],
+        [
+         "Kaynes",
+         "3,658",
+         "24,624",
+         "70.9",
+         "7,705 / 2,995",
+         "-50%"
+        ],
+        [
+         "Syrma SGS",
+         "1,746",
+         "33,671",
+         "90.7",
+         "1,804 / 634",
+         "n.a.; near 52-week high"
+        ]
+       ]
+      },
+      {
+       "type": "p",
+       "text": "Sources: S10, S11, S12. Ratnaveer's rights issue at Rs 264 is about 20% below the current price (S6, S10). Kaynes' fall reflects its Q4 FY26 miss against FY26 revenue guidance of Rs 4,100 crore and a 21.5% fall in Q4 profit (S17), not anything to do with laminates."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "risks_and_catalysts",
+   "title": "Risks and catalysts",
+   "subsections": [
+    {
+     "title": "Execution risks",
+     "blocks": [
+      {
+       "type": "bullets",
+       "items": [
+        "Commissioning slippage: Ratnaveer first targeted November 2026 commercial production (S6) and now plans trial production in December 2026 and inauguration in mid-January 2027 (S7). Kaynes cited a minor slippage from the West Asia conflict (S15).",
+        "Raw material dependence: glass cloth prices are up 140% and could reach $2.19/m by Q4 2026 (S1). Glass fabric supply is concentrated in 5-7 global producers (S2).",
+        "Competition: Ratnaveer is new to CCL, having so far made stainless steel products (S6). New global CCL capacity from 2027-28 could lower prices (S2).",
+        "Customer qualification: no named customers or signed contracts had been disclosed as of 21 Sep 2026 (S7).",
+        "Funding: Ratnaveer has already raised Rs 329.99 crore through the rights issue (S6), and its debtor days have risen (S10). Kaynes' finance costs doubled in Q4 FY26 (S17)."
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Catalyst calendar",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "Near-term catalysts",
+       "columns": [
+        "Date",
+        "Event",
+        "Source"
+       ],
+       "rows": [
+        [
+         "31 Oct 2026",
+         "Ratnaveer CCL order bookings begin",
+         "S7"
+        ],
+        [
+         "Oct-Dec 2026 (Q3 FY27)",
+         "Kaynes Circuits Chennai PCB plant operational; first revenue",
+         "S15"
+        ],
+        [
+         "2nd week Dec 2026",
+         "Ratnaveer trial production",
+         "S7"
+        ],
+        [
+         "Q4 2026",
+         "Glass cloth forecast of $1.75-2.19/m",
+         "S1"
+        ],
+        [
+         "Mid-Jan 2027",
+         "Ratnaveer plant inauguration",
+         "S7"
+        ],
+        [
+         "End FY27 / start FY28",
+         "Syrma PCB phase-1 commissioning",
+         "S13"
+        ],
+        [
+         "2027-28",
+         "New global CCL and glass cloth capacity expected",
+         "S1, S2"
+        ]
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "companies": [
+  {
+   "name": "Ratnaveer Precision Engineering Ltd",
+   "nse": "RATNAVEER",
+   "bse": null,
+   "bucket": "laminate_makers",
+   "role": "Stainless steel products maker building an ECMS-approved Rs 472.34 cr CCL plant in Vadodara; phase 1 is 15.84 lakh sheets a year (S6, S9).",
+   "impact": "CCL could lift revenue by about Rs 350 cr in FY28 at a ~20% EBITDA margin, per company guidance (S8). The stock is up 103% in a year and trades at 41x P/E, so execution from 31 Oct order booking onward is key (S7, S10)."
+  },
+  {
+   "name": "Kaynes Technology India Ltd",
+   "nse": "KAYNES",
+   "bse": null,
+   "bucket": "pcb_integrated",
+   "role": "EMS company whose subsidiary Kaynes Circuits holds an INR 32.8b ECMS grant approval for multi-layer and HDI PCBs, camera modules and CCL in Tamil Nadu (S5).",
+   "impact": "The PCB plant is due in Q3 FY27, with OSAT and PCB revenue of Rs 450-500 cr combined in FY27 (S15, S16). CCL mainly lowers its own PCB costs (S5). The stock is down 50% in a year on core EMS issues (S11, S17)."
+  },
+  {
+   "name": "Syrma SGS Technology Ltd",
+   "nse": "SYRMA",
+   "bse": null,
+   "bucket": "pcb_integrated",
+   "role": "EMS company with a Shinhyup JV for multi-layer PCB and CCL at Naidupeta, and ECMS approvals for CCL, HDI and flex PCB (S13, S14).",
+   "impact": "Laminates will not affect earnings before FY28: CCL capex of about Rs 800 cr is planned for FY28-30 (S13). The stock trades at 90.7x P/E near its 52-week high (S12)."
+  }
+ ],
+ "sources": [
+  {
+   "id": "S1",
+   "publisher": "AtlasPCB",
+   "title": "Electronic Glass Cloth Prices Surge 140% Since 2025: AI Server Demand and Equipment Bottlenecks Drive PCB Material Crisis",
+   "url": "https://www.atlaspcb.com/news/news-electronic-glass-cloth-price-surge-140-percent-ai-demand-2026/",
+   "date": "2026-08-25",
+   "kind": "other"
+  },
+  {
+   "id": "S2",
+   "publisher": "AtlasPCB",
+   "title": "AI Server Demand Is Breaking the PCB Material Supply Chain",
+   "url": "https://www.atlaspcb.com/blog/ai-server-pcb-material-supply-chain-shortage-2026/",
+   "date": "2026-06-08",
+   "kind": "other"
+  },
+  {
+   "id": "S3",
+   "publisher": "India Briefing (Dezan Shira)",
+   "title": "India's ECMS 2025: Incentives and Eligibility for Manufacturers",
+   "url": "https://www.india-briefing.com/news/ecms-2025-application-incentives-eligibility-37134.html/",
+   "date": "2025-07-08",
+   "kind": "research"
+  },
+  {
+   "id": "S4",
+   "publisher": "Business Today",
+   "title": "India clears Rs 5,532 crore worth of projects under ECMS",
+   "url": "https://www.businesstoday.in/india/story/india-clears-rs5532-crore-worth-of-projects-under-ecms-to-boost-electronics-component-manufacturing-499748-2025-10-27",
+   "date": "2025-10-27",
+   "kind": "news"
+  },
+  {
+   "id": "S5",
+   "publisher": "Motilal Oswal",
+   "title": "EMS sector update: Robust demand and diversification power India's EMS growth cycle",
+   "url": "https://invest.motilaloswal.com/CMSFile/3977a9eb-2e16-44af-9f17-8e3d0c311b98_EMS-20260224-MOSL-SU-PG026.pdf",
+   "date": "2026-02-24",
+   "kind": "research"
+  },
+  {
+   "id": "S6",
+   "publisher": "The Tribune",
+   "title": "Ratnaveer Precision Engineering's INR 329.99 Crore Rights Issue Subscribed 1.11x; CCL Plant Progresses as Global Prices Surge",
+   "url": "https://www.tribuneindia.com/news/business/ratnaveer-precision-engineerings-inr-329-99-crore-rights-issue-subscribed-1-11x-allotment-on-september-10-listing-on-september-15-ccl-plant-progresses-as-global-prices-surge",
+   "date": "2026-09-10",
+   "kind": "news"
+  },
+  {
+   "id": "S7",
+   "publisher": "The Tribune",
+   "title": "Ratnaveer Precision Engineering Advances CCL Project; Order Bookings Expected to Begin From October 31",
+   "url": "https://www.tribuneindia.com/news/business/ratnaveer-precision-engineering-advances-ccl-project-order-bookings-expected-to-begin-from-october-31",
+   "date": "2026-09-21",
+   "kind": "news"
+  },
+  {
+   "id": "S8",
+   "publisher": "Business Today",
+   "title": "Ratnaveer Precision Engineering's Rs 329.99 crore rights issue subscribed 1.11x; eyes Rs 5,000 crore topline in 5 years on CCL-led growth",
+   "url": "https://www.businesstoday.in/impact-feature/story/ratnaveer-precision-engineerings-rs329-99-crore-rights-issue-subscribed-1-11x-eyes-rs5000-crore-topline-in-5-years-on-ccl-led-growth-554603-2026-09-10",
+   "date": "2026-09-10",
+   "kind": "news"
+  },
+  {
+   "id": "S9",
+   "publisher": "Trade Brains",
+   "title": "India's Largest Stainless Steel Washer Exporter Bets Rs 338 Cr on Electronics",
+   "url": "https://tradebrains.in/indian-markets/indias-largest-stainless-steel-washer-exporter-bets-338-cr-on-electronics-should-investors-take-note-12502782",
+   "date": "2026-09-07",
+   "kind": "other"
+  },
+  {
+   "id": "S10",
+   "publisher": "Screener.in",
+   "title": "Ratnaveer Precision Engineering Ltd",
+   "url": "https://www.screener.in/company/RATNAVEER/",
+   "date": "2026-09-28",
+   "kind": "other"
+  },
+  {
+   "id": "S11",
+   "publisher": "Screener.in",
+   "title": "Kaynes Technology India Ltd (consolidated)",
+   "url": "https://www.screener.in/company/KAYNES/consolidated/",
+   "date": "2026-09-28",
+   "kind": "other"
+  },
+  {
+   "id": "S12",
+   "publisher": "Screener.in",
+   "title": "Syrma SGS Technology Ltd (consolidated)",
+   "url": "https://www.screener.in/company/SYRMA/consolidated/",
+   "date": "2026-09-28",
+   "kind": "other"
+  },
+  {
+   "id": "S13",
+   "publisher": "ICICI Direct (ICICI Securities)",
+   "title": "Syrma SGS Technology Q4FY26 result update",
+   "url": "https://mailcontent.icicidirect.com/mailcontent/idirect_syrmasgs_q4fy26.pdf",
+   "date": "2026-05-13",
+   "kind": "research"
+  },
+  {
+   "id": "S14",
+   "publisher": "KNN India",
+   "title": "Syrma SGS forms JV with South Korean Shinhyup to make multi-layer PCBs and CCLs in AP",
+   "url": "https://knnindia.co.in/news/newsdetails/sectors/syrma-sgs-forms-jv-with-south-korean-shinhyup-to-make-multi-layer-pcbs-copper-clad-laminates-ccls-in-ap",
+   "date": "2025-09-24",
+   "kind": "news"
+  },
+  {
+   "id": "S15",
+   "publisher": "Investing.com",
+   "title": "Earnings call transcript: Kaynes Technology posts strong Q1 2027 growth",
+   "url": "https://www.investing.com/news/transcripts/earnings-call-transcript-kaynes-technology-posts-strong-q1-2027-growth-93CH-4847615",
+   "date": "2026-08-08",
+   "kind": "company"
+  },
+  {
+   "id": "S16",
+   "publisher": "Multibagg",
+   "title": "Kaynes Technology Q1 FY27: Strong Growth, Weaker Profitability, and a Tight Timeline for OSAT and PCBs",
+   "url": "https://www.multibagg.ai/market-pulse/articles/kaynes-q1fy27-97538",
+   "date": "2026-08-09",
+   "kind": "other"
+  },
+  {
+   "id": "S17",
+   "publisher": "Business Today",
+   "title": "The fall and fall of Kaynes Tech shares: down 25% in 2 days but Jefferies tags a 'buy'",
+   "url": "https://www.businesstoday.in/markets/stocks/story/the-fall-and-fall-of-kaynes-tech-shares-down-25-in-2-days-but-jefferies-tags-a-buy-531619-2026-05-15",
+   "date": "2026-05-15",
+   "kind": "news"
+  },
+  {
+   "id": "S18",
+   "publisher": "I-Connect007",
+   "title": "Kaynes Circuits to Invest $570 Million in PCB Tech in India's Tamil Nadu State",
+   "url": "https://iconnect007.com/article/146440/kaynes-circuits-to-invest-570-million-in-pcb-tech-indias-tamil-nadu-state/146437/smt",
+   "date": "2025-08-04",
+   "kind": "news"
+  },
+  {
+   "id": "S19",
+   "publisher": "Angel One",
+   "title": "Wipro Infrastructure to Set Up Rs 500 Crore Facility in Karnataka for PCB Materials",
+   "url": "https://www.angelone.in/news/share-market/wipro-infrastructure-to-set-up-500-crore-facility-in-karnataka-for-pcb-materials",
+   "date": "2025-07-29",
+   "kind": "news"
+  },
+  {
+   "id": "S20",
+   "publisher": "Business Standard",
+   "title": "Govt clears 31 electronic component manufacturing proposals worth Rs 7,877 cr",
+   "url": "https://www.business-standard.com/economy/news/govt-approves-31-proposals-for-7-877-cr-investment-under-ecms-it-secy-126081700883_1.html",
+   "date": "2026-08-17",
+   "kind": "news"
+  }
+ ],
+ "method": "First edition, researched on 28-29 Sep 2026 with web search and page fetches. Main inputs: company press releases carried by news wires, an earnings-call transcript, broker PDFs (Motilal Oswal, ICICI Direct), trade-press price data (AtlasPCB), an ECMS guideline summary and Screener.in market data. S20 was seen only in search results because the page returned 403. MeitY/PIB primary releases and exchange filings could not be retrieved directly, so the policy figures rely on secondary reporting. Where sources disagree (Ratnaveer capex of Rs 472.34 cr vs Rs 338 cr; CCL revenue guidance), both figures are shown. Only the three companies in the brief's universe are profiled. Searches found no other Indian listed company with an announced CCL, glass cloth, copper foil or prepreg plant; Wipro Electronic Materials is unlisted. No ratings or price targets are given.",
+ "bucket_labels": {
+  "laminate_makers": [
+   "Laminate makers",
+   "Listed companies building copper clad laminate capacity in India, mainly a standalone laminate plant"
+  ],
+  "pcb_integrated": [
+   "PCB makers integrating laminates",
+   "EMS and PCB companies with ECMS-backed PCB plants that also include in-house CCL"
+  ],
+  "other": [
+   "Other",
+   ""
+  ]
+ }
+}

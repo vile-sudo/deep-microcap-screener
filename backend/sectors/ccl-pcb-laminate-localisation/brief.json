@@ -1,0 +1,37 @@
+{
+ "slug": "ccl-pcb-laminate-localisation",
+ "name": "Copper Clad Laminates & PCB Base Materials",
+ "icon": "chip",
+ "scope": "AI-server-driven global shortage and price spike in copper clad laminates (CCL) and glass cloth, while India, which imports ~100% of its CCL, has begun ECMS-backed first domestic laminate plants (Ratnaveer, Kaynes, Syrma; Wipro's is unlisted). Already partly discovered: Kaynes/Syrma get broker EMS coverage and Ratnaveer's market cap is up ~105% in a year, but the laminate/materials angle is still thinly covered and the plants are not yet commissioned.",
+ "questions": [
+  "What are copper clad laminates and prepreg, where do they sit in the PCB and AI-server value chain, and why is the global CCL/T-glass/copper foil market tight in 2026 (prices, lead times, new capacity timing)?",
+  "How large is India's CCL import dependence, and what does the Electronics Component Manufacturing Scheme (ECMS) offer laminate makers (incentive rates, approvals to date)?",
+  "What has Ratnaveer Precision Engineering committed for its Vadodara CCL plant (capex, capacity, funding via rights issue, commissioning and order-booking timeline, customers), and how does it change the company's earnings mix from stainless steel pipes?",
+  "What are Kaynes Circuits and Syrma SGS doing on CCL and PCB (ECMS approvals, capex, integration of laminates, commissioning dates), and how material is laminate to their overall earnings?",
+  "Which other Indian listed companies have announced CCL, glass cloth, copper foil, prepreg or resin plans (exchange filings, investor decks, rating rationales), and which are only adjacent?",
+  "Can Indian plants qualify for high-end grades (high-speed/low-loss, HDI) demanded by AI servers, or will they serve only standard FR-4 for consumer, auto and industrial PCBs? What technology partners and raw material sources (glass cloth, copper foil, epoxy) do they rely on?",
+  "How much of the theme is priced in: share price performance of Ratnaveer, Kaynes, Syrma over 6-12 months, valuation, and the amount of media and broker coverage that names the laminate angle?",
+  "What are the execution risks: commissioning delays, dependence on imported glass cloth and copper foil, Chinese competition and pricing, customer qualification cycles, dilution or funding needs?",
+  "What are the near-term catalysts: Ratnaveer order bookings from 31 Oct 2026 and trial production, Kaynes/Syrma plant start-ups, further ECMS tranches, laminate price trends?"
+ ],
+ "bucket_labels": {
+  "laminate_makers": [
+   "Laminate makers",
+   "Listed companies building copper clad laminate capacity in India, mainly a standalone laminate plant"
+  ],
+  "pcb_integrated": [
+   "PCB makers integrating laminates",
+   "EMS and PCB companies with ECMS-backed PCB plants that also include in-house CCL"
+  ]
+ },
+ "universe": {
+  "laminate_makers": [
+   "RATNAVEER"
+  ],
+  "pcb_integrated": [
+   "KAYNES",
+   "SYRMA"
+  ]
+ },
+ "refresh": "weekly"
+}
