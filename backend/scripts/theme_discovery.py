@@ -6,6 +6,12 @@ backend/sectors/<slug>/brief.json for it, then hands off to sector_research.py t
 its first edition immediately. Meant to run once a day, every day, each time on a
 different topic; see existing_themes() for how it avoids repeating one.
 
+The point isn't just a real theme -- see task()'s "get there before the market does"
+section: it's told to actively favour a theme mainstream financial media hasn't already
+covered as a group and whose candidate stocks haven't already had a big theme-driven
+re-rating, over an obvious one that's already common knowledge and already reflected in
+the price.
+
     cd backend
     python scripts/theme_discovery.py               # find and publish today's theme
     python scripts/theme_discovery.py --dry-run      # find a theme, print it, write nothing
@@ -13,10 +19,10 @@ different topic; see existing_themes() for how it avoids repeating one.
 COST NOTE
 ----------
 This runs a full sector_research.py first edition (a real web-search Claude Code
-session) every single day, on top of the existing per-sector monthly re-verification
+session) every single day, on top of the existing per-sector weekly re-verification
 (sector_research.py's own SECTORS_PER_RUN loop) and the daily "latest developments"
 check (sector_latest.py) that every published theme gets forever. As the number of
-published themes grows, the monthly-refresh and latest-developments workload grows
+published themes grows, the weekly-refresh and latest-developments workload grows
 with it -- SECTORS_PER_RUN and the workflow timeouts may need raising over time so
 older themes don't go stale while new ones keep being added.
 """
@@ -43,10 +49,12 @@ SLUG_RE = re.compile(r"^[a-z][a-z0-9-]{1,58}[a-z0-9]$")
 FORMAT = """{
  "slug": "kebab-case, 2-60 chars, not already in use",
  "name": "...", "icon": "chip",
- "scope": "one line: what the theme covers and why it's investable now",
+ "scope": "one line: what the theme covers, why it's investable now, and how early/undiscovered it still is",
  "questions": ["8-10 questions for the full research pass to answer -- what the theme is, how it works, how "
                "India participates, what named companies are doing about it (capex, JVs, capacity), why each "
-               "could be a beneficiary, risks, catalysts -- mirror the shape of an existing brief.json"],
+               "could be a beneficiary, whether the market has already priced this in (stock performance and "
+               "media/broker coverage to date) or it's still early, risks, catalysts -- mirror the shape of an "
+               "existing brief.json"],
  "bucket_labels": {"snake_case_key": ["Group title", "one-line description"], "...": ["...", "..."]},
  "universe": {"snake_case_key": ["SYMBOL", "..."], "...": ["..."]},
  "refresh": "weekly"
@@ -125,6 +133,23 @@ capability, chemistry, process or customer relationship that plausibly lets it m
 for that capability. Do not include a company only because it is broadly "in the same sector" with no specific
 connection to this niche.
 
+## The whole point: get there before the market does
+The goal is not just a real theme -- it's a theme the market hasn't fully priced in yet, so there's still room to
+act before it's obvious. Actively favour a theme where:
+- Mainstream financial media hasn't yet run "stocks to play this theme" pieces naming these companies as a
+  group -- it's still mostly visible in niche trade press, industry/market-research reports, or scattered company
+  disclosures nobody has connected yet, not in broker thematic notes everyone has already read.
+- The candidate stocks have NOT already had a large, theme-driven re-rating -- check: has the stock run up
+  sharply (e.g. 50%++) over the last several months in a way news coverage already attributes to this theme? If
+  most of your candidates have already re-rated hard and are being written about everywhere, the market has
+  already found this one -- either look further for something earlier, or still write it up if the driver is
+  genuinely intact, but say plainly in scope/summary that it's already partly discovered and re-rated, don't
+  present it as an undiscovered opportunity when it visibly isn't.
+- Prefer relatively under-the-radar companies actually doing the work over the obvious, already-heavily-covered
+  large caps -- a smaller name with real evidence of involvement is a better find than a mega-cap where this is
+  one line item among many analysts already track closely.
+This is a judgment call, not a hard rule -- verify it with search rather than assume either way.
+
 ## Do not propose any of these -- already covered or already on the backlog
 {avoid or "(nothing yet -- this is the first theme)"}
 
@@ -133,18 +158,20 @@ connection to this niche.
    house's morning note, or a business paper would cover), and (ii) global industry/market-research reports and
    trade publications on specific product, material, component or equipment categories and their growth drivers
    (IndexBox-style sources, sector trade press, company/industry-association reports). Either can be where a good
-   theme comes from.
-2. Pick the single strongest one: verify with WebSearch/WebFetch that it is real and current, and that the
-   companies you plan to list actually have the evidence you're crediting them with (involvement or adjacency)
-   -- do not invent names, figures or capabilities.
+   theme comes from -- (ii) is often where the earliest, least-discovered themes are.
+2. Pick the single strongest one: verify with WebSearch/WebFetch that it is real and current, that the companies
+   you plan to list actually have the evidence you're crediting them with (involvement or adjacency), and check
+   how much media/market attention and stock re-rating this has already had, per the "get there before the
+   market does" section above -- do not invent names, figures or capabilities.
 3. Write out/brief.json in exactly this format (valid JSON, double quotes):
 {FORMAT}
    - bucket_labels: 2-4 groups that fit THIS theme's actual value chain (do not reuse another theme's groups
      unless they genuinely apply) plus you do not need to add "other" -- it is always available automatically.
    - universe: 5-15 real NSE/BSE symbols total, grouped under the same keys as bucket_labels.
-4. If, after searching, nothing clears the bar (no current driver, or you can't find real company evidence or a
-   genuine cited adjacency), write out/brief.json as {{"slug": null}} and stop -- a skipped day is better than a
-   weak or duplicate theme.
+4. If, after searching, nothing clears the bar (no current driver, no real company evidence or genuine cited
+   adjacency, or everything you found is already widely known and re-rated with nothing earlier available),
+   write out/brief.json as {{"slug": null}} and stop -- a skipped day is better than a weak, duplicate, or
+   already-obvious theme.
 
 Read the file back once and fix any JSON error. Reply DONE when finished.
 """
