@@ -25,7 +25,8 @@ settings = get_settings()
 FRONTEND_DIR = Path(__file__).resolve().parent.parent.parent / "frontend"
 
 
-NEWS_REFRESH_SECONDS = 300
+NEWS_REFRESH_SECONDS = 120   # was 300 -- as close to real-time as polling Google News/newsdata.io/BusinessLine
+                             # allows; see _refresh_news_and_push's docstring for the newsdata.io DAILY_CAP tradeoff
 
 
 def _refresh_news_and_push() -> bool:
@@ -34,7 +35,16 @@ def _refresh_news_and_push() -> bool:
     every subscribed browser (desktop, via webpush.py) when that fetch
     actually added something new. Counts before/after rather than trusting
     refresh_if_stale's own True/False, because a run can fetch successfully
-    and still add nothing (every story already seen)."""
+    and still add nothing (every story already seen).
+
+    At NEWS_REFRESH_SECONDS=120, newsdata.io's own DAILY_CAP (see
+    news_channel.py) is used up in about an hour instead of the ~2.5 hours a
+    300s interval gave -- after that this run's newsdata.io leg is skipped
+    for the rest of the day (news_channel.write() already handles that
+    gracefully, see _quota_today). Google News and BusinessLine, unmetered
+    and already the higher-volume sources, keep running all day regardless,
+    so overall freshness still improves; it is only newsdata.io's own share
+    of it that front-loads into the first hour."""
     before = news_feed.load().get("count", 0)
     if not news_feed.refresh_if_stale(settings.newsdata_api_key or None, NEWS_REFRESH_SECONDS - 30):
         return False
