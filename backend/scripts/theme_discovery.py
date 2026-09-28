@@ -1,26 +1,24 @@
 """
-Finds one new investment theme a week -- the same judgment call as when a person hands
-you a news article about, say, India's semiconductor push creating a market for
-photoresist chemicals -- and writes backend/sectors/<slug>/brief.json for it, then hands
-off to sector_research.py to write its first edition immediately.
+Finds one new investment theme, from a blank page, every day -- the same judgment call
+as when a person hands you a news article about, say, India's semiconductor push
+creating a market for photoresist chemicals -- and writes
+backend/sectors/<slug>/brief.json for it, then hands off to sector_research.py to write
+its first edition immediately. Meant to run once a day, every day, each time on a
+different topic; see existing_themes() for how it avoids repeating one.
 
     cd backend
-    python scripts/theme_discovery.py               # only acts if a new theme is due
-    python scripts/theme_discovery.py --force        # act today regardless of the weekly gate
+    python scripts/theme_discovery.py               # find and publish today's theme
     python scripts/theme_discovery.py --dry-run      # find a theme, print it, write nothing
 
-WHY WEEKLY, NOT DAILY
-----------------------
-A theme discovered from scratch every single day would either repeat itself or scrape
-the bottom of the barrel -- genuinely new, structurally-driven, multi-company investment
-themes don't appear that often. Instead: one theme is "active" for THEME_ACTIVE_DAYS (7)
-days after its first edition -- during that week it already gets a daily "latest
-developments" check (sector_latest.py, which runs for every sector with a brief.json,
-no separate wiring needed) plus, once the following month starts, sector_research.py's
-usual monthly re-verification -- and only once that week is up does this script look for
-the next one. So "a new theme report every day" is true in the sense that mattered when
-this was asked for: the currently active theme gets fresh, dated developments daily; a
-brand-new topic from a blank page arrives about once a week.
+COST NOTE
+----------
+This runs a full sector_research.py first edition (a real web-search Claude Code
+session) every single day, on top of the existing per-sector monthly re-verification
+(sector_research.py's own SECTORS_PER_RUN loop) and the daily "latest developments"
+check (sector_latest.py) that every published theme gets forever. As the number of
+published themes grows, the monthly-refresh and latest-developments workload grows
+with it -- SECTORS_PER_RUN and the workflow timeouts may need raising over time so
+older themes don't go stale while new ones keep being added.
 """
 from __future__ import annotations
 
@@ -40,7 +38,6 @@ BACKEND = Path(__file__).resolve().parent.parent
 SECTORS = BACKEND / "sectors"
 IST = timezone(timedelta(hours=5, minutes=30))
 TOOLS = "Read,Write,Edit,WebSearch,WebFetch"
-THEME_ACTIVE_DAYS = 7
 SLUG_RE = re.compile(r"^[a-z][a-z0-9-]{1,58}[a-z0-9]$")
 
 FORMAT = """{
@@ -205,7 +202,7 @@ def discover(dry_run: bool) -> str:
 
 def main() -> int:
     ap = argparse.ArgumentParser()
-    ap.add_argument("--force", action="store_true", help="ignore the weekly gate")
+    ap.add_argument("--force", action="store_true", help="publish another theme even if one was already created today")
     ap.add_argument("--dry-run", action="store_true")
     args = ap.parse_args()
     if not claude_code.available():
@@ -216,12 +213,14 @@ def main() -> int:
         print("theme discovery: CLAUDE_CODE_OAUTH_TOKEN not set - skipping")
         return 0
 
+    # One a day, every day -- the only gate is against running twice on the same
+    # calendar day (e.g. a manual dispatch alongside the scheduled run).
     age = newest_theme_age_days()
-    if not args.force and age is not None and age < THEME_ACTIVE_DAYS:
-        print(f"theme discovery: newest theme is only {age} day(s) old (< {THEME_ACTIVE_DAYS}) - not due yet")
+    if not args.force and not args.dry_run and age is not None and age < 1:
+        print("theme discovery: a theme was already created today - skipping")
         return 0
 
-    print(f"theme discovery: {'first theme ever' if age is None else f'newest theme is {age} day(s) old'} - looking for a new one")
+    print("theme discovery: looking for today's theme")
     print("theme discovery:", discover(args.dry_run))
     return 0
 

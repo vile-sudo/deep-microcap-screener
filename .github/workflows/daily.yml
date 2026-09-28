@@ -209,13 +209,15 @@ jobs:
           gh release view charts > /dev/null 2>&1 || gh release create charts --title "Chart data"             --notes "Daily candles and base analysis for every actively traded NSE/BSE company, used by Screen any Chart. Rebuilt nightly; not investment advice."
           gh release upload charts universe-charts.tar.gz --clobber
 
-      # Finds one new investment theme a week (a fresh brief.json from a blank page,
-      # the same judgment call as being handed a news article about one) and writes its
-      # first edition immediately -- see scripts/theme_discovery.py for why weekly, not
-      # daily. A no-op most days: it only acts once the previous theme's first edition
-      # is at least 7 days old. Runs before step 6 so a newly-discovered theme's first
-      # edition doesn't have to compete with step 6's own SECTORS_PER_RUN budget.
-      - name: 5b. Theme discovery (weekly)
+      # Finds one new investment theme every day (a fresh brief.json from a blank page,
+      # the same judgment call as being handed a news article about one, on a different
+      # topic each time -- see existing_themes() in the script for how it avoids
+      # repeating itself) and writes its first edition immediately. Runs before step 6
+      # so a newly-discovered theme's first edition doesn't have to compete with step
+      # 6's own SECTORS_PER_RUN budget, which is for re-verifying themes already
+      # published. See scripts/theme_discovery.py's docstring for the cost note: this
+      # grows the daily Claude Code workload every day a new theme is added.
+      - name: 5b. Theme discovery (daily)
         id: themediscovery
         continue-on-error: true
         timeout-minutes: 90
