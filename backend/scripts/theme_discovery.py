@@ -146,6 +146,17 @@ List as many companies as genuinely qualify under (a) or (b) -- that could be ju
 niche, or a dozen for a broad one; do not pad the list with tenuous names to hit a target count. Quality and
 genuineness matter far more than count.
 
+## Look across small, mid and large cap, not just whichever names come up first
+When more than one genuine company qualifies, actively check across the market-cap spectrum -- small cap, mid
+cap and large cap -- rather than settling for whichever few names surface first in search results, which tend to
+skew toward the biggest, most-covered companies. A large cap where this theme is one small line item is easy to
+find and is often the same name every broker note already mentions; a genuinely involved small or mid cap is
+more likely to be the under-the-radar find this whole exercise is for, and a large cap with real, direct
+involvement is still worth including for scale and credibility. Aim to represent more than one size tier when
+the evidence genuinely supports it -- but this is about searching harder for qualifying names across sizes, not
+about forcing a small-cap in just to tick a box: every company, of any size, still has to clear the non-negotiable
+evidence bar above.
+
 ## The whole point: get there before the market does
 The goal is not just a real theme -- it's a theme the market hasn't fully priced in yet, so there's still room to
 act before it's obvious. Actively favour a theme where:
