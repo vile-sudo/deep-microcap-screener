@@ -148,7 +148,7 @@ const THEME_ICON=[[/defen|aero/i,'shield'],[/pharma/i,'flask'],[/medical|diagnos
   [/auto|mobility/i,'car'],[/textile/i,'thread'],[/building|construct/i,'bricks'],[/consumer|appliance/i,'bag'],
   [/agri|food/i,'leaf'],[/packag|plastic/i,'box'],[/transport|logist|rail|marine/i,'truck'],[/water|environ/i,'drop'],[/process/i,'factory']];
 const themeIcon = t => icon((THEME_ICON.find(([re])=>re.test(t))||[0,'folder'])[1]);
-const TILE_ICON={all:'building', themes:'folder', overhang:'flag', guide15:'trend', turn:'cycle', nolens:'hourglass', deals:'bolt', movers:'pulse', rescal:'calendar'};
+const TILE_ICON={all:'building', themes:'folder', overhang:'flag', guide15:'trend', turn:'cycle', debtfix:'shield', nolens:'hourglass', deals:'bolt', movers:'pulse', rescal:'calendar'};
 
 /* data for the two data-driven tiles and the Overview panels (filled in by ovLoad, further down) */
 const OV={deals:null, ann:null, movers:null, setups:null, reports:null, ipo:null, rescal:null};
@@ -162,6 +162,7 @@ function renderTiles(){
     [String(n('capex_overhang')),'High P/E + heavy CWIP','P/E &gt; 40 and CWIP &#8805; 15% of net block',"var(--crit)",'overhang'],
     [String(n('guidance_over15')),'Management guides &gt; 15%','A further '+(n('guidance_flag')-n('guidance_over15'))+' made an unquantified forward statement',"var(--good-ink)",'guide15'],
     [String(n('pat_turnaround')),'PAT turned positive','Latest period profitable after a loss in the prior three',"var(--s1)",'turn'],
+    [String(n('debt_restructuring')),'Debt restructuring + turning profitable','Borrowings down 20%+ off their peak alongside a PAT turnaround',"var(--s1)",'debtfix'],
     [String(pending),'Awaiting the capex pass','CWIP, guidance and quarterly PAT not yet pulled for these',"var(--muted)",'nolens'],
     [OV.deals ? String(ovBoardDeals().length) : '—','Bulk & block deals, board names','Disclosed deals in the last 7 days in companies on your board',"var(--s4)",'deals'],
     [OV.movers && OV.movers.snapshot ? String(ovBoardMoves().length) : '—','Board names moving 4%+','On the latest scanned session',"var(--s3)",'movers'],
@@ -232,7 +233,7 @@ function listingYear(d){
   return m ? (m[1]||m[2]) : null;
 }
 
-const TG = {overhang:false, heavycap:false, guide15:false, guideany:false, turn:false, caputil:false, pivot:false,
+const TG = {overhang:false, heavycap:false, guide15:false, guideany:false, turn:false, debtfix:false, caputil:false, pivot:false,
             haslens:false, ipo:false, asme:false, auto:false,
             nolens:false, watch:false,
             nosme:false, nopledge:false, realsub:false, cheap:false, ongate:false};
@@ -261,9 +262,10 @@ let sortKey='final_score', sortDir=-1;
 const VIEWS=['overview','themes','market','filters','gallery','reports','rescal','ipor','sectors','deals','news','method'];
 const NAV={'overview-link':'overview','themes-link':'themes','market-link':'market',
            'filters-link':'filters','gallery-link':'gallery','reports-link':'reports','rescal-link':'rescal','ipor-link':'ipor','sectors-link':'sectors','deals-link':'deals','news-link':'news'};
-const LENSES=['overhang','heavycap','guide15','guideany','turn','caputil','pivot','haslens','ipo','asme','auto'];
+const LENSES=['overhang','heavycap','guide15','guideany','turn','debtfix','caputil','pivot','haslens','ipo','asme','auto'];
 const TILE_LABEL={all:'Companies on the board',overhang:'High P/E + heavy CWIP',guide15:'Management guides > 15%',
-                  turn:'PAT turned positive',caputil:'Capacity utilisation ramping up',pivot:'Product-mix pivot',
+                  turn:'PAT turned positive',debtfix:'Debt restructuring + turning profitable',
+                  caputil:'Capacity utilisation ramping up',pivot:'Product-mix pivot',
                   nolens:'Awaiting the capex pass'};
 let VIEW='overview', NAVID='overview-link', TILE=null;
 /* Movers and Watchlist live as tabs inside Screens now, not their own
@@ -480,6 +482,7 @@ function pass(d){
   if(TG.guide15  && !d.guidance_over15) return false;
   if(TG.guideany && !d.guidance_flag) return false;
   if(TG.turn     && !d.pat_turnaround) return false;
+  if(TG.debtfix  && !d.debt_restructuring) return false;
   if(TG.caputil  && !d.capacity_util_flag) return false;
   if(TG.pivot    && !d.product_pivot_flag) return false;
   if(TG.haslens  && !d.has_lens_data) return false;
@@ -503,6 +506,7 @@ function sigBadges(d, full){
   if(d.guidance_over15) h+=`<span class="badge b-guide" title="Management guides revenue growth above 15%">▲ ${fmt(d.guidance_pct,0)}%</span>`;
   else if(d.guidance_flag) h+=`<span class="badge nd" title="Management made a forward growth statement but did not quantify it">▲ outlook</span>`;
   if(d.pat_turnaround) h+=`<span class="badge b-turn" title="Latest reported period profitable after a loss in the prior three">↻ PAT+</span>`;
+  if(d.debt_restructuring) h+=`<span class="badge b-turn" title="Borrowings down at least 20% off their peak in the last three reported periods, together with the latest period profitable after a loss">🩹 debt fix</span>`;
   if(d.capacity_util_flag) h+=`<span class="badge nd" title="${esc(d.capacity_util_note||'Management has stated capacity utilisation will rise from a named near-term period')}">⚙ util↑</span>`;
   if(d.product_pivot_flag) h+=`<span class="badge nd" title="${esc(d.product_pivot_note||'Management has described a product-mix change tied to a shift in market demand')}">⇄ pivot</span>`;
   if(full && d.source==='user') h+=`<span class="badge b-user">added on request</span>`;
@@ -1372,6 +1376,7 @@ const CSVCOLS=[
   ['High P/E + heavy CWIP', d=>d.capex_overhang?'yes':''],
   ['Guides above 15%', d=>d.guidance_over15?'yes':''],
   ['PAT turned positive', d=>d.pat_turnaround?'yes':''],
+  ['Debt restructuring', d=>d.debt_restructuring?'yes':''],
   ['Capacity utilisation ramping up', d=>d.capacity_util_flag?'yes':''],
   ['Product-mix pivot', d=>d.product_pivot_flag?'yes':''],
   ['Watchlisted', d=>WATCH.has(d.code)?'yes':''],
@@ -3178,11 +3183,6 @@ function newsAgoISO(iso){
 const newsAgo = pub => pub ? newsAgoISO(pub.replace(' ','T')+'Z') : '';
 
 function newsItemHtml(it){
-  const affects = (it.companies||[]).length
-    ? `<div class="news-affects" title="Board companies whose own disclosed business touches this same theme -- a lead to check yourself, not a confirmed impact">May affect: ${
-        it.companies.map(c=>`<button type="button" class="news-co-link" data-news-company="${esc(c.code)}">${esc(c.name)}</button>`).join(', ')
-      }</div>`
-    : '';
   return `<article class="news-item">
     <a class="news-title" href="${esc(it.link)}" target="_blank" rel="noopener">${esc(it.title)}</a>
     <div class="news-meta">
@@ -3192,7 +3192,6 @@ function newsItemHtml(it){
       ${it.price_move?'<span class="news-tag news-move-tag">Price move</span>':''}
       <span>${esc(it.source||'')}</span><span>${esc(newsAgo(it.published))}</span>
     </div>
-    ${affects}
   </article>`;
 }
 
@@ -3215,12 +3214,6 @@ function newsRender(){
     : (NEWS.view!=='' && !all.length ? '<p class="view-hint">Nothing was archived for that period. The archive started on the day this feature went live and grows by a day at a time, up to 90 days.</p>' : '<p class="view-hint">No news matches — try a different keyword, clear the filters, or wait for the next scheduled fetch.</p>');
   const btn=document.getElementById('news-refresh');
   if(btn) newsWireRefresh();
-  if(body.querySelector('[data-news-company]')){
-    const byCode={}; DATA.forEach(d=>byCode[d.code]=d);
-    body.querySelectorAll('[data-news-company]').forEach(b=>b.onclick=()=>{
-      const d=byCode[b.dataset.newsCompany]; if(d) openDrawer(d);
-    });
-  }
 }
 
 function newsWireRefresh(){
