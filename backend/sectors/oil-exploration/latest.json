@@ -1,28 +1,36 @@
 {
- "updated": "2026-09-27T05:10+05:30",
+ "updated": "2026-09-28T05:17+05:30",
  "figures": [
   {
    "label": "Brent crude",
-   "value": "$104.32/bbl",
-   "as_of": "2026-09-25",
-   "note": "-2.14% ($2.28) on hopes of a phased US-Iran deal to reopen Hormuz",
+   "value": "$106.32/bbl",
+   "as_of": "2026-09-27",
+   "note": "+1.92% on the day, Hormuz talks stalled",
    "source": {
-    "publisher": "TradingEconomics",
+    "publisher": "Trading Economics",
     "url": "https://tradingeconomics.com/commodity/brent-crude-oil"
-   }
-  },
-  {
-   "label": "Vessels queued off Hormuz",
-   "value": "313 AIS-visible vessels",
-   "as_of": "2026-09-26",
-   "note": "holding position away from berth in the watch area amid the 7-month closure",
-   "source": {
-    "publisher": "Straits Daily Brief",
-    "url": "https://straits.live/briefs/2026-09-26"
    }
   }
  ],
  "items": [
+  {
+   "date": "2026-09-27",
+   "title": "Iran's Hormuz authority threatens to bar ships using 'illegal routes'",
+   "text": "Iran's Persian Gulf Strait Authority (PGSA) warned that some charterers are forcing vessels onto unauthorised routes through the Strait of Hormuz, saying this risks \"financial and life losses for the vessel, owner, master and crew\" and that all vessels belonging to non-compliant charterers could face future passage restrictions. The warning adds a fresh layer of risk on top of already-elevated war-risk insurance and freight costs for the roughly one-fifth of global oil and LNG that transits the strait. For India, which sources a large share of its crude and LNG via Hormuz, this raises the risk of further freight and insurance costs feeding into landed fuel costs and tanker operators' war-risk premiums.",
+   "tone": "watch",
+   "companies": [
+    "GESHIP"
+   ],
+   "sources": [
+    {
+     "publisher": "Oman Observer",
+     "title": "Iran warns against using 'illegal routes' in Hormuz",
+     "url": "https://www.omanobserver.om/article/1196830/business/iran-warns-against-using-illegal-routes-in-hormuz",
+     "date": "2026-09-27"
+    }
+   ],
+   "added": "2026-09-28"
+  },
   {
    "date": "2026-09-26",
    "title": "Trump rejects Iran's 7-day roadmap to reopen the Strait of Hormuz",

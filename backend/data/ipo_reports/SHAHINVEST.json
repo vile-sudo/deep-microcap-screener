@@ -1,0 +1,1158 @@
+{
+ "symbol": "SHAHINVEST",
+ "company": "Shah Investor's Home Limited",
+ "board": "mainboard",
+ "summary": {
+  "one_line": "A 30-year-old, Gujarat-concentrated (96% of active clients) full-service retail broker raising Rs 90.17 cr of fresh money mostly for working capital. Revenue fell 24% and PAT 44% in FY26, active clients grew under 1%, there is no discernible moat, and a SEBI penalty over the handling of client funds in 2024-25 weighs on the governance record.",
+  "bull_points": [
+   "100% fresh issue (53,99,200 shares, about Rs 90.17 cr at the upper band) with no offer for sale, so all the money goes to the company; promoters have bought no shares in the last three years and have a nil acquisition cost (S2, S5)",
+   "The balance sheet is conservative: net worth rose from Rs 150.5 cr (FY24) to Rs 179.7 cr (FY26), borrowings are Rs 18.5 cr and debt/equity is 0.10 (S2)",
+   "The client base is sticky: 27,728 of 38,189 active clients (about 73%) have been with the firm for more than five years (S2)",
+   "The new margin trading (MTF) line is growing from a small base: the book rose 117% to Rs 20.96 cr in FY26 at an 18% interest rate, with 0% reported defaults and 153.75% collateral cover (S2)",
+   "The promoter family has run the business since 1994. NSE membership dates from 1995 and NSDL DP registration from 1997, and the statutory auditors made no qualifications in FY24-FY26 (S2, S24)"
+  ],
+  "bear_points": [
+   "FY26 revenue from operations fell 24.2% to Rs 71.48 cr and PAT fell 44% to Rs 13.20 cr. Brokerage income fell from Rs 64.9 cr to Rs 46.3 cr (S2, S12)",
+   "Growth has stalled: active clients rose just 0.99% in FY26 to 38,189, and broking revenue per active client fell from Rs 17,166 to Rs 12,124 (S2)",
+   "Extreme geographic concentration: Gujarat holds 96.15% of active clients and 93.74% of broking revenue (S2)",
+   "SEBI's February 11, 2026 adjudication order found the company retained client funds instead of upstreaming them on 18 of 30 sampled dates. The penalty was Rs 4 lakh (S13, S14, S4)",
+   "The company cannot trace 20 historic secretarial records or documents for 50 share transfers between 1994 and 2022, and an SFIO-linked investigation involving Kushal Trading Limited is still pending (S7, S11)",
+   "Operating cash flow was negative in both FY25 (-Rs 31.86 cr) and FY26 (-Rs 19.70 cr) (S2)"
+  ],
+  "watch_points": [
+   "The category-wise breakdown of subscription over Sep 28-30; no category data had been published on day 1 (S20, S6)",
+   "Whether the Rs 60 cr of working capital goes mainly into the MTF book and exchange margins, and whether MTF credit quality holds as the book grows (S2)",
+   "Quarterly brokerage revenue and active-client trend after listing, against the backdrop of SEBI's F&O curbs (S2, S27)",
+   "The outcome of the pending SFIO/Kushal Trading investigation, and any regulatory follow-up on the missing corporate records (S7, S11)"
+  ]
+ },
+ "verdict": {
+  "call": "avoid",
+  "reasoning": [
+   "The money goes into balance-sheet capacity, not a growth engine. Rs 60 cr of a Rs 90.17 cr fresh issue is earmarked for working capital and the rest for general corporate purposes (capped at 25% of gross proceeds). For a broker that means margin and client-funding capacity, which only earns a return if client activity grows. Active clients grew 0.99% in FY26 (S2, S5)",
+   "There is no moat. The company is a regional full-service broker with 38,189 active clients in an NSE market of 4.42 crore active clients, where Groww, Zerodha and Angel One together hold about 58%. Its only real edge is long-standing relationships in Gujarat, which is also its biggest concentration risk (96% of active clients) (S2, S26)",
+   "Business quality and the trend are weak. FY26 revenue fell 24% and PAT 44%, RoE fell from 14.7% to 7.6%, and about 60% of fee and commission income is paid out as fee and commission expense, largely to authorised persons. The FY25 peak looks cyclical rather than structural (S2, S12)",
+   "The governance record has a fiduciary blemish. SEBI found in 2024-25 inspections that client funds were retained rather than upstreamed on 18 of 30 sampled dates and levied a penalty in February 2026. Add 20 untraceable corporate records, a lapsed investment-adviser registration and a pending SFIO-linked investigation, and the record is not clean enough for a business whose core product is safekeeping client money (S7, S11, S13, S14)",
+   "Some things are genuinely fine. The issue is fresh equity only, debt is low (D/E 0.10), and the largest related-party flow (Rs 403 cr of loans taken and repaid) is with SIHL Fincap, a wholly owned subsidiary, so it is intra-group treasury rather than promoter leakage. These points stop this from being a red-flag avoid, but they are not reasons to buy a shrinking, undifferentiated broker (S2, S9, S25)"
+  ]
+ },
+ "sections": [
+  {
+   "id": "business_overview",
+   "title": "Business overview",
+   "subsections": [
+    {
+     "title": "What the company does and how it earns",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "Shah Investor's Home Limited (SIHL), incorporated in October 1994 and based in Ahmedabad and GIFT City, Gandhinagar, is a full-service retail stock broker. It trades on behalf of resident and NRI clients in equity cash, equity derivatives, currency and commodities. Around this core it provides depository participant services, a margin trading facility (registered in 2023), stock lending and borrowing, and distribution of mutual funds, IPOs and PMS, under the 'Shah Investors' brand (S2, S8). It is a member of NSE, BSE and MCX and a DP with NSDL and CDSL (S24)."
+      },
+      {
+       "type": "p",
+       "text": "Revenue has three drivers. The first is brokerage and distribution commissions, which is the core and moves with market turnover. The second is interest earned on client balances and funds: interest on delayed payments (client debit balances), MTF interest, and interest on bank deposits, which for a broker largely means fixed deposits kept as margin with clearing corporations. The third is small DP and other income (S2). The mix is shifting. Brokerage fell from 71.6% of revenue in FY24 to 64.8% in FY26, while interest on delayed payments rose from 8.2% to 17.6%. This means the firm is increasingly earning by financing clients rather than by transaction fees (S2)."
+      },
+      {
+       "type": "table",
+       "caption": "Revenue from operations by stream (Rs lakh, restated consolidated) (S2)",
+       "columns": [
+        "Stream",
+        "FY24",
+        "% FY24",
+        "FY25",
+        "% FY25",
+        "FY26",
+        "% FY26"
+       ],
+       "rows": [
+        [
+         "Brokerage (incl. distribution)",
+         "5,570.20",
+         "71.57",
+         "6,491.13",
+         "68.85",
+         "4,630.20",
+         "64.78"
+        ],
+        [
+         "Depository services",
+         "273.00",
+         "3.51",
+         "268.06",
+         "2.84",
+         "119.27",
+         "1.67"
+        ],
+        [
+         "Interest on margin funding (MTF)",
+         "-",
+         "-",
+         "105.79",
+         "1.12",
+         "222.58",
+         "3.11"
+        ],
+        [
+         "Interest on delayed payment",
+         "640.93",
+         "8.24",
+         "1,281.32",
+         "13.59",
+         "1,254.79",
+         "17.56"
+        ],
+        [
+         "Interest on bank deposits",
+         "787.15",
+         "10.11",
+         "963.29",
+         "10.22",
+         "680.91",
+         "9.53"
+        ],
+        [
+         "Other interest income",
+         "150.51",
+         "1.93",
+         "153.23",
+         "1.63",
+         "194.35",
+         "2.72"
+        ],
+        [
+         "Other revenue",
+         "360.57",
+         "4.63",
+         "164.57",
+         "1.75",
+         "45.57",
+         "0.64"
+        ],
+        [
+         "Total",
+         "7,782.36",
+         "100",
+         "9,427.39",
+         "100",
+         "7,147.67",
+         "100"
+        ]
+       ]
+      },
+      {
+       "type": "callout",
+       "tone": "info",
+       "text": "The top-5 customer concentration disclosure is 'Not Applicable' because this is a mass-retail business (S2). The real concentration risks are geographic (Gujarat) and in the distribution channel (authorised persons), not individual clients."
+      }
+     ]
+    },
+    {
+     "title": "Scale, footprint and distribution model",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "As of March 31, 2026 the company had served over 1,00,000 demat accounts, of which 85,422 are counted as total clients and 38,189 as active. It operates through 11 branches in Mumbai, Ahmedabad, Vadodara, Rajkot, Junagadh and Gandhinagar, plus a network of 181 authorised persons (APs, sub-broker-style partners who bring in and service clients for a revenue share) (S2). The firm had 167 permanent staff (S22)."
+      },
+      {
+       "type": "table",
+       "caption": "Active clients by geography (S2)",
+       "columns": [
+        "Region",
+        "FY24",
+        "FY25",
+        "FY26",
+        "FY26 share"
+       ],
+       "rows": [
+        [
+         "Gujarat",
+         "34,305",
+         "36,423",
+         "36,720",
+         "96.15%"
+        ],
+        [
+         "Maharashtra",
+         "844",
+         "913",
+         "907",
+         "2.38%"
+        ],
+        [
+         "Others",
+         "386",
+         "478",
+         "562",
+         "1.47%"
+        ],
+        [
+         "Total",
+         "35,535",
+         "37,814",
+         "38,189",
+         "100%"
+        ]
+       ]
+      },
+      {
+       "type": "p",
+       "text": "The AP channel matters. Secondary reviews of the offer document put revenue sourced through APs at over 50% (54.14% in FY25) (S8, S23). The P&L confirms this: fee and commission expense was Rs 28.55 cr in FY26 against Rs 47.49 cr of fee and commission income. That means roughly 60% of gross fee income is paid out, up from about 56% in FY25 (derived from S12). Much of the value in this business sits with the partners who own the client relationship, not with the company."
+      },
+      {
+       "type": "p",
+       "text": "The client base is old and loyal but hardly growing. Of the 38,189 active clients, 27,728 (about 73%) have been with SIHL for more than five years, and only 1,880 joined in the last year (S2). Only 44.7% of registered clients were active in FY26 (S2). This is the profile of a long-established, relationship-led broker, not a client-acquisition engine."
+      }
+     ]
+    },
+    {
+     "title": "Technology, MTF and adjacent products",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "SIHL runs its own apps: SIHL Moneymaker (multi-asset trading, launched 2023) and SIHL FundsPro (family mutual fund management, 2024), plus an API/algo platform, ALGOFY (S24, S28). Moneymaker had 12,452 active users as of March 2026 (S22). Digital brokerage reportedly rose to 42.62% of revenue in FY26 from 17.61% in FY24 (S16)."
+      },
+      {
+       "type": "table",
+       "caption": "Margin trading facility (MTF) and distribution KPIs (S2)",
+       "columns": [
+        "Metric",
+        "FY25",
+        "FY26"
+       ],
+       "rows": [
+        [
+         "MTF book (Rs lakh)",
+         "964.22",
+         "2,096.26"
+        ],
+        [
+         "Monthly average MTF book (Rs lakh)",
+         "792.67",
+         "1,364.40"
+        ],
+        [
+         "MTF active users",
+         "219",
+         "476"
+        ],
+        [
+         "Interest charged on MTF",
+         "18%",
+         "18%"
+        ],
+        [
+         "MTF default rate",
+         "0%",
+         "0%"
+        ],
+        [
+         "MTF collateral coverage",
+         "164.28%",
+         "153.75%"
+        ],
+        [
+         "Mutual fund AUM distributed (Rs lakh)",
+         "4,916.92",
+         "5,437.55"
+        ]
+       ]
+      },
+      {
+       "type": "p",
+       "text": "The group also includes SIHL Fincap Limited (a wholly owned subsidiary that transfers profits to a statutory reserve fund, consistent with an NBFC), SIHL Commodities, SIHL Consultancy, SIHL Global Investments (IFSC) and a Category III AIF, SIHL AIF Investment Trust (S24, S25). The company let its SEBI investment-adviser registration lapse; it was cancelled on September 10, 2025 after the company said it did not wish to renew (S7)."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "industry_and_competitive_position",
+   "title": "Industry and competitive position",
+   "subsections": [
+    {
+     "title": "Market size and the regulatory cycle",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "The CARE industry report cited in the offer document puts the Indian broking industry at about Rs 0.52 lakh crore in FY25, expected to grow at a 16-18% CAGR over the next 2-3 years (S2). Retail participation grew rapidly: NSE active clients rose from 108 lakh in FY20 to 479 lakh by Q1FY26, and the industry MTF book reached Rs 88,000 cr by June 2025 (S15)."
+      },
+      {
+       "type": "p",
+       "text": "The near-term cycle has turned against brokers. From late 2024 SEBI curbed retail F&O activity: fewer weekly expiries, larger contract sizes, higher STT on options and the end of exchange-charge rebates (S27). Zerodha's Q1 FY26 revenue reportedly fell by at least 40%, and Angel One's by 19% with a 61% profit drop (S27). SIHL's own FY26 fee income fell 30% (S12). This fits the industry downturn, which weakens any claim that FY25 was a sustainable base."
+      },
+      {
+       "type": "callout",
+       "tone": "warn",
+       "text": "The industry's 16-18% CAGR forecast is an aggregate. SIHL's own active-client growth was 0.99% in FY26 against that backdrop (S2), so the company has not captured industry growth recently."
+      }
+     ]
+    },
+    {
+     "title": "Competitors and market share",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "The market is dominated by discount and digital brokers. In June 2026 NSE had 4.42 crore active clients: Groww had 1.30 crore (28.72%), Zerodha 68.01 lakh (14.96%) and Angel One 66.33 lakh (14.59%), about 58% together (S26). SIHL's 38,189 active clients are under 0.1% of NSE active clients (derived from S2, S26)."
+      },
+      {
+       "type": "p",
+       "text": "The listed peers used in the offer document are traditional full-service or hybrid brokers: SMC Global Securities, Share India Securities and Arihant Capital Markets (S18). Competition also comes from large bank-backed brokers and regional Gujarat brokers. Reviews of the prospectus consistently name aggressive price competition from discount brokers as a key threat (S8, S21, S22)."
+      },
+      {
+       "type": "bullets",
+       "items": [
+        "Scale: SIHL has about 38k active clients, while each of the top three has 66 lakh to 1.3 crore (S2, S26)",
+        "Pricing: discount brokers often charge zero for delivery trades. SIHL's brokerage per active client fell 29% in FY26 (S2, S27)",
+        "Geography: SIHL is almost entirely a Gujarat business, while the leaders are national (S2)"
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Is there a moat?",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "Plainly, no. Broking licences, exchange memberships and DP registrations are regulatory requirements that hundreds of firms hold, not barriers. The company's stated strengths are 'sizeable clientele across Gujarat', technology, an integrated model with long-term relationships, and experienced promoters (S2). None is a market-share, technology or regulatory advantage."
+      },
+      {
+       "type": "p",
+       "text": "The one real asset is relationship stickiness: 73% of active clients have been with the firm for more than five years (S2). But much of that relationship runs through APs, who take about 60% of fee income (derived from S12) and can move to another broker. The company itself lists the loss of APs as a top risk (S2)."
+      },
+      {
+       "type": "callout",
+       "tone": "bad",
+       "text": "No moat: this is a sub-scale regional full-service broker in a market consolidating around national discount platforms. Its value lies in a loyal but ageing and stagnant Gujarat client base."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "financials",
+   "title": "Financials",
+   "subsections": [
+    {
+     "title": "Three-year P&L snapshot",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "Restated consolidated financials (Rs lakh unless stated) (S2)",
+       "columns": [
+        "Metric",
+        "FY24",
+        "FY25",
+        "FY26"
+       ],
+       "rows": [
+        [
+         "Revenue from operations",
+         "7,782.36",
+         "9,427.39",
+         "7,147.67"
+        ],
+        [
+         "Revenue growth",
+         "50.58%",
+         "21.14%",
+         "(24.18%)"
+        ],
+        [
+         "EBITDA",
+         "2,512.97",
+         "3,531.31",
+         "2,161.59"
+        ],
+        [
+         "EBITDA margin",
+         "32.29%",
+         "37.46%",
+         "30.24%"
+        ],
+        [
+         "Profit before tax",
+         "2,400.68",
+         "3,140.22",
+         "1,830.86"
+        ],
+        [
+         "Profit after tax",
+         "1,793.38",
+         "2,338.50",
+         "1,320.22"
+        ],
+        [
+         "PAT margin",
+         "22.69%",
+         "24.76%",
+         "18.24%"
+        ],
+        [
+         "Basic EPS (Rs)",
+         "11.38",
+         "14.84",
+         "8.38"
+        ],
+        [
+         "RoE",
+         "13.38%",
+         "14.68%",
+         "7.59%"
+        ],
+        [
+         "RoCE",
+         "16.77%",
+         "20.35%",
+         "10.61%"
+        ]
+       ]
+      },
+      {
+       "type": "p",
+       "text": "The three-year picture is a cyclical spike and reversal, not a growth trend. Revenue rose 51% in FY24 and 21% in FY25 in a strong retail market, then fell 24% in FY26 to below the FY24 level (S2). FY23 total income was about Rs 52 cr (S18), so the business has moved with market turnover rather than compounding."
+      },
+      {
+       "type": "p",
+       "text": "In FY26, fee and commission income fell 30%, from Rs 67.59 cr to Rs 47.49 cr. Total expenses fell only 14% (Rs 63.06 cr to Rs 54.09 cr), with employee costs rising from Rs 11.52 cr to Rs 12.27 cr. That operating leverage cut PBT by 42% (S12). A net fair-value loss of Rs 0.91 cr, against a Rs 0.72 cr gain in FY25, added to the decline (S12)."
+      }
+     ]
+    },
+    {
+     "title": "Balance sheet and cash flow",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "Balance sheet and cash-flow items (Rs lakh) (S2, S5)",
+       "columns": [
+        "Metric",
+        "FY24",
+        "FY25",
+        "FY26"
+       ],
+       "rows": [
+        [
+         "Net worth",
+         "15,054.13",
+         "16,808.98",
+         "17,970.66"
+        ],
+        [
+         "Total borrowings",
+         "353.52",
+         "570.81",
+         "1,846.66"
+        ],
+        [
+         "Debt / equity",
+         "0.02",
+         "0.03",
+         "0.10"
+        ],
+        [
+         "Total assets (Rs cr)",
+         "298.76",
+         "302.57",
+         "304.44"
+        ],
+        [
+         "Cash flow from operations",
+         "11,019.42",
+         "(3,186.22)",
+         "(1,970.37)"
+        ],
+        [
+         "Cash flow from investing",
+         "(152.17)",
+         "(1,123.27)",
+         "(994.23)"
+        ],
+        [
+         "Cash flow from financing",
+         "(697.95)",
+         "(186.35)",
+         "882.62"
+        ]
+       ]
+      },
+      {
+       "type": "p",
+       "text": "Leverage is low. Borrowings roughly tripled in FY26 to Rs 18.47 cr, but debt/equity is only 0.10 (S2). Total assets of about Rs 304 cr are well above net worth of Rs 180 cr (S5). For a broker, the gap is mostly client money and margin balances rather than company-owned assets."
+      },
+      {
+       "type": "p",
+       "text": "Operating cash flow was negative in FY25 and FY26 while profits were positive (S2), and the RHP lists this as a risk factor (S2). For a broker this matters less than it would for a manufacturer. Operating cash flow includes movements in client balances, margin deposits and the MTF book (which grew by about Rs 11 cr in FY26), so it swings mechanically: FY24 was +Rs 110 cr. Over three years cumulative operating cash flow (about Rs 58.6 cr) roughly matches cumulative PAT (about Rs 54.5 cr) (derived from S2). The negative years reflect capital being tied up in client funding, which is exactly what the IPO money is meant to replace."
+      },
+      {
+       "type": "callout",
+       "tone": "info",
+       "text": "The statutory auditors made no qualifications, reservations or adverse remarks in FY24-FY26 (S2)."
+      }
+     ]
+    },
+    {
+     "title": "Does the trend support the growth story?",
+     "blocks": [
+      {
+       "type": "bullets",
+       "items": [
+        "Active clients: 35,535, then 37,814, then 38,189. Growth slowed from 13.3% to 6.4% to 0.99% (S2)",
+        "Broking revenue per active client: Rs 15,675, then Rs 17,166, then Rs 12,124 (S2)",
+        "Total customer assets fell from Rs 44,120.9 cr (FY24) to Rs 39,458.8 cr (FY26) (S2)",
+        "The one growing line is financing: MTF book +117% to Rs 20.96 cr and delayed-payment interest at Rs 12.5 cr (S2)"
+       ]
+      },
+      {
+       "type": "p",
+       "text": "The numbers do not support a growth story in the core broking business. The company is shifting towards financing clients, through MTF and delayed-payment interest, and that is where the IPO money is likely to go. That is a legitimate but capital-intensive, credit-sensitive and rate-sensitive way to grow, and it earns a thin spread. The company itself flags interest-rate risk and high working capital needs as top risks (S2)."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "issue_details",
+   "title": "Issue details and objects",
+   "subsections": [
+    {
+     "title": "Issue structure",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "Key issue terms (S2, S5, S17)",
+       "columns": [
+        "Item",
+        "Detail"
+       ],
+       "rows": [
+        [
+         "Issue type",
+         "Book-built, 100% fresh issue; no offer for sale"
+        ],
+        [
+         "Shares offered",
+         "53,99,200 equity shares of Rs 10 face value"
+        ],
+        [
+         "Price band",
+         "Rs 159 - Rs 167"
+        ],
+        [
+         "Issue size at upper band",
+         "About Rs 90.17 cr"
+        ],
+        [
+         "Lot size / minimum retail bid",
+         "85 shares / Rs 14,195"
+        ],
+        [
+         "Reservation",
+         "QIB not more than 50%, NII not less than 15%, Retail not less than 35%"
+        ],
+        [
+         "Anchor bidding",
+         "September 25, 2026"
+        ],
+        [
+         "Open / close",
+         "September 28 - September 30, 2026"
+        ],
+        [
+         "Allotment / listing",
+         "October 1 / October 6, 2026 (BSE, NSE; NSE designated)"
+        ],
+        [
+         "BRLM / Registrar",
+         "Beeline Capital Advisors / MUFG Intime India"
+        ]
+       ]
+      },
+      {
+       "type": "p",
+       "text": "Because the whole issue is fresh, every rupee raised, net of issue expenses, goes to the company. No existing shareholder is selling (S2). Promoter and promoter-group holding falls from 84.34% to about 62.81% after the issue (S5). The four promoters hold 60.97% directly before the issue (S2). The DRHP was filed with SEBI in late September/October 2025 as a Rs 60 cr-plus fresh issue, and the RHP was dated September 22, 2026 (S2, S3, S16)."
+      }
+     ]
+    },
+    {
+     "title": "Objects of the issue",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "Use of net proceeds (S2)",
+       "columns": [
+        "Object",
+        "Amount"
+       ],
+       "rows": [
+        [
+         "Funding working capital requirements",
+         "Rs 6,000.00 lakh (Rs 60 cr)"
+        ],
+        [
+         "General corporate purposes",
+         "Balance; capped at 25% of gross proceeds"
+        ],
+        [
+         "Total net proceeds",
+         "To be finalised with the Issue Price"
+        ]
+       ]
+      },
+      {
+       "type": "p",
+       "text": "There is no capex, no debt repayment and no acquisition: about two-thirds of the issue goes into working capital (S2). For a broker, 'working capital' in practice means the capital used for margins at clearing corporations, bank guarantees and fixed deposits placed with exchanges, and funding client positions through MTF. The abridged prospectus I could open does not give the year-wise working capital estimates (S2). The full RHP's 'Objects of the Issue' chapter (p. 355) carries them, and I could not open that chapter directly (see method)."
+      },
+      {
+       "type": "callout",
+       "tone": "warn",
+       "text": "Working capital raised through equity is only valuable if volumes and the client book grow into it. With active clients flat and brokerage falling, the likely result in the near term is lower RoE on a larger equity base, and a bigger MTF lending book carrying credit risk."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "promoters_and_governance",
+   "title": "Promoters, management and governance",
+   "subsections": [
+    {
+     "title": "Promoters and board",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "Promoters (S2)",
+       "columns": [
+        "Name",
+        "Role",
+        "Background",
+        "Pre-issue stake"
+       ],
+       "rows": [
+        [
+         "Upendra Trikamlal Shah",
+         "Chairman and Whole-time Director",
+         "B.Com (Gujarat University); about 30 years in broking/DP; promoter since incorporation",
+         "19.04%"
+        ],
+        [
+         "Purnima Upendra Shah",
+         "Whole-time Director",
+         "BA, MA (Gujarat University); about 30 years; with the company since incorporation",
+         "21.90%"
+        ],
+        [
+         "Tanmay Upendra Shah",
+         "Managing Director and CFO",
+         "B.Com (Gujarat University); 20+ years; associated since December 2020",
+         "15.90%"
+        ],
+        [
+         "Trupti Utpal Shah",
+         "Whole-time Director (HR)",
+         "BE Mechanical (Gujarat University); MS Computer Engineering (Florida Atlantic University); 17 years; director since July 2008",
+         "4.13%"
+        ]
+       ]
+      },
+      {
+       "type": "p",
+       "text": "This is a family-run firm. Four of the eight directors are promoter-family members, and the other four are independent directors (Darshan Patel, Bhushan Punani, Amit Doshi and Abhinav Kapadia) (S2). The MD also holds the CFO role, which concentrates financial control in one promoter (S2). Promoter-group members, including the Punjabi family among the top shareholders, also sit on the board of the subsidiary SIHL Fincap (S2, S25). The promoters' experience is long and relevant, but it is entirely within this group; there is no separate track record elsewhere."
+      }
+     ]
+    },
+    {
+     "title": "Related-party transactions",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "Material related-party transactions (S9, S10)",
+       "columns": [
+        "Counterparty",
+        "Nature",
+        "FY24",
+        "FY25",
+        "FY26"
+       ],
+       "rows": [
+        [
+         "SIHL Fincap Ltd (wholly owned subsidiary)",
+         "Loans taken and repaid in full within the year",
+         "Rs 142.29 cr",
+         "Rs 170.27 cr",
+         "Rs 403.48 cr"
+        ],
+        [
+         "SIHL Fincap Ltd",
+         "Interest paid",
+         "Rs 0.95 cr",
+         "Rs 1.70 cr",
+         "Rs 1.42 cr"
+        ],
+        [
+         "Arthika/Arithika Quantomics Pvt Ltd",
+         "Brokerage paid",
+         "-",
+         "-",
+         "Rs 1.17 cr (1.63% of revenue)"
+        ],
+        [
+         "Trupti Utpal Shah (promoter)",
+         "Property purchased by company",
+         "-",
+         "-",
+         "Rs 1.45 cr"
+        ],
+        [
+         "Tanmay Upendra Shah (promoter)",
+         "Loan taken and repaid",
+         "-",
+         "Rs 0.10 cr",
+         "-"
+        ]
+       ]
+      },
+      {
+       "type": "p",
+       "text": "The headline figure, Rs 403 cr of loans from SIHL Fincap in FY26 (132.5% of total assets), looks alarming but is largely routine in substance. SIHL Fincap is a wholly owned subsidiary of the company (S25), and the amounts were fully repaid within the year (S9). This is an intra-group short-term funding line, likely used to meet margin and pay-in needs, and it nets out in the consolidated financials. The interest stays within the group."
+      },
+      {
+       "type": "p",
+       "text": "Two items deserve a question rather than alarm. The first is the Rs 1.45 cr property purchase from a promoter director, Trupti Shah; the valuation basis is not visible in the secondary sources (S10). The second is Rs 1.17 cr of brokerage paid to Arthika Quantomics, a related entity (S10). Both are small relative to the balance sheet. I found no evidence of promoter-linked suppliers or customers of material size. Overall, the related-party picture is routine."
+      }
+     ]
+    },
+    {
+     "title": "Compliance and regulatory history",
+     "blocks": [
+      {
+       "type": "bullets",
+       "items": [
+        "SEBI inspections (Dec 5-6, 2024 and Jan 2-3, 2025) found client funds retained instead of upstreamed to clearing corporations on 18 of 30 sampled dates, and non-compliant transfers between settlement and client nodal accounts. The adjudication order of February 11, 2026 imposed a penalty of Rs 4 lakh (S4, S13, S14)",
+        "The prospectus refers to the penalty both as 'Rs 4 crore' and 'Rupees Four Lakh only', and it is unclear whether the SEBI penalty has been paid; NSE penalties of Rs 37,500 were paid (S7, S14)",
+        "The investment-adviser registration was cancelled by SEBI on September 10, 2025 for non-renewal (S7)",
+        "An investigation involving Kushal Trading Limited linked to the Serious Fraud Investigation Office is pending; the company last responded on September 22, 2026 and no finding has been communicated (S7)",
+        "A 2008 preferential allotment matter was settled with SEBI in 2019 for Rs 12.19 lakh (S7)",
+        "The company cannot trace 20 secretarial records (share allotments, bonus issues and director appointments, 1994-2017) or supporting documents for 50 share transfers (1996-2022); no action has been initiated so far, but the company says action 'cannot be ruled out' (S11)"
+       ]
+      },
+      {
+       "type": "table",
+       "caption": "Outstanding litigation summary (S2)",
+       "columns": [
+        "Entity",
+        "Tax proceedings",
+        "Regulatory",
+        "Amount (Rs lakh)"
+       ],
+       "rows": [
+        [
+         "Against company",
+         "6",
+         "1",
+         "420.20"
+        ],
+        [
+         "Against subsidiaries",
+         "1",
+         "Nil",
+         "4.68"
+        ],
+        [
+         "By promoters",
+         "1",
+         "Nil",
+         "3,423.05"
+        ],
+        [
+         "Against directors / KMP / SMP",
+         "Nil",
+         "Nil",
+         "Nil"
+        ]
+       ]
+      },
+      {
+       "type": "callout",
+       "tone": "bad",
+       "text": "The penalty amount is small. But retaining client funds instead of upstreaming them goes to the heart of what a broker is trusted to do, and it happened recently (2024-25). Combined with poor historic record-keeping, this is a real governance negative, not boilerplate."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "risk_factors",
+   "title": "Risk factors that matter",
+   "subsections": [
+    {
+     "title": "Business risks",
+     "blocks": [
+      {
+       "type": "bullets",
+       "items": [
+        "Cyclical, volume-driven revenue: broking was 64.78% of FY26 revenue and fell 29% in a single year as retail and F&O activity slowed. A prolonged soft market or further SEBI curbs would hit profit disproportionately because costs are sticky (S2, S12, S27)",
+        "Gujarat concentration: 93.74% of broking revenue and 96.15% of active clients come from one state, with no evidence of successful expansion elsewhere (Maharashtra is 2.4%) (S2)",
+        "Dependence on authorised persons: over half of revenue comes through APs, and about 60% of fee income is paid out. APs can take clients to rival brokers, and the company is liable for AP lapses (S2, S8, S12)",
+        "Competitive erosion: national discount platforms hold about 58% of NSE active clients; SIHL's client growth has stalled at under 1% (S2, S26)"
+       ]
+      },
+      {
+       "type": "p",
+       "text": "These four risks are connected. A small regional broker dependent on market turnover and partners, with no pricing power, is exposed to exactly the downturn it saw in FY26."
+      }
+     ]
+    },
+    {
+     "title": "Financial, regulatory and governance risks",
+     "blocks": [
+      {
+       "type": "bullets",
+       "items": [
+        "Credit and interest-rate risk from the pivot to financing: the MTF book more than doubled and delayed-payment interest is now 17.6% of revenue. A sharp market fall could test the 153.75% collateral cover (S2)",
+        "Regulatory compliance: a recent SEBI penalty over the handling of client funds, the lapsed IA registration and a pending SFIO-linked investigation. Brokers depend on their licences, and repeat lapses escalate (S2, S7, S13)",
+        "Record-keeping gaps: 20 untraceable secretarial records and 50 undocumented share transfers could invite ROC or shareholder claims (S11)",
+        "Negative operating cash flow in FY25 and FY26 and 'high working capital requirements', both flagged by the company itself (S2)"
+       ]
+      },
+      {
+       "type": "callout",
+       "tone": "warn",
+       "text": "Not material, in my view: promoter-group loans (these are from a wholly owned subsidiary), customer concentration (mass retail), and the IP-registration risk factor the RHP lists (S2, S25)."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "forward_outlook",
+   "title": "Forward outlook",
+   "subsections": [
+    {
+     "title": "What management has actually said",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "Management's stated strategies in the offer document are: expand broking and geographic presence through marketing, APs and branches; keep investing in technology; focus on fee-based revenue; and give clients access to global equities (S2). The GIFT City registered office and the SIHL Global Investments (IFSC) entity are consistent with the global-equities ambition (S2, S24)."
+      },
+      {
+       "type": "p",
+       "text": "I found no quantified guidance, investor call or management interview with targets for clients, revenue or MTF book size (search conducted September 28, 2026). Secondary reviews also note that there is little forward guidance (S23). The outlook therefore rests on stated intentions, not commitments."
+      },
+      {
+       "type": "callout",
+       "tone": "info",
+       "text": "Management has not said anything concrete about growth targets. Readers should not infer a recovery simply because FY24-FY25 were strong."
+      }
+     ]
+    },
+    {
+     "title": "Analyst's read on what drives the next two years",
+     "blocks": [
+      {
+       "type": "bullets",
+       "items": [
+        "The recovery in retail cash and F&O volumes after SEBI's curbs will matter more to SIHL's earnings than anything company-specific (S27)",
+        "MTF book growth funded by the IPO money is the most likely driver of incremental income, at 18% gross interest, but it adds credit risk (S2)",
+        "The strategy of adding APs outside Gujarat has not shown results yet; Maharashtra's share of active clients was flat at about 2.4% over three years (S2)"
+       ]
+      },
+      {
+       "type": "p",
+       "text": "Mentions of a 16-18% industry CAGR (S2) should be set against the company's own 0.99% active-client growth. The burden of proof is on management to show that the fresh capital converts into client growth rather than just a larger balance sheet."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "subscription_demand",
+   "title": "Subscription and demand",
+   "subsections": [
+    {
+     "title": "Anchor book, subscription status and GMP",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "Anchor allocation at Rs 167, September 25, 2026 (S6)",
+       "columns": [
+        "Anchor investor",
+        "Shares",
+        "Amount (Rs cr)"
+       ],
+       "rows": [
+        [
+         "Anubhuti Value Fund 2",
+         "4,49,650",
+         "7.51"
+        ],
+        [
+         "Gagandeep Credit Capital",
+         "4,19,900",
+         "7.01"
+        ],
+        [
+         "Compact Structure Fund",
+         "3,90,150",
+         "6.52"
+        ],
+        [
+         "Sunrise Investment Trust",
+         "3,60,060",
+         "6.01"
+        ],
+        [
+         "Total",
+         "16,19,760",
+         "27.05"
+        ]
+       ]
+      },
+      {
+       "type": "p",
+       "text": "The anchor book raised Rs 27.05 cr. Half the anchor shares (8,09,880) are locked in for 30 days and half for 90 days (S6). The anchors are small AIFs and one corporate, and no domestic mutual fund, insurer or pension fund took part (S6). One source reports a different anchor total (Rs 25.43 cr) (S18), but the share count times Rs 167 matches Rs 27.05 cr."
+      },
+      {
+       "type": "p",
+       "text": "This report is written on day 1 (September 28, 2026). At the time of writing, no category-wise subscription data (QIB/NII/retail) had been published; trackers showed 0x overall or 'not available' (S20, S6). Any day-1 figures would be partial in any case, since QIBs typically bid on the last day."
+      },
+      {
+       "type": "callout",
+       "tone": "info",
+       "text": "Grey market premium (unofficial, unregulated, not an investment signal): reported between Rs 0 (Sep 23) and Rs 9-12 (Sep 24-28), i.e. about 5-7% over the upper band (S19, S20, S21). The figures differ across trackers and can change quickly."
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "sources": [
+  {
+   "id": "S1",
+   "publisher": "SEBI",
+   "title": "Shah Investor's Home Limited - RHP (filing page)",
+   "url": "https://www.sebi.gov.in/filings/public-issues/sep-2026/shah-investor-s-home-limited-rhp_104660.html",
+   "date": "2026-09-23",
+   "kind": "regulator"
+  },
+  {
+   "id": "S2",
+   "publisher": "SEBI / Shah Investor's Home Limited",
+   "title": "Abridged Prospectus - salient features of the Red Herring Prospectus dated September 22, 2026",
+   "url": "https://www.sebi.gov.in/sebi_data/commondocs/sep-2026/SIHL_Abrigde%20Prospectus_p.pdf",
+   "date": "2026-09-22",
+   "kind": "drhp"
+  },
+  {
+   "id": "S3",
+   "publisher": "SEBI",
+   "title": "SHAH INVESTOR'S HOME LIMITED - DRHP (filing page)",
+   "url": "https://www.sebi.gov.in/filings/public-issues/oct-2025/shah-investor-s-home-limited-drhp_97135.html",
+   "date": "2025-10-08",
+   "kind": "regulator"
+  },
+  {
+   "id": "S4",
+   "publisher": "SEBI",
+   "title": "Adjudication Order in the matter of Shah Investors Home Limited",
+   "url": "https://www.sebi.gov.in/enforcement/orders/feb-2026/adjudication-order-in-the-matter-of-shah-investors-home-limited_99698.html",
+   "date": "2026-02-11",
+   "kind": "regulator"
+  },
+  {
+   "id": "S5",
+   "publisher": "Chittorgarh",
+   "title": "Shah Investor's Home IPO Date, Price, GMP, Review, Details",
+   "url": "https://www.chittorgarh.com/ipo/shah-investors-home-ipo/2657/",
+   "date": "2026-09-28",
+   "kind": "research"
+  },
+  {
+   "id": "S6",
+   "publisher": "Chittorgarh",
+   "title": "Shah Investor's Home IPO subscription status and anchor investors",
+   "url": "https://www.chittorgarh.com/ipo_subscription/shah-investors-home-ipo/2657/",
+   "date": "2026-09-28",
+   "kind": "research"
+  },
+  {
+   "id": "S7",
+   "publisher": "Multibagg",
+   "title": "Shah Investor's Home: SEBI penalised breaches, cancelled registration",
+   "url": "https://www.multibagg.ai/market-pulse/articles/ipo/shah-investors-home-sebi-breaches-rhp-cmueav142001xdgqtvlk2qj0a",
+   "date": "2026-09-23",
+   "kind": "research"
+  },
+  {
+   "id": "S8",
+   "publisher": "Multibagg",
+   "title": "Shah Investor's Home IPO: price band, dates, issue size, business, financials and key risks",
+   "url": "https://www.multibagg.ai/market-pulse/articles/ipo/shah-investors-home-ipo-2026-cmufciruv0010bznvzze9evar",
+   "date": "2026-09-24",
+   "kind": "research"
+  },
+  {
+   "id": "S9",
+   "publisher": "Multibagg",
+   "title": "Shah Investor's Home SIHL Fincap flows reached 133% of assets",
+   "url": "https://www.multibagg.ai/market-pulse/articles/ipo/shah-investors-home-sihl-fincap-flows-rhp-cmufd1uzx001cbznvtk4uipbh",
+   "date": "2026-09-24",
+   "kind": "research"
+  },
+  {
+   "id": "S10",
+   "publisher": "Multibagg",
+   "title": "Shah Investor's Home Limited reports Rs 403.48 crore flows",
+   "url": "https://www.multibagg.ai/market-pulse/articles/ipo/shah-investors-home-fy26-loans-rhp-cmueb0el30021dgqtjf59y987",
+   "date": "2026-09-23",
+   "kind": "research"
+  },
+  {
+   "id": "S11",
+   "publisher": "Multibagg",
+   "title": "Shah Investor's Home Cannot Trace 20 Historic Corporate Records",
+   "url": "https://www.multibagg.ai/market-pulse/articles/ipo/shah-investors-home-missing-records-rhp-cmueap889001tdgqtzu6a4kxl",
+   "date": "2026-09-23",
+   "kind": "research"
+  },
+  {
+   "id": "S12",
+   "publisher": "Multibagg",
+   "title": "Shah Investor's Home Limited FY26 Profit Fell 44% as Revenue Dropped",
+   "url": "https://www.multibagg.ai/market-pulse/articles/ipo/shah-investors-home-fy26-profit-rhp-cmueb4knh0024dgqtb17d5jgz",
+   "date": "2026-09-23",
+   "kind": "research"
+  },
+  {
+   "id": "S13",
+   "publisher": "Multibagg",
+   "title": "Shah Investor's Home retained client funds on 18 sampled dates",
+   "url": "https://www.multibagg.ai/market-pulse/articles/ipo/shah-investors-home-client-funds-rhp-cmueascwa001vdgqtsrursxcn",
+   "date": "2026-09-23",
+   "kind": "research"
+  },
+  {
+   "id": "S14",
+   "publisher": "Multibagg",
+   "title": "Shah Investor's Home gets Rs 4 lakh SEBI penalty",
+   "url": "https://www.multibagg.ai/market-pulse/articles/ipo/shah-investors-home-sebi-penalty-rhp-cmufcslue0016bznv8g3j3lkz",
+   "date": "2026-09-24",
+   "kind": "research"
+  },
+  {
+   "id": "S15",
+   "publisher": "Multibagg",
+   "title": "SEBI's F&O Curbs Threaten Discount Brokers' Transaction Revenue",
+   "url": "https://www.multibagg.ai/market-pulse/articles/ipo/sebi-fo-curbs-discount-brokers-rhp-cmufd0cbn001bbznvhatjujeu",
+   "date": "2026-09-24",
+   "kind": "research"
+  },
+  {
+   "id": "S16",
+   "publisher": "ScanX",
+   "title": "Shah Investors Home IPO DRHP: Rs 60 crore fresh issue; FY26 revenue Rs 71.48 cr, PAT Rs 13.11 cr",
+   "url": "https://scanx.trade/stock-market-news/ipo/shah-investors-home-ipo-drhp-60-crore-fresh-issue-fy26-revenue-71-48/51704809",
+   "date": "2026-09-23",
+   "kind": "news"
+  },
+  {
+   "id": "S17",
+   "publisher": "Groww",
+   "title": "Shah Investor's Home IPO to Open on September 28, 2026: Check Price Band, Issue Size and Key Details",
+   "url": "https://groww.in/blog/shah-investors-home-ipo-to-open-on-september-28-2026",
+   "date": "2026-09-23",
+   "kind": "news"
+  },
+  {
+   "id": "S18",
+   "publisher": "IPO Watch",
+   "title": "Shah Investor's Home IPO Date, Review, Price, Allotment Details",
+   "url": "https://ipowatch.in/shah-investors-home-ipo/",
+   "date": "2026-09-26",
+   "kind": "research"
+  },
+  {
+   "id": "S19",
+   "publisher": "IPO Watch",
+   "title": "Shah Investor's Home IPO GMP, Grey Market Premium Today",
+   "url": "https://ipowatch.in/shah-investors-home-ipo-gmp-grey-market-premium/",
+   "date": "2026-09-26",
+   "kind": "other"
+  },
+  {
+   "id": "S20",
+   "publisher": "IPO Guru",
+   "title": "Shah Investor's Home IPO Subscription Status Live - Day 1",
+   "url": "https://www.ipoguru.in/ipo-subscription/shah-investors-home-ipo",
+   "date": "2026-09-28",
+   "kind": "other"
+  },
+  {
+   "id": "S21",
+   "publisher": "Chanakya Nipothi",
+   "title": "Shah Investor's Home IPO Review 2026: GMP, Price Band and Chanakya View",
+   "url": "https://chanakyanipothi.com/shah-investors-home-ipo-review-gmp-price-band/",
+   "date": "2026-09-27",
+   "kind": "research"
+  },
+  {
+   "id": "S22",
+   "publisher": "Flattrade Kosh",
+   "title": "Shah Investor's Home IPO",
+   "url": "https://flattrade.in/kosh/shah-investors-home-ipo/",
+   "date": "2026-09-26",
+   "kind": "research"
+  },
+  {
+   "id": "S23",
+   "publisher": "Inxits",
+   "title": "Shah Investors IPO 2026: Business, Financials, IPO Details, Risks & Key Things to Know",
+   "url": "https://inxits.com/shah-investors-ipo-2026-analysis/",
+   "date": "2026-09-24",
+   "kind": "research"
+  },
+  {
+   "id": "S24",
+   "publisher": "Shah Investor's Home Ltd (SIHL)",
+   "title": "About Us - SIHL",
+   "url": "https://www.sihl.in/about-us",
+   "date": "2026-09-28",
+   "kind": "company"
+  },
+  {
+   "id": "S25",
+   "publisher": "SIHL Fincap Limited",
+   "title": "SIHL Fincap Limited 16th Annual Report, FY2021-22 (states it is a wholly owned subsidiary of SIHL)",
+   "url": "https://www.sihl.in/files/investor-relations/Annual_report_SIHL_FINCAP_LTD_22.pdf",
+   "date": "2026-09-28",
+   "kind": "company"
+  },
+  {
+   "id": "S26",
+   "publisher": "StartupTalky",
+   "title": "India's Stock Broking Market in June 2026: Who's Gaining and Who's Losing Clients?",
+   "url": "https://startuptalky.com/india-stock-broking-market-june-2026-analysis/",
+   "date": "2026-07-14",
+   "kind": "news"
+  },
+  {
+   "id": "S27",
+   "publisher": "Inc42",
+   "title": "Zerodha, Angel One, Groww Feel The Squeeze From SEBI Crackdown",
+   "url": "https://inc42.com/features/zerodha-angel-one-groww-revenue-squeeze-sebi-crackdown/",
+   "date": "2025-10-06",
+   "kind": "news"
+  },
+  {
+   "id": "S28",
+   "publisher": "IndiaIPO",
+   "title": "Shah Investors Home IPO Gandhinagar Broking Services Platform",
+   "url": "https://www.indiaipo.in/ipo-blogs/shah-investors-home-ipo",
+   "date": "2026-09-26",
+   "kind": "research"
+  }
+ ],
+ "method": "Primary source: the SEBI-hosted Abridged Prospectus for the RHP dated September 22, 2026 (S2). I read it in full: segment revenue, geographic client split, restated consolidated financials FY24-FY26, KPIs, objects, shareholding, promoter bios, board, top risk factors and the litigation summary. The full RHP and DRHP PDFs could not be opened directly: the SEBI filing pages (S1, S3) showed no RHP PDF link, the BSE-hosted DRHP returned HTTP 403, and the company's investor page had no link. RHP-only details were therefore taken from secondary summaries that quote the RHP (Multibagg S7-S15, ScanX S16), cross-checked where possible against S2 and each other. These cover the FY26 line-item P&L, related-party transactions, the SEBI adjudication, the missing records and the SFIO matter. I opened the SEBI adjudication order page (S4), but it showed only the order's title and date; the penalty details come from S13/S14. The subsidiary status of SIHL Fincap was verified from its own FY2021-22 annual report (S25). It is possible this changed after 2022, but the RHP's references to 'Subsidiaries' are consistent with it. Material gaps: (1) the year-wise working-capital estimates behind the Rs 60 cr object, and the exact general-corporate-purposes and issue-expense figures, were not available in the sources I could open; (2) the prospectus's own inconsistency on the SEBI penalty (Rs 4 lakh vs Rs 4 crore) and whether it was paid is unresolved (S7, S14); (3) there were minor differences between sources on PAT (Rs 13.11 cr vs Rs 13.20 cr, probably total comprehensive income vs PAT) and on the anchor total (S18's Rs 25.43 cr vs Rs 27.05 cr). S2 and the arithmetic were preferred. S23 contains mislabelled fiscal-year figures and was used only for the AP revenue-share figure, which S8 corroborates. Derived figures (fee payout ratio, client-tenure share, cumulative cash flow, share of NSE clients) are my own calculations from the cited data. Valuation figures volunteered by sources were deliberately excluded. Subscription data reflects day 1 (September 28, 2026), when no category-wise figures had yet been published.",
+ "open_date": "2026-09-28",
+ "close_date": "2026-09-30",
+ "price_band": "Rs.159 to Rs.167",
+ "generated_at": "2026-09-28T05:52:24.300794+05:30"
+}

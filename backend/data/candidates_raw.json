@@ -2030,6 +2030,271 @@
   }
  },
  {
+  "sym": "OPTIVALUE",
+  "name": "Optivalue Tek Consulting Limited",
+  "board": "SME",
+  "isin": "INE15B101011",
+  "listed": "10-Sep-25",
+  "hint": "it & software services",
+  "why": "sector ruled out",
+  "plausible": false,
+  "verdict": null,
+  "seen_on": "2026-09-19",
+  "source": "new-listing",
+  "moat_signal": true,
+  "moat_evidence": [
+   "import substitution: \"Furthermore, by developing cutting-edge, India-built solutions, we are strategically aligning with national policies like \"Make in India\" and \"Aatmanirbhar Bharat,\" fostering long-term partnerships with governmental entities and building a strong knowledge moat.\" (prospectus, company-stated)"
+  ],
+  "profile": {
+   "symbol": "OPTIVALUE",
+   "company": "Optivalue Tek Consulting Limited",
+   "isin": "INE15B101011",
+   "board": "SME",
+   "source": {
+    "document": "red herring prospectus",
+    "url": "https://nsearchives.nseindia.com/emerge/corporates/content/OptivalueTekConsultingLimited_RHP.zip",
+    "filed": "26-Aug-2025",
+    "pdf_bytes": 23801334,
+    "extracted_chars": 978045
+   },
+   "grade": "company-stated",
+   "verified_against": null,
+   "claims": {
+    "import_substitution": {
+     "count": 1,
+     "dropped_as_industry_commentary": 1,
+     "terms": [
+      "Make in India"
+     ],
+     "evidence": [
+      {
+       "match": "Make in India",
+       "sentence": "Furthermore, by developing cutting-edge, India-built solutions, we are strategically aligning with national policies like \"Make in India\" and \"Aatmanirbhar Bharat,\" fostering long-term partnerships with governmental entities and building a strong knowledge moat."
+      }
+     ]
+    },
+    "ip": {
+     "count": 5,
+     "dropped_as_industry_commentary": 5,
+     "terms": [
+      "Trademark",
+      "Trademarks",
+      "trademark",
+      "proprietary technology"
+     ],
+     "evidence": [
+      {
+       "match": "Trademark",
+       "sentence": "Our Company logo “ ” is not registered with Registrar of Trademark; any infringement of our brand name or failure to get it registered may adversely affect our business."
+      },
+      {
+       "match": "Trademarks",
+       "sentence": "30 | P a g e The Company’s logo “ is currently not registered with the Registrar of Trademarks."
+      },
+      {
+       "match": "trademark",
+       "sentence": "However, we are in a process of filing the trademark application with Registrar of Trademark."
+      }
+     ]
+    }
+   },
+   "risk_factors": {
+    "customer_concentration": {
+     "count": 2,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "top 10 customers",
+      "Top 10 Customers"
+     ],
+     "evidence": [
+      {
+       "match": "top 10 customers",
+       "sentence": "As on March 31, 2025, our top 10 customers contributed 67."
+      },
+      {
+       "match": "Top 10 Customers",
+       "sentence": "The details over the past years are as follows: Particulars Customers Top 10 Customers Top 5 Customers FY 2025 Amount (in % Rs."
+      }
+     ]
+    },
+    "promoter_litigation": {
+     "count": 6,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "proceedings involving our Promoters",
+      "criminal proceeding",
+      "Criminal Proceedings",
+      "criminal cases"
+     ],
+     "evidence": [
+      {
+       "match": "proceedings involving our Promoters",
+       "sentence": "Litigation involving our Promoters For details of legal and regulatory proceedings involving our Promoters, please refer chapter titled “Outstanding Litigation and Material Development” beginning on page 190 of this Red Herring Prospectus."
+      },
+      {
+       "match": "criminal proceeding",
+       "sentence": "-- 189 | P a g e SECTION X - LEGAL AND OTHER INFORMATION OUTSTANDING LITIGATIONS AND MATERIAL DEVELOPMENTS Except as disclosed in this section, there is no outstanding (i) criminal proceeding; (ii) action taken by regulatory or statutory authorities; (iii) claim related to direct and indirect taxes; and (iv) other pending litigation as determined to be material pursuant to the Materiality Policy in each case involving our Company, our Directors, and our Promoters (\"Relevant Parties\")."
+      },
+      {
+       "match": "Criminal Proceedings",
+       "sentence": "Criminal Proceedings: As on the date of this Red Herring Prospectus, there are no outstanding criminal proceedings initiated against our Company 2."
+      }
+     ]
+    },
+    "related_party": {
+     "count": 20,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "Related Party Transaction",
+      "related party transactions",
+      "Related Party Transactions",
+      "RELATED PARTY TRANSACTION",
+      "RELATED PARTY TRANSACTIONS"
+     ],
+     "evidence": [
+      {
+       "match": "Related Party Transaction",
+       "sentence": "Key Industry Regulations and Policies Our History and Certain Corporate Matters Our Management Our Promoters and Promoters Group Our Group Companies / Entities Related Party Transaction Dividend Policy SECTION IX- FINANCIAL STATEMENTS Restated Financial Information Other Financial Information Statement of Financial Indebtedness Management’s Discussion and An"
+      },
+      {
+       "match": "related party transactions",
+       "sentence": "up Companies In terms of SEBI ICDR Regulations, the term “Group Companies” includes companies (other than our Promoters and Subsidiaries) with which there were related party transactions as disclosed in the Restated Financial Statements as covered under the applicable accounting standards, any other companies as considered material by our Board, in accordanc"
+      },
+      {
+       "match": "Related Party Transactions",
+       "sentence": "Summary of Related Party Transactions A summary of related party transactions entered into by our Company with related parties and as disclosed in the Restated Financial Statements for Financial Years ended on M"
+      }
+     ]
+    }
+   },
+   "objects_of_the_issue": {
+    "offer_for_sale": {
+     "count": 4,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "OFFER FOR SALE",
+      "offer for sale"
+     ],
+     "evidence": [
+      {
+       "match": "OFFER FOR SALE",
+       "sentence": "RAGINI JHA TYPE Fresh Issue FRESH ISSUE OFFER FOR SALE Up to 61,69,600 Equity Shares aggregating up to ₹ [●] Lakhs."
+      },
+      {
+       "match": "OFFER FOR SALE",
+       "sentence": "DETAILS OF OFFER FOR SALE, SELLING SHAREHOLDERS AND THEIR AVERAGE COST OF ACQUISITION – NA THE ENTIRE ISSUE CONSTITUTES FRESH ISSUE OF EQUITY SHARES RISKS IN RELATION TO THE FIRST ISSUE This being the first public issue of our Company, there has been no formal market for the Equity Shares."
+      },
+      {
+       "match": "offer for sale",
+       "sentence": "These include the right to reproduce the work in any form, issue copies to the public, perform it, and offer for sale and hire."
+      }
+     ]
+    },
+    "fresh_issue": {
+     "count": 16,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "Fresh Issue",
+      "FRESH ISSUE",
+      "fresh issue",
+      "Fresh issue"
+     ],
+     "evidence": [
+      {
+       "match": "Fresh Issue",
+       "sentence": "RAGINI JHA TYPE Fresh Issue FRESH ISSUE OFFER FOR SALE Up to 61,69,600 Equity Shares aggregating up to ₹ [●] Lakhs."
+      },
+      {
+       "match": "FRESH ISSUE",
+       "sentence": "DETAILS OF OFFER FOR SALE, SELLING SHAREHOLDERS AND THEIR AVERAGE COST OF ACQUISITION – NA THE ENTIRE ISSUE CONSTITUTES FRESH ISSUE OF EQUITY SHARES RISKS IN RELATION TO THE FIRST ISSUE This being the first public issue of our Company, there has been no formal market for the Equity Shares."
+      },
+      {
+       "match": "fresh issue",
+       "sentence": "fully paid of our Company for cash at a price of ₹ [●] per Equity Share (including a premium of ₹ [●] per Equity Share) aggregating ₹ [●] Lakhs comprising of a fresh issue of 61,69,600 equity shares aggregating up to ₹ [●] lakhs by our Company."
+      }
+     ]
+    },
+    "capital_expenditure": {
+     "count": 15,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "capital expenditure",
+      "Capital Expenditure",
+      "Capital expenditure",
+      "expansion of our",
+      "CAPITAL EXPENDITURE",
+      "SETTING UP OF"
+     ],
+     "evidence": [
+      {
+       "match": "capital expenditure",
+       "sentence": "pact of Covid 19 pandemic or any future pandemic Our ability to successfully implement our growth strategy and expansion plans; Our ability to meet our further capital expenditure requirements; Our ability to attract and retain personnel; Conflict of Interest with affiliated companies, the Promoters group and other related parties; General economic and busin"
+      },
+      {
+       "match": "Capital Expenditure",
+       "sentence": "Capital Expenditure 1a)."
+      },
+      {
+       "match": "Capital expenditure",
+       "sentence": "Capital expenditure towards upgrading the existing IT hardware and software for the Company 2."
+      }
+     ]
+    },
+    "working_capital": {
+     "count": 24,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "working capital requirements",
+      "working capital requirement",
+      "Working Capital requirement",
+      "Working Capital Requirements",
+      "Working Capital Requirement",
+      "working Capital Requirement"
+     ],
+     "evidence": [
+      {
+       "match": "working capital requirements",
+       "sentence": "To meet the working capital requirements; and 4."
+      },
+      {
+       "match": "working capital requirements",
+       "sentence": "Our business demands working capital requirements."
+      },
+      {
+       "match": "working capital requirement",
+       "sentence": "In case there are insufficient cash flows to meet our working capital requirement or we are unable to arrange the same from other sources or there are delays in disbursement of arranged funds, or we are unable to procure funds on favourable terms, it may"
+      }
+     ]
+    },
+    "general_corporate": {
+     "count": 8,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "General corporate purposes",
+      "General Corporate Purposes",
+      "GENERAL CORPORATE PURPOSES",
+      "General Corporate Purpose"
+     ],
+     "evidence": [
+      {
+       "match": "General corporate purposes",
+       "sentence": "General corporate purposes (1) Net Proceeds of the Fresh Issue 640."
+      },
+      {
+       "match": "General Corporate Purposes",
+       "sentence": "[●] Lakh for General Corporate Purposes subject to such utilization not exceeding 15% of the Gross Proceeds or Rs."
+      },
+      {
+       "match": "General Corporate Purposes",
+       "sentence": "General Corporate Purposes."
+      }
+     ]
+    }
+   },
+   "profiled_on": "2026-09-27"
+  }
+ },
+ {
   "sym": "HEROMOTORS",
   "name": "Hero Motors Limited",
   "board": "NSE",
@@ -4614,6 +4879,1120 @@
     }
    },
    "profiled_on": "2026-09-26"
+  }
+ },
+ {
+  "sym": "543213",
+  "name": "Rossari Biotech Ltd",
+  "board": "BSE",
+  "isin": "INE02A801020",
+  "listed": null,
+  "hint": "pharma & healthcare",
+  "why": "small-cap sweep",
+  "mktcap_cr": 2465.87,
+  "plausible": true,
+  "verdict": null,
+  "seen_on": "2026-09-27",
+  "source": "sweep",
+  "moat_signal": true,
+  "moat_evidence": [
+   "monopoly claim: \"According to the F&S Report, as on September 30, 2019, we are the largest manufacturer of textile specialty chemicals in India providing textile specialty chemicals in a sustainable, ecofriendly yet competitive manner.\" (prospectus, company-stated)",
+   "monopoly claim: \"We are the largest manufacturer of textile specialty chemicals in India (Source: F&S Report) and our business and financial performance is significantly dependent on sale of specialty chemicals to Indian textile\" (prospectus, company-stated)",
+   "monopoly claim: \"Organics  Aarti Industries Limited        IBB and ATBS —2Acrylamido-2-Methylpropane Sulfonic Acid (ATBS) and Isobutyl Benzene (IBB) The company is the largest manufacturer of IB in India with 70% market share 65% global market share of IBB 55% global market share of ATBS Ranked amongst top three players globally in Chlorination Ranked amongst top fo\" (prospectus, company-stated)"
+  ],
+  "profile": {
+   "symbol": "543213",
+   "company": "Rossari Biotech Limited",
+   "isin": "INE02A801020",
+   "board": "BSE",
+   "source": {
+    "document": "final prospectus",
+    "url": "https://nsearchives.nseindia.com/corporate/FP_INE02A801020_21JUL2020.pdf",
+    "filed": "21-Jul-2020",
+    "pdf_bytes": 10593019,
+    "extracted_chars": 1214676
+   },
+   "grade": "company-stated",
+   "verified_against": null,
+   "claims": {
+    "accreditation": {
+     "count": 10,
+     "dropped_as_industry_commentary": 7,
+     "terms": [
+      "ISO 14001",
+      "WHO-GMP",
+      "ISO 9001",
+      "ISO 14045",
+      "ISO 22000",
+      "ISO 45001"
+     ],
+     "evidence": [
+      {
+       "match": "ISO 14001",
+       "sentence": "For instance, we have received certifications for compliance with ISO 14001:2015 (registration for environmental management system ), ISO 45001:2018 (occupational health and safety management system) , ISO 14045:2012 (approval for eco-efficiency assessment of the pr"
+      },
+      {
+       "match": "WHO-GMP",
+       "sentence": "If we and our manufacturing facility are unable to renew the WHO-GMP and ISO accreditations, our brand and reputation could be adversely affected."
+      },
+      {
+       "match": "ISO 9001",
+       "sentence": "Our Silvassa Manufacturing Facility is modern and certified by numerous agencies including ISO 9001:2015, ISO 14001:2015, WHO-GMP (good manufacturing practices), FDA and Halal certified."
+      }
+     ]
+    },
+    "monopoly_claim": {
+     "count": 8,
+     "dropped_as_industry_commentary": 8,
+     "terms": [
+      "largest manufacturer",
+      "Largest textile specialty chemical manufacturer",
+      "largest textile specialty chemical manufacturer"
+     ],
+     "evidence": [
+      {
+       "match": "largest manufacturer",
+       "sentence": "According to the F&S Report, as on September 30, 2019, we are the largest manufacturer of textile specialty chemicals in India providing textile specialty chemicals in a sustainable, ecofriendly yet competitive manner."
+      },
+      {
+       "match": "largest manufacturer",
+       "sentence": "We are the largest manufacturer of textile specialty chemicals in India (Source: F&S Report) and our business and financial performance is significantly dependent on sale of specialty chemicals to Indian textile"
+      },
+      {
+       "match": "largest manufacturer",
+       "sentence": "Organics  Aarti Industries Limited        IBB and ATBS —2Acrylamido-2-Methylpropane Sulfonic Acid (ATBS) and Isobutyl Benzene (IBB) The company is the largest manufacturer of IB in India with 70% market share 65% global market share of IBB 55% global market share of ATBS Ranked amongst top three players globally in Chlorination Ranked amongst top fo"
+      }
+     ]
+    },
+    "ip": {
+     "count": 20,
+     "dropped_as_industry_commentary": 14,
+     "terms": [
+      "patents",
+      "trademarks",
+      "patent",
+      "trademark",
+      "Trademarks",
+      "Patents"
+     ],
+     "evidence": [
+      {
+       "match": "patents",
+       "sentence": "of the customers or a reduction in their demand for our products, considering we do not have any long term agreements with most of them; Ability to protect our patents, trademarks, our technical know-how and trade secrets against third parties; and Inability to expand or effectively manage our distribution network."
+      },
+      {
+       "match": "trademarks",
+       "sentence": "stomers or a reduction in their demand for our products, considering we do not have any long term agreements with most of them; Ability to protect our patents, trademarks, our technical know-how and trade secrets against third parties; and Inability to expand or effectively manage our distribution network."
+      },
+      {
+       "match": "patents",
+       "sentence": "Our business depends on our ability to protect our patents, trademarks, our technical know-how and trade secrets against third parties."
+      }
+     ]
+    }
+   },
+   "risk_factors": {
+    "customer_concentration": {
+     "count": 3,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "top five customers",
+      "top 10 customers"
+     ],
+     "evidence": [
+      {
+       "match": "top five customers",
+       "sentence": "Revenue from our top five customers across product categories constituted 43."
+      },
+      {
+       "match": "top 10 customers",
+       "sentence": "Revenue from our top 10 customers across product categories constituted 53."
+      },
+      {
+       "match": "top five customers",
+       "sentence": "Further, revenue from our top five customers across product categories constituted 43."
+      }
+     ]
+    },
+    "promoter_litigation": {
+     "count": 13,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "Criminal proceedings",
+      "proceedings involving our Promoters",
+      "criminal proceedings"
+     ],
+     "evidence": [
+      {
+       "match": "Criminal proceedings",
+       "sentence": "Summary of Outstanding Litigation A summary of outstanding litigation proceedings involving our Company, our Promoters, our Directors and our Subsidiaries and our Group Companies as on the date of this Prospectus is provided below: 19 Name of Entity* Criminal proceedings Tax proceedings (including property tax) Statutory or regulatory proceedings Material civil litigation Aggregate amount involved (₹ in million)** Company By the Company 1 Nil Nil"
+      },
+      {
+       "match": "Criminal proceedings",
+       "sentence": "Name of Entity* Criminal proceedings Tax proceedings (including property tax) Statutory or regulatory proceedings Material civil litigation Aggregate amount involved (₹ in million)** Company By the Company 1 Nil Nil"
+      },
+      {
+       "match": "proceedings involving our Promoters",
+       "sentence": "Litigation involving our Promoters Except as disclosed in “Outstanding Litigation and Material Developments - Litigation involving our Promoters” on page 299, there are no legal and regulatory proceedings involving our Promoters as on the date of this Prospectus."
+      }
+     ]
+    },
+    "related_party": {
+     "count": 19,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "related party transactions",
+      "Related Party Transactions",
+      "RELATED PARTY TRANSACTIONS"
+     ],
+     "evidence": [
+      {
+       "match": "related party transactions",
+       "sentence": "es (India) Private Limited In terms of SEBI ICDR Regulations, the term “group companies” includes companies (other than our Subsidiaries) with which there were related party transactions as disclosed in the Restated Financial Statements as covered under the applicable accounting standards, and any other companies as considered material by our Board, in accor"
+      },
+      {
+       "match": "Related Party Transactions",
+       "sentence": "Summary of Related Party Transactions (₹ in million) Particulars Nature of transaction Transactions: Remuneration Remuneration Sales Royalty Income Rent paid Rent paid Rent paid Rent paid Expenditure reimbursed"
+      },
+      {
+       "match": "related party transactions",
+       "sentence": "67 - For further details of the related party transactions and as reported in the Restated Financial Statements, see “Financial Information” on page 201."
+      }
+     ]
+    }
+   },
+   "objects_of_the_issue": {
+    "offer_for_sale": {
+     "count": 39,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "OFFER FOR SALE",
+      "Offer for Sale",
+      "offer for sale"
+     ],
+     "evidence": [
+      {
+       "match": "OFFER FOR SALE",
+       "sentence": "00** MILLION (THE “FRESH ISSUE”) AND AN OFFER FOR SALE OF 10,500,000* EQUITY SHARES (THE “OFFERED SHARES”) AGGREGATING TO ₹ 4,462."
+      },
+      {
+       "match": "OFFER FOR SALE",
+       "sentence": "50* MILLION, COMPRISING AN OFFER FOR SALE OF 5,250,000* EQUITY SHARES AGGREGATING TO ₹ 2,231."
+      },
+      {
+       "match": "OFFER FOR SALE",
+       "sentence": "SUNIL CHARI (THE “PROMOTER SELLING SHAREHOLDERS” OR THE “SELLING SHAREHOLDERS”), (THE “OFFER FOR SALE”, AND TOGETHER WITH THE FRESH ISSUE, THE “OFFER”)."
+      }
+     ]
+    },
+    "fresh_issue": {
+     "count": 50,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "FRESH ISSUE",
+      "Fresh Issue",
+      "Fresh issue",
+      "fresh issue"
+     ],
+     "evidence": [
+      {
+       "match": "FRESH ISSUE",
+       "sentence": "50* MILLION COMPRISING A FRESH ISSUE OF 1,176,470* EQUITY SHARES AGGREGATING TO ₹ 500."
+      },
+      {
+       "match": "FRESH ISSUE",
+       "sentence": "00** MILLION (THE “FRESH ISSUE”) AND AN OFFER FOR SALE OF 10,500,000* EQUITY SHARES (THE “OFFERED SHARES”) AGGREGATING TO ₹ 4,462."
+      },
+      {
+       "match": "FRESH ISSUE",
+       "sentence": "SUNIL CHARI (THE “PROMOTER SELLING SHAREHOLDERS” OR THE “SELLING SHAREHOLDERS”), (THE “OFFER FOR SALE”, AND TOGETHER WITH THE FRESH ISSUE, THE “OFFER”)."
+      }
+     ]
+    },
+    "capital_expenditure": {
+     "count": 11,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "expansion of our",
+      "capital expenditure",
+      "setting up of",
+      "Capital expenditure",
+      "Expansion of our"
+     ],
+     "evidence": [
+      {
+       "match": "expansion of our",
+       "sentence": "Our growth strategy involves setting up and commencement of our Dahej Manufacturing Facility in a timely manner, expansion of our current product portfolio across business segments, introducing sustainable products, expanding into new geographies, diversify into new geographies, achieving inorganic growth through strategic acquisitions and improving financial performance through operational efficiency."
+      },
+      {
+       "match": "capital expenditure",
+       "sentence": "Our sources of additional financing, required to meet our working capital requirements and capital expenditure plans, may include the incurrence of debt or the issue of equity or debt securities or a combination of both."
+      },
+      {
+       "match": "capital expenditure",
+       "sentence": "Our ability to pay dividends in the future will depend on our earnings, financial condition, cash flows, working capital requirements, capital expenditure and restrictive covenants of our financing arrangements."
+      }
+     ]
+    },
+    "working_capital": {
+     "count": 24,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "working capital requirements",
+      "working capital requirement"
+     ],
+     "evidence": [
+      {
+       "match": "working capital requirements",
+       "sentence": "Objects of the Offer 18 The Net Proceeds and the proceeds from the Pre-IPO Placement are proposed to be used in accordance with the details provided in the following table: Particulars Repayment/prepayment of certain indebtedness availed by our Company (including accrued interest) Funding working capital requirements General corporate purposes** Amount* (₹ in million) 650."
+      },
+      {
+       "match": "working capital requirements",
+       "sentence": "Our working capital requirements may also increase if payment terms shift payments on completion of delivery or otherwise increase our working capital burdens."
+      },
+      {
+       "match": "working capital requirements",
+       "sentence": "In addition, our working capital requirements have increased in recent years due to the general growth of our business."
+      }
+     ]
+    },
+    "general_corporate": {
+     "count": 9,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "General corporate purposes",
+      "general corporate purposes"
+     ],
+     "evidence": [
+      {
+       "match": "General corporate purposes",
+       "sentence": "lowing table: Particulars Repayment/prepayment of certain indebtedness availed by our Company (including accrued interest) Funding working capital requirements General corporate purposes** Amount* (₹ in million) 650."
+      },
+      {
+       "match": "general corporate purposes",
+       "sentence": "** The aggregate amount utilised for general corporate purposes shall not exceed 25% of the gross proceeds of the Fresh Issue and the proceeds from the Pre-IPO Placement."
+      },
+      {
+       "match": "General corporate purposes",
+       "sentence": "General corporate purposes."
+      }
+     ]
+    }
+   },
+   "profiled_on": "2026-09-27"
+  }
+ },
+ {
+  "sym": "544030",
+  "name": "Flair Writing Industries Ltd",
+  "board": "BSE",
+  "isin": "INE00Y201027",
+  "listed": null,
+  "hint": "industrial & capital goods",
+  "why": "small-cap sweep",
+  "mktcap_cr": 2506.3,
+  "plausible": true,
+  "verdict": null,
+  "seen_on": "2026-09-27",
+  "source": "sweep",
+  "moat_signal": true,
+  "moat_evidence": [
+   "import substitution: \"Accordingly, in line with the “Make in India” initiative launched by the Government of India, we propose to leverage the “Flair” brand to create customer base for this business since the target customer is similar to that of writing instruments in India.\" (prospectus, company-stated)"
+  ],
+  "profile": {
+   "symbol": "544030",
+   "company": "Flair Writing Industries Limited",
+   "isin": "INE00Y201027",
+   "board": "BSE",
+   "source": {
+    "document": "final prospectus",
+    "url": "https://nsearchives.nseindia.com/corporate/FP_INE00Y201027_29NOV2023.pdf",
+    "filed": "29-Nov-2023",
+    "pdf_bytes": 8143091,
+    "extracted_chars": 1617825
+   },
+   "grade": "company-stated",
+   "verified_against": null,
+   "claims": {
+    "accreditation": {
+     "count": 3,
+     "dropped_as_industry_commentary": 10,
+     "terms": [
+      "ISO 9001"
+     ],
+     "evidence": [
+      {
+       "match": "ISO 9001",
+       "sentence": "For instance, we have been assessed to meet the requirements of ISO 9001:2015 and ISO 14001:2015 and these certifications are valid until June 10, 2024."
+      },
+      {
+       "match": "ISO 9001",
+       "sentence": "A majority of our operational manufacturing plants are ISO 9001:2015 certified and ISO 14001:2015 certified."
+      },
+      {
+       "match": "ISO 9001",
+       "sentence": "As on June 30, 2023, a majority of our operational manufacturing plants are ISO 9001:2015 certified and ISO 14001:2015 certified."
+      }
+     ]
+    },
+    "import_substitution": {
+     "count": 1,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "Make in India"
+     ],
+     "evidence": [
+      {
+       "match": "Make in India",
+       "sentence": "Accordingly, in line with the “Make in India” initiative launched by the Government of India, we propose to leverage the “Flair” brand to create customer base for this business since the target customer is similar to that of writing instruments in India."
+      }
+     ]
+    },
+    "ip": {
+     "count": 45,
+     "dropped_as_industry_commentary": 11,
+     "terms": [
+      "trademark",
+      "trademarks",
+      "patents"
+     ],
+     "evidence": [
+      {
+       "match": "trademark",
+       "sentence": "Additionally, we have granted consent in perpetuity to the use of the brand name/ trademark “Flair” by certain members of the Promoter Group, which are owned and controlled by certain Promoters and other members of the Promoter Group."
+      },
+      {
+       "match": "trademarks",
+       "sentence": "For details, see “—As of the date of this Prospectus, certain of our trademarks are not registered in the name of our Company."
+      },
+      {
+       "match": "trademarks",
+       "sentence": "If we are unable to register trademarks or protect our existing intellectual property, or if we inadvertently infringe on the trademarks of others, we may be subjected to legal action and our reputation, business, operations, prospects or financial results may be materially and adversely affected” above on page 47."
+      }
+     ]
+    }
+   },
+   "risk_factors": {
+    "customer_concentration": {
+     "count": 1,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "top 5 customers"
+     ],
+     "evidence": [
+      {
+       "match": "top 5 customers",
+       "sentence": "2 2 Particulars Revenue from top 5 customers (export) (in ₹ million) Revenue from top 10 customers (export) (in ₹ million) Three-month period ended June 30, 2023 (in ₹ As a million) percentage of total revenue (in %) 182."
+      }
+     ]
+    },
+    "promoter_litigation": {
+     "count": 16,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "Criminal Proceedings",
+      "proceedings involving our Promoters",
+      "criminal proceedings",
+      "Criminal proceedings"
+     ],
+     "evidence": [
+      {
+       "match": "Criminal Proceedings",
+       "sentence": "s) Regulations, 2018, and the materiality policy adopted by our Board pursuant to a resolution dated June 30, 2023, is provided below: Name of Entity Number of Criminal Proceedings Company Against our Company By our Company Directors(4) Against our Directors By our Directors Promoters(5) Against our Promoters By our Promoters Subsidiaries Against our Subsidi"
+      },
+      {
+       "match": "proceedings involving our Promoters",
+       "sentence": "Proceedings involving our Directors that are also Promoters have been disclosed as proceedings involving our Promoters."
+      },
+      {
+       "match": "Criminal Proceedings",
+       "sentence": "Name of Entity Company Against our Company By our Company Directors(4) Against our Directors Number of Criminal Proceedings Number of Tax Proceedings Number of Statutory or Regulatory Proceedings Number of Disciplinary Actions by the SEBI or the stock exchanges against our Promoters in the last five Financial Years Number of Material Civil Proceedings Aggregate amount involved (in ₹ million)(1) - 45(3) 8 - - 95."
+      }
+     ]
+    },
+    "related_party": {
+     "count": 19,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "related party transactions",
+      "Related Party Transactions",
+      "related party transaction",
+      "RELATED PARTY TRANSACTIONS"
+     ],
+     "evidence": [
+      {
+       "match": "related party transactions",
+       "sentence": "Summary of related party transactions A summary of the related party transactions for the three-month period ended June 30, 2023 and the Financial Years 2023, 2022 and 2021 as per Ind AS 24 – Related Party Discl"
+      },
+      {
+       "match": "related party transactions",
+       "sentence": "41 For details of the related party transactions, see note 39 to our Restated Consolidated Financial Information included within “Restated Consolidated Financial Information” on page 262."
+      },
+      {
+       "match": "related party transactions",
+       "sentence": "Also see “—We have, in the past, entered into related party transactions and may continue to do so in the future” below on page 61."
+      }
+     ]
+    }
+   },
+   "objects_of_the_issue": {
+    "offer_for_sale": {
+     "count": 52,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "OFFER FOR SALE",
+      "Offer for Sale",
+      "offer for sale"
+     ],
+     "evidence": [
+      {
+       "match": "OFFER FOR SALE",
+       "sentence": "DETAILS OF THE OFFER FOR SALE BY SELLING SHAREHOLDERS TYPE NUMBER OF WEIGHTED NAME OF TYPE NUMBER OF WEIGHTED SHARES AVERAGE SELLING SHARES AVERAGE OFFERED/ COST OF SHAREHOL OFFERED/ COST OF AMOUNT ACQUISITION DER AMOUNT ACQUISITION PER EQUITY PER EQUITY SHARE (IN ₹)* SHARE (IN ₹)* Mr."
+      },
+      {
+       "match": "OFFER FOR SALE",
+       "sentence": "00^ MILLION (THE “FRESH ISSUE”) AND AN OFFER FOR SALE OF 9,901,315^ EQUITY SHARES OF FACE VALUE OF ₹5 EACH AGGREGATING TO ₹3,010."
+      },
+      {
+       "match": "OFFER FOR SALE",
+       "sentence": "00^ MILLION (THE “OFFER FOR SALE”), COMPRISING 1,690,789^ EQUITY SHARES OF FACE VALUE OF ₹5 EACH AGGREGATING TO ₹514."
+      }
+     ]
+    },
+    "fresh_issue": {
+     "count": 48,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "FRESH ISSUE",
+      "Fresh Issue",
+      "fresh issue"
+     ],
+     "evidence": [
+      {
+       "match": "FRESH ISSUE",
+       "sentence": "SUMIT RATHOD DETAILS OF THE OFFER TYPE SIZE OF SIZE OF OFFER TOTAL OFFER ELIGIBILITY AND SHARE FRESH ISSUE∞ FOR SALE SIZE RESERVATION AMONG QIBs, NIBs AND RIBS Fresh Issue and Offer 9,605,263^ equity 9,901,315^ equity 19,506,578^ equity The Offer was made pursuant to for Sale shares of face val"
+      },
+      {
+       "match": "Fresh Issue",
+       "sentence": "The size of the Fresh Issue has been reduced by ₹730."
+      },
+      {
+       "match": "Fresh Issue",
+       "sentence": "00 million and accordingly, the size of the Fresh Issue is aggregating to ₹2,920."
+      }
+     ]
+    },
+    "capital_expenditure": {
+     "count": 45,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "capital expenditure",
+      "expansion of our",
+      "purchase of machinery",
+      "Capital expenditure",
+      "Capital Expenditure"
+     ],
+     "evidence": [
+      {
+       "match": "capital expenditure",
+       "sentence": "Setting up the New Valsad Unit Funding capital expenditure of our Company and our Subsidiary, Flair Writing Equipments Private Limited Funding working capital requirements of our Company and our Subsidiaries, Flair Writing Equipments Priva"
+      },
+      {
+       "match": "capital expenditure",
+       "sentence": "We intend to use a portion of the Net Proceeds towards funding capital expenditure of our Company to set up a new manufacturing facility for writing instruments at District Valsad, Gujarat and funding capital expenditure of our Company and FWEPL."
+      },
+      {
+       "match": "expansion of our",
+       "sentence": "Such expansion of our manufacturing capacity may be subject to the potential problems and uncertainties that construction projects face including cost overruns or delays."
+      }
+     ]
+    },
+    "working_capital": {
+     "count": 48,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "working capital requirements",
+      "working capital requirement"
+     ],
+     "evidence": [
+      {
+       "match": "working capital requirements",
+       "sentence": "Setting up the New Valsad Unit Funding capital expenditure of our Company and our Subsidiary, Flair Writing Equipments Private Limited Funding working capital requirements of our Company and our Subsidiaries, Flair Writing Equipments Private Limited and Flair Cyrosil Industries Private Limited Repayment/pre-payment, in part or full, of certa"
+      },
+      {
+       "match": "working capital requirements",
+       "sentence": "We have significant working capital requirements and the objects of the Offer include funding working capital requirements of our Company and our Subsidiaries, which is based on certain assumptions and estimates."
+      },
+      {
+       "match": "working capital requirements",
+       "sentence": "The Objects of the Offer include funding working capital requirements of our Company and our Subsidiaries, which is based on management estimates and certain assumptions pursuant to the resolution of the Board dated October 25, 2023, as set out below: S."
+      }
+     ]
+    },
+    "general_corporate": {
+     "count": 18,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "General corporate purposes",
+      "general corporate purposes"
+     ],
+     "evidence": [
+      {
+       "match": "General corporate purposes",
+       "sentence": "full, of certain borrowings availed by our Company and our Subsidiaries, Flair Writing Equipments Private Limited and Flair Cyrosil Industries Private Limited General corporate purposes(1)(2) Total 3."
+      },
+      {
+       "match": "general corporate purposes",
+       "sentence": "37 ________________________________________ (1) (2) The amount utilized for general corporate purposes shall not exceed 25% of the Gross Proceeds, in compliance with Regulation 7(2) of the SEBI ICDR Regulations."
+      },
+      {
+       "match": "general corporate purposes",
+       "sentence": "The Pre-IPO Proceeds will be fully utilized towards general corporate purposes."
+      }
+     ]
+    }
+   },
+   "profiled_on": "2026-09-27"
+  }
+ },
+ {
+  "sym": "544525",
+  "name": "GK Energy Ltd",
+  "board": "BSE",
+  "isin": "INE1AG301022",
+  "listed": null,
+  "hint": "renewable & power",
+  "why": "small-cap sweep",
+  "mktcap_cr": 2506.82,
+  "plausible": true,
+  "verdict": null,
+  "seen_on": "2026-09-27",
+  "source": "sweep",
+  "moat_signal": true,
+  "moat_evidence": [
+   "monopoly claim: \"We were the largest pure play EPC player in terms of solar-powered pump system installations (source: CRISIL Report) in the period from January 1, 2022 to July 31, 2025 (source: CRISIL Report).\" (prospectus, company-stated)",
+   "monopoly claim: \"Our Company was the largest pure play EPC player in terms of solar-powered pump system installations in the period from January 1, 2022 till July 31, 2025 (source: CRISIL Report).\" (prospectus, company-stated)"
+  ],
+  "profile": {
+   "symbol": "544525",
+   "company": "GK Energy Limited",
+   "isin": "INE1AG301022",
+   "board": "BSE",
+   "source": {
+    "document": "final prospectus",
+    "url": "https://nsearchives.nseindia.com/corporate/FP_INE1AG301022_24SEP2025.pdf",
+    "filed": "24-Sep-2025",
+    "pdf_bytes": 7178601,
+    "extracted_chars": 1573195
+   },
+   "grade": "company-stated",
+   "verified_against": null,
+   "claims": {
+    "accreditation": {
+     "count": 1,
+     "dropped_as_industry_commentary": 8,
+     "terms": [
+      "ISO 9001"
+     ],
+     "evidence": [
+      {
+       "match": "ISO 9001",
+       "sentence": "Further, we are also certified under the ISO 9001:2015 Quality Management System (QMS)."
+      }
+     ]
+    },
+    "monopoly_claim": {
+     "count": 2,
+     "dropped_as_industry_commentary": 2,
+     "terms": [
+      "largest pure play EPC player"
+     ],
+     "evidence": [
+      {
+       "match": "largest pure play EPC player",
+       "sentence": "We were the largest pure play EPC player in terms of solar-powered pump system installations (source: CRISIL Report) in the period from January 1, 2022 to July 31, 2025 (source: CRISIL Report)."
+      },
+      {
+       "match": "largest pure play EPC player",
+       "sentence": "Our Company was the largest pure play EPC player in terms of solar-powered pump system installations in the period from January 1, 2022 till July 31, 2025 (source: CRISIL Report)."
+      }
+     ]
+    },
+    "ip": {
+     "count": 19,
+     "dropped_as_industry_commentary": 3,
+     "terms": [
+      "Trademark",
+      "trademark",
+      "trademarks",
+      "patented"
+     ],
+     "evidence": [
+      {
+       "match": "Trademark",
+       "sentence": "2 Term “Subsidiary” “Trading Activities” “Trademark License Agreement” “Whole-time Director Operating Officer” and Chief Description The subsidiary of our Company being, GK Energy Solar Private Limited."
+      },
+      {
+       "match": "Trademark",
+       "sentence": "Sale of PV cells and solar modules manufactured by third parties and other miscellaneous products Trademark License Agreement dated December 7, 2024, entered into between our Company and our Promoter and Chairman, Managing Director and Chief Executive Officer, Gopal Rajaram Kabra."
+      },
+      {
+       "match": "trademark",
+       "sentence": "We rely on a trademark license agreement for branding and marketing."
+      }
+     ]
+    }
+   },
+   "risk_factors": {
+    "customer_concentration": {
+     "count": 7,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "customer concentration",
+      "top three customers",
+      "Top 3 customers"
+     ],
+     "evidence": [
+      {
+       "match": "customer concentration",
+       "sentence": "As each farmer under the PM-KUSUM Scheme and state government schemes is our customer, we do not have any customer concentration risk in relation to our direct-to-beneficiary sales under our EPC for solar-powered pump systems business line."
+      },
+      {
+       "match": "top three customers",
+       "sentence": "The tables below set forth our top three customers in terms of revenue from operations for the Fiscals indicated and as a percentage of our revenue from operations for the Fiscals indicated."
+      },
+      {
+       "match": "Top 3 customers",
+       "sentence": "38 Year ended March 31, 2024 (standalone) 2025 (consolidated) Top 3 customers Ecozen Solutions Private Limited Revenue (₹ in million) % of revenue from operations 1,656."
+      }
+     ]
+    },
+    "promoter_litigation": {
+     "count": 7,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "Criminal proceedings",
+      "criminal proceedings",
+      "proceedings against our Promoters"
+     ],
+     "evidence": [
+      {
+       "match": "Criminal proceedings",
+       "sentence": "ction titled “Outstanding Litigation and Material Developments” in terms of the SEBI ICDR Regulations and the Materiality Policy is provided below: Particulars Criminal proceedings Company By our Company Nil Against our Nil Company Directors (other than our Promoters) By our Directors Nil Against our Nil Directors Promoters By our Promoters Nil Against our N"
+      },
+      {
+       "match": "Criminal proceedings",
+       "sentence": "An aggregate summary of such outstanding material legal and regulatory proceedings as on the date of this Prospectus, by number of proceedings and aggregate amount involved, is set out below: 44 Particulars Criminal proceedings Company By our Company Nil Against our Nil Company Directors (other than our Promoters) By our Directors Nil Against our Nil Directors Promoters By our Promoters Nil Against our N"
+      },
+      {
+       "match": "criminal proceedings",
+       "sentence": "347 SECTION VI – LEGAL AND OTHER INFORMATION OUTSTANDING LITIGATION AND MATERIAL DEVELOPMENTS Except as stated in this section, as on the date of this Prospectus, there are no outstanding (i) criminal proceedings (including matters which are at first information report (“FIR”) stage whether cognizance has been taken or not by any court or judicial authority) (ii) all actions (including all"
+      }
+     ]
+    },
+    "related_party": {
+     "count": 22,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "RELATED PARTY TRANSACTIONS",
+      "Related Party Transactions",
+      "related party transactions",
+      "Related party transactions"
+     ],
+     "evidence": [
+      {
+       "match": "RELATED PARTY TRANSACTIONS",
+       "sentence": "304 RELATED PARTY TRANSACTIONS ."
+      },
+      {
+       "match": "Related Party Transactions",
+       "sentence": "Summary of Related Party Transactions Summary of the related party transactions derived from the Restated Financial Information is as follows: Particulars Issue of Shares Ajit Babulal Shaha Prachi Mehul Shah Managerial remuneratio n Gopal Rajaram Kabra Mehul Ajit Shah Sunil Kamalkishor Malu (w."
+      },
+      {
+       "match": "related party transactions",
+       "sentence": "For further details of the related party transactions, see “Restated Financial Information – Note 32 - Related Party Transactions” at page 288."
+      }
+     ]
+    }
+   },
+   "objects_of_the_issue": {
+    "offer_for_sale": {
+     "count": 50,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "OFFER FOR SALE",
+      "Offer for Sale",
+      "offer for sale"
+     ],
+     "evidence": [
+      {
+       "match": "OFFER FOR SALE",
+       "sentence": "in OUR PROMOTERS: GOPAL RAJARAM KABRA AND MEHUL AJIT SHAH DETAILS OF THE OFFER TO THE PUBLIC OFFER FOR SALE TYPE FRESH ISSUE SIZE TOTAL OFFER SIZE ELIGIBILITY AND SHARE RESERVATION AMONG QIBs, NIBs & RIBs SIZE Fresh Issue 26,143,790* Equity 4,200,000* Equity 30,343,790* Equity The Offer was m"
+      },
+      {
+       "match": "OFFER FOR SALE",
+       "sentence": "DETAILS OF THE OFFER FOR SALE BY THE PROMOTER SELLING SHAREHOLDERS AND WEIGHTED AVERAGE COST OF ACQUISITION PER EQUITY SHARE NAME OF THE PROMOTER WEIGHTED AVERAGE COST OF SELLING SHAREHOLDERS NUMBER OF EQUITY SHARES"
+      },
+      {
+       "match": "Offer for Sale",
+       "sentence": "n specifically pertain to such Promoter Selling Shareholder and the Equity Shares of face value ₹ 2 each offered by such Promoter Selling Shareholder under the Offer for Sale, are true and correct in all material respects and are not misleading in any material respect."
+      }
+     ]
+    },
+    "fresh_issue": {
+     "count": 50,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "FRESH ISSUE",
+      "Fresh Issue",
+      "fresh issue",
+      "Fresh issue"
+     ],
+     "evidence": [
+      {
+       "match": "FRESH ISSUE",
+       "sentence": "in OUR PROMOTERS: GOPAL RAJARAM KABRA AND MEHUL AJIT SHAH DETAILS OF THE OFFER TO THE PUBLIC OFFER FOR SALE TYPE FRESH ISSUE SIZE TOTAL OFFER SIZE ELIGIBILITY AND SHARE RESERVATION AMONG QIBs, NIBs & RIBs SIZE Fresh Issue 26,143,790* Equity 4,200,000* Equity 30,343,790* Equity The Offer was made pursuant to Regu"
+      },
+      {
+       "match": "Fresh Issue",
+       "sentence": "The amount raised pursuant to the Pre-IPO Placement was reduced from the Fresh Issue, subject to compliance with Rule 19(2)(b) of the SCRR."
+      },
+      {
+       "match": "Fresh Issue",
+       "sentence": "The Pre-IPO Placement, did not exceed 20% of the size of the Fresh Issue."
+      }
+     ]
+    },
+    "capital_expenditure": {
+     "count": 11,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "capital expenditure",
+      "Setting up of",
+      "setting up of",
+      "Capital Expenditure"
+     ],
+     "evidence": [
+      {
+       "match": "capital expenditure",
+       "sentence": "Our internal management estimates may exceed the fair market value or the value that would have been determined by third party appraisals, which may require us to reschedule or reallocate our project and capital expenditure, subject to applicable laws, and may have an adverse impact on our business, financial condition, results of operations and cash flows."
+      },
+      {
+       "match": "Setting up of",
+       "sentence": "Setting up of Ultra Mega Renewable Energy Parks to to which the obligated entities, mainly DISCOMs, in each provide land and transmission to renewable energy state, are required to meet their minimum share (24."
+      },
+      {
+       "match": "Setting up of",
+       "sentence": "Setting up of a project development cell for attracting and bidding process for procurement of power from gridfacilitating investments connected solar PV system, wind and hybrid projects 9."
+      }
+     ]
+    },
+    "working_capital": {
+     "count": 43,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "working capital requirements",
+      "working capital requirement",
+      "Working Capital requirements",
+      "Working capital requirements"
+     ],
+     "evidence": [
+      {
+       "match": "working capital requirements",
+       "sentence": "Objects of the Offer Our Company proposes to utilise the Net Proceeds towards funding the following objects: Particulars Funding our long-term working capital requirements General corporate purposes(1) Total (1) (2) (3) Total amount to be funded from Net Proceeds and PreIPO Placement(1)(2) 4,224."
+      },
+      {
+       "match": "working capital requirements",
+       "sentence": "The proceeds from the Pre-IPO Placement have been utilized and adjusted towards the Company’s working capital requirements for Fiscal 2026, as certified by our Statutory Auditors, Bharat J Rughani & Co."
+      },
+      {
+       "match": "working capital requirements",
+       "sentence": "Failure to obtain adequate financing or generate sufficient cash flow to meet our working capital requirements and other liquidity requirements could have a material adverse effect on our business, financial condition, results of operations and cash flows."
+      }
+     ]
+    },
+    "general_corporate": {
+     "count": 13,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "General corporate purposes",
+      "general corporate purposes"
+     ],
+     "evidence": [
+      {
+       "match": "General corporate purposes",
+       "sentence": "Objects of the Offer Our Company proposes to utilise the Net Proceeds towards funding the following objects: Particulars Funding our long-term working capital requirements General corporate purposes(1) Total (1) (2) (3) Total amount to be funded from Net Proceeds and PreIPO Placement(1)(2) 4,224."
+      },
+      {
+       "match": "general corporate purposes",
+       "sentence": "43 The amount to be utilised for general corporate purposes shall not exceed 25% of the Gross Proceeds of the Fresh Issue, in accordance with the SEBI ICDR Regulations."
+      },
+      {
+       "match": "general corporate purposes",
+       "sentence": "75 million will be adjusted from the general corporate purposes of the Fresh Issue."
+      }
+     ]
+    }
+   },
+   "profiled_on": "2026-09-27"
+  }
+ },
+ {
+  "sym": "544342",
+  "name": "Stallion India Fluorochemicals Ltd",
+  "board": "BSE",
+  "isin": "INE0RYC01010",
+  "listed": null,
+  "hint": "chemicals",
+  "why": "small-cap sweep",
+  "mktcap_cr": 2626.44,
+  "plausible": true,
+  "verdict": null,
+  "seen_on": "2026-09-27",
+  "source": "sweep",
+  "moat_signal": true,
+  "moat_evidence": [
+   "import substitution: \"With the increase in demand because of initiatives like Make in India, especially from industries like Semiconductors, Electronics, Defence Manufacturing, Pharma Equipment, and others, we're concentrating on adding more environmentally friendly gases like HFOs and specialty gases to our lineup.\" (prospectus, company-stated)"
+  ],
+  "profile": {
+   "symbol": "544342",
+   "company": "Stallion India Fluorochemicals Limited",
+   "isin": "INE0RYC01010",
+   "board": "BSE",
+   "source": {
+    "document": "final prospectus",
+    "url": "https://nsearchives.nseindia.com/corporate/FP_INE0RYC01010_22JAN2025.pdf",
+    "filed": "22-Jan-2025",
+    "pdf_bytes": 5373329,
+    "extracted_chars": 1213942
+   },
+   "grade": "company-stated",
+   "verified_against": null,
+   "claims": {
+    "import_substitution": {
+     "count": 1,
+     "dropped_as_industry_commentary": 8,
+     "terms": [
+      "Make in India"
+     ],
+     "evidence": [
+      {
+       "match": "Make in India",
+       "sentence": "With the increase in demand because of initiatives like Make in India, especially from industries like Semiconductors, Electronics, Defence Manufacturing, Pharma Equipment, and others, we're concentrating on adding more environmentally friendly gases like HFOs and specialty gases to our lineup."
+      }
+     ]
+    },
+    "ip": {
+     "count": 4,
+     "dropped_as_industry_commentary": 8,
+     "terms": [
+      "trademark",
+      "trademarks",
+      "Trademark"
+     ],
+     "evidence": [
+      {
+       "match": "trademark",
+       "sentence": "The ownership of the trademark crucial to our brand identity lies with our Promoter, Shazad Sheriar Rustomji."
+      },
+      {
+       "match": "trademark",
+       "sentence": "Shazad Sheriar Our promoter, Shazad Sheriar Rustomji has obtained trademark registrations under the Trade Marks Act, 1999 with respect to “STALLION” (under No."
+      },
+      {
+       "match": "trademarks",
+       "sentence": "Intellectual Property Registrations As on the date of this Prospectus, the Company has the following trademarks registered: Sr."
+      }
+     ]
+    }
+   },
+   "risk_factors": {
+    "customer_concentration": {
+     "count": 8,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "top 10 customers",
+      "dependent on a limited number of customers",
+      "customer concentration",
+      "Customer Concentration",
+      "top ten customers",
+      "Top 10 customers"
+     ],
+     "evidence": [
+      {
+       "match": "top 10 customers",
+       "sentence": "The table below sets forth details of our revenue from operations based on our restated financials from our top 2, top 5 and top 10 customers in the periods indicated: Customer Concentration Top 2 Customer Top 5 Customer Top 10 Customer As at September 30, 2024 (₹ in % lakhs) 4,227."
+      },
+      {
+       "match": "dependent on a limited number of customers",
+       "sentence": "88% % Page 32 of 380 The Company’s revenue stream is significantly dependent on a limited number of customers."
+      },
+      {
+       "match": "customer concentration",
+       "sentence": "In operations, a substantial portion of revenues is reliant on a select number of customers, and the potential to significantly reduce customer concentration in the future remains uncertain."
+      }
+     ]
+    },
+    "promoter_litigation": {
+     "count": 1,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "criminal proceedings"
+     ],
+     "evidence": [
+      {
+       "match": "criminal proceedings",
+       "sentence": "e Materiality Policy, all pending litigation involving the Issuer, Directors, Promoters, Promoter Group, Group Companies and Subsidiary Company, other than the criminal proceedings, action by regulatory authorities and statutory authorities, disciplinary action including penalty imposed by SEBI or stock exchanges against the Promoter in the last five Fiscals including outstanding action and tax matters would be considered as ‘material ‘if: Page 298 of 380 a."
+      }
+     ]
+    },
+    "related_party": {
+     "count": 27,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "RELATED PARTY TRANSACTIONS",
+      "Related Party Transactions",
+      "related party transactions",
+      "Related Party Transaction"
+     ],
+     "evidence": [
+      {
+       "match": "RELATED PARTY TRANSACTIONS",
+       "sentence": "261 RELATED PARTY TRANSACTIONS ."
+      },
+      {
+       "match": "Related Party Transactions",
+       "sentence": "32 Summary of Related Party Transactions A summary statement of the related party as following: (All amounts in Rupees lakhs, unless otherwise stated) Particulars Relationship with Company Sale of Goods September 3"
+      },
+      {
+       "match": "related party transactions",
+       "sentence": "53 For details of the related party transactions, as per the requirements under Ind-AS see ‘Related Party Disclosures’ issued by the Institute of Chartered Accountants of India and as reported in the Restated Financial Statements, see “Financial Information – Related Party Disclosure under Ind AS 24” beginning on page no."
+      }
+     ]
+    }
+   },
+   "objects_of_the_issue": {
+    "offer_for_sale": {
+     "count": 46,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "OFFER FOR SALE",
+      "Offer for Sale",
+      "offer for sale"
+     ],
+     "evidence": [
+      {
+       "match": "OFFER FOR SALE",
+       "sentence": "com OUR PROMOTER: SHAZAD SHERIAR RUSTOMJI, MANIHSA SHAZAD RUSTOMJI & ROHAN SHAZAD RUSTOMJI DETAILS OF THE OFFER TO PUBLIC TYPE FRESH ISSUE OFFER FOR SALE TOTAL OFFER SIZE ELIGIBILTY AND SHARE RESERVATION The Offer is made pursuant to the Regulation 6(1) of the 1,78,58,740 Equity Shares of face 43,02,656 Equity Shares of face Securities a"
+      },
+      {
+       "match": "OFFER FOR SALE",
+       "sentence": "DETAILS OF THE SELLING SHAREHOLDER, OFFER FOR SALE AND THEIR WEIGHTED AVERAGE COST OF ACQUISITION PER EQUITY SHARE NAME OF THE NO OF EQUITY SHARES SELLING TYPE WEIGHTED AVAERAGR COST OF ACQUISITION ON FULLY DILUTED BASIS* OFFERED SHAREHOLDER Shazad Sheriar Promoter 43,02,656 Equity Shares 6."
+      },
+      {
+       "match": "Offer for Sale",
+       "sentence": "atements and information specifically pertain to such Promoter Selling Shareholder and the Equity Shares offered by such Promoter Selling Shareholder under the Offer for Sale, are true and correct in all material respects and are not misleading in any material respect LISTING The Equity Shares, once offered through the RHP are proposed to be listed on the Stock Exchanges being BSE Limited and National Stock Exchange of India Limited."
+      }
+     ]
+    },
+    "fresh_issue": {
+     "count": 53,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "FRESH ISSUE",
+      "Fresh Issue",
+      "Fresh issue",
+      "fresh issue"
+     ],
+     "evidence": [
+      {
+       "match": "FRESH ISSUE",
+       "sentence": "com OUR PROMOTER: SHAZAD SHERIAR RUSTOMJI, MANIHSA SHAZAD RUSTOMJI & ROHAN SHAZAD RUSTOMJI DETAILS OF THE OFFER TO PUBLIC TYPE FRESH ISSUE OFFER FOR SALE TOTAL OFFER SIZE ELIGIBILTY AND SHARE RESERVATION The Offer is made pursuant to the Regulation 6(1) of the 1,78,58,740 Equity Shares of face 43,02,656 Equity Shares of face"
+      },
+      {
+       "match": "Fresh Issue",
+       "sentence": "rsuant to the Regulation 6(1) of the 1,78,58,740 Equity Shares of face 43,02,656 Equity Shares of face Securities and Exchange Board of India (Issue of Capital Fresh Issue & Offer for value of ₹10 each aggregating up value of ₹ 10 each aggregating and Disclosure Requirements) Regulations, 2018, as ₹ 19,945."
+      },
+      {
+       "match": "FRESH ISSUE",
+       "sentence": "26 LAKHS (THE “OFFER”) COMPRISING A FRESH ISSUE OF UP TO 1,78,58,740 EQUITY SHARES AGGREGATING UP TO ₹ 16,072."
+      }
+     ]
+    },
+    "capital_expenditure": {
+     "count": 33,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "setting up of",
+      "capital expenditure",
+      "expansion of our",
+      "purchase of plant"
+     ],
+     "evidence": [
+      {
+       "match": "setting up of",
+       "sentence": "setting up of new facility at Page 17 of 380 Khalapur for semi-conductor speciality gas that our growth depends on developing/blending/sourcing of new gas 6."
+      },
+      {
+       "match": "capital expenditure",
+       "sentence": "2) 3) 4) Particulars Funding capital expenditure requirements for our Semi-conductor & Specialty Gas debulking & blending facility (“Khalapur, Maharashtra”) Funding capital expenditure requirements for our Refrigerant debulking & blending facility (“Mambattu, Andhra Pradesh”) General Corporate Purposes* Total Amount 2,915."
+      },
+      {
+       "match": "capital expenditure",
+       "sentence": "Also, if we want to blend new specialty gas, we cannot do so at our existing facility as it requires installation of new machineries for blending the new gas, which will require additional capital expenditure on the part of the Company."
+      }
+     ]
+    },
+    "working_capital": {
+     "count": 33,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "working capital requirements",
+      "working capital requirement",
+      "Working Capital Requirement",
+      "Working Capital Requirements",
+      "Working capital requirement"
+     ],
+     "evidence": [
+      {
+       "match": "working capital requirements",
+       "sentence": "1) Particulars Funding incremental working capital requirements of our Company (₹ in lakhs) Amount 9,500."
+      },
+      {
+       "match": "working capital requirements",
+       "sentence": "Periodical peaks may necessitate elevated working capital requirements to manage increased production and inventory levels."
+      },
+      {
+       "match": "working capital requirements",
+       "sentence": "Page 40 of 380 19) We have high working capital requirements."
+      }
+     ]
+    },
+    "general_corporate": {
+     "count": 11,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "General Corporate Purposes",
+      "general corporate purposes",
+      "General Corporate Purpose"
+     ],
+     "evidence": [
+      {
+       "match": "General Corporate Purposes",
+       "sentence": "2) 3) 4) Particulars Funding capital expenditure requirements for our Semi-conductor & Specialty Gas debulking & blending facility (“Khalapur, Maharashtra”) Funding capital expenditure requirements for our Refrigerant debulking & blending facility (“Mambattu, Andhra Pradesh”) General Corporate Purposes* Total Amount 2,915."
+      },
+      {
+       "match": "general corporate purposes",
+       "sentence": "95 *The amount to be utilized for general corporate purposes will not exceed 25."
+      },
+      {
+       "match": "General Corporate Purposes",
+       "sentence": "acility (“Khalapur, Maharashtra”) c) Funding capital expenditure requirements for our Refrigerant debulking & blending facility (“Mambattu, Andhra Pradesh”) d) General Corporate Purposes Our Company may have to revise its management estimates from time to time on account of various factors, including factors beyond its control such as market conditions, competition, cost of commodities and interest, and consequently its requirements may change."
+      }
+     ]
+    }
+   },
+   "profiled_on": "2026-09-27"
   }
  }
 ]
