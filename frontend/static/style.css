@@ -2118,7 +2118,10 @@ tbody tr:hover,tbody tr:nth-child(even):hover{background:#f2f9fd}
 /* ================================================================
    Sector Research
    ================================================================ */
+.sc-group-title{margin:22px 0 12px;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);border-bottom:1px solid var(--grid);padding-bottom:8px}
+.sc-group-title:first-child{margin-top:0}
 .sc-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:16px}
+.sc-grid:empty{display:none}
 .sc-card{position:relative;display:flex;flex-direction:column;gap:10px;padding:18px;border:1px solid var(--grid);border-radius:16px;background:var(--surface,#fff);cursor:pointer;overflow:hidden;box-shadow:var(--shadow-soft);transition:transform .16s,box-shadow .16s}
 .sc-card::before{content:"";position:absolute;inset:0 0 auto 0;height:4px;background:linear-gradient(90deg,#0b3954,#0a73a8 55%,#2db6dd)}
 .sc-card:hover{transform:translateY(-2px);box-shadow:var(--shadow-lift)}

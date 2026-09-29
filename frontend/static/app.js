@@ -5196,7 +5196,7 @@ function scRenderLib(){
   document.getElementById('sc-lib').hidden=false;
   document.getElementById('sc-doc').hidden=true;
   const j=SC.index||{sectors:[],planned:[]};
-  document.getElementById('sc-grid').innerHTML = (j.sectors.length ? j.sectors.map(s=>`
+  const card = s => `
     <article class="sc-card" data-sc="${esc(s.slug)}" tabindex="0">
       <div class="sc-card-top"><span class="sc-ic"><svg viewBox="0 0 24 24">${scIcon(s.icon)}</svg></span><span>Sector & Themes research · ${esc(scMonth(s.edition))}</span></div>
       <h3>${esc(s.name)}</h3>
@@ -5204,8 +5204,17 @@ function scRenderLib(){
       ${s.latest&&s.latest.items.length?`<div class="sc-card-latest"><b>Latest · ${esc(scDay(s.latest.items[0].date))}</b><span>${esc(s.latest.items[0].title)}</span></div>`:''}
       <div class="sc-kpis">${(s.kpis||[]).slice(0,3).map(k=>`<div><b>${esc(k.value)}</b><span>${esc(k.label)}</span></div>`).join('')}</div>
       <div class="sc-card-foot"><span>${s.companies} listed companies · ${s.sources} sources</span><span class="rp-read">Read the research ›</span></div>
-    </article>`).join('') : '<p class="view-hint">No sector research published yet.</p>')
-    + (j.planned||[]).map(p=>`<article class="sc-card planned"><div class="sc-card-top"><span class="sc-ic"><svg viewBox="0 0 24 24">${scIcon(p.icon)}</svg></span><span>Coming next</span></div><h3>${esc(p.name)}</h3><p>${esc(p.note||'')}</p></article>`).join('');
+    </article>`;
+  const plannedCard = p => `<article class="sc-card planned"><div class="sc-card-top"><span class="sc-ic"><svg viewBox="0 0 24 24">${scIcon(p.icon)}</svg></span><span>Coming next</span></div><h3>${esc(p.name)}</h3><p>${esc(p.note||'')}</p></article>`;
+  const byKind = k => (j.sectors||[]).filter(s=>(s.kind||'sector')===k);
+  const plannedByKind = k => (j.planned||[]).filter(p=>(p.kind||'sector')===k);
+  [['sector','sc-group-sectors','sc-grid-sectors','No sector research published yet.'],
+   ['theme','sc-group-themes','sc-grid-themes','No theme research published yet.']].forEach(([kind,headId,gridId,emptyMsg])=>{
+    const list=byKind(kind), plannedList=plannedByKind(kind);
+    const html=(list.length?list.map(card).join(''):(plannedList.length?'':`<p class="view-hint">${emptyMsg}</p>`))+plannedList.map(plannedCard).join('');
+    document.getElementById(gridId).innerHTML=html;
+    document.getElementById(headId).hidden = !list.length && !plannedList.length;
+  });
   document.querySelectorAll('[data-sc]').forEach(c=>{ c.onclick=()=>openSector(c.dataset.sc); c.onkeydown=e=>{ if(e.key==='Enter') openSector(c.dataset.sc); }; });
   syncURL();
 }

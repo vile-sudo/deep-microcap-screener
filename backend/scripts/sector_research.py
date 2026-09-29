@@ -188,7 +188,7 @@ def run(slug: str, force: bool) -> str:
         if errs:
             return f"failed validation: {'; '.join(errs[:6])}"
         report.update(slug=slug, edition=edition, updated=datetime.now(IST).date().isoformat(), icon=brief.get("icon", report.get("icon")),
-                      bucket_labels=bucket_labels(brief))
+                      bucket_labels=bucket_labels(brief), kind=brief.get("kind", "sector"))
         (SECTORS / slug / f"{edition}.json").write_text(json.dumps(report, indent=1, ensure_ascii=False) + "\n", encoding="utf-8")
         return f"wrote {edition} ({len(report['sources'])} sources, {len(report.get('companies', []))} companies)"
     finally:

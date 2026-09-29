@@ -62,7 +62,7 @@ def list_sectors():
         r = _load(d / f"{eds[0]}.json") or {}
         lt = _load(d / "latest.json") or {}
         out.append({"slug": d.name, "name": r.get("name"), "edition": eds[0], "updated": r.get("updated"),
-                    "icon": r.get("icon"), "one_line": (r.get("summary") or {}).get("one_line"),
+                    "icon": r.get("icon"), "kind": r.get("kind", "sector"), "one_line": (r.get("summary") or {}).get("one_line"),
                     "kpis": (r.get("kpis") or [])[:4], "companies": len(r.get("companies") or []),
                     "sources": len(r.get("sources") or []),
                     "latest": {"updated": lt.get("updated"), "items": (lt.get("items") or [])[:2],

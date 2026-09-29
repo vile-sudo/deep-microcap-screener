@@ -269,6 +269,7 @@ def discover(dry_run: bool) -> str:
         shutil.rmtree(work, ignore_errors=True)
 
     slug = brief["slug"]
+    brief["kind"] = "theme"   # this script only ever creates themes, never the broader hand-curated sectors
     if dry_run:
         return f"[dry run] would create {slug!r}: {brief.get('name')} -- {json.dumps(brief, ensure_ascii=False)[:300]}..."
 
