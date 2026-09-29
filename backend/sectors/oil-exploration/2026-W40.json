@@ -1,0 +1,1044 @@
+{
+ "slug": "oil-exploration",
+ "name": "Oil & Exploration",
+ "icon": "oil",
+ "edition": "2026-W40",
+ "updated": "2026-09-29",
+ "scope": "Upstream oil & gas: global prices, supply and forecasts, India's output, gas pricing, levies and exploration policy, and what they mean for Indian listed producers, service and equipment firms, the gas chain and refiners.",
+ "summary": {
+  "one_line": "Brent is back above $105 with more than 10 mb/d of Gulf output still offline, ONGC's first Samudra Manthan deepwater well in the Mahanadi has struck gas, and a new US sanctions law on Russian oil buyers adds a fresh cost risk for Indian refiners (S2; S5; S16; S8).",
+  "key_points": [
+   "Brent futures closed at $105.28/bbl on 28 September after touching $108.83, with US-Iran talks still uncertain; crude hit $113.48 on 9 September (S5; S2).",
+   "The IEA says more than 10 mb/d of Gulf output is still offline, Gulf exports are about half pre-war levels at 13 mb/d, and observed inventories have fallen 507 mb since February (S2).",
+   "Agencies disagree sharply on 2026 demand: OPEC sees +0.4 mb/d, the EIA -1.7 mb/d and the IEA -2.5 mb/d; all three see growth of 2.4-2.6 mb/d in 2027 (S3).",
+   "The EIA forecasts Brent at $91 for 2026 and $74 for 2027; banks raised forecasts in mid-September (HSBC $90 for 2026 and $85 for 2027; Goldman $85 for December 2026) (S1; S6).",
+   "ONGC struck gas on 18 September at well MN-DW18-1-H-D, 43 km off Konark - the first Mahanadi well under Samudra Manthan - with a test rate of close to 2.25 MMSCMD according to its exploration director (S16; S17).",
+   "India's crude output fell for a third straight year to 27.96 MMT in FY26; APM gas stays capped at $7.00/MMBtu while the September formula price is $9.00 (S9; S10; S11).",
+   "The US signed a law on 18 September allowing tariffs of up to 100% on the five largest buyers of Russian oil; Russia supplies about 45% of India's crude imports (S8).",
+   "Welspun Corp won a record $412.5 mn US pipe order, lifting its order book to $4.7 bn; deepwater OALP-X/XI bids were pushed again to 15 November (S24; S15)."
+  ],
+  "for_investors": [
+   {
+    "title": "Who benefits",
+    "tone": "good",
+    "points": [
+     "Crude producers with Brent-linked realisations: ONGC realised $99.45/bbl on nomination crude in Q1 FY27 and Oil India $98.73/bbl (S18; S19).",
+     "ONGC, if the Mahanadi find proves commercial, and Antelopus Selan, which holds 100% of the D-11 Mahanadi block with six gas discoveries (S16; S17).",
+     "Offshore service firms named as possible beneficiaries of more deepwater drilling - Jindal Drilling, Deep Industries, SEAMEC, Asian Energy - though the find is an early step, not an immediate order flow (S16; S17).",
+     "Line-pipe exporters: Welspun Corp's order book is a record $4.7 bn (S24)."
+    ]
+   },
+   {
+    "title": "Who is hurt / risks",
+    "tone": "bad",
+    "points": [
+     "Oil marketing companies while pump prices are held at ₹102.12 (petrol) and ₹95.20 (diesel) in Delhi: HPCL lost ₹12,264 cr and BPCL ₹1,873 cr in Q1 FY27 (S10; S25).",
+     "Refiners that rely on Russian barrels, now exposed to possible US tariffs under the 18 September sanctions law (S8).",
+     "LNG importers while Qatar supply is suspended: Petronet's Dahej terminal ran at 66% in Q1 FY27 against 92% a year earlier (S4).",
+     "Oil India's earnings after the June royalty reset to 16.66%; analysts cited by Business Standard estimate a 5-6% EPS hit (S13).",
+     "A US-Iran deal that reopens Hormuz: the EIA already expects Brent to fall to $74 in 2027 as Gulf output recovers (S1)."
+    ]
+   },
+   {
+    "title": "What to watch",
+    "tone": "watch",
+    "points": [
+     "US-Iran talks and Hormuz flows (S5).",
+     "The October APM gas price and the half-yearly deepwater/HPHT price ceiling, due around 1 October (S10; S11).",
+     "Fortnightly reviews of the export duty (SAED) on petrol, diesel and ATF (S12).",
+     "Appraisal of the Mahanadi find and Samudra Manthan implementation rules ahead of the 15 November deepwater bid deadline (S15; S17)."
+    ]
+   }
+  ]
+ },
+ "kpis": [
+  {
+   "label": "Brent futures close",
+   "value": "$105.28/bbl",
+   "sub": "28 Sep 2026; intraday high $108.83 (S5)"
+  },
+  {
+   "label": "EIA Brent forecast",
+   "value": "$91 → $74",
+   "sub": "2026 → 2027, Sep 2026 STEO (S1)"
+  },
+  {
+   "label": "Gulf output offline",
+   "value": ">10 mb/d",
+   "sub": "IEA, September 2026 (S2)"
+  },
+  {
+   "label": "Global stock draw",
+   "value": "507 mb",
+   "sub": "observed, since February 2026 (S2)"
+  },
+  {
+   "label": "India crude output",
+   "value": "27.96 MMT",
+   "sub": "FY26, third straight annual fall (S9)"
+  },
+  {
+   "label": "APM gas price",
+   "value": "$9.00 / $7.00",
+   "sub": "Sep 2026 formula / ceiling, per MMBtu (S10; S11)"
+  },
+  {
+   "label": "Mahanadi deepwater test",
+   "value": "~2.25 MMSCMD",
+   "sub": "ONGC MN-DW18-1-H-D, Sep 2026 (S16)"
+  },
+  {
+   "label": "Samudra Manthan",
+   "value": "₹84,084 cr",
+   "sub": "offshore exploration outlay to FY31 (S14)"
+  }
+ ],
+ "sections": [
+  {
+   "id": "theme_explainer",
+   "title": "The theme: a prolonged Gulf supply shock meets a falling Indian output base",
+   "subsections": [
+    {
+     "title": "Where global oil stands",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "The Gulf supply shock is in its eighth month. In its September report the IEA said more than 10 mb/d of Gulf output remains offline, August world supply fell 1.6 mb/d month on month to 100.1 mb/d, and Gulf exports were about 13 mb/d, roughly half the pre-conflict level (S2). Observed crude inventories fell 95 mb in August and 507 mb since February (S2). The IEA cut its 2026 supply estimate to 100.7 mb/d and now sees the Gulf recovery slipping into 2027, when supply rebounds by 8 mb/d (S2)."
+      },
+      {
+       "type": "p",
+       "text": "Prices have climbed back. The EIA puts August's Brent average at $91, $7 above July (S1). Crude hit $113.48 on 9 September (S2), and Brent futures closed at $105.28 on 28 September after trading as high as $108.83 amid uncertainty over US-Iran talks (S5). OPEC+ left October output policy unchanged at its 6 September meeting and must agree new 2027 baselines before further unwinding cuts (S7)."
+      },
+      {
+       "type": "chart",
+       "title": "Brent annual average: actual and EIA forecast",
+       "unit": "$/bbl",
+       "series": [
+        {
+         "name": "Brent (EIA)",
+         "points": [
+          [
+           "2025",
+           69
+          ],
+          [
+           "2026f",
+           91
+          ],
+          [
+           "2027f",
+           74
+          ]
+         ]
+        }
+       ],
+       "source": "Source: EIA Short-Term Energy Outlook, September 2026 (S1)"
+      },
+      {
+       "type": "chart",
+       "title": "World oil demand growth forecasts by agency",
+       "unit": "mb/d change",
+       "series": [
+        {
+         "name": "OPEC",
+         "points": [
+          [
+           "2026",
+           0.4
+          ],
+          [
+           "2027",
+           2.4
+          ]
+         ]
+        },
+        {
+         "name": "EIA",
+         "points": [
+          [
+           "2026",
+           -1.7
+          ],
+          [
+           "2027",
+           2.4
+          ]
+         ]
+        },
+        {
+         "name": "IEA",
+         "points": [
+          [
+           "2026",
+           -2.5
+          ],
+          [
+           "2027",
+           2.6
+          ]
+         ]
+        }
+       ],
+       "source": "Source: IEF comparison of September 2026 OPEC, IEA and EIA reports (S3)"
+      },
+      {
+       "type": "callout",
+       "tone": "info",
+       "text": "The agencies differ on demand, not on direction: the IEA expects demand to shrink 2.5 mb/d in 2026 because of product disruptions and high fuel prices, while OPEC still sees growth (S2; S3). For 2027 the EIA and IEA both expect supply growth to outpace demand as Gulf output returns, which is why the EIA sees Brent falling to $74 (S1; S2; S3)."
+      }
+     ]
+    },
+    {
+     "title": "Forecasts from agencies and banks",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "Brent forecasts (each is the source's own; $/bbl)",
+       "columns": [
+        "Source",
+        "Date",
+        "Near term",
+        "2027",
+        "Note"
+       ],
+       "rows": [
+        [
+         "EIA STEO",
+         "9 Sep 2026",
+         "$91 for 2026; about $90 in 2H26",
+         "$74",
+         "Middle East output below pre-conflict levels until 2Q27 (S1)"
+        ],
+        [
+         "HSBC",
+         "Sep 2026",
+         "$90 for 2026",
+         "$85",
+         "A 'disrupted new normal' with Hormuz persistently impaired (S6)"
+        ],
+        [
+         "Goldman Sachs",
+         "Sep 2026",
+         "$85 for December 2026 (raised $5)",
+         "Raised $5",
+         "Brent could exceed $120 if Gulf output stays constrained (S6)"
+        ],
+        [
+         "Bank of America",
+         "Sep 2026",
+         "$83 for 2H26",
+         "$75",
+         "Tail risks of $120, or $150 with vast infrastructure damage (S6)"
+        ],
+        [
+         "Commerzbank",
+         "Sep 2026",
+         "$85 at year-end (from $75)",
+         "—",
+         "(S6)"
+        ]
+       ]
+      },
+      {
+       "type": "p",
+       "text": "Every near-term forecast above is below where Brent traded on 28 September (S5; S6), so the market is pricing a longer disruption than most forecasters assume."
+      }
+     ]
+    },
+    {
+     "title": "India: shrinking output, heavy import dependence",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "India's crude output fell for a third straight year to 27.96 MMT in FY26, down about 3%, which the government blames on natural decline in ageing fields; ONGC held its own decline to about 2% through enhanced and improved oil recovery (S9). India imports about 88-90% of its crude (S9; S15) and about half its gas (S16)."
+      },
+      {
+       "type": "p",
+       "text": "Sourcing is the new pressure point. Russia supplies about 45% of India's crude imports; India took about 2.08 mb/d from Russia in August, down from 2.82 mb/d (56% of imports) in July (S8). On 18 September the US signed a law letting the president impose tariffs of up to 100% on the five largest buyers of Russian oil and gas, reviewed every 180 days; it does not impose tariffs on India automatically (S8)."
+      },
+      {
+       "type": "callout",
+       "tone": "warn",
+       "text": "Retail prices remain held: petrol was ₹102.12/litre and diesel ₹95.20/litre in Delhi on 28 September (S10). Higher crude therefore shows up in refiners' losses rather than at the pump (S25)."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "policy_and_capex",
+   "title": "Policy, pricing and capex",
+   "subsections": [
+    {
+     "title": "Gas pricing, royalties and levies",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "What sets producer realisations",
+       "columns": [
+        "Item",
+        "Current setting",
+        "Effect on producers"
+       ],
+       "rows": [
+        [
+         "APM gas (ONGC/Oil India nomination)",
+         "Formula price $9.00/MMBtu for Sep 2026; ceiling $7.00 from April 2026 (S10; S11)",
+         "Legacy gas gains nothing above the cap"
+        ],
+        [
+         "New-well gas (ONGC)",
+         "Realised $13.31/MMBtu in Q1 FY27 vs $8.24 a year earlier (S18)",
+         "About 38% of ONGC's nomination gas revenue (S18)"
+        ],
+        [
+         "Royalty on onshore nomination crude",
+         "Restored to 16.66% by a 4 June 2026 notification after a May cut (S13)",
+         "Analysts: Oil India EBITDA -4-5%, EPS -5-6% (S13)"
+        ],
+        [
+         "Export duty (SAED) on fuels",
+         "Since 27 Mar 2026; from 16 Sep: petrol ₹0.5, diesel ₹20, ATF ₹15 per litre (S12)",
+         "Hits refiners' export margins; reviewed fortnightly (S12)"
+        ]
+       ]
+      },
+      {
+       "type": "callout",
+       "tone": "info",
+       "text": "Windfall tax on domestic crude: the September duty revision covers petrol, diesel and ATF exports only and gives no rate for domestically produced crude (S12). ONGC's Q1 FY27 realisation of $99.45/bbl is consistent with no large crude levy in that quarter (S18). We could not confirm a current domestic-crude levy from a primary source."
+      }
+     ]
+    },
+    {
+     "title": "Exploration policy and the first Samudra Manthan result",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "Samudra Manthan (National Offshore Exploration Scheme)",
+       "columns": [
+        "Component",
+        "Outlay (₹ cr)",
+        "What it pays for"
+       ],
+       "rows": [
+        [
+         "Deepwater exploration wells",
+         "43,200",
+         "60 wells; government pays up to 50% of eligible cost or ₹675 cr per well, whichever is lower (S14)"
+        ],
+        [
+         "Offshore seismic data",
+         "28,534",
+         "Modern offshore seismic acquisition and processing (S14)"
+        ],
+        [
+         "Common offshore infrastructure hubs",
+         "10,000",
+         "To commercialise discoveries (S14)"
+        ],
+        [
+         "Oil & Gas Manufacturing and Services Zones",
+         "2,000",
+         "Local manufacturing of equipment and services (S14)"
+        ],
+        [
+         "Total",
+         "84,084",
+         "Up to FY2030-31; targets reserve accretion of over 600 MMTOE (S14)"
+        ]
+       ]
+      },
+      {
+       "type": "bullets",
+       "items": [
+        "ONGC struck gas on 18 September at MN-DW18-1-H-D, drilled to 1,623 m with gas at 1,441-1,452 m, about 43 km off Konark; it is the first Mahanadi well of the Samudra Manthan campaign (S17).",
+        "ONGC's exploration director said the well tested close to 2.25 MMSCMD (S16). Next steps are flow-rate results, more drilling and confirmation of commercial reserves, so it is an early step rather than an immediate production boost (S17).",
+        "Deepwater wells cost about $125-150 mn each, which is why the 50% cost support matters (S9).",
+        "Bids for deepwater and ultra-deepwater blocks in OALP-X (25 blocks, 13 deep/ultra-deep) and OALP-XI (21 blocks, 5 deep/ultra-deep) were extended again to 15 November 2026, pending the scheme's implementation rules (S15).",
+        "The repeated extensions show the difficulty of attracting investors to technically demanding offshore acreage (S15)."
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Producer capex and service demand",
+     "blocks": [
+      {
+       "type": "bullets",
+       "items": [
+        "Oil India plans to drill 100 wells in FY27, commission its Numaligarh coker unit in Q3 FY27 and the rest of the expansion by March 2027, and drill a fourth Andaman well in December 2026 (S19). It guides to 3.9-4.0 MMT of crude in FY27 (S20).",
+        "Vedanta Oil & Gas's output fell to 87,200 boepd in FY26 from 103,200; ICRA expects enhanced oil recovery and infill drilling in Rajasthan to partly offset decline, with calibrated capex (S21).",
+        "Deep Industries guides FY27 capex of ₹250-300 cr, tied to contract wins, and expects its ₹1,402 cr, 15-year ONGC production-enhancement contract to start contributing from October 2026 (S22).",
+        "Maharashtra Seamless has ₹714 cr of ONGC and Oil India orders, 42% of its ₹1,709 cr order book (S23)."
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "listed_company_impact",
+   "title": "What it means for Indian listed companies",
+   "subsections": [
+    {
+     "title": "Producers",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "Producers: latest data and exposure",
+       "columns": [
+        "Company",
+        "Latest data",
+        "Exposure",
+        "Key risk"
+       ],
+       "rows": [
+        [
+         "ONGC",
+         "Q1 FY27 standalone PAT ₹17,034 cr (+112%); record PBT ₹22,848 cr (S18)",
+         "Brent-linked crude; uncapped new-well gas; Mahanadi find (S16; S18)",
+         "Flat volumes; $7 APM cap (S11; S18)"
+        ],
+        [
+         "Oil India",
+         "Standalone PAT ₹2,870 cr vs ₹813 cr; crude output +11% (S19)",
+         "Onshore crude growth plus NRL refining ($35.95/bbl GRM incl. inventory gains) (S19)",
+         "Royalty reset: EPS -5-6% (S13)"
+        ],
+        [
+         "Vedanta Oil & Gas",
+         "FY26 output 87,200 boepd vs 103,200 (S21)",
+         "Mostly crude sales; opex about $15-16/boe, margins 40-45% (S21)",
+         "Rajasthan PSC runs to May 2030; CB/OS-2 extension pending (S21)"
+        ],
+        [
+         "Antelopus Selan",
+         "100% of D-11 Mahanadi block with six gas discoveries (S16)",
+         "Read-across from ONGC's find (S16)",
+         "Find is still early-stage (S17)"
+        ],
+        [
+         "HOEC",
+         "Named among stocks in focus after the Mahanadi find (S16)",
+         "Offshore E&P assets (S16)",
+         "Read-across only (S17)"
+        ]
+       ]
+      },
+      {
+       "type": "chart",
+       "title": "ONGC nomination crude realisation",
+       "unit": "$/bbl",
+       "series": [
+        {
+         "name": "ONGC",
+         "points": [
+          [
+           "Q1 FY26",
+           66.13
+          ],
+          [
+           "Q1 FY27",
+           99.45
+          ]
+         ]
+        }
+       ],
+       "source": "Source: Kotak Neo summary of ONGC Q1 FY27 results (S18)"
+      }
+     ]
+    },
+    {
+     "title": "Services and equipment",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "Services and equipment: exposure",
+       "columns": [
+        "Company",
+        "Latest data",
+        "Exposure",
+        "Key risk"
+       ],
+       "rows": [
+        [
+         "Jindal Drilling",
+         "Three-year ONGC contract for the Jindal Pioneer rig (S16)",
+         "ONGC offshore rig demand (S16)",
+         "Mahanadi find is early-stage (S17)"
+        ],
+        [
+         "Deep Industries",
+         "Q1 FY27 revenue ₹278.9 cr (+39.8%), PAT ₹89.14 cr (+44.5%), order book ₹3,047 cr (S22)",
+         "Production enhancement, gas compression, drilling (S22)",
+         "PEC contract delayed by a well incident (S22)"
+        ],
+        [
+         "SEAMEC",
+         "Named among possible Mahanadi beneficiaries (S16)",
+         "Diving, inspection and offshore maintenance (S16)",
+         "Read-across only (S16)"
+        ],
+        [
+         "Asian Energy Services",
+         "Named as a possible beneficiary of more activity (S16)",
+         "Oilfield services (S16)",
+         "Read-across only (S16)"
+        ],
+        [
+         "Maharashtra Seamless",
+         "Order book ₹1,709 cr, 42% oil sector, 20% exports (S23)",
+         "OCTG for ONGC/Oil India drilling (S23)",
+         "Anti-dumping duties expire January 2027 (S23)"
+        ],
+        [
+         "Welspun Corp",
+         "$412.5 mn US HFIW order; order book $4.7 bn (S24)",
+         "US pipelines, executed FY28-29 (S24)",
+         "Customer not disclosed; long execution window (S24)"
+        ]
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Gas chain and refiners",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "Gas chain and refiners: exposure",
+       "columns": [
+        "Company",
+        "Latest data",
+        "Exposure",
+        "Key risk"
+       ],
+       "rows": [
+        [
+         "Petronet LNG",
+         "Q1 FY27 PAT ₹1,133 cr (+33%) incl. ₹494 cr trading and inventory gains; Dahej 66% utilised (S4)",
+         "Regas volumes (S4)",
+         "Qatar supply suspended until Hormuz reopens (S4)"
+        ],
+        [
+         "HPCL",
+         "Q1 FY27 loss ₹12,264 cr vs ₹4,110 cr profit; LPG under-recovery ₹16,405 cr (S25)",
+         "Refining and fuel marketing (S25)",
+         "Held pump prices; Russian-crude tariff risk (S8; S10)"
+        ],
+        [
+         "BPCL",
+         "Q1 FY27 consolidated loss ₹1,872.70 cr vs ₹6,839 cr profit; LPG under-recovery ₹15,803 cr (S25)",
+         "Refining and fuel marketing (S25)",
+         "Same as HPCL (S8; S10)"
+        ]
+       ]
+      },
+      {
+       "type": "callout",
+       "tone": "info",
+       "text": "The dashboard's company table shows today's screener.in numbers for each company. Several quarterly figures here come from earnings-call summaries and news reports rather than exchange filings."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "research_house_views",
+   "title": "Research house views",
+   "subsections": [
+    {
+     "title": "Brokers and rating agencies on Indian names",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "Published views (their ratings and targets, not ours)",
+       "columns": [
+        "Firm",
+        "Date",
+        "On",
+        "View"
+       ],
+       "rows": [
+        [
+         "Morgan Stanley",
+         "Sep 2026",
+         "ONGC",
+         "Maintains Overweight after the Mahanadi find, which adds to earlier Utkal and Konark finds (S17)"
+        ],
+        [
+         "Elara Capital",
+         "11 Aug 2026",
+         "Oil India",
+         "Buy, target ₹672; Q1 beat its PAT estimate of ₹2,300 cr (S20)"
+        ],
+        [
+         "Motilal Oswal",
+         "11 Aug 2026",
+         "Oil India",
+         "Neutral, target ₹485; realisation and EBITDA beat but limited upside (S20)"
+        ],
+        [
+         "Analysts cited by Business Standard",
+         "12 Jun 2026",
+         "ONGC, Oil India",
+         "Royalty reset lifts Oil India's effective royalty from $10 to $13/bbl in FY27 (S13)"
+        ],
+        [
+         "ICRA",
+         "29 Jun 2026",
+         "Vedanta Oil & Gas",
+         "[ICRA]AA+ (Stable); low cost and low leverage, but Rajasthan concentration and PSC expiry in 2030 (S21)"
+        ]
+       ]
+      }
+     ]
+    },
+    {
+     "title": "On oil prices",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "In mid-September Goldman Sachs, HSBC, Bank of America and Commerzbank all raised Brent forecasts because Gulf disruption is lasting longer; their near-term calls range from $83 (BofA, 2H26) to $90 (HSBC, 2026) (S6). Goldman and BofA both flag $120 upside risk (S6)."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "risks_and_catalysts",
+   "title": "Risks, catalysts and indicators",
+   "subsections": [
+    {
+     "title": "Risks",
+     "blocks": [
+      {
+       "type": "bullets",
+       "items": [
+        "Peace risk for producers: a reopened Hormuz would release Gulf supply; the EIA expects Brent to fall to $74 in 2027 as output recovers (S1; S2).",
+        "Escalation risk for refiners and gas users: BofA sees $150 if energy infrastructure is badly damaged (S6).",
+        "US tariffs on Russian oil buyers could force costlier crude sourcing (S8).",
+        "Policy flip-flops: the onshore royalty cut in May was reversed in June (S13).",
+        "Exploration risk: the Mahanadi find still needs appraisal, and deepwater bid rounds keep slipping (S15; S17)."
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Dated catalysts",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "Events to watch",
+       "columns": [
+        "When",
+        "Event",
+        "Why it matters"
+       ],
+       "rows": [
+        [
+         "Around 1 Oct 2026",
+         "October APM gas price and the Oct 2026-Mar 2027 deepwater/HPHT ceiling (S10; S11)",
+         "Sets ONGC/Oil India and deepwater gas realisations"
+        ],
+        [
+         "Oct 2026 (date not confirmed)",
+         "Next OPEC+ output decision (S7)",
+         "Quota baselines for 2027"
+        ],
+        [
+         "Oct 2026",
+         "Deep Industries' ONGC PEC contract starts contributing (S22)",
+         "Service revenue"
+        ],
+        [
+         "Fortnightly",
+         "SAED export-duty reviews (S12)",
+         "Refiners' export margins"
+        ],
+        [
+         "15 Nov 2026",
+         "OALP-X/XI deepwater bid deadline (S15)",
+         "Test of investor appetite with Samudra Manthan support"
+        ],
+        [
+         "Dec 2026",
+         "Oil India's fourth Andaman well (S19)",
+         "Frontier basin read-across"
+        ],
+        [
+         "Jan 2027",
+         "Anti-dumping duties relevant to Maharashtra Seamless expire (S23)",
+         "Seamless pipe pricing"
+        ],
+        [
+         "Mar 2027",
+         "Numaligarh refinery expansion completion target (S19)",
+         "Oil India's consolidated earnings"
+        ]
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Monthly indicators",
+     "blocks": [
+      {
+       "type": "bullets",
+       "items": [
+        "IEA, OPEC and EIA monthly reports and the IEF comparison of their forecasts (S1; S2; S3).",
+        "PPAC gas price notifications and retail fuel prices (S10).",
+        "India's Russian crude intake by month (S8).",
+        "ONGC and Oil India awards for rigs, services and tubulars (S16; S23)."
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "companies": [
+  {
+   "name": "Oil and Natural Gas Corporation",
+   "nse": "ONGC",
+   "bse": null,
+   "bucket": "producer",
+   "role": "India's largest crude and gas producer; Q1 FY27 output 4.452 MMT crude and 4.756 BCM gas (S18).",
+   "impact": "Brent-linked crude ($99.45/bbl in Q1) and $13.31 new-well gas more than doubled standalone PAT; the Mahanadi deepwater find (about 2.25 MMSCMD tested) adds exploration upside, but APM gas is capped at $7 (S11; S16; S18)."
+  },
+  {
+   "name": "Oil India",
+   "nse": "OIL",
+   "bse": "533106",
+   "bucket": "producer",
+   "role": "State E&P focused on onshore fields and frontier basins, owning the Numaligarh refinery (S19).",
+   "impact": "Most leveraged to crude volume growth (+11% in Q1) and NRL margins, but the June royalty reset cuts EPS by an estimated 5-6% (S13; S19)."
+  },
+  {
+   "name": "Vedanta Oil & Gas",
+   "nse": "VOGL",
+   "bse": null,
+   "bucket": "producer",
+   "role": "Private E&P anchored by the Rajasthan block, with Ravva and Cambay; 87,200 boepd in FY26 (S21).",
+   "impact": "Low cost ($15-16/boe) gives strong margins at $100 oil, but output is declining and the Rajasthan PSC expires in May 2030 (S21)."
+  },
+  {
+   "name": "Antelopus Selan Energy",
+   "nse": "ANTELOPUS",
+   "bse": null,
+   "bucket": "producer",
+   "role": "Small E&P holding 100% of the D-11 Mahanadi offshore block with six gas discoveries (S16).",
+   "impact": "Direct geological read-across from ONGC's Mahanadi find, though the find itself is early-stage (S16; S17)."
+  },
+  {
+   "name": "Hindustan Oil Exploration Company",
+   "nse": "HINDOILEXP",
+   "bse": null,
+   "bucket": "producer",
+   "role": "Small E&P with offshore exploration and production assets (S16).",
+   "impact": "Gains from high crude and offshore-exploration sentiment; no direct link to the Mahanadi well (S16; S17)."
+  },
+  {
+   "name": "Jindal Drilling & Industries",
+   "nse": "JINDRILL",
+   "bse": null,
+   "bucket": "services",
+   "role": "Offshore rig provider to ONGC (S16).",
+   "impact": "Holds a three-year ONGC contract for Jindal Pioneer; more offshore drilling could lift rig demand over time (S16; S17)."
+  },
+  {
+   "name": "Deep Industries",
+   "nse": "DEEPINDS",
+   "bse": null,
+   "bucket": "services",
+   "role": "Oilfield services: gas compression, drilling and production enhancement (S22).",
+   "impact": "Order book ₹3,047 cr and a ₹1,402 cr ONGC production-enhancement contract expected to contribute from October 2026 (S22)."
+  },
+  {
+   "name": "SEAMEC",
+   "nse": "SEAMECLTD",
+   "bse": null,
+   "bucket": "services",
+   "role": "Diving, inspection and offshore maintenance services (S16).",
+   "impact": "Named among likely beneficiaries of more offshore activity after the Mahanadi find (S16)."
+  },
+  {
+   "name": "Asian Energy Services",
+   "nse": "ASIANENE",
+   "bse": null,
+   "bucket": "services",
+   "role": "Oilfield services provider (S16).",
+   "impact": "Named as a possible beneficiary of expanded exploration activity (S16)."
+  },
+  {
+   "name": "Maharashtra Seamless",
+   "nse": "MAHSEAMLES",
+   "bse": "500265",
+   "bucket": "equipment",
+   "role": "Seamless pipe and OCTG maker with ₹714 cr of ONGC and Oil India orders (S23).",
+   "impact": "Tubular demand tracks well counts such as Oil India's 100-well FY27 plan; anti-dumping duty expiry in January 2027 is a risk (S19; S23)."
+  },
+  {
+   "name": "Welspun Corp",
+   "nse": "WELCORP",
+   "bse": null,
+   "bucket": "equipment",
+   "role": "Line-pipe maker with a US subsidiary, Welspun Tubular LLC (S24).",
+   "impact": "A record $412.5 mn US HFIW order lifts the global order book to $4.7 bn, executed in FY28-29 (S24)."
+  },
+  {
+   "name": "Petronet LNG",
+   "nse": "PETRONET",
+   "bse": null,
+   "bucket": "gas_chain",
+   "role": "LNG regasification operator with the Dahej terminal (S4).",
+   "impact": "Qatar suspension cut Dahej utilisation to 66%; recovery depends on Hormuz reopening (S4)."
+  },
+  {
+   "name": "Hindustan Petroleum",
+   "nse": "HINDPETRO",
+   "bse": null,
+   "bucket": "downstream",
+   "role": "State refiner and fuel retailer (S25).",
+   "impact": "Lost ₹12,264 cr in Q1 FY27 with retail prices held; US tariffs on Russian-oil buyers add sourcing risk (S8; S25)."
+  },
+  {
+   "name": "Bharat Petroleum",
+   "nse": "BPCL",
+   "bse": null,
+   "bucket": "downstream",
+   "role": "State refiner and fuel retailer (S25).",
+   "impact": "Consolidated loss of ₹1,872.70 cr in Q1 FY27 and ₹15,803 cr cumulative LPG under-recovery (S25)."
+  }
+ ],
+ "sources": [
+  {
+   "id": "S1",
+   "publisher": "U.S. Energy Information Administration (EIA)",
+   "title": "Short-Term Energy Outlook, September 2026",
+   "url": "https://www.eia.gov/outlooks/steo/pdf/steo_full.pdf",
+   "date": "2026-09-09",
+   "kind": "primary"
+  },
+  {
+   "id": "S2",
+   "publisher": "World Oil",
+   "title": "IEA cuts 2026 oil supply outlook as Gulf recovery slips to 2027",
+   "url": "https://www.worldoil.com/news/2026/9/11/iea-cuts-2026-oil-supply-outlook-as-gulf-recovery-slips-to-2027",
+   "date": "2026-09-11",
+   "kind": "news"
+  },
+  {
+   "id": "S3",
+   "publisher": "International Energy Forum (IEF)",
+   "title": "Comparative Analysis of Monthly Reports on the Oil Market",
+   "url": "https://www.ief.org/news/comparative-analysis-of-monthly-reports-on-the-oil-market-79",
+   "date": "2026-09-14",
+   "kind": "primary"
+  },
+  {
+   "id": "S4",
+   "publisher": "ScanX",
+   "title": "Petronet LNG Q1 results: net profit up 33% YoY to ₹1,133 crore",
+   "url": "https://scanx.trade/stock-market-news/companies/petronet-lng-q1-results-net-profit-up-33-yoy-1-133-crore/48683489",
+   "date": "2026-08-19",
+   "kind": "news"
+  },
+  {
+   "id": "S5",
+   "publisher": "CNBC",
+   "title": "Oil price today: WTI, Brent, Trump, Iran",
+   "url": "https://www.cnbc.com/2026/09/28/oil-price-today-wti-brent-trump-iran.html",
+   "date": "2026-09-28",
+   "kind": "news"
+  },
+  {
+   "id": "S6",
+   "publisher": "The Daily Hodl",
+   "title": "Bank of America, Goldman Sachs, HSBC and more raising Brent oil price forecasts amid persistent Gulf shipping disruptions",
+   "url": "https://dailyhodl.com/2026/09/13/bank-of-america-goldman-sachs-hsbc-and-more-raising-brent-oil-price-forecasts-amid-persistent-gulf-shipping-disruptions/",
+   "date": "2026-09-13",
+   "kind": "news"
+  },
+  {
+   "id": "S7",
+   "publisher": "CNBC",
+   "title": "OPEC+ keeps oil output policy unchanged for October",
+   "url": "https://www.cnbc.com/2026/09/06/opec-oil-output-october.html",
+   "date": "2026-09-06",
+   "kind": "news"
+  },
+  {
+   "id": "S8",
+   "publisher": "Outlook India",
+   "title": "Trump's Russia sanctions law: what it means for India's oil supply",
+   "url": "https://www.outlookindia.com/national/russian-oil-what-us-sanctions-bill-means-for-indias-energy-security",
+   "date": "2026-09-19",
+   "kind": "news"
+  },
+  {
+   "id": "S9",
+   "publisher": "OilPrice.com",
+   "title": "India's crude oil output falls for third straight year",
+   "url": "https://oilprice.com/Latest-Energy-News/World-News/Indias-Crude-Oil-Output-Falls-for-Third-Straight-Year.html",
+   "date": "2026-08-15",
+   "kind": "news"
+  },
+  {
+   "id": "S10",
+   "publisher": "Petroleum Planning & Analysis Cell (PPAC), MoPNG",
+   "title": "PPAC home page: natural gas price for September 2026 and Delhi retail prices",
+   "url": "https://ppac.gov.in/",
+   "date": "2026-09-28",
+   "kind": "primary"
+  },
+  {
+   "id": "S11",
+   "publisher": "ETV Bharat",
+   "title": "Govt raises regulated gas price for ONGC, Oil India to USD 7/mmBtu",
+   "url": "https://www.etvbharat.com/en/bharat/government-raises-regulated-gas-price-for-ongc-and-oil-india-to-usd-7-per-mmbtu-enn26033106130",
+   "date": "2026-03-31",
+   "kind": "news"
+  },
+  {
+   "id": "S12",
+   "publisher": "Angel One (news)",
+   "title": "India reduces windfall tax on petrol, diesel and ATF exports; new rates effective September 16, 2026",
+   "url": "https://www.angelone.in/news/economy/india-reduces-windfall-tax-on-petrol-diesel-and-atf-exports-new-rates-effective-september-16-2026",
+   "date": "2026-09-17",
+   "kind": "news"
+  },
+  {
+   "id": "S13",
+   "publisher": "Business Standard",
+   "title": "Royalty rate reversal, cooling crude oil prices negative for ONGC, OIL",
+   "url": "https://www.business-standard.com/markets/news/royalty-rollback-and-softer-crude-outlook-weigh-on-ongc-oil-india-126061201183_1.html",
+   "date": "2026-06-12",
+   "kind": "news"
+  },
+  {
+   "id": "S14",
+   "publisher": "PIB, Government of India",
+   "title": "Cabinet approves 'Samudra Manthan' (National Offshore Exploration Scheme) with an outlay of Rs 84,084 crore",
+   "url": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2292445&reg=48&lang=1",
+   "date": "2026-07-31",
+   "kind": "primary"
+  },
+  {
+   "id": "S15",
+   "publisher": "ETV Bharat",
+   "title": "Govt extends OALP-X, XI bid deadline again to Nov 15",
+   "url": "https://www.etvbharat.com/en/business/govt-extends-oalp-x-and-xi-bid-deadline-again-to-november-15-enn26091004628",
+   "date": "2026-09-10",
+   "kind": "news"
+  },
+  {
+   "id": "S16",
+   "publisher": "Kotak Neo",
+   "title": "ONGC Mahanadi gas discovery: 6 oil & gas stocks in focus",
+   "url": "https://www.kotakneo.com/news/sectors/ongc-mahanadi-gas-discovery-oil-gas-stocks/",
+   "date": "2026-09-22",
+   "kind": "news"
+  },
+  {
+   "id": "S17",
+   "publisher": "Upstox",
+   "title": "Oil and Natural Gas Corp strikes gas at deepwater well in Mahanadi offshore basin; key details",
+   "url": "https://upstox.com/news/market-news/stocks/ongc-shares-in-focus-on-striking-gas-at-deepwater-well-in-mahanadi-offshore-basin-key-details/article-200612/",
+   "date": "2026-09-21",
+   "kind": "news"
+  },
+  {
+   "id": "S18",
+   "publisher": "Kotak Neo",
+   "title": "ONGC Q1 FY 2026-27 results: net profit jumps 112% to Rs 17,034 crore",
+   "url": "https://www.kotakneo.com/news/stocks/ongc-q1-fy-27-results-pat-17034-crore/",
+   "date": "2026-08-05",
+   "kind": "news"
+  },
+  {
+   "id": "S19",
+   "publisher": "Yahoo Finance / GuruFocus (earnings call summary)",
+   "title": "Oil India Ltd - Q1 FY27 earnings call highlights",
+   "url": "https://ca.finance.yahoo.com/news/oil-india-ltd-bom-533106-010752070.html",
+   "date": "2026-08-10",
+   "kind": "company"
+  },
+  {
+   "id": "S20",
+   "publisher": "Business Today",
+   "title": "Oil India shares jump after strong Q1 earnings; check fresh target prices",
+   "url": "https://www.businesstoday.in/markets/stocks/story/oil-india-shares-jump-after-strong-q1-earnings-check-fresh-target-prices-548434-2026-08-11",
+   "date": "2026-08-11",
+   "kind": "research"
+  },
+  {
+   "id": "S21",
+   "publisher": "ICRA (rating rationale)",
+   "title": "Vedanta Oil and Gas Limited: [ICRA]AA+ (Stable) assigned",
+   "url": "https://www.icra.in/Rating/ShowRationalReportFilePdfViewer/143968",
+   "date": "2026-06-29",
+   "kind": "research"
+  },
+  {
+   "id": "S22",
+   "publisher": "Multibagg.ai (earnings call digest)",
+   "title": "Deep Industries Q1 FY27 earnings call digest",
+   "url": "https://www.multibagg.ai/market-pulse/articles/deep-q1fy27-96718",
+   "date": "2026-07-30",
+   "kind": "company"
+  },
+  {
+   "id": "S23",
+   "publisher": "Yahoo Finance / GuruFocus (earnings call summary)",
+   "title": "Maharashtra Seamless Ltd - Q1 FY27 earnings call highlights",
+   "url": "https://finance.yahoo.com/markets/stocks/articles/maharashtra-seamless-ltd-bom-500265-010430397.html",
+   "date": "2026-08-15",
+   "kind": "company"
+  },
+  {
+   "id": "S24",
+   "publisher": "The Tribune (exchange filing)",
+   "title": "Welspun Corp secures $412.5 million HFIW pipe order, global order book hits record $4.7 billion",
+   "url": "https://www.tribuneindia.com/news/exchange-filing/welspun-corp-secures-412-5-million-hfiw-pipe-order-global-order-book-hits-record-4-7-billion",
+   "date": "2026-09-25",
+   "kind": "company"
+  },
+  {
+   "id": "S25",
+   "publisher": "Business Standard",
+   "title": "BPCL, HPCL post Q1 losses amid crude oil spike, weak fuel margins",
+   "url": "https://www.business-standard.com/companies/news/bpcl-hpcl-slip-into-losses-in-q1-amid-west-asia-crisis-126072201500_1.html",
+   "date": "2026-07-22",
+   "kind": "news"
+  }
+ ],
+ "method": "Week-40 refresh of the 2026-W38 edition, researched on 29 September 2026 with web search and page fetches. We re-verified carried-over facts (EIA September STEO read directly from the PDF; IEA September report via World Oil; ICRA's Vedanta Oil & Gas rationale read from the PDF; ONGC, Oil India, Petronet, Deep Industries and Maharashtra Seamless Q1 FY27 figures re-opened) and added this week's changes: Brent's move above $105, mid-September bank forecast upgrades, the IEF comparison of agency demand forecasts, ONGC's Mahanadi gas discovery, the US Russia-sanctions law, the 16 September export-duty revision, the OALP deadline extension and Welspun's new order. Some facts come from search-result snippets of pages that blocked direct fetching (CNBC, Business Standard, Upstox article-200612, PPAC pages); the Outlook India and OilPrice dates are approximate to the publication week/month. Items from last week that we could not re-confirm today were dropped rather than carried forward - including the PPAC Ready Reckoner import-bill series, OPEC spare-capacity estimates, older bank forecasts (Citi, Morgan Stanley, JPMorgan), IOC, GAIL, city gas and small-cap service results, Reliance KG-D6 data and L&T/EIL/MAN/Jindal Saw orders. IGL's Q1 profit was reported differently by sources (₹186 cr standalone, -48%, versus ₹237.9 cr consolidated, -44%), so we left IGL out this week. Market-cap coverage runs from large caps (ONGC, BPCL, HPCL) through mid caps (Oil India, Petronet, Welspun, Vedanta Oil & Gas) to small caps (Antelopus Selan, HOEC, Jindal Drilling, Deep Industries, SEAMEC, Asian Energy, Maharashtra Seamless). No ratings or price targets are ours; broker targets are quoted as published.",
+ "bucket_labels": {
+  "producer": [
+   "Producers (E&P)",
+   "Find and pump oil & gas"
+  ],
+  "services": [
+   "Oilfield services & drilling",
+   "Rigs, vessels, seismic, well services"
+  ],
+  "equipment": [
+   "Equipment, pipes & engineering",
+   "Pipes, tubulars, engineering for upstream"
+  ],
+  "gas_chain": [
+   "Gas value chain",
+   "Gas transmission, LNG, city gas"
+  ],
+  "downstream": [
+   "Refiners & fuel retailers",
+   "Buy crude, sell fuels"
+  ],
+  "other": [
+   "Other",
+   ""
+  ]
+ }
+}

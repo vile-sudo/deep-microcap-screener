@@ -1,18 +1,70 @@
 {
- "updated": "2026-09-28T05:17+05:30",
+ "updated": "2026-09-29T06:39+05:30",
  "figures": [
   {
    "label": "Brent crude",
-   "value": "$106.32/bbl",
-   "as_of": "2026-09-27",
-   "note": "+1.92% on the day, Hormuz talks stalled",
+   "value": "$108.59/bbl",
+   "as_of": "2026-09-28",
+   "note": "+4.09% on the day, per The National; other outlets show lower intraday levels, e",
    "source": {
-    "publisher": "Trading Economics",
-    "url": "https://tradingeconomics.com/commodity/brent-crude-oil"
+    "publisher": "The National",
+    "url": "https://www.thenationalnews.com/business/energy/2026/09/28/oil-prices-rise-as-us-iran-peace-talks-hit-stalemate/"
+   }
+  },
+  {
+   "label": "WTI crude",
+   "value": "$96.31/bbl",
+   "as_of": "2026-09-28",
+   "note": "+4.21% on the day",
+   "source": {
+    "publisher": "The National",
+    "url": "https://www.thenationalnews.com/business/energy/2026/09/28/oil-prices-rise-as-us-iran-peace-talks-hit-stalemate/"
    }
   }
  ],
  "items": [
+  {
+   "date": "2026-09-28",
+   "title": "Morgan Stanley positive on HPCL, BPCL, ONGC and Oil India; flags three 'surprises'",
+   "text": "Morgan Stanley said it is positive on HPCL, BPCL, ONGC and Oil India (plus Adani Power and Adani Energy Solutions), citing three surprises. India's LNG consumption has not slowed despite costs about 2.5 times higher, power spreads for gas and coal generation are improving, and corporates are shifting capital towards trading, tanker ownership and fuel storage. The article gives no target prices. It supports the case for both producers and OMCs despite the supply shock.",
+   "tone": "good",
+   "companies": [
+    "HINDPETRO",
+    "BPCL",
+    "ONGC",
+    "OIL"
+   ],
+   "sources": [
+    {
+     "publisher": "BusinessToday",
+     "title": "BPCL, HPCL, IOC, ONGC, Adani Power: Morgan Stanley positive on oil stocks, flags 3 surprises",
+     "url": "https://www.businesstoday.in/markets/stocks/story/bpcl-hpcl-ioc-ongc-adani-power-morgan-stanley-positive-on-oil-stocks-flags-3-surprises-558125-2026-09-28",
+     "date": "2026-09-28"
+    }
+   ],
+   "added": "2026-09-29"
+  },
+  {
+   "date": "2026-09-28",
+   "title": "Oil jumps as US-Iran talks stall; Brent up 4.09% to $108.59 on The National's report",
+   "text": "The National reported Brent at $108.59/bbl (+4.09%) and WTI at $96.31 (+4.21%) on 28 September after President Trump rejected Iran's seven-day Hormuz reopening plan while leaving room for talks. Reports that Saudi Arabia's East-West pipeline had reopened limited the gains. Higher crude helps upstream realisations at ONGC and Oil India but deepens under-recoveries for the state-run fuel retailers.",
+   "tone": "watch",
+   "companies": [
+    "ONGC",
+    "OIL",
+    "HINDPETRO",
+    "BPCL"
+   ],
+   "sources": [
+    {
+     "publisher": "The National",
+     "title": "Oil prices rise as US-Iran peace talks hit stalemate",
+     "url": "https://www.thenationalnews.com/business/energy/2026/09/28/oil-prices-rise-as-us-iran-peace-talks-hit-stalemate/",
+     "date": "2026-09-28"
+    }
+   ],
+   "added": "2026-09-29"
+  },
   {
    "date": "2026-09-27",
    "title": "Iran's Hormuz authority threatens to bar ships using 'illegal routes'",
