@@ -1,0 +1,25 @@
+{
+ "slug": "specialty-gas-mixtures",
+ "name": "Specialty Gas Mixtures",
+ "icon": "flask",
+ "kind": "theme",
+ "scope": "IndexBox projects the global specialty gas mixtures market growing at roughly 5.8% CAGR to 2035 (market index 158, 2025=100), driven by two very different demand pulls: semiconductor manufacturing needing ultra-high-purity mixtures for etching, deposition and doping, and healthcare needing medical gas mixtures for diagnostics, therapy and respiratory care, alongside analytical calibration, welding and environmental testing. This is already a real, currently-expanding India story, not a from-scratch opportunity -- Stallion India commissioned a dedicated semiconductor/specialty gas facility on 21 Sep 2026 and Ellenbarrie has stated FY26-27 capex explicitly aimed at high-purity gases for solar and semiconductor customers -- the question is how much of this the market has already caught onto given both stocks have already moved.",
+ "questions": [
+  "What is a specialty/calibration gas mixture (versus a single-component industrial gas), why does semiconductor fabrication (etching, deposition, doping) need ultra-high-purity or certified mixtures, and separately why does healthcare need medical gas mixtures -- are these genuinely the same production capability or different businesses bolted together?",
+  "How large and how fast is global demand growing by end-use (semiconductor, healthcare, analytical calibration, welding, environmental testing) per IndexBox and other market-research estimates, and which end-use is the most differentiated/high-margin versus commodity industrial gas?",
+  "What is India's existing specialty/industrial gas manufacturing base, and which listed companies genuinely produce specialty gas mixtures (not just bulk oxygen/nitrogen/argon) -- Ellenbarrie Industrial Gases, Stallion India Fluorochemicals, Linde India, and any others the research turns up?",
+  "For each listed company: what specific specialty-gas capex, facility commissioning, product qualification or customer relationship do they have (dates, capacity, investment amounts), and how much of their current revenue this realistically represents versus their broader industrial-gas or refrigerant business?",
+  "How much of this is already known or priced in: share-price performance of Ellenbarrie and Stallion India over the last 6-12 months, and the volume of media/broker coverage specifically tying them to semiconductor or specialty gas demand?",
+  "What are the risks: import dependence for feedstock gases, customer qualification cycles for semiconductor-grade material, competition from established global players (Linde, Air Products, Air Liquide) operating in India, and execution risk on new capacity?",
+  "What are the near-term catalysts and things to watch: further capacity commissioning (Stallion's Mambattu facility, Ellenbarrie's stated capex), new customer qualifications, and quarterly results commentary on the specialty-gas segment specifically?"
+ ],
+ "bucket_labels": {
+  "specialty_gas_makers": ["Specialty & calibration gas makers", "Indian listed companies producing specialty and calibration gas mixtures"],
+  "diversified_gas_major": ["Diversified global gas major (India arm)", "Large multinational industrial-gas subsidiary building out India semiconductor-grade gas supply"]
+ },
+ "universe": {
+  "specialty_gas_makers": ["ELLEN", "STALLION"],
+  "diversified_gas_major": ["LINDEINDIA"]
+ },
+ "refresh": "weekly"
+}
