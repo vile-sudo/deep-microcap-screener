@@ -1,0 +1,742 @@
+{
+ "slug": "specialty-gas-mixtures",
+ "name": "Specialty Gas Mixtures",
+ "icon": "flask",
+ "edition": "2026-W40",
+ "updated": "2026-09-29",
+ "scope": "Global specialty/calibration gas mixture demand (semiconductor, healthcare, calibration, welding, environmental) and the Indian listed companies building specialty and semiconductor-grade gas capability: Stallion India, Ellenbarrie, Linde India, plus fluorochemical adjacencies.",
+ "summary": {
+  "one_line": "Specialty gas mixtures are a mid-single-digit global growth market (IndexBox: 5.8% CAGR to 2035). In India, Stallion has started up its Khalapur facility and Ellenbarrie's high-purity plant is only planned for FY28, so for both companies specialty gas is still a very small part of what drives earnings.",
+  "key_points": [
+   "IndexBox projects the global specialty gas mixtures market to grow at 5.8% CAGR over 2026-2035, taking its index from 100 in 2025 to 158 in 2035. It estimates semiconductors at 30% of demand and healthcare at 25% (S1).",
+   "Certified reference (calibration) mixtures grow faster in IndexBox's view: 7-9% CAGR, with the index reaching about 190 by 2035. The semiconductor sub-segment (38% share) grows at 9-11% because advanced nodes need ppb-level accuracy (S2).",
+   "IndexBox estimates 65-70% of India's electronic specialty gas market by value is imported in 2026. Global majors (Linde, Air Liquide, Taiyo Nippon Sanso) hold about 60-65% of revenue (S3). India is described as 100% import-dependent on helium (S4).",
+   "Stallion India started commercial operations at its Khalapur (Maharashtra) semiconductor and specialty gas facility on 21 Sep 2026, with 1,200 MT/yr of helium processing capacity (S5). Management guides only 5 helium containers in FY27, 12 in FY28 and 24 after that (S7).",
+   "Ellenbarrie says it is moving into high-purity and specialty gases for solar-cell and semiconductor customers. It has signed contracts with 'a couple of solar players' and plans a dedicated West India facility for FY28 (S15). Its revenue today is almost entirely core industrial gases: Rs 334 crore of Rs 341.6 crore in FY26 (S16).",
+   "Linde India is building an air separation unit at Dholera for Tata's fab, due in H2 2027 (S19). It is also developing a $58m electronic specialty gas hub there (S20) and has taken 8 acres in Sanand for a chip-packaging gas facility (S19).",
+   "Much is already in the price for Ellenbarrie: the stock is up 87% over six months but still down 23% over one year and below its Rs 400 IPO price (S18, S13). Stallion, at about Rs 220, is roughly 39% below its October 2025 high of Rs 359 despite hitting the upper circuit on the Khalapur news (S11, S6)."
+  ],
+  "for_investors": [
+   {
+    "title": "Who benefits",
+    "tone": "good",
+    "points": [
+     "Linde India has the clearest direct link to India's fab build-out, through dedicated Dholera and Sanand projects tied to Tata, Micron, CG Power and Kaynes (S19, S20).",
+     "Stallion becomes the first listed Indian pure-play with a commissioned semiconductor/specialty gas debulking and blending site (S5). A second site at Mambattu, with helium and semiconductor-gas capability, is due in Nov-Dec 2026 (S9).",
+     "Ellenbarrie gets a solar-cell high-purity gas opportunity on top of fast-growing bulk volumes. Q1 FY27 PAT rose 87% YoY (S17, S15)."
+    ]
+   },
+   {
+    "title": "Who is hurt / risks",
+    "tone": "bad",
+    "points": [
+     "Feedstock risk: India is 100% import-dependent on helium, holds only about 7-10 days of inventory, and gets more than 50% of it from Qatar, where supply was disrupted in 2026 (S4).",
+     "Incumbents dominate: global majors hold an estimated 60-65% of Indian electronic specialty gas revenue (S3).",
+     "The specialty-gas contribution is small against valuations. Screener puts Linde India's P/E at 96.7, Stallion's at 49.0 and Ellenbarrie's at 43.1 (S21, S10, S14)."
+    ]
+   },
+   {
+    "title": "What to watch",
+    "tone": "watch",
+    "points": [
+     "Stallion's analyst meet on 1 Oct 2026 and whether Khalapur volumes are tracking the 5-container FY27 guide (S12, S7).",
+     "The start-up of Stallion's Mambattu facility (Nov-Dec 2026) and Bhilwara R-32 plant (end-Dec 2026 per the Q1 FY27 call) (S9, S7).",
+     "Ellenbarrie naming a site, capex and customers for its FY28 West India high-purity plant (S15).",
+     "Commissioning of Linde India's Dholera ASU in H2 2027 (S19)."
+    ]
+   }
+  ]
+ },
+ "kpis": [
+  {
+   "label": "Global specialty gas mixtures CAGR",
+   "value": "5.8%",
+   "sub": "2026-2035 forecast, IndexBox (S1)"
+  },
+  {
+   "label": "Market index 2035",
+   "value": "158",
+   "sub": "2025=100, IndexBox (S1)"
+  },
+  {
+   "label": "Semiconductor share of demand",
+   "value": "30%",
+   "sub": "IndexBox estimate (S1)"
+  },
+  {
+   "label": "India electronic specialty gas import share",
+   "value": "65-70%",
+   "sub": "by value, 2026, IndexBox (S3)"
+  },
+  {
+   "label": "Stallion Khalapur capacity",
+   "value": "1,200 MT/yr",
+   "sub": "helium processing, commercial ops 21 Sep 2026 (S5)"
+  },
+  {
+   "label": "Linde Dholera ESG hub",
+   "value": "$58m",
+   "sub": "due H2 2027 (S20, S19)"
+  }
+ ],
+ "sections": [
+  {
+   "id": "theme_explainer",
+   "title": "What specialty gas mixtures are and where demand comes from",
+   "subsections": [
+    {
+     "title": "Mixtures vs single industrial gases",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "A certified reference or calibration gas mixture is a precisely made blend whose composition is verified and traceable to international standards. It is used to calibrate and validate analytical instruments (S2). Bulk oxygen, nitrogen and argon, by contrast, are sold on volume. Ellenbarrie describes oxygen and nitrogen pricing as 'stable and largely contractual', while argon pricing moves with the market (S17)."
+      },
+      {
+       "type": "p",
+       "text": "Semiconductor fabs need ultra-high-purity mixtures for etching, deposition and doping (S1). Below 7nm, dopant, etch and chamber-cleaning gases need ppb-level accuracy (S2). Healthcare uses mixtures for diagnostics, therapy and respiratory care (S1), and helium cools MRI magnets (S4)."
+      },
+      {
+       "type": "callout",
+       "tone": "info",
+       "text": "Same capability or two businesses? The shared core is purification, blending, analytical certification and cylinder or ISO-container logistics. Customers and qualification are different, though. Fab customers need ppb-level certification (S2), while hospital gases are sold through healthcare channels, as with Linde India's healthcare portfolio (S21). Helium is where the two overlap: the same imported molecule serves both semiconductors and MRI (S4), which is why Stallion's Khalapur helium plant targets semiconductors, electronics and MRI together (S7)."
+      }
+     ]
+    },
+    {
+     "title": "Demand by end-use (IndexBox)",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "Global specialty gas mixtures: estimated end-use share and trend (IndexBox, S1)",
+       "columns": [
+        "End-use",
+        "Share",
+        "Trend"
+       ],
+       "rows": [
+        [
+         "Semiconductor manufacturing",
+         "30%",
+         "Increasing"
+        ],
+        [
+         "Healthcare & medical diagnostics",
+         "25%",
+         "Increasing"
+        ],
+        [
+         "Analytical & laboratory calibration",
+         "20%",
+         "Stable"
+        ],
+        [
+         "Welding & metal fabrication",
+         "15%",
+         "Stable"
+        ],
+        [
+         "Environmental testing",
+         "10%",
+         "Increasing"
+        ]
+       ]
+      },
+      {
+       "type": "p",
+       "text": "IndexBox puts Asia-Pacific at 40% of the market and growing (S1). Its separate forecast for certified reference mixtures is faster, at 7-9% CAGR, with the semiconductor segment growing 9-11% (S2). For India's electronic specialty gases, IndexBox estimates a 2026 market of USD 1.2-1.6bn growing 11-14% a year to 2035. Semiconductor fabrication is 55-60% of that value (S3)."
+      },
+      {
+       "type": "callout",
+       "tone": "good",
+       "text": "On IndexBox's numbers, the most differentiated end-uses are semiconductor and certified calibration mixtures, which are growing fastest and need ppb-level accuracy (S1, S2). Welding and calibration are classed as 'stable' (S1)."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "policy_and_capex",
+   "title": "India's gas base and capex pipeline",
+   "subsections": [
+    {
+     "title": "Import dependence and the localisation gap",
+     "blocks": [
+      {
+       "type": "bullets",
+       "items": [
+        "IndexBox estimates that 65-70% of India's electronic specialty gas market value is imported in 2026 (USD 800-1,100m), falling to 50-55% by 2035 (S3).",
+        "IndexBox lists Linde India, INOX Air Products, Bhuruka Gases and SICGIL as the top domestic suppliers. Global leaders hold about 60-65% of market revenue (S3).",
+        "India is 100% import-dependent on helium, with demand estimated at 3.4 million cubic metres in 2025 and only 7-10 days of inventory. More than 50% of imports come from Qatar, whose Ras Laffan complex was damaged in the 2026 West Asia crisis (S4).",
+        "IndexBox cites India Semiconductor Mission support of over USD 10bn and three major fabs in construction or ramp-up (S3)."
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Specialty-gas capex tracker",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "Announced specialty / semiconductor-gas projects by listed companies",
+       "columns": [
+        "Company",
+        "Project",
+        "Capacity / size",
+        "Timing",
+        "Source"
+       ],
+       "rows": [
+        [
+         "Stallion India",
+         "Khalapur semiconductor & specialty gas (helium) facility",
+         "1,200 MT/yr",
+         "Commercial ops 21 Sep 2026",
+         "S5"
+        ],
+        [
+         "Stallion India",
+         "Mambattu (AP) blending/debulking hub with helium & semiconductor-gas capability",
+         "7,200 MT/yr",
+         "Nov-Dec 2026 (S9); end-Q3 FY27 (S7)",
+         "S9, S7"
+        ],
+        [
+         "Ellenbarrie",
+         "West India high-purity/specialty gas facility (solar, semiconductor)",
+         "Not disclosed",
+         "Planned FY28",
+         "S15"
+        ],
+        [
+         "Linde India",
+         "Dholera ASU for Tata fab + electronic specialty gas hub",
+         "$58m hub",
+         "H2 2027",
+         "S19, S20"
+        ],
+        [
+         "Linde India",
+         "Sanand chip-packaging gas facility",
+         "8-acre site",
+         "Not disclosed",
+         "S19"
+        ]
+       ]
+      },
+      {
+       "type": "callout",
+       "tone": "warn",
+       "text": "Ellenbarrie's capex figures differ by source. The Q3 FY26 summary gives Rs 250 crore for FY26 and Rs 200 crore for FY27 (S15). The FY26 and Q1 FY27 summaries give Rs 250 crore for FY27 and Rs 200 crore for FY28 (S16, S17). Most of this is going into bulk/merchant ASUs, not high-purity gases (S17)."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "listed_company_impact",
+   "title": "Listed company impact",
+   "subsections": [
+    {
+     "title": "How much of revenue is really specialty gas",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "Scale of the listed names (Screener, 29 Sep 2026)",
+       "columns": [
+        "Company",
+        "FY26 sales (Rs cr)",
+        "Mkt cap (Rs cr)",
+        "P/E",
+        "Specialty-gas exposure today"
+       ],
+       "rows": [
+        [
+         "Linde India",
+         "2,531 (S21)",
+         "52,855 (S21)",
+         "96.7 (S21)",
+         "Semiconductor projects pre-revenue; Gases segment 78% of Q1 FY27 (S21)"
+        ],
+        [
+         "Ellenbarrie",
+         "342 (S14)",
+         "5,205 (S14)",
+         "43.1 (S14)",
+         "Core gases Rs 334 cr of FY26 revenue (S16); high-purity plant FY28 (S15)"
+        ],
+        [
+         "Stallion India",
+         "431 (S10)",
+         "2,548 (S10)",
+         "49.0 (S10)",
+         "Khalapur only commissioned 21 Sep 2026 (S5); FY27 helium guide 5 containers (S7)"
+        ]
+       ]
+      },
+      {
+       "type": "p",
+       "text": "None of the three reports a separate specialty or semiconductor gas revenue line in the sources reviewed. Stallion's FY27 growth is driven mainly by R-32: management expects about Rs 250 crore from R-32 in FY27 against a revenue target above Rs 560 crore (S8). The Q1 FY27 call pushed Bhilwara to end-December 2026, which limits FY27 to about one quarter of contribution (S7)."
+      },
+      {
+       "type": "chart",
+       "title": "Stallion India quarterly sales",
+       "unit": "Rs crore",
+       "series": [
+        {
+         "name": "Sales",
+         "points": [
+          [
+           "Jun-24",
+           73
+          ],
+          [
+           "Sep-24",
+           68
+          ],
+          [
+           "Dec-24",
+           85
+          ],
+          [
+           "Mar-25",
+           152
+          ],
+          [
+           "Jun-25",
+           110
+          ],
+          [
+           "Sep-25",
+           106
+          ],
+          [
+           "Dec-25",
+           105
+          ],
+          [
+           "Mar-26",
+           110
+          ],
+          [
+           "Jun-26",
+           121
+          ]
+         ]
+        }
+       ],
+       "source": "Source: Screener.in (S10)"
+      }
+     ]
+    },
+    {
+     "title": "Other listed adjacencies and the size-tier gap",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "Gujarat Fluorochemicals has promoted a portfolio of ultra-pure semiconductor process gases for etching, cleaning and CVD (S23). On 26 Jun 2026 it incorporated GFCL Semiconductor and Advanced Materials Ltd with Rs 1 lakh of capital (S22). Navin Fluorine is adding electronic-grade hydrofluoric acid capacity (S24), which is a wet chemical rather than a gas mixture."
+      },
+      {
+       "type": "callout",
+       "tone": "info",
+       "text": "Coverage gap: we found no other listed small-cap Indian company making certified calibration or semiconductor gas mixtures. Domestic specialty suppliers named by IndexBox, including INOX Air Products, Bhuruka Gases and SICGIL, do not appear in our sources as listed companies (S3). The listed universe here is five names, not the 8+ this format usually targets, because the niche is still narrow."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "research_house_views",
+   "title": "Research-house views and how much is priced in",
+   "subsections": [
+    {
+     "title": "Market-research estimates",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "Forecasts compared",
+       "columns": [
+        "Source",
+        "Market",
+        "Forecast"
+       ],
+       "rows": [
+        [
+         "IndexBox (S1)",
+         "Global specialty gas mixtures",
+         "5.8% CAGR 2026-35; index 158 by 2035"
+        ],
+        [
+         "IndexBox (S2)",
+         "Global certified reference gas mixtures",
+         "7-9% CAGR; index ~190 by 2035"
+        ],
+        [
+         "IndexBox (S3)",
+         "India electronic specialty gases",
+         "11-14% CAGR 2026-35; USD 3.5-4.5bn by 2035"
+        ]
+       ]
+      },
+      {
+       "type": "p",
+       "text": "We found no sell-side initiation in the sources we could verify that explicitly values the specialty-gas segment of Ellenbarrie or Stallion. Most coverage is results summaries and news-wire items (S5, S7, S17). Institutional interest is visible, though: Stallion's 1 Oct 2026 meeting includes Aditya Birla Sun Life MF, OHM Capital and Ambit Asset Management (S12)."
+      }
+     ]
+    },
+    {
+     "title": "Share-price context",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "Price performance (as of 29 Sep 2026)",
+       "columns": [
+        "Stock",
+        "Price",
+        "Return / range",
+        "Source"
+       ],
+       "rows": [
+        [
+         "Ellenbarrie",
+         "Rs 369.35",
+         "1M +16.0%, 6M +87.0%, 1Y -22.9%; IPO price Rs 400 (S13)",
+         "S18"
+        ],
+        [
+         "Stallion India",
+         "Rs 219.58",
+         "52w high Rs 359.15 (17 Oct 2025), low Rs 99.32 (10 Mar 2026); 1Y +7.9%",
+         "S11"
+        ],
+        [
+         "Linde India",
+         "Rs 6,200",
+         "52w high Rs 8,049 / low Rs 5,653",
+         "S21"
+        ]
+       ]
+      },
+      {
+       "type": "callout",
+       "tone": "warn",
+       "text": "Data vendors disagree. Ellenbarrie's 52-week high is Rs 502 on Tickertape (S18) but Rs 484 on Screener (S14). Samco shows a market cap for Stallion that is inconsistent with Screener's Rs 2,548 crore, so we use Screener's figure (S11, S10). Ellenbarrie's 87% six-month rally coincides with its ramp-up of merchant plants and the Q1 FY27 profit jump (S17). Stallion hit the upper circuit on the Khalapur announcement (S6) but remains well below its October 2025 peak (S11)."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "risks_and_catalysts",
+   "title": "Risks and catalysts",
+   "subsections": [
+    {
+     "title": "Risks",
+     "blocks": [
+      {
+       "type": "bullets",
+       "items": [
+        "Feedstock: helium is 100% imported, with 7-10 days of inventory and concentrated Qatari supply (S4). IndexBox expects India's electronic specialty gases to stay 50-55% imported even in 2035 (S3).",
+        "Competition: Linde, Air Liquide and Taiyo Nippon Sanso hold about 60-65% of the Indian electronic specialty gas market (S3), and Linde India is building dedicated fab-side supply (S19, S20).",
+        "Qualification: fab customers require ppb-level certified accuracy (S2), so new entrants face long qualification cycles before volumes arrive. Stallion's own helium guide ramps over three years (S7).",
+        "Execution: Stallion's Mambattu slipped because of scope expansion and the monsoon, and Bhilwara timing has moved between sources (October 2026 in S8, end-December 2026 in S7). Management has said Q1 FY27 margins were about half inventory-driven and not sustainable (S7). Stallion has also flagged possible equity raises (S7)."
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Catalysts and timeline",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "Things to watch",
+       "columns": [
+        "Date",
+        "Event",
+        "Source"
+       ],
+       "rows": [
+        [
+         "1 Oct 2026",
+         "Stallion analyst/investor meet after Khalapur start-up",
+         "S12"
+        ],
+        [
+         "Nov-Dec 2026",
+         "Stallion Mambattu start-up (helium/semiconductor-gas capable)",
+         "S9"
+        ],
+        [
+         "End-Dec 2026",
+         "Stallion Bhilwara R-32 commissioning (revised)",
+         "S7"
+        ],
+        [
+         "H2 2027",
+         "Linde India Dholera ASU for Tata fab",
+         "S19"
+        ],
+        [
+         "FY28",
+         "Ellenbarrie West India high-purity/specialty gas facility",
+         "S15"
+        ]
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "companies": [
+  {
+   "name": "Stallion India Fluorochemicals",
+   "nse": "STALLION",
+   "bse": "544342",
+   "bucket": "specialty_gas_makers",
+   "role": "Debulks, blends and processes refrigerant and industrial gases for HVAC, pharma, defence and semiconductor users (S10). Commissioned its 1,200 MT/yr Khalapur helium/semiconductor and specialty gas facility on 21 Sep 2026 (S5).",
+   "impact": "Gives direct but still small exposure: the FY27 helium guide is 5 containers, then 12 in FY28 and 24 thereafter (S7). Near-term earnings depend more on R-32 at Bhilwara (S8, S7). Mambattu adds helium and semiconductor-gas capability from Nov-Dec 2026 (S9)."
+  },
+  {
+   "name": "Ellenbarrie Industrial Gases",
+   "nse": "ELLEN",
+   "bse": null,
+   "bucket": "specialty_gas_makers",
+   "role": "Largest 100% Indian-owned industrial gas company by installed capacity. Makes oxygen, nitrogen, argon, helium, hydrogen, nitrous oxide and specialty gases for medical, chemical, defence and energy customers (S14).",
+   "impact": "Targeting high-purity gases for solar and semiconductor customers, with contracts signed with a couple of solar players and a West India facility planned for FY28 (S15). Current earnings are driven by bulk ramp-ups: Q1 FY27 revenue was Rs 98.7 crore and PAT Rs 35 crore (S17)."
+  },
+  {
+   "name": "Linde India",
+   "nse": "LINDEINDIA",
+   "bse": null,
+   "bucket": "diversified_gas_major",
+   "role": "Subsidiary of the Linde/BOC group making industrial and medical gases and building cryogenic air separation plants. Gases were 78% of Q1 FY27 revenue (S21).",
+   "impact": "Building a Dholera ASU for Tata's fab (H2 2027) and a $58m electronic specialty gas hub (S19, S20), plus a Sanand facility for Micron, CG Power and Kaynes packaging units (S19). This is meaningful optionality, but the stock trades at a 96.7x P/E (S21)."
+  },
+  {
+   "name": "Gujarat Fluorochemicals",
+   "nse": "FLUOROCHEM",
+   "bse": null,
+   "bucket": "other",
+   "role": "Fluoropolymer and fluorochemical maker that has showcased ultra-pure semiconductor process gases for etching, cleaning and CVD (S23).",
+   "impact": "Early optionality: it incorporated GFCL Semiconductor and Advanced Materials in June 2026 with nominal capital (S22). Its main capex is directed at EV battery materials (S24)."
+  },
+  {
+   "name": "Navin Fluorine International",
+   "nse": "NAVINFLUOR",
+   "bse": "532504",
+   "bucket": "other",
+   "role": "Specialty fluorochemicals maker expanding electronic-grade hydrofluoric acid capacity for semiconductors (S24).",
+   "impact": "An adjacent semiconductor-materials play (wet chemicals) rather than a gas-mixture maker. It faces competition from global majors such as Chemours, Daikin and Honeywell (S24)."
+  }
+ ],
+ "sources": [
+  {
+   "id": "S1",
+   "publisher": "IndexBox",
+   "title": "Specialty Gas Mixtures Market To 2035: Semiconductor and Healthcare Demand Drive Growth",
+   "url": "https://www.indexbox.io/blog/specialty-gas-mixtures-market-forecast-to-2035-growth-driven-by-semiconductor-and-healthcare-demand/",
+   "date": "2026-09-27",
+   "kind": "research"
+  },
+  {
+   "id": "S2",
+   "publisher": "IndexBox",
+   "title": "Certified Reference Gas Mixtures Market 2035: Semiconductor Fabrication Drives 7-9% CAGR Growth",
+   "url": "https://www.indexbox.io/blog/certified-reference-gas-mixtures-market-to-reach-190-index-by-2035-on-semiconductor-ppb-level-accuracy-demand/",
+   "date": "2026-08-09",
+   "kind": "research"
+  },
+  {
+   "id": "S3",
+   "publisher": "IndexBox",
+   "title": "Electronic Specialty Gases Market in India (report page)",
+   "url": "https://www.indexbox.io/store/india-electronic-specialty-gases-market-analysis-forecast-size-trends-and-insights/",
+   "date": "2026-09-29",
+   "kind": "research"
+  },
+  {
+   "id": "S4",
+   "publisher": "Drishti IAS",
+   "title": "Helium Crisis and India's Import Dependence",
+   "url": "https://www.drishtiias.com/daily-updates/daily-news-analysis/helium-crisis-and-indias-import-dependence",
+   "date": "2026-04-03",
+   "kind": "other"
+  },
+  {
+   "id": "S5",
+   "publisher": "Sahi (news wire)",
+   "title": "Stallion India Starts Commercial Operations At Khalapur Semiconductor Gas Facility",
+   "url": "https://www.sahi.com/news/stallion-india-starts-commercial-operations-at-khalapur-semiconductor-gas-facility",
+   "date": "2026-09-19",
+   "kind": "news"
+  },
+  {
+   "id": "S6",
+   "publisher": "Business Standard / Capital Market",
+   "title": "Stallion India hits the roof after commencing commercial operations at Khalapur facility",
+   "url": "https://www.business-standard.com/markets/capital-market-news/stallion-india-hits-the-roof-after-commencing-commercial-operations-at-khalapur-facility-126092100343_1.html",
+   "date": "2026-09-21",
+   "kind": "news"
+  },
+  {
+   "id": "S7",
+   "publisher": "Multibagg AI",
+   "title": "Stallion India Fluorochemicals: Q1 FY27 delivers sharp profit growth as integration roadmap takes shape",
+   "url": "https://www.multibagg.ai/market-pulse/articles/stallion-q1fy27-98284",
+   "date": "2026-09-29",
+   "kind": "other"
+  },
+  {
+   "id": "S8",
+   "publisher": "Innovacia Insights",
+   "title": "Stallion India Fluorochemicals Targets Strong Multi-Year Growth Amid R-32 Expansion and Specialty Gas Push",
+   "url": "https://innovacia.in/stallion-india-fluorochemicals-targets-strong-multi-year-growth-amid-r-32-expansion-and-specialty-gas-push/",
+   "date": "2026-09-29",
+   "kind": "other"
+  },
+  {
+   "id": "S9",
+   "publisher": "ANI",
+   "title": "Stallion India Fluorochemicals Q1FY7 PAT Up 79%: Helium, R-32 and New Capacities Shape the Next Growth Phase",
+   "url": "https://aninews.in/news/business/stallion-india-fluorochemicals-q1fy7-pat-up-79-helium-r-32-and-new-capacities-shape-the-next-growth-phase20260817143455/",
+   "date": "2026-08-17",
+   "kind": "news"
+  },
+  {
+   "id": "S10",
+   "publisher": "Screener.in",
+   "title": "Stallion India Fluorochemicals Ltd - company page",
+   "url": "https://www.screener.in/company/STALLION/",
+   "date": "2026-09-29",
+   "kind": "other"
+  },
+  {
+   "id": "S11",
+   "publisher": "Samco",
+   "title": "Stallion India Fluorochemicals share price",
+   "url": "https://www.samco.in/stocks/stallion-india-fluorochemicals-limited-share-price",
+   "date": "2026-09-29",
+   "kind": "other"
+  },
+  {
+   "id": "S12",
+   "publisher": "Sahi (news wire)",
+   "title": "Stallion India Fluorochemicals to Host Analyst and Investor Meet on October 1",
+   "url": "https://www.sahi.com/news/stallion-india-fluorochemicals-to-host-analyst-and-investor-meet-on-october-1",
+   "date": "2026-09-29",
+   "kind": "news"
+  },
+  {
+   "id": "S13",
+   "publisher": "Chittorgarh",
+   "title": "Ellenbarrie Industrial Gases IPO Date, Price, GMP, Details",
+   "url": "https://www.chittorgarh.com/ipo/ellenbarrie-industrial-gases-ipo/2189/",
+   "date": "2026-09-29",
+   "kind": "other"
+  },
+  {
+   "id": "S14",
+   "publisher": "Screener.in",
+   "title": "Ellenbarrie Industrial Gases Ltd - company page",
+   "url": "https://www.screener.in/company/ELLEN/",
+   "date": "2026-09-29",
+   "kind": "other"
+  },
+  {
+   "id": "S15",
+   "publisher": "Multibagg AI",
+   "title": "Ellenbarrie Industrial Gases Navigates Q3 FY26 with Strategic Expansions and Margin Resilience",
+   "url": "https://www.multibagg.ai/market-pulse/articles/ellenbarrie-q3-fy26-analysis-91114",
+   "date": "2026-02-04",
+   "kind": "other"
+  },
+  {
+   "id": "S16",
+   "publisher": "Multibagg AI",
+   "title": "Ellenbarrie Industrial Gases FY26: Capacity Adds, Cleaner Power, and a Noisy Q4",
+   "url": "https://www.multibagg.ai/market-pulse/articles/ellenbarrie-fy26-94803",
+   "date": "2026-09-29",
+   "kind": "other"
+  },
+  {
+   "id": "S17",
+   "publisher": "Multibagg AI",
+   "title": "Ellenbarrie Industrial Gases Q1 FY27: Ramp-ups Lift Growth and Margins",
+   "url": "https://www.multibagg.ai/market-pulse/articles/ellenbarrie-q1fy27-97534",
+   "date": "2026-09-29",
+   "kind": "other"
+  },
+  {
+   "id": "S18",
+   "publisher": "Tickertape",
+   "title": "Ellenbarrie Industrial Gases (ELLEN) share price",
+   "url": "https://www.tickertape.in/stocks/ellenbarrie-industrial-gases-ELLE",
+   "date": "2026-09-29",
+   "kind": "other"
+  },
+  {
+   "id": "S19",
+   "publisher": "Sahi (news wire)",
+   "title": "Linde India Secures Sanand Land For Semiconductor Gas Facility",
+   "url": "https://www.sahi.com/news/linde-india-secures-sanand-land-for-semiconductor-gas-facility",
+   "date": "2026-09-29",
+   "kind": "news"
+  },
+  {
+   "id": "S20",
+   "publisher": "gasworld",
+   "title": "Linde advances plans for new gases plant in India's Dholera electronics hub",
+   "url": "https://www.gasworld.com/story/linde-set-to-supply-industrial-gases-to-tatas-11bn-chip-fab-in-india/2164316.article/",
+   "date": "2026-09-29",
+   "kind": "news"
+  },
+  {
+   "id": "S21",
+   "publisher": "Screener.in",
+   "title": "Linde India Ltd - consolidated company page",
+   "url": "https://www.screener.in/company/LINDEINDIA/consolidated/",
+   "date": "2026-09-29",
+   "kind": "other"
+  },
+  {
+   "id": "S22",
+   "publisher": "Whalesbook",
+   "title": "Gujarat Fluorochemicals Incorporates Semiconductor Subsidiary for Rs 1 Lakh",
+   "url": "https://www.whalesbook.com/corporate-news/English/industrial-goodsservices/Gujarat-Fluorochemicals-Incorporates-Semiconductor-Subsidiary-for-indian-rupee1-Lakh/6a3e6f267465030c38ba6b7b",
+   "date": "2026-09-29",
+   "kind": "news"
+  },
+  {
+   "id": "S23",
+   "publisher": "Gujarat Fluorochemicals (company X account)",
+   "title": "Ultra-Pure Semiconductor Gases post (Semicon India)",
+   "url": "https://x.com/fluorochemicals/status/1961769522098303230",
+   "date": "2026-09-29",
+   "kind": "company"
+  },
+  {
+   "id": "S24",
+   "publisher": "Whalesbook",
+   "title": "GFL, Navin Fluorine Bet on Battery & Chip Chemicals Amid Competition",
+   "url": "https://www.whalesbook.com/news/English/chemicals/GFL-Navin-Fluorine-Bet-on-Battery-and-Chip-Chemicals-Amid-Competition/69c09148774ac9d66c59dc6c",
+   "date": "2026-03-23",
+   "kind": "news"
+  }
+ ],
+ "method": "First edition, researched on 29 Sep 2026 using web searches and fetched pages: IndexBox market notes, news wires, results summaries (Multibagg, ANI), IPO data (Chittorgarh) and market-data pages (Screener, Tickertape, Samco). BSE filing PDFs and several news pages (Business Standard, gasworld) returned HTTP 403. For those, the claims used are limited to what appeared in search-result snippets or headlines (S6, S20, S23). Where a page showed no publication date, the source date is the access date (2026-09-29). Where sources conflicted (Ellenbarrie capex years, Stallion Bhilwara timing, 52-week highs), both figures are shown. numbers.json was not present in the folder. No ratings or price targets.",
+ "bucket_labels": {
+  "specialty_gas_makers": [
+   "Specialty & calibration gas makers",
+   "Indian listed companies producing specialty and calibration gas mixtures"
+  ],
+  "diversified_gas_major": [
+   "Diversified global gas major (India arm)",
+   "Large multinational industrial-gas subsidiary building out India semiconductor-grade gas supply"
+  ],
+  "other": [
+   "Other",
+   ""
+  ]
+ },
+ "kind": "theme"
+}
