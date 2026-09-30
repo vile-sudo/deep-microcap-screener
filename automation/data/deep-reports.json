@@ -286,6 +286,19 @@
     "SIMPLEXCAS": "already covers Sep 2021",
     "FLUIDOM": "already covers Mar 2023"
    }
+  },
+  {
+   "on": "2026-09-30",
+   "written": [
+    "NETWEB:FY27-Q1",
+    "PREMIERENE:FY27-Q1"
+   ],
+   "spent_usd": null,
+   "skipped": {
+    "VIMTALABS": "already covers Dec 2024",
+    "SIMPLEXCAS": "already covers Sep 2021",
+    "FLUIDOM": "already covers Mar 2023"
+   }
   }
  ],
  "seen_new_results": {
@@ -626,6 +639,24 @@
    "cost_usd": null,
    "api_equivalent_usd": 8.715,
    "minutes": 20.7
+  },
+  "NETWEB": {
+   "period": "FY27-Q1",
+   "on": "2026-09-30",
+   "engine": "claude-code",
+   "tokens_out": 70429,
+   "cost_usd": null,
+   "api_equivalent_usd": 9.118,
+   "minutes": 15.0
+  },
+  "PREMIERENE": {
+   "period": "FY27-Q1",
+   "on": "2026-09-30",
+   "engine": "claude-code",
+   "tokens_out": 106830,
+   "cost_usd": null,
+   "api_equivalent_usd": 7.965,
+   "minutes": 16.2
   }
  }
 }
