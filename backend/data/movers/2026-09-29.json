@@ -1,7 +1,7 @@
 {
  "trade_date": "2026-09-29",
  "threshold_percent": 4.0,
- "generated_at": "2026-09-30T12:53:32+05:30",
+ "generated_at": "2026-09-30T16:23:25+05:30",
  "stats": {
   "scanned": 3396,
   "flagged": 421,
@@ -1243,9 +1243,17 @@
    "raw_pct_change": 7.56,
    "corporate_action": null,
    "why": {
-    "headline": "No disclosed reason",
-    "confidence": "none",
-    "evidence": []
+    "headline": "Order Win (Scanx)",
+    "confidence": "low",
+    "evidence": [
+     {
+      "tier": "news",
+      "kind": "order win",
+      "detail": "JNK India Secures Large Export Order for Abu Dhabi TA'ZIZ Salt Project",
+      "url": "https://news.google.com/rss/articles/CBMivAFBVV95cUxOcUduX3JJTmlrdVpBZ2dmQmxiOFhnRW94dmpkTTRpUDdfR2hxUFhqYlNuTmV2MHNYOGI4WENPcFlvbm54MEtNT0dFemJwWEFtYXN5cmJMWWc4a21Id0J1Y3pZR0l2c2pUbjBPd252NktvVFRiYXNKd2NNQzl3TzRKZFlkSTBjbnhObC1JMVZoc3d5d3lzNnpvRlgtdUtqckp2VUh4aGhNMEphNkJCcDZNZG5NUkxCa28xdGhXMw?oc=5",
+      "source": "Scanx"
+     }
+    ]
    },
    "news_checked": true
   },
@@ -1415,16 +1423,16 @@
      },
      {
       "tier": "news",
-      "kind": "broker action",
-      "detail": "Azad Engineering shares surge 7%; buy stock, says Goldman Sachs | Target price",
-      "url": "https://news.google.com/rss/articles/CBMi6gFBVV95cUxPTWZZZXhWY0tZVXZiZFJUS0lrQ2p1TjBXSVYxSlc4ZWxtelJqT2RZZ3ZPWEdPRURYbEx1a09ZbzJ3N1pWZnB0aDJ2UUEyVTBGaFYydWtVUDJzU3FPOERlNzdDWm5JeFJUdDU1Qm42WVlKcmREeTJNeFRDTjBqc0hUMExqaEs4c0NCYTZ2Zm1yZ29LU29nX2dKdXZhaEFUcldBTzN2VTdpamZNV1lFWWlXWXU3ck0ydU51RngySzByMVgzTm1LUHpOZHhlYkhUVmpuRHdXaHAzdG43RDJwU1VZOUtpeUdpSWZTaGfSAeoBQVVfeXFMT01mWWV4VmNLWVV2YmRSVEtJa0NqdU4wV0lWMUpXOGVsbXpSak9kWWd2T1hHT0VEWGxMdWtPWW8ydzdaVmZwdGgydlFBMlUwRmhWMnVrVVAyc1NxTzhEZTc3Q1puSXhSVHQ1NUJuNllZSnJkRHkyTXhUQ04wanNIVDBMamhLOHNDQmE2dmZtcmdvS1NvZ19nSnV2YWhBVHJXQU8zdlU3aWpmTVdZRVlpV1l1N3JNMnVOdUZ4MkswcjFYM05tS1B6TmR4ZWJIVFZqbkR3V2hwM3RuN0QycFNVWTlLaXlHaUlmU2hn?oc=5",
-      "source": "Business Today"
-     },
-     {
-      "tier": "news",
       "kind": "explainer",
       "detail": "88% Returns In Two Years: Azad Engineering Share Price Jumps Over 5%. Here's Why",
       "url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxPQmE0M0RmeEptOU5Oa1ZjRTY5MmhoN2VEY3JUN3RNc0Jfckc2Z2dwazdyVENESkFrNzlHbnFMekRITnhyd1NySUFDRW52aTVXcWM1NkNOWERWSGRNTWVXbk8zV3l2R0laaHBKSTNSQ2c4ZkJZV2Z3anMzVlVvUWtDUmNBb3BGSW5EYnBRZHQ4MnFlMmp3YzhWUzBJR2FwNGNIUjlqZmtZOGN6NnMtNkhPcFdoMGpzekIxVlHSAcIBQVVfeXFMTlRfSkctREtGUkphdkJMUWl4THdvVldrYVhwMk5BcHA5NHNzXzNWZm9sMng4NW1ieXFaVkNWWmVhM1NPTzB6NzR4OXpLTHpuVkxNX2p5YWRDVGdabVAxX0N2TG01dEVNUVl2RFphZ3JyZ0M3Z19UOE13bWJaNGI0RWtWLVZfYXl2V3htaUlXUUxRYm1uNUctVmxzanJiVnpxVWRTNzVHMG1LVmVNVHJGSG5TLS1qUmZoWWFDQ19wQW8yWGc?oc=5",
+      "source": "NDTV Profit"
+     },
+     {
+      "tier": "news",
+      "kind": "broker action",
+      "detail": "Azad Engineering Gets Rating Upgrade From ICICI Securities On Higher-For-Longer Growth Visibility — Check Revised Target Price",
+      "url": "https://news.google.com/rss/articles/CBMi_AFBVV95cUxNSXdmYzBreVpzbk5YdnhudVM2UlhobXQzdzMyaEdlOVdvaEM0ejBVc1RmZlRMN2pDQ2J1ZWNocTNtQnlvcERmTDNaVVZkQzg0VTNSTXB5RFpFLTZabURkei1wWW9KVThVSnc1ZVlWTkxtR19LVE14MVNZaWprVWpmbEFRNkJiT2NvekJaRjlVNEt0LXhtWEZLNkhaT1Z0bzktakoxMkpNQzY5MEloTVJRVVdmOGhZakJ4STlySzR0ZnFxdlFHbUM1bERHSEo1VldxNWVNVFd5ZzdZWmVmYlI3TU1XcFdYNVlKTExxWE9GcjA4M05FZ1h0Y2o3TTc?oc=5",
       "source": "NDTV Profit"
      }
     ]
@@ -1771,9 +1779,31 @@
    "raw_pct_change": 6.41,
    "corporate_action": null,
    "why": {
-    "headline": "No disclosed reason",
-    "confidence": "none",
-    "evidence": []
+    "headline": "M&A Or Stake (Mint)",
+    "confidence": "medium",
+    "evidence": [
+     {
+      "tier": "news",
+      "kind": "M&A or stake",
+      "detail": "IPL business demerger impact? Sun TV Network share price rallies 16%! Experts see 30% more upside | Target, stop-loss",
+      "url": "https://news.google.com/rss/articles/CBMikAJBVV95cUxQeUVZcFh0N0VDZWx3dWptRTBjQUZvUEJnSVRRSzBGbzlNc0NRUy1CQ25iWllJWE13Z0h1OTZqVlB1ZzI0ZEtZVEQ5NTJscmdzcDFkb21FRUxRaUZqdGZHYTQ3UkZLYXRRQlc5ME15UnI4a2d0a1NxMnNsZWpsTThNUHNPN2NLX3EyZ2x2YkNxUmhMc0lLRnd5LXE4OWktampabE92NFA0UXgzd3U5V3lOTC1fQlhLQzBaU3g1VVB1UFpDdy1QOGNiZW9QS0VOcFg1alRabGJ4UE5JMjJFYm1qVWoxMWRieVZwWVl2bllUdTNBcmRVLUlmQ3pOZEdmSFBQNUVwOXlBQlB4ZHVfUHBBbNIBkAJBVV95cUxQeUVZcFh0N0VDZWx3dWptRTBjQUZvUEJnSVRRSzBGbzlNc0NRUy1CQ25iWllJWE13Z0h1OTZqVlB1ZzI0ZEtZVEQ5NTJscmdzcDFkb21FRUxRaUZqdGZHYTQ3UkZLYXRRQlc5ME15UnI4a2d0a1NxMnNsZWpsTThNUHNPN2NLX3EyZ2x2YkNxUmhMc0lLRnd5LXE4OWktampabE92NFA0UXgzd3U5V3lOTC1fQlhLQzBaU3g1VVB1UFpDdy1QOGNiZW9QS0VOcFg1alRabGJ4UE5JMjJFYm1qVWoxMWRieVZwWVl2bllUdTNBcmRVLUlmQ3pOZEdmSFBQNUVwOXlBQlB4ZHVfUHBBbA?oc=5",
+      "source": "Mint"
+     },
+     {
+      "tier": "news",
+      "kind": "M&A or stake",
+      "detail": "Sun TV shares jump 20% after demerger reports, company dismisses sports business rumours",
+      "url": "https://news.google.com/rss/articles/CBMi-AFBVV95cUxPSERqUVB3NjdhdW9UcThzSG55MHVrWTVLX1R4MzBXdVVTamYxSVk2X2xEV3IxWkhfRnZjSHNZaC12ajlEalh4REhZeGx5eld2OWdxbUVwdlllb1J1NU1FZzRKay1VVDFyZHRsZ2F6OFRibXQ2X1dZa3VLYW9ZTUdSbzVCVDh1SVA4dzlFT2pGWEx2cmxyaS1fOEZ4OUVZMHJ6Zm5lN1Y5NnEzVks0Z3Z5RV94OHVpR1NQRFlsYXRneGUxd0tvRVJidUY1dFVEeXlkUnNSTTRCTjVVSlYwS2NybFliM1kyOFJsMWRJX3FIdnhIdHpva29VZtIB_wFBVV95cUxORXhUNTdoWFF0SjdmNkN3ZHB3MWpvVnhWNkg5T1dNWlNlaFBLUVc4WmFIeW83Zmo4S0dYTmFwRUlnMFhVUG5vVHNDOFJTOGZIMW9EeG80TVAwUFpMaWxOM195OFlGVWdwV01Sa2RUOGpyR3d3SUt5QzNwVm9ieVVxa2stTVkyWXRZYklLVG9iamtyelZuRmFzMWZtMHlERjN2LWJjd29SeFFDVmRaUEU1ZnhXcmJqaW9YQ0MtYktWekdnaWhFSm1RYWNRQ2dFUnZWTU15X28ydHBNbm9Yb3ZmYW9MMTFnWmhaejVqRnNzdHlQQlEzNTAtZGhxUHJXZjg?oc=5",
+      "source": "Hindu BusinessLine"
+     },
+     {
+      "tier": "news",
+      "kind": "M&A or stake",
+      "detail": "Sun TV is preparing for potential SRH demerger, reports CNBC-Awaaz; shares rise up to 18%",
+      "url": "https://news.google.com/rss/articles/CBMi5gFBVV95cUxOWlZlWVhRdWFtY0RsS2F0bVJrNURpc1ZZeDVhcnQ2SmZMMUdBSWphbi1oV2RkQm5TMDJUNXF3NXdjX1hFZVpQcmpWN0RoUnVsbER3ZFpzd1BNVnFvUE51dlVlRnRzaWdQOE14ekZESkQ1cklObGp3aFR5X3FSWjdnTnNZdkMyT2NNQnBlZjRnY1hmWnVaNnNtTFEtaXhvR0JqT2VOQ0xGY3N5a1plaHotdDhqSHJ5TXZ0enFGanNDaWRxMHVxQ0RMX2ZzTkpyWUJZSDdzX05YbnV1Xy1CNF9ZMVhldVNnd9IB6wFBVV95cUxPck1pTWNyTm5NNl9lZDQ3SUN1VEFRX1p5T29NRXJsMWVzSlNHclZYeXM1ZHc4RU9rbm9wUlpuZjd5a20tY095eDFvMklxTC02MjNsZTBOWlJ3REo3UThWcDZUT2oxd1YxWTd4ZEVtZmNmRUJDNW5mdkVLbmZocEdtdTBaUnhOZDhTXzVkY0ZMTE5kemx0QVhtOGR5bFVmd1pWWUZaU2lCNTRoenY2dkFQYVBoanFnb1R1NEIyXzk2eTA5RTFXb1JnNE1NSzdrbHZLOEl4RlNILTNTZFJyTURtUHVoVDl2NTJ4YjRV?oc=5",
+      "source": "Moneycontrol"
+     }
+    ]
    },
    "news_checked": true
   },
@@ -1997,13 +2027,6 @@
      {
       "tier": "news",
       "kind": "order win",
-      "detail": "Va Tech Wabag Q1FY27 net profit up 37% to ₹901 Mn; order book at record ₹194 Bn",
-      "url": "https://news.google.com/rss/articles/CBMitgFBVV95cUxQWG1aX0JiLUlyOG1nZ2ZETjRleW1DcVhEb3FKSDAzNGtuOG9hZlpJTkEwMVdfZmZGRVRDLWxKRnVJZm5SLWV3WEdKS2xIUUdKQTBtNUJud1pjbUhzVExDdmR4RHFUTjNUWHktOFJ5dDlPbTQtMXhQeGl5TmJJSm96dG5GUjQ4dFlCRGozbVhGbVBwOWU0M0plbGpaa0JnSDRocXZaV0lrZFh5LUZ1WmRCRTFib0NBUQ?oc=5",
-      "source": "Scanx"
-     },
-     {
-      "tier": "news",
-      "kind": "order win",
       "detail": "Va Tech Wabag wins large order for Vienna water works",
       "url": "https://news.google.com/rss/articles/CBMivAFBVV95cUxNdXVNQno4eDNqajVJRUpOeVg5cWptUWFfaVVacG1hZ2l5ek15d2Fqc1hDVllFckl0RzNRcnEwVTJaSm9GNlgyRXVwa1JMdEFMWU5vSTJLUkMwak9QMTZmQ01jalNfYm0xRFhPVlJCVmJxdG9XQUdQN0tZS3VSbGxKazBGYW9XQy1WZGlYYWMxdEgwMnY3bkJjM2hRLTVqQlUyZ092RFNhM1phUElGek55TE44V25Ca2kxRmJvOA?oc=5",
       "source": "Scanx"
@@ -2044,9 +2067,17 @@
    "raw_pct_change": 5.78,
    "corporate_action": null,
    "why": {
-    "headline": "No disclosed reason",
-    "confidence": "none",
-    "evidence": []
+    "headline": "M&A Or Stake (Scanx)",
+    "confidence": "low",
+    "evidence": [
+     {
+      "tier": "news",
+      "kind": "M&A or stake",
+      "detail": "Belgrave Investment Fund trims Electrosteel Castings stake to 0.79%",
+      "url": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxQTXU3bWFSV2RVSkRQbWdKRVpBWHFWTVpzRDFCZzBkS3JFenFtSzJucmdtajlFSk9QQzIyclVaWVQzWDRjQ0ttN0VqOV9ZLUV6RFZiZFBiSlJJaGtyOVZ5N3dJeGt4Q2RYMS1uUjRjcXRHOFhhcWd6Ul9sZl8wcGs4WXFIOWREY0ZhTExzeUl0bGwzdUp1UnBlcG01NHBjdmFoeE1jZ19XMzZLSzZhTW1xRUtXWVM3ZklTcGNmZW9sUFY3Wms?oc=5",
+      "source": "Scanx"
+     }
+    ]
    },
    "news_checked": true
   },
@@ -2673,16 +2704,9 @@
    "raw_pct_change": 5.0,
    "corporate_action": null,
    "why": {
-    "headline": "Results (Scanx)",
+    "headline": "Order Win (Scanx)",
     "confidence": "low",
     "evidence": [
-     {
-      "tier": "news",
-      "kind": "results",
-      "detail": "Sterlite Technologies raises FY27 EBITDA margin guidance to 23%",
-      "url": "https://news.google.com/rss/articles/CBMi9gFBVV95cUxNN0lGTVU0WkdkR2RrMDk0TUFHU1Eta0dIckU3bHZyN2ZiSnA4OXVnYUlhaWNCbXMtMU9kNTV3SjlFZ0xZY3R4aGFfSlZvX2FjWlczVEVJU3I2WkhKQnZjdjJMMlBfaUkxeWtNb2R1X2xxc2J6ZWpmNjd4S2NpQlhSdFl1MGQ0dXJtQ0pqOURpNTZfT1hxNjcyTXE3X1NTM0pIVGNzeVNWZjgxWEs3S2txUFVabThUbHBrUktxQUJNWjIxUC1zTUpzSnFJLXhvVXl5T3lDSGFWbFlQX1daRkZyYjV2OHFlS09QWTRhdVZBOURFTkMwMmc?oc=5",
-      "source": "Scanx"
-     },
      {
       "tier": "news",
       "kind": "order win",
@@ -2733,7 +2757,7 @@
       "tier": "news",
       "kind": "order win",
       "detail": "HFCL’s next growth phase: AI data centres, ₹28,000 crore order book and defence push could reshape the business",
-      "url": "https://news.google.com/rss/articles/CBMi5AFBVV95cUxPT0RxdDdNWGVrOTBOYkJUVUl1YjBla2RKMHc4Mm5IZnQ1TW1nRnhVVjdDeG11ZkRvSDFuRnZjQ2R5RnRwX0hqOHNLMXYtN3ZxMDU0SU9Gam5aLTVwUEl6bGJqV004SmdsY1RMR0JJTzdfeFZwTUN5Vzhzc19mZ2lNaDhzNFVidWdDRVZrUmJ5MHRIb3NhTmpQNGllUVpJT3FJUDhPQUQ3UkdwYXctbEdzRmUyWjFlajZhajEwenlxY3JIRjBVRlhWdGVuTDFkWW1oQjNvT0hSU1oyQUdUZDNIanYtQ2E?oc=5",
+      "url": "https://news.google.com/rss/articles/CBMi3wFBVV95cUxQRnQ1OXhPc2J3TGpjVzNPaWRSYVh1WjFOMS1kYVotaFpQZHd1cE9La2lMcGFwdzhXaEJ2cm5WbzRyWWJpRDJtdFphQVJOUEpRUHd5OHlNZG5xcVdmcXdLR3I1bEZKUVJfR3ZrT0pKdlRxTlZua2pCb24xSUw1TG95MmNfUkN2Q1BXZDRtZ2ZpUzBURHZ1eDl2OWpLRUNsWDVWOGl5bXM0VzNlS3VXUUVLUXZoNEhhVER3Z1NmYjUxRF8wQ0xyaEJaMTdJU0lUUDJYbnhjaG5HN2J4aGtONnBR?oc=5",
       "source": "Business Upturn"
      }
     ]
@@ -3237,16 +3261,9 @@
    "raw_pct_change": 4.98,
    "corporate_action": null,
    "why": {
-    "headline": "Operations (Scanx)",
+    "headline": "Results (Scanx)",
     "confidence": "low",
     "evidence": [
-     {
-      "tier": "news",
-      "kind": "operations",
-      "detail": "Glenmark Pharmaceuticals Launches GLIPIQ® (Semaglutide) in India with Weekly Treatment Starting at ₹325",
-      "url": "https://news.google.com/rss/articles/CBMi7AFBVV95cUxNdTluSWpFMTBqTG04UEU4MkswcUMzUFJVVG41dmpMNGVxbjNkTEp5dTlkY1JhakVFUjRtUzk3RGRwVTNtcTFsR0tEN1M0TzBjUVMzalI3aks4QWdVb0d1RFl5bFFpTDQ1MHVFVE5FcGZfT25CM2N3cVE1YVFuVjF1bnJESFBHbVdIcm9QMEFNWklVZjJ6YWh2Si1idUwxc2tFdTVZTjhDRTltRW1VWmpFZ3JCOTFZaDBzb2d2Z1M0MzZCTFc1emZLSFJRVlRfaFdrR3N2UkFWdGNiR0NpNU14VExxNG5lQVRlYjJDcQ?oc=5",
-      "source": "Scanx"
-     },
      {
       "tier": "news",
       "kind": "results",
@@ -3497,9 +3514,17 @@
    "raw_pct_change": 4.95,
    "corporate_action": null,
    "why": {
-    "headline": "No disclosed reason",
-    "confidence": "none",
-    "evidence": []
+    "headline": "Management Change (Scanx)",
+    "confidence": "low",
+    "evidence": [
+     {
+      "tier": "news",
+      "kind": "management change",
+      "detail": "U.Y. Fincorp adopts FY26 financials, appoints new statutory auditors",
+      "url": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxOSUdBbnBnZmhfZEtiOWdwXzZzSXIwTjV2bHRaTkM0aGRqaE9VT01hQkdQR0NxUU9VOXhidDdxYzEtR2VPUFAyQUVrS0h6ZnFmVXFzNFlZRWhkYUxzdHFqb1h3bmlxNHV1SktoX181ckZRankxSzJpVDdpZlRLMkhVbnFiYjhqbWFKOFRMcjV1a3gtVVNqMGhJT0cxWWh6UHRlemdPR0M4aDNmZUY3Vl9SQkFURXRjTlQ1S1RtQ0JCMnU?oc=5",
+      "source": "Scanx"
+     }
+    ]
    },
    "news_checked": true
   },
@@ -4830,17 +4855,17 @@
      },
      {
       "tier": "news",
-      "kind": "operations",
-      "detail": "Aequs raises funds to accelerate aerospace business expansion, targets $450 million capex",
-      "url": "https://news.google.com/rss/articles/CBMi6wFBVV95cUxNejNaN3pmNXFqMHVBWkNFb0ttR01QU01kZ2Z2TFlESWZYOXBTWko2VWQ5WUFjal8tdnFIeWU0aXRjaFhaQ19YbUEtdWpCcFd4LTBadEs3VjlscWdzV29mN2hMSHNoelY0WFpUbmtsTHFCaU05MEtDNlF0OTk2ZC1nY1k1azlya3l1b2hFY0Z4REFJMHVtNVBUdUdTS2NQS18ydm5uUGJtQ2ZyRHo4U01jbHJId0VzdHB5SldqOENjZmxuRF9aVTk5TkhSdzIzdXdHY0RIYlhsTnEyRlhEa1RSWjJBOGVKTFhQcUlF0gHwAUFVX3lxTE5SWFRweF9wZHAtZjYtQy1CY01DSWh1QUZqM3VjN0hZUGs0ZjNZMEFFNzc0OE14b2UzV0NuTmw2VGJ2ZmZTeEM3TzFCYTJ1Tk1OVDVGQk1OSDc1aXh3VDZwQzcyOVBEcnJWZjQxTDVkNW1YV0tqaWVqbU1ZWm5kQ2MxOEVNRFNTQ3d2LWRCRk1DOHM2VDRSUVpXVGQtTGJzOG41bFJSdlRJc1lZRU5HU1h0YlZTaFVKc0NzSXYxZTBHY204MjNkWnFXakRkMzlrcDdHdHRxSnhYWVVHMFpEaHNiSzY0QTJUSUxqOTY0RUFvTg?oc=5",
-      "source": "CNBC TV18"
+      "kind": "explainer",
+      "detail": "Aequs rallies 5%, trades higher for fourth straight day; here's why",
+      "url": "https://news.google.com/rss/articles/CBMiywFBVV95cUxOSFRQT0h2QURucHB0RkktYUYwMXVZR0htYkVmbG1zRXpfaFFZWV9QeVBWeHptdzJHR3pwcmFnNVlsYkFRcWR4ZFFTek5hN3J6VkxGZG5nUWR2M1FZMDJsaS1KZ2t4dHJ5QlIzbngyeE9KX2RUbHVPZjlzVjE4dFhTanJZeUhrY3FVWVY4ZjI3MElUeWs0QWx1SHNEZ3Y0NVVPN2hCclRjQnpfWHk4M2dETWUzRENqUTJVNVh0QU1VZk9saEMtalc4enpYSdIB0AFBVV95cUxPUzVQVTlDaWF3LVB1TG1NRXFaOC1BZG1XR2pfblQ3ekpMUS1vZGtKNWx3eHJKQ0lJbUtOZ1lHZHZGV0R0bUJVaDR0S0pNakhxaU52WU5WdlpoczZBUTV5NXlTX3piNFdTaEIySWZ0eFhSMjhFRi0wNk1BUUZGM0JQRmhCeTNDNzNxc3dBaHdiQURmdy1DYWVXSGFjX2JsQUVHS2JlbzRDT1hwemlQVl9mOTNxdC0wYnlWcXItVGdsY3p3V3MyOUxiR2RmeWVrSHpE?oc=5",
+      "source": "Business Standard"
      },
      {
       "tier": "news",
       "kind": "operations",
-      "detail": "Aequs to raise Rs 650 crore from promoters to fund aerospace, consumer expansion",
-      "url": "https://news.google.com/rss/articles/CBMi1gFBVV95cUxNUExLbi1XeTlqbExYcFd4SE9scnk0WnFLNUJnbUY5emFKY1pvcGM5LXdRZzZlT0VPa2dvV1hTNGhWRk4wbGFqX2c0clVZc2lHRENBVGJyc1BIdXY0bndsVW40WmRKWFVkUlNVY2IzaDRJc0p6SExvdlZ1RFdIODNNVGg5MXZNV3RaSllaRzBmbzlQMDMtbmZmM1IxOC1VdVNhNkJRbzE0ZXRLODZYSkVBU05vWjBkNkZOUXRqa25tU0R1VzlnazBDLXd1bGJVRk9TbjJLemRn0gHcAUFVX3lxTFAzVC1jY1NVbENSa1pCSEh6cHhhS3JXMXllaGVjYXZjX2ljNWR0MldNVXdaZmRrVU9PYnBOTU16dnhRSlIxRzhGMEpfa2FXQzAxZllDTlN2eEdmYlFnbTRoQ09mZGY4UFlpajBsQ2xkalpRb1VjWVR3QldTQVY2N0JkZXlDb0ZEcFNSNUlaZzc4VE8tODZiVVhJUnctN2FpOHpGWWJKaDA4anN2dzBCMENrdlRyYmNqMXlFLVVXU3JONEtwVkVhbFVXSlRNdnRnUjljSWdUR2JmSkNLUUQ?oc=5",
-      "source": "Financial Express"
+      "detail": "Aequs raises funds to accelerate aerospace business expansion, targets $450 million capex",
+      "url": "https://news.google.com/rss/articles/CBMi6wFBVV95cUxNejNaN3pmNXFqMHVBWkNFb0ttR01QU01kZ2Z2TFlESWZYOXBTWko2VWQ5WUFjal8tdnFIeWU0aXRjaFhaQ19YbUEtdWpCcFd4LTBadEs3VjlscWdzV29mN2hMSHNoelY0WFpUbmtsTHFCaU05MEtDNlF0OTk2ZC1nY1k1azlya3l1b2hFY0Z4REFJMHVtNVBUdUdTS2NQS18ydm5uUGJtQ2ZyRHo4U01jbHJId0VzdHB5SldqOENjZmxuRF9aVTk5TkhSdzIzdXdHY0RIYlhsTnEyRlhEa1RSWjJBOGVKTFhQcUlF0gHwAUFVX3lxTE5SWFRweF9wZHAtZjYtQy1CY01DSWh1QUZqM3VjN0hZUGs0ZjNZMEFFNzc0OE14b2UzV0NuTmw2VGJ2ZmZTeEM3TzFCYTJ1Tk1OVDVGQk1OSDc1aXh3VDZwQzcyOVBEcnJWZjQxTDVkNW1YV0tqaWVqbU1ZWm5kQ2MxOEVNRFNTQ3d2LWRCRk1DOHM2VDRSUVpXVGQtTGJzOG41bFJSdlRJc1lZRU5HU1h0YlZTaFVKc0NzSXYxZTBHY204MjNkWnFXakRkMzlrcDdHdHRxSnhYWVVHMFpEaHNiSzY0QTJUSUxqOTY0RUFvTg?oc=5",
+      "source": "CNBC TV18"
      }
     ]
    },
@@ -4924,9 +4949,17 @@
    "raw_pct_change": 4.4,
    "corporate_action": null,
    "why": {
-    "headline": "No disclosed reason",
-    "confidence": "none",
-    "evidence": []
+    "headline": "Fundraise Or Deal (Sahi)",
+    "confidence": "low",
+    "evidence": [
+     {
+      "tier": "news",
+      "kind": "fundraise or deal",
+      "detail": "Apollo Tyres Sells ₹500 Crore Non-Convertible Debentures Via Private Placement",
+      "url": "https://news.google.com/rss/articles/CBMipgFBVV95cUxNekFkZ2tkeUNlOHY5NU9Hb19PLUJ2ZW42bnlRT1oyTjBoTktzanVRR0kzWUExRmhpemRIeXgwVmNKRXo0alNQdEpYYng0OXVtb2V0NDUtV1VoeXc4UG0xRC10MVdLNHBhV012Y0hyanpKUzZ3ZTVqTlVDVTFKejFPODY0dlJicVdZNzRsOFJfcmNPT2xIdnFaX0ZTRTE1QWJDUmdBYzFB?oc=5",
+      "source": "Sahi"
+     }
+    ]
    },
    "news_checked": true
   },
@@ -6149,7 +6182,7 @@
    "raw_pct_change": -4.3,
    "corporate_action": null,
    "why": {
-    "headline": "Exchange Query, reported by Reuters",
+    "headline": "Exchange Query, reported by Business Standard",
     "confidence": "high",
     "evidence": [
      {
@@ -6158,13 +6191,6 @@
       "detail": "The Exchange has sought clarification from Tata Chemicals Limited with respect to recent news item captioned Tata Chemicals, TMPV shares fall up to 3% after Trusts' proposal dims Tata Sons' listing hopes.. The response from the Company is awaited.",
       "url": "-",
       "source": "29 Sep 14:01"
-     },
-     {
-      "tier": "news",
-      "kind": "fundraise or deal",
-      "detail": "Tata leadership transition, IPO unlikely to impact ratings, S&P Global says",
-      "url": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxOandjcVBIV0swM00yY2hEOHlhZkF6VTY1QXFwS09OazNJNnVyYjJCRVJWR04yNW5VNzhIaUsweWdYZDZnMXpYLTRrUHpFb25za0NRNVVfMHBuVnFiUmJ6UjZVMDdxWWhrVGRxY1d0OGlwNTlBQmsyNm8tb3FvbUtac1lOQ3dBUlI1UEdkZFdETkdNLTdaOXFaU3VaNXBsdG1GMVQ4LWRJUjRNN2JCLUFaaVhMeU5vQ3BX?oc=5",
-      "source": "Reuters"
      },
      {
       "tier": "news",
@@ -7702,6 +7728,13 @@
       "detail": "Aqylon Nexus Q1 Results: Net profit turns positive at ₹425.57 lakhs",
       "url": "https://news.google.com/rss/articles/CBMivwFBVV95cUxQY3BfTFdQa2JoeXZWWXlTVHdXbFBpcW9HXzB4dXRWZTQ1OEJjTlBLTXBaYTZidTVwdXVvTTNEX3RYNE1pZjMwWUdobTYzeWlGMVhrLXJxcnlxSnY5cXJaeUxOcFNyaWJ5VGJ1UTNaMmRHYU9sdktyUlY5Rmlra2JzZHFNeWd0QlF5dWNBa2hnVTJtYVBPZ2o3dUtQakNIdE8wemZvVUFTRHQwTnNaZGc1LWw1dXh6a1pDOU5fOTEtcw?oc=5",
       "source": "Scanx"
+     },
+     {
+      "tier": "news",
+      "kind": "results",
+      "detail": "Aqylon Nexus adopts FY26 results, appoints Bilimoria Mehta as auditor",
+      "url": "https://news.google.com/rss/articles/CBMivwFBVV95cUxQRzNudDhpTDRWVmdycHA2SVlQSDZwZzRDemgwUVUtN1otVnB0NlVobUNsOXJEeEpfX0NPMDZMbmNhUHpYaC1RTjZMWDhDcTRteU5BMlpLeTlKSXNtV0ZZbDdIbEhwa29SWlU1cFBoSmhqajlxajZLQU9mdnlJVjUwM3ZZUElPYWtOWmw0S0JIN0Y1M2FLaHBpTTVnaHRJNk9KZFVfQ1JrYXBWRGQ2aTFzQUVkNDdWaDBkclFnRDV5dw?oc=5",
+      "source": "Scanx"
      }
     ]
    },
@@ -7739,15 +7772,15 @@
    "raw_pct_change": -4.95,
    "corporate_action": null,
    "why": {
-    "headline": "Operations (Hindu BusinessLine)",
+    "headline": "Operations (Moneycontrol)",
     "confidence": "medium",
     "evidence": [
      {
       "tier": "news",
       "kind": "operations",
-      "detail": "Apple Pay launches in India to take on PhonePe, Google",
-      "url": "https://news.google.com/rss/articles/CBMixwFBVV95cUxPcC1SeGFOaG81WGJiTXdwMWVmMTdkTjNiN3hKSmY0QXoyUVVBNmVYaHZVVmJPTzR3SjcwQ1hmSmVlV1g4aGFiLWltYThZa281eFdoNEdrR2V2NU8wYWt4Ukt2U2JyUnR0MDlMVjlDSUp6SU9FZEF0LW9GTHV6em0yMHVCNTE1RFJxUHlEY2luY1YxT2Y0bmZFblEwQXc3WVJlSEJON1B3NmNobnhHdmlpeUFoR3cxZk0tYlpCcklSWXdvU2VuU3Ew0gHOAUFVX3lxTFBvXzEzSXlLYzRhanFLUURKZHJQa1RjWlBYVG45amdNWkF3Z3AxRFplQ1BTajFGMkU1YmRnNzRxTVVPTFdIM3NsQWUxZ0x6Ti0xMWcxSnVFUnpiSU1HSkxYYlBadmtabE15dWxLa0RUaEp1UlpuWS13QzNiVWNEWnRiRnYwR2xmN0t5M05BQW56anB1YzVkYUxYYW1EaktQR2Jvc2lYR0pPbVRqcUxxQ2hPNEJtMkJMaG43SU9jd01jdFNVWGE2ZjROUTJjRWdB?oc=5",
-      "source": "Hindu BusinessLine"
+      "detail": "Flipkart adds 14 million cubic feet warehouse capacity, to take Big Billion Days to 750 new PIN codes",
+      "url": "https://news.google.com/rss/articles/CBMi-AFBVV95cUxNTzhXazN6Y0l0QUVrRHFWQXpmZkM3ZnpqckJYMlFSRUxQM2cweGVubTlTekNONklYMkF3dGVERWFXQXNiU3lkdlY5OFJzb3VVZ05YWWoyRDZ3bFY1UGcxakxzUjN2UjI4bUxYNFZDaXlIUGU2RzAtOXpNblMtNUNLTlVGby1ZY3JYTEVXemt4UFdFT3Q3M2xTT2ZvSUYySkhDaWhaR1Qzc19kTmdUbUJNOEZyaURSYkRzTFp4T2xTZEItcWJvMGtrM2ZkdlAtdFFVajk5U3ZCRThrSVpaSEhNbjFKMmdRQS1ZX2NIWnotVlVtbkpxWWhmU9IB_gFBVV95cUxNemVpRGFKcjU1ZHB4NFpjcHZDaDRUdU9FTmFNNUx5VDJ2RVpQM2tGM3l2ZXRCLXlISU4wdk9YRVhndG13Q0N1MzBYS2xaM254aE92VF9fLWJaWlRPTUlVbm9OUE9RUnAxYXVTd0ltRVlSOGRYMnZ6SVZ4bUZvb19aZHF2ZkVFQ3JxQVR6Tkd2WWVYVTg4SEduR1IxSjlvZHYtUVY0U0VLaGlydnF4ZEJCTXhJeDVSM3hIODFrV2NPbWJnSWJDdGNBTGpTMzRwTlZIWEgxeS1PRUR0bzV2cENnZnQ1SjA5eWpmb3ZvOXNDbnZrQVdGZVJ2OTd2cHFDdw?oc=5",
+      "source": "Moneycontrol"
      },
      {
       "tier": "news",
@@ -7759,9 +7792,9 @@
      {
       "tier": "news",
       "kind": "operations",
-      "detail": "Flipkart adds 14 million cubic feet warehouse capacity, to take Big Billion Days to 750 new PIN codes",
-      "url": "https://news.google.com/rss/articles/CBMi-AFBVV95cUxNTzhXazN6Y0l0QUVrRHFWQXpmZkM3ZnpqckJYMlFSRUxQM2cweGVubTlTekNONklYMkF3dGVERWFXQXNiU3lkdlY5OFJzb3VVZ05YWWoyRDZ3bFY1UGcxakxzUjN2UjI4bUxYNFZDaXlIUGU2RzAtOXpNblMtNUNLTlVGby1ZY3JYTEVXemt4UFdFT3Q3M2xTT2ZvSUYySkhDaWhaR1Qzc19kTmdUbUJNOEZyaURSYkRzTFp4T2xTZEItcWJvMGtrM2ZkdlAtdFFVajk5U3ZCRThrSVpaSEhNbjFKMmdRQS1ZX2NIWnotVlVtbkpxWWhmU9IB_gFBVV95cUxNemVpRGFKcjU1ZHB4NFpjcHZDaDRUdU9FTmFNNUx5VDJ2RVpQM2tGM3l2ZXRCLXlISU4wdk9YRVhndG13Q0N1MzBYS2xaM254aE92VF9fLWJaWlRPTUlVbm9OUE9RUnAxYXVTd0ltRVlSOGRYMnZ6SVZ4bUZvb19aZHF2ZkVFQ3JxQVR6Tkd2WWVYVTg4SEduR1IxSjlvZHYtUVY0U0VLaGlydnF4ZEJCTXhJeDVSM3hIODFrV2NPbWJnSWJDdGNBTGpTMzRwTlZIWEgxeS1PRUR0bzV2cENnZnQ1SjA5eWpmb3ZvOXNDbnZrQVdGZVJ2OTd2cHFDdw?oc=5",
-      "source": "Moneycontrol"
+      "detail": "Apple Pay launches in India to take on PhonePe, Google",
+      "url": "https://news.google.com/rss/articles/CBMixwFBVV95cUxPcC1SeGFOaG81WGJiTXdwMWVmMTdkTjNiN3hKSmY0QXoyUVVBNmVYaHZVVmJPTzR3SjcwQ1hmSmVlV1g4aGFiLWltYThZa281eFdoNEdrR2V2NU8wYWt4Ukt2U2JyUnR0MDlMVjlDSUp6SU9FZEF0LW9GTHV6em0yMHVCNTE1RFJxUHlEY2luY1YxT2Y0bmZFblEwQXc3WVJlSEJON1B3NmNobnhHdmlpeUFoR3cxZk0tYlpCcklSWXdvU2VuU3Ew0gHOAUFVX3lxTFBvXzEzSXlLYzRhanFLUURKZHJQa1RjWlBYVG45amdNWkF3Z3AxRFplQ1BTajFGMkU1YmRnNzRxTVVPTFdIM3NsQWUxZ0x6Ti0xMWcxSnVFUnpiSU1HSkxYYlBadmtabE15dWxLa0RUaEp1UlpuWS13QzNiVWNEWnRiRnYwR2xmN0t5M05BQW56anB1YzVkYUxYYW1EaktQR2Jvc2lYR0pPbVRqcUxxQ2hPNEJtMkJMaG43SU9jd01jdFNVWGE2ZjROUTJjRWdB?oc=5",
+      "source": "Hindu BusinessLine"
      }
     ]
    },
@@ -8160,9 +8193,16 @@
    "raw_pct_change": -4.99,
    "corporate_action": null,
    "why": {
-    "headline": "Order Win (Economic Times)",
+    "headline": "Order Win (Moneycontrol)",
     "confidence": "medium",
     "evidence": [
+     {
+      "tier": "news",
+      "kind": "order win",
+      "detail": "STL Networks hit 5% upper circuit on emerging L1 bidder for RailTel’s Rs 250 crore order",
+      "url": "https://news.google.com/rss/articles/CBMi7wFBVV95cUxPUmVUN3Q0OGVDcXBjc3BQS2NTUjBDSFNqcUNwOTRwdXpIVFBSTlRXWExiWk5TektMVldXSXZKbDFmcmF3WU9JTFhGTzhDTU84MVp5aXR6Y29zTXVwQ1NzRGw0UGRIQWlyckRfbHNGYTh6OWtaY0Rnc3I2ZmNwOUxrdVlpazJVa0RKMnY5VnNJQjdDUTA1QXpvdUVHWl9SYjlLQ3BjMHJFWk5Ya0pibEwxVEpIMGI5ZGd6WW5YSk55YjlBSXpCbkpSUmNzak9sM3d3VlFzNXRJN0VRbmFyYllGZ1VFcUhZcGVBOW0wWU1PTdIB7wFBVV95cUxPUmVUN3Q0OGVDcXBjc3BQS2NTUjBDSFNqcUNwOTRwdXpIVFBSTlRXWExiWk5TektMVldXSXZKbDFmcmF3WU9JTFhGTzhDTU84MVp5aXR6Y29zTXVwQ1NzRGw0UGRIQWlyckRfbHNGYTh6OWtaY0Rnc3I2ZmNwOUxrdVlpazJVa0RKMnY5VnNJQjdDUTA1QXpvdUVHWl9SYjlLQ3BjMHJFWk5Ya0pibEwxVEpIMGI5ZGd6WW5YSk55YjlBSXpCbkpSUmNzak9sM3d3VlFzNXRJN0VRbmFyYllGZ1VFcUhZcGVBOW0wWU1PTQ?oc=5",
+      "source": "Moneycontrol"
+     },
      {
       "tier": "news",
       "kind": "order win",
@@ -8176,13 +8216,6 @@
       "detail": "STL Networks emerges lowest bidder for ₹250 crore RailTel cloud infrastructure contract",
       "url": "https://news.google.com/rss/articles/CBMi2AFBVV95cUxNRkVvOU9uSUUtUEtFQWphZHVJbG9rNEU4Z1Jpd2M5QzdmdjJ3TWJIUTJua1BNbVpvZ0NJdzRHN1FEMVY4ZllFYlZYODU5SnUxNWVLOHh5QjF1WlRPTTNJQXlYQm5XWHd6NzlSQ1pTdjFGT2MzZWVRYzZObWJEb1V6ZmhpYkRDQm9sUlVFUm1oTUY5ZElMcXNaR3dtb2VvOGNvcFFXanF3cGNOMDA2Uk5GUE1YRE1JWlY0MTJjLW1XUkhZT2Zja0wyT0NOOGwydVlPSmxiaXV3SlPSAd4BQVVfeXFMT3Blc1NqVUgtb3J1eG1yRzVvSTUwd0hFRk40YXRsOW8wNHd6TkJjdE41UlV0dkxhcXl0TjJwM01sU2RuNVFuMmNGUV9KNm9yNXZJbkExTHNvUElkaGJDN0dHZVc3VUtmSnVEZnl4RndaXzdCdnYycmc0N3hhR19lS19UcmNGYjJMalEtMHYwbGhRY3FoTHNLYTZwdi1FSDZSRGYxUUdpd085ZEE3WHVWU1YzVjZEZ0psN1BPbFV5YlVDMnJqXzVLTzhhcWoyVDJFT2ltLWF2WkJXT0FjY0N3?oc=5",
       "source": "CNBC TV18"
-     },
-     {
-      "tier": "news",
-      "kind": "explainer",
-      "detail": "STL Networks Share Price Jumps 5% In Trade. Here's Why",
-      "url": "https://news.google.com/rss/articles/CBMimwFBVV95cUxNb0FMcDhXUjRTb2FXcGUwdnEydzdvcllEWDJzVlZXd1MzUEpJOElqZWdlU2ZpZXRzbE11VUhTNGo4X05uNXhRRWpkNllLZGc0ellmakMyUkxuWGtGQURBTjlHVVVRczFrX19za19zejkwN2NPTUl6TUxvdUh5VFctYnZfRnE4NUFjUnhIV3lpZExYeDlGcFlwd2NVd9IBowFBVV95cUxPOXRZUW1ub05mdHczbXJOTTRUUkU1TEJ4bWFTbzF1MFFGNkJOWFI3VEhudU5MbUFvNXpUVU5QYU0yUHpETlhyNWdQVjRsRVFORWpCMjJmUjhXUFJpZUJEVHQyakRzRlJjU1ZjTjFka0ZwX21tdE5hcHZ1ZW1kc2hYNDJXaVNKR3VBQkVQQ2FVZ1dWTXZIX01KT29aN2xGOTdUWTRn?oc=5",
-      "source": "NDTV Profit"
      },
      {
       "tier": "deal",
@@ -8603,9 +8636,24 @@
    "raw_pct_change": -5.08,
    "corporate_action": null,
    "why": {
-    "headline": "No disclosed reason",
-    "confidence": "none",
-    "evidence": []
+    "headline": "Management Change (Scanx)",
+    "confidence": "low",
+    "evidence": [
+     {
+      "tier": "news",
+      "kind": "management change",
+      "detail": "Brahm Virat Industries CFO Bhavik Maisuria resigns effective Dec 31",
+      "url": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxQU3NzNDhDNHBXMlBvbmgxWEgxZ01wd3Q3SEdJbGowS1p0X2hlT0MzNmZHbDZTSU00anhnWHNUbWZWS2dsSi1xTlhWM3RuSGVyZlR1ZXBGLUlvVjlkaEhabm9BblZFaE95bmdHYTFJZ1l2Nmd4aVdvZDIyN09fajRpNXVlek8zNU9rd0tkZ2lZMDhnenBBZ0hENHlvNkFMTDREVVVqQkM2VndsUDh4eUhMZGotMmtqaUFSU1lJY0w3ZmlPQQ?oc=5",
+      "source": "Scanx"
+     },
+     {
+      "tier": "news",
+      "kind": "results",
+      "detail": "Virat Crane Industries FY26 Results: Net loss widens to ₹7.71 crore",
+      "url": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxPRXpUVHpJLV8zWHdBUGx1SlZpN3RMbUpTdnBYY0pwREVhWHZvMFFHemFFZE0yZ0l3LWtYZVRMX1VLSUJHeFBmbktLYmhhNEpQQzdmenc5aV9xbkY2VGQzVkd4TV96ZmZ6M0NLaVJqZEpSQmd3X3pWVHZDcFNxSWFGTlNTLVUxZF9SMWQ1czd6WDZfN0Q4bDBSZVN4SG5BTlJmWjRQbG5NWlE4STRmMWtWWUU2RV9tZ05mRXVN?oc=5",
+      "source": "Scanx"
+     }
+    ]
    },
    "news_checked": true
   },
@@ -8806,7 +8854,7 @@
       "tier": "news",
       "kind": "M&A or stake",
       "detail": "Honasa Consumer Block Deal: Peak XV, Sequoia, Redwood Trust to sell stake for up to ₹400 crore",
-      "url": "https://news.google.com/rss/articles/CBMi7gFBVV95cUxNemN2LWtsYzVmVHZhOFlVSEtIeVFFNFozNmdsdDRwWTlqY05vVEhDdUUwV2JPVnBiN2p2aFJhb0ZqNm5PcUhvM09DUEVjeXRWX1M2YVNHVUJ4dHJQMWNVSkFhSDU0dHFkM3NZeXVWS2xyeUE0WkdkdWJ1aVlfMk9QLXV0Mm16NTBWcFhMUmxlRzF0MTNmQVczOE9TSklYZWR4TXVZSy1YWDN3eDhYcmhVcVdEU2ExcnpIenBCdVJlT19tNC1kWDZ1anJYUGZ1RUlISnlaZUdUWHV4VGgyVzFpMlJuRWVPWUhBdFFBTFJn0gHzAUFVX3lxTE9qRHBJSzhHUUdqeUw1c29uVFZIN1gtLWNjd2J6aldScHM3OTc0UkVBWk9rYm90a3pORFpUQ2RWRmxYTXo1bERvTGxVNWgweU51aG9ndElBZk9kLVU0bGVrcHJjM3l0TjV2alpueUxWbkdBRE5xd1J6dFU5QW1fY3hVUGNTZ3RnNWRwd3BxRjE3UWNOTl9PX2g0SjJ3MDMzeHdNTmpwV0otZFF0NDcyMUUtYTBsNXN1cXkxQUF2c0F0MTltTEE0VHJoQ1FBazhNcEhIODNHdURUa1lCa0h0bVFnV2pxaV9scVdTdGhFR2tFTC14OA?oc=5",
+      "url": "https://news.google.com/rss/articles/CBMi7gFBVV95cUxNemN2LWtsYzVmVHZhOFlVSEtIeVFFNFozNmdsdDRwWTlqY05vVEhDdUUwV2JPVnBiN2p2aFJhb0ZqNm5PcUhvM09DUEVjeXRWX1M2YVNHVUJ4dHJQMWNVSkFhSDU0dHFkM3NZeXVWS2xyeUE0WkdkdWJ1aVlfMk9QLXV0Mm16NTBWcFhMUmxlRzF0MTNmQVczOE9TSklYZWR4TXVZSy1YWDN3eDhYcmhVcVdEU2ExcnpIenBCdVJlT19tNC1kWDZ1anJYUGZ1RUlISnlaZUdUWHV4VGgyVzFpMlJuRWVPWUhBdFFBTFJn?oc=5",
       "source": "CNBC TV18"
      },
      {
