@@ -299,6 +299,19 @@
     "SIMPLEXCAS": "already covers Sep 2021",
     "FLUIDOM": "already covers Mar 2023"
    }
+  },
+  {
+   "on": "2026-10-01",
+   "written": [
+    "INDOMIM:FY27-Q1",
+    "QPOWER:FY27-Q1"
+   ],
+   "spent_usd": null,
+   "skipped": {
+    "VIMTALABS": "already covers Dec 2024",
+    "SIMPLEXCAS": "already covers Sep 2021",
+    "FLUIDOM": "already covers Mar 2023"
+   }
   }
  ],
  "seen_new_results": {
@@ -657,6 +670,24 @@
    "cost_usd": null,
    "api_equivalent_usd": 7.965,
    "minutes": 16.2
+  },
+  "INDOMIM": {
+   "period": "FY27-Q1",
+   "on": "2026-10-01",
+   "engine": "claude-code",
+   "tokens_out": 85279,
+   "cost_usd": null,
+   "api_equivalent_usd": 5.116,
+   "minutes": 13.4
+  },
+  "QPOWER": {
+   "period": "FY27-Q1",
+   "on": "2026-10-01",
+   "engine": "claude-code",
+   "tokens_out": 96100,
+   "cost_usd": null,
+   "api_equivalent_usd": 7.549,
+   "minutes": 14.5
   }
  }
 }

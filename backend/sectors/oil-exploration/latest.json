@@ -1,38 +1,57 @@
 {
- "updated": "2026-09-30T06:05+05:30",
+ "updated": "2026-10-01T06:14+05:30",
  "figures": [
   {
-   "label": "Brent crude (Dec futures)",
-   "value": "$96.16/bbl",
-   "as_of": "2026-09-29",
-   "note": "-1.7% on the day; front-month Nov contract settled $102.59 (-2.6%)",
-   "source": {
-    "publisher": "Rigzone",
-    "url": "https://www.rigzone.com/news/oil_slides_on_saudi_supply_relief-29-sep-2026-184732-article"
-   }
-  },
-  {
-   "label": "Brent crude (Trading Economics)",
-   "value": "$95.97/bbl",
-   "as_of": "2026-09-30",
-   "note": "-0.20% on the day",
+   "label": "Brent crude",
+   "value": "$98.32/bbl",
+   "as_of": "2026-10-01",
+   "note": "+0.30% on the day; other sources quote different levels for 30 Sep",
    "source": {
     "publisher": "Trading Economics",
     "url": "https://tradingeconomics.com/commodity/brent-crude-oil"
    }
-  },
-  {
-   "label": "WTI crude (Nov)",
-   "value": "$89.38/bbl",
-   "as_of": "2026-09-29",
-   "note": "-3.5% on the day",
-   "source": {
-    "publisher": "Rigzone",
-    "url": "https://www.rigzone.com/news/oil_slides_on_saudi_supply_relief-29-sep-2026-184732-article"
-   }
   }
  ],
  "items": [
+  {
+   "date": "2026-09-30",
+   "title": "Brent falls 2.6% to $102.59 as Gulf crude exports recover; Hormuz flows rise",
+   "text": "Al Jazeera reports Brent fell 2.6% to $102.59 a barrel on Tuesday as traders focused on recovering Middle East exports. Gulf crude exports reached 16.328 million bpd in September, the highest since the war began in late February and just under 80% of pre-war levels, while Brent still gained roughly 13% over the month. Lower crude eases under-recovery pressure on HPCL and BPCL and India's import bill, but it trims realisation upside for producers such as ONGC and Oil India.",
+   "tone": "info",
+   "companies": [
+    "ONGC",
+    "OIL",
+    "HINDPETRO",
+    "BPCL"
+   ],
+   "sources": [
+    {
+     "publisher": "Al Jazeera",
+     "title": "Economic war: Is Iran losing its leverage over the Strait of Hormuz?",
+     "url": "https://www.aljazeera.com/news/2026/9/30/economic-war-is-iran-losing-its-leverage-over-the-strait-of-hormuz",
+     "date": "2026-09-30"
+    }
+   ],
+   "added": "2026-10-01"
+  },
+  {
+   "date": "2026-09-30",
+   "title": "ONGC falls 2.78% to ₹223.60 as Sensex, Nifty close lower on elevated crude",
+   "text": "The Sensex closed 48.78 points lower at 72,480.29 and the Nifty fell 95.75 points to 22,620.45, with HDFC Securities' report citing elevated oil prices as a concern for crude-importing India. ONGC declined 2.78% to ₹223.60. FPIs sold about Rs 9,980 crore of Indian equities on Tuesday, the largest single-day outflow in four months.",
+   "tone": "bad",
+   "companies": [
+    "ONGC"
+   ],
+   "sources": [
+    {
+     "publisher": "HDFC Sky",
+     "title": "Sensex, Nifty End Lower as Metal, Pharma Stocks Drag",
+     "url": "https://hdfcsky.com/news/market-close-report-today-september-30-2026-sensex-ends-flat-nifty-declines-as-elevated-oil-weighs",
+     "date": "2026-09-30"
+    }
+   ],
+   "added": "2026-10-01"
+  },
   {
    "date": "2026-09-28",
    "title": "Morgan Stanley positive on HPCL, BPCL, ONGC and Oil India; flags three 'surprises'",
