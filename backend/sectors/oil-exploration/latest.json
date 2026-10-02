@@ -1,18 +1,90 @@
 {
- "updated": "2026-10-01T06:14+05:30",
+ "updated": "2026-10-02T06:14+05:30",
  "figures": [
   {
-   "label": "Brent crude",
-   "value": "$98.32/bbl",
+   "label": "Brent crude (Dec contract)",
+   "value": "$98.67/bbl",
    "as_of": "2026-10-01",
-   "note": "+0.30% on the day; other sources quote different levels for 30 Sep",
+   "note": "+0.6% at 07:04 GMT; Nov contract expired at $103.50 on 30 Sep",
    "source": {
-    "publisher": "Trading Economics",
-    "url": "https://tradingeconomics.com/commodity/brent-crude-oil"
+    "publisher": "Yahoo Finance",
+    "url": "https://finance.yahoo.com/energy/articles/oil-prices-hold-steady-gulf-105242042.html"
+   }
+  },
+  {
+   "label": "WTI crude",
+   "value": "$90.09/bbl",
+   "as_of": "2026-10-01",
+   "note": "+0.5% at 07:04 GMT",
+   "source": {
+    "publisher": "Yahoo Finance",
+    "url": "https://finance.yahoo.com/energy/articles/oil-prices-hold-steady-gulf-105242042.html"
+   }
+  },
+  {
+   "label": "Delhi petrol / diesel (IOCL)",
+   "value": "Rs 102.12 / Rs 95.20 per litre",
+   "as_of": "2026-10-01",
+   "note": "retail selling price per PPAC",
+   "source": {
+    "publisher": "PPAC",
+    "url": "https://ppac.gov.in/all-imp-news"
    }
   }
  ],
  "items": [
+  {
+   "date": "2026-10-01",
+   "title": "Brent edges up to $98.67 as Saudi Yanbu loadings restart; OPEC+ seen holding November targets",
+   "text": "On 1 October Brent rose 0.6% to $98.67/bbl and WTI 0.5% to $90.09/bbl, supported by the restart of Saudi tanker loadings from Yanbu after the East-West Pipeline resumed, and by Iran saying it had received a US response to its latest proposal to revive the collapsed ceasefire. US crude inventories rose 922,000 barrels to 427.3 million barrels in the week to 25 September, against expectations of a draw. Sources say OPEC+ is likely to leave November output targets unchanged at its online meeting on Sunday; the Brent quote is the December contract, as the November contract expired at $103.50 on 30 September. Lower crude eases under-recovery pressure for HPCL and BPCL but trims realisations for upstream producers such as ONGC and Oil India.",
+   "tone": "watch",
+   "companies": [
+    "ONGC",
+    "OIL",
+    "HINDPETRO",
+    "BPCL"
+   ],
+   "sources": [
+    {
+     "publisher": "Yahoo Finance",
+     "title": "Oil prices hold steady as Gulf exports resume and US-Iran talks progress",
+     "url": "https://finance.yahoo.com/energy/articles/oil-prices-hold-steady-gulf-105242042.html",
+     "date": "2026-10-01"
+    },
+    {
+     "publisher": "Rio Times",
+     "title": "Oil markets: Wednesday, September 30, 2026",
+     "url": "https://riotimesonline.com/oil-markets-latam-thursday-october-1-2026",
+     "date": "2026-09-30"
+    }
+   ],
+   "added": "2026-10-02"
+  },
+  {
+   "date": "2026-09-30",
+   "title": "PPAC posts October domestic gas price and Oct 2026-Mar 2027 ceiling; PAF notice follows on 1 Oct",
+   "text": "PPAC listed on 30 September the Domestic Natural Gas Price for 1-31 October 2026 and the Gas Price Ceiling for 1 October 2026 to 31 March 2027, plus the Indian Crude Basket ratio for October. A Price Adjustment Factor notification for 1 October-31 December 2026 was posted on 1 October. The price values sit in PDFs that could not be read, so the new levels are not stated here. These set realisations for ONGC and Oil India's regulated and difficult-field gas.",
+   "tone": "info",
+   "companies": [
+    "ONGC",
+    "OIL"
+   ],
+   "sources": [
+    {
+     "publisher": "PPAC",
+     "title": "Gas Price",
+     "url": "https://ppac.gov.in/natural-gas/gas-price",
+     "date": "2026-10-01"
+    },
+    {
+     "publisher": "PPAC",
+     "title": "Important News",
+     "url": "https://ppac.gov.in/all-imp-news",
+     "date": "2026-10-01"
+    }
+   ],
+   "added": "2026-10-02"
+  },
   {
    "date": "2026-09-30",
    "title": "Brent falls 2.6% to $102.59 as Gulf crude exports recover; Hormuz flows rise",

@@ -1,0 +1,39 @@
+{
+ "slug": "sic-power-semiconductors-india",
+ "name": "Silicon Carbide (SiC) Power Semiconductors & Epi Wafers",
+ "icon": "chip",
+ "scope": "Silicon carbide wafers, epitaxy and power devices (MOSFETs, diodes, modules) for EV inverters, solar/grid, data-centre power and rail -- IndexBox (2026) projects ~18.5% CAGR for SiC substrates to 2035; India's first SiC fab/epi build-outs are now becoming real (RIR Power completed SiC epitaxial reactor installation in Bhubaneswar in Sep 2026; L&T Semiconductor unveiled its first 1200V SiC MOSFET platform at SEMICON India 2026), but listed exposure is thin, the pure-play (RIR, listed 16 Jul 2026) has not re-rated hard, and mainstream thematic coverage is still mostly about the generic 'chip stocks' basket, not SiC specifically.",
+ "questions": [
+  "What is the SiC value chain (crystal/substrate, epitaxy, device fab, module packaging) and why is SiC displacing silicon in EV traction inverters, fast chargers, solar/storage inverters, grid and data-centre power? What do IndexBox and other market reports project for substrates and devices?",
+  "Where is India in that chain today -- what is imported (substrates, epi wafers, devices) and what is the policy support (ISM approvals, Odisha incentives, SEMICON India 2026 announcements)?",
+  "RIR Power Electronics (Ruttonsha International Rectifier): what exactly has been committed and done at the Bhubaneswar SiC facility (Rs 618 cr plan, Phase-1 capex ~Rs 65 cr, Odisha fiscal support, epitaxial reactor installation Sep 2026), what is the timeline to revenue, and how is it funded post its 16 Jul 2026 NSE listing?",
+  "L&T Semiconductor Technologies (subsidiary of Larsen & Toubro): what is its 1200V SiC MOSFET platform, is it fabless or fab-backed, who are the target customers, and how material can this become for L&T?",
+  "Kaynes Technology / Kaynes Semicon: Sanand OSAT is producing intelligent power modules; what has the company said about SiC-based devices in future phases, and what is the evidence (filings, presentations, EE Times coverage) versus inference?",
+  "Are there any other NSE/BSE-listed companies with company-confirmed SiC work (e.g. power-semiconductor, rectifier, crystal/abrasive-grade SiC or module makers)? Note that CDIL is unlisted and SiCSem is unlisted -- verify any additional name with a filing or presentation, not sector adjacency.",
+  "Which names are small, mid and large cap, and what share of each company's revenue or capex does SiC really represent today?",
+  "Has the market already priced this in? Stock performance since the RIR listing and over 6-12 months for RIR, L&T and Kaynes, and how much broker/mainstream media coverage names SiC specifically versus generic semiconductor baskets.",
+  "What are the key risks -- technology/yield gaps versus Wolfspeed, Infineon, ST, Chinese substrate price deflation, long gestation, customer qualification, funding and execution risk for a newly listed small cap?",
+  "What are the near-term catalysts (RIR Phase-1 commissioning, first device samples and customer qualifications, ISM/state incentives, L&T SiC tape-outs and orders, Kaynes SiC phase announcements, EV/solar demand data)?"
+ ],
+ "bucket_labels": {
+  "sic_fab_and_epi": [
+   "SiC wafer & device makers",
+   "Companies building SiC epitaxy, wafer or device manufacturing in India"
+  ],
+  "sic_design_and_packaging": [
+   "SiC design & power packaging",
+   "Companies with SiC device platforms or power-module packaging that can extend to SiC"
+  ]
+ },
+ "universe": {
+  "sic_fab_and_epi": [
+   "RIR"
+  ],
+  "sic_design_and_packaging": [
+   "LT",
+   "KAYNES"
+  ]
+ },
+ "refresh": "weekly",
+ "kind": "theme"
+}

@@ -1,0 +1,768 @@
+{
+ "slug": "sic-power-semiconductors-india",
+ "name": "Silicon Carbide (SiC) Power Semiconductors & Epi Wafers",
+ "icon": "chip",
+ "edition": "2026-W40",
+ "updated": "2026-10-02",
+ "scope": "SiC substrates, epitaxy, power devices and modules for EV, solar/grid, data-centre and rail power, and the thin set of Indian listed companies with company-confirmed SiC work or close adjacency.",
+ "summary": {
+  "one_line": "India's SiC chain is moving from slides to hardware: RIR has installed SiC epi reactors in Bhubaneswar and L&T's fabless arm has shown a 1200V SiC MOSFET. But listed SiC revenue is still close to zero, global substrate prices are falling, and only one small cap is a direct play.",
+  "key_points": [
+   "IndexBox (1 Oct 2026) projects SiC substrates growing at an 18.5% value CAGR to 2035 (index 545, 2025=100), but the same page also shows a 12% baseline. Its device report headlines a 22.5% CAGR next to an index of only 450 by 2035. Treat these as wide ranges, not point forecasts (S1, S2).",
+   "Prices are moving the other way for now. SICC reported 6-inch SiC substrate prices down more than 30% YoY and swung to a Q1 2026 net loss of CNY 60.51 mn, and TrendForce expects price competition in substrates to persist (S3).",
+   "RIR Power Electronics completed installation of SiC epitaxial reactors at its Bhubaneswar facility on 16 Sep 2026. It is part of a ~Rs 618 cr two-phase plan; Phase-1 capex was ~Rs 65 cr with a ~Rs 32 cr Odisha capital subsidy, and operations are expected within about three months, subject to regulatory formalities (S4, S6, S7).",
+   "RIR is a small cap: market cap ~Rs 1,465 cr on 1 Oct 2026 against FY26 revenue of Rs 90.87 cr. The full Rs 618 cr SiC plan is about 6.8x FY26 revenue, so the SiC project is the investment case (S9).",
+   "L&T Semiconductor Technologies (LTSCT, 100% owned by L&T) unveiled its first SiC platform, a 1200V SiC MOSFET, at SEMICON India on 18 Sep 2026. It is fabless and uses Foxconn unit Hon Young's Taiwan fab for 650V-3,300V SiC wafers (S11, S13, S14).",
+   "For L&T, SiC is immaterial for now. LTSCT's FY26 operating revenue was Rs 13.52 cr and cumulative L&T investment is Rs 859 cr, against L&T's Q1 FY27 consolidated revenue of Rs 67,941.74 cr (S12, S13, S16).",
+   "Kaynes Semicon's Sanand OSAT is shipping intelligent power modules. Silicon carbide appears only as a 'future phase' in management comments to EE Times (June 2025); we found no filing quantifying SiC capex (S17, S18).",
+   "SiC competition in Odisha is building in unlisted hands. SiCSem's Rs 3,406.25 cr SiC device unit near Bhubaneswar (91.2 mn MOSFETs and 4.8 mn diodes a year) was cleared on 16 Sep 2026 (S22)."
+  ],
+  "for_investors": [
+   {
+    "title": "Who benefits",
+    "tone": "good",
+    "points": [
+     "RIR is the only listed company with a dedicated Indian SiC epi/device fab under construction. Its reactors are installed and it has said operations should start in about three months (S6, S7).",
+     "L&T gets an optional, low-cost SiC exposure through fabless LTSCT and the Hon Young foundry partnership, without fab capex on its own balance sheet so far (S14, S16).",
+     "Kaynes already makes power modules at Sanand and has an exclusive contract-manufacturing tie-up with L&T Semiconductor, which could carry SiC module packaging later (S17).",
+     "CUMI names high-purity SiC and electronic substrates in its Aspiration 2030 plan; this is a materials-side option, not a current semiconductor business (S23)."
+    ]
+   },
+   {
+    "title": "Who is hurt / risks",
+    "tone": "bad",
+    "points": [
+     "Substrate price deflation led by Chinese suppliers (6-inch prices down >30% YoY at SICC) compresses margins for any new epi/wafer entrant (S3).",
+     "Automotive qualification cycles run 18-36 months by IndexBox's estimate, so first device samples do not mean revenue soon (S2).",
+     "RIR's funding and timeline risk: Rs 618 cr of planned capex is about 42% of its ~Rs 1,465 cr market cap. We found no disclosed financing plan for Phase-2 beyond state support (S4, S9).",
+     "Kaynes shows how quickly a semiconductor narrative can de-rate: the stock fell 25% in two days after a Q4 FY26 miss and is down ~51% over one year (S19, S20)."
+    ]
+   },
+   {
+    "title": "What to watch",
+    "tone": "watch",
+    "points": [
+     "Start of operations at RIR Bhubaneswar (guided at about three months from mid-Sep 2026), followed by first epi-wafer and device samples (S6).",
+     "LTSCT SiC product sampling, customer names and any order disclosures following the 18 Sep 2026 launch (S11, S12).",
+     "Any Kaynes filing or presentation that moves SiC from a 'future phase' to a funded plan (S17).",
+     "SiCSem's build-out timeline as the unlisted competitor in Odisha (S22).",
+     "TrendForce/SICC substrate price data each quarter (S3)."
+    ]
+   }
+  ]
+ },
+ "kpis": [
+  {
+   "label": "SiC substrate market CAGR (IndexBox)",
+   "value": "18.5%",
+   "sub": "value terms, 2026-2035; 12% baseline also shown (S1)"
+  },
+  {
+   "label": "6-inch SiC substrate price, YoY",
+   "value": ">30% fall",
+   "sub": "SICC, reported May 2026 (S3)"
+  },
+  {
+   "label": "RIR SiC plan (Phase 1+2)",
+   "value": "Rs 618 cr",
+   "sub": "Phase-1 capex ~Rs 65 cr, subsidy ~Rs 32 cr (S4)"
+  },
+  {
+   "label": "RIR market cap",
+   "value": "Rs 1,465 cr",
+   "sub": "1 Oct 2026 (S9)"
+  },
+  {
+   "label": "RIR FY26 revenue",
+   "value": "Rs 90.87 cr",
+   "sub": "FY26 (S9)"
+  },
+  {
+   "label": "LTSCT FY26 operating revenue",
+   "value": "Rs 13.52 cr",
+   "sub": "FY26; L&T cumulative investment Rs 859 cr (S16, S13)"
+  },
+  {
+   "label": "SiCSem (unlisted) Odisha unit",
+   "value": "Rs 3,406 cr",
+   "sub": "cleared 16 Sep 2026 (S22)"
+  }
+ ],
+ "sections": [
+  {
+   "id": "theme_explainer",
+   "title": "Theme explainer: the SiC value chain and why it is displacing silicon",
+   "subsections": [
+    {
+     "title": "Value chain and demand drivers",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "SiC power devices are built in four steps. A SiC crystal is grown and sliced into substrates; epitaxial layers are deposited on top (epi wafers); MOSFETs and Schottky diodes are fabricated on those wafers; and the dies are packaged into discretes or modules. IndexBox's demand drivers for substrates are EV adoption (longer range and faster charging), solar/wind build-out, industrial motor efficiency, government localisation subsidies and the move to 200mm wafers, which lowers cost (S1). For devices, it singles out the shift to 800V EV architectures that need SiC inverters (S2)."
+      },
+      {
+       "type": "p",
+       "text": "Indian companies are aiming at the same end-markets. LTSCT pitches its 1200V SiC MOSFET at EV fast chargers, microgrids, solid-state transformers and traction inverters (S11). RIR's Odisha plant targets SiC MOSFETs, IGBTs and diodes rated 3.3 kV to 20 kV for EVs, renewables, power grids and industrial automation (S4)."
+      },
+      {
+       "type": "table",
+       "caption": "IndexBox end-use mix (shares of market)",
+       "columns": [
+        "End use",
+        "SiC substrates, 2026 (S1)",
+        "SiC devices (S2)"
+       ],
+       "rows": [
+        [
+         "Automotive / EV",
+         "45%",
+         "~55% (traction inverters)"
+        ],
+        [
+         "Renewable energy / grid",
+         "20%",
+         "~12%"
+        ],
+        [
+         "Industrial drives",
+         "15%",
+         "~15%"
+        ],
+        [
+         "RF / 5G",
+         "12%",
+         "-"
+        ],
+        [
+         "Optoelectronics / LED",
+         "8%",
+         "-"
+        ],
+        [
+         "Consumer / power supplies",
+         "-",
+         "~10%"
+        ],
+        [
+         "Aerospace, defence, other",
+         "-",
+         "~8%"
+        ]
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Market projections and where they disagree",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "IndexBox projections as published (1 Oct 2026)",
+       "columns": [
+        "Report",
+        "Headline CAGR 2026-35",
+        "Index 2035 (2025=100)",
+        "Other figure on same page"
+       ],
+       "rows": [
+        [
+         "SiC substrates (S1)",
+         "18.5% (value)",
+         "545",
+         "12.0% baseline CAGR, index 420"
+        ],
+        [
+         "SiC devices (S2)",
+         "22.5%",
+         "450",
+         "12.0% alternative CAGR, index ~420"
+        ]
+       ]
+      },
+      {
+       "type": "callout",
+       "tone": "warn",
+       "text": "IndexBox's own numbers do not reconcile. A 22.5% CAGR over ten years implies roughly a 7.6x index, not 450, and a 12% CAGR implies about 3.1x, not 420. Only the 18.5% → 545 pair is internally consistent (S1, S2). Read these as directional."
+      },
+      {
+       "type": "p",
+       "text": "On pricing, TrendForce reports SICC's 6-inch substrate prices fell more than 30% YoY and SICC swung to a Q1 2026 net loss of CNY 60.51 mn as 8-inch ramp costs kept gross margins negative. StarPower's net profit fell 74.32%, while Yangjie grew SiC-related revenue more than 50% YoY (S3). Volume growth and price deflation are happening together."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "policy_and_capex",
+   "title": "Policy support and capex in India",
+   "subsections": [
+    {
+     "title": "Central and state support",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "At SEMICON India 2026 (17-19 Sep), PM Modi reiterated a $13.5 bn commitment for the second phase of the India Semiconductor Mission (ISM 2.0), versus about $8 bn in phase one. He said five chip assembly and packaging plants are now in commercial production: Micron, Kaynes Semicon, CG Semi, CDIL (Mohali) and Suchi Semicon (S21). India still has no operating SiC substrate or epi supply at scale, so substrates, epi wafers and most SiC devices remain imported. We could not find a source that quantifies SiC-specific imports, so we give no figure."
+      },
+      {
+       "type": "p",
+       "text": "Odisha is emerging as the SiC hub. The state approved RIR's ~Rs 618 cr project and released Phase-1 fiscal support of ~Rs 32 cr against ~Rs 65 cr of capex (S4, S5). On 16 Sep 2026, unlisted SiCSem's Rs 3,406.25 cr SiC device unit at IDCO Infovalley-II, Khordha was cleared, with capacity of 4.8 mn SiC diodes and 91.2 mn SiC MOSFETs a year, ~1,270 jobs and projected export turnover of Rs 7,043 cr over five years (S22)."
+      }
+     ]
+    },
+    {
+     "title": "Announced SiC capex in India",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "Company-confirmed SiC investments (India)",
+       "columns": [
+        "Company",
+        "Listed?",
+        "Location",
+        "Commitment",
+        "Status"
+       ],
+       "rows": [
+        [
+         "RIR Power Electronics",
+         "NSE/BSE: RIR",
+         "Bhubaneswar, Odisha",
+         "~Rs 618 cr (Phase-1 capex ~Rs 65 cr) (S4)",
+         "Epi reactors installed 16 Sep 2026; operations expected in ~3 months (S6, S7)"
+        ],
+        [
+         "L&T Semiconductor Technologies",
+         "Via L&T (LT)",
+         "Fabless; wafers at Hon Young, Taiwan",
+         "L&T cumulative investment Rs 859 cr, all products (S13)",
+         "1200V SiC MOSFET platform unveiled 18 Sep 2026 (S12)"
+        ],
+        [
+         "Kaynes Semicon",
+         "Via Kaynes (KAYNES)",
+         "Sanand, Gujarat",
+         "Rs 3,300 cr OSAT, not SiC-specific (S18)",
+         "IPMs in production; SiC only a 'future phase' (S17)"
+        ],
+        [
+         "SiCSem",
+         "Unlisted",
+         "Khordha, Odisha",
+         "Rs 3,406.25 cr (S22)",
+         "Unit approval 16 Sep 2026"
+        ]
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "listed_company_impact",
+   "title": "Listed company impact",
+   "subsections": [
+    {
+     "title": "RIR Power Electronics: the only listed pure play",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "RIR (formerly Ruttonsha International Rectifier) makes high-power thyristors, diodes and rectifiers at Halol, Gujarat, and has been BSE-listed since 1986. On 16 Jul 2026, 79,572,400 shares of Rs 2 each were admitted to NSE under the symbol RIR. This was a direct listing; no new money was raised (S8). In FY25, it bought SiC wafer process IP from SiCamore Semiconductor (USA) for up to Rs 42 cr over twenty years and received Rs 61.26 cr from converting preferential warrants (S10)."
+      },
+      {
+       "type": "bullets",
+       "items": [
+        "Plan: ~Rs 618 cr across two phases, with SiC MOSFETs, IGBTs and diodes rated 3.3-20 kV (S4).",
+        "Phase-1: ~Rs 65 cr capex; ~Rs 32 cr Odisha capital subsidy approved 7 Aug 2025 (S4).",
+        "Sep 2026: SiC epitaxial reactors, power connections and utilities installed and commissioned. Operations are expected in about three months, subject to regulatory formalities (S6, S7).",
+        "Financials: Q1 FY27 standalone revenue Rs 27.16 cr (+29.28% YoY) and PAT Rs 3.14 cr; FY26 revenue Rs 90.87 cr and net profit Rs 7.93 cr (S7, S9).",
+        "SiC revenue today: none disclosed from Bhubaneswar. The SiC project is the main capex line and is large relative to the existing business."
+       ]
+      },
+      {
+       "type": "callout",
+       "tone": "info",
+       "text": "Funding gap: Phase-1 (~Rs 65 cr) is roughly covered by warrant money and the state subsidy. We found no disclosed financing for the remaining ~Rs 550 cr. That is our arithmetic on S4, not a company statement."
+      }
+     ]
+    },
+    {
+     "title": "L&T and Kaynes: SiC as an option inside larger businesses",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "L&T: LTSCT is a wholly owned, fabless design company with offices in Austin, Munich, Tokyo, Bengaluru and Noida (S12). Its October 2025 long-term deal with Hon Young Semiconductor (Foxconn group) uses HYS's Taiwan fab for 650V-3,300V SiC and high-voltage silicon wafers for MOSFETs and Schottky diodes (S14). At SEMICON India 2026 it launched 40 products, including the 1200V SiC MOSFET platform and its first in-house SiC power modules (S11, S12). LTSCT targets $500 mn revenue by FY31, with 70-80% from exports (S13). In January 2025 it said a fab decision depended on a $1 bn revenue run-rate (S15). No SiC customers or orders have been disclosed."
+      },
+      {
+       "type": "p",
+       "text": "Kaynes: Sanand OSAT (Rs 3,300 cr) shipped ~900 IPM5 multi-chip modules, with Alpha and Omega Semiconductor as an initial customer (S18). In June 2025, management told EE Times that Sanand will make power MOSFETs for automotive, IGBTs for industrial, and 'silicon carbide-based devices' in future phases. It also flagged the ~¥2 bn purchase of Fujitsu General Electronics' power-module business and an exclusive contract-manufacturing partnership with L&T Semiconductor (S17). That is the evidence base; any SiC revenue estimate would be inference."
+      },
+      {
+       "type": "table",
+       "caption": "How material is SiC today?",
+       "columns": [
+        "Company",
+        "Size (mcap)",
+        "SiC revenue today",
+        "SiC capex vs scale"
+       ],
+       "rows": [
+        [
+         "RIR",
+         "Small: ~Rs 1,465 cr (S9)",
+         "Not disclosed / pre-commercial",
+         "Rs 618 cr plan vs FY26 revenue Rs 90.87 cr (S4, S9)"
+        ],
+        [
+         "Kaynes",
+         "Rs 23,535 cr (S19)",
+         "None disclosed",
+         "No SiC-specific capex disclosed; FY26 revenue Rs 3,626 cr (S19)"
+        ],
+        [
+         "L&T",
+         "Large: ~Rs 5.35 lakh cr (S12)",
+         "LTSCT FY26 total revenue Rs 13.52 cr, all products (S16)",
+         "Rs 859 cr cumulative into LTSCT vs Q1 FY27 revenue Rs 67,942 cr (S12, S13)"
+        ]
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Adjacent names and what we excluded",
+     "blocks": [
+      {
+       "type": "bullets",
+       "items": [
+        "Carborundum Universal (CUMI): a large global supplier of abrasive/refractory-grade SiC. Its Aspiration 2030 plan names HPSiC (high-purity SiC), wafer-fab equipment and electronic substrates; FY27 capex is planned at Rs 400 cr, not SiC-specific (S23). This is materials adjacency, not device exposure.",
+        "Grindwell Norton: makes SiC at Tirupati and through its Bhutan subsidiary. This is abrasive/ceramic-grade SiC, not semiconductor wafers (S24).",
+        "Sona BLW (Sona Comstar): a SiC user, not a maker. It showed an X-in-1 powertrain unit with a SiC inverter at CES 2026 (S25).",
+        "Excluded for lack of company-confirmed SiC work: CG Power (CG Semi OSAT; no SiC in its disclosures we found), Bharat Forge/Kalyani Powertrain, Exicom and BEL. CDIL and SiCSem are unlisted."
+       ]
+      },
+      {
+       "type": "callout",
+       "tone": "warn",
+       "text": "Coverage gap: only six listed names cleared our evidence bar, below the 8-name minimum. Only one (RIR) is a direct SiC fab/epi play, and it is a small cap. There is no mid-cap SiC device maker in India's listed market today."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "research_house_views",
+   "title": "Research house views and market pricing",
+   "subsections": [
+    {
+     "title": "Has the market priced it in?",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "Stock moves (as reported by cited sources)",
+       "columns": [
+        "Stock",
+        "Data point",
+        "Value"
+       ],
+       "rows": [
+        [
+         "RIR",
+         "Market cap 14 Jul 2026 (pre-NSE listing) (S8)",
+         "~Rs 1,257 cr"
+        ],
+        [
+         "RIR",
+         "Market cap 1 Oct 2026 (S9)",
+         "~Rs 1,465 cr (~+17% since listing, our calculation)"
+        ],
+        [
+         "RIR",
+         "Day of reactor news, 17 Sep 2026 (S7)",
+         "+10.54% to Rs 198.55"
+        ],
+        [
+         "RIR",
+         "1-month / 3-month return to 1 Oct 2026 (S9)",
+         "+16.89% / +14.92%"
+        ],
+        [
+         "RIR",
+         "52-week range (S9)",
+         "Rs 154.00 - Rs 213.94"
+        ],
+        [
+         "Kaynes",
+         "1-year / 3-month return to 1 Oct 2026 (S19)",
+         "-51.08% / +11.07%"
+        ],
+        [
+         "Kaynes",
+         "Two days after Q4 FY26 results (S20)",
+         "-25%"
+        ],
+        [
+         "L&T",
+         "Day of SiC/40-product launch, 18 Sep 2026 (S12)",
+         "+1.28% to Rs 3,885"
+        ]
+       ]
+      },
+      {
+       "type": "callout",
+       "tone": "warn",
+       "text": "The 1-year figures for RIR conflict: indmoney shows -48.41% (1 Oct 2026), while scanx showed +7.95% (Jul 2026). The gap probably reflects whether a face-value change is adjusted for, which we could not confirm. The market-cap comparison above avoids that problem (S8, S9)."
+      },
+      {
+       "type": "p",
+       "text": "At about 170x trailing earnings (S9), RIR already prices in more than its legacy rectifier business. But a market cap of ~Rs 1,465 cr against a Rs 618 cr SiC plan does not look like a hard re-rate. The ~17% gain since the NSE listing is modest next to the 1-year swings in Indian semiconductor-themed stocks such as Kaynes."
+      }
+     ]
+    },
+    {
+     "title": "Broker and research coverage",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "Broker coverage we found is about the generic electronics/OSAT story, not SiC. After Kaynes' Q4 FY26 miss, Jefferies kept a buy and cited OSAT and PCB revenue coming onstream in FY27. Avendus Spark, JM Financial and Equirus moved to Reduce; Nomura and BNP Paribas were Neutral; CLSA and Nuvama were Hold; IIFL rated it Add. None of these views cited SiC (S20). We found no broker initiation on RIR. SiC-specific views come from global research firms (IndexBox, TrendForce) rather than Indian brokers (S1, S3)."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "risks_and_catalysts",
+   "title": "Risks and catalysts",
+   "subsections": [
+    {
+     "title": "Key risks",
+     "blocks": [
+      {
+       "type": "bullets",
+       "items": [
+        "Price deflation: 6-inch SiC substrates down more than 30% YoY at SICC, with TrendForce expecting price competition to persist. This hits RIR's planned epi-wafer sales directly (S3).",
+        "Qualification lag: IndexBox puts automotive qualification at 18-36 months (S2). RIR and LTSCT have no disclosed automotive design wins.",
+        "Technology and yield gap: incumbents and Chinese players are scaling 8-inch lines (S1, S3), while RIR's licensed process IP came from SiCamore (S10).",
+        "Funding and execution at RIR: about Rs 550 cr of the Rs 618 cr plan has no disclosed financing, and the timeline depends on 'remaining regulatory processes' (S4, S6).",
+        "Local competition for subsidies and customers: SiCSem's Rs 3,406 cr unit is about 5.5x RIR's total plan (S4, S22)."
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Near-term catalysts",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "Catalyst calendar",
+       "columns": [
+        "Catalyst",
+        "Company",
+        "Timing (per source)"
+       ],
+       "rows": [
+        [
+         "Bhubaneswar facility starts operations",
+         "RIR",
+         "About three months from Sep 2026 (S6)"
+        ],
+        [
+         "First SiC epi wafer / device samples and customer qualifications",
+         "RIR",
+         "Not guided"
+        ],
+        [
+         "Phase-1 subsidy disbursal (pro-rata) and Phase-2 financing",
+         "RIR",
+         "Not guided (S4)"
+        ],
+        [
+         "SiC MOSFET sampling, customer names and orders",
+         "L&T (LTSCT)",
+         "Post 18 Sep 2026 launch (S11)"
+        ],
+        [
+         "Funded SiC phase at Sanand",
+         "Kaynes",
+         "Only described as a 'future phase' (S17)"
+        ],
+        [
+         "Quarterly substrate price data",
+         "Sector",
+         "Quarterly (S3)"
+        ]
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "companies": [
+  {
+   "name": "RIR Power Electronics Ltd",
+   "nse": "RIR",
+   "bse": "517035",
+   "bucket": "sic_fab_and_epi",
+   "role": "Legacy maker of high-power silicon thyristors, diodes and rectifiers. It is building India's first SiC epi-wafer and device fab in Bhubaneswar (Rs 618 cr plan; epi reactors installed Sep 2026) (S4, S6, S8).",
+   "impact": "Most direct listed SiC play. The SiC plan is about 6.8x FY26 revenue and ~42% of market cap, so the stock depends on commissioning, qualification and Phase-2 funding, with substrate price deflation as a headwind (S3, S4, S9)."
+  },
+  {
+   "name": "Larsen & Toubro Ltd",
+   "nse": "LT",
+   "bse": null,
+   "bucket": "sic_design_and_packaging",
+   "role": "Owns fabless LTSCT, which unveiled a 1200V SiC MOSFET platform and SiC modules at SEMICON India 2026 and uses Hon Young (Foxconn) in Taiwan for SiC wafers (S11, S12, S14).",
+   "impact": "Strategically notable but financially immaterial for now: LTSCT FY26 revenue was Rs 13.52 cr versus L&T quarterly revenue of ~Rs 67,942 cr (S12, S16)."
+  },
+  {
+   "name": "Kaynes Technology India Ltd",
+   "nse": "KAYNES",
+   "bse": null,
+   "bucket": "sic_design_and_packaging",
+   "role": "Through Kaynes Semicon's Sanand OSAT, packages intelligent power modules; management has said future phases will include SiC-based devices (S17, S18).",
+   "impact": "Packaging know-how could carry over to SiC modules, but there is no disclosed SiC capex. The stock is down ~51% over one year on execution misses (S17, S19, S20)."
+  },
+  {
+   "name": "Carborundum Universal Ltd",
+   "nse": "CARBORUNIV",
+   "bse": null,
+   "bucket": "other",
+   "role": "Global supplier of abrasive/refractory-grade SiC. Its Aspiration 2030 plan names high-purity SiC (HPSiC), wafer-fab equipment and electronic substrates (S23).",
+   "impact": "Materials-side option on the SiC chain. There is no confirmed semiconductor-grade substrate production or revenue split (S23)."
+  },
+  {
+   "name": "Grindwell Norton Ltd",
+   "nse": "GRINDWELL",
+   "bse": null,
+   "bucket": "other",
+   "role": "Makes SiC at Tirupati and through its Bhutan subsidiary for abrasives and ceramics (S24).",
+   "impact": "Only a raw-material adjacency. Abrasive-grade SiC is not wafer-grade, so device-market growth has little direct effect (S24)."
+  },
+  {
+   "name": "Sona BLW Precision Forgings Ltd (Sona Comstar)",
+   "nse": "SONACOMS",
+   "bse": null,
+   "bucket": "other",
+   "role": "EV driveline and power-electronics supplier that showed an X-in-1 powertrain unit with a SiC inverter at CES 2026 (S25).",
+   "impact": "Demand-side user: falling SiC device prices help its inverter costs. It does not make SiC (S3, S25)."
+  }
+ ],
+ "sources": [
+  {
+   "id": "S1",
+   "publisher": "IndexBox",
+   "title": "Silicon Carbide Substrates Market To 2035: EV Power Electronics Demand Drives Growth",
+   "url": "https://www.indexbox.io/blog/silicon-carbide-substrates-market-forecast-to-2035-driven-by-ev-power-electronics-demand/",
+   "date": "2026-10-01",
+   "kind": "research"
+  },
+  {
+   "id": "S2",
+   "publisher": "IndexBox",
+   "title": "Silicon Carbide Semiconductor Devices Market To 2035: EV Demand Drives 22.5% CAGR",
+   "url": "https://www.indexbox.io/blog/silicon-carbide-semiconductor-devices-market-forecast-to-2035-ev-traction-inverters-drive-growth-at-22-5-cagr/",
+   "date": "2026-10-01",
+   "kind": "research"
+  },
+  {
+   "id": "S3",
+   "publisher": "TrendForce",
+   "title": "China's Wide Bandgap Chip Players Diverge, as GaN RF Surges; SiC Profitability Under Pressure",
+   "url": "https://www.trendforce.com/news/2026/05/14/news-chinas-wide-bandgap-chip-players-diverge-as-gan-rf-surges-sic-profitability-under-pressure/",
+   "date": "2026-05-14",
+   "kind": "research"
+  },
+  {
+   "id": "S4",
+   "publisher": "RIR Power Electronics",
+   "title": "Government of Odisha approves fiscal support for RIR Power Electronics' Silicon Carbide semiconductor plant in Bhubaneswar",
+   "url": "https://www.rirpowersemi.com/news/government-of-odisha-approves-fiscal-support-for-rir-power-electronics-silicon-carbide-semiconductor-plant-in-bhubaneswar",
+   "date": "2025-08-07",
+   "kind": "company"
+  },
+  {
+   "id": "S5",
+   "publisher": "RIR Power Electronics",
+   "title": "RIR Power Electronics Secures Approval for Rs 618 Crore SiC Semiconductor Plant in Odisha",
+   "url": "https://www.rirpowersemi.com/news/rir-power-electronics-secures-approval-for-618-crore-sic-semiconductor-plant-in-odisha",
+   "date": "2026-10-02",
+   "kind": "company"
+  },
+  {
+   "id": "S6",
+   "publisher": "Business Standard (Capital Market)",
+   "title": "RIR installs SiC epitaxial wafer manufacturing reactors at its semiconductor facility in Bhubaneswar",
+   "url": "https://www.business-standard.com/amp/markets/capital-market-news/rir-installs-sic-epitaxial-wafer-manufacturing-reactors-at-its-semiconductor-facility-in-bhubaneswar-126091601166_1.html",
+   "date": "2026-09-16",
+   "kind": "news"
+  },
+  {
+   "id": "S7",
+   "publisher": "Trade Brains",
+   "title": "RIR Power Electronics Shares Surge 10% Following Key SiC Reactor Installation Milestone",
+   "url": "https://tradebrains.in/indian-markets/rir-power-electronics-shares-surge-10-following-key-sic-reactor-installation-milestone-12543568",
+   "date": "2026-09-17",
+   "kind": "news"
+  },
+  {
+   "id": "S8",
+   "publisher": "ScanX",
+   "title": "RIR Power Electronics lists on NSE from July 16, 2026",
+   "url": "https://scanx.trade/stock-market-news/ipo/rir-power-electronics-shares-list-on-nse-from-july-16/45582894",
+   "date": "2026-07-15",
+   "kind": "news"
+  },
+  {
+   "id": "S9",
+   "publisher": "INDmoney",
+   "title": "RIR Power Electronics Ltd Share Price Today",
+   "url": "https://www.indmoney.com/stocks/rir-power-electronics-ltd-share-price",
+   "date": "2026-10-01",
+   "kind": "other"
+  },
+  {
+   "id": "S10",
+   "publisher": "IIFL (IndiaInfoline)",
+   "title": "RIR Power Electronics Ltd Directors Report FY2024-25",
+   "url": "https://www.indiainfoline.com/company/rir-power-electronics-ltd/reports/directors-report",
+   "date": "2026-10-02",
+   "kind": "company"
+  },
+  {
+   "id": "S11",
+   "publisher": "VARINDIA",
+   "title": "L&T Semiconductor unveils 40 products at SEMICON India 2026, debuts first SiC platform and in-house motor controller",
+   "url": "https://varindia.com/news/l-t-semiconductor-unveils-40-products-at-semicon-india-2026-debuts-first-sic-platform-and-in-house-motor-controller",
+   "date": "2026-09-19",
+   "kind": "news"
+  },
+  {
+   "id": "S12",
+   "publisher": "Trade Brains",
+   "title": "Larsen & Toubro Shares Rise After Semiconductor Arm Launches 40 Products At SEMICON 2026",
+   "url": "https://tradebrains.in/indian-markets/larsen-toubro-shares-rise-after-semiconductor-arm-launches-40-products-at-semicon-2026-12548516",
+   "date": "2026-09-18",
+   "kind": "news"
+  },
+  {
+   "id": "S13",
+   "publisher": "GKToday",
+   "title": "L&T Unveils First Silicon Carbide Chip Platform",
+   "url": "https://www.gktoday.in/lt-unveils-first-silicon-carbide-chip-platform/",
+   "date": "2026-09-19",
+   "kind": "news"
+  },
+  {
+   "id": "S14",
+   "publisher": "EE Times",
+   "title": "L&T Semiconductor, Hon Young Partner for 650V to 3300V SiC Wafer Development",
+   "url": "https://www.eetimes.com/lt-semiconductor-hon-young-partner-for-650v-to-3300v-sic-wafer-development/",
+   "date": "2025-10-24",
+   "kind": "news"
+  },
+  {
+   "id": "S15",
+   "publisher": "Communications Today",
+   "title": "L&T Semiconductor plans $10B fab, targets $1B revenue by 2026-27",
+   "url": "https://www.communicationstoday.co.in/lt-semiconductor-plans-10b-fab-targets-1b-revenue-by-2026-27/",
+   "date": "2025-01-24",
+   "kind": "news"
+  },
+  {
+   "id": "S16",
+   "publisher": "Sahi",
+   "title": "L&T Semiconductor Aims For $500 Million Revenue By FY31 (seen in search results)",
+   "url": "https://www.sahi.com/news/l-t-semiconductor-aims-for-500-million-revenue-by-fy31-190-PE1_CORP",
+   "date": "2026-10-02",
+   "kind": "news"
+  },
+  {
+   "id": "S17",
+   "publisher": "EE Times",
+   "title": "India's Kaynes Semicon Fast-Tracks Power Packaging Ambitions",
+   "url": "https://www.eetimes.com/indias-kaynes-semicon-fast-tracks-power-packaging-ambitions/",
+   "date": "2025-06-25",
+   "kind": "news"
+  },
+  {
+   "id": "S18",
+   "publisher": "CRN Asia",
+   "title": "Kaynes Semicon starts production at Sanand OSAT facility, marking India's second chip unit",
+   "url": "https://www.crnasia.com/india/news/2026/kaynes-semicon-starts-production-at-sanand-osat-facility-marking-india-s-second-chip-unit",
+   "date": "2026-10-02",
+   "kind": "news"
+  },
+  {
+   "id": "S19",
+   "publisher": "INDmoney",
+   "title": "Kaynes Technology Share Price Today",
+   "url": "https://www.indmoney.com/stocks/kaynes-technology-india-ltd-share-price",
+   "date": "2026-10-01",
+   "kind": "other"
+  },
+  {
+   "id": "S20",
+   "publisher": "Business Today",
+   "title": "The fall and fall of Kaynes Tech shares: Down 25% in 2 days but Jefferies tags a 'buy'",
+   "url": "https://www.businesstoday.in/markets/stocks/story/the-fall-and-fall-of-kaynes-tech-shares-down-25-in-2-days-but-jefferies-tags-a-buy-531619-2026-05-15",
+   "date": "2026-05-15",
+   "kind": "news"
+  },
+  {
+   "id": "S21",
+   "publisher": "EE Times",
+   "title": "SEMICON INDIA 2026: India Starts Packaging Chips as Ecosystem Takes Shape",
+   "url": "https://www.eetimes.com/semicon-india-2026-india-starts-packaging-chips-as-ecosystem-takes-shape/",
+   "date": "2026-09-23",
+   "kind": "news"
+  },
+  {
+   "id": "S22",
+   "publisher": "ETV Bharat",
+   "title": "Odisha Set To Get Silicon Carbide Semiconductor Unit In Khordha With Rs 3,406 Crore Investment",
+   "url": "https://www.etvbharat.com/en/business/odisha-set-to-get-silicon-carbide-semiconductor-unit-in-khordha-with-rs-3406-crore-investment-enn26091602270",
+   "date": "2026-09-16",
+   "kind": "news"
+  },
+  {
+   "id": "S23",
+   "publisher": "Investywise",
+   "title": "Carborundum Universal Limited Q4 FY26 Earnings and Aspiration 2030 Update",
+   "url": "https://www.investywise.com/carborundum-universal-limited-q4-fy26-earnings-conference-call-transcript/",
+   "date": "2026-05-21",
+   "kind": "news"
+  },
+  {
+   "id": "S24",
+   "publisher": "Grindwell Norton",
+   "title": "Annual Report 2024-25 (seen in search results)",
+   "url": "https://www.grindwellnorton.co.in/sites/grindwellnorton.co.in/files/2025-06/Annual%20Report_2024_25_FINAL_0.pdf",
+   "date": "2025-06-01",
+   "kind": "company"
+  },
+  {
+   "id": "S25",
+   "publisher": "MarkLines",
+   "title": "Sona BLW Precision Forgings Ltd. (Sona Comstar) company profile",
+   "url": "https://www.marklines.com/en/top500/sona-group",
+   "date": "2026-10-02",
+   "kind": "other"
+  }
+ ],
+ "method": "First edition, researched on 2026-10-02 with web search and page fetches. We prioritised company releases (RIR, LTSCT) and filings-derived pages; some BSE filing PDFs and Business Standard pages returned 403 and were used only as seen in search results (S6). Where a page's publication date could not be seen (S5, S10, S16, S18, S25); BSE codes other than RIR's are left null because we did not verify them, the access date is recorded. Market data come from INDmoney and Trade Brains snapshots; numbers.json was not present in the folder. We checked other listed names for SiC work (CG Power/CG Semi, Bharat Forge/Kalyani Powertrain, Exicom, BEL) and excluded them because we found no company-confirmed SiC work. Only six names qualified, below the 8-name minimum, which reflects how narrow this niche is. IndexBox figures are reported as published, with their internal inconsistencies flagged. All percentages labelled 'our calculation' are simple arithmetic on cited figures. No ratings or price targets.",
+ "bucket_labels": {
+  "sic_fab_and_epi": [
+   "SiC wafer & device makers",
+   "Companies building SiC epitaxy, wafer or device manufacturing in India"
+  ],
+  "sic_design_and_packaging": [
+   "SiC design & power packaging",
+   "Companies with SiC device platforms or power-module packaging that can extend to SiC"
+  ],
+  "other": [
+   "Other",
+   ""
+  ]
+ },
+ "kind": "theme"
+}
