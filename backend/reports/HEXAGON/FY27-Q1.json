@@ -1,0 +1,4941 @@
+{
+ "code": "HEXAGON",
+ "name": "Hexagon Nutrition Ltd",
+ "period": "FY27-Q1",
+ "period_label": "Q1 FY27",
+ "results_quarter": "Jun 2026",
+ "generated_at": "2026-10-03T06:25+05:30",
+ "basis": "consolidated",
+ "screener_url": "https://www.screener.in/company/HEXAGON/consolidated/",
+ "sources": [
+  {
+   "id": "NUMBERS",
+   "type": "numbers",
+   "title": "screener.in consolidated statements + computed metrics",
+   "url": "https://www.screener.in/company/HEXAGON/consolidated/",
+   "date": null
+  },
+  {
+   "id": "SCREENER",
+   "type": "profile",
+   "title": "screener.in company profile",
+   "url": "https://www.screener.in/company/HEXAGON/consolidated/",
+   "date": null
+  },
+  {
+   "id": "AR2026",
+   "type": "annual_report",
+   "title": "Annual Report 2026",
+   "url": "https://www.bseindia.com/xml-data/corpfiling/AttachHis/a34fd413-6837-4d73-874c-f3dac3d76f0a.pdf",
+   "date": "2026"
+  },
+  {
+   "id": "CALL Aug 2026",
+   "type": "transcript",
+   "title": "Earnings call transcript, Aug 2026",
+   "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=a0026886-d606-425b-b72e-13abba690b7c.pdf",
+   "date": "Aug 2026"
+  },
+  {
+   "id": "CALL Jul 2026",
+   "type": "transcript",
+   "title": "Earnings call transcript, Jul 2026",
+   "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=176d3c31-87ef-4cd2-870c-55652e903979.pdf",
+   "date": "Jul 2026"
+  },
+  {
+   "id": "PPT Aug 2026",
+   "type": "presentation",
+   "title": "Investor presentation, Aug 2026",
+   "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=b661bd73-15f4-4901-b925-dac2275c0bca.pdf",
+   "date": "Aug 2026"
+  },
+  {
+   "id": "RATING",
+   "type": "credit_rating",
+   "title": "Rating update | 7 Aug from icra",
+   "url": "https://www.icra.in/Rationale/ShowRationaleReport/?Id=144865",
+   "date": null
+  },
+  {
+   "id": "ANNOUNCEMENTS",
+   "type": "announcements",
+   "title": "Latest exchange announcements",
+   "url": "https://www.screener.in/company/HEXAGON/consolidated/#documents",
+   "date": null
+  },
+  {
+   "id": "BOARD",
+   "type": "board_notes",
+   "title": "This dashboard's earlier research notes (analyst notes, not company disclosure)",
+   "url": null,
+   "date": null
+  }
+ ],
+ "quant": {
+  "basis": "consolidated",
+  "units": "Rs crore unless stated",
+  "annual": {
+   "columns": [
+    "Mar 2021",
+    "Mar 2022",
+    "Mar 2024",
+    "Mar 2025",
+    "Mar 2026"
+   ],
+   "sales": [
+    211.0,
+    271.0,
+    298.0,
+    324.0,
+    380.0
+   ],
+   "expenses": [
+    177.0,
+    235.0,
+    273.0,
+    283.0,
+    327.0
+   ],
+   "ebitda": [
+    34.0,
+    36.0,
+    25.0,
+    41.0,
+    53.0
+   ],
+   "opm": [
+    16.0,
+    13.0,
+    8.0,
+    13.0,
+    14.0
+   ],
+   "other_income": [
+    6.0,
+    5.0,
+    7.0,
+    6.0,
+    12.0
+   ],
+   "interest": [
+    3.0,
+    2.0,
+    4.0,
+    4.0,
+    4.0
+   ],
+   "depreciation": [
+    6.0,
+    7.0,
+    8.0,
+    9.0,
+    10.0
+   ],
+   "pbt": [
+    31.0,
+    32.0,
+    20.0,
+    34.0,
+    51.0
+   ],
+   "tax_rate": [
+    27.0,
+    28.0,
+    37.0,
+    28.0,
+    26.0
+   ],
+   "pat": [
+    23.0,
+    23.0,
+    12.0,
+    24.0,
+    38.0
+   ],
+   "eps": [
+    2.07,
+    2.11,
+    1.1,
+    2.2,
+    3.43
+   ],
+   "payout": [
+    -0.0,
+    -0.0,
+    -0.0,
+    -0.0,
+    -0.0
+   ],
+   "equity_capital": [
+    11.0,
+    11.0,
+    11.0,
+    11.0,
+    11.0
+   ],
+   "reserves": [
+    127.0,
+    149.0,
+    153.0,
+    183.0,
+    222.0
+   ],
+   "borrowings": [
+    20.0,
+    40.0,
+    49.0,
+    29.0,
+    33.0
+   ],
+   "other_liabilities": [
+    55.0,
+    57.0,
+    38.0,
+    38.0,
+    52.0
+   ],
+   "total_assets": [
+    214.0,
+    257.0,
+    251.0,
+    261.0,
+    318.0
+   ],
+   "fixed_assets": [
+    51.0,
+    55.0,
+    65.0,
+    64.0,
+    64.0
+   ],
+   "cwip": [
+    1.0,
+    7.0,
+    2.0,
+    4.0,
+    3.0
+   ],
+   "investments": [
+    18.0,
+    23.0,
+    19.0,
+    34.0,
+    37.0
+   ],
+   "other_assets": [
+    144.0,
+    172.0,
+    164.0,
+    159.0,
+    215.0
+   ],
+   "cfo": [
+    29.0,
+    11.0,
+    23.0,
+    38.0,
+    6.0
+   ],
+   "cfi": [
+    -9.0,
+    -21.0,
+    4.0,
+    -23.0,
+    -5.0
+   ],
+   "cff": [
+    -18.0,
+    16.0,
+    -19.0,
+    -19.0,
+    -0.0
+   ],
+   "fcf": [
+    21.0,
+    -5.0,
+    8.0,
+    29.0,
+    -1.0
+   ],
+   "debtor_days": [
+    70.0,
+    76.0,
+    59.0,
+    67.0,
+    79.0
+   ],
+   "inventory_days": [
+    192.0,
+    146.0,
+    161.0,
+    124.0,
+    153.0
+   ],
+   "payable_days": [
+    114.0,
+    79.0,
+    40.0,
+    38.0,
+    53.0
+   ],
+   "ccc": [
+    148.0,
+    143.0,
+    181.0,
+    153.0,
+    179.0
+   ],
+   "wc_days": [
+    94.0,
+    72.0,
+    93.0,
+    87.0,
+    110.0
+   ],
+   "roce": [
+    null,
+    19.0,
+    null,
+    17.0,
+    22.0
+   ],
+   "equity": [
+    138.0,
+    160.0,
+    164.0,
+    194.0,
+    233.0
+   ],
+   "capex": [
+    8.0,
+    16.0,
+    15.0,
+    9.0,
+    7.0
+   ]
+  },
+  "quarterly": {
+   "columns": [
+    "Mar 2025",
+    "Jun 2025",
+    "Dec 2025",
+    "Mar 2026",
+    "Jun 2026"
+   ],
+   "sales": [
+    106.52,
+    72.86,
+    99.54,
+    115.04,
+    104.31
+   ],
+   "ebitda": [
+    12.65,
+    10.05,
+    15.28,
+    15.06,
+    11.74
+   ],
+   "opm": [
+    11.88,
+    13.79,
+    15.35,
+    13.09,
+    11.25
+   ],
+   "other_income": [
+    0.69,
+    1.39,
+    2.26,
+    4.25,
+    2.14
+   ],
+   "interest": [
+    1.01,
+    0.8,
+    1.11,
+    1.13,
+    0.98
+   ],
+   "depreciation": [
+    2.3,
+    2.17,
+    2.49,
+    2.75,
+    2.3
+   ],
+   "pbt": [
+    10.03,
+    8.47,
+    13.94,
+    15.43,
+    10.6
+   ],
+   "tax_rate": [
+    22.63,
+    23.73,
+    25.18,
+    29.36,
+    23.87
+   ],
+   "pat": [
+    7.76,
+    6.46,
+    10.44,
+    10.9,
+    8.07
+   ],
+   "eps": [
+    0.7,
+    0.58,
+    0.94,
+    0.99,
+    0.66
+   ],
+   "sales_yoy": [
+    null,
+    null,
+    null,
+    null,
+    -2.1
+   ],
+   "pat_yoy": [
+    null,
+    null,
+    null,
+    null,
+    4.0
+   ]
+  },
+  "derived": {
+   "roe": [
+    null,
+    15.4,
+    7.4,
+    13.4,
+    17.8
+   ],
+   "debt_equity": [
+    0.14,
+    0.25,
+    0.3,
+    0.15,
+    0.14
+   ],
+   "interest_cover": [
+    11.3,
+    17.0,
+    6.0,
+    9.5,
+    13.8
+   ],
+   "cfo_pat": [
+    1.26,
+    0.48,
+    1.92,
+    1.58,
+    0.16
+   ],
+   "capex_sales": [
+    3.8,
+    5.9,
+    5.0,
+    2.8,
+    1.8
+   ],
+   "fixed_asset_turnover": [
+    4.14,
+    4.93,
+    4.58,
+    5.06,
+    5.94
+   ],
+   "other_income_pct_pbt": [
+    19.4,
+    15.6,
+    35.0,
+    17.6,
+    23.5
+   ],
+   "cumulative": {
+    "cfo_pat_3y": 0.91,
+    "fcf_3y": 36.0,
+    "cfo_pat_5y": 0.89,
+    "fcf_5y": 52.0
+   },
+   "growth": {
+    "sales_3y": 11.9,
+    "ebitda_3y": 13.8,
+    "pat_3y": 18.2
+   },
+   "promoter_chg_1y": null
+  },
+  "shareholding": {
+   "columns": [
+    "Jun 2026"
+   ],
+   "rows": {
+    "Promoters": [
+     64.29
+    ],
+    "FIIs": [
+     0.29
+    ],
+    "DIIs": [
+     6.42
+    ],
+    "Public": [
+     28.99
+    ],
+    "No. of Shareholders": [
+     20187.0
+    ]
+   }
+  },
+  "valuation": {
+   "price": 68.8,
+   "market_cap": 846.0,
+   "high_52w": 78.7,
+   "low_52w": 48.0,
+   "from_high_pct": -12.6,
+   "book_value": null,
+   "dividend_yield": 0.44,
+   "pe_ttm": 22.3,
+   "ev": 879.0,
+   "ev_ebitda_ttm": 16.6,
+   "ev_sales_ttm": 2.31,
+   "pb": null,
+   "net_debt_note": "EV = market cap + latest borrowings. Screener's public page does not split cash out of other assets, so cash is not netted off; investments are shown separately.",
+   "debt": 33.0,
+   "investments": 37.0,
+   "earnings_basis": "last full year (Mar 2026)",
+   "dcf": {
+    "available": true,
+    "meaningful": true,
+    "method": "5-year FCFF: EBITDA - tax on EBIT - capex - change in net working capital; growth fades linearly from the starting rate to the year-5 rate; Gordon terminal value; equity = EV - borrowings.",
+    "inputs": {
+     "base_sales_ttm": 380.0,
+     "ebitda_margin_base": 13.0,
+     "starting_growth_base": 11.9,
+     "growth_basis": "median of 3-year, 5-year and TTM sales growth, capped 0-30%",
+     "da_pct_sales": 2.6,
+     "fixed_asset_turnover": 5.06,
+     "capex_rule": "depreciation + new sales / fixed-asset turnover (median of the last three years)",
+     "wc_days": 96.7,
+     "tax_rate": 25.2,
+     "rf": 7.0,
+     "erp": 7.0,
+     "beta": 1.15,
+     "cost_of_equity": 15.0,
+     "cost_of_debt_post_tax": 7.5,
+     "debt_weight": 3.8,
+     "wacc": 14.8,
+     "terminal_growth": 5.5,
+     "shares_cr": 12.297
+    },
+    "scenarios": {
+     "bear": {
+      "assumptions": {
+       "start_growth": 4.8,
+       "growth_by_year5": 5.0,
+       "ebitda_margin": 9.0
+      },
+      "projection": [
+       {
+        "year": 1,
+        "growth": 4.8,
+        "sales": 398.1,
+        "ebitda": 35.8,
+        "fcff": 10.6,
+        "pv": 9.2
+       },
+       {
+        "year": 2,
+        "growth": 4.8,
+        "sales": 417.3,
+        "ebitda": 37.6,
+        "fcff": 11.0,
+        "pv": 8.4
+       },
+       {
+        "year": 3,
+        "growth": 4.9,
+        "sales": 437.6,
+        "ebitda": 39.4,
+        "fcff": 11.4,
+        "pv": 7.6
+       },
+       {
+        "year": 4,
+        "growth": 4.9,
+        "sales": 459.3,
+        "ebitda": 41.3,
+        "fcff": 11.9,
+        "pv": 6.8
+       },
+       {
+        "year": 5,
+        "growth": 5.0,
+        "sales": 482.2,
+        "ebitda": 43.4,
+        "fcff": 12.4,
+        "pv": 6.2
+       }
+      ],
+      "pv_explicit": 38.2,
+      "terminal_value": 129.2,
+      "pv_terminal": 64.9,
+      "ev": 103.1,
+      "equity_value": 70.1,
+      "per_share": 5.7
+     },
+     "base": {
+      "assumptions": {
+       "start_growth": 11.9,
+       "growth_by_year5": 10.0,
+       "ebitda_margin": 13.0
+      },
+      "projection": [
+       {
+        "year": 1,
+        "growth": 11.9,
+        "sales": 425.2,
+        "ebitda": 55.3,
+        "fcff": 12.1,
+        "pv": 10.5
+       },
+       {
+        "year": 2,
+        "growth": 11.4,
+        "sales": 473.8,
+        "ebitda": 61.6,
+        "fcff": 14.3,
+        "pv": 10.8
+       },
+       {
+        "year": 3,
+        "growth": 10.9,
+        "sales": 525.7,
+        "ebitda": 68.3,
+        "fcff": 16.8,
+        "pv": 11.1
+       },
+       {
+        "year": 4,
+        "growth": 10.5,
+        "sales": 580.7,
+        "ebitda": 75.5,
+        "fcff": 19.6,
+        "pv": 11.3
+       },
+       {
+        "year": 5,
+        "growth": 10.0,
+        "sales": 638.8,
+        "ebitda": 83.0,
+        "fcff": 22.7,
+        "pv": 11.4
+       }
+      ],
+      "pv_explicit": 55.1,
+      "terminal_value": 388.7,
+      "pv_terminal": 195.3,
+      "ev": 250.4,
+      "equity_value": 217.4,
+      "per_share": 17.7
+     },
+     "bull": {
+      "assumptions": {
+       "start_growth": 19.1,
+       "growth_by_year5": 13.0,
+       "ebitda_margin": 15.0
+      },
+      "projection": [
+       {
+        "year": 1,
+        "growth": 19.1,
+        "sales": 452.4,
+        "ebitda": 67.9,
+        "fcff": 8.4,
+        "pv": 7.3
+       },
+       {
+        "year": 2,
+        "growth": 17.5,
+        "sales": 531.8,
+        "ebitda": 79.8,
+        "fcff": 12.5,
+        "pv": 9.5
+       },
+       {
+        "year": 3,
+        "growth": 16.0,
+        "sales": 617.1,
+        "ebitda": 92.6,
+        "fcff": 17.7,
+        "pv": 11.7
+       },
+       {
+        "year": 4,
+        "growth": 14.5,
+        "sales": 706.7,
+        "ebitda": 106.0,
+        "fcff": 24.0,
+        "pv": 13.8
+       },
+       {
+        "year": 5,
+        "growth": 13.0,
+        "sales": 798.6,
+        "ebitda": 119.8,
+        "fcff": 31.4,
+        "pv": 15.8
+       }
+      ],
+      "pv_explicit": 58.0,
+      "terminal_value": 622.0,
+      "pv_terminal": 312.4,
+      "ev": 370.4,
+      "equity_value": 337.4,
+      "per_share": 27.4
+     }
+    },
+    "sensitivity": {
+     "wacc": [
+      13.3,
+      14.8,
+      16.3
+     ],
+     "g": [
+      4.5,
+      5.5,
+      6.5
+     ],
+     "values": [
+      [
+       21.1,
+       22.2,
+       23.6
+      ],
+      [
+       17.1,
+       17.7,
+       18.4
+      ],
+      [
+       14.1,
+       14.4,
+       14.8
+      ]
+     ]
+    },
+    "reverse_dcf": {
+     "implied_5y_sales_cagr": 72.0,
+     "base_case_5y_cagr_equivalent": 10.9,
+     "note": "Constant sales growth for five years, at the base margin and the same WACC and terminal growth, that makes the DCF equal today's EV."
+    },
+    "upside_pct": {
+     "bear": -91.7,
+     "base": -74.3,
+     "bull": -60.2
+    }
+   }
+  },
+  "red_flags": [
+   {
+    "level": "red",
+    "title": "Price needs growth well above trend",
+    "detail": "Today's price implies about 72% a year sales growth for five years, against 11% in the base case.",
+    "label": "[E]"
+   },
+   {
+    "level": "green",
+    "title": "Profits turn into cash",
+    "detail": "Operating cash flow was 0.91x reported profit over the last three years.",
+    "label": "[E]"
+   },
+   {
+    "level": "green",
+    "title": "High returns on capital",
+    "detail": "ROCE 22% last year.",
+    "label": "[F]"
+   }
+  ],
+  "latest_quarter": "Jun 2026"
+ },
+ "pack_chars": 0,
+ "model_id": "claude-code:opus",
+ "sections": [
+  {
+   "id": "executive_summary",
+   "title": "Executive investment summary",
+   "subsections": [
+    {
+     "title": "What the company actually does",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "[F] Hexagon Nutrition makes and sells nutrition products in three revenue lines: branded clinical and wellness nutrition (PentaSure, PediaGold, Obesigo, Nutrone), customised vitamin-mineral premixes sold to FMCG and pharma companies, and an 'ESG' line of therapeutic and humanitarian foods (RUTF, RUSF, micronutrient powders) sold largely through institutional and government tenders (AR2026 p.5) (PPT Aug 2026). [F] It reports a single operating segment, 'Nutraceuticals', and discloses revenue, but not profit, by product line (AR2026 p.124). [F] FY26 consolidated revenue from operations was Rs 382.6 cr, EBITDA Rs 52.9 cr and PAT Rs 37.9 cr (AR2026 p.56). [F] Our statements data shows FY26 sales of Rs 380 cr, EBITDA Rs 53 cr and PAT Rs 38 cr (NUMBERS)."
+      },
+      {
+       "type": "table",
+       "caption": "FY26 revenue mix by product line and geography (consolidated)",
+       "columns": [
+        "Line",
+        "FY26 Rs cr",
+        "% of FY26",
+        "FY25 Rs cr",
+        "YoY",
+        "Customer profile"
+       ],
+       "rows": [
+        [
+         "Branded clinical & wellness (B2C)",
+         "113.96",
+         "30%",
+         "92.09",
+         "+23.7%",
+         "Hospitals, pharmacies, e-commerce, consumers [F] (AR2026 p.31)"
+        ],
+        [
+         "Premix (B2B2C)",
+         "202.66",
+         "53%",
+         "154.70",
+         "+31.0%",
+         "FMCG and pharma manufacturers [F] (AR2026 p.7)"
+        ],
+        [
+         "ESG / therapeutic (RUTF, RUSF, MNP)",
+         "65.00",
+         "17%",
+         "77.84",
+         "-16.5%",
+         "UN agencies, national governments, tenders [MC] (CALL Aug 2026)"
+        ],
+        [
+         "India (incl. SEZ sales)",
+         "164.07",
+         "43%",
+         "134.39",
+         "+22.1%",
+         "[F] (AR2026 p.115)"
+        ],
+        [
+         "Rest of world",
+         "217.54",
+         "57%",
+         "190.24",
+         "+14.3%",
+         "[F] (AR2026 p.115)"
+        ]
+       ]
+      },
+      {
+       "type": "p",
+       "text": "[F] Segment figures are from the consolidated segment note (AR2026 p.124); growth rates are our arithmetic [E]. [F] Products are exported to about 83 countries per the Directors' Report (AR2026 p.31); the same annual report also says 75+ and 80+ (AR2026 p.5), and management said 'more than 70' on the Q1 call [MC] (CALL Aug 2026). The counts are not reconciled."
+      },
+      {
+       "type": "callout",
+       "tone": "warn",
+       "text": "**Listing status.** [F] The company listed on NSE and BSE on 12 June 2026 through a 100% offer for sale of 3,08,59,704 shares at Rs 45 (Rs 138.87 cr); the company received no proceeds (AR2026 p.4) (AR2026 p.126). [F] FY26 is the first audited year disclosed to public-market investors, Q1 FY27 is the first reported quarter, and the DRHP/RHP was not available to us. [AI] The public evidence base is therefore one annual report, two calls and one presentation: guidance has no track record and several operating metrics already conflict across documents."
+      }
+     ]
+    },
+    {
+     "title": "Bull thesis",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "Bull thesis",
+       "columns": [
+        "#",
+        "Thesis",
+        "Evidence",
+        "Financial impact",
+        "Time horizon",
+        "Confidence"
+       ],
+       "rows": [
+        [
+         "1",
+         "Branded B2C mix shift lifts gross margin",
+         "[F] B2C revenue Rs 113.96 cr, +23.7% in FY26, 30% of revenue (AR2026 p.124); [MC] branded gross margin 60-68% vs premix 35-40% and ESG 25-30% (CALL Jul 2026); [MC] target 35% of revenue 'in the next couple of years' (CALL Aug 2026)",
+         "[E] Each 5pt of mix moved from ESG to branded adds roughly 1.6-2pt to blended gross margin using management's own ranges",
+         "1-3 years",
+         "Medium"
+        ],
+        [
+         "2",
+         "Spare capacity gives operating leverage without heavy capex",
+         "[F] FY26 plant utilisation from 3.3% (Tashkent dry) to 56% (Nashik clinical), RUF 18.9% (AR2026 p.8); [MC] blended 47% in Q1 FY27 (CALL Aug 2026)",
+         "[AI] Fixed cost absorption; FY26 capex only Rs 7 cr [F] (NUMBERS)",
+         "1-2 years",
+         "Medium"
+        ],
+        [
+         "3",
+         "Premix growth is broad-based, not ESG-driven",
+         "[F] Premix +31% in FY26, domestic premix +44.1%, export premix +24.9% (AR2026 p.31); [MC] Q1 FY27 premix +55% (CALL Aug 2026)",
+         "[F] Premix added Rs 47.96 cr of FY26 revenue (AR2026 p.124)",
+         "Ongoing",
+         "Medium-high"
+        ],
+        [
+         "4",
+         "Approval-gated humanitarian franchise",
+         "[F] UNICEF production approval for MNP in 2018 (AR2026 p.9); [MC] 'one of 22 globally approved UNICEF/WFP suppliers' (PPT Aug 2026); [MC] ESG pipeline Rs 75-100 cr for FY27 (CALL Aug 2026)",
+         "[E] ESG at Rs 75-100 cr would be above FY26's Rs 65.0 cr",
+         "FY27",
+         "Low-medium"
+        ],
+        [
+         "5",
+         "Strong near-term visibility",
+         "[MC] order book about Rs 100 cr executable in Q2 and part of Q3 (CALL Aug 2026); [F] Q1 FY27 revenue Rs 104.3 cr, +43.2% YoY (PPT Aug 2026)",
+         "[MC] FY27 growth guidance 20-25%, described as conservative (CALL Aug 2026)",
+         "0-6 months",
+         "Medium"
+        ],
+        [
+         "6",
+         "Unlevered balance sheet",
+         "[F] Borrowings Rs 30.3 cr against cash, bank balances and mutual funds of Rs 55.3 cr at FY26 (PPT Aug 2026) (AR2026 p.109)",
+         "[AI] Room to fund the Rs 25-30 cr Nashik capex [MC] (CALL Aug 2026) without equity",
+         "Ongoing",
+         "High"
+        ]
+       ]
+      },
+      {
+       "type": "p",
+       "text": "[AI] Driver classification: thesis 1 (branded mix) is company-specific; thesis 2 (utilisation) is company-specific; thesis 3 (premix and fortification demand) is partly structural (fortification mandates) and partly company-specific (FMCG wallet share); thesis 4 (humanitarian tenders) is cyclical and policy-driven; thesis 5 (order book) is cyclical; thesis 6 (balance sheet) is company-specific."
+      }
+     ]
+    },
+    {
+     "title": "Bear thesis",
+     "blocks": [
+      {
+       "type": "bullets",
+       "items": [
+        "1. Valuation already discounts a different company. [F] Our DCF values the equity at Rs 17.7 per share (base) and Rs 27.4 (bull) against a price of Rs 68.8; the reverse DCF needs about 72% sales growth a year for five years against 10.9% in the base case (NUMBERS).",
+        "2. Cash conversion collapsed in FY26. [F] CFO was Rs 6 cr against PAT of Rs 38 cr (CFO/PAT 0.16) and FCF was negative Rs 1 cr (NUMBERS); [F] receivables rose Rs 23.1 cr and inventories Rs 22.7 cr (AR2026 p.98).",
+        "3. Working capital is structurally heavy. [F] Cash conversion cycle 179 days and inventory days 153 at FY26 (NUMBERS); [MC] inventory still about 142 days at Q1 FY27 (CALL Aug 2026).",
+        "4. Margin expansion reversed in the first listed quarter. [F] Q1 FY27 EBITDA margin was 11.3% vs 13.8% a year earlier, and gross margin fell about 3pt (PPT Aug 2026) (CALL Aug 2026); [MC] the recovery depends on 10-15% MRP increases and cost pass-through (CALL Aug 2026).",
+        "5. The IPO was entirely a promoter exit. [F] All 3.09 cr shares sold were existing shares at Rs 45 (AR2026 p.126); [E] the fall in promoter-group shares from about 10.99 cr before the IPO (AR2026 p.49) to 64.29% of the enlarged base (NUMBERS) matches the OFS size, implying that promoter-group holders sold almost all of the OFS shares.",
+        "6. Board instability right after listing. [F] Two promoter-family directors (Subhash and Aditya Kelkar) resigned on 6 July 2026 without disclosed reasons (AR2026 p.32); [F] the Chairman ceased on 28 September 2026 and shareholders requisitioned an EGM to re-appoint him (ANNOUNCEMENTS).",
+        "7. Promoter pay is large relative to profit. [F] KMP remuneration to five Kelkar family members was Rs 7.40 cr in FY26 (AR2026 p.120), about 19.5% of PAT [E]; [F] the AGM sought higher caps totalling Rs 6.23 cr for three of them (AR2026 p.27).",
+        "8. Disclosure quality is uneven. [F] The CARO report says monthly bank returns did not agree with the books (AR2026 p.60), while a note says they did (AR2026 p.92); the consolidated debt-service ratio is shown as 0.78 in the notes and 1.89 in the MD&A (AR2026 p.126) (AR2026 p.56).",
+        "9. The ESG line is lumpy and fell in FY26. [F] ESG revenue fell 16.5% to Rs 65.0 cr on 'delay in release of tenders' (AR2026 p.31); [F] Ethiopia alone was Rs 39.4 cr of FY25 revenue and was below the 10% threshold in FY26 (AR2026 p.124).",
+        "10. Two foreign subsidiaries carry going-concern doubts. [F] Other auditors flagged material uncertainty for the South Africa and Uzbekistan subsidiaries, which have combined net liabilities of Rs 12.2 cr (AR2026 p.93) (AR2026 p.125)."
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Key debates",
+     "blocks": [
+      {
+       "type": "bullets",
+       "items": [
+        "Is Q1 FY27's +43% growth a new run-rate or a soft base? [F] Q1 FY26 revenue was only Rs 72.9 cr, the weakest quarter shown (NUMBERS). [MC] Management guided only 20-25% for the year (CALL Aug 2026). [AI] Growth may look strong on a soft base yet still fall short of guidance in H2, where FY26 had large ESG dispatches.",
+        "Is FY26 margin improvement structural? [MC] Management attributes it to branded mix and premix volume (CALL Jul 2026). [F] Q1 FY27 margin fell back to 11.3% (PPT Aug 2026). [AI] The market may be extrapolating the FY26 peak; equally, the field-force and freight costs may prove temporary.",
+        "What is the order book really? [MC] 'Rs 100 crores' to be executed in Q2 and part of Q3 (CALL Aug 2026). [F] Neither the annual report nor the presentation discloses an order book. [AI] This is roughly one quarter of revenue, not multi-year visibility.",
+        "How much is the humanitarian franchise worth? [MC] Management describes UN approval as a barrier to entry (AR2026 p.5). [F] Yet ESG revenue fell in FY26 and was about 10% of Q1 FY27 revenue [MC] (CALL Aug 2026). The market may be over- or under-pricing an option on tender wins.",
+        "Is the stock cheap on earnings or expensive on cash? [F] Trailing P/E is 22.3x and EV/EBITDA 16.6x (NUMBERS), but FY26 FCF was negative [F] (NUMBERS). [AI] Investors focused on P/E may underweight the cash gap; investors focused on the DCF may underweight the high WACC (14.8%) built into our model [F] (NUMBERS)."
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Variant perception",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "[AI] The consensus narrative, judging by the questions on both calls, is a branded-nutrition growth story with 30-47% utilisation and operating leverage ahead. Our read is that the business is mostly a premix contract manufacturer (53% of revenue) with a growing but sub-scale B2C brand, a lumpy tender business, and a working-capital model that absorbed nearly all of FY26's profit. [F] At Rs 68.8 the price sits above our bull-case DCF value of Rs 27.4 (NUMBERS). [AI] For the shares to be supported on fundamentals, cash conversion has to normalise in FY27 and the gross-margin recovery promised for Q2 has to show up. The upside risk to this view is that the B2C line compounds at 20%+ with 60%+ gross margins for longer than a DCF with a 14.8% WACC credits."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "company_history",
+   "title": "Corporate history and group structure",
+   "subsections": [
+    {
+     "title": "Corporate timeline",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "Corporate timeline",
+       "columns": [
+        "Date",
+        "Event"
+       ],
+       "rows": [
+        [
+         "27 May 1993",
+         "[F] Incorporated; Nashik plant founded (AR2026 p.20) (AR2026 p.9)"
+        ],
+        [
+         "2004",
+         "[F] Chennai plant commissioned, export focus (AR2026 p.9)"
+        ],
+        [
+         "26 Dec 2012",
+         "[F] Hexagon Nutrition (International) Pvt Ltd incorporated (AR2026 p.38)"
+        ],
+        [
+         "2013",
+         "[F] ICAR approval for food testing laboratory (AR2026 p.9)"
+        ],
+        [
+         "2017",
+         "[F] DSIR approval for Chennai R&D (AR2026 p.9)"
+        ],
+        [
+         "2018",
+         "[F] UNICEF production approval for micronutrient powder (AR2026 p.9)"
+        ],
+        [
+         "2019",
+         "[F] South Africa subsidiary incorporated (24 Apr) / acquired (12 Nov); Healthcare (19 Jun) and Hong Kong (30 Jul) subsidiaries incorporated (AR2026 p.38)"
+        ],
+        [
+         "8 Jan 2020",
+         "[F] Uzbekistan LLC incorporated (AR2026 p.38)"
+        ],
+        [
+         "2022",
+         "[F] Amalgamation of NRPL with HNL (AR2026 p.9)"
+        ],
+        [
+         "2023",
+         "[F] Nutrone brand launched (AR2026 p.9)"
+        ],
+        [
+         "5 Feb 2025",
+         "[F] Shareholders' agreement with CCPS investors (Malani Ventures-linked rights) (AR2026 p.77) (AR2026 p.28)"
+        ],
+        [
+         "FY25",
+         "[F] Revenue crossed Rs 300 cr (AR2026 p.9)"
+        ],
+        [
+         "28 Jun 2025",
+         "[F] EGM approves promoter pay revisions and Arun Kelkar continuing past age 75 (AR2026 p.47)"
+        ],
+        [
+         "14 Jan 2026",
+         "[F] NCLT order merging Hexagon Nutrition (Exports) Pvt Ltd into HNL, appointed date 1 Apr 2025 (AR2026 p.30)"
+        ],
+        [
+         "FY26",
+         "[F] B2C revenue crossed Rs 100 cr (AR2026 p.31)"
+        ],
+        [
+         "20 Apr 2026",
+         "[F] 1,22,08,212 CCPS converted into 1,22,90,705 equity shares (AR2026 p.31)"
+        ],
+        [
+         "12 Jun 2026",
+         "[F] Listed on NSE/BSE via 100% OFS at Rs 45 (AR2026 p.4)"
+        ],
+        [
+         "6 Jul 2026",
+         "[F] Subhash Kelkar (Executive Director) and Aditya Kelkar (Director) resign (AR2026 p.32)"
+        ],
+        [
+         "17 Jul 2026",
+         "[F] Maiden earnings call (CALL Jul 2026)"
+        ],
+        [
+         "12 Aug 2026",
+         "[F] Raghunath Sawant appointed Additional (Executive) Director (AR2026 p.21)"
+        ],
+        [
+         "22 Sep 2026",
+         "[F] 33rd AGM; item 11 sought re-appointment of Arun Kelkar from 29 Sep 2026 (AR2026 p.22)"
+        ],
+        [
+         "24-30 Sep 2026",
+         "[F] EGM requisitions to appoint Arun Kelkar received 24 Sep; he ceased as Chairman & ED on 28 Sep; board met 30 Sep on executive chairman appointment and EGM (ANNOUNCEMENTS)"
+        ],
+        [
+         "29 Sep 2026",
+         "[F] Commercial-scale validation of PFH-VAP with PFH, to be marketed as VIT A+ (ANNOUNCEMENTS)"
+        ]
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Subsidiaries and group structure",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "Subsidiaries (all 100% held), FY26, Rs cr",
+       "columns": [
+        "Entity",
+        "Incorporated",
+        "Business",
+        "Latest revenue",
+        "Latest PAT"
+       ],
+       "rows": [
+        [
+         "Hexagon Nutrition (International) Pvt Ltd, India",
+         "26 Dec 2012",
+         "[AI] Tamil Nadu SEZ unit (Sec 10AA benefit, 97-year lease) - likely the Thoothukudi RUF plant; material subsidiary [F] (AR2026 p.48)",
+         "52.61 [F] (AR2026 p.38)",
+         "-1.80 [F] (AR2026 p.38)"
+        ],
+        [
+         "Hexagon Nutrition Healthcare Pvt Ltd, India",
+         "19 Jun 2019",
+         "[F] Dormant; nil turnover (AR2026 p.38)",
+         "0",
+         "-0.001"
+        ],
+        [
+         "Hexagon Nutrition China Ltd, Hong Kong",
+         "30 Jul 2019",
+         "[AI] Sourcing entity: parent bought Rs 14.85 cr from it [F] (AR2026 p.85)",
+         "21.34 [F] (AR2026 p.38)",
+         "0.20 [F] (AR2026 p.38)"
+        ],
+        [
+         "Hexagon Nutrition (Pty) Ltd, South Africa",
+         "24 Apr 2019 (acquired 12 Nov 2019)",
+         "[F] Africa sales hub; going-concern uncertainty (AR2026 p.93)",
+         "4.21 [F] (AR2026 p.38)",
+         "1.14 [F] (AR2026 p.38)"
+        ],
+        [
+         "Hexagon Nutrition LLC, Uzbekistan",
+         "8 Jan 2020",
+         "[F] Tashkent premix plant, Jan-Dec year; going-concern uncertainty (AR2026 p.93)",
+         "11.85 [F] (AR2026 p.38)",
+         "2.81 [F] (AR2026 p.38)"
+        ],
+        [
+         "Hexagon Nutrition (Exports) Pvt Ltd",
+         "Not disclosed",
+         "[F] Merged into HNL, appointed date 1 Apr 2025, pooling of interests (AR2026 p.91)",
+         "Merged",
+         "Merged"
+        ]
+       ]
+      },
+      {
+       "type": "p",
+       "text": "[F] No associate or joint venture is named (AR2026 p.34). [F] Sunrise Nutrition Pvt Ltd is listed as a related party with no transactions (AR2026 p.120)."
+      }
+     ]
+    },
+    {
+     "title": "What the timeline reveals",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "[AI] The operating business is 30+ years old, but the current corporate perimeter is recent. The export company was merged only in January 2026 with FY25 restated (AR2026 p.91) [F]. The CCPS investor round dates from February 2025 and converted in April 2026 [F] (AR2026 p.31). The board was largely reconstituted in 2025: four of five independent directors joined in March-May 2025 (AR2026 p.51) [F]. Two promoter-family directors left within a month of listing [F] (AR2026 p.32). Comparable history is thin: our statements data skips FY23 altogether [F] (NUMBERS), and standalone FY25 figures were restated for the merger [F] (AR2026 p.91)."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "business_model",
+   "title": "Business model and value chain",
+   "subsections": [
+    {
+     "title": "Production and service chain",
+     "blocks": [
+      {
+       "type": "bullets",
+       "items": [
+        "1. Sourcing: [F] vitamins, minerals, proteins and lipids from established suppliers (AR2026 p.15); [F] consolidated CIF imports were Rs 65.1 cr in FY26 vs Rs 27.2 cr in FY25 (AR2026 p.116).",
+        "2. R&D and formulation: [F] two DSIR-approved R&D centres, a 12-member R&D team and Rs 1.84 cr of R&D spend (AR2026 p.31) (AR2026 p.39); [MC] customer development cycles of 6 months to 2 years (PPT Aug 2026).",
+        "3. Manufacturing: [F] four plants - Nashik, Chennai MEPZ SEZ, Thoothukudi SEZ, Tashkent (AR2026 p.8).",
+        "4. Quality and packaging: [F] FSSC 22000, GMP, ISO 9001, Halal and Intertek/GAIN certifications (AR2026 p.8); [MC] pack sizes from 25 kg premix bags to 1 g sachets and 1 kg tins (CALL Aug 2026).",
+        "5. Distribution: [F] 358+ domestic and 20+ international distributors, e-commerce and own websites (AR2026 p.15); [MC] D2C about 6.5% of B2C (PPT Aug 2026).",
+        "6. End customers: [F] consumers, hospitals, FMCG companies, UN agencies and governments (AR2026 p.15)."
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Capability by process stage",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "Capability by stage",
+       "columns": [
+        "Stage",
+        "In-house?",
+        "Evidence",
+        "Assessment"
+       ],
+       "rows": [
+        [
+         "Active ingredient manufacture (vitamins)",
+         "No",
+         "[MC] vitamins A, B-group, C and folic acid imported from China, Singapore, Korea, Europe (CALL Jul 2026)",
+         "[AI] Price-taker on key inputs"
+        ],
+        [
+         "Formulation / premix blending",
+         "Yes",
+         "[F] dry and oil premix capacity at three plants (AR2026 p.8)",
+         "[AI] Core competence; moderate barrier"
+        ],
+        [
+         "Clinical / branded powder manufacture",
+         "Yes",
+         "[F] Nashik clinical capacity 110 MT, 56.0% utilised in FY26 (AR2026 p.8)",
+         "[AI] Differentiated by formulation, not process"
+        ],
+        [
+         "RUTF / RUSF paste",
+         "Yes",
+         "[F] Thoothukudi RUF 480 MT per month, 18.9% utilised (AR2026 p.8)",
+         "[AI] Approval-gated, under-utilised"
+        ],
+        [
+         "Brand building / medical detailing",
+         "Yes",
+         "[MC] field force up more than 50% YoY (CALL Aug 2026)",
+         "[AI] Spend-heavy, early stage outside PentaSure"
+        ],
+        [
+         "Distribution",
+         "Partly outsourced",
+         "[F] distributors plus e-commerce marketplaces (AR2026 p.15)",
+         "[AI] Reliant on third-party channels"
+        ]
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Where value is captured",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "[MC] Management's segment gross margins are branded 60-68%, premix 35-40% and ESG 25-30% (CALL Jul 2026). [E] Weighting midpoints of those ranges by FY26 mix (30/53/17) gives about 44%, close to the reported Q4 FY26 and Q1 FY27 gross margin of about 43.9% [E] (PPT Aug 2026). That suggests the stated ranges are broadly credible. [AI] Value is captured mainly in formulation know-how and the PentaSure brand, not in manufacturing scale; vitamin inputs are bought in, and premix customers can dual-source."
+      }
+     ]
+    },
+    {
+     "title": "Outsourcing and capital intensity",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "[F] Fixed assets were Rs 64 cr against FY26 sales of Rs 380 cr, a fixed-asset turnover of 5.94x; capex has been Rs 7-16 cr a year (NUMBERS). [F] Working capital assets (inventories plus receivables) were Rs 165.6 cr at FY26 (PPT Aug 2026). [AI] The model is light on fixed assets but heavy on working capital; the binding constraint on cash is inventory and receivables, not plant."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "products",
+   "title": "Product portfolio",
+   "subsections": [
+    {
+     "title": "Product families",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "Product family map",
+       "columns": [
+        "Product",
+        "Application",
+        "Segment",
+        "Customer",
+        "Competitive intensity",
+        "Growth outlook",
+        "Margin potential"
+       ],
+       "rows": [
+        [
+         "PentaSure (12+ SKUs: HP, DM, Renal, DLS, Hepatic, Critipep, etc.)",
+         "Disease-specific clinical nutrition",
+         "B2C",
+         "Hospitals, pharmacies, patients",
+         "High - Abbott, Nestle, Fresenius Kabi [MC] (CALL Jul 2026)",
+         "[MC] fastest-growing segment (CALL Aug 2026)",
+         "[MC] 60-68% gross (CALL Jul 2026)"
+        ],
+        [
+         "PediaGold / PediaGold Plus",
+         "Paediatric nutrition",
+         "B2C",
+         "Parents, paediatricians",
+         "High [AI]",
+         "[MC] under-penetrated, focus area (CALL Aug 2026)",
+         "[MC] branded range"
+        ],
+        [
+         "Obesigo",
+         "Weight management, bariatric",
+         "B2C",
+         "Patients, D2C",
+         "Medium [AI]",
+         "[MC] niche, focus area (PPT Aug 2026)",
+         "[MC] branded range"
+        ],
+        [
+         "Nutrone (Men, Women, Healthy Ageing, Whey)",
+         "Everyday wellness, online",
+         "B2C",
+         "Consumers",
+         "Very high [AI]",
+         "[MC] 'infancy stage' (CALL Aug 2026)",
+         "Not disclosed"
+        ],
+        [
+         "Dry / oil premixes",
+         "Fortification of beverages, dairy, bakery, flour, rice, oil",
+         "B2B2C",
+         "FMCG and pharma",
+         "High - DSM-Firmenich, BASF, SternVitamin, Piramal [MC] (CALL Jul 2026)",
+         "[F] +31% in FY26 (AR2026 p.31)",
+         "[MC] 35-40% gross"
+        ],
+        [
+         "RUTF / RUSF / LNS / F-75 / F-100",
+         "Acute malnutrition treatment",
+         "ESG",
+         "UN agencies, governments",
+         "Medium, approval-gated [AI]",
+         "[MC] pipeline Rs 75-100 cr for FY27 (CALL Aug 2026)",
+         "[MC] 25-30% gross"
+        ],
+        [
+         "MNP sachets, MMS tablets",
+         "Anaemia and micronutrient deficiency",
+         "ESG",
+         "UN agencies, governments",
+         "Medium [AI]",
+         "Not disclosed",
+         "[MC] ESG range"
+        ],
+        [
+         "PFH-VAP / VIT A+",
+         "Not described beyond name",
+         "Not disclosed",
+         "International [F] (ANNOUNCEMENTS)",
+         "Not disclosed",
+         "[F] commercial-scale validation completed 29 Sep 2026 (ANNOUNCEMENTS)",
+         "Not disclosed"
+        ]
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Commodity-like vs differentiated",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "[AI] Standard premixes for staple fortification (flour, rice, oil) are the most commodity-like: specifications are set by regulators, and the global vitamin majors also supply them. Customised premixes for FMCG beverages and infant nutrition are stickier because they are embedded in the customer's product formulation. ESG products are differentiated by approval, not by product, and are priced through tenders. PentaSure is the only line with evidence of brand pull: an analyst reported that pharmacies recognise PentaSure but not PediaGold or Obesigo, and management did not dispute it [MC] (CALL Jul 2026)."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "segments",
+   "title": "Segment analysis",
+   "subsections": [
+    {
+     "title": "Segment revenue",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "Consolidated revenue by product line, Rs cr (segment profit not disclosed)",
+       "columns": [
+        "Line",
+        "FY25",
+        "% mix FY25",
+        "FY26",
+        "% mix FY26",
+        "Growth",
+        "Q1 FY27 mix [MC]"
+       ],
+       "rows": [
+        [
+         "Branded clinical & wellness",
+         "92.09",
+         "28.4%",
+         "113.96",
+         "29.9%",
+         "+23.7%",
+         "~28%, growth +22% (CFO) or +28% (JMD)"
+        ],
+        [
+         "Premix",
+         "154.70",
+         "47.7%",
+         "202.66",
+         "53.1%",
+         "+31.0%",
+         "~62%, growth +55%"
+        ],
+        [
+         "ESG / therapeutic",
+         "77.84",
+         "24.0%",
+         "65.00",
+         "17.0%",
+         "-16.5%",
+         "~10%, growth +42%"
+        ],
+        [
+         "Total sale of products",
+         "324.63",
+         "100%",
+         "381.61",
+         "100%",
+         "+17.6%",
+         "Rs 104.3 cr total"
+        ]
+       ]
+      },
+      {
+       "type": "p",
+       "text": "[F] FY25 and FY26 figures are from the consolidated segment note (AR2026 p.124); percentages are our arithmetic [E]. [F] FY24 and earlier segment revenue is not disclosed in the documents available. [MC] Q1 FY27 mix and growth are from the CFO and JMD on the call (CALL Aug 2026). [F] Segment margins are not disclosed; only management's verbal gross-margin ranges exist [MC] (CALL Jul 2026)."
+      },
+      {
+       "type": "callout",
+       "tone": "bad",
+       "text": "**Management's segment mix does not match the annual report.** [MC] On 17 July the CFO said FY26 was branded 30%, premix 35-40% and ESG around 30% (CALL Jul 2026). [F] The annual report shows premix 53% and ESG 17% (AR2026 p.56) (AR2026 p.124). Not reconciled. [MC] On the Q1 call, the JMD said branded grew 'about 28%' and the CFO said 22% (CALL Aug 2026)."
+      }
+     ]
+    },
+    {
+     "title": "Why each segment moved",
+     "blocks": [
+      {
+       "type": "bullets",
+       "items": [
+        "Branded: [MC] growth from hospitals, pharmacy chains and e-commerce (AR2026 p.31), and more medical representatives in Tier 2/3 cities (CALL Jul 2026). [AI] Steady growth in the low 20s with no sign of acceleration yet; the field-force build-up started only in May-June 2026 [MC] (CALL Aug 2026).",
+        "Premix: [MC] a domestic premix 'order jump' dispatched in Q4 (CALL Jul 2026); [F] domestic +44.1%, export +24.9% (AR2026 p.31). [AI] Strongest line, but it includes order-timing effects and is the lowest-margin non-ESG line.",
+        "ESG: [F] -16.5% 'due to delay in release of tenders and other operational issues' (AR2026 p.31). [AI] FY25 included Rs 39.4 cr of revenue from Ethiopia [F] (AR2026 p.124), so the decline looks like one lumpy country programme rolling off."
+       ]
+      },
+      {
+       "type": "p",
+       "text": "[AI] Order-driven: ESG (tenders) and part of premix (customer POs, export lots). Organic: branded B2C through distributors and e-commerce, plus repeat premix business. [MC] '55% repeat customers' (AR2026 p.5) is unaudited and undefined."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "revenue_bridge",
+   "title": "Revenue bridge",
+   "subsections": [
+    {
+     "title": "FY25 to FY26 revenue bridge",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "Consolidated revenue from operations, FY25 to FY26",
+       "columns": [
+        "Driver",
+        "Impact Rs cr",
+        "Basis"
+       ],
+       "rows": [
+        [
+         "FY25 revenue from operations",
+         "324.93",
+         "[F] (AR2026 p.56)"
+        ],
+        [
+         "Branded clinical & wellness",
+         "+21.87",
+         "[F] segment note (AR2026 p.124)"
+        ],
+        [
+         "Premix (domestic +44.1%, export +24.9%)",
+         "+47.96",
+         "[F] (AR2026 p.124) (AR2026 p.31)"
+        ],
+        [
+         "ESG / therapeutic",
+         "-12.84",
+         "[F] (AR2026 p.124)"
+        ],
+        [
+         "Residual (export incentives and other operating revenue)",
+         "+0.71",
+         "[E] residual; export incentives Rs 1.02 cr vs Rs 0.30 cr (AR2026 p.115)"
+        ],
+        [
+         "FY26 revenue from operations",
+         "382.63",
+         "[F] (AR2026 p.56)"
+        ]
+       ]
+      },
+      {
+       "type": "p",
+       "text": "[F] Price and volume contributions for FY26 are not disclosed. [F] Sales returns were Rs 11.9 cr against a contracted price of Rs 393.5 cr (AR2026 p.115)."
+      }
+     ]
+    },
+    {
+     "title": "What is known for FY27",
+     "blocks": [
+      {
+       "type": "bullets",
+       "items": [
+        "[F] Q1 FY27 revenue Rs 104.31 cr vs Rs 72.86 cr (+43.2%) (PPT Aug 2026) (NUMBERS).",
+        "[MC] Volume growth of '25% to 40%' in Q1 (CALL Aug 2026); MRP increases of 10-15% on some branded products, with the impact expected from Q2.",
+        "[MC] Order book of about Rs 100 cr for Q2 and part of Q3 (CALL Aug 2026).",
+        "[MC] FY27 revenue growth guidance of 20-25%, called 'conservative' (CALL Aug 2026).",
+        "[MC] Seasonality: H2 is historically stronger (CALL Aug 2026). [F] FY26 quarters were Rs 72.9 cr (Q1), Rs 99.5 cr (Q3) and Rs 115.0 cr (Q4) (NUMBERS); Q2 FY26 is missing from our statements data, and [E] the implied residual is about Rs 95.2 cr."
+       ]
+      },
+      {
+       "type": "callout",
+       "tone": "warn",
+       "text": "[F] Our statements data reports Q1 FY27 sales growth of -2.1% and PAT growth of +4.0% (NUMBERS). These compare Jun 2026 with the Mar 2025 quarter because the Sep 2025 column is missing. The true year-on-year figures are +43.2% and +24.9% [E] (PPT Aug 2026). Readers should not use the computed YoY fields."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "export_domestic",
+   "title": "Export and domestic mix",
+   "subsections": [
+    {
+     "title": "Geography",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "Consolidated revenue by geography, Rs cr",
+       "columns": [
+        "Region",
+        "FY25",
+        "FY26",
+        "% of FY26",
+        "Growth / CAGR"
+       ],
+       "rows": [
+        [
+         "India (incl. SEZ sales)",
+         "134.39",
+         "164.07",
+         "43.0%",
+         "+22.1% (1-year; earlier years not disclosed)"
+        ],
+        [
+         "Rest of world",
+         "190.24",
+         "217.54",
+         "57.0%",
+         "+14.3%"
+        ],
+        [
+         "of which Ethiopia",
+         "39.42",
+         "below 10% threshold",
+         "n.d.",
+         "n.d."
+        ],
+        [
+         "FOB exports (foreign currency earnings)",
+         "187.15",
+         "195.23",
+         "n.a.",
+         "+4.3%"
+        ]
+       ]
+      },
+      {
+       "type": "p",
+       "text": "[F] Geography split (AR2026 p.115); Ethiopia (AR2026 p.124); FOB exports (AR2026 p.117). [F] The standalone entity shows India at 53.5% (AR2026 p.80). [MC] West Asia is under 20% of exports (CALL Jul 2026); the top five countries are '25% to 40%' of exports (CALL Aug 2026). [F] No country-level table beyond Ethiopia is disclosed."
+      }
+     ]
+    },
+    {
+     "title": "Strategy or mix?",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "[AI] The export share fell from 58.6% to 57.0% [E] because domestic premix grew 44% and ESG (mostly export) fell. That is mix, not a strategic shift. [MC] Management's stated strategy is the opposite: more exports to Central Asia, Africa, Europe and North America (CALL Aug 2026)."
+      }
+     ]
+    },
+    {
+     "title": "Currency, trade policy and location risk",
+     "blocks": [
+      {
+       "type": "bullets",
+       "items": [
+        "[F] Unhedged USD receivables were Rs 60.0 cr and USD loans to subsidiaries Rs 18.5 cr; forward sales cover only USD 0.58 mn (AR2026 p.123) (AR2026 p.126). [F] A 1% USD move changes results by Rs 0.74 cr (AR2026 p.123).",
+        "[F] The corporate governance report says forex exposure is not hedged with derivatives (AR2026 p.49), which contradicts the forward contracts disclosed in the notes (AR2026 p.126).",
+        "[F] FX gain of Rs 7.44 cr was in FY26 other income (AR2026 p.115), so rupee depreciation flattered PBT.",
+        "[MC] West Asia conflict raised freight and some input costs in Q1 FY27 (CALL Aug 2026). [F] Freight expense was Rs 17.95 cr in FY26 vs Rs 11.0 cr in FY25 (AR2026 p.116).",
+        "[F] The documents contain no discussion of specific tariffs or trade-policy measures with dates (AR2026 p.53).",
+        "[AI] Manufacturing is spread across four plants, but the highest-utilised (Nashik) is being partly demolished for a premix redevelopment [MC] (CALL Aug 2026), which concentrates near-term execution risk at one site."
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "customer_forensics",
+   "title": "Customer forensics",
+   "subsections": [
+    {
+     "title": "Concentration trend",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "Customer concentration (consolidated unless stated)",
+       "columns": [
+        "Metric",
+        "FY25",
+        "FY26"
+       ],
+       "rows": [
+        [
+         "Customers above 10% of revenue",
+         "2 customers, Rs 81.14 cr (25.0%) [F] (AR2026 p.124)",
+         "1 customer, Rs 38.32 cr (10.0%) [F] (AR2026 p.124)"
+        ],
+        [
+         "Top 1 (standalone)",
+         "Rs 41.72 cr (15.6%) [F] (AR2026 p.90)",
+         "Rs 38.32 cr (12.0%) [F] (AR2026 p.90)"
+        ],
+        [
+         "Top 5",
+         "Not disclosed",
+         "Not disclosed"
+        ],
+        [
+         "Top 10",
+         "Not disclosed",
+         "Not disclosed"
+        ],
+        [
+         "Largest country",
+         "Ethiopia Rs 39.42 cr (12.1%) [F] (AR2026 p.124)",
+         "None above 10%"
+        ]
+       ]
+      },
+      {
+       "type": "p",
+       "text": "[AI] Shown one way, concentration improved: top-customer dependence fell from two customers at 25% to one at 10%. Shown the other way, it improved because the ESG/Ethiopia business shrank (a cyclical decline), not because the base broadened. The remaining 10% customer is the same size in absolute terms, so dependence on it has not fallen. [F] The notes say the company is 'not exposed to concentration of credit risk to any one single customer' (AR2026 p.121), which sits awkwardly beside a 10% customer."
+      }
+     ]
+    },
+    {
+     "title": "Named customers",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "Named customers",
+       "columns": [
+        "Customer",
+        "Relationship years",
+        "Revenue by year"
+       ],
+       "rows": [
+        [
+         "UNICEF (approval, not disclosed as customer revenue)",
+         "[F] production approval since 2018 (AR2026 p.9)",
+         "Not disclosed"
+        ],
+        [
+         "'National governments of certain countries'",
+         "Not disclosed",
+         "[MC] Q1 FY27 orders (CALL Aug 2026)"
+        ],
+        [
+         "FMCG / pharma premix clients",
+         "Not disclosed",
+         "[MC] names withheld beyond the DRHP (CALL Jul 2026)"
+        ]
+       ]
+      },
+      {
+       "type": "p",
+       "text": "[F] No customer is named in the annual report or presentation, and no case studies are disclosed. [MC] Management said it cannot name brands beyond those cleared for the DRHP (CALL Jul 2026); the DRHP was not available to us. [F] No long-term supply agreements are disclosed; [MC] ESG revenue is tender-based (CALL Aug 2026). [AI] Premix business appears to run on purchase orders within approved-vendor relationships."
+      }
+     ]
+    },
+    {
+     "title": "Verdict on concentration",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "[AI] Concentration is moderate and opaque rather than clearly improving. Without top-5/top-10 data or customer names, investors cannot test the '55% repeat customers' claim [MC] (AR2026 p.5) or how sticky the premix base is. Ask for top-10 share at the next results."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "client_analysis",
+   "title": "Client analysis",
+   "subsections": [
+    {
+     "title": "Identifiable client groups",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "Client analysis (no individual clients named in the documents)",
+       "columns": [
+        "Client",
+        "What they do",
+        "Why they buy from the company",
+        "Product",
+        "Approved supplier?",
+        "Duration",
+        "Sticky?",
+        "Growing?",
+        "Wallet-share upside"
+       ],
+       "rows": [
+        [
+         "UN agencies (UNICEF/WFP)",
+         "Humanitarian procurement",
+         "[MC] one of 22 approved MNP suppliers (PPT Aug 2026)",
+         "MNP, RUTF, RUSF",
+         "[F] UNICEF MNP approval 2018 (AR2026 p.9)",
+         "8+ years [E]",
+         "Approval is sticky; volumes are not [AI]",
+         "[F] ESG -16.5% FY26 (AR2026 p.31)",
+         "[MC] pipeline Rs 75-100 cr"
+        ],
+        [
+         "National governments (e.g. Ethiopia FY25)",
+         "Malnutrition programmes",
+         "Price and approvals [AI]",
+         "RUTF/RUSF",
+         "Tender-specific",
+         "Not disclosed",
+         "Low [AI]",
+         "Volatile",
+         "Unknown"
+        ],
+        [
+         "Unnamed top customer (Rs 38.3 cr FY26)",
+         "Not disclosed",
+         "Not disclosed",
+         "Not disclosed",
+         "Not disclosed",
+         "At least 2 years [F] (AR2026 p.90)",
+         "Unknown",
+         "[F] -8% vs FY25 (AR2026 p.90)",
+         "Unknown"
+        ],
+        [
+         "Domestic FMCG / pharma",
+         "Fortified foods, beverages, supplements",
+         "[MC] custom formulation and quality (CALL Jul 2026)",
+         "Premixes",
+         "Vendor approval [AI]",
+         "Not disclosed",
+         "Medium [AI]",
+         "[F] domestic premix +44.1% (AR2026 p.31)",
+         "[MC] 'capture more FMCG premix wallet share' (PPT Aug 2026)"
+        ],
+        [
+         "Hospitals and doctors",
+         "Prescribe clinical nutrition",
+         "[MC] differentiated protein blends (CALL Jul 2026)",
+         "PentaSure",
+         "Formulary listings not disclosed",
+         "Long-standing [MC]",
+         "Medium [AI]",
+         "[F] B2C +23.7%",
+         "[MC] Tier 2/3 expansion"
+        ],
+        [
+         "E-commerce consumers",
+         "D2C purchase",
+         "Price, convenience",
+         "Nutrone, PentaSure",
+         "n.a.",
+         "n.a.",
+         "Low [AI]",
+         "[MC] growing",
+         "[MC] D2C 6.5% of B2C"
+        ]
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Overall read",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "[AI] The client base is diversified by type, but the only verifiable stickiness is regulatory approval in ESG, which has not protected volumes. Premix and branded stickiness is asserted, not evidenced."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "order_book",
+   "title": "Order book forensics",
+   "subsections": [
+    {
+     "title": "What is disclosed",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "[F] The annual report and presentation disclose no order book, backlog or L1 positions. [MC] On the Q1 call the JMD said 'our Q2 is very strongly supported by a strong order book of around INR100 crores', to be 'executed in the second quarter and partly in the third quarter', with '70% to 75%' in premix and ESG (CALL Aug 2026). [MC] Separately, the MD put ESG visibility at 'around INR75 crores to INR100 crores. For the year' (CALL Aug 2026). [AI] It is unclear whether the ESG figure overlaps the Rs 100 cr order book."
+      }
+     ]
+    },
+    {
+     "title": "Order metrics",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "Order metrics",
+       "columns": [
+        "Metric",
+        "Value",
+        "Basis"
+       ],
+       "rows": [
+        [
+         "Order book",
+         "~Rs 100 cr",
+         "[MC] (CALL Aug 2026)"
+        ],
+        [
+         "Book-to-bill",
+         "Not computable",
+         "[F] order inflow not disclosed"
+        ],
+        [
+         "Visibility vs Q1 revenue",
+         "~1.0x one quarter",
+         "[E] Rs 100 cr / Rs 104.3 cr"
+        ],
+        [
+         "Visibility vs FY26 revenue",
+         "~26%",
+         "[E] Rs 100 cr / Rs 382.6 cr"
+        ]
+       ]
+      },
+      {
+       "type": "table",
+       "caption": "Order execution timeline",
+       "columns": [
+        "Order",
+        "Value",
+        "Execution window",
+        "Status"
+       ],
+       "rows": [
+        [
+         "Aggregate order book",
+         "~Rs 100 cr [MC]",
+         "Q2 and part of Q3 FY27",
+         "Pending; test at Q2 results"
+        ],
+        [
+         "ESG pipeline",
+         "Rs 75-100 cr [MC]",
+         "FY27",
+         "Pending"
+        ],
+        [
+         "Uzbekistan orders",
+         "Not quantified [MC]",
+         "Q2-Q3 FY27",
+         "Pending"
+        ]
+       ]
+      }
+     ]
+    },
+    {
+     "title": "A-F visibility ladder",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "Revenue visibility A-F",
+       "columns": [
+        "Tier",
+        "Item",
+        "Amount",
+        "Source / label"
+       ],
+       "rows": [
+        [
+         "A Confirmed revenue",
+         "FY26 revenue; Q1 FY27 revenue",
+         "Rs 382.63 cr; Rs 104.31 cr",
+         "[F] (AR2026 p.56) (PPT Aug 2026)"
+        ],
+        [
+         "B Contracted, not recognised",
+         "Order book",
+         "~Rs 100 cr",
+         "[MC] (CALL Aug 2026) - unaudited"
+        ],
+        [
+         "C Qualified opportunity",
+         "ESG order pipeline",
+         "Rs 75-100 cr for FY27",
+         "[MC] (CALL Aug 2026) - may overlap B"
+        ],
+        [
+         "D Tender pipeline",
+         "Future UN / government tenders",
+         "Not quantified",
+         "[MC] 'healthy order pipeline' (CALL Jul 2026)"
+        ],
+        [
+         "E Management aspiration",
+         "20-25% FY27 growth; revenue doubling in 4-5 years; B2C 35% of mix; EBITDA 15%+ medium term",
+         "n.a.",
+         "[MC] (CALL Aug 2026) (CALL Jul 2026) (PPT Aug 2026)"
+        ],
+        [
+         "F Industry TAM",
+         "India nutrition Rs 1,338 bn (CY23) to Rs 2,814 bn (CY30P); clinical nutrition Rs 55,724 mn (CY24)",
+         "Context only",
+         "[MC] (PPT Aug 2026) - not company revenue"
+        ]
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "business_line_deep_dives",
+   "title": "Business line deep dives",
+   "subsections": [
+    {
+     "title": "Branded clinical nutrition (PentaSure)",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "[F] B2C revenue was Rs 113.96 cr in FY26 (AR2026 p.124), led by PentaSure with 12+ SKUs (PPT Aug 2026). [MC] Branded gross margin is 60-68% (CALL Jul 2026). [MC] Competitors are Abbott, Nestle and Fresenius Kabi (CALL Jul 2026). [MC] Field force increased by more than 50% in May-June 2026, with productivity expected 'by end of quarter three' (CALL Aug 2026). [F] Advertising and sales promotion rose to Rs 10.16 cr from Rs 6.54 cr (AR2026 p.116). [AI] What exists today: one recognised brand in hospital clinical nutrition and early-stage paediatric, obesity and online lines. What is narrative: national B2C scale and 35% mix."
+      },
+      {
+       "type": "table",
+       "caption": "Clinical nutrition TAM / SAM / realistic opportunity",
+       "columns": [
+        "Figure",
+        "Basis"
+       ],
+       "rows": [
+        [
+         "Clinical nutrition market ~Rs 5,572 cr (CY24), 12.1% CAGR to Rs 11,206 cr (CY30P)",
+         "[MC] presentation chart (PPT Aug 2026)"
+        ],
+        [
+         "Clinical nutrition market ~Rs 6,300 cr",
+         "[MC] JMD on call (CALL Jul 2026) - differs from presentation; not reconciled"
+        ],
+        [
+         "Company B2C revenue Rs 113.96 cr",
+         "[F] (AR2026 p.124)"
+        ],
+        [
+         "Illustrative share ~1.8-2.0%",
+         "[E] Rs 114 cr / Rs 5,572-6,300 cr; overstated because B2C includes wellness and exports"
+        ],
+        [
+         "Realistic opportunity",
+         "[AI] Mid-teens to 20% growth if the field-force build-up converts; margin dilution while it ramps"
+        ]
+       ]
+      }
+     ]
+    },
+    {
+     "title": "ESG / humanitarian nutrition",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "[F] ESG revenue was Rs 65.0 cr in FY26, down from Rs 77.84 cr (AR2026 p.124). [F] The Thoothukudi RUF plant ran at 18.9% in FY26 (AR2026 p.8). [MC] Order flow 'can vary between quarters' (CALL Aug 2026). [F] Government and agency exposure is not quantified, but Ethiopia alone was 12.1% of FY25 revenue (AR2026 p.124). [MC] The presentation cites 733 mn undernourished people globally (PPT Aug 2026); that is TAM context, not company revenue."
+      },
+      {
+       "type": "table",
+       "caption": "ESG TAM / SAM / realistic",
+       "columns": [
+        "Figure",
+        "Basis"
+       ],
+       "rows": [
+        [
+         "733 mn undernourished globally",
+         "[MC] (PPT Aug 2026) - need, not spend"
+        ],
+        [
+         "Global RUTF/MNP procurement spend",
+         "Not disclosed in documents"
+        ],
+        [
+         "Company ESG pipeline Rs 75-100 cr FY27",
+         "[MC] (CALL Aug 2026)"
+        ],
+        [
+         "Realistic",
+         "[AI] Rs 60-100 cr range depending on tender timing; no multi-year contract disclosed"
+        ]
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Premix",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "[F] Premix revenue was Rs 202.66 cr (53%), up 31% (AR2026 p.124). [MC] Competitors are DSM-Firmenich, BASF, SternVitamin and Piramal (CALL Jul 2026). [MC] Management claims 'one of the good shares' of the market but gives no figure (CALL Jul 2026). [F] Nashik dry premix ran at about 95.6% in FY26 on our reading of the capacity table (AR2026 p.8), and the Nashik premix facility is being redeveloped at a cost of Rs 25-30 cr [MC] (CALL Aug 2026). [AI] Strategic implication: premix is the growth engine and the only line near a capacity constraint at one site, but it also carries the lowest non-ESG margin and the most direct exposure to vitamin price swings."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "capacity",
+   "title": "Capacity and utilisation",
+   "subsections": [
+    {
+     "title": "Facility map",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "Manufacturing footprint, FY26 (units as printed; 'per month' stated explicitly only for Thoothukudi RUF)",
+       "columns": [
+        "Facility",
+        "Location",
+        "Process",
+        "Installed capacity",
+        "Utilisation FY26",
+        "Notes"
+       ],
+       "rows": [
+        [
+         "Nashik (flagship multi-product)",
+         "Dindori, Maharashtra (non-SEZ)",
+         "Dry premix, oil premix, clinical nutrition, RUF, MNP",
+         "Dry 135 MT; Liq 12.5 MT; RUF 200 MT; Clinical 110 MT",
+         "Clinical 56.0%; Dry 95.6%",
+         "[MC] Q1 FY27 55-60% (CALL Aug 2026); premix section being demolished and redeveloped [MC]"
+        ],
+        [
+         "Chennai (export premix)",
+         "MEPZ SEZ, Tamil Nadu",
+         "Dry and oil premix, micronutrients",
+         "Dry 425 MT; Liq 30 MT; MNP 51.65 MT",
+         "Dry 30.1%; Liq 4.8%; MNP 16.6%",
+         "[MC] Q1 FY27 25-30% (CALL Aug 2026)"
+        ],
+        [
+         "Thoothukudi (RUF / ESG)",
+         "Thoothukudi SEZ, Tamil Nadu",
+         "RUTF / RUSF",
+         "RUF 480 MT per month",
+         "RUF 18.9%",
+         "[MC] Q1 FY27 35-40% (CALL Aug 2026)"
+        ],
+        [
+         "Tashkent (international premix)",
+         "Uzbekistan (WOS)",
+         "Dry premix, MNP for Central Asia",
+         "Dry 275 MT; MNP 4 MT",
+         "Dry 3.3%; MNP 22.9%",
+         "[MC] 'not that major' in Q1; orders for Q2-Q3 (CALL Aug 2026)"
+        ]
+       ]
+      },
+      {
+       "type": "p",
+       "text": "[F] Capacities and FY26 utilisation are from the manufacturing footprint table (AR2026 p.8) (PPT Aug 2026). [AI] The extracted text is laid out in columns, so mapping some utilisation figures to plants (notably Nashik dry 95.6% and Chennai MNP 16.6%) is our reading. Units are not stated for every line. [F] Leases: right-of-use assets are Rs 2.1 cr, including a 97-year lease at the Indian subsidiary dated 9 April 2014 (AR2026 p.121). Lease expiry dates for other sites are not disclosed."
+      }
+     ]
+    },
+    {
+     "title": "Aggregate utilisation trend and why it changed",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "Blended utilisation as stated by management",
+       "columns": [
+        "Date / period",
+        "Blended utilisation",
+        "Source"
+       ],
+       "rows": [
+        [
+         "DRHP (period not stated)",
+         "37% ('chronic underutilization', per an analyst)",
+         "[MC] (CALL Jul 2026)"
+        ],
+        [
+         "YTD Dec 2025",
+         "~30%",
+         "[MC] (CALL Jul 2026)"
+        ],
+        [
+         "FY26 year-end expectation",
+         "35-40%",
+         "[MC] CFO (CALL Jul 2026)"
+        ],
+        [
+         "Q1 FY27",
+         "47% ('40% to 47%' later in the same call)",
+         "[MC] (CALL Aug 2026)"
+        ]
+       ]
+      },
+      {
+       "type": "p",
+       "text": "[MC] Management attributes the rise to volume growth, mainly in premix, then branded (CALL Aug 2026). [MC] The JMD cautioned that blended utilisation mixes very different packaging formats, so segments can run at 35-65% (CALL Aug 2026). [AI] Annualised Q1 FY27 revenue is about 9% above FY26 [E], yet stated utilisation rose from ~30% to 47%. Either the metric is volume-based and moved with mix toward bulk premix, or the earlier figure was understated. The utilisation series is not a reliable proxy for revenue capacity."
+      }
+     ]
+    },
+    {
+     "title": "Revenue potential from higher utilisation (sensitivity, not base case)",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "Illustrative linear sensitivity [E]",
+       "columns": [
+        "Blended utilisation",
+        "Implied revenue Rs cr",
+        "Method"
+       ],
+       "rows": [
+        [
+         "~30% (FY26 basis)",
+         "383",
+         "[F] FY26 revenue (AR2026 p.56)"
+        ],
+        [
+         "40%",
+         "~510",
+         "[E] linear scale of FY26 revenue per utilisation point"
+        ],
+        [
+         "50%",
+         "~638",
+         "[E] same"
+        ],
+        [
+         "60%",
+         "~765",
+         "[E] same; ignores mix, pricing and bottleneck lines such as Nashik dry premix"
+        ]
+       ]
+      },
+      {
+       "type": "p",
+       "text": "[AI] This is a sensitivity, not a forecast. Nashik dry premix is already near full, and the idle capacity is concentrated in RUF (ESG tenders) and Tashkent, which depend on demand the company does not control."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "capex_forensics",
+   "title": "Capex forensics",
+   "subsections": [
+    {
+     "title": "Historical capex",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "Capex history (our statements data)",
+       "columns": [
+        "Year",
+        "Capex Rs cr",
+        "Capex / revenue",
+        "Capex / EBITDA",
+        "Capital commitments"
+       ],
+       "rows": [
+        [
+         "FY21",
+         "8",
+         "3.8%",
+         "23.5% [E]",
+         "Not disclosed"
+        ],
+        [
+         "FY22",
+         "16",
+         "5.9%",
+         "44.4% [E]",
+         "Not disclosed"
+        ],
+        [
+         "FY24",
+         "15",
+         "5.0%",
+         "60.0% [E]",
+         "Not disclosed"
+        ],
+        [
+         "FY25",
+         "9",
+         "2.8%",
+         "22.0% [E]",
+         "Rs 0.69 cr [F] (AR2026 p.118)"
+        ],
+        [
+         "FY26",
+         "7",
+         "1.8%",
+         "13.2% [E]",
+         "Rs 0.49 cr [F] (AR2026 p.118)"
+        ]
+       ]
+      },
+      {
+       "type": "p",
+       "text": "[F] Capex and capex/revenue are from our statements data (NUMBERS); capex/EBITDA is our arithmetic. [F] The FY26 cash flow shows capex of Rs 7.4 cr (AR2026 p.98). [F] FY23 is missing from our statements data."
+      }
+     ]
+    },
+    {
+     "title": "Incremental revenue vs incremental capital",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "[E] From FY21 to FY26, revenue rose Rs 169 cr while fixed assets plus CWIP rose Rs 15 cr (Rs 52 cr to Rs 67 cr), and working-capital-heavy 'other assets' rose Rs 71 cr (NUMBERS). [AI] Incremental growth has been funded mainly by working capital, not plant."
+      }
+     ]
+    },
+    {
+     "title": "Planned capex and funding",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "[MC] 'Roughly around INR25 crores to INR30 crores in the coming one year or maybe one and a half years' to redevelop the Nashik premix facility, about 70% funded by long-term bank borrowing (CALL Aug 2026). [E] That is 3.6-4.3x FY26 capex and implies roughly Rs 17.5-21 cr of new debt. [F] The annual report discloses capital commitments of only Rs 0.49 cr (AR2026 p.118) and no capex plan. [AI] Classification: asset-light today, but FY27-28 capex will step up, and Nashik production continuity during demolition is not explained."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "raw_materials",
+   "title": "Raw materials and input costs",
+   "subsections": [
+    {
+     "title": "Key inputs and import dependence",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "Import dependence - figures do not agree",
+       "columns": [
+        "Measure",
+        "Value",
+        "Source"
+       ],
+       "rows": [
+        [
+         "Imports as share of requirement",
+         "Less than 25%",
+         "[MC] (CALL Jul 2026)"
+        ],
+        [
+         "Imports as share of raw materials",
+         "25-30%",
+         "[MC] (CALL Aug 2026)"
+        ],
+        [
+         "Domestic sourcing",
+         "85% domestic (i.e. ~15% imported)",
+         "[MC] (PPT Aug 2026)"
+        ],
+        [
+         "Consolidated CIF imports",
+         "Rs 65.1 cr FY26 vs Rs 27.2 cr FY25",
+         "[F] (AR2026 p.116)"
+        ],
+        [
+         "Standalone CIF imports of raw material",
+         "Rs 61.2 cr FY26 vs Rs 47.3 cr FY25",
+         "[F] (AR2026 p.81)"
+        ],
+        [
+         "Consolidated purchases",
+         "Rs 222.2 cr FY26 vs Rs 154.8 cr FY25",
+         "[F] (AR2026 p.115)"
+        ]
+       ]
+      },
+      {
+       "type": "p",
+       "text": "[E] Consolidated imports were about 29% of purchases in FY26 vs about 18% in FY25, so import dependence rose. [AI] The presentation's '85% domestic' is inconsistent with the audited import figure. [MC] Source countries are China, Singapore, Korea and Europe for vitamins A, B-group, C and folic acid (CALL Jul 2026); [MC] whey protein costs have risen (CALL Aug 2026). [F] The documents give no price-trend data for inputs."
+      }
+     ]
+    },
+    {
+     "title": "Pass-through: claim vs evidence",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "[MC] Branded products can pass on costs through MRP increases; strategic inventory is held for vitamins (CALL Jul 2026). [MC] MRP was raised 10-15% on some branded products, with gross-margin relief expected 'in the next two quarters' (CALL Aug 2026). [F] Evidence so far points the other way: Q1 FY27 gross margin was 43.9% vs 46.9% a year earlier [E] (PPT Aug 2026). [AI] Premix (B2B) and ESG (tender) pricing is likely fixed for the life of each order, so pass-through there lags."
+      }
+     ]
+    },
+    {
+     "title": "EBITDA sensitivity to input cost",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "FY26 EBITDA sensitivity to input cost shocks [E]",
+       "columns": [
+        "Shock",
+        "Cost base used",
+        "EBITDA hit Rs cr",
+        "FY26 EBITDA after shock",
+        "EBITDA margin after"
+       ],
+       "rows": [
+        [
+         "+5% on materials",
+         "Material cost ~Rs 199.5 cr (AR2026 p.97)",
+         "~10.0",
+         "~43.0",
+         "~11.3%"
+        ],
+        [
+         "+10% on materials",
+         "Same",
+         "~20.0",
+         "~33.0",
+         "~8.7%"
+        ],
+        [
+         "+5% on all operating expenses (upper bound)",
+         "Expenses Rs 327 cr (NUMBERS)",
+         "~16.4",
+         "~36.6",
+         "~9.6%"
+        ],
+        [
+         "+10% on all operating expenses (upper bound)",
+         "Same",
+         "~32.7",
+         "~20.3",
+         "~5.3%"
+        ]
+       ]
+      },
+      {
+       "type": "p",
+       "text": "[E] Base: FY26 sales Rs 380 cr and EBITDA Rs 53 cr (NUMBERS); material cost is consumption plus purchases less the inventory change (AR2026 p.97). Assumes no pass-through. [AI] A 5% unrecovered input inflation removes about a fifth of EBITDA, which is why the Q1 FY27 gross-margin slip matters."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "margin_analysis",
+   "title": "Margin analysis",
+   "subsections": [
+    {
+     "title": "Margin trend",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "Margin trend, Rs cr",
+       "columns": [
+        "Period",
+        "Revenue",
+        "Gross margin proxy",
+        "EBITDA",
+        "EBITDA %",
+        "PAT",
+        "PAT %"
+       ],
+       "rows": [
+        [
+         "FY21",
+         "211",
+         "n.a.",
+         "34",
+         "16%",
+         "23",
+         "10.9%"
+        ],
+        [
+         "FY22",
+         "271",
+         "n.a.",
+         "36",
+         "13%",
+         "23",
+         "8.5%"
+        ],
+        [
+         "FY23",
+         "Not in our statements data",
+         "n.a.",
+         "n.a.",
+         "6.2% (analyst-cited, not contradicted) [MC] (CALL Jul 2026)",
+         "n.a.",
+         "n.a."
+        ],
+        [
+         "FY24",
+         "298",
+         "n.a.",
+         "25",
+         "8% (AR 8.4%)",
+         "12",
+         "4.0% (AR 4.1%)"
+        ],
+        [
+         "FY25",
+         "324",
+         "n.a.",
+         "41",
+         "13% (AR 12.3%)",
+         "24",
+         "7.4%"
+        ],
+        [
+         "FY26",
+         "380",
+         "~47.9% [E]",
+         "53",
+         "14% (AR 13.8%)",
+         "38",
+         "10.0%"
+        ],
+        [
+         "Q1 FY26",
+         "72.86",
+         "46.9% [E]",
+         "10.05",
+         "13.8%",
+         "6.46",
+         "8.9%"
+        ],
+        [
+         "Q4 FY26",
+         "115.04",
+         "43.9% [E]",
+         "15.06 (PPT 15.35)",
+         "13.1% (PPT 13.3%)",
+         "10.90",
+         "9.5%"
+        ],
+        [
+         "Q1 FY27",
+         "104.31",
+         "43.9% [E]",
+         "11.74 (PPT 11.80)",
+         "11.3%",
+         "8.07",
+         "7.7%"
+        ]
+       ]
+      },
+      {
+       "type": "p",
+       "text": "[F] Annual and quarterly figures are from our statements data (NUMBERS); AR comparatives are from (AR2026 p.10). [E] Gross margin proxy = revenue less materials, purchases and the inventory change (AR2026 p.97) (PPT Aug 2026). PAT % is our arithmetic."
+      }
+     ]
+    },
+    {
+     "title": "Drivers by year",
+     "blocks": [
+      {
+       "type": "bullets",
+       "items": [
+        "FY22-FY24 decline: [F] EBITDA margin fell from 13% to 8% (NUMBERS). [F] The documents do not explain it; standalone HNL PBT in FY23 was negative per the CSR computation (AR2026 p.37). [AI] Likely input inflation and ESG mix; treated as temporary.",
+        "FY25 recovery: [MC] branded volume (50%+ gross margin) and premix growth of 20-30% a year (CALL Jul 2026). [AI] Partly structural (mix) and partly a rebound from a weak base.",
+        "FY26 expansion to 13.8%: [MC] operating leverage, mix and manufacturing efficiency (AR2026 p.12). [F] ESG, the lowest-margin line, shrank to 17% of revenue (AR2026 p.124). [AI] Part of the gain is a favourable mix effect from a cyclical ESG decline, which reverses if ESG recovers as guided.",
+        "Q1 FY27 decline to 11.3%: [MC] West Asia-linked raw material and freight costs, plus a field force up more than 50% (CALL Aug 2026). [F] Other expenses rose 57% YoY to Rs 20.45 cr and employee costs 23% to Rs 13.61 cr (PPT Aug 2026). [AI] Freight and input costs are temporary; field-force cost is structural until productivity arrives."
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Is margin improvement structural?",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "[AI] Only partly. Branded mix is a genuine structural lever, but FY26 also benefited from a shrinking low-margin ESG line, and Q1 FY27 shows margins remain sensitive to inputs and freight. [MC] The medium-term target of '15%+' EBITDA margin (PPT Aug 2026) is above every year in our statements data except FY21 [F] (NUMBERS)."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "unit_economics",
+   "title": "Unit economics",
+   "subsections": [
+    {
+     "title": "What can and cannot be built",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "[F] Capacity is disclosed in MT by plant and process (AR2026 p.8), but production and sales volumes, realisations per kg and segment costs are not. [F] Revenue is disclosed by line but not by plant (AR2026 p.124). [AI] A per-unit realisation or contribution table cannot be built without inventing volumes, so we do not present one. The closest substitute is management's gross-margin ranges by line [MC] (CALL Jul 2026), which our blended check corroborates within about 1pt [E]."
+      },
+      {
+       "type": "table",
+       "caption": "Blended gross-margin cross-check [E]",
+       "columns": [
+        "Line",
+        "FY26 mix",
+        "Management gross margin (midpoint)",
+        "Contribution to blend"
+       ],
+       "rows": [
+        [
+         "Branded",
+         "30%",
+         "64% [MC]",
+         "19.2pt"
+        ],
+        [
+         "Premix",
+         "53%",
+         "37.5% [MC]",
+         "19.9pt"
+        ],
+        [
+         "ESG",
+         "17%",
+         "27.5% [MC]",
+         "4.7pt"
+        ],
+        [
+         "Blended",
+         "100%",
+         "-",
+         "~43.8% vs reported 43.9% in Q4 FY26 / Q1 FY27"
+        ]
+       ]
+      }
+     ]
+    },
+    {
+     "title": "What would have to be true for unit economics to improve",
+     "blocks": [
+      {
+       "type": "bullets",
+       "items": [
+        "[AI] Branded share rises toward the 35% target without proportional growth in field-force and advertising cost.",
+        "[AI] MRP increases stick without volume loss.",
+        "[AI] Idle RUF and Tashkent capacity is filled, spreading fixed cost; this depends on tenders.",
+        "[AI] Freight normalises after the West Asia disruption [MC] (CALL Aug 2026)."
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "financial_forensics",
+   "title": "Financial statement forensics",
+   "subsections": [
+    {
+     "title": "Data availability caveat",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "[F] Our statements data covers FY21, FY22, FY24, FY25 and FY26 (FY23 missing) and five quarters (Sep 2025 missing) (NUMBERS). [F] Its '3-year' growth rates (sales 11.9%, EBITDA 13.8%, PAT 18.2%) are measured from FY22 to FY26, which is four years (NUMBERS). [E] The four-year sales CAGR is about 8.8%. [F] The base-case DCF starting growth of 11.9% is taken from this median (NUMBERS). [F] FY25 standalone figures were restated for a common-control merger (AR2026 p.91)."
+      }
+     ]
+    },
+    {
+     "title": "Income statement observations",
+     "blocks": [
+      {
+       "type": "bullets",
+       "items": [
+        "[F] Revenue growth: FY25 +8.7% and FY26 +17.3% on our statements data (NUMBERS); FY26 +17.8% as reported (AR2026 p.56).",
+        "[F] Other income doubled to Rs 11.94 cr, including an FX gain of Rs 7.44 cr, mutual fund gains of Rs 2.19 cr and a state PSI incentive of Rs 0.84 cr (AR2026 p.115). [E] FX gain alone was about 14.5% of PBT.",
+        "[F] Freight Rs 17.95 cr (+63%) and advertising Rs 10.16 cr (+55%) were the fastest-growing costs (AR2026 p.116).",
+        "[F] Exceptional items: a small reversal of doubtful debts (Rs 0.30 cr) (AR2026 p.97); ECL reversed by Rs 0.91 cr (AR2026 p.116).",
+        "[F] Effective tax rate 25.9% (AR2026 p.117)."
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Balance sheet observations",
+     "blocks": [
+      {
+       "type": "bullets",
+       "items": [
+        "[F] Total assets rose from Rs 261 cr to Rs 318 cr; 'other assets' (mainly working capital) rose from Rs 159 cr to Rs 215 cr (NUMBERS).",
+        "[F] Inventories Rs 83.9 cr, of which raw and packing material Rs 63.1 cr and finished goods Rs 19.7 cr; no write-downs (AR2026 p.109).",
+        "[F] Receivables Rs 81.7 cr; credit-impaired Rs 0.73 cr; at standalone level, Rs 3.29 cr is more than three years old, largely due from the South African subsidiary (AR2026 p.74).",
+        "[F] Mutual funds Rs 37.4 cr and inter-corporate deposits Rs 5.47 cr to an unnamed counterparty (AR2026 p.109).",
+        "[F] Borrowings Rs 30.3 cr, mostly short-term working-capital lines (AR2026 p.113)."
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Cash flow observations",
+     "blocks": [
+      {
+       "type": "bullets",
+       "items": [
+        "[F] CFO Rs 6.2 cr vs Rs 38.5 cr in FY25 (AR2026 p.98); our statements data shows 6 vs 38 (NUMBERS).",
+        "[F] Working-capital outflows: receivables Rs 23.1 cr, inventories Rs 22.7 cr, other assets Rs 10.4 cr, partly offset by payables +Rs 10.0 cr; taxes paid Rs 11.1 cr (AR2026 p.98).",
+        "[F] Short-term borrowings increased Rs 5.0 cr to fund the gap (AR2026 p.98).",
+        "[F] The ECL reversal appears to be added back with the wrong sign in the cash flow (AR2026 p.98) - small, but sloppy.",
+        "[MC] Q1 FY27 operating cash flow 'improved compared to last year Q1' (CALL Aug 2026); no Q1 cash flow statement is disclosed."
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Ratio commentary",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "[F] ROE 17.8% and ROCE 22% in FY26 (NUMBERS) vs 17.75% and 20.94% in the annual report (AR2026 p.56). [F] Debt/equity is 0.14 and interest cover 13.8x (NUMBERS). [F] Fixed-asset turnover is 5.94x (NUMBERS). [AI] Returns are respectable on accrual earnings but overstate cash returns while working capital absorbs profit."
+      }
+     ]
+    },
+    {
+     "title": "Discrepancies between documents and our statements data",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "Discrepancies (shown side by side, not reconciled)",
+       "columns": [
+        "Item",
+        "Our statements data",
+        "Company documents"
+       ],
+       "rows": [
+        [
+         "FY26 revenue",
+         "Rs 380 cr",
+         "Rs 382.63 cr (AR2026 p.56)"
+        ],
+        [
+         "FY25 EBITDA / margin",
+         "Rs 41 cr / 13%",
+         "Rs 40.07 cr / 12.33% (AR2026 p.56)"
+        ],
+        [
+         "FY25 EPS",
+         "Rs 2.20",
+         "Rs 1.75 basic, after CCPS dividend (AR2026 p.30)"
+        ],
+        [
+         "FY25 ROE",
+         "13.4%",
+         "10.81% (AR2026 p.56)"
+        ],
+        [
+         "Q4 FY26 EBITDA",
+         "Rs 15.06 cr",
+         "Rs 15.35 cr (PPT Aug 2026)"
+        ],
+        [
+         "Q1 FY27 YoY sales growth",
+         "-2.1%",
+         "+43.2% (PPT Aug 2026)"
+        ],
+        [
+         "Net debt / equity FY26",
+         "Debt/equity 0.14",
+         "'Net debt/equity' 0.13 (AR2026 p.10); net debt Rs 14.5 cr, 0.06 (AR2026 p.126); cash + MF exceed borrowings (PPT Aug 2026)"
+        ],
+        [
+         "Debt service coverage FY26",
+         "n.a.",
+         "1.89 in MD&A (AR2026 p.56) vs 0.78 in notes (AR2026 p.126)"
+        ],
+        [
+         "Share count",
+         "12.297 cr",
+         "12,29,18,109 after CCPS conversion (AR2026 p.31)"
+        ],
+        [
+         "Employees",
+         "n.a.",
+         "527+ (AR2026 p.5); 456 (AR2026 p.36); 513 gratuity count (AR2026 p.118)"
+        ],
+        [
+         "FY26 segment mix",
+         "n.a.",
+         "Premix 53% / ESG 17% (AR2026 p.124) vs 35-40% / ~30% (CALL Jul 2026)"
+        ]
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "working_capital",
+   "title": "Working capital",
+   "subsections": [
+    {
+     "title": "Why headline days mislead",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "[F] Working-capital days were 110 at FY26 vs 87 at FY25 (NUMBERS). [AI] The headline nets payables and other liabilities against inventories and receivables, and hides an inventory build of more than five months plus a receivable jump concentrated in Q4 dispatches."
+      }
+     ]
+    },
+    {
+     "title": "Component build",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "Working-capital components",
+       "columns": [
+        "Year",
+        "Inventories Rs cr",
+        "Receivables Rs cr",
+        "Payables Rs cr",
+        "Debtor days",
+        "Inventory days",
+        "Payable days",
+        "CCC"
+       ],
+       "rows": [
+        [
+         "FY21",
+         "n.d.",
+         "n.d.",
+         "n.d.",
+         "70",
+         "192",
+         "114",
+         "148"
+        ],
+        [
+         "FY22",
+         "n.d.",
+         "n.d.",
+         "n.d.",
+         "76",
+         "146",
+         "79",
+         "143"
+        ],
+        [
+         "FY24",
+         "n.d.",
+         "n.d.",
+         "n.d.",
+         "59",
+         "161",
+         "40",
+         "181"
+        ],
+        [
+         "FY25",
+         "61.2",
+         "59.8",
+         "18.8",
+         "67",
+         "124",
+         "38",
+         "153"
+        ],
+        [
+         "FY26",
+         "83.9",
+         "81.7",
+         "28.8",
+         "79",
+         "153",
+         "53",
+         "179"
+        ],
+        [
+         "Q1 FY27",
+         "n.d.",
+         "n.d.",
+         "n.d.",
+         "n.d.",
+         "~142 [MC]",
+         "n.d.",
+         "n.d."
+        ]
+       ]
+      },
+      {
+       "type": "p",
+       "text": "[F] Days are from our statements data (NUMBERS); balances are from (PPT Aug 2026); Q1 inventory days per the CFO (CALL Aug 2026). [F] Q1 FY27 shows a further finished-goods/WIP build of Rs 9.8 cr in the P&L inventory change (PPT Aug 2026)."
+      }
+     ]
+    },
+    {
+     "title": "What drove the change",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "[MC] Receivables rose because large ESG orders and a domestic premix 'order jump' were dispatched in Q3-Q4, and 'these are now been normalized' (CALL Jul 2026). [MC] Inventory is held for order-book execution and as strategic stock against price rises (CALL Aug 2026). [MC] No change in credit terms (CALL Aug 2026). [AI] The receivable explanation is plausible given Q4 revenue of Rs 115 cr, but the normalisation is unverified. Inventory is the bigger and more persistent issue: inventory days have been 124-192 in every year of our data."
+      }
+     ]
+    },
+    {
+     "title": "Cash-conversion consequence and bank limits",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "[F] Five-year CFO/PAT is 0.89 and three-year 0.91 (NUMBERS), but FY26 alone was 0.16. [F] Working-capital limits above Rs 5 cr are secured on current assets; the CARO report states that monthly returns to banks were not in agreement with the books, while note 56(l) states they agreed, and FY25 showed a Rs 1.69 cr inventory difference (AR2026 p.60) (AR2026 p.92) (AR2026 p.90). [F] No covenant breaches are disclosed. [AI] The drawing-power returns discrepancy is a control point worth querying."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "balance_sheet_quality",
+   "title": "Balance sheet quality",
+   "subsections": [
+    {
+     "title": "Asset composition",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "Consolidated assets at 31 March 2026, Rs cr",
+       "columns": [
+        "Category",
+        "Items",
+        "Rs cr",
+        "% of total"
+       ],
+       "rows": [
+        [
+         "Hard assets",
+         "PPE 61.2, CWIP 2.5, ROU 2.1",
+         "65.9",
+         "20.7%"
+        ],
+        [
+         "Working-capital assets",
+         "Inventories 83.9, receivables 81.7, other current assets 20.4",
+         "186.0",
+         "58.4%"
+        ],
+        [
+         "Cash and liquid investments",
+         "Cash 15.8, bank 2.2, mutual funds 37.4",
+         "55.3",
+         "17.4%"
+        ],
+        [
+         "Soft / other",
+         "Intangibles 0.6, DTA 2.0, other non-current 8.6",
+         "11.2",
+         "3.5%"
+        ],
+        [
+         "Total",
+         "",
+         "318.4",
+         "100%"
+        ]
+       ]
+      },
+      {
+       "type": "p",
+       "text": "[F] Balances are from the consolidated balance sheet (PPT Aug 2026); percentages are ours [E]."
+      }
+     ]
+    },
+    {
+     "title": "Liabilities, contingencies and guarantees",
+     "blocks": [
+      {
+       "type": "bullets",
+       "items": [
+        "[F] Borrowings Rs 30.3 cr: term loans of Rs 9.7 cr (Citi, Indian Bank) and working-capital lines of Rs 24.5 cr across Citi, HDFC, SBI, Union Bank and Indian Bank (AR2026 p.113).",
+        "[F] Term loans carry personal guarantees from Vikram, Arun, Subhash, Nikhil and Aditya Kelkar (AR2026 p.113).",
+        "[F] Contingent liabilities: disputed statutory dues Rs 2.32 cr, bank guarantees Rs 2.79 cr, capital commitments Rs 0.49 cr (AR2026 p.118); [F] disputes include a Rs 2.50 cr income-tax reassessment for AY 2016-17 (AR2026 p.60).",
+        "[F] At standalone level, a Rs 23.0 cr corporate guarantee and Rs 17.0 cr of new loans to the Indian subsidiary; loans to subsidiaries of Rs 49.0 cr in total, with no repayment schedule (AR2026 p.60) (AR2026 p.75).",
+        "[F] No promoter-owned leased premises or rent to promoters were found in the documents."
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Assessment",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "[AI] Solvency is strong: liquid assets exceed borrowings. Quality is moderate: 58% of assets are inventories and receivables, and the parent funds two foreign subsidiaries with going-concern doubts through open-ended loans [F] (AR2026 p.93)."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "accounting_quality",
+   "title": "Accounting quality",
+   "subsections": [
+    {
+     "title": "Audit opinions and key audit matters",
+     "blocks": [
+      {
+       "type": "bullets",
+       "items": [
+        "[F] Auditor: S K Patodia & Associates LLP, appointed at the 2024 AGM until the 2029 AGM (AR2026 p.34). The previous auditor and the reason for the change are not disclosed in the documents.",
+        "[F] Standalone and consolidated opinions are unmodified (AR2026 p.57) (AR2026 p.93).",
+        "[F] Key audit matters: revenue cut-off, inventory valuation, capitalisation and depreciation, and completeness of contingent liabilities (AR2026 p.57). The PPE matter cites an Australian standard (AASB 116), which suggests template text.",
+        "[F] Emphasis of matter: going-concern material uncertainty at the South Africa and Uzbekistan subsidiaries; CCPS conversion; listing; merger (AR2026 p.93)."
+       ]
+      }
+     ]
+    },
+    {
+     "title": "CARO, audit trail and restatements",
+     "blocks": [
+      {
+       "type": "bullets",
+       "items": [
+        "[F] CARO ii(b): bank returns not in agreement with books (AR2026 p.60).",
+        "[F] CARO iii(c): loans to subsidiaries have no repayment schedule, yet iii(f) says no loans without terms were granted (AR2026 p.60).",
+        "[F] CARO xiv: auditor states internal audit criteria are not met, despite an internal auditor being appointed (AR2026 p.60) (AR2026 p.34).",
+        "[F] CARO xvii: cash losses at the Indian subsidiaries HNIPL and HNHPL (AR2026 p.95).",
+        "[F] Audit trail operated all year; at consolidated level it is described as 'with limited details' (AR2026 p.59) (AR2026 p.95).",
+        "[F] Restatement: FY25 standalone restated under pooling of interests for the HNEPL merger (AR2026 p.91); standalone note 56(k) says no such scheme exists (AR2026 p.92)."
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Assessment and gaps",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "[AI] There are no qualifications, but at least seven internal inconsistencies across notes, MD&A and CARO (ratios, bank returns, hedging, merger, customer concentration, MSME interest, notice placeholder text). We read these as weak controls over reporting, not evidence of misstatement. [F] The documents do not cover the prior auditor's history, a share-based payment note, or segment results."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "group_structure_rpt",
+   "title": "Group structure and related parties",
+   "subsections": [
+    {
+     "title": "Subsidiaries: role and status",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "Subsidiaries",
+       "columns": [
+        "Entity",
+        "Role",
+        "Status"
+       ],
+       "rows": [
+        [
+         "Hexagon Nutrition (International) Pvt Ltd",
+         "[AI] SEZ production unit; material subsidiary [F]",
+         "[F] FY26 loss Rs 1.80 cr; cash losses per CARO (AR2026 p.38) (AR2026 p.95)"
+        ],
+        [
+         "Hexagon Nutrition Healthcare Pvt Ltd",
+         "Dormant",
+         "[F] Nil revenue (AR2026 p.38)"
+        ],
+        [
+         "Hexagon Nutrition China Ltd (HK)",
+         "[AI] Sourcing / trading",
+         "[F] Profitable, Rs 0.20 cr PAT"
+        ],
+        [
+         "Hexagon Nutrition (Pty) Ltd (SA)",
+         "Africa distribution",
+         "[F] Negative reserves Rs 3.17 cr; going-concern doubt"
+        ],
+        [
+         "Hexagon Nutrition LLC (Uzbekistan)",
+         "Central Asia premix plant",
+         "[F] Negative reserves Rs 9.41 cr; going-concern doubt; Vikram Kelkar was General Director Aug 2024 - Nov 2025 (AR2026 p.120)"
+        ]
+       ]
+      },
+      {
+       "type": "p",
+       "text": "[F] No non-compete or common-pursuit disclosure was found; the only related statement is that there are no materially significant RPTs with potential conflict (AR2026 p.47). [F] Sunrise Nutrition Pvt Ltd is a related party with no reported transactions (AR2026 p.120)."
+      }
+     ]
+    },
+    {
+     "title": "Related-party transactions",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "Related-party transactions FY26, Rs cr",
+       "columns": [
+        "Category",
+        "Amount",
+        "Economic substance"
+       ],
+       "rows": [
+        [
+         "KMP remuneration - Arun Kelkar",
+         "1.62",
+         "[F] (AR2026 p.120)"
+        ],
+        [
+         "KMP remuneration - Vikram Kelkar",
+         "2.38",
+         "[F] consolidated; CG report shows Rs 2.16 cr (AR2026 p.43) - not reconciled"
+        ],
+        [
+         "KMP remuneration - Nikhil Kelkar",
+         "1.77",
+         "[F]"
+        ],
+        [
+         "KMP remuneration - Subhash Kelkar",
+         "1.11",
+         "[F] paid by subsidiary (AR2026 p.43)"
+        ],
+        [
+         "KMP remuneration - Aditya Kelkar",
+         "0.52",
+         "[F] non-executive director paid by subsidiaries (AR2026 p.43)"
+        ],
+        [
+         "CFO and CS remuneration",
+         "0.65",
+         "[F]"
+        ],
+        [
+         "Professional fees - Nutan Kelkar",
+         "0.16",
+         "[F]"
+        ],
+        [
+         "Loans to subsidiaries (outstanding)",
+         "48.99",
+         "[F] no repayment terms (AR2026 p.75)"
+        ],
+        [
+         "Corporate guarantee for subsidiary",
+         "23.00",
+         "[F] (AR2026 p.83)"
+        ],
+        [
+         "Purchases from HK subsidiary",
+         "14.85",
+         "[F] (AR2026 p.85)"
+        ],
+        [
+         "Royalty / interest receivable written off (LLC, PTY)",
+         "1.69",
+         "[F] (AR2026 p.85) - [AI] parent absorbs subsidiary losses"
+        ],
+        [
+         "IPO expenses recoverable from selling shareholders",
+         "2.53",
+         "[F] (AR2026 p.110)"
+        ]
+       ]
+      },
+      {
+       "type": "p",
+       "text": "[E] Family KMP remuneration of Rs 7.40 cr was about 19.5% of FY26 PAT and about 14% of EBITDA. [F] The AGM sought caps of Rs 1.82 cr, Rs 2.42 cr and Rs 1.99 cr for Arun, Vikram and Nikhil, payable by the company 'and/or' its subsidiaries (AR2026 p.27). [F] Promoter-group personal guarantees support term loans (AR2026 p.113); no guarantee commission is disclosed."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "management",
+   "title": "Management and promoters",
+   "subsections": [
+    {
+     "title": "Leadership",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "Leadership and board",
+       "columns": [
+        "Role",
+        "Name",
+        "Age",
+        "Since",
+        "Background"
+       ],
+       "rows": [
+        [
+         "Chairman & Executive Director (ceased 28 Sep 2026)",
+         "Arun Purushottam Kelkar",
+         "76 [F] (AR2026 p.28)",
+         "27 May 1993",
+         "[F] BE (Nagpur), operations management diploma; 40+ years' experience (AR2026 p.18)"
+        ],
+        [
+         "Managing Director",
+         "Vikram Arun Kelkar",
+         "Not disclosed",
+         "1 Sep 2005 [F] (AR2026 p.40)",
+         "[F] BMS (Mumbai), MIB (Auckland); leads premix and RUF/MNP (AR2026 p.18)"
+        ],
+        [
+         "Joint Managing Director",
+         "Dr. Nikhil Arun Kelkar",
+         "Not disclosed",
+         "21 Aug 2008 [F] (AR2026 p.40)",
+         "[F] BDS, management diploma (NMIMS); heads branded nutrition and group finance (AR2026 p.18); [F] nationality New Zealand (AR2026 p.29)"
+        ],
+        [
+         "Executive Director (from 12 Aug 2026)",
+         "Raghunath Sawant",
+         "41 [F] (AR2026 p.29)",
+         "12 Aug 2026",
+         "[F] Diploma in food technology; GM Operations since July 2022 (AR2026 p.29)"
+        ],
+        [
+         "CFO",
+         "Soman Nemai Jana",
+         "Not disclosed",
+         "12 Jun 2024 [F] (AR2026 p.40)",
+         "[F] Chartered Accountant (PPT Aug 2026)"
+        ],
+        [
+         "Company Secretary",
+         "Vedanti Vartak",
+         "Not disclosed",
+         "28 Jun 2023 [F] (AR2026 p.40)",
+         "[F] CS, BCom, LLB (PPT Aug 2026)"
+        ],
+        [
+         "Independent Directors",
+         "Aparna Sakpal; Dr. Meena Mehta; Dr. Nimesh Shukla; Keval Shah; Payal Gaglani",
+         "Not disclosed",
+         "Oct 2023; Mar 2025; Mar 2025; May 2025; May 2025 [F] (AR2026 p.51)",
+         "[F] HR executive; academic; homeopathy professor; CA (8 yrs); CA (3 yrs) (AR2026 p.18)"
+        ]
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Governance timeline",
+     "blocks": [
+      {
+       "type": "bullets",
+       "items": [
+        "[F] 12 Jun 2024: CFO appointed (AR2026 p.40). 17 Sep 2024: statutory auditor S K Patodia & Associates appointed to 2029 (AR2026 p.34).",
+        "[F] Mar-May 2025: four of five independent directors appointed (AR2026 p.51). 28 Jun 2025: EGM approves pay revisions and Arun Kelkar continuing past 75 (AR2026 p.47).",
+        "[F] 6 Jul 2026: Subhash Kelkar (Executive Director, paid Rs 1.11 cr by a subsidiary) and Aditya Kelkar resign; no reason disclosed (AR2026 p.32) (AR2026 p.43).",
+        "[F] 12 Aug 2026: Raghunath Sawant joins the board; IPO Committee dissolved (AR2026 p.21) (AR2026 p.47).",
+        "[F] 22 Sep 2026: AGM item 11 sought Arun Kelkar's re-appointment for 2026-31 (AR2026 p.22).",
+        "[F] 24 Sep 2026: EGM requisitions received to appoint Arun Kelkar and approve his remuneration; 28 Sep: he ceased as Chairman & ED 'after completing his term'; 30 Sep: board considered an executive chairman appointment, MD remuneration and an EGM (ANNOUNCEMENTS).",
+        "[AI] The AGM voting results were not available to us. Requisitioning an EGM for an appointment that was already on the AGM agenda suggests item 11 did not pass or was not put to vote. That is a significant unexplained event in the first quarter after listing."
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Alignment and skin in the game",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "[F] Promoters held 64.29% at June 2026; FIIs 0.29%, DIIs 6.42%, public 28.99%, across 20,187 shareholders (NUMBERS). [F] A one-year change is not available in our statements data (NUMBERS). [F] Before the IPO, promoter directors held 87.88% and their relatives 11.45% of 11.06 cr shares (AR2026 p.49). [E] The promoter-group share count fell by about 3.09 cr, matching the 3.09 cr OFS (AR2026 p.126), so the promoter group appears to have supplied essentially all of the OFS shares (about Rs 139 cr gross). [F] No promoter pledge is disclosed in the documents. [F] Rs 2.53 cr of IPO expenses are recoverable from selling shareholders (AR2026 p.110)."
+      }
+     ]
+    },
+    {
+     "title": "Compensation and self-dealing indicators",
+     "blocks": [
+      {
+       "type": "bullets",
+       "items": [
+        "[F] FY26 pay as a multiple of median employee pay: Vikram 40.8x, Nikhil 33.5x, Arun 30.7x (AR2026 p.40).",
+        "[F] Proposed FY27 caps of Rs 2.42 cr (Vikram), Rs 1.99 cr (Nikhil) and Rs 1.82 cr (Arun) are about 12% above FY26 actuals in aggregate [E] (AR2026 p.27).",
+        "[F] Aditya Kelkar, classed as non-executive, received Rs 0.52 cr from subsidiaries (AR2026 p.43).",
+        "[F] A pre-IPO interim dividend of Rs 4.10 per CCPS (about Rs 5.0 cr) was paid to the CCPS investor in FY25 (AR2026 p.77), while equity holders received no FY25 dividend [F] (NUMBERS).",
+        "[F] The AGM resolution removed Malani Ventures' special rights from the Articles (AR2026 p.28)."
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Management and promoter scorecard",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "Management and promoter scorecard",
+       "columns": [
+        "Factor",
+        "Score 1-10",
+        "Rationale"
+       ],
+       "rows": [
+        [
+         "Promoter alignment (holding)",
+         "7",
+         "[F] 64.29% retained; no pledge disclosed"
+        ],
+        [
+         "Use of IPO",
+         "4",
+         "[F] 100% OFS; no capital to the company"
+        ],
+        [
+         "Remuneration restraint",
+         "3",
+         "[E] family KMP pay ~19.5% of PAT; caps raised"
+        ],
+        [
+         "Board stability and succession",
+         "3",
+         "[F] two family directors out in July; Chairman ceased in September amid an EGM requisition"
+        ],
+        [
+         "Disclosure candour",
+         "4",
+         "[F] segment mix, import share and utilisation figures conflict across documents"
+        ],
+        [
+         "Capital allocation",
+         "5",
+         "[F] low capex, but open-ended loans to loss-making foreign subsidiaries"
+        ],
+        [
+         "Guidance credibility",
+         "5",
+         "[AI] too early to judge; first test is Q2 FY27"
+        ],
+        [
+         "Operating execution",
+         "6",
+         "[F] FY26 revenue +17.8%, PAT +56%"
+        ],
+        [
+         "Average",
+         "4.6",
+         "[E] simple average"
+        ]
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "competitive_landscape",
+   "title": "Competitive landscape",
+   "subsections": [
+    {
+     "title": "Disclosed peer set",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "Disclosed peer set",
+       "columns": [
+        "Peer",
+        "Revenue",
+        "Margins",
+        "RoNW",
+        "P/E"
+       ],
+       "rows": [
+        [
+         "No peer table is disclosed in the documents available",
+         "Not disclosed",
+         "Not disclosed",
+         "Not disclosed",
+         "Not disclosed"
+        ]
+       ]
+      },
+      {
+       "type": "p",
+       "text": "[F] The annual report and presentation contain no peer comparison, and the offer document (which would normally carry one) was not available. [F] Our statements data contains no peer multiples (NUMBERS). We therefore do not quote peer figures."
+      }
+     ]
+    },
+    {
+     "title": "Competitors named by management",
+     "blocks": [
+      {
+       "type": "bullets",
+       "items": [
+        "[MC] Premix: DSM, Firmenich, BASF, SternVitamin and Piramal (CALL Jul 2026). [AI] The first four are global ingredient majors, several of which also make the vitamins Hexagon imports; Piramal is a domestic diversified group. These are vertically integrated competitors with far greater scale.",
+        "[MC] Clinical nutrition: Abbott, Nestle and Fresenius Kabi (CALL Jul 2026). [AI] Multinationals with established hospital channels and far larger marketing budgets.",
+        "[F] The annual report names no competitor and treats competition only as a generic risk (AR2026 p.55)."
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Assessment",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "[AI] Hexagon is a small, mid-tier formulator competing against integrated majors in premix and multinationals in clinical nutrition. Its niches are customisation, Indian cost base, and UN-approved humanitarian products. [MC] Its market share is not quantified ('one of the good shares') (CALL Jul 2026)."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "moat",
+   "title": "Moat assessment",
+   "subsections": [
+    {
+     "title": "Moat-factor scorecard",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "Moat scorecard",
+       "columns": [
+        "Factor",
+        "Score 1-10",
+        "Rationale"
+       ],
+       "rows": [
+        [
+         "Brand",
+         "4",
+         "[MC] PentaSure is recognised by pharmacies; other brands are not (CALL Jul 2026)"
+        ],
+        [
+         "Switching costs",
+         "5",
+         "[AI] Custom premix is embedded in customer formulations; tender buyers switch freely"
+        ],
+        [
+         "Regulatory / approval barriers",
+         "6",
+         "[F] UNICEF MNP approval (AR2026 p.9); [MC] 1 of 22 approved suppliers (PPT Aug 2026); FSSC/GMP/WHO-GMP certifications"
+        ],
+        [
+         "Technology / IP",
+         "3",
+         "[F] R&D spend Rs 1.84 cr, about 0.5% of revenue [E] (AR2026 p.39); no patents disclosed"
+        ],
+        [
+         "Scale / cost",
+         "3",
+         "[AI] Sub-scale vs DSM/BASF; imports key vitamins"
+        ],
+        [
+         "Relationship durability",
+         "5",
+         "[MC] 55% repeat customers (AR2026 p.5), unaudited; [F] largest customer stable at ~Rs 38-42 cr"
+        ],
+        [
+         "Network effects",
+         "1",
+         "[AI] None"
+        ],
+        [
+         "Input control",
+         "2",
+         "[MC] Vitamins imported from China and others (CALL Jul 2026)"
+        ],
+        [
+         "Average",
+         "3.6",
+         "[E] simple average"
+        ]
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Questions the scores cannot answer",
+     "blocks": [
+      {
+       "type": "bullets",
+       "items": [
+        "[AI] Do premix customers single-source from Hexagon, or is it one of several approved vendors? No wallet-share data is disclosed.",
+        "[AI] Is UN approval converting into repeat tender wins at acceptable margins? The FY26 ESG decline suggests approval alone does not guarantee volume."
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Conclusion",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "[AI] Narrow moat at best. Approval barriers and formulation know-how are real, but there is no evidence of pricing power outside the branded line, and that line competes with multinationals."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "industry_structure",
+   "title": "Industry structure",
+   "subsections": [
+    {
+     "title": "Headline TAM figures as stated",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "TAM figures (management-sourced; the annual report MD&A gives none)",
+       "columns": [
+        "Market",
+        "Figure",
+        "Source"
+       ],
+       "rows": [
+        [
+         "India total nutrition market",
+         "Rs 1,338 bn (CY23) to Rs 2,814 bn (CY30P), ~13% CAGR",
+         "[MC] (PPT Aug 2026)"
+        ],
+        [
+         "India clinical nutrition",
+         "Rs 55,724 mn (CY24) to Rs 1,12,058 mn (CY30P), 12.1% CAGR",
+         "[MC] (PPT Aug 2026)"
+        ],
+        [
+         "India clinical nutrition",
+         "~Rs 6,300 cr",
+         "[MC] (CALL Jul 2026) - conflicts with the PPT figure"
+        ],
+        [
+         "Global undernourished population",
+         "733 mn",
+         "[MC] (PPT Aug 2026)"
+        ],
+        [
+         "Fortification beneficiaries (POSHAN, Mid-Day Meal, PDS)",
+         "300 mn+",
+         "[MC] (PPT Aug 2026)"
+        ]
+       ]
+      },
+      {
+       "type": "p",
+       "text": "[F] The MD&A contains no market-size figures; it cites only IMF GDP data (AR2026 p.53). The third-party source for the presentation's TAM is not named."
+      }
+     ]
+    },
+    {
+     "title": "Why TAM is not company revenue",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "[E] Illustrative only: FY26 revenue of Rs 382.6 cr (Rs 3.8 bn) would be about 0.3% of the stated CY23 India nutrition market of Rs 1,338 bn (PPT Aug 2026); the chart's intermediate-year bar labels are ambiguous in the extracted text, so we use only the stated endpoints. [AI] Those numbers mean little. The 'nutrition market' includes dairy, supplements and packaged foods in which Hexagon does not compete, and 57% of company revenue is export, outside the Indian TAM entirely [F] (AR2026 p.115)."
+      }
+     ]
+    },
+    {
+     "title": "Bottom-up framing",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "[AI] Better anchors are: (1) premix volume demand from Indian FMCG and from mandatory fortification of rice, wheat, milk, oil and salt [MC] (PPT Aug 2026); (2) hospital clinical-nutrition prescriptions driven by medical-representative coverage, currently being expanded; and (3) UNICEF/WFP and national-government RUTF/MNP tenders, which are discrete and lumpy. None is quantified in the documents."
+      }
+     ]
+    },
+    {
+     "title": "Concentration and channels",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "[AI] Global premix is concentrated among a few integrated vitamin majors; Indian clinical nutrition is led by multinationals; humanitarian procurement is concentrated in a few buyers (UNICEF, WFP, governments). Channels: B2B direct (premix), tender (ESG), and distributor, pharmacy, hospital and e-commerce (B2C) [F] (AR2026 p.15)."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "structural_themes",
+   "title": "Structural themes",
+   "subsections": [
+    {
+     "title": "Themes supported by company evidence",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "Evidence-backed themes",
+       "columns": [
+        "Theme",
+        "Supporting evidence",
+        "Evidence strength"
+       ],
+       "rows": [
+        [
+         "Food fortification demand",
+         "[F] Domestic premix +44.1% in FY26 (AR2026 p.31)",
+         "Moderate"
+        ],
+        [
+         "Branded clinical nutrition growth in India",
+         "[F] B2C +23.7%, crossed Rs 100 cr (AR2026 p.31)",
+         "Moderate"
+        ],
+        [
+         "Export diversification",
+         "[F] 57% of revenue from outside India; no country above 10% in FY26 (AR2026 p.124)",
+         "Moderate"
+        ],
+        [
+         "Humanitarian nutrition demand",
+         "[F] ESG revenue Rs 65 cr but down 16.5% (AR2026 p.124)",
+         "Weak (cyclical)"
+        ]
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Themes in the narrative but not supported",
+     "blocks": [
+      {
+       "type": "bullets",
+       "items": [
+        "[MC] 'Import substitution / reduced import dependency' (AR2026 p.12): [F] imports rose to about 29% of purchases [E] (AR2026 p.116).",
+        "[MC] Plant-based and personalised nutrition (PPT Aug 2026): [MC] 'no immediate plans' for plant nutrition (CALL Aug 2026).",
+        "[MC] Europe and North America expansion (CALL Aug 2026): no revenue disclosed.",
+        "[MC] 'Leadership position' in premix (AR2026 p.5): no market-share data."
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Net assessment",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "[AI] Fortification and branded clinical nutrition are genuine tailwinds with company-level evidence. The humanitarian theme is real in need but unreliable as revenue. Import reduction and new categories are aspirations."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "guidance_tracker",
+   "title": "Guidance tracker",
+   "subsections": [
+    {
+     "title": "Guidance given this quarter",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "Guidance tracker",
+       "columns": [
+        "Item",
+        "Guidance given?",
+        "What management said [MC]",
+        "Status vs actuals"
+       ],
+       "rows": [
+        [
+         "Revenue FY27",
+         "Yes",
+         "'around 20% to 25% growth range'; 'conservative' (CALL Aug 2026); 'same momentum as last two to three years' (CALL Jul 2026)",
+         "[F] Q1 +43.2% (PPT Aug 2026) - pending"
+        ],
+        [
+         "Revenue long-term",
+         "Yes",
+         "Doubling in four to five years is 'a correct estimate' (CALL Jul 2026)",
+         "Pending"
+        ],
+        [
+         "EBITDA margin",
+         "Yes",
+         "'some expansion in the margins' (CALL Jul 2026); gross margin back on track 'Hopefully, yes' from Q2 (CALL Aug 2026); 15%+ medium term (PPT Aug 2026)",
+         "[F] Q1 FY27 11.3% vs 13.8% - adverse so far"
+        ],
+        [
+         "Order book",
+         "Yes",
+         "~Rs 100 cr, Q2 and part of Q3; ESG Rs 75-100 cr for the year (CALL Aug 2026)",
+         "Pending"
+        ],
+        [
+         "Capex",
+         "Yes",
+         "Rs 25-30 cr over 12-18 months, ~70% bank debt (CALL Aug 2026)",
+         "Pending"
+        ],
+        [
+         "Utilisation",
+         "Yes",
+         "35-40% by FY26 year-end (CALL Jul 2026); 47% in Q1 (CALL Aug 2026)",
+         "Not verifiable"
+        ],
+        [
+         "B2C mix",
+         "Yes",
+         "35% of revenue 'in the next couple of years' (CALL Aug 2026)",
+         "[F] 30% FY26 (AR2026 p.124); ~28% Q1 [MC]"
+        ],
+        [
+         "Pricing",
+         "Yes",
+         "MRP up 10-15% on some products; impact from Q2 (CALL Aug 2026)",
+         "Pending"
+        ],
+        [
+         "Operating leverage from field force",
+         "Yes",
+         "'by end of quarter three' (CALL Aug 2026)",
+         "Pending"
+        ],
+        [
+         "New products",
+         "Partly",
+         "9 products in pipeline (PPT Aug 2026); no plant-based plans (CALL Aug 2026); VIT A+ validated (ANNOUNCEMENTS)",
+         "Partly delivered"
+        ],
+        [
+         "Fund-raising",
+         "No",
+         "Only bank debt for capex (CALL Aug 2026); no equity raise discussed",
+         "n.a."
+        ],
+        [
+         "Working capital",
+         "Yes",
+         "Receivables 'now been normalized' (CALL Jul 2026); inventory ~142 days (CALL Aug 2026)",
+         "Not verifiable until H1 balance sheet"
+        ]
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Pattern of guidance behaviour",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "[AI] There is no prior-report guidance to test; this is initial coverage. Within a month, guidance moved from qualitative ('same momentum') to a numeric 20-25%. That range sits above FY26's actual 17.8% while being described as the 'same trajectory' as last year [F] (AR2026 p.56). The JMD (branded +28%) and CFO (+22%) gave different numbers for the same quarter on the same call (CALL Aug 2026). We will hold management to the 20-25% range, the Q2 gross-margin recovery, and Rs 100 cr order-book execution."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "earnings_quality",
+   "title": "Earnings quality",
+   "subsections": [
+    {
+     "title": "PAT vs cash",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "PAT vs CFO, Rs cr",
+       "columns": [
+        "Year",
+        "PAT",
+        "CFO",
+        "CFO - PAT",
+        "CFO/PAT"
+       ],
+       "rows": [
+        [
+         "FY21",
+         "23",
+         "29",
+         "+6",
+         "1.26"
+        ],
+        [
+         "FY22",
+         "23",
+         "11",
+         "-12",
+         "0.48"
+        ],
+        [
+         "FY24",
+         "12",
+         "23",
+         "+11",
+         "1.92"
+        ],
+        [
+         "FY25",
+         "24",
+         "38",
+         "+14",
+         "1.58"
+        ],
+        [
+         "FY26",
+         "38",
+         "6",
+         "-32",
+         "0.16"
+        ],
+        [
+         "3-yr cumulative",
+         "-",
+         "-",
+         "-",
+         "0.91"
+        ],
+        [
+         "5-yr cumulative",
+         "-",
+         "-",
+         "-",
+         "0.89"
+        ]
+       ]
+      },
+      {
+       "type": "p",
+       "text": "[F] From our statements data (NUMBERS); CFO - PAT is our arithmetic [E]."
+      }
+     ]
+    },
+    {
+     "title": "Composition of profit",
+     "blocks": [
+      {
+       "type": "bullets",
+       "items": [
+        "[F] Other income was 23.5% of PBT in FY26 (NUMBERS); it included an FX gain of Rs 7.44 cr and mutual fund gains of Rs 2.19 cr (AR2026 p.115).",
+        "[F] Q1 FY27 other income was Rs 2.08 cr vs Rs 1.38 cr (PPT Aug 2026).",
+        "[F] One-offs: a small exceptional reversal (Rs 0.30 cr) and an ECL release of Rs 0.91 cr (AR2026 p.97) (AR2026 p.116).",
+        "[F] No ESOP expense or share-based payment note; ESOP Scheme-2018 is mentioned only in the anti-dilution context (AR2026 p.77).",
+        "[F] Tax rate 25.9% in FY26 (AR2026 p.117); 23.9% in Q1 FY27 (NUMBERS).",
+        "[F] Diluted FY26 EPS Rs 3.09 vs basic Rs 3.43 reflects the CCPS conversion (AR2026 p.30)."
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Conclusion",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "[AI] FY26 earnings quality is weak: almost all accounting profit went into working capital, and about a fifth of PBT came from non-operating sources, mainly FX. The multi-year cash record is better (0.89x over five years), so this is not yet a pattern. FY27 cash conversion is the key test."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "forecast",
+   "title": "Forecast model",
+   "subsections": [
+    {
+     "title": "Methodology",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "[F] The forecast is our DCF model's base case: five-year FCFF (EBITDA less tax on EBIT, capex and change in net working capital), growth fading linearly from the starting rate to the year-5 rate, and a Gordon terminal value (NUMBERS). [F] Starting sales are Rs 380 cr (FY26); starting growth is 11.9%, the median of 3-year, 5-year and TTM growth, capped at 0-30% (NUMBERS). [F] As noted in the forensics section, the '3-year' window in our statements data actually spans FY22-FY26 because FY23 is missing (NUMBERS)."
+      }
+     ]
+    },
+    {
+     "title": "Base-case assumptions",
+     "blocks": [
+      {
+       "type": "bullets",
+       "items": [
+        "[F] EBITDA margin 13.0%; D&A 2.6% of sales; tax rate 25.2% (NUMBERS).",
+        "[F] Capex = depreciation + new sales / fixed-asset turnover of 5.06x; working capital 96.7 days of sales (NUMBERS).",
+        "[F] Cost of equity 15.0% (risk-free 7.0%, ERP 7.0%, beta 1.15); post-tax cost of debt 7.5%; debt weight 3.8%; WACC 14.8%; terminal growth 5.5% (NUMBERS).",
+        "[F] Share count 12.297 cr (NUMBERS), consistent with the post-CCPS-conversion count of 12.29 cr (AR2026 p.31)."
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Base-case forecast",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "Base case projection (our DCF model), Rs cr",
+       "columns": [
+        "Fiscal year",
+        "Sales growth",
+        "Sales",
+        "EBITDA",
+        "FCFF",
+        "PV of FCFF"
+       ],
+       "rows": [
+        [
+         "FY27E (Y1)",
+         "11.9%",
+         "425.2",
+         "55.3",
+         "12.1",
+         "10.5"
+        ],
+        [
+         "FY28E (Y2)",
+         "11.4%",
+         "473.8",
+         "61.6",
+         "14.3",
+         "10.8"
+        ],
+        [
+         "FY29E (Y3)",
+         "10.9%",
+         "525.7",
+         "68.3",
+         "16.8",
+         "11.1"
+        ],
+        [
+         "FY30E (Y4)",
+         "10.5%",
+         "580.7",
+         "75.5",
+         "19.6",
+         "11.3"
+        ],
+        [
+         "FY31E (Y5)",
+         "10.0%",
+         "638.8",
+         "83.0",
+         "22.7",
+         "11.4"
+        ]
+       ]
+      },
+      {
+       "type": "p",
+       "text": "[F] All figures from our DCF model (NUMBERS). [F] PV of explicit FCFF Rs 55.1 cr; terminal value Rs 388.7 cr (PV Rs 195.3 cr); EV Rs 250.4 cr; equity Rs 217.4 cr; Rs 17.7 per share (NUMBERS). [AI] FCFF is only about 22% of EBITDA in year 1 because the 96.7-day working-capital assumption absorbs most incremental profit. That mirrors FY26's actual cash conversion."
+      }
+     ]
+    },
+    {
+     "title": "Key driver tree",
+     "blocks": [
+      {
+       "type": "bullets",
+       "items": [
+        "Revenue = branded (30%) + premix (53%) + ESG (17%) [F] (AR2026 p.124); drivers are field-force productivity, FMCG premix wallet share and tender wins [AI].",
+        "Gross margin = mix (branded 60-68% vs ESG 25-30%) [MC] (CALL Jul 2026) minus input-cost and freight shocks.",
+        "EBITDA = gross profit - employee costs (field force +50%) [MC] - freight and A&P.",
+        "FCFF = EBITDA - tax - capex (Nashik Rs 25-30 cr) [MC] - working capital (CCC 179 days) [F] (NUMBERS)."
+       ]
+      }
+     ]
+    },
+    {
+     "title": "What the forecast deliberately does not assume",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "[AI] It does not assume management's 20-25% FY27 growth [MC] (CALL Aug 2026), the 15%+ EBITDA margin target [MC] (PPT Aug 2026), the Rs 25-30 cr Nashik capex step-up, any working-capital release, or any value for the Rs 55 cr of cash and mutual funds (the model nets only borrowings) [F] (NUMBERS). It also excludes new categories (VIT A+) and Tashkent ramp-up."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "scenarios",
+   "title": "Scenarios",
+   "subsections": [
+    {
+     "title": "Bull, base, bear",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "DCF scenarios (our DCF model)",
+       "columns": [
+        "Scenario",
+        "Narrative",
+        "Starting growth",
+        "Growth by year 5",
+        "EBITDA margin",
+        "Year-5 sales Rs cr",
+        "Per-share value"
+       ],
+       "rows": [
+        [
+         "Bear",
+         "[AI] ESG stays weak, input costs not passed through, branded build-out fails to scale",
+         "4.8%",
+         "5.0%",
+         "9.0%",
+         "482.2",
+         "Rs 5.7"
+        ],
+        [
+         "Base",
+         "[AI] Historical-trend growth, FY25-26 margin holds, working capital stays heavy",
+         "11.9%",
+         "10.0%",
+         "13.0%",
+         "638.8",
+         "Rs 17.7"
+        ],
+        [
+         "Bull",
+         "[AI] B2C mix shift, utilisation gains, margin toward management's target",
+         "19.1%",
+         "13.0%",
+         "15.0%",
+         "798.6",
+         "Rs 27.4"
+        ]
+       ]
+      },
+      {
+       "type": "p",
+       "text": "[F] All scenario inputs and outputs from our DCF model (NUMBERS)."
+      }
+     ]
+    },
+    {
+     "title": "Qualitative probability weighting",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "[AI] FY26 delivered 17.8% growth and a 13.8% margin [F] (AR2026 p.56), and Q1 FY27 delivered 43% growth at an 11.3% margin [F] (PPT Aug 2026). That places recent reality between base and bull on growth and between bear and base on margin. We see the base case as most likely, the bull case as plausible only if gross margin recovers in H2 FY27, and the bear case as a tail tied to ESG and input-cost shocks. We do not assign numerical weights; the evidence does not support that precision."
+      }
+     ]
+    },
+    {
+     "title": "Sensitivity",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "Base-case per-share value: WACC vs terminal growth (our DCF model)",
+       "columns": [
+        "WACC \\ g",
+        "4.5%",
+        "5.5%",
+        "6.5%"
+       ],
+       "rows": [
+        [
+         "13.3%",
+         "21.1",
+         "22.2",
+         "23.6"
+        ],
+        [
+         "14.8%",
+         "17.1",
+         "17.7",
+         "18.4"
+        ],
+        [
+         "16.3%",
+         "14.1",
+         "14.4",
+         "14.8"
+        ]
+       ]
+      },
+      {
+       "type": "p",
+       "text": "[F] Grid from (NUMBERS). [AI] The value is far more sensitive to WACC than to terminal growth, but the highest cell (Rs 23.6) is still about a third of the Rs 68.8 price [E]. Discount-rate choice does not close the gap; cash-flow assumptions (margin and working capital) are what matter."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "valuation",
+   "title": "Valuation",
+   "subsections": [
+    {
+     "title": "Current trading context",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "Trading metrics (our statements data)",
+       "columns": [
+        "Metric",
+        "Value"
+       ],
+       "rows": [
+        [
+         "Price",
+         "Rs 68.8"
+        ],
+        [
+         "Market cap",
+         "Rs 846 cr"
+        ],
+        [
+         "52-week range",
+         "Rs 48.0 - 78.7 (12.6% below high)"
+        ],
+        [
+         "P/E (FY26 earnings)",
+         "22.3x"
+        ],
+        [
+         "EV",
+         "Rs 879 cr (market cap + borrowings; cash not netted)"
+        ],
+        [
+         "EV/EBITDA",
+         "16.6x"
+        ],
+        [
+         "EV/sales",
+         "2.31x"
+        ],
+        [
+         "P/B",
+         "Not available in our statements data"
+        ],
+        [
+         "Dividend yield",
+         "0.44%"
+        ]
+       ]
+      },
+      {
+       "type": "p",
+       "text": "[F] All from (NUMBERS). [F] IPO price was Rs 45 and listing price Rs 48.00-48.25 (AR2026 p.4). [F] EV does not deduct cash and mutual funds of about Rs 55 cr (PPT Aug 2026), so the reported EV multiples are slightly overstated."
+      }
+     ]
+    },
+    {
+     "title": "Multiples vs disclosed peers",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "[F] No peer multiples are disclosed in the documents available, and our statements data has no peer set (NUMBERS). We therefore make no peer-relative valuation claim."
+      }
+     ]
+    },
+    {
+     "title": "Interpreting the DCF",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "[F] Base equity value is Rs 217.4 cr (Rs 17.7 per share) vs a market cap of Rs 846 cr; the model implies -74.3% (base), -60.2% (bull) and -91.7% (bear) (NUMBERS). [AI] Three assumptions drive the low values: (1) a 14.8% WACC, high for a business with low debt; (2) 96.7 working-capital days, which turns EBITDA into little free cash; (3) no credit for net liquid assets. [E] Even adding the Rs 55 cr of liquid assets would close less than a tenth of the Rs 629 cr gap between market cap and base equity value. The DCF is conservative by construction, but the gap is too large to be explained by conservatism alone."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "priced_in",
+   "title": "What the price implies",
+   "subsections": [
+    {
+     "title": "Reverse DCF",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "[F] Today's EV requires about 72% constant annual sales growth for five years at the base margin, WACC and terminal growth, against 10.9% in the base case (NUMBERS). [F] Bull-case growth starts at 19.1% (NUMBERS); FY26 actual growth was 17.8% (AR2026 p.56); [MC] management guides 20-25% for FY27 and a doubling over four to five years (CALL Aug 2026) (CALL Jul 2026). [E] FY21-FY26 sales grew from Rs 211 cr to Rs 380 cr, about 12.5% a year (NUMBERS)."
+      }
+     ]
+    },
+    {
+     "title": "Key forensic conclusion",
+     "blocks": [
+      {
+       "type": "callout",
+       "tone": "bad",
+       "text": "**The price requires growth several times above anything in the company's history, management's own guidance, or our bull case.** [F] (NUMBERS) [AI] The market appears to be pricing Hexagon on P/E multiples (22x FY26 profit after 56% PAT growth) rather than on free cash flow, which was negative in FY26."
+      }
+     ]
+    },
+    {
+     "title": "Strongest counter-argument",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "[AI] The 72% figure partly reflects the model's mechanics. With working capital fixed at about 97 days and a 14.8% WACC, very little growth becomes value. If the cash conversion cycle fell toward FY25's 153 days or lower [F] (NUMBERS), the margin reached 15%, and the market used a lower discount rate for a net-cash nutrition franchise, the required growth would be much lower. A P/E of 22x on trailing earnings is not extreme by consumer-health standards. The honest framing is that the price needs margin, cash-conversion and growth to improve together, not 72% growth alone."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "catalysts",
+   "title": "Catalysts and overhangs",
+   "subsections": [
+    {
+     "title": "Near-term (0-3 months)",
+     "blocks": [
+      {
+       "type": "bullets",
+       "items": [
+        "[F] EGM on Arun Kelkar's appointment and remuneration, requisitioned 24 Sep 2026; date not yet disclosed (ANNOUNCEMENTS).",
+        "[F] Executive chairman appointment considered at the 30 Sep 2026 board meeting; outcome not in the documents (ANNOUNCEMENTS).",
+        "[F] Q2 FY27 results (quarter ended 30 Sep 2026); date not announced in the documents. Tests: Rs 100 cr order execution, gross-margin recovery after the MRP hikes, H1 balance sheet working capital [MC] (CALL Aug 2026).",
+        "[F] VIT A+ (PFH-VAP) commercial-scale validation completed 29 Sep 2026; revenue impact not disclosed (ANNOUNCEMENTS)."
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Medium-term (3-12 months)",
+     "blocks": [
+      {
+       "type": "bullets",
+       "items": [
+        "[MC] Field-force productivity and operating leverage 'by end of quarter three' (Dec 2026) (CALL Aug 2026).",
+        "[MC] ESG tender execution, Rs 75-100 cr for FY27 (CALL Aug 2026).",
+        "[MC] Uzbekistan orders for Q2-Q3 (CALL Aug 2026).",
+        "[MC] Start of Nashik premix redevelopment and associated bank debt (CALL Aug 2026)."
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Longer-term (1-3 years)",
+     "blocks": [
+      {
+       "type": "bullets",
+       "items": [
+        "[MC] B2C to 35% of revenue within 'a couple of years' (CALL Aug 2026).",
+        "[MC] 15%+ EBITDA margin medium term (PPT Aug 2026).",
+        "[MC] Nashik capex completion in 12-18 months (CALL Aug 2026); new branded export approvals in the Middle East and Africa (AR2026 p.16)."
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Overhangs",
+     "blocks": [
+      {
+       "type": "bullets",
+       "items": [
+        "[F] Lock-in expiry dates for pre-IPO shareholders, including the former CCPS holders who received 1.23 cr shares (about 10% of equity [E]), are not disclosed in the documents available (AR2026 p.31). [AI] Supply from their eventual exit is a potential overhang.",
+        "[F] Board and chairmanship uncertainty (ANNOUNCEMENTS).",
+        "[F] Disputed tax and customs dues of Rs 2.71 cr (AR2026 p.60).",
+        "[F] Going-concern doubts at two foreign subsidiaries funded by the parent (AR2026 p.93).",
+        "[F] No promoter pledge is disclosed; no equity dilution is planned [MC] (CALL Aug 2026)."
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "risks_matrix",
+   "title": "Risk matrix",
+   "subsections": [
+    {
+     "title": "Risks ranked",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "Risk matrix (most serious first)",
+       "columns": [
+        "Risk",
+        "Category",
+        "Evidence",
+        "Severity 1-5",
+        "Likelihood 1-5"
+       ],
+       "rows": [
+        [
+         "Valuation de-rating toward cash-flow value",
+         "Valuation",
+         "[F] Price Rs 68.8 vs bull DCF Rs 27.4; reverse DCF 72% (NUMBERS)",
+         "5",
+         "3"
+        ],
+        [
+         "Persistent working-capital absorption",
+         "Financial",
+         "[F] CFO/PAT 0.16 in FY26; CCC 179 days (NUMBERS)",
+         "4",
+         "4"
+        ],
+        [
+         "Gross-margin squeeze from inputs and freight",
+         "Operational",
+         "[F] Q1 FY27 gross margin -3pt; EBITDA margin 11.3% (PPT Aug 2026)",
+         "4",
+         "3"
+        ],
+        [
+         "Governance / board instability",
+         "Governance",
+         "[F] Two director exits in July; Chairman ceased 28 Sep amid EGM requisition (AR2026 p.32) (ANNOUNCEMENTS)",
+         "4",
+         "3"
+        ],
+        [
+         "ESG tender lumpiness",
+         "Revenue",
+         "[F] ESG -16.5% FY26; Ethiopia Rs 39.4 cr in FY25 (AR2026 p.124)",
+         "3",
+         "4"
+        ],
+        [
+         "Guidance miss in first listed year",
+         "Credibility",
+         "[MC] 20-25% FY27 guidance vs 17.8% FY26 (CALL Aug 2026)",
+         "3",
+         "3"
+        ],
+        [
+         "Branded build-out fails to earn back costs",
+         "Strategy",
+         "[MC] field force +50%; payback 'end of Q3' (CALL Aug 2026)",
+         "3",
+         "3"
+        ],
+        [
+         "Nashik redevelopment disruption",
+         "Execution",
+         "[MC] demolition at the highest-utilised plant (CALL Aug 2026)",
+         "3",
+         "3"
+        ],
+        [
+         "Foreign subsidiary losses / write-offs",
+         "Financial",
+         "[F] Going-concern uncertainty; Rs 49 cr loans to subsidiaries (AR2026 p.93) (AR2026 p.75)",
+         "3",
+         "2"
+        ],
+        [
+         "FX volatility on unhedged USD receivables",
+         "Market",
+         "[F] Rs 60 cr unhedged USD receivables; FX gain Rs 7.44 cr in FY26 (AR2026 p.123) (AR2026 p.115)",
+         "2",
+         "3"
+        ],
+        [
+         "Reporting control weaknesses",
+         "Accounting",
+         "[F] Bank-return mismatch, ratio inconsistencies (AR2026 p.60) (AR2026 p.126)",
+         "3",
+         "2"
+        ],
+        [
+         "Competition from integrated majors",
+         "Competitive",
+         "[MC] DSM, BASF, Abbott, Nestle (CALL Jul 2026)",
+         "3",
+         "3"
+        ],
+        [
+         "Promoter remuneration escalation",
+         "Governance",
+         "[F] Caps raised to Rs 6.23 cr for three executives (AR2026 p.27)",
+         "2",
+         "4"
+        ]
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "thesis_breakers",
+   "title": "Thesis breakers",
+   "subsections": [
+    {
+     "title": "Measurable thesis breakers",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "Thesis breakers",
+       "columns": [
+        "Thesis breaker",
+        "Measurable threshold",
+        "What it would confirm"
+       ],
+       "rows": [
+        [
+         "Growth guidance missed",
+         "H1 FY27 revenue growth below 20% YoY, or FY27 below 20%",
+         "[AI] Q1 was a soft-base effect; guidance not reliable"
+        ],
+        [
+         "Margin recovery fails",
+         "Q2 and Q3 FY27 gross margin below 45% and EBITDA margin below 12%",
+         "[AI] No pricing power outside branded; FY26 margin was a peak"
+        ],
+        [
+         "Cash conversion does not normalise",
+         "FY27 CFO/PAT below 0.6, or H1 FY27 receivable days above 80",
+         "[AI] Working capital is structural; DCF bear case more relevant"
+        ],
+        [
+         "Order book not executed",
+         "Q2 + Q3 FY27 revenue below Rs 200 cr combined",
+         "[AI] Order book was overstated or slipped"
+        ],
+        [
+         "Further governance shocks",
+         "Another KMP or independent-director exit, or adverse EGM outcome",
+         "[AI] Governance risk is escalating, not settling"
+        ],
+        [
+         "Promoter selling or pledging",
+         "Promoter holding below 60% or any pledge disclosed",
+         "[AI] Alignment weakening after the OFS"
+        ],
+        [
+         "Subsidiary impairment",
+         "Write-off or impairment of loans to SA/Uzbek subsidiaries above Rs 5 cr",
+         "[AI] Capital allocation abroad destroyed value"
+        ]
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Thesis-confirming signals",
+     "blocks": [
+      {
+       "type": "bullets",
+       "items": [
+        "[AI] Gross margin back above 46% in Q3 FY27 with branded mix at or above 30%.",
+        "[AI] H1 FY27 CFO positive and receivables below FY26's Rs 81.7 cr.",
+        "[AI] ESG revenue at or above Rs 75 cr for FY27, in line with guidance.",
+        "[AI] Disclosure of top-10 customer share and a segment-margin breakdown.",
+        "[AI] Clear and stable board leadership after the EGM."
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "monitoring_dashboard",
+   "title": "Monitoring dashboard",
+   "subsections": [
+    {
+     "title": "Quarterly monitoring",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "Monitoring dashboard",
+       "columns": [
+        "Metric",
+        "Source",
+        "Latest value with period",
+        "What to watch"
+       ],
+       "rows": [
+        [
+         "Revenue growth YoY",
+         "Quarterly results",
+         "+43.2%, Q1 FY27",
+         "Run-rate vs 20-25% guidance"
+        ],
+        [
+         "Gross margin",
+         "Results / presentation",
+         "~43.9%, Q1 FY27 [E]",
+         "Recovery toward 46-47% after MRP hikes"
+        ],
+        [
+         "EBITDA margin",
+         "Results",
+         "11.3%, Q1 FY27",
+         "Back above 13%?"
+        ],
+        [
+         "Segment mix (branded / premix / ESG)",
+         "Call / presentation",
+         "28 / 62 / 10%, Q1 FY27 [MC]",
+         "Branded share trend vs 35% target"
+        ],
+        [
+         "Order book",
+         "Earnings call",
+         "~Rs 100 cr, Aug 2026 [MC]",
+         "Execution in Q2-Q3; replenishment"
+        ],
+        [
+         "Receivables",
+         "Half-year balance sheet",
+         "Rs 81.7 cr / 79 days, FY26",
+         "Claimed normalisation"
+        ],
+        [
+         "Inventory days",
+         "Balance sheet / call",
+         "153 days FY26; ~142 Q1 FY27 [MC]",
+         "Below 130 days"
+        ],
+        [
+         "CFO / PAT",
+         "Cash flow statement",
+         "0.16, FY26",
+         "Above 0.8 on H1 / FY27"
+        ],
+        [
+         "Blended utilisation",
+         "Earnings call",
+         "47%, Q1 FY27 [MC]",
+         "Consistent definition; plant split"
+        ],
+        [
+         "Capex and debt",
+         "Results / call",
+         "Capex Rs 7 cr FY26; debt Rs 30 cr",
+         "Nashik spend; new term loans"
+        ],
+        [
+         "Promoter holding / pledge",
+         "Shareholding pattern",
+         "64.29%, Jun 2026",
+         "Any reduction or pledge"
+        ],
+        [
+         "Other income / FX gain",
+         "Results notes",
+         "Rs 11.9 cr FY26 incl. FX Rs 7.4 cr",
+         "Share of PBT"
+        ]
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "red_flag_checklist",
+   "title": "Red flag checklist",
+   "subsections": [
+    {
+     "title": "GREEN",
+     "blocks": [
+      {
+       "type": "bullets",
+       "items": [
+        "[F] High returns on capital: ROCE 22% last year (NUMBERS rule-based flag).",
+        "[E] Over three years, operating cash flow was 0.91x reported profit (NUMBERS rule-based flag); note that FY26 alone was 0.16x.",
+        "[F] Low leverage: debt/equity 0.14; liquid assets exceed borrowings (NUMBERS) (PPT Aug 2026).",
+        "[F] Unmodified audit opinions and functioning audit trail (AR2026 p.57) (AR2026 p.59).",
+        "[F] No promoter pledge disclosed."
+       ]
+      }
+     ]
+    },
+    {
+     "title": "AMBER",
+     "blocks": [
+      {
+       "type": "bullets",
+       "items": [
+        "[F] Customer concentration: one customer at 10% of revenue; top-5/10 not disclosed (AR2026 p.124).",
+        "[F] Other income 23.5% of PBT, mostly FX gains (NUMBERS) (AR2026 p.115).",
+        "[F] Going-concern uncertainty at two foreign subsidiaries; open-ended parent loans (AR2026 p.93) (AR2026 p.60).",
+        "[F] CARO: bank returns not in agreement with books (AR2026 p.60).",
+        "[F] Conflicting operating metrics across documents: segment mix, import share, utilisation, export-country counts (CALL Jul 2026) (AR2026 p.124) (PPT Aug 2026).",
+        "[F] Family KMP pay about 19.5% of PAT [E] (AR2026 p.120).",
+        "[F] Q1 FY27 margin contraction (PPT Aug 2026)."
+       ]
+      }
+     ]
+    },
+    {
+     "title": "RED",
+     "blocks": [
+      {
+       "type": "bullets",
+       "items": [
+        "[E] Price needs growth well above trend: about 72% a year for five years vs 11% in the base case (NUMBERS rule-based flag).",
+        "[F] FY26 CFO/PAT 0.16 and negative FCF (NUMBERS).",
+        "[F] IPO was 100% OFS; the promoter group appears to have sold essentially all OFS shares [E] (AR2026 p.126) (AR2026 p.49).",
+        "[F] Chairman ceased within four months of listing, with an EGM requisition to re-appoint him and two family directors resigned without stated reasons (ANNOUNCEMENTS) (AR2026 p.32)."
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "management_questions",
+   "title": "Questions for management",
+   "subsections": [
+    {
+     "title": "Governance and board",
+     "blocks": [
+      {
+       "type": "bullets",
+       "items": [
+        "1. What were the AGM voting results on item 11, and why was an EGM requisition needed to re-appoint Arun Kelkar?",
+        "2. Who requisitioned the EGM, and who will be executive chairman in the interim?",
+        "3. Why did Subhash and Aditya Kelkar resign on 6 July 2026, and do they remain in the promoter group?",
+        "4. Which shareholders sold in the OFS, and in what proportions?",
+        "5. What are the lock-in expiry dates for former CCPS holders and other pre-IPO shareholders?"
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Revenue, orders and customers",
+     "blocks": [
+      {
+       "type": "bullets",
+       "items": [
+        "6. What exactly is in the Rs 100 cr order book, by segment and customer type, and does it overlap the Rs 75-100 cr ESG pipeline?",
+        "7. What share of FY26 revenue came from the top 5 and top 10 customers?",
+        "8. Who is the Rs 38.3 cr customer, and is the relationship under contract?",
+        "9. Why did the July call put ESG at about 30% and premix at 35-40% of FY26 revenue, when the annual report shows 17% and 53%?",
+        "10. Q1 branded growth was given as both 22% and 28% on the same call. Which is correct?"
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Margins and costs",
+     "blocks": [
+      {
+       "type": "bullets",
+       "items": [
+        "11. What were segment-level gross margins in FY26 and Q1 FY27?",
+        "12. How much of the 10-15% MRP increase applies to the branded portfolio by value, and what volume response have you seen?",
+        "13. How much of Q1 other expenses was freight vs advertising vs field-force related?",
+        "14. How is the 15%+ medium-term EBITDA margin target built?"
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Working capital and cash",
+     "blocks": [
+      {
+       "type": "bullets",
+       "items": [
+        "15. What were Q1 FY27 receivables and CFO, given the claim that cash flow improved?",
+        "16. What inventory level is 'strategic', and when will inventory days return below 130?",
+        "17. Why did the auditor find bank drawing-power returns not in agreement with the books, and how was it resolved?",
+        "18. Who is the counterparty to the Rs 5.47 cr of inter-corporate deposits?"
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Accounting and disclosure",
+     "blocks": [
+      {
+       "type": "bullets",
+       "items": [
+        "19. Which debt-service coverage ratio is correct, 0.78 or 1.89?",
+        "20. Why does the governance report say forex is unhedged when forward contracts exist?",
+        "21. Which import figure is right: under 25%, 25-30%, or 15% (85% domestic)? The audited data implies about 29% of purchases.",
+        "22. How is 'blended capacity utilisation' defined (volume, value, shifts), and why did it move from ~30% to 47% while revenue run-rate rose only modestly?"
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Capex and subsidiaries",
+     "blocks": [
+      {
+       "type": "bullets",
+       "items": [
+        "23. How will Nashik premix output be maintained during demolition, and what capacity will the Rs 25-30 cr add?",
+        "24. What is the plan and timeline for the South Africa and Uzbekistan subsidiaries, and what repayment terms apply to the Rs 49 cr of loans to subsidiaries?",
+        "25. Why did the Indian SEZ subsidiary make a loss in FY26 on Rs 52.6 cr of revenue?"
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "investment_scorecard",
+   "title": "Investment scorecard",
+   "subsections": [
+    {
+     "title": "Scorecard (not a rating)",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "Investment scorecard",
+       "columns": [
+        "#",
+        "Factor",
+        "Score 1-10",
+        "Basis"
+       ],
+       "rows": [
+        [
+         "1",
+         "Revenue visibility",
+         "4",
+         "[MC] ~1 quarter of order book; tender lumpiness"
+        ],
+        [
+         "2",
+         "Customer concentration",
+         "6",
+         "[F] Top customer 10%; FY25 top-2 25%; top-10 undisclosed"
+        ],
+        [
+         "3",
+         "Margin quality",
+         "5",
+         "[F] FY26 13.8% but Q1 FY27 11.3%; mix-driven"
+        ],
+        [
+         "4",
+         "Earnings quality",
+         "3",
+         "[F] CFO/PAT 0.16 FY26; FX gains in other income"
+        ],
+        [
+         "5",
+         "Balance sheet",
+         "7",
+         "[F] Liquid assets above debt; D/E 0.14"
+        ],
+        [
+         "6",
+         "Working capital",
+         "3",
+         "[F] CCC 179 days; inventory 153 days"
+        ],
+        [
+         "7",
+         "Accounting quality",
+         "5",
+         "[F] Clean opinions; multiple internal inconsistencies"
+        ],
+        [
+         "8",
+         "Governance",
+         "4",
+         "[F] Board turbulence; 100% OFS"
+        ],
+        [
+         "9",
+         "Related-party discipline",
+         "5",
+         "[F] Modest RPTs beyond pay; open-ended subsidiary loans"
+        ],
+        [
+         "10",
+         "Moat durability",
+         "4",
+         "[AI] Approval barrier; weak pricing power"
+        ],
+        [
+         "11",
+         "Growth durability",
+         "5",
+         "[F] Premix and branded growing; ESG volatile"
+        ],
+        [
+         "12",
+         "Capacity / optionality",
+         "7",
+         "[F] Large idle capacity in RUF, Chennai, Tashkent"
+        ],
+        [
+         "13",
+         "Valuation vs base DCF",
+         "1",
+         "[F] Price 3.9x base value [E] (NUMBERS)"
+        ],
+        [
+         "14",
+         "Valuation vs bull DCF",
+         "2",
+         "[F] Price 2.5x bull value [E] (NUMBERS)"
+        ],
+        [
+         "15",
+         "Disclosure candour",
+         "4",
+         "[F] Conflicting metrics; no order book, segment margins or customer data in filings"
+        ],
+        [
+         "",
+         "Simple average",
+         "4.3",
+         "[E]"
+        ]
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "final_thesis",
+   "title": "Final thesis",
+   "subsections": [
+    {
+     "title": "The case for owning",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "[AI] A debt-light Indian nutrition formulator that grew revenue 17.8% and PAT 56% in FY26 [F] (AR2026 p.56). It has a branded clinical franchise growing 20%+ at 60%+ gross margins [MC] (CALL Jul 2026), a UNICEF-approved humanitarian line [F] (AR2026 p.9), idle capacity that needs little capex to fill [F] (AR2026 p.8), and a strong start to FY27 (+43%) [F] (PPT Aug 2026)."
+      }
+     ]
+    },
+    {
+     "title": "The case against",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "[AI] Cash conversion collapsed in FY26 [F] (NUMBERS), margins fell in the first listed quarter [F] (PPT Aug 2026), the IPO let the promoter group sell without raising capital [F] (AR2026 p.126), board leadership is in flux [F] (ANNOUNCEMENTS), disclosures conflict, and the price sits 2.5x above our bull-case DCF value [E] (NUMBERS)."
+      }
+     ]
+    },
+    {
+     "title": "What the market may be missing",
+     "blocks": [
+      {
+       "type": "bullets",
+       "items": [
+        "[AI] Missing on the downside: the FY26 margin gain was helped by a cyclical shrinkage of low-margin ESG revenue, and working capital has absorbed profit in two of the five years in our data.",
+        "[AI] Missing on the upside: the DCF uses a high WACC and gives no credit for Rs 55 cr of liquid assets; if working capital normalises, FCF could rise faster than the base case assumes."
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Upside / downside framing",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "Scenario values vs current price (our DCF model)",
+       "columns": [
+        "Scenario",
+        "Fair value per share",
+        "vs current price (Rs 68.8)"
+       ],
+       "rows": [
+        [
+         "Bear",
+         "Rs 5.7",
+         "-91.7%"
+        ],
+        [
+         "Base",
+         "Rs 17.7",
+         "-74.3%"
+        ],
+        [
+         "Bull",
+         "Rs 27.4",
+         "-60.2%"
+        ]
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Five-year possibility space",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "[F] Our DCF model puts FY31 sales between Rs 482 cr (bear) and Rs 799 cr (bull), with EBITDA of Rs 43-120 cr (NUMBERS). [MC] Management's aspiration of doubling revenue in four to five years (CALL Jul 2026) sits near the upper half of that range. [AI] Even the top of that range does not reach the growth the price implies under our model's assumptions."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "final_conclusion",
+   "title": "Research view",
+   "subsections": [
+    {
+     "title": "Where the price sits and why",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "[F] At Rs 68.8 the shares trade above all three DCF values: bear Rs 5.7, base Rs 17.7 and bull Rs 27.4 (NUMBERS). [AI] The gap reflects a market that values the stock on accrual earnings and growth momentum after a recent listing, while our model values it on free cash flow at a high discount rate with heavy working capital. Closing the gap from the fundamental side would require margin, cash conversion and growth to all beat our bull case at once."
+      }
+     ]
+    },
+    {
+     "title": "Horizon and re-review triggers",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "[AI] Long-horizon investors need two to three quarters of evidence before the earnings base can be trusted. We will re-review on: (1) Q2 FY27 results and the H1 balance sheet (working capital, CFO, gross margin, order-book execution); (2) the EGM outcome and board leadership; (3) Q3 FY27 results (field-force operating leverage, as guided); (4) disclosure of lock-in expiries and any promoter or pre-IPO selling; (5) the FY27 annual report (customer concentration, segment data, subsidiary support). This is a research view, not a recommendation."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "changes_since_last",
+   "title": "Changes since last report",
+   "subsections": [
+    {
+     "title": "Initial coverage",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "[F] This is initial coverage; there is no previous report to compare against. [F] Earlier internal dashboard notes contain errors we have not carried forward: they classified the company under 'Pharma API & Fine Chemicals', dated the IPO to 2023 (it listed in June 2026), described it as sub-Rs 800 cr market cap (it is Rs 846 cr), and cited ~30% blended utilisation, which management has since updated to 47% (BOARD) (AR2026 p.4) (NUMBERS) (CALL Aug 2026). [F] The note's guidance quotes from the July 2026 call were verified against the transcript (CALL Jul 2026)."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "quality_control",
+   "title": "Quality control",
+   "subsections": [
+    {
+     "title": "Second-pass review",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "Quality control checks",
+       "columns": [
+        "Check",
+        "Result",
+        "Note"
+       ],
+       "rows": [
+        [
+         "TAM / revenue conflation",
+         "Pass",
+         "TAM shown as context only; illustrative share labelled [E]"
+        ],
+        [
+         "Order book / pipeline conflation",
+         "Pass",
+         "A-F ladder separates the Rs 100 cr order book (B) from the ESG pipeline (C) and aspirations (E)"
+        ],
+        [
+         "Management claims labelled",
+         "Pass",
+         "All call and presentation statements marked [MC]"
+        ],
+        [
+         "Customer concentration shown both ways",
+         "Pass",
+         "Improvement vs ESG-driven explanation both presented"
+        ],
+        [
+         "Cash-flow and working-capital completeness",
+         "Pass with gap",
+         "Q1 FY27 cash flow and balance sheet not disclosed"
+        ],
+        [
+         "Current share count and market cap used",
+         "Pass",
+         "12.297 cr shares (post-CCPS) and Rs 846 cr; 0.005 cr difference vs AR count not reconciled"
+        ],
+        [
+         "Structural vs temporary distinction",
+         "Pass",
+         "Margin drivers classified by year"
+        ],
+        [
+         "Measurable thesis breakers",
+         "Pass",
+         "Numeric thresholds given"
+        ],
+        [
+         "No fabrication",
+         "Pass",
+         "No customers, orders or peers invented; gaps stated as not disclosed"
+        ],
+        [
+         "Labelling discipline",
+         "Pass",
+         "Every statement labelled; derived numbers labelled [E]"
+        ],
+        [
+         "Discrepancies flagged",
+         "Pass",
+         "Side-by-side table in financial forensics; segment, import and utilisation conflicts flagged"
+        ],
+        [
+         "Valuation transparency",
+         "Pass",
+         "All valuation outputs from our DCF model; model limitations explained"
+        ],
+        [
+         "Bull case vs reverse DCF",
+         "Pass",
+         "Bull start growth 19.1% vs 72% implied"
+        ],
+        [
+         "Balance",
+         "Pass",
+         "Strongest counter-argument to the reverse DCF included"
+        ],
+        [
+         "Tone",
+         "Pass",
+         "No rating or price target"
+        ],
+        [
+         "Evidence thinness",
+         "Flag",
+         "Rating rationale unreadable (paywalled); DRHP/RHP unavailable; AGM voting results unavailable; FY23 and Q2 FY26 missing from statements data; plant-utilisation mapping relies on our reading of jumbled text"
+        ]
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "summary": {
+  "one_line": "Hexagon Nutrition is a debt-light, growing nutrition formulator whose FY26 profit surge did not turn into cash, whose first listed quarter showed margin pressure and board turbulence, and whose Rs 68.8 share price sits well above even our bull-case DCF value of Rs 27.4.",
+  "bull_points": [
+   "[F] FY26 revenue grew 17.8% to Rs 382.6 cr and PAT 56% to Rs 37.9 cr; Q1 FY27 revenue grew 43.2% to Rs 104.3 cr (AR2026 p.56) (PPT Aug 2026).",
+   "[F] The branded B2C line crossed Rs 100 cr (+23.7%, 30% of revenue) (AR2026 p.124); [MC] it carries 60-68% gross margins, and management targets 35% of the mix within a couple of years (CALL Jul 2026) (CALL Aug 2026).",
+   "[F] Premix grew 31% in FY26, with domestic premix up 44.1% (AR2026 p.31), backed by fortification mandates [MC] (PPT Aug 2026).",
+   "[F] Large idle capacity (RUF 18.9%, Tashkent 3.3% utilised in FY26) allows growth with modest capex (AR2026 p.8); [F] liquid assets of about Rs 55 cr exceed borrowings of Rs 30 cr (PPT Aug 2026).",
+   "[MC] Order book of about Rs 100 cr for Q2-Q3 FY27 and an ESG pipeline of Rs 75-100 cr for FY27 (CALL Aug 2026)."
+  ],
+  "bear_points": [
+   "[F] Price Rs 68.8 vs DCF values of Rs 5.7 / 17.7 / 27.4 (bear/base/bull); the reverse DCF needs about 72% annual sales growth for five years vs 10.9% in the base case (NUMBERS).",
+   "[F] FY26 CFO was Rs 6 cr against PAT of Rs 38 cr (0.16x) and FCF was negative; the cash conversion cycle is 179 days (NUMBERS).",
+   "[F] Q1 FY27 EBITDA margin fell to 11.3% from 13.8% on input, freight and field-force costs (PPT Aug 2026) (CALL Aug 2026).",
+   "[F] The IPO was a 100% OFS of which the promoter group appears to have supplied essentially all shares [E] (AR2026 p.126) (AR2026 p.49); two family directors resigned in July and the Chairman ceased on 28 Sep 2026 amid an EGM requisition (AR2026 p.32) (ANNOUNCEMENTS).",
+   "[F] Disclosures conflict: FY26 segment mix (ESG ~30% on the call vs 17% in the AR), import share (15% / <25% / 25-30%), debt-service ratio (0.78 vs 1.89), and bank returns vs books (CALL Jul 2026) (AR2026 p.124) (AR2026 p.60)."
+  ],
+  "watch_points": [
+   "Q2 FY27 gross margin recovery after 10-15% MRP increases, and EBITDA margin back above 13%.",
+   "Execution of the ~Rs 100 cr order book: Q2 + Q3 FY27 revenue vs Rs 200 cr, and H1 growth vs the 20-25% guidance.",
+   "H1 FY27 balance sheet: receivables vs FY26's Rs 81.7 cr, inventory days vs ~142, and H1 operating cash flow.",
+   "EGM outcome on Arun Kelkar's appointment, executive chairman choice, and any further board changes.",
+   "Lock-in expiries and any selling by promoters or former CCPS holders; start of Nashik capex and new borrowing."
+  ],
+  "guidance": [
+   "FY27 revenue growth 'around 20% to 25%', described as conservative - CFO Soman Jana (CALL Aug 2026).",
+   "Order book of about Rs 100 cr, to be executed in Q2 and partly Q3 FY27; 70-75% premix and ESG - JMD Nikhil Kelkar (CALL Aug 2026).",
+   "ESG revenue visibility of Rs 75-100 cr for FY27 - MD Vikram Kelkar (CALL Aug 2026).",
+   "Gross margin expected back on track from Q2 ('Hopefully, yes'); 10-15% MRP increases on some branded products to ease gross-margin pressure over the next two quarters (CALL Aug 2026).",
+   "Field-force operating leverage to show by end of Q3 FY27 (CALL Aug 2026).",
+   "Branded share to reach 35% of revenue 'in the next couple of years' (CALL Aug 2026).",
+   "Capex of Rs 25-30 cr over 12-18 months for Nashik premix redevelopment, about 70% bank-funded (CALL Aug 2026).",
+   "Manufacturing capacity sufficient for the next two to three years (CALL Aug 2026); blended utilisation 47% in Q1 FY27 (CALL Aug 2026).",
+   "EBITDA margin target of 15%+ medium term; capacity utilisation to rise from ~30% (PPT Aug 2026).",
+   "Maintain the momentum of the last two to three years; revenue doubling over four to five years is 'a correct estimate'; some margin expansion (CALL Jul 2026).",
+   "Blended utilisation of 35-40% expected for FY26 year-end (CALL Jul 2026)."
+  ]
+ },
+ "usage": {
+  "engine": "claude-code",
+  "model": "opus",
+  "sessions": 1,
+  "turns": 17,
+  "estimated_api_cost_usd": 7.519,
+  "input_tokens": 28,
+  "output_tokens": 68237,
+  "cache_read_input_tokens": 2520702,
+  "cache_creation_input_tokens": 77674,
+  "cost_usd": null
+ }
+}

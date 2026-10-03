@@ -325,6 +325,19 @@
     "SIMPLEXCAS": "already covers Sep 2021",
     "FLUIDOM": "already covers Mar 2023"
    }
+  },
+  {
+   "on": "2026-10-03",
+   "written": [
+    "KRISHNADEF:FY27-Q1",
+    "HEXAGON:FY27-Q1"
+   ],
+   "spent_usd": null,
+   "skipped": {
+    "VIMTALABS": "already covers Dec 2024",
+    "SIMPLEXCAS": "already covers Sep 2021",
+    "FLUIDOM": "already covers Mar 2023"
+   }
   }
  ],
  "seen_new_results": {
@@ -719,6 +732,24 @@
    "cost_usd": null,
    "api_equivalent_usd": 5.22,
    "minutes": 12.7
+  },
+  "KRISHNADEF": {
+   "period": "FY27-Q1",
+   "on": "2026-10-03",
+   "engine": "claude-code",
+   "tokens_out": 110945,
+   "cost_usd": null,
+   "api_equivalent_usd": 8.017,
+   "minutes": 16.6
+  },
+  "HEXAGON": {
+   "period": "FY27-Q1",
+   "on": "2026-10-03",
+   "engine": "claude-code",
+   "tokens_out": 68237,
+   "cost_usd": null,
+   "api_equivalent_usd": 7.519,
+   "minutes": 13.4
   }
  }
 }

@@ -1,38 +1,39 @@
 {
- "updated": "2026-10-02T06:14+05:30",
+ "updated": "2026-10-03T06:06+05:30",
  "figures": [
   {
-   "label": "Brent crude (Dec contract)",
-   "value": "$98.67/bbl",
-   "as_of": "2026-10-01",
-   "note": "+0.6% at 07:04 GMT; Nov contract expired at $103.50 on 30 Sep",
+   "label": "Brent crude",
+   "value": "$99.43/bbl",
+   "as_of": "2026-10-02",
+   "note": "-2.81% on the day; WTI $89.50",
    "source": {
-    "publisher": "Yahoo Finance",
-    "url": "https://finance.yahoo.com/energy/articles/oil-prices-hold-steady-gulf-105242042.html"
-   }
-  },
-  {
-   "label": "WTI crude",
-   "value": "$90.09/bbl",
-   "as_of": "2026-10-01",
-   "note": "+0.5% at 07:04 GMT",
-   "source": {
-    "publisher": "Yahoo Finance",
-    "url": "https://finance.yahoo.com/energy/articles/oil-prices-hold-steady-gulf-105242042.html"
-   }
-  },
-  {
-   "label": "Delhi petrol / diesel (IOCL)",
-   "value": "Rs 102.12 / Rs 95.20 per litre",
-   "as_of": "2026-10-01",
-   "note": "retail selling price per PPAC",
-   "source": {
-    "publisher": "PPAC",
-    "url": "https://ppac.gov.in/all-imp-news"
+    "publisher": "Arbiterz",
+    "url": "https://arbiterz.com/oil-prices-today-brent-crude-falls-below-100-settles-at-99-43"
    }
   }
  ],
  "items": [
+  {
+   "date": "2026-10-02",
+   "title": "Brent settles at $99.43, down 2.81%, as Hormuz loadings rise and US-Iran talks resume",
+   "text": "Brent fell 2.81% to $99.43/bbl on 2 October, dropping below $100, while WTI fell 3.63% to $89.50. The report cites higher loadings through the Strait of Hormuz and the continued operation of Saudi Arabia's East-West pipeline, and says a fresh escalation would likely support a rebound. Lower crude eases under-recovery pressure on fuel retailers, but it trims the price tailwind for upstream producers.",
+   "tone": "watch",
+   "companies": [
+    "ONGC",
+    "OIL",
+    "HINDPETRO",
+    "BPCL"
+   ],
+   "sources": [
+    {
+     "publisher": "Arbiterz",
+     "title": "Oil Prices Today: Brent Crude Falls Below $100, Settles at $99.43",
+     "url": "https://arbiterz.com/oil-prices-today-brent-crude-falls-below-100-settles-at-99-43",
+     "date": "2026-10-02"
+    }
+   ],
+   "added": "2026-10-03"
+  },
   {
    "date": "2026-10-01",
    "title": "Brent edges up to $98.67 as Saudi Yanbu loadings restart; OPEC+ seen holding November targets",

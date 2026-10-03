@@ -1,0 +1,47 @@
+{
+ "slug": "ai-datacentre-liquid-cooling-fluids-components",
+ "name": "AI Data-Centre Liquid Cooling: Fluids, Hoses & Heat Exchangers",
+ "icon": "chip",
+ "scope": "AI rack densities above 30 kW are pushing data centres from air to liquid cooling (IndexBox, Sep 2026: direct-to-chip ~18.5% CAGR and immersion fluids ~15% CAGR to 2035), and Indian listed small/mid caps are building capacity for coolant/dielectric fluids, liquid-cooling skids and hoses, and heat exchangers; partly discovered already (Aeroflex ~+123% in 6 months and KRN ~+130% off its 52-week low, both covered by retail finance media), while the fluids leg (Savita Oil, Apar) is earlier and less re-rated.",
+ "questions": [
+  "What is data-centre liquid cooling (direct-to-chip, immersion, CDUs, manifolds, coolants/dielectric fluids) and why are AI rack densities forcing the shift, with the latest IndexBox/MarketsandMarkets/Mordor growth figures?",
+  "How big is India's data-centre build-out (announced hyperscale and AI capacity, MW pipeline) and what share of cooling content is likely to be liquid versus air over the next 3-5 years?",
+  "Which components and fluids in the liquid-cooling value chain are imported today versus made in India, and where is local content rising?",
+  "What exactly has Aeroflex Industries done (Rs 97.56 cr board-approved skid capacity expansion to 15,000 units, hose capacity additions, orders from a US-listed customer) and how concentrated/risky is its customer and tax-dispute position?",
+  "What are Savita Oil Technologies (QuantiCool coolants, Phase 2 synthetic ester plant commissioned 28 Feb 2026) and Apar Industries (Poweroil DC 10 immersion dielectric fluid) actually selling to data centres, and are revenues from this disclosed or still immaterial?",
+  "How real is KRN Heat Exchanger's data-centre exposure (Neemrana capacity, data-centre mix rising from 7% to 15%, hyperscale contract wins) and what does Blue Star's liquid-cooling effort amount to in filings and management commentary?",
+  "Are there other listed Indian names with company-confirmed liquid-cooling products or capex (cold plates, CDUs, quick-disconnect couplings, server OEMs such as Netweb) that qualify under the evidence bar?",
+  "How much has the market already priced in: stock performance over 3, 6 and 12 months for each name, valuation multiples, and the extent of broker and mainstream media coverage so far?",
+  "Which names are early (fluids, where data-centre revenue is a small slice) versus already re-rated (hoses and heat exchangers), and what is each company's data-centre revenue share?",
+  "What are the key risks (single-customer dependence, global OEM competition from Vertiv/Schneider, technology standard shifts, data-centre project delays, tax disputes) and what catalysts (quarterly orders, capacity commissioning dates, hyperscale announcements, PLI/policy support) are coming?"
+ ],
+ "bucket_labels": {
+  "coolant_fluids": [
+   "Coolants & Dielectric Fluids",
+   "Glycol coolants and immersion/dielectric fluids for data-centre liquid cooling - the earliest, least re-rated leg"
+  ],
+  "flow_components": [
+   "Hoses, Skids & Fluid Networks",
+   "Flexible hoses, liquid-cooling skids and fluid-handling assemblies inside racks and CDUs"
+  ],
+  "heat_exchange_systems": [
+   "Heat Exchangers & Cooling Systems",
+   "Heat exchangers, chillers and integrated cooling systems for data-centre halls"
+  ]
+ },
+ "universe": {
+  "coolant_fluids": [
+   "SAVITAOIL",
+   "APARINDS"
+  ],
+  "flow_components": [
+   "AEROFLEX"
+  ],
+  "heat_exchange_systems": [
+   "KRN",
+   "BLUESTARCO"
+  ]
+ },
+ "refresh": "weekly",
+ "kind": "theme"
+}
