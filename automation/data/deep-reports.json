@@ -338,6 +338,19 @@
     "SIMPLEXCAS": "already covers Sep 2021",
     "FLUIDOM": "already covers Mar 2023"
    }
+  },
+  {
+   "on": "2026-10-04",
+   "written": [
+    "CONTROLPR:FY27-Q1",
+    "TENNIND:FY27-Q1"
+   ],
+   "spent_usd": null,
+   "skipped": {
+    "VIMTALABS": "already covers Dec 2024",
+    "SIMPLEXCAS": "already covers Sep 2021",
+    "FLUIDOM": "already covers Mar 2023"
+   }
   }
  ],
  "seen_new_results": {
@@ -750,6 +763,24 @@
    "cost_usd": null,
    "api_equivalent_usd": 7.519,
    "minutes": 13.4
+  },
+  "CONTROLPR": {
+   "period": "FY27-Q1",
+   "on": "2026-10-04",
+   "engine": "claude-code",
+   "tokens_out": 105202,
+   "cost_usd": null,
+   "api_equivalent_usd": 8.356,
+   "minutes": 15.5
+  },
+  "TENNIND": {
+   "period": "FY27-Q1",
+   "on": "2026-10-04",
+   "engine": "claude-code",
+   "tokens_out": 108576,
+   "cost_usd": null,
+   "api_equivalent_usd": 7.899,
+   "minutes": 18.3
   }
  }
 }

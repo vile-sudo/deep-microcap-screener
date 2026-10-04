@@ -1,18 +1,45 @@
 {
- "updated": "2026-10-03T06:06+05:30",
+ "updated": "2026-10-04T05:33+05:30",
  "figures": [
   {
    "label": "Brent crude",
-   "value": "$99.43/bbl",
+   "value": "$102.25/bbl",
    "as_of": "2026-10-02",
-   "note": "-2.81% on the day; WTI $89.50",
+   "note": "-0.06% on the day per Trading Economics; levels differ across outlets (an earlie",
    "source": {
-    "publisher": "Arbiterz",
-    "url": "https://arbiterz.com/oil-prices-today-brent-crude-falls-below-100-settles-at-99-43"
+    "publisher": "Trading Economics",
+    "url": "https://tradingeconomics.com/commodity/brent-crude-oil"
    }
   }
  ],
  "items": [
+  {
+   "date": "2026-10-02",
+   "title": "China halts refined fuel exports; US reportedly sending third carrier to Middle East",
+   "text": "Reuters-sourced reports say Chinese refiners suspended diesel, petrol and jet fuel exports beyond Hong Kong and Macau, and the WSJ reported the US is sending a third aircraft carrier and up to 10,000 troops to the Middle East as Trump weighs renewed action on Iran. Brent December futures settled at $102.31 on 1 October, up $4.28, per FinanceFeeds. Offsetting this, Saudi Yanbu loadings and the East-West Pipeline have restarted, and Goldman estimates Gulf exports at 23.3 million barrels a day. Tighter product markets and firm crude support upstream realisations (ONGC, Oil India) but keep under-recovery pressure on HPCL and BPCL.",
+   "tone": "watch",
+   "companies": [
+    "ONGC",
+    "OIL",
+    "HINDPETRO",
+    "BPCL"
+   ],
+   "sources": [
+    {
+     "publisher": "FinanceFeeds",
+     "title": "Brent Crude at $102 After China Halts Fuel Exports and a Third US Carrier Heads to the Gulf",
+     "url": "https://financefeeds.com/brent-crude-oil-price-102-china-halts-fuel-exports-third-carrier-bull-107-bear-98/",
+     "date": "2026-10-02"
+    },
+    {
+     "publisher": "OilPrice.com",
+     "title": "Brent Holds Above $102 as Gulf Export Rebound Offsets U.S. Military Moves",
+     "url": "https://oilprice.com/Latest-Energy-News/World-News/Brent-Holds-Above-102-as-Gulf-Export-Rebound-Offsets-US-Military-Moves.html",
+     "date": "2026-10-02"
+    }
+   ],
+   "added": "2026-10-04"
+  },
   {
    "date": "2026-10-02",
    "title": "Brent settles at $99.43, down 2.81%, as Hormuz loadings rise and US-Iran talks resume",
