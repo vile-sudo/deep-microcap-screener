@@ -1,0 +1,698 @@
+{
+ "slug": "optical-fibre-preform-ai-datacentre",
+ "name": "Optical Fibre & Glass Preform for AI Data Centres",
+ "icon": "chip",
+ "edition": "2026-W41",
+ "updated": "2026-10-05",
+ "scope": "How AI data-centre and hyperscaler demand has tightened global optical fibre and glass-preform supply, and what it means for Indian listed fibre, cable and preform makers.",
+ "summary": {
+  "one_line": "AI data centres and a preform bottleneck have pushed fibre prices up several-fold and filled Indian makers' order books. Sterlite Tech and HFCL have already re-rated sharply. The main open questions are the 2028 preform projects (HFCL, Birla Furukawa via Universal Cables) and the smaller names (Vindhya/Birla Cable, Finolex).",
+  "key_points": [
+   "CRU says glass preform is the critical bottleneck in the value chain. Chinese preform suppliers are running near capacity limits, and Chinese G.652.D bare-fibre prices rose more than 80% between November 2025 and January 2026 (S2).",
+   "Finolex management says standard G.652.D fibre went from $5-6/km in December 2025 to a peak of $17-18/km, and is now about $12-13/km. Prices are still well above last year's level but have come off the peak (S15).",
+   "Hyperscalers are signing multi-year supply deals. Meta committed up to $6 bn through 2030 to Corning (S3). Sterlite Tech won a ~$1.11 bn hyperscaler award running to FY29 (S4) and a further ~$1.2 bn agreement for CY26-CY30 on 1 Oct 2026 (S6).",
+   "Sterlite Tech's open order book reached Rs 18,618 cr at Q1 FY27. Data Center & Cloud was 61% of Q1 revenue, and the company is net cash at Rs 483 cr after a Rs 1,500 cr QIP (S5).",
+   "HFCL's order book is Rs 26,665 cr, of which about Rs 16,000 cr is optical fibre cable (S9). On 14 Sep 2026 it raised total fibre/cable/preform capex to about Rs 1,800 cr, doubling preform to about 600 MT/yr by Oct 2028 (S8).",
+   "Birla Furukawa Fibre Optics, Universal Cables' 50:50 JV with Furukawa Electric, approved Rs 4,800 cr to nearly triple fibre capacity and add a preform plant by 31 Dec 2028 (S10).",
+   "The stocks have re-rated unevenly. Year to date as of 25 May 2026: Sterlite +351%, HFCL +134%, Finolex +38%, Vindhya +24%, Birla Cable +23.4% (S1). Since then Sterlite's YTD gain reached 740-775% by late September (S7), and Universal Cables is +123% over 6 months (S19)."
+  ],
+  "for_investors": [
+   {
+    "title": "Who benefits",
+    "tone": "good",
+    "points": [
+     "Integrated makers with hyperscaler contracts already signed: Sterlite Tech, with ~$1.11 bn and ~$1.2 bn multi-year awards (S4, S6), and HFCL, where exports were 55.5% of Q1 FY27 revenue (S9).",
+     "Makers with captive preform, which reduces exposure to scarce, pricier preform. Finolex's 100 MT preform plant has started production, is entirely for captive use and is roughly equal to 4 mn km of fibre (S15). HFCL is expanding from ~300 MT to ~600 MT (S8).",
+     "Universal Cables, through its 50% share in Birla Furukawa, which reported its highest-ever profitability as global demand outstripped supply capacity (S10, S11)."
+    ]
+   },
+   {
+    "title": "Who is hurt / risks",
+    "tone": "bad",
+    "points": [
+     "Cable-only converters that buy fibre or preform in the open market face higher input costs. CRU says rising preform costs fed directly into fibre prices (S2).",
+     "Prices are normalising from the peak, from $17-18/km to $12-13/km, and Finolex expects communication-cable margins of about 30% to settle at lower-double-digit levels (S15).",
+     "The preform projects finish in Oct 2028 (HFCL) and Dec 2028 (Birla Furukawa) (S8, S10). That is after a supply response that CRU frames as months of restart rather than weeks (S2), so there is a risk the projects arrive into a softer market.",
+     "China extended anti-dumping duties of 7.4%-30.6% on Indian single-mode fibre for five years from 14 Aug 2026, which keeps the Chinese market closed to Indian fibre (S16)."
+    ]
+   },
+   {
+    "title": "What to watch",
+    "tone": "watch",
+    "points": [
+     "Quarterly order inflows and conversion of the framework hyperscaler awards into purchase orders, which are released periodically (S4, S6).",
+     "Finolex's fibre draw doubling to 8 mn km by end-Sep 2026 and preform stabilisation (S15). Vindhya's specialty OFC ramp to 3.0 mn fkm by Mar 2027 (S12).",
+     "Funding mix for Birla Furukawa's Rs 4,800 cr plan (internal accruals, equity and debt) and how much of it falls on Universal Cables (S10, S11).",
+     "NCLT approval of the Birla Cable-into-Vindhya merger at a 10:115 swap ratio (S13)."
+    ]
+   }
+  ]
+ },
+ "kpis": [
+  {
+   "label": "G.652.D fibre price",
+   "value": "$12-13/km",
+   "sub": "Q1 FY27 call; peak $17-18, Dec-25 $5-6 (S15)"
+  },
+  {
+   "label": "Sterlite Tech order book",
+   "value": "Rs 18,618 cr",
+   "sub": "End Q1 FY27 (S5)"
+  },
+  {
+   "label": "HFCL order book",
+   "value": "Rs 26,665 cr",
+   "sub": "End Q1 FY27; ~Rs 16,000 cr OFC (S9)"
+  },
+  {
+   "label": "HFCL preform target",
+   "value": "~600 MT/yr",
+   "sub": "From ~300 MT; by Oct 2028 (S8)"
+  },
+  {
+   "label": "Birla Furukawa capex",
+   "value": "Rs 4,800 cr",
+   "sub": "~3x fibre + preform by Dec 2028 (S10)"
+  },
+  {
+   "label": "Sterlite YTD 2026",
+   "value": "+740-775%",
+   "sub": "As of ~21 Sep 2026 (S7)"
+  }
+ ],
+ "sections": [
+  {
+   "id": "theme_explainer",
+   "title": "Theme explainer: why fibre is tight",
+   "subsections": [
+    {
+     "title": "AI demand meets a preform bottleneck",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "Optical fibre is drawn from glass preform. CRU calls preform a critical bottleneck in the value chain and says Chinese suppliers are operating near capacity limits once mothballed capacity is excluded. Meaningful capacity restarts take months rather than weeks, and rising preform costs have fed directly into fibre prices (S2). CRU names AI data-centre expansion as the main growth engine, with hyperscalers deploying high-fibre-count cables and evaluating hollow-core and multicore fibre. A2 fibre for uses such as fibre-tethered drones is adding to demand (S2)."
+      },
+      {
+       "type": "bullets",
+       "items": [
+        "Upstox cites incremental global demand of 100-150 mn fkm and says AI data centres need 10x to 36x more fibre than traditional cloud data centres (S1).",
+        "Meta's up-to-$6 bn, multi-year commitment to Corning, running through 2030, anchors an expansion of Corning's Hickory, North Carolina cable plant (S3).",
+        "Chinese fibre prices now exceed European and Indian levels for the first time in more than seven years (S2)."
+       ]
+      },
+      {
+       "type": "chart",
+       "title": "Standard G.652.D fibre price as described by Finolex management",
+       "unit": "US$/km (midpoint of quoted range)",
+       "series": [
+        {
+         "name": "G.652.D",
+         "points": [
+          [
+           "Dec-25",
+           5.5
+          ],
+          [
+           "Peak (early 2026)",
+           17.5
+          ],
+          [
+           "Q1 FY27 call",
+           12.5
+          ]
+         ]
+        }
+       ],
+       "source": "Source: Finolex Cables Q1 FY27 earnings call (S15)"
+      }
+     ]
+    },
+    {
+     "title": "Durability versus past telecom cycles",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "Unlike past telecom cycles, which ran on government spending, this upturn is backed by multi-year take-or-pay-style agreements. Sterlite's hyperscaler awards include reciprocal, capped liabilities for demand or supply shortfalls (S4, S6), and over 50% of Finolex's communication-cable sales come from long-term contracts (S15). CRU itself flags uncertainty over how long the structural tightness persists (S2), and spot prices have already eased from the peak (S15)."
+      },
+      {
+       "type": "callout",
+       "tone": "warn",
+       "text": "Prices have already come off the peak. Finolex expects communication-cable margins, now near 30%, to normalise to lower double digits (S15), so current margins should not be extrapolated."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "policy_and_capex",
+   "title": "Policy and capex",
+   "subsections": [
+    {
+     "title": "Announced fibre, cable and preform capex",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "Indian fibre/preform capacity plans (as announced)",
+       "columns": [
+        "Company",
+        "Investment",
+        "Fibre / cable capacity",
+        "Preform",
+        "Timeline",
+        "Source"
+       ],
+       "rows": [
+        [
+         "HFCL",
+         "Additional Rs 820 cr (Rs 670 cr preform, Rs 150 cr OF/OFC); total ~Rs 1,800 cr",
+         "OF 38.5 to 43.1 mn fkm; OFC 56.36 to 62.0 mn fkm",
+         "~300 to ~600 MT/yr",
+         "OF/OFC Jul 2028; preform Oct 2028",
+         "S8"
+        ],
+        [
+         "Birla Furukawa (Universal Cables 50% JV)",
+         "Rs 4,800 cr (~$500 mn)",
+         "Fibre capacity to nearly 3x",
+         "New upstream preform plant",
+         "By 31 Dec 2028",
+         "S10"
+        ],
+        [
+         "Finolex Cables",
+         "FY27 capex ~Rs 300 cr",
+         "Fibre draw 4 to 8 mn km",
+         "100 MT Phase 1, captive, in production",
+         "Draw by end-Sep 2026",
+         "S14, S15"
+        ],
+        [
+         "Vindhya Telelinks",
+         "Rs 101.70 cr total (Rs 65 cr added)",
+         "Specialty OFC 0.5 to 3.0 mn fkm",
+         "None announced",
+         "Fully operational by end-Mar 2027",
+         "S12"
+        ],
+        [
+         "Sterlite Tech",
+         "~Rs 1,500 cr over 3 years; $100 mn US facility over 5 years",
+         "CLSA cites 50% capacity expansion by FY29",
+         "Integrated (not quantified here)",
+         "Through FY29",
+         "S5, S7"
+        ]
+       ]
+      },
+      {
+       "type": "callout",
+       "tone": "info",
+       "text": "Sources report HFCL's capacity on different bases. One cites fibre 38.5 mn fkm rising to 43.1 mn fkm (S8). Another cites fibre 28 to 34 mn fkm and cable 34 to 43 mn fkm (S9). Upstox cites 34 mn fkm rising to 42 mn fkm (S1). The bases appear to differ (fibre vs cable, existing vs in-progress)."
+      }
+     ]
+    },
+    {
+     "title": "Trade policy",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "China has extended anti-dumping duties of 7.4%-30.6% on single-mode optical fibre from India for five years from 14 Aug 2026. The duties were first imposed in 2014 and renewed in 2020 (S16). India's own duties on dispersion-unshifted single-mode fibre from China, Korea and Indonesia were not re-verified for this edition."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "listed_company_impact",
+   "title": "Listed company impact",
+   "subsections": [
+    {
+     "title": "Scale, orders and exposure",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "What each company has disclosed about data-centre/AI exposure",
+       "columns": [
+        "Company",
+        "Latest results",
+        "Orders / customers",
+        "DC/AI exposure",
+        "Source"
+       ],
+       "rows": [
+        [
+         "Sterlite Tech",
+         "Q1 FY27 revenue Rs 1,910 cr (+87% YoY), EBITDA margin 20.8%, PAT Rs 197 cr",
+         "Order book Rs 18,618 cr; ~$1.11 bn and ~$1.2 bn hyperscaler awards",
+         "Data Center & Cloud 61% of Q1 revenue (82% in FY26)",
+         "S5, S4, S6"
+        ],
+        [
+         "HFCL",
+         "Q1 FY27 revenue Rs 1,914.98 cr, EBITDA margin 23.25%, PAT Rs 245.64 cr",
+         "Order book Rs 26,665 cr (~Rs 16,000 cr OFC); private 60.6%",
+         "FY27 data-centre revenue target Rs 800 cr; exports 55.5% of Q1 revenue",
+         "S9"
+        ],
+        [
+         "Finolex Cables",
+         "Q1 FY27 PAT Rs 249 cr; communication cables Rs 176 cr (+62%) vs electrical Rs 1,767 cr",
+         "Engaging hyperscalers in India and overseas; Q1 exports Rs 50 cr (US, Europe)",
+         "Communication cables were ~Rs 500 cr of FY26 vs ~Rs 5,490 cr electrical",
+         "S14, S15"
+        ],
+        [
+         "Universal Cables",
+         "Power-cable maker; Rs 617 cr MV/HV cable capex",
+         "Fibre via 50% Birla Furukawa JV",
+         "Indirect, through JV earnings",
+         "S11, S10"
+        ],
+        [
+         "Vindhya Telelinks",
+         "Q1 consolidated PAT Rs 75.7 cr (Rs 61.6 cr YoY)",
+         "EPC orders pending; Birla Cable merger",
+         "Specialty OFC capacity is targeted at hyperscale/cloud DCs",
+         "S20, S12"
+        ],
+        [
+         "Birla Cable",
+         "Q1 FY27 net profit Rs 30.69 cr",
+         "Being merged into Vindhya",
+         "FY26 OFC sales Rs 105.6 cr (down) vs structured copper LAN Rs 663.1 cr",
+         "S17, S13, S22"
+        ]
+       ]
+      },
+      {
+       "type": "callout",
+       "tone": "info",
+       "text": "Pure-play exposure is highest at Sterlite Tech and HFCL. At Finolex, communication cables were under a tenth of FY26 revenue (S14). At Universal Cables the exposure is through a JV, and Vindhya's earnings are dominated by EPC and telecom cable work (S20)."
+      }
+     ]
+    },
+    {
+     "title": "Re-rating so far",
+     "blocks": [
+      {
+       "type": "chart",
+       "title": "Year-to-date share-price change as of 25 May 2026",
+       "unit": "%",
+       "series": [
+        {
+         "name": "YTD return",
+         "points": [
+          [
+           "Sterlite Tech",
+           351
+          ],
+          [
+           "HFCL",
+           134
+          ],
+          [
+           "Finolex",
+           38
+          ],
+          [
+           "Vindhya",
+           24
+          ],
+          [
+           "Birla Cable",
+           23.4
+          ]
+         ]
+        }
+       ],
+       "source": "Source: Upstox (S1)"
+      },
+      {
+       "type": "table",
+       "caption": "Later price and valuation data points",
+       "columns": [
+        "Company",
+        "Data point",
+        "Source"
+       ],
+       "rows": [
+        [
+         "Sterlite Tech",
+         "YTD 740-775% and market cap ~Rs 42,173 cr (~21 Sep); Rs 954.30 on 1 Oct after the $1.2 bn deal",
+         "S7, S6"
+        ],
+        [
+         "HFCL",
+         "Market cap Rs 37,713 cr; 12-month return 252%",
+         "S9"
+        ],
+        [
+         "Finolex Cables",
+         "Market cap ~Rs 22,176 cr; P/E ~28x; 52-week range Rs 701-1,498",
+         "S14"
+        ],
+        [
+         "Universal Cables",
+         "Market cap Rs 5,035 cr; P/E 25.2; 6M +123%, 1Y +105%",
+         "S19"
+        ],
+        [
+         "Vindhya Telelinks",
+         "Market cap ~Rs 2,081 cr on 23 May 2026 after the capex news",
+         "S12"
+        ]
+       ]
+      },
+      {
+       "type": "p",
+       "text": "Comparing valuations with order books: Sterlite's market cap of ~Rs 42,173 cr in late September (S7) is about 2.3x its Rs 18,618 cr open order book (S5). HFCL's Rs 37,713 cr (S9) is about 1.4x its Rs 26,665 cr book. Order-book composition differs, however: HFCL's book includes O&M and EPC (S9). Universal Cables at ~Rs 5,035 cr (S19) carries a half share of a JV planning a Rs 4,800 cr build (S10), which makes it the less-discovered preform route."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "research_house_views",
+   "title": "Research house views",
+   "subsections": [
+    {
+     "title": "Broker and research commentary",
+     "blocks": [
+      {
+       "type": "bullets",
+       "items": [
+        "CLSA retained Outperform on Sterlite Tech after US certification for AI data-centre fibre assemblies. It cites 50% capacity expansion by FY29, Rs 3,000 cr of approved capex and a ~Rs 20,000 cr FY29 revenue figure, and says execution is the key variable (S7).",
+        "CRU (commodity research) sees structural tightness but flags uncertainty over how long it lasts. It notes the margin for imbalance looks narrower than in recent years if AI investment continues (S2).",
+        "Upstox's sector note groups Sterlite, HFCL, Vindhya, Birla Cable and Finolex as AI-infrastructure fibre plays (S1). This is the coverage that has made the large caps well discovered."
+       ]
+      },
+      {
+       "type": "callout",
+       "tone": "info",
+       "text": "No broker coverage was found for Vindhya Telelinks, Universal Cables or Birla Cable on this theme. Media attribution of their moves to AI fibre comes mainly from capex and results news (S12, S11)."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "risks_and_catalysts",
+   "title": "Risks and catalysts",
+   "subsections": [
+    {
+     "title": "Risks",
+     "blocks": [
+      {
+       "type": "bullets",
+       "items": [
+        "Price normalisation: fibre is already down from $17-18/km to $12-13/km (S15). CRU says the duration of the tightness is uncertain (S2).",
+        "Timing of the preform projects: HFCL's preform plant is due Oct 2028 and Birla Furukawa's by Dec 2028 (S8, S10). Both arrive two years out, into an unknown price environment.",
+        "Funding: Birla Furukawa is mixing internal accruals, equity and debt for Rs 4,800 cr (S10). HFCL's funding includes promoter warrants and borrowings (S8). Sterlite has de-levered to net cash after its QIP (S5).",
+        "Global competition: Corning is scaling US capacity on Meta's commitment (S3).",
+        "Governance and distress precedent: Aksh Optifibre, a small fibre maker, is under CIRP with a market cap of ~Rs 113 cr (S18). The tight market has not rescued every player."
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Catalysts",
+     "blocks": [
+      {
+       "type": "bullets",
+       "items": [
+        "Q2 FY27 results (Oct-Nov 2026), covering order inflows and conversion of hyperscaler purchase orders (S5, S9).",
+        "Finolex fibre-draw doubling (end-Sep 2026) and preform stabilisation (S15).",
+        "Vindhya specialty OFC capacity at 3.0 mn fkm by Mar 2027, plus NCLT approval of the Birla Cable merger (S12, S13).",
+        "Milestones at the Birla Furukawa and HFCL preform projects (S10, S8)."
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "companies": [
+  {
+   "name": "Sterlite Technologies",
+   "nse": "STLTECH",
+   "bse": null,
+   "bucket": "fibre_and_cable_makers",
+   "role": "Integrated optical fibre, cable and connectivity maker with plants in India, Italy, Brazil, the US and China. Holds about 9% of the global ex-China OFC market (S4, S5).",
+   "impact": "The largest direct beneficiary: ~$1.11 bn and ~$1.2 bn hyperscaler awards and DC & Cloud at 61% of revenue (S4, S5, S6). The stock is up 740-775% YTD, so much of this is already in the price (S7)."
+  },
+  {
+   "name": "HFCL",
+   "nse": "HFCL",
+   "bse": null,
+   "bucket": "preform_backward_integration",
+   "role": "Optical fibre and cable maker that also does telecom EPC/O&M and defence. Already makes preform (~300 MT) and is expanding it (S8, S9).",
+   "impact": "Order book of Rs 26,665 cr and 55.5% of revenue from exports (S9). Doubling preform to ~600 MT by Oct 2028 adds backward integration (S8), but the stock is up 252% over 12 months (S9)."
+  },
+  {
+   "name": "Universal Cables",
+   "nse": "UNIVCABLES",
+   "bse": null,
+   "bucket": "preform_backward_integration",
+   "role": "MV/HV power-cable maker that holds 50% of Birla Furukawa Fibre Optics, its JV with Furukawa Electric (S10, S11).",
+   "impact": "Its JV plans Rs 4,800 cr to nearly triple fibre capacity and add preform by Dec 2028 (S10). It is the cheapest route into the preform leg by market cap (~Rs 5,035 cr), but carries funding risk (S19)."
+  },
+  {
+   "name": "Finolex Cables",
+   "nse": "FINCABLES",
+   "bse": null,
+   "bucket": "fibre_and_cable_makers",
+   "role": "Mainly an electrical-cable maker with a communication-cable arm. It has a captive 100 MT preform plant and is doubling fibre draw to 8 mn km (S14, S15).",
+   "impact": "Communication cables grew 62% in Q1 FY27 with export wins (S15), but they are a small share of revenue next to electrical cables (S14). Preform gives it a cost edge as prices normalise (S15)."
+  },
+  {
+   "name": "Vindhya Telelinks",
+   "nse": "VINDHYATEL",
+   "bse": null,
+   "bucket": "specialty_cable_smallcaps",
+   "role": "M.P. Birla group telecom-cable and EPC company expanding specialty OFC at Rewa (S12, S20).",
+   "impact": "Specialty OFC capacity rises 6x to 3.0 mn fkm by Mar 2027, aimed at hyperscale/cloud DCs (S12). That is small relative to its EPC-heavy earnings (S20), and the stock was up only 24% YTD by May (S1)."
+  },
+  {
+   "name": "Birla Cable",
+   "nse": "BIRLACABLE",
+   "bse": null,
+   "bucket": "specialty_cable_smallcaps",
+   "role": "Telecom, optical fibre and structured copper LAN cable maker. It is being merged into Vindhya Telelinks at a 10:115 swap ratio (S13, S17).",
+   "impact": "FY26 OFC sales fell to Rs 105.6 cr while LAN cable rose to Rs 663.1 cr, so its DC exposure is mostly copper today (S22). Economic exposure moves to Vindhya after the merger (S13)."
+  },
+  {
+   "name": "Polycab India",
+   "nse": "POLYCAB",
+   "bse": null,
+   "bucket": "other",
+   "role": "Diversified wires and cables leader with a telecom arm making single-mode and multi-mode OFC, with installed capacity above 1 lakh km a year (S21).",
+   "impact": "Adjacent only. OFC is a small sideline, and no AI/hyperscaler fibre orders were found for this edition (S21)."
+  },
+  {
+   "name": "Aksh Optifibre",
+   "nse": "AKSHOPTFBR",
+   "bse": null,
+   "bucket": "other",
+   "role": "Small optical fibre, OFC and FRP-rod maker (S18).",
+   "impact": "Under CIRP with a market cap of ~Rs 113 cr. Insolvency limits its ability to benefit from tight fibre markets (S18)."
+  }
+ ],
+ "sources": [
+  {
+   "id": "S1",
+   "publisher": "Upstox",
+   "title": "AI infrastructure demand lifts Indian optic fibre makers; Sterlite Tech up 350% YTD",
+   "url": "https://upstox.com/news/market-news/stocks/ai-infrastructure-demand-lifts-indian-optic-fibre-makers-sterlite-tech-up-350-ytd/article-194256/",
+   "date": "2026-05-25",
+   "kind": "news"
+  },
+  {
+   "id": "S2",
+   "publisher": "CRU Group",
+   "title": "Optical fibre prices rise as preform availability tightens",
+   "url": "https://www.crugroup.com/en/communities/thought-leadership/2026/optical-fibre-prices-rise-as-preform-availability-tightens/",
+   "date": "2026-02-26",
+   "kind": "research"
+  },
+  {
+   "id": "S3",
+   "publisher": "Corning Incorporated",
+   "title": "Corning and Meta Announce Multiyear, up to $6 Billion Agreement to Accelerate US Data Center Buildout",
+   "url": "https://investor.corning.com/news-and-events/news/news-details/2026/Corning-and-Meta-Announce-Multiyear-up-to-6-Billion-Agreement-to-Accelerate-US-Data-Center-Buildout/default.aspx",
+   "date": "2026-01-27",
+   "kind": "company"
+  },
+  {
+   "id": "S4",
+   "publisher": "DSIJ",
+   "title": "Rs 7,309 Crore Order Book: Optical Fibre Company Hits 5% Upper Circuit After Securing USD 1.11 Billion AI Data Centre Deal",
+   "url": "https://insights.dsij.in/dsijarticledetail/rs-7309-crore-order-book-optical-fibre-company-hits-5-upper-circuit-after-securing-usd-111-billion-ai-data-centre-deal-id021-57303",
+   "date": "2026-05-25",
+   "kind": "news"
+  },
+  {
+   "id": "S5",
+   "publisher": "Investing.com",
+   "title": "Sterlite Q1 FY27 slides: record results on AI data center boom",
+   "url": "https://www.investing.com/news/company-news/sterlite-q1-fy27-slides-record-results-on-ai-data-center-boom-93CH-4811616",
+   "date": "2026-07-24",
+   "kind": "news"
+  },
+  {
+   "id": "S6",
+   "publisher": "Business Today",
+   "title": "Sterlite Tech shares gain 5% as arm wins $1.2 billion supply agreement",
+   "url": "https://www.businesstoday.in/markets/stocks/story/sterlite-tech-shares-gain-5-as-arm-wins-1-2-billion-supply-agreement-558989-2026-10-01",
+   "date": "2026-10-01",
+   "kind": "news"
+  },
+  {
+   "id": "S7",
+   "publisher": "Multibagg.ai (citing CLSA)",
+   "title": "Sterlite Tech stock: CLSA raises target",
+   "url": "https://www.multibagg.ai/market-pulse/articles/sterlite-tech-clsa-target-raise-cmuc3rd4a001436p53r7w6015",
+   "date": "2026-09-22",
+   "kind": "research"
+  },
+  {
+   "id": "S8",
+   "publisher": "Multibagg.ai",
+   "title": "HFCL approves Rs 820 crore capex, targets 43.1 Mn fkm",
+   "url": "https://www.multibagg.ai/market-pulse/articles/hfcl-capex-optical-fiber-expansion-cmu1g2rqm000d2uqtrx1tjzvt",
+   "date": "2026-09-14",
+   "kind": "news"
+  },
+  {
+   "id": "S9",
+   "publisher": "Trade Brains",
+   "title": "Optical Fibre Stock With Rs 26,665 Cr Order Book and 40% Growth Guidance",
+   "url": "https://tradebrains.in/indian-markets/optical-fibre-stock-with-26665-cr-order-book-and-40-growth-guidance-to-add-to-your-watchlist-12446916",
+   "date": "2026-08-28",
+   "kind": "news"
+  },
+  {
+   "id": "S10",
+   "publisher": "Wire & Cable India",
+   "title": "Birla Furukawa to Triple Optical Fibre Capacity with INR 4,800 Crore Expansion",
+   "url": "https://www.wirecable.in/birla-furukawa-to-triple/",
+   "date": "2026-08-07",
+   "kind": "news"
+  },
+  {
+   "id": "S11",
+   "publisher": "TipRanks",
+   "title": "Universal Cables Greenlights Major Capacity Expansions and CFO Transition",
+   "url": "https://www.tipranks.com/news/company-announcements/universal-cables-greenlights-major-capacity-expansions-and-cfo-transition",
+   "date": "2026-08-07",
+   "kind": "news"
+  },
+  {
+   "id": "S12",
+   "publisher": "Investment Guru India",
+   "title": "Vindhya Telelinks zooms on getting nod to expand speciality optical fibre cables production capacity",
+   "url": "https://investmentguruindia.com/newsdetail/vindhya-telelinks-zooms-on-getting-nod-to-expand-speciality-optical-fibre-cables-production-capacity-in-madhy-pradesh442508",
+   "date": "2026-05-23",
+   "kind": "news"
+  },
+  {
+   "id": "S13",
+   "publisher": "Multibagg.ai",
+   "title": "Birla Cable to Merge with Vindhya Telelinks in 10:115 Swap",
+   "url": "https://www.multibagg.ai/market-pulse/articles/birla-cable-vindhya-telelinks-merger-cmngwmo02hadslv0jxcmzy6by",
+   "date": "2026-04-02",
+   "kind": "news"
+  },
+  {
+   "id": "S14",
+   "publisher": "Trade Brains",
+   "title": "Finolex Cables Is Expanding Fibre Capacity: Can Data Centre Demand Drive Growth?",
+   "url": "https://tradebrains.in/indian-markets/finolex-cables-is-expanding-fibre-capacity-can-data-centre-demand-drive-growth-12611603",
+   "date": "2026-10-02",
+   "kind": "news"
+  },
+  {
+   "id": "S15",
+   "publisher": "Investing.com",
+   "title": "Earnings call transcript: Finolex Cables Q1 FY27",
+   "url": "https://www.investing.com/news/transcripts/earnings-call-transcript-finolex-cables-beats-q1-2026-estimates-on-strong-demand-93CH-4857778",
+   "date": "2026-10-05",
+   "kind": "company"
+  },
+  {
+   "id": "S16",
+   "publisher": "CGTN",
+   "title": "China extends anti-dumping duties on Indian optical fiber for 5 years",
+   "url": "https://news.cgtn.com/news/2026-08-13/China-extends-anti-dumping-duties-on-Indian-optical-fiber-for-5-years-1PzIypNXkm4/p.html",
+   "date": "2026-08-13",
+   "kind": "news"
+  },
+  {
+   "id": "S17",
+   "publisher": "TipRanks",
+   "title": "Birla Cable Posts Strong Q1 FY27 Results With Surge in Profitability",
+   "url": "https://www.tipranks.com/news/company-announcements/birla-cable-posts-strong-q1-fy27-results-with-surge-in-profitability",
+   "date": "2026-08-02",
+   "kind": "news"
+  },
+  {
+   "id": "S18",
+   "publisher": "Groww",
+   "title": "Aksh Optifibre share price and company profile",
+   "url": "https://groww.in/stocks/aksh-optifibre-ltd",
+   "date": "2026-10-05",
+   "kind": "other"
+  },
+  {
+   "id": "S19",
+   "publisher": "ICICI Direct",
+   "title": "Universal Cables share price",
+   "url": "https://www.icicidirect.com/stocks/universal-cables-share-price",
+   "date": "2026-10-05",
+   "kind": "other"
+  },
+  {
+   "id": "S21",
+   "publisher": "Polycab Telecom",
+   "title": "Fiber Cables and Fiber Accessories",
+   "url": "https://telecom.polycab.com/optical-fiber-cables/",
+   "date": "2026-10-05",
+   "kind": "company"
+  },
+  {
+   "id": "S20",
+   "publisher": "Sahi",
+   "title": "Vindhya Telelinks Reports Q1 Consolidated Net Profit of 757M Rupees vs 616M YoY",
+   "url": "https://www.sahi.com/news/vindhya-telelinks-reports-q1-consolidated-net-profit-of-757m-rupees-vs-616m-yoy-360-PE1_CORP",
+   "date": "2026-08-07",
+   "kind": "news"
+  },
+  {
+   "id": "S22",
+   "publisher": "IndiaInfoline (Birla Cable MD&A)",
+   "title": "Birla Cable Ltd Management Discussions",
+   "url": "https://www.indiainfoline.com/company/birla-cable-ltd/management-discussions",
+   "date": "2026-10-05",
+   "kind": "company"
+  }
+ ],
+ "method": "First edition, researched on 2026-10-05 using web search and fetching of company-disclosure coverage (results, capex approvals, contract awards), commodity research (CRU), the Corning investor release and market-data pages. Primary exchange filings were mostly reached through news and transcript summaries. A Sterlite investor-presentation PDF could not be parsed. Every figure is attributed. Where sources disagree (HFCL capacity bases), all versions are shown. Undated pages (transcripts, quote pages) carry the access date. India's preform import-dependence share could not be confirmed from a primary source and is omitted. Small caps were checked: Aksh Optifibre (distressed) and Polycab (adjacent) were the only additional qualifying names found. No ratings or price targets are given.",
+ "bucket_labels": {
+  "fibre_and_cable_makers": [
+   "Optical Fibre & Cable Makers",
+   "Scaled fibre/cable producers already winning data-centre and hyperscaler orders; largely re-rated"
+  ],
+  "preform_backward_integration": [
+   "Preform / Upstream Glass",
+   "Companies with announced capex for domestic optical fibre preform, the upstream bottleneck"
+  ],
+  "specialty_cable_smallcaps": [
+   "Specialty & Data-Centre Cable Small/Mid Caps",
+   "Smaller names expanding specialty optical cable capacity, less re-rated"
+  ],
+  "other": [
+   "Other",
+   ""
+  ]
+ },
+ "kind": "theme"
+}

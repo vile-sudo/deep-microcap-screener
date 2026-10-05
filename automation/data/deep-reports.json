@@ -351,6 +351,19 @@
     "SIMPLEXCAS": "already covers Sep 2021",
     "FLUIDOM": "already covers Mar 2023"
    }
+  },
+  {
+   "on": "2026-10-05",
+   "written": [
+    "NEULANDLAB:FY27-Q1",
+    "HSCL:FY27-Q1"
+   ],
+   "spent_usd": null,
+   "skipped": {
+    "VIMTALABS": "already covers Dec 2024",
+    "SIMPLEXCAS": "already covers Sep 2021",
+    "FLUIDOM": "already covers Mar 2023"
+   }
   }
  ],
  "seen_new_results": {
@@ -781,6 +794,24 @@
    "cost_usd": null,
    "api_equivalent_usd": 7.899,
    "minutes": 18.3
+  },
+  "NEULANDLAB": {
+   "period": "FY27-Q1",
+   "on": "2026-10-05",
+   "engine": "claude-code",
+   "tokens_out": 68874,
+   "cost_usd": null,
+   "api_equivalent_usd": 9.017,
+   "minutes": 14.1
+  },
+  "HSCL": {
+   "period": "FY27-Q1",
+   "on": "2026-10-05",
+   "engine": "claude-code",
+   "tokens_out": 80477,
+   "cost_usd": null,
+   "api_equivalent_usd": 11.588,
+   "minutes": 15.8
   }
  }
 }

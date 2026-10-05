@@ -1,18 +1,49 @@
 {
- "updated": "2026-10-04T05:33+05:30",
+ "updated": "2026-10-05T05:43+05:30",
  "figures": [
   {
    "label": "Brent crude",
-   "value": "$102.25/bbl",
-   "as_of": "2026-10-02",
-   "note": "-0.06% on the day per Trading Economics; levels differ across outlets (an earlie",
+   "value": "$102.10/bbl",
+   "as_of": "2026-10-05",
+   "note": "-0.15% on the day; +5.08% over the month",
    "source": {
     "publisher": "Trading Economics",
     "url": "https://tradingeconomics.com/commodity/brent-crude-oil"
    }
+  },
+  {
+   "label": "WTI crude",
+   "value": "$91.11/bbl",
+   "as_of": "2026-10-04",
+   "note": "quoted alongside Brent at $102.25",
+   "source": {
+    "publisher": "The National",
+    "url": "https://www.thenationalnews.com/business/energy/2026/10/04/opec-keeps-oil-output-targets-unchanged-for-november/"
+   }
   }
  ],
  "items": [
+  {
+   "date": "2026-10-04",
+   "title": "OPEC+ keeps November output targets unchanged, extending pause",
+   "text": "OPEC+ kept its November production targets unchanged, extending the pause that began in October after six months of gradual increases. The seven core members' combined quota stays at about 31 million bpd, and 2 million bpd of 2022 cuts remain in place through year-end. Most members are pumping below quota because of the Gulf conflict and the effectively closed Strait of Hormuz. Brent was quoted at $102.25/bbl. For India, a hold keeps supply tight and crude elevated, which supports upstream realisations at ONGC and Oil India but pressures refiner margins at HPCL and BPCL.",
+   "tone": "watch",
+   "companies": [
+    "ONGC",
+    "OIL",
+    "HINDPETRO",
+    "BPCL"
+   ],
+   "sources": [
+    {
+     "publisher": "The National",
+     "title": "Opec+ keeps oil output targets unchanged for November",
+     "url": "https://www.thenationalnews.com/business/energy/2026/10/04/opec-keeps-oil-output-targets-unchanged-for-november/",
+     "date": "2026-10-04"
+    }
+   ],
+   "added": "2026-10-05"
+  },
   {
    "date": "2026-10-02",
    "title": "China halts refined fuel exports; US reportedly sending third carrier to Middle East",
