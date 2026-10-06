@@ -1,28 +1,55 @@
 {
- "updated": "2026-10-05T05:43+05:30",
+ "updated": "2026-10-06T07:36+05:30",
  "figures": [
   {
    "label": "Brent crude",
-   "value": "$102.10/bbl",
+   "value": "$102.31/bbl",
    "as_of": "2026-10-05",
-   "note": "-0.15% on the day; +5.08% over the month",
+   "note": "+0.07% in early Tokyo trade; Fortune showed $105.81 at 7 a.m. ET, so levels vary",
    "source": {
-    "publisher": "Trading Economics",
-    "url": "https://tradingeconomics.com/commodity/brent-crude-oil"
+    "publisher": "Gulf News",
+    "url": "https://gulfnews.com/world/americas/oil-prices-split-as-brent-tops-102-murban-hits-110-per-barrel-on-oct-5-2026-1.500698305"
    }
   },
   {
-   "label": "WTI crude",
-   "value": "$91.11/bbl",
-   "as_of": "2026-10-04",
-   "note": "quoted alongside Brent at $102.25",
+   "label": "Murban crude",
+   "value": "$110/bbl",
+   "as_of": "2026-10-05",
+   "note": "Brent-WTI spread above $11/bbl",
    "source": {
-    "publisher": "The National",
-    "url": "https://www.thenationalnews.com/business/energy/2026/10/04/opec-keeps-oil-output-targets-unchanged-for-november/"
+    "publisher": "Gulf News",
+    "url": "https://gulfnews.com/world/americas/oil-prices-split-as-brent-tops-102-murban-hits-110-per-barrel-on-oct-5-2026-1.500698305"
    }
   }
  ],
  "items": [
+  {
+   "date": "2026-10-05",
+   "title": "Brent near $102 while Murban hits $110 on Hormuz shipping costs; Brent-WTI gap over $11",
+   "text": "Gulf News reported Brent at $102.31/bbl in early Tokyo trade on 5 October, up 0.07%, with Murban at $110/bbl. It cited tanker shortages, high insurance costs and longer routes, with record VLCC freight raising delivered crude costs and squeezing refiner margins. The Brent-WTI spread exceeded $11/bbl. Elevated crude supports ONGC and Oil India realisations but keeps pressure on HPCL and BPCL margins. Other pages showed different Brent levels the same day (Fortune: $105.81 at 7 a.m. ET), so the intraday level is uncertain.",
+   "tone": "watch",
+   "companies": [
+    "ONGC",
+    "OIL",
+    "HINDPETRO",
+    "BPCL"
+   ],
+   "sources": [
+    {
+     "publisher": "Gulf News",
+     "title": "Oil prices split as Brent tops $102, Murban hits $110 per barrel on Oct. 5, 2026",
+     "url": "https://gulfnews.com/world/americas/oil-prices-split-as-brent-tops-102-murban-hits-110-per-barrel-on-oct-5-2026-1.500698305",
+     "date": "2026-10-05"
+    },
+    {
+     "publisher": "Fortune",
+     "title": "Current price of oil as of October 5, 2026",
+     "url": "https://fortune.com/article/price-of-oil-10-05-2026/",
+     "date": "2026-10-05"
+    }
+   ],
+   "added": "2026-10-06"
+  },
   {
    "date": "2026-10-04",
    "title": "OPEC+ keeps November output targets unchanged, extending pause",
