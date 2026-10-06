@@ -55,7 +55,7 @@ function moatEvidenceLine(d) {
    seven are lenses and work one at a time, exactly like India's (clicking
    one switches to it, clicking it again clears it); the last two stack. */
 const UTG = {overhang: false, heavycap: false, guide15: false, guideany: false, turn: false, caputil: false,
-  pivot: false, haslens: false, ongate: false, nolens: false};
+  pivot: false, haslens: false, nolens: false};
 const ULENSES = ["overhang", "heavycap", "guide15", "guideany", "turn", "caputil", "pivot"];
 const UTG_TEST = {
   overhang: d => !!d.capex_overhang,
@@ -66,20 +66,18 @@ const UTG_TEST = {
   caputil: d => !!d.capacity_util_flag,
   pivot: d => !!d.product_pivot_flag,
   haslens: d => !!d.has_lens_data,
-  ongate: d => !(d.gate_failures || []).length,
   nolens: d => !d.has_lens_data,
 };
 
 function signalsHtml(d) {
   const s = [];
-  if (d.capex_overhang) s.push('<span class="us-sig warn" title="P/E above 40 and CWIP at least 15% of net PP&amp;E">&#9873; PE+CWIP</span>');
-  else if (d.capex_heavy) s.push('<span class="us-sig warn" title="CWIP at least 25% of net PP&amp;E">&#127959; heavy capex</span>');
-  if (d.guidance_over15) s.push(`<span class="us-sig" title="Revenue growth guided above 15%${d.guidance_derived ? " (derived from the guided dollar range)" : ""}">&#9650; guides &gt;15%</span>`);
-  else if (d.guidance_flag) s.push('<span class="us-sig grey" title="A forward revenue statement, not quantified as growth above 15%">&#9650; guidance</span>');
+  if (d.capex_overhang) s.push('<span class="us-sig warn" title="A rich P/E alongside a large slice of assets still under construction">&#9873; PE+CWIP</span>');
+  else if (d.capex_heavy) s.push('<span class="us-sig warn" title="A large share of net PP&amp;E is still under construction">&#127959; heavy capex</span>');
+  if (d.guidance_over15) s.push(`<span class="us-sig" title="Revenue growth guided strongly${d.guidance_derived ? " (derived from the guided dollar range)" : ""}">&#9650; guides growth</span>`);
+  else if (d.guidance_flag) s.push('<span class="us-sig grey" title="A forward revenue statement, not quantified as a growth rate">&#9650; guidance</span>');
   if (d.pat_turnaround) s.push('<span class="us-sig" title="Latest quarter profitable after a loss in one of the previous three">&#8635; PAT+</span>');
   if (d.capacity_util_flag) s.push('<span class="us-sig" title="Management says capacity utilization will rise from a near-term period">&#9881; capacity</span>');
   if (d.product_pivot_flag) s.push('<span class="us-sig" title="A product-mix change or new venture tied to a shift in demand">&#8644; pivot</span>');
-  if ((d.gate_failures || []).length) s.push(`<span class="us-sig grey" title="${esc(d.gate_failures.join("; "))}">fails ${d.gate_failures.length} gate${d.gate_failures.length > 1 ? "s" : ""}</span>`);
   return s.join("") || "—";
 }
 
@@ -183,8 +181,6 @@ async function toggleStar(code) {
    of the headline numbers, then one section per question: capex, guidance, profit
    trajectory, score breakdown, business, moat, flags. All of it comes from the same
    record the table row does (backend/scripts/us_auto_screen.py, us_lenses.py). */
-const US_PILLARS = [["Moat", "s_moat", 25], ["Reshoring", "s_reshoring", 20], ["Insider", "s_insider", 15],
-  ["Under-covered", "s_undercovered", 15], ["Financials", "s_financials", 10], ["Institutional", "s_institutional", 15]];
 const US_SERIES = ["--s1", "--s2", "--s3", "--s4", "--s5", "--s6"];
 const US_MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 let DRAWER_LIST = [];
@@ -220,8 +216,6 @@ function usPatChart(d) {
 }
 
 function usDrawerBody(d) {
-  const gates = (d.gate_failures || []).filter(Boolean);
-  const pen = (d.penalty_detail || []).filter(Boolean);
   const warns = (d.warnings || []).filter(Boolean);
   const auto = d.source === "us-auto" || d.screen === "us-auto";
   const sources = (d.evidence_sources || []).map(u => `<a class="lnk" href="${esc(u)}" target="_blank" rel="noopener">${/sec\.gov/i.test(u) ? "SEC filings" : "source"} ↗</a>`).join(" ");
@@ -245,13 +239,9 @@ function usDrawerBody(d) {
 
   if (auto) {
     out += `<div class="sec auto-sec"><h4>Auto-added by the daily US screen</h4>
-      <p>Added on ${esc(d.added_on || "")} because the company describes a moat in its own SEC 10-K and the numbers clear the board's gates.
-      The figures are from Finnhub and SEC EDGAR and the moat is the company's own wording, matched by rules &mdash;
-      nobody has researched it yet, so read it as a lead, not a verdict.</p>
+      <p>Added on ${esc(d.added_on || "")} from the daily US screen. The figures are from Finnhub and SEC EDGAR
+      and the moat is the company's own wording &mdash; nobody has researched it yet, so read it as a lead, not a verdict.</p>
       ${sources ? `<p class="auto-src">Evidence: ${sources}</p>` : ""}</div>`;
-  }
-  if (gates.length) {
-    out += `<div class="sec"><h4>Fails the fundamentals gates on</h4><ul class="gates">${gates.map(g => `<li>✕ ${esc(g)}</li>`).join("")}</ul></div>`;
   }
 
   if (d.has_lens_data) {
@@ -260,7 +250,7 @@ function usDrawerBody(d) {
         ? '<p class="nd">No construction-in-progress balance was found in the latest filing.</p>'
         : `<p><b>$${fmtN(d.cwip_usd_m)}m</b> in construction in progress${netPpe ? ` against net PP&amp;E of <b>$${fmtN(netPpe, 0)}m</b> &mdash; ${fmtN(d.cwip_pct_net_block)}%` : ""}.</p>`)
       + (d.capex_overhang ? `<p style="margin-top:9px;color:var(--crit);font-size:12.5px"><b>⚑ Flagged.</b> A P/E of ${fmtN(d.pe)} is being paid while ${fmtN(d.cwip_pct_net_block, 0)}% of the asset base is still under construction &mdash; the multiple assumes the new capacity works.</p>`
-        : d.capex_heavy ? '<p style="margin-top:9px;font-size:12.5px"><b>Heavy capex:</b> construction in progress is at least 25% of net PP&amp;E.</p>' : "")
+        : d.capex_heavy ? '<p style="margin-top:9px;font-size:12.5px"><b>Heavy capex:</b> construction in progress is a large share of net PP&amp;E.</p>' : "")
       + "</div>";
 
     out += `<div class="sec"><h4>Management's own growth outlook</h4>`
@@ -281,17 +271,6 @@ function usDrawerBody(d) {
   }
 
   out += usEarningsSection(d) + usFundamentalsSection(d) + usInstitutionsSection(d) + usAnalystsSection(d) + usShortSection(d) + usInsiderSection(d) + usNewsSection(d);
-
-  if (US_PILLARS.some(p => d[p[1]] != null)) {
-    out += `<div class="sec"><h4>Score breakdown</h4>` + US_PILLARS.filter(p => p[1] !== "s_institutional" || d.s_institutional != null).map(([l, k, mx], i) => {
-      const v = +d[k] || 0, pct = Math.max(2, v / mx * 100);
-      return `<div class="bar"><i>${l}</i><span class="track"><span class="fill" style="width:${pct}%;background:var(${US_SERIES[i]})"></span></span>
-        <b>${v.toFixed(1)}<span style="color:var(--muted);font-weight:400">/${mx}</span></b></div>`;
-    }).join("")
-      + (pen.length ? `<p style="margin-top:10px;font-size:12px;color:var(--ink2)"><b style="color:var(--crit)">Risk penalty −${fmtN(d.risk_penalty, 0)}:</b> ${pen.map(esc).join(" · ")}</p>` : "")
-      + (d.score_rationale ? `<p class="caveat" style="margin-top:8px">${esc(d.score_rationale)}</p>` : "")
-      + "</div>";
-  }
 
   if (d.business) out += `<div class="sec"><h4>What the business actually does</h4><p>${esc(d.business)}</p></div>`;
   if (d.moat_note) out += `<div class="sec"><h4>The moat — the company's own words</h4><p>${esc(d.moat_note)}</p></div>`;
@@ -406,8 +385,6 @@ async function boot() {
   document.title = "Deep Sweep US — " + DATA.length + " companies";
   document.getElementById("us-asof").textContent = meta.build_new ? "Updated " + meta.build_new : "";
   buildSectorOptions();
-  const mn = document.getElementById("us-method-n");
-  if (mn) mn.textContent = DATA.length;
   render();
   renderOverview();
   auxLoadAll();
@@ -517,7 +494,7 @@ function galFetchIndex() {
   return GAL_LOADING;
 }
 
-const US_TABS = ["overview", "screens", "themes", "market", "earnings", "news", "ipo", "gallery", "insider", "method"];
+const US_TABS = ["overview", "screens", "themes", "market", "earnings", "news", "ipo", "gallery", "insider"];
 /* tab switching: showUsTab(), further down */
 
 async function openGallery() {
@@ -2430,7 +2407,7 @@ function reportSummary(d) {
   }
   if (d.pe != null && d.pe > 0) bits.push(`It trades at ${fmtN(d.pe)} times earnings.`);
   if (d.pat_turnaround) bits.push("Its latest quarter was profitable after a loss in one of the previous three.");
-  if (d.guidance_over15) bits.push(`Management has guided revenue growth above 15%${d.guidance_pct != null ? ` (${fmtN(d.guidance_pct, 0)}%)` : ""}.`);
+  if (d.guidance_over15) bits.push(`Management has guided revenue growth${d.guidance_pct != null ? ` (${fmtN(d.guidance_pct, 0)}%)` : ""}.`);
   if (inst && inst.inst_pct != null) bits.push(`Institutions reported holding ${inst.over_100 ? "100%+" : fmtN(inst.inst_pct) + "%"} of its shares (${inst.institutions} holders in SEC Form 13F).`);
   if (d.insider_pct != null) bits.push(`Insiders own about ${fmtN(d.insider_pct)}%.`);
   if (an) bits.push(an.covered ? `${an.analysts} analysts cover it.` : "No analyst covers it.");
