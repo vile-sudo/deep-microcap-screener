@@ -369,7 +369,14 @@ def _get(url: str, headers=EXCHANGE_HEADERS, timeout=60):
 def universe() -> list[dict]:
     """Listed companies in the size band (BSE) plus NSE-only listings, keyed by ISIN."""
     by_isin: dict[str, dict] = {}
-    for row in _get("https://api.bseindia.com/BseIndiaAPI/api/ListofScripData/w?Group=&Scripcode=&industry=&segment=Equity&status=Active").json():
+    try:
+        bse_rows = _get("https://api.bseindia.com/BseIndiaAPI/api/ListofScripData/w?Group=&Scripcode=&industry=&segment=Equity&status=Active").json()
+    except requests.RequestException as e:
+        # BSE's API refuses some datacentre IPs (403 from GitHub Actions): skip auto-adds for today
+        # rather than crash the whole daily pipeline -- the candidate list is rebuilt tomorrow
+        print(f"auto-screen: BSE listings unavailable ({e}); skipping auto-adds for today")
+        return []
+    for row in bse_rows:
         isin = (row.get("ISIN_NUMBER") or "").strip()
         try:
             cap = float(row.get("Mktcap") or 0)
