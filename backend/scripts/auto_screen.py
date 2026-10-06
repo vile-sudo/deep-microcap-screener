@@ -367,25 +367,20 @@ def _get(url: str, headers=EXCHANGE_HEADERS, timeout=60):
 
 
 def universe() -> list[dict]:
-    """Listed companies in the size band (BSE) plus NSE-only listings, keyed by ISIN."""
+    """Every NSE mainboard and SME listing, keyed by ISIN, with BSE codes where BSE also lists the
+    company. BSE's API blocks GitHub Actions runners (403), so it is best-effort only: market cap
+    is checked on screener.in from the candidate page (gates()), not from the exchange list."""
     by_isin: dict[str, dict] = {}
     try:
         bse_rows = _get("https://api.bseindia.com/BseIndiaAPI/api/ListofScripData/w?Group=&Scripcode=&industry=&segment=Equity&status=Active").json()
     except requests.RequestException as e:
-        # BSE's API refuses some datacentre IPs (403 from GitHub Actions): skip auto-adds for today
-        # rather than crash the whole daily pipeline -- the candidate list is rebuilt tomorrow
-        print(f"auto-screen: BSE listings unavailable ({e}); skipping auto-adds for today")
-        return []
+        print(f"auto-screen: BSE listings unavailable ({e}); using NSE listings only")
+        bse_rows = []
     for row in bse_rows:
         isin = (row.get("ISIN_NUMBER") or "").strip()
-        try:
-            cap = float(row.get("Mktcap") or 0)
-        except ValueError:
-            cap = 0
-        if not isin or not (CAP_MIN <= cap <= CAP_MAX_T2):
-            continue
-        by_isin[isin] = {"isin": isin, "name": row.get("Issuer_Name") or row.get("Scrip_Name") or "",
-                         "bse_code": str(row.get("SCRIP_CD") or ""), "nse_code": None, "mcap": cap}
+        if isin:
+            by_isin[isin] = {"isin": isin, "name": row.get("Issuer_Name") or row.get("Scrip_Name") or "",
+                             "bse_code": str(row.get("SCRIP_CD") or ""), "nse_code": None, "mcap": None}
     nse_urls = [("NSE", "https://nsearchives.nseindia.com/content/equities/EQUITY_L.csv"),
                 ("NSE-SME", "https://nsearchives.nseindia.com/emerge/corporates/content/SME_EQUITY_L.csv")]
     for board, url in nse_urls:
@@ -399,12 +394,13 @@ def universe() -> list[dict]:
             if i_isin is None or len(c) <= i_isin:
                 continue
             isin, sym = c[i_isin], c[i_sym]
+            listed = c[i_date] if i_date is not None and len(c) > i_date else None
             if isin in by_isin:
                 by_isin[isin]["nse_code"] = sym
-            elif board == "NSE-SME":
-                # SME names often aren't on BSE: their size is checked on screener
+                by_isin[isin]["listed"] = listed
+            else:
                 by_isin[isin] = {"isin": isin, "name": c[i_name], "bse_code": None, "nse_code": sym, "mcap": None,
-                                 "listed": c[i_date] if i_date is not None and len(c) > i_date else None}
+                                 "listed": listed}
     return list(by_isin.values())
 
 
