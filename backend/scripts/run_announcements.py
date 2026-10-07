@@ -30,14 +30,15 @@ from __future__ import annotations
 import argparse
 import json
 import sys
-from datetime import datetime, timedelta, timezone
+from datetime import date, datetime, timedelta, timezone
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 from app.movers.announcements import classify, range_announcements  # noqa: E402
 from app.movers.companies import board_map, name_lookup  # noqa: E402
 from app.movers.nse import NseClient  # noqa: E402
-from app.movers.order_size import SalesLookup, not_an_order, order_value_cr, pdf_text  # noqa: E402
+from app.movers.order_size import (FilingMoves, SalesLookup, execution_months, not_an_order,  # noqa: E402
+                                   order_value_cr, pdf_text)
 
 BACKEND_DIR = Path(__file__).resolve().parent.parent
 OUT_FILE = BACKEND_DIR / "data" / "announcements" / "latest.json"
@@ -45,20 +46,24 @@ SALES_CACHE = BACKEND_DIR / "data" / "announcements" / "sales_cache.json"
 RETENTION_DAYS = 45
 SUMMARY_MAX = 320   # NSE's attachment-text summaries can run long; a feed row isn't the filing itself
 MAX_ORDER_PDFS = 60  # per run, newest first -- bounds the first run's backlog; the rest are sized on later runs
+ORDER_V = 2          # bump to re-read every order PDF once (2: adds the execution period)
+KEPT_PREFIXES = ("order_", "sales_", "not_order", "move_")   # fields earned on an earlier run, kept across re-fetches
 
 
 def size_orders(rows: list[dict]) -> int:
-    """Read each unsized order-win filing's PDF once: value, share of last full-year sales, and
-    whether it is really an order (arbitration awards and tax orders get filed under the order
-    category too). Results are stored on the record, so a filing is never read twice."""
+    """Read each order-win filing's PDF once per ORDER_V: value, execution period, share of last
+    full-year sales (whole order and per year), and whether it is really an order (arbitration
+    awards and tax orders get filed under the order category too)."""
     sales = SalesLookup(SALES_CACHE)
     done = 0
     for r in rows:
-        if r["kind"] != "order win" or r.get("order_checked") or done >= MAX_ORDER_PDFS:
+        if r["kind"] != "order win" or r.get("order_v") == ORDER_V or done >= MAX_ORDER_PDFS:
             continue
         done += 1
+        for k in [k for k in r if k.startswith(("order_", "sales_"))]:
+            del r[k]
+        r["order_checked"], r["order_v"] = True, ORDER_V
         text = pdf_text(r.get("url") or "")
-        r["order_checked"] = True
         if not text.strip():
             continue
         if not_an_order(text):
@@ -69,12 +74,31 @@ def size_orders(rows: list[dict]) -> int:
         if value is None:
             continue
         r["order_cr"] = round(value, 2)
+        months = execution_months(text, date.fromisoformat(r["date"]))
+        if months:
+            r["order_months"] = round(months, 1)
         hit = sales.last_full_year(r["symbol"], r["date"])
         if hit:
             r["sales_cr"], r["sales_fy"] = round(hit[0], 1), hit[1]
             r["order_pct"] = round(100 * value / hit[0], 1)
+            # an order delivered over 4 years is a quarter of its size per year; one inside a year is all of it
+            r["order_annual_pct"] = round(r["order_pct"] * 12 / max(12.0, months or 12.0), 1)
     sales.save()
     return done
+
+
+def fill_moves(rows: list[dict]) -> int:
+    """Filing-session move for each order win whose session has settled."""
+    ist_today = datetime.now(timezone(timedelta(hours=5, minutes=30))).date()
+    moves, filled = FilingMoves(ist_today), 0
+    for r in rows:
+        if r["kind"] != "order win" or "move_date" in r:
+            continue
+        m = moves.move(r["symbol"], r["filed_at"])
+        if m:
+            r.update(m)
+            filled += 1
+    return filled
 
 
 def main() -> int:
@@ -115,7 +139,7 @@ def main() -> int:
     added = sum(1 for r in fresh if r["seq_id"] not in merged)
     for r in fresh:   # keep the order-size fields a filing already earned on an earlier run
         old = merged.get(r["seq_id"]) or {}
-        merged[r["seq_id"]] = {**{k: v for k, v in old.items() if k.startswith(("order_", "sales_", "not_order"))}, **r}
+        merged[r["seq_id"]] = {**{k: v for k, v in old.items() if k.startswith(KEPT_PREFIXES)}, **r}
 
     # Re-label the whole history with the current classifier, so a rule change doesn't leave weeks of
     # old labels behind; a PDF that showed a filing isn't really an order outranks its category.
@@ -128,6 +152,7 @@ def main() -> int:
     kept = sorted((r for r in merged.values() if r["date"] >= cutoff and r["weight"] > 0),
                   key=lambda r: r["filed_at"], reverse=True)
     sized = size_orders(kept)
+    moved = fill_moves(kept)
 
     OUT_FILE.parent.mkdir(parents=True, exist_ok=True)
     OUT_FILE.write_text(json.dumps({
@@ -142,7 +167,7 @@ def main() -> int:
     print(f"run_announcements: {len(rows)} fetched, {len(fresh)} material ({added} new), {len(kept)} kept after a "
           f"{RETENTION_DAYS}-day window ({sum(1 for r in kept if r['board_code'])} on board), "
           f"{kept[-1]['date'] if kept else '—'} to {kept[0]['date'] if kept else '—'} -> {OUT_FILE}; "
-          f"{sized} order filing(s) read for size")
+          f"{sized} order filing(s) read for size, {moved} filing-day move(s) filled")
     return 0
 
 

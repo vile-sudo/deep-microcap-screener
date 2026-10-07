@@ -2689,7 +2689,7 @@ function anRows(){
   });
   const byDate=(a,b)=>b.filed_at.localeCompare(a.filed_at);
   rows=rows.slice().sort(sort==='weight' ? (a,b)=>b.weight-a.weight||byDate(a,b)
-    : sort==='order' ? (a,b)=>(b.order_pct??-1)-(a.order_pct??-1)||byDate(a,b)
+    : sort==='order' ? (a,b)=>(anOrderYr(b)??-1)-(anOrderYr(a)??-1)||byDate(a,b)
     : byDate);
   return rows;
 }
@@ -2706,20 +2706,31 @@ function anRenderTable(){
 
 /* Order size vs last full-year sales. A 24-month check (Jul 2024-Jun 2026) found size decides how hard
    the stock moves on the filing day, not what it does after -- so this explains a move, it isn't a signal. */
-const AN_SIZE_TIP='Order value from the filing, as a share of the company\'s last full-year sales. Bigger orders move the stock more on the filing day; in a 24-month check that edge was gone by the next session, so read it as context, not a buy signal.';
+const AN_SIZE_TIP='Order value from the filing, as a share of the company\'s last full-year sales; for an order that runs longer than a year, also its share per year of execution. Bigger orders move the stock more on the filing day; in a 24-month check that edge was gone by the next session, so read it as context, not a buy signal.';
+const AN_CHASE_TIP='The stock rose more than 8% above the market on the filing session. In a 24-month check of NSE order wins, stocks like this gave ground afterwards: median -3.3% vs the market over the next 60 sessions, and only 36% beat it.';
+const anOrderYr = a => a.order_annual_pct ?? a.order_pct ?? null;
+const anPct = v => fmt(v, Math.abs(v)<10?1:0);
 function anOrderSize(a){
   if(a.kind!=='order win' || a.order_cr==null) return '';
   const val=`₹${a.order_cr>=100?fmtI(a.order_cr):fmt(a.order_cr,a.order_cr<10?2:1)} cr`;
   if(a.order_pct==null) return `<span class="an-size" title="${AN_SIZE_TIP}">${val}</span>`;
-  const tier=a.order_pct>=15?' big':a.order_pct>=5?' mid':'';
-  return `<span class="an-size${tier}" title="${AN_SIZE_TIP}">${val} · ${fmt(a.order_pct,a.order_pct<10?1:0)}% of ${esc(a.sales_fy||'')} sales</span>`;
+  const yr=anOrderYr(a), tier=yr>=15?' big':yr>=5?' mid':'';
+  const per=a.order_months>12 && a.order_annual_pct!=null
+    ? ` · ~${anPct(a.order_annual_pct)}%/yr over ${fmt(a.order_months,0)} mo` : '';
+  return `<span class="an-size${tier}" title="${AN_SIZE_TIP}">${val} · ${anPct(a.order_pct)}% of ${esc(a.sales_fy||'')} sales${per}</span>`;
+}
+function anFilingMove(a){
+  if(a.kind!=='order win' || a.move_pct==null) return '';
+  const sign=v=>(v>0?'+':'')+fmt(v,1)+'%';
+  const chase=a.move_excess>8;
+  return `<span class="an-move${chase?' chase':''}"${chase?` title="${AN_CHASE_TIP}"`:''}>${chase?'⚠ ':''}Filing day ${sign(a.move_pct)} (${sign(a.move_excess)} vs market)${chase?' — don\'t chase':''}</span>`;
 }
 
 function anRowHtml(a){
   return `<tr>
     <td>${esc(mvDay(a.date))}</td>
     <td><b class="mv-tick">${esc(a.symbol)}</b><span class="mv-name">${esc(a.name||a.symbol)}</span>${a.board_code?'<span class="mv-onboard">On the board</span>':''}</td>
-    <td><span class="an-cat">${esc(a.kind)}</span>${anOrderSize(a)}</td>
+    <td><span class="an-cat">${esc(a.kind)}</span>${anOrderSize(a)}${anFilingMove(a)}</td>
     <td class="an-summary">${a.url?`<a href="${esc(a.url)}" target="_blank" rel="noopener">${esc(a.summary||a.category)} ↗</a>`:esc(a.summary||a.category)}</td>
   </tr>`;
 }

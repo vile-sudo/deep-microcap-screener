@@ -93,6 +93,138 @@ def not_an_order(text: str) -> bool:
     return bool(NOT_AN_ORDER.search(text or ""))
 
 
+# ------------------------------------------------------------------ execution period
+# SEBI's Regulation 30 order disclosure has a "time period by which the order is to be executed" field.
+# PDF extraction of that two-column table interleaves label and value, so the value usually sits INSIDE
+# the label ("Time period by which the 21 Months order(s)/contract(s) is to be executed", "is to be
+# 28-DEC-27 executed"): the label span, a little before it and the rest of the line after it (cut at the
+# next field) are all searched. A stated duration wins over a date.
+EXEC_FIELD = re.compile(r"(?:time\s*period|period)[^.]{0,120}?execut\w*", re.I | re.S)
+NEXT_FIELD = re.compile(r"broad\s+(?:commercial\s+)?consideration|size\s+of\s+(?:the\s+)?order|whether\s+(?:the\s+)?promoter|"
+                        r"related\s+party|name\s+of\s+the\s+entity|\n\s*\(?[a-h1-9][).]\s", re.I)
+_WORDS = {"one": 1, "two": 2, "three": 3, "four": 4, "five": 5, "six": 6, "seven": 7, "eight": 8, "nine": 9,
+          "ten": 10, "eleven": 11, "twelve": 12, "fifteen": 15, "eighteen": 18, "twenty": 20, "twenty four": 24,
+          "twenty-four": 24, "thirty": 30, "thirty six": 36, "thirty-six": 36, "forty eight": 48, "sixty": 60}
+_NUM = r"(?P<n>\d+(?:\.\d+)?|" + "|".join(sorted((re.escape(w) for w in _WORDS), key=len, reverse=True)) + r")"
+DURATION = re.compile(r"(?:\b\d+(?:\.\d+)?\s*(?:-|to)\s*)?\b" + _NUM + r"\s*(?:\([^)]{0,20}\)\s*)?"
+                      r"(?P<unit>months?|mths?|years?|yrs?|weeks?|days)\b", re.I)
+_MON = r"(?P<mon>jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)[a-z]*\.?"
+DATES = (
+    re.compile(r"\b(?P<d>\d{1,2})[-/. ]" + _MON + r"[-/. ,']*(?P<yr>20\d\d|\d\d)\b", re.I),     # 28-DEC-27, 31-Mar-2029
+    re.compile(r"\b" + _MON + r"\s+(?P<d>\d{1,2}),?\s+(?P<yr>20\d\d)\b", re.I),                # August 10, 2026
+    re.compile(r"\b(?P<d>\d{1,2})[./-](?P<mm>\d{1,2})[./-](?P<yr>20\d\d)\b"),                  # 05.11.2026
+    re.compile(r"\b" + _MON + r"[\s,'.-]*(?P<yr>20\d\d)\b", re.I),                             # December 2030
+)
+EXEC_SENTENCE = re.compile(r"(?:execut|complet|deliver|suppl|tenure|implement|period\s+of)\w*[^.]{0,60}?"
+                           r"(?:within|over|period\s+of|in|for)\s+(?:a\s+(?:period|tenure)\s+of\s+)?(?:about\s+|approximately\s+)?", re.I)
+
+
+def _months(m: re.Match) -> float | None:
+    raw, unit = m.group("n").lower(), m.group("unit").lower()
+    n = float(raw) if raw[0].isdigit() else float(_WORDS[raw])
+    months = n if unit.startswith("m") else n * 12 if unit.startswith("y") else n / 4.35 if unit.startswith("w") else n / 30.4
+    return months if 0.25 <= months <= 180 else None
+
+
+def _latest_date_months(region: str, filed: date) -> float | None:
+    """Months from filing to the latest date written in the region (the end date of a period)."""
+    best = None
+    for rx in DATES:
+        for m in rx.finditer(region):
+            yr = int(m.group("yr"))
+            yr = yr + 2000 if yr < 100 else yr
+            mon = int(m.group("mm")) if "mm" in rx.groupindex else MONTHS[m.group("mon")[:3].title()]
+            if not 1 <= mon <= 12:
+                continue
+            months = (yr - filed.year) * 12 + mon - filed.month
+            if 1 <= months <= 180 and (best is None or months > best):
+                best = float(months)
+    return best
+
+
+def execution_months(text: str, filed: date) -> float | None:
+    """How long the order runs, in months, from the disclosure field or, failing that, the wording."""
+    text = text or ""
+    for f in EXEC_FIELD.finditer(text):
+        after = text[f.end(): f.end() + 220]
+        cut = NEXT_FIELD.search(after)
+        region = text[max(0, f.start() - 90): f.end()] + " " + (after[: cut.start()] if cut else after)
+        for d in DURATION.finditer(region):
+            if v := _months(d):
+                return v
+        if v := _latest_date_months(region, filed):
+            return v
+    for s in EXEC_SENTENCE.finditer(text):
+        d = DURATION.match(text, s.end())
+        if d and (v := _months(d)):
+            return v
+    return None
+
+
+# ------------------------------------------------------------------ filing-session move
+# The one actionable finding of the backtest: stocks that jumped more than 8% (vs the market) on the
+# filing session gave ground afterwards (60-session median -3.3%, 36% beat the market).
+CHASE_EXCESS_PCT = 8.0
+
+
+class FilingMoves:
+    """Each filing's own-session close-to-close move and its excess over the market median, from NSE's
+    bhavcopy (app/movers/bhavcopy.py). A filing after 15:30 belongs to the next session."""
+
+    def __init__(self, today: date, max_sessions: int = 40):
+        self.today = today
+        self.max_sessions = max_sessions
+        self.loaded: dict[date, tuple[dict, float] | None] = {}
+
+    def _session(self, d: date):
+        if d in self.loaded:
+            return self.loaded[d]
+        if len(self.loaded) >= self.max_sessions:
+            return "budget"
+        from statistics import median
+        from .bhavcopy import MarketHoliday, load_closes
+        try:
+            closes = load_closes(d)
+            moves = {s: c.pct_change for s, c in closes.items()}
+            self.loaded[d] = (moves, median(v for v in moves.values() if -40 < v < 40))
+        except MarketHoliday as e:
+            # load_closes raises this both when NSE served another day's file (a real holiday) and on a
+            # 404, which for a recent date can just mean "not published / archive hiccup" -- shifting the
+            # filing to the next session on a hiccup would attribute the wrong day's move.
+            if "was a trading holiday" not in str(e) and (self.today - d).days < 3:
+                return "retry"
+            self.loaded[d] = None
+        except Exception:  # noqa: BLE001 - NSE unreachable: try again next run
+            return "retry"
+        return self.loaded[d]
+
+    def move(self, symbol: str, filed_at: str) -> dict | None:
+        """{"move_date", "move_pct", "move_excess"}, or None if the session isn't settled/available yet."""
+        from datetime import datetime
+        try:
+            ts = datetime.fromisoformat(filed_at)
+        except (TypeError, ValueError):
+            return None
+        d = ts.date() + timedelta(days=1) if (ts.hour, ts.minute) > (15, 30) else ts.date()
+        for _ in range(7):
+            while d.weekday() >= 5:
+                d += timedelta(days=1)
+            if d >= self.today:          # today's bhavcopy isn't out until the evening: next run
+                return None
+            got = self._session(d)
+            if got in ("budget", "retry"):
+                return None
+            if got is None:              # a trading holiday: the next session is the filing's session
+                d += timedelta(days=1)
+                continue
+            moves, mkt = got
+            if symbol not in moves:
+                return {"move_date": d.isoformat(), "move_pct": None, "move_excess": None}
+            return {"move_date": d.isoformat(), "move_pct": round(moves[symbol], 2),
+                    "move_excess": round(moves[symbol] - mkt, 2)}
+        return None
+
+
 class SalesLookup:
     """Annual sales per symbol from screener.in's profit & loss table, cached on disk."""
 
