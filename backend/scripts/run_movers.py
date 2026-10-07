@@ -64,8 +64,21 @@ def main(argv: list[str] | None = None) -> int:
     try:
         closes = load_closes(trade_date)
     except MarketHoliday as e:
-        print(f"No movers scan for {trade_date.isoformat()}: {e}")
-        return 0
+        # A scheduled run that GitHub delays past 16:30 IST asks for *today*, and
+        # NSE often hasn't published yet -- that 404 is "not out yet", not a
+        # holiday (2026-10-06: called a holiday at 16:54 IST, on archive later
+        # that day). The scheduled scan's real job is the previous session, so
+        # do that instead of exiting.
+        if args.date or trade_date != now.date():
+            print(f"No movers scan for {trade_date.isoformat()}: {e}")
+            return 0
+        print(f"{trade_date.isoformat()}: bhavcopy not published yet; scanning the previous session instead.")
+        trade_date = _previous_weekday(trade_date)
+        try:
+            closes = load_closes(trade_date)
+        except MarketHoliday as e2:
+            print(f"No movers scan for {trade_date.isoformat()}: {e2}")
+            return 0
 
     symbols = sorted(closes)
     if not symbols:
@@ -180,6 +193,13 @@ def _default_date(now: datetime) -> date:
     while candidate.weekday() >= 5:
         candidate -= timedelta(days=1)
     return candidate
+
+
+def _previous_weekday(d: date) -> date:
+    d -= timedelta(days=1)
+    while d.weekday() >= 5:
+        d -= timedelta(days=1)
+    return d
 
 
 def _parse_args(argv: list[str] | None) -> argparse.Namespace:

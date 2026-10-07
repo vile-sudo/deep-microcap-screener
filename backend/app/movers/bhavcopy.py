@@ -115,8 +115,8 @@ def fetch_bhavcopy(
             response = session.get(url, timeout=timeout)
             if response.status_code == 404:
                 raise MarketHoliday(
-                    f"NSE published no bhavcopy for {trade_date.isoformat()}; "
-                    "it was most likely a trading holiday."
+                    f"NSE's archive has no bhavcopy for {trade_date.isoformat()} "
+                    "(not published yet, or a trading holiday)"
                 )
             response.raise_for_status()
             if len(response.content) < 1000:
