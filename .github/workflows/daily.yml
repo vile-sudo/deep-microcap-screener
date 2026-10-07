@@ -347,7 +347,14 @@ jobs:
           fi
           added=$(python -c "import json;r=json.load(open('automation/data/auto-screen.json'))['runs'][-1];print(len(r.get('added_codes',[])))" 2>/dev/null || echo 0)
           reports=$(grep -c . reports-today.txt 2>/dev/null || echo 0)
-          sectors=$(git diff --cached --name-only -- 'backend/sectors/*/????-??.json' | wc -l)
+          # Weekly editions are named YYYY-Wnn.json (e.g. 2026-W41.json) -- the old
+          # ????-??.json pattern wanted exactly 2 characters after the dash and so
+          # never matched a real edition file. It silently reported "0 sector
+          # editions" in every commit message for over a week while sector_research.py
+          # was writing real editions and new themes the whole time (confirmed: 9
+          # edition files and 7 brand-new themes committed Sept 29 - Oct 6, each one
+          # under this undercount). This pattern matches what's actually written.
+          sectors=$(git diff --cached --name-only -- 'backend/sectors/*/????-W??.json' | wc -l)
           news=$(cat sector-latest-count.txt 2>/dev/null || echo 0)
           git commit -m "Daily update $(TZ=Asia/Kolkata date +%F): ${added} auto-added, ${reports} deep-dive reports, ${sectors} sector editions, ${news} sector developments"
           for i in 1 2 3; do
