@@ -377,6 +377,20 @@
     "SIMPLEXCAS": "already covers Sep 2021",
     "FLUIDOM": "already covers Mar 2023"
    }
+  },
+  {
+   "on": "2026-10-07",
+   "written": [
+    "AXTEL:FY27-Q1",
+    "RMC:FY27-Q1"
+   ],
+   "spent_usd": null,
+   "skipped": {
+    "VIMTALABS": "already covers Dec 2024",
+    "SIMPLEXCAS": "already covers Sep 2021",
+    "FLUIDOM": "already covers Mar 2023",
+    "KENNAMET": "already covers Sep 2022"
+   }
   }
  ],
  "seen_new_results": {
@@ -391,6 +405,10 @@
   "FLUIDOM": {
    "quarter": "Jun 2026",
    "on": "2026-09-24"
+  },
+  "KENNAMET": {
+   "quarter": "Jun 2026",
+   "on": "2026-10-07"
   }
  },
  "reports": {
@@ -843,6 +861,24 @@
    "cost_usd": null,
    "api_equivalent_usd": 3.042,
    "minutes": 10.1
+  },
+  "AXTEL": {
+   "period": "FY27-Q1",
+   "on": "2026-10-07",
+   "engine": "claude-code",
+   "tokens_out": 75437,
+   "cost_usd": null,
+   "api_equivalent_usd": 4.204,
+   "minutes": 10.9
+  },
+  "RMC": {
+   "period": "FY27-Q1",
+   "on": "2026-10-07",
+   "engine": "claude-code",
+   "tokens_out": 128359,
+   "cost_usd": null,
+   "api_equivalent_usd": 9.09,
+   "minutes": 18.8
   }
  }
 }

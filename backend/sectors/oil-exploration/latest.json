@@ -1,28 +1,49 @@
 {
- "updated": "2026-10-06T07:36+05:30",
+ "updated": "2026-10-07T06:36+05:30",
  "figures": [
   {
-   "label": "Brent crude",
-   "value": "$102.31/bbl",
-   "as_of": "2026-10-05",
-   "note": "+0.07% in early Tokyo trade; Fortune showed $105.81 at 7 a.m. ET, so levels vary",
+   "label": "Brent crude (settle)",
+   "value": "$100.30/bbl",
+   "as_of": "2026-10-06",
+   "note": "-1.89% on the day; WTI $89.18",
    "source": {
     "publisher": "Gulf News",
-    "url": "https://gulfnews.com/world/americas/oil-prices-split-as-brent-tops-102-murban-hits-110-per-barrel-on-oct-5-2026-1.500698305"
+    "url": "https://gulfnews.com/business/energy/oil-prices-fall-brent-settles-at-10032-as-markets-weigh-higher-gulf-exports-g7-supply-boost-1.500699626"
    }
   },
   {
-   "label": "Murban crude",
-   "value": "$110/bbl",
-   "as_of": "2026-10-05",
-   "note": "Brent-WTI spread above $11/bbl",
+   "label": "Brent crude (live quote)",
+   "value": "$101.589/bbl",
+   "as_of": "2026-10-07",
+   "note": "+1.00% (+$1.01) intraday",
    "source": {
-    "publisher": "Gulf News",
-    "url": "https://gulfnews.com/world/americas/oil-prices-split-as-brent-tops-102-murban-hits-110-per-barrel-on-oct-5-2026-1.500698305"
+    "publisher": "Trading Economics",
+    "url": "https://tradingeconomics.com/commodity/brent-crude-oil/news"
    }
   }
  ],
  "items": [
+  {
+   "date": "2026-10-06",
+   "title": "Brent settles at $100.30, down 1.89%, as Gulf exports exceed pre-war levels and G7 plans stock release",
+   "text": "Brent settled at $100.30 a barrel, down $1.93 (1.89%), and WTI at $89.18, down $0.25 (0.28%). Gulf News cites Middle Eastern exports above 18 million bpd on several days in late September, a G7 plan to release 100 million barrels from emergency reserves over four months, and Saudi cuts to November Asian OSPs. Prices remain roughly 40% above pre-war levels on Hormuz risk. Lower crude eases pressure on Indian refiners/OMCs such as HPCL and BPCL, but trims realisations for upstream producers ONGC and Oil India.",
+   "tone": "watch",
+   "companies": [
+    "ONGC",
+    "OIL",
+    "HINDPETRO",
+    "BPCL"
+   ],
+   "sources": [
+    {
+     "publisher": "Gulf News",
+     "title": "Oil prices fall: Brent settles at $100.32 as markets weigh higher Gulf exports, G7 supply boost",
+     "url": "https://gulfnews.com/business/energy/oil-prices-fall-brent-settles-at-10032-as-markets-weigh-higher-gulf-exports-g7-supply-boost-1.500699626",
+     "date": "2026-10-06"
+    }
+   ],
+   "added": "2026-10-07"
+  },
   {
    "date": "2026-10-05",
    "title": "Brent near $102 while Murban hits $110 on Hormuz shipping costs; Brent-WTI gap over $11",
