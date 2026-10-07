@@ -25,9 +25,14 @@ MARKET_CLOSE = time(15, 30)
 
 DEFAULT_CACHE_DIR = Path(__file__).resolve().parent.parent.parent / ".movers_cache" / "announcements"
 
+# "Order win" comes only from NSE's own two order categories. Matching order wording in free text also
+# caught regulatory "orders passed" (tax demands, penalties), corporate recognition "awards", arbitration
+# awards and generic press releases -- about a third of the label in a 24-month check (Jul 2024-Jun 2026).
+ORDER_CATEGORY = re.compile(r"bagging/receiving of orders|awarding of order", re.I)
+REGULATORY_CATEGORY = re.compile(r"orders passed|action\(s\) (?:taken|initiated)|pendency of litigation|insolvency", re.I)
+
 # Filing categories that plausibly move a price, most explanatory first.
 MATERIAL = (
-    (re.compile(r"bagging|receiv.*order|order.*receiv|award", re.I), "order win", 5),
     (re.compile(r"financial result|outcome of board meeting.*result", re.I), "results", 5),
     (re.compile(r"acquisition|amalgamation|merger|demerger|slump sale|divest", re.I), "M&A", 5),
     (re.compile(r"qualified institution|preferential|fund rais|qip|issue of (?:equity|shares)", re.I), "fundraise", 4),
@@ -38,7 +43,7 @@ MATERIAL = (
     (re.compile(r"spurt in volume|price movement|clarification", re.I), "exchange query", 2),
     (re.compile(r"plant|capacity|expansion|commission|commercial production", re.I), "capacity or plant", 4),
     (re.compile(r"agreement|contract|mou|partnership|joint venture", re.I), "agreement", 4),
-    (re.compile(r"regulatory|penalty|show cause|sebi|litigation|court|tribunal|insolvency", re.I), "regulatory or legal", 4),
+    (re.compile(r"regulatory|penalty|show cause|sebi|litigation|court|tribunal|insolvency|arbitra", re.I), "regulatory or legal", 4),
 )
 # Routine housekeeping that almost never moves a price.
 ROUTINE = re.compile(
@@ -68,8 +73,12 @@ class Filing:
 def classify(category: str, summary: str) -> tuple[str, int]:
     """Label a filing and score how much it could explain a move."""
     text = f"{category} {summary}"
+    if ORDER_CATEGORY.search(category):
+        return "order win", 5
     if ROUTINE.search(text):
         return "routine filing", 0
+    if REGULATORY_CATEGORY.search(category):
+        return "regulatory or legal", 4
     for pattern, kind, weight in MATERIAL:
         if pattern.search(text):
             return kind, weight

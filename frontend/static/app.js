@@ -2687,7 +2687,10 @@ function anRows(){
     if(q && !(a.symbol.toLowerCase()+' '+(a.name||'').toLowerCase()+' '+(a.summary||'').toLowerCase()).includes(q)) return false;
     return true;
   });
-  rows=rows.slice().sort(sort==='weight' ? (a,b)=>b.weight-a.weight||b.filed_at.localeCompare(a.filed_at) : (a,b)=>b.filed_at.localeCompare(a.filed_at));
+  const byDate=(a,b)=>b.filed_at.localeCompare(a.filed_at);
+  rows=rows.slice().sort(sort==='weight' ? (a,b)=>b.weight-a.weight||byDate(a,b)
+    : sort==='order' ? (a,b)=>(b.order_pct??-1)-(a.order_pct??-1)||byDate(a,b)
+    : byDate);
   return rows;
 }
 
@@ -2701,11 +2704,22 @@ function anRenderTable(){
     : `<p class="view-hint">No announcement matches — clear the search or pick another filter.</p>`;
 }
 
+/* Order size vs last full-year sales. A 24-month check (Jul 2024-Jun 2026) found size decides how hard
+   the stock moves on the filing day, not what it does after -- so this explains a move, it isn't a signal. */
+const AN_SIZE_TIP='Order value from the filing, as a share of the company\'s last full-year sales. Bigger orders move the stock more on the filing day; in a 24-month check that edge was gone by the next session, so read it as context, not a buy signal.';
+function anOrderSize(a){
+  if(a.kind!=='order win' || a.order_cr==null) return '';
+  const val=`₹${a.order_cr>=100?fmtI(a.order_cr):fmt(a.order_cr,a.order_cr<10?2:1)} cr`;
+  if(a.order_pct==null) return `<span class="an-size" title="${AN_SIZE_TIP}">${val}</span>`;
+  const tier=a.order_pct>=15?' big':a.order_pct>=5?' mid':'';
+  return `<span class="an-size${tier}" title="${AN_SIZE_TIP}">${val} · ${fmt(a.order_pct,a.order_pct<10?1:0)}% of ${esc(a.sales_fy||'')} sales</span>`;
+}
+
 function anRowHtml(a){
   return `<tr>
     <td>${esc(mvDay(a.date))}</td>
     <td><b class="mv-tick">${esc(a.symbol)}</b><span class="mv-name">${esc(a.name||a.symbol)}</span>${a.board_code?'<span class="mv-onboard">On the board</span>':''}</td>
-    <td><span class="an-cat">${esc(a.kind)}</span></td>
+    <td><span class="an-cat">${esc(a.kind)}</span>${anOrderSize(a)}</td>
     <td class="an-summary">${a.url?`<a href="${esc(a.url)}" target="_blank" rel="noopener">${esc(a.summary||a.category)} ↗</a>`:esc(a.summary||a.category)}</td>
   </tr>`;
 }

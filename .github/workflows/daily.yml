@@ -103,7 +103,7 @@ jobs:
         run: |
           sudo apt-get update -qq
           sudo apt-get install -y -qq poppler-utils unzip
-          pip install -r backend/requirements.txt beautifulsoup4 anthropic
+          pip install -r backend/requirements.txt beautifulsoup4 anthropic pypdf
           cd automation
           npm install --no-audit --no-fund
           npx playwright install --with-deps chromium
