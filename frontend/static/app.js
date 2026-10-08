@@ -6617,7 +6617,7 @@ function ssHistDay(){
       <td style="background:${ssHeat(r.up)}" class="cur"><b>${fmt(r.up,0)}%${r.vs!=null?`<i class="ss-vs ${r.vs>0?'up':'dn'}">${r.vs>0?'▲':'▼'}</i>`:''}</b></td><td><b>${ssPct(r.med,2)}</b></td><td><b>${ssPct(r.vs,2)}</b></td></tr>`).join('')}
     ${!rows.length?`<tr><td colspan="4" class="nd" style="text-align:left;padding:14px">No sector ${SS.beat==='beat'?'beat':'lagged'} the Nifty 500 that day.</td></tr>`:''}
     </tbody></table></div>
-    <p class="cp-sub" style="margin-top:8px">${SS.beat?`<b>${rows.length} of ${all}</b> sectors ${SS.beat==='beat'?'beat':'lagged'} the Nifty 500 (${ssPct(nRet,2)}) on ${esc(rcDayLong(SS.histDate))}. `:''}An older session, from the daily history: every traded member of each sector counts (the Liquid only / Hide SME switches apply to the last five sessions). Cards below show the latest data.</p>`;
+    <p class="cp-sub" style="margin-top:8px">${SS.beat?`<b>${rows.length} of ${all}</b> sectors ${SS.beat==='beat'?'beat':'lagged'} the Nifty 500 (${ssPct(nRet,2)}) on ${esc(rcDayLong(SS.histDate))}. `:''}An older session, from the daily history: every traded member of each sector counts (the Liquid only / Hide SME switches apply to the last five sessions). </p>`;
 }
 function ssOverview(){
   const d=SS.data, cols=ssCols(), cur=ssCur(), b=d.benchmark;
@@ -6654,7 +6654,8 @@ function ssOverview(){
       <p class="cp-lab" style="margin-top:8px">Leading ${esc(cur.long)}${SS.liquid?'':' (liquid stocks)'}</p>
       <ol class="ss-lead">${lead.map(s=>`<li><span>${esc(s.symbol||s.code)}</span><small>${esc((s.full_name||s.name||'').slice(0,28))}</small>${ssPct(cur.get(s))}</li>`).join('')||'<li class="nd">—</li>'}</ol></article>`; };
   const grp=g=>rows.filter(r=>(r.sec.group||'theme')===g);
-  return heatOut + ['theme','nse'].filter(g=>grp(g).length).map(g=>`<h3 class="ss-grp-h">${SS_GRP[g]} <small>${grp(g).length}</small></h3><div class="ss-cards">${grp(g).map(card).join('')}</div>`).join('') + `
+  /* the per-sector cards were dropped on request: the table above carries the same numbers */
+  return heatOut + `
     <p class="caveat">Every listed company in each sector's NSE industries — NSE and BSE, main board and SME — from the exchanges' own closing prices (splits and bonuses accounted for). "vs Nifty 500" is the sector's median stock minus the index. A market-breadth monitor for research, not a buy list: our backtest found broad sector moves gave no dependable edge on their own.</p>`;
 }
 function ssDetail(){
