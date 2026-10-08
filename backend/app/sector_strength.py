@@ -66,6 +66,9 @@ SECTORS = [
         ("IN01/IN0101/IN010101/IN010101008", "Trading - Chemicals"),
         ("IN01/IN0101/IN010102/IN010102002", "Pesticides & Agrochemicals"),
         ("IN01/IN0101/IN010102/IN010102001", "Fertilizers")]},
+    # Specialty Chemicals on its own as well (it is also inside Chemicals above)
+    {"slug": "specialty-chemicals", "name": "Specialty Chemicals", "industries": [
+        ("IN01/IN0101/IN010101/IN010101002", "Specialty Chemicals")]},
     {"slug": "healthcare", "name": "Healthcare", "industries": [
         ("IN06/IN0601/IN060101/IN060101001", "Pharmaceuticals"),
         ("IN06/IN0601/IN060101/IN060101002", "Biotechnology"),

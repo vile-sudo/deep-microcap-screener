@@ -6404,7 +6404,7 @@ function coDocuments(d){
    weight) against the Nifty 500, rebased to 0% at the start of the chosen range -- the TradingView
    "compare" view. Hover for every line's value on a day. */
 const SSC={ind:null, range:'1Y', weight:'ew', hidden:new Set()};
-const SSC_COLORS={nifty500:'var(--ink)', defence:'#2563eb', chemicals:'#db2777', healthcare:'#16a34a', 'capital-markets':'#ea580c', 'electrical-equipment':'#7c3aed', jewellery:'#ca8a04'};
+const SSC_COLORS={nifty500:'var(--ink)', defence:'#2563eb', chemicals:'#db2777', healthcare:'#16a34a', 'capital-markets':'#ea580c', 'electrical-equipment':'#7c3aed', jewellery:'#ca8a04', 'specialty-chemicals':'#0891b2'};
 const SSC_RANGES=[['1W',5],['1M',21],['3M',63],['6M',126],['YTD',0],['1Y',252],['2Y',504],['3Y',99999]];
 async function sscLoad(){
   if(!SSC.ind) SSC.ind = await fetchJSON('/api/sector-strength/indices').catch(()=>({dates:[]}));
