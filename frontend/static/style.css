@@ -2564,3 +2564,9 @@ mark.tr-hit.cur{background:#f59e0b;color:#111}
 .ss-datepick .cp-lab{margin:0}
 .ss-datepick select{min-width:170px}
 .ss-hday td{min-width:120px}
+
+.ss-live{display:flex;align-items:center;gap:8px;font-size:12.5px;color:var(--ink2);margin:-4px 0 10px}
+.ss-live i{width:8px;height:8px;border-radius:50%;background:var(--muted);display:inline-block}
+.ss-live.on i{background:#16a34a;box-shadow:0 0 0 3px rgba(22,163,74,.2);animation:sslive 1.6s infinite}
+.ss-live.off{color:var(--muted)}
+@keyframes sslive{50%{box-shadow:0 0 0 6px rgba(22,163,74,0)}}

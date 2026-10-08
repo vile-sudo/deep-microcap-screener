@@ -9,6 +9,7 @@ GET  /api/market/trending   board companies breaking their 1-day, 1-week,
                             quotes against the stored daily history) while
                             the market is open and Zerodha is connected;
                             otherwise from the latest end-of-day session.
+GET  /api/sector-strength/live  today's moves for Sector Strength, from Zerodha (app/sector_live.py)
 GET  /api/kite/status       is Zerodha configured / connected
 GET  /api/kite/login?key=   start the daily Zerodha login (needs KITE_ADMIN_KEY)
 GET  /api/kite/callback     where Zerodha sends the login back
@@ -246,6 +247,13 @@ def _check_admin(key: str, request: Request | None = None) -> None:
     admin = get_settings().kite_admin_key
     if not admin or not hmac.compare_digest(key or "", admin):
         raise HTTPException(status_code=403, detail="Wrong or missing admin key")
+
+
+@router.get("/api/sector-strength/live")
+def sector_strength_live():
+    """Today's move for every Sector Strength stock and the Nifty 500, from Zerodha (app/sector_live.py)."""
+    from .. import sector_live
+    return sector_live.snapshot()
 
 
 @router.get("/api/kite/status")

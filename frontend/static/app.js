@@ -1466,7 +1466,7 @@ function applyState(){
   if(get('r')) RP.code=get('r');
   if(get('ss') && /^[a-z0-9-]+$/.test(get('ss'))) SS.slug=get('ss');
   if(get('ip') && /^[A-Za-z0-9&_.-]{1,40}$/.test(get('ip'))) IPR.symbol=get('ip');
-  if(/^(r[1235]|d[0-4])$/.test(get('sw')||'')){ SS.sel=get('sw'); SS.mode=SS.sel[0]==='d'?'day':'cum'; }
+  if(/^(r[1235]|d[0-4]|live)$/.test(get('sw')||'')){ SS.sel=get('sw'); if(SS.sel!=='live') SS.mode=SS.sel[0]==='d'?'day':'cum'; }
   if(get('c')){ CO.code=get('c'); if(CO_TABS.some(t=>t[0]===get('ct'))) CO.tab=get('ct'); }
   if(['ann','ins','deals'].includes(get('dt'))) DL.pendingTab=get('dt');   /* a filing-alert notification opens the Announcements tab */
   if(get('s') && /^[a-z0-9-]+$/.test(get('s'))) SC.slug=get('s');
@@ -6508,13 +6508,38 @@ const SS={data:null, hist:null, mode:'cum', sel:'r3', slug:null, liquid:false, n
 const SS_W=[1,2,3,5];
 function ssDay(iso){ return new Date(iso+'T00:00:00Z').toLocaleDateString('en-IN',{day:'numeric',month:'short',timeZone:'UTC'}); }
 /* the columns in view: windows (cumulative) or sessions (day by day) */
+function ssLiveCol(){
+  const L=SS.live;
+  if(!L || !L.moves || !['live','closed'].includes(L.status)) return [];
+  const t=new Date(L.as_of).toLocaleTimeString('en-IN',{hour:'2-digit',minute:'2-digit',hour12:false,timeZone:'Asia/Kolkata'});
+  return [{k:'live', live:true, label:L.status==='live'?`LIVE ${t}`:`Today ${ssDay(L.date)}`, long:L.status==='live'?`today so far (${t})`:'today',
+    get:s=>{ const v=L.moves[s.exchange+':'+s.symbol]; return v==null?null:v; },
+    bench:()=>(L.benchmark||{}).chg, bb:()=>(L.benchmark||{}).breadth, hist:null}];
+}
 function ssCols(){
   const b=SS.data.benchmark||{};
-  /* newest session first (leftmost) */
-  if(SS.mode==='day') return (SS.data.sessions||[]).map((dt,i)=>({k:'d'+i, label:ssDay(dt), long:`on ${rcDayShort(dt)}`, get:s=>s.d?s.d[i]:null,
-    bench:()=>b.d?b.d[i]:null, bb:()=>b.d_breadth?b.d_breadth[i]:null, hist:null})).reverse();
-  return SS_W.map(w=>({k:'r'+w, label:`${w}D`, long:`over the last ${w} day${w>1?'s':''}`, get:s=>s['r'+w], bench:()=>b['r'+w],
-    bb:()=>b.breadth?b.breadth[w]:null, hist:String(w)}));
+  /* newest session first (leftmost); today's live column, when there is one, before them all */
+  if(SS.mode==='day') return ssLiveCol().concat((SS.data.sessions||[]).map((dt,i)=>({k:'d'+i, label:ssDay(dt), long:`on ${rcDayShort(dt)}`, get:s=>s.d?s.d[i]:null,
+    bench:()=>b.d?b.d[i]:null, bb:()=>b.d_breadth?b.d_breadth[i]:null, hist:null})).reverse());
+  return ssLiveCol().concat(SS_W.map(w=>({k:'r'+w, label:`${w}D`, long:`over the last ${w} day${w>1?'s':''}`, get:s=>s['r'+w], bench:()=>b['r'+w],
+    bb:()=>b.breadth?b.breadth[w]:null, hist:String(w)})));
+}
+/* Zerodha's live prices: fetched with the page, then every minute while the market is open and this tab is on screen */
+async function ssLiveLoad(first){
+  try{ SS.live=await fetchJSON('/api/sector-strength/live'); }catch(e){ SS.live={status:'error'}; }
+  if(first && SS.live && ['live','closed'].includes(SS.live.status) && !/[#&]sw=/.test(location.hash)) SS.sel='live';
+  clearTimeout(SS.liveT);
+  if(SS.live && (SS.live.status==='live' || SS.live.status==='loading'))
+    SS.liveT=setTimeout(()=>{ if(VIEW==='sstrength' && !document.hidden) ssLiveLoad().then(()=>{ if(VIEW==='sstrength') ssRender(); }); else ssLiveLoad(); }, SS.live.status==='loading'?8000:60000);
+}
+function ssLiveBar(){
+  const L=SS.live||{}, admin=!!(ME&&ME.is_admin)||!ACCT.accounts;
+  if(L.status==='live') return `<p class="ss-live on"><i></i>Live from Zerodha · updated ${esc(new Date(L.as_of).toLocaleTimeString('en-IN',{timeZone:'Asia/Kolkata'}))} · ${fmtI(L.covered)} of ${fmtI(L.requested)} stocks priced · refreshes every minute</p>`;
+  if(L.status==='closed') return `<p class="ss-live"><i></i>Market closed · today's closing moves from Zerodha (the nightly run adds today to the dated columns)</p>`;
+  if(L.status==='not_connected') return `<p class="ss-live off">Live prices: Zerodha isn't connected today${admin?` — <a href="#" id="ss-kite">connect it in Market view</a> (the daily Zerodha login)`:''}.</p>`;
+  if(L.status==='loading') return `<p class="ss-live off">Fetching today's prices from Zerodha…</p>`;
+  if(L.status==='error') return `<p class="ss-live off">Live prices: couldn't reach Zerodha just now; trying again.</p>`;
+  return '';
 }
 function ssCur(){ const c=ssCols(); return c.find(x=>x.k===SS.sel) || (SS.mode==='day' ? c[0] : c[c.length-1]); }
 function ssStocks(sec){
@@ -6550,7 +6575,10 @@ async function openSStrength(){
   }
   if(!SS.data.sectors || !SS.data.sectors.length){ body.innerHTML='<p class="view-hint">Not built yet — it refreshes automatically after each trading day.</p>'; return; }
   ssRender();
+  if(!SS.liveAsked){ SS.liveAsked=true; ssLiveLoad(true).then(()=>{ if(VIEW==='sstrength') ssRender(); }); }
+  else if(SS.live && SS.live.status==='live' && Date.now()-Date.parse(SS.live.as_of)>60000) ssLiveLoad().then(()=>{ if(VIEW==='sstrength') ssRender(); });
 }
+document.addEventListener('visibilitychange', ()=>{ if(!document.hidden && VIEW==='sstrength' && SS.live && SS.live.status==='live' && Date.now()-Date.parse(SS.live.as_of)>60000) ssLiveLoad().then(()=>ssRender()); });
 function ssSave(){ try{ localStorage.setItem('dms.ss',JSON.stringify({mode:SS.mode,sel:SS.sel,liquid:SS.liquid,nosme:SS.nosme})); }catch(e){} }
 function ssStickTop(){ const n=document.getElementById('topnav'); document.documentElement.style.setProperty('--ss-top', (n?n.offsetHeight:0)+'px'); }
 window.addEventListener('resize', ssStickTop);
@@ -6564,16 +6592,18 @@ function ssRender(){
     <div class="rc-seg" role="group" aria-label="${SS.mode==='day'?'Session':'Window'}">${cols.map(c=>`<button type="button" data-ssw="${c.k}" class="${cur.k===c.k?'on':''}">${c.label}</button>`).join('')}</div>
     <label class="news-pm"><input type="checkbox" id="ss-liq"${SS.liquid?' checked':''}> Liquid only (₹${fmt(d.liquid_turnover_cr||1,0)} Cr+/day)</label>
     <label class="news-pm"><input type="checkbox" id="ss-sme"${SS.nosme?' checked':''}> Hide SME</label></div>
+    ${ssLiveBar()}
     <p class="cp-sub ss-explain">${SS.mode==='day'
       ? 'Day by day: each column is that session\'s own move — the close against the previous close.'
       : 'Over the last N days: <b>3D</b> is the change from the close three sessions ago to the latest close (the sum of those days\' moves, compounded) — not a single day\'s move. Switch to <b>Day by day</b> to see each session separately.'}</p>`;
   body.innerHTML = ctr + (SS.slug ? ssDetail() : sscHtml() + ssOverview());
   if(body.querySelector('#ssc-box')) sscWire(body);
-  body.querySelectorAll('[data-ssm]').forEach(b=>b.onclick=()=>{ if(SS.mode===b.dataset.ssm) return; SS.histDate=null; SS.mode=b.dataset.ssm; SS.sel = SS.mode==='day' ? 'd'+((d.sessions||[]).length-1) : 'r3'; SS.sort=null; ssSave(); ssRender(); syncURL(); });
+  body.querySelectorAll('[data-ssm]').forEach(b=>b.onclick=()=>{ if(SS.mode===b.dataset.ssm) return; SS.histDate=null; SS.mode=b.dataset.ssm; SS.sel = SS.sel==='live' && ssLiveCol().length ? 'live' : SS.mode==='day' ? 'd'+((d.sessions||[]).length-1) : 'r3'; SS.sort=null; ssSave(); ssRender(); syncURL(); });
   body.querySelectorAll('[data-ssw]').forEach(b=>b.onclick=()=>{ SS.sel=b.dataset.ssw; SS.sort=null; SS.histDate=null; ssSave(); ssRender(); syncURL(); });
   document.getElementById('ss-liq').onchange=e=>{ SS.liquid=e.target.checked; ssSave(); ssRender(); };
   document.getElementById('ss-sme').onchange=e=>{ SS.nosme=e.target.checked; ssSave(); ssRender(); };
   body.querySelectorAll('[data-ssbeat]').forEach(b=>b.onclick=()=>{ SS.beat=b.dataset.ssbeat; ssRender(); });
+  const kc=document.getElementById('ss-kite'); if(kc) kc.onclick=e=>{ e.preventDefault(); setView('market'); };
   const dp=document.getElementById('ss-date'); if(dp) dp.onchange=()=>{
     const v=dp.value, i=(d.sessions||[]).indexOf(v);
     if(!v){ SS.histDate=null; }
@@ -6596,7 +6626,7 @@ function ssBenchRow(cols, cur){
 /* dates the picker offers: the last 60 sessions, newest first */
 function ssDateOptions(){
   const dates=((SS.hist&&SS.hist.dates)||[]).slice().reverse();
-  const cur = SS.histDate || (SS.mode==='day' ? (SS.data.sessions||[])[+String(SS.sel).slice(1)] : '');
+  const cur = SS.histDate || (SS.mode==='day' && /^d\d$/.test(SS.sel) ? (SS.data.sessions||[])[+String(SS.sel).slice(1)] : '');
   return `<option value="">${SS.mode==='day'?'Pick a date':'Pick a date (day by day)'}</option>`
     + dates.map(x=>`<option value="${x}"${x===cur?' selected':''}>${esc(rcDayShort(x))}</option>`).join('');
 }
