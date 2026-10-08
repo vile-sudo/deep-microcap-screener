@@ -6372,12 +6372,13 @@ function ssDay(iso){ return new Date(iso+'T00:00:00Z').toLocaleDateString('en-IN
 /* the columns in view: windows (cumulative) or sessions (day by day) */
 function ssCols(){
   const b=SS.data.benchmark||{};
+  /* newest session first (leftmost) */
   if(SS.mode==='day') return (SS.data.sessions||[]).map((dt,i)=>({k:'d'+i, label:ssDay(dt), long:`on ${rcDayShort(dt)}`, get:s=>s.d?s.d[i]:null,
-    bench:()=>b.d?b.d[i]:null, bb:()=>b.d_breadth?b.d_breadth[i]:null, hist:null}));
+    bench:()=>b.d?b.d[i]:null, bb:()=>b.d_breadth?b.d_breadth[i]:null, hist:null})).reverse();
   return SS_W.map(w=>({k:'r'+w, label:`${w}D`, long:`over the last ${w} day${w>1?'s':''}`, get:s=>s['r'+w], bench:()=>b['r'+w],
     bb:()=>b.breadth?b.breadth[w]:null, hist:String(w)}));
 }
-function ssCur(){ const c=ssCols(); return c.find(x=>x.k===SS.sel) || c[c.length-1]; }
+function ssCur(){ const c=ssCols(); return c.find(x=>x.k===SS.sel) || (SS.mode==='day' ? c[0] : c[c.length-1]); }
 function ssStocks(sec){
   const sme=new Set((SS.data&&SS.data.sme)||[]);
   return sec.stocks.filter(s=>s.exchange && (!SS.liquid || s.liquid) && (!SS.nosme || !ssIsSme(s,sme)));
