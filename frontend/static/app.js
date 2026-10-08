@@ -283,6 +283,7 @@ function setView(v, opts){
   NAVID = opts.nav || (VIEW==='company' ? 'companies-link' : VIEW+'-link');
   if(!opts.keep) clearFilters();
   if(!opts.keep && VIEW==='sstrength') SS.slug=null;
+  if(!opts.keep && VIEW==='ipor') IPR.symbol=null;
   document.body.dataset.view=VIEW;
   document.querySelectorAll('[data-views]').forEach(el=>{ el.hidden=!el.dataset.views.split(' ').includes(VIEW); });
   document.querySelectorAll('.side-link').forEach(l=>l.classList.toggle('active', l.id===NAVID));
@@ -1029,7 +1030,7 @@ function openDrawer(d){
   const pen=(d.penalty_detail||[]).filter(Boolean);
   drawer.innerHTML=`
    <div class="dhead">
-     <button class="close" onclick="closeDrawer()">×</button>
+     <button class="close" onclick="closeDrawer('ui')">×</button>
      <div class="dnav">
        <span class="dpos" id="dpos"></span>
        <button class="dpin${WATCH.has(d.code)?' on':''}" id="dpin" title="${WATCH.has(d.code)?'Remove from':'Add to'} watchlist (w)">${WATCH.has(d.code)?'★':'☆'}</button>
@@ -1136,6 +1137,7 @@ function openDrawer(d){
      ${d.completeness!==null&&d.completeness!==undefined?`<div class="sec"><h4>Data completeness</h4><p>${d.completeness}% of tracked fields populated. Raw score ${fmt(d.score)}; confidence-adjusted score ${fmt(d.adj_score)}; after risk penalty ${fmt(d.final_score)}.</p></div>`:''}
    </div>`;
   drawer.classList.add('on'); scrim.classList.add('on');
+  NavOverlay.open('drawer', ()=>closeDrawer('hist'));
   drawer.scrollTop=0;
   /* wire the header nav so the drawer walks the filtered list without ever closing */
   DRAWERI = CURRENT.indexOf(d);
@@ -1159,10 +1161,15 @@ function openDrawer(d){
     }catch(e){ dhide.disabled=false; alert('Could not remove: '+e.message); }
   };
 }
-function closeDrawer(){ drawer.classList.remove('on'); scrim.classList.remove('on'); }
+function closeDrawer(how){
+  const was=drawer.classList.contains('on');
+  drawer.classList.remove('on'); scrim.classList.remove('on');
+  if(!was || how==='hist') return;
+  if(how==='ui') NavOverlay.uiClose('drawer'); else NavOverlay.dropped('drawer');
+}
   window.closeDrawer = closeDrawer;
-scrim.onclick=closeDrawer;
-addEventListener('keydown',e=>{ if(e.key==='Escape') closeDrawer(); });
+scrim.onclick=()=>closeDrawer('ui');
+addEventListener('keydown',e=>{ if(e.key==='Escape' && drawer.classList.contains('on') && !modal.classList.contains('on')) closeDrawer('ui'); });
 
 /* ---------- theme toggle ---------- */
 const tbtn=document.getElementById('theme');
@@ -1364,10 +1371,18 @@ function openCompare(){
 
 /* ---------- modal ---------- */
 const modal=document.getElementById('modal'), mbody=document.getElementById('mbody');
-function openModal(html){ modal.querySelector('.mbox').classList.remove('narrow','tr-box'); mbody.innerHTML=html; modal.classList.add('on'); modal.scrollTop=0; }
-function closeModal(){ modal.classList.remove('on'); }
-document.getElementById('mclose').onclick=closeModal;
-modal.onclick=e=>{ if(e.target===modal) closeModal(); };
+function openModal(html){ modal.querySelector('.mbox').classList.remove('narrow','tr-box'); mbody.innerHTML=html; modal.classList.add('on'); modal.scrollTop=0;
+  NavOverlay.open('modal', ()=>closeModal('hist')); }
+/* how: 'ui' = the reader closed it (×, Esc, outside click) -- steps its history entry back off;
+   'hist' = closed by the browser's Back; nothing = closed by code */
+function closeModal(how){
+  const was=modal.classList.contains('on');
+  modal.classList.remove('on');
+  if(!was || how==='hist') return;
+  if(how==='ui') NavOverlay.uiClose('modal'); else NavOverlay.dropped('modal');
+}
+document.getElementById('mclose').onclick=()=>closeModal('ui');
+modal.onclick=e=>{ if(e.target===modal) closeModal('ui'); };
 
 /* The version history is no longer a section on the page, so the button opens it. */
 document.getElementById('whatsnew').onclick=()=>{
@@ -1407,6 +1422,8 @@ function syncURL(){
   else if(VIEW!=='overview') p.set('v',VIEW);
   if(VIEW==='sectors' && SC.slug){ p.set('s',SC.slug); if(SC.edition) p.set('se',SC.edition); }
   if(VIEW==='sstrength'){ if(SS.slug) p.set('ss',SS.slug); if(SS.sel!=='r3') p.set('sw',SS.sel); }
+  if(VIEW==='ipor' && IPR.symbol) p.set('ip',IPR.symbol);
+  if(VIEW==='deals' && DL.tab && DL.tab!=='deals') p.set('dt',DL.tab);
   if(VIEW==='company' && CO.code){ p.set('c',CO.code); if(CO.tab!=='overview') p.set('ct',CO.tab); }
   if(VIEW==='reports' && RP.code){ p.set('r',RP.code); if(DR.period) p.set('rp',DR.period); if(DR.tab==='board') p.set('rt','board'); }
   if(TILE) p.set('tile',TILE);
@@ -1422,19 +1439,20 @@ function syncURL(){
   const h=p.toString(), url=location.pathname+location.search+(h?'#'+h:'');
   /* Moving to another page (a different view, sector, company, tab, report...) adds a browser-history entry,
      so the browser's Back button returns to where you were; a filter or sort change only updates the link. */
-  const page=q=>['v','s','se','ss','c','ct','r'].map(k=>q.get(k)||'').join('|');
+  const page=q=>['v','s','se','ss','c','ct','r','ip','dt'].map(k=>q.get(k)||'').join('|');
   const was=new URLSearchParams(location.hash.replace(/^#/,''));
   try{
     if(!window.__navRestoring && !BUSY && page(p)!==page(was)) history.pushState(null,'',url);
-    else history.replaceState(null,'',url);
+    else history.replaceState(history.state,'',url);
   }catch(e){}
 }
 /* Back / Forward: rebuild the page the history entry describes */
-window.addEventListener('popstate', ()=>{
+window.addEventListener('popstate', e=>{
+  if(NavOverlay.pop(e)) return;
   window.__navRestoring=true;
   try{
-    closeModal();
-    SS.slug=null; CO.tab='overview'; RP.code=null; SC.slug=null; SC.edition=null; FL.tab='filters';
+    closeModal('hist'); closeDrawer('hist');
+    SS.slug=null; CO.tab='overview'; RP.code=null; SC.slug=null; SC.edition=null; FL.tab='filters'; IPR.symbol=null; DL.pendingTab='deals';
     BUSY=true; clearFilters(); VIEW='overview'; applyState(); BUSY=false;
     setView(VIEW,{keep:true, nav: VIEW==='company' ? 'companies-link' : undefined});
   }finally{ window.__navRestoring=false; }
@@ -1447,9 +1465,10 @@ function applyState(){
   else if(VIEWS.includes(get('v'))) VIEW=get('v');
   if(get('r')) RP.code=get('r');
   if(get('ss') && /^[a-z0-9-]+$/.test(get('ss'))) SS.slug=get('ss');
+  if(get('ip') && /^[A-Za-z0-9&_.-]{1,40}$/.test(get('ip'))) IPR.symbol=get('ip');
   if(/^(r[1235]|d[0-4])$/.test(get('sw')||'')){ SS.sel=get('sw'); SS.mode=SS.sel[0]==='d'?'day':'cum'; }
   if(get('c')){ CO.code=get('c'); if(CO_TABS.some(t=>t[0]===get('ct'))) CO.tab=get('ct'); }
-  if(get('dt')==='ann') DL.pendingTab='ann';   /* a filing-alert notification opens the Announcements tab */
+  if(['ann','ins','deals'].includes(get('dt'))) DL.pendingTab=get('dt');   /* a filing-alert notification opens the Announcements tab */
   if(get('s') && /^[a-z0-9-]+$/.test(get('s'))) SC.slug=get('s');
   if(get('se') && /^\d{4}-\d{2}$/.test(get('se'))) SC.edition=get('se');
   if(get('rp') && /^FY\d\d-Q[1-4]$/.test(get('rp'))) DR.period=get('rp');
@@ -1807,7 +1826,7 @@ document.getElementById('tiles').onclick=e=>{
   if(!same) document.getElementById('results-head').scrollIntoView({behavior:'smooth',block:'start'});
 };
 addEventListener('keydown',e=>{
-  if(e.key==='Escape' && modal.classList.contains('on')){ closeModal(); return; }
+  if(e.key==='Escape' && modal.classList.contains('on')){ closeModal('ui'); return; }
   const ae=document.activeElement||{};
   if(/^(INPUT|TEXTAREA|SELECT)$/.test(ae.tagName||'')) return;
   if(e.ctrlKey||e.metaKey||e.altKey) return;
@@ -2689,6 +2708,7 @@ function dlWireTabs(){
   document.querySelectorAll('.dl-tab').forEach(t=>t.onclick=()=>{
     document.querySelectorAll('.dl-tab').forEach(x=>{ x.classList.toggle('on',x===t); x.setAttribute('aria-selected',String(x===t)); });
     const tab=t.dataset.dltab;
+    DL.tab=tab; if(VIEW==='deals') syncURL();
     document.getElementById('dltab-deals').hidden = tab!=='deals';
     document.getElementById('dltab-ann').hidden = tab!=='ann';
     document.getElementById('dltab-ins').hidden = tab!=='ins';
@@ -3201,6 +3221,7 @@ function iporRenderLib(){
 
 async function openIpoReport(symbol){
   IPR.symbol=symbol;
+  syncURL();
   window.scrollTo({top:0});
   await iporRenderDoc(symbol);
 }
@@ -3258,7 +3279,7 @@ async function iporRenderDoc(symbol){
       </section>
     </div>
   </div>`;
-  document.getElementById('ipor-back').onclick=()=>{ IPR.symbol=null; iporRenderLib(); window.scrollTo({top:0}); };
+  document.getElementById('ipor-back').onclick=()=>{ IPR.symbol=null; iporRenderLib(); syncURL(); window.scrollTo({top:0}); };
   document.getElementById('ipor-print').onclick=()=>window.print();
 }
 

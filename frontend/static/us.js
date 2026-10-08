@@ -320,8 +320,9 @@ function openDrawer(code, list) {
   drawer.classList.add("on");
   scrim.classList.add("on");
   drawer.scrollTop = 0;
-  document.getElementById("us-drawer-close").onclick = closeDrawer;
-  scrim.onclick = closeDrawer;
+  NavOverlay.open("drawer", () => closeDrawer("hist"));
+  document.getElementById("us-drawer-close").onclick = () => closeDrawer("ui");
+  scrim.onclick = () => closeDrawer("ui");
   const step = n => { const nx = DRAWER_LIST[i + n]; if (nx) openDrawer(nx.code); };
   document.getElementById("us-dprev").onclick = () => step(-1);
   document.getElementById("us-dnext").onclick = () => step(1);
@@ -329,16 +330,20 @@ function openDrawer(code, list) {
   document.getElementById("us-dchart").onclick = () => openChart(d.code, true);
   document.getElementById("us-dreport").onclick = () => { closeDrawer(); reportOpen(d.code); };
 }
-function closeDrawer() {
+/* how: "ui" = the reader closed it, "hist" = the browser's Back, nothing = closed by code (see navhist.js) */
+function closeDrawer(how) {
   const drawer = document.getElementById("us-drawer");
+  const was = drawer.classList.contains("on");
   drawer.classList.remove("on");
   delete drawer.dataset.kind;
   document.getElementById("us-scrim").classList.remove("on");
+  if (!was || how === "hist") return;
+  if (how === "ui") NavOverlay.uiClose("drawer"); else NavOverlay.dropped("drawer");
 }
 addEventListener("keydown", e => {
   const drawer = document.getElementById("us-drawer");
   if (!drawer.classList.contains("on")) return;
-  if (e.key === "Escape") { drawer.dataset.kind === "company" ? closeDrawer() : closeChart(); return; }
+  if (e.key === "Escape") { drawer.dataset.kind === "company" ? closeDrawer("ui") : closeChart("ui"); return; }
   if (drawer.dataset.kind !== "company" || e.target.closest("input,select,textarea")) return;
   if (e.key === "ArrowLeft") document.getElementById("us-dprev").click();
   if (e.key === "ArrowRight") document.getElementById("us-dnext").click();
@@ -390,6 +395,8 @@ async function boot() {
   auxLoadAll();
   alertsAccountSync();
   if (DEEP_LINK_AL) usAlertAct(DEEP_LINK_AL);
+  { const p = new URLSearchParams(location.hash.replace(/^#/, ""));
+    if (US_TABS.includes(p.get("tab")) && p.get("tab") !== "overview") { if (p.get("th")) TH.theme = p.get("th"); showUsTab(p.get("tab"), true); } }
 }
 boot().catch(e => {
   document.querySelector(".tablewrap").innerHTML = `<div class="us-empty">Could not load the US board: ${esc(e.message)}</div>`;
@@ -728,8 +735,9 @@ async function openChart(key, isBoard) {
   drawer.dataset.kind = "chart";
   drawer.classList.add("on");
   scrim.classList.add("on");
-  document.getElementById("us-chart-close").onclick = closeChart;
-  scrim.onclick = closeChart;
+  NavOverlay.open("drawer", () => closeChart("hist"));
+  document.getElementById("us-chart-close").onclick = () => closeChart("ui");
+  scrim.onclick = () => closeChart("ui");
 
   if (!GSERIES.has(key)) await galFetch(key, isBoard);
   const data = GSERIES.get(key);
@@ -756,11 +764,14 @@ async function openChart(key, isBoard) {
   }
 }
 
-function closeChart() {
+function closeChart(how) {
+  const was = document.getElementById("us-drawer").classList.contains("on");
   delete document.getElementById("us-drawer").dataset.kind;
   document.getElementById("us-drawer").classList.remove("on");
   document.getElementById("us-scrim").classList.remove("on");
   if (GAL_CHART) { try { klinecharts.dispose("us-chart-box"); } catch (e) {} GAL_CHART = null; }
+  if (!was || how === "hist") return;
+  if (how === "ui") NavOverlay.uiClose("drawer"); else NavOverlay.dropped("drawer");
 }
 
 /* ================================================================
@@ -1348,7 +1359,7 @@ function renderThemes() {
         + `<span class="theme-ic">${THEME_FOLDER_SVG}</span><span class="theme-name">${esc(t)}</span> <span class="tc">${rows.length}</span></button>`;
     }).join("");
     box.querySelectorAll("[data-uth]").forEach(b => {
-      b.onclick = () => { TH.theme = b.dataset.uth; renderThemes(); window.scrollTo({top: 0, behavior: "smooth"}); };
+      b.onclick = () => { TH.theme = b.dataset.uth; usPushPage("themes", TH.theme); renderThemes(); window.scrollTo({top: 0, behavior: "smooth"}); };
     });
     return;
   }
@@ -1364,7 +1375,7 @@ function renderThemes() {
         + `<span class="file-copy"><b>${esc(d.name || "Unnamed company")}</b><small>${esc(d.code)} · Score ${fmtN(d.final_score)} · ${fmtUSDShort(d.market_cap_usd)}</small></span>`
         + `<span class="file-pin${on ? " on" : ""}" data-uth-pin="${esc(d.code)}" role="button" title="${on ? "Remove from" : "Add to"} watchlist" aria-label="Star ${esc(d.name)}">${on ? "★" : "☆"}</span><span class="file-arrow">›</span></button>`;
     }).join("")}</div>`;
-  document.getElementById("us-theme-back").onclick = () => { TH.theme = null; renderThemes(); };
+  document.getElementById("us-theme-back").onclick = () => { TH.theme = null; usPushPage("themes", null); renderThemes(); };
   results.querySelectorAll("[data-uth-pin]").forEach(s => {
     s.onclick = e => { e.stopPropagation(); toggleStar(s.dataset.uthPin).then(renderThemes); };
   });
@@ -1614,7 +1625,32 @@ function ago(iso) {
 }
 const daysSince = iso => Math.floor((earnToday() - earnUtc(iso)) / 86400000);
 const compactUSD = v => v >= 1e6 ? "$" + (v / 1e6).toFixed(v >= 1e7 ? 0 : 1) + "M" : v >= 1e3 ? "$" + Math.round(v / 1e3) + "k" : "$" + Math.round(v);
-function showUsTab(tab) {
+/* The page in the address bar (#tab=..&th=..): each tab, and an opened theme folder, is a browser-history
+   entry, so Back / Forward move between them. fromHist: called while restoring one, so add nothing. */
+let US_CUR_TAB = "overview";
+function usPageHash(tab, th) {
+  const p = new URLSearchParams();
+  if (tab && tab !== "overview") p.set("tab", tab);
+  if (tab === "themes" && th) p.set("th", th);
+  return p.toString();
+}
+function usPushPage(tab, th) {
+  const h = usPageHash(tab, th);
+  if (h === location.hash.replace(/^#/, "")) return;
+  try { history.pushState(null, "", location.pathname + location.search + (h ? "#" + h : "")); } catch (e) {}
+}
+window.addEventListener("popstate", e => {
+  if (NavOverlay.pop(e)) return;
+  closeDrawer("hist"); closeUsModal("hist");
+  const p = new URLSearchParams(location.hash.replace(/^#/, ""));
+  const tab = US_TABS.includes(p.get("tab")) ? p.get("tab") : "overview";
+  TH.theme = tab === "themes" ? (p.get("th") || null) : TH.theme;
+  showUsTab(tab, true);
+  if (tab === "themes") renderThemes();
+});
+function showUsTab(tab, fromHist) {
+  if (!fromHist) { if (tab === "themes" && US_CUR_TAB !== "themes") TH.theme = null; usPushPage(tab, tab === "themes" ? TH.theme : null); }
+  US_CUR_TAB = tab;
   document.querySelectorAll("[data-ustab]").forEach(b => {
     const on = b.dataset.ustab === tab;
     b.classList.toggle("on", on);
@@ -2268,11 +2304,17 @@ function openUsModal(html) {
   usModal().querySelector("#us-mbody").innerHTML = html;
   usModal().classList.add("on");
   usModal().scrollTop = 0;
+  NavOverlay.open("modal", () => closeUsModal("hist"));
 }
-function closeUsModal() { usModal().classList.remove("on"); document.body.classList.remove("us-printing"); }
-document.getElementById("us-mclose").onclick = closeUsModal;
-usModal().onclick = e => { if (e.target === usModal()) closeUsModal(); };
-document.addEventListener("keydown", e => { if (e.key === "Escape" && usModal().classList.contains("on")) closeUsModal(); });
+function closeUsModal(how) {
+  const was = usModal().classList.contains("on");
+  usModal().classList.remove("on"); document.body.classList.remove("us-printing");
+  if (!was || how === "hist") return;
+  if (how === "ui") NavOverlay.uiClose("modal"); else NavOverlay.dropped("modal");
+}
+document.getElementById("us-mclose").onclick = () => closeUsModal("ui");
+usModal().onclick = e => { if (e.target === usModal()) closeUsModal("ui"); };
+document.addEventListener("keydown", e => { if (e.key === "Escape" && usModal().classList.contains("on")) closeUsModal("ui"); });
 
 /* ---------- compare: tick up to four companies on Screens, then open them side by side ---------- */
 const CMP = new Set();
