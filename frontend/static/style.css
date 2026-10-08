@@ -2542,3 +2542,14 @@ mark.tr-hit.cur{background:#f59e0b;color:#111}
 .ss-grp-h small{color:var(--muted);font-weight:500}
 .ssc-legrow{width:100%;display:flex;align-items:center;gap:10px;margin-top:4px}
 .ssc-legrow .cp-lab{margin:0}
+
+/* Share-of-stocks-up: dates and the Nifty 500 row stay in view while scrolling */
+.ss-heatwrap{overflow:visible}
+.ss-heat thead th{position:sticky;top:var(--ss-top,0);z-index:3;background:var(--surface);height:30px;box-shadow:0 -6px 0 var(--surface)}
+.ss-heat tr.ss-bench td{position:sticky;top:calc(var(--ss-top,0px) + 34px);z-index:2;background-color:var(--surface);box-shadow:0 6px 0 var(--surface),0 -4px 0 var(--surface)}
+.ss-heat tr.ss-bench td.ss-benchc:first-child{background:var(--surface)}
+@media (max-width:760px){
+  .ss-heatwrap{overflow:auto;max-height:72vh}
+  .ss-heat thead th{top:0}
+  .ss-heat tr.ss-bench td{top:34px}
+}

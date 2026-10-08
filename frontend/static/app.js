@@ -6552,7 +6552,10 @@ async function openSStrength(){
   ssRender();
 }
 function ssSave(){ try{ localStorage.setItem('dms.ss',JSON.stringify({mode:SS.mode,sel:SS.sel,liquid:SS.liquid,nosme:SS.nosme})); }catch(e){} }
+function ssStickTop(){ const n=document.getElementById('topnav'); document.documentElement.style.setProperty('--ss-top', (n?n.offsetHeight:0)+'px'); }
+window.addEventListener('resize', ssStickTop);
 function ssRender(){
+  ssStickTop();
   const d=SS.data, body=document.getElementById('ss-body'), cols=ssCols(), cur=ssCur();
   SS.sel=cur.k;
   document.getElementById('ss-asof').textContent = d.asof ? 'Closing prices of '+rcDayLong(d.asof) : '';
@@ -6579,8 +6582,8 @@ function ssRender(){
 }
 function ssBenchRow(cols, cur){
   const b=SS.data.benchmark; if(!b) return '';
-  return `<tr class="ss-bench"><td><b>${esc(b.name)}</b><small>${fmtI(b.constituents)} stocks · index ${b.close?fmtI(b.close):''}</small></td>
-    ${cols.map(c=>{ const x=c.bb(), p=ssPu(x); return `<td style="background:${ssHeat(p)}" class="${cur.k===c.k?'cur':''}"><b>${p==null?'—':fmt(p,0)+'%'}</b><small>index ${ssPct(c.bench(),2)}</small></td>`; }).join('')}</tr>`;
+  return `<tr class="ss-bench"><td class="ss-benchc"><b>${esc(b.name)}</b><small>${fmtI(b.constituents)} stocks · index ${b.close?fmtI(b.close):''}</small></td>
+    ${cols.map(c=>{ const x=c.bb(), p=ssPu(x); return `<td style="background-image:linear-gradient(${ssHeat(p)},${ssHeat(p)})" class="ss-benchc${cur.k===c.k?' cur':''}"><b>${p==null?'—':fmt(p,0)+'%'}</b><small>index ${ssPct(c.bench(),2)}</small></td>`; }).join('')}</tr>`;
 }
 function ssOverview(){
   const d=SS.data, cols=ssCols(), cur=ssCur(), b=d.benchmark;
@@ -6590,7 +6593,7 @@ function ssOverview(){
   const SS_GRP={theme:'Themes', nse:'All NSE sectors'};
   const bpu=ssPu(cur.bb()), bw=cur.bench();
   const heat=`<div class="cp-card"><div class="cp-card-h"><h3>Share of stocks up</h3><span class="cp-sub">each cell: % of the sector's stocks that rose ${SS.mode==='day'?'that day':'over that window'} · how many · median move · click a sector</span></div>
-    <div class="mv-tablewrap"><table class="ss-heat"><thead><tr><th></th>${cols.map(c=>`<th class="${cur.k===c.k?'cur':''}">${c.label}</th>`).join('')}</tr></thead><tbody>
+    <div class="ss-heatwrap"><table class="ss-heat"><thead><tr><th></th>${cols.map(c=>`<th class="${cur.k===c.k?'cur':''}">${c.label}</th>`).join('')}</tr></thead><tbody>
     ${ssBenchRow(cols, cur)}
     ${rows.map(({sec,st,a},ri)=>`${ri===0||gOrd(rows[ri-1])!==gOrd(rows[ri])?`<tr class="ss-grp"><td colspan="${cols.length+1}">${SS_GRP[sec.group||'theme']}</td></tr>`:''}<tr data-ss="${ea(sec.slug)}"><td><b>${esc(sec.name)}</b><small>${st.length} stocks</small></td>
       ${cols.map(c=>{ const x=a[c.k], p=ssPu(x); return `<td style="background:${ssHeat(p)}" class="${cur.k===c.k?'cur':''}"><b>${p==null?'—':fmt(p,0)+'%'}</b><small>${x.n?x.up+'/'+x.n+' · med '+ssPct(x.median):''}</small></td>`; }).join('')}</tr>`).join('')}
