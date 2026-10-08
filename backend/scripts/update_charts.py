@@ -33,7 +33,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 from app import alerts, ema_crossover, setups  # noqa: E402
 from app.charts import (  # noqa: E402
     BACKEND_DIR, CHART_DIR, INDEX_FILE, PRICES_DIR, _adjust,
-    build_series, build_universe, isin_index, compute_stats, fetch_bhavcopy, load_index, read_day, safe_name, write_day,
+    build_series, build_universe, drop_repeated_days, isin_index, compute_stats, fetch_bhavcopy, load_index, read_day, safe_name, write_day,
 )
 
 SETUPS_FILE = CHART_DIR / "setups.json"
@@ -144,7 +144,7 @@ def load_days() -> list:
             r[0], r[1], r[2], r[9] = keep(r[0]), keep(r[1]), keep(r[2]), keep(r[9])
             book[r[0]] = r
         slot[0 if f.name.startswith("NSE") else 1] = book
-    return [(d, nse, bse) for d, (nse, bse) in sorted(by_day.items())]
+    return drop_repeated_days([(d, nse, bse) for d, (nse, bse) in sorted(by_day.items())])
 
 
 def main() -> int:
@@ -190,6 +190,12 @@ def main() -> int:
     INDEX_FILE.write_text(json.dumps(index, indent=1), encoding="utf-8")
 
     write_setups(records, series, days)
+
+    try:   # the Sector Strength page; never allowed to fail the chart run
+        from app import sector_strength
+        sector_strength.write(days, CACHE)
+    except Exception as e:  # noqa: BLE001
+        print(f"sector strength: failed ({e}); previous snapshot kept")
 
     crossovers = ema_crossover.write(days, series, build_universe)
     print(f"ema crossover: {crossovers} stocks with a weekly 9/21 cross in the last 8 weeks")

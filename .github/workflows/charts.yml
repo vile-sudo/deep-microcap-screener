@@ -78,7 +78,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add backend/chart_data
+          git add backend/chart_data backend/data/sector_strength
           if git diff --cached --quiet; then
             echo "No chart changes"
             echo "changed=false" >> "$GITHUB_OUTPUT"

@@ -67,6 +67,7 @@ GET /api/company-profile-in  India board company pages: about, pros/cons, balanc
                           ratios, quarterly shareholding (scripts/run_results_in.py)
 GET /api/company-activity-in/{symbol}  one company's filings, deals and insider trades (company page)
 GET /api/logos-in, /api/logo-in/{code}  company logos for the Companies pages (scripts/run_logos_in.py)
+GET /api/sector-strength, /api/sector-strength/history  Sector Strength breadth monitor (app/sector_strength.py)
 GET /api/transcripts-in   India board: which earnings-call transcripts are on file, per company
 GET /api/transcripts-in/{code}  that company's newest calls laid out for reading -- speakers, roles,
                           numbered turns, where the Q&A starts (scripts/run_transcripts_in.py)
@@ -266,6 +267,21 @@ def logo_in(code: str):
             return FileResponse(path, media_type=media, headers={"Cache-Control": "public, max-age=604800",
                                                                  "Content-Security-Policy": "default-src 'none'; style-src 'unsafe-inline'; sandbox"})
     raise HTTPException(status_code=404)
+
+
+SECTOR_STRENGTH_DIR = BASE_DIR / "data" / "sector_strength"
+
+
+@router.get("/api/sector-strength")
+def sector_strength(request: Request):
+    """Sector Strength: each tracked sector's stocks with their 1/2/3/5-day returns, and the Nifty 500 (app/sector_strength.py)."""
+    return file_response(request, SECTOR_STRENGTH_DIR / "latest.json", {"asof": None, "sectors": []})
+
+
+@router.get("/api/sector-strength/history")
+def sector_strength_history(request: Request):
+    """Each sector's (and the Nifty 500's) breadth over the last 60 sessions, for the sparklines."""
+    return file_response(request, SECTOR_STRENGTH_DIR / "history.json", {"dates": [], "sectors": {}})
 
 
 @router.get("/api/results-calendar-in")

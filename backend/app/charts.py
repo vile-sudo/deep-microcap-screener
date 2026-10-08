@@ -160,6 +160,21 @@ def fetch_bhavcopy(day: date, exchange: str, session: requests.Session) -> list[
     return rows
 
 
+def drop_repeated_days(days: list) -> list:
+    """Drop a session whose NSE file is a copy of the one before it. On an exchange holiday NSE's
+    legacy-format URL has been seen to serve the previous session's file (2 Oct 2026 came back as 1 Oct),
+    which would chart a phantom candle and count that day's move twice in any multi-day return."""
+    out = []
+    for d in days:
+        if out and d[1] and out[-1][1]:
+            prev, cur = out[-1][1], d[1]
+            common = [k for k in list(cur)[:400] if k in prev]
+            if common and sum(prev[k][3:8] == cur[k][3:8] for k in common) >= 0.95 * len(common):
+                continue
+        out.append(d)
+    return out
+
+
 def write_day(path: Path, rows: list[list]) -> None:
     with gzip.open(path, "wt", encoding="utf-8", newline="") as f:
         csv.writer(f).writerows(rows)

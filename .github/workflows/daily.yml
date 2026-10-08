@@ -190,6 +190,15 @@ jobs:
         working-directory: ./automation
         run: node scan-asme.mjs
 
+      # Sector Strength's member lists (every listed company in its sectors' NSE industries, from
+      # screener.in): refreshed weekly; step 5 then computes the 1/2/3/5-day breadth from the bhavcopies.
+      - name: 4b. Sector Strength members (weekly)
+        id: sectormembers
+        continue-on-error: true
+        timeout-minutes: 20
+        working-directory: ./backend
+        run: python scripts/run_sector_members_in.py --if-older-than 6
+
       - name: 5. Charts and Market view stages
         id: charts
         continue-on-error: true
@@ -332,7 +341,7 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add backend/data/companies_raw.json backend/data/candidates_raw.json backend/data/build_stamp.json \
-                  backend/data/asme_raw.json backend/data/deals backend/data/fii_dii backend/data/announcements backend/data/insider_trades backend/chart_data \
+                  backend/data/asme_raw.json backend/data/deals backend/data/fii_dii backend/data/announcements backend/data/insider_trades backend/chart_data backend/data/sector_strength \
                   automation/data/candidates-queue.json automation/data/reviewed-symbols.json \
                   automation/data/listings-snapshot.json automation/data/asme-scan.json
           for f in automation/data/auto-screen.json automation/data/weekly-report.md automation/data/profiles \
