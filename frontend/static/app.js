@@ -6407,8 +6407,17 @@ const SSC={ind:null, range:'1Y', weight:'ew', hidden:new Set()};
 const SSC_COLORS={nifty500:'var(--ink)', defence:'#2563eb', chemicals:'#db2777', healthcare:'#16a34a', 'capital-markets':'#ea580c', 'electrical-equipment':'#7c3aed', jewellery:'#ca8a04', 'specialty-chemicals':'#0891b2', machinery:'#be123c'};
 const SSC_RANGES=[['1W',5],['1M',21],['3M',63],['6M',126],['YTD',0],['1Y',252],['2Y',504],['3Y',99999]];
 async function sscLoad(){
-  if(!SSC.ind) SSC.ind = await fetchJSON('/api/sector-strength/indices').catch(()=>({dates:[]}));
+  if(!SSC.ind){
+    SSC.ind = await fetchJSON('/api/sector-strength/indices').catch(()=>({dates:[]}));
+    Object.entries(SSC.ind.groups||{}).forEach(([k,g])=>{ if(g==='nse') SSC.hidden.add(k); });   /* 22 more lines on request */
+  }
   return SSC.ind;
+}
+const SSC_PALETTE=['#0ea5e9','#f43f5e','#22c55e','#f59e0b','#8b5cf6','#14b8a6','#ef4444','#84cc16','#d946ef','#06b6d4','#a16207','#475569','#e11d48','#15803d','#9333ea','#c2410c','#0369a1','#65a30d','#be185d','#0f766e','#7c2d12','#4338ca'];
+function sscColor(slug){
+  if(SSC_COLORS[slug]) return SSC_COLORS[slug];
+  const keys=Object.keys((SSC.ind&&SSC.ind.sectors)||{}).filter(k=>!SSC_COLORS[k]);
+  return SSC_PALETTE[Math.max(0,keys.indexOf(slug))%SSC_PALETTE.length];
 }
 function sscStart(dates){
   const r=SSC_RANGES.find(x=>x[0]===SSC.range)||SSC_RANGES[4];
@@ -6424,8 +6433,8 @@ function sscSeries(only){
   if(ind.nifty500 && ind.nifty500.length) out.push({key:'nifty500', label:'Nifty 500', color:SSC_COLORS.nifty500, dash:true, vals:rebase(ind.nifty500)});
   Object.entries(ind.sectors||{}).forEach(([slug,v])=>{
     if(only && slug!==only) return;
-    out.push({key:slug, label:(ind.names||{})[slug]||slug, color:SSC_COLORS[slug]||'#64748b', vals:rebase(v[SSC.weight]||v.ew)});
-    if(only) out.push({key:slug+'-alt', label:((ind.names||{})[slug]||slug)+(SSC.weight==='ew'?' (market-cap weight)':' (equal weight)'), color:SSC_COLORS[slug]||'#64748b', thin:true, vals:rebase(v[SSC.weight==='ew'?'cw':'ew'])});
+    out.push({key:slug, label:(ind.names||{})[slug]||slug, group:(ind.groups||{})[slug]||'theme', color:sscColor(slug), vals:rebase(v[SSC.weight]||v.ew)});
+    if(only) out.push({key:slug+'-alt', label:((ind.names||{})[slug]||slug)+(SSC.weight==='ew'?' (market-cap weight)':' (equal weight)'), color:sscColor(slug), thin:true, vals:rebase(v[SSC.weight==='ew'?'cw':'ew'])});
   });
   return {dates:dates.slice(s0), series:out};
 }
@@ -6446,7 +6455,7 @@ function sscWire(root){
 function sscDraw(){
   const box=document.getElementById('ssc-box'); if(!box) return;
   const only=box.dataset.only||null, {dates, series}=sscSeries(only);
-  const vis=series.filter(s=>!SSC.hidden.has(s.key));
+  const vis=series.filter(s=>only || !SSC.hidden.has(s.key));
   const W=Math.max(320, box.clientWidth||900), H=Math.max(240, Math.min(420, Math.round(W*0.42))), L=8, R=64, T=12, B=26;
   const all=vis.flatMap(s=>s.vals.filter(v=>v!=null));
   let lo=Math.min(0,...all), hi=Math.max(0,...all); if(hi-lo<1){ hi+=1; lo-=1; }
@@ -6466,8 +6475,13 @@ function sscDraw(){
   const tags=ends.map(e=>`<g class="ssc-tag" transform="translate(${W-R+2},${e.yy-9})"><rect width="${R-4}" height="18" rx="4" style="fill:${e.s.color}"/><text x="${(R-4)/2}" y="13" text-anchor="middle">${e.v>0?'+':''}${fmt(e.v,1)}%</text></g>`).join('');
   box.innerHTML=`<svg viewBox="0 0 ${W} ${H}" width="100%" height="${H}" class="ssc-svg"><g class="ssc-grid">${grid}</g><g class="ssc-x">${xl}</g><g class="ssc-lines">${lines}</g>${tags}
     <line class="ssc-cross" id="ssc-cross" y1="${T}" y2="${H-B}" x1="0" x2="0" visibility="hidden"/><rect class="ssc-hit" x="${L}" y="${T}" width="${W-L-R}" height="${H-T-B}"/></svg><div class="ssc-tip" id="ssc-tip" hidden></div>`;
-  document.getElementById('ssc-legend').innerHTML=series.map(s=>`<button type="button" class="ssc-chip${SSC.hidden.has(s.key)?' off':''}" data-sscl="${ea(s.key)}"><i style="background:${s.color}" class="${s.dash?'dash':''}${s.thin?' thin':''}"></i>${esc(s.label)}</button>`).join('');
-  document.querySelectorAll('[data-sscl]').forEach(b=>b.onclick=()=>{ const k=b.dataset.sscl; SSC.hidden.has(k)?SSC.hidden.delete(k):SSC.hidden.add(k); sscDraw(); });
+  const chip=s=>`<button type="button" class="ssc-chip${!only&&SSC.hidden.has(s.key)?' off':''}" data-sscl="${ea(s.key)}"><i style="background:${s.color}" class="${s.dash?'dash':''}${s.thin?' thin':''}"></i>${esc(s.label)}</button>`;
+  const nse=series.filter(s=>s.group==='nse');
+  document.getElementById('ssc-legend').innerHTML = only ? series.map(chip).join('')
+    : series.filter(s=>s.group!=='nse').map(chip).join('')
+      + (nse.length?`<div class="ssc-legrow"><span class="cp-lab">NSE sectors</span><button type="button" class="bp-link" data-sscall="1">show all</button><button type="button" class="bp-link" data-sscall="0">hide all</button></div>${nse.map(chip).join('')}`:'');
+  if(!only) document.querySelectorAll('[data-sscl]').forEach(b=>b.onclick=()=>{ const k=b.dataset.sscl; SSC.hidden.has(k)?SSC.hidden.delete(k):SSC.hidden.add(k); sscDraw(); });
+  document.querySelectorAll('[data-sscall]').forEach(b=>b.onclick=()=>{ nse.forEach(s=>{ b.dataset.sscall==='1'?SSC.hidden.delete(s.key):SSC.hidden.add(s.key); }); sscDraw(); });
   const svg=box.querySelector('svg'), hit=box.querySelector('.ssc-hit'), cross=document.getElementById('ssc-cross'), tip=document.getElementById('ssc-tip');
   const move=ev=>{
     const rc=svg.getBoundingClientRect(), px=(ev.clientX-rc.left)*W/rc.width;
@@ -6571,15 +6585,17 @@ function ssBenchRow(cols, cur){
 function ssOverview(){
   const d=SS.data, cols=ssCols(), cur=ssCur(), b=d.benchmark;
   const rows=d.sectors.map(sec=>{ const st=ssStocks(sec); return {sec, st, a:Object.fromEntries(cols.map(c=>[c.k, ssAgg(st,c)]))}; });
-  rows.sort((x,y)=>(ssPu(y.a[cur.k])??-1)-(ssPu(x.a[cur.k])??-1));
+  const gOrd=r=>r.sec.group==='nse'?1:0;
+  rows.sort((x,y)=>gOrd(x)-gOrd(y) || (ssPu(y.a[cur.k])??-1)-(ssPu(x.a[cur.k])??-1));
+  const SS_GRP={theme:'Themes', nse:'All NSE sectors'};
   const bpu=ssPu(cur.bb()), bw=cur.bench();
   const heat=`<div class="cp-card"><div class="cp-card-h"><h3>Share of stocks up</h3><span class="cp-sub">each cell: % of the sector's stocks that rose ${SS.mode==='day'?'that day':'over that window'} · how many · median move · click a sector</span></div>
     <div class="mv-tablewrap"><table class="ss-heat"><thead><tr><th></th>${cols.map(c=>`<th class="${cur.k===c.k?'cur':''}">${c.label}</th>`).join('')}</tr></thead><tbody>
     ${ssBenchRow(cols, cur)}
-    ${rows.map(({sec,st,a})=>`<tr data-ss="${ea(sec.slug)}"><td><b>${esc(sec.name)}</b><small>${st.length} stocks</small></td>
+    ${rows.map(({sec,st,a},ri)=>`${ri===0||gOrd(rows[ri-1])!==gOrd(rows[ri])?`<tr class="ss-grp"><td colspan="${cols.length+1}">${SS_GRP[sec.group||'theme']}</td></tr>`:''}<tr data-ss="${ea(sec.slug)}"><td><b>${esc(sec.name)}</b><small>${st.length} stocks</small></td>
       ${cols.map(c=>{ const x=a[c.k], p=ssPu(x); return `<td style="background:${ssHeat(p)}" class="${cur.k===c.k?'cur':''}"><b>${p==null?'—':fmt(p,0)+'%'}</b><small>${x.n?x.up+'/'+x.n+' · med '+ssPct(x.median):''}</small></td>`; }).join('')}</tr>`).join('')}
     </tbody></table></div></div>`;
-  const cards=rows.map(({sec,st,a})=>{ const x=a[cur.k], p=ssPu(x);
+  const card=({sec,st,a})=>{ const x=a[cur.k], p=ssPu(x);
     const lead=st.filter(s=>cur.get(s)!=null && (s.liquid || SS.liquid)).sort((m,n)=>cur.get(n)-cur.get(m)).slice(0,3);
     const h=cur.hist && SS.hist && SS.hist.sectors && SS.hist.sectors[sec.slug] && SS.hist.sectors[sec.slug][cur.hist];
     const vs = x.n && bw!=null ? x.median-bw : null;
@@ -6589,8 +6605,9 @@ function ssOverview(){
       <div class="ss-kv"><span>Median move<b>${ssPct(x.median,2)}</b></span><span>vs Nifty 500<b>${ssPct(vs,2)}</b></span><span>Nifty 500 breadth<b>${bpu==null?'—':fmt(bpu,0)+'%'}</b></span></div>
       ${h?`<div class="ss-sp"><span class="cp-sub">% up (${esc(cur.label)}), last ${h.length} sessions</span>${ssSpark(h)}</div>`:''}
       <p class="cp-lab" style="margin-top:8px">Leading ${esc(cur.long)}${SS.liquid?'':' (liquid stocks)'}</p>
-      <ol class="ss-lead">${lead.map(s=>`<li><span>${esc(s.symbol||s.code)}</span><small>${esc((s.full_name||s.name||'').slice(0,28))}</small>${ssPct(cur.get(s))}</li>`).join('')||'<li class="nd">—</li>'}</ol></article>`; }).join('');
-  return heat + `<div class="ss-cards">${cards}</div>
+      <ol class="ss-lead">${lead.map(s=>`<li><span>${esc(s.symbol||s.code)}</span><small>${esc((s.full_name||s.name||'').slice(0,28))}</small>${ssPct(cur.get(s))}</li>`).join('')||'<li class="nd">—</li>'}</ol></article>`; };
+  const grp=g=>rows.filter(r=>(r.sec.group||'theme')===g);
+  return heat + ['theme','nse'].filter(g=>grp(g).length).map(g=>`<h3 class="ss-grp-h">${SS_GRP[g]} <small>${grp(g).length}</small></h3><div class="ss-cards">${grp(g).map(card).join('')}</div>`).join('') + `
     <p class="caveat">Every listed company in each sector's NSE industries — NSE and BSE, main board and SME — from the exchanges' own closing prices (splits and bonuses accounted for). "vs Nifty 500" is the sector's median stock minus the index. A market-breadth monitor for research, not a buy list: our backtest found broad sector moves gave no dependable edge on their own.</p>`;
 }
 function ssDetail(){

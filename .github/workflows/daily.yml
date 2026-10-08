@@ -195,7 +195,7 @@ jobs:
       - name: 4b. Sector Strength members (weekly)
         id: sectormembers
         continue-on-error: true
-        timeout-minutes: 20
+        timeout-minutes: 45
         working-directory: ./backend
         run: python scripts/run_sector_members_in.py --if-older-than 6
 

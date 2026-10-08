@@ -32,7 +32,7 @@ import requests
 from bs4 import BeautifulSoup
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
-from app.sector_strength import MEMBERS_FILE, SECTORS  # noqa: E402
+from app.sector_strength import INDUSTRIES_FILE, MEMBERS_FILE, sectors  # noqa: E402
 
 SCREENER = "https://www.screener.in/market/{path}/?limit=50&page={page}"
 SCREENER_HEADERS = {"User-Agent": "Mozilla/5.0 (compatible; personal-research-screener/1.0; +https://pkresearch.in)"}
@@ -51,7 +51,32 @@ def _num(t: str):
         return None
 
 
+def industry_index(s: requests.Session) -> list | None:
+    """Every NSE basic industry screener.in lists: [(path, label)], from its /market/ page."""
+    r = s.get("https://www.screener.in/market/", headers=SCREENER_HEADERS, timeout=30)
+    if r.status_code != 200:
+        return None
+    soup = BeautifulSoup(r.text, "html.parser")
+    out = {}
+    for a in soup.select("a[href^='/market/IN']"):
+        path = a["href"].strip("/").split("/", 1)[-1]
+        if path.count("/") == 3:
+            out[path] = a.get_text(" ", strip=True)
+    return sorted(out.items()) if len(out) >= 100 else None
+
+
+_PAGES: dict = {}
+
+
 def industry(s: requests.Session, path: str, label: str) -> list[dict] | None:
+    """One basic industry's companies; read once per run even when several sectors include it."""
+    if path not in _PAGES:
+        _PAGES[path] = _industry(s, path, label)
+    got = _PAGES[path]
+    return None if got is None else [{**r, "industry": label} for r in got]
+
+
+def _industry(s: requests.Session, path: str, label: str) -> list[dict] | None:
     out = []
     for page in range(1, MAX_PAGES + 1):
         r = s.get(SCREENER.format(path=path, page=page), headers=SCREENER_HEADERS, timeout=30)
@@ -128,7 +153,7 @@ def _exchange_lists():
     return latest_n, latest_b, old
 
 
-def supplement(s: requests.Session, sectors: dict, classified: dict) -> dict:
+def supplement(s: requests.Session, listed: dict, classified: dict) -> dict:
     """Companies the industry listings miss: new listings (first traded within about a year) and, for a sector
     with keywords, every traded company whose name matches -- each classified once from its own screener.in page."""
     lists = _exchange_lists()
@@ -137,9 +162,12 @@ def supplement(s: requests.Session, sectors: dict, classified: dict) -> dict:
         return {}
     nse, bse, old = lists
     nse_isins = {r[9] for r in nse.values() if r[9]}
-    known = {m["code"] for v in sectors.values() for m in v}
-    path_to = {path: (sec["slug"], label) for sec in SECTORS for path, label in sec["industries"]}
-    kw = [(sec["slug"], re.compile(sec["keywords"], re.I)) for sec in SECTORS if sec.get("keywords")]
+    known = {m["code"] for v in listed.values() for m in v}
+    path_to: dict = {}
+    for sec in sectors():
+        for path, label in sec["industries"]:
+            path_to.setdefault(path, []).append((sec["slug"], label))
+    kw = [(sec["slug"], re.compile(sec["keywords"], re.I)) for sec in sectors() if sec.get("keywords")]
     cands = {}
     for ex, book in (("NSE", nse), ("BSE", bse)):
         for key, r in book.items():
@@ -169,8 +197,7 @@ def supplement(s: requests.Session, sectors: dict, classified: dict) -> dict:
             time.sleep(DELAY)
             c = {"code": key, "at": now.isoformat(timespec="seconds"), **(info or {"path": None, "name": name, "mcap_cr": None})}
             classified[ident] = c
-        if c.get("path") in path_to:
-            slug, label = path_to[c["path"]]
+        for slug, label in path_to.get(c.get("path"), []):
             out.setdefault(slug, []).append({"code": key, "name": c.get("name") or name, "industry": label,
                                              "mcap_cr": c.get("mcap_cr"), "new_listing": new})
     print(f"  supplement: {len(cands)} candidates, {fetched} pages read, {sum(len(v) for v in out.values())} added")
@@ -193,6 +220,14 @@ def main() -> int:
         age = (datetime.now(timezone.utc) - datetime.fromisoformat(prev["updated"])).total_seconds() / 86400
     s = requests.Session()
     fresh = bool(args.if_older_than and age is not None and age < args.if_older_than)
+    if not fresh or not INDUSTRIES_FILE.exists():
+        inds = industry_index(s)
+        if inds:
+            INDUSTRIES_FILE.parent.mkdir(parents=True, exist_ok=True)
+            INDUSTRIES_FILE.write_text(json.dumps({"updated": datetime.now(timezone.utc).isoformat(timespec="seconds"),
+                                                   "industries": inds}, ensure_ascii=False, indent=0), encoding="utf-8")
+            print(f"  {len(inds)} NSE basic industries")
+    SECTORS = sectors()
     missing = [sec for sec in SECTORS if sec["slug"] not in listed]
     for sec in (missing if fresh else SECTORS):     # weekly: every sector; otherwise only a sector just added
         rows, ok = [], True
@@ -221,19 +256,19 @@ def main() -> int:
     except RuntimeError as e:
         print(f"  supplement: {e}; skipped")
         extra = prev.get("extra") or {}
-    sectors = {}
+    by_slug = {}
     for sec in SECTORS:
         rows = list(listed.get(sec["slug"], []))
         have = {r["code"] for r in rows}
         rows += [r for r in extra.get(sec["slug"], []) if r["code"] not in have]
-        sectors[sec["slug"]] = sorted(rows, key=lambda r: -(r.get("mcap_cr") or 0))
+        by_slug[sec["slug"]] = sorted(rows, key=lambda r: -(r.get("mcap_cr") or 0))
     sme = nse_list(NSE_SME_LIST, "SYMBOL") or prev.get("sme") or []
     n500 = nse_list(NIFTY500_LIST, "Symbol") or prev.get("nifty500") or []
     out = {"updated": prev.get("updated") if fresh and not missing else datetime.now(timezone.utc).isoformat(timespec="seconds"),
-           "sectors": sectors, "listed": listed, "extra": extra, "classified": classified, "sme": sme, "nifty500": n500}
+           "sectors": by_slug, "listed": listed, "extra": extra, "classified": classified, "sme": sme, "nifty500": n500}
     MEMBERS_FILE.parent.mkdir(parents=True, exist_ok=True)
     MEMBERS_FILE.write_text(json.dumps(out, separators=(",", ":"), ensure_ascii=False), encoding="utf-8")
-    print(f"run_sector_members_in: {sum(len(v) for v in sectors.values())} members "
+    print(f"run_sector_members_in: {sum(len(v) for v in by_slug.values())} members across {len(by_slug)} sectors "
           f"({sum(len(v) for v in extra.values())} from new listings / name matches); {len(sme)} NSE SME symbols; {len(n500)} Nifty 500")
     return 0
 

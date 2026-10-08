@@ -49,33 +49,14 @@ LIQUID_TURNOVER_CR = 1.0      # 20-session average turnover, Rs crore
 LIQUID_SESSIONS = 18          # traded on at least this many of the last 20
 UP_THRESHOLD = 0.01           # "up more than 1%"
 
-# NSE's industry classification as screener.in lays it out: /market/<sector>/<industry>/<sub>/<basic industry>/
-SECTORS = [
+# Themes: hand-picked groups of NSE basic industries, shown first. NSE's industry classification as
+# screener.in lays it out: /market/<macro sector>/<sector>/<industry>/<basic industry>/
+THEMES = [
     {"slug": "defence", "name": "Defence & Aerospace", "industries": [
         ("IN07/IN0702/IN070201/IN070201001", "Aerospace & Defense"),
         ("IN07/IN0702/IN070204/IN070204006", "Ship Building & Allied Services")]},
-    {"slug": "chemicals", "name": "Chemicals", "industries": [
-        ("IN01/IN0101/IN010101/IN010101002", "Specialty Chemicals"),
-        ("IN01/IN0101/IN010101/IN010101001", "Commodity Chemicals"),
-        ("IN01/IN0101/IN010101/IN010101004", "Dyes And Pigments"),
-        ("IN01/IN0101/IN010101/IN010101003", "Carbon Black"),
-        ("IN01/IN0101/IN010101/IN010101005", "Explosives"),
-        ("IN01/IN0101/IN010101/IN010101006", "Petrochemicals"),
-        ("IN01/IN0101/IN010101/IN010101007", "Printing Inks"),
-        ("IN01/IN0101/IN010101/IN010101009", "Industrial Gases"),
-        ("IN01/IN0101/IN010101/IN010101008", "Trading - Chemicals"),
-        ("IN01/IN0101/IN010102/IN010102002", "Pesticides & Agrochemicals"),
-        ("IN01/IN0101/IN010102/IN010102001", "Fertilizers")]},
-    # Specialty Chemicals on its own as well (it is also inside Chemicals above)
     {"slug": "specialty-chemicals", "name": "Specialty Chemicals", "industries": [
         ("IN01/IN0101/IN010101/IN010101002", "Specialty Chemicals")]},
-    {"slug": "healthcare", "name": "Healthcare", "industries": [
-        ("IN06/IN0601/IN060101/IN060101001", "Pharmaceuticals"),
-        ("IN06/IN0601/IN060101/IN060101002", "Biotechnology"),
-        ("IN06/IN0601/IN060102/IN060102001", "Medical Equipment & Supplies"),
-        ("IN06/IN0601/IN060103/IN060103001", "Hospital"),
-        ("IN06/IN0601/IN060103/IN060103002", "Healthcare Service Provider"),
-        ("IN06/IN0601/IN060103/IN060103003", "Healthcare Research, Analytics & Technology")]},
     {"slug": "capital-markets", "name": "Capital Markets", "industries": [
         ("IN05/IN0501/IN050103/IN050103001", "Asset Management Company"),
         ("IN05/IN0501/IN050103/IN050103006", "Stockbroking & Allied"),
@@ -100,6 +81,46 @@ SECTORS = [
      # whose name says so is checked against its own page (scripts/run_sector_members_in.py)
      "keywords": r"JEWEL|JWEL|\bGEMS?\b|BULLION|ORNAMENT|DIAMOND|\bGOLD\b|\bSWARN"},
 ]
+
+# Every NSE sector (the 22 the exchange's own indices use), each made of all its basic industries as listed
+# in data/sector_strength/nse_industries.json (written by scripts/run_sector_members_in.py from screener.in's
+# industry index, so a basic industry NSE adds later is picked up by itself).
+NSE_SECTORS = {
+    "IN0101": ("chemicals", "Chemicals"), "IN0102": ("construction-materials", "Construction Materials"),
+    "IN0103": ("metals-mining", "Metals & Mining"), "IN0104": ("forest-materials", "Forest Materials"),
+    "IN0201": ("auto", "Automobile & Auto Components"), "IN0202": ("consumer-durables", "Consumer Durables"),
+    "IN0203": ("textiles", "Textiles"), "IN0204": ("media", "Media, Entertainment & Publication"),
+    "IN0205": ("realty", "Realty"), "IN0206": ("consumer-services", "Consumer Services"),
+    "IN0301": ("oil-gas", "Oil, Gas & Consumable Fuels"), "IN0401": ("fmcg", "Fast Moving Consumer Goods"),
+    "IN0501": ("financial-services", "Financial Services"), "IN0601": ("healthcare", "Healthcare"),
+    "IN0701": ("construction", "Construction"), "IN0702": ("capital-goods", "Capital Goods"),
+    "IN0801": ("it", "Information Technology"), "IN0901": ("services", "Services"),
+    "IN1001": ("telecom", "Telecommunication"), "IN1101": ("power", "Power"),
+    "IN1102": ("utilities", "Utilities"), "IN1201": ("diversified", "Diversified"),
+}
+INDUSTRIES_FILE = OUT_DIR / "nse_industries.json"
+
+
+def sectors() -> list[dict]:
+    """Themes first, then every NSE sector that has basic industries on file."""
+    try:
+        inds = json.loads(INDUSTRIES_FILE.read_text(encoding="utf-8")).get("industries") or []
+    except (OSError, ValueError):
+        inds = []
+    by_sector: dict[str, list] = {}
+    for path, label in inds:
+        parts = path.split("/")
+        if len(parts) == 4:
+            by_sector.setdefault(parts[1], []).append((path, label))
+    out = [{**t, "group": "theme"} for t in THEMES]
+    for code, (slug, name) in NSE_SECTORS.items():
+        if by_sector.get(code):
+            out.append({"slug": slug, "name": name, "group": "nse", "code": code,
+                        "industries": sorted(by_sector[code], key=lambda x: x[1])})
+    return out
+
+
+SECTORS = sectors()
 
 
 INDEX_URL = "https://nsearchives.nseindia.com/content/indices/ind_close_all_{d}.csv"
@@ -239,42 +260,85 @@ def _daily(days: list, ex: str, key: str, end: int) -> list:
     return [None if m is None else round(m, 2) for m in _moves(days, ex, key, end - max(WINDOWS) + 1, end)]
 
 
-def build_indices(days: list, groups: dict, cache: Path | None) -> dict:
+class _Prices:
+    """Each stock's daily moves and turnover over the span the page needs, computed once per run and shared by
+    every sector it belongs to (a company sits in a theme and in its NSE sector)."""
+
+    def __init__(self, days: list, lo: int):
+        self.days, self.lo, self.memo = days, lo, {}
+
+    def get(self, ex: str, key: str):
+        k = (ex, key)
+        if k not in self.memo:
+            days, lo = self.days, self.lo
+            mv = _moves(days, ex, key, lo, len(days) - 1)
+            close, tsum, csum = [], [0.0], [0]
+            for i in range(lo, len(days)):
+                r = _row((days[i][1], days[i][2]), ex, key)
+                ok = r and r[6] > 0 and r[7] > 0
+                close.append(r[6] if ok else None)
+                tsum.append(tsum[-1] + (r[6] * r[7] / 1e7 if ok else 0.0))
+                csum.append(csum[-1] + (1 if ok else 0))
+            self.memo[k] = (mv, close, tsum, csum)
+        return self.memo[k]
+
+    def liquid_before(self, ex, key, i):
+        """Average turnover (Rs cr) and sessions traded over the 20 sessions before index i."""
+        _, _, tsum, csum = self.get(ex, key)
+        j = i - self.lo
+        a = max(0, j - 20)
+        return (tsum[j] - tsum[a]) / 20, csum[j] - csum[a]
+
+    def turnover_to(self, ex, key, i):
+        """Average turnover and sessions traded over the 20 sessions ending at index i."""
+        return self.liquid_before(ex, key, i + 1)
+
+    def move(self, ex, key, i):
+        return self.get(ex, key)[0][i - self.lo]
+
+    def returns(self, ex, key, end):
+        mv = self.get(ex, key)[0]
+        j = end - self.lo
+        out = {}
+        for w in WINDOWS:
+            seg = [m for m in mv[max(0, j - w + 1):j + 1] if m is not None]
+            prod = 1.0
+            for m in seg:
+                prod *= 1 + m / 100
+            out[w] = (prod - 1) * 100 if seg else None
+        return out
+
+    def daily(self, ex, key, end):
+        mv = self.get(ex, key)[0]
+        j = end - self.lo
+        return [None if m is None else round(m, 2) for m in mv[j - max(WINDOWS) + 1:j + 1]]
+
+
+def build_indices(days: list, groups: dict, cache: Path | None, px: "_Prices") -> dict:
     """Daily levels (base 100) per sector -- equal and market-cap weighted -- and the Nifty 500, last INDEX_SESSIONS."""
-    first = max(21, len(days) - INDEX_SESSIONS)
+    first = max(px.lo + 21, len(days) - INDEX_SESSIONS)
     span = range(first, len(days))
     out = {"dates": [days[i][0].isoformat() for i in span], "sectors": {}}
     for slug, members in groups.items():
         ew, cw, lev_e, lev_c, count = [], [], 100.0, 100.0, []
-        # each member's daily move, close and turnover over the span (+20 sessions for the liquidity test)
-        series = []
-        for ex, key, mcap, last_close in members:
-            mv = [None if m is None else max(-DAY_CLIP, min(DAY_CLIP, m)) for m in _moves(days, ex, key, first - 20, len(days) - 1)]
-            tv = []
-            for i in range(first - 20, len(days)):
-                r = _row((days[i][1], days[i][2]), ex, key) if i >= 0 else None
-                ok = r and r[6] > 0 and r[7] > 0
-                tv.append((r[6] * r[7] / 1e7, r[6]) if ok else (0.0, None))
-            series.append((mv, tv, mcap, last_close))
-        for j in range(20, 20 + len(span)):
+        for i in span:
             num_e = n_e = num_c = den_c = 0.0
-            for mv, tv, mcap, last_close in series:
-                m = mv[j]
+            for ex, key, mcap, last_close in members:
+                m = px.move(ex, key, i)
                 if m is None:
                     continue
-                window = tv[j - 20:j]
-                avg = sum(t for t, _ in window) / 20
-                traded = sum(1 for t, _ in window if t > 0)
+                avg, traded = px.liquid_before(ex, key, i)
                 if avg < LIQUID_TURNOVER_CR or traded < LIQUID_SESSIONS:
                     continue
+                m = max(-DAY_CLIP, min(DAY_CLIP, m))
                 num_e += m
                 n_e += 1
-                prev_close = tv[j - 1][1]
+                prev_close = px.get(ex, key)[1][i - 1 - px.lo]
                 if mcap and last_close and prev_close:
                     w = mcap * prev_close / last_close        # yesterday's market cap, carried back by price
                     num_c += w * m
                     den_c += w
-            if j > 20:   # the first day is the base
+            if i > first:   # the first day is the base
                 lev_e *= 1 + (num_e / n_e if n_e else 0) / 100
                 lev_c *= 1 + (num_c / den_c if den_c else 0) / 100
             ew.append(round(lev_e, 2))
@@ -327,19 +391,15 @@ def write(days: list, cache: Path | None = None) -> dict | None:
         print("sector strength: no member list or too little price history; skipped")
         return None
     last = len(days) - 1
+    secs = sectors()
+    px = _Prices(days, max(0, len(days) - INDEX_SESSIONS - 30))
     latest_nse, latest_bse = days[-1][1], days[-1][2]
     by_isin_nse = {r[9]: k for k, r in latest_nse.items() if r[9]}
     by_isin_bse = {r[9]: k for k, r in latest_bse.items() if r[9]}
 
     # the market yardstick: median return of every stock with Rs 1 cr+ average turnover
     def turnover(ex, key, end):
-        t, s = 0.0, 0
-        for i in range(max(0, end - 19), end + 1):
-            r = _row((days[i][1], days[i][2]), ex, key)
-            if r and r[7] > 0:
-                t += r[6] * r[7]
-                s += 1
-        return t / 20 / 1e7, s
+        return px.turnover_to(ex, key, end)
 
     def market_median(end):
         vals = {w: [] for w in WINDOWS}
@@ -352,7 +412,7 @@ def write(days: list, cache: Path | None = None) -> dict | None:
                 avg, s = turnover(ex, key, end)
                 if avg < LIQUID_TURNOVER_CR or s < LIQUID_SESSIONS:
                     continue
-                rets = _returns(days, ex, key, end)
+                rets = px.returns(ex, key, end)
                 for w in WINDOWS:
                     if rets.get(w) is not None:
                         vals[w].append(rets[w])
@@ -367,7 +427,7 @@ def write(days: list, cache: Path | None = None) -> dict | None:
         return round((a / b - 1) * 100, 2) if a and b else None
     n500 = [k for k in (mfile.get("nifty500") or []) if k in latest_nse]
     sectors_out, resolved, weighted = [], {}, {}
-    for sec in SECTORS:
+    for sec in secs:
         rows, seen_keys = [], set()
         for m in members.get(sec["slug"], []):
             ex, key = _resolve(m, latest_nse, latest_bse, by_isin_nse, by_isin_bse)
@@ -380,19 +440,20 @@ def write(days: list, cache: Path | None = None) -> dict | None:
                 continue
             r = _row((latest_nse, latest_bse), ex, key)
             avg, s = turnover(ex, key, last)
-            rets = _returns(days, ex, key, last)
+            rets = px.returns(ex, key, last)
             resolved.setdefault(sec["slug"], []).append((ex, key))
             weighted.setdefault(sec["slug"], []).append((ex, key, m.get("mcap_cr"), r[6]))
             rows.append({**m, "exchange": ex, "symbol": r[1], "full_name": r[2] or m.get("name"), "close": r[6],
-                         "d": _daily(days, ex, key, last), "listed": _listed(days, ex, key), "traded_today": r[7] > 0, "turnover_cr": round(avg, 2), "sessions20": s,
+                         "d": px.daily(ex, key, last), "listed": _listed(days, ex, key), "traded_today": r[7] > 0, "turnover_cr": round(avg, 2), "sessions20": s,
                          "liquid": avg >= LIQUID_TURNOVER_CR and s >= LIQUID_SESSIONS,
                          **{f"r{w}": None if rets.get(w) is None else round(rets[w], 2) for w in WINDOWS}})
-        sectors_out.append({"slug": sec["slug"], "name": sec["name"], "industries": [i[1] for i in sec["industries"]], "stocks": rows})
+        sectors_out.append({"slug": sec["slug"], "name": sec["name"], "group": sec.get("group", "theme"), "code": sec.get("code"),
+                            "industries": [i[1] for i in sec["industries"]], "stocks": rows})
 
     def group_breadth(keys, end):
         vals = {w: [] for w in WINDOWS}
         for ex, key in keys:
-            rets = _returns(days, ex, key, end)
+            rets = px.returns(ex, key, end)
             for w in WINDOWS:
                 if rets.get(w) is not None:
                     vals[w].append(rets[w])
@@ -403,7 +464,7 @@ def write(days: list, cache: Path | None = None) -> dict | None:
     sessions = [days[i][0].isoformat() for i in range(last - max(WINDOWS) + 1, last + 1)]
     daily500 = {w: [] for w in range(len(sessions))}
     for k in n500:
-        for j, v in enumerate(_daily(days, "NSE", k, last)):
+        for j, v in enumerate(px.daily("NSE", k, last)):
             if v is not None:
                 daily500[j].append(v)
     benchmark = {"name": INDEX_NAME, "close": idx.get(days[last][0]), "constituents": len(n500),
@@ -419,11 +480,11 @@ def write(days: list, cache: Path | None = None) -> dict | None:
         b = group_breadth(n500_keys, end)
         for w in WINDOWS:
             hist["nifty500"][str(w)].append([round(100 * b[w]["up"] / b[w]["n"], 1) if b[w]["n"] else None, idx_ret(end, w)])
-        for sec in SECTORS:
+        for sec in secs:
             h = hist["sectors"].setdefault(sec["slug"], {str(w): [] for w in WINDOWS})
             vals = {w: [] for w in WINDOWS}
             for ex, key in resolved.get(sec["slug"], []):
-                rets = _returns(days, ex, key, end)
+                rets = px.returns(ex, key, end)
                 for w in WINDOWS:
                     if rets.get(w) is not None:
                         vals[w].append(rets[w])
@@ -439,8 +500,9 @@ def write(days: list, cache: Path | None = None) -> dict | None:
     LATEST_FILE.write_text(json.dumps(latest, separators=(",", ":"), ensure_ascii=False), encoding="utf-8")
     HISTORY_FILE.write_text(json.dumps(hist, separators=(",", ":")), encoding="utf-8")
     try:
-        ind = build_indices(days, weighted, cache)
-        ind["names"] = {sec["slug"]: sec["name"] for sec in SECTORS}
+        ind = build_indices(days, weighted, cache, px)
+        ind["names"] = {sec["slug"]: sec["name"] for sec in secs}
+        ind["groups"] = {sec["slug"]: sec.get("group", "theme") for sec in secs}
         INDICES_FILE.write_text(json.dumps(ind, separators=(",", ":")), encoding="utf-8")
     except Exception as e:  # noqa: BLE001 - the chart is extra; the snapshot above already stands
         print(f"sector strength: indices failed ({e})")

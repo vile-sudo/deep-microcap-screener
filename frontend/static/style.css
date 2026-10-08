@@ -2536,3 +2536,9 @@ mark.tr-hit.cur{background:#f59e0b;color:#111}
 .ssc-tip div span{margin-left:auto;font-variant-numeric:tabular-nums;font-weight:700}
 .ssc-tip i{display:inline-block;width:8px;height:8px;border-radius:50%}
 .ss-tag.ipo{background:rgba(202,138,4,.16);color:#a16207}
+
+.ss-heat tr.ss-grp td{background:none!important;text-align:left;font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);padding:12px 4px 2px;font-weight:700}
+.ss-grp-h{margin:18px 0 10px;font-size:16px}
+.ss-grp-h small{color:var(--muted);font-weight:500}
+.ssc-legrow{width:100%;display:flex;align-items:center;gap:10px;margin-top:4px}
+.ssc-legrow .cp-lab{margin:0}
