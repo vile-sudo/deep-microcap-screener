@@ -2510,3 +2510,28 @@ mark.tr-hit.cur{background:#f59e0b;color:#111}
 @media (max-width:640px){ .ss-kv{grid-template-columns:1fr 1fr} .ss-heat td{min-width:70px;padding:6px} .ss-heat td:first-child{min-width:120px} }
 .ss-explain{margin:-6px 0 12px}
 .ss-bar .rc-seg button{white-space:nowrap}
+
+/* Sector Strength: comparison chart */
+.ssc-ctl{display:flex;gap:8px;flex-wrap:wrap}
+.ssc-legend{display:flex;gap:6px;flex-wrap:wrap;margin:2px 0 8px}
+.ssc-chip{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--ring);background:var(--surface);color:var(--ink);border-radius:999px;padding:3px 10px;font:inherit;font-size:12px;cursor:pointer}
+.ssc-chip.off{opacity:.4;text-decoration:line-through}
+.ssc-chip i{display:inline-block;width:14px;height:3px;border-radius:2px}
+.ssc-chip i.dash{background:repeating-linear-gradient(90deg,var(--ink) 0 4px,transparent 4px 7px)!important}
+.ssc-chip i.thin{height:1.5px;opacity:.6}
+.ssc-box{position:relative}
+.ssc-svg{display:block;overflow:visible}
+.ssc-grid line{stroke:var(--grid);stroke-width:1}
+.ssc-grid line.zero{stroke:var(--axis);stroke-width:1.2}
+.ssc-grid text,.ssc-x text{fill:var(--muted);font-size:11px;font-variant-numeric:tabular-nums}
+.ssc-lines path{fill:none;stroke-width:2;stroke-linejoin:round}
+.ssc-lines path.dash{stroke-dasharray:6 4;stroke-width:2.2}
+.ssc-lines path.thin{stroke-width:1.2;opacity:.55;stroke-dasharray:2 3}
+.ssc-tag text{fill:#fff;font-size:11px;font-weight:700}
+.ssc-cross{stroke:var(--muted);stroke-dasharray:3 3}
+.ssc-hit{fill:transparent;cursor:crosshair}
+.ssc-tip{position:absolute;top:8px;background:var(--surface);border:1px solid var(--ring);border-radius:10px;padding:8px 10px;font-size:12px;box-shadow:0 12px 30px -16px rgba(0,0,0,.5);pointer-events:none;min-width:190px;z-index:2}
+.ssc-tip b{display:block;margin-bottom:4px}
+.ssc-tip div{display:flex;align-items:center;gap:6px;padding:1px 0}
+.ssc-tip div span{margin-left:auto;font-variant-numeric:tabular-nums;font-weight:700}
+.ssc-tip i{display:inline-block;width:8px;height:8px;border-radius:50%}

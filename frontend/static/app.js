@@ -6399,6 +6399,91 @@ function coDocuments(d){
     <div class="cp-card"><h3>Elsewhere</h3><ul class="cp-docs"><li><span>Financials</span><a href="${ea(scrURL(d))}" target="_blank" rel="noopener">screener.in ↗</a></li>${exURL(d)?`<li><span>Exchange</span><a href="${ea(exURL(d))}" target="_blank" rel="noopener">Quote &amp; filings on the exchange ↗</a></li>`:''}</ul></div>`;
 }
 
+/* ---------- Sector Strength: performance comparison chart ----------
+   Each sector's own index (built from its members by app/sector_strength.py: equal weight or market-cap
+   weight) against the Nifty 500, rebased to 0% at the start of the chosen range -- the TradingView
+   "compare" view. Hover for every line's value on a day. */
+const SSC={ind:null, range:'1Y', weight:'ew', hidden:new Set()};
+const SSC_COLORS={nifty500:'var(--ink)', defence:'#2563eb', chemicals:'#db2777', healthcare:'#16a34a', 'capital-markets':'#ea580c', 'electrical-equipment':'#7c3aed'};
+const SSC_RANGES=[['1M',21],['3M',63],['6M',126],['YTD',0],['1Y',252],['2Y',504],['3Y',99999]];
+async function sscLoad(){
+  if(!SSC.ind) SSC.ind = await fetchJSON('/api/sector-strength/indices').catch(()=>({dates:[]}));
+  return SSC.ind;
+}
+function sscStart(dates){
+  const r=SSC_RANGES.find(x=>x[0]===SSC.range)||SSC_RANGES[4];
+  if(r[0]==='YTD'){ const y=dates[dates.length-1].slice(0,4); const i=dates.findIndex(d=>d.slice(0,4)===y); return Math.max(0,i-1); }
+  return Math.max(0, dates.length-1-r[1]);
+}
+/* series to draw: [{key,label,color,dash,vals}] -- vals as % change from the range start */
+function sscSeries(only){
+  const ind=SSC.ind, dates=ind.dates||[];
+  const s0=sscStart(dates), out=[];
+  const rebase=(arr)=>{ const a=arr.slice(s0); let last=null; const f=a.map(v=>{ if(v!=null) last=v; return last; });
+    const b=f.find(v=>v!=null); return f.map(v=>v==null||b==null?null:(v/b-1)*100); };
+  if(ind.nifty500 && ind.nifty500.length) out.push({key:'nifty500', label:'Nifty 500', color:SSC_COLORS.nifty500, dash:true, vals:rebase(ind.nifty500)});
+  Object.entries(ind.sectors||{}).forEach(([slug,v])=>{
+    if(only && slug!==only) return;
+    out.push({key:slug, label:(ind.names||{})[slug]||slug, color:SSC_COLORS[slug]||'#64748b', vals:rebase(v[SSC.weight]||v.ew)});
+    if(only) out.push({key:slug+'-alt', label:((ind.names||{})[slug]||slug)+(SSC.weight==='ew'?' (market-cap weight)':' (equal weight)'), color:SSC_COLORS[slug]||'#64748b', thin:true, vals:rebase(v[SSC.weight==='ew'?'cw':'ew'])});
+  });
+  return {dates:dates.slice(s0), series:out};
+}
+function sscHtml(only){
+  if(!SSC.ind || !(SSC.ind.dates||[]).length) return '';
+  return `<div class="cp-card ssc"><div class="cp-card-h"><h3>${only?'Performance vs Nifty 500':'Sector performance vs Nifty 500'}</h3>
+      <span class="ssc-ctl"><span class="cp-range">${SSC_RANGES.map(([k])=>`<button type="button" data-sscr="${k}" class="${SSC.range===k?'on':''}">${k}</button>`).join('')}</span>
+      <span class="cp-range"><button type="button" data-sscw="ew" class="${SSC.weight==='ew'?'on':''}" title="Each liquid stock counts the same">Equal weight</button><button type="button" data-sscw="cw" class="${SSC.weight==='cw'?'on':''}" title="Bigger companies count more">Market-cap weight</button></span></span></div>
+    <div class="ssc-legend" id="ssc-legend"></div>
+    <div class="ssc-box" id="ssc-box" data-only="${ea(only||'')}"></div>
+    <p class="caveat">Each sector line is an index built from the sector's own listed stocks — every liquid member's daily move (₹1 Cr+ average daily turnover), equal-weighted or weighted by market cap — set to 0% at the start of the range, beside the Nifty 500 index. Splits and bonuses are taken out of the prices. Members are today's list for the whole period, so a company that has since left the sector isn't in its past.</p></div>`;
+}
+function sscWire(root){
+  root.querySelectorAll('[data-sscr]').forEach(b=>b.onclick=()=>{ SSC.range=b.dataset.sscr; root.querySelectorAll('[data-sscr]').forEach(x=>x.classList.toggle('on',x===b)); sscDraw(); });
+  root.querySelectorAll('[data-sscw]').forEach(b=>b.onclick=()=>{ SSC.weight=b.dataset.sscw; root.querySelectorAll('[data-sscw]').forEach(x=>x.classList.toggle('on',x===b)); sscDraw(); });
+  sscDraw();
+}
+function sscDraw(){
+  const box=document.getElementById('ssc-box'); if(!box) return;
+  const only=box.dataset.only||null, {dates, series}=sscSeries(only);
+  const vis=series.filter(s=>!SSC.hidden.has(s.key));
+  const W=Math.max(320, box.clientWidth||900), H=Math.max(240, Math.min(420, Math.round(W*0.42))), L=8, R=64, T=12, B=26;
+  const all=vis.flatMap(s=>s.vals.filter(v=>v!=null));
+  let lo=Math.min(0,...all), hi=Math.max(0,...all); if(hi-lo<1){ hi+=1; lo-=1; }
+  const pad=(hi-lo)*0.06; lo-=pad; hi+=pad;
+  const n=dates.length, x=i=>L+(W-L-R)*(n>1?i/(n-1):0), y=v=>T+(H-T-B)*(1-(v-lo)/(hi-lo));
+  const step=[1,2,5,10,20,25,50,100,200,500].find(s=>(hi-lo)/s<=7)||1000;
+  let grid='';
+  for(let v=Math.ceil(lo/step)*step; v<=hi; v+=step){ grid+=`<line x1="${L}" x2="${W-R}" y1="${y(v)}" y2="${y(v)}" class="${v===0?'zero':''}"/><text x="${W-R+6}" y="${y(v)+4}">${v>0?'+':''}${v}%</text>`; }
+  const ticks=Math.max(1,Math.min(6, n-1, Math.floor((W-L-R)/95))); let xl='';
+  for(let k=0;k<=ticks;k++){ const i=Math.round(k*(n-1)/Math.max(1,ticks)); const d=new Date(dates[i]+'T00:00:00Z');
+    xl+=`<text x="${x(i)}" y="${H-6}" text-anchor="${k===0?'start':k===ticks?'end':'middle'}">${d.toLocaleDateString('en-IN',{month:'short',year:n>300?'2-digit':undefined,day:n<=70?'numeric':undefined,timeZone:'UTC'})}</text>`; }
+  const path=s=>{ let d='', pen=false; s.vals.forEach((v,i)=>{ if(v==null){ pen=false; return; } d+=(pen?'L':'M')+x(i).toFixed(1)+','+y(v).toFixed(1); pen=true; }); return d; };
+  const lines=vis.map(s=>`<path d="${path(s)}" style="stroke:${s.color}" class="${s.dash?'dash':''}${s.thin?' thin':''}"/>`).join('');
+  /* end labels, nudged apart so they don't overlap */
+  const ends=vis.map(s=>{ const v=[...s.vals].reverse().find(t=>t!=null); return {s, v, yy:v==null?null:y(v)}; }).filter(e=>e.v!=null).sort((a,b)=>a.yy-b.yy);
+  for(let i=1;i<ends.length;i++) if(ends[i].yy-ends[i-1].yy<15) ends[i].yy=ends[i-1].yy+15;
+  const tags=ends.map(e=>`<g class="ssc-tag" transform="translate(${W-R+2},${e.yy-9})"><rect width="${R-4}" height="18" rx="4" style="fill:${e.s.color}"/><text x="${(R-4)/2}" y="13" text-anchor="middle">${e.v>0?'+':''}${fmt(e.v,1)}%</text></g>`).join('');
+  box.innerHTML=`<svg viewBox="0 0 ${W} ${H}" width="100%" height="${H}" class="ssc-svg"><g class="ssc-grid">${grid}</g><g class="ssc-x">${xl}</g><g class="ssc-lines">${lines}</g>${tags}
+    <line class="ssc-cross" id="ssc-cross" y1="${T}" y2="${H-B}" x1="0" x2="0" visibility="hidden"/><rect class="ssc-hit" x="${L}" y="${T}" width="${W-L-R}" height="${H-T-B}"/></svg><div class="ssc-tip" id="ssc-tip" hidden></div>`;
+  document.getElementById('ssc-legend').innerHTML=series.map(s=>`<button type="button" class="ssc-chip${SSC.hidden.has(s.key)?' off':''}" data-sscl="${ea(s.key)}"><i style="background:${s.color}" class="${s.dash?'dash':''}${s.thin?' thin':''}"></i>${esc(s.label)}</button>`).join('');
+  document.querySelectorAll('[data-sscl]').forEach(b=>b.onclick=()=>{ const k=b.dataset.sscl; SSC.hidden.has(k)?SSC.hidden.delete(k):SSC.hidden.add(k); sscDraw(); });
+  const svg=box.querySelector('svg'), hit=box.querySelector('.ssc-hit'), cross=document.getElementById('ssc-cross'), tip=document.getElementById('ssc-tip');
+  const move=ev=>{
+    const rc=svg.getBoundingClientRect(), px=(ev.clientX-rc.left)*W/rc.width;
+    const i=Math.max(0,Math.min(n-1,Math.round((px-L)/((W-L-R)/Math.max(1,n-1)))));
+    cross.setAttribute('x1',x(i)); cross.setAttribute('x2',x(i)); cross.setAttribute('visibility','visible');
+    const rows=vis.map(s=>({s,v:s.vals[i]})).filter(r=>r.v!=null).sort((a,b)=>b.v-a.v);
+    tip.innerHTML=`<b>${esc(rcDayLong(dates[i]))}</b>`+rows.map(r=>`<div><i style="background:${r.s.color}"></i>${esc(r.s.label)}<span class="${r.v>=0?'ov-up':'ov-dn'}">${r.v>0?'+':''}${fmt(r.v,2)}%</span></div>`).join('');
+    tip.hidden=false;
+    const left=(x(i)/W)*rc.width; tip.style.left = (left > rc.width/2 ? left - tip.offsetWidth - 12 : left + 12) + 'px';
+  };
+  hit.addEventListener('mousemove', move);
+  hit.addEventListener('touchmove', e=>{ if(e.touches[0]) move(e.touches[0]); }, {passive:true});
+  hit.addEventListener('mouseleave', ()=>{ tip.hidden=true; cross.setAttribute('visibility','hidden'); });
+}
+window.addEventListener('resize', ()=>{ clearTimeout(SSC.rt); SSC.rt=setTimeout(()=>{ if(document.getElementById('ssc-box')) sscDraw(); },200); });
+
 /* ---------- Sector Strength: how broadly each tracked sector is moving ----------
    Every listed company (NSE + BSE, main board and SME) in five sectors against the Nifty 500 (the index's
    own move and how many of its 500 stocks rose). Two ways to read it: "Over the last N days" -- each stock's
@@ -6444,7 +6529,7 @@ async function openSStrength(){
   const body=document.getElementById('ss-body');
   if(!SS.data){
     body.innerHTML='<p class="view-hint">Loading…</p>';
-    try{ [SS.data, SS.hist]=await Promise.all([fetchJSON('/api/sector-strength'), fetchJSON('/api/sector-strength/history').catch(()=>null)]); }
+    try{ [SS.data, SS.hist]=await Promise.all([fetchJSON('/api/sector-strength'), fetchJSON('/api/sector-strength/history').catch(()=>null), sscLoad()]); }
     catch(e){ body.innerHTML='<p class="view-hint">Sector Strength could not be loaded.</p>'; return; }
     try{ const p=JSON.parse(localStorage.getItem('dms.ss')||'{}'); if(p.mode && !/[#&]sw=/.test(location.hash)){ SS.mode=p.mode; if(p.sel) SS.sel=p.sel; } SS.liquid=!!p.liquid; SS.nosme=!!p.nosme; }catch(e){}
     if(SS.mode==='day' && !(SS.data.sessions||[]).length) SS.mode='cum';
@@ -6465,7 +6550,8 @@ function ssRender(){
     <p class="cp-sub ss-explain">${SS.mode==='day'
       ? 'Day by day: each column is that session\'s own move — the close against the previous close.'
       : 'Over the last N days: <b>3D</b> is the change from the close three sessions ago to the latest close (the sum of those days\' moves, compounded) — not a single day\'s move. Switch to <b>Day by day</b> to see each session separately.'}</p>`;
-  body.innerHTML = ctr + (SS.slug ? ssDetail() : ssOverview());
+  body.innerHTML = ctr + (SS.slug ? ssDetail() : sscHtml() + ssOverview());
+  if(body.querySelector('#ssc-box')) sscWire(body);
   body.querySelectorAll('[data-ssm]').forEach(b=>b.onclick=()=>{ if(SS.mode===b.dataset.ssm) return; SS.mode=b.dataset.ssm; SS.sel = SS.mode==='day' ? 'd'+((d.sessions||[]).length-1) : 'r3'; SS.sort=null; ssSave(); ssRender(); syncURL(); });
   body.querySelectorAll('[data-ssw]').forEach(b=>b.onclick=()=>{ SS.sel=b.dataset.ssw; SS.sort=null; ssSave(); ssRender(); syncURL(); });
   document.getElementById('ss-liq').onchange=e=>{ SS.liquid=e.target.checked; ssSave(); ssRender(); };
@@ -6512,10 +6598,10 @@ function ssDetail(){
   if(!sec){ SS.slug=null; return ssOverview(); }
   const sme=new Set(d.sme||[]), all=ssStocks(sec), cols=ssCols(), cur=ssCur();
   const byNse={}, byCode={}; DATA.forEach(x=>{ if(x.nse_code) byNse[x.nse_code]=x; byCode[String(x.code)]=x; });
-  const head=`<table class="mv-table ss-head"><thead><tr><th>${SS.mode==='day'?'Session':'Window'}</th><th class="n">Up / stocks</th><th class="n">% up</th><th class="n">% up &gt;1%</th><th class="n">Median</th><th class="n">Nifty 500</th><th class="n">vs Nifty 500</th><th class="n">Nifty 500 breadth</th></tr></thead><tbody>
+  const head=`<div class="mv-tablewrap"><table class="mv-table ss-head"><thead><tr><th>${SS.mode==='day'?'Session':'Window'}</th><th class="n">Up / stocks</th><th class="n">% up</th><th class="n">% up &gt;1%</th><th class="n">Median</th><th class="n">Nifty 500</th><th class="n">vs Nifty 500</th><th class="n">Nifty 500 breadth</th></tr></thead><tbody>
     ${cols.map(c=>{ const a=ssAgg(all,c), bb=c.bb(), bn=c.bench();
       return `<tr class="${c.k===cur.k?'cp-self':''}"><td>${esc(c.label)}</td><td class="n">${a.n?a.up+' / '+a.n:'—'}</td><td class="n">${a.n?fmt(100*a.up/a.n,0)+'%':'—'}</td><td class="n">${a.n?fmt(100*a.up1/a.n,0)+'%':'—'}</td>
-        <td class="n">${ssPct(a.median,2)}</td><td class="n">${ssPct(bn,2)}</td><td class="n">${a.n&&bn!=null?ssPct(a.median-bn,2):'—'}</td><td class="n">${bb&&bb.n?fmt(100*bb.up/bb.n,0)+'%':'—'}</td></tr>`; }).join('')}</tbody></table>`;
+        <td class="n">${ssPct(a.median,2)}</td><td class="n">${ssPct(bn,2)}</td><td class="n">${a.n&&bn!=null?ssPct(a.median-bn,2):'—'}</td><td class="n">${bb&&bb.n?fmt(100*bb.up/bb.n,0)+'%':'—'}</td></tr>`; }).join('')}</tbody></table></div>`;
   const inds=[...new Set(sec.stocks.map(s=>s.industry))];
   let rows=all.filter(s=>(!SS.ind || s.industry===SS.ind) && (!SS.q || ((s.full_name||'')+' '+(s.name||'')+' '+(s.symbol||'')+' '+s.code).toLowerCase().includes(SS.q)));
   const sk=SS.sort||cur.k, colOf=k=>cols.find(c=>c.k===k);
@@ -6527,6 +6613,7 @@ function ssDetail(){
   const noTrade=sec.stocks.filter(s=>!s.exchange).length;
   return `<p class="cp-crumb"><a href="#" id="ss-back">Sector Strength</a> / <span>${esc(sec.name)}</span></p>
     <div class="cp-card"><div class="cp-card-h"><h3>${esc(sec.name)}</h3><span class="cp-sub">${all.length} stocks${noTrade?` · ${noTrade} listed but not traded recently`:''}</span></div>${head}</div>
+    ${sscHtml(sec.slug)}
     <div class="cp-card"><div class="ss-tools"><input type="search" id="ss-q" class="gal-search" placeholder="Search this sector…" value="${ea(SS.q)}" autocomplete="off">
       <div class="ss-chips">${inds.map(i=>`<button type="button" data-ss-ind="${ea(i)}" class="${SS.ind===i?'on':''}">${esc(i)} <small>${sec.stocks.filter(s=>s.industry===i).length}</small></button>`).join('')}</div></div>
     <div class="co-tablewrap"><table class="co-table ss-table"><thead><tr>${th('name','Company','co-name-h')}<th>Exch.</th>${th('close','Price')}

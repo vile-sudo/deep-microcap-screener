@@ -278,6 +278,12 @@ def sector_strength(request: Request):
     return file_response(request, SECTOR_STRENGTH_DIR / "latest.json", {"asof": None, "sectors": []})
 
 
+@router.get("/api/sector-strength/indices")
+def sector_strength_indices(request: Request):
+    """Each sector's daily level (equal and market-cap weighted) beside the Nifty 500, ~3 years, for the comparison chart."""
+    return file_response(request, SECTOR_STRENGTH_DIR / "indices.json", {"dates": [], "sectors": {}, "nifty500": []})
+
+
 @router.get("/api/sector-strength/history")
 def sector_strength_history(request: Request):
     """Each sector's (and the Nifty 500's) breadth over the last 60 sessions, for the sparklines."""

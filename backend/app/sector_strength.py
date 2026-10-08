@@ -14,6 +14,12 @@ Benchmark: the Nifty 500 -- the index's own return over each window (NSE's daily
 ind_close_all_DDMMYYYY.csv, cached next to the bhavcopies) and the breadth of its 500 constituents, so a
 sector's "70% up" can be read against the market's.
 
+Sector indices (indices.json, GET /api/sector-strength/indices): each sector's daily level over the last
+INDEX_SESSIONS sessions, built from its own members -- equal weight (the average day's move of its liquid
+stocks) and market-cap weight (weights from today's market cap, carried back with each stock's price) --
+next to the Nifty 500's own closes, for the TradingView-style comparison chart. Members are today's list
+throughout, so a company that left the sector is missing from its past (survivorship).
+
 write(days) is called at the end of scripts/update_charts.py and writes data/sector_strength/latest.json
 (per-stock returns, the frontend aggregates them for its filters) and history.json (each sector's
 breadth for the last HISTORY_SESSIONS sessions, for the sparklines). GET /api/sector-strength serves both.
@@ -35,6 +41,10 @@ LATEST_FILE = OUT_DIR / "latest.json"
 HISTORY_FILE = OUT_DIR / "history.json"
 WINDOWS = (1, 2, 3, 5)
 HISTORY_SESSIONS = 60
+INDEX_SESSIONS = 760          # about three years of trading days for the comparison chart
+INDEX_FILE_BUDGET = 400       # Nifty 500 daily files fetched per run; older ones fill in on the next runs
+DAY_CLIP = 25.0               # a single day's move counted at most +/-25% (a bad print can't swing a sector)
+INDICES_FILE = OUT_DIR / "indices.json"
 LIQUID_TURNOVER_CR = 1.0      # 20-session average turnover, Rs crore
 LIQUID_SESSIONS = 18          # traded on at least this many of the last 20
 UP_THRESHOLD = 0.01           # "up more than 1%"
@@ -83,15 +93,20 @@ INDEX_NAME = "Nifty 500"
 BROWSER = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0 Safari/537.36"}
 
 
-def index_closes(dates: list, cache: Path | None) -> dict:
-    """{date: Nifty 500 close} for the given sessions; each day's file fetched once and cached."""
+def index_closes(dates: list, cache: Path | None, budget: int = 10_000) -> dict:
+    """{date: Nifty 500 close} for the given sessions; each day's file fetched once and cached
+    (newest first, at most `budget` downloads a run)."""
     import requests
     out = {}
     s = requests.Session()
-    for d in dates:
+    fetched = 0
+    for d in sorted(dates, reverse=True):
         f = cache / f"IDX_{d.strftime('%Y%m%d')}.csv" if cache else None
         text = f.read_text(encoding="utf-8") if f and f.exists() else None
         if text is None:
+            if fetched >= budget:
+                continue
+            fetched += 1
             try:
                 r = s.get(INDEX_URL.format(d=d.strftime("%d%m%Y")), headers=BROWSER, timeout=30)
             except Exception:  # noqa: BLE001 - a missing day leaves a gap, never fails the run
@@ -139,28 +154,121 @@ def _resolve(m: dict, latest_nse: dict, latest_bse: dict, by_isin_nse: dict, by_
     return None, None
 
 
-def _returns(days: list, ex: str, key: str, end: int) -> dict:
-    """Chained close/prev-close returns over each window ending at session index `end`."""
-    out, prod, n = {}, 1.0, 0
-    for back in range(max(WINDOWS)):
-        i = end - back
-        if i < 0:
-            break
+ACTION_FACTORS = (1/2, 1/3, 2/3, 1/4, 3/4, 1/5, 2/5, 1/6, 1/8, 1/10, 1/20, 2, 5, 10)
+
+
+def _move(prev: list, r: list) -> float | None:
+    """One session's % move from the previous traded session's close, with splits and bonuses taken out.
+
+    Close against close, not against the bhavcopy's printed previous close: that one isn't always
+    restated on a split's ex-date (HAL's 1:2 in Sept 2023 printed the old close), and a special
+    Saturday session missing from the files would otherwise drop that day's move. A corporate action is
+    recognised the way app/charts.py's _adjust does: the exchange restating the previous close by a
+    split/bonus ratio, or an overnight gap beyond -25%/+33% (circuit limits keep a normal day inside 20%)
+    that fits a common ratio. A gap that fits none (a demerger) isn't counted at all."""
+    pc = prev[6]
+    if pc <= 0 or r[6] <= 0:
+        return None
+    gap = r[3] / pc if r[3] > 0 else 1.0
+    if r[8] > 0 and abs(r[8] / pc - 1) > 0.02:
+        ratio = r[8] / pc
+        f = min(ACTION_FACTORS, key=lambda x: abs(ratio / x - 1))
+        # a restated close counts only when the stock also opened there -- a rights issue restates the
+        # close by an odd ratio (Camlin Fine, Sept 2024: 0.765) while the shares open where they were
+        if abs(ratio / f - 1) <= 0.03 and abs(gap / ratio - 1) <= 0.15:
+            return (r[6] / r[8] - 1) * 100
+    if gap < 0.75 or gap > 1.33:
+        seen = (r[4] + r[5] + r[6]) / 3 / pc
+        f = min(ACTION_FACTORS, key=lambda x: abs(seen / x - 1))
+        if abs(seen / f - 1) <= 0.12:
+            return (r[6] / (pc * f) - 1) * 100
+        # no split ratio fits: a jump up is a real move (an open offer, say); a drop is most likely a
+        # demerger, whose value went to the new company's shares, so that day isn't counted
+        return (r[6] / pc - 1) * 100 if gap > 1 else None
+    return (r[6] / pc - 1) * 100
+
+
+def _moves(days: list, ex: str, key: str, lo: int, hi: int) -> list:
+    """Each session's move for indices lo..hi (None where the stock didn't trade), oldest first."""
+    prev = None
+    for i in range(lo - 1, max(-1, lo - 12), -1):     # the last traded session before the span
         r = _row((days[i][1], days[i][2]), ex, key)
-        if r and r[8] > 0 and r[6] > 0 and r[7] > 0:
-            prod *= r[6] / r[8]
-            n += 1
-        if back + 1 in WINDOWS:
-            out[back + 1] = (prod - 1) * 100 if n else None
+        if r and r[7] > 0 and r[6] > 0:
+            prev = r
+            break
+    out = []
+    for i in range(lo, hi + 1):
+        r = _row((days[i][1], days[i][2]), ex, key)
+        if r and r[7] > 0 and r[6] > 0:
+            out.append(_move(prev, r) if prev else None)
+            prev = r
+        else:
+            out.append(None)
+    return out
+
+
+def _returns(days: list, ex: str, key: str, end: int) -> dict:
+    """Compounded moves over each window ending at session index `end`."""
+    mv = _moves(days, ex, key, end - max(WINDOWS) + 1, end)
+    out = {}
+    for w in WINDOWS:
+        seg = [m for m in mv[-w:] if m is not None]
+        prod = 1.0
+        for m in seg:
+            prod *= 1 + m / 100
+        out[w] = (prod - 1) * 100 if seg else None
     return out
 
 
 def _daily(days: list, ex: str, key: str, end: int) -> list:
     """Each of the last max(WINDOWS) sessions' own % change, oldest first (None: didn't trade that day)."""
-    out = []
-    for i in range(end - max(WINDOWS) + 1, end + 1):
-        r = _row((days[i][1], days[i][2]), ex, key) if i >= 0 else None
-        out.append(round((r[6] / r[8] - 1) * 100, 2) if r and r[8] > 0 and r[6] > 0 and r[7] > 0 else None)
+    return [None if m is None else round(m, 2) for m in _moves(days, ex, key, end - max(WINDOWS) + 1, end)]
+
+
+def build_indices(days: list, groups: dict, cache: Path | None) -> dict:
+    """Daily levels (base 100) per sector -- equal and market-cap weighted -- and the Nifty 500, last INDEX_SESSIONS."""
+    first = max(21, len(days) - INDEX_SESSIONS)
+    span = range(first, len(days))
+    out = {"dates": [days[i][0].isoformat() for i in span], "sectors": {}}
+    for slug, members in groups.items():
+        ew, cw, lev_e, lev_c, count = [], [], 100.0, 100.0, []
+        # each member's daily move, close and turnover over the span (+20 sessions for the liquidity test)
+        series = []
+        for ex, key, mcap, last_close in members:
+            mv = [None if m is None else max(-DAY_CLIP, min(DAY_CLIP, m)) for m in _moves(days, ex, key, first - 20, len(days) - 1)]
+            tv = []
+            for i in range(first - 20, len(days)):
+                r = _row((days[i][1], days[i][2]), ex, key) if i >= 0 else None
+                ok = r and r[6] > 0 and r[7] > 0
+                tv.append((r[6] * r[7] / 1e7, r[6]) if ok else (0.0, None))
+            series.append((mv, tv, mcap, last_close))
+        for j in range(20, 20 + len(span)):
+            num_e = n_e = num_c = den_c = 0.0
+            for mv, tv, mcap, last_close in series:
+                m = mv[j]
+                if m is None:
+                    continue
+                window = tv[j - 20:j]
+                avg = sum(t for t, _ in window) / 20
+                traded = sum(1 for t, _ in window if t > 0)
+                if avg < LIQUID_TURNOVER_CR or traded < LIQUID_SESSIONS:
+                    continue
+                num_e += m
+                n_e += 1
+                prev_close = tv[j - 1][1]
+                if mcap and last_close and prev_close:
+                    w = mcap * prev_close / last_close        # yesterday's market cap, carried back by price
+                    num_c += w * m
+                    den_c += w
+            if j > 20:   # the first day is the base
+                lev_e *= 1 + (num_e / n_e if n_e else 0) / 100
+                lev_c *= 1 + (num_c / den_c if den_c else 0) / 100
+            ew.append(round(lev_e, 2))
+            cw.append(round(lev_c, 2))
+            count.append(int(n_e))
+        out["sectors"][slug] = {"ew": ew, "cw": cw, "n": count}
+    idx = index_closes([days[i][0] for i in span], cache, INDEX_FILE_BUDGET)
+    out["nifty500"] = [idx.get(days[i][0]) for i in span]
     return out
 
 
@@ -220,7 +328,7 @@ def write(days: list, cache: Path | None = None) -> dict | None:
         a, b = idx.get(days[end][0]), idx.get(days[end - w][0]) if end - w >= 0 else None
         return round((a / b - 1) * 100, 2) if a and b else None
     n500 = [k for k in (mfile.get("nifty500") or []) if k in latest_nse]
-    sectors_out, resolved = [], {}
+    sectors_out, resolved, weighted = [], {}, {}
     for sec in SECTORS:
         rows = []
         for m in members.get(sec["slug"], []):
@@ -232,6 +340,7 @@ def write(days: list, cache: Path | None = None) -> dict | None:
             avg, s = turnover(ex, key, last)
             rets = _returns(days, ex, key, last)
             resolved.setdefault(sec["slug"], []).append((ex, key))
+            weighted.setdefault(sec["slug"], []).append((ex, key, m.get("mcap_cr"), r[6]))
             rows.append({**m, "exchange": ex, "symbol": r[1], "full_name": r[2] or m.get("name"), "close": r[6],
                          "d": _daily(days, ex, key, last), "traded_today": r[7] > 0, "turnover_cr": round(avg, 2), "sessions20": s,
                          "liquid": avg >= LIQUID_TURNOVER_CR and s >= LIQUID_SESSIONS,
@@ -287,6 +396,12 @@ def write(days: list, cache: Path | None = None) -> dict | None:
     OUT_DIR.mkdir(parents=True, exist_ok=True)
     LATEST_FILE.write_text(json.dumps(latest, separators=(",", ":"), ensure_ascii=False), encoding="utf-8")
     HISTORY_FILE.write_text(json.dumps(hist, separators=(",", ":")), encoding="utf-8")
+    try:
+        ind = build_indices(days, weighted, cache)
+        ind["names"] = {sec["slug"]: sec["name"] for sec in SECTORS}
+        INDICES_FILE.write_text(json.dumps(ind, separators=(",", ":")), encoding="utf-8")
+    except Exception as e:  # noqa: BLE001 - the chart is extra; the snapshot above already stands
+        print(f"sector strength: indices failed ({e})")
     n = sum(len(s["stocks"]) for s in sectors_out)
     print(f"sector strength: {n} stocks across {len(sectors_out)} sectors as of {latest['asof']}; "
           f"Nifty 500 3D {benchmark['r3']}%, {b500[3].get('up', 0)}/{b500[3].get('n', 0)} constituents up")
