@@ -277,6 +277,12 @@ def healthz():
 # static dashboard, so there's a single process/URL to stand up. If you'd
 # rather host the frontend separately (a CDN, Netlify, nginx, ...), point
 # it at this API's /api routes and skip mounting these two lines.
+# HTML pages must be revalidated on every load: with no Cache-Control header a browser keeps reusing its
+# copy for a while (heuristically ~10% of the page's age) and keeps loading the previous deploy's
+# script -- the ?v= cache-busters on the scripts only help once the new HTML is fetched. "no-cache"
+# still allows the cached copy, it just checks the ETag first (a cheap 304 when nothing changed).
+HTML_HEADERS = {"Cache-Control": "no-cache"}
+
 if FRONTEND_DIR.exists():
     app.mount("/static", StaticFiles(directory=FRONTEND_DIR / "static"), name="static")
 
@@ -287,17 +293,17 @@ if FRONTEND_DIR.exists():
 
     @app.get("/", include_in_schema=False)
     def index():
-        return FileResponse(FRONTEND_DIR / "index.html")
+        return FileResponse(FRONTEND_DIR / "index.html", headers=HTML_HEADERS)
 
     @app.get("/login", include_in_schema=False)
     def login_page():
-        return FileResponse(FRONTEND_DIR / "login.html")
+        return FileResponse(FRONTEND_DIR / "login.html", headers=HTML_HEADERS)
 
     @app.get("/privacy", include_in_schema=False)
     def privacy_page():
         # Public (see auth.PUBLIC_PATHS) -- linked from the App Store/Play
         # Store listings, which need this reachable with no account at all.
-        return FileResponse(FRONTEND_DIR / "privacy.html")
+        return FileResponse(FRONTEND_DIR / "privacy.html", headers=HTML_HEADERS)
 
     @app.get("/us", include_in_schema=False)
     def us_index():
@@ -308,4 +314,4 @@ if FRONTEND_DIR.exists():
         # parallel page sharing only the CSS/login shell is the change that
         # doesn't fight that coupling. Requires login exactly like / does
         # (not in AccountGateMiddleware's PUBLIC_PATHS).
-        return FileResponse(FRONTEND_DIR / "us.html")
+        return FileResponse(FRONTEND_DIR / "us.html", headers=HTML_HEADERS)
