@@ -191,7 +191,7 @@ def results_in(request: Request):
 
 @router.get("/api/results-calendar-in")
 def results_calendar_in(request: Request):
-    return file_response(request, RESULTS_CALENDAR_IN_FILE, {"fetched_at": None, "asof": None, "items": []})
+    return file_response(request, RESULTS_CALENDAR_IN_FILE, {"fetched_at": None, "asof": None, "items": [], "events": []})
 
 
 @router.get("/api/guidance-in")

@@ -37,6 +37,9 @@ REF = "https://www.nseindia.com/companies-listing/corporate-filings-board-meetin
 URL = "https://www.nseindia.com/api/corporate-board-meetings?index={index}&from_date={f}&to_date={t}"
 AHEAD_DAYS = 75              # how far ahead notices are collected
 GRACE_DAYS = 2               # a result declared yesterday still shows today
+PAST_DAYS = 7                # the calendar view keeps the current week filled in back to Monday
+ANNOUNCEMENTS = BACKEND_DIR / "data" / "announcements" / "latest.json"
+RESULTS_FILING = re.compile(r"financial result|outcome of board meeting|integrated filing", re.I)
 MONTHS = {m: i for i, m in enumerate(["jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec"], 1)}
 RESULTS_LIKE = re.compile(r"financial results?|unaudited|audited (?:financial )?results?|results for the (?:quarter|period|half|year)|quarter ended|half[- ]year ended|year ended", re.I)
 
@@ -73,7 +76,9 @@ def results_notices(rows: list[dict]) -> dict[str, list[dict]]:
         text = f"{x.get('bm_purpose') or ''} {x.get('bm_desc') or ''}"
         day = parse_day(x.get("bm_date"))
         if day and RESULTS_LIKE.search(text):
-            by.setdefault(x.get("bm_symbol"), []).append({"date": day, "desc": (x.get("bm_desc") or "")[:300], "url": x.get("attachment"), "purpose": x.get("bm_purpose")})
+            by.setdefault(x.get("bm_symbol"), []).append({"date": day, "desc": (x.get("bm_desc") or "")[:300], "url": x.get("attachment"),
+                                                          "purpose": x.get("bm_purpose"), "name": x.get("sm_name"),
+                                                          "industry": x.get("sm_indusrty"), "ts": x.get("bm_timestamp") or ""})
     return by
 
 
@@ -149,6 +154,54 @@ def same_quarter_last_year(past: list[dict], qy: int, qm: int, today: date):
     return None
 
 
+def results_filings() -> dict[str, list[tuple[str, str]]]:
+    """symbol -> [(filed date, url)] of results filings in the announcements feed (scripts/run_announcements.py)."""
+    try:
+        rows = json.loads(ANNOUNCEMENTS.read_text(encoding="utf-8")).get("announcements") or []
+    except (OSError, ValueError):
+        return {}
+    out: dict[str, list[tuple[str, str]]] = {}
+    for a in rows:
+        if RESULTS_FILING.search(a.get("category") or "") and a.get("symbol"):
+            out.setdefault(a["symbol"], []).append((a.get("date") or "", a.get("url") or ""))
+    return out
+
+
+def calendar_events(notices: dict, items: list[dict], board: list[dict], today: date) -> list[dict]:
+    """Everything the calendar grid shows: every NSE company's confirmed results date (its latest
+    board-meeting notice, so a rescheduled meeting shows once, at its new date), plus board companies
+    with no notice yet at their expected date. SEBI-deadline placeholders stay out -- they aren't dates
+    anyone announced, and would pile a third of the board onto one day. Past days of the last week keep
+    their entries, marked with the results filing once it's in."""
+    on_board = {str(c.get("nse_code")): c for c in board if c.get("nse_code")}
+    filed = results_filings()
+    lo, hi = today - timedelta(days=PAST_DAYS), today + timedelta(days=AHEAD_DAYS)
+    events, confirmed_syms = [], set()
+    for sym, ns in notices.items():
+        ns = [n for n in ns if lo <= n["date"] <= hi]
+        if not sym or not ns:
+            continue
+        n = max(ns, key=lambda x: (x["ts"], x["date"]))
+        c = on_board.get(sym)
+        confirmed_syms.add(sym)
+        events.append({"symbol": sym, "code": str(c["code"]) if c else None, "name": (c or {}).get("name") or n["name"] or sym,
+                       "industry": n["industry"], "date": n["date"].isoformat(), "status": "confirmed",
+                       "result": label_from(n["desc"], None), "url": n["url"], "board": bool(c)})
+    for i in items:
+        if i["status"] == "expected" and i.get("symbol") not in confirmed_syms:
+            events.append({"symbol": i.get("symbol") or i["code"], "code": i["code"], "name": i["name"], "industry": None,
+                           "date": i["date"], "status": "expected", "result": i["result"], "url": None, "board": True,
+                           "last_year": i.get("last_year")})
+    for e in events:
+        if e["date"] > today.isoformat():
+            continue
+        hit = sorted(f for f in filed.get(e["symbol"], []) if e["date"] <= f[0] <= (date.fromisoformat(e["date"]) + timedelta(days=3)).isoformat())
+        if hit:
+            e["results_at"], e["results_url"] = hit[0]
+    events.sort(key=lambda e: (e["date"], not e["board"], e["name"] or ""))
+    return events
+
+
 def main() -> int:
     board = json.loads(RAW.read_text(encoding="utf-8"))
     try:
@@ -161,7 +214,7 @@ def main() -> int:
     ahead = []
     last_year = []
     for index in ("equities", "sme"):
-        ahead += fetch(client, index, today - timedelta(days=GRACE_DAYS), today + timedelta(days=AHEAD_DAYS))
+        ahead += fetch(client, index, today - timedelta(days=PAST_DAYS), today + timedelta(days=AHEAD_DAYS))
         ly = today - timedelta(days=365)
         last_year += fetch(client, index, ly - timedelta(days=GRACE_DAYS), ly + timedelta(days=AHEAD_DAYS))
     if not ahead and not last_year:
@@ -200,7 +253,8 @@ def main() -> int:
     items = [i for i in items if today - timedelta(days=GRACE_DAYS) <= date.fromisoformat(i["date"]) <= horizon or i["status"] == "deadline"]
     items.sort(key=lambda i: (i["date"], {"confirmed": 0, "expected": 1, "deadline": 2}[i["status"]], i["name"] or ""))
 
-    payload = {"asof": today.isoformat(), "items": items}
+    events = calendar_events(notices, items, board, today)
+    payload = {"asof": today.isoformat(), "items": items, "events": events}
     try:
         prev = json.loads(OUT_FILE.read_text(encoding="utf-8"))
     except (OSError, ValueError):
@@ -212,7 +266,9 @@ def main() -> int:
     OUT_FILE.write_text(json.dumps({"fetched_at": datetime.now(timezone.utc).isoformat(timespec="seconds"), **payload}, separators=(",", ":"), ensure_ascii=False), encoding="utf-8")
     from collections import Counter
     n10 = sum(1 for i in items if date.fromisoformat(i["date"]) <= today + timedelta(days=10))
-    print(f"run_results_calendar_in: {len(items)} board companies: {dict(Counter(i['status'] for i in items))}; {n10} due within 10 days")
+    print(f"run_results_calendar_in: {len(items)} board companies: {dict(Counter(i['status'] for i in items))}; {n10} due within 10 days; "
+          f"calendar: {len(events)} events ({sum(1 for e in events if not e['board'])} off the board, "
+          f"{sum(1 for e in events if e.get('results_url'))} with results out)")
     return 0
 
 

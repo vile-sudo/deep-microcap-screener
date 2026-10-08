@@ -5,7 +5,9 @@ Rating", ...) in the Announcements tab's "Get notified" panel; they're saved as 
 prefs (routers/account.py). This loop polls NSE's corporate-announcements feed itself -- every
 MARKET_SECONDS on weekdays during market hours (IST), every OFF_HOURS_SECONDS otherwise, so results
 filed in the evening still arrive -- and pushes each user the new filings in their categories, for
-every listed company, to every browser they've enabled notifications in (app/webpush.py).
+every listed company, to every browser they've enabled notifications in (app/webpush.py). The Results
+Calendar's bell adds a second, per-company choice (`rc_notify`, NSE symbols): that company's results
+filing is pushed whatever categories are ticked.
 
 Several gunicorn workers run this loop at once: a lock file lets one of them work at a time, and the
 shared "last fetched" time in MetaKV keeps them to one fetch per interval. The very first run only
@@ -34,6 +36,7 @@ CATEGORIES_KEY = "FILING_CATEGORIES"
 LOCK_FILE = Path(tempfile.gettempdir()) / "deepsweep-filing-alerts.lock"
 LOCK_STALE_SECONDS = 600
 MAX_LISTED = 4      # filings named in a multi-filing notification before "and N more"
+RESULTS_FILING = re.compile(r"financial result|outcome of board meeting|integrated filing", re.I)
 
 
 def interval_seconds(now: datetime) -> int:
@@ -82,6 +85,9 @@ def message_for(filings: list[dict]) -> tuple[str, str, str, str]:
     """(title, body, click URL, tag) for one user's batch of new filings."""
     if len(filings) == 1:
         f = filings[0]
+        if f.get("results"):
+            return (f"{f['symbol']} results are out", f"{f['name']} · {f['category']}"[:180],
+                    f["url"] or "/#v=rescal", "filing-" + f["seq"])
         body = f"{f['name']}: {f['text']}" if f["text"] else f["name"]
         return (f"{f['symbol']} · {f['category']}", body[:180], f["url"] or "/#v=deals&dt=ann", "filing-" + f["seq"])
     by_cat: dict[str, list[str]] = {}
@@ -142,7 +148,10 @@ def tick(now: datetime | None = None) -> int:
         sent = 0
         for s in db.query(UserSettings).filter(UserSettings.user_id.in_(users_with_browsers)).all():
             wanted = set((s.prefs or {}).get("ann_notify") or [])
+            companies = set((s.prefs or {}).get("rc_notify") or [])
             mine = [f for f in new if f["category"] in wanted]
+            mine += [{**f, "results": True} for f in new if f["category"] not in wanted
+                     and f["symbol"] in companies and RESULTS_FILING.search(f["category"])]
             if mine:
                 title, body, url, tag = message_for(mine)
                 sent += webpush.send_to_user_browsers(db, s.user_id, title, body, url=url, tag=tag)

@@ -5563,8 +5563,10 @@ ovLoad();
 /* ---------- Results calendar ----------
    One entry per board company: its next results event, with how sure the date is -- confirmed by an NSE
    board-meeting notice, expected (the date it reported this quarter last year), or the SEBI deadline (the latest
-   it can report). Written several times a day by scripts/run_results_calendar_in.py; read-only here. */
-const RC={built:false};
+   it can report). Written several times a day by scripts/run_results_calendar_in.py; read-only here.
+   Week/Month views draw `events` instead: every NSE company with an announced results date (or only the
+   board's, with their expected dates), one card per company per day, with a bell to be pushed its results. */
+const RC={built:false, view:'week', anchor:0};
 /* function declarations, not consts: the Overview panels call these before this block has finished running */
 function rcToday(){ const n=new Date(); return Date.UTC(n.getFullYear(), n.getMonth(), n.getDate()); }
 function rcDays(iso){ return Math.round((Date.parse(iso+'T00:00:00Z')-rcToday())/86400000); }
@@ -5598,7 +5600,7 @@ async function openResCal(){
     body.innerHTML='<p class="view-hint">Loading…</p>';
     OV.rescal = await fetchJSON('/api/results-calendar-in').catch(()=>null);
   }
-  if(!OV.rescal || !OV.rescal.items || !OV.rescal.items.length){
+  if(!OV.rescal || !((OV.rescal.items||[]).length || (OV.rescal.events||[]).length)){
     body.innerHTML='<p class="view-hint">The results calendar has not been built yet. It refreshes automatically several times a day.</p>'; return;
   }
   if(!RC.built) rcBuild();
@@ -5608,6 +5610,18 @@ function rcBuild(){
   RC.built=true;
   document.getElementById('rc-window').innerHTML=[['7','Next 7 days'],['10','Next 10 days'],['14','Next 14 days'],['30','Next 30 days'],['60','Next 60 days'],['','Everything on the calendar']].map(([v,l])=>`<option value="${v}">${l}</option>`).join('');
   document.getElementById('rc-window').value='10';
+  try{ RC.view=localStorage.getItem('dms.rc.view')||'week'; document.getElementById('rc-scope').value=localStorage.getItem('dms.rc.scope')||'board'; }catch(e){}
+  if(!['week','month','list'].includes(RC.view)) RC.view='week';
+  RC.anchor=rcToday();
+  document.querySelectorAll('[data-rcv]').forEach(b=>b.onclick=()=>{ RC.view=b.dataset.rcv; try{ localStorage.setItem('dms.rc.view',RC.view); }catch(e){} rcRender(); });
+  document.querySelectorAll('[data-rcn]').forEach(b=>b.onclick=()=>{
+    const k=+b.dataset.rcn;
+    if(!k) RC.anchor=rcToday();
+    else if(RC.view==='week') RC.anchor+=k*7*86400000;
+    else { const d=new Date(RC.anchor); RC.anchor=Date.UTC(d.getUTCFullYear(), d.getUTCMonth()+k, 1); }
+    rcRender();
+  });
+  document.getElementById('rc-scope').onchange=()=>{ try{ localStorage.setItem('dms.rc.scope',document.getElementById('rc-scope').value); }catch(e){} rcRender(); };
   document.getElementById('rc-theme').innerHTML='<option value="">All themes</option>'+THEMES.map(t=>`<option value="${esc(t)}">${esc(shortT(t))}</option>`).join('');
   let t=0;
   document.getElementById('rc-q').oninput=()=>{ clearTimeout(t); t=setTimeout(rcRender,140); };
@@ -5618,6 +5632,14 @@ function rcBuild(){
   };
 }
 function rcRender(){
+  document.querySelectorAll('[data-rcv]').forEach(b=>b.classList.toggle('on', b.dataset.rcv===RC.view));
+  const cal=RC.view!=='list';
+  document.getElementById('rc-window').hidden=cal;
+  document.getElementById('rc-scope').hidden=!cal;
+  document.getElementById('rc-nav').hidden=!cal;
+  if(cal) rcRenderCal(); else rcRenderList();
+}
+function rcRenderList(){
   const by=ovByCode(), all=rcUpcoming().filter(i=>by[i.code]);
   const q=document.getElementById('rc-q').value.trim().toLowerCase(), win=document.getElementById('rc-window').value;
   const st=document.getElementById('rc-status').value, th=document.getElementById('rc-theme').value, wl=document.getElementById('rc-watch').checked;
@@ -5660,6 +5682,107 @@ function rcRender(){
     </tbody></table></div>
     <p class="caveat" style="margin-top:8px"><b>Confirmed</b> = the company has notified NSE of a board meeting to approve results. <b>Expected</b> = no notice yet; last year's date, moved to the same weekday — companies keep a steady calendar but it can move. <b>SEBI deadline</b> = no announced date and no history; the latest it can report (45 days after quarter-end). "Last quarter" is the year-on-year change in the latest reported quarter.</p>`;
   body.querySelectorAll('[data-rc-code]').forEach(tr=>tr.onclick=()=>{ const d=by[tr.dataset.rcCode]; if(d) openDrawer(d); });
+}
+
+/* Week (Mon-Sun) or Month grid of `events`. Dates are handled as UTC midnights of the IST calendar date. */
+const RC_DAY=86400000;
+function rcISO(ms){ return new Date(ms).toISOString().slice(0,10); }
+function rcMonday(ms){ return ms-((new Date(ms).getUTCDay()+6)%7)*RC_DAY; }
+function rcEvents(){
+  const by=ovByCode(), scope=document.getElementById('rc-scope').value;
+  const q=document.getElementById('rc-q').value.trim().toLowerCase(), st=document.getElementById('rc-status').value;
+  const th=document.getElementById('rc-theme').value, wl=document.getElementById('rc-watch').checked;
+  return ((OV.rescal && OV.rescal.events) || []).filter(e=>{
+    const d=e.code ? by[e.code] : null;
+    if(scope!=='all' && !d) return false;
+    if(st && e.status!==st) return false;
+    if(th && (!d || base(d)!==th)) return false;
+    if(wl && !(e.code && WATCH.has(e.code))) return false;
+    return !q || ((e.name||'')+' '+e.symbol+' '+(e.code||'')).toLowerCase().includes(q);
+  });
+}
+function rcBellable(e){ return !!e.symbol && !/^\d+$/.test(e.symbol); }
+function rcCard(e){
+  const on=((ACCT.prefs||{}).rc_notify||[]).includes(e.symbol);
+  const badge = e.results_url ? `<a class="rc-chip rc-out" href="${esc(e.results_url)}" target="_blank" rel="noopener" title="Results filed ${esc(e.results_at||'')}">Results out ↗</a>`
+    : e.status==='confirmed' ? `<span class="rc-chip rc-conf">Confirmed</span>`
+    : `<span class="rc-chip rc-exp" title="${e.last_year?'Reported on '+esc(rcDayShort(e.last_year))+' last year':'From last year'}">Expected</span>`;
+  return `<div class="rc-card${e.board?' rc-onboard':''}" data-rce="${esc(e.symbol)}|${esc(e.date)}" tabindex="0">
+    <div class="rc-card-top"><b>${esc(e.symbol)}</b>${rcBellable(e)?`<button type="button" class="rc-bell${on?' on':''}" data-rcb="${esc(e.symbol)}" title="${on?'Notifying you when its results are filed — click to stop':'Notify me when its results are filed'}" aria-pressed="${on}">&#128276;</button>`:''}</div>
+    <div class="rc-card-name" title="${esc(e.name||'')}">${esc(e.name||'')}</div>
+    <div class="rc-card-meta">${esc(e.result||'Results')}</div>${badge}</div>`;
+}
+function rcRenderCal(){
+  const evs=rcEvents(), today=rcToday(), week=RC.view==='week';
+  let start, end, label;
+  if(week){ start=rcMonday(RC.anchor); end=start+6*RC_DAY;
+    label=`${rcDayLong(rcISO(start)).replace(/ \d{4}$/,'')} – ${rcDayLong(rcISO(end))}`; }
+  else { const d=new Date(RC.anchor), m0=Date.UTC(d.getUTCFullYear(), d.getUTCMonth(), 1), m1=Date.UTC(d.getUTCFullYear(), d.getUTCMonth()+1, 0);
+    start=rcMonday(m0); end=rcMonday(m1)+6*RC_DAY; RC.month=d.getUTCMonth();
+    label=new Date(m0).toLocaleDateString('en-IN',{month:'long',year:'numeric',timeZone:'UTC'}); }
+  document.getElementById('rc-range').textContent=label;
+  const byDay={};
+  evs.forEach(e=>{ (byDay[e.date]=byDay[e.date]||[]).push(e); });
+  const rank=e=>e.results_url?0:e.status==='confirmed'?1:2;   /* what's certain first */
+  Object.values(byDay).forEach(l=>l.sort((x,y)=>rank(x)-rank(y)));
+  const lo=rcISO(start), hi=rcISO(end), inView=evs.filter(e=>e.date>=lo && e.date<=hi);
+  let busy=null; Object.entries(byDay).forEach(([k,v])=>{ if(k>=lo && k<=hi && (!busy || v.length>busy[1])) busy=[k,v.length]; });
+  document.getElementById('rescal-asof').textContent = OV.rescal.fetched_at ? 'Updated '+newsAgoISO(OV.rescal.fetched_at) : '';
+  document.getElementById('rc-summary').innerHTML =
+    `<div class="earn-stat"><span>Events in view</span><b>${inView.length}</b></div>`
+    + `<div class="earn-stat"><span>Confirmed</span><b>${inView.filter(e=>e.status==='confirmed').length}</b></div>`
+    + `<div class="earn-stat"><span>Today</span><b>${(byDay[rcISO(today)]||[]).length}</b></div>`
+    + (busy ? `<div class="earn-stat"><span>Busiest day</span><b style="font-size:15px">${esc(rcDayShort(busy[0]))} · ${busy[1]}</b></div>` : '');
+  document.getElementById('rc-count').textContent='';
+  const body=document.getElementById('rc-body');
+  if(document.getElementById('rc-status').value==='deadline'){
+    body.innerHTML='<p class="view-hint">SEBI-deadline placeholders aren\'t announced dates, so they are only in the List view.</p>'; return;
+  }
+  const MAXC=week?Infinity:3, cells=[];
+  for(let t=start; t<=end; t+=RC_DAY){
+    const iso=rcISO(t), list=byDay[iso]||[], d=new Date(t);
+    const out=!week && d.getUTCMonth()!==RC.month;
+    cells.push(`<div class="rc-day${t===today?' rc-today':''}${out?' rc-out-month':''}${t<today?' rc-past':''}">
+      <div class="rc-day-h"><span>${d.toLocaleDateString('en-IN',{weekday:'short',timeZone:'UTC'})}</span><b>${d.getUTCDate()}</b>${list.length?`<small>${list.length}</small>`:''}</div>
+      ${list.slice(0,MAXC).map(rcCard).join('')}
+      ${list.length>MAXC?`<button type="button" class="rc-more" data-rcday="${iso}">+${list.length-MAXC} more</button>`:''}</div>`);
+  }
+  const boardOnly=document.getElementById('rc-scope').value!=='all';
+  body.innerHTML=`<div class="rc-grid ${week?'rc-week':'rc-month'}">${cells.join('')}</div>
+    ${!inView.length?`<p class="view-hint" style="margin-top:10px">Nothing in this ${week?'week':'month'}${boardOnly?' for board companies — switch to <b>All listed companies</b>, or':' —'} move forward with &#8250;.</p>`:''}
+    <p class="caveat" style="margin-top:8px"><b>Confirmed</b> = the company has notified NSE of a board meeting to approve results. <b>Expected</b> = a board company with no notice yet, on last year's date. <b>Results out</b> = the results filing is in (checked several times a day). &#128276; sends a desktop notification the moment that company files its results.</p>`;
+  const byKey={}; evs.forEach(e=>byKey[e.symbol+'|'+e.date]=e);
+  const by=ovByCode();
+  body.querySelectorAll('[data-rce]').forEach(c=>c.onclick=ev=>{
+    if(ev.target.closest('a,button')) return;
+    const e=byKey[c.dataset.rce]; if(!e) return;
+    if(e.code && by[e.code]) openDrawer(by[e.code]);
+    else if(e.results_url || e.url) window.open(e.results_url || e.url, '_blank', 'noopener');
+  });
+  body.querySelectorAll('[data-rcb]').forEach(b=>b.onclick=()=>rcBell(b.dataset.rcb, b));
+  body.querySelectorAll('[data-rcday]').forEach(b=>b.onclick=()=>{ RC.view='week'; RC.anchor=Date.parse(b.dataset.rcday+'T00:00:00Z'); rcRender(); });
+}
+/* The bell: adds the symbol to the account's rc_notify; app/filing_alerts.py pushes its next results filing.
+   The first bell also turns on desktop notifications in this browser (the click is the needed gesture). */
+async function rcBell(sym, btn){
+  if(!ME){ smallModal('<h3>Results alerts</h3><p class="view-hint">Sign in to be notified when a company files its results.</p>'); return; }
+  const now=new Set((ACCT.prefs||{}).rc_notify||[]);
+  const adding=!now.has(sym);
+  adding ? now.add(sym) : now.delete(sym);
+  ACCT.prefs.rc_notify=[...now];
+  document.querySelectorAll(`[data-rcb="${CSS.escape(sym)}"]`).forEach(b=>{
+    b.classList.toggle('on',adding); b.setAttribute('aria-pressed',adding);
+    b.title = adding ? 'Notifying you when its results are filed — click to stop' : 'Notify me when its results are filed';
+  });
+  if(adding){
+    await wpCheckStatus();
+    if(WP.supported && WP.serverKey){
+      try{ if(!WP.subscribed){ await wpSubscribe('filings'); WP.subscribed=true; } else anNotifyLinkBrowser(); }
+      catch(e){ smallModal(`<h3>Results alerts</h3><p class="view-hint">Saved, but desktop notifications couldn't be turned on: ${esc(e.message||'')}</p>`); }
+    }
+  }
+  try{ const j=await api('/api/me/settings','PATCH',{prefs:{rc_notify:ACCT.prefs.rc_notify}}); ACCT.prefs.rc_notify=(j.prefs||{}).rc_notify||ACCT.prefs.rc_notify; }
+  catch(e){ smallModal(`<h3>Results alerts</h3><p class="view-hint">Could not save — ${esc(e.message||'')}</p>`); }
 }
 
 ACCT.loaded=initUserMenu();

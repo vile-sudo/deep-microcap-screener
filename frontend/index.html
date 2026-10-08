@@ -101,7 +101,7 @@
   .f1{transform:translateX(12vw)}.f2{transform:translateX(66vw)}.f3{transform:translateX(38vw)}.f4{transform:translateX(18vw)}.f5{transform:translateX(74vw)}.sp-school{transform:translateX(56vw)}
 }
 </style>
-<link rel="stylesheet" href="/static/style.css?v=80">
+<link rel="stylesheet" href="/static/style.css?v=81">
 <link rel="stylesheet" href="/static/dark.css?v=65">
 </head>
 <body>
@@ -442,8 +442,10 @@
 </section>
 
 <section class="dashboard-section rescal-section" data-views="rescal" aria-labelledby="rescal-title">
-  <div class="section-heading"><div><span class="eyebrow">RESULTS</span><h2 id="rescal-title">Results Calendar</h2><p class="section-copy">When each company on the board reports its next results, so you know what is coming before it lands. A date is <b>confirmed</b> when the company has told NSE its board will meet to approve results; until then it is <b>expected</b> (the date it reported this quarter last year) or, where there is no history, shown as the SEBI <b>deadline</b> — the latest it can report. Updated several times a day; results season notices arrive about a week ahead.</p></div><span class="section-note" id="rescal-asof"></span></div>
+  <div class="section-heading"><div><span class="eyebrow">RESULTS</span><h2 id="rescal-title">Results Calendar</h2><p class="section-copy">When companies report their next results, so you know what is coming before it lands. The calendar shows every NSE-listed company that has announced a results date (switch to <b>All listed</b>), plus the board's expected dates; tap &#128276; on a company to get a desktop notification the moment its results are filed. A date is <b>confirmed</b> when the company has told NSE its board will meet to approve results; until then it is <b>expected</b> (the date it reported this quarter last year) or, where there is no history, shown as the SEBI <b>deadline</b> — the latest it can report. Updated several times a day; results season notices arrive about a week ahead.</p></div><span class="section-note" id="rescal-asof"></span></div>
   <div class="mv-toolbar">
+    <div class="rc-seg" role="group" aria-label="View"><button type="button" data-rcv="week">Week</button><button type="button" data-rcv="month">Month</button><button type="button" data-rcv="list">List</button></div>
+    <select class="gal-select" id="rc-scope" aria-label="Companies"><option value="board">Board companies</option><option value="all">All listed companies</option></select>
     <input id="rc-q" class="gal-search" type="search" autocomplete="off" spellcheck="false" placeholder="Search company or ticker…">
     <select class="gal-select" id="rc-window" aria-label="Window"></select>
     <select class="gal-select" id="rc-status" aria-label="How sure is the date">
@@ -456,6 +458,7 @@
     <label class="news-pm"><input type="checkbox" id="rc-watch"> Watchlist only</label>
     <button class="theme-back" id="rc-clear" type="button">Clear</button>
   </div>
+  <div class="rc-nav" id="rc-nav" hidden><button class="rc-navb" type="button" data-rcn="-1" aria-label="Previous">&#8249;</button><button class="rc-navb" type="button" data-rcn="0">Today</button><button class="rc-navb" type="button" data-rcn="1" aria-label="Next">&#8250;</button><b id="rc-range"></b></div>
   <div class="rc-summary" id="rc-summary"></div>
   <div class="mv-count" id="rc-count"></div>
   <div id="rc-body"><p class="view-hint">Loading…</p></div>
@@ -710,6 +713,6 @@
 <div class="modal" id="modal" role="dialog" aria-modal="true"><div class="mbox"><button class="close" id="mclose" aria-label="Close">&times;</button><div id="mbody"></div></div></div>
 
 <script src="/static/asme-certified.js?v=5" defer></script>
-<script src="/static/app.js?v=100" defer></script>
+<script src="/static/app.js?v=101" defer></script>
 </body>
 </html>
