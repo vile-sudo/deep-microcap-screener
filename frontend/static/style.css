@@ -2560,3 +2560,7 @@ mark.tr-hit.cur{background:#f59e0b;color:#111}
 .ss-beatsel{min-width:200px}
 .ss-beatbar{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:-2px 0 12px}
 .ss-beatbar .cp-lab{margin:0}
+.ss-datepick{display:inline-flex;align-items:center;gap:8px}
+.ss-datepick .cp-lab{margin:0}
+.ss-datepick select{min-width:170px}
+.ss-hday td{min-width:120px}

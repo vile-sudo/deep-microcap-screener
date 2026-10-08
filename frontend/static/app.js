@@ -6569,11 +6569,18 @@ function ssRender(){
       : 'Over the last N days: <b>3D</b> is the change from the close three sessions ago to the latest close (the sum of those days\' moves, compounded) — not a single day\'s move. Switch to <b>Day by day</b> to see each session separately.'}</p>`;
   body.innerHTML = ctr + (SS.slug ? ssDetail() : sscHtml() + ssOverview());
   if(body.querySelector('#ssc-box')) sscWire(body);
-  body.querySelectorAll('[data-ssm]').forEach(b=>b.onclick=()=>{ if(SS.mode===b.dataset.ssm) return; SS.mode=b.dataset.ssm; SS.sel = SS.mode==='day' ? 'd'+((d.sessions||[]).length-1) : 'r3'; SS.sort=null; ssSave(); ssRender(); syncURL(); });
-  body.querySelectorAll('[data-ssw]').forEach(b=>b.onclick=()=>{ SS.sel=b.dataset.ssw; SS.sort=null; ssSave(); ssRender(); syncURL(); });
+  body.querySelectorAll('[data-ssm]').forEach(b=>b.onclick=()=>{ if(SS.mode===b.dataset.ssm) return; SS.histDate=null; SS.mode=b.dataset.ssm; SS.sel = SS.mode==='day' ? 'd'+((d.sessions||[]).length-1) : 'r3'; SS.sort=null; ssSave(); ssRender(); syncURL(); });
+  body.querySelectorAll('[data-ssw]').forEach(b=>b.onclick=()=>{ SS.sel=b.dataset.ssw; SS.sort=null; SS.histDate=null; ssSave(); ssRender(); syncURL(); });
   document.getElementById('ss-liq').onchange=e=>{ SS.liquid=e.target.checked; ssSave(); ssRender(); };
   document.getElementById('ss-sme').onchange=e=>{ SS.nosme=e.target.checked; ssSave(); ssRender(); };
   body.querySelectorAll('[data-ssbeat]').forEach(b=>b.onclick=()=>{ SS.beat=b.dataset.ssbeat; ssRender(); });
+  const dp=document.getElementById('ss-date'); if(dp) dp.onchange=()=>{
+    const v=dp.value, i=(d.sessions||[]).indexOf(v);
+    if(!v){ SS.histDate=null; }
+    else if(i>=0){ SS.histDate=null; SS.mode='day'; SS.sel='d'+i; ssSave(); }
+    else SS.histDate=v;
+    ssRender(); syncURL();
+  };
   body.querySelectorAll('[data-ss]').forEach(el=>el.onclick=e=>{ if(e.target.closest('a')) return; SS.slug=el.dataset.ss; SS.ind=''; SS.q=''; ssRender(); syncURL(); window.scrollTo({top:0}); });
   const back=document.getElementById('ss-back'); if(back) back.onclick=e=>{ e.preventDefault(); SS.slug=null; ssRender(); syncURL(); };
   body.querySelectorAll('[data-ss-sort]').forEach(th=>th.onclick=()=>{ const k=th.dataset.ssSort; const now=SS.sort||cur.k; if(now===k) SS.dir=-SS.dir; else { SS.sort=k; SS.dir= k==='name'?1:-1; } ssRender(); });
@@ -6585,6 +6592,32 @@ function ssBenchRow(cols, cur){
   const b=SS.data.benchmark; if(!b) return '';
   return `<tr class="ss-bench"><td class="ss-benchc"><b>${esc(b.name)}</b><small>${fmtI(b.constituents)} stocks · index ${b.close?fmtI(b.close):''}</small></td>
     ${cols.map(c=>{ const x=c.bb(), p=ssPu(x); return `<td style="background-image:linear-gradient(${ssHeat(p)},${ssHeat(p)})" class="ss-benchc${cur.k===c.k?' cur':''}"><b>${p==null?'—':fmt(p,0)+'%'}</b><small>index ${ssPct(c.bench(),2)}</small></td>`; }).join('')}</tr>`;
+}
+/* dates the picker offers: the last 60 sessions, newest first */
+function ssDateOptions(){
+  const dates=((SS.hist&&SS.hist.dates)||[]).slice().reverse();
+  const cur = SS.histDate || (SS.mode==='day' ? (SS.data.sessions||[])[+String(SS.sel).slice(1)] : '');
+  return `<option value="">${SS.mode==='day'?'Pick a date':'Pick a date (day by day)'}</option>`
+    + dates.map(x=>`<option value="${x}"${x===cur?' selected':''}>${esc(rcDayShort(x))}</option>`).join('');
+}
+/* one older session, from the 60-session history: share up and median move per sector vs the Nifty 500 */
+function ssHistDay(){
+  const h=SS.hist, i=h.dates.indexOf(SS.histDate);
+  const n=h.nifty500&&h.nifty500['1']&&h.nifty500['1'][i], nRet=n?n[1]:null, nUp=n?n[0]:null;
+  const SS_GRP={theme:'Themes', nse:'All NSE sectors'};
+  let rows=SS.data.sectors.map(sec=>{ const x=((h.sectors[sec.slug]||{})['1']||[])[i]; return {sec, up:x?x[0]:null, med:x?x[1]:null}; })
+    .filter(r=>r.up!=null).map(r=>({...r, vs: r.med!=null&&nRet!=null ? r.med-nRet : null}));
+  const all=rows.length;
+  if(SS.beat) rows=rows.filter(r=>SS.beat==='beat' ? r.vs>0 : r.vs!=null && r.vs<=0);
+  const g=r=>r.sec.group==='nse'?1:0;
+  rows.sort((a,b)=>g(a)-g(b) || (SS.beat ? (b.vs??-99)-(a.vs??-99) : (b.up??-1)-(a.up??-1)));
+  return `<div class="ss-heatwrap"><table class="ss-heat ss-hday"><thead><tr><th></th><th class="cur">% of stocks up · ${esc(rcDayShort(SS.histDate))}</th><th>Median move</th><th>vs Nifty 500</th></tr></thead><tbody>
+    <tr class="ss-bench"><td class="ss-benchc"><b>Nifty 500</b><small>500 stocks</small></td><td class="ss-benchc cur" style="background-image:linear-gradient(${ssHeat(nUp)},${ssHeat(nUp)})"><b>${nUp==null?'—':fmt(nUp,0)+'%'}</b></td><td class="ss-benchc"><b>index ${ssPct(nRet,2)}</b></td><td class="ss-benchc"></td></tr>
+    ${rows.map((r,ri)=>`${ri===0||g(rows[ri-1])!==g(r)?`<tr class="ss-grp"><td colspan="4">${SS_GRP[r.sec.group||'theme']}</td></tr>`:''}<tr data-ss="${ea(r.sec.slug)}"><td><b>${esc(r.sec.name)}</b></td>
+      <td style="background:${ssHeat(r.up)}" class="cur"><b>${fmt(r.up,0)}%${r.vs!=null?`<i class="ss-vs ${r.vs>0?'up':'dn'}">${r.vs>0?'▲':'▼'}</i>`:''}</b></td><td><b>${ssPct(r.med,2)}</b></td><td><b>${ssPct(r.vs,2)}</b></td></tr>`).join('')}
+    ${!rows.length?`<tr><td colspan="4" class="nd" style="text-align:left;padding:14px">No sector ${SS.beat==='beat'?'beat':'lagged'} the Nifty 500 that day.</td></tr>`:''}
+    </tbody></table></div>
+    <p class="cp-sub" style="margin-top:8px">${SS.beat?`<b>${rows.length} of ${all}</b> sectors ${SS.beat==='beat'?'beat':'lagged'} the Nifty 500 (${ssPct(nRet,2)}) on ${esc(rcDayLong(SS.histDate))}. `:''}An older session, from the daily history: every traded member of each sector counts (the Liquid only / Hide SME switches apply to the last five sessions). Cards below show the latest data.</p>`;
 }
 function ssOverview(){
   const d=SS.data, cols=ssCols(), cur=ssCur(), b=d.benchmark;
@@ -6599,7 +6632,7 @@ function ssOverview(){
   const heat=`<div class="cp-card"><div class="cp-card-h"><h3>Share of stocks up</h3><span class="cp-sub">each cell: % of the sector's stocks that rose ${SS.mode==='day'?'that day':'over that window'} · how many · median move · click a sector</span></div>
     <div class="ss-beatbar"><span class="cp-lab">Against the Nifty 500 · ${esc(cur.label)}</span><div class="rc-seg" role="group" aria-label="Against the Nifty 500">
       <button type="button" data-ssbeat="" class="${!SS.beat?'on':''}">All sectors</button><button type="button" data-ssbeat="beat" class="${SS.beat==='beat'?'on':''}">▲ Beat Nifty 500</button><button type="button" data-ssbeat="lag" class="${SS.beat==='lag'?'on':''}">▼ Lagged Nifty 500</button></div>
-      <span class="cp-sub">pick a date (or window) above, then filter</span></div>
+      <label class="ss-datepick"><span class="cp-lab">Date</span><select class="gal-select" id="ss-date" aria-label="Date">${ssDateOptions()}</select></label></div>
     <div class="ss-heatwrap"><table class="ss-heat"><thead><tr><th></th>${cols.map(c=>`<th class="${cur.k===c.k?'cur':''}">${c.label}</th>`).join('')}</tr></thead><tbody>
     ${ssBenchRow(cols, cur)}
     ${rows.map(({sec,st,a},ri)=>`${ri===0||gOrd(rows[ri-1])!==gOrd(rows[ri])?`<tr class="ss-grp"><td colspan="${cols.length+1}">${SS_GRP[sec.group||'theme']}</td></tr>`:''}<tr data-ss="${ea(sec.slug)}"><td><b>${esc(sec.name)}</b><small>${st.length} stocks</small></td>
@@ -6608,6 +6641,7 @@ function ssOverview(){
     ${!rows.length?`<tr><td colspan="${cols.length+1}" class="nd" style="text-align:left;padding:14px">No sector ${SS.beat==='beat'?'beat':'lagged'} the Nifty 500 ${esc(cur.long)}.</td></tr>`:''}
     </tbody></table></div>
     ${SS.beat?`<p class="cp-sub" style="margin-top:8px"><b>${rows.length} of ${allRows.length}</b> sectors ${SS.beat==='beat'?'beat':'lagged'} the Nifty 500 (${ssPct(bwSel,2)}) ${esc(cur.long)} — the sector's median stock against the index. Pick another date or window above to re-check.</p>`:`<p class="cp-sub" style="margin-top:8px">▲ / ▼ in a cell: the sector's median stock beat / lagged the Nifty 500 that ${SS.mode==='day'?'day':'window'}.</p>`}</div>`;
+  const heatOut = SS.histDate && SS.hist ? heat.slice(0, heat.indexOf('<div class="ss-heatwrap">')) + ssHistDay() + '</div>' : heat;
   const card=({sec,st,a})=>{ const x=a[cur.k], p=ssPu(x);
     const lead=st.filter(s=>cur.get(s)!=null && (s.liquid || SS.liquid)).sort((m,n)=>cur.get(n)-cur.get(m)).slice(0,3);
     const h=cur.hist && SS.hist && SS.hist.sectors && SS.hist.sectors[sec.slug] && SS.hist.sectors[sec.slug][cur.hist];
@@ -6620,7 +6654,7 @@ function ssOverview(){
       <p class="cp-lab" style="margin-top:8px">Leading ${esc(cur.long)}${SS.liquid?'':' (liquid stocks)'}</p>
       <ol class="ss-lead">${lead.map(s=>`<li><span>${esc(s.symbol||s.code)}</span><small>${esc((s.full_name||s.name||'').slice(0,28))}</small>${ssPct(cur.get(s))}</li>`).join('')||'<li class="nd">—</li>'}</ol></article>`; };
   const grp=g=>rows.filter(r=>(r.sec.group||'theme')===g);
-  return heat + ['theme','nse'].filter(g=>grp(g).length).map(g=>`<h3 class="ss-grp-h">${SS_GRP[g]} <small>${grp(g).length}</small></h3><div class="ss-cards">${grp(g).map(card).join('')}</div>`).join('') + `
+  return heatOut + ['theme','nse'].filter(g=>grp(g).length).map(g=>`<h3 class="ss-grp-h">${SS_GRP[g]} <small>${grp(g).length}</small></h3><div class="ss-cards">${grp(g).map(card).join('')}</div>`).join('') + `
     <p class="caveat">Every listed company in each sector's NSE industries — NSE and BSE, main board and SME — from the exchanges' own closing prices (splits and bonuses accounted for). "vs Nifty 500" is the sector's median stock minus the index. A market-breadth monitor for research, not a buy list: our backtest found broad sector moves gave no dependable edge on their own.</p>`;
 }
 function ssDetail(){
