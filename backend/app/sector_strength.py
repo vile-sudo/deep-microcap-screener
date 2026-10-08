@@ -88,6 +88,12 @@ SECTORS = [
         ("IN07/IN0702/IN070203/IN070203001", "Heavy Electrical Equipment"),
         ("IN07/IN0702/IN070203/IN070203002", "Other Electrical Equipment"),
         ("IN07/IN0702/IN070205/IN070205003", "Cables - Electricals")]},
+    {"slug": "machinery", "name": "Machinery & Equipment", "industries": [
+        ("IN07/IN0702/IN070204/IN070204007", "Industrial Machinery"),
+        ("IN07/IN0702/IN070204/IN070204008", "Industrial Products"),
+        ("IN07/IN0702/IN070205/IN070205017", "Compressors, Pumps & Diesel Engines"),
+        ("IN07/IN0702/IN070205/IN070205016", "Abrasives & Bearings"),
+        ("IN07/IN0702/IN070204/IN070204005", "Railway Wagons")]},
     {"slug": "jewellery", "name": "Gems & Jewellery", "industries": [
         ("IN02/IN0202/IN020201/IN020201005", "Gems, Jewellery And Watches")],
      # small and newly listed jewellers are often missing from screener's industry listing: any traded company
