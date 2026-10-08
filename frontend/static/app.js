@@ -1405,7 +1405,7 @@ function syncURL(){
   if(VIEW==='filters' && FL.tab!=='filters') p.set('v',FL.tab);
   else if(VIEW!=='overview') p.set('v',VIEW);
   if(VIEW==='sectors' && SC.slug){ p.set('s',SC.slug); if(SC.edition) p.set('se',SC.edition); }
-  if(VIEW==='sstrength'){ if(SS.slug) p.set('ss',SS.slug); if(SS.w!==3) p.set('sw',SS.w); }
+  if(VIEW==='sstrength'){ if(SS.slug) p.set('ss',SS.slug); if(SS.sel!=='r3') p.set('sw',SS.sel); }
   if(VIEW==='company' && CO.code){ p.set('c',CO.code); if(CO.tab!=='overview') p.set('ct',CO.tab); }
   if(VIEW==='reports' && RP.code){ p.set('r',RP.code); if(DR.period) p.set('rp',DR.period); if(DR.tab==='board') p.set('rt','board'); }
   if(TILE) p.set('tile',TILE);
@@ -1429,7 +1429,7 @@ function applyState(){
   else if(VIEWS.includes(get('v'))) VIEW=get('v');
   if(get('r')) RP.code=get('r');
   if(get('ss') && /^[a-z0-9-]+$/.test(get('ss'))) SS.slug=get('ss');
-  if(['1','2','3','5'].includes(get('sw'))) SS.w=+get('sw');
+  if(/^(r[1235]|d[0-4])$/.test(get('sw')||'')){ SS.sel=get('sw'); SS.mode=SS.sel[0]==='d'?'day':'cum'; }
   if(get('c')){ CO.code=get('c'); if(CO_TABS.some(t=>t[0]===get('ct'))) CO.tab=get('ct'); }
   if(get('dt')==='ann') DL.pendingTab='ann';   /* a filing-alert notification opens the Announcements tab */
   if(get('s') && /^[a-z0-9-]+$/.test(get('s'))) SC.slug=get('s');
@@ -6361,29 +6361,35 @@ function coDocuments(d){
 }
 
 /* ---------- Sector Strength: how broadly each tracked sector is moving ----------
-   Every listed company (NSE + BSE, main board and SME) in five sectors, with its 1/2/3/5-session return,
-   against the Nifty 500 (the index's own return and how many of its 500 stocks rose). Written once a day by
-   app/sector_strength.py from the exchange bhavcopies. A breadth monitor -- the backtest behind it found no
-   dependable trading edge, so nothing here is labelled a buy. */
-const SS={data:null, hist:null, w:3, slug:null, liquid:false, nosme:false, sort:'r', dir:-1, q:'', ind:''};
+   Every listed company (NSE + BSE, main board and SME) in five sectors against the Nifty 500 (the index's
+   own move and how many of its 500 stocks rose). Two ways to read it: "Over the last N days" -- each stock's
+   change from the close N sessions ago -- or "Day by day" -- each of the last five sessions' own change.
+   Written once a day by app/sector_strength.py from the exchange bhavcopies. A breadth monitor: the backtest
+   behind it found no dependable trading edge, so nothing here is labelled a buy. */
+const SS={data:null, hist:null, mode:'cum', sel:'r3', slug:null, liquid:false, nosme:false, sort:null, dir:-1, q:'', ind:''};
 const SS_W=[1,2,3,5];
+function ssDay(iso){ return new Date(iso+'T00:00:00Z').toLocaleDateString('en-IN',{day:'numeric',month:'short',timeZone:'UTC'}); }
+/* the columns in view: windows (cumulative) or sessions (day by day) */
+function ssCols(){
+  const b=SS.data.benchmark||{};
+  if(SS.mode==='day') return (SS.data.sessions||[]).map((dt,i)=>({k:'d'+i, label:ssDay(dt), long:`on ${rcDayShort(dt)}`, get:s=>s.d?s.d[i]:null,
+    bench:()=>b.d?b.d[i]:null, bb:()=>b.d_breadth?b.d_breadth[i]:null, hist:null}));
+  return SS_W.map(w=>({k:'r'+w, label:`${w}D`, long:`over the last ${w} day${w>1?'s':''}`, get:s=>s['r'+w], bench:()=>b['r'+w],
+    bb:()=>b.breadth?b.breadth[w]:null, hist:String(w)}));
+}
+function ssCur(){ const c=ssCols(); return c.find(x=>x.k===SS.sel) || c[c.length-1]; }
 function ssStocks(sec){
   const sme=new Set((SS.data&&SS.data.sme)||[]);
   return sec.stocks.filter(s=>s.exchange && (!SS.liquid || s.liquid) && (!SS.nosme || !ssIsSme(s,sme)));
 }
 function ssIsSme(s, sme){ return s.exchange==='NSE' ? (sme||new Set(SS.data.sme||[])).has(s.symbol) : false; }
-function ssAgg(stocks, w){
-  const v=stocks.map(s=>s['r'+w]).filter(x=>x!=null).sort((a,b)=>a-b);
+function ssAgg(stocks, col){
+  const v=stocks.map(col.get).filter(x=>x!=null).sort((a,b)=>a-b);
   if(!v.length) return {n:0};
   const med=v.length%2 ? v[(v.length-1)/2] : (v[v.length/2-1]+v[v.length/2])/2;
   return {n:v.length, up:v.filter(x=>x>0).length, down:v.filter(x=>x<0).length, up1:v.filter(x=>x>1).length, median:med};
 }
-function ssBench(w){ const b=SS.data&&SS.data.benchmark; return b ? b['r'+w] : null; }
-function ssHeat(p){ /* 0..100 % up -> red..green */
-  if(p==null) return 'transparent';
-  const t=Math.max(0,Math.min(1,(p-20)/60)); const h=Math.round(t*130);
-  return `hsla(${h} 70% 45% / .28)`;
-}
+function ssHeat(p){ if(p==null) return 'transparent'; const t=Math.max(0,Math.min(1,(p-20)/60)); return `hsla(${Math.round(t*130)} 70% 45% / .28)`; }
 function ssSpark(arr){
   const pts=(arr||[]).map((x,i)=>[i,x&&x[0]]).filter(p=>p[1]!=null);
   if(pts.length<5) return '';
@@ -6392,6 +6398,7 @@ function ssSpark(arr){
   return `<svg class="ss-spark" viewBox="0 0 ${W} ${H}" preserveAspectRatio="none"><line x1="0" x2="${W}" y1="${H/2}" y2="${H/2}" class="mid"/><polyline points="${line}"/></svg>`;
 }
 const ssPct=(v,d=1)=>v==null||!isFinite(v)?'—':`<span class="${v>0?'ov-up':v<0?'ov-dn':''}">${v>0?'+':''}${fmt(v,d)}%</span>`;
+const ssPu=a=>a&&a.n?100*a.up/a.n:null;
 
 async function openSStrength(){
   const body=document.getElementById('ss-body');
@@ -6399,90 +6406,97 @@ async function openSStrength(){
     body.innerHTML='<p class="view-hint">Loading…</p>';
     try{ [SS.data, SS.hist]=await Promise.all([fetchJSON('/api/sector-strength'), fetchJSON('/api/sector-strength/history').catch(()=>null)]); }
     catch(e){ body.innerHTML='<p class="view-hint">Sector Strength could not be loaded.</p>'; return; }
+    try{ const p=JSON.parse(localStorage.getItem('dms.ss')||'{}'); if(p.mode && !/[#&]sw=/.test(location.hash)){ SS.mode=p.mode; if(p.sel) SS.sel=p.sel; } SS.liquid=!!p.liquid; SS.nosme=!!p.nosme; }catch(e){}
+    if(SS.mode==='day' && !(SS.data.sessions||[]).length) SS.mode='cum';
   }
   if(!SS.data.sectors || !SS.data.sectors.length){ body.innerHTML='<p class="view-hint">Not built yet — it refreshes automatically after each trading day.</p>'; return; }
-  try{ const p=JSON.parse(localStorage.getItem('dms.ss')||'{}'); if(p.w) SS.w=p.w; SS.liquid=!!p.liquid; SS.nosme=!!p.nosme; }catch(e){}
   ssRender();
 }
-function ssSave(){ try{ localStorage.setItem('dms.ss',JSON.stringify({w:SS.w,liquid:SS.liquid,nosme:SS.nosme})); }catch(e){} }
+function ssSave(){ try{ localStorage.setItem('dms.ss',JSON.stringify({mode:SS.mode,sel:SS.sel,liquid:SS.liquid,nosme:SS.nosme})); }catch(e){} }
 function ssRender(){
-  const d=SS.data, body=document.getElementById('ss-body');
+  const d=SS.data, body=document.getElementById('ss-body'), cols=ssCols(), cur=ssCur();
+  SS.sel=cur.k;
   document.getElementById('ss-asof').textContent = d.asof ? 'Closing prices of '+rcDayLong(d.asof) : '';
-  const ctr=`<div class="ss-bar"><div class="rc-seg" role="group" aria-label="Window">${SS_W.map(w=>`<button type="button" data-ssw="${w}" class="${SS.w===w?'on':''}">${w}D</button>`).join('')}</div>
+  const ctr=`<div class="ss-bar">
+    <div class="rc-seg" role="group" aria-label="How to read the moves"><button type="button" data-ssm="cum" class="${SS.mode==='cum'?'on':''}" title="Each stock's change from the close N sessions ago">Over the last N days</button><button type="button" data-ssm="day" class="${SS.mode==='day'?'on':''}" title="Each session's own change">Day by day</button></div>
+    <div class="rc-seg" role="group" aria-label="${SS.mode==='day'?'Session':'Window'}">${cols.map(c=>`<button type="button" data-ssw="${c.k}" class="${cur.k===c.k?'on':''}">${c.label}</button>`).join('')}</div>
     <label class="news-pm"><input type="checkbox" id="ss-liq"${SS.liquid?' checked':''}> Liquid only (₹${fmt(d.liquid_turnover_cr||1,0)} Cr+/day)</label>
-    <label class="news-pm"><input type="checkbox" id="ss-sme"${SS.nosme?' checked':''}> Hide SME</label></div>`;
+    <label class="news-pm"><input type="checkbox" id="ss-sme"${SS.nosme?' checked':''}> Hide SME</label></div>
+    <p class="cp-sub ss-explain">${SS.mode==='day'
+      ? 'Day by day: each column is that session\'s own move — the close against the previous close.'
+      : 'Over the last N days: <b>3D</b> is the change from the close three sessions ago to the latest close (the sum of those days\' moves, compounded) — not a single day\'s move. Switch to <b>Day by day</b> to see each session separately.'}</p>`;
   body.innerHTML = ctr + (SS.slug ? ssDetail() : ssOverview());
-  body.querySelectorAll('[data-ssw]').forEach(b=>b.onclick=()=>{ SS.w=+b.dataset.ssw; ssSave(); ssRender(); syncURL(); });
+  body.querySelectorAll('[data-ssm]').forEach(b=>b.onclick=()=>{ if(SS.mode===b.dataset.ssm) return; SS.mode=b.dataset.ssm; SS.sel = SS.mode==='day' ? 'd'+((d.sessions||[]).length-1) : 'r3'; SS.sort=null; ssSave(); ssRender(); syncURL(); });
+  body.querySelectorAll('[data-ssw]').forEach(b=>b.onclick=()=>{ SS.sel=b.dataset.ssw; SS.sort=null; ssSave(); ssRender(); syncURL(); });
   document.getElementById('ss-liq').onchange=e=>{ SS.liquid=e.target.checked; ssSave(); ssRender(); };
   document.getElementById('ss-sme').onchange=e=>{ SS.nosme=e.target.checked; ssSave(); ssRender(); };
   body.querySelectorAll('[data-ss]').forEach(el=>el.onclick=e=>{ if(e.target.closest('a')) return; SS.slug=el.dataset.ss; SS.ind=''; SS.q=''; ssRender(); syncURL(); window.scrollTo({top:0}); });
   const back=document.getElementById('ss-back'); if(back) back.onclick=e=>{ e.preventDefault(); SS.slug=null; ssRender(); syncURL(); };
-  body.querySelectorAll('[data-ss-sort]').forEach(th=>th.onclick=()=>{ const k=th.dataset.ssSort; if(SS.sort===k) SS.dir=-SS.dir; else { SS.sort=k; SS.dir= k==='name'?1:-1; } ssRender(); });
+  body.querySelectorAll('[data-ss-sort]').forEach(th=>th.onclick=()=>{ const k=th.dataset.ssSort; const now=SS.sort||cur.k; if(now===k) SS.dir=-SS.dir; else { SS.sort=k; SS.dir= k==='name'?1:-1; } ssRender(); });
   body.querySelectorAll('[data-ss-ind]').forEach(b=>b.onclick=()=>{ SS.ind = SS.ind===b.dataset.ssInd ? '' : b.dataset.ssInd; ssRender(); });
   const q=document.getElementById('ss-q'); if(q){ q.oninput=()=>{ clearTimeout(SS.t); SS.t=setTimeout(()=>{ SS.q=q.value.trim().toLowerCase(); ssRender(); const n=document.getElementById('ss-q'); n.focus(); n.setSelectionRange(n.value.length,n.value.length); },180); }; }
   body.querySelectorAll('[data-co]').forEach(a=>a.onclick=e=>{ e.preventDefault(); e.stopPropagation(); openCompanyPage(a.dataset.co); });
 }
-function ssBenchRow(){
+function ssBenchRow(cols, cur){
   const b=SS.data.benchmark; if(!b) return '';
-  const br=w=>b.breadth&&b.breadth[w];
   return `<tr class="ss-bench"><td><b>${esc(b.name)}</b><small>${fmtI(b.constituents)} stocks · index ${b.close?fmtI(b.close):''}</small></td>
-    ${SS_W.map(w=>{ const x=br(w), p=x&&x.n?100*x.up/x.n:null; return `<td style="background:${ssHeat(p)}" class="${SS.w===w?'cur':''}"><b>${p==null?'—':fmt(p,0)+'%'}</b><small>index ${ssPct(b['r'+w],2)}</small></td>`; }).join('')}</tr>`;
+    ${cols.map(c=>{ const x=c.bb(), p=ssPu(x); return `<td style="background:${ssHeat(p)}" class="${cur.k===c.k?'cur':''}"><b>${p==null?'—':fmt(p,0)+'%'}</b><small>index ${ssPct(c.bench(),2)}</small></td>`; }).join('')}</tr>`;
 }
 function ssOverview(){
-  const d=SS.data, w=SS.w, bw=ssBench(w), b=d.benchmark;
-  const rows=d.sectors.map(sec=>{ const st=ssStocks(sec); return {sec, st, a:Object.fromEntries(SS_W.map(x=>[x, ssAgg(st,x)]))}; });
-  const pu=a=>a.n?100*a.up/a.n:null;
-  rows.sort((x,y)=>(pu(y.a[w])??-1)-(pu(x.a[w])??-1));
-  const bb=b&&b.breadth&&b.breadth[w], bpu=bb&&bb.n?100*bb.up/bb.n:null;
-  const heat=`<div class="cp-card"><div class="cp-card-h"><h3>Share of stocks up</h3><span class="cp-sub">each cell: % of the sector's stocks that rose over that window · median return · click a sector</span></div>
-    <div class="mv-tablewrap"><table class="ss-heat"><thead><tr><th></th>${SS_W.map(x=>`<th class="${w===x?'cur':''}">${x}D</th>`).join('')}</tr></thead><tbody>
-    ${ssBenchRow()}
+  const d=SS.data, cols=ssCols(), cur=ssCur(), b=d.benchmark;
+  const rows=d.sectors.map(sec=>{ const st=ssStocks(sec); return {sec, st, a:Object.fromEntries(cols.map(c=>[c.k, ssAgg(st,c)]))}; });
+  rows.sort((x,y)=>(ssPu(y.a[cur.k])??-1)-(ssPu(x.a[cur.k])??-1));
+  const bpu=ssPu(cur.bb()), bw=cur.bench();
+  const heat=`<div class="cp-card"><div class="cp-card-h"><h3>Share of stocks up</h3><span class="cp-sub">each cell: % of the sector's stocks that rose ${SS.mode==='day'?'that day':'over that window'} · how many · median move · click a sector</span></div>
+    <div class="mv-tablewrap"><table class="ss-heat"><thead><tr><th></th>${cols.map(c=>`<th class="${cur.k===c.k?'cur':''}">${c.label}</th>`).join('')}</tr></thead><tbody>
+    ${ssBenchRow(cols, cur)}
     ${rows.map(({sec,st,a})=>`<tr data-ss="${ea(sec.slug)}"><td><b>${esc(sec.name)}</b><small>${st.length} stocks</small></td>
-      ${SS_W.map(x=>`<td style="background:${ssHeat(pu(a[x]))}" class="${w===x?'cur':''}"><b>${pu(a[x])==null?'—':fmt(pu(a[x]),0)+'%'}</b><small>${a[x].n?a[x].up+'/'+a[x].n+' · med '+ssPct(a[x].median):''}</small></td>`).join('')}</tr>`).join('')}
+      ${cols.map(c=>{ const x=a[c.k], p=ssPu(x); return `<td style="background:${ssHeat(p)}" class="${cur.k===c.k?'cur':''}"><b>${p==null?'—':fmt(p,0)+'%'}</b><small>${x.n?x.up+'/'+x.n+' · med '+ssPct(x.median):''}</small></td>`; }).join('')}</tr>`).join('')}
     </tbody></table></div></div>`;
-  const cards=rows.map(({sec,st,a})=>{ const x=a[w]; const p=pu(x);
-    const lead=st.filter(s=>s['r'+w]!=null && (s.liquid || SS.liquid)).sort((m,n)=>n['r'+w]-m['r'+w]).slice(0,3);
-    const h=SS.hist&&SS.hist.sectors&&SS.hist.sectors[sec.slug]&&SS.hist.sectors[sec.slug][String(w)];
+  const cards=rows.map(({sec,st,a})=>{ const x=a[cur.k], p=ssPu(x);
+    const lead=st.filter(s=>cur.get(s)!=null && (s.liquid || SS.liquid)).sort((m,n)=>cur.get(n)-cur.get(m)).slice(0,3);
+    const h=cur.hist && SS.hist && SS.hist.sectors && SS.hist.sectors[sec.slug] && SS.hist.sectors[sec.slug][cur.hist];
     const vs = x.n && bw!=null ? x.median-bw : null;
     const tone = p==null?'':p>=70?'ss-hot':p<=30?'ss-cold':'';
     return `<article class="cp-card ss-card ${tone}" data-ss="${ea(sec.slug)}"><div class="cp-card-h"><h3>${esc(sec.name)}</h3><span class="ss-big">${p==null?'—':fmt(p,0)+'%'}</span></div>
-      <p class="ss-line"><b>${x.n?x.up:0} / ${x.n||0}</b> up over ${w} day${w>1?'s':''} · ${x.n?fmt(100*x.up1/x.n,0):'—'}% up more than 1%</p>
-      <div class="ss-kv"><span>Median return<b>${ssPct(x.median,2)}</b></span><span>vs Nifty 500<b>${ssPct(vs,2)}</b></span><span>Nifty 500 breadth<b>${bpu==null?'—':fmt(bpu,0)+'%'}</b></span></div>
-      ${h?`<div class="ss-sp"><span class="cp-sub">% up (${w}D), last ${h.length} sessions</span>${ssSpark(h)}</div>`:''}
-      <p class="cp-lab" style="margin-top:8px">Leading over ${w}D${SS.liquid?'':' (liquid stocks)'}</p>
-      <ol class="ss-lead">${lead.map(s=>`<li><span>${esc(s.symbol||s.code)}</span><small>${esc((s.full_name||s.name||'').slice(0,28))}</small>${ssPct(s['r'+w])}</li>`).join('')||'<li class="nd">—</li>'}</ol></article>`; }).join('');
+      <p class="ss-line"><b>${x.n?x.up:0} / ${x.n||0}</b> up ${esc(cur.long)} · ${x.n?fmt(100*x.up1/x.n,0):'—'}% up more than 1%</p>
+      <div class="ss-kv"><span>Median move<b>${ssPct(x.median,2)}</b></span><span>vs Nifty 500<b>${ssPct(vs,2)}</b></span><span>Nifty 500 breadth<b>${bpu==null?'—':fmt(bpu,0)+'%'}</b></span></div>
+      ${h?`<div class="ss-sp"><span class="cp-sub">% up (${esc(cur.label)}), last ${h.length} sessions</span>${ssSpark(h)}</div>`:''}
+      <p class="cp-lab" style="margin-top:8px">Leading ${esc(cur.long)}${SS.liquid?'':' (liquid stocks)'}</p>
+      <ol class="ss-lead">${lead.map(s=>`<li><span>${esc(s.symbol||s.code)}</span><small>${esc((s.full_name||s.name||'').slice(0,28))}</small>${ssPct(cur.get(s))}</li>`).join('')||'<li class="nd">—</li>'}</ol></article>`; }).join('');
   return heat + `<div class="ss-cards">${cards}</div>
-    <p class="caveat">Every listed company in each sector's NSE industries — NSE and BSE, main board and SME — with its return over the last 1, 2, 3 and 5 sessions, from the exchanges' own closing prices (splits and bonuses accounted for). "vs Nifty 500" is the sector's median stock minus the index. A market-breadth monitor for research, not a buy list: our backtest found broad sector moves gave no dependable edge on their own.</p>`;
+    <p class="caveat">Every listed company in each sector's NSE industries — NSE and BSE, main board and SME — from the exchanges' own closing prices (splits and bonuses accounted for). "vs Nifty 500" is the sector's median stock minus the index. A market-breadth monitor for research, not a buy list: our backtest found broad sector moves gave no dependable edge on their own.</p>`;
 }
 function ssDetail(){
   const d=SS.data, sec=d.sectors.find(s=>s.slug===SS.slug);
   if(!sec){ SS.slug=null; return ssOverview(); }
-  const sme=new Set(d.sme||[]), all=ssStocks(sec), w=SS.w;
+  const sme=new Set(d.sme||[]), all=ssStocks(sec), cols=ssCols(), cur=ssCur();
   const byNse={}, byCode={}; DATA.forEach(x=>{ if(x.nse_code) byNse[x.nse_code]=x; byCode[String(x.code)]=x; });
-  const head=`<table class="mv-table ss-head"><thead><tr><th>Window</th><th class="n">Up / stocks</th><th class="n">% up</th><th class="n">% up &gt;1%</th><th class="n">Median</th><th class="n">Nifty 500</th><th class="n">vs Nifty 500</th><th class="n">Nifty 500 breadth</th></tr></thead><tbody>
-    ${SS_W.map(x=>{ const a=ssAgg(all,x), bb=d.benchmark&&d.benchmark.breadth&&d.benchmark.breadth[x];
-      return `<tr class="${x===w?'cp-self':''}"><td>${x}D</td><td class="n">${a.n?a.up+' / '+a.n:'—'}</td><td class="n">${a.n?fmt(100*a.up/a.n,0)+'%':'—'}</td><td class="n">${a.n?fmt(100*a.up1/a.n,0)+'%':'—'}</td>
-        <td class="n">${ssPct(a.median,2)}</td><td class="n">${ssPct(ssBench(x),2)}</td><td class="n">${a.n&&ssBench(x)!=null?ssPct(a.median-ssBench(x),2):'—'}</td><td class="n">${bb&&bb.n?fmt(100*bb.up/bb.n,0)+'%':'—'}</td></tr>`; }).join('')}</tbody></table>`;
+  const head=`<table class="mv-table ss-head"><thead><tr><th>${SS.mode==='day'?'Session':'Window'}</th><th class="n">Up / stocks</th><th class="n">% up</th><th class="n">% up &gt;1%</th><th class="n">Median</th><th class="n">Nifty 500</th><th class="n">vs Nifty 500</th><th class="n">Nifty 500 breadth</th></tr></thead><tbody>
+    ${cols.map(c=>{ const a=ssAgg(all,c), bb=c.bb(), bn=c.bench();
+      return `<tr class="${c.k===cur.k?'cp-self':''}"><td>${esc(c.label)}</td><td class="n">${a.n?a.up+' / '+a.n:'—'}</td><td class="n">${a.n?fmt(100*a.up/a.n,0)+'%':'—'}</td><td class="n">${a.n?fmt(100*a.up1/a.n,0)+'%':'—'}</td>
+        <td class="n">${ssPct(a.median,2)}</td><td class="n">${ssPct(bn,2)}</td><td class="n">${a.n&&bn!=null?ssPct(a.median-bn,2):'—'}</td><td class="n">${bb&&bb.n?fmt(100*bb.up/bb.n,0)+'%':'—'}</td></tr>`; }).join('')}</tbody></table>`;
   const inds=[...new Set(sec.stocks.map(s=>s.industry))];
   let rows=all.filter(s=>(!SS.ind || s.industry===SS.ind) && (!SS.q || ((s.full_name||'')+' '+(s.name||'')+' '+(s.symbol||'')+' '+s.code).toLowerCase().includes(SS.q)));
-  const k=SS.sort==='r'?'r'+w:SS.sort;
-  rows.sort((a,b)=>{ if(k==='name') return SS.dir*String(a.full_name||a.name).localeCompare(String(b.full_name||b.name));
-    const x=a[k], y=b[k]; if(x==null&&y==null) return 0; if(x==null) return 1; if(y==null) return -1; return SS.dir*(x-y); });
+  const sk=SS.sort||cur.k, colOf=k=>cols.find(c=>c.k===k);
+  const val=s=> colOf(sk) ? colOf(sk).get(s) : s[sk];
+  rows.sort((a,b)=>{ if(sk==='name') return SS.dir*String(a.full_name||a.name).localeCompare(String(b.full_name||b.name));
+    const x=val(a), y=val(b); if(x==null&&y==null) return 0; if(x==null) return 1; if(y==null) return -1; return SS.dir*(x-y); });
   rows.sort((a,b)=>(b.liquid?1:0)-(a.liquid?1:0));
-  const th=(key,l,cls)=>`<th class="${cls||''}" data-ss-sort="${key}">${l}${(SS.sort===key||(key==='r'+w&&SS.sort==='r'))?(SS.dir<0?' ↓':' ↑'):''}</th>`;
+  const th=(key,l,cls)=>`<th class="${cls||''}" data-ss-sort="${key}">${l}${sk===key?(SS.dir<0?' ↓':' ↑'):''}</th>`;
   const noTrade=sec.stocks.filter(s=>!s.exchange).length;
   return `<p class="cp-crumb"><a href="#" id="ss-back">Sector Strength</a> / <span>${esc(sec.name)}</span></p>
     <div class="cp-card"><div class="cp-card-h"><h3>${esc(sec.name)}</h3><span class="cp-sub">${all.length} stocks${noTrade?` · ${noTrade} listed but not traded recently`:''}</span></div>${head}</div>
     <div class="cp-card"><div class="ss-tools"><input type="search" id="ss-q" class="gal-search" placeholder="Search this sector…" value="${ea(SS.q)}" autocomplete="off">
       <div class="ss-chips">${inds.map(i=>`<button type="button" data-ss-ind="${ea(i)}" class="${SS.ind===i?'on':''}">${esc(i)} <small>${sec.stocks.filter(s=>s.industry===i).length}</small></button>`).join('')}</div></div>
     <div class="co-tablewrap"><table class="co-table ss-table"><thead><tr>${th('name','Company','co-name-h')}<th>Exch.</th>${th('close','Price')}
-      ${SS_W.map(x=>th('r'+x,x+'D'+(x===w?' •':''))).join('')}${th('turnover_cr','Turnover<small>₹ Cr/day, 20D</small>')}${th('mcap_cr','Mkt cap<small>₹ Cr</small>')}</tr></thead>
+      ${cols.map(c=>th(c.k, c.label+(c.k===cur.k?' •':''))).join('')}${th('turnover_cr','Turnover<small>₹ Cr/day, 20D</small>')}${th('mcap_cr','Mkt cap<small>₹ Cr</small>')}</tr></thead>
     <tbody>${rows.map(s=>{ const bd=s.exchange==='NSE'?byNse[s.symbol]:byCode[String(s.code)]||byNse[s.code];
       return `<tr class="${s.liquid?'':'ss-ill'}"><td class="co-name"><span class="ss-nm">${esc(s.full_name||s.name)}</span>
         <small>${esc(s.symbol||s.code)} · ${esc(s.industry)}</small>${ssIsSme(s,sme)?'<i class="ss-tag sme">SME</i>':''}${s.liquid?'':'<i class="ss-tag">Illiquid</i>'}${bd?`<a href="#" class="ss-tag board" data-co="${ea(bd.code)}" title="On the board — open its page">On the board</a>`:''}</td>
         <td>${esc(s.exchange)}</td><td>${s.close!=null?s.close.toLocaleString('en-IN',{maximumFractionDigits:2}):'—'}</td>
-        ${SS_W.map(x=>`<td class="${x===w?'ss-curc':''}">${ssPct(s['r'+x],1)}</td>`).join('')}<td>${fmt(s.turnover_cr,2)}</td><td>${s.mcap_cr!=null?fmtI(s.mcap_cr):'—'}</td></tr>`; }).join('')}</tbody></table></div>
-    <p class="caveat">Illiquid (under ₹${fmt(d.liquid_turnover_cr||1,0)} Cr average daily turnover, or not trading most days) are listed last and greyed — their moves can be a handful of trades. Returns chain each session's close against the exchange's previous close.</p></div>`;
+        ${cols.map(c=>`<td class="${c.k===cur.k?'ss-curc':''}">${ssPct(c.get(s),2)}</td>`).join('')}<td>${fmt(s.turnover_cr,2)}</td><td>${s.mcap_cr!=null?fmtI(s.mcap_cr):'—'}</td></tr>`; }).join('')}</tbody></table></div>
+    <p class="caveat">Illiquid (under ₹${fmt(d.liquid_turnover_cr||1,0)} Cr average daily turnover, or not trading most days) are listed last and greyed — their moves can be a handful of trades. "—" on a day means the stock didn't trade that session.</p></div>`;
 }
 
 BUSY=true; buildColPop(); applyState(); BUSY=false;

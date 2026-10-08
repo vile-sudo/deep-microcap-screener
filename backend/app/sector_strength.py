@@ -155,6 +155,15 @@ def _returns(days: list, ex: str, key: str, end: int) -> dict:
     return out
 
 
+def _daily(days: list, ex: str, key: str, end: int) -> list:
+    """Each of the last max(WINDOWS) sessions' own % change, oldest first (None: didn't trade that day)."""
+    out = []
+    for i in range(end - max(WINDOWS) + 1, end + 1):
+        r = _row((days[i][1], days[i][2]), ex, key) if i >= 0 else None
+        out.append(round((r[6] / r[8] - 1) * 100, 2) if r and r[8] > 0 and r[6] > 0 and r[7] > 0 else None)
+    return out
+
+
 def _breadth(vals: list[float]) -> dict:
     if not vals:
         return {"n": 0}
@@ -224,7 +233,7 @@ def write(days: list, cache: Path | None = None) -> dict | None:
             rets = _returns(days, ex, key, last)
             resolved.setdefault(sec["slug"], []).append((ex, key))
             rows.append({**m, "exchange": ex, "symbol": r[1], "full_name": r[2] or m.get("name"), "close": r[6],
-                         "traded_today": r[7] > 0, "turnover_cr": round(avg, 2), "sessions20": s,
+                         "d": _daily(days, ex, key, last), "traded_today": r[7] > 0, "turnover_cr": round(avg, 2), "sessions20": s,
                          "liquid": avg >= LIQUID_TURNOVER_CR and s >= LIQUID_SESSIONS,
                          **{f"r{w}": None if rets.get(w) is None else round(rets[w], 2) for w in WINDOWS}})
         sectors_out.append({"slug": sec["slug"], "name": sec["name"], "industries": [i[1] for i in sec["industries"]], "stocks": rows})
@@ -240,7 +249,15 @@ def write(days: list, cache: Path | None = None) -> dict | None:
 
     n500_keys = [("NSE", k) for k in n500]
     b500 = group_breadth(n500_keys, last)
+    sessions = [days[i][0].isoformat() for i in range(last - max(WINDOWS) + 1, last + 1)]
+    daily500 = {w: [] for w in range(len(sessions))}
+    for k in n500:
+        for j, v in enumerate(_daily(days, "NSE", k, last)):
+            if v is not None:
+                daily500[j].append(v)
     benchmark = {"name": INDEX_NAME, "close": idx.get(days[last][0]), "constituents": len(n500),
+                 "d": [idx_ret(i, 1) for i in range(last - max(WINDOWS) + 1, last + 1)],
+                 "d_breadth": [_breadth(daily500[j]) for j in range(len(sessions))],
                  **{f"r{w}": idx_ret(last, w) for w in WINDOWS},
                  "breadth": {str(w): b500[w] for w in WINDOWS}}
 
@@ -264,7 +281,7 @@ def write(days: list, cache: Path | None = None) -> dict | None:
                 h[str(w)].append([round(100 * b["up"] / b["n"], 1), b["median"]] if b["n"] else None)
 
     now = datetime.now(timezone.utc).isoformat(timespec="seconds")
-    latest = {"generated_at": now, "asof": days[-1][0].isoformat(), "windows": list(WINDOWS),
+    latest = {"generated_at": now, "asof": days[-1][0].isoformat(), "windows": list(WINDOWS), "sessions": sessions,
               "market": {str(w): v for w, v in market.items()}, "benchmark": benchmark, "liquid_turnover_cr": LIQUID_TURNOVER_CR,
               "sme": mfile.get("sme") or [], "sectors": sectors_out}
     OUT_DIR.mkdir(parents=True, exist_ok=True)

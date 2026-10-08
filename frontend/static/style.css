@@ -2508,3 +2508,5 @@ mark.tr-hit.cur{background:#f59e0b;color:#111}
 .ss-table td.ss-curc{background:color-mix(in srgb,var(--s1) 7%,transparent)}
 .ss-table thead th small{display:block}
 @media (max-width:640px){ .ss-kv{grid-template-columns:1fr 1fr} .ss-heat td{min-width:70px;padding:6px} .ss-heat td:first-child{min-width:120px} }
+.ss-explain{margin:-6px 0 12px}
+.ss-bar .rc-seg button{white-space:nowrap}
