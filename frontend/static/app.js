@@ -6404,8 +6404,8 @@ function coDocuments(d){
    weight) against the Nifty 500, rebased to 0% at the start of the chosen range -- the TradingView
    "compare" view. Hover for every line's value on a day. */
 const SSC={ind:null, range:'1Y', weight:'ew', hidden:new Set()};
-const SSC_COLORS={nifty500:'var(--ink)', defence:'#2563eb', chemicals:'#db2777', healthcare:'#16a34a', 'capital-markets':'#ea580c', 'electrical-equipment':'#7c3aed'};
-const SSC_RANGES=[['1M',21],['3M',63],['6M',126],['YTD',0],['1Y',252],['2Y',504],['3Y',99999]];
+const SSC_COLORS={nifty500:'var(--ink)', defence:'#2563eb', chemicals:'#db2777', healthcare:'#16a34a', 'capital-markets':'#ea580c', 'electrical-equipment':'#7c3aed', jewellery:'#ca8a04'};
+const SSC_RANGES=[['1W',5],['1M',21],['3M',63],['6M',126],['YTD',0],['1Y',252],['2Y',504],['3Y',99999]];
 async function sscLoad(){
   if(!SSC.ind) SSC.ind = await fetchJSON('/api/sector-strength/indices').catch(()=>({dates:[]}));
   return SSC.ind;
@@ -6611,8 +6611,9 @@ function ssDetail(){
   rows.sort((a,b)=>(b.liquid?1:0)-(a.liquid?1:0));
   const th=(key,l,cls)=>`<th class="${cls||''}" data-ss-sort="${key}">${l}${sk===key?(SS.dir<0?' ↓':' ↑'):''}</th>`;
   const noTrade=sec.stocks.filter(s=>!s.exchange).length;
+  const fresh=sec.stocks.filter(s=>s.listed).length;
   return `<p class="cp-crumb"><a href="#" id="ss-back">Sector Strength</a> / <span>${esc(sec.name)}</span></p>
-    <div class="cp-card"><div class="cp-card-h"><h3>${esc(sec.name)}</h3><span class="cp-sub">${all.length} stocks${noTrade?` · ${noTrade} listed but not traded recently`:''}</span></div>${head}</div>
+    <div class="cp-card"><div class="cp-card-h"><h3>${esc(sec.name)}</h3><span class="cp-sub">${all.length} stocks${fresh?` · ${fresh} listed in the last year`:''}${noTrade?` · ${noTrade} listed but not traded recently`:''}</span></div>${head}</div>
     ${sscHtml(sec.slug)}
     <div class="cp-card"><div class="ss-tools"><input type="search" id="ss-q" class="gal-search" placeholder="Search this sector…" value="${ea(SS.q)}" autocomplete="off">
       <div class="ss-chips">${inds.map(i=>`<button type="button" data-ss-ind="${ea(i)}" class="${SS.ind===i?'on':''}">${esc(i)} <small>${sec.stocks.filter(s=>s.industry===i).length}</small></button>`).join('')}</div></div>
@@ -6620,7 +6621,7 @@ function ssDetail(){
       ${cols.map(c=>th(c.k, c.label+(c.k===cur.k?' •':''))).join('')}${th('turnover_cr','Turnover<small>₹ Cr/day, 20D</small>')}${th('mcap_cr','Mkt cap<small>₹ Cr</small>')}</tr></thead>
     <tbody>${rows.map(s=>{ const bd=s.exchange==='NSE'?byNse[s.symbol]:byCode[String(s.code)]||byNse[s.code];
       return `<tr class="${s.liquid?'':'ss-ill'}"><td class="co-name"><span class="ss-nm">${esc(s.full_name||s.name)}</span>
-        <small>${esc(s.symbol||s.code)} · ${esc(s.industry)}</small>${ssIsSme(s,sme)?'<i class="ss-tag sme">SME</i>':''}${s.liquid?'':'<i class="ss-tag">Illiquid</i>'}${bd?`<a href="#" class="ss-tag board" data-co="${ea(bd.code)}" title="On the board — open its page">On the board</a>`:''}</td>
+        <small>${esc(s.symbol||s.code)} · ${esc(s.industry)}</small>${ssIsSme(s,sme)?'<i class="ss-tag sme">SME</i>':''}${s.listed?`<i class="ss-tag ipo" title="First traded ${esc(rcDayLong(s.listed))}">New listing · ${esc(ssDay(s.listed))}</i>`:''}${s.liquid?'':'<i class="ss-tag">Illiquid</i>'}${bd?`<a href="#" class="ss-tag board" data-co="${ea(bd.code)}" title="On the board — open its page">On the board</a>`:''}</td>
         <td>${esc(s.exchange)}</td><td>${s.close!=null?s.close.toLocaleString('en-IN',{maximumFractionDigits:2}):'—'}</td>
         ${cols.map(c=>`<td class="${c.k===cur.k?'ss-curc':''}">${ssPct(c.get(s),2)}</td>`).join('')}<td>${fmt(s.turnover_cr,2)}</td><td>${s.mcap_cr!=null?fmtI(s.mcap_cr):'—'}</td></tr>`; }).join('')}</tbody></table></div>
     <p class="caveat">Illiquid (under ₹${fmt(d.liquid_turnover_cr||1,0)} Cr average daily turnover, or not trading most days) are listed last and greyed — their moves can be a handful of trades. "—" on a day means the stock didn't trade that session.</p></div>`;

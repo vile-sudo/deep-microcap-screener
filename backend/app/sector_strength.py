@@ -85,6 +85,11 @@ SECTORS = [
         ("IN07/IN0702/IN070203/IN070203001", "Heavy Electrical Equipment"),
         ("IN07/IN0702/IN070203/IN070203002", "Other Electrical Equipment"),
         ("IN07/IN0702/IN070205/IN070205003", "Cables - Electricals")]},
+    {"slug": "jewellery", "name": "Gems & Jewellery", "industries": [
+        ("IN02/IN0202/IN020201/IN020201005", "Gems, Jewellery And Watches")],
+     # small and newly listed jewellers are often missing from screener's industry listing: any traded company
+     # whose name says so is checked against its own page (scripts/run_sector_members_in.py)
+     "keywords": r"JEWEL|JWEL|\bGEMS?\b|BULLION|ORNAMENT|DIAMOND|\bGOLD\b|\bSWARN"},
 ]
 
 
@@ -272,6 +277,30 @@ def build_indices(days: list, groups: dict, cache: Path | None) -> dict:
     return out
 
 
+_ISIN_DAYS: dict = {}
+
+
+def _listed(days: list, ex: str, key: str) -> str | None:
+    """The first session the company traded on either exchange, when that's within the last year (a recent
+    IPO), else None. Matched on ISIN, so a company moving from BSE to NSE isn't mistaken for a new listing."""
+    lo = max(1, len(days) - 260)
+    if id(days) not in _ISIN_DAYS:
+        _ISIN_DAYS.clear()
+        _ISIN_DAYS[id(days)] = [{r[9] for b in (days[i][1], days[i][2]) for r in b.values() if r[9]}
+                                for i in range(lo - 1, len(days))]
+    sets = _ISIN_DAYS[id(days)]
+    r = _row((days[-1][1], days[-1][2]), ex, key)
+    isin = r[9] if r else None
+    if not isin:
+        return None
+    if isin in sets[0]:
+        return None
+    for j, s in enumerate(sets[1:], start=lo):
+        if isin in s:
+            return days[j][0].isoformat()
+    return None
+
+
 def _breadth(vals: list[float]) -> dict:
     if not vals:
         return {"n": 0}
@@ -330,9 +359,13 @@ def write(days: list, cache: Path | None = None) -> dict | None:
     n500 = [k for k in (mfile.get("nifty500") or []) if k in latest_nse]
     sectors_out, resolved, weighted = [], {}, {}
     for sec in SECTORS:
-        rows = []
+        rows, seen_keys = [], set()
         for m in members.get(sec["slug"], []):
             ex, key = _resolve(m, latest_nse, latest_bse, by_isin_nse, by_isin_bse)
+            if ex and (ex, key) in seen_keys:
+                continue                       # the same company under its BSE code and its NSE symbol
+            if ex:
+                seen_keys.add((ex, key))
             if not ex:
                 rows.append({**m, "exchange": None, "status": "no recent trade"})
                 continue
@@ -342,7 +375,7 @@ def write(days: list, cache: Path | None = None) -> dict | None:
             resolved.setdefault(sec["slug"], []).append((ex, key))
             weighted.setdefault(sec["slug"], []).append((ex, key, m.get("mcap_cr"), r[6]))
             rows.append({**m, "exchange": ex, "symbol": r[1], "full_name": r[2] or m.get("name"), "close": r[6],
-                         "d": _daily(days, ex, key, last), "traded_today": r[7] > 0, "turnover_cr": round(avg, 2), "sessions20": s,
+                         "d": _daily(days, ex, key, last), "listed": _listed(days, ex, key), "traded_today": r[7] > 0, "turnover_cr": round(avg, 2), "sessions20": s,
                          "liquid": avg >= LIQUID_TURNOVER_CR and s >= LIQUID_SESSIONS,
                          **{f"r{w}": None if rets.get(w) is None else round(rets[w], 2) for w in WINDOWS}})
         sectors_out.append({"slug": sec["slug"], "name": sec["name"], "industries": [i[1] for i in sec["industries"]], "stocks": rows})
