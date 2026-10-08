@@ -259,8 +259,8 @@ let sortKey='final_score', sortDir=-1;
      method    - how the scores work
    Moving to another page clears whatever was picked on the last one, so a theme
    chosen on Themes never quietly narrows what Screens shows. */
-const VIEWS=['overview','themes','market','filters','gallery','reports','rescal','ipor','sectors','deals','news','method'];
-const NAV={'overview-link':'overview','themes-link':'themes','market-link':'market',
+const VIEWS=['overview','companies','company','themes','market','filters','gallery','reports','rescal','ipor','sectors','deals','news','method'];
+const NAV={'overview-link':'overview','companies-link':'companies','market-link':'market',
            'filters-link':'filters','gallery-link':'gallery','reports-link':'reports','rescal-link':'rescal','ipor-link':'ipor','sectors-link':'sectors','deals-link':'deals','news-link':'news'};
 const LENSES=['overhang','heavycap','guide15','guideany','turn','debtfix','caputil','pivot','haslens','ipo','asme','auto'];
 const TILE_LABEL={all:'Companies on the board',overhang:'High P/E + heavy CWIP',guide15:'Management guides > 15%',
@@ -280,7 +280,7 @@ function setView(v, opts){
      by name (a stale "what's new" log entry, old code) lands correctly. */
   if(v==='movers' || v==='watchlist'){ VIEW='filters'; FL.tab=v; }
   else VIEW = VIEWS.includes(v) ? v : 'overview';
-  NAVID = opts.nav || VIEW+'-link';
+  NAVID = opts.nav || (VIEW==='company' ? 'companies-link' : VIEW+'-link');
   if(!opts.keep) clearFilters();
   document.body.dataset.view=VIEW;
   document.querySelectorAll('[data-views]').forEach(el=>{ el.hidden=!el.dataset.views.split(' ').includes(VIEW); });
@@ -296,6 +296,8 @@ function setView(v, opts){
   if(VIEW==='filters'){ flWireTabs(); if(FL.tab==='movers') openMovers(); }
   if(VIEW==='deals') openDeals();
   if(VIEW==='rescal') openResCal();
+  if(VIEW==='companies') openCompanies();
+  if(VIEW==='company') coPageRender();
   if(VIEW==='ipor') openIpoReports();
   if(VIEW==='news') openNews();
   const ts=document.getElementById('top-search');
@@ -774,7 +776,7 @@ const drawer=document.getElementById('drawer'), scrim=document.getElementById('s
    Both are written by the daily India job and only read here. */
 const INTEL={res:null, gd:null, tr:null};
 let DRAWER_D=null;
-Promise.all([fetchJSON('/api/results-in').catch(()=>null), fetchJSON('/api/guidance-in').catch(()=>null),
+INTEL.loading=Promise.all([fetchJSON('/api/results-in').catch(()=>null), fetchJSON('/api/guidance-in').catch(()=>null),
              fetchJSON('/api/transcripts-in').catch(()=>null)]).then(([r,g,t])=>{
   INTEL.res=r; INTEL.gd=g; INTEL.tr=t;
   if(drawer.classList.contains('on') && DRAWER_D) openDrawer(DRAWER_D);   /* the scorecard was opened before the data arrived */
@@ -1402,6 +1404,7 @@ function syncURL(){
   if(VIEW==='filters' && FL.tab!=='filters') p.set('v',FL.tab);
   else if(VIEW!=='overview') p.set('v',VIEW);
   if(VIEW==='sectors' && SC.slug){ p.set('s',SC.slug); if(SC.edition) p.set('se',SC.edition); }
+  if(VIEW==='company' && CO.code){ p.set('c',CO.code); if(CO.tab!=='overview') p.set('ct',CO.tab); }
   if(VIEW==='reports' && RP.code){ p.set('r',RP.code); if(DR.period) p.set('rp',DR.period); if(DR.tab==='board') p.set('rt','board'); }
   if(TILE) p.set('tile',TILE);
   if(QUERY) p.set('q',QUERY);
@@ -1423,6 +1426,7 @@ function applyState(){
   if(get('v')==='movers' || get('v')==='watchlist'){ VIEW='filters'; FL.tab=get('v'); }
   else if(VIEWS.includes(get('v'))) VIEW=get('v');
   if(get('r')) RP.code=get('r');
+  if(get('c')){ CO.code=get('c'); if(CO_TABS.some(t=>t[0]===get('ct'))) CO.tab=get('ct'); }
   if(get('dt')==='ann') DL.pendingTab='ann';   /* a filing-alert notification opens the Announcements tab */
   if(get('s') && /^[a-z0-9-]+$/.test(get('s'))) SC.slug=get('s');
   if(get('se') && /^\d{4}-\d{2}$/.test(get('se'))) SC.edition=get('se');
@@ -5953,12 +5957,399 @@ function alStripHash(){
 const DEEP_LINK_AL=alStripHash();
 window.addEventListener('hashchange', ()=>{
   const al=alStripHash(); if(al) alAct(al);
+  /* a pasted company-page link while the dashboard is already open */
+  { const hp=new URLSearchParams(location.hash.replace(/^#/,''));
+    if(hp.get('v')==='company' && hp.get('c') && (VIEW!=='company' || hp.get('c')!==CO.code)) openCompanyPage(hp.get('c'), CO_TABS.some(t=>t[0]===hp.get('ct')) ? hp.get('ct') : 'overview'); }
   /* a filing-alert click while the dashboard is already open only changes the hash */
   if(new URLSearchParams(location.hash.replace(/^#/,'')).get('dt')==='ann'){ DL.pendingTab='ann'; setView('deals',{nav:'deals-link'}); }
 });
 
+/* ---------- Companies: every board company in one sortable table, and a page per company ----------
+   The list mixes the board record (price, P/E, ROE, ownership), the latest results (scripts/run_results_in.py:
+   TTM revenue and profit, growth, margins), the day's close (/api/charts) and screener.in's headline
+   ratios (book value, dividend yield). A row opens the company page: Overview, Concall summary,
+   Transcripts & filings, Financials, Ownership, Peers and Documents, all from data the daily jobs
+   already write -- profile.json for the balance sheet / cash flow / shareholding, the transcripts, the
+   guidance tracker and the company's own NSE filings. */
+const CO={code:null, tab:'overview', profile:null, profLoading:null, act:{}, chart:{}, range:'1Y',
+          sort:'mcap', dir:-1, q:'', ind:'', cap:'', cols:null, built:false, call:null, trp:{}, rcp:null};
+const ea = s => esc(s).replace(/"/g,'&quot;');
+const sgn = (v,d=1) => v===null||v===undefined||!isFinite(v) ? '—' : `<span class="${v>0?'ov-up':v<0?'ov-dn':''}">${v>0?'+':''}${fmt(v,d)}</span>`;
+const coLakh = v => v===null||v===undefined||!isFinite(v) ? '—' : Math.abs(v)>=100000 ? '₹'+fmt(v/100000,2)+' L Cr' : '₹'+fmtI(v)+' Cr';
+function coRes(code){ return (INTEL.res && INTEL.res.companies && INTEL.res.companies[code]) || null; }
+function coProf(code){ return (CO.profile && CO.profile.companies && CO.profile.companies[code]) || null; }
+function coSum(a, i, n){ if(!a || i-n+1<0) return null; let s=0; for(let k=i-n+1;k<=i;k++){ if(a[k]===null||a[k]===undefined) return null; s+=a[k]; } return s; }
+function coCagr(a, yrs){ if(!a || a.length<yrs+1) return null; const x=a[a.length-1], y=a[a.length-1-yrs]; return x>0&&y>0 ? (Math.pow(x/y,1/yrs)-1)*100 : null; }
+function coRow(p, label){ const r=p && p.rows && p.rows.find(r=>r[0].toLowerCase().startsWith(label)); return r ? r[1] : null; }
+const coLast = a => a && a.length ? a[a.length-1] : null;
+/* 'Jun 2026' -> 'Q1 FY27' */
+function coQ(p){ const m=/([A-Za-z]{3})\w*\s+(\d{4})/.exec(p||''); if(!m) return p||''; const mo=['jan','feb','mar','apr','may','jun','jul','aug','sep','oct','nov','dec'].indexOf(m[1].toLowerCase())+1, y=+m[2];
+  return mo<=3 ? `Q4 FY${String(y%100).padStart(2,'0')}` : mo<=6 ? `Q1 FY${String((y+1)%100).padStart(2,'0')}` : mo<=9 ? `Q2 FY${String((y+1)%100).padStart(2,'0')}` : `Q3 FY${String((y+1)%100).padStart(2,'0')}`; }
+function coStats(code){ return (GAL && GAL.companies && GAL.companies[code]) || null; }
+
+/* every number the list and the overview show, computed once per company */
+function coMetrics(d){
+  const r=coRes(d.code), q=r&&r.quarters, a=r&&r.annual, top=(r&&r.top)||{}, st=coStats(d.code), pr=coProf(d.code);
+  const n=q&&q.sales ? q.sales.length-1 : -1;
+  const rev=q?coSum(q.sales,n,4):null, pat=q?coSum(q.net_profit,n,4):null;
+  const rev0=q?coSum(q.sales,n-4,4):null, pat0=q?coSum(q.net_profit,n-4,4):null;
+  const price = st&&st.last ? st.last : nz(d.price);
+  const eq=pr ? (coLast(coRow(pr.balance,'equity capital'))||0)+(coLast(coRow(pr.balance,'reserves'))||0) : null;
+  const debt=pr ? coLast(coRow(pr.balance,'borrowings')) : null;
+  return {
+    price, chg: st?st.chg_pct:null, asof: st?st.asof:null, mcap:nz(d.market_cap_cr), pe:nz(d.pe),
+    pb: price && top.book_value>0 ? price/top.book_value : null, dy: top.div_yield ?? null,
+    rev, pat, rev_yoy: rev!==null&&rev0>0 ? (rev/rev0-1)*100 : null, pat_yoy: pat!==null&&pat0>0 ? (pat/pat0-1)*100 : null,
+    mgn: rev>0&&pat!==null ? pat/rev*100 : null, roe: nz(d.roe_pct) ?? (top.roe ?? null), roce: nz(d.roce_pct) ?? (top.roce ?? null),
+    s3: a?coCagr(a.sales,3):null, s5: a?coCagr(a.sales,5):null, p3: a?coCagr(a.net_profit,3):null, p5: a?coCagr(a.net_profit,5):null,
+    de: eq>0 && debt!==null ? debt/eq : null, prom: nz(d.promoter_pct), score: nz(d.final_score),
+    hi: st?st.high52:(top.high52??null), lo: st?st.low52:(top.low52??null), from_hi: st?st.from_high_pct:null,
+  };
+}
+/* the industry P/E: median P/E of the board companies in the same theme */
+let CO_INDPE=null;
+function coIndPE(d){
+  if(!CO_INDPE){ CO_INDPE={}; const by={}; DATA.forEach(x=>{ const p=nz(x.pe); if(p>0&&p<500) (by[base(x)]=by[base(x)]||[]).push(p); });
+    Object.entries(by).forEach(([t,a])=>{ a.sort((x,y)=>x-y); CO_INDPE[t]=a.length>=3 ? a[Math.floor(a.length/2)] : null; }); }
+  return CO_INDPE[base(d)] ?? null;
+}
+const CO_COLS=[
+  {k:'price', l:'Price', u:'₹', f:v=>v==null?'—':v.toLocaleString('en-IN',{minimumFractionDigits:2,maximumFractionDigits:2}), on:1},
+  {k:'chg', l:'Day', u:'%', f:v=>sgn(v,2), on:0},
+  {k:'mcap', l:'Mkt Cap', u:'₹ Cr', f:fmtI, on:1},
+  {k:'pe', l:'P/E', f:v=>fmt(v,1), on:1},
+  {k:'ind_pe', l:'Ind P/E', f:v=>fmt(v,1), on:1, t:'Median P/E of board companies in the same industry'},
+  {k:'pb', l:'P/B', f:v=>fmt(v,1), on:1},
+  {k:'rev', l:'Rev TTM', u:'₹ Cr', f:fmtI, on:1},
+  {k:'pat', l:'PAT TTM', u:'₹ Cr', f:fmtI, on:1},
+  {k:'rev_yoy', l:'Rev YoY', u:'%', f:v=>sgn(v), on:1, t:'Last four quarters vs the four before'},
+  {k:'pat_yoy', l:'PAT YoY', u:'%', f:v=>sgn(v), on:1, t:'Last four quarters vs the four before'},
+  {k:'roe', l:'ROE', u:'%', f:v=>fmt(v,1), on:1},
+  {k:'mgn', l:'Net Mgn', u:'%', f:v=>fmt(v,1), on:1},
+  {k:'roce', l:'ROCE', u:'%', f:v=>fmt(v,1), on:0},
+  {k:'dy', l:'Div Yld', u:'%', f:v=>fmt(v,2), on:0},
+  {k:'s3', l:'Sales CAGR 3Y', u:'%', f:v=>sgn(v), on:0},
+  {k:'p3', l:'PAT CAGR 3Y', u:'%', f:v=>sgn(v), on:0},
+  {k:'prom', l:'Promoter', u:'%', f:v=>fmt(v,1), on:0},
+  {k:'from_hi', l:'From 52W high', u:'%', f:v=>sgn(v), on:0},
+  {k:'score', l:'Score', f:v=>fmt(v,0), on:0},
+];
+const CO_CAPS=[['','All market caps'],['large','Large cap · ₹20,000 Cr+'],['mid','Mid cap · ₹5,000–20,000 Cr'],['small','Small cap · ₹500–5,000 Cr'],['micro','Micro cap · under ₹500 Cr']];
+function coCapOf(m){ return m>=20000?'large':m>=5000?'mid':m>=500?'small':m>0?'micro':''; }
+function coColsOn(){
+  if(!CO.cols){ let s=null; try{ s=JSON.parse(localStorage.getItem('dms.co.cols')||'null'); }catch(e){}
+    CO.cols=new Set(Array.isArray(s)&&s.length ? s.filter(k=>CO_COLS.some(c=>c.k===k)) : CO_COLS.filter(c=>c.on).map(c=>c.k)); }
+  return CO_COLS.filter(c=>CO.cols.has(c.k));
+}
+function coAvatar(d, big){
+  const name=(d.name||d.code||'?').replace(/^(the)\s+/i,'');
+  let h=0; for(const ch of d.code||name) h=(h*31+ch.charCodeAt(0))>>>0;
+  return `<span class="co-av${big?' big':''}" style="--h:${h%360}">${esc(name.slice(0,1).toUpperCase())}</span>`;
+}
+
+function openCompanies(){
+  const body=document.getElementById('co-body');
+  if(!INTEL.res || !GAL){
+    body.innerHTML='<p class="view-hint">Loading companies…</p>';
+    const wait=[GALLOADING, INTEL.loading].filter(Boolean);
+    Promise.all(wait).then(()=>{ if(VIEW==='companies') coListRender(); });
+    if(!INTEL.loading) setTimeout(()=>{ if(VIEW==='companies') coListRender(); }, 1500);
+  }
+  if(!CO.built) coBuild();
+  coListRender();
+}
+function coBuild(){
+  CO.built=true;
+  const ind=document.getElementById('co-ind'), cap=document.getElementById('co-cap');
+  const themes=[...new Set(DATA.map(base))].filter(Boolean).sort();
+  ind.innerHTML='<option value="">All industries</option>'+themes.map(t=>`<option value="${ea(t)}">${esc(shortT(t))}</option>`).join('');
+  cap.innerHTML=CO_CAPS.map(([v,l])=>`<option value="${v}">${l}</option>`).join('');
+  let t=0;
+  document.getElementById('co-q').oninput=e=>{ clearTimeout(t); t=setTimeout(()=>{ CO.q=e.target.value.trim().toLowerCase(); coListRender(); },120); };
+  ind.onchange=()=>{ CO.ind=ind.value; coListRender(); };
+  cap.onchange=()=>{ CO.cap=cap.value; coListRender(); };
+  const pop=document.getElementById('co-colpop');
+  document.getElementById('co-colbtn').onclick=e=>{ e.stopPropagation(); pop.hidden=!pop.hidden; if(!pop.hidden) coColPop(); };
+  document.addEventListener('click', e=>{ if(!pop.hidden && !e.target.closest('#co-colpop')) pop.hidden=true; });
+}
+function coColPop(){
+  const pop=document.getElementById('co-colpop'); coColsOn();
+  pop.innerHTML=`<div class="co-colpop-h">Columns <button type="button" class="bp-link" id="co-colreset">Reset</button></div>`+CO_COLS.map(c=>
+    `<label><input type="checkbox" data-cc="${c.k}"${CO.cols.has(c.k)?' checked':''}> ${esc(c.l)}</label>`).join('');
+  pop.querySelectorAll('[data-cc]').forEach(cb=>cb.onchange=()=>{ cb.checked?CO.cols.add(cb.dataset.cc):CO.cols.delete(cb.dataset.cc);
+    try{ localStorage.setItem('dms.co.cols',JSON.stringify([...CO.cols])); }catch(e){} coListRender(); });
+  document.getElementById('co-colreset').onclick=()=>{ CO.cols=null; try{ localStorage.removeItem('dms.co.cols'); }catch(e){} coColPop(); coListRender(); };
+}
+function coListRender(){
+  const cols=coColsOn();
+  document.getElementById('co-colbtn').innerHTML=`<svg viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="14" rx="2"/><path d="M10 5v14M16 5v14"/></svg> Columns <span class="tc">${cols.length}</span>`;
+  let rows=DATA.map(d=>({d, m:Object.assign(coMetrics(d), {ind_pe:coIndPE(d)})}));
+  const total=rows.length;
+  rows=rows.filter(({d,m})=>(!CO.q || (d._n||(d.name+' '+d.code).toLowerCase()).includes(CO.q))
+    && (!CO.ind || base(d)===CO.ind) && (!CO.cap || coCapOf(m.mcap)===CO.cap));
+  const k=CO.sort, dir=CO.dir;
+  rows.sort((a,b)=>{ if(k==='name') return dir*(a.d.name||'').localeCompare(b.d.name||'');
+    const x=a.m[k], y=b.m[k]; if(x==null&&y==null) return 0; if(x==null) return 1; if(y==null) return -1; return dir*(x-y); });
+  document.getElementById('co-count').textContent=`${rows.length.toLocaleString('en-IN')} of ${total.toLocaleString('en-IN')} companies`;
+  const arrow=c=>CO.sort===c ? `<i class="co-arr">${CO.dir<0?'↓':'↑'}</i>` : '';
+  document.getElementById('co-body').innerHTML = rows.length ? `<div class="co-tablewrap"><table class="co-table"><thead><tr>
+    <th class="co-name-h" data-cs="name">Company ${arrow('name')}</th>
+    ${cols.map(c=>`<th data-cs="${c.k}"${c.t?` title="${ea(c.t)}"`:''}><span>${arrow(c.k)}${esc(c.l)}</span>${c.u?`<small>${esc(c.u)}</small>`:''}</th>`).join('')}</tr></thead>
+    <tbody>${rows.map(({d,m})=>`<tr data-co="${ea(d.code)}"><td class="co-name">${coAvatar(d)}<span>${esc(d.name)}</span>${WATCH.has(d.code)?'<i class="co-star" title="On your watchlist">★</i>':''}</td>
+      ${cols.map(c=>`<td>${c.f(m[c.k])}</td>`).join('')}</tr>`).join('')}</tbody></table></div>`
+    : '<p class="view-hint">No company matches — clear the search or the filters.</p>';
+  document.querySelectorAll('#co-body [data-cs]').forEach(th=>th.onclick=()=>{ const c=th.dataset.cs;
+    if(CO.sort===c) CO.dir=-CO.dir; else { CO.sort=c; CO.dir = c==='name' ? 1 : -1; } coListRender(); });
+  document.querySelectorAll('#co-body [data-co]').forEach(tr=>tr.onclick=()=>openCompanyPage(tr.dataset.co));
+}
+
+/* ---------- one company's page ---------- */
+const CO_TABS=[['overview','Overview'],['concall','Concall Summary'],['filings','Transcripts & Filings'],['financials','Financials'],
+               ['ownership','Ownership'],['peers','Peers'],['documents','Documents']];
+function openCompanyPage(code, tab){
+  CO.code=code; CO.tab=tab||'overview'; CO.call=null;
+  if(VIEW!=='company') setView('company',{nav:'companies-link'}); else { coPageRender(); syncURL(); }
+  window.scrollTo({top:0});
+}
+function coNeed(code){
+  const d=DATA.find(x=>x.code===code), need=[];
+  if(!CO.profile){ CO.profLoading = CO.profLoading || fetchJSON('/api/company-profile-in').catch(()=>({companies:{}})).then(j=>{ CO.profile=j; }); need.push(CO.profLoading); }
+  if(!GAL) need.push(GALLOADING);
+  const sym=d && d.nse_code && !/^\d+$/.test(d.nse_code) ? d.nse_code : null;
+  if(sym && !CO.act[sym]) need.push(CO.act[sym]=fetchJSON('/api/company-activity-in/'+encodeURIComponent(sym)).catch(()=>({announcements:[],deals:[],insider:[]})).then(j=>{ CO.act[sym]=j; }));
+  if(!CO.chart[code]) need.push(CO.chart[code]=fetchJSON('/api/charts/'+encodeURIComponent(code)).catch(()=>null).then(j=>{ CO.chart[code]=j||{rows:[]}; }));
+  if(trCalls(code).length && !TR.cache[code]) need.push(CO.trp[code] = CO.trp[code] || fetchJSON('/api/transcripts-in/'+encodeURIComponent(code)).then(j=>{ TR.cache[code]=j; }).catch(()=>{ TR.cache[code]={calls:[]}; }));
+  if(!OV.rescal) need.push(CO.rcp = CO.rcp || fetchJSON('/api/results-calendar-in').then(j=>{ OV.rescal=j; }).catch(()=>{ OV.rescal={items:[]}; }));
+  return need.filter(p=>p && typeof p.then==='function');
+}
+function coAct(d){ const sym=d.nse_code && !/^\d+$/.test(d.nse_code) ? d.nse_code : null; const a=sym && CO.act[sym]; return a && !a.then ? a : {announcements:[],deals:[],insider:[]}; }
+function coPageRender(){
+  const el=document.getElementById('cp-body');
+  const d=DATA.find(x=>x.code===CO.code);
+  if(!d){ el.innerHTML='<p class="view-hint">This company is not on the board. <a href="#" id="cp-back2">Back to Companies</a></p>';
+    const b=document.getElementById('cp-back2'); if(b) b.onclick=e=>{ e.preventDefault(); setView('companies'); }; return; }
+  const need=coNeed(d.code);
+  if(need.length){ if(!el.dataset.code || el.dataset.code!==d.code) el.innerHTML='<p class="view-hint">Loading '+esc(d.name)+'…</p>';
+    Promise.all(need).then(()=>{ if(VIEW==='company' && CO.code===d.code) coPageRender(); }); if(el.dataset.code!==d.code) return; }
+  el.dataset.code=d.code;
+  const m=coMetrics(d);
+  const tabHtml={overview:coOverview, concall:coConcall, filings:coFilings, financials:coFinancials, ownership:coOwnership, peers:coPeers, documents:coDocuments}[CO.tab] || coOverview;
+  const bse=/^\d+$/.test(String(d.code)) ? d.code : d.bse_code;
+  el.innerHTML=`<nav class="cp-crumb"><a href="#" data-cp-nav="list">Companies</a> / <a href="#" data-cp-ind="${ea(base(d))}">${esc(shortT(base(d)))}</a> / <span>${esc(d.name)}</span></nav>
+    <header class="cp-head">${coAvatar(d,true)}<div class="cp-title"><h2>${esc(d.name)}
+        <button type="button" class="cp-ico${WATCH.has(d.code)?' on':''}" id="cp-watch" title="${WATCH.has(d.code)?'On your watchlist — click to remove':'Add to watchlist'}">${WATCH.has(d.code)?'★':'☆'}</button>
+        <button type="button" class="cp-ico" id="cp-share" title="Copy link to this page">⤴</button></h2>
+      <p>${d.nse_code&&!/^\d+$/.test(d.nse_code)?`NSE: <b>${esc(d.nse_code)}</b>`:''}${bse?`${d.nse_code&&!/^\d+$/.test(d.nse_code)?' · ':''}BSE: <b>${esc(bse)}</b>`:''}</p></div>
+      <div class="cp-price"><b>₹${m.price!=null?m.price.toLocaleString('en-IN',{maximumFractionDigits:2}):'—'}</b>${m.chg!=null?`<span class="cp-chg ${m.chg>=0?'up':'dn'}">${m.chg>0?'+':''}${fmt(m.chg,2)}%</span>`:''}
+        <small>${m.asof?`(${rcDayLong(m.asof)} close price)`:''}</small></div></header>
+    <div class="cp-tabs" role="tablist">${CO_TABS.map(([k,l])=>`<button type="button" role="tab" data-cpt="${k}" class="${CO.tab===k?'on':''}">${l}</button>`).join('')}</div>
+    <div class="cp-pane">${tabHtml(d,m)}</div>`;
+  el.querySelectorAll('[data-cpt]').forEach(b=>b.onclick=()=>{ CO.tab=b.dataset.cpt; coPageRender(); syncURL(); });
+  el.querySelectorAll('[data-cp-nav]').forEach(a=>a.onclick=e=>{ e.preventDefault(); setView('companies'); });
+  el.querySelectorAll('[data-cp-ind]').forEach(a=>a.onclick=e=>{ e.preventDefault(); CO.ind=a.dataset.cpInd; setView('companies'); const s=document.getElementById('co-ind'); if(s) s.value=CO.ind; coListRender(); });
+  el.querySelectorAll('[data-cp-go]').forEach(a=>a.onclick=e=>{ e.preventDefault(); CO.tab=a.dataset.cpGo; coPageRender(); syncURL(); window.scrollTo({top:0}); });
+  el.querySelectorAll('[data-co]').forEach(tr=>tr.onclick=()=>openCompanyPage(tr.dataset.co));
+  document.getElementById('cp-watch').onclick=()=>{ togglePin(d.code); coPageRender(); };
+  document.getElementById('cp-share').onclick=async e=>{ syncURL(); try{ await navigator.clipboard.writeText(location.href); flash(e.currentTarget,'✓'); }catch(x){} };
+  el.querySelectorAll('[data-cp-scorecard]').forEach(b=>b.onclick=()=>openDrawer(d));
+  el.querySelectorAll('[data-cp-chart]').forEach(b=>b.onclick=()=>openChart(d.code));
+  el.querySelectorAll('[data-cp-call]').forEach(s=>s.onchange=()=>{ CO.call=s.value; coPageRender(); });
+  el.querySelectorAll('[data-cp-range]').forEach(b=>b.onclick=()=>{ CO.range=b.dataset.cpRange; coPageRender(); });
+  el.querySelectorAll('[data-cp-ft]').forEach(b=>b.onclick=()=>{ CO.ft=b.dataset.cpFt; coPageRender(); });
+}
+
+function coTile(l, v, t){ return `<div class="cp-m"${t?` title="${ea(t)}"`:''}><span>${esc(l)}</span><b>${v}</b></div>`; }
+const pctS = (v,d=1) => v==null||!isFinite(v) ? '—' : `${v>0?'+':''}${fmt(v,d)}%`;
+function coPriceChart(d){
+  const c=CO.chart[d.code]; const rows=(c&&c.rows)||[];
+  if(rows.length<5) return '';
+  const days={'1M':22,'6M':126,'1Y':252,'3Y':756,'5Y':1260,'Max':1e9}[CO.range]||252;
+  const r=rows.slice(-days), cl=r.map(x=>x[4]), W=760, H=200, P=6;
+  const lo=Math.min(...cl), hi=Math.max(...cl), sx=i=>P+i*(W-2*P)/Math.max(1,cl.length-1), sy=v=>H-P-(v-lo)/((hi-lo)||1)*(H-2*P);
+  const pts=cl.map((v,i)=>`${sx(i).toFixed(1)},${sy(v).toFixed(1)}`).join(' ');
+  const up=cl[cl.length-1]>=cl[0], ch=(cl[cl.length-1]/cl[0]-1)*100;
+  return `<div class="cp-card cp-chart"><div class="cp-card-h"><h3>Price</h3><span class="cp-range">${['1M','6M','1Y','3Y','5Y','Max'].map(k=>`<button type="button" data-cp-range="${k}" class="${CO.range===k?'on':''}">${k}</button>`).join('')}</span></div>
+    <p class="cp-sub">${sgn(ch)}% over ${CO.range==='Max'?'all data':CO.range} · ₹${fmt(lo,1)} – ₹${fmt(hi,1)} · <button type="button" class="bp-link" data-cp-chart>full chart with bases →</button></p>
+    <svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="none" class="cp-svg"><polygon points="${P},${H-P} ${pts} ${W-P},${H-P}" class="${up?'up':'dn'}" opacity=".12"/><polyline points="${pts}" class="${up?'up':'dn'}" fill="none"/></svg>
+    <div class="cp-axis"><span>${esc(r[0][0])}</span><span>${esc(r[r.length-1][0])}</span></div></div>`;
+}
+
+/* what the latest call spent its time on: each paragraph goes to the topic its words match most */
+const CO_TOPICS=[
+  ['Margins & profitability', /\b(margins?|ebitda|profitab\w*|gross margin|operating leverage|bps|basis points|realisation|realization|pricing)\b/gi],
+  ['Demand & revenue growth', /\b(demand|volumes?|growth|revenue|top ?line|sales|market share|offtake)\b/gi],
+  ['Order book & execution', /\b(order ?book|order inflows?|orders?|tenders?|l1|execution|pipeline|bids?)\b/gi],
+  ['Capex & capacity', /\b(capex|capacity|plant|expansion|utili[sz]ation|brownfield|greenfield|commission\w*|facility)\b/gi],
+  ['New products & markets', /\b(new products?|launch\w*|exports?|international|geograph\w*|customers?|segments?|diversif\w*)\b/gi],
+  ['Costs & raw materials', /\b(raw materials?|input costs?|commodit\w*|steel|copper|aluminium|freight|power cost|inflation)\b/gi],
+  ['Working capital & debt', /\b(working capital|receivables?|debtors?|inventory|cash flow|debt|borrowings?|interest cost|liquidity)\b/gi],
+  ['Guidance & outlook', /\b(guidance|outlook|target|next year|fy2\d|going forward|visibility|expect\w*)\b/gi],
+];
+function coTopics(call){
+  if(!call || !call.structured) return null;
+  const sp=call.speakers||{}, tot={}; let all=0;
+  call.turns.forEach(t=>{ const role=(sp[t.s]||{}).role; if(role==='moderator'||role==='host') return;
+    t.p.forEach(p=>{ const words=p.split(/\s+/).length; if(words<12) return;
+      let best=null, bn=0; CO_TOPICS.forEach(([n,re])=>{ const c=(p.match(re)||[]).length; if(c>bn){ bn=c; best=n; } });
+      if(best && bn>=2){ tot[best]=(tot[best]||0)+words; all+=words; } }); });
+  if(!all) return null;
+  return Object.entries(tot).map(([n,w])=>[n, w/all*100]).sort((a,b)=>b[1]-a[1]);
+}
+function coTopicsHtml(top){
+  if(!top) return '';
+  const colors=['#2563eb','#0891b2','#7c3aed','#db2777','#ea580c','#16a34a','#ca8a04','#64748b'];
+  return `<div class="cp-topics"><p class="cp-lab">Discussed topics (% of call)</p>
+    <div class="cp-tbar">${top.map(([n,p],i)=>`<i style="width:${p}%;background:${colors[i%8]}" title="${ea(n)} ${fmt(p,1)}%"></i>`).join('')}</div>
+    <div class="cp-tleg">${top.map(([n,p],i)=>`<span><i style="background:${colors[i%8]}"></i>${esc(n)} <b>(${fmt(p,1)}%)</b></span>`).join('')}</div></div>`;
+}
+function coLatestCall(d){ const t=TR.cache[d.code]; return t && t.calls && t.calls.length ? t.calls[0] : null; }
+
+function coOverview(d,m){
+  const r=coRes(d.code), q=r&&r.quarters, pr=coProf(d.code), act=coAct(d);
+  const tiles=[
+    ['Market Cap', coLakh(m.mcap)], ['Sales (TTM)', coLakh(m.rev)], ['PAT (TTM)', coLakh(m.pat)], ['P/E Ratio', fmt(m.pe,2)],
+    ['P/B', m.pb!=null?fmt(m.pb,2)+'x':'—'], ['Industry P/E', fmt(coIndPE(d),1), 'Median P/E of board companies in the same industry'],
+    ['Dividend Yield', m.dy!=null?fmt(m.dy,2)+'%':'—'], ['ROCE', m.roce!=null?fmt(m.roce,1)+'%':'—'], ['ROE', m.roe!=null?fmt(m.roe,1)+'%':'—'],
+    ['Net Margin (TTM)', m.mgn!=null?fmt(m.mgn,1)+'%':'—'], ['Sales CAGR (3Y)', pctS(m.s3)], ['Sales CAGR (5Y)', pctS(m.s5)],
+    ['PAT CAGR (3Y)', pctS(m.p3)], ['PAT CAGR (5Y)', pctS(m.p5)], ['Debt / Equity', m.de!=null?fmt(m.de,2)+'x':'—'],
+    ['Promoter Holding', m.prom!=null?fmt(m.prom,2)+'%':'—'], ['52W High / Low', m.hi!=null?`₹${fmtI(m.hi)} / ₹${fmtI(m.lo)}`:'—'], ['Board score', m.score!=null?fmt(m.score,0)+' / 100':'—'],
+  ];
+  let latest='';
+  if(q && q.sales && q.sales.length){
+    const n=q.sales.length-1, y=n-4, p=q.periods[n];
+    const ch=(a)=> a&&a[y] ? ((a[n]-a[y])/Math.abs(a[y]))*100 : null;
+    const mg=q.net_profit[n]!=null&&q.sales[n]>0 ? q.net_profit[n]/q.sales[n]*100 : null;
+    const mg0=y>=0&&q.net_profit[y]!=null&&q.sales[y]>0 ? q.net_profit[y]/q.sales[y]*100 : null;
+    const call=coLatestCall(d), calls=trCalls(d.code);
+    const ppt=(r.concalls||[]).find(c=>c.ppt);
+    const yo=(v,u)=>v==null?'':`<small class="${v>=0?'ov-up':'ov-dn'}">${v>0?'+':''}${fmt(v,1)}${u} YoY</small>`;
+    latest=`<div class="cp-card"><div class="cp-card-h"><h3>Latest Results <span class="cp-pill">${esc(coQ(p))}</span></h3><span class="cp-sub">Quarter ended ${esc(p)}</span></div>
+      <div class="cp-lr">
+        <div><span>Revenue</span><b>₹${fmtI(q.sales[n])} Cr</b>${yo(ch(q.sales),'%')}</div>
+        <div><span>Net profit</span><b>₹${fmtI(q.net_profit[n])} Cr</b>${yo(ch(q.net_profit),'%')}</div>
+        <div><span>Net margin</span><b>${mg!=null?fmt(mg,1)+'%':'—'}</b>${mg!=null&&mg0!=null?(b=>`<small class="${b>=0?'ov-up':'ov-dn'}">${b>0?'+':''}${fmtI(b)} bps YoY</small>`)((mg-mg0)*100):''}</div>
+        <div><span>EPS</span><b>₹${fmt(q.eps&&q.eps[n],2)}</b>${yo(ch(q.eps),'%')}</div></div>
+      <p class="cp-links">${call?`<a href="#" data-cp-go="concall">Summary</a><a href="#" data-tr-code="${ea(d.code)}" data-tr-ym="${ea(calls[0].ym)}">Transcript</a>`:''}
+        ${ppt?`<a href="${ea(ppt.ppt)}" target="_blank" rel="noopener">Slides ↗</a>`:''}<a href="#" data-cp-go="financials">Financials</a></p>
+      ${call?`<p class="cp-sub">From the ${esc(call.label)} earnings call${call.call_date?' ('+esc(rcDayLong(call.call_date))+')':''}:</p>${coTopicsHtml(coTopics(call))}`:''}</div>`;
+  }
+  const rc=OV.rescal ? rcFor(d) : null;
+  const next = rc && rcDays(rc.date)>=-1 ? `<div class="cp-card cp-next"><span class="cp-lab">Next results</span><b>${esc(rcDayLong(rc.date))}</b> <span class="cp-sub">${esc(rc.result)} · ${rc.status==='confirmed'?'confirmed board meeting':rc.status==='expected'?'expected (last year\'s date)':'SEBI deadline'} · ${esc(rcIn(rc.date))}</span></div>` : '';
+  const anns=act.announcements.slice(0,6);
+  return `<div class="cp-metrics">${tiles.map(t=>coTile(...t)).join('')}</div>
+    <div class="cp-grid"><div class="cp-main">${latest}${coPriceChart(d)}
+      ${pr && (pr.pros.length||pr.cons.length) ? `<div class="cp-card"><div class="cp-card-h"><h3>Strengths &amp; concerns</h3><span class="cp-sub">screener.in's automatic checks</span></div><div class="cp-pc">
+        <div><p class="cp-lab ov-up">Strengths</p><ul>${pr.pros.map(x=>`<li>${esc(x)}</li>`).join('')||'<li class="nd">None flagged</li>'}</ul></div>
+        <div><p class="cp-lab ov-dn">Concerns</p><ul>${pr.cons.map(x=>`<li>${esc(x)}</li>`).join('')||'<li class="nd">None flagged</li>'}</ul></div></div></div>`:''}</div>
+    <aside class="cp-side">${next}
+      <div class="cp-card"><h3>Company Overview</h3>${pr&&pr.about?`<p class="cp-about">${esc(pr.about)}</p>`:d.business?`<p class="cp-about">${esc(d.business)}</p>`:''}
+        <dl class="cp-dl"><dt>Industry</dt><dd>${esc(shortT(base(d)))}</dd>${d.sector?`<dt>Sector</dt><dd>${esc(d.sector)}</dd>`:''}<dt>Market cap</dt><dd>${esc((coCapOf(m.mcap)||'—').replace(/^./,c=>c.toUpperCase()))} cap</dd>
+          <dt>Links</dt><dd><a href="${ea(scrURL(d))}" target="_blank" rel="noopener">screener.in ↗</a>${exURL(d)?` · <a href="${ea(exURL(d))}" target="_blank" rel="noopener">exchange ↗</a>`:''}</dd></dl>
+        <button type="button" class="btn cp-score" data-cp-scorecard>Open our research scorecard →</button></div>
+      <div class="cp-card"><div class="cp-card-h"><h3>Filings &amp; announcements</h3><a href="#" data-cp-go="filings">All →</a></div>
+        ${anns.length?`<ul class="cp-ann">${anns.map(a=>`<li><span>${esc(rcDayShort(a.date))}</span><a href="${ea(a.url)}" target="_blank" rel="noopener">${esc(a.category)}</a><small>${esc((a.summary||'').slice(0,140))}</small></li>`).join('')}</ul>`
+          : '<p class="nd">No filings in the feed for this company in the last few months.</p>'}</div></aside></div>`;
+}
+
+function coConcall(d){
+  const t=TR.cache[d.code], calls=(t&&t.calls)||[];
+  if(!calls.length) return `<div class="cp-card"><p class="nd">No earnings-call transcript is on file for ${esc(d.name)}${((coRes(d.code)||{}).concalls||[]).length?' yet — the daily job adds it':' — the company has not filed one'}.</p></div>`;
+  const call=calls.find(c=>c.ym===CO.call) || calls[0], sp=call.speakers||{};
+  const top=coTopics(call);
+  const g=((INTEL.gd&&INTEL.gd.companies&&INTEL.gd.companies[d.code])||{}).statements||[];
+  const said=g.filter(s=>s.source===call.source);
+  /* each analyst's first question of each exchange */
+  const asks=[]; let prevChair=false;
+  call.turns.forEach((tu,i)=>{ const role=(sp[tu.s]||{}).role;
+    if(role==='analyst' && (prevChair || !asks.length || asks[asks.length-1].s!==tu.s)){ const txt=tu.p.join(' ');
+      if(txt.split(/\s+/).length>=12) asks.push({s:tu.s, firm:(sp[tu.s]||{}).firm, i, txt:txt.length>420?txt.slice(0,419)+'…':txt}); }
+    prevChair = role==='moderator'||role==='host'; });
+  const mg=Object.entries(sp).filter(([n,v])=>v.role==='management');
+  return `<div class="cp-card"><div class="cp-card-h"><h3>${esc(call.label)} earnings call</h3>
+      <span><select class="gal-select" data-cp-call aria-label="Call">${calls.map(c=>`<option value="${ea(c.ym)}"${c===call?' selected':''}>${esc(c.label)} · ${esc(trDate(c))}</option>`).join('')}</select></span></div>
+    <p class="cp-sub">Held ${esc(trDate(call))}${call.structured?` · ${call.turns.length} turns · ${asks.length} analyst questions`:''} · <a href="#" data-tr-code="${ea(d.code)}" data-tr-ym="${ea(call.ym)}">Read the full transcript →</a> · <a href="${ea(call.source)}" target="_blank" rel="noopener">PDF ↗</a></p>
+    ${mg.length?`<p class="cp-who"><b>Management on the call:</b> ${mg.map(([n,v])=>`${esc(n)}${v.title?` <small>(${esc(v.title)})</small>`:''}`).join(', ')}</p>`:''}
+    ${coTopicsHtml(top)}</div>
+    ${said.length?`<div class="cp-card"><h3>Numbers management put on the table</h3><ul class="cp-quotes">${said.map(s=>`<li>“${esc(s.quote)}”${s.verify&&s.verify.status&&GT_STATUS[s.verify.status]?` <span class="gt-badge ${GT_STATUS[s.verify.status][1]}">${GT_STATUS[s.verify.status][0]}</span>`:''}</li>`).join('')}</ul>
+      <p class="caveat">Forward-looking targets read from this call by the guidance tracker, with whether each came true once reported.</p></div>`:''}
+    ${asks.length?`<div class="cp-card"><h3>What analysts asked</h3><ol class="cp-asks">${asks.map(a=>`<li><p class="cp-askby"><b>${esc(a.s)}</b>${a.firm?` · ${esc(a.firm)}`:''}</p><p>${esc(a.txt)}</p></li>`).join('')}</ol>
+      <p class="caveat">Each analyst's opening question, as transcribed. Open the full transcript and click a name for the answers.</p></div>`:''}
+    <p class="caveat">This summary is assembled from the transcript by rule — topics by keyword, questions as asked, targets from the guidance tracker — not written by a person or an AI.</p>`;
+}
+
+function coFilings(d){
+  const calls=trCalls(d.code), res=coRes(d.code), act=coAct(d);
+  const allCalls=(res&&res.concalls)||[];
+  const callRows=allCalls.map(c=>{ const on=calls.find(x=>x.source===c.transcript);
+    return `<tr><td>${esc(on?on.label:coQ(c.date))}</td><td>${esc(on?trDate(on):c.date)}</td>
+      <td>${on?`<a href="#" data-tr-code="${ea(d.code)}" data-tr-ym="${ea(on.ym)}">Read transcript</a>`:'—'}</td>
+      <td><a href="${ea(c.transcript)}" target="_blank" rel="noopener">PDF ↗</a></td><td>${c.ppt?`<a href="${ea(c.ppt)}" target="_blank" rel="noopener">Slides ↗</a>`:'—'}</td></tr>`; }).join('');
+  const ann=act.announcements, deals=act.deals, ins=act.insider;
+  return `<div class="cp-card"><h3>Earnings calls</h3>${callRows?`<div class="mv-tablewrap"><table class="mv-table"><thead><tr><th>Quarter</th><th>Call</th><th>Transcript</th><th>Original</th><th>Presentation</th></tr></thead><tbody>${callRows}</tbody></table></div>`:'<p class="nd">No earnings calls on file.</p>'}</div>
+    <div class="cp-card"><h3>Filings &amp; announcements <span class="cp-sub">${ann.length} in the NSE feed</span></h3>${ann.length?`<div class="mv-tablewrap"><table class="mv-table"><thead><tr><th>Date</th><th>Category</th><th>What it says</th><th></th></tr></thead><tbody>
+      ${ann.map(a=>`<tr><td>${esc(rcDayShort(a.date))}</td><td>${esc(a.category)}</td><td class="cp-wrap">${esc(a.summary||'')}</td><td>${a.url?`<a href="${ea(a.url)}" target="_blank" rel="noopener">PDF ↗</a>`:''}</td></tr>`).join('')}</tbody></table></div>`:'<p class="nd">No filings in the feed for this company in the last few months.</p>'}</div>
+    ${deals.length?`<div class="cp-card"><h3>Bulk &amp; block deals</h3><div class="mv-tablewrap"><table class="mv-table"><thead><tr><th>Date</th><th>Client</th><th>Side</th><th class="n">Qty</th><th class="n">Price</th><th class="n">₹ Cr</th></tr></thead><tbody>
+      ${deals.map(x=>`<tr><td>${esc(rcDayShort(x.date))}</td><td>${esc(x.client)}</td><td class="${x.side==='BUY'?'ov-up':'ov-dn'}">${esc(x.side)}</td><td class="n">${fmtI(+x.quantity)}</td><td class="n">${fmt(+x.price,2)}</td><td class="n">${fmt(+x.value_cr,2)}</td></tr>`).join('')}</tbody></table></div></div>`:''}
+    ${ins.length?`<div class="cp-card"><h3>Insider trades</h3><div class="mv-tablewrap"><table class="mv-table"><thead><tr><th>Date</th><th>Person</th><th>Category</th><th>Type</th><th class="n">Qty</th><th class="n">₹ Cr</th><th>Mode</th></tr></thead><tbody>
+      ${ins.map(x=>`<tr><td>${esc(rcDayShort(x.date))}</td><td>${esc(x.person)}</td><td>${esc(x.category)}</td><td class="${x.side==='BUY'?'ov-up':x.side==='SELL'?'ov-dn':''}">${esc(x.transaction_type)}</td><td class="n">${fmtI(+x.quantity)}</td><td class="n">${fmt(+x.value_cr,2)}</td><td>${esc(x.mode||'')}</td></tr>`).join('')}</tbody></table></div></div>`:''}`;
+}
+
+function coTable(title, periods, rows, opts){
+  opts=opts||{};
+  if(!periods || !periods.length || !rows.length) return '';
+  return `<div class="cp-card"><h3>${title}${opts.sub?` <span class="cp-sub">${opts.sub}</span>`:''}</h3><div class="mv-tablewrap"><table class="mv-table cp-fin"><thead><tr><th></th>${periods.map(p=>`<th class="n">${esc(p)}</th>`).join('')}</tr></thead><tbody>
+    ${rows.map(([l,a,pct,bold])=>`<tr class="${bold?'cp-b':''}"><td>${esc(l)}</td>${periods.map((_,i)=>`<td class="n">${a&&a[i]!=null?(pct===2?fmt(a[i],2):pct?fmt(a[i],pct===3?2:0)+'%':fmtI(a[i])):'—'}</td>`).join('')}</tr>`).join('')}</tbody></table></div></div>`;
+}
+function coFinancials(d){
+  const r=coRes(d.code), pr=coProf(d.code);
+  if(!r) return '<div class="cp-card"><p class="nd">No results on file for this company yet.</p></div>';
+  const q=r.quarters, a=r.annual||{}, ft=CO.ft||'quarterly';
+  const yoy=(arr)=>arr?arr.map((v,i)=>i>=4&&arr[i-4]>0&&v!=null?(v/arr[i-4]-1)*100:null):null;
+  const plRows=x=>[['Sales',x.sales,0,1],['Expenses',x.expenses],['Operating profit',x.operating_profit,0,1],['OPM %',x.opm,1],['Other income',x.other_income],
+    ['Interest',x.interest],['Depreciation',x.depreciation],['Profit before tax',x.pbt],['Tax %',x.tax_pct,1],['Net profit',x.net_profit,0,1],['EPS (₹)',x.eps,2]];
+  const seg=`<div class="rc-seg cp-seg">${[['quarterly','Quarterly'],['annual','Annual P&L'],['balance','Balance sheet'],['cashflow','Cash flow'],['ratios','Ratios']].map(([k,l])=>`<button type="button" data-cp-ft="${k}" class="${ft===k?'on':''}">${l}</button>`).join('')}</div>`;
+  let body='';
+  if(ft==='quarterly') body=coTable('Quarterly results', q.periods, [...plRows(q), ['Sales YoY %', yoy(q.sales), 1], ['Profit YoY %', yoy(q.net_profit), 1]], {sub:`₹ Cr · ${r.basis||''}`})
+    + `<div class="cp-card">${quarterlyHtml(d)}</div>`;
+  else if(ft==='annual') body=coTable('Profit & loss', a.periods, [...plRows(a), ['Dividend payout %', a.payout_pct, 1]], {sub:`₹ Cr · fiscal years · ${r.basis||''}`});
+  else { const t=pr&&pr[ft]; body = t ? coTable({balance:'Balance sheet',cashflow:'Cash flow',ratios:'Efficiency ratios'}[ft], t.periods, t.rows.map(([l,v])=>[l,v,ft==='ratios'?(/%/.test(l)?1:2):0,/^(total|net cash|free cash)/i.test(l)]), {sub: ft==='ratios'?'days, unless marked %':'₹ Cr'})
+      : '<div class="cp-card"><p class="nd">Not on file yet — added with the next daily results refresh.</p></div>'; }
+  return seg+body+`<p class="caveat">Figures from screener.in (${esc(r.basis||'consolidated')} where available), refreshed daily.</p>`;
+}
+
+function coOwnership(d){
+  const pr=coProf(d.code), sh=pr&&pr.shareholding, m=coMetrics(d);
+  const cur=[['Promoters',d.promoter_pct,'#2563eb'],['FIIs',d.fii_pct,'#7c3aed'],['DIIs',d.dii_pct,'#0891b2'],['Public',d.public_pct,'#94a3b8']].filter(x=>nz(x[1])!=null);
+  const bar=cur.length?`<div class="cp-tbar big">${cur.map(([n,v,c])=>`<i style="width:${v}%;background:${c}" title="${n} ${fmt(v,2)}%"></i>`).join('')}</div>
+    <div class="cp-tleg">${cur.map(([n,v,c])=>`<span><i style="background:${c}"></i>${n} <b>${fmt(v,2)}%</b></span>`).join('')}</div>`:'';
+  let trend='';
+  if(sh){ const rows=sh.rows.filter(r=>!/shareholders/i.test(r[0])).map(r=>[r[0],r[1],3]); const holders=sh.rows.find(r=>/shareholders/i.test(r[0]));
+    trend=coTable('Shareholding pattern by quarter', sh.periods, holders?[...rows,[holders[0],holders[1],0]]:rows, {sub:'% of shares'});
+    const p=coRow(sh,'promoters'); if(p&&p.length>=5){ const ch=p[p.length-1]-p[p.length-5]; trend=`<p class="cp-sub">Promoter holding ${ch>0?'up':ch<0?'down':'unchanged'} ${fmt(Math.abs(ch),2)} points over the last four quarters.</p>`+trend; } }
+  return `<div class="cp-card"><h3>Who owns ${esc(d.name)}</h3>${bar}<p class="cp-sub">${d.num_shareholders?fmtI(d.num_shareholders)+' shareholders · ':''}Promoter holding ${m.prom!=null?fmt(m.prom,2)+'%':'—'}</p></div>${trend}
+    ${coAct(d).insider.length||coAct(d).deals.length?`<p class="cp-sub">Insider trades and bulk/block deals are on the <a href="#" data-cp-go="filings">Transcripts &amp; Filings</a> tab.</p>`:''}`;
+}
+
+function coPeers(d){
+  const peers=DATA.filter(x=>base(x)===base(d)).map(x=>({d:x,m:Object.assign(coMetrics(x),{ind_pe:coIndPE(x)})})).sort((a,b)=>(b.m.mcap||0)-(a.m.mcap||0));
+  const cols=CO_COLS.filter(c=>['price','mcap','pe','pb','rev','pat','rev_yoy','pat_yoy','roe','mgn','score'].includes(c.k));
+  return `<div class="cp-card"><h3>${esc(shortT(base(d)))} — ${peers.length} companies on the board</h3><div class="co-tablewrap"><table class="co-table"><thead><tr><th class="co-name-h">Company</th>${cols.map(c=>`<th><span>${esc(c.l)}</span>${c.u?`<small>${esc(c.u)}</small>`:''}</th>`).join('')}</tr></thead>
+    <tbody>${peers.map(({d:x,m})=>`<tr data-co="${ea(x.code)}" class="${x.code===d.code?'cp-self':''}"><td class="co-name">${coAvatar(x)}<span>${esc(x.name)}</span></td>${cols.map(c=>`<td>${c.f(m[c.k])}</td>`).join('')}</tr>`).join('')}</tbody></table></div>
+    <p class="caveat">Peers are the board companies in the same industry, largest first. Click one to open its page.</p></div>`;
+}
+
+function coDocuments(d){
+  const r=coRes(d.code), act=coAct(d), calls=(r&&r.concalls)||[];
+  const docs=[];
+  calls.forEach(c=>{ docs.push([c.date, 'Earnings call transcript', c.transcript]); if(c.ppt) docs.push([c.date, 'Investor presentation', c.ppt]); });
+  const pdfs=act.announcements.filter(a=>a.url && /result|presentation|annual report|outcome|investor|analyst|credit rating/i.test(a.category)).slice(0,40);
+  return `<div class="cp-card"><h3>Earnings calls &amp; presentations</h3>${docs.length?`<ul class="cp-docs">${docs.map(([dt,k,u])=>`<li><span>${esc(dt)}</span><a href="${ea(u)}" target="_blank" rel="noopener">${esc(k)} ↗</a></li>`).join('')}</ul>`:'<p class="nd">None on file.</p>'}</div>
+    <div class="cp-card"><h3>Results, presentations &amp; other key filings</h3>${pdfs.length?`<ul class="cp-docs">${pdfs.map(a=>`<li><span>${esc(rcDayShort(a.date))}</span><a href="${ea(a.url)}" target="_blank" rel="noopener">${esc(a.category)} ↗</a></li>`).join('')}</ul>`:'<p class="nd">None in the NSE feed for the last few months.</p>'}</div>
+    <div class="cp-card"><h3>Elsewhere</h3><ul class="cp-docs"><li><span>Financials</span><a href="${ea(scrURL(d))}" target="_blank" rel="noopener">screener.in ↗</a></li>${exURL(d)?`<li><span>Exchange</span><a href="${ea(exURL(d))}" target="_blank" rel="noopener">Quote &amp; filings on the exchange ↗</a></li>`:''}</ul></div>`;
+}
+
 BUSY=true; buildColPop(); applyState(); BUSY=false;
-setView(VIEW,{keep:true});
+setView(VIEW,{keep:true, nav: VIEW==='company' ? 'companies-link' : undefined});
 if(window.dsSplashDone) window.dsSplashDone();   /* the ocean loading scene in index.html */
 alertsInit();
 

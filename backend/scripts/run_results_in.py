@@ -12,6 +12,11 @@ and keeps, into data/results_in/latest.json (served at GET /api/results-in):
   * annual    the last 8 fiscal years of the same lines -- what management's full-year targets are
               checked against (scripts/run_guidance_in.py)
   * concalls  the earnings-call list: month, transcript PDF, presentation, recording
+  * top       the page's headline ratios (book value, dividend yield, 52-week high/low, face value)
+
+and, for the company page, into data/results_in/profile.json (GET /api/company-profile-in): the
+business description, screener's pros/cons, the balance sheet, cash flow, efficiency ratios, quarterly
+shareholding, and the compounded growth table.
 
 Figures are screener.in's own, in Rs crore. A company whose page has no quarterly table (a fresh
 listing) simply has no entry. A page that cannot be fetched keeps its previous entry, so one bad
@@ -34,6 +39,7 @@ from bs4 import BeautifulSoup
 BACKEND_DIR = Path(__file__).resolve().parent.parent
 RAW = BACKEND_DIR / "data" / "companies_raw.json"
 OUT_FILE = BACKEND_DIR / "data" / "results_in" / "latest.json"
+PROFILE_FILE = BACKEND_DIR / "data" / "results_in" / "profile.json"
 BASE = "https://www.screener.in/company/{code}/{suffix}"
 HEADERS = {"User-Agent": "Mozilla/5.0 (compatible; personal-research-screener/1.0; +https://pkresearch.in)"}
 DELAY = 1.2
@@ -78,6 +84,59 @@ def _table(section) -> dict | None:
     return out if len(periods) >= 2 and "sales" in out else None
 
 
+def _rows(table, keep: int) -> dict | None:
+    """Any screener data-table as {'periods': [...], 'rows': [[label, [values...]], ...]}, newest `keep` columns."""
+    if table is None:
+        return None
+    periods = [th.get_text(strip=True) for th in table.select("thead th")][1:]
+    rows = []
+    for tr in table.select("tbody tr"):
+        cells = tr.select("td")
+        if len(cells) < 2:
+            continue
+        label = re.sub(r"[+\s]+$", "", cells[0].get_text(" ", strip=True)).strip()
+        if label:
+            rows.append([label, [_num(c.get_text(strip=True)) for c in cells[1:]][-keep:]])
+    return {"periods": periods[-keep:], "rows": rows} if periods and rows else None
+
+
+def _top(soup) -> dict:
+    out = {}
+    for li in soup.select("#top-ratios li"):
+        n, v = li.select_one(".name"), li.select_one(".value")
+        if not (n and v):
+            continue
+        name, val = n.get_text(" ", strip=True), v.get_text(" ", strip=True)
+        nums = [_num(x) for x in re.findall(r"-?[\d,]+(?:\.\d+)?", val)]
+        key = {"book value": "book_value", "dividend yield": "div_yield", "face value": "face_value",
+               "high / low": "high_low", "stock p/e": "pe", "roce": "roce", "roe": "roe"}.get(name.lower())
+        if key == "high_low" and len(nums) >= 2:
+            out["high52"], out["low52"] = nums[0], nums[1]
+        elif key and nums:
+            out[key] = nums[0]
+    return out
+
+
+def _profile(soup) -> dict:
+    about = soup.select_one(".company-profile .about") or soup.select_one(".about")
+    growth = {}
+    for t in soup.select("table.ranges-table"):
+        th = t.select_one("th")
+        rows = [[td.get_text(" ", strip=True) for td in tr.select("td")] for tr in t.select("tr")]
+        if th:
+            growth[th.get_text(" ", strip=True)] = [[a.rstrip(":"), _num(b)] for a, b in (r for r in rows if len(r) == 2)]
+    return {
+        "about": re.sub(r"\s+", " ", about.get_text(" ", strip=True)).strip()[:1500] if about else None,
+        "pros": [li.get_text(" ", strip=True) for li in soup.select(".pros li")][:8],
+        "cons": [li.get_text(" ", strip=True) for li in soup.select(".cons li")][:8],
+        "balance": _rows(soup.select_one("#balance-sheet table.data-table"), KEEP_YEARS),
+        "cashflow": _rows(soup.select_one("#cash-flow table.data-table"), KEEP_YEARS),
+        "ratios": _rows(soup.select_one("#ratios table.data-table"), KEEP_YEARS),
+        "shareholding": _rows(soup.select_one("#quarterly-shp table.data-table") or soup.select_one("#shareholding table.data-table"), 12),
+        "growth": growth,
+    }
+
+
 def parse(html: str) -> dict | None:
     soup = BeautifulSoup(html, "html.parser")
     q = _table(soup.select_one("#quarters"))
@@ -96,7 +155,7 @@ def parse(html: str) -> dict | None:
         links = {a_.get_text(strip=True).lower(): a_["href"] for a_ in li.select("a[href]")}
         if date and links.get("transcript"):
             calls.append({"date": date.group(1), "transcript": links["transcript"], "ppt": links.get("ppt")})
-    return {"quarters": quarters, "annual": annual, "concalls": calls[:KEEP_CALLS]}
+    return {"quarters": quarters, "annual": annual, "concalls": calls[:KEEP_CALLS], "top": _top(soup), "profile": _profile(soup)}
 
 
 MONTHS = {m: i for i, m in enumerate(["jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec"], 1)}
@@ -152,6 +211,11 @@ def main() -> int:
         prev = json.loads(OUT_FILE.read_text(encoding="utf-8")).get("companies") or {}
     except (OSError, ValueError):
         prev = {}
+    try:
+        prev_prof = json.loads(PROFILE_FILE.read_text(encoding="utf-8")).get("companies") or {}
+    except (OSError, ValueError):
+        prev_prof = {}
+    profiles = dict(prev_prof)
 
     session = requests.Session()
     session.headers.update(HEADERS)
@@ -174,6 +238,7 @@ def main() -> int:
             continue
         blocks = 0
         if entry:
+            profiles[code] = entry.pop("profile", None)
             out[code] = entry
             ok += 1
         else:
@@ -184,6 +249,10 @@ def main() -> int:
 
     board = {str(c["code"]) for c in json.loads(RAW.read_text(encoding="utf-8"))}
     out = {k: v for k, v in out.items() if k in board}
+    profiles = {k: v for k, v in profiles.items() if k in board and v}
+    if profiles != prev_prof:
+        PROFILE_FILE.parent.mkdir(parents=True, exist_ok=True)
+        PROFILE_FILE.write_text(json.dumps({"fetched_at": now, "companies": profiles}, separators=(",", ":"), ensure_ascii=False), encoding="utf-8")
     if out == prev:
         print(f"run_results_in: {ok} checked, nothing changed since the last run; {len(out)} companies on file")
         return 0

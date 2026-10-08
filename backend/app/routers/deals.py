@@ -63,6 +63,9 @@ GET /api/guidance-in      India board: numeric targets management stated on earn
                           exact sentence, and whether each came true (scripts/run_guidance_in.py)
 GET /api/results-calendar-in  India board: each company's next results date (confirmed by NSE notice,
                           expected from last year, or the SEBI deadline) (scripts/run_results_calendar_in.py)
+GET /api/company-profile-in  India board company pages: about, pros/cons, balance sheet, cash flow,
+                          ratios, quarterly shareholding (scripts/run_results_in.py)
+GET /api/company-activity-in/{symbol}  one company's filings, deals and insider trades (company page)
 GET /api/transcripts-in   India board: which earnings-call transcripts are on file, per company
 GET /api/transcripts-in/{code}  that company's newest calls laid out for reading -- speakers, roles,
                           numbered turns, where the Q&A starts (scripts/run_transcripts_in.py)
@@ -194,6 +197,48 @@ for _name, _path in (("fundamentals", FUNDAMENTALS_US_FILE), ("analysts", ANALYS
 @router.get("/api/results-in")
 def results_in(request: Request):
     return file_response(request, RESULTS_IN_FILE, {"fetched_at": None, "companies": {}})
+
+
+@router.get("/api/company-profile-in")
+def company_profile_in(request: Request):
+    """India board company pages: business description, balance sheet, cash flow, ratios, shareholding."""
+    return file_response(request, RESULTS_IN_FILE.parent / "profile.json", {"fetched_at": None, "companies": {}})
+
+
+_BY_SYMBOL: dict[str, tuple[float, dict]] = {}
+
+
+def _by_symbol(path, key: str) -> dict:
+    """{symbol: [rows]} of one of the feeds above, re-read only when the file changes."""
+    import json
+    try:
+        mt = path.stat().st_mtime
+    except OSError:
+        return {}
+    hit = _BY_SYMBOL.get(str(path))
+    if hit and hit[0] == mt:
+        return hit[1]
+    out: dict[str, list] = {}
+    try:
+        for r in json.loads(path.read_text(encoding="utf-8")).get(key) or []:
+            if r.get("symbol"):
+                out.setdefault(str(r["symbol"]).upper(), []).append(r)
+    except (OSError, ValueError):
+        return {}
+    _BY_SYMBOL[str(path)] = (mt, out)
+    return out
+
+
+@router.get("/api/company-activity-in/{symbol}")
+def company_activity_in(symbol: str):
+    """One company's filings, bulk/block deals and insider trades, for its company page."""
+    sym = symbol.strip().upper()
+    if not re.fullmatch(r"[A-Z0-9&_.-]{1,30}", sym):
+        raise HTTPException(status_code=404)
+    return {"symbol": sym,
+            "announcements": _by_symbol(ANNOUNCEMENTS_FILE, "announcements").get(sym, [])[:200],
+            "deals": _by_symbol(DATA_FILE, "deals").get(sym, [])[:100],
+            "insider": _by_symbol(INSIDER_TRADES_FILE, "trades").get(sym, [])[:100]}
 
 
 @router.get("/api/results-calendar-in")

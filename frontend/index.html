@@ -101,7 +101,7 @@
   .f1{transform:translateX(12vw)}.f2{transform:translateX(66vw)}.f3{transform:translateX(38vw)}.f4{transform:translateX(18vw)}.f5{transform:translateX(74vw)}.sp-school{transform:translateX(56vw)}
 }
 </style>
-<link rel="stylesheet" href="/static/style.css?v=82">
+<link rel="stylesheet" href="/static/style.css?v=83">
 <link rel="stylesheet" href="/static/dark.css?v=65">
 </head>
 <body>
@@ -213,7 +213,7 @@
     </label>
     <nav class="nav-tabs" aria-label="Dashboard">
       <button class="side-link active" id="overview-link" type="button"><svg viewBox="0 0 24 24"><path d="M3 11.5 12 4l9 7.5"/><path d="M5.5 10v9.5h13V10"/></svg>Overview</button>
-      <button class="side-link" id="themes-link" type="button"><svg viewBox="0 0 24 24"><path d="M3.5 7.5h6l2 2h9v10h-17z"/></svg>Themes</button>
+      <button class="side-link" id="companies-link" type="button" title="Every company on the board"><svg viewBox="0 0 24 24"><path d="M4 20.5V8l6-3.5V20.5"/><path d="M10 20.5V10.5l10 3.5v6.5"/><path d="M3 20.5h18"/></svg>Companies</button>
       <button class="side-link" id="market-link" type="button"><svg viewBox="0 0 24 24"><path d="M4 19.5h16"/><path d="M7 16v-5"/><path d="M12 16V7"/><path d="M17 16v-8"/></svg>Market</button>
       <button class="side-link" id="filters-link" type="button" title="Screen filters"><svg viewBox="0 0 24 24"><path d="M3 12h4l2.5-5 4 10 2.5-5H21"/></svg>Screens</button>
       <button class="side-link" id="gallery-link" type="button" title="Screen any Chart"><svg viewBox="0 0 24 24"><rect x="4" y="4.5" width="16" height="15" rx="2"/><path d="M8 15l3-3.5 2.5 2 3-4.5"/></svg>Screen any Chart<span class="side-count" id="gallery-count"></span></button>
@@ -243,6 +243,23 @@
   <div class="section-heading"><div><span class="eyebrow">START</span><h1 id="overview-title">Company overview</h1><p class="section-copy">A concise view of the screened companies currently on the board, and what is happening to them — deals, filings, movers, headlines, new research. Click a tile to see the companies behind it; click any name below to open its scorecard.</p></div></div>
   <div class="tiles" id="tiles"></div>
   <div class="ov-grid" id="ov-grid"></div>
+</section>
+
+<section class="dashboard-section co-section" data-views="companies" aria-labelledby="co-title">
+  <div class="section-heading"><div><span class="eyebrow">BOARD</span><h2 id="co-title">Companies</h2><p class="section-copy">Every company on the board with its latest numbers. Click a column to sort, a company to open its page — results, earnings calls, filings, financials, ownership and peers.</p></div></div>
+  <div class="co-bar">
+    <label class="co-search"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"/><path d="m16 16 4.5 4.5"/></svg><input id="co-q" type="search" autocomplete="off" spellcheck="false" placeholder="Search by company or ticker"></label>
+    <select class="gal-select" id="co-ind" aria-label="Industry"></select>
+    <select class="gal-select" id="co-cap" aria-label="Market cap"></select>
+    <span class="bp-spacer"></span>
+    <div class="co-colwrap"><button type="button" class="co-colbtn" id="co-colbtn" aria-haspopup="true">Columns</button><div class="co-colpop" id="co-colpop" hidden></div></div>
+  </div>
+  <p class="co-count" id="co-count"></p>
+  <div id="co-body"><p class="view-hint">Loading…</p></div>
+</section>
+
+<section class="dashboard-section cp-section" data-views="company" aria-label="Company">
+  <div id="cp-body"><p class="view-hint">Loading…</p></div>
 </section>
 
 <section class="dashboard-section market-section" data-views="themes" aria-labelledby="market-title">
@@ -713,6 +730,6 @@
 <div class="modal" id="modal" role="dialog" aria-modal="true"><div class="mbox"><button class="close" id="mclose" aria-label="Close">&times;</button><div id="mbody"></div></div></div>
 
 <script src="/static/asme-certified.js?v=5" defer></script>
-<script src="/static/app.js?v=102" defer></script>
+<script src="/static/app.js?v=103" defer></script>
 </body>
 </html>
