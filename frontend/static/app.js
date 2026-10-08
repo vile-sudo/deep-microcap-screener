@@ -772,10 +772,11 @@ const drawer=document.getElementById('drawer'), scrim=document.getElementById('s
    (scripts/run_results_in.py). guidance_in: numeric targets management stated on earnings calls, the
    exact sentence, and whether each came true once the year was reported (scripts/run_guidance_in.py).
    Both are written by the daily India job and only read here. */
-const INTEL={res:null, gd:null};
+const INTEL={res:null, gd:null, tr:null};
 let DRAWER_D=null;
-Promise.all([fetchJSON('/api/results-in').catch(()=>null), fetchJSON('/api/guidance-in').catch(()=>null)]).then(([r,g])=>{
-  INTEL.res=r; INTEL.gd=g;
+Promise.all([fetchJSON('/api/results-in').catch(()=>null), fetchJSON('/api/guidance-in').catch(()=>null),
+             fetchJSON('/api/transcripts-in').catch(()=>null)]).then(([r,g,t])=>{
+  INTEL.res=r; INTEL.gd=g; INTEL.tr=t;
   if(drawer.classList.contains('on') && DRAWER_D) openDrawer(DRAWER_D);   /* the scorecard was opened before the data arrived */
 });
 const MON_S={jan:'Jan',feb:'Feb',mar:'Mar',apr:'Apr',may:'May',jun:'Jun',jul:'Jul',aug:'Aug',sep:'Sep',oct:'Oct',nov:'Nov',dec:'Dec'};
@@ -857,9 +858,131 @@ function gtRow(s){
   const actual = st.actual!==undefined && st.actual!==null ? `<small>actual ${s.unit==='%'?fmt(st.actual,1)+'%':'₹'+fmtI(st.actual)+' cr'} (FY${String(st.fy).slice(2)})</small>` : '';
   const q=s.quote.length>230 ? s.quote.slice(0,229)+'…' : s.quote;
   return `<tr><td>${['','Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'][+s.call.slice(5,7)]+' '+s.call.slice(0,4)}</td>
-    <td class="gt-q">“${esc(q)}” <a href="${esc(s.source)}" target="_blank" rel="noopener">transcript ↗</a></td>
+    <td class="gt-q">“${esc(q)}” ${trOnFile(s.source)
+      ? `<a href="#" data-tr-src="${esc(s.source)}" data-tr-q="${esc(s.quote.split(/\s+/).slice(0,7).join(' '))}">read in transcript</a> · <a href="${esc(s.source)}" target="_blank" rel="noopener">PDF ↗</a>`
+      : `<a href="${esc(s.source)}" target="_blank" rel="noopener">transcript ↗</a>`}</td>
     <td>${gtTarget(s)}</td><td><span class="gt-badge ${m[1]}">${m[0]}</span>${actual}</td></tr>`;
 }
+/* ---------- Earnings-call transcript reader ----------
+   Each board company's newest four calls, laid out from the transcript PDF by scripts/run_transcripts_in.py:
+   speakers with their title (management) or firm (analysts), numbered turns, where the Q&A starts.
+   Opens in the modal from the scorecard, from a guidance quote, or from a #tr=CODE:YYYY-MM link. */
+const TR={cache:{}, doc:null, call:null, q:'', who:'', part:'', hit:0};
+function trCalls(code){ return (INTEL.tr && INTEL.tr.companies && INTEL.tr.companies[code]) || []; }
+function trOnFile(src){ const c=INTEL.tr && INTEL.tr.companies; if(!c||!src) return null;
+  for(const [code,calls] of Object.entries(c)){ const k=calls.find(x=>x.source===src); if(k) return {code, ym:k.ym}; } return null; }
+function trDate(c){ return c.call_date ? rcDayLong(c.call_date) : c.date; }
+function transcriptsHtml(d){
+  const calls=trCalls(d.code);
+  if(!calls.length) return '';
+  return `<div class="sec"><h4>Earnings-call transcripts</h4><div class="tr-calls">${calls.map(c=>
+    `<button type="button" class="tr-call" data-tr-code="${esc(d.code)}" data-tr-ym="${esc(c.ym)}"><b>${esc(c.label)}</b><small>${esc(trDate(c))}</small></button>`).join('')}</div>
+    <p class="caveat" style="margin-top:6px">Read the full call here: who said what, the Q&amp;A by analyst, and search.</p></div>`;
+}
+document.addEventListener('click', e=>{
+  const b=e.target.closest('[data-tr-code],[data-tr-src]'); if(!b) return;
+  e.preventDefault();
+  if(b.dataset.trSrc){ const f=trOnFile(b.dataset.trSrc); if(f) openTranscript(f.code, f.ym, b.dataset.trQ||''); }
+  else openTranscript(b.dataset.trCode, b.dataset.trYm);
+});
+async function openTranscript(code, ym, q){
+  openModal('<p class="view-hint">Loading the transcript…</p>');
+  modal.querySelector('.mbox').classList.add('tr-box');
+  let data=TR.cache[code];
+  if(!data){
+    try{ data=TR.cache[code]=await fetchJSON('/api/transcripts-in/'+encodeURIComponent(code)); }
+    catch(e){ mbody.innerHTML='<p class="view-hint">This transcript is not on file yet — it is added by the daily job.</p>'; return; }
+  }
+  TR.doc=data; TR.call=data.calls.find(c=>c.ym===ym) || data.calls[0];
+  TR.q=q||''; TR.who=''; TR.part=''; TR.hit=0;
+  trRender();
+  if(TR.q) trJump(0);
+}
+const TR_ROLE={management:'Management', analyst:'Analyst', moderator:'Moderator', host:'Host'};
+function trMark(text){
+  const t=esc(text);
+  if(!TR.q || TR.q.length<2) return t;
+  const re=new RegExp(esc(TR.q).replace(/[.*+?^${}()|[\]\\]/g,'\\$&').replace(/\s+/g,'\\s+'),'gi');
+  return t.replace(re, m=>`<mark class="tr-hit">${m}</mark>`);
+}
+/* which turns to show: a person's own turns; for an analyst, each of their exchanges (their questions and
+   the answers, up to the moderator's next turn) */
+function trVisible(c){
+  const sp=c.speakers||{}, turns=c.turns, qa=c.qa_start;
+  const keep=new Array(turns.length).fill(true);
+  if(TR.part==='open' && qa!=null) turns.forEach((t,i)=>{ if(i>=qa) keep[i]=false; });
+  if(TR.part==='qa' && qa!=null) turns.forEach((t,i)=>{ if(i<qa) keep[i]=false; });
+  if(TR.who){
+    const role=(sp[TR.who]||{}).role;
+    let on=false;
+    turns.forEach((t,i)=>{
+      if(role==='analyst'){
+        if(t.s===TR.who) on=true;
+        else if(['moderator','host'].includes((sp[t.s]||{}).role) || (sp[t.s]||{}).role==='analyst') on=false;
+        if(!on) keep[i]=false;
+      } else if(t.s!==TR.who) keep[i]=false;
+    });
+  }
+  return keep;
+}
+function trRender(){
+  const c=TR.call, d=TR.doc, sp=c.speakers||{};
+  const people=Object.entries(sp).filter(([n,v])=>!['moderator'].includes(v.role));
+  const group=role=>people.filter(([n,v])=>v.role===role).sort((a,b)=>b[1].turns-a[1].turns);
+  const who=([n,v])=>`<button type="button" class="tr-who${TR.who===n?' on':''}" data-who="${esc(n)}"><b>${esc(n)}</b><small>${esc(v.title||v.firm||'')}</small></button>`;
+  const keep=trVisible(c);
+  let html='', lastPart=null;
+  c.turns.forEach((t,i)=>{
+    const part = c.qa_start!=null && i>=c.qa_start ? 'qa' : 'open';
+    if(part!==lastPart && c.structured){ html+=`<h4 class="tr-part">${part==='qa'?'Questions &amp; answers':'Opening remarks'}</h4>`; lastPart=part; }
+    if(!keep[i]) return;
+    const v=sp[t.s]||{}, role=v.role||'';
+    html+=`<div class="tr-turn tr-${esc(role||'plain')}" id="tr-t${i}">
+      ${t.s?`<div class="tr-sp"><span class="tr-n">#${i+1}</span><b>${esc(t.s)}</b>${v.title||v.firm?`<small>${esc(v.title||v.firm)}</small>`:''}${role&&role!=='management'?`<span class="tr-role">${TR_ROLE[role]||''}</span>`:''}</div>`:''}
+      ${t.p.map(p=>`<p>${trMark(p)}</p>`).join('')}</div>`;
+  });
+  const others=d.calls.map(x=>`<option value="${esc(x.ym)}"${x.ym===c.ym?' selected':''}>${esc(x.label)} · ${esc(trDate(x))}</option>`).join('');
+  mbody.innerHTML=`<div class="tr">
+    <div class="tr-head"><div><h3>${esc(d.name||d.code)} — ${esc(c.label)} earnings call</h3>
+      <p class="sub">Call held ${esc(trDate(c))}${c.structured?` · ${c.turns.length} turns · ${group('analyst').length} analyst${group('analyst').length===1?'':'s'}`:''}</p></div>
+      <div class="tr-links"><select class="gal-select" id="tr-call" aria-label="Call">${others}</select>
+        <a class="theme-back" href="${esc(c.source)}" target="_blank" rel="noopener">Original PDF ↗</a>${c.ppt?`<a class="theme-back" href="${esc(c.ppt)}" target="_blank" rel="noopener">Slides ↗</a>`:''}</div></div>
+    <div class="tr-bar"><input type="search" id="tr-q" class="gal-search" placeholder="Search this call…" value="${esc(TR.q)}" autocomplete="off">
+      <span class="tr-count" id="tr-count"></span><button type="button" class="rc-navb" id="tr-prev" aria-label="Previous match">&#8249;</button><button type="button" class="rc-navb" id="tr-next" aria-label="Next match">&#8250;</button>
+      ${c.structured&&c.qa_start!=null?`<div class="rc-seg"><button type="button" data-part=""${!TR.part?' class="on"':''}>Whole call</button><button type="button" data-part="open"${TR.part==='open'?' class="on"':''}>Opening remarks</button><button type="button" data-part="qa"${TR.part==='qa'?' class="on"':''}>Q&amp;A</button></div>`:''}
+      ${TR.who?`<button type="button" class="theme-back" id="tr-allp">Showing ${esc(TR.who)} — show everyone ✕</button>`:''}</div>
+    <div class="tr-cols">
+      ${c.structured?`<aside class="tr-side"><h5>Management</h5>${group('management').map(who).join('')||'<p class="nd">—</p>'}
+        ${group('host').length?`<h5>Host</h5>${group('host').map(who).join('')}`:''}
+        <h5>Analysts</h5>${group('analyst').map(who).join('')||'<p class="nd">—</p>'}
+        <p class="caveat">Click a person to see only their part — for an analyst, their questions and the answers.</p></aside>`:''}
+      <div class="tr-body" id="tr-body">${html}</div></div>
+    <p class="caveat" style="margin-top:10px">Laid out automatically from the company's transcript filing: speakers, titles and firms are read from the document and can occasionally be wrong — the original PDF is the record.${c.structured?'':' This transcript is not in the usual "Name: text" layout, so it is shown as plain text.'}</p>
+  </div>`;
+  const qi=document.getElementById('tr-q'); let t=0;
+  qi.oninput=()=>{ clearTimeout(t); t=setTimeout(()=>{ TR.q=qi.value.trim(); TR.hit=0; trRender(); const n=document.getElementById('tr-q'); n.focus(); n.setSelectionRange(n.value.length,n.value.length); if(TR.q) trJump(0); },220); };
+  qi.onkeydown=e=>{ if(e.key==='Enter'){ e.preventDefault(); trJump(TR.hit+(e.shiftKey?-1:1)); } };
+  document.getElementById('tr-prev').onclick=()=>trJump(TR.hit-1);
+  document.getElementById('tr-next').onclick=()=>trJump(TR.hit+1);
+  document.getElementById('tr-call').onchange=e=>{ TR.call=d.calls.find(x=>x.ym===e.target.value)||c; TR.who=''; TR.part=''; TR.hit=0; trRender(); modal.scrollTop=0; };
+  mbody.querySelectorAll('[data-part]').forEach(b=>b.onclick=()=>{ TR.part=b.dataset.part; trRender(); });
+  mbody.querySelectorAll('[data-who]').forEach(b=>b.onclick=()=>{ TR.who = TR.who===b.dataset.who ? '' : b.dataset.who; trRender(); });
+  const all=document.getElementById('tr-allp'); if(all) all.onclick=()=>{ TR.who=''; trRender(); };
+  trCount();
+}
+function trCount(){
+  const n=mbody.querySelectorAll('.tr-hit').length, el=document.getElementById('tr-count');
+  if(el) el.textContent = TR.q && TR.q.length>=2 ? (n ? `${Math.min(TR.hit+1,n)} of ${n}` : 'no match') : '';
+}
+function trJump(i){
+  const hits=[...mbody.querySelectorAll('.tr-hit')];
+  if(!hits.length){ trCount(); return; }
+  TR.hit=(i+hits.length)%hits.length;
+  hits.forEach((h,k)=>h.classList.toggle('cur',k===TR.hit));
+  hits[TR.hit].scrollIntoView({block:'center'});
+  trCount();
+}
+
 function guidanceHtml(d){
   const e=INTEL.gd && INTEL.gd.companies && INTEL.gd.companies[d.code];
   const calls=(INTEL.res && INTEL.res.companies && INTEL.res.companies[d.code] || {}).concalls || [];
@@ -974,6 +1097,7 @@ function openDrawer(d){
      </div>`}
 
      ${quarterlyHtml(d)}
+     ${transcriptsHtml(d)}
      ${guidanceHtml(d)}
 
      ${d.pricing_power_note?`<div class="sec"><h4>Pricing power — the five-year margin record</h4><p>${hl(d.pricing_power_note)}</p></div>`:''}
@@ -1236,7 +1360,7 @@ function openCompare(){
 
 /* ---------- modal ---------- */
 const modal=document.getElementById('modal'), mbody=document.getElementById('mbody');
-function openModal(html){ modal.querySelector('.mbox').classList.remove('narrow'); mbody.innerHTML=html; modal.classList.add('on'); modal.scrollTop=0; }
+function openModal(html){ modal.querySelector('.mbox').classList.remove('narrow','tr-box'); mbody.innerHTML=html; modal.classList.add('on'); modal.scrollTop=0; }
 function closeModal(){ modal.classList.remove('on'); }
 document.getElementById('mclose').onclick=closeModal;
 modal.onclick=e=>{ if(e.target===modal) closeModal(); };
@@ -5809,6 +5933,15 @@ function alAct(al){
     if(byCode[val]) openDrawer(byCode[val]); else openAlerts();
   }
 }
+function trStripHash(){
+  const p=new URLSearchParams(location.hash.replace(/^#/,''));
+  const tr=p.get('tr'); if(!tr) return null;
+  p.delete('tr');
+  try{ history.replaceState(null,'',location.pathname+location.search+(p.toString()?'#'+p.toString():'')); }catch(e){}
+  return tr;
+}
+const DEEP_LINK_TR=trStripHash();
+if(DEEP_LINK_TR){ const [c,ym]=DEEP_LINK_TR.split(':'); setTimeout(()=>openTranscript(c, ym), 0); }
 function alStripHash(){
   const p=new URLSearchParams(location.hash.replace(/^#/,''));
   const al=p.get('al');

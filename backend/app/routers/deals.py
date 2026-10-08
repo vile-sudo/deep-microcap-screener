@@ -63,6 +63,9 @@ GET /api/guidance-in      India board: numeric targets management stated on earn
                           exact sentence, and whether each came true (scripts/run_guidance_in.py)
 GET /api/results-calendar-in  India board: each company's next results date (confirmed by NSE notice,
                           expected from last year, or the SEBI deadline) (scripts/run_results_calendar_in.py)
+GET /api/transcripts-in   India board: which earnings-call transcripts are on file, per company
+GET /api/transcripts-in/{code}  that company's newest calls laid out for reading -- speakers, roles,
+                          numbered turns, where the Q&A starts (scripts/run_transcripts_in.py)
 GET /api/ipo-us           the US IPO calendar (scripts/run_ipo_us.py)
 GET /api/performance-us   return since added and score history per board company
                           (scripts/run_performance_us.py)
@@ -73,7 +76,10 @@ backend/data/insider_us/latest.json and backend/data/announcements_us/latest.jso
 backend/data/earnings_us/latest.json respectively;
 this router only reads them.
 """
-from fastapi import APIRouter, Request
+import re
+
+from fastapi import APIRouter, HTTPException, Request
+from fastapi.responses import Response
 
 from ..json_file import file_response
 from ..config import BASE_DIR
@@ -97,6 +103,7 @@ PERFORMANCE_US_FILE = BASE_DIR / "data" / "performance_us" / "latest.json"
 RESULTS_IN_FILE = BASE_DIR / "data" / "results_in" / "latest.json"
 GUIDANCE_IN_FILE = BASE_DIR / "data" / "guidance_in" / "latest.json"
 RESULTS_CALENDAR_IN_FILE = BASE_DIR / "data" / "results_calendar_in" / "latest.json"
+TRANSCRIPTS_IN_DIR = BASE_DIR / "data" / "transcripts_in"
 
 
 @router.get("/api/deals")
@@ -192,6 +199,32 @@ def results_in(request: Request):
 @router.get("/api/results-calendar-in")
 def results_calendar_in(request: Request):
     return file_response(request, RESULTS_CALENDAR_IN_FILE, {"fetched_at": None, "asof": None, "items": [], "events": []})
+
+
+@router.get("/api/transcripts-in")
+def transcripts_in_index(request: Request):
+    return file_response(request, TRANSCRIPTS_IN_DIR / "index.json", {"fetched_at": None, "companies": {}})
+
+
+@router.get("/api/transcripts-in/{code}")
+def transcripts_in(code: str, request: Request):
+    """Stored gzipped; sent as is to any browser that accepts gzip (all of them)."""
+    if not re.fullmatch(r"[A-Za-z0-9_&-]{1,30}", code):
+        raise HTTPException(status_code=404)
+    path = TRANSCRIPTS_IN_DIR / f"{re.sub(r'[^A-Za-z0-9_-]', '_', code)}.json.gz"
+    try:
+        st = path.stat()
+    except OSError:
+        raise HTTPException(status_code=404, detail="No transcripts on file for this company")
+    etag = f'"{int(st.st_mtime)}-{st.st_size}"'
+    headers = {"ETag": etag, "Cache-Control": "private, no-cache", "Vary": "Accept-Encoding"}
+    if request.headers.get("if-none-match") == etag:
+        return Response(status_code=304, headers=headers)
+    body = path.read_bytes()
+    if "gzip" in request.headers.get("accept-encoding", ""):
+        return Response(body, media_type="application/json", headers={**headers, "Content-Encoding": "gzip"})
+    import gzip
+    return Response(gzip.decompress(body), media_type="application/json", headers=headers)
 
 
 @router.get("/api/guidance-in")
