@@ -6563,9 +6563,7 @@ function ssRender(){
     <div class="rc-seg" role="group" aria-label="How to read the moves"><button type="button" data-ssm="cum" class="${SS.mode==='cum'?'on':''}" title="Each stock's change from the close N sessions ago">Over the last N days</button><button type="button" data-ssm="day" class="${SS.mode==='day'?'on':''}" title="Each session's own change">Day by day</button></div>
     <div class="rc-seg" role="group" aria-label="${SS.mode==='day'?'Session':'Window'}">${cols.map(c=>`<button type="button" data-ssw="${c.k}" class="${cur.k===c.k?'on':''}">${c.label}</button>`).join('')}</div>
     <label class="news-pm"><input type="checkbox" id="ss-liq"${SS.liquid?' checked':''}> Liquid only (₹${fmt(d.liquid_turnover_cr||1,0)} Cr+/day)</label>
-    <label class="news-pm"><input type="checkbox" id="ss-sme"${SS.nosme?' checked':''}> Hide SME</label>
-    ${SS.slug?'':`<select class="gal-select ss-beatsel" id="ss-beat" aria-label="Against the Nifty 500" title="For the highlighted date / window: the sector's median stock against the Nifty 500 index">
-      <option value="">All sectors</option><option value="beat"${SS.beat==='beat'?' selected':''}>Beat the Nifty 500</option><option value="lag"${SS.beat==='lag'?' selected':''}>Lagged the Nifty 500</option></select>`}</div>
+    <label class="news-pm"><input type="checkbox" id="ss-sme"${SS.nosme?' checked':''}> Hide SME</label></div>
     <p class="cp-sub ss-explain">${SS.mode==='day'
       ? 'Day by day: each column is that session\'s own move — the close against the previous close.'
       : 'Over the last N days: <b>3D</b> is the change from the close three sessions ago to the latest close (the sum of those days\' moves, compounded) — not a single day\'s move. Switch to <b>Day by day</b> to see each session separately.'}</p>`;
@@ -6575,7 +6573,7 @@ function ssRender(){
   body.querySelectorAll('[data-ssw]').forEach(b=>b.onclick=()=>{ SS.sel=b.dataset.ssw; SS.sort=null; ssSave(); ssRender(); syncURL(); });
   document.getElementById('ss-liq').onchange=e=>{ SS.liquid=e.target.checked; ssSave(); ssRender(); };
   document.getElementById('ss-sme').onchange=e=>{ SS.nosme=e.target.checked; ssSave(); ssRender(); };
-  const bs=document.getElementById('ss-beat'); if(bs) bs.onchange=()=>{ SS.beat=bs.value; ssRender(); };
+  body.querySelectorAll('[data-ssbeat]').forEach(b=>b.onclick=()=>{ SS.beat=b.dataset.ssbeat; ssRender(); });
   body.querySelectorAll('[data-ss]').forEach(el=>el.onclick=e=>{ if(e.target.closest('a')) return; SS.slug=el.dataset.ss; SS.ind=''; SS.q=''; ssRender(); syncURL(); window.scrollTo({top:0}); });
   const back=document.getElementById('ss-back'); if(back) back.onclick=e=>{ e.preventDefault(); SS.slug=null; ssRender(); syncURL(); };
   body.querySelectorAll('[data-ss-sort]').forEach(th=>th.onclick=()=>{ const k=th.dataset.ssSort; const now=SS.sort||cur.k; if(now===k) SS.dir=-SS.dir; else { SS.sort=k; SS.dir= k==='name'?1:-1; } ssRender(); });
@@ -6599,6 +6597,9 @@ function ssOverview(){
   const SS_GRP={theme:'Themes', nse:'All NSE sectors'};
   const bpu=ssPu(cur.bb()), bw=cur.bench();
   const heat=`<div class="cp-card"><div class="cp-card-h"><h3>Share of stocks up</h3><span class="cp-sub">each cell: % of the sector's stocks that rose ${SS.mode==='day'?'that day':'over that window'} · how many · median move · click a sector</span></div>
+    <div class="ss-beatbar"><span class="cp-lab">Against the Nifty 500 · ${esc(cur.label)}</span><div class="rc-seg" role="group" aria-label="Against the Nifty 500">
+      <button type="button" data-ssbeat="" class="${!SS.beat?'on':''}">All sectors</button><button type="button" data-ssbeat="beat" class="${SS.beat==='beat'?'on':''}">▲ Beat Nifty 500</button><button type="button" data-ssbeat="lag" class="${SS.beat==='lag'?'on':''}">▼ Lagged Nifty 500</button></div>
+      <span class="cp-sub">pick a date (or window) above, then filter</span></div>
     <div class="ss-heatwrap"><table class="ss-heat"><thead><tr><th></th>${cols.map(c=>`<th class="${cur.k===c.k?'cur':''}">${c.label}</th>`).join('')}</tr></thead><tbody>
     ${ssBenchRow(cols, cur)}
     ${rows.map(({sec,st,a},ri)=>`${ri===0||gOrd(rows[ri-1])!==gOrd(rows[ri])?`<tr class="ss-grp"><td colspan="${cols.length+1}">${SS_GRP[sec.group||'theme']}</td></tr>`:''}<tr data-ss="${ea(sec.slug)}"><td><b>${esc(sec.name)}</b><small>${st.length} stocks</small></td>
