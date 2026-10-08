@@ -66,6 +66,7 @@ GET /api/results-calendar-in  India board: each company's next results date (con
 GET /api/company-profile-in  India board company pages: about, pros/cons, balance sheet, cash flow,
                           ratios, quarterly shareholding (scripts/run_results_in.py)
 GET /api/company-activity-in/{symbol}  one company's filings, deals and insider trades (company page)
+GET /api/logos-in, /api/logo-in/{code}  company logos for the Companies pages (scripts/run_logos_in.py)
 GET /api/transcripts-in   India board: which earnings-call transcripts are on file, per company
 GET /api/transcripts-in/{code}  that company's newest calls laid out for reading -- speakers, roles,
                           numbered turns, where the Q&A starts (scripts/run_transcripts_in.py)
@@ -239,6 +240,32 @@ def company_activity_in(symbol: str):
             "announcements": _by_symbol(ANNOUNCEMENTS_FILE, "announcements").get(sym, [])[:200],
             "deals": _by_symbol(DATA_FILE, "deals").get(sym, [])[:100],
             "insider": _by_symbol(INSIDER_TRADES_FILE, "trades").get(sym, [])[:100]}
+
+
+LOGO_DIR = BASE_DIR / "data" / "logos"
+LOGO_TYPES = {"png": "image/png", "ico": "image/x-icon", "svg": "image/svg+xml", "jpg": "image/jpeg", "webp": "image/webp", "gif": "image/gif"}
+
+
+@router.get("/api/logos-in")
+def logos_in(request: Request):
+    """Which board companies have a logo on file (scripts/run_logos_in.py)."""
+    return file_response(request, LOGO_DIR / "index.json", {"logos": {}, "failed": {}})
+
+
+@router.get("/api/logo-in/{code}")
+def logo_in(code: str):
+    """One company's logo, saved from its own website by scripts/run_logos_in.py."""
+    from fastapi.responses import FileResponse
+    if not re.fullmatch(r"[A-Za-z0-9_&-]{1,30}", code):
+        raise HTTPException(status_code=404)
+    stem = re.sub(r"[^A-Za-z0-9_-]", "_", code)
+    for ext, media in LOGO_TYPES.items():
+        path = LOGO_DIR / f"{stem}.{ext}"
+        if path.is_file():
+            # an SVG is only ever shown through <img>, where its scripts can't run; the CSP makes sure of it
+            return FileResponse(path, media_type=media, headers={"Cache-Control": "public, max-age=604800",
+                                                                 "Content-Security-Policy": "default-src 'none'; style-src 'unsafe-inline'; sandbox"})
+    raise HTTPException(status_code=404)
 
 
 @router.get("/api/results-calendar-in")

@@ -6044,11 +6044,18 @@ function coColsOn(){
 function coAvatar(d, big){
   const name=(d.name||d.code||'?').replace(/^(the)\s+/i,'');
   let h=0; for(const ch of d.code||name) h=(h*31+ch.charCodeAt(0))>>>0;
-  return `<span class="co-av${big?' big':''}" style="--h:${h%360}">${esc(name.slice(0,1).toUpperCase())}</span>`;
+  const lg=CO.logos && CO.logos[d.code];
+  /* the logo sits over the coloured initial; if it fails to load it removes itself and the initial shows */
+  return `<span class="co-av${big?' big':''}${lg?' has-logo':''}" style="--h:${h%360}">${esc(name.slice(0,1).toUpperCase())}${lg?`<img src="/api/logo-in/${encodeURIComponent(d.code)}?v=${encodeURIComponent((lg.at||'').slice(0,10))}" alt="" loading="lazy" onerror="this.parentNode.classList.remove('has-logo');this.remove()">`:''}</span>`;
 }
 
+function coLoadLogos(){
+  if(!CO.logoP) CO.logoP=fetchJSON('/api/logos-in').then(j=>{ CO.logos=j.logos||{}; }).catch(()=>{ CO.logos={}; });
+  return CO.logoP;
+}
 function openCompanies(){
   const body=document.getElementById('co-body');
+  if(!CO.logos) coLoadLogos().then(()=>{ if(VIEW==='companies') coListRender(); });
   if(!INTEL.res || !GAL){
     body.innerHTML='<p class="view-hint">Loading companies…</p>';
     const wait=[GALLOADING, INTEL.loading].filter(Boolean);
@@ -6115,6 +6122,7 @@ function coNeed(code){
   const d=DATA.find(x=>x.code===code), need=[];
   if(!CO.profile){ CO.profLoading = CO.profLoading || fetchJSON('/api/company-profile-in').catch(()=>({companies:{}})).then(j=>{ CO.profile=j; }); need.push(CO.profLoading); }
   if(!GAL) need.push(GALLOADING);
+  if(!CO.logos) need.push(coLoadLogos());
   const sym=d && d.nse_code && !/^\d+$/.test(d.nse_code) ? d.nse_code : null;
   if(sym && !CO.act[sym]) need.push(CO.act[sym]=fetchJSON('/api/company-activity-in/'+encodeURIComponent(sym)).catch(()=>({announcements:[],deals:[],insider:[]})).then(j=>{ CO.act[sym]=j; }));
   if(!CO.chart[code]) need.push(CO.chart[code]=fetchJSON('/api/charts/'+encodeURIComponent(code)).catch(()=>null).then(j=>{ CO.chart[code]=j||{rows:[]}; }));

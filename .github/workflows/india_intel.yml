@@ -10,6 +10,7 @@ name: India results and guidance
 #      reads only the calls that appeared since (a handful) and re-verifies.
 #   3. scripts/run_transcripts_in.py  each company's newest four earnings-call transcripts, laid out for the
 #      in-app reader (speakers, Q&A, numbered paragraphs); only calls not yet on file are downloaded.
+#   4. scripts/run_logos_in.py  logos for companies new to the board, from their own websites.
 # A file is committed only when its content changed. Polite pacing; if screener.in refuses requests the run
 # stops and keeps what it has. Commits with GITHUB_TOKEN never re-trigger workflows.
 
@@ -57,6 +58,10 @@ jobs:
           BUDGET: ${{ github.event.inputs.budget || '150' }}
         run: python -u scripts/run_guidance_in.py --budget "$BUDGET"
 
+      - name: Company logos (newcomers only)
+        working-directory: ./backend
+        run: python -u scripts/run_logos_in.py --budget 100
+
       - name: Earnings-call transcripts for the reader
         working-directory: ./backend
         run: python -u scripts/run_transcripts_in.py --budget 250
@@ -66,7 +71,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add backend/data/results_in backend/data/guidance_in backend/data/transcripts_in
+          git add backend/data/results_in backend/data/guidance_in backend/data/transcripts_in backend/data/logos
           if git diff --cached --quiet; then
             echo "No changes"
             echo "changed=false" >> "$GITHUB_OUTPUT"
