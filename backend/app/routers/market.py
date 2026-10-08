@@ -262,17 +262,18 @@ def kite_status():
 
 
 @router.get("/api/kite/login")
-def kite_login(request: Request, key: str = Query("")):
+def kite_login(request: Request, key: str = Query(""), next: str = Query("")):
     if not kite.configured():
         raise HTTPException(status_code=503, detail="Zerodha is not configured: set KITE_API_KEY and KITE_API_SECRET")
     _check_admin(key, request)
-    return RedirectResponse(kite.login_url(), status_code=302)
+    return RedirectResponse(kite.login_url(next), status_code=302)
 
 
 @router.get("/api/kite/callback")
 def kite_callback(request_token: str = "", status: str = "", state: str = ""):
     if status != "success" or not request_token:
         return _page("Zerodha login was cancelled.", ok=False)
+    back = kite.pending_next() or "market"
     try:
         kite.complete_login(request_token, state)
     except PermissionError as e:
@@ -281,7 +282,7 @@ def kite_callback(request_token: str = "", status: str = "", state: str = ""):
         return _page(f"Zerodha rejected the login: {e}", ok=False)
     with _cache_lock:
         _cache.clear()
-    return RedirectResponse("/#v=market", status_code=302)
+    return RedirectResponse(f"/#v={back}", status_code=302)
 
 
 class KiteToken(BaseModel):

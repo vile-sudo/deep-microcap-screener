@@ -101,7 +101,7 @@
   .f1{transform:translateX(12vw)}.f2{transform:translateX(66vw)}.f3{transform:translateX(38vw)}.f4{transform:translateX(18vw)}.f5{transform:translateX(74vw)}.sp-school{transform:translateX(56vw)}
 }
 </style>
-<link rel="stylesheet" href="/static/style.css?v=94">
+<link rel="stylesheet" href="/static/style.css?v=96">
 <link rel="stylesheet" href="/static/dark.css?v=65">
 </head>
 <body>
@@ -222,8 +222,8 @@
       <button class="side-link" id="ipor-link" type="button" title="Upcoming IPO Reports"><svg viewBox="0 0 24 24"><path d="M12 3v6l4 2"/><circle cx="12" cy="12" r="9"/></svg>Upcoming IPO Reports</button>
       <button class="side-link" id="sectors-link" type="button" title="Sector &amp; Themes Research"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><path d="M4 12h16M12 4c2.5 2.6 2.5 13.4 0 16M12 4c-2.5 2.6-2.5 13.4 0 16"/></svg>Sector &amp; Themes</button>
       <button class="side-link" id="sstrength-link" type="button" title="Sector Strength: how broadly each sector is moving"><svg viewBox="0 0 24 24"><path d="M4 20V14M9 20V9M14 20v-7M19 20V5"/></svg>Sector Strength</button>
-      <button class="side-link" id="deals-link" type="button" title="Bulk &amp; Block Deals"><svg viewBox="0 0 24 24"><path d="M4 4h16v6H4z"/><path d="M4 14h7v6H4z"/><path d="M13 14h7v6h-7z"/></svg>Bulk &amp; Block Deals</button>
-      <button class="side-link" id="news-link" type="button" title="News Channel"><svg viewBox="0 0 24 24"><path d="M4 5.5h16v13h-16z"/><path d="M8 9.5h8M8 13h8M8 16.5h5"/></svg>News Channel<span class="side-count" id="news-badge" hidden></span></button>
+      <button class="side-link" id="deals-link" type="button" title="Deals: bulk &amp; block deals, insider trades and company announcements"><svg viewBox="0 0 24 24"><path d="M4 4h16v6H4z"/><path d="M4 14h7v6H4z"/><path d="M13 14h7v6h-7z"/></svg>Deals</button>
+      <button class="side-link" id="news-link" type="button" title="News"><svg viewBox="0 0 24 24"><path d="M4 5.5h16v13h-16z"/><path d="M8 9.5h8M8 13h8M8 16.5h5"/></svg>News<span class="side-count" id="news-badge" hidden></span></button>
     </nav>
     <span class="nav-upd" id="nav-upd" hidden></span>
     <button type="button" class="nav-bell" id="alerts-btn" hidden title="Alerts: new highs, new lows and breakouts" aria-label="Alerts">
@@ -342,7 +342,7 @@
 </section>
 
 <section class="dashboard-section deals-section" data-views="deals" aria-labelledby="deals-title">
-  <div class="section-heading"><div><span class="eyebrow">BULK &amp; BLOCK DEALS</span><h2 id="deals-title">Bulk &amp; Block Deals</h2><p class="section-copy">Every bulk and block deal, every non-routine corporate announcement, and every insider trading / SAST disclosure (promoters, directors and KMPs' own buy/sell/pledge transactions), from NSE's own reports. Refreshed every night at 02:00 IST; NSE only ever serves the latest settled session for deals, so this page keeps a rolling history built up run by run (120 days for deals and insider trades, 45 for announcements). Board companies are marked and link to their scorecard.</p></div><span class="section-note" id="dl-asof"></span></div>
+  <div class="section-heading"><div><span class="eyebrow">BULK &amp; BLOCK DEALS · INSIDER TRADES · ANNOUNCEMENTS</span><h2 id="deals-title">Deals</h2><p class="section-copy">Every bulk and block deal, every non-routine corporate announcement, and every insider trading / SAST disclosure (promoters, directors and KMPs' own buy/sell/pledge transactions), from NSE's own reports. Refreshed every night at 02:00 IST; NSE only ever serves the latest settled session for deals, so this page keeps a rolling history built up run by run (120 days for deals and insider trades, 45 for announcements). Board companies are marked and link to their scorecard.</p></div><span class="section-note" id="dl-asof"></span></div>
 
   <div class="dl-tabs" role="tablist">
     <button class="dl-tab on" type="button" data-dltab="deals" role="tab" aria-selected="true">Deals</button>
@@ -427,7 +427,7 @@
 </section>
 
 <section class="dashboard-section news-section" data-views="news" aria-labelledby="news-title">
-  <div class="section-heading"><div><span class="eyebrow">NEWS CHANNEL</span><h2 id="news-title">News Channel</h2><p class="section-copy">China, India, USA, Japan, South Korea and Taiwan news for the sectors each one dominates globally — a leading indicator for Indian listed companies downstream: a Chinese API price hike is a margin story for the bulk-drug makers who buy from it, a US tariff reroutes demand, a Taiwan foundry outage is a chip-supply story for every Indian electronics/auto maker waiting on parts, a China+1 shift is a tailwind for the Indian maker competing for that order. Refreshed every 5 minutes, from Google News and newsdata.io together.</p></div><span class="section-note" id="news-asof"></span></div>
+  <div class="section-heading"><div><span class="eyebrow">NEWS</span><h2 id="news-title">News</h2><p class="section-copy">China, India, USA, Japan, South Korea and Taiwan news for the sectors each one dominates globally — a leading indicator for Indian listed companies downstream: a Chinese API price hike is a margin story for the bulk-drug makers who buy from it, a US tariff reroutes demand, a Taiwan foundry outage is a chip-supply story for every Indian electronics/auto maker waiting on parts, a China+1 shift is a tailwind for the Indian maker competing for that order. Refreshed every 5 minutes, from Google News and newsdata.io together.</p></div><span class="section-note" id="news-asof"></span></div>
   <div class="mv-toolbar">
     <input id="news-q" class="gal-search" type="search" autocomplete="off" spellcheck="false" placeholder="Search news by keyword — e.g. tariff, API, copper, defence" aria-label="Search news by keyword">
     <button class="btn" id="news-search" type="button" title="Search the headlines">Search</button>
@@ -725,7 +725,7 @@
   <p><b>Important.</b> Deep Sweep is a stock research and screening board for Indian equities — not investment advice, and not a SEBI-registered adviser or research analyst. Stages, scores and flags follow fixed rules over exchange data and company filings, which can lag or be wrong; verify before acting, and consult a SEBI-registered adviser before investing.</p>
   <div class="site-foot-row">
     <nav aria-label="Footer">
-      <button type="button" data-foot="overview-link">Overview</button><button type="button" data-foot="market-link">Market</button><button type="button" data-foot="filters-link">Screens</button><button type="button" data-foot="gallery-link">Screen any Chart</button><button type="button" data-foot="reports-link">Reports</button><button type="button" data-foot="ipor-link">Upcoming IPO Reports</button><button type="button" data-foot="sectors-link">Sector &amp; Themes</button><button type="button" data-foot="deals-link">Bulk &amp; Block Deals</button><button type="button" data-foot="method">How it works</button>
+      <button type="button" data-foot="overview-link">Overview</button><button type="button" data-foot="market-link">Market</button><button type="button" data-foot="filters-link">Screens</button><button type="button" data-foot="gallery-link">Screen any Chart</button><button type="button" data-foot="reports-link">Reports</button><button type="button" data-foot="ipor-link">Upcoming IPO Reports</button><button type="button" data-foot="sectors-link">Sector &amp; Themes</button><button type="button" data-foot="deals-link">Deals</button><button type="button" data-foot="method">How it works</button>
     </nav>
     <span>© 2026 Deep Sweep</span>
   </div>
@@ -737,6 +737,6 @@
 
 <script src="/static/asme-certified.js?v=5" defer></script>
 <script src="/static/navhist.js?v=1" defer></script>
-<script src="/static/app.js?v=120" defer></script>
+<script src="/static/app.js?v=122" defer></script>
 </body>
 </html>

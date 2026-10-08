@@ -2570,3 +2570,14 @@ mark.tr-hit.cur{background:#f59e0b;color:#111}
 .ss-live.on i{background:#16a34a;box-shadow:0 0 0 3px rgba(22,163,74,.2);animation:sslive 1.6s infinite}
 .ss-live.off{color:var(--muted)}
 @keyframes sslive{50%{box-shadow:0 0 0 6px rgba(22,163,74,0)}}
+.ss-live i.ok{background:#16a34a}
+.ss-kitebtn{margin-left:6px;padding:4px 12px;font-size:12.5px}
+/* top menu: starts at the left edge and fits every tab on a normal laptop screen */
+@media (min-width:1101px){
+  .nav-tabs{margin-left:-9px;gap:0}
+  .nav .nav-tabs .side-link{padding:0 8px;gap:5px}
+}
+@media (min-width:1101px) and (max-width:1399px){
+  .nav .nav-tabs .side-link{padding:0 6px;gap:4px;font-size:12px}
+  .nav .nav-tabs .side-link svg{width:13px;height:13px}
+}

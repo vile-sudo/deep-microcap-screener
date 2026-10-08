@@ -109,12 +109,19 @@ def status() -> dict:
 
 
 # ------------------------------------------------------------------ login
-def login_url() -> str:
+def login_url(next_view: str = "") -> str:
+    """next_view: the page to come back to after the login (a dashboard view name, e.g. "sstrength")."""
     state = secrets.token_urlsafe(16)
-    _set_kv("KITE_LOGIN_STATE", {"state": state, "issued": time.time()})
+    nv = next_view if re.fullmatch(r"[a-z]{2,20}", next_view or "") else ""
+    _set_kv("KITE_LOGIN_STATE", {"state": state, "issued": time.time(), "next": nv})
     api_key = get_settings().kite_api_key
     # redirect_params come back untouched on the callback
     return f"{LOGIN}?v=3&api_key={api_key}&redirect_params=state%3D{state}"
+
+
+def pending_next() -> str:
+    """The view the login in progress asked to return to ("" = Market view)."""
+    return (_get_kv("KITE_LOGIN_STATE") or {}).get("next") or ""
 
 
 def complete_login(request_token: str, state: str) -> dict:

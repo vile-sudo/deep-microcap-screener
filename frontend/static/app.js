@@ -6532,11 +6532,19 @@ async function ssLiveLoad(first){
   if(SS.live && (SS.live.status==='live' || SS.live.status==='loading'))
     SS.liveT=setTimeout(()=>{ if(VIEW==='sstrength' && !document.hidden) ssLiveLoad().then(()=>{ if(VIEW==='sstrength') ssRender(); }); else ssLiveLoad(); }, SS.live.status==='loading'?8000:60000);
 }
+/* the daily Zerodha login, started from here and coming back here (an admin needs no key) */
+function ssKiteConnect(){
+  if(ME && ME.is_admin){ location.href='/api/kite/login?next=sstrength'; return; }
+  smallModal(`<h3>Connect Zerodha</h3><p class="sub">Enter the Zerodha admin key (KITE_ADMIN_KEY), then log in at Zerodha. You'll come straight back here.</p>
+    <form id="ss-kiteform" style="display:flex;gap:8px;margin-top:12px"><input type="password" id="ss-kitekey" class="gal-search" placeholder="Admin key" autocomplete="off" required style="flex:1"><button class="btn" type="submit">Continue</button></form>`);
+  document.getElementById('ss-kiteform').onsubmit=e=>{ e.preventDefault(); location.href='/api/kite/login?next=sstrength&key='+encodeURIComponent(document.getElementById('ss-kitekey').value); };
+}
 function ssLiveBar(){
   const L=SS.live||{}, admin=!!(ME&&ME.is_admin)||!ACCT.accounts;
   if(L.status==='live') return `<p class="ss-live on"><i></i>Live from Zerodha · updated ${esc(new Date(L.as_of).toLocaleTimeString('en-IN',{timeZone:'Asia/Kolkata'}))} · ${fmtI(L.covered)} of ${fmtI(L.requested)} stocks priced · refreshes every minute</p>`;
   if(L.status==='closed') return `<p class="ss-live"><i></i>Market closed · today's closing moves from Zerodha (the nightly run adds today to the dated columns)</p>`;
-  if(L.status==='not_connected') return `<p class="ss-live off">Live prices: Zerodha isn't connected today${admin?` — <a href="#" id="ss-kite">connect it in Market view</a> (the daily Zerodha login)`:''}.</p>`;
+  if(L.status==='not_connected') return `<p class="ss-live off">Live prices: Zerodha isn't connected today (its login ends at 6 AM every day). <button type="button" class="btn ss-kitebtn" id="ss-kite">Connect Zerodha</button></p>`;
+  if(L.status==='no_session_today') return `<p class="ss-live"><i class="ok"></i>Zerodha connected · the Live column starts when the market opens at 9:15 AM</p>`;
   if(L.status==='loading') return `<p class="ss-live off">Fetching today's prices from Zerodha…</p>`;
   if(L.status==='error') return `<p class="ss-live off">Live prices: couldn't reach Zerodha just now; trying again.</p>`;
   return '';
@@ -6603,7 +6611,7 @@ function ssRender(){
   document.getElementById('ss-liq').onchange=e=>{ SS.liquid=e.target.checked; ssSave(); ssRender(); };
   document.getElementById('ss-sme').onchange=e=>{ SS.nosme=e.target.checked; ssSave(); ssRender(); };
   body.querySelectorAll('[data-ssbeat]').forEach(b=>b.onclick=()=>{ SS.beat=b.dataset.ssbeat; ssRender(); });
-  const kc=document.getElementById('ss-kite'); if(kc) kc.onclick=e=>{ e.preventDefault(); setView('market'); };
+  const kc=document.getElementById('ss-kite'); if(kc) kc.onclick=e=>{ e.preventDefault(); ssKiteConnect(); };
   const dp=document.getElementById('ss-date'); if(dp) dp.onchange=()=>{
     const v=dp.value, i=(d.sessions||[]).indexOf(v);
     if(!v){ SS.histDate=null; }
