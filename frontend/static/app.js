@@ -282,6 +282,7 @@ function setView(v, opts){
   else VIEW = VIEWS.includes(v) ? v : 'overview';
   NAVID = opts.nav || (VIEW==='company' ? 'companies-link' : VIEW+'-link');
   if(!opts.keep) clearFilters();
+  if(!opts.keep && VIEW==='sstrength') SS.slug=null;
   document.body.dataset.view=VIEW;
   document.querySelectorAll('[data-views]').forEach(el=>{ el.hidden=!el.dataset.views.split(' ').includes(VIEW); });
   document.querySelectorAll('.side-link').forEach(l=>l.classList.toggle('active', l.id===NAVID));
@@ -1418,9 +1419,26 @@ function syncURL(){
   if(sortKey!=='final_score'||sortDir!==-1) p.set('sort',sortKey+':'+sortDir);
   if(HIDDEN.size) p.set('hide',[...HIDDEN].join(','));
   if(WATCH.size && WMODE!=='server') p.set('w',[...WATCH].join(','));   /* an account's list stays private */
-  const h=p.toString();
-  try{ history.replaceState(null,'',location.pathname+location.search+(h?'#'+h:'')); }catch(e){}
+  const h=p.toString(), url=location.pathname+location.search+(h?'#'+h:'');
+  /* Moving to another page (a different view, sector, company, tab, report...) adds a browser-history entry,
+     so the browser's Back button returns to where you were; a filter or sort change only updates the link. */
+  const page=q=>['v','s','se','ss','c','ct','r'].map(k=>q.get(k)||'').join('|');
+  const was=new URLSearchParams(location.hash.replace(/^#/,''));
+  try{
+    if(!window.__navRestoring && !BUSY && page(p)!==page(was)) history.pushState(null,'',url);
+    else history.replaceState(null,'',url);
+  }catch(e){}
 }
+/* Back / Forward: rebuild the page the history entry describes */
+window.addEventListener('popstate', ()=>{
+  window.__navRestoring=true;
+  try{
+    closeModal();
+    SS.slug=null; CO.tab='overview'; RP.code=null; SC.slug=null; SC.edition=null; FL.tab='filters';
+    BUSY=true; clearFilters(); VIEW='overview'; applyState(); BUSY=false;
+    setView(VIEW,{keep:true, nav: VIEW==='company' ? 'companies-link' : undefined});
+  }finally{ window.__navRestoring=false; }
+});
 function applyState(){
   const raw=location.hash.replace(/^#/,''); if(!raw) return;
   const p=new URLSearchParams(raw);
