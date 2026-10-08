@@ -1299,6 +1299,7 @@ function applyState(){
   if(get('v')==='movers' || get('v')==='watchlist'){ VIEW='filters'; FL.tab=get('v'); }
   else if(VIEWS.includes(get('v'))) VIEW=get('v');
   if(get('r')) RP.code=get('r');
+  if(get('dt')==='ann') DL.pendingTab='ann';   /* a filing-alert notification opens the Announcements tab */
   if(get('s') && /^[a-z0-9-]+$/.test(get('s'))) SC.slug=get('s');
   if(get('se') && /^\d{4}-\d{2}$/.test(get('se'))) SC.edition=get('se');
   if(get('rp') && /^FY\d\d-Q[1-4]$/.test(get('rp'))) DR.period=get('rp');
@@ -2524,7 +2525,7 @@ function mvWireRefresh(){
    dashboard accumulates itself, since NSE's own CSV only ever serves the
    latest session). Fetched once; every filter runs client-side, same
    shape as News Channel below. */
-const DL={data:null, built:false, boardOnly:false, pendingQuery:null};
+const DL={data:null, built:false, boardOnly:false, pendingQuery:null, pendingTab:null};
 /* jump straight to Bulk & Block Deals pre-filtered to one symbol -- used by the Alerts bell's deal-cluster
    rows ("Deals" button), so reading the cluster and seeing every underlying disclosed trade is one click */
 function openDealsFor(symbol){
@@ -2550,6 +2551,7 @@ function dlWireTabs(){
 
 async function openDeals(){
   dlWireTabs();
+  if(DL.pendingTab){ const t=document.querySelector(`[data-dltab='${DL.pendingTab}']`); DL.pendingTab=null; if(t){ t.click(); } }
   const body=document.getElementById('dl-body');
   if(!DL.data){
     body.innerHTML='<p class="view-hint">Loading…</p>';
@@ -2672,6 +2674,97 @@ function anBuildControls(){
     AN.boardOnly=false; boardBtn.classList.remove('on'); boardBtn.setAttribute('aria-pressed','false');
     anRenderTable();
   };
+  document.getElementById('an-notify').onclick=anNotifyOpen;
+  anNotifyBtn();
+}
+
+/* "Get notified": a desktop push whenever NSE publishes a filing in one of the chosen categories, for
+   any listed company -- app/filing_alerts.py checks every 3 minutes in market hours, every 30 otherwise.
+   Choices live in the account's prefs (ann_notify) and save as each box is ticked. */
+const AN_NT={cats:null};
+function anNotifyBtn(){
+  const b=document.getElementById('an-notify'); if(!b) return;
+  const n=((ACCT.prefs||{}).ann_notify||[]).length;
+  b.innerHTML=`&#128276; Get notified${n?` <span class="tc">${n}</span>`:''}`;
+  b.classList.toggle('on', n>0);
+}
+async function anNotifyOpen(){
+  if(!ME){ smallModal('<h3>Get notified</h3><p class="view-hint">Sign in to choose filing categories to be notified about.</p>'); return; }
+  openModal('<p class="view-hint">Loading…</p>');
+  try{ if(!AN_NT.cats) AN_NT.cats=(await api('/api/announcements/categories')).categories||[]; }catch(e){ AN_NT.cats=[]; }
+  await wpCheckStatus();
+  if(WP.subscribed && WP.serverKey) anNotifyLinkBrowser();
+  anNotifyRender();
+}
+/* This browser may have been subscribed for Alerts before signing in: tie it to the account so the
+   filing alerts (addressed by user) reach it. Upsert only; it changes no broadcast setting. */
+async function anNotifyLinkBrowser(){
+  try{
+    const reg=await navigator.serviceWorker.getRegistration('/static/sw.js');
+    const sub=reg && await reg.pushManager.getSubscription();
+    if(sub) await fetch('/api/webpush/subscribe',{method:'POST',credentials:'same-origin',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({subscription:sub.toJSON(), board:'filings'})});
+  }catch(e){}
+}
+function anNotifyPushRow(){
+  if(!WP.supported) return '<p class="an-nt-push warn">This browser can\'t show desktop notifications.</p>';
+  if(!WP.serverKey) return '<p class="an-nt-push warn">Desktop notifications aren\'t set up on this server yet.</p>';
+  if(WP.subscribed) return '<p class="an-nt-push ok">&#10003; Desktop notifications are on in this browser.</p>';
+  return `<p class="an-nt-push"><button class="btn" id="an-nt-enable" type="button"${WP.busy?' disabled':''}>Turn on desktop notifications</button>
+    <span class="al-note-inline">needed once in each browser you want alerts in</span></p>`;
+}
+function anNotifyRender(){
+  const sel=new Set((ACCT.prefs||{}).ann_notify||[]);
+  mbody.innerHTML=`<div class="an-nt">
+    <h3>Get notified</h3>
+    <p class="an-nt-sub">Pick the NSE filing categories you want a desktop notification for, for every listed company. New filings are checked every 3 minutes in market hours and every 30 minutes otherwise. Each choice saves as you tick it.</p>
+    <div id="an-nt-push">${anNotifyPushRow()}</div>
+    <div class="an-nt-bar"><input type="search" id="an-nt-q" placeholder="Search categories…" autocomplete="off">
+      <span class="an-nt-n" id="an-nt-n">${sel.size} selected</span>
+      <button class="theme-back" id="an-nt-none" type="button"${sel.size?'':' hidden'}>Clear all</button></div>
+    <div class="an-nt-list">${(AN_NT.cats||[]).map(c=>`<label class="an-nt-row" data-q="${esc(c.category.toLowerCase())}">
+        <input type="checkbox" data-cat="${esc(c.category)}"${sel.has(c.category)?' checked':''}>
+        <span>${esc(c.category)}</span><small title="Filings seen recently in this category">${fmtI(c.count)}</small></label>`).join('')
+      || '<p class="view-hint">No categories yet — they appear as the first filings are seen.</p>'}</div>
+    <p class="an-nt-msg" id="an-nt-msg"></p>
+  </div>`;
+  document.getElementById('an-nt-q').oninput=e=>{
+    const q=e.target.value.trim().toLowerCase();
+    mbody.querySelectorAll('.an-nt-row').forEach(r=>{ r.hidden=!!q && !r.dataset.q.includes(q); });
+  };
+  mbody.querySelectorAll('.an-nt-row input').forEach(cb=>cb.onchange=()=>{
+    const now=new Set((ACCT.prefs||{}).ann_notify||[]);
+    cb.checked ? now.add(cb.dataset.cat) : now.delete(cb.dataset.cat);
+    anNotifySave([...now]);
+  });
+  document.getElementById('an-nt-none').onclick=()=>{
+    mbody.querySelectorAll('.an-nt-row input:checked').forEach(cb=>{ cb.checked=false; });
+    anNotifySave([]);
+  };
+  anNotifyWireEnable();
+}
+function anNotifyWireEnable(){
+  const b=document.getElementById('an-nt-enable'); if(!b) return;
+  b.onclick=async()=>{
+    WP.busy=true; b.disabled=true; b.textContent='Turning on…';
+    try{ await wpSubscribe('filings'); WP.subscribed=true; }
+    catch(e){ const m=document.getElementById('an-nt-msg'); if(m) m.textContent=e.message||'Could not turn on notifications.'; }
+    WP.busy=false;
+    document.getElementById('an-nt-push').innerHTML=anNotifyPushRow();
+    anNotifyWireEnable();
+  };
+}
+async function anNotifySave(list){
+  ACCT.prefs.ann_notify=list;
+  const n=document.getElementById('an-nt-n'), none=document.getElementById('an-nt-none'), msg=document.getElementById('an-nt-msg');
+  if(n) n.textContent=`${list.length} selected`;
+  if(none) none.hidden=!list.length;
+  anNotifyBtn();
+  try{
+    const j=await api('/api/me/settings','PATCH',{prefs:{ann_notify:list}});
+    ACCT.prefs.ann_notify=(j.prefs||{}).ann_notify||list;
+    if(msg) msg.textContent=list.length && !WP.subscribed ? 'Saved. Turn on desktop notifications above to receive them in this browser.' : 'Saved.';
+  }catch(e){ if(msg) msg.textContent='Could not save — '+e.message; }
 }
 
 function anRows(){
@@ -4317,7 +4410,9 @@ function wpRow(){
    explicit `navigator.serviceWorker.ready` wait, which is one more thing that can hang. */
 const WP_TIMEOUT_MS=20000;
 function wpTimeout(){ return new Promise((_,reject)=>setTimeout(()=>reject(new Error('That took too long — try again.')), WP_TIMEOUT_MS)); }
-async function wpSubscribe(){
+/* board: 'in' (default) opts this browser into the India Alerts broadcast; 'filings' registers it for the
+   signed-in user's filing alerts only (Announcements -> Get notified), without the broadcast. */
+async function wpSubscribe(board){
   const work=(async()=>{
     const reg = await navigator.serviceWorker.register('/static/sw.js');
     if(Notification.permission!=='granted'){
@@ -4325,7 +4420,7 @@ async function wpSubscribe(){
       if(r!=='granted') throw new Error('Notifications are blocked for this site in your browser settings.');
     }
     const sub = await reg.pushManager.subscribe({userVisibleOnly:true, applicationServerKey:urlB64ToUint8Array(WP.serverKey)});
-    const r=await fetch('/api/webpush/subscribe',{method:'POST',credentials:'same-origin',headers:{'Content-Type':'application/json'},body:JSON.stringify({subscription:sub.toJSON()})});
+    const r=await fetch('/api/webpush/subscribe',{method:'POST',credentials:'same-origin',headers:{'Content-Type':'application/json'},body:JSON.stringify({subscription:sub.toJSON(), board:board||'in'})});
     if(!r.ok) throw new Error('The server did not accept the subscription.');
   })();
   await Promise.race([work, wpTimeout()]);
@@ -5600,7 +5695,11 @@ function alStripHash(){
   return al;
 }
 const DEEP_LINK_AL=alStripHash();
-window.addEventListener('hashchange', ()=>{ const al=alStripHash(); if(al) alAct(al); });
+window.addEventListener('hashchange', ()=>{
+  const al=alStripHash(); if(al) alAct(al);
+  /* a filing-alert click while the dashboard is already open only changes the hash */
+  if(new URLSearchParams(location.hash.replace(/^#/,'')).get('dt')==='ann'){ DL.pendingTab='ann'; setView('deals',{nav:'deals-link'}); }
+});
 
 BUSY=true; buildColPop(); applyState(); BUSY=false;
 setView(VIEW,{keep:true});

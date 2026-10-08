@@ -118,6 +118,16 @@ def send_to_user(db: Session, user_id: int, title: str, body: str, url: str = "/
     return _send(db, subs, title, body, url, tag)
 
 
+def send_to_user_browsers(db: Session, user_id: int, title: str, body: str, url: str = "/", tag: str | None = None) -> int:
+    """Sends to every browser this user has enabled push in, whichever board's flag it carries (or
+    none -- a browser enabled only for filing alerts has neither). For per-user subscriptions such as
+    filing categories (app/filing_alerts.py), where the user's own choices decide what is sent."""
+    if not configured():
+        return 0
+    subs = db.query(WebPushSubscription).filter(WebPushSubscription.user_id == user_id).all()
+    return _send(db, subs, title, body, url, tag)
+
+
 def _send(db: Session, subs: list[WebPushSubscription], title: str, body: str, url: str, tag: str | None) -> int:
     if not subs:
         return 0

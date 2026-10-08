@@ -118,6 +118,13 @@ def announcements(request: Request):
                           "count": 0, "board_count": 0, "announcements": []})
 
 
+@router.get("/api/announcements/categories")
+def announcement_categories():
+    """NSE filing categories for the "Get notified" picker (app/filing_alerts.py) -- every one seen so far."""
+    from ..filing_alerts import known_categories
+    return {"categories": known_categories()}
+
+
 @router.get("/api/insider-trades")
 def insider_trades(request: Request):
     return file_response(request, INSIDER_TRADES_FILE,

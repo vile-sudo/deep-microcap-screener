@@ -186,6 +186,21 @@ async def _desktop_push_loop():
         await asyncio.sleep(DESKTOP_PUSH_SECONDS)
 
 
+async def _filing_alerts_loop():
+    """Checks every minute whether a filing-alerts fetch is due (app/filing_alerts.py decides: every 3
+    minutes in market hours, every 30 otherwise) and pushes users their new filings by category."""
+    from . import filing_alerts
+    log = logging.getLogger("deepsweep")
+    await asyncio.sleep(45)
+    while True:
+        try:
+            if webpush.configured():
+                await asyncio.to_thread(filing_alerts.tick)
+        except Exception as e:  # noqa: BLE001
+            log.warning("filing alerts check failed: %s", e)
+        await asyncio.sleep(60)
+
+
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     # Make sure tables exist even if `python -m app.seed` was never run
@@ -201,12 +216,14 @@ async def lifespan(app: FastAPI):
     news_task = asyncio.create_task(_news_refresher())
     alerts_task = asyncio.create_task(_us_alerts_loop())
     desktop_push_task = asyncio.create_task(_desktop_push_loop())
+    filing_alerts_task = asyncio.create_task(_filing_alerts_loop())
     try:
         yield
     finally:
         news_task.cancel()
         alerts_task.cancel()
         desktop_push_task.cancel()
+        filing_alerts_task.cancel()
 
 
 app = FastAPI(

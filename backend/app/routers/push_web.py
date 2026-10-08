@@ -38,7 +38,7 @@ from ..models import WebPushSubscription
 router = APIRouter(prefix="/api/webpush", tags=["webpush"])
 MAX_LEN = 4000    # a real endpoint/key is far shorter; this only guards against a malformed request body
 
-Board = Literal["in", "us"]
+Board = Literal["in", "us", "filings"]   # "filings": register the browser for its user's filing alerts only
 
 
 class Keys(BaseModel):
@@ -79,14 +79,18 @@ def subscribe(body: SubscribeIn, request: Request, db: Session = Depends(get_db)
     now = auth.utcnow()
     row = db.get(WebPushSubscription, sub.endpoint)
     user_id = _logged_in_user_id(request)
-    flag = "notify_india" if body.board == "in" else "notify_us"
+    if body.board == "filings" and not user_id:
+        raise HTTPException(status_code=401, detail="Sign in to get filing alerts")
+    # filing alerts are addressed by user_id, so they set neither board's broadcast flag
+    flag = {"in": "notify_india", "us": "notify_us"}.get(body.board)
     if row is None:
-        kwargs = {"notify_india": False, "notify_us": False, flag: True}
+        kwargs = {"notify_india": False, "notify_us": False, **({flag: True} if flag else {})}
         db.add(WebPushSubscription(endpoint=sub.endpoint, user_id=user_id, p256dh=sub.keys.p256dh, auth=sub.keys.auth,
                                     created_at=now, last_seen_at=now, **kwargs))
     else:
         row.p256dh, row.auth, row.last_seen_at = sub.keys.p256dh, sub.keys.auth, now
-        setattr(row, flag, True)
+        if flag:
+            setattr(row, flag, True)
         if user_id:
             row.user_id = user_id
     db.commit()
@@ -97,8 +101,11 @@ def subscribe(body: SubscribeIn, request: Request, db: Session = Depends(get_db)
 def unsubscribe(body: UnsubscribeIn, db: Session = Depends(get_db)):
     row = db.get(WebPushSubscription, body.endpoint)
     if row is not None:
-        setattr(row, "notify_india" if body.board == "in" else "notify_us", False)
-        if not row.notify_india and not row.notify_us:
+        if body.board in ("in", "us"):
+            setattr(row, "notify_india" if body.board == "in" else "notify_us", False)
+        # a signed-in user's browser may still carry their filing alerts, so a row with no board left is
+        # dropped only when it's anonymous, or when filing alerts are the thing being removed
+        if not row.notify_india and not row.notify_us and (body.board == "filings" or not row.user_id):
             db.delete(row)
         db.commit()
     return {"status": "removed"}
