@@ -58,9 +58,10 @@ DAY_CLIP = 25.0               # a single day's move counted at most +/-25% (a ba
 INDICES_FILE = OUT_DIR / "indices.json"
 DAILY_FILE = OUT_DIR / "daily.json"          # each session's breadth per sector, ~3 years: the date picker
 DELIVERY_URL = "https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_{d}.csv"
-DELIVERY_SESSIONS = 260       # a year of NSE delivery figures for the money-flow history
+DELIVERY_SESSIONS = 760       # ~3 years of NSE delivery figures, the same span as the daily history
 DRIVER_SPIKE = 3             # a stock trading 3x+ its own 20-session average value...
 DRIVER_SHARE = 0.15           # ...and making up 15%+ of its sector's value today is called out as a spike
+TREND_LOOKBACK = 280          # sessions of price history kept before the daily span (250 for 52 weeks, plus slack)
 DELIVERY_BUDGET = 150         # delivery files fetched per run; older ones fill in on the next runs
 LIQUID_TURNOVER_CR = 1.0      # 20-session average turnover, Rs crore
 LIQUID_SESSIONS = 18          # traded on at least this many of the last 20
@@ -367,6 +368,22 @@ def build_indices(days: list, groups: dict, cache: Path | None, px: "_Prices") -
     return out
 
 
+def _keep_old_delivery(daily: dict) -> None:
+    """Fill delivery gaps from the daily file already on disk: a delivery file fetched on another machine or an
+    earlier run isn't lost when this run's cache lacks it."""
+    try:
+        old = json.loads(DAILY_FILE.read_text(encoding="utf-8"))
+    except (OSError, ValueError):
+        return
+    pos = {d: k for k, d in enumerate(old.get("dates") or [])}
+    for slug, h in (daily.get("trend") or {}).items():
+        prev = ((old.get("trend") or {}).get(slug) or {}).get("dl") or []
+        for k, d in enumerate(daily["dates"]):
+            j = pos.get(d)
+            if h["dl"][k] is None and j is not None and j < len(prev) and prev[j] is not None:
+                h["dl"][k] = prev[j]
+
+
 def build_daily(days: list, secs: list, resolved: dict, n500: list, cache: Path | None, px: "_Prices") -> dict:
     """Every session of the last INDEX_SESSIONS: per sector [share up %, median move %, stocks that traded], and the
     Nifty 500 [share of its constituents up %, the index's own move %, constituents that traded]."""
@@ -534,18 +551,26 @@ def build_trend_flow(days: list, secs: list, resolved: dict, n500: list, cache: 
     def group(keys):
         a50, a200, val, dly = [], [], [], []
         today = {}
+        his, los, ns = [], [], []
         for i in span:
-            c50 = n50 = c200 = n200 = 0
+            c50 = n50 = c200 = n200 = hi = lo = nn = n52 = 0
             for ex, key in keys:
                 f = flags(ex, key, i)
                 if not f:
                     continue
+                nn += 1
+                n52 += f[2] is not None
+                hi += bool(f[2])
+                lo += bool(f[3])
                 if f[0] is not None:
                     n50 += 1
                     c50 += f[0]
                 if f[1] is not None:
                     n200 += 1
                     c200 += f[1]
+            his.append(hi if n52 else None)     # None: no stock has a year of history yet
+            los.append(lo if n52 else None)
+            ns.append(nn)
             a50.append(round(100 * c50 / n50, 1) if n50 else None)
             a200.append(round(100 * c200 / n200, 1) if n200 else None)
             val.append(round(sum(value(ex, key, i) for ex, key in keys), 2))
@@ -567,7 +592,8 @@ def build_trend_flow(days: list, secs: list, resolved: dict, n500: list, cache: 
                  "value_ratio": round(val[-1] / avg20, 2) if avg20 else None,
                  "deliv_pct": dly[-1], "deliv_avg20_pct": round(sum(dprev) / len(dprev), 1) if dprev else None}
         today.update(drivers(keys, val[-1], avg20))
-        return today, {"a50": a50, "a200": a200, "vr": tr, "dl": dly}
+        return today, {"a50": a50, "a200": a200, "hi": his, "lo": los, "n": ns,
+                       "v": [round(x, 1) for x in val], "vr": tr, "dl": dly}
 
     out = {"sectors": {}, "history": {}, "stocks": {}}
     for sec in secs:
@@ -635,7 +661,8 @@ def write(days: list, cache: Path | None = None) -> dict | None:
         return None
     last = len(days) - 1
     secs = sectors()
-    px = _Prices(days, max(0, len(days) - INDEX_SESSIONS - 30))
+    # a year and a bit more before the 3-year span, so the 200-day average and 52-week high/low hold from its first day
+    px = _Prices(days, max(0, len(days) - INDEX_SESSIONS - TREND_LOOKBACK))
     latest_nse, latest_bse = days[-1][1], days[-1][2]
     by_isin_nse = {r[9]: k for k, r in latest_nse.items() if r[9]}
     by_isin_bse = {r[9]: k for k, r in latest_bse.items() if r[9]}
@@ -762,7 +789,8 @@ def write(days: list, cache: Path | None = None) -> dict | None:
     try:
         daily = build_daily(days, secs, resolved, n500, cache, px)
         if tf:
-            daily["trend"] = tf["history"]          # per sector (and "nifty500"): a50, a200, vr, dl -- aligned with dates
+            daily["trend"] = tf["history"]          # per sector (and "nifty500"): a50, a200, hi, lo, n, v, vr, dl -- aligned with dates
+            _keep_old_delivery(daily)
         DAILY_FILE.write_text(json.dumps(daily, separators=(",", ":")), encoding="utf-8")
     except Exception as e:  # noqa: BLE001 - extra; the snapshot above already stands
         print(f"sector strength: daily history failed ({e})")
