@@ -147605,7 +147605,7 @@
      ]
     }
    },
-   "profiled_on": "2026-10-08"
+   "profiled_on": "2026-10-09"
   }
  },
  {
@@ -147868,7 +147868,7 @@
      ]
     }
    },
-   "profiled_on": "2026-10-08"
+   "profiled_on": "2026-10-09"
   }
  },
  {
@@ -154594,7 +154594,7 @@
      ]
     }
    },
-   "profiled_on": "2026-10-08"
+   "profiled_on": "2026-10-09"
   }
  },
  {
@@ -158435,6 +158435,1744 @@
   "plausible": true,
   "verdict": null,
   "seen_on": "2026-10-08",
+  "source": "sweep",
+  "moat_signal": null,
+  "moat_evidence": null
+ },
+ {
+  "sym": "EVENTIONS",
+  "name": "Eventions Limited",
+  "board": "SME",
+  "isin": "INE20M201019",
+  "listed": "08-Oct-26",
+  "hint": null,
+  "why": "sector unknown, SME platform",
+  "plausible": true,
+  "verdict": null,
+  "seen_on": "2026-10-09",
+  "source": "new-listing",
+  "moat_signal": null,
+  "moat_evidence": null
+ },
+ {
+  "sym": "AGOL",
+  "name": "Ashapuri Gold Ornament Limited",
+  "board": "NSE",
+  "isin": "INE05FR01029",
+  "listed": "12-OCT-2026",
+  "hint": null,
+  "why": "sector unknown, SME platform",
+  "plausible": false,
+  "verdict": null,
+  "seen_on": "2026-10-09",
+  "source": "new-listing",
+  "moat_signal": null,
+  "moat_evidence": null
+ },
+ {
+  "sym": "BELDING",
+  "name": "Belding India Limited",
+  "board": "NSE",
+  "isin": "INE363L01045",
+  "listed": "12-OCT-2026",
+  "hint": null,
+  "why": "sector unknown, SME platform",
+  "plausible": false,
+  "verdict": null,
+  "seen_on": "2026-10-09",
+  "source": "new-listing",
+  "moat_signal": null,
+  "moat_evidence": null
+ },
+ {
+  "sym": "NATCO-RE",
+  "name": "Natco Pharma Limited-RE",
+  "board": "NSE",
+  "isin": "INE987B20018",
+  "listed": "12-OCT-2026",
+  "hint": "pharma & healthcare",
+  "why": "sector plausible",
+  "plausible": true,
+  "verdict": null,
+  "seen_on": "2026-10-09",
+  "source": "new-listing",
+  "moat_signal": null,
+  "moat_evidence": null
+ },
+ {
+  "sym": "531171",
+  "name": "Dharti Proteins Ltd",
+  "board": "BSE",
+  "isin": "INE248C01021",
+  "listed": null,
+  "hint": "agri & food",
+  "why": "sector plausible",
+  "plausible": true,
+  "verdict": null,
+  "seen_on": "2026-10-09",
+  "source": "new-listing",
+  "moat_signal": null,
+  "moat_evidence": null
+ },
+ {
+  "sym": "544973",
+  "name": "Vishal Nirmiti Ltd",
+  "board": "BSE",
+  "isin": "INE1O5L01025",
+  "listed": null,
+  "hint": null,
+  "why": "sector unknown, SME platform",
+  "plausible": false,
+  "verdict": null,
+  "seen_on": "2026-10-09",
+  "source": "new-listing",
+  "moat_signal": true,
+  "moat_evidence": [
+   "monopoly claim: \"The table below sets out the raw materials which we have obtained from our largest supplier, top 5 suppliers and top 10 suppliers together with such supply as a percentage of our total raw materials supply during Fiscal 2026, Fiscal 2025 and Fiscal 2024: 23 Suppliers Fiscal\" (prospectus, company-stated)"
+  ],
+  "profile": {
+   "symbol": "544973",
+   "company": "Vishal Nirmiti Limited",
+   "isin": "INE1O5L01025",
+   "board": "BSE",
+   "source": {
+    "document": "final prospectus",
+    "url": "https://nsearchives.nseindia.com/corporate/FP_INE1O5L01025_06OCT2026.pdf",
+    "filed": "06-Oct-2026",
+    "pdf_bytes": 5237070,
+    "extracted_chars": 1848278
+   },
+   "grade": "company-stated",
+   "verified_against": null,
+   "claims": {
+    "accreditation": {
+     "count": 7,
+     "dropped_as_industry_commentary": 18,
+     "terms": [
+      "ISO 9001",
+      "ISO 45001"
+     ],
+     "evidence": [
+      {
+       "match": "ISO 9001",
+       "sentence": "The quality of our product offerings is documented in the certifications which we have received including, ISO 9001:2015 for quality management systems at our Manufacturing Facilities."
+      },
+      {
+       "match": "ISO 9001",
+       "sentence": "Our Company has received certain ISO certification for quality purposes such as (a) ISO 9001:2015 certification for Quality Management System for manufacture and supply of PSC sleepers for Bankhedi Unit, Madhya Pradesh; (b) ISO 9001: 2015 certification for Quality Management System f"
+      },
+      {
+       "match": "ISO 9001",
+       "sentence": "lity Management System for manufacture and supply of broad gauge prestressed mono-block concrete sleepers (pre-tensioned type) for Mohol Unit, Maharashtra; (d) ISO 9001:2015 certification for Quality Management System for manufacture of Mild Steel Pipes & specials, structural fabrication like pile liners, storage tanks, vessels for the Company’s Raigad, Maha"
+      }
+     ]
+    },
+    "monopoly_claim": {
+     "count": 1,
+     "dropped_as_industry_commentary": 4,
+     "terms": [
+      "largest supplier"
+     ],
+     "evidence": [
+      {
+       "match": "largest supplier",
+       "sentence": "The table below sets out the raw materials which we have obtained from our largest supplier, top 5 suppliers and top 10 suppliers together with such supply as a percentage of our total raw materials supply during Fiscal 2026, Fiscal 2025 and Fiscal 2024: 23 Suppliers Fiscal"
+      }
+     ]
+    },
+    "ip": {
+     "count": 3,
+     "dropped_as_industry_commentary": 10,
+     "terms": [
+      "trademark",
+      "Trademarks"
+     ],
+     "evidence": [
+      {
+       "match": "trademark",
+       "sentence": "While we have not been involved in any intellectual property disputes in the past, we cannot assure you that we will not be involved in such disputes in the future, including disputes relating to our pending trademark applications."
+      },
+      {
+       "match": "trademark",
+       "sentence": "While we have filed applications for the registration of our trademark which is currently pending with the authorities, we cannot guarantee that a third party may not use such names and we may have no control over such usage (For details, see “Our Business-Inte"
+      },
+      {
+       "match": "Trademarks",
+       "sentence": "Taxation statutes such as the Income Tax Act, 1961, the Customs Act, 1962, the relevant goods and services tax legislation and applicable shops and establishments statutes and other miscellaneous regulations and statutes such as the Trademarks Act, 1999, apply to us as they do to any other company in India."
+      }
+     ]
+    }
+   },
+   "risk_factors": {
+    "customer_concentration": {
+     "count": 7,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "top 5 customers",
+      "Top 5 customers",
+      "Top 10 customers",
+      "top five customers",
+      "top ten customers",
+      "Customer Concentration"
+     ],
+     "evidence": [
+      {
+       "match": "top 5 customers",
+       "sentence": "The table set forth below provides the revenue contribution and revenue contribution as a percentage of total Revenue from Operations from contracts with our largest customer, our top 5 customers and top 10 customers, for Fiscal 2026, Fiscal 2025 and Fiscal 2024: Customers Fiscal 2026 Fiscal 2025 Fiscal 2024 Revenue from As a Revenue from As a Revenue As a percentage Operations"
+      },
+      {
+       "match": "Top 5 customers",
+       "sentence": "78 Largest customer (Indian Railways) Top 5 customers 28,879."
+      },
+      {
+       "match": "Top 10 customers",
+       "sentence": "85 Top 10 customers 31,441."
+      }
+     ]
+    },
+    "promoter_litigation": {
+     "count": 24,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "Criminal Case",
+      "criminal proceedings",
+      "Criminal proceedings",
+      "Criminal Proceedings",
+      "Criminal Complaints",
+      "criminal case",
+      "Criminal Complaint"
+     ],
+     "evidence": [
+      {
+       "match": "Criminal Case",
+       "sentence": "Securities Act Return on Net Worth Real Time Gross Settlement Summary Criminal Case The Securities Contracts (Regulation) Act, 1956, as amended from time to time."
+      },
+      {
+       "match": "criminal proceedings",
+       "sentence": "anagerial Personnel, Senior Management or any of our Group Companies or their officers by the CBI in their charge sheet filed on April 16, 2025, neither in any criminal proceedings that may have been initiated in the matter as on date of this Prospectus."
+      },
+      {
+       "match": "Criminal proceedings",
+       "sentence": "For further details, see chapter titled “Outstanding Litigation and Material Developments- Criminal proceedings initiated by our Company” on page 435."
+      }
+     ]
+    },
+    "related_party": {
+     "count": 28,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "RELATED PARTY TRANSACTIONS",
+      "related party transactions",
+      "Related Party Transactions",
+      "related parties Transaction"
+     ],
+     "evidence": [
+      {
+       "match": "RELATED PARTY TRANSACTIONS",
+       "sentence": "69 SUMMARY OF RELATED PARTY TRANSACTIONS ."
+      },
+      {
+       "match": "related party transactions",
+       "sentence": "We have in the past entered into related party transactions and may continue to do so in the future."
+      },
+      {
+       "match": "related party transactions",
+       "sentence": "While all such related party transactions that we have entered into are legitimate business transactions conducted on an arms’ length basis for the purpose of carrying on our day to day business activities, ensuring"
+      }
+     ]
+    }
+   },
+   "objects_of_the_issue": {
+    "offer_for_sale": {
+     "count": 51,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "Offer for Sale",
+      "OFFER FOR SALE",
+      "offer for sale"
+     ],
+     "evidence": [
+      {
+       "match": "Offer for Sale",
+       "sentence": "ER FOR TOTAL OFFER ELIGIBILITY SALE SIZE Fresh Offer and 65,90,909^ Equity 15,00,000^ Equity 80,90,909^ Equity The Oﬀer was made pursuant to Regulation 6(1) of Offer for Sale Shares of face Shares of face Shares of face value the Securities and Exchange Board of India (Issue of value of ₹ 10 each value of ₹ 10 each of ₹ 10 each Capital and Disclosure Requirements) Regulations, aggregating to ₹ aggregating to ₹ aggregating to ₹ 2018, as amended (“SEBI ICDR Regulations”)."
+      },
+      {
+       "match": "OFFER FOR SALE",
+       "sentence": "^Subject to finalization of Basis of Allotment DETAILS OF THE OFFER FOR SALE NAME OF THE SELLING TYPE NUMBER OF SHARES WEIGHTED SHAREHOLDER OFFERED/AMOUNT AVERAGE COST OF ACQUISITION PER EQUITY SHARE (IN ₹) Vaman Prestressing Company Promoter Group 15,00,000^ Equity Shares of face value of ₹ 31."
+      },
+      {
+       "match": "OFFER FOR SALE",
+       "sentence": "00^ LAKHS BY OUR COMPANY (THE “FRESH OFFER”) AND AN OFFER FOR SALE OF 15,00,000^ EQUITY SHARES OF FACE VALUE OF ₹ 10/- EACH AGGREGATING TO₹ 3,300."
+      }
+     ]
+    },
+    "capital_expenditure": {
+     "count": 23,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "capital expenditure",
+      "expansion of our",
+      "Purchase of Machinery",
+      "Capital Expenditure",
+      "setting up of"
+     ],
+     "evidence": [
+      {
+       "match": "capital expenditure",
+       "sentence": "Any withdrawal of support or adverse changes in their policies may lead to our agreements and purchase orders being, restructured or renegotiated and which could, though not monetarily quantifiable at this time, materially and adversely affect our financing, capital expenditure, revenues, development or operations relating to our existing projects as well as our ability to participate in competitive bidding or negotiations for our future projects."
+      },
+      {
+       "match": "capital expenditure",
+       "sentence": "In addition, any changes in RDSO’s quality standards, audit procedures or vendor approval requirements may necessitate additional capital expenditure, process modifications or operational changes."
+      },
+      {
+       "match": "capital expenditure",
+       "sentence": "Our Company as a part of its business requirement, growth, working capital requirement and capital expenditure has availed debt financing in the past and may avail debt financing in the future."
+      }
+     ]
+    },
+    "working_capital": {
+     "count": 39,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "working capital requirements",
+      "working capital requirement",
+      "Working Capital Requirement",
+      "Working Capital Requirements"
+     ],
+     "evidence": [
+      {
+       "match": "working capital requirements",
+       "sentence": "Working capital projections made by our Company are based on our management's assumptions and estimated working capital requirements."
+      },
+      {
+       "match": "working capital requirement",
+       "sentence": "Our Company’s working capital requirement for Fiscal 2026, Fiscal 2025 and Fiscal 2024 is as below: (Amount ₹ in lakhs) Particulars Fiscal 2026 Fiscal 2025 Fiscal 2024 Total Working Capital Requirement 5,915."
+      },
+      {
+       "match": "working capital requirements",
+       "sentence": "18 Note: As certified by the Statutory Auditors, by way of their certificate dated September 24, 2026 On the basis of our existing working capital, estimated/ projected working capital requirements and assumptions for such working capital requirements, our Board of Directors, pursuant to their resolution dated August 17, 2026 has approved the incremental and proposed working capital requirements for Fiscal 2027."
+      }
+     ]
+    },
+    "general_corporate": {
+     "count": 11,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "general corporate purposes",
+      "General Corporate Purposes"
+     ],
+     "evidence": [
+      {
+       "match": "general corporate purposes",
+       "sentence": "We propose to utilise the Net Proceeds for Funding Working Capital Requirements of the Company, repayment and/ or pre-payment, in part or full, of certain borrowings availed by our Company and general corporate purposes."
+      },
+      {
+       "match": "General Corporate Purposes",
+       "sentence": "General Corporate Purposes."
+      },
+      {
+       "match": "General Corporate Purposes",
+       "sentence": ") Funding Working Capital Requirements of the Company; (B) Repayment and/ or pre-payment, in part or full of term loans availed by our Company; Sub-Total (A+B) General Corporate Purposes*(1) (Amount in ₹ lakhs) 7,500."
+      }
+     ]
+    }
+   },
+   "profiled_on": "2026-10-09"
+  }
+ },
+ {
+  "sym": "544974",
+  "name": "Nityas Gems and Jewellery Ltd",
+  "board": "BSE",
+  "isin": "INE211501023",
+  "listed": null,
+  "hint": null,
+  "why": "sector unknown, SME platform",
+  "plausible": false,
+  "verdict": null,
+  "seen_on": "2026-10-09",
+  "source": "new-listing",
+  "moat_signal": null,
+  "moat_evidence": null,
+  "profile": {
+   "symbol": "544974",
+   "company": "Nityas Gems and Jewellery Limited",
+   "isin": "INE211501023",
+   "board": "BSE",
+   "source": {
+    "document": "final prospectus",
+    "url": "https://nsearchives.nseindia.com/corporate/FP_INE211501023_06OCT2026.pdf",
+    "filed": "06-Oct-2026",
+    "pdf_bytes": 4201178,
+    "extracted_chars": 1570694
+   },
+   "grade": "company-stated",
+   "verified_against": null,
+   "claims": {
+    "accreditation": {
+     "count": 1,
+     "dropped_as_industry_commentary": 17,
+     "terms": [
+      "BIS"
+     ],
+     "evidence": [
+      {
+       "match": "BIS",
+       "sentence": "Our Subsidiary has obtained Certificate of Registration for BIS (IS 1417:2016) bearing number HM/C-8190612516, issued by the Bureau of Indian Standards for our Subsidiary’s business operation in the state of Delhi, which is valid till cancelled."
+      }
+     ]
+    },
+    "ip": {
+     "count": 14,
+     "dropped_as_industry_commentary": 14,
+     "terms": [
+      "trademarks",
+      "trademark",
+      "Trademarks"
+     ],
+     "evidence": [
+      {
+       "match": "trademarks",
+       "sentence": "Our ability to protect and maintain our intellectual property, including our trademarks and designs, is important to our business."
+      },
+      {
+       "match": "trademarks",
+       "sentence": "As of the date of this Prospectus, our Company and our Subsidiaries have obtained registration of certain trademarks under the Trade Marks Act, 1999, primarily in Classes 14 and 35, which relate to jewellery and retail services."
+      },
+      {
+       "match": "trademarks",
+       "sentence": "These trademarks are important to our branding, marketing and customer recognition."
+      }
+     ]
+    }
+   },
+   "risk_factors": {
+    "customer_concentration": {
+     "count": 18,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "top 10 customers",
+      "top ten customers",
+      "top 10 customer",
+      "dependence on a limited number of customers",
+      "customer concentration",
+      "Top 5 customers",
+      "Customer Concentration",
+      "Top 10 customers"
+     ],
+     "evidence": [
+      {
+       "match": "top 10 customers",
+       "sentence": "During Fiscal 2026 Fiscal 2025 and Fiscal 2024, our top 10 customers contributed ₹1,125 million, ₹742."
+      },
+      {
+       "match": "top ten customers",
+       "sentence": "The contribution of our top one, top five and top ten customers to our revenue from operations based on Restated Consolidated Financial Information for the periods presented below is as follows: 26 Particulars Top 1 customers Top 5 customers Top 10 customers As on Fiscal 2026 Amount As a (₹ in percentage million) of revenue from operations (in %) 263."
+      },
+      {
+       "match": "top ten customers",
+       "sentence": "Set out below are the details of our top ten customers for the period indicated herein below; Details of Customers Domestic or overseas As on Fiscal 2026 Nature of Entity Related parties# Customer 1 Domestic No Customer 2 Customer 3 Dome"
+      }
+     ]
+    },
+    "promoter_litigation": {
+     "count": 5,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "Criminal Proceedings",
+      "criminal proceedings"
+     ],
+     "evidence": [
+      {
+       "match": "Criminal Proceedings",
+       "sentence": "63 Name of Entity Company Against our Company By our Company Against our Subsidiary By our Subsidiary Number of Criminal Proceedings Number of Tax Proceedings Number of Statutory or Regulatory Proceedings Number of Material Civil Proceedings Number of Disciplinary Actions by the SEBI or the stock exchanges agai"
+      },
+      {
+       "match": "criminal proceedings",
+       "sentence": "446 SECTION VI – LEGAL AND OTHER INFORMATION OUTSTANDING LITIGATION AND MATERIAL DEVELOPMENTS Except as stated in this section, there are no outstanding: (a) criminal proceedings; (b) actions by statutory or regulatory authorities; (c) claims relating to direct and indirect taxes (in a consolidated manner); and (d) Material Litigation (as defined below); involving our Company, our Directors and our Promoters (\"Relevant Parties\")."
+      },
+      {
+       "match": "criminal proceedings",
+       "sentence": "Further except as stated in this section, there are no outstanding (i) criminal proceedings and (ii) actions taken by regulatory or statutory authorities, against any Key Managerial Personnel and Senior Management of our Company."
+      }
+     ]
+    },
+    "single_site": {
+     "count": 1,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "single facility"
+     ],
+     "evidence": [
+      {
+       "match": "single facility",
+       "sentence": "Our manufacturing operations are concentrated at a single facility in Surat, Gujarat, and any disruption in operations, failure of machinery, inability to maintain quality standards or underutilisation of capacity could materially and adversely affect our business, financial condition, results of operations and cash flows."
+      }
+     ]
+    },
+    "related_party": {
+     "count": 41,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "RELATED PARTY TRANSACTIONS",
+      "related party transactions",
+      "Related party transactions",
+      "Related Party Transactions"
+     ],
+     "evidence": [
+      {
+       "match": "RELATED PARTY TRANSACTIONS",
+       "sentence": "104 SUMMARY OF RELATED PARTY TRANSACTIONS ."
+      },
+      {
+       "match": "related party transactions",
+       "sentence": "# All related party transactions entered into by the Company during the relevant period were undertaken in the ordinary course of business and on an arm's length basis."
+      },
+      {
+       "match": "related party transactions",
+       "sentence": "05 Note: All related party transactions entered into by the Company during the relevant period were undertaken in the ordinary course of business and on an arm's length basis."
+      }
+     ]
+    }
+   },
+   "objects_of_the_issue": {
+    "offer_for_sale": {
+     "count": 1,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "offer for sale"
+     ],
+     "evidence": [
+      {
+       "match": "offer for sale",
+       "sentence": "Details of guarantees given to third parties by the Promoters offering Equity Shares in the offer for sale This is a fresh issue of Equity Shares and our Promoters are not offering their Equity Shares in the Issue."
+      }
+     ]
+    },
+    "fresh_issue": {
+     "count": 18,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "Fresh Issue",
+      "fresh Issue",
+      "fresh issue"
+     ],
+     "evidence": [
+      {
+       "match": "Fresh Issue",
+       "sentence": "in OUR PROMOTERS: RAJNIKANT LALLUBHAI CHANCHAD, SONALBEN RAJNIKANT CHANCHAD AND SAVALIYA DHRUV JANAKBHAI DETAILS OF THE ISSUE TO THE PUBLIC TYPE SIZE OF FRESH SIZE OF TOTAL ELIGIBILITY AND RESERVATION ISSUE OFFER FOR ISSUE SIZE SALE Fresh Fresh Issue of Not applicable Fresh Issue of The Issue has been made pursuant to Regulation 6(1) Issue 14,456,000 Equity 14,456,000 of the Securities and Exchange Board of India (Issue Shares of face"
+      },
+      {
+       "match": "Fresh Issue",
+       "sentence": "However, we will have flexibility in utilizing the balance Net Proceeds, if any, for general corporate purposes, subject to such utilization not exceeding 25% of the Gross Proceeds from the Fresh Issue in accordance with Regulation 7(2) of the SEBI ICDR Regulations."
+      },
+      {
+       "match": "fresh Issue",
+       "sentence": "138 OBJECTS OF THE ISSUE The Issue comprises of fresh Issue of up to 14,456,000 Equity Shares of our Company at an Issue Price of ₹75/-per Equity Share, aggregating up to ₹ 1,083."
+      }
+     ]
+    },
+    "capital_expenditure": {
+     "count": 19,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "capital expenditure",
+      "expansion of our"
+     ],
+     "evidence": [
+      {
+       "match": "capital expenditure",
+       "sentence": "We have also incurred negative cash flows from investing activities during the periods indicated above, primarily on account of capital expenditure towards property, plant and equipment and development of our manufacturing capabilities."
+      },
+      {
+       "match": "capital expenditure",
+       "sentence": "Further, in the event we seek to raise additional debt in the future to fund working capital requirements, capital expenditure or business expansion, we may be required to obtain a credit rating."
+      },
+      {
+       "match": "capital expenditure",
+       "sentence": "Any such relocation could result in disruption of business activities, temporary suspension of operations, additional capital expenditure and loss of operational efficiency."
+      }
+     ]
+    },
+    "working_capital": {
+     "count": 58,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "working capital requirements",
+      "working capital requirement",
+      "Working Capital requirements",
+      "WORKING CAPITAL REQUIREMENT",
+      "Working Capital Requirement"
+     ],
+     "evidence": [
+      {
+       "match": "working capital requirements",
+       "sentence": "Our business is working capital intensive, and our working capital requirements have increased from ₹67."
+      },
+      {
+       "match": "working capital requirements",
+       "sentence": "We intend to utilise a portion of the Net Proceeds towards funding our working capital requirements."
+      },
+      {
+       "match": "working capital requirements",
+       "sentence": "This results in a mismatch between cash outflows and inflows, thereby increasing our working capital requirements."
+      }
+     ]
+    },
+    "general_corporate": {
+     "count": 13,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "General corporate purposes",
+      "general corporate purposes",
+      "GENERAL CORPORATE PURPOSES",
+      "General Corporate Purposes"
+     ],
+     "evidence": [
+      {
+       "match": "General corporate purposes",
+       "sentence": "We propose to use the Net Proceeds for funding the working capital requirements of our Company, and General corporate purposes."
+      },
+      {
+       "match": "general corporate purposes",
+       "sentence": "However, we will have flexibility in utilizing the balance Net Proceeds, if any, for general corporate purposes, subject to such utilization not exceeding 25% of the Gross Proceeds from the Fresh Issue in accordance with Regulation 7(2) of the SEBI ICDR Regulations."
+      },
+      {
+       "match": "General corporate purposes",
+       "sentence": "Particulars Funding Working Capital requirements of our Company General corporate purposes* (₹ in million) Estimated amount 700."
+      }
+     ]
+    }
+   },
+   "profiled_on": "2026-10-09"
+  }
+ },
+ {
+  "sym": "544975",
+  "name": "Dove Soft Ltd",
+  "board": "BSE-SME",
+  "isin": "INE0NXJ01016",
+  "listed": null,
+  "hint": null,
+  "why": "sector unknown, SME platform",
+  "plausible": true,
+  "verdict": null,
+  "seen_on": "2026-10-09",
+  "source": "new-listing",
+  "moat_signal": null,
+  "moat_evidence": null,
+  "profile": {
+   "symbol": "544975",
+   "company": "Dove Soft Limited",
+   "isin": "INE0NXJ01016",
+   "board": "BSE-SME",
+   "source": {
+    "document": "draft prospectus",
+    "url": "https://nsearchives.nseindia.com/emerge/corporates/content/DoveSoft_DRHP.pdf",
+    "filed": "06-Nov-2023",
+    "pdf_bytes": 9916233,
+    "extracted_chars": 1014994
+   },
+   "grade": "company-stated",
+   "verified_against": null,
+   "claims": {
+    "ip": {
+     "count": 10,
+     "dropped_as_industry_commentary": 13,
+     "terms": [
+      "trademarks",
+      "trademark",
+      "patent",
+      "Patents"
+     ],
+     "evidence": [
+      {
+       "match": "trademarks",
+       "sentence": "As on date of this Draft Red Herring Prospectus, the Company duly renewed its trademarks by filing appropriate renewal applications within time before the appropriate authority under the Trademarks Act, 1999."
+      },
+      {
+       "match": "trademark",
+       "sentence": "The details of application for renewal of trademark registration made by our Company have been specifically provided in this Draft Red Herring Prospectus."
+      },
+      {
+       "match": "trademarks",
+       "sentence": "Our trademarks are significant to our business and operations."
+      }
+     ]
+    }
+   },
+   "risk_factors": {
+    "customer_concentration": {
+     "count": 1,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "Top 10 customers"
+     ],
+     "evidence": [
+      {
+       "match": "Top 10 customers",
+       "sentence": "00 Top 10 customers on standalone basis: (₹ in lakhs, except stated in %) Revenue from Revenue contribution % of Revenue from operations of our top 10 Operations customers For the period ended July 31, 2023 2,596."
+      }
+     ]
+    },
+    "promoter_litigation": {
+     "count": 12,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "Criminal proceedings",
+      "criminal proceedings"
+     ],
+     "evidence": [
+      {
+       "match": "Criminal proceedings",
+       "sentence": "of outstanding matters Amount involved Litigation involving our Company Criminal proceedings 1 0."
+      },
+      {
+       "match": "Criminal proceedings",
+       "sentence": "39 Litigation involving our Promoters Criminal proceedings Material civil litigation Actions by statutory or regulatory authorities Direct and indirect tax proceedings 1 Not Ascertainable Litigation involving our Directors Criminal proceedings Material civil litigation Actions by statutory or regulatory authorities Direct and indirect tax proceedings 3 2."
+      },
+      {
+       "match": "Criminal proceedings",
+       "sentence": "56 Litigation involving our Subsidiary Criminal proceedings Material civil litigation 24 Outstanding Litigations No."
+      }
+     ]
+    },
+    "related_party": {
+     "count": 15,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "RELATED PARTY TRANSACTIONS",
+      "related party transactions",
+      "Related Party Transactions",
+      "Related Party Transaction"
+     ],
+     "evidence": [
+      {
+       "match": "RELATED PARTY TRANSACTIONS",
+       "sentence": "RELATED PARTY TRANSACTIONS The following transactions were carried out with the related parties in the ordinary course of business (except reimbursement of actual expenses): (₹ in Lakhs) Nature of Nam"
+      },
+      {
+       "match": "related party transactions",
+       "sentence": "Udit Mohan Naidu Gaurav Karmawat Bhupendra Banushali Dakshaben B Bhanushali Chirag Shah Mfins services private Ltd Rahul Bhanushali For detailed information on the related party transactions executed by our Company, please refer “Note – 28” under chapter titled “Restated Financial Statements” beginning on page 148 of this Draft Red Herring Prospectus."
+      },
+      {
+       "match": "related party transactions",
+       "sentence": "We have in the past entered into related party transactions and may continue to do so in the future."
+      }
+     ]
+    }
+   },
+   "objects_of_the_issue": {
+    "offer_for_sale": {
+     "count": 26,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "Offer for Sale",
+      "OFFER FOR SALE",
+      "offer for sale",
+      "Offer for sale"
+     ],
+     "evidence": [
+      {
+       "match": "Offer for Sale",
+       "sentence": "*OFS: Offer for Sale DETAILS OF THE PROMOTER SELLING SHAREHOLDERS, OFFER FOR SALE AND WEIGHTED AVERAGE COST OF ACQUISITION Name of Promoter Selling Type Number of Equity Shares Offered Weighted average cost"
+      },
+      {
+       "match": "OFFER FOR SALE",
+       "sentence": "CE”) AGGREGATING UP TO ₹ [●] LAKHS COMPRISING A FRESH ISSUE OF UP TO 45,00,000 EQUITY SHARES AGGREGATING UP TO ₹ [●] LAKHS BY OUR COMPANY(“FRESH ISSUE”) AND AN OFFER FOR SALE OF UP TO 22,60,000 EQUITY SHARES AGGREGATINGUP TO ₹ [●] LAKHS BY OUR PROMOTER SELLING SHAREHOLDERS, (THE “OFFERED SHARES”) (THE “OFFER FOR SALE” AND TOGETHER WITH THE FRESH ISSUE, THE “"
+      },
+      {
+       "match": "OFFER FOR SALE",
+       "sentence": "ISSUE”) AND AN OFFER FOR SALE OF UP TO 22,60,000 EQUITY SHARES AGGREGATINGUP TO ₹ [●] LAKHS BY OUR PROMOTER SELLING SHAREHOLDERS, (THE “OFFERED SHARES”) (THE “OFFER FOR SALE” AND TOGETHER WITH THE FRESH ISSUE, THE “OFFER”) OF WHICH [●] EQUITY SHARES AGGREGATING TO ₹ [●] LAKHS WILL BE RESERVED FOR SUBSCRIPTION BY MARKET MAKER TO THE OFFER (THE “MARKET MAKER RESERVATION PORTION”)."
+      }
+     ]
+    },
+    "fresh_issue": {
+     "count": 36,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "Fresh Issue",
+      "FRESH ISSUE",
+      "Fresh issue",
+      "fresh issue",
+      "fresh Issue"
+     ],
+     "evidence": [
+      {
+       "match": "Fresh Issue",
+       "sentence": "MTNL, Goregoan West Mumbai400062, Maharashtra, India NA Type Fresh Issue and OFS CONTACT PERSON EMAIL & TELEPHONE WEBSITE Archit Tundia, secretarial@dove-soft."
+      },
+      {
+       "match": "Fresh Issue",
+       "sentence": "com Company Secretary and & 9321938063 Compliance Officer NAME OF PROMOTERS OF THE COMPANY Rahul Bhanushali, Kurjibhai Rupareliya and Sky Occean Infrastructure Limited DETAILS OF OFFER TO PUBLIC Fresh Issue Size OFS* (by no."
+      },
+      {
+       "match": "FRESH ISSUE",
+       "sentence": "FOR CASH AT A PRICE OF ₹ [●] PER EQUITY SHARE (INCLUDING A SHARE PREMIUM OF ₹ [●] PER EQUITY SHARE) (“OFFER PRICE”) AGGREGATING UP TO ₹ [●] LAKHS COMPRISING A FRESH ISSUE OF UP TO 45,00,000 EQUITY SHARES AGGREGATING UP TO ₹ [●] LAKHS BY OUR COMPANY(“FRESH ISSUE”) AND AN OFFER FOR SALE OF UP TO 22,60,000 EQUITY SHARES AGGREGATINGUP TO ₹ [●] LAKHS BY OUR PROM"
+      }
+     ]
+    },
+    "capital_expenditure": {
+     "count": 2,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "expansion of our",
+      "capital expenditure"
+     ],
+     "evidence": [
+      {
+       "match": "expansion of our",
+       "sentence": "Even in years in which we may have profits, we may decide to retain all of our earnings to finance the development and expansion of our business and, therefore, may not declare dividends on our Equity Shares."
+      },
+      {
+       "match": "capital expenditure",
+       "sentence": "Additionally, our scalable platform requires limited capital expenditure as and when we add new clients or new services or when traffic volumes increase."
+      }
+     ]
+    },
+    "working_capital": {
+     "count": 17,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "working capital requirement",
+      "working capital requirements",
+      "working capital Requirement"
+     ],
+     "evidence": [
+      {
+       "match": "working capital requirement",
+       "sentence": "The net working capital requirement for the financial year 2024 and 2025 are projected to be ₹ 1,420."
+      },
+      {
+       "match": "working capital requirements",
+       "sentence": "25 We operate in a working capital-intensive industry therefore our business demands substantial funds towards working capital requirements."
+      },
+      {
+       "match": "working capital requirement",
+       "sentence": "In case there are insufficient cash flows to meet our working capital requirement or we are unable to arrange the same from other sources or there are delays in disbursement of arranged funds, or we are unable to procure funds on favourable terms, at a f"
+      }
+     ]
+    },
+    "general_corporate": {
+     "count": 11,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "General Corporate Purpose",
+      "general corporate purposes",
+      "General corporate purposes"
+     ],
+     "evidence": [
+      {
+       "match": "General Corporate Purpose",
+       "sentence": "00 [●] [●] Particulars Working Capital General Corporate Purpose Offer related Expenses *To be finalized upon determination of the Offer Price."
+      },
+      {
+       "match": "general corporate purposes",
+       "sentence": "The amount utilized for general corporate purposes shall not exceed 25% of the gross proceeds of the Fresh Issue."
+      },
+      {
+       "match": "general corporate purposes",
+       "sentence": "Our Company intends to primarily use the Net Proceeds towards working capital requirement and for general corporate purposes as described in “Objects of the Offer” on page 77 of this Draft Red Herring Prospectus."
+      }
+     ]
+    }
+   },
+   "profiled_on": "2026-10-09"
+  }
+ },
+ {
+  "sym": "544976",
+  "name": "Omara Ventures India Ltd",
+  "board": "BSE-SME",
+  "isin": "INE1IA801011",
+  "listed": null,
+  "hint": null,
+  "why": "sector unknown, SME platform",
+  "plausible": true,
+  "verdict": null,
+  "seen_on": "2026-10-09",
+  "source": "new-listing",
+  "moat_signal": null,
+  "moat_evidence": null
+ },
+ {
+  "sym": "544977",
+  "name": "Sollfege Smart Electronics Ltd",
+  "board": "BSE-SME",
+  "isin": "INE17HG01015",
+  "listed": null,
+  "hint": "electronics & electricals",
+  "why": "sector plausible",
+  "plausible": true,
+  "verdict": null,
+  "seen_on": "2026-10-09",
+  "source": "new-listing",
+  "moat_signal": null,
+  "moat_evidence": null
+ },
+ {
+  "sym": "544978",
+  "name": "Shree TNB Polymers Ltd",
+  "board": "BSE-SME",
+  "isin": "INE935K01018",
+  "listed": null,
+  "hint": "chemicals",
+  "why": "sector plausible",
+  "plausible": true,
+  "verdict": null,
+  "seen_on": "2026-10-09",
+  "source": "new-listing",
+  "moat_signal": null,
+  "moat_evidence": null
+ },
+ {
+  "sym": "544979",
+  "name": "Everestims Technologies Ltd",
+  "board": "BSE-SME",
+  "isin": "INE0YUW01020",
+  "listed": null,
+  "hint": "it & software services",
+  "why": "sector ruled out",
+  "plausible": false,
+  "verdict": null,
+  "seen_on": "2026-10-09",
+  "source": "new-listing",
+  "moat_signal": null,
+  "moat_evidence": null
+ },
+ {
+  "sym": "544980",
+  "name": "Sjp Ultrasonics Ltd",
+  "board": "BSE-SME",
+  "isin": "INE0S4601017",
+  "listed": null,
+  "hint": null,
+  "why": "sector unknown, SME platform",
+  "plausible": true,
+  "verdict": null,
+  "seen_on": "2026-10-09",
+  "source": "new-listing",
+  "moat_signal": null,
+  "moat_evidence": null
+ },
+ {
+  "sym": "524164",
+  "name": "IOL Chemicals & Pharmaceuticals Ltd",
+  "board": "BSE",
+  "isin": "INE485C01029",
+  "listed": null,
+  "hint": "pharma & healthcare",
+  "why": "mid-cap sweep",
+  "mktcap_cr": 6037.86,
+  "plausible": true,
+  "verdict": null,
+  "seen_on": "2026-10-09",
+  "source": "sweep",
+  "moat_signal": null,
+  "moat_evidence": null
+ },
+ {
+  "sym": "543253",
+  "name": "Mrs. Bectors Food Specialities Ltd",
+  "board": "BSE",
+  "isin": "INE495P01020",
+  "listed": null,
+  "hint": "agri & food",
+  "why": "mid-cap sweep",
+  "mktcap_cr": 6297.91,
+  "plausible": true,
+  "verdict": null,
+  "seen_on": "2026-10-09",
+  "source": "sweep",
+  "moat_signal": true,
+  "moat_evidence": [
+   "monopoly claim: \"We supply buns and other bakery frozen products to institutional customers and we are the largest supplier of buns to reputed multinational QSR chains according to the Technopak Report.\" (prospectus, company-stated)",
+   "monopoly claim: \"Our Company is the largest supplier of buns to reputed multinational QSR chains such as McDonalds, KFC, Burger King, Carls Jr.\" (prospectus, company-stated)",
+   "monopoly claim: \"Our Company’s is the largest supplier of buns to reputed multinational QSR chains such as McDonalds, KFC, Burger King, Wendy’s, Carls Jr.\" (prospectus, company-stated)"
+  ],
+  "profile": {
+   "symbol": "543253",
+   "company": "Mrs. Bectors Food Specialities Limited",
+   "isin": "INE495P01012",
+   "board": "BSE",
+   "source": {
+    "document": "final prospectus",
+    "url": "https://nsearchives.nseindia.com/corporate/FP_INE495P01012_22DEC2020.pdf",
+    "filed": "22-Dec-2020",
+    "pdf_bytes": 7244983,
+    "extracted_chars": 1413342
+   },
+   "grade": "company-stated",
+   "verified_against": null,
+   "claims": {
+    "monopoly_claim": {
+     "count": 12,
+     "dropped_as_industry_commentary": 1,
+     "terms": [
+      "largest supplier",
+      "sole supplier",
+      "one of the few bakery companies",
+      "one of the few bun suppliers"
+     ],
+     "evidence": [
+      {
+       "match": "largest supplier",
+       "sentence": "We supply buns and other bakery frozen products to institutional customers and we are the largest supplier of buns to reputed multinational QSR chains according to the Technopak Report."
+      },
+      {
+       "match": "largest supplier",
+       "sentence": "Our Company is the largest supplier of buns to reputed multinational QSR chains such as McDonalds, KFC, Burger King, Carls Jr."
+      },
+      {
+       "match": "largest supplier",
+       "sentence": "Our Company’s is the largest supplier of buns to reputed multinational QSR chains such as McDonalds, KFC, Burger King, Wendy’s, Carls Jr."
+      }
+     ]
+    },
+    "ip": {
+     "count": 14,
+     "dropped_as_industry_commentary": 14,
+     "terms": [
+      "trademarks",
+      "trademark",
+      "Trademarks"
+     ],
+     "evidence": [
+      {
+       "match": "trademarks",
+       "sentence": "While certain of our trademarks and copyright used by us for our business are registered, any inability to protect our intellectual property from third party infringement may adversely affect our business and prospects."
+      },
+      {
+       "match": "trademark",
+       "sentence": "Bector’s Cremica’ as our trademark for our biscuits and ‘English Oven’ for our bakery products under several classes."
+      },
+      {
+       "match": "trademarks",
+       "sentence": "Pursuant to the Brand Separation MoU, certain trademarks for our biscuits business were transferred to our Company."
+      }
+     ]
+    }
+   },
+   "risk_factors": {
+    "promoter_litigation": {
+     "count": 15,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "Criminal proceedings",
+      "criminal proceeding",
+      "criminal proceedings",
+      "proceedings involving our Promoter"
+     ],
+     "evidence": [
+      {
+       "match": "Criminal proceedings",
+       "sentence": "Summary of Outstanding Litigation A summary of outstanding litigation proceedings involving our Company, our Promoter, our Directors and our Subsidiaries as on the date of this Prospectus is provided below: 18 Name of Entity* Criminal proceedings Tax proceedings (including property tax) Statutory or regulatory proceedings Disciplinary actions by the SEBI or Stock Exchanges against our Promoter Material civil litigation Aggregate amount involved (₹ in million)** Company By the Company 33 Nil Nil N."
+      },
+      {
+       "match": "criminal proceeding",
+       "sentence": "# Our Promoter who is also our Managing Director has been named as a party to the same criminal proceeding against the Company."
+      },
+      {
+       "match": "Criminal proceedings",
+       "sentence": "Name of Entity* Criminal proceedings Tax proceedings (including property tax) Statutory or regulatory proceedings Disciplinary actions by the SEBI or Stock Exchanges against our Promoter Material civil litigation (₹ in million) Aggregate amount involved (₹ in million)** Company By the Company 33 Nil Nil N."
+      }
+     ]
+    },
+    "related_party": {
+     "count": 16,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "related party transactions",
+      "Related Party Transactions",
+      "RELATED PARTY TRANSACTIONS"
+     ],
+     "evidence": [
+      {
+       "match": "related party transactions",
+       "sentence": "GW Confectionary and Mabel In terms of SEBI ICDR Regulations, the term “group companies” includes companies (other than our Subsidiaries) with which there were related party transactions as disclosed in the Restated Consolidated Financial Information as covered under the applicable accounting standards, and any other companies as considered material by our B"
+      },
+      {
+       "match": "Related Party Transactions",
+       "sentence": "Summary of Related Party Transactions (₹ in million) Nature transaction Transactions: Purchase of goods Sale of goods Purchase of property, plant and equipment Particulars of Related parties with whom transactio"
+      },
+      {
+       "match": "related party transactions",
+       "sentence": "60 - For further details of the related party transactions and as reported in the Restated Consolidated Financial Information, see “Financial Information” on page 218."
+      }
+     ]
+    }
+   },
+   "objects_of_the_issue": {
+    "offer_for_sale": {
+     "count": 31,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "OFFER FOR SALE",
+      "Offer for Sale",
+      "offer for sale"
+     ],
+     "evidence": [
+      {
+       "match": "OFFER FOR SALE",
+       "sentence": "40 MILLION (THE “FRESH ISSUE”) AND AN OFFER FOR SALE OF 17,361,109** EQUITY SHARES (THE “OFFERED SHARES”) AGGREGATING TO ₹ 5,000."
+      },
+      {
+       "match": "OFFER FOR SALE",
+       "sentence": "00 MILLION, COMPRISING AN OFFER FOR SALE OF 8,506,944** EQUITY SHARES AGGREGATING TO ₹ 2,450."
+      },
+      {
+       "match": "OFFER FOR SALE",
+       "sentence": ", TOGETHER REFFERED TO AS “GATEWAY SELLING SHAREHOLDERS”, THE GATEWAY SELLING SHAREHOLDERS AND LINUS PRIVATE LIMITED, COLLECTIVELY REFERRED TO AS “SELLING SHAREHOLDERS” AND SUCH OFFER BY SELLING SHAREHOLDERS, THE “OFFER FOR SALE”)."
+      }
+     ]
+    },
+    "fresh_issue": {
+     "count": 39,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "FRESH ISSUE",
+      "Fresh Issue",
+      "Fresh issue",
+      "fresh issue"
+     ],
+     "evidence": [
+      {
+       "match": "FRESH ISSUE",
+       "sentence": "40 MILLION (THE “OFFER”) COMPRISING A FRESH ISSUE OF 1,408,592** EQUITY SHARES AGGREGATING TO ₹ 405."
+      },
+      {
+       "match": "FRESH ISSUE",
+       "sentence": "40 MILLION (THE “FRESH ISSUE”) AND AN OFFER FOR SALE OF 17,361,109** EQUITY SHARES (THE “OFFERED SHARES”) AGGREGATING TO ₹ 5,000."
+      },
+      {
+       "match": "Fresh Issue",
+       "sentence": "res after approval of the Basis of Allotment by the Designated Stock Exchange Unless the context otherwise requires, allotment of Equity Shares pursuant to the Fresh Issue and / or the transfer of the Equity Shares offered by the Selling Shareholders pursuant to the Offer for Sale to the successful Bidders A successful Bidder to whom the Equity Shares are Allotted A QIB, who applied under the Anchor Investor Portion with a minimum Bid of ₹100."
+      }
+     ]
+    },
+    "capital_expenditure": {
+     "count": 14,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "expansion of our",
+      "capital expenditure",
+      "purchase of plant",
+      "Expansion of our"
+     ],
+     "evidence": [
+      {
+       "match": "expansion of our",
+       "sentence": "If for any reason such electricity is not available, including for expansion of our facilities, we may need to shut down our facilities until any adequate supply of electricity is restored."
+      },
+      {
+       "match": "expansion of our",
+       "sentence": "If we are unable to effectively implement our business and growth strategies regarding expansion of our product portfolio, our growth, business, financial condition and results of operations may be adversely affected."
+      },
+      {
+       "match": "expansion of our",
+       "sentence": "As we expand our product portfolio, we may encounter regulatory, personnel, technological, logistics and other difficulties that may increase our expenses, delay commencement of commercial production or expansion of our distribution network, or require us to comply with applicable regulatory requirements."
+      }
+     ]
+    },
+    "working_capital": {
+     "count": 8,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "working capital requirements",
+      "working capital requirement"
+     ],
+     "evidence": [
+      {
+       "match": "working capital requirements",
+       "sentence": "Our working capital requirements would not be met if we experience insufficient cash flows which may have an adverse effect on our business, financial condition and results of operations."
+      },
+      {
+       "match": "working capital requirement",
+       "sentence": "The working capital requirement for our business is met through a combination of internal accruals, short term borrowings."
+      },
+      {
+       "match": "working capital requirements",
+       "sentence": "Our working capital requirements in the Financial Years 2020, 2019, and 2018, for the period between April 1, 2020 to September 30, 2020 and the period between April 1, 2019 to September 30, 2019, were ₹ 713."
+      }
+     ]
+    },
+    "general_corporate": {
+     "count": 1,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "general corporate purposes"
+     ],
+     "evidence": [
+      {
+       "match": "general corporate purposes",
+       "sentence": "If the actual utilisation 93 towards Rajpura Expansion Project is lower than the proposed deployment, such balance will be used for general corporate purposes within the permissible limit in accordance with applicable law."
+      }
+     ]
+    }
+   },
+   "profiled_on": "2026-10-09"
+  }
+ },
+ {
+  "sym": "542323",
+  "name": "KPI Green Energy Ltd",
+  "board": "BSE",
+  "isin": "INE542W01025",
+  "listed": null,
+  "hint": "renewable & power",
+  "why": "mid-cap sweep",
+  "mktcap_cr": 6381.84,
+  "plausible": true,
+  "verdict": null,
+  "seen_on": "2026-10-09",
+  "source": "sweep",
+  "moat_signal": null,
+  "moat_evidence": null
+ },
+ {
+  "sym": "513262",
+  "name": "Steel Strips Wheels Ltd",
+  "board": "BSE",
+  "isin": "INE802C01033",
+  "listed": null,
+  "hint": "metals & mining",
+  "why": "mid-cap sweep",
+  "mktcap_cr": 6426.64,
+  "plausible": true,
+  "verdict": null,
+  "seen_on": "2026-10-09",
+  "source": "sweep",
+  "moat_signal": null,
+  "moat_evidence": null
+ },
+ {
+  "sym": "513269",
+  "name": "Man Industries (India) Ltd",
+  "board": "BSE",
+  "isin": "INE993A01026",
+  "listed": null,
+  "hint": "industrial & capital goods",
+  "why": "mid-cap sweep",
+  "mktcap_cr": 6427.2,
+  "plausible": true,
+  "verdict": null,
+  "seen_on": "2026-10-09",
+  "source": "sweep",
+  "moat_signal": null,
+  "moat_evidence": null
+ },
+ {
+  "sym": "523323",
+  "name": "Kovai Medical Center & Hospital Ltd",
+  "board": "BSE",
+  "isin": "INE177F01017",
+  "listed": null,
+  "hint": "pharma & healthcare",
+  "why": "mid-cap sweep",
+  "mktcap_cr": 6441.6,
+  "plausible": true,
+  "verdict": null,
+  "seen_on": "2026-10-09",
+  "source": "sweep",
+  "moat_signal": null,
+  "moat_evidence": null
+ },
+ {
+  "sym": "533333",
+  "name": "Fineotex Chemical Ltd",
+  "board": "BSE",
+  "isin": "INE045J01034",
+  "listed": null,
+  "hint": "chemicals",
+  "why": "mid-cap sweep",
+  "mktcap_cr": 6534.01,
+  "plausible": true,
+  "verdict": null,
+  "seen_on": "2026-10-09",
+  "source": "sweep",
+  "moat_signal": null,
+  "moat_evidence": null
+ },
+ {
+  "sym": "544356",
+  "name": "AJAX Engineering Ltd",
+  "board": "BSE",
+  "isin": "INE274Y01021",
+  "listed": null,
+  "hint": "precision engineering",
+  "why": "mid-cap sweep",
+  "mktcap_cr": 6537.78,
+  "plausible": true,
+  "verdict": null,
+  "seen_on": "2026-10-09",
+  "source": "sweep",
+  "moat_signal": true,
+  "moat_evidence": [
+   "monopoly claim: \"In terms of financial performance among our peers, as per the latest financials available on the portal of the Ministry of Corporate Affairs, our Company is the second largest concrete equipment manufacturer in India in terms of revenue from operations for the Financial Year 2024, and achieved the highest EBITDA margin and PAT margin among leading concrete equipment\" (prospectus, company-stated)",
+   "monopoly claim: \"We are one of the few concrete equipment manufacturers in India that provides products across the concrete application value chain from production to transportation to placement and paving equipment (Source: Redseer Report).\" (prospectus, company-stated)"
+  ],
+  "profile": {
+   "symbol": "544356",
+   "company": "Ajax Engineering Limited",
+   "isin": "INE274Y01021",
+   "board": "BSE",
+   "source": {
+    "document": "final prospectus",
+    "url": "https://nsearchives.nseindia.com/corporate/FP_INE274Y01021_13FEB2025.pdf",
+    "filed": "13-Feb-2025",
+    "pdf_bytes": 5843336,
+    "extracted_chars": 1586211
+   },
+   "grade": "company-stated",
+   "verified_against": null,
+   "claims": {
+    "accreditation": {
+     "count": 3,
+     "dropped_as_industry_commentary": 9,
+     "terms": [
+      "ISO 9001",
+      "ISO 14001"
+     ],
+     "evidence": [
+      {
+       "match": "ISO 9001",
+       "sentence": "00 1992 Equipment Assembled/Manufactured as of September 30, 2024 SLCMs Batching plants, transit mixers Stationary pumps, boom pumps Certifications ISO 9001: 2015 ISO 9001: 2015 According to the Chartered Engineer, our Adinarayanahosahalli Facility is expected to have fungible capabilities to assemble a variety of concrete equipment, once it becomes operational in August 2025."
+      },
+      {
+       "match": "ISO 9001",
+       "sentence": "Except for our assembling and manufacturing facility in Gowribidanur (Karnataka), all our assembling and manufacturing facilities are certified for ISO 9001: 2015."
+      },
+      {
+       "match": "ISO 14001",
+       "sentence": "• Our Company was accredited with a certificate of registration in ‘Environmental Management System – ISO 14001:2015’ by the British Standards Institution."
+      }
+     ]
+    },
+    "monopoly_claim": {
+     "count": 2,
+     "dropped_as_industry_commentary": 3,
+     "terms": [
+      "largest concrete equipment manufacturer",
+      "one of the few concrete equipment manufacturers"
+     ],
+     "evidence": [
+      {
+       "match": "largest concrete equipment manufacturer",
+       "sentence": "In terms of financial performance among our peers, as per the latest financials available on the portal of the Ministry of Corporate Affairs, our Company is the second largest concrete equipment manufacturer in India in terms of revenue from operations for the Financial Year 2024, and achieved the highest EBITDA margin and PAT margin among leading concrete equipment"
+      },
+      {
+       "match": "one of the few concrete equipment manufacturers",
+       "sentence": "We are one of the few concrete equipment manufacturers in India that provides products across the concrete application value chain from production to transportation to placement and paving equipment (Source: Redseer Report)."
+      }
+     ]
+    },
+    "ip": {
+     "count": 18,
+     "dropped_as_industry_commentary": 11,
+     "terms": [
+      "patents",
+      "trademark",
+      "patent",
+      "Patent",
+      "patented",
+      "trademarks"
+     ],
+     "evidence": [
+      {
+       "match": "patents",
+       "sentence": "In connection with effectively integrating new technologies into our construction equipment, we could be exposed to potential legal action from competitors who may hold patents or trademarks over such new technologies."
+      },
+      {
+       "match": "patents",
+       "sentence": "Further, as our proprietary technical know-how which is critical to our operation are not protected by any intellectual property rights, we may face legal action from our competitors employing similar technology which are protected by way of patents, trademarks and other intellectual property rights."
+      },
+      {
+       "match": "patents",
+       "sentence": "As of September 30, 2024, we have 2 patents and 4 trademarks to protect our proprietary intellectual property, and we have 7 applications for patents which are currently pending approval, including applications for our SLCM with twin combustion engines and our load cell system which are our leading products."
+      }
+     ]
+    }
+   },
+   "risk_factors": {
+    "promoter_litigation": {
+     "count": 6,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "Criminal proceedings",
+      "criminal proceedings"
+     ],
+     "evidence": [
+      {
+       "match": "Criminal proceedings",
+       "sentence": "ow: Name of Entity Company By our Company Against our Company Directors By the Directors Against the Directors Promoters By the Promoters Against the Promoters Criminal proceedings Tax proceedings** Statutory or regulatory proceedings Disciplinary actions by the SEBI or Stock Exchanges against our Promoters in the last five financial years, including outstanding action Material civil litigations Aggregate amount involved# (₹ in million)* 1 Nil N."
+      },
+      {
+       "match": "criminal proceedings",
+       "sentence": "304 SECTION VI: LEGAL AND OTHER INFORMATION OUTSTANDING LITIGATION AND MATERIAL DEVELOPMENTS Except as stated in this section, as on the date of this Prospectus, there are no outstanding (i) criminal proceedings (including matters at FIR stage where no/some cognizance has been taken by any court); (ii) actions (including all disciplinary actions, penalties and show cause notices) taken by"
+      },
+      {
+       "match": "Criminal proceedings",
+       "sentence": "Litigation involving our Company Litigation against our Company Criminal proceedings Nil Actions taken by statutory or regulatory authorities Nil Material civil litigation Nil Litigation by our Company Criminal proceedings Our Company has initiated a complaint aga"
+      }
+     ]
+    },
+    "related_party": {
+     "count": 20,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "related party transactions",
+      "Related Party Transactions"
+     ],
+     "evidence": [
+      {
+       "match": "related party transactions",
+       "sentence": "Summary of related party transactions A summary of related party transactions as per the requirements under Ind AS 24 – Related Party Disclosures read with the SEBI ICDR Regulations entered into by our Company w"
+      },
+      {
+       "match": "related party transactions",
+       "sentence": "For details of the related party transactions, see “Other Financial Information – Related Party Transactions” on page 271."
+      },
+      {
+       "match": "related party transactions",
+       "sentence": "We have entered into and will continue to enter into related party transactions."
+      }
+     ]
+    }
+   },
+   "objects_of_the_issue": {
+    "offer_for_sale": {
+     "count": 40,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "OFFER FOR SALE",
+      "Offer for Sale",
+      "offer for sale"
+     ],
+     "evidence": [
+      {
+       "match": "OFFER FOR SALE",
+       "sentence": "DETAILS OF THE SELLING SHAREHOLDERS, OFFER FOR SALE AND WEIGHTED AVERAGE COST OF ACQUISITION PER EQUITY SHARE NAME OF THE SELLING SHAREHOLDERS Krishnaswamy Vijay Kalyani Vijay Jacob Jiten John Jacob Hansen Family Trust Susie John Kedaara"
+      },
+      {
+       "match": "OFFER FOR SALE",
+       "sentence": "84 MILLION^ (THE “OFFER”), THROUGH AN OFFER FOR SALE BY THE SELLING SHAREHOLDERS (DEFINED BELOW), CONSISTING OF 1,716,102* EQUITY SHARES OF FACE VALUE OF ₹1 EACH AGGREGATING TO ₹1,079."
+      },
+      {
+       "match": "OFFER FOR SALE",
+       "sentence": "19 MILLION^ BY SUSIE JOHN (“PROMOTER GROUP SELLING SHAREHOLDER”) (THE PROMOTER SELLING SHAREHOLDERS, ALONG WITH THE INVESTOR SELLING SHAREHOLDER AND PROMOTER GROUP SELLING SHAREHOLDER, COLLECTIVELY REFERRED TO AS THE “SELLING SHAREHOLDERS”) (“OFFER FOR SALE”, AND TOGETHER, THE “OFFER”)."
+      }
+     ]
+    },
+    "fresh_issue": {
+     "count": 1,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "FRESH ISSUE"
+     ],
+     "evidence": [
+      {
+       "match": "FRESH ISSUE",
+       "sentence": "REEN HAVEN TRUST, OHANA TRUST, JACOB HANSEN FAMILY TRUST AND THE JOHNS LOAVES TRUST ARE THE PROMOTERS OF OUR COMPANY DETAILS OF THE OFFER OF EQUITY SHARES TYPE FRESH ISSUE OFFER FOR TOTAL OFFER SIZE ELIGIBILITY AND RESERVATIONS SIZE SALE SIZE Offer for Not applicable 20,180,446* equity 20,180,446* equity The Offer is being made pursuant to Sale shares of fac"
+      }
+     ]
+    },
+    "capital_expenditure": {
+     "count": 18,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "capital expenditure",
+      "expansion of our"
+     ],
+     "evidence": [
+      {
+       "match": "capital expenditure",
+       "sentence": "The concrete equipment market in India, and in particular, the market for SLCMs, is experiencing significant growth on account of several factors, including an increase in cement consumption and an increase in public and private capital expenditure towards infrastructure, irrigation, housing and renewable power projects, leading to increased demand for construction materials and equipment (Source: Redseer Report)."
+      },
+      {
+       "match": "capital expenditure",
+       "sentence": "If our internally generated capital resources and available credit facilities are insufficient to finance our capital expenditure and growth plans, we may, in the future, need to seek additional financing from third parties, including banks and financial institutions."
+      },
+      {
+       "match": "capital expenditure",
+       "sentence": "Our ability to pay dividends in the future will depend upon our future results of operations, financial condition, cash flows, sufficient profitability, working capital requirements and capital expenditure requirements and other factors considered relevant by our directors and shareholders."
+      }
+     ]
+    },
+    "working_capital": {
+     "count": 5,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "working capital requirements"
+     ],
+     "evidence": [
+      {
+       "match": "working capital requirements",
+       "sentence": "If the obligations under any of our financing agreements are accelerated, we may have to dedicate a substantial portion of our cash flow from operations to make payments under such financing documents, thereby reducing the availability of cash for our working capital requirements and other general corporate purposes."
+      },
+      {
+       "match": "working capital requirements",
+       "sentence": "We cannot assure payment of dividends on the Equity Shares in the future and our ability to pay dividends in the future will depend upon future earnings, financial condition, cash flows, working capital requirements, capital expenditures and restrictive covenants of our financing arrangements."
+      },
+      {
+       "match": "working capital requirements",
+       "sentence": "Our ability to pay dividends in the future will depend upon our future results of operations, financial condition, cash flows, sufficient profitability, working capital requirements and capital expenditure requirements and other factors considered relevant by our directors and shareholders."
+      }
+     ]
+    },
+    "general_corporate": {
+     "count": 1,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "general corporate purposes"
+     ],
+     "evidence": [
+      {
+       "match": "general corporate purposes",
+       "sentence": "If the obligations under any of our financing agreements are accelerated, we may have to dedicate a substantial portion of our cash flow from operations to make payments under such financing documents, thereby reducing the availability of cash for our working capital requirements and other general corporate purposes."
+      }
+     ]
+    }
+   },
+   "profiled_on": "2026-10-09"
+  }
+ },
+ {
+  "sym": "543397",
+  "name": "Sapphire Foods India Ltd",
+  "board": "BSE",
+  "isin": "INE806T01020",
+  "listed": null,
+  "hint": "agri & food",
+  "why": "mid-cap sweep",
+  "mktcap_cr": 6596.38,
+  "plausible": true,
+  "verdict": null,
+  "seen_on": "2026-10-09",
+  "source": "sweep",
+  "moat_signal": null,
+  "moat_evidence": null,
+  "profile": {
+   "symbol": "543397",
+   "company": "Sapphire Foods India Limited",
+   "isin": "INE806T01012",
+   "board": "BSE",
+   "source": {
+    "document": "final prospectus",
+    "url": "https://nsearchives.nseindia.com/corporate/FP_INE806T01012_16NOV2021.pdf",
+    "filed": "16-Nov-2021",
+    "pdf_bytes": 9600384,
+    "extracted_chars": 1707375
+   },
+   "grade": "company-stated",
+   "verified_against": null,
+   "claims": {
+    "ip": {
+     "count": 6,
+     "dropped_as_industry_commentary": 10,
+     "terms": [
+      "trademarks",
+      "trademark"
+     ],
+     "evidence": [
+      {
+       "match": "trademarks",
+       "sentence": "Our business depends on consumers’ perception of the strength of, and our continued ability to use, the KFC, Pizza Hut and Taco Bell brands and the trademarks, service marks and other intellectual property relating to the KFC, Pizza Hut and Taco Bell brands, as well as other proprietary information relating to our products that are also owned by YUM."
+      },
+      {
+       "match": "trademark",
+       "sentence": "For example, although we will deploy our best efforts to avoid any such situation, we may not be able to detect or prevent such brands from trademark or other infringements, and it is possible that other proprietary information, such as the recipes of our products, proposed pricing or product launch information, could be leaked by our employees, our distributors or our suppliers in the future."
+      },
+      {
+       "match": "trademarks",
+       "sentence": "188 Under the Franchisee Arrangement, YUM granted our Company the non-exclusive right to use intellectual property, including technology and trademarks, owned by YUM and its subsidiaries to operate under the KFC, Pizza Hut and Taco Bell brands in the Territories and to avail of related development, promotional and support services from YUM."
+      }
+     ]
+    }
+   },
+   "risk_factors": {
+    "customer_concentration": {
+     "count": 1,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "customer concentration"
+     ],
+     "evidence": [
+      {
+       "match": "customer concentration",
+       "sentence": "Therefore the customer concentration risk is limited due to the large and unrelated customer base."
+      }
+     ]
+    },
+    "promoter_litigation": {
+     "count": 21,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "Criminal proceedings",
+      "criminal proceedings",
+      "criminal proceeding",
+      "criminal complaints"
+     ],
+     "evidence": [
+      {
+       "match": "Criminal proceedings",
+       "sentence": "Summary of Outstanding Litigation A summary of outstanding litigation proceedings involving our Company, our Subsidiaries, our Promoters, our Directors, and our Group Companies as disclosed in this Prospectus, is provided below: Nature of cases Number of cases Amount involved* (₹ million) Cases against our Company Criminal proceedings 7 0."
+      },
+      {
+       "match": "Criminal proceedings",
+       "sentence": "44 Cases by our Company Criminal proceedings Action by regulatory/statutory authorities Tax proceedings Material civil litigation Total Cases involving our Subsidiaries Criminal proceedings Action by regulatory/statutory authorities Tax proceedings 4 108."
+      },
+      {
+       "match": "Criminal proceedings",
+       "sentence": "56 Cases involving our Directors Criminal proceedings 2 Action by regulatory/statutory authorities 2 Tax proceedings Material civil litigation 1 75 Total 5 75 Cases involving our Promoters Criminal proceedings Action by regulatory/st"
+      }
+     ]
+    },
+    "related_party": {
+     "count": 27,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "RELATED PARTY TRANSACTIONS",
+      "Related Party Transactions",
+      "related party transactions",
+      "related party transaction"
+     ],
+     "evidence": [
+      {
+       "match": "RELATED PARTY TRANSACTIONS",
+       "sentence": "247 RELATED PARTY TRANSACTIONS ."
+      },
+      {
+       "match": "Related Party Transactions",
+       "sentence": "Summary of Related Party Transactions (as per Ind AS 24 read with SEBI ICDR Regulations) Following is a summary of related party transactions as per Ind AS 24 read with SEBI ICDR Regulations: For the period/ yea"
+      },
+      {
+       "match": "related party transactions",
+       "sentence": "During the three months ended June 30, 2021 and June 30, 2020 and financial years ended March 31, 2021, March 31, 2020 and March 31, 2019, the arithmetic aggregate absolute total of such related party transactions pre-elimination (income and expense) was ₹ 83."
+      }
+     ]
+    }
+   },
+   "objects_of_the_issue": {
+    "offer_for_sale": {
+     "count": 50,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "OFFER FOR SALE",
+      "Offer for Sale",
+      "offer for sale",
+      "Offer for sale",
+      "Offer For Sale"
+     ],
+     "evidence": [
+      {
+       "match": "OFFER FOR SALE",
+       "sentence": "NY” OR THE “ISSUER”) FOR CASH AT A PRICE OF* ₹ 1,180 PER EQUITY SHARE INCLUDING A SECURITIES PREMIUM OF ₹ 1,170 PER EQUITY SHARE (THE “OFFER PRICE”) THROUGH AN OFFER FOR SALE AGGREGATING TO ₹ 20,732."
+      },
+      {
+       "match": "OFFER FOR SALE",
+       "sentence": "53 MILLION (THE “OFFER” OR “OFFER FOR SALE”) BY THE SELLING SHAREHOLDERS, COMPRISING OF 850,000* EQUITY SHARES AGGREGATING TO ₹ 1,003."
+      },
+      {
+       "match": "Offer for Sale",
+       "sentence": "Transfer of the Offered Shares by the Selling Shareholders pursuant to the Offer for Sale to the successful Bidders."
+      }
+     ]
+    },
+    "fresh_issue": {
+     "count": 2,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "fresh issue"
+     ],
+     "evidence": [
+      {
+       "match": "fresh issue",
+       "sentence": "On the issue of redeemable preference shares under the provisions of these Articles hereof, the following provisions shall take effect: of (a) No such Shares shall be redeemed except out of profits of which would otherwise be available for dividend or out of proceeds of a fresh issue of shares made for the purpose of the redemption; (b) No such Shares shall be redeemed unless they are fully paid; (c) Subject to Section 55(2)(d)(i) of the Act , the premium, if any payab"
+      },
+      {
+       "match": "fresh issue",
+       "sentence": "r out of the Company's security premium account, before the Shares are redeemed; (d) Where any such Shares are redeemed otherwise then out of the proceeds of a fresh issue, there shall out of profits which would otherwise have been available for dividend, be transferred to a reserve fund, to be called \"the Capital Redemption Reserve Account\", a sum equal to"
+      }
+     ]
+    },
+    "capital_expenditure": {
+     "count": 13,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "expansion of our",
+      "capital expenditure",
+      "Capital Expenditure"
+     ],
+     "evidence": [
+      {
+       "match": "expansion of our",
+       "sentence": "Effects on expansion of our restaurant network In light of the COVID-19 pandemic, the expansion of our restaurant network has slowed significantly, and the COVID-19 pandemic has also adversely affected our ability to open new restaurants and expand our restaurant network temporarily."
+      },
+      {
+       "match": "capital expenditure",
+       "sentence": "f cash flow for working capital, capital expenditures and other general corporate activities; • our ability to obtain additional financing for working capital, capital expenditure or general corporate purposes may be impaired; 34 • our indebtedness could limit, along with the financial and other restrictive covenants of our indebtedness, our ability to borro"
+      },
+      {
+       "match": "capital expenditure",
+       "sentence": "Certain of our financing arrangements impose restrictions on the utilization of the loan for certain specified purposes only, such as for the purposes of meeting expenses for capital expenditure such as construction of buildings, fixtures, equipment and other related activities."
+      }
+     ]
+    },
+    "working_capital": {
+     "count": 8,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "working capital requirements"
+     ],
+     "evidence": [
+      {
+       "match": "working capital requirements",
+       "sentence": "We have working capital requirements, and the actual amount and timing of our working capital requirements may differ from our estimates for the same."
+      },
+      {
+       "match": "working capital requirements",
+       "sentence": "The actual amount and timing of our future working capital requirements may differ from estimates as a result of, among other factors, unforeseen wastage of our perishable products, unanticipated expenses, regulatory changes, economic conditions and additional market developments."
+      },
+      {
+       "match": "working capital requirements",
+       "sentence": "We have historically used internally-generated cash flows to finance working capital requirements, except for one subsidiary, Gamma Pizzakraft Lanka Private Limited, which had aggregate bank overdraft/other credit facilities in the amount of ₹ 108."
+      }
+     ]
+    },
+    "general_corporate": {
+     "count": 2,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "general corporate purposes"
+     ],
+     "evidence": [
+      {
+       "match": "general corporate purposes",
+       "sentence": "capital, capital expenditures and other general corporate activities; • our ability to obtain additional financing for working capital, capital expenditure or general corporate purposes may be impaired; 34 • our indebtedness could limit, along with the financial and other restrictive covenants of our indebtedness, our ability to borrow additional funds and"
+      },
+      {
+       "match": "general corporate purposes",
+       "sentence": "Our Company has placed ICDs with a subsidiary for a period of 3 years for general corporate purposes (including its tax and other administrative business obligation)."
+      }
+     ]
+    }
+   },
+   "profiled_on": "2026-10-09"
+  }
+ },
+ {
+  "sym": "533033",
+  "name": "ISGEC Heavy Engineering Ltd",
+  "board": "BSE",
+  "isin": "INE858B01029",
+  "listed": null,
+  "hint": "precision engineering",
+  "why": "mid-cap sweep",
+  "mktcap_cr": 6754.42,
+  "plausible": true,
+  "verdict": null,
+  "seen_on": "2026-10-09",
   "source": "sweep",
   "moat_signal": null,
   "moat_evidence": null

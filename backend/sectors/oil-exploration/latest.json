@@ -1,28 +1,49 @@
 {
- "updated": "2026-10-07T06:36+05:30",
+ "updated": "2026-10-09T07:01+05:30",
  "figures": [
   {
-   "label": "Brent crude (settle)",
-   "value": "$100.30/bbl",
-   "as_of": "2026-10-06",
-   "note": "-1.89% on the day; WTI $89.18",
+   "label": "Brent crude",
+   "value": "~$104/bbl",
+   "as_of": "2026-10-08",
+   "note": "settled up about 4%; intraday high about $106",
    "source": {
-    "publisher": "Gulf News",
-    "url": "https://gulfnews.com/business/energy/oil-prices-fall-brent-settles-at-10032-as-markets-weigh-higher-gulf-exports-g7-supply-boost-1.500699626"
+    "publisher": "InvestingLive",
+    "url": "https://investinglive.com/commodities/oil-settles-circa-4-higher-as-two-supply-threats-collide-iran-strike-fears-and-hurricane-isaias"
    }
   },
   {
-   "label": "Brent crude (live quote)",
-   "value": "$101.589/bbl",
-   "as_of": "2026-10-07",
-   "note": "+1.00% (+$1.01) intraday",
+   "label": "WTI crude",
+   "value": "~$91.50/bbl",
+   "as_of": "2026-10-08",
+   "note": "up about 3.5%",
    "source": {
-    "publisher": "Trading Economics",
-    "url": "https://tradingeconomics.com/commodity/brent-crude-oil/news"
+    "publisher": "InvestingLive",
+    "url": "https://investinglive.com/commodities/oil-settles-circa-4-higher-as-two-supply-threats-collide-iran-strike-fears-and-hurricane-isaias"
    }
   }
  ],
  "items": [
+  {
+   "date": "2026-10-08",
+   "title": "Brent settles near $104, up about 4%, on US strike fears and Gulf of Mexico storm shut-ins",
+   "text": "Brent settled near $104 a barrel (intraday high about $106) and WTI around $91.50 on 8 October, each up roughly 3.5-4%. Drivers were reports of US operational plans for strikes on Iran, Hurricane Isaias shutting in about 1.3 mb/d of US Gulf output, and a Houthi warning to Saudi oil workers; Trump said talks were productive and no attack would come before the 3 November midterms. Higher crude supports ONGC and Oil India realisations but widens under-recoveries for HPCL and BPCL.",
+   "tone": "watch",
+   "companies": [
+    "ONGC",
+    "OIL",
+    "HINDPETRO",
+    "BPCL"
+   ],
+   "sources": [
+    {
+     "publisher": "InvestingLive",
+     "title": "Oil settles circa 4% higher as two supply threats collide: Iran strike fears and Hurricane Isaias",
+     "url": "https://investinglive.com/commodities/oil-settles-circa-4-higher-as-two-supply-threats-collide-iran-strike-fears-and-hurricane-isaias",
+     "date": "2026-10-08"
+    }
+   ],
+   "added": "2026-10-09"
+  },
   {
    "date": "2026-10-06",
    "title": "Brent settles at $100.30, down 1.89%, as Gulf exports exceed pre-war levels and G7 plans stock release",
