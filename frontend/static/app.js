@@ -6736,6 +6736,18 @@ function ssStreak(v){
   return up?n:-n;
 }
 function ssBeats(v, w){ const t=v.filter(x=>x!=null).slice(-w); return t.length?{b:t.filter(x=>x>0).length, n:t.length}:null; }
+function ssDrvStock(x){
+  for(const sec of SS.data.sectors) for(const s of sec.stocks) if(s.exchange===x.exchange && (x.exchange==='NSE' ? s.symbol===x.key : String(s.code)===x.key)) return s;
+  return null;
+}
+function ssDrvName(x, short){ const s=ssDrvStock(x), n=s?(s.full_name||s.name||x.key):x.key;
+  return short ? n.replace(/\b(LIMITED|LTD\.?|L|INDUSTRIES|IND|INTERNATIONAL|INTERNATION|COMPANY|CORPORATION|CORP)\b/gi,'').replace(/\s+/g,' ').trim().split(' ').slice(0,2).join(' ') : n; }
+/* under a sector's value ratio: when one or two stocks made most of it, say who, and what the rest did */
+function ssDrvNote(f){
+  if(!f || !f.spikes || !f.drivers) return '';
+  const sp=f.drivers.slice(0,f.spikes).map(x=>ssDrvName(x,true)+' '+fmt(x.x,0)+'×').join(', ');
+  return `<small class="ss-drv" title="${ea(f.drivers.map(x=>`${ssDrvName(x)}: ₹${fmtI(x.value_cr)} Cr (${fmt(x.x,1)}× its normal, ${fmt(x.share,0)}% of the sector)`).join('\n'))}">⚠ led by ${esc(sp)}${f.value_ratio_ex!=null?` · rest ${fmt(f.value_ratio_ex,2)}×`:''}</small>`;
+}
 function ssTfRows(){
   return SS.data.sectors.map(sec=>{ const v=ssBeatSeries(sec.slug), t=sec.trend||{}, f=sec.flow||{};
     const lv=SS.live&&SS.live.sector_value&&SS.live.status==='live' ? SS.live.sector_value[sec.slug] : null;
@@ -6760,7 +6772,7 @@ function ssTrendFlow(){
   const bt=x=>x?`<b>${x.b}</b><small>of ${x.n}</small>`:'—';
   const row=(name,sub,t,f,extra,attr)=>`<tr${attr||''}><td class="ss-tfn"><b>${esc(name)}</b><small>${sub}</small></td>${pctCell(t.above50)}${pctCell(t.above200)}
     <td><b class="${t.hi52?'ov-up':''}">${t.hi52??'—'}</b></td><td><b class="${t.lo52?'ov-dn':''}">${t.lo52??'—'}</b></td>
-    <td>${vr(f.value_ratio)}<small>${f.value_cr!=null?'₹'+fmtI(f.value_cr)+' Cr':''}</small></td><td>${dlv(f)}</td>${extra}</tr>`;
+    <td>${vr(f.value_ratio)}<small>${f.value_cr!=null?'₹'+fmtI(f.value_cr)+' Cr':''}</small>${ssDrvNote(f)}</td><td>${dlv(f)}</td>${extra}</tr>`;
   const bv=SS.live&&SS.live.benchmark&&SS.live.benchmark.value_cr, bf=b.flow||{};
   const benchExtra=(live?`<td>${bv!=null?`<b>₹${fmtI(bv)} Cr</b><small>${bf.value_avg20_cr?fmt(100*bv/bf.value_avg20_cr,0)+'% of 20D avg':''}</small>`:'—'}</td>`:'')+'<td colspan="3" class="cp-sub">the benchmark</td>';
   return `<div class="cp-card"><div class="cp-card-h"><h3>Trend &amp; money flow</h3><span class="cp-sub">closing prices of ${esc(rcDayLong(d.asof))} · click a heading to sort · click a sector to open it</span></div>
@@ -6772,7 +6784,7 @@ function ssTrendFlow(){
     ${rows.map((r,ri)=>`${ri===0||gOrd(rows[ri-1])!==gOrd(r)?`<tr class="ss-grp"><td colspan="${live?11:10}">${SS_GRP[r.sec.group||'theme']}</td></tr>`:''}${row(r.sec.name, `${r.t.n??'—'} stocks`, r.t, r.f,
       (live?`<td>${r.live!=null?`<b>₹${fmtI(r.live)} Cr</b><small>${r.liveR!=null?fmt(100*r.liveR,0)+'% of 20D avg':''}</small>`:'—'}</td>`:'')+`<td>${strk(r.streak)}</td><td>${bt(r.b10)}</td><td>${bt(r.b20)}</td>`, ` data-ss="${ea(r.sec.slug)}"`)}`).join('')}
     </tbody></table></div>
-    <p class="cp-sub" style="margin-top:8px">50/200-DMA and 52-week figures use split-adjusted closes; a stock needs 50 / 200 / 250 sessions of history to count. Value traded counts NSE and BSE; delivery % is NSE only, from NSE's daily delivery file. "Beat" means the sector's median stock rose more than the Nifty 500 that day.</p></div>`;
+    <p class="cp-sub" style="margin-top:8px">50/200-DMA and 52-week figures use split-adjusted closes; a stock needs 50 / 200 / 250 sessions of history to count. Value traded counts NSE and BSE; delivery % is NSE only, from NSE's daily delivery file. ⚠ = one or two stocks traded 3×+ their own normal and made up a big part of the sector's money; "rest" is the ratio without them (hover for amounts). "Beat" means the sector's median stock rose more than the Nifty 500 that day.</p></div>`;
 }
 /* each sector's daily rank (median move minus the Nifty 500) over the last sessions: green = near the top */
 function ssRankGrid(){
@@ -6821,6 +6833,19 @@ function ssTrendTags(s){
   return (t(s.a50,'50','Close vs 50-day average:')+t(s.a200,'200','Close vs 200-day average:')
     +(s.hi52?'<i class="ss-tr hi" title="Closed at a 52-week high">52W high</i>':'')+(s.lo52?'<i class="ss-tr lo" title="Closed at a 52-week low">52W low</i>':''))||'—';
 }
+function ssFlowCard(sec){
+  const f=sec.flow; if(!f || f.value_ratio==null) return '';
+  const day=rcDayLong(SS.data.asof);
+  const verdict = f.spikes
+    ? `Most of the extra money came from <b>${f.spikes===1?'one stock':f.spikes+' stocks'}</b>; without ${f.spikes===1?'it':'them'} the sector traded <b>${fmt(f.value_ratio_ex,2)}×</b> normal — ${f.value_ratio_ex>=1.5?'still busy across the board':f.value_ratio_ex>=1.15?'only a little busier than usual':f.value_ratio_ex>=0.9?'about a normal day':'a quiet day'}. Look for stock-specific news (Deals, News) rather than a sector-wide move.`
+    : f.value_ratio>=1.5 ? 'The extra money was spread across the sector, not one or two stocks.' : f.value_ratio<=0.6 ? 'A quiet day for the sector.' : 'About a normal day.';
+  return `<div class="cp-card"><div class="cp-card-h"><h3>Money flow on ${esc(day)}</h3><span class="cp-sub">₹${fmtI(f.value_cr)} Cr traded vs a normal (20-day average) ₹${fmtI(f.value_avg20_cr)} Cr = <b>${fmt(f.value_ratio,2)}×</b>${f.deliv_pct!=null?` · delivery ${fmt(f.deliv_pct,1)}% (normal ${fmt(f.deliv_avg20_pct,1)}%)`:''}</span></div>
+    <p class="cp-sub" style="margin:0 0 10px">${verdict}</p>
+    <div class="mv-tablewrap"><table class="mv-table"><thead><tr><th>Biggest contributors</th><th class="n">Traded that day</th><th class="n">Normal day</th><th class="n">Times normal</th><th class="n">Share of sector</th><th class="n">Price move</th><th class="n">Delivery</th></tr></thead><tbody>
+    ${(f.drivers||[]).map((x,k)=>{ const st=ssDrvStock(x), mv=st&&st.d?st.d[st.d.length-1]:null;
+      return `<tr${k<f.spikes?' class="cp-self"':''}><td>${esc(ssDrvName(x))}${k<f.spikes?' <i class="ss-tag">spike</i>':''}</td><td class="n">₹${fmtI(x.value_cr)} Cr</td><td class="n">₹${fmtI(x.avg20_cr)} Cr</td><td class="n"><b>${x.x!=null?fmt(x.x,1)+'×':'new'}</b></td><td class="n">${fmt(x.share,0)}%</td><td class="n">${ssPct(mv,2)}</td><td class="n">${x.dlv!=null?fmt(x.dlv,1)+'%':'—'}</td></tr>`; }).join('')}</tbody></table></div>
+    <p class="caveat">Low delivery % means most shares were bought and sold the same day (trading), not taken home to hold.</p></div>`;
+}
 function ssDetail(){
   const d=SS.data, sec=d.sectors.find(s=>s.slug===SS.slug);
   if(!sec){ SS.slug=null; return ssOverview(); }
@@ -6843,6 +6868,7 @@ function ssDetail(){
   const fresh=sec.stocks.filter(s=>s.listed).length;
   return `<p class="cp-crumb"><a href="#" id="ss-back">Sector Strength</a> / <span>${esc(sec.name)}</span></p>
     <div class="cp-card"><div class="cp-card-h"><h3>${esc(sec.name)}</h3><span class="cp-sub">${all.length} stocks${fresh?` · ${fresh} listed in the last year`:''}${noTrade?` · ${noTrade} listed but not traded recently`:''}</span></div>${head}</div>
+    ${ssFlowCard(sec)}
     ${sscHtml(sec.slug)}
     <div class="cp-card"><div class="ss-tools"><input type="search" id="ss-q" class="gal-search" placeholder="Search this sector…" value="${ea(SS.q)}" autocomplete="off">
       <div class="ss-chips">${inds.map(i=>`<button type="button" data-ss-ind="${ea(i)}" class="${SS.ind===i?'on':''}">${esc(i)} <small>${sec.stocks.filter(s=>s.industry===i).length}</small></button>`).join('')}</div></div>

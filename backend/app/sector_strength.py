@@ -59,6 +59,8 @@ INDICES_FILE = OUT_DIR / "indices.json"
 DAILY_FILE = OUT_DIR / "daily.json"          # each session's breadth per sector, ~3 years: the date picker
 DELIVERY_URL = "https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_{d}.csv"
 DELIVERY_SESSIONS = 260       # a year of NSE delivery figures for the money-flow history
+DRIVER_SPIKE = 3             # a stock trading 3x+ its own 20-session average value...
+DRIVER_SHARE = 0.15           # ...and making up 15%+ of its sector's value today is called out as a spike
 DELIVERY_BUDGET = 150         # delivery files fetched per run; older ones fill in on the next runs
 LIQUID_TURNOVER_CR = 1.0      # 20-session average turnover, Rs crore
 LIQUID_SESSIONS = 18          # traded on at least this many of the last 20
@@ -505,6 +507,30 @@ def build_trend_flow(days: list, secs: list, resolved: dict, n500: list, cache: 
                 den += q[0] * r[6]
         return round(100 * num / den, 1) if den else None
 
+    def drivers(keys, total, avg20):
+        """The stocks behind today's traded value: the biggest jumps over their own 20-session average. A "spike"
+        is one trading at least DRIVER_SPIKE x its normal and carrying DRIVER_SHARE of the sector's value -- the
+        ratio without the spikes shows whether the rest of the sector was busy too."""
+        if not total or not avg20:
+            return {"drivers": [], "value_ratio_ex": None, "spikes": 0}
+        book, rows = dl.get(last) or {}, []
+        for ex, key in keys:
+            v = value(ex, key, last)
+            if v <= 0:
+                continue
+            a = sum(value(ex, key, i) for i in range(max(px.lo, last - 20), last)) / 20
+            q = book.get(key) if ex == "NSE" else None
+            rows.append((v - a, ex, key, v, a, round(100 * q[1] / q[0], 1) if q else None))
+        rows.sort(reverse=True)
+        top = [r for r in rows[:3] if r[0] > 0]
+        spikes = [r for r in top if r[3] >= DRIVER_SPIKE * max(r[4], 0.01) and r[3] >= DRIVER_SHARE * total]
+        rest_v, rest_a = total - sum(r[3] for r in spikes), avg20 - sum(r[4] for r in spikes)
+        return {"drivers": [{"exchange": ex, "key": key, "value_cr": round(v, 2), "avg20_cr": round(a, 2),
+                             "share": round(100 * v / total, 1), "x": round(v / a, 1) if a > 0.01 else None, "dlv": dv}
+                            for _, ex, key, v, a, dv in top],
+                "spikes": len(spikes),
+                "value_ratio_ex": round(rest_v / rest_a, 2) if spikes and rest_a > 0 else None}
+
     def group(keys):
         a50, a200, val, dly = [], [], [], []
         today = {}
@@ -540,6 +566,7 @@ def build_trend_flow(days: list, secs: list, resolved: dict, n500: list, cache: 
                  "value_cr": val[-1], "value_avg20_cr": round(avg20, 2) if avg20 else None,
                  "value_ratio": round(val[-1] / avg20, 2) if avg20 else None,
                  "deliv_pct": dly[-1], "deliv_avg20_pct": round(sum(dprev) / len(dprev), 1) if dprev else None}
+        today.update(drivers(keys, val[-1], avg20))
         return today, {"a50": a50, "a200": a200, "vr": tr, "dl": dly}
 
     out = {"sectors": {}, "history": {}, "stocks": {}}
@@ -710,7 +737,7 @@ def write(days: list, cache: Path | None = None) -> dict | None:
         for sec in sectors_out:
             t = tf["sectors"].get(sec["slug"]) or {}
             sec["trend"] = {k: t.get(k) for k in ("above50", "above200", "hi52", "lo52", "n")}
-            sec["flow"] = {k: t.get(k) for k in ("value_cr", "value_avg20_cr", "value_ratio", "deliv_pct", "deliv_avg20_pct")}
+            sec["flow"] = {k: t.get(k) for k in ("value_cr", "value_avg20_cr", "value_ratio", "deliv_pct", "deliv_avg20_pct", "drivers", "spikes", "value_ratio_ex")}
             for row in sec["stocks"]:
                 f = tf["stocks"].get((row.get("exchange"), row.get("symbol") if row.get("exchange") == "NSE" else str(row.get("code")))) \
                     or tf["stocks"].get((row.get("exchange"), row.get("symbol")))
@@ -718,7 +745,7 @@ def write(days: list, cache: Path | None = None) -> dict | None:
                     row.update(f)
         t5 = tf["nifty500"]
         benchmark["trend"] = {k: t5.get(k) for k in ("above50", "above200", "hi52", "lo52", "n")}
-        benchmark["flow"] = {k: t5.get(k) for k in ("value_cr", "value_avg20_cr", "value_ratio", "deliv_pct", "deliv_avg20_pct")}
+        benchmark["flow"] = {k: t5.get(k) for k in ("value_cr", "value_avg20_cr", "value_ratio", "deliv_pct", "deliv_avg20_pct", "drivers", "spikes", "value_ratio_ex")}
     except Exception as e:  # noqa: BLE001 - extra; the breadth snapshot stands without it
         print(f"sector strength: trend / flow failed ({e})")
     now = datetime.now(timezone.utc).isoformat(timespec="seconds")
