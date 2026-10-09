@@ -2581,3 +2581,8 @@ mark.tr-hit.cur{background:#f59e0b;color:#111}
   .nav .nav-tabs .side-link{padding:0 6px;gap:4px;font-size:12px}
   .nav .nav-tabs .side-link svg{width:13px;height:13px}
 }
+
+.ss-livebtn{display:inline-flex;align-items:center;gap:7px;border:1px solid #16a34a;background:var(--surface);color:#15803d;border-radius:999px;padding:6px 12px;font:inherit;font-size:12.5px;font-weight:700;cursor:pointer}
+.ss-livebtn i{width:8px;height:8px;border-radius:50%;background:#16a34a}
+.ss-livebtn.on{background:#16a34a;color:#fff}
+.ss-livebtn.on i{background:#fff}

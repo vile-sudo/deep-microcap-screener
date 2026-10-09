@@ -6611,10 +6611,12 @@ function ssRender(){
   document.getElementById('ss-liq').onchange=e=>{ SS.liquid=e.target.checked; ssSave(); ssRender(); };
   document.getElementById('ss-sme').onchange=e=>{ SS.nosme=e.target.checked; ssSave(); ssRender(); };
   body.querySelectorAll('[data-ssbeat]').forEach(b=>b.onclick=()=>{ SS.beat=b.dataset.ssbeat; ssRender(); });
+  const gl=document.getElementById('ss-golive'); if(gl) gl.onclick=()=>{ SS.histDate=null; SS.sel='live'; ssSave(); ssRender(); syncURL(); };
   const kc=document.getElementById('ss-kite'); if(kc) kc.onclick=e=>{ e.preventDefault(); ssKiteConnect(); };
   const dp=document.getElementById('ss-date'); if(dp) dp.onchange=()=>{
     const v=dp.value, i=(d.sessions||[]).indexOf(v);
     if(!v){ SS.histDate=null; }
+    else if(v==='live'){ SS.histDate=null; SS.sel='live'; ssSave(); }
     else if(i>=0){ SS.histDate=null; SS.mode='day'; SS.sel='d'+i; ssSave(); }
     else SS.histDate=v;
     ssRender(); syncURL();
@@ -6635,7 +6637,9 @@ function ssBenchRow(cols, cur){
 function ssDateOptions(){
   const dates=((SS.hist&&SS.hist.dates)||[]).slice().reverse();
   const cur = SS.histDate || (SS.mode==='day' && /^d\d$/.test(SS.sel) ? (SS.data.sessions||[])[+String(SS.sel).slice(1)] : '');
+  const lc=ssLiveCol()[0];
   return `<option value="">${SS.mode==='day'?'Pick a date':'Pick a date (day by day)'}</option>`
+    + (lc?`<option value="live"${!SS.histDate&&SS.sel==='live'?' selected':''}>● ${esc(lc.label.replace(/^LIVE/,'Live'))} (Zerodha)</option>`:'')
     + dates.map(x=>`<option value="${x}"${x===cur?' selected':''}>${esc(rcDayShort(x))}</option>`).join('');
 }
 /* one older session, from the 60-session history: share up and median move per sector vs the Nifty 500 */
@@ -6670,7 +6674,8 @@ function ssOverview(){
   const heat=`<div class="cp-card"><div class="cp-card-h"><h3>Share of stocks up</h3><span class="cp-sub">each cell: % of the sector's stocks that rose ${SS.mode==='day'?'that day':'over that window'} · how many · median move · click a sector</span></div>
     <div class="ss-beatbar"><span class="cp-lab">Against the Nifty 500 · ${esc(cur.label)}</span><div class="rc-seg" role="group" aria-label="Against the Nifty 500">
       <button type="button" data-ssbeat="" class="${!SS.beat?'on':''}">All sectors</button><button type="button" data-ssbeat="beat" class="${SS.beat==='beat'?'on':''}">▲ Beat Nifty 500</button><button type="button" data-ssbeat="lag" class="${SS.beat==='lag'?'on':''}">▼ Lagged Nifty 500</button></div>
-      <label class="ss-datepick"><span class="cp-lab">Date</span><select class="gal-select" id="ss-date" aria-label="Date">${ssDateOptions()}</select></label></div>
+      <label class="ss-datepick"><span class="cp-lab">Date</span><select class="gal-select" id="ss-date" aria-label="Date">${ssDateOptions()}</select></label>
+      ${ssLiveCol().length?`<button type="button" class="ss-livebtn${!SS.histDate&&SS.sel==='live'?' on':''}" id="ss-golive" title="Compare every sector with the Nifty 500 on today's live prices"><i></i>Live vs Nifty 500</button>`:''}</div>
     <div class="ss-heatwrap"><table class="ss-heat"><thead><tr><th></th>${cols.map(c=>`<th class="${cur.k===c.k?'cur':''}">${c.label}</th>`).join('')}</tr></thead><tbody>
     ${ssBenchRow(cols, cur)}
     ${rows.map(({sec,st,a},ri)=>`${ri===0||gOrd(rows[ri-1])!==gOrd(rows[ri])?`<tr class="ss-grp"><td colspan="${cols.length+1}">${SS_GRP[sec.group||'theme']}</td></tr>`:''}<tr data-ss="${ea(sec.slug)}"><td><b>${esc(sec.name)}</b><small>${st.length} stocks</small></td>
