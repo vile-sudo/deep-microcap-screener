@@ -20,6 +20,11 @@ stocks) and market-cap weight (weights from today's market cap, carried back wit
 next to the Nifty 500's own closes, for the TradingView-style comparison chart. Members are today's list
 throughout, so a company that left the sector is missing from its past (survivorship).
 
+Daily breadth (daily.json, GET /api/sector-strength/daily): for every session of the last INDEX_SESSIONS
+(about three years), each sector's share of stocks up, median move and stock count that day, and the Nifty
+500's own move and breadth -- so the page can show any past day against the index. A single stock's move on
+a past day comes from the chart candles instead (GET /api/sector-strength/day).
+
 write(days) is called at the end of scripts/update_charts.py and writes data/sector_strength/latest.json
 (per-stock returns, the frontend aggregates them for its filters) and history.json (each sector's
 breadth for the last HISTORY_SESSIONS sessions, for the sparklines). GET /api/sector-strength serves both.
@@ -45,6 +50,7 @@ INDEX_SESSIONS = 760          # about three years of trading days for the compar
 INDEX_FILE_BUDGET = 400       # Nifty 500 daily files fetched per run; older ones fill in on the next runs
 DAY_CLIP = 25.0               # a single day's move counted at most +/-25% (a bad print can't swing a sector)
 INDICES_FILE = OUT_DIR / "indices.json"
+DAILY_FILE = OUT_DIR / "daily.json"          # each session's breadth per sector, ~3 years: the date picker
 LIQUID_TURNOVER_CR = 1.0      # 20-session average turnover, Rs crore
 LIQUID_SESSIONS = 18          # traded on at least this many of the last 20
 UP_THRESHOLD = 0.01           # "up more than 1%"
@@ -350,6 +356,32 @@ def build_indices(days: list, groups: dict, cache: Path | None, px: "_Prices") -
     return out
 
 
+def build_daily(days: list, secs: list, resolved: dict, n500: list, cache: Path | None, px: "_Prices") -> dict:
+    """Every session of the last INDEX_SESSIONS: per sector [share up %, median move %, stocks that traded], and the
+    Nifty 500 [share of its constituents up %, the index's own move %, constituents that traded]."""
+    first = max(px.lo + 1, len(days) - INDEX_SESSIONS)
+    span = list(range(first, len(days)))
+    idx = index_closes([days[i - 1][0] for i in span[:1]] + [days[i][0] for i in span], cache, INDEX_FILE_BUDGET)
+
+    def row(keys, i):
+        v = [m for m in (px.move(ex, key, i) for ex, key in keys) if m is not None]
+        if not v:
+            return None
+        return [round(100 * sum(x > 0 for x in v) / len(v), 1), round(statistics.median(v), 2), len(v)]
+
+    out = {"dates": [days[i][0].isoformat() for i in span], "sectors": {}, "nifty500": []}
+    keys500 = [("NSE", k) for k in n500]
+    for i in span:
+        r = row(keys500, i)
+        a, b = idx.get(days[i][0]), idx.get(days[i - 1][0])
+        ret = round((a / b - 1) * 100, 2) if a and b else None
+        out["nifty500"].append([r[0], ret, r[2]] if r else [None, ret, 0])
+    for sec in secs:
+        keys = resolved.get(sec["slug"], [])
+        out["sectors"][sec["slug"]] = [row(keys, i) for i in span]
+    return out
+
+
 _ISIN_DAYS: dict = {}
 
 
@@ -499,6 +531,10 @@ def write(days: list, cache: Path | None = None) -> dict | None:
     OUT_DIR.mkdir(parents=True, exist_ok=True)
     LATEST_FILE.write_text(json.dumps(latest, separators=(",", ":"), ensure_ascii=False), encoding="utf-8")
     HISTORY_FILE.write_text(json.dumps(hist, separators=(",", ":")), encoding="utf-8")
+    try:
+        DAILY_FILE.write_text(json.dumps(build_daily(days, secs, resolved, n500, cache, px), separators=(",", ":")), encoding="utf-8")
+    except Exception as e:  # noqa: BLE001 - extra; the snapshot above already stands
+        print(f"sector strength: daily history failed ({e})")
     try:
         ind = build_indices(days, weighted, cache, px)
         ind["names"] = {sec["slug"]: sec["name"] for sec in secs}

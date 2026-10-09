@@ -68,6 +68,7 @@ GET /api/company-profile-in  India board company pages: about, pros/cons, balanc
 GET /api/company-activity-in/{symbol}  one company's filings, deals and insider trades (company page)
 GET /api/logos-in, /api/logo-in/{code}  company logos for the Companies pages (scripts/run_logos_in.py)
 GET /api/sector-strength, /api/sector-strength/history  Sector Strength breadth monitor (app/sector_strength.py)
+GET /api/sector-strength/daily   ~3 years of each session's sector breadth; /day?slug=&date= one sector's stocks that day
 GET /api/transcripts-in   India board: which earnings-call transcripts are on file, per company
 GET /api/transcripts-in/{code}  that company's newest calls laid out for reading -- speakers, roles,
                           numbered turns, where the Q&A starts (scripts/run_transcripts_in.py)
@@ -282,6 +283,63 @@ def sector_strength(request: Request):
 def sector_strength_indices(request: Request):
     """Each sector's daily level (equal and market-cap weighted) beside the Nifty 500, ~3 years, for the comparison chart."""
     return file_response(request, SECTOR_STRENGTH_DIR / "indices.json", {"dates": [], "sectors": {}, "nifty500": []})
+
+
+@router.get("/api/sector-strength/daily")
+def sector_strength_daily(request: Request):
+    """Each session's breadth per sector and the Nifty 500, about three years (the date picker)."""
+    return file_response(request, SECTOR_STRENGTH_DIR / "daily.json", {"dates": [], "sectors": {}, "nifty500": []})
+
+
+_DAY_CACHE: dict = {}
+
+
+@router.get("/api/sector-strength/day")
+def sector_strength_day(slug: str, date: str):
+    """One sector's stocks on one past session: each one's move that day, from the split-adjusted chart candles
+    (board companies' own charts, everyone else's from the Screen any Chart bundle). Stocks too thinly traded
+    to have a chart are left out."""
+    import json
+    if not re.fullmatch(r"[a-z0-9-]{2,40}", slug) or not re.fullmatch(r"\d{4}-\d{2}-\d{2}", date):
+        raise HTTPException(status_code=400, detail="bad sector or date")
+    latest_path = SECTOR_STRENGTH_DIR / "latest.json"
+    stamp = latest_path.stat().st_mtime if latest_path.exists() else 0
+    key = (slug, date, stamp)
+    if key in _DAY_CACHE:
+        return _DAY_CACHE[key]
+    from .. import charts, universe
+    latest = json.loads(latest_path.read_text(encoding="utf-8"))
+    sec = next((x for x in latest.get("sectors") or [] if x["slug"] == slug), None)
+    if not sec:
+        raise HTTPException(status_code=404, detail="unknown sector")
+    try:
+        board = json.loads((BASE_DIR / "data" / "companies_raw.json").read_text(encoding="utf-8"))
+    except (OSError, ValueError):
+        board = []
+    by_nse = {str(b.get("nse_code")): str(b["code"]) for b in board if b.get("nse_code")}
+    by_bse = {str(b.get("bse_code")): str(b["code"]) for b in board if b.get("bse_code")}
+    out = []
+    for st in sec["stocks"]:
+        if not st.get("exchange"):
+            continue
+        ex, sym, code = st["exchange"], st.get("symbol"), str(st.get("code"))
+        series = None
+        bcode = by_nse.get(sym) if ex == "NSE" else (by_bse.get(code) or by_nse.get(code))
+        if bcode:
+            series = charts.load_series(bcode)
+        if not series:
+            series = universe.load(charts.universe_key(ex, sym if ex == "NSE" else code))
+        rows = (series or {}).get("rows") or []
+        i = next((k for k in range(len(rows) - 1, 0, -1) if rows[k][0] == date), None)
+        move = round((rows[i][4] / rows[i - 1][4] - 1) * 100, 2) if i and rows[i - 1][4] else None
+        out.append({"exchange": ex, "symbol": sym, "code": code, "name": st.get("full_name") or st.get("name"),
+                    "industry": st.get("industry"), "close": rows[i][4] if i else None, "move": move,
+                    "prev_date": rows[i - 1][0] if i else None})
+    res = {"slug": slug, "date": date, "stocks": out, "priced": sum(1 for x in out if x["move"] is not None)}
+    if len(_DAY_CACHE) > 200:
+        _DAY_CACHE.clear()
+    _DAY_CACHE[key] = res
+    return res
 
 
 @router.get("/api/sector-strength/history")
