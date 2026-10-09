@@ -100,7 +100,8 @@ def build() -> dict:
                    "benchmark": {"name": "Nifty 500", "last": il, "chg": round((il / ip - 1) * 100, 2) if il and ip else None,
                                  "breadth": breadth, "value_cr": round(sum(value.get(f"NSE:{s}", 0) for s in n500), 2)},
                    "sector_value": sector_value,
-                   "covered": len(moves), "requested": len(want), "moves": moves}
+                   "covered": len(moves), "requested": len(want), "moves": moves,
+                   "values": {k: round(v, 2) for k, v in value.items()}}
 
 
 def snapshot() -> dict:

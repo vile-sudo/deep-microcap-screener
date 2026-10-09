@@ -585,7 +585,11 @@ def build_trend_flow(days: list, secs: list, resolved: dict, n500: list, cache: 
             q = book.get(key) if ex == "NSE" else None
             out["stocks"][(ex, key)] = {"a50": f[0] if f else None, "a200": f[1] if f else None,
                                         "hi52": bool(f and f[2]), "lo52": bool(f and f[3]),
-                                        "dlv": round(100 * q[1] / q[0], 1) if q else None}
+                                        "dlv": round(100 * q[1] / q[0], 1) if q else None,
+                                        # Rs crore traded in each of the dated sessions (aligned with "d"), and a normal
+                                        # day: the 20 sessions before the latest
+                                        "v": [round(value(ex, key, i), 2) for i in range(last - max(WINDOWS) + 1, last + 1)],
+                                        "v20": round(sum(value(ex, key, i) for i in range(max(px.lo, last - 20), last)) / 20, 2)}
     return out
 
 

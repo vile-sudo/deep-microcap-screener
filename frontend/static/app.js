@@ -6828,6 +6828,22 @@ function ssPastDetail(sec){
         <td>${s.close!=null?s.close.toLocaleString('en-IN',{maximumFractionDigits:2}):'—'}</td><td class="ss-curc">${ssPct(s.move,2)}</td><td>${nRet!=null?ssPct(s.move-nRet,2):'—'}</td></tr>`).join('')}</tbody></table></div>
       <p class="caveat">From each stock's split- and bonus-adjusted daily chart. Stocks too thinly traded to have a chart, and companies listed after that day, aren't in the list.</p></div>`;
 }
+/* a stock's traded value (Rs crore) on the session in view: that dated session, today's so far when live, else the latest */
+function ssVal(s, cur){
+  if(cur && cur.live){ const L=SS.live; return L&&L.values ? (L.values[s.exchange+':'+s.symbol] ?? null) : null; }
+  const v=s.v||[], m=cur && /^d\d+$/.test(cur.k) ? +cur.k.slice(1) : v.length-1;
+  return v[m]!=null ? v[m] : null;
+}
+function ssValDay(cur){
+  if(cur && cur.live) return 'today so far';
+  const ss=SS.data.sessions||[], m=cur && /^d\d+$/.test(cur.k) ? +cur.k.slice(1) : ss.length-1;
+  return ss[m] ? ssDay(ss[m]) : '';
+}
+function ssValCell(s, cur){
+  const v=ssVal(s,cur); if(v==null || v<=0) return '—';
+  const x=s.v20>0 ? v/s.v20 : null;
+  return `${v>=100?fmtI(v):fmt(v,2)}${x!=null&&!(cur&&cur.live)?`<small class="${x>=3?'ov-up':''}" title="Against its normal day (20-session average ₹${fmt(s.v20,2)} Cr)">${fmt(x,1)}× normal</small>`:''}`;
+}
 function ssTrendTags(s){
   const t=(ok,l,tip)=>ok==null?'':`<i class="ss-tr ${ok?'up':'dn'}" title="${tip} ${ok?'above':'below'}">${l}</i>`;
   return (t(s.a50,'50','Close vs 50-day average:')+t(s.a200,'200','Close vs 200-day average:')
@@ -6859,7 +6875,7 @@ function ssDetail(){
   const inds=[...new Set(sec.stocks.map(s=>s.industry))];
   let rows=all.filter(s=>(!SS.ind || s.industry===SS.ind) && (!SS.q || ((s.full_name||'')+' '+(s.name||'')+' '+(s.symbol||'')+' '+s.code).toLowerCase().includes(SS.q)));
   const sk=SS.sort||cur.k, colOf=k=>cols.find(c=>c.k===k);
-  const val=s=> colOf(sk) ? colOf(sk).get(s) : sk==='a50' ? (s.a50==null?null:(s.a50?1:0)+(s.a200?1:0)+(s.hi52?1:0)-(s.lo52?1:0)) : s[sk];
+  const val=s=> colOf(sk) ? colOf(sk).get(s) : sk==='val' ? ssVal(s,cur) : sk==='a50' ? (s.a50==null?null:(s.a50?1:0)+(s.a200?1:0)+(s.hi52?1:0)-(s.lo52?1:0)) : s[sk];
   rows.sort((a,b)=>{ if(sk==='name') return SS.dir*String(a.full_name||a.name).localeCompare(String(b.full_name||b.name));
     const x=val(a), y=val(b); if(x==null&&y==null) return 0; if(x==null) return 1; if(y==null) return -1; return SS.dir*(x-y); });
   rows.sort((a,b)=>(b.liquid?1:0)-(a.liquid?1:0));
@@ -6873,13 +6889,13 @@ function ssDetail(){
     <div class="cp-card"><div class="ss-tools"><input type="search" id="ss-q" class="gal-search" placeholder="Search this sector…" value="${ea(SS.q)}" autocomplete="off">
       <div class="ss-chips">${inds.map(i=>`<button type="button" data-ss-ind="${ea(i)}" class="${SS.ind===i?'on':''}">${esc(i)} <small>${sec.stocks.filter(s=>s.industry===i).length}</small></button>`).join('')}</div></div>
     <div class="co-tablewrap"><table class="co-table ss-table"><thead><tr>${th('name','Company','co-name-h')}<th>Exch.</th>${th('close','Price')}
-      ${cols.map(c=>th(c.k, c.label+(c.k===cur.k?' •':''))).join('')}${th('a50','Trend<small>DMA · 52W</small>')}${th('dlv','Delivery<small>% today</small>')}${th('turnover_cr','Turnover<small>₹ Cr/day, 20D</small>')}${th('mcap_cr','Mkt cap<small>₹ Cr</small>')}</tr></thead>
+      ${cols.map(c=>th(c.k, c.label+(c.k===cur.k?' •':''))).join('')}${th('a50','Trend<small>DMA · 52W</small>')}${th('dlv','Delivery<small>% today</small>')}${th('val',`Value traded<small>₹ Cr · ${esc(ssValDay(cur))}</small>`)}${th('turnover_cr','Turnover<small>₹ Cr/day, 20D</small>')}</tr></thead>
     <tbody>${rows.map(s=>{ const bd=s.exchange==='NSE'?byNse[s.symbol]:byCode[String(s.code)]||byNse[s.code];
       return `<tr class="${s.liquid?'':'ss-ill'}"><td class="co-name"><span class="ss-nm">${esc(s.full_name||s.name)}</span>
         <small>${esc(s.symbol||s.code)} · ${esc(s.industry)}</small>${ssIsSme(s,sme)?'<i class="ss-tag sme">SME</i>':''}${s.listed?`<i class="ss-tag ipo" title="First traded ${esc(rcDayLong(s.listed))}">New listing · ${esc(ssDay(s.listed))}</i>`:''}${s.liquid?'':'<i class="ss-tag">Illiquid</i>'}${bd?`<a href="#" class="ss-tag board" data-co="${ea(bd.code)}" title="On the board — open its page">On the board</a>`:''}</td>
         <td>${esc(s.exchange)}</td><td>${s.close!=null?s.close.toLocaleString('en-IN',{maximumFractionDigits:2}):'—'}</td>
-        ${cols.map(c=>`<td class="${c.k===cur.k?'ss-curc':''}">${ssPct(c.get(s),2)}</td>`).join('')}<td class="ss-trc">${ssTrendTags(s)}</td><td>${s.dlv!=null?fmt(s.dlv,1)+'%':'—'}</td><td>${fmt(s.turnover_cr,2)}</td><td>${s.mcap_cr!=null?fmtI(s.mcap_cr):'—'}</td></tr>`; }).join('')}</tbody></table></div>
-    <p class="caveat">Illiquid (under ₹${fmt(d.liquid_turnover_cr||1,0)} Cr average daily turnover, or not trading most days) are listed last and greyed — their moves can be a handful of trades. "—" on a day means the stock didn't trade that session.</p></div>`;
+        ${cols.map(c=>`<td class="${c.k===cur.k?'ss-curc':''}">${ssPct(c.get(s),2)}</td>`).join('')}<td class="ss-trc">${ssTrendTags(s)}</td><td>${s.dlv!=null?fmt(s.dlv,1)+'%':'—'}</td><td>${ssValCell(s,cur)}</td><td>${fmt(s.turnover_cr,2)}</td></tr>`; }).join('')}</tbody></table></div>
+    <p class="caveat">Value traded is for the session picked above (the latest one for the 1D–5D windows; today so far on Live); "× normal" compares it with the stock's own 20-session average. Illiquid (under ₹${fmt(d.liquid_turnover_cr||1,0)} Cr average daily turnover, or not trading most days) are listed last and greyed — their moves can be a handful of trades. "—" on a day means the stock didn't trade that session.</p></div>`;
 }
 
 BUSY=true; buildColPop(); applyState(); BUSY=false;

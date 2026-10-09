@@ -2607,3 +2607,4 @@ mark.tr-hit.cur{background:#f59e0b;color:#111}
 .ss-heat.ss-tf tr.ss-bench td{top:calc(var(--ss-top,0px) + 44px)}
 @media (max-width:760px){ .ss-heat.ss-tf tr.ss-bench td{top:44px} }
 .ss-tf td small.ss-drv{color:#b45309;font-weight:600;white-space:normal;max-width:170px;margin:2px auto 0;line-height:1.25}
+.ss-table td small{display:block;font-size:11px;color:var(--muted)}
