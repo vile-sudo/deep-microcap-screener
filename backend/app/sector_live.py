@@ -33,12 +33,15 @@ CACHE = Path(tempfile.gettempdir()) / "deepsweep-sector-live.json"
 LOCK = Path(tempfile.gettempdir()) / "deepsweep-sector-live.lock"
 
 
-def _members() -> tuple[list[tuple[str, str]], list[str], str | None]:
-    """Every (exchange, exchange symbol) on the page, the Nifty 500 list, and the snapshot's date."""
+def _members() -> tuple[list[tuple[str, str]], list[str], str | None, dict]:
+    """Every (exchange, exchange symbol) on the page, the Nifty 500 list, the snapshot's date, and each
+    sector's members."""
     try:
         d = json.loads(LATEST_FILE.read_text(encoding="utf-8"))
     except (OSError, ValueError):
-        return [], [], None
+        return [], [], None, {}
+    groups = {sec["slug"]: [f"{s['exchange']}:{s['symbol']}" for s in sec.get("stocks") or [] if s.get("exchange") and s.get("symbol")]
+              for sec in d.get("sectors") or []}
     keys = {(s["exchange"], s["symbol"]) for sec in d.get("sectors") or [] for s in sec.get("stocks") or []
             if s.get("exchange") and s.get("symbol")}
     try:
@@ -46,7 +49,7 @@ def _members() -> tuple[list[tuple[str, str]], list[str], str | None]:
         n500 = json.loads(MEMBERS_FILE.read_text(encoding="utf-8")).get("nifty500") or []
     except (OSError, ValueError):
         n500 = []
-    return sorted(keys), n500, d.get("asof")
+    return sorted(keys), n500, d.get("asof"), groups
 
 
 def _today_is_new(asof: str | None) -> bool:
@@ -59,7 +62,7 @@ def _today_is_new(asof: str | None) -> bool:
 
 def build() -> dict:
     now = datetime.now(kite.IST)
-    keys, n500, asof = _members()
+    keys, n500, asof, groups = _members()
     base = {"as_of": now.isoformat(timespec="seconds"), "market_open": kite.market_open(), "snapshot_date": asof}
     if not kite.configured():
         return base | {"status": "not_configured"}
@@ -76,14 +79,18 @@ def build() -> dict:
     inst = sorted(want) + [INDEX]
     quotes = {}
     for i in range(0, len(inst), CHUNK):
-        quotes.update(kite._get("/quote/ohlc", params=[("i", x) for x in inst[i:i + CHUNK]]).json().get("data") or {})
+        # the full quote, for today's volume and average price as well (the money-flow column)
+        quotes.update(kite._get("/quote", params=[("i", x) for x in inst[i:i + CHUNK]]).json().get("data") or {})
         time.sleep(1.05)                    # Kite's quote limit is about one call a second
-    moves = {}
+    moves, value = {}, {}
     for k, ours in want.items():
         q = quotes.get(k) or {}
         last, prev = q.get("last_price"), (q.get("ohlc") or {}).get("close")
         if last and prev and q.get("ohlc", {}).get("open"):      # no open: hasn't traded today
             moves[ours] = round((last / prev - 1) * 100, 2)
+            vol, avg = q.get("volume") or 0, q.get("average_price") or last
+            value[ours] = vol * avg / 1e7                         # Rs crore traded so far today
+    sector_value = {slug: round(sum(value.get(k, 0) for k in ks), 2) for slug, ks in groups.items()}
     idx = quotes.get(INDEX) or {}
     il, ip = idx.get("last_price"), (idx.get("ohlc") or {}).get("close")
     vals = [moves[f"NSE:{s}"] for s in n500 if f"NSE:{s}" in moves]
@@ -91,7 +98,8 @@ def build() -> dict:
                "up1": sum(v > 1 for v in vals), "median": round(statistics.median(vals), 2) if vals else None}
     return base | {"status": "live" if base["market_open"] else "closed", "date": now.date().isoformat(),
                    "benchmark": {"name": "Nifty 500", "last": il, "chg": round((il / ip - 1) * 100, 2) if il and ip else None,
-                                 "breadth": breadth},
+                                 "breadth": breadth, "value_cr": round(sum(value.get(f"NSE:{s}", 0) for s in n500), 2)},
+                   "sector_value": sector_value,
                    "covered": len(moves), "requested": len(want), "moves": moves}
 
 

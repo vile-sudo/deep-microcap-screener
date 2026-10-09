@@ -25,6 +25,12 @@ Daily breadth (daily.json, GET /api/sector-strength/daily): for every session of
 500's own move and breadth -- so the page can show any past day against the index. A single stock's move on
 a past day comes from the chart candles instead (GET /api/sector-strength/day).
 
+Trend breadth and money flow (latest.json "trend" / "flow" per sector, and their daily history in daily.json):
+the share of a sector's stocks above their 50- and 200-day averages, how many closed at a 52-week high or low
+(all on split-adjusted closes), the sector's traded value against its own 20-session average, and -- NSE
+stocks only, from NSE's daily delivery file -- the share of that value taken into demat (delivery) against
+its 20-session average.
+
 write(days) is called at the end of scripts/update_charts.py and writes data/sector_strength/latest.json
 (per-stock returns, the frontend aggregates them for its filters) and history.json (each sector's
 breadth for the last HISTORY_SESSIONS sessions, for the sparklines). GET /api/sector-strength serves both.
@@ -51,6 +57,9 @@ INDEX_FILE_BUDGET = 400       # Nifty 500 daily files fetched per run; older one
 DAY_CLIP = 25.0               # a single day's move counted at most +/-25% (a bad print can't swing a sector)
 INDICES_FILE = OUT_DIR / "indices.json"
 DAILY_FILE = OUT_DIR / "daily.json"          # each session's breadth per sector, ~3 years: the date picker
+DELIVERY_URL = "https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_{d}.csv"
+DELIVERY_SESSIONS = 260       # a year of NSE delivery figures for the money-flow history
+DELIVERY_BUDGET = 150         # delivery files fetched per run; older ones fill in on the next runs
 LIQUID_TURNOVER_CR = 1.0      # 20-session average turnover, Rs crore
 LIQUID_SESSIONS = 18          # traded on at least this many of the last 20
 UP_THRESHOLD = 0.01           # "up more than 1%"
@@ -382,6 +391,177 @@ def build_daily(days: list, secs: list, resolved: dict, n500: list, cache: Path 
     return out
 
 
+def delivery_books(days: list, cache: Path | None) -> dict:
+    """{session index: {NSE symbol: (traded qty, delivered qty)}} for the last DELIVERY_SESSIONS, from NSE's
+    sec_bhavdata_full file -- each day's file fetched once, kept as a small extract next to the bhavcopies."""
+    import gzip
+
+    import requests
+    out, fetched, s = {}, 0, None
+    for i in range(len(days) - 1, max(0, len(days) - DELIVERY_SESSIONS) - 1, -1):
+        d = days[i][0]
+        f = cache / f"DLV_{d.strftime('%Y%m%d')}.csv.gz" if cache else None
+        text = None
+        if f and f.exists():
+            text = gzip.decompress(f.read_bytes()).decode("utf-8")
+        elif fetched < DELIVERY_BUDGET:
+            fetched += 1
+            try:
+                if s is None:
+                    s = requests.Session()
+                    s.headers.update({**BROWSER, "Accept": "text/csv,*/*", "Accept-Language": "en-US,en;q=0.9"})
+                    s.get("https://www.nseindia.com", timeout=20)
+                r = s.get(DELIVERY_URL.format(d=d.strftime("%d%m%Y")), timeout=30)
+                time.sleep(0.3)
+                if r.status_code == 200 and "DELIV_QTY" in r.text[:400]:
+                    rows = []
+                    for row in csv.DictReader(io.StringIO(r.text), skipinitialspace=True):
+                        row = {k.strip(): (v or "").strip() for k, v in row.items() if k}
+                        if row.get("SERIES") in ("EQ", "BE", "BZ", "SM", "ST"):
+                            rows.append(f"{row['SYMBOL']},{row.get('TTL_TRD_QNTY') or 0},{row.get('DELIV_QTY') or ''}")
+                    text = "\n".join(rows)
+                    if f:
+                        f.parent.mkdir(parents=True, exist_ok=True)
+                        f.write_bytes(gzip.compress(text.encode("utf-8"), mtime=0))
+            except Exception:  # noqa: BLE001 - a missing day only leaves a gap
+                text = None
+        if text:
+            book = {}
+            for line in text.splitlines():
+                sym, qty, dq = (line.split(",") + ["", "", ""])[:3]
+                try:
+                    q, dqv = float(qty), float(dq)
+                except ValueError:
+                    continue
+                if q > 0:
+                    book[sym] = (q, dqv)
+            out[i] = book
+    return out
+
+
+def build_trend_flow(days: list, secs: list, resolved: dict, n500: list, cache: Path | None, px: "_Prices") -> dict:
+    """Per stock (latest session): above 50/200-day average, 52-week high/low, delivery %. Per sector and the Nifty
+    500: today's figures, and their daily history over the same span as daily.json."""
+    last = len(days) - 1
+    first = max(px.lo + 1, len(days) - INDEX_SESSIONS)
+    span = list(range(first, len(days)))
+    stock = {}
+
+    def series(ex, key):
+        k = (ex, key)
+        if k in stock:
+            return stock[k]
+        mv, close, tsum, csum = px.get(ex, key)
+        n = len(mv)
+        lev, traded, p = [], [], [0.0]
+        cur = None
+        for j in range(n):
+            m = mv[j]
+            if close[j] is not None and cur is None:
+                cur = 100.0
+            elif m is not None and cur is not None:
+                cur *= 1 + m / 100
+            lev.append(cur)
+            traded.append(close[j] is not None)
+            p.append(p[-1] + (cur or 0.0))
+        firstj = next((j for j in range(n) if lev[j] is not None), None)
+        stock[k] = (lev, p, firstj, tsum)
+        return stock[k]
+
+    def flags(ex, key, i):
+        lev, p, firstj, _ = series(ex, key)
+        j = i - px.lo
+        if firstj is None or j < firstj or lev[j] is None:
+            return None
+        age = j - firstj + 1
+        a50 = lev[j] > (p[j + 1] - p[j - 49]) / 50 if age >= 50 else None
+        a200 = lev[j] > (p[j + 1] - p[j - 199]) / 200 if age >= 200 else None
+        hi = lo = None
+        if age >= 250:
+            win = lev[j - 249:j + 1]
+            hi, lo = lev[j] >= max(win) - 1e-9, lev[j] <= min(win) + 1e-9
+        return a50, a200, hi, lo
+
+    def value(ex, key, i):
+        tsum = series(ex, key)[3]
+        j = i - px.lo
+        return tsum[j + 1] - tsum[j]
+
+    dl = delivery_books(days, cache)
+    closes = {}
+
+    def deliv(keys, i):
+        book = dl.get(i)
+        if book is None:
+            return None
+        num = den = 0.0
+        for ex, key in keys:
+            if ex != "NSE":
+                continue
+            q = book.get(key)
+            r = _row((days[i][1], days[i][2]), ex, key)
+            if q and r:
+                num += q[1] * r[6]
+                den += q[0] * r[6]
+        return round(100 * num / den, 1) if den else None
+
+    def group(keys):
+        a50, a200, val, dly = [], [], [], []
+        today = {}
+        for i in span:
+            c50 = n50 = c200 = n200 = 0
+            for ex, key in keys:
+                f = flags(ex, key, i)
+                if not f:
+                    continue
+                if f[0] is not None:
+                    n50 += 1
+                    c50 += f[0]
+                if f[1] is not None:
+                    n200 += 1
+                    c200 += f[1]
+            a50.append(round(100 * c50 / n50, 1) if n50 else None)
+            a200.append(round(100 * c200 / n200, 1) if n200 else None)
+            val.append(round(sum(value(ex, key, i) for ex, key in keys), 2))
+            dly.append(deliv(keys, i) if i in dl else None)
+        hi = lo = n = 0
+        for ex, key in keys:
+            f = flags(ex, key, last)
+            if f:
+                n += 1
+                hi += bool(f[2])
+                lo += bool(f[3])
+        prev = [v for v in val[-21:-1] if v]
+        avg20 = sum(prev) / len(prev) if prev else None
+        dprev = [v for v in dly[-21:-1] if v is not None]
+        tr = [round(val[k] / (sum(val[max(0, k - 20):k]) / len(val[max(0, k - 20):k])), 2)
+              if k >= 5 and sum(val[max(0, k - 20):k]) else None for k in range(len(val))]
+        today = {"above50": a50[-1], "above200": a200[-1], "hi52": hi, "lo52": lo, "n": n,
+                 "value_cr": val[-1], "value_avg20_cr": round(avg20, 2) if avg20 else None,
+                 "value_ratio": round(val[-1] / avg20, 2) if avg20 else None,
+                 "deliv_pct": dly[-1], "deliv_avg20_pct": round(sum(dprev) / len(dprev), 1) if dprev else None}
+        return today, {"a50": a50, "a200": a200, "vr": tr, "dl": dly}
+
+    out = {"sectors": {}, "history": {}, "stocks": {}}
+    for sec in secs:
+        t, h = group(resolved.get(sec["slug"], []))
+        out["sectors"][sec["slug"]] = t
+        out["history"][sec["slug"]] = h
+    t, h = group([("NSE", k) for k in n500])
+    out["nifty500"], out["history"]["nifty500"] = t, h
+    book = dl.get(last) or {}
+    for keys in resolved.values():
+        for ex, key in keys:
+            if (ex, key) in out["stocks"]:
+                continue
+            f = flags(ex, key, last)
+            q = book.get(key) if ex == "NSE" else None
+            out["stocks"][(ex, key)] = {"a50": f[0] if f else None, "a200": f[1] if f else None,
+                                        "hi52": bool(f and f[2]), "lo52": bool(f and f[3]),
+                                        "dlv": round(100 * q[1] / q[0], 1) if q else None}
+    return out
+
+
 _ISIN_DAYS: dict = {}
 
 
@@ -524,6 +704,23 @@ def write(days: list, cache: Path | None = None) -> dict | None:
                 b = _breadth(vals[w])
                 h[str(w)].append([round(100 * b["up"] / b["n"], 1), b["median"]] if b["n"] else None)
 
+    tf = None
+    try:
+        tf = build_trend_flow(days, secs, resolved, n500, cache, px)
+        for sec in sectors_out:
+            t = tf["sectors"].get(sec["slug"]) or {}
+            sec["trend"] = {k: t.get(k) for k in ("above50", "above200", "hi52", "lo52", "n")}
+            sec["flow"] = {k: t.get(k) for k in ("value_cr", "value_avg20_cr", "value_ratio", "deliv_pct", "deliv_avg20_pct")}
+            for row in sec["stocks"]:
+                f = tf["stocks"].get((row.get("exchange"), row.get("symbol") if row.get("exchange") == "NSE" else str(row.get("code")))) \
+                    or tf["stocks"].get((row.get("exchange"), row.get("symbol")))
+                if f:
+                    row.update(f)
+        t5 = tf["nifty500"]
+        benchmark["trend"] = {k: t5.get(k) for k in ("above50", "above200", "hi52", "lo52", "n")}
+        benchmark["flow"] = {k: t5.get(k) for k in ("value_cr", "value_avg20_cr", "value_ratio", "deliv_pct", "deliv_avg20_pct")}
+    except Exception as e:  # noqa: BLE001 - extra; the breadth snapshot stands without it
+        print(f"sector strength: trend / flow failed ({e})")
     now = datetime.now(timezone.utc).isoformat(timespec="seconds")
     latest = {"generated_at": now, "asof": days[-1][0].isoformat(), "windows": list(WINDOWS), "sessions": sessions,
               "market": {str(w): v for w, v in market.items()}, "benchmark": benchmark, "liquid_turnover_cr": LIQUID_TURNOVER_CR,
@@ -532,7 +729,10 @@ def write(days: list, cache: Path | None = None) -> dict | None:
     LATEST_FILE.write_text(json.dumps(latest, separators=(",", ":"), ensure_ascii=False), encoding="utf-8")
     HISTORY_FILE.write_text(json.dumps(hist, separators=(",", ":")), encoding="utf-8")
     try:
-        DAILY_FILE.write_text(json.dumps(build_daily(days, secs, resolved, n500, cache, px), separators=(",", ":")), encoding="utf-8")
+        daily = build_daily(days, secs, resolved, n500, cache, px)
+        if tf:
+            daily["trend"] = tf["history"]          # per sector (and "nifty500"): a50, a200, vr, dl -- aligned with dates
+        DAILY_FILE.write_text(json.dumps(daily, separators=(",", ":")), encoding="utf-8")
     except Exception as e:  # noqa: BLE001 - extra; the snapshot above already stands
         print(f"sector strength: daily history failed ({e})")
     try:

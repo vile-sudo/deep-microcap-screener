@@ -2586,3 +2586,23 @@ mark.tr-hit.cur{background:#f59e0b;color:#111}
 .ss-livebtn i{width:8px;height:8px;border-radius:50%;background:#16a34a}
 .ss-livebtn.on{background:#16a34a;color:#fff}
 .ss-livebtn.on i{background:#fff}
+
+.ss-tf td,.ss-tf th{text-align:center}
+.ss-tf td.ss-tfn,.ss-tf th:first-child{text-align:left}
+.ss-tf th{cursor:pointer;white-space:nowrap;font-size:12px}
+.ss-tf td small{display:block;color:var(--muted);font-size:11px;font-weight:400}
+.ss-rank{border-collapse:collapse;font-size:12px;width:max-content;min-width:100%}
+.ss-rank th{font-weight:600;color:var(--muted);padding:4px 5px;white-space:nowrap;font-size:11px}
+.ss-rank td{padding:4px 5px;text-align:center;border-bottom:1px solid var(--border);min-width:30px}
+.ss-rank td:first-child,.ss-rank th:first-child{text-align:left;position:sticky;left:0;background:var(--surface);z-index:1;white-space:nowrap}
+.ss-rank tbody tr{cursor:pointer}
+.ss-rank tbody tr:hover td:first-child{color:var(--accent,#2563eb)}
+.ss-trc{white-space:nowrap}
+.ss-tr{display:inline-block;font-style:normal;font-size:10.5px;font-weight:700;border-radius:4px;padding:1px 5px;margin-right:3px}
+.ss-tr.up{background:rgba(22,163,74,.14);color:#15803d}
+.ss-tr.dn{background:rgba(220,38,38,.12);color:#b91c1c}
+.ss-tr.hi{background:#16a34a;color:#fff}
+.ss-tr.lo{background:#dc2626;color:#fff}
+.ss-heat.ss-tf thead th{height:40px}
+.ss-heat.ss-tf tr.ss-bench td{top:calc(var(--ss-top,0px) + 44px)}
+@media (max-width:760px){ .ss-heat.ss-tf tr.ss-bench td{top:44px} }
