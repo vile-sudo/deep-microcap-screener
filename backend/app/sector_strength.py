@@ -50,6 +50,7 @@ OUT_DIR = BACKEND_DIR / "data" / "sector_strength"
 MEMBERS_FILE = OUT_DIR / "members.json"
 LATEST_FILE = OUT_DIR / "latest.json"
 HISTORY_FILE = OUT_DIR / "history.json"
+LEVELS_FILE = OUT_DIR / "live_levels.json"   # per stock, the prices today's live price is checked against (server only)
 WINDOWS = (1, 2, 3, 5)
 HISTORY_SESSIONS = 60
 INDEX_SESSIONS = 760          # about three years of trading days for the comparison chart
@@ -501,6 +502,25 @@ def build_trend_flow(days: list, secs: list, resolved: dict, n500: list, cache: 
             hi, lo = lev[j] >= max(win) - 1e-9, lev[j] <= min(win) + 1e-9
         return a50, a200, hi, lo
 
+    def levels(ex, key):
+        """In today's rupees (split-adjusted to the latest close): the mean of the last 49 / 199 closes and the
+        high / low of the last 249. Tomorrow's 50-day average includes tomorrow's price p, so p is above it
+        exactly when p > mean(last 49); likewise 200, and a 52-week high when p >= max(last 249)."""
+        lev, pre, firstj, _ = series(ex, key)
+        close = px.get(ex, key)[1]
+        j = last - px.lo
+        if firstj is None or lev[j] is None:
+            return None
+        jj = next((k for k in range(j, firstj - 1, -1) if close[k] is not None and lev[k]), None)
+        if jj is None:
+            return None
+        f, age = close[jj] / lev[jj], j - firstj + 1
+        win = [x for x in lev[max(firstj, j - 248):j + 1] if x is not None]
+        return [round(f * (pre[j + 1] - pre[j - 48]) / 49, 2) if age >= 49 else None,
+                round(f * (pre[j + 1] - pre[j - 198]) / 199, 2) if age >= 199 else None,
+                round(f * max(win), 2) if age >= 249 else None,
+                round(f * min(win), 2) if age >= 249 else None]
+
     def value(ex, key, i):
         tsum = series(ex, key)[3]
         j = i - px.lo
@@ -615,7 +635,8 @@ def build_trend_flow(days: list, secs: list, resolved: dict, n500: list, cache: 
                                         # Rs crore traded in each of the dated sessions (aligned with "d"), and a normal
                                         # day: the 20 sessions before the latest
                                         "v": [round(value(ex, key, i), 2) for i in range(last - max(WINDOWS) + 1, last + 1)],
-                                        "v20": round(sum(value(ex, key, i) for i in range(max(px.lo, last - 20), last)) / 20, 2)}
+                                        "v20": round(sum(value(ex, key, i) for i in range(max(px.lo, last - 20), last)) / 20, 2),
+                                        "_lv": levels(ex, key)}
     return out
 
 
@@ -762,7 +783,7 @@ def write(days: list, cache: Path | None = None) -> dict | None:
                 b = _breadth(vals[w])
                 h[str(w)].append([round(100 * b["up"] / b["n"], 1), b["median"]] if b["n"] else None)
 
-    tf = None
+    tf, live_levels = None, {}
     try:
         tf = build_trend_flow(days, secs, resolved, n500, cache, px)
         for sec in sectors_out:
@@ -773,7 +794,9 @@ def write(days: list, cache: Path | None = None) -> dict | None:
                 f = tf["stocks"].get((row.get("exchange"), row.get("symbol") if row.get("exchange") == "NSE" else str(row.get("code")))) \
                     or tf["stocks"].get((row.get("exchange"), row.get("symbol")))
                 if f:
-                    row.update(f)
+                    row.update({k: v for k, v in f.items() if k != "_lv"})
+                    if f.get("_lv") and row.get("symbol"):
+                        live_levels[f"{row['exchange']}:{row['symbol']}"] = f["_lv"]
         t5 = tf["nifty500"]
         benchmark["trend"] = {k: t5.get(k) for k in ("above50", "above200", "hi52", "lo52", "n")}
         benchmark["flow"] = {k: t5.get(k) for k in ("value_cr", "value_avg20_cr", "value_ratio", "deliv_pct", "deliv_avg20_pct", "drivers", "spikes", "value_ratio_ex")}
@@ -786,6 +809,8 @@ def write(days: list, cache: Path | None = None) -> dict | None:
     OUT_DIR.mkdir(parents=True, exist_ok=True)
     LATEST_FILE.write_text(json.dumps(latest, separators=(",", ":"), ensure_ascii=False), encoding="utf-8")
     HISTORY_FILE.write_text(json.dumps(hist, separators=(",", ":")), encoding="utf-8")
+    if live_levels:
+        LEVELS_FILE.write_text(json.dumps({"asof": days[-1][0].isoformat(), "levels": live_levels}, separators=(",", ":")), encoding="utf-8")
     try:
         daily = build_daily(days, secs, resolved, n500, cache, px)
         if tf:

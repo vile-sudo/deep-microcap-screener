@@ -2610,3 +2610,7 @@ mark.tr-hit.cur{background:#f59e0b;color:#111}
 .ss-table td small{display:block;font-size:11px;color:var(--muted)}
 .ss-tfbar{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:0 0 12px}
 .ss-tfnav{display:inline-flex;gap:6px}
+.ss-tfold b,.ss-tfold small{color:var(--muted)!important}
+.ss-livetag{display:inline-flex;align-items:center;gap:6px;color:#15803d;font-size:.9em}
+.ss-livetag i{width:8px;height:8px;border-radius:50%;background:#16a34a;animation:sslp 1.6s infinite}
+@keyframes sslp{50%{opacity:.3}}

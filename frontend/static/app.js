@@ -6627,6 +6627,7 @@ function ssRender(){
   const td=document.getElementById('ss-tfdate'); if(td) td.onchange=()=>goDate(td.value, true);
   const tl=document.getElementById('ss-tflatest'); if(tl) tl.onclick=()=>{ SS.dayNote=''; SS.histDate=null; if(SS.mode==='day') SS.sel='d'+((d.sessions||[]).length-1); ssSave(); ssRender(); syncURL(); };
   body.querySelectorAll('[data-sstfstep]').forEach(bn=>bn.onclick=()=>{ const ds=ssDailyDates(), k=ds.indexOf(ssTfDate())+(+bn.dataset.sstfstep); if(ds[k]) goDate(ds[k], true); });
+  body.querySelectorAll('[data-sstflive]').forEach(bn=>bn.onclick=()=>{ SS.tfLive = bn.dataset.sstflive==='1'; ssRender(); });
   const cv=document.getElementById('ss-tfcsv'); if(cv) cv.onclick=()=>ssTfCsv(false);
   const ca=document.getElementById('ss-tfcsvall'); if(ca) ca.onclick=()=>ssTfCsv(true);
   const gl=document.getElementById('ss-golive'); if(gl) gl.onclick=()=>{ SS.histDate=null; SS.sel='live'; ssSave(); ssRender(); syncURL(); };
@@ -6769,8 +6770,34 @@ function ssTfAt(slug, i){
   return {t:{above50:g('a50'), above200:g('a200'), hi52:g('hi'), lo52:g('lo'), n:g('n')},
     f:{value_cr:g('v'), value_avg20_cr:v20, value_ratio:g('vr')??(g('v')!=null&&v20?g('v')/v20:null), deliv_pct:g('dl'), deliv_avg20_pct:d20}};
 }
+/* Live trend & flow: Zerodha has today's prices and the table is on the latest day (the "Close" switch turns it off) */
+function ssTfLive(){ const L=SS.live; return !!(L && L.sector_trend && ['live','closed'].includes(L.status) && SS.tfLive!==false); }
+/* share of the session gone by (9:15-15:30 IST); value so far / (normal day x this) is the day's pace */
+function ssPace(){
+  const L=SS.live; if(!L || L.status!=='live') return 1;
+  const t=new Date(new Date(L.as_of).toLocaleString('en-US',{timeZone:'Asia/Kolkata'})), m=t.getHours()*60+t.getMinutes()-(9*60+15);
+  return Math.max(0.03, Math.min(1, m/375));
+}
+/* one sector's flow on live prices; spikes: a stock already at 3x+ a normal full day and 15%+ of the sector's money */
+function ssLiveFlow(stocks, closeF){
+  const L=SS.live, f=closeF||{}, pace=ssPace(), vals=L.values||{};
+  const rows=stocks.map(s=>({s, v:vals[s.exchange+':'+s.symbol]||0})).filter(x=>x.v>0);
+  const total=rows.reduce((a,x)=>a+x.v,0), avg=f.value_avg20_cr;
+  rows.sort((a,b)=>(b.v-(b.s.v20||0)*pace)-(a.v-(a.s.v20||0)*pace));
+  const top=rows.slice(0,3), sp=top.filter(x=>x.s.v20>0 && x.v>=3*x.s.v20 && x.v>=0.15*total);
+  const restV=total-sp.reduce((a,x)=>a+x.v,0), restA=(avg||0)-sp.reduce((a,x)=>a+x.s.v20,0);
+  return {value_cr:total, value_avg20_cr:avg, value_ratio: avg ? total/(avg*pace) : null, so_far: avg ? total/avg : null, live:true,
+    deliv_pct:f.deliv_pct, deliv_avg20_pct:f.deliv_avg20_pct,
+    drivers: top.map(x=>({exchange:x.s.exchange, key:x.s.exchange==='NSE'?x.s.symbol:String(x.s.code), value_cr:x.v, x:x.s.v20>0?x.v/x.s.v20:null, share:total?100*x.v/total:0})),
+    spikes: sp.length, value_ratio_ex: sp.length && restA>0 ? restV/(restA*pace) : null};
+}
 function ssTfRows(date){
   const latest = !date || date===SS.data.asof, i=ssTfIdx(date);
+  if(latest && ssTfLive()){
+    const lc=ssLiveCol()[0], bn=lc.bench();
+    return SS.data.sectors.map(sec=>{ const a=ssAgg(sec.stocks.filter(s=>s.exchange), lc), v=ssBeatSeries(sec.slug).concat(a.n&&bn!=null?[a.median-bn]:[]);
+      return {sec, t:SS.live.sector_trend[sec.slug]||{}, f:ssLiveFlow(sec.stocks, sec.flow), streak:ssStreak(v), b10:ssBeats(v,10), b20:ssBeats(v,20), live:null, liveR:null}; });
+  }
   if(!latest) return SS.data.sectors.map(sec=>{ const v=ssBeatSeries(sec.slug).slice(0,i+1), x=ssTfAt(sec.slug,i);
     return {sec, t:x.t, f:x.f, streak:ssStreak(v), b10:ssBeats(v,10), b20:ssBeats(v,20), live:null, liveR:null}; });
   return SS.data.sectors.map(sec=>{ const v=ssBeatSeries(sec.slug), t=sec.trend||{}, f=sec.flow||{};
@@ -6789,7 +6816,8 @@ function ssTrendFlow(){
   const sk=SS.tfSort||'a50', dir=SS.tfDir||-1, gOrd=r=>r.sec.group==='nse'?1:0;
   rows.sort((x,y)=>{ const g=gOrd(x)-gOrd(y); if(g) return g; const a=K[sk](x), c=K[sk](y);
     if(sk==='name') return dir*String(a).localeCompare(String(c)); if(a==null&&c==null) return 0; if(a==null) return 1; if(c==null) return -1; return dir*(a-c); });
-  const live=latest && !!(SS.live&&SS.live.status==='live'&&SS.live.sector_value);
+  const live=false;   /* today's value is in the main columns when the table is live */
+  const isLive=latest && ssTfLive(), hasLive=latest && !!(SS.live && SS.live.sector_trend && ['live','closed'].includes(SS.live.status));
   const th=(k,l,tip)=>`<th data-sstf="${k}" title="${ea(tip||'')}">${l}${sk===k?(dir<0?' ↓':' ↑'):''}</th>`;
   const pctCell=v=>v==null?'<td>—</td>':`<td style="background-image:linear-gradient(${ssHeat(v)},${ssHeat(v)})"><b>${fmt(v,0)}%</b></td>`;
   const vr=v=>v==null?'—':`<b class="${v>=1.5?'ov-up':v<=0.6?'ov-dn':''}">${fmt(v,2)}×</b>`;
@@ -6798,13 +6826,19 @@ function ssTrendFlow(){
   const bt=x=>x?`<b>${x.b}</b><small>of ${x.n}</small>`:'—';
   const row=(name,sub,t,f,extra,attr)=>`<tr${attr||''}><td class="ss-tfn"><b>${esc(name)}</b><small>${sub}</small></td>${pctCell(t.above50)}${pctCell(t.above200)}
     <td><b class="${t.hi52?'ov-up':''}">${t.hi52??'—'}</b></td><td><b class="${t.lo52?'ov-dn':''}">${t.lo52??'—'}</b></td>
-    <td>${vr(f.value_ratio)}<small>${f.value_cr!=null?'₹'+fmtI(f.value_cr)+' Cr':''}</small>${ssDrvNote(f)}</td><td>${dlv(f)}</td>${extra}</tr>`;
-  const bx=latest?{t:b.trend||{}, f:b.flow||{}}:ssTfAt('nifty500',di);
+    <td>${vr(f.value_ratio)}<small>${f.value_cr!=null?'₹'+fmtI(f.value_cr)+' Cr'+(f.live&&f.so_far!=null&&ssPace()<1?' so far · '+fmt(100*f.so_far,0)+'% of a day':''):''}</small>${ssDrvNote(f)}</td><td${f.live?' class="ss-tfold" title="NSE publishes delivery after the close: this is '+ea(rcDayLong(d.asof))+'"':''}>${dlv(f)}</td>${extra}</tr>`;
+  const bL=SS.live&&SS.live.benchmark;
+  const bx=isLive ? {t:bL.trend||{}, f:{value_cr:bL.value_cr, value_avg20_cr:(b.flow||{}).value_avg20_cr, value_ratio:(b.flow||{}).value_avg20_cr?bL.value_cr/((b.flow||{}).value_avg20_cr*ssPace()):null,
+      so_far:(b.flow||{}).value_avg20_cr?bL.value_cr/(b.flow||{}).value_avg20_cr:null, live:true, deliv_pct:(b.flow||{}).deliv_pct, deliv_avg20_pct:(b.flow||{}).deliv_avg20_pct}}
+    : latest?{t:b.trend||{}, f:b.flow||{}}:ssTfAt('nifty500',di);
   const bv=SS.live&&SS.live.benchmark&&SS.live.benchmark.value_cr, bf=bx.f;
-  SS.tfExport={date, rows:[{name:b.name||'Nifty 500', group:'benchmark', t:bx.t, f:bx.f}].concat(rows.map(r=>({name:r.sec.name, group:r.sec.group==='nse'?'NSE sector':'Theme', t:r.t, f:r.f, streak:r.streak, b10:r.b10, b20:r.b20})))};
+  SS.tfExport={date: isLive?(SS.live.date||date):date, live:isLive, rows:[{name:b.name||'Nifty 500', group:'benchmark', t:bx.t, f:bx.f}].concat(rows.map(r=>({name:r.sec.name, group:r.sec.group==='nse'?'NSE sector':'Theme', t:r.t, f:r.f, streak:r.streak, b10:r.b10, b20:r.b20})))};
   const DD=ssDailyDates();
   const benchExtra=(live?`<td>${bv!=null?`<b>₹${fmtI(bv)} Cr</b><small>${bf.value_avg20_cr?fmt(100*bv/bf.value_avg20_cr,0)+'% of 20D avg':''}</small>`:'—'}</td>`:'')+'<td colspan="3" class="cp-sub">the benchmark</td>';
-  return `<div class="cp-card" id="ss-tfcard"><div class="cp-card-h"><h3>Trend &amp; money flow · ${esc(rcDayLong(date))}</h3><span class="cp-sub">click a heading to sort · click a sector to open it</span></div>
+  const lt=SS.live&&SS.live.as_of?new Date(SS.live.as_of).toLocaleTimeString('en-IN',{hour:'2-digit',minute:'2-digit',hour12:false,timeZone:'Asia/Kolkata'}):'';
+  return `<div class="cp-card" id="ss-tfcard"><div class="cp-card-h"><h3>Trend &amp; money flow · ${isLive?(SS.live.status==='live'?`<span class="ss-livetag"><i></i>LIVE ${esc(lt)}</span>`:'today (Zerodha close)'):esc(rcDayLong(date))}</h3><span class="cp-sub">click a heading to sort · click a sector to open it</span></div>
+    ${hasLive?`<div class="rc-seg" role="group" aria-label="Live or close" style="margin:0 0 10px"><button type="button" data-sstflive="1" class="${isLive?'on':''}">● Live (Zerodha)</button><button type="button" data-sstflive="0" class="${!isLive?'on':''}">Close of ${esc(ssDay(d.asof))}</button></div>`:''}
+    ${isLive?`<p class="cp-sub" style="margin:0 0 10px">On live prices: 50/200-DMA and 52-week marks use each stock's last traded price; <b>value vs 20D</b> is the day's <b>pace</b> — money traded so far against a normal day's share by this time (trading is heavier near the open and close, so read mid-day figures loosely). Delivery % comes out after the close, so that column shows ${esc(rcDayLong(d.asof))}. Streaks and beats include today.</p>`:''}
     <div class="ss-tfbar"><label class="ss-datepick"><span class="cp-lab">Date</span><input type="date" class="gal-select" id="ss-tfdate" min="${DD[0]||''}" max="${d.asof}" value="${date}"></label>
       ${!latest?`<button type="button" class="btn ghost" id="ss-tflatest">Latest (${esc(ssDay(d.asof))})</button>`:''}
       <span class="ss-tfnav">${di>0?`<button type="button" class="btn ghost" data-sstfstep="-1" title="Session before">‹ Prev</button>`:''}${!latest&&di>=0?`<button type="button" class="btn ghost" data-sstfstep="1" title="Session after">Next ›</button>`:''}</span>
@@ -6833,7 +6867,7 @@ function ssTfCsv(all){
     const E=SS.tfExport; if(!E) return;
     lines=[SS_CSV_HEAD.concat(['Streak vs Nifty 500 (days, - = lagging)','Beat Nifty 500 last 10D','Beat Nifty 500 last 20D'])]
       .concat(E.rows.map(r=>ssCsvRow(E.date, r.name, r.group, r.t, r.f).concat([r.streak??'', r.b10?r.b10.b:'', r.b20?r.b20.b:''])));
-    name=`sector-trend-flow-${E.date}.csv`;
+    name=`sector-trend-flow-${E.date}${E.live?'-live-'+new Date().toTimeString().slice(0,5).replace(':',''):''}.csv`;
   } else {
     const D=SS.daily; if(!D||!D.trend) return;
     const secs=[{slug:'nifty500', name:'Nifty 500', group:'benchmark'}].concat(SS.data.sectors.map(s=>({slug:s.slug, name:s.name, group:s.group==='nse'?'NSE sector':'Theme'})));
