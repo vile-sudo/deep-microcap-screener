@@ -202,11 +202,35 @@ This is a judgment call, not a hard rule -- verify it with search rather than as
      qualify (see the non-negotiable section above), not a count to hit.
 4. If nothing clears the bar (no current driver, no confirmed Indian listed participation, or everything you
    found is already widely known and re-rated with nothing earlier available), write out/brief.json as
-   {{"slug": null}} and stop -- a skipped day is better than a weak, duplicate, India-less, or already-obvious
+   {{"slug": null, "reason": "<one or two sentences: which candidates you checked and why each failed>"}} and stop
+   -- a skipped day is better than a weak, duplicate, India-less, or already-obvious
    theme.
 
 Read the file back once and fix any JSON error. Reply DONE when finished.
 """
+
+
+MIN_SEARCHES = 12   # web searches below which a "nothing cleared the bar" skip isn't believed the first time
+
+
+def _searches(work: Path) -> int:
+    """Web searches and fetches the session(s) have made so far, from claude_code's session.log."""
+    try:
+        return sum(1 for ln in (work / "session.log").read_text(encoding="utf-8").splitlines()
+                   if " WebSearch" in ln or " WebFetch" in ln)
+    except OSError:
+        return 0
+
+
+def _tail(work: Path, n: int = 25) -> None:
+    """The end of the session log in the CI output, so a skipped or failed day can be diagnosed."""
+    try:
+        lines = (work / "session.log").read_text(encoding="utf-8").splitlines()[-n:]
+    except OSError:
+        return
+    print("theme discovery: session log (tail):", flush=True)
+    for ln in lines:
+        print("    " + ln[:300], flush=True)
 
 
 def _slug_ok(slug: str) -> bool:
@@ -246,8 +270,9 @@ def discover(dry_run: bool) -> str:
         prompt = "Read TASK.md in this folder and carry out the task it describes, exactly."
         errs = ["not run"]
         brief = None
-        for attempt in range(2):
+        for attempt in range(3):
             claude_code._claude(work, prompt, tools=TOOLS, timeout=timeout, model=model)
+            searched = _searches(work)
             try:
                 brief = json.loads((work / "out" / "brief.json").read_text(encoding="utf-8"))
             except (OSError, ValueError) as e:
@@ -255,12 +280,26 @@ def discover(dry_run: bool) -> str:
                 prompt = f"Read TASK.md. out/brief.json {errs[0]}. Fix it and reply DONE."
                 continue
             if brief.get("slug") is None:
-                return "skipped: no theme cleared the bar today"
+                reason = str(brief.get("reason") or "no reason given")[:400]
+                # A real search takes ~40+ web searches (5-8 min). A skip after a handful is a session that gave
+                # up rather than a judgment (seen in CI from Oct 6, 2026: skips after 23-86 seconds) -- once, send
+                # it back to do the work.
+                if searched < MIN_SEARCHES and attempt == 0:
+                    print(f"theme discovery: skip after only {searched} searches ({reason}) -- asking for the full search", flush=True)
+                    _tail(work)
+                    (work / "out" / "brief.json").unlink(missing_ok=True)
+                    prompt = (f"Read TASK.md again. You skipped after only {searched} web searches, which is not the search "
+                              "TASK.md asks for. Do it properly now: shortlist several candidate themes from both Indian news and "
+                              "global market-research/trade sources, and verify Indian listed participation for each before "
+                              "deciding. Skip only if none clears the bar after that. Write out/brief.json and reply DONE.")
+                    continue
+                return f"skipped: no theme cleared the bar today after {searched} searches -- {reason}"
             errs = validate(brief)
             if not errs:
                 break
             prompt = f"Read TASK.md. out/brief.json has problems: {'; '.join(errs)}. Fix them and reply DONE."
         if errs:
+            _tail(work)
             return f"failed validation: {'; '.join(errs)}"
     except claude_code.UsageLimitReached as e:
         return f"usage limit reached ({e})"
