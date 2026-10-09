@@ -23,7 +23,7 @@ from pathlib import Path
 import requests
 
 from . import kite
-from .sector_strength import LATEST_FILE, LEVELS_FILE
+from .sector_strength import LATEST_FILE
 
 LIVE_TTL = 60                 # seconds between refreshes while the market is open
 CLOSED_TTL = 900              # after the close the numbers don't change; check now and then
@@ -91,32 +91,6 @@ def build() -> dict:
             vol, avg = q.get("volume") or 0, q.get("average_price") or last
             value[ours] = vol * avg / 1e7                         # Rs crore traded so far today
     sector_value = {slug: round(sum(value.get(k, 0) for k in ks), 2) for slug, ks in groups.items()}
-    try:
-        levels = json.loads(LEVELS_FILE.read_text(encoding="utf-8")).get("levels") or {}
-    except (OSError, ValueError):
-        levels = {}
-    last_px = {ours: (quotes.get(k) or {}).get("last_price") for k, ours in want.items()}
-
-    def trend(ks):
-        """Today's trend breadth at the live price: above the 50/200-day average, at a 52-week high / low."""
-        c50 = n50 = c200 = n200 = hi = lo = n = 0
-        for k in ks:
-            lv, p = levels.get(k), last_px.get(k)
-            if not lv or not p or k not in moves:
-                continue
-            n += 1
-            if lv[0] is not None:
-                n50 += 1
-                c50 += p > lv[0]
-            if lv[1] is not None:
-                n200 += 1
-                c200 += p > lv[1]
-            if lv[2] is not None:
-                hi += p >= lv[2]
-                lo += p <= lv[3]
-        return {"above50": round(100 * c50 / n50, 1) if n50 else None, "above200": round(100 * c200 / n200, 1) if n200 else None,
-                "hi52": hi, "lo52": lo, "n": n}
-    sector_trend = {slug: trend(ks) for slug, ks in groups.items()}
     idx = quotes.get(INDEX) or {}
     il, ip = idx.get("last_price"), (idx.get("ohlc") or {}).get("close")
     vals = [moves[f"NSE:{s}"] for s in n500 if f"NSE:{s}" in moves]
@@ -124,9 +98,7 @@ def build() -> dict:
                "up1": sum(v > 1 for v in vals), "median": round(statistics.median(vals), 2) if vals else None}
     return base | {"status": "live" if base["market_open"] else "closed", "date": now.date().isoformat(),
                    "benchmark": {"name": "Nifty 500", "last": il, "chg": round((il / ip - 1) * 100, 2) if il and ip else None,
-                                 "breadth": breadth, "value_cr": round(sum(value.get(f"NSE:{s}", 0) for s in n500), 2),
-                                 "trend": trend([f"NSE:{s}" for s in n500])},
-                   "sector_trend": sector_trend,
+                                 "breadth": breadth, "value_cr": round(sum(value.get(f"NSE:{s}", 0) for s in n500), 2)},
                    "sector_value": sector_value,
                    "covered": len(moves), "requested": len(want), "moves": moves,
                    "values": {k: round(v, 2) for k, v in value.items()}}
