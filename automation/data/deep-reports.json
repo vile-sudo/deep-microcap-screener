@@ -839,6 +839,26 @@
     "FLUIDOM": "already covers Mar 2023",
     "KENNAMET": "already covers Sep 2022"
    }
+  },
+  {
+   "on": "2026-10-10",
+   "written": [
+    "SBCL:FY27-Q1",
+    "ESABINDIA:2026-10-10"
+   ],
+   "spent_usd": null,
+   "skipped": {
+    "VIMTALABS": "error: 500 Server Error: Internal Server Error for url: https://www.screener.in/company/VIMTALABS/consolidated/",
+    "SIMPLEXCAS": "error: 500 Server Error: Internal Server Error for url: https://www.screener.in/company/SIMPLEXCAS/consolidated/",
+    "FLUIDOM": "error: 500 Server Error: Internal Server Error for url: https://www.screener.in/company/FLUIDOM/consolidated/",
+    "KENNAMET": "error: 500 Server Error: Internal Server Error for url: https://www.screener.in/company/KENNAMET/consolidated/",
+    "OCCLLTD": "error: 500 Server Error: Internal Server Error for url: https://www.screener.in/company/OCCLLTD/consolidated/",
+    "DIXON": "error: 500 Server Error: Internal Server Error for url: https://www.screener.in/company/DIXON/consolidated/",
+    "SANDUMA": "error: 500 Server Error: Internal Server Error for url: https://www.screener.in/company/SANDUMA/consolidated/",
+    "BETA": "error: 500 Server Error: Internal Server Error for url: https://www.screener.in/company/BETA/consolidated/",
+    "544710": "error: 500 Server Error: Internal Server Error for url: https://www.screener.in/company/544710/consolidated/",
+    "544310": "error: 500 Server Error: Internal Server Error for url: https://www.screener.in/company/544310/consolidated/"
+   }
   }
  ],
  "seen_new_results": {
@@ -1345,6 +1365,24 @@
    "cost_usd": null,
    "api_equivalent_usd": 5.352,
    "minutes": 15.2
+  },
+  "SBCL": {
+   "period": "FY27-Q1",
+   "on": "2026-10-10",
+   "engine": "claude-code",
+   "tokens_out": 108914,
+   "cost_usd": null,
+   "api_equivalent_usd": 8.825,
+   "minutes": 16.5
+  },
+  "ESABINDIA": {
+   "period": "2026-10-10",
+   "on": "2026-10-10",
+   "engine": "claude-code",
+   "tokens_out": 94749,
+   "cost_usd": null,
+   "api_equivalent_usd": 5.754,
+   "minutes": 14.3
   }
  }
 }

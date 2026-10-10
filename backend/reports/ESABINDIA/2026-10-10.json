@@ -1,0 +1,5094 @@
+{
+ "code": "ESABINDIA",
+ "name": "Esab India Ltd",
+ "period": "2026-10-10",
+ "period_label": null,
+ "results_quarter": null,
+ "generated_at": "2026-10-10T07:17+05:30",
+ "basis": "consolidated",
+ "screener_url": "https://www.screener.in/company/ESABINDIA/consolidated/",
+ "sources": [
+  {
+   "id": "NUMBERS",
+   "type": "numbers",
+   "title": "screener.in consolidated statements + computed metrics",
+   "url": "https://www.screener.in/company/ESABINDIA/consolidated/",
+   "date": null
+  },
+  {
+   "id": "SCREENER",
+   "type": "profile",
+   "title": "screener.in company profile",
+   "url": "https://www.screener.in/company/ESABINDIA/consolidated/",
+   "date": null
+  },
+  {
+   "id": "AR2026",
+   "type": "annual_report",
+   "title": "Annual Report 2026",
+   "url": "https://www.bseindia.com/xml-data/corpfiling/AttachHis/7203372f-d16e-4a12-b3a8-f34a7812477f.pdf",
+   "date": "2026"
+  },
+  {
+   "id": "RATING",
+   "type": "credit_rating",
+   "title": "Rating update | 6 Jul 2020 from care",
+   "url": "https://www.careratings.com/upload/CompanyFiles/PR/ESAB India Limited-07-06-2020.pdf",
+   "date": null
+  },
+  {
+   "id": "ANNOUNCEMENTS",
+   "type": "announcements",
+   "title": "Latest exchange announcements",
+   "url": "https://www.screener.in/company/ESABINDIA/consolidated/#documents",
+   "date": null
+  },
+  {
+   "id": "BOARD",
+   "type": "board_notes",
+   "title": "This dashboard's earlier research notes (analyst notes, not company disclosure)",
+   "url": null,
+   "date": null
+  }
+ ],
+ "quant": {
+  "basis": "consolidated",
+  "units": "Rs crore unless stated",
+  "annual": {
+   "columns": [
+    "Dec 2005",
+    "Dec 2006",
+    "Dec 2007"
+   ],
+   "sales": [
+    235.0,
+    285.0,
+    339.0
+   ],
+   "expenses": [
+    186.0,
+    220.0,
+    259.0
+   ],
+   "ebitda": [
+    49.0,
+    65.0,
+    80.0
+   ],
+   "opm": [
+    21.0,
+    23.0,
+    24.0
+   ],
+   "other_income": [
+    15.0,
+    6.0,
+    8.0
+   ],
+   "interest": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "depreciation": [
+    4.0,
+    5.0,
+    6.0
+   ],
+   "pbt": [
+    58.0,
+    65.0,
+    81.0
+   ],
+   "tax_rate": [
+    32.0,
+    34.0,
+    34.0
+   ],
+   "pat": [
+    40.0,
+    43.0,
+    54.0
+   ],
+   "eps": [
+    25.78,
+    27.71,
+    34.84
+   ],
+   "payout": [
+    101.0,
+    0.0,
+    44.0
+   ],
+   "equity_capital": [
+    15.0,
+    15.0,
+    15.0
+   ],
+   "reserves": [
+    19.0,
+    61.0,
+    89.0
+   ],
+   "borrowings": [
+    11.0,
+    0.0,
+    0.0
+   ],
+   "other_liabilities": [
+    89.0,
+    53.0,
+    58.0
+   ],
+   "total_assets": [
+    135.0,
+    130.0,
+    162.0
+   ],
+   "fixed_assets": [
+    35.0,
+    49.0,
+    61.0
+   ],
+   "cwip": [
+    6.0,
+    7.0,
+    6.0
+   ],
+   "investments": [
+    0.0,
+    8.0,
+    17.0
+   ],
+   "other_assets": [
+    93.0,
+    67.0,
+    78.0
+   ],
+   "cfo": [
+    35.0,
+    42.0,
+    43.0
+   ],
+   "cfi": [
+    -3.0,
+    -25.0,
+    -25.0
+   ],
+   "cff": [
+    -1.0,
+    -52.0,
+    -24.0
+   ],
+   "fcf": [
+    30.0,
+    23.0,
+    26.0
+   ],
+   "debtor_days": [
+    8.0,
+    12.0,
+    10.0
+   ],
+   "inventory_days": [
+    71.0,
+    56.0,
+    67.0
+   ],
+   "payable_days": [
+    66.0,
+    78.0,
+    70.0
+   ],
+   "ccc": [
+    13.0,
+    -10.0,
+    8.0
+   ],
+   "wc_days": [
+    -80.0,
+    -9.0,
+    6.0
+   ],
+   "roce": [
+    null,
+    108.0,
+    91.0
+   ],
+   "equity": [
+    34.0,
+    76.0,
+    104.0
+   ],
+   "capex": [
+    5.0,
+    19.0,
+    17.0
+   ]
+  },
+  "quarterly": {
+   "columns": [],
+   "sales": [],
+   "ebitda": [],
+   "opm": [],
+   "other_income": [],
+   "interest": [],
+   "depreciation": [],
+   "pbt": [],
+   "tax_rate": [],
+   "pat": [],
+   "eps": [],
+   "sales_yoy": [],
+   "pat_yoy": []
+  },
+  "derived": {
+   "roe": [
+    null,
+    78.2,
+    60.0
+   ],
+   "debt_equity": [
+    0.32,
+    0.0,
+    0.0
+   ],
+   "interest_cover": [
+    59.0,
+    66.0,
+    82.0
+   ],
+   "cfo_pat": [
+    0.88,
+    0.98,
+    0.8
+   ],
+   "capex_sales": [
+    2.1,
+    6.7,
+    5.0
+   ],
+   "fixed_asset_turnover": [
+    6.71,
+    5.82,
+    5.56
+   ],
+   "other_income_pct_pbt": [
+    25.9,
+    9.2,
+    9.9
+   ],
+   "cumulative": {
+    "cfo_pat_3y": 0.88,
+    "fcf_3y": 79.0,
+    "cfo_pat_5y": null,
+    "fcf_5y": null
+   },
+   "growth": {},
+   "promoter_chg_1y": 0.0
+  },
+  "shareholding": {
+   "columns": [
+    "Sep 2023",
+    "Dec 2023",
+    "Mar 2024",
+    "Jun 2024",
+    "Sep 2024",
+    "Dec 2024",
+    "Mar 2025",
+    "Jun 2025",
+    "Sep 2025",
+    "Dec 2025",
+    "Mar 2026",
+    "Jun 2026"
+   ],
+   "rows": {
+    "Promoters": [
+     73.72,
+     73.72,
+     73.72,
+     73.72,
+     73.72,
+     73.72,
+     73.72,
+     73.72,
+     73.72,
+     73.72,
+     73.72,
+     73.72
+    ],
+    "FIIs": [
+     1.08,
+     1.14,
+     1.26,
+     1.54,
+     1.66,
+     1.84,
+     1.79,
+     1.56,
+     1.53,
+     1.51,
+     1.56,
+     1.62
+    ],
+    "DIIs": [
+     13.0,
+     12.98,
+     13.02,
+     13.03,
+     13.03,
+     13.1,
+     12.87,
+     12.82,
+     12.77,
+     12.93,
+     12.88,
+     12.87
+    ],
+    "Public": [
+     12.19,
+     12.15,
+     11.99,
+     11.69,
+     11.59,
+     11.33,
+     11.6,
+     11.89,
+     11.98,
+     11.84,
+     11.84,
+     11.78
+    ],
+    "No. of Shareholders": [
+     18375.0,
+     19685.0,
+     18395.0,
+     18288.0,
+     19674.0,
+     19749.0,
+     20625.0,
+     21625.0,
+     21499.0,
+     20215.0,
+     19837.0,
+     20083.0
+    ]
+   }
+  },
+  "valuation": {
+   "price": 5394.0,
+   "market_cap": 8304.0,
+   "high_52w": 7325.0,
+   "low_52w": 4710.0,
+   "from_high_pct": -26.4,
+   "book_value": 67.6,
+   "dividend_yield": 1.39,
+   "pe_ttm": 153.8,
+   "ev": 8304.0,
+   "ev_ebitda_ttm": 103.8,
+   "ev_sales_ttm": 24.5,
+   "pb": 79.79,
+   "net_debt_note": "EV = market cap + latest borrowings. Screener's public page does not split cash out of other assets, so cash is not netted off; investments are shown separately.",
+   "debt": 0,
+   "investments": 17.0,
+   "earnings_basis": "last full year (Dec 2007)",
+   "dcf": {
+    "available": true,
+    "meaningful": true,
+    "method": "5-year FCFF: EBITDA - tax on EBIT - capex - change in net working capital; growth fades linearly from the starting rate to the year-5 rate; Gordon terminal value; equity = EV - borrowings.",
+    "inputs": {
+     "base_sales_ttm": 339.0,
+     "ebitda_margin_base": 23.0,
+     "starting_growth_base": 10.0,
+     "growth_basis": "median of 3-year, 5-year and TTM sales growth, capped 0-30%",
+     "da_pct_sales": 1.8,
+     "fixed_asset_turnover": 5.82,
+     "capex_rule": "depreciation + new sales / fixed-asset turnover (median of the last three years)",
+     "wc_days": 0.0,
+     "tax_rate": 25.2,
+     "rf": 7.0,
+     "erp": 7.0,
+     "beta": 1.15,
+     "cost_of_equity": 15.0,
+     "cost_of_debt_post_tax": 7.5,
+     "debt_weight": 0.0,
+     "wacc": 15.0,
+     "terminal_growth": 5.5,
+     "shares_cr": 1.539
+    },
+    "scenarios": {
+     "bear": {
+      "assumptions": {
+       "start_growth": 4.0,
+       "growth_by_year5": 5.0,
+       "ebitda_margin": 19.0
+      },
+      "projection": [
+       {
+        "year": 1,
+        "growth": 4.0,
+        "sales": 352.6,
+        "ebitda": 67.0,
+        "fcff": 43.1,
+        "pv": 37.5
+       },
+       {
+        "year": 2,
+        "growth": 4.2,
+        "sales": 367.5,
+        "ebitda": 69.8,
+        "fcff": 44.8,
+        "pv": 33.8
+       },
+       {
+        "year": 3,
+        "growth": 4.5,
+        "sales": 384.1,
+        "ebitda": 73.0,
+        "fcff": 46.7,
+        "pv": 30.6
+       },
+       {
+        "year": 4,
+        "growth": 4.8,
+        "sales": 402.3,
+        "ebitda": 76.4,
+        "fcff": 48.7,
+        "pv": 27.8
+       },
+       {
+        "year": 5,
+        "growth": 5.0,
+        "sales": 422.4,
+        "ebitda": 80.3,
+        "fcff": 51.0,
+        "pv": 25.3
+       }
+      ],
+      "pv_explicit": 155.1,
+      "terminal_value": 559.7,
+      "pv_terminal": 277.6,
+      "ev": 432.7,
+      "equity_value": 432.7,
+      "per_share": 281.1
+     },
+     "base": {
+      "assumptions": {
+       "start_growth": 10.0,
+       "growth_by_year5": 10.0,
+       "ebitda_margin": 23.0
+      },
+      "projection": [
+       {
+        "year": 1,
+        "growth": 10.0,
+        "sales": 372.9,
+        "ebitda": 85.8,
+        "fcff": 53.4,
+        "pv": 46.4
+       },
+       {
+        "year": 2,
+        "growth": 10.0,
+        "sales": 410.2,
+        "ebitda": 94.3,
+        "fcff": 58.7,
+        "pv": 44.4
+       },
+       {
+        "year": 3,
+        "growth": 10.0,
+        "sales": 451.2,
+        "ebitda": 103.8,
+        "fcff": 64.6,
+        "pv": 42.4
+       },
+       {
+        "year": 4,
+        "growth": 10.0,
+        "sales": 496.3,
+        "ebitda": 114.2,
+        "fcff": 71.1,
+        "pv": 40.6
+       },
+       {
+        "year": 5,
+        "growth": 10.0,
+        "sales": 546.0,
+        "ebitda": 125.6,
+        "fcff": 78.2,
+        "pv": 38.8
+       }
+      ],
+      "pv_explicit": 212.5,
+      "terminal_value": 903.8,
+      "pv_terminal": 448.3,
+      "ev": 660.9,
+      "equity_value": 660.9,
+      "per_share": 429.3
+     },
+     "bull": {
+      "assumptions": {
+       "start_growth": 16.5,
+       "growth_by_year5": 13.0,
+       "ebitda_margin": 25.0
+      },
+      "projection": [
+       {
+        "year": 1,
+        "growth": 16.5,
+        "sales": 394.9,
+        "ebitda": 98.7,
+        "fcff": 59.0,
+        "pv": 51.3
+       },
+       {
+        "year": 2,
+        "growth": 15.6,
+        "sales": 456.6,
+        "ebitda": 114.2,
+        "fcff": 68.7,
+        "pv": 51.9
+       },
+       {
+        "year": 3,
+        "growth": 14.8,
+        "sales": 524.0,
+        "ebitda": 131.0,
+        "fcff": 79.5,
+        "pv": 52.2
+       },
+       {
+        "year": 4,
+        "growth": 13.9,
+        "sales": 596.7,
+        "ebitda": 149.2,
+        "fcff": 91.2,
+        "pv": 52.0
+       },
+       {
+        "year": 5,
+        "growth": 13.0,
+        "sales": 674.3,
+        "ebitda": 168.6,
+        "fcff": 103.8,
+        "pv": 51.5
+       }
+      ],
+      "pv_explicit": 259.0,
+      "terminal_value": 1227.6,
+      "pv_terminal": 609.0,
+      "ev": 868.0,
+      "equity_value": 868.0,
+      "per_share": 563.8
+     }
+    },
+    "sensitivity": {
+     "wacc": [
+      13.5,
+      15.0,
+      16.5
+     ],
+     "g": [
+      4.5,
+      5.5,
+      6.5
+     ],
+     "values": [
+      [
+       471.9,
+       512.4,
+       564.4
+      ],
+      [
+       401.9,
+       429.3,
+       463.1
+      ],
+      [
+       349.5,
+       368.9,
+       392.1
+      ]
+     ]
+    },
+    "reverse_dcf": {
+     "implied_5y_sales_cagr": 93.3,
+     "base_case_5y_cagr_equivalent": 10.0,
+     "note": "Constant sales growth for five years, at the base margin and the same WACC and terminal growth, that makes the DCF equal today's EV."
+    },
+    "upside_pct": {
+     "bear": -94.8,
+     "base": -92.0,
+     "bull": -89.5
+    }
+   }
+  },
+  "red_flags": [
+   {
+    "level": "red",
+    "title": "Price needs growth well above trend",
+    "detail": "Today's price implies about 93% a year sales growth for five years, against 10% in the base case.",
+    "label": "[E]"
+   },
+   {
+    "level": "amber",
+    "title": "Rich valuation",
+    "detail": "154x trailing earnings.",
+    "label": "[E]"
+   },
+   {
+    "level": "green",
+    "title": "Profits turn into cash",
+    "detail": "Operating cash flow was 0.88x reported profit over the last three years.",
+    "label": "[E]"
+   },
+   {
+    "level": "green",
+    "title": "Little or no debt",
+    "detail": "Borrowings are 0.00x equity.",
+    "label": "[F]"
+   },
+   {
+    "level": "green",
+    "title": "High returns on capital",
+    "detail": "ROCE 91% last year.",
+    "label": "[F]"
+   }
+  ],
+  "latest_quarter": null
+ },
+ "pack_chars": 0,
+ "model_id": "claude-code:opus",
+ "sections": [
+  {
+   "id": "executive_summary",
+   "title": "Executive investment summary",
+   "subsections": [
+    {
+     "title": "What the company actually does",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "ESAB India is the Indian listed arm of ESAB Corporation (Delaware, USA), which holds 73.72% through ESAB Holdings Ltd, UK (37.31%) and Exelvia Group India BV, Netherlands (36.41%) [F] (AR2026 p.22) [F] (AR2026 p.41). It makes and sells welding and cutting products: welding consumables (electrodes, flux-cored and solid wires, SAW flux), arc welding and cutting equipment, and gas-control equipment, and it trades group-made products in India [F] (AR2026 p.49) [F] (AR2026 p.141). FY26 revenue from operations was Rs 1,508.15 crore, up 9.80% [F] (AR2026 p.108) [MC] (AR2026 p.21)."
+      },
+      {
+       "type": "p",
+       "text": "The company earns money in three ways [F] (AR2026 p.141). (1) Manufactured goods: Rs 1,052.70 crore, 69.8% of revenue [E]. (2) Traded goods: Rs 321.21 crore, 21.3% [E]. (3) Engineering, support and consulting services: Rs 124.59 crore, plus Rs 3.50 crore of management services. Together these are 8.5% of revenue [E]. **Essentially all service revenue is billed to ESAB group entities**: related-party service income was Rs 124.63 crore against Rs 124.59 crore of reported engineering services [F] (AR2026 p.157) [AI]."
+      },
+      {
+       "type": "table",
+       "caption": "Revenue composition FY25-FY26 (Rs crore) [F] (AR2026 p.141); shares and growth [E]",
+       "columns": [
+        "Line",
+        "FY25",
+        "FY26",
+        "% of FY26",
+        "YoY growth"
+       ],
+       "rows": [
+        [
+         "Manufactured goods",
+         "951.23",
+         "1,052.70",
+         "69.8%",
+         "10.7%"
+        ],
+        [
+         "Traded goods",
+         "320.45",
+         "321.21",
+         "21.3%",
+         "0.2%"
+        ],
+        [
+         "Engineering, support and consulting services",
+         "91.28",
+         "124.59",
+         "8.3%",
+         "36.5%"
+        ],
+        [
+         "Management service to related party",
+         "3.50",
+         "3.50",
+         "0.2%",
+         "0.0%"
+        ],
+        [
+         "Scrap sales and export benefits",
+         "7.01",
+         "6.15",
+         "0.4%",
+         "-12.3%"
+        ],
+        [
+         "Revenue from operations",
+         "1,373.47",
+         "1,508.15",
+         "100%",
+         "9.8%"
+        ]
+       ]
+      },
+      {
+       "type": "bullets",
+       "items": [
+        "End markets: the company lists automotive, general fabrication and construction, pipelines and pipemills, power, process industry, railways, shipbuilding and offshore, transport and mobile machinery, and repair and maintenance for steel, cement, power and mining [F] (AR2026 p.39). **No percentage split by end market is disclosed** [F] (AR2026 p.165).",
+        "Product split: the BRSR classifies turnover by NIC code as 71% 'Fabrication Technology' under NIC 2592 and 29% under NIC 2710 [F] (AR2026 p.39). Our reading is that this approximates consumables versus equipment, but the company does not label it that way [AI].",
+        "Geography: India Rs 1,249.51 crore (83.2%) and outside India Rs 252.49 crore (16.8%) of contract revenue in FY26 [F] (AR2026 p.166) [E]. The BRSR puts exports at 'about 17%' [F] (AR2026 p.39).",
+        "Customer profile: 69% of sales go through 393 dealers and distributors. The top 10 dealers account for 26% of dealer sales [F] (AR2026 p.47). No single customer exceeds 10% of sales [F] (AR2026 p.142). Related parties took 22.4% of revenue from operations in FY26 [E] (AR2026 p.157).",
+        "Structure: there are no subsidiaries, JVs or associates [F] (AR2026 p.22). The company runs three plants: Ambattur and Irungattukottai in Tamil Nadu, and Kalmeshwar in Nagpur [F] (AR2026 p.88)."
+       ]
+      },
+      {
+       "type": "callout",
+       "tone": "bad",
+       "text": "Data-integrity warning. Our statements data feed returned only Dec-2005 to Dec-2007 annual figures, with sales of Rs 235-339 crore, and no quarterly data [F] (NUMBERS). Every DCF value, trading multiple and rule-based flag in the feed is computed on that 2007 base, while price (Rs 5,394) and market cap (Rs 8,304 crore) are current [F] (NUMBERS). The model's base-year sales of Rs 339 crore is about 22.5% of FY26 revenue [E]. We report the model outputs because they are the only permitted valuation source, but **we treat them as not decision-useful** (see the valuation sections). Operating analysis in this report rests on the FY26 annual report."
+      }
+     ]
+    },
+    {
+     "title": "Listing status and evidence base",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "This is not a recent listing. The company was incorporated on 10 November 1987, began operations in July 1988 and is listed on BSE (500133) and NSE (ESABINDIA) [F] (AR2026 p.111) [F] (AR2026 p.86). The evidence base is thin in a different way. We have one annual report (FY26), a CARE rating withdrawal note from July 2020, a short exchange-announcement list and a screener profile [F] (RATING) [F] (ANNOUNCEMENTS). **No earnings-call transcripts, investor presentations or quarterly financials were available.** The company states it does not meet institutional investors or analysts, and that only the Chairman is authorised to do so and did not in the past 12 months [F] (AR2026 p.86). Q1 FY27 results were approved on 11 August 2026, but the figures are not in our evidence set [F] (ANNOUNCEMENTS)."
+      }
+     ]
+    },
+    {
+     "title": "Bull thesis",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "Bull thesis",
+       "columns": [
+        "#",
+        "Thesis",
+        "Evidence",
+        "Financial impact",
+        "Time horizon",
+        "Confidence"
+       ],
+       "rows": [
+        [
+         "1",
+         "Asset-light compounder with very high returns",
+         "ROCE 60.0%, ROE 52.3% in FY26 [F] (AR2026 p.165). Capex Rs 31.55 crore = 2.1% of revenue [E] (AR2026 p.109). Debt-free [F] (AR2026 p.22)",
+         "Revenue added about Rs 10 per Rs 1 of net fixed assets added over FY22-FY26 [E] (AR2026 p.4)",
+         "Ongoing",
+         "High"
+        ],
+        [
+         "2",
+         "Cash returned through dividends",
+         "Dividends paid Rs 141.62 crore against FCF of about Rs 149 crore in FY26 [F] (AR2026 p.109) [E]. FY26 DPS declared Rs 75 [F] (AR2026 p.17)",
+         "Payout 69% on a paid basis [F] (AR2026 p.4)",
+         "Ongoing",
+         "High"
+        ],
+        [
+         "3",
+         "Group services (GCC and R&D) is the fastest-growing line",
+         "Engineering services +36.5% to Rs 124.59 crore [E] (AR2026 p.141). Management cites double-digit growth and new workstreams [MC] (AR2026 p.21)",
+         "Added Rs 33.3 crore of FY26 revenue, about 25% of the increase [E]",
+         "1-3 years",
+         "Medium"
+        ],
+        [
+         "4",
+         "Exports into the ESAB network",
+         "Overseas revenue +31.1% to Rs 252.49 crore [E] (AR2026 p.166). Management: exports offset weak domestic demand and FX risk on imports [MC] (AR2026 p.20)",
+         "Overseas share up from 14.1% to 16.8% [E]",
+         "1-3 years",
+         "Medium"
+        ],
+        [
+         "5",
+         "Consumables stickiness through procedure qualification",
+         "Prior analyst note: code-governed work requires requalification if the consumable changes [AI] (BOARD). Not quantified in company disclosures",
+         "Supports pricing in specialty grades. Not measurable from the data",
+         "Structural",
+         "Low-Medium"
+        ],
+        [
+         "6",
+         "Distribution reach",
+         "393 dealers. Top 10 = 26% of dealer sales [F] (AR2026 p.47). Markets in 28 states [F] (AR2026 p.39)",
+         "Diversified receivables. Third-party receivable days about 49 [E]",
+         "Structural",
+         "Medium"
+        ],
+        [
+         "7",
+         "Capex-cycle optionality",
+         "Management names 'capital goods cycle revival' as an opportunity [MC] (AR2026 p.21)",
+         "Not quantifiable. No guidance given",
+         "1-3 years",
+         "Low"
+        ]
+       ]
+      },
+      {
+       "type": "p",
+       "text": "Driver classification [AI]: #1, #2, #5 and #6 are structural (franchise and capital-light model). #3 and #4 are company-specific, and they depend on how the parent allocates work and export orders. #7 is cyclical."
+      }
+     ]
+    },
+    {
+     "title": "Bear thesis",
+     "blocks": [
+      {
+       "type": "bullets",
+       "items": [
+        "1. **Arm's-length growth is mid-single-digit.** Stripping out related-party revenue, third-party revenue grew about 6.4% in FY26 (Rs 1,100.1 crore to Rs 1,170.2 crore), against 23.6% growth in related-party revenue [E] (AR2026 p.141, p.157). The 9.8% headline depends on the parent [AI].",
+        "2. **Exports are effectively intra-group.** Related-party sales and services to overseas group entities were about Rs 250.5 crore, roughly 99% of the Rs 252.49 crore 'outside India' revenue [E] (AR2026 p.157, p.166). The export story is a group transfer-pricing story, not a market-share win [AI].",
+        "3. **A brand the company does not own.** The trademark licence fee to ESAB Europe GmbH was Rs 51.93 crore, 3.44% of revenue, in FY26 [F] (AR2026 p.144) [E]. That is about 19% of EBITDA [E]. The rate and duration of the licence are not disclosed [F] (AR2026 p.37).",
+        "4. **Margins are flat.** EBITDA margin was 17.9% in FY26 versus 17.8% in FY25 [E] (AR2026 p.108). Employee costs rose to 9.6% of revenue from 8.8% [E]. Management describes 'continued surge in commodity prices', higher energy costs and a weaker rupee [MC] (AR2026 p.20).",
+        "5. **Reported PAT growth of 17.8% flatters.** It includes a Rs 30.91 crore gain on the Khardah land sale, net of a Rs 13.65 crore labour-code charge [F] (AR2026 p.146). Excluding the net exceptional, PAT grew about 10.5% [E].",
+        "6. **Related-party receivable quality.** EWAC Alloys (a group entity in India) owed Rs 48.85 crore against about Rs 87.1 crore of annual billings, which is about 205 days [E] (AR2026 p.157, p.160). This compares with about 49 days for third-party receivables [E].",
+        "7. **Domestic demand is weak and management will not forecast.** Management says 'The short-term outlook remains challenging' and the medium term has 'multiple external dependencies' [MC] (AR2026 p.21). Overall fabrication growth was 'low' [MC] (AR2026 p.21).",
+        "8. **Inventory provisioning is rising.** The provision for excess and obsolete inventory went from Rs 8.88 crore to Rs 15.53 crore (+75%) and is a key audit matter [F] (AR2026 p.131) [F] (AR2026 p.97).",
+        "9. **Compliance slippage.** Import payables of Rs 3.82 crore were outstanding beyond FEMA timelines [F] (AR2026 p.140). MSME interest is accrued and unpaid (Rs 3.51 crore cumulative) [F] (AR2026 p.140). The auditor modified its books-of-account reporting because payroll backup is held outside India [F] (AR2026 p.99) [F] (AR2026 p.168). CIT(A) upheld income tax penalties of Rs 1.23 crore and Rs 21.87 lakh on 20 August 2026 [F] (ANNOUNCEMENTS).",
+        "10. **Valuation cannot be underwritten from our model.** The only permitted valuation inputs are built on 2007 data [F] (NUMBERS). There is no defensible fair-value anchor in this report, and the price sits 26.4% below its 52-week high [F] (NUMBERS)."
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Key debates",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "Where the market may be wrong, in both directions [AI]",
+       "columns": [
+        "Debate",
+        "Bull reading",
+        "Bear reading",
+        "What would settle it"
+       ],
+       "rows": [
+        [
+         "Is the services line a growth engine or a cost centre for the parent?",
+         "Fastest-growing line, +36.5% [E]. India cost and talent advantage [MC] (AR2026 p.21)",
+         "100% related-party. Pricing is set within the group. Overheads include 'costs on service activities recharged out' [MC] (AR2026 p.21)",
+         "Disclosure of the service-line margin and the transfer-pricing method"
+        ],
+        [
+         "Is the export growth real share gain?",
+         "+31% overseas [E]",
+         "About 99% is to group entities [E]",
+         "Third-party export disclosure"
+        ],
+        [
+         "Is FY26 margin stable or peaking?",
+         "Gross margin proxy rose to 41.7% from 40.7% [E] (AR2026 p.108)",
+         "Commodity, energy and rupee pressure in Q4 FY26 [MC] (AR2026 p.20). No hedging [F] (AR2026 p.88)",
+         "Q2 FY27 results on 4 November 2026 [F] (ANNOUNCEMENTS)"
+        ],
+        [
+         "Is the royalty a structural drag or the price of the moat?",
+         "Access to the ESAB brand and global products",
+         "3.44% of revenue leaves the minority, and the rate could be raised [AI]",
+         "Licence agreement terms"
+        ],
+        [
+         "What is the stock worth?",
+         "Asset-light, high-ROCE, dividend-paying",
+         "Our model cannot say. Its inputs are from 2007 [F] (NUMBERS)",
+         "A corrected statements feed and re-run DCF"
+        ]
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Variant perception",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "The consensus framing of ESAB India, as reflected in our own earlier board notes, is a consumables-and-distribution franchise with near-zero capital intensity [AI] (BOARD). The FY26 annual report supports the capital-light, high-ROCE part [F] (AR2026 p.165). It complicates the growth part. **Roughly a fifth of revenue and nearly all export and service growth now depend on transactions with the parent group, at prices the parent sets.** A further 3.44% of revenue flows back to the parent as a trademark fee [E] (AR2026 p.144, p.157). Arm's-length domestic growth was about 6.6% [E]. Our variant view [AI] is that the stock behaves less like an independent Indian industrial compounder and more like a captive subsidiary whose minority economics depend on group transfer-pricing policy. That cuts both ways. The parent can keep feeding GCC and export volume. It can also re-price royalties or move work elsewhere, and none of these terms are disclosed."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "company_history",
+   "title": "Corporate history and structure",
+   "subsections": [
+    {
+     "title": "Corporate timeline",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "Timeline as disclosed",
+       "columns": [
+        "Date",
+        "Event"
+       ],
+       "rows": [
+        [
+         "10 Nov 1987",
+         "Incorporated (CIN L29299TN1987PLC058738) [F] (AR2026 p.38). Acquired the welding business of Peico Electronics & Electricals, now Philips India [F] (RATING)"
+        ],
+        [
+         "Jul 1988",
+         "Commenced business operations [F] (AR2026 p.111)"
+        ],
+        [
+         "1991",
+         "Purchased Indian Oxygen Ltd's welding business [F] (RATING)"
+        ],
+        [
+         "1992",
+         "Acquired Flotech Welding & Cutting Systems Ltd [F] (RATING)"
+        ],
+        [
+         "1994",
+         "Maharashtra Weldaids Ltd merged. Shares issued 1:2. The AR gives the effective date as 12 Jan 1994 in one place, and in another says the scheme became effective 18 Feb 1994 with effect from 1 Apr 1992 [F] (AR2026 p.90) [F] (AR2026 p.137). Not reconciled"
+        ],
+        [
+         "1 Feb 2005",
+         "B Mohan appointed CFO [F] (AR2026 p.19)"
+        ],
+        [
+         "1 Nov 2013",
+         "Rohit Gambhir appointed Managing Director. He was re-appointed from 1 Nov 2023 [F] (AR2026 p.18)"
+        ],
+        [
+         "2018-2020",
+         "CARE issuer rating AA- (Is), Stable. Withdrawn 6 Jul 2020 after the notice period [F] (RATING)"
+        ],
+        [
+         "4 Apr 2022",
+         "ESAB Corporation, Delaware became the ultimate holding company, previously Colfax [F] (AR2026 p.155)"
+        ],
+        [
+         "Aug 2024",
+         "Deloitte Haskins & Sells appointed statutory auditor for 5 years from the 37th AGM [F] (AR2026 p.22)"
+        ],
+        [
+         "27 Jan 2025",
+         "Two new independent directors (N Ramesh Rajan, Raja Venkataraman). K Vaidyanathan and Vikram Tandon left on 29 Jan 2025 [F] (AR2026 p.18) [F] (AR2026 p.156)"
+        ],
+        [
+         "FY26",
+         "Khardah (West Bengal) land sale completed. Gain Rs 30.91 crore [F] (AR2026 p.146). First ESAB Corp RSU and option grants to India employees [F] (AR2026 p.166)"
+        ],
+        [
+         "1 May 2026",
+         "Curtis Evan Jewell (ESAB Corp General Counsel) replaced Kevin Johnson (ESAB Corp CFO) as nominee director and Chairman [F] (AR2026 p.15) [F] (AR2026 p.17)"
+        ],
+        [
+         "11 Aug 2026",
+         "Q1 FY27 results. Approved a 26% investment of up to Rs 40 lakh in a 1 MW solar SPV [F] (ANNOUNCEMENTS)"
+        ],
+        [
+         "20 Aug 2026",
+         "CIT(A) upheld income tax penalties of Rs 1.23 crore and Rs 21.87 lakh [F] (ANNOUNCEMENTS)"
+        ],
+        [
+         "4 Nov 2026",
+         "Board meeting scheduled for Q2 FY27 results and a possible interim dividend [F] (ANNOUNCEMENTS)"
+        ]
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Subsidiaries and group structure",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "Group entities relevant to the listed company",
+       "columns": [
+        "Entity",
+        "Incorporated",
+        "Business",
+        "Latest revenue",
+        "Latest PAT"
+       ],
+       "rows": [
+        [
+         "ESAB India Ltd (listed)",
+         "1987",
+         "Welding and cutting consumables, equipment, services",
+         "Rs 1,508.15 crore FY26 [F] (AR2026 p.108)",
+         "Rs 206.69 crore FY26 [F] (AR2026 p.108)"
+        ],
+        [
+         "Subsidiaries / JVs / associates",
+         "None [F] (AR2026 p.22)",
+         "-",
+         "-",
+         "-"
+        ],
+        [
+         "ESAB Corporation, USA",
+         "Not disclosed",
+         "Ultimate parent [F] (AR2026 p.22)",
+         "Not disclosed",
+         "Not disclosed"
+        ],
+        [
+         "ESAB Holdings Ltd, UK / Exelvia Group India BV",
+         "Not disclosed",
+         "Holding companies, 37.31% / 36.41% [F] (AR2026 p.135)",
+         "n/a",
+         "n/a"
+        ],
+        [
+         "EWAC Alloys Ltd, India",
+         "Not disclosed",
+         "Common-control entity. Bought Rs 83.46 crore of products and paid Rs 3.50 crore of management fees [F] (AR2026 p.157). Business not described",
+         "Not disclosed",
+         "Not disclosed"
+        ],
+        [
+         "GCE India Pvt Ltd; Aktiv Technologies Pvt Ltd",
+         "Not disclosed",
+         "Common-control Indian entities. Small transactions [F] (AR2026 p.157)",
+         "Not disclosed",
+         "Not disclosed"
+        ],
+        [
+         "Viviid Clean Energy (One) Pvt Ltd",
+         "Not disclosed",
+         "26% equity held for captive power under the Electricity Act. Not consolidated [F] (AR2026 p.129)",
+         "Not disclosed",
+         "Not disclosed"
+        ]
+       ]
+      }
+     ]
+    },
+    {
+     "title": "What the timeline reveals",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "The franchise is old. It was assembled between 1987 and 1994 by acquiring the welding businesses of Philips/Peico, Indian Oxygen and Flotech, and merging Maharashtra Weldaids [F] (RATING). What is recent is the business mix. The group engineering, GCC and R&D services line now makes up 8.5% of revenue [E] (AR2026 p.141). The parent changed in 2022 when ESAB separated from Colfax [F] (AR2026 p.155), and our screener profile still names Colfax as ultimate owner [F] (SCREENER), so that source is stale. Two of three independent directors joined in 2025 and the Chairman changed in May 2026 [F] (AR2026 p.18). The board's institutional memory is therefore concentrated in the MD (on the board since 2013) and the CFO (CFO since 2005) [AI]."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "business_model",
+   "title": "Business model and value chain",
+   "subsections": [
+    {
+     "title": "Production and service chain",
+     "blocks": [
+      {
+       "type": "bullets",
+       "items": [
+        "Step 1 - Sourcing. Steel and minerals are the main commodity exposures [F] (AR2026 p.162). Raw materials are bought in processed form, and the company does not trade unprocessed metals [F] (AR2026 p.88). Imports of raw materials, components and capital goods were Rs 221.05 crore [F] (AR2026 p.28), about 25% of FY26 material and traded-goods purchases [E]. 33.34% of purchases come through 84 trading houses [F] (AR2026 p.47).",
+        "Step 2 - Consumables manufacture. Electrode extrusion lines with tunnel and chain ovens, wire drawing, layer winding and SAW reeling, flux-cored wire spooling and SAW flux [F] (AR2026 p.27) [F] (AR2026 p.49).",
+        "Step 3 - Equipment. Arc welding and cutting equipment and industrial gas equipment are listed among products [F] (AR2026 p.49). Assembly lines are referenced [F] (AR2026 p.27). The in-house versus bought-in content is not disclosed.",
+        "Step 4 - Traded products. Rs 321.21 crore of goods were bought for resale [F] (AR2026 p.141). Related-party purchases were Rs 89.36 crore, of which ESAB Europe GmbH was Rs 54.57 crore [F] (AR2026 p.157).",
+        "Step 5 - Distribution. 69% of sales go through 393 dealers. Some customers are served directly [F] (AR2026 p.47) [F] (AR2026 p.39).",
+        "Step 6 - Group exports and services. Exports go through group companies to the Middle East, Africa, Australia, South-East Asia and China [F] (AR2026 p.39). Engineering and R&D services are sold to ESAB AB, ESAB Group Inc USA and others [F] (AR2026 p.157)."
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Capability by process stage",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "Capability map (disclosed items only)",
+       "columns": [
+        "Stage",
+        "In-house capability",
+        "Evidence",
+        "Gap / not disclosed"
+       ],
+       "rows": [
+        [
+         "Wire drawing and spooling",
+         "Yes",
+         "Pre-drawing machine, layer winding, SAW reeling, FCW vacuum packing [F] (AR2026 p.27)",
+         "Tonnage capacity"
+        ],
+        [
+         "Electrode extrusion and baking",
+         "Yes",
+         "Extruder line with tunnel and chain continuous oven [F] (AR2026 p.27)",
+         "Plant-wise allocation"
+        ],
+        [
+         "Flux and SAW flux",
+         "Yes",
+         "Dust collection on flux processes [F] (AR2026 p.49)",
+         "Volumes"
+        ],
+        [
+         "Equipment assembly",
+         "Yes, partly",
+         "Assembly lines referenced [F] (AR2026 p.27)",
+         "Make versus buy"
+        ],
+        [
+         "R&D",
+         "Yes",
+         "VP R&D and Head R&D Filler Metals [F] (AR2026 p.84). Testing and development charges Rs 14.35 crore [F] (AR2026 p.144)",
+         "Total R&D spend"
+        ],
+        [
+         "Brand / IP",
+         "Licensed from group",
+         "Trademark fee to ESAB Europe GmbH [F] (AR2026 p.144)",
+         "Licence term and rate"
+        ]
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Where value is captured",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "Gross margin proxy (revenue less materials and traded goods) was 41.7% in FY26 [E] (AR2026 p.108). The EBITDA margin was much lower at 17.9% [E]. The gap is employee costs (9.6% of revenue), other expenses (14.2%, including the 3.44% trademark fee) and freight [E] (AR2026 p.144). Our read [AI] is that value is captured at the consumable formulation and brand level, not in metal conversion. Part of the brand rent is paid away to the parent. Traded goods grew only 0.2% [E], which suggests the company's own manufacturing is where growth came from in FY26."
+      }
+     ]
+    },
+    {
+     "title": "Outsourcing and capital intensity",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "Net fixed assets (PPE + ROU + CWIP + intangibles) were Rs 153.58 crore against revenue of Rs 1,508 crore, so revenue is about 9.8x net fixed assets [E] (AR2026 p.107). Capex was Rs 31.55 crore in cash terms, against depreciation of Rs 17.06 crore [F] (AR2026 p.109) [F] (AR2026 p.108). External service charges were Rs 28.96 crore [F] (AR2026 p.144). There are 396 non-permanent workers against 169 permanent workers [F] (AR2026 p.40), which points to substantial use of contract labour [AI]. **Classification: asset-light** [AI]."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "products",
+   "title": "Product portfolio",
+   "subsections": [
+    {
+     "title": "Product families",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "Product family map. Revenue by family is not disclosed; qualitative columns are our inference [AI]",
+       "columns": [
+        "Product",
+        "Application",
+        "Segment",
+        "Customer",
+        "Competitive intensity",
+        "Growth outlook",
+        "Margin potential"
+       ],
+       "rows": [
+        [
+         "Covered electrodes (MMA)",
+         "General fabrication, repair [F] (AR2026 p.39)",
+         "Consumables (NIC 2592 bucket, 71%) [F] (AR2026 p.39)",
+         "Dealers, small fabricators",
+         "High: local manufacturers compete on price [AI] (BOARD)",
+         "Tracks fabrication activity, which management called 'low growth' [MC] (AR2026 p.21)",
+         "Moderate"
+        ],
+        [
+         "Solid MIG wires, SAW wires and flux",
+         "Structural, pipelines, pipemills, power [F] (AR2026 p.39)",
+         "Consumables",
+         "Fabricators, OEMs",
+         "Medium",
+         "Linked to capex cycle",
+         "Moderate"
+        ],
+        [
+         "Flux-cored wires (FCW)",
+         "Shipbuilding, offshore, heavy fabrication [F] (AR2026 p.39)",
+         "Consumables",
+         "Code-qualified users",
+         "Lower: procedure qualification [AI] (BOARD)",
+         "Not disclosed",
+         "Higher"
+        ],
+        [
+         "Wear plate / hardfacing",
+         "Repair and maintenance for steel, cement, mining [F] (AR2026 p.39) [F] (AR2026 p.49)",
+         "Consumables",
+         "Plant maintenance",
+         "Medium",
+         "Not disclosed",
+         "Higher"
+        ],
+        [
+         "Arc welding and cutting equipment",
+         "All of the above",
+         "Equipment (NIC 2710 bucket, 29%) [F] (AR2026 p.39)",
+         "Dealers, OEMs",
+         "High: global and Asian brands [AI]",
+         "Capex-linked",
+         "Moderate"
+        ],
+        [
+         "Industrial gas equipment",
+         "Gas control [F] (AR2026 p.49)",
+         "Equipment",
+         "Not disclosed",
+         "Not disclosed",
+         "Not disclosed",
+         "Not disclosed"
+        ],
+        [
+         "Automation and robotics",
+         "Welding automation. A Business Head exists [F] (AR2026 p.84)",
+         "Equipment",
+         "OEMs",
+         "Medium",
+         "Not disclosed",
+         "Not disclosed"
+        ],
+        [
+         "Engineering and R&D services",
+         "GCC services to group [F] (AR2026 p.21)",
+         "Services",
+         "ESAB group only [F] (AR2026 p.157)",
+         "Captive",
+         "+36.5% in FY26 [E]",
+         "Not disclosed"
+        ]
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Commodity-like versus differentiated",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "Without revenue by product, we can only frame this qualitatively [AI]. General-purpose electrodes and solid wires sold through dealers are the most commodity-like lines. Dealers decide the brand at the counter, and local producers compete on price [AI] (BOARD). Flux-cored, specialty alloy and code-qualified consumables are differentiated by procedure qualification. Equipment is differentiated by brand and service. The company does not disclose the mix of specialty versus general consumables, so the share of revenue protected by qualification is unknown [F] (AR2026 p.165)."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "segments",
+   "title": "Segment analysis",
+   "subsections": [
+    {
+     "title": "Segment disclosure",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "The company reports a single operating segment, 'fabrication technology', under Ind AS 108. The CODM reviews the business as one unit [F] (AR2026 p.165). **Segment margins are not disclosed.** The only splits available are by revenue type and by geography [F] (AR2026 p.141) [F] (AR2026 p.166)."
+      },
+      {
+       "type": "table",
+       "caption": "Revenue by type (Rs crore). FY24 and earlier are not disclosed in the FY26 AR [F] (AR2026 p.141); mix and growth [E]",
+       "columns": [
+        "Type",
+        "FY25",
+        "% mix FY25",
+        "FY26",
+        "% mix FY26",
+        "Growth"
+       ],
+       "rows": [
+        [
+         "Manufactured goods",
+         "951.23",
+         "69.3%",
+         "1,052.70",
+         "69.8%",
+         "10.7%"
+        ],
+        [
+         "Traded goods",
+         "320.45",
+         "23.3%",
+         "321.21",
+         "21.3%",
+         "0.2%"
+        ],
+        [
+         "Services (incl. management fee)",
+         "94.78",
+         "6.9%",
+         "128.09",
+         "8.5%",
+         "35.1%"
+        ],
+        [
+         "Other operating revenue",
+         "7.01",
+         "0.5%",
+         "6.15",
+         "0.4%",
+         "-12.3%"
+        ],
+        [
+         "Total",
+         "1,373.47",
+         "100%",
+         "1,508.15",
+         "100%",
+         "9.8%"
+        ]
+       ]
+      },
+      {
+       "type": "table",
+       "caption": "Five-year total revenue including other income (Rs crore) [F] (AR2026 p.4); growth [E]",
+       "columns": [
+        "Year",
+        "Total revenue",
+        "YoY"
+       ],
+       "rows": [
+        [
+         "FY22",
+         "900.98",
+         "-"
+        ],
+        [
+         "FY23",
+         "1,098.60",
+         "21.9%"
+        ],
+        [
+         "FY24",
+         "1,249.81",
+         "13.8%"
+        ],
+        [
+         "FY25",
+         "1,381.25",
+         "10.5%"
+        ],
+        [
+         "FY26",
+         "1,514.18",
+         "9.6%"
+        ]
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Why each line moved",
+     "blocks": [
+      {
+       "type": "bullets",
+       "items": [
+        "Management says growth was 'across all product categories and driven by volume and price', with new launches 'well received', a 'strong and growing distribution network' and 'global customer relationships' [MC] (AR2026 p.21). No volume/price split is disclosed.",
+        "Our read [AI]: manufactured goods grew 10.7%, but Rs 31.2 crore of the Rs 101.5 crore increase in product sales went to related parties. Sales to ESAB Middle East FZE rose Rs 25.2 crore and to ESAB Arabia Rs 10.7 crore [E] (AR2026 p.157). Domestic third-party product growth was therefore well below 10.7%.",
+        "Services: management attributes growth to 'GCC and R&D services to related parties with double digit growth and new workstreams' [MC] (AR2026 p.21). The largest buyers were ESAB AB (Rs 54.66 crore), ESAB Group Inc USA (Rs 39.29 crore), Victor Technologies International (Rs 11.70 crore) and ESAB Europe (Rs 11.15 crore) [F] (AR2026 p.157).",
+        "Traded goods were flat. This may reflect a preference for local manufacture, or weak equipment demand [AI]. Management does not explain it."
+       ]
+      },
+      {
+       "type": "p",
+       "text": "Order-driven versus organic [AI]: none of the lines is disclosed as order-book driven. Consumables are run-rate and dealer-driven. Group services and group exports are allocation-driven: the volume depends on parent decisions rather than on customer tenders."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "revenue_bridge",
+   "title": "Revenue bridge",
+   "subsections": [
+    {
+     "title": "FY25 to FY26 bridge",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "Revenue from operations bridge (Rs crore) [F] (AR2026 p.141, p.157); arithmetic [E]",
+       "columns": [
+        "Driver",
+        "Impact Rs cr",
+        "Basis"
+       ],
+       "rows": [
+        [
+         "FY25 revenue from operations",
+         "1,373.47",
+         "Reported [F] (AR2026 p.108)"
+        ],
+        [
+         "Product sales to related parties",
+         "+31.22",
+         "Rs 178.59 crore to Rs 209.81 crore [F] (AR2026 p.157)"
+        ],
+        [
+         "Product sales to third parties (residual)",
+         "+71.01",
+         "Residual: total product sales change of +102.23 less the related-party change"
+        ],
+        [
+         "Services to related parties (incl. management fee)",
+         "+33.36",
+         "Rs 94.77 crore to Rs 128.13 crore [F] (AR2026 p.157)"
+        ],
+        [
+         "Services residual",
+         "-0.05",
+         "Residual (rounding)"
+        ],
+        [
+         "Scrap and export benefits",
+         "-0.86",
+         "[F] (AR2026 p.141)"
+        ],
+        [
+         "FY26 revenue from operations",
+         "1,508.15",
+         "Reported [F] (AR2026 p.108)"
+        ]
+       ]
+      },
+      {
+       "type": "p",
+       "text": "Cross-check by geography: domestic contract revenue +Rs 75.60 crore (+6.4%) and overseas +Rs 59.94 crore (+31.1%) [E] (AR2026 p.166). Volume and price are not separated. Management only says growth was 'driven by volume and price' [MC] (AR2026 p.21)."
+      }
+     ]
+    },
+    {
+     "title": "What is known for FY27",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "Q1 FY27 results were approved on 11 August 2026, but the numbers are not in our evidence set [F] (ANNOUNCEMENTS). Q2 FY27 results are due on 4 November 2026 [F] (ANNOUNCEMENTS). There is no order backlog, deferred-order disclosure or revenue guidance [F] (AR2026 p.142). Management's only forward statement is qualitative: 'short-term outlook remains challenging' [MC] (AR2026 p.21). We do not infer an FY27 number."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "export_domestic",
+   "title": "Exports, geography and trade exposure",
+   "subsections": [
+    {
+     "title": "Geographic revenue",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "Revenue from contracts by geography (Rs crore) [F] (AR2026 p.166); shares and growth [E]. Only two years disclosed, so no CAGR",
+       "columns": [
+        "Region",
+        "FY25",
+        "FY26",
+        "% of FY26",
+        "YoY"
+       ],
+       "rows": [
+        [
+         "India",
+         "1,173.91",
+         "1,249.51",
+         "83.2%",
+         "6.4%"
+        ],
+        [
+         "Outside India",
+         "192.55",
+         "252.49",
+         "16.8%",
+         "31.1%"
+        ],
+        [
+         "of which to ESAB group entities (est.)",
+         "about 189.1",
+         "about 250.5",
+         "about 16.7%",
+         "about 32%"
+        ],
+        [
+         "Total",
+         "1,366.46",
+         "1,502.00",
+         "100%",
+         "9.9%"
+        ]
+       ]
+      },
+      {
+       "type": "p",
+       "text": "Countries served include Angola, Australia, Bangladesh, the Czech Republic, China, Dubai, Sri Lanka, Nepal, Singapore, Oman, Indonesia, Malaysia, Saudi Arabia, Russia, Vietnam, Germany, the USA, Canada and others [F] (AR2026 p.28). The company serves Nepal, Bangladesh, Bhutan and Sri Lanka directly, and other regions 'through our group companies' [F] (AR2026 p.39). Country-level revenue is not disclosed."
+      }
+     ]
+    },
+    {
+     "title": "Strategy or mix?",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "Management presents exports as a deliberate offset to weak domestic demand and to FX risk on imports [MC] (AR2026 p.20). The data show the increase is almost entirely intra-group. ESAB Middle East product purchases rose from Rs 45.84 crore to Rs 71.03 crore and ESAB Arabia from Rs 16.74 crore to Rs 27.43 crore. Group services to overseas affiliates rose about Rs 33 crore [F] (AR2026 p.157) [E]. Our view is that this is mix driven by the parent's sourcing allocation, not a direct export franchise [AI]. Sales to the ESAB Russia entity fell from Rs 14.54 crore to Rs 9.19 crore [F] (AR2026 p.157)."
+      }
+     ]
+    },
+    {
+     "title": "Currency exposure",
+     "blocks": [
+      {
+       "type": "bullets",
+       "items": [
+        "FX earnings were Rs 252.06 crore against FX outflows of Rs 277.43 crore. Net outflow Rs 25.73 crore [F] (AR2026 p.28).",
+        "At 31 March 2026, net unhedged monetary exposure was a net liability of Rs 23.40 crore, mostly EUR (Rs 20.96 crore) [F] (AR2026 p.162). No forward contracts were outstanding and none were taken in FY26 [F] (AR2026 p.163) [F] (AR2026 p.88).",
+        "A 5% appreciation in USD reduces PBT by Rs 2.36 crore on payables and raises it by Rs 2.28 crore on receivables. A 5% EUR move costs Rs 1.05 crore on payables [F] (AR2026 p.163). Translation risk is small. The economic risk is in import costs: management cites a 'weaker Rupee in the last quarter' as a profitability challenge [MC] (AR2026 p.20)."
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Tariff, trade policy and location risk",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "Management lists 'tariffs and fiscal/monetary policies' and West Asia developments as key drivers for FY27, without quantification or dates [MC] (AR2026 p.21). No specific tariff action affecting the company is disclosed. Manufacturing is entirely in India across three plants, two in Tamil Nadu and one in Nagpur [F] (AR2026 p.88). The Chennai cluster carries regional concentration risk, but there is no single-plant dependency [AI]. Plant-wise output is not disclosed."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "customer_forensics",
+   "title": "Customer forensics",
+   "subsections": [
+    {
+     "title": "Concentration trend",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "Concentration indicators (top-1/5/10 customer shares not disclosed)",
+       "columns": [
+        "Metric",
+        "FY25",
+        "FY26",
+        "Source"
+       ],
+       "rows": [
+        [
+         "Customers above 10% of sales",
+         "None",
+         "None",
+         "[F] (AR2026 p.142)"
+        ],
+        [
+         "Sales via dealers/distributors",
+         "69%",
+         "69%",
+         "[F] (AR2026 p.47)"
+        ],
+        [
+         "Number of dealers",
+         "386",
+         "393",
+         "[F] (AR2026 p.47)"
+        ],
+        [
+         "Top 10 dealers, % of dealer sales",
+         "26%",
+         "26%",
+         "[F] (AR2026 p.47)"
+        ],
+        [
+         "Top 10 dealers, % of total sales (est.)",
+         "about 17.9%",
+         "about 17.9%",
+         "[E]"
+        ],
+        [
+         "Related-party revenue, % of revenue from operations",
+         "19.9%",
+         "22.4%",
+         "[E] (AR2026 p.157)"
+        ],
+        [
+         "Related-party sales, % of total sales (BRSR basis)",
+         "13%",
+         "14%",
+         "[F] (AR2026 p.47)"
+        ],
+        [
+         "Receivables from customers each 5% or more of receivables",
+         "Rs 61.90 crore",
+         "Rs 48.85 crore",
+         "[F] (AR2026 p.132)"
+        ]
+       ]
+      },
+      {
+       "type": "callout",
+       "tone": "warn",
+       "text": "Two sources disagree. The BRSR says related-party sales were 14% of total sales in FY26 [F] (AR2026 p.47). The related-party note implies product sales plus services to related parties of Rs 337.94 crore, 22.4% of revenue from operations, or 15.3% if only product sales are counted [E] (AR2026 p.157). We have not reconciled the two. The difference may lie in definitions (goods only, gross versus net)."
+      }
+     ]
+    },
+    {
+     "title": "Named customers",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "Named counterparties: all disclosed names are group entities (Rs crore) [F] (AR2026 p.157)",
+       "columns": [
+        "Customer",
+        "Relationship",
+        "FY25 revenue",
+        "FY26 revenue"
+       ],
+       "rows": [
+        [
+         "EWAC Alloys Ltd, India",
+         "Common control. Duration not disclosed",
+         "83.97 (incl. 3.50 management fee)",
+         "87.10 (incl. 3.50 management fee)"
+        ],
+        [
+         "ESAB Middle East FZE, UAE",
+         "Common control",
+         "45.96",
+         "71.39"
+        ],
+        [
+         "ESAB AB, Sweden",
+         "Common control",
+         "46.53",
+         "54.66"
+        ],
+        [
+         "The ESAB Group Inc, USA",
+         "Common control",
+         "29.23",
+         "40.90"
+        ],
+        [
+         "ESAB Arabia, Saudi Arabia",
+         "Common control",
+         "16.74",
+         "27.48"
+        ],
+        [
+         "ESAB Europe GmbH, Switzerland",
+         "Common control. Also licensor and supplier",
+         "5.39",
+         "11.15"
+        ],
+        [
+         "Victor Technologies International, USA",
+         "Common control",
+         "4.80",
+         "11.70"
+        ],
+        [
+         "ESAB LLC, Russia",
+         "Common control",
+         "14.54",
+         "9.19"
+        ]
+       ]
+      },
+      {
+       "type": "p",
+       "text": "No third-party customer is named anywhere in the annual report. No case studies, long-term supply agreements or framework contracts are disclosed. Revenue is recognised at a point in time for products and over time for services, and the company uses the practical expedient not to disclose remaining performance obligations [F] (AR2026 p.141) [F] (AR2026 p.142). Third-party business is on purchase orders and dealer terms of 0-120 days [F] (AR2026 p.132)."
+      }
+     ]
+    },
+    {
+     "title": "Is concentration improving or worsening?",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "Shown both ways. **Third-party concentration is low and stable**: no customer exceeds 10%, the top-10 dealer share is unchanged at 26%, and the dealer count rose to 393 [F] (AR2026 p.47). **Group concentration is rising**: related-party revenue went from 19.9% to 22.4% of revenue, and related-party receivables are 37.7% of trade receivables (Rs 95.66 crore of Rs 254.07 crore) [E] (AR2026 p.131). The ESAB group as a whole is the company's largest customer, its brand licensor and a material supplier [F] (AR2026 p.157). On a group-aggregated view, concentration is worsening [AI]."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "client_analysis",
+   "title": "Client analysis",
+   "subsections": [
+    {
+     "title": "Identifiable clients",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "Client-by-client view. Why-they-buy, stickiness and upside are our inference [AI]",
+       "columns": [
+        "Client",
+        "What they do",
+        "Why they buy from the company",
+        "Product",
+        "Approved supplier?",
+        "Duration",
+        "Sticky?",
+        "Growing?",
+        "Wallet-share upside"
+       ],
+       "rows": [
+        [
+         "EWAC Alloys Ltd",
+         "Group entity in India. Business not described in AR",
+         "Group sourcing; the company also provides management services [F] (AR2026 p.157)",
+         "Products, Rs 83.46 crore",
+         "Group",
+         "Not disclosed",
+         "Yes, captive",
+         "+3.9% [E]",
+         "Limited. Receivable about 205 days [E]"
+        ],
+        [
+         "ESAB Middle East FZE",
+         "Group distribution hub [AI]",
+         "Group sourcing allocation",
+         "Products, Rs 71.03 crore",
+         "Group",
+         "Not disclosed",
+         "Depends on the parent",
+         "+55% [E]",
+         "Parent-dependent"
+        ],
+        [
+         "ESAB AB, Sweden",
+         "Group company",
+         "India cost base for engineering services [MC] (AR2026 p.21)",
+         "Services, Rs 54.66 crore",
+         "Group",
+         "Not disclosed",
+         "Depends on the parent",
+         "+17% [E]",
+         "Parent-dependent"
+        ],
+        [
+         "The ESAB Group Inc, USA",
+         "Group company",
+         "Engineering services plus product",
+         "Services Rs 39.29 crore; products Rs 1.61 crore",
+         "Group",
+         "Not disclosed",
+         "Depends on the parent",
+         "+40% [E]",
+         "Parent-dependent"
+        ],
+        [
+         "ESAB Arabia",
+         "Group company",
+         "Regional supply",
+         "Products, Rs 27.43 crore",
+         "Group",
+         "Not disclosed",
+         "Depends on the parent",
+         "+64% [E]",
+         "Parent-dependent"
+        ],
+        [
+         "Dealer network (393, unnamed)",
+         "Resellers to fabricators",
+         "Brand, availability, credit",
+         "Consumables and equipment",
+         "n/a",
+         "Not disclosed",
+         "Partly. Brand pull [AI] (BOARD)",
+         "Dealer count +7",
+         "Not quantifiable"
+        ],
+        [
+         "End-user industries (unnamed)",
+         "Shipbuilding, power, rail, pipelines etc. [F] (AR2026 p.39)",
+         "Procedure qualification in code work [AI] (BOARD)",
+         "Specialty consumables",
+         "Not disclosed",
+         "Not disclosed",
+         "Likely, in code work",
+         "Not disclosed",
+         "Not quantifiable"
+        ]
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Overall read",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "Every client the company names is a group entity. Third-party clients are anonymous and spread through dealers [F] (AR2026 p.47). The investable customer franchise, Indian fabricators reached through dealers, cannot be analysed client by client from the disclosures. The growth that can be analysed (group exports and services) is governed by parent allocation, not by customer choice [AI]."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "order_book",
+   "title": "Order book forensics",
+   "subsections": [
+    {
+     "title": "Disclosure status",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "**No order book, backlog, book-to-bill or L1 position is disclosed.** The annual report contains no order-book language. The company applies the Ind AS 115 practical expedient and does not disclose remaining performance obligations for contracts of one year or less [F] (AR2026 p.142). The only references to 'orders on hand' are in the auditor's key audit matter on inventory provisioning [F] (AR2026 p.97). No earnings-call transcript was available to provide management commentary. The business is a run-rate consumables and dealer model, so the absence is structural rather than evasive [AI]."
+      },
+      {
+       "type": "table",
+       "caption": "Order metrics",
+       "columns": [
+        "Metric",
+        "Value",
+        "Note"
+       ],
+       "rows": [
+        [
+         "Order book",
+         "Not disclosed",
+         "[F] (AR2026 p.142)"
+        ],
+        [
+         "Book-to-bill",
+         "Not disclosed",
+         "-"
+        ],
+        [
+         "Revenue visibility",
+         "Not disclosed",
+         "Dealer and purchase-order business. Advances from customers only Rs 2.08 crore [F] (AR2026 p.140)"
+        ],
+        [
+         "Contract liabilities (advances + refund liabilities)",
+         "Rs 7.00 crore",
+         "[F] (AR2026 p.142)"
+        ]
+       ]
+      },
+      {
+       "type": "p",
+       "text": "Order execution timeline: no quantified order is disclosed, so no timeline can be built."
+      }
+     ]
+    },
+    {
+     "title": "A-F revenue visibility ladder",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "Mandatory A-F separation",
+       "columns": [
+        "Bucket",
+        "Definition",
+        "ESAB India evidence",
+        "Amount"
+       ],
+       "rows": [
+        [
+         "A",
+         "Confirmed revenue",
+         "FY26 revenue from operations [F] (AR2026 p.108)",
+         "Rs 1,508.15 crore"
+        ],
+        [
+         "B",
+         "Contracted, not recognised",
+         "Not disclosed. Practical expedient applied [F] (AR2026 p.142). Customer advances Rs 2.08 crore [F] (AR2026 p.140)",
+         "Not disclosed"
+        ],
+        [
+         "C",
+         "Qualified opportunity",
+         "None disclosed",
+         "Not disclosed"
+        ],
+        [
+         "D",
+         "Tender pipeline",
+         "None disclosed",
+         "Not disclosed"
+        ],
+        [
+         "E",
+         "Management aspiration",
+         "'New products, export opportunities, capital goods cycle revival' named as opportunities [MC] (AR2026 p.21)",
+         "Not quantified"
+        ],
+        [
+         "F",
+         "Industry TAM",
+         "None stated in documents",
+         "Not disclosed"
+        ]
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "business_line_deep_dives",
+   "title": "Business line deep dives",
+   "subsections": [
+    {
+     "title": "Deep dive 1: group engineering and GCC services",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "Position in the value chain: ESAB India sells engineering, support, consulting and R&D services to ESAB group companies, using Indian talent cost [MC] (AR2026 p.21). What exists today: Rs 124.59 crore of services revenue, +36.5% [F] (AR2026 p.141) [E]. Counterparties are 100% related parties [F] (AR2026 p.157). Employee costs rose 20.3%, and management attributes part of the overhead increase to 'costs on service activities recharged out' [MC] (AR2026 p.21). Employee count rose from 933 to 1,003 [F] (AR2026 p.22). What is narrative: margin, headcount allocated and contract terms are all undisclosed. Anchor-customer exposure: 100% of the line depends on the ESAB group [E]."
+      },
+      {
+       "type": "table",
+       "caption": "Opportunity framing for services",
+       "columns": [
+        "Figure",
+        "Basis"
+       ],
+       "rows": [
+        [
+         "Rs 124.59 crore FY26 services revenue",
+         "[F] (AR2026 p.141)"
+        ],
+        [
+         "8.3% of revenue",
+         "[E]"
+        ],
+        [
+         "Contribution to FY26 revenue growth: about 25%",
+         "[E] Rs 33.3 crore of Rs 134.7 crore"
+        ],
+        [
+         "TAM / SAM",
+         "Not disclosed. Bounded by parent demand [AI]"
+        ]
+       ]
+      },
+      {
+       "type": "p",
+       "text": "Strategic implication [AI]: the line diversifies away from Indian fabrication cyclicality, but it converts the company into a cost-plus captive. Its profitability is set by group transfer pricing, which the audit committee reviews with 'basis of pricing and the margins' [F] (AR2026 p.23). Those margins are not published."
+      }
+     ]
+    },
+    {
+     "title": "Deep dive 2: group-routed exports",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "What exists: Rs 252.49 crore of overseas revenue, about 99% to ESAB group entities by our estimate [E] (AR2026 p.157, p.166). Products go to ESAB Middle East FZE, ESAB Arabia, Cigweld Australia, Victor Technologies Asia Malaysia, PT Victor Teknologi Indonesia and others [F] (AR2026 p.157). The company serves only Nepal, Bangladesh, Bhutan and Sri Lanka directly [F] (AR2026 p.39)."
+      },
+      {
+       "type": "table",
+       "caption": "Opportunity framing for exports",
+       "columns": [
+        "Figure",
+        "Basis"
+       ],
+       "rows": [
+        [
+         "Rs 252.49 crore overseas revenue FY26",
+         "[F] (AR2026 p.166)"
+        ],
+        [
+         "About 99% to group entities",
+         "[E] (AR2026 p.157)"
+        ],
+        [
+         "Export share 16.8%, up from 14.1%",
+         "[E]"
+        ],
+        [
+         "TAM / SAM",
+         "Not disclosed"
+        ]
+       ]
+      },
+      {
+       "type": "p",
+       "text": "Strategic implication [AI]: this growth uses Indian plant capacity, which is positive for absorption. It is reversible at the parent's discretion, and pricing is not arm's-length tested in public disclosures. RPT approval is omnibus by the audit committee, and the company states all transactions are at arm's length with no material RPTs [F] (AR2026 p.23) [F] (AR2026 p.91)."
+      }
+     ]
+    },
+    {
+     "title": "Deep dive 3: domestic consumables via dealers",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "This is the core franchise and the least disclosed one. Domestic third-party contract revenue grew from about Rs 1,089.6 crore to about Rs 1,162.1 crore (+6.6%) [E] (AR2026 p.157, p.166). It runs through 393 dealers [F] (AR2026 p.47). Government or PSU exposure is not disclosed. Defence, nuclear and similar strategic verticals are not mentioned in the annual report. Our earlier board note scored the 'strategic pillar' at 7 because welding sits outside the defence framing [AI] (BOARD). Industry TAM is not stated, so no SAM can be built."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "capacity",
+   "title": "Manufacturing footprint and capacity",
+   "subsections": [
+    {
+     "title": "Facility map",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "Plants as disclosed [F] (AR2026 p.88) [F] (AR2026 p.39)",
+       "columns": [
+        "Facility",
+        "Location",
+        "Process",
+        "Installed capacity",
+        "Utilisation",
+        "Notes"
+       ],
+       "rows": [
+        [
+         "Plant 1",
+         "Plot 13, Industrial Estate, Ambattur, Chennai",
+         "Not disclosed plant-wise. Also the registered office",
+         "Not disclosed",
+         "Not disclosed",
+         "Global EHS recognition in FY26 [F] (AR2026 p.25)"
+        ],
+        [
+         "Plant 2",
+         "G22 SIPCOT Industrial Park, Irungattukottai, Sriperumbudur, Tamil Nadu",
+         "Not disclosed plant-wise",
+         "Not disclosed",
+         "Not disclosed",
+         "-"
+        ],
+        [
+         "Plant 3",
+         "B-28 MIDC, Kalmeshwar, Nagpur",
+         "Not disclosed plant-wise",
+         "Not disclosed",
+         "Not disclosed",
+         "Zero-liquid-discharge ETP operational [F] (AR2026 p.48)"
+        ],
+        [
+         "Offices",
+         "11 offices in India; none abroad",
+         "Sales / service",
+         "n/a",
+         "n/a",
+         "[F] (AR2026 p.39)"
+        ]
+       ]
+      },
+      {
+       "type": "p",
+       "text": "Processes known to exist somewhere in the network: electrode extrusion with continuous ovens, wire pre-drawing and drawing, layer winding, SAW reeling, flux-cored wire spooling, assembly lines, and dust collection on flux and powder lines [F] (AR2026 p.27) [F] (AR2026 p.49). The company also has captive wind power and holds equity in captive renewable SPVs [F] (AR2026 p.27) [F] (AR2026 p.129)."
+      }
+     ]
+    },
+    {
+     "title": "Utilisation trend and drivers",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "**Installed capacity and utilisation are not disclosed** in the annual report, and no transcript was available. The only qualitative signals are these. FY26 capex was directed to 'productivity improvements, marginal capacity enhancements and upgrading IT systems' [MC] (AR2026 p.22). Management 'continued to push for volume growth and productivity' [MC] (AR2026 p.20). Manufactured-goods revenue grew 10.7% while traded goods were flat [E] (AR2026 p.141). This suggests higher plant loading, possibly from group export orders [AI]."
+      }
+     ]
+    },
+    {
+     "title": "Revenue potential from utilisation (sensitivity only)",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "Without a capacity figure, a utilisation-based revenue potential cannot be computed. As a sensitivity, not a base case: each 1% of additional manufactured-goods volume at FY26 realisations equals about Rs 10.5 crore of revenue [E] (AR2026 p.141). At the FY26 gross margin proxy of 41.7%, that is about Rs 4.4 crore of gross contribution [E]. This is illustrative arithmetic only."
+      }
+     ]
+    },
+    {
+     "title": "Leases",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "Leasehold land carries 15-99 year terms. Leased premises and vehicles carry 2-5 year terms [F] (AR2026 p.154). Lease liabilities were Rs 3.35 crore, all buildings, maturing between 2026 and 2031, with an effective rate of 10% [F] (AR2026 p.154). Lease exposure is immaterial [AI]. Which plants sit on leasehold land is not disclosed. The Irungattukottai SIPCOT site is typically leasehold industrial land [AI], but this is not confirmed in the documents."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "capex_forensics",
+   "title": "Capex forensics",
+   "subsections": [
+    {
+     "title": "Historical capex",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "Capex and intensity. FY25-FY26 from the AR cash flow; fixed assets from the five-year table [F] (AR2026 p.4, p.109, p.153); ratios [E]",
+       "columns": [
+        "Metric",
+        "FY22",
+        "FY23",
+        "FY24",
+        "FY25",
+        "FY26"
+       ],
+       "rows": [
+        [
+         "Fixed assets (Rs cr)",
+         "92.51",
+         "114.55",
+         "129.56",
+         "145.37",
+         "153.58"
+        ],
+        [
+         "Cash capex (Rs cr)",
+         "n/d",
+         "n/d",
+         "n/d",
+         "27.96",
+         "31.55"
+        ],
+        [
+         "Capex / revenue from operations",
+         "n/d",
+         "n/d",
+         "n/d",
+         "2.0%",
+         "2.1%"
+        ],
+        [
+         "Capex / EBITDA",
+         "n/d",
+         "n/d",
+         "n/d",
+         "11.4%",
+         "11.7%"
+        ],
+        [
+         "Depreciation (Rs cr)",
+         "11.33",
+         "11.88",
+         "13.79",
+         "14.92",
+         "17.06"
+        ],
+        [
+         "Capital commitments (Rs cr)",
+         "n/d",
+         "n/d",
+         "n/d",
+         "13.24",
+         "9.21"
+        ]
+       ]
+      },
+      {
+       "type": "p",
+       "text": "The Directors' Report states FY26 capex of Rs 29.78 crore, 'primarily on Infrastructure including Buildings, EHS, R&D and refurbishments on existing lines' [MC] (AR2026 p.22). This matches PPE additions of Rs 29.78 crore [F] (AR2026 p.128). The cash figure of Rs 31.55 crore includes the CWIP and capital-creditor movement [F] (AR2026 p.109). Our statements data shows capex of Rs 5-19 crore, but only for 2005-2007 [F] (NUMBERS). It is not comparable."
+      }
+     ]
+    },
+    {
+     "title": "Incremental revenue versus incremental capital",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "From FY22 to FY26, total revenue rose Rs 613.2 crore while fixed assets rose Rs 61.1 crore. That is about Rs 10 of revenue per Rs 1 of incremental fixed assets [E] (AR2026 p.4). In FY26 alone the ratio was about 16x (Rs 134.7 crore revenue on Rs 8.2 crore of net fixed-asset growth) [E]. Capex ran at 1.8x depreciation in FY26 [E]. Part of the revenue growth (services, exports of traded goods) needs little plant capital [AI]."
+      }
+     ]
+    },
+    {
+     "title": "Planned capex and classification",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "No forward capex plan or budget is disclosed. Open commitments are Rs 9.21 crore [F] (AR2026 p.153). All requirements are funded internally and the company is debt-free [F] (AR2026 p.22). The Rs 40 lakh solar SPV investment approved in August 2026 is a power-procurement arrangement, not growth capex [F] (ANNOUNCEMENTS) [AI]. **Classification: asset-light** [AI]."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "raw_materials",
+   "title": "Raw materials and input costs",
+   "subsections": [
+    {
+     "title": "Key inputs and import dependence",
+     "blocks": [
+      {
+       "type": "bullets",
+       "items": [
+        "Commodity exposure is 'primarily on Steel and Minerals' [F] (AR2026 p.162). The company buys processed metals and alloys only, and takes no commodity hedges [F] (AR2026 p.88).",
+        "FY26 raw-material purchases were Rs 653.14 crore and traded-goods purchases Rs 234.43 crore [F] (AR2026 p.143).",
+        "Foreign-currency outflow for raw materials, components and capital goods was Rs 221.05 crore in FY26 [F] (AR2026 p.28). That is about 24.9% of material plus traded-goods purchases [E]. Country-wise import data is not disclosed. Related-party purchases were Rs 89.36 crore, of which ESAB Europe GmbH was Rs 54.57 crore and ESAB Group Inc USA Rs 14.95 crore [F] (AR2026 p.157). Prior-year import data is not in the FY26 AR.",
+        "Raw-material goods in transit were Rs 22.64 crore and traded goods in transit Rs 10.47 crore [F] (AR2026 p.131). This is consistent with import lead times [AI].",
+        "About 80% of input raw materials are 'sourced sustainably' [MC] (AR2026 p.48). The company aims to source locally 'to the maximum extent possible' [MC] (AR2026 p.48)."
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Price trend and pass-through",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "Management describes a 'continued surge in commodity prices along with increase in energy costs and a weaker Rupee in the last quarter' [MC] (AR2026 p.20). It says 'Material costs as a percentage of sales were comparable with the previous year as adjusted for product mix' [MC] (AR2026 p.21). The evidence is mildly supportive. Materials plus traded goods fell from 59.3% to 58.3% of revenue from operations [E] (AR2026 p.108). However, the mix shift toward services, which carry no material cost, flatters this ratio [AI]. The company 'reviews its commercial arrangements with suppliers and customers at periodic intervals' [F] (AR2026 p.162), so pass-through is periodic and not contractual indexation [AI]. Our earlier note flagged a lag that compresses margin when prices rise fast [AI] (BOARD). No commodity price series is given in the documents."
+      }
+     ]
+    },
+    {
+     "title": "EBITDA sensitivity to input costs",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "Our statements data does not carry a material-cost line and covers only 2005-2007 [F] (NUMBERS). The sensitivity below therefore uses FY26 annual-report figures and assumes no pass-through [E]."
+      },
+      {
+       "type": "table",
+       "caption": "FY26 EBITDA sensitivity to a material and traded-goods cost shock, no pass-through [E] (AR2026 p.108)",
+       "columns": [
+        "Scenario",
+        "Material + traded cost (Rs cr)",
+        "EBITDA (Rs cr)",
+        "EBITDA margin",
+        "Change in EBITDA"
+       ],
+       "rows": [
+        [
+         "FY26 actual",
+         "878.50",
+         "269.84",
+         "17.9%",
+         "-"
+        ],
+        [
+         "+5% input cost",
+         "922.43",
+         "225.91",
+         "15.0%",
+         "-16.3%"
+        ],
+        [
+         "+10% input cost",
+         "966.35",
+         "181.99",
+         "12.1%",
+         "-32.6%"
+        ]
+       ]
+      },
+      {
+       "type": "p",
+       "text": "The exposure is large relative to the margin. A 5% unrecovered input-cost increase removes about one-sixth of EBITDA [E]. Pass-through discipline is the main margin variable, and it is not disclosed quarterly [AI]."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "margin_analysis",
+   "title": "Margin analysis",
+   "subsections": [
+    {
+     "title": "Margin trend",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "Five-year margins on total revenue including other income (Rs crore). Figures [F] (AR2026 p.4); ratios [E]. PBDIT = PBT before exceptional + depreciation + interest. Other income is not split before FY25",
+       "columns": [
+        "Year",
+        "Total revenue",
+        "Gross margin proxy",
+        "PBDIT",
+        "PBDIT %",
+        "PAT",
+        "PAT %"
+       ],
+       "rows": [
+        [
+         "FY22",
+         "900.98",
+         "37.4%",
+         "125.50",
+         "13.9%",
+         "84.31",
+         "9.4%"
+        ],
+        [
+         "FY23",
+         "1,098.60",
+         "38.8%",
+         "194.67",
+         "17.7%",
+         "135.68",
+         "12.4%"
+        ],
+        [
+         "FY24",
+         "1,249.81",
+         "40.5%",
+         "234.17",
+         "18.7%",
+         "162.98",
+         "13.0%"
+        ],
+        [
+         "FY25",
+         "1,381.25",
+         "41.0%",
+         "252.32",
+         "18.3%",
+         "175.42",
+         "12.7%"
+        ],
+        [
+         "FY26",
+         "1,514.18",
+         "42.0%",
+         "275.87",
+         "18.2%",
+         "206.69",
+         "13.7%"
+        ],
+        [
+         "FY26 ex net exceptional (est.)",
+         "1,514.18",
+         "42.0%",
+         "275.87",
+         "18.2%",
+         "about 193.8",
+         "about 12.8%"
+        ]
+       ]
+      },
+      {
+       "type": "table",
+       "caption": "Operating EBITDA on revenue from operations, excluding other income (Rs crore) [F] (AR2026 p.108); ratios [E]",
+       "columns": [
+        "Year",
+        "Revenue from operations",
+        "EBITDA",
+        "EBITDA %",
+        "Employee cost %",
+        "Other expenses %"
+       ],
+       "rows": [
+        [
+         "FY25",
+         "1,373.47",
+         "244.54",
+         "17.8%",
+         "8.8%",
+         "14.1%"
+        ],
+        [
+         "FY26",
+         "1,508.15",
+         "269.84",
+         "17.9%",
+         "9.6%",
+         "14.2%"
+        ]
+       ]
+      },
+      {
+       "type": "p",
+       "text": "Latest quarter: not available in our evidence set. Our statements data has no quarterly series [F] (NUMBERS), and the Q1 FY27 results are not in the documents [F] (ANNOUNCEMENTS)."
+      }
+     ]
+    },
+    {
+     "title": "Drivers of each year's move",
+     "blocks": [
+      {
+       "type": "bullets",
+       "items": [
+        "FY22 to FY23: PBDIT margin rose from 13.9% to 17.7% and gross margin proxy from 37.4% to 38.8% [E]. The documents give no explanation for that year [AI]. FY22 dividend payout was 118% [F] (AR2026 p.4).",
+        "FY24: margin peaked at 18.7% [E]. No explanation in the evidence set.",
+        "FY25: margin slipped to 18.3% [E]. FY25 other income included 'one-time income lines in 2025 on indirect tax refunds' [MC] (AR2026 p.21). Miscellaneous income fell from Rs 1.82 crore to Rs 0.19 crore in FY26 [F] (AR2026 p.142).",
+        "FY26: the gross margin proxy improved by about 1 point. This was offset by employee costs (+20.3%, including a Rs 3.29 crore share-based payment charge for parent RSUs) and a higher trademark fee (+10.0%) [F] (AR2026 p.143, p.144) [E]. A Rs 30.91 crore land gain and a Rs 13.65 crore labour-code gratuity charge were booked as exceptional items [F] (AR2026 p.146)."
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Is margin improvement structural?",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "The step-up happened between FY22 and FY24. Since then the operating margin has held at about 18% [E]. The rising gross margin proxy is partly structural, because services carry no material cost and their share is rising [AI]. It is partly unproven, because the mix of price, product and pass-through is not disclosed. The royalty (3.44% of revenue) and employee-cost growth cap operating leverage [E]. **Bottom line: margin is stable, not expanding.** The FY26 PAT margin improvement is explained by the exceptional items [AI]."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "unit_economics",
+   "title": "Unit economics",
+   "subsections": [
+    {
+     "title": "What can and cannot be built",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "No volumes (tonnes, units), capacities or realisations are disclosed for any product [F] (AR2026 p.165). Per-unit realisation, material cost and contribution therefore cannot be built. Per-employee economics can be computed as a proxy [E]."
+      },
+      {
+       "type": "table",
+       "caption": "Proxy unit economics, FY26 [E] (AR2026 p.22, p.108)",
+       "columns": [
+        "Metric",
+        "Value",
+        "Method"
+       ],
+       "rows": [
+        [
+         "Revenue per employee",
+         "about Rs 1.50 crore",
+         "Rs 1,508.15 crore / 1,003 employees"
+        ],
+        [
+         "EBITDA per employee",
+         "about Rs 0.27 crore",
+         "Rs 269.84 crore / 1,003"
+        ],
+        [
+         "Employee cost per employee",
+         "about Rs 14.5 lakh",
+         "Rs 145.12 crore / 1,003"
+        ],
+        [
+         "Gross contribution per Rs 100 of revenue",
+         "about Rs 41.7",
+         "Revenue less materials and traded goods"
+        ],
+        [
+         "Trademark fee per Rs 100 of revenue",
+         "about Rs 3.44",
+         "[F] (AR2026 p.144)"
+        ]
+       ]
+      }
+     ]
+    },
+    {
+     "title": "What would have to be true for unit economics to improve",
+     "blocks": [
+      {
+       "type": "bullets",
+       "items": [
+        "Specialty and code-qualified consumables gain share of the mix, which is not disclosed today [AI].",
+        "Input-cost pass-through holds through the commodity and rupee pressure management flagged [MC] (AR2026 p.20).",
+        "Services margin exceeds group average. Margin is not disclosed [AI].",
+        "The trademark fee rate stays at or below 3.44% of revenue [E].",
+        "Plant loading rises on group export orders without price concessions [AI]."
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "financial_forensics",
+   "title": "Financial statement forensics",
+   "subsections": [
+    {
+     "title": "Data availability caveat",
+     "blocks": [
+      {
+       "type": "callout",
+       "tone": "bad",
+       "text": "Our statements data covers only Dec-2005, Dec-2006 and Dec-2007, with sales of Rs 235, 285 and 339 crore. The quarterly series is empty and latest_quarter is null [F] (NUMBERS). Derived ratios (ROCE 91%, CFO/PAT 0.88x over three years, P/E 153.8x) refer to that period [F] (NUMBERS). All current-period forensics below use the audited FY26 annual report, which gives two years of full statements and a five-year summary. **Ten-year trend analysis is not possible from the evidence available.**"
+      }
+     ]
+    },
+    {
+     "title": "Income statement observations",
+     "blocks": [
+      {
+       "type": "bullets",
+       "items": [
+        "Revenue from operations rose 9.8% to Rs 1,508.15 crore. Third-party revenue grew about 6.4% and related-party revenue about 23.6% [E] (AR2026 p.108, p.157).",
+        "Revenue was Rs 1,537.88 crore at contracted price, less sales returns of Rs 18.83 crore and incentives and discounts of Rs 17.05 crore [F] (AR2026 p.142). Returns rose 12.9% and discounts 4.7% [E].",
+        "Other income fell to Rs 6.03 crore from Rs 7.78 crore, and is only 2.3% of PBT before exceptional items [E] (AR2026 p.142). Earnings do not depend on treasury income.",
+        "Finance cost of Rs 2.07 crore is not borrowing cost. It is interest on MSME payables (Rs 1.33 crore), on delayed income tax (Rs 0.38 crore) and on leases (Rs 0.36 crore) [F] (AR2026 p.144). Interest on MSME dues rose 68% [E].",
+        "The exceptional items net to +Rs 17.26 crore [F] (AR2026 p.146). Reported PAT growth was 17.8%; we estimate about 10.5% excluding them [E].",
+        "The effective tax rate was 24.6% [E] (AR2026 p.146). Deferred tax swung from a Rs 9.62 crore credit in FY25 to a Rs 2.44 crore charge in FY26 [F] (AR2026 p.108)."
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Balance sheet observations",
+     "blocks": [
+      {
+       "type": "bullets",
+       "items": [
+        "Total assets were Rs 698.87 crore and net worth Rs 429.38 crore. There are no borrowings [F] (AR2026 p.107).",
+        "Trade receivables rose 12.3% to Rs 254.07 crore, faster than revenue. Related-party receivables were Rs 95.66 crore [F] (AR2026 p.131) [E].",
+        "The inventory provision rose to Rs 15.53 crore from Rs 8.88 crore. That is 9.9% of gross inventory, against 6.4% a year earlier [F] (AR2026 p.131) [E].",
+        "Gratuity provision rose to Rs 14.60 crore from Rs 1.41 crore after the labour codes [F] (AR2026 p.138). The plan is underfunded: obligation Rs 23.44 crore, assets Rs 8.84 crore [F] (AR2026 p.148).",
+        "The FY25 'refundable security deposit received for sale of land' of Rs 31.12 crore was released on completion of the Khardah sale [F] (AR2026 p.137) [F] (AR2026 p.146).",
+        "Liquid assets (cash, other bank balances and liquid mutual funds) total about Rs 116 crore [E] (AR2026 p.107). That is 7.7% of revenue, which is lean given that 69% of PAT is paid out [AI]."
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Cash flow observations",
+     "blocks": [
+      {
+       "type": "bullets",
+       "items": [
+        "CFO was Rs 180.69 crore in FY26 versus Rs 198.81 crore in FY25 [F] (AR2026 p.109). CFO/PAT was 0.87x (0.93x on PAT ex-exceptionals) versus 1.13x [E].",
+        "The FY25 CFO was helped by a Rs 60.14 crore increase in payables. FY26 had only Rs 11.98 crore [F] (AR2026 p.109). The FY26 decline is a normalisation, not deterioration [AI].",
+        "Taxes paid were Rs 76.19 crore against a current tax charge of Rs 65.50 crore [F] (AR2026 p.109) [F] (AR2026 p.146).",
+        "FCF (CFO less capex) was about Rs 149.1 crore. Dividends paid were Rs 141.62 crore [E] (AR2026 p.109).",
+        "Investing outflow included a net Rs 16.68 crore placed into liquid funds, and only Rs 2.14 crore of land proceeds net of advance. Most of the land cash was received earlier as a deposit [F] (AR2026 p.109) [F] (AR2026 p.137)."
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Ratio suite",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "Company-reported ratios [F] (AR2026 p.165)",
+       "columns": [
+        "Ratio",
+        "FY25",
+        "FY26",
+        "Comment [AI]"
+       ],
+       "rows": [
+        [
+         "Current ratio",
+         "1.7",
+         "2.1",
+         "Up as the land deposit cleared"
+        ],
+        [
+         "ROE",
+         "56.5%",
+         "52.3%",
+         "High because payout keeps equity small"
+        ],
+        [
+         "ROCE (pre-exceptional)",
+         "65.4%",
+         "60.0%",
+         "Down as equity grew faster than EBIT"
+        ],
+        [
+         "Inventory turnover",
+         "6.7x",
+         "6.5x",
+         "Stable"
+        ],
+        [
+         "Receivable turnover",
+         "6.6x",
+         "6.3x",
+         "Slower"
+        ],
+        [
+         "Payable turnover",
+         "5.1x",
+         "4.4x",
+         "Paying faster (company basis)"
+        ],
+        [
+         "Net profit margin",
+         "12.8%",
+         "13.7%",
+         "Includes exceptional items"
+        ],
+        [
+         "Net capital turnover",
+         "7.4x",
+         "6.3x",
+         "Working capital rising"
+        ]
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Discrepancies between sources (shown, not reconciled)",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "Source conflicts",
+       "columns": [
+        "Item",
+        "Source A",
+        "Source B",
+        "Comment"
+       ],
+       "rows": [
+        [
+         "Latest sales base",
+         "Rs 339 crore, Dec 2007 [F] (NUMBERS)",
+         "Rs 1,508.15 crore, FY26 [F] (AR2026 p.108)",
+         "Data feed stale. All model outputs affected"
+        ],
+        [
+         "ROCE",
+         "91% (2007) [F] (NUMBERS); 64.7% [AI] (BOARD)",
+         "60.0% FY26 [F] (AR2026 p.165)",
+         "Three different values"
+        ],
+        [
+         "ROE",
+         "60.0% (2007) [F] (NUMBERS); 48.8% [AI] (BOARD)",
+         "52.3% FY26 [F] (AR2026 p.165)",
+         "Not reconciled"
+        ],
+        [
+         "EPS used for P/E",
+         "Rs 34.84 (2007) [F] (NUMBERS)",
+         "Rs 134.30 FY26 [F] (AR2026 p.108)",
+         "FY26 EPS is 3.85x the feed's EPS [E]"
+        ],
+        [
+         "Book value per share",
+         "Rs 67.6 [F] (NUMBERS)",
+         "Net worth Rs 429.38 crore / 1.539 crore shares = about Rs 279 [E] (AR2026 p.107)",
+         "Feed stale"
+        ],
+        [
+         "Related-party share of sales",
+         "14% [F] (AR2026 p.47)",
+         "22.4% of revenue from operations [E] (AR2026 p.157)",
+         "Definitions differ. Not reconciled"
+        ],
+        [
+         "FY25 dividends",
+         "Rs 120.05 crore, SOCE [F] (AR2026 p.110)",
+         "Rs 156.36 crore cash flow [F] (AR2026 p.109); Rs 157.00 crore, note 15 [F] (AR2026 p.135)",
+         "Note 15 includes the FY24 second interim paid in FY25. Rs 0.64 crore gap unexplained"
+        ],
+        [
+         "Labour-code charge",
+         "Rs 13.65 crore exceptional [F] (AR2026 p.146)",
+         "Gratuity past service cost Rs 12.13 crore [F] (AR2026 p.148)",
+         "Rs 1.52 crore not explained"
+        ],
+        [
+         "Employees",
+         "1,003 [F] (AR2026 p.22)",
+         "BRSR permanent employees 765 + permanent workers 169 = 934; 1,381 incl. non-permanent [F] (AR2026 p.40); 722 'eligible permanent' [F] (AR2026 p.25)",
+         "Definitions differ"
+        ],
+        [
+         "Shareholders",
+         "20,502 by folio [F] (AR2026 p.25)",
+         "19,837 by PAN [F] (AR2026 p.87); 19,837 Mar-2026 [F] (NUMBERS)",
+         "Basis differs"
+        ],
+        [
+         "MD term end",
+         "31 Oct 2028 [F] (AR2026 p.85)",
+         "30 Sep 2028 [F] (AR2026 p.92)",
+         "Not reconciled"
+        ],
+        [
+         "Payable days",
+         "79 days [F] (AR2026 p.46)",
+         "about 85 days on purchases [E] (AR2026 p.138, p.143)",
+         "Method differs"
+        ],
+        [
+         "Ultimate parent",
+         "Colfax Corporation [F] (SCREENER)",
+         "ESAB Corporation since 4 Apr 2022 [F] (AR2026 p.155)",
+         "Profile stale"
+        ],
+        [
+         "Unspent CSR transfer date",
+         "28 Apr 2026 [F] (AR2026 p.23)",
+         "29 Apr 2026 [F] (AR2026 p.83)",
+         "Minor"
+        ],
+        [
+         "Penalty appeal forum",
+         "ITAT [F] (AR2026 p.46)",
+         "National Faceless Appeal Centre [F] (AR2026 p.104); CIT(A) upheld penalties 20 Aug 2026 [F] (ANNOUNCEMENTS)",
+         "Not reconciled"
+        ],
+        [
+         "MWL merger effective date",
+         "12 Jan 1994 [F] (AR2026 p.90)",
+         "18 Feb 1994, w.e.f. 1 Apr 1992 [F] (AR2026 p.137)",
+         "Historical"
+        ]
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "working_capital",
+   "title": "Working capital",
+   "subsections": [
+    {
+     "title": "Why headline days mislead",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "Our statements data shows debtor days of 10, inventory days of 67 and payable days of 70, but these are 2007 figures [F] (NUMBERS). On FY26 data the blended cash conversion cycle is about 35 days [E]. The blend hides two very different books. Third-party receivables turn in about 49 days. Related-party receivables take about 103 days, and EWAC Alloys alone about 205 days [E] (AR2026 p.131, p.157, p.160)."
+      }
+     ]
+    },
+    {
+     "title": "Component build",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "Working-capital components (Rs crore) [F] (AR2026 p.107, p.131, p.138); days [E] (receivables on revenue from operations; inventory on materials and traded goods; payables on purchases)",
+       "columns": [
+        "Item",
+        "FY25",
+        "FY26"
+       ],
+       "rows": [
+        [
+         "Inventories",
+         "130.66",
+         "140.67"
+        ],
+        [
+         "Trade receivables",
+         "226.26",
+         "254.07"
+        ],
+        [
+         "  of which related parties",
+         "95.47",
+         "95.66"
+        ],
+        [
+         "Trade payables",
+         "194.58",
+         "206.99"
+        ],
+        [
+         "  of which related parties",
+         "33.09",
+         "49.39"
+        ],
+        [
+         "Debtor days (total)",
+         "60.1",
+         "61.5"
+        ],
+        [
+         "Debtor days (third-party)",
+         "43.4",
+         "49.4"
+        ],
+        [
+         "Debtor days (related-party)",
+         "127.5",
+         "103.3"
+        ],
+        [
+         "Inventory days",
+         "58.5",
+         "58.4"
+        ],
+        [
+         "Payable days",
+         "85.2",
+         "85.1"
+        ],
+        [
+         "Cash conversion cycle",
+         "33.4",
+         "34.8"
+        ]
+       ]
+      },
+      {
+       "type": "table",
+       "caption": "Intra-year working-capital data from bank stock statements (Rs crore) [F] (AR2026 p.167)",
+       "columns": [
+        "Quarter-end",
+        "Inventories",
+        "Third-party debtors",
+        "Creditors excl. accruals"
+       ],
+       "rows": [
+        [
+         "Jun-25",
+         "140.65",
+         "151.18",
+         "166.71"
+        ],
+        [
+         "Sep-25",
+         "126.29",
+         "157.56",
+         "153.60"
+        ],
+        [
+         "Dec-25",
+         "117.94",
+         "146.66",
+         "154.45"
+        ],
+        [
+         "Mar-26",
+         "140.67",
+         "158.44",
+         "189.75"
+        ]
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Drivers, cash consequence and bank limits",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "Management says 'Cash flows continued to be strong despite challenges on working capital and supply chain issues' [MC] (AR2026 p.21). It lists 'liquidity challenges and supply chain driven issues on working capital' as key risks [MC] (AR2026 p.21). The evidence shows three things. Third-party debtor days lengthened by about 6 days [E]. Credit-impaired receivables rose to Rs 6.73 crore from Rs 4.95 crore [F] (AR2026 p.131). The expected-credit-loss allowance rose 25.6% [E]. The March-quarter creditor build (Rs 189.75 crore against Rs 154.45 crore in December) supported year-end cash [F] (AR2026 p.167). Working capital absorbed about Rs 23 crore of cash in FY26 [F] (AR2026 p.109) [E]. The company has working-capital limits from Axis, HDFC and JP Morgan secured on current assets, but drew nothing in FY26 or prior years [F] (AR2026 p.167). The JP Morgan facility is backed by a Rs 13 crore ESAB Corporation guarantee [F] (AR2026 p.161). No covenant issues are disclosed."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "balance_sheet_quality",
+   "title": "Balance sheet quality",
+   "subsections": [
+    {
+     "title": "Asset composition",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "Asset mix (Rs crore) [F] (AR2026 p.107); % of total [E]",
+       "columns": [
+        "Bucket",
+        "Components",
+        "FY25",
+        "% FY25",
+        "FY26",
+        "% FY26"
+       ],
+       "rows": [
+        [
+         "Hard assets",
+         "PPE, ROU, CWIP, intangibles",
+         "145.37",
+         "22.4%",
+         "153.58",
+         "22.0%"
+        ],
+        [
+         "Working-capital assets",
+         "Inventory, receivables, other current assets",
+         "374.64",
+         "57.7%",
+         "409.39",
+         "58.6%"
+        ],
+        [
+         "Cash and investments",
+         "Cash, bank, liquid funds, SPV equity, margin deposits",
+         "105.98",
+         "16.3%",
+         "118.76",
+         "17.0%"
+        ],
+        [
+         "Soft / other",
+         "DTA, tax assets, deposits, other non-current assets",
+         "21.10",
+         "3.3%",
+         "17.14",
+         "2.5%"
+        ],
+        [
+         "Held for sale",
+         "Khardah land",
+         "2.09",
+         "0.3%",
+         "0.00",
+         "0.0%"
+        ],
+        [
+         "Total",
+         "",
+         "649.18",
+         "100%",
+         "698.87",
+         "100%"
+        ]
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Liabilities, contingencies and off-balance-sheet items",
+     "blocks": [
+      {
+       "type": "bullets",
+       "items": [
+        "Borrowings: nil. Lease liabilities Rs 3.35 crore [F] (AR2026 p.107).",
+        "Contingent liabilities were Rs 24.93 crore (5.8% of net worth): excise Rs 10.67 crore, claims not acknowledged Rs 8.24 crore, sales tax Rs 2.15 crore, income tax Rs 2.74 crore, service tax Rs 1.13 crore [F] (AR2026 p.153) [E]. These exclude show-cause notices and interest [F] (AR2026 p.153).",
+        "Disputed statutory dues per CARO total about Rs 28.3 crore involved and about Rs 24.6 crore unpaid. Some disputes date back to FY1996-2000, including sales tax of Rs 9.14 crore and excise of Rs 9.35 crore [F] (AR2026 p.104) [E].",
+        "Guarantees: bank guarantees in the ordinary course, backed by margin deposits of about Rs 5.91 crore [F] (AR2026 p.23) [F] (AR2026 p.133). A guarantee of Rs 13 crore was received from the parent [F] (AR2026 p.161).",
+        "Related-party leases: rent of Rs 0.08 crore paid to EWAC Alloys [F] (AR2026 p.158). Immaterial.",
+        "Pension and gratuity obligations exceed plan assets by Rs 17.26 crore combined [F] (AR2026 p.148, p.151) [E].",
+        "Capital commitments Rs 9.21 crore [F] (AR2026 p.153)."
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Assessment",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "**Balance sheet quality is high but not idle.** There is no debt, hard assets are modest, and there is no goodwill. The weak spots are the related-party receivable concentration (37.7% of receivables) and the 26-year-old tax and excise disputes [E] (AR2026 p.104). Liquidity is thin relative to the dividend policy [AI]. The balance sheet carries no excess cash pile, so dividends depend on current-year FCF [AI]."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "accounting_quality",
+   "title": "Accounting quality",
+   "subsections": [
+    {
+     "title": "Audit opinion and key matters",
+     "blocks": [
+      {
+       "type": "bullets",
+       "items": [
+        "Auditor: Deloitte Haskins & Sells (FRN 008072S), appointed from the August 2024 AGM for five years. Partner P Usha Parvathy [F] (AR2026 p.22) [F] (AR2026 p.100). The predecessor auditor and the reason for rotation are not disclosed in our documents.",
+        "Opinion: unmodified on the financial statements and on internal financial controls [F] (AR2026 p.97) [F] (AR2026 p.102).",
+        "Key audit matter: provision for excess and obsolete inventory, on inventories of Rs 136.41 crore, stated net of a Rs 15.53 crore provision (the KAM figure excludes stores and spares) [F] (AR2026 p.97).",
+        "Emphasis of matter: none.",
+        "Modification under Section 143(3)(b): books were properly kept 'except for not keeping backup on a daily basis' in an India-located server. Note 45(xii) says payroll backup is kept outside India [F] (AR2026 p.99) [F] (AR2026 p.168).",
+        "Audit trail: enabled and operating throughout the year. No tampering noted [F] (AR2026 p.100).",
+        "Audit fees: Rs 0.59 crore including reimbursements [F] (AR2026 p.144)."
+       ]
+      }
+     ]
+    },
+    {
+     "title": "CARO and statutory compliance",
+     "blocks": [
+      {
+       "type": "bullets",
+       "items": [
+        "CARO: no adverse findings on loans, deposits, fraud or whistle-blower complaints. Undisputed dues were deposited regularly. Disputed dues are listed [F] (AR2026 p.103) [F] (AR2026 p.104) [F] (AR2026 p.105).",
+        "FEMA: import payables of Rs 3.82 crore were outstanding beyond 180 days. Extension letters have been filed with the AD bank [F] (AR2026 p.140).",
+        "MSME: principal of Rs 40.09 crore and accumulated interest of Rs 3.51 crore were outstanding to micro and small enterprises at year-end [F] (AR2026 p.140). Interest of Rs 1.33 crore was accrued on delayed payments in FY26 [F] (AR2026 p.140). For a cash-generative company, delayed MSME payment is a process or governance choice [AI].",
+        "Income tax: penalties of Rs 1.23 crore (AY2017-18) and Rs 21.87 lakh (AY2018-19) for alleged under-reporting [F] (AR2026 p.45). CIT(A) upheld them on 20 August 2026 [F] (ANNOUNCEMENTS)."
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Unusual or judgemental accounting",
+     "blocks": [
+      {
+       "type": "bullets",
+       "items": [
+        "Land gain of Rs 30.91 crore booked as exceptional on derecognition, approved by the Board on 10 November 2025 [F] (AR2026 p.146). Presentation is appropriate [AI].",
+        "Labour-code past service cost presented as exceptional [F] (AR2026 p.146). It is recurring in effect, because future gratuity accruals will be higher [AI].",
+        "Parent RSUs and options: Rs 3.29 crore expensed through P&L and credited to 'capital contribution from ultimate holding company', with no recharge [F] (AR2026 p.110) [F] (AR2026 p.166).",
+        "No restatements and no prior-period errors [F] (AR2026 p.110). No common-control business combinations in the period.",
+        "The 26% stake in a captive power SPV is not equity-accounted, being held for regulatory reasons [F] (AR2026 p.129). Immaterial."
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Assessment and gaps",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "**Accounting quality is good**: Big-4 auditor, unmodified opinions, a single conventional KAM, simple revenue recognition and no capitalised development costs [AI]. The irritants are compliance hygiene (FEMA, MSME interest, payroll backup, tax penalties), not earnings manipulation. Not covered by our documents: prior years' audit reports and KAMs, the internal auditor's (KPMG) findings, cost audit findings, and the predecessor auditor's tenure [F] (AR2026 p.92)."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "group_structure_rpt",
+   "title": "Group structure and related-party transactions",
+   "subsections": [
+    {
+     "title": "Subsidiaries and group companies",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "Entities and roles",
+       "columns": [
+        "Entity",
+        "Role",
+        "Status"
+       ],
+       "rows": [
+        [
+         "Subsidiaries",
+         "None",
+         "[F] (AR2026 p.84)"
+        ],
+        [
+         "ESAB Holdings Ltd UK / Exelvia Group India BV",
+         "Promoter holding companies. Received Rs 93.96 crore of dividends in FY26 [F] (AR2026 p.158)",
+         "Active"
+        ],
+        [
+         "ESAB Europe GmbH",
+         "Trademark licensor (Rs 51.93 crore), key supplier (Rs 54.57 crore), service customer (Rs 11.15 crore) [F] (AR2026 p.157)",
+         "Active"
+        ],
+        [
+         "EWAC Alloys Ltd (India)",
+         "Customer (Rs 83.46 crore), management-fee payer, lessor. The MD and CFO sit on its board [F] (AR2026 p.75)",
+         "Active"
+        ],
+        [
+         "GCE India Pvt Ltd; Aktiv Technologies Pvt Ltd (India)",
+         "Small trading counterparties. The CFO and the new Chairman are directors [F] (AR2026 p.15) [F] (AR2026 p.9)",
+         "Active"
+        ],
+        [
+         "Captive power SPVs (Viviid, Clean Wind Pratapgarh, Sunsure)",
+         "Regulatory equity for power procurement. Rs 2.58 crore total [F] (AR2026 p.129)",
+         "Active"
+        ]
+       ]
+      },
+      {
+       "type": "p",
+       "text": "Non-compete or common-pursuit disclosures: **none in the documents**. ESAB group entities operating in India (EWAC Alloys, GCE India, Aktiv Technologies) sit alongside the listed company. Their businesses are not described, so we cannot say whether they compete with the listed entity [AI]."
+      }
+     ]
+    },
+    {
+     "title": "Related-party transactions",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "FY26 related-party flows (Rs crore) [F] (AR2026 p.157, p.158, p.159, p.160)",
+       "columns": [
+        "Category",
+        "FY25",
+        "FY26",
+        "% of FY26 revenue [E]"
+       ],
+       "rows": [
+        [
+         "Sale of products",
+         "178.59",
+         "209.81",
+         "13.9%"
+        ],
+        [
+         "Income from services",
+         "91.27",
+         "124.63",
+         "8.3%"
+        ],
+        [
+         "Management service income (EWAC)",
+         "3.50",
+         "3.50",
+         "0.2%"
+        ],
+        [
+         "Purchases of raw material and traded goods",
+         "91.32",
+         "89.36",
+         "5.9%"
+        ],
+        [
+         "Trademark licence fee (ESAB Europe)",
+         "47.20",
+         "51.93",
+         "3.4%"
+        ],
+        [
+         "Reimbursements paid",
+         "2.52",
+         "2.87",
+         "0.2%"
+        ],
+        [
+         "Dividends paid to promoters",
+         "104.17",
+         "93.96",
+         "-"
+        ],
+        [
+         "KMP compensation (short-term)",
+         "5.59",
+         "6.04",
+         "-"
+        ],
+        [
+         "KMP share-based payment (parent RSUs)",
+         "-",
+         "2.92",
+         "-"
+        ],
+        [
+         "Trade receivables from related parties (year-end)",
+         "95.48",
+         "95.66",
+         "-"
+        ],
+        [
+         "Trade payables to related parties (year-end)",
+         "33.09",
+         "49.39",
+         "-"
+        ],
+        [
+         "Guarantee received from ESAB Corp",
+         "13.00",
+         "13.00",
+         "-"
+        ]
+       ]
+      },
+      {
+       "type": "p",
+       "text": "Economic substance versus headline [AI]. The Form AOC-2 reports 'Nil' material related-party transactions, and the company says all are at arm's length under omnibus audit-committee approval [F] (AR2026 p.37) [F] (AR2026 p.23). In aggregate, though, the group is counterparty to about 22% of revenue, 10% of purchases and a royalty equal to 19% of EBITDA [E]. Gross related-party flows were about Rs 482 crore before dividends [E]. **The materiality test is applied entity by entity, which is why each transaction can be 'not material' while the aggregate is.** This is our inference: the documents do not state the threshold applied."
+      }
+     ]
+    },
+    {
+     "title": "Promoter-group guarantees",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "The flow runs from parent to subsidiary. ESAB Corporation guarantees Rs 13 crore of the JP Morgan working-capital facility [F] (AR2026 p.161). ESAB India has given no guarantees, loans or security to group entities [F] (AR2026 p.23) [F] (AR2026 p.103). No promoter pledge is disclosed in the documents."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "management",
+   "title": "Management, board and alignment",
+   "subsections": [
+    {
+     "title": "Leadership",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "Board and KMP [F] (AR2026 p.15, p.18, p.19, p.75, p.76)",
+       "columns": [
+        "Role",
+        "Name",
+        "Age",
+        "Since",
+        "Background"
+       ],
+       "rows": [
+        [
+         "Chairman, non-executive nominee of ESAB Holdings UK",
+         "Curtis Evan Jewell",
+         "44 (born 1 Dec 1981)",
+         "1 May 2026",
+         "SVP and General Counsel, ESAB Corporation. Former Corporate Secretary at Colfax. Ex-Hogan Lovells"
+        ],
+        [
+         "Former Chairman, nominee",
+         "Kevin Johnson",
+         "50",
+         "24 Mar 2021 to 30 Apr 2026",
+         "CFO of ESAB Corporation. Ex-Colfax IR/FP&A; ex-Howden"
+        ],
+        [
+         "Managing Director",
+         "Rohit Gambhir",
+         "53",
+         "MD since 1 Nov 2013 (joined Mar 2013)",
+         "B.Tech NIT Kurukshetra, IIM Indore. Saint-Gobain, Stanley Black & Decker"
+        ],
+        [
+         "Director and CFO",
+         "B Mohan",
+         "60",
+         "CFO since 1 Feb 2005; director since 20 Jun 2023",
+         "CA, CS. A.F. Ferguson, Wipro, Gillette, Valeo"
+        ],
+        [
+         "Independent Director, Audit Committee chair",
+         "N Ramesh Rajan",
+         "68",
+         "27 Jan 2025",
+         "Former Chairman, PwC India. ID at Cholamandalam Investment and Rane (Madras)"
+        ],
+        [
+         "Independent Director",
+         "Raja Venkataraman",
+         "68",
+         "27 Jan 2025",
+         "Former MD, Philips India. ID at Greaves Cotton and Amrutanjan"
+        ],
+        [
+         "Independent Director",
+         "Cauvery Dharmaraj",
+         "58",
+         "23 Mar 2023",
+         "HR professional (XLRI). ID at Inspirisys"
+        ],
+        [
+         "Company Secretary",
+         "G Balaji",
+         "Not disclosed",
+         "25 Mar 2022",
+         "DGM Legal and Compliance"
+        ]
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Governance timeline",
+     "blocks": [
+      {
+       "type": "bullets",
+       "items": [
+        "23 Mar 2023: Cauvery Dharmaraj appointed independent director [F] (AR2026 p.18).",
+        "20 Jun 2023: CFO B Mohan joins the board [F] (AR2026 p.19).",
+        "Aug 2023: MD re-appointed for five years from 1 Nov 2023 by special resolution [F] (AR2026 p.85).",
+        "Aug 2024: Deloitte Haskins & Sells appointed statutory auditor [F] (AR2026 p.22). The predecessor is not named in our documents.",
+        "27-29 Jan 2025: independent directors K Vaidyanathan and Vikram Tandon leave; N Ramesh Rajan and Raja Venkataraman join. Approved by postal ballot on 12 Mar 2025 with 99.52% and 99.99% support [F] (AR2026 p.85) [F] (AR2026 p.156).",
+        "12 Mar 2025: Kevin Johnson's continuation approved under Reg 17(1D) [F] (AR2026 p.72).",
+        "1 May 2026: Chairman changes from Kevin Johnson (group CFO) to Curtis Evan Jewell (group General Counsel). Shareholder approval sought at the 29 Jul 2026 AGM [F] (AR2026 p.6) [F] (AR2026 p.72).",
+        "29 Jul 2026 AGM: also sought approval for independent-director commission of up to 1% of net profit for FY27-FY31 [F] (AR2026 p.16). Voting results are not in our documents."
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Alignment and skin in the game",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "Promoter holding has been 73.72% in every quarter from Sep-2023 to Jun-2026 [F] (NUMBERS). It sits with two ESAB holding companies [F] (AR2026 p.87). **None of the directors holds any shares** [F] (AR2026 p.74). No pledge is disclosed, and the promoter shares are fully dematerialised [F] (AR2026 p.89). Management alignment comes through parent-company RSUs and options: 10,102 units were granted in FY26 and 8,120 were outstanding at year-end [F] (AR2026 p.167). These incentives are tied to ESAB Corporation's share price, not to ESAB India's [AI]. FIIs hold 1.62% and DIIs 12.87%, against 11.78% public, as of Jun-2026 [F] (NUMBERS). SBI Small Cap (6.55%) and Nippon India Small Cap (5.35%) are the only non-promoter holders above 5% [F] (AR2026 p.135)."
+      }
+     ]
+    },
+    {
+     "title": "Compensation and self-dealing indicators",
+     "blocks": [
+      {
+       "type": "bullets",
+       "items": [
+        "MD remuneration in FY26: salary Rs 4.70 crore (including parent stock-unit awards exercised, with no recharge), perquisites Rs 0.26 crore, PF Rs 0.05 crore and commission Rs 0.52 crore. Total about Rs 5.52 crore [F] (AR2026 p.81) [E]. That is about 2.7% of PAT [E]. The ratio to the median employee is 26:1, unchanged [F] (AR2026 p.24).",
+        "CFO remuneration: about Rs 1.85 crore [F] (AR2026 p.81) [E]. KMP increments were 7.50%, against 7.65% for non-KMP staff [F] (AR2026 p.25).",
+        "Independent directors received Rs 0.11 crore in sitting fees and Rs 0.17 crore in commission [F] (AR2026 p.81).",
+        "Self-dealing indicators: no loans to related parties or directors [F] (AR2026 p.23). The trademark licence fee to ESAB Europe of Rs 51.93 crore is the largest value transfer to the promoter group apart from dividends [F] (AR2026 p.158). The licence terms are not disclosed."
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Management and promoter scorecard",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "Scorecard (1-10, higher is better) [AI]",
+       "columns": [
+        "Factor",
+        "Score 1-10",
+        "Rationale"
+       ],
+       "rows": [
+        [
+         "Execution track record",
+         "7",
+         "Revenue CAGR about 13.9% and PAT CAGR about 25% over FY22-FY26 [E] (AR2026 p.4). Growth is slowing to single digits"
+        ],
+        [
+         "Capital allocation",
+         "8",
+         "Debt-free. Capex at about 2% of revenue. Payout 69% [F] (AR2026 p.4). No empire building"
+        ],
+        [
+         "Minority alignment",
+         "4",
+         "Royalty of 3.44% of revenue to the parent. Group-set transfer pricing. Directors hold no shares [F] (AR2026 p.74, p.144)"
+        ],
+        [
+         "Board independence",
+         "6",
+         "3 of 6 directors independent. Audit committee 2 ID + 1 nominee [F] (AR2026 p.72, p.77). Chair is a group nominee"
+        ],
+        [
+         "Disclosure candour",
+         "5",
+         "Statutory minimum. No segment, capacity, volume or royalty-term disclosure"
+        ],
+        [
+         "Compliance hygiene",
+         "5",
+         "FEMA overdue payables, MSME interest, payroll backup modification, upheld tax penalties [F] (AR2026 p.99, p.140) [F] (ANNOUNCEMENTS)"
+        ],
+        [
+         "Investor communication",
+         "3",
+         "Policy of not meeting analysts or institutions [F] (AR2026 p.86). No calls in evidence"
+        ],
+        [
+         "Management continuity",
+         "8",
+         "MD since 2013, CFO since 2005 [F] (AR2026 p.19)"
+        ]
+       ]
+      },
+      {
+       "type": "p",
+       "text": "Simple average: **5.8 / 10** [E]. This is a competent, conservative operator whose minority alignment is limited by parent economics and minimal disclosure."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "competitive_landscape",
+   "title": "Competitive landscape",
+   "subsections": [
+    {
+     "title": "Disclosed peer set",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "Peer set as disclosed",
+       "columns": [
+        "Peer",
+        "Revenue",
+        "Margins",
+        "RoNW",
+        "P/E"
+       ],
+       "rows": [
+        [
+         "No peer set disclosed in the annual report, rating note or announcements",
+         "n/a",
+         "n/a",
+         "n/a",
+         "n/a"
+        ]
+       ]
+      },
+      {
+       "type": "p",
+       "text": "The annual report names no competitor. The only competitive language is 'Pricing pressures' listed as a key risk [MC] (AR2026 p.21), together with a claim that product categories showed 'a high degree of resilience to market headwinds' [MC] (AR2026 p.21). Our earlier board note says general-purpose electrodes face local manufacturers competing on price, with the distributor deciding [AI] (BOARD). That note is not company disclosure."
+      }
+     ]
+    },
+    {
+     "title": "Competitors and listed comparables (context only)",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "Ador Welding is the obvious domestic listed comparable [AI]. Our evidence set contains no financial data for it or any other peer, so no comparative revenue, margin, RoNW or multiple is shown. Global welding groups selling into India would also compete in equipment and automation [AI]. Market shares are not disclosed by any source in the evidence set."
+      }
+     ]
+    },
+    {
+     "title": "Assessment",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "The competitive position cannot be benchmarked from the documents. The indirect evidence is consistent with a strong but not dominant position: a stable top-10 dealer share, a growing dealer count and a gross margin proxy around 42% [F] (AR2026 p.47) [E]. The flat traded-goods line and management's reference to pricing pressure argue against assuming pricing power in the general-purpose ranges [AI]."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "moat",
+   "title": "Moat assessment",
+   "subsections": [
+    {
+     "title": "Moat scorecard",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "Moat factors (1-10) [AI]",
+       "columns": [
+        "Factor",
+        "Score 1-10",
+        "Rationale"
+       ],
+       "rows": [
+        [
+         "Brand",
+         "7",
+         "Global ESAB brand. **Licensed, not owned**: Rs 51.93 crore fee to ESAB Europe [F] (AR2026 p.144). The minority does not own the asset"
+        ],
+        [
+         "Switching costs",
+         "6",
+         "Procedure qualification in code-governed work [AI] (BOARD). Low in general-purpose electrodes"
+        ],
+        [
+         "Regulatory / approval barriers",
+         "5",
+         "Code approvals plausible but not disclosed. BIS/ISO standards adopted [F] (AR2026 p.43)"
+        ],
+        [
+         "Technology / IP",
+         "5",
+         "R&D teams in filler metals [F] (AR2026 p.84). Testing and development Rs 14.35 crore [F] (AR2026 p.144). IP sits with the group"
+        ],
+        [
+         "Scale / cost",
+         "6",
+         "Three plants, revenue about 9.8x net fixed assets [E]. Imports about 25% of purchases [E]"
+        ],
+        [
+         "Relationship durability",
+         "6",
+         "393 dealers. Top-10 share stable at 26% [F] (AR2026 p.47). Customer complaints fell from 43 to 14 [F] (AR2026 p.41)"
+        ],
+        [
+         "Network effects",
+         "2",
+         "None evident"
+        ],
+        [
+         "Input control",
+         "3",
+         "No commodity hedging. Steel and minerals bought processed [F] (AR2026 p.88)"
+        ]
+       ]
+      },
+      {
+       "type": "p",
+       "text": "Simple average: **5.0 / 10** [E]."
+      }
+     ]
+    },
+    {
+     "title": "Questions the scores cannot answer",
+     "blocks": [
+      {
+       "type": "bullets",
+       "items": [
+        "What share of consumables revenue is code-qualified or specialty, where switching costs are real, versus general-purpose? Not disclosed.",
+        "What are the term, renewal and rate-setting mechanism of the ESAB trademark licence? Could the parent raise the rate or withdraw the brand? Not disclosed [F] (AR2026 p.37)."
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Conclusion",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "The economic signature of a moat is present: ROCE of 60% and minimal capital needs [F] (AR2026 p.165). But the moat's key components, brand and technology, are owned by the parent and rented to the listed entity [F] (AR2026 p.144). **For minority shareholders this is a narrow, borrowed moat.** It is durable as long as the parent wants the Indian subsidiary to remain its Indian vehicle [AI]."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "industry_structure",
+   "title": "Industry structure",
+   "subsections": [
+    {
+     "title": "Headline TAM figures",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "TAM figures stated in the evidence set",
+       "columns": [
+        "Figure",
+        "Source"
+       ],
+       "rows": [
+        [
+         "No industry size, TAM or growth figure is stated",
+         "AR2026 MD&A [F] (AR2026 p.20); rating note [F] (RATING); profile [F] (SCREENER)"
+        ]
+       ]
+      },
+      {
+       "type": "p",
+       "text": "The MD&A describes the industry only qualitatively: 'Overall growth and growth in industrial segments relevant to the Company remained muted with weakness overall in capital expenditure' [MC] (AR2026 p.20)."
+      }
+     ]
+    },
+    {
+     "title": "Why TAM cannot become company revenue",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "No TAM is disclosed, so even illustrative share arithmetic is not possible without importing an outside figure, which we do not do. Any future TAM figure would also overstate the addressable pool, for three reasons [AI]. About 22% of ESAB India's revenue is intra-group and not market-facing. Export markets are served by group companies, not the listed entity. The brand licence may define the company's territory, and its terms are not disclosed."
+      }
+     ]
+    },
+    {
+     "title": "Bottom-up framing",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "Domestic third-party revenue was about Rs 1,162 crore in FY26 [E]. Dealer channel revenue was about Rs 1,041 crore (69% of revenue) spread over 393 dealers, an average of about Rs 2.6 crore per dealer [E] (AR2026 p.47). Growth in this pool was about 6.6% [E]. The bottom-up growth question is therefore: dealer count growth (+1.8% in FY26 [E]) times throughput per dealer, plus specialty mix. It is not a share of an industry TAM [AI]."
+      }
+     ]
+    },
+    {
+     "title": "Concentration and channel structure",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "The sales channel is dealer-led: 69% of sales through 393 dealers, with the top 10 at 26% of dealer sales [F] (AR2026 p.47). The purchase side relies on intermediaries: 33.34% of purchases through 84 trading houses, with the top 10 at 73.76% of trading-house purchases [F] (AR2026 p.47). Industry concentration ratios are not disclosed."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "structural_themes",
+   "title": "Structural themes",
+   "subsections": [
+    {
+     "title": "Themes supported by company evidence",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "Theme test",
+       "columns": [
+        "Theme",
+        "Supporting evidence",
+        "Evidence strength"
+       ],
+       "rows": [
+        [
+         "India as ESAB's engineering / GCC hub",
+         "Services +36.5% to Rs 124.59 crore, all group [E] (AR2026 p.141, p.157). Management cites cost and talent advantage [MC] (AR2026 p.21)",
+         "Strong"
+        ],
+        [
+         "India as group export sourcing base",
+         "Overseas revenue +31%, about 99% group [E]",
+         "Strong (but captive)"
+        ],
+        [
+         "Asset-light compounding with high payout",
+         "ROCE 60%, payout 69% [F] (AR2026 p.4, p.165)",
+         "Strong"
+        ],
+        [
+         "Captive renewable power",
+         "Wind power, three power SPVs, new 1 MW solar SPV [F] (AR2026 p.27, p.129) [F] (ANNOUNCEMENTS)",
+         "Moderate (cost theme, small)"
+        ],
+        [
+         "Workforce formalisation cost (labour codes)",
+         "Gratuity liability +Rs 13.65 crore [F] (AR2026 p.146)",
+         "Strong (headwind)"
+        ]
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Themes in the narrative but not supported",
+     "blocks": [
+      {
+       "type": "bullets",
+       "items": [
+        "Capital-goods-cycle revival: named as an opportunity [MC] (AR2026 p.21), but the same MD&A reports 'weakness overall in capital expenditure' and 'low growth' in fabrication [MC] (AR2026 p.20, p.21).",
+        "Import substitution: our earlier board note frames domestic consumables as replacing imports [AI] (BOARD). The company still imports about 25% of purchases by value and trades Rs 321 crore of goods [E] (AR2026 p.28, p.141). No import-substitution evidence is disclosed.",
+        "Defence / critical infrastructure: not mentioned in the annual report.",
+        "Automation and robotics: a Welding Automation business head exists [F] (AR2026 p.84). No revenue or order data.",
+        "Digital and AI: management calls AI 'potentially disruptive' [MC] (AR2026 p.20). No product evidence."
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Net structural assessment",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "The structural tailwinds with real evidence are group-captive: GCC services and export sourcing. The domestic market-facing themes are either cyclical and currently weak, or unsupported. The labour codes are a confirmed structural cost headwind [AI]."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "guidance_tracker",
+   "title": "Guidance tracker",
+   "subsections": [
+    {
+     "title": "Guidance inventory",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "Management guidance as found in the evidence set (no transcripts available)",
+       "columns": [
+        "Item",
+        "Guidance given?",
+        "What management said [MC]",
+        "Status vs actuals"
+       ],
+       "rows": [
+        [
+         "Revenue",
+         "No",
+         "'The short-term outlook remains challenging, and the medium-term outlook has multiple external dependencies to call' [MC] (AR2026 p.21)",
+         "Not testable"
+        ],
+        [
+         "Margins",
+         "No",
+         "Commodity, energy and rupee pressures cited [MC] (AR2026 p.20)",
+         "Not testable"
+        ],
+        [
+         "Order book",
+         "No",
+         "None",
+         "n/a"
+        ],
+        [
+         "Capex",
+         "No number",
+         "Capex directed to productivity, marginal capacity and IT [MC] (AR2026 p.22). Commitments Rs 9.21 crore [F] (AR2026 p.153)",
+         "Not testable"
+        ],
+        [
+         "Utilisation",
+         "No",
+         "None",
+         "n/a"
+        ],
+        [
+         "New products",
+         "Qualitative",
+         "'New product launches were well received' [MC] (AR2026 p.21)",
+         "No revenue disclosed"
+        ],
+        [
+         "Exports / services",
+         "Qualitative",
+         "Opportunities in exports and service revenue streams [MC] (AR2026 p.21)",
+         "FY26: overseas +31%, services +36.5% [E]"
+        ],
+        [
+         "Fund-raising",
+         "No",
+         "No issues of securities in FY26 [F] (AR2026 p.26)",
+         "n/a"
+        ],
+        [
+         "Dividend",
+         "Yes",
+         "Final dividend Rs 25 per share proposed for the AGM on 29 Jul 2026 [F] (AR2026 p.17). Possible interim dividend at the 4 Nov 2026 board [F] (ANNOUNCEMENTS)",
+         "AGM outcome not in documents"
+        ],
+        [
+         "CSR",
+         "Yes",
+         "Unspent Rs 0.29 crore to be spent in FY27 [F] (AR2026 p.36)",
+         "Pending"
+        ]
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Prior-quarter test and behaviour pattern",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "There is no previous report in our records, so no prior guidance can be tested. The pattern [AI] is that management does not give quantitative guidance and does not engage with analysts [F] (AR2026 p.86). Commentary is cautious ('challenging', 'muted', 'anemic'), and FY26 delivered 9.8% revenue growth despite that tone [MC] (AR2026 p.21) [F] (AR2026 p.108). The tracker will rely on reported numbers, not promises."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "earnings_quality",
+   "title": "Earnings quality",
+   "subsections": [
+    {
+     "title": "PAT versus cash",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "PAT and operating cash flow (Rs crore). FY25-FY26 [F] (AR2026 p.108, p.109); 2005-2007 [F] (NUMBERS) shown for completeness only; ratios [E]",
+       "columns": [
+        "Year",
+        "PAT",
+        "CFO",
+        "CFO - PAT",
+        "CFO / PAT"
+       ],
+       "rows": [
+        [
+         "Dec 2005 (statements data)",
+         "40",
+         "35",
+         "-5",
+         "0.88"
+        ],
+        [
+         "Dec 2006 (statements data)",
+         "43",
+         "42",
+         "-1",
+         "0.98"
+        ],
+        [
+         "Dec 2007 (statements data)",
+         "54",
+         "43",
+         "-11",
+         "0.80"
+        ],
+        [
+         "FY25",
+         "175.42",
+         "198.81",
+         "+23.39",
+         "1.13"
+        ],
+        [
+         "FY26",
+         "206.69",
+         "180.69",
+         "-26.00",
+         "0.87"
+        ],
+        [
+         "FY26 on PAT ex-exceptional (est.)",
+         "about 193.8",
+         "180.69",
+         "about -13.1",
+         "about 0.93"
+        ],
+        [
+         "FY25+FY26 cumulative",
+         "382.11",
+         "379.50",
+         "-2.61",
+         "0.99"
+        ]
+       ]
+      },
+      {
+       "type": "p",
+       "text": "FY18-FY24 cash flows are not available: our statements data stops at 2007 and the annual report gives two years. Over the two years available, profit converted to operating cash almost one-for-one [E]."
+      }
+     ]
+    },
+    {
+     "title": "Composition of profit",
+     "blocks": [
+      {
+       "type": "bullets",
+       "items": [
+        "Other income: Rs 6.03 crore, 2.3% of PBT before exceptional items. Mainly FX gain (Rs 3.16 crore) and mutual fund gains (Rs 1.39 crore) [F] (AR2026 p.142) [E].",
+        "One-offs: land gain +Rs 30.91 crore and labour-code charge -Rs 13.65 crore. Net 6.3% of PBT [F] (AR2026 p.146) [E]. FY25 had 'one-time' indirect tax refunds in other income [MC] (AR2026 p.21).",
+        "ESOP: Rs 3.29 crore non-cash charge for parent awards, funded by a capital contribution [F] (AR2026 p.166).",
+        "Tax: effective rate 24.6% against the statutory 25.168%. A Rs 2.43 crore DTA reversal and other items lowered it [F] (AR2026 p.146) [E].",
+        "Provisions: the inventory provision rose by Rs 6.65 crore and the ECL by Rs 2.41 crore [F] (AR2026 p.131, p.133). Both reduce reported profit, which is conservative.",
+        "Related-party pricing: about 22% of revenue and the royalty are priced within the group. Their margin content is not disclosed [AI]."
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Conclusion",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "**Earnings quality is good.** Profit is operating, cash-backed over two years and lightly supported by other income, and provisioning is moving in a conservative direction [AI]. The two caveats are, first, that the FY26 PAT headline includes a net exceptional gain. Second, an unknown share of operating profit comes from transfer-priced group transactions whose margins could be reset by the parent [AI]."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "forecast",
+   "title": "Forecast model",
+   "subsections": [
+    {
+     "title": "Methodology",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "The forecast is our DCF model's base-case projection, reproduced unchanged as the rules require [F] (NUMBERS). It is a five-year FCFF model: EBITDA less tax on EBIT, less capex (depreciation plus new sales divided by fixed-asset turnover), less change in working capital. Growth fades linearly to the year-5 rate, and a Gordon terminal value is applied [F] (NUMBERS)."
+      },
+      {
+       "type": "callout",
+       "tone": "bad",
+       "text": "**The model's starting point is wrong for today's company.** It takes 'base_sales_ttm' of Rs 339 crore, which is the Dec-2007 figure, as the base [F] (NUMBERS). FY26 actual revenue from operations was Rs 1,508.15 crore [F] (AR2026 p.108). Model year-1 sales of Rs 372.9 crore are therefore about one-quarter of revenue already reported. We present the table for transparency only. It is not a forecast of ESAB India's FY27-FY31 results, and we do not replace it with our own numbers."
+      }
+     ]
+    },
+    {
+     "title": "Base-case assumptions and projection",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "Model base-case inputs [F] (NUMBERS)",
+       "columns": [
+        "Input",
+        "Model value",
+        "Current-company reference"
+       ],
+       "rows": [
+        [
+         "Base sales (TTM)",
+         "Rs 339 crore (Dec 2007)",
+         "FY26 revenue Rs 1,508.15 crore [F] (AR2026 p.108)"
+        ],
+        [
+         "Starting growth",
+         "10.0% (median of 3y, 5y and TTM)",
+         "FY26 growth 9.8% [F] (AR2026 p.21)"
+        ],
+        [
+         "EBITDA margin",
+         "23.0%",
+         "FY26 operating EBITDA margin 17.9% [E] (AR2026 p.108)"
+        ],
+        [
+         "D&A % of sales",
+         "1.8%",
+         "FY26 1.1% [E]"
+        ],
+        [
+         "Fixed-asset turnover",
+         "5.82x",
+         "FY26 about 9.8x [E]"
+        ],
+        [
+         "Working-capital days",
+         "0",
+         "FY26 CCC about 35 days [E]"
+        ],
+        [
+         "Tax rate",
+         "25.2%",
+         "Statutory 25.168% [F] (AR2026 p.146)"
+        ],
+        [
+         "WACC",
+         "15.0% (rf 7.0%, ERP 7.0%, beta 1.15, no debt)",
+         "Company is debt-free [F] (AR2026 p.22)"
+        ],
+        [
+         "Terminal growth",
+         "5.5%",
+         "-"
+        ],
+        [
+         "Shares",
+         "1.539 crore",
+         "1,53,93,020 shares [F] (AR2026 p.134)"
+        ]
+       ]
+      },
+      {
+       "type": "table",
+       "caption": "Base-case projection (Rs crore) [F] (NUMBERS). The model labels these years 1-5; on intent they map to FY27-FY31, but the base is stale",
+       "columns": [
+        "Model year",
+        "Intended fiscal year",
+        "Growth",
+        "Sales",
+        "EBITDA",
+        "FCFF"
+       ],
+       "rows": [
+        [
+         "1",
+         "FY27",
+         "10.0%",
+         "372.9",
+         "85.8",
+         "53.4"
+        ],
+        [
+         "2",
+         "FY28",
+         "10.0%",
+         "410.2",
+         "94.3",
+         "58.7"
+        ],
+        [
+         "3",
+         "FY29",
+         "10.0%",
+         "451.2",
+         "103.8",
+         "64.6"
+        ],
+        [
+         "4",
+         "FY30",
+         "10.0%",
+         "496.3",
+         "114.2",
+         "71.1"
+        ],
+        [
+         "5",
+         "FY31",
+         "10.0%",
+         "546.0",
+         "125.6",
+         "78.2"
+        ]
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Key driver tree",
+     "blocks": [
+      {
+       "type": "bullets",
+       "items": [
+        "Revenue = domestic third-party (about 77% of FY26, growing about 6.6%) + group exports (about 17%) + group services (about 8%) [E] (AR2026 p.157, p.166). The export and services buckets overlap, because services to overseas affiliates count as overseas revenue. Driver weights are ours. The model uses a single growth rate.",
+        "Domestic third-party revenue is driven by dealer count (393) times throughput, and by Indian fabrication and capex activity [F] (AR2026 p.47) [MC] (AR2026 p.20).",
+        "Group revenue is driven by parent sourcing and GCC allocation decisions [AI].",
+        "EBITDA margin depends on input-cost pass-through (a 5% shock costs about 16% of EBITDA [E]), the royalty rate (3.44%), employee costs and labour-code accruals.",
+        "FCFF is EBITDA less tax, about 2% of revenue in capex, and working-capital build at a CCC of about 35 days [E]."
+       ]
+      }
+     ]
+    },
+    {
+     "title": "What the forecast deliberately does not assume",
+     "blocks": [
+      {
+       "type": "bullets",
+       "items": [
+        "No order book or contracted revenue, because none is disclosed [F] (AR2026 p.142).",
+        "No change in the trademark licence rate, and no loss or gain of group export or service allocations.",
+        "No working-capital investment. The model sets working-capital days to 0 [F] (NUMBERS), while actual CCC is about 35 days [E].",
+        "No acquisitions, capacity step-ups or capital raises. None are disclosed.",
+        "No correction of the stale revenue base. This is the most important omission."
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "scenarios",
+   "title": "Scenarios and sensitivity",
+   "subsections": [
+    {
+     "title": "Bull / base / bear",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "Scenario outputs [F] (NUMBERS)",
+       "columns": [
+        "Scenario",
+        "Narrative [AI]",
+        "Starting growth",
+        "Growth by year 5",
+        "EBITDA margin",
+        "Per-share value (Rs)"
+       ],
+       "rows": [
+        [
+         "Bear",
+         "Fabrication slump; group allocation reverses; margin squeezed by commodities and royalty",
+         "4.0%",
+         "5.0%",
+         "19.0%",
+         "281.1"
+        ],
+        [
+         "Base",
+         "Trend growth, stable franchise",
+         "10.0%",
+         "10.0%",
+         "23.0%",
+         "429.3"
+        ],
+        [
+         "Bull",
+         "Capex revival plus group export and GCC scale-up",
+         "16.5%",
+         "13.0%",
+         "25.0%",
+         "563.8"
+        ]
+       ]
+      },
+      {
+       "type": "p",
+       "text": "All three values are computed on the Dec-2007 base of Rs 339 crore of sales [F] (NUMBERS). Even the bear margin of 19% is above FY26's actual 17.9% EBITDA margin [E]. The scenario spread is meaningful only as a relative statement about growth and margin; the absolute per-share levels are not [AI]."
+      }
+     ]
+    },
+    {
+     "title": "Probability weighting",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "Qualitatively, using FY26 evidence only and no numerical weights [AI]: base-type trajectories (single-digit to low-teens growth, stable margin) are most likely, given 9.8% growth and a flat margin. The bear path is more plausible than the bull path. Domestic third-party growth is already about 6.6%, management calls the outlook 'challenging' [MC] (AR2026 p.21), and a 25% EBITDA margin has no precedent in the five-year record (peak PBDIT margin 18.7% in FY24 [E])."
+      }
+     ]
+    },
+    {
+     "title": "Sensitivity grid",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "Base-case per-share value (Rs) by WACC and terminal growth [F] (NUMBERS)",
+       "columns": [
+        "WACC \\ g",
+        "4.5%",
+        "5.5%",
+        "6.5%"
+       ],
+       "rows": [
+        [
+         "13.5%",
+         "471.9",
+         "512.4",
+         "564.4"
+        ],
+        [
+         "15.0%",
+         "401.9",
+         "429.3",
+         "463.1"
+        ],
+        [
+         "16.5%",
+         "349.5",
+         "368.9",
+         "392.1"
+        ]
+       ]
+      },
+      {
+       "type": "p",
+       "text": "The grid spans Rs 349.5 to Rs 564.4, about -19% to +31% around the base [E]. Even the most generous cell is about one-tenth of the Rs 5,394 price [F] (NUMBERS). No reasonable discount-rate assumption closes the gap, which points to the stale base rather than to valuation inputs [AI]."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "valuation",
+   "title": "Valuation",
+   "subsections": [
+    {
+     "title": "Current trading context",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "Trading data [F] (NUMBERS); validity note [AI]",
+       "columns": [
+        "Metric",
+        "Value",
+        "Validity"
+       ],
+       "rows": [
+        [
+         "Price",
+         "Rs 5,394",
+         "Current"
+        ],
+        [
+         "Market cap",
+         "Rs 8,304 crore",
+         "Current. Consistent with 1.539 crore shares [F] (AR2026 p.134)"
+        ],
+        [
+         "52-week range",
+         "Rs 4,710 - 7,325 (26.4% below high)",
+         "Current"
+        ],
+        [
+         "Dividend yield",
+         "1.39%",
+         "Consistent with FY26 declared DPS of Rs 75 [F] (AR2026 p.17)"
+        ],
+        [
+         "P/E (TTM)",
+         "153.8x",
+         "**Invalid**: uses Dec-2007 EPS of Rs 34.84"
+        ],
+        [
+         "EV/EBITDA",
+         "103.8x",
+         "**Invalid**: 2007 EBITDA"
+        ],
+        [
+         "EV/Sales",
+         "24.5x",
+         "**Invalid**: 2007 sales"
+        ],
+        [
+         "P/B",
+         "79.79x",
+         "**Invalid**: 2007 book value of Rs 67.6"
+        ],
+        [
+         "EV",
+         "Rs 8,304 crore",
+         "Equals market cap. Cash and liquid funds of about Rs 116 crore not netted [E]"
+        ]
+       ]
+      },
+      {
+       "type": "p",
+       "text": "We do not compute replacement multiples, because valuation figures must come from our model only. Readers should note that FY26 EPS was Rs 134.30 and book value per share about Rs 279 [F] (AR2026 p.108) [E]. On corrected inputs the multiples would be materially lower than shown [AI]."
+      }
+     ]
+    },
+    {
+     "title": "Multiples versus peers",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "No peer set or peer multiples are disclosed in the evidence set, so no relative valuation is possible [F] (AR2026 p.20)."
+      }
+     ]
+    },
+    {
+     "title": "Interpreting the DCF",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "Mechanically, the DCF says the stock trades at 12.6x the base fair value, with downside of 92% to the base case [F] (NUMBERS) [E]. Analytically, it says nothing reliable. Three of its inputs are both stale and favourable: EBITDA margin of 23% against 17.9% actual, D&A of 1.8%, and working capital of 0 days. The one that dominates, base sales of Rs 339 crore, is far too low. A 15% WACC is conservative for a debt-free, 60%-ROCE business [AI]. **Net: the DCF cannot be used to judge whether the stock is cheap or expensive.**"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "priced_in",
+   "title": "What the price implies",
+   "subsections": [
+    {
+     "title": "Reverse DCF",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "Reverse DCF [F] (NUMBERS)",
+       "columns": [
+        "Measure",
+        "Value"
+       ],
+       "rows": [
+        [
+         "Implied 5-year sales CAGR at today's EV",
+         "93.3%"
+        ],
+        [
+         "Base-case 5-year CAGR",
+         "10.0%"
+        ],
+        [
+         "Bull-case growth (start / year 5)",
+         "16.5% / 13.0%"
+        ],
+        [
+         "FY22-FY26 actual total revenue CAGR",
+         "about 13.9% [E] (AR2026 p.4)"
+        ]
+       ]
+      },
+      {
+       "type": "p",
+       "text": "Taken at face value, the price requires about 93% annual growth for five years, nearly seven times the actual FY22-FY26 CAGR and far above the bull case [F] (NUMBERS) [E]. **The forensic conclusion is that much of this 'required growth' has already happened.** The model starts from 2007 revenue that is about 22% of FY26 revenue [E]. The true implied growth is much lower, but we cannot quantify it without a corrected model run."
+      }
+     ]
+    },
+    {
+     "title": "Strongest counter-argument",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "Even after correcting the base, the market is paying for an asset-light, debt-free, 52%-ROE business with a parent-backed brand and a 69% payout [F] (AR2026 p.4, p.165). Such businesses can justify high multiples for long periods [AI]. A skeptic should answer this question: how much of that ROE belongs to minority holders after royalty and transfer pricing, and how stable is it [AI]?"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "catalysts",
+   "title": "Catalysts and overhangs",
+   "subsections": [
+    {
+     "title": "Near term (0-3 months)",
+     "blocks": [
+      {
+       "type": "bullets",
+       "items": [
+        "4 Nov 2026: Q2 FY27 results and a possible interim dividend. The trading window is closed from 1 Oct to 6 Nov 2026 [F] (ANNOUNCEMENTS).",
+        "Release of Q1 FY27 figures into our evidence set (approved 11 Aug 2026) [F] (ANNOUNCEMENTS).",
+        "Next step in the income tax penalty dispute after CIT(A) upheld Rs 1.23 crore and Rs 21.87 lakh on 20 Aug 2026 [F] (ANNOUNCEMENTS). Timing not disclosed."
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Medium term (3-12 months)",
+     "blocks": [
+      {
+       "type": "bullets",
+       "items": [
+        "Q3 FY27 results (date not announced) and FY27 results with the annual report (FY26 was approved on 27 May 2026 [F] (AR2026 p.108)).",
+        "Finalisation of central and state labour-code rules. Further accounting impact is possible [F] (AR2026 p.146).",
+        "Operation of the new 1 MW solar SPV for captive power [F] (ANNOUNCEMENTS)."
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Longer term (1-3 years)",
+     "blocks": [
+      {
+       "type": "bullets",
+       "items": [
+        "Scale-up or reversal of group GCC and R&D services [MC] (AR2026 p.21).",
+        "Indian capex cycle revival, which management names as an opportunity [MC] (AR2026 p.21).",
+        "Renewal of independent directors' commission (FY27-FY31) and the MD term ending in 2028 [F] (AR2026 p.16) [F] (AR2026 p.92)."
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Overhangs (distinct from catalysts)",
+     "blocks": [
+      {
+       "type": "bullets",
+       "items": [
+        "Promoter at 73.72%, close to the 75% maximum. Free float is thin: about 20,083 shareholders [F] (NUMBERS). No parent intention regarding the stake is disclosed.",
+        "Legacy tax and excise disputes from FY1996-2000 onward, with about Rs 24.6 crore unpaid [E] (AR2026 p.104).",
+        "No lock-ins, no pledges and no listed-entity ESOP dilution [F] (AR2026 p.81) [F] (AR2026 p.86).",
+        "Undisclosed royalty terms: a rate change would be an immediate margin event [AI]."
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "risks_matrix",
+   "title": "Risk matrix",
+   "subsections": [
+    {
+     "title": "Risks ranked",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "Risks, most serious first (severity and likelihood 1-5) [AI]",
+       "columns": [
+        "Risk",
+        "Category",
+        "Evidence",
+        "Severity 1-5",
+        "Likelihood 1-5"
+       ],
+       "rows": [
+        [
+         "Valuation unanchored: model inputs stale",
+         "Valuation / data",
+         "Model base sales Rs 339 crore against Rs 1,508 crore actual [F] (NUMBERS) [F] (AR2026 p.108)",
+         "5",
+         "5"
+        ],
+        [
+         "Parent re-prices royalty or transfer prices",
+         "Governance / related party",
+         "Royalty 3.44% of revenue; RPT about 22% of revenue [E] (AR2026 p.144, p.157)",
+         "4",
+         "2"
+        ],
+        [
+         "Parent shifts export or GCC allocation",
+         "Concentration",
+         "About 99% of exports and 100% of services are group [E]",
+         "4",
+         "2"
+        ],
+        [
+         "Commodity / rupee squeeze without pass-through",
+         "Margin",
+         "No hedging; 5% shock = -16% EBITDA [F] (AR2026 p.88) [E]",
+         "4",
+         "3"
+        ],
+        [
+         "Weak domestic fabrication demand",
+         "Cyclical",
+         "'Low growth', 'muted', 'anemic' [MC] (AR2026 p.20, p.21)",
+         "3",
+         "4"
+        ],
+        [
+         "Related-party receivable stretch (EWAC about 205 days)",
+         "Working capital",
+         "Rs 48.85 crore owed [F] (AR2026 p.160) [E]",
+         "3",
+         "3"
+        ],
+        [
+         "Inventory obsolescence",
+         "Accounting",
+         "Provision +75%; KAM [F] (AR2026 p.97, p.131)",
+         "3",
+         "3"
+        ],
+        [
+         "Labour-code cost creep",
+         "Cost / regulatory",
+         "Rs 13.65 crore past service cost; rules not final [F] (AR2026 p.146)",
+         "2",
+         "4"
+        ],
+        [
+         "Tax disputes and penalties",
+         "Legal",
+         "Contingent Rs 24.93 crore; penalties upheld Aug 2026 [F] (AR2026 p.153) [F] (ANNOUNCEMENTS)",
+         "2",
+         "3"
+        ],
+        [
+         "Compliance lapses (FEMA, MSME, data backup)",
+         "Governance",
+         "[F] (AR2026 p.99, p.140)",
+         "2",
+         "3"
+        ],
+        [
+         "Low liquidity / thin float",
+         "Market",
+         "Promoter 73.72%; FII 1.62% [F] (NUMBERS)",
+         "2",
+         "4"
+        ],
+        [
+         "Cyber and technology risk",
+         "Operational",
+         "Named by management [MC] (AR2026 p.21)",
+         "2",
+         "2"
+        ],
+        [
+         "West Asia geopolitics affecting group exports",
+         "Macro",
+         "Management cites West Asia volatility [MC] (AR2026 p.21); ESAB Middle East and Arabia buy Rs 98.5 crore [F] (AR2026 p.157)",
+         "3",
+         "3"
+        ]
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "thesis_breakers",
+   "title": "Thesis breakers",
+   "subsections": [
+    {
+     "title": "Measurable breakers",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "Thesis breakers",
+       "columns": [
+        "Thesis breaker",
+        "Measurable threshold",
+        "What it would confirm"
+       ],
+       "rows": [
+        [
+         "Royalty increase",
+         "Trademark fee above 3.6% of revenue (FY26 3.44%) [E]",
+         "Parent extracting more of the minority's economics"
+        ],
+        [
+         "Group allocation reversal",
+         "Related-party revenue falls below 18% of revenue (FY26 22.4%) [E]",
+         "Export and GCC growth was discretionary"
+        ],
+        [
+         "Margin break",
+         "Operating EBITDA margin below 16% for two consecutive half-years (FY26 17.9%) [E]",
+         "Pass-through failing"
+        ],
+        [
+         "Domestic stagnation",
+         "Domestic third-party revenue growth below 3% in FY27 (FY26 about 6.6%) [E]",
+         "Franchise ex-group is ex-growth"
+        ],
+        [
+         "Cash conversion break",
+         "CFO/PAT below 0.8x for FY27 (two-year average 0.99x) [E]",
+         "Earnings quality deteriorating"
+        ],
+        [
+         "Related-party receivable stretch",
+         "EWAC receivable above 250 days of billings (FY26 about 205) [E]",
+         "Group using the listed entity's balance sheet"
+        ],
+        [
+         "Dividend cut",
+         "FY27 DPS declared below Rs 75 (FY26 Rs 75) [F] (AR2026 p.17)",
+         "Cash generation or policy change"
+        ]
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Thesis-confirming signals",
+     "blocks": [
+      {
+       "type": "bullets",
+       "items": [
+        "Domestic third-party growth back above 10% with a stable margin.",
+        "Disclosure of royalty terms showing a fixed or capped rate.",
+        "Services margin disclosed at or above company average.",
+        "Third-party debtor days back toward about 43 (FY25 level) [E].",
+        "A corrected data feed and model run showing price within the bull-base range."
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "monitoring_dashboard",
+   "title": "Monitoring dashboard",
+   "subsections": [
+    {
+     "title": "Quarterly metrics",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "What to track",
+       "columns": [
+        "Metric",
+        "Source",
+        "Latest value with period",
+        "What to watch"
+       ],
+       "rows": [
+        [
+         "Revenue growth YoY",
+         "Quarterly results",
+         "+9.8% FY26 [F] (AR2026 p.21)",
+         "Q2 FY27 on 4 Nov 2026"
+        ],
+        [
+         "Operating EBITDA margin",
+         "Quarterly results",
+         "17.9% FY26 [E]",
+         "Below 16% is a breaker"
+        ],
+        [
+         "Third-party revenue growth",
+         "Annual RPT note",
+         "about 6.4% FY26 [E]",
+         "Arm's-length trend"
+        ],
+        [
+         "Related-party revenue share",
+         "Annual RPT note",
+         "22.4% FY26 [E]",
+         "Direction and composition"
+        ],
+        [
+         "Trademark fee % of revenue",
+         "Note on other expenses",
+         "3.44% FY26 [E]",
+         "Any rate change"
+        ],
+        [
+         "Overseas revenue",
+         "Segment note",
+         "Rs 252.49 crore FY26 [F] (AR2026 p.166)",
+         "Group versus third party"
+        ],
+        [
+         "Services revenue",
+         "Revenue note",
+         "Rs 124.59 crore FY26 [F] (AR2026 p.141)",
+         "Growth and headcount"
+        ],
+        [
+         "Third-party debtor days",
+         "Balance sheet",
+         "about 49 FY26 [E]",
+         "Credit loosening"
+        ],
+        [
+         "EWAC receivable",
+         "RPT balances",
+         "Rs 48.85 crore Mar-26 [F] (AR2026 p.160)",
+         "Days of billings"
+        ],
+        [
+         "Inventory provision",
+         "Note 8",
+         "Rs 15.53 crore Mar-26 [F] (AR2026 p.131)",
+         "Further build"
+        ],
+        [
+         "CFO / PAT",
+         "Cash flow",
+         "0.87x FY26 [E]",
+         "Below 0.8x is a breaker"
+        ],
+        [
+         "Promoter / FII holding",
+         "Shareholding pattern",
+         "73.72% / 1.62% Jun-26 [F] (NUMBERS)",
+         "Any parent move"
+        ]
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "red_flag_checklist",
+   "title": "Red flag checklist",
+   "subsections": [
+    {
+     "title": "GREEN",
+     "blocks": [
+      {
+       "type": "bullets",
+       "items": [
+        "Little or no debt: borrowings 0.00x equity on our statements data [F] (NUMBERS), confirmed debt-free in FY26 [F] (AR2026 p.22).",
+        "High returns on capital: our data shows ROCE 91% (2007) [F] (NUMBERS). The current figure is 60.0% ROCE and 52.3% ROE [F] (AR2026 p.165).",
+        "Profits turn into cash: our data shows 0.88x over 2005-07 [E] (NUMBERS). FY25-FY26 CFO/PAT was 0.99x [E] (AR2026 p.109).",
+        "Unmodified audit opinion and IFC opinion. Audit trail operating [F] (AR2026 p.97, p.100, p.102).",
+        "No promoter pledge disclosed. No dilution. No subsidiaries [F] (AR2026 p.22) [F] (AR2026 p.86).",
+        "Third-party customer base diversified: no customer above 10% [F] (AR2026 p.142)."
+       ]
+      }
+     ]
+    },
+    {
+     "title": "AMBER",
+     "blocks": [
+      {
+       "type": "bullets",
+       "items": [
+        "Rich valuation: 154x trailing earnings per our flag [E] (NUMBERS). This is computed on 2007 earnings and overstated, but the corrected level is unknown.",
+        "Related-party dependence: about 22% of revenue, about 99% of exports and 100% of services [E] (AR2026 p.157, p.166).",
+        "Royalty of 3.44% of revenue with undisclosed terms [F] (AR2026 p.144) [E].",
+        "Inventory provision +75%, a key audit matter [F] (AR2026 p.97, p.131).",
+        "Compliance hygiene: FEMA-overdue import payables, accumulated MSME interest, payroll backup outside India, penalties upheld [F] (AR2026 p.99, p.140) [F] (ANNOUNCEMENTS).",
+        "Flat operating margin, with PAT growth flattered by exceptional items [E] (AR2026 p.146).",
+        "No analyst or institutional engagement [F] (AR2026 p.86)."
+       ]
+      }
+     ]
+    },
+    {
+     "title": "RED",
+     "blocks": [
+      {
+       "type": "bullets",
+       "items": [
+        "Price needs growth well above trend: our flag shows about 93% a year for five years against 10% base [E] (NUMBERS). We consider this mostly a data artefact, but it leaves the stock without a valuation anchor.",
+        "Data integrity: our statements data contains only 2005-2007 annual figures and no quarters [F] (NUMBERS). Every model-based conclusion is unreliable until corrected.",
+        "Related-party receivable at about 205 days of billings (EWAC Alloys, Rs 48.85 crore), against about 49 days for third parties [E] (AR2026 p.157, p.160)."
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "management_questions",
+   "title": "Questions for management",
+   "subsections": [
+    {
+     "title": "Related parties and royalty",
+     "blocks": [
+      {
+       "type": "bullets",
+       "items": [
+        "1. What are the rate basis, term, renewal date and termination rights of the trademark licence with ESAB Europe GmbH (Rs 51.93 crore in FY26)?",
+        "2. What margin does the company earn on services to ESAB AB, ESAB Group Inc and other affiliates, and on what transfer-pricing method?",
+        "3. Why does EWAC Alloys carry receivables of about 205 days of billings when third-party terms are 0-120 days? Is any interest charged?",
+        "4. What does EWAC Alloys do, and does it compete with the listed company in India? Is there any non-compete or business-allocation agreement?",
+        "5. How is 'material' RPT assessed: per entity, per contract or in aggregate? Why does the BRSR show 14% related-party sales against about 22% in the notes?"
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Growth and mix",
+     "blocks": [
+      {
+       "type": "bullets",
+       "items": [
+        "6. What share of FY26 'outside India' revenue was to non-group customers?",
+        "7. What was volume versus price growth in consumables and in equipment?",
+        "8. What is the revenue split between consumables, equipment, automation and gas equipment?",
+        "9. How many employees work on group GCC and R&D services, and what is the expected FY27 growth?",
+        "10. Why were traded-goods sales flat while manufactured goods grew 10.7%?"
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Margins and costs",
+     "blocks": [
+      {
+       "type": "bullets",
+       "items": [
+        "11. How quickly are steel and alloy cost changes passed to dealers? What was the Q4 FY26 margin impact of the rupee and commodity moves you cited?",
+        "12. What is the ongoing annual P&L impact of the labour codes after the Rs 13.65 crore past service cost? Why does the gratuity note show Rs 12.13 crore?",
+        "13. What drove the 20.3% rise in employee costs beyond the Rs 3.29 crore share-based charge?",
+        "14. What is the installed capacity and utilisation by product line and plant?"
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Working capital and assets",
+     "blocks": [
+      {
+       "type": "bullets",
+       "items": [
+        "15. Which product categories account for the increase in the obsolete-inventory provision from Rs 8.88 crore to Rs 15.53 crore?",
+        "16. Why did third-party receivable days lengthen by about 6 days, and why did credit-impaired receivables rise to Rs 6.73 crore?",
+        "17. Why are MSME suppliers paid late, with Rs 3.51 crore of accumulated interest, given the company's net cash position?"
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Compliance and accounting",
+     "blocks": [
+      {
+       "type": "bullets",
+       "items": [
+        "18. When will payroll backup be moved to an India-located server to clear the auditor's Section 143(3)(b) comment?",
+        "19. What is the status of FEMA approvals for the Rs 3.82 crore of overdue import payables, and is any compounding exposure expected?",
+        "20. Following the CIT(A) order of 20 August 2026, will the penalties be appealed to ITAT, and is the underlying AY2017-19 reassessment provided for?",
+        "21. What is the expected resolution path for the FY1996-2000 sales tax and excise disputes (about Rs 17.9 crore unpaid)?"
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Capital allocation and governance",
+     "blocks": [
+      {
+       "type": "bullets",
+       "items": [
+        "22. What is the dividend policy target payout, and why was the FY26 final dividend cut to Rs 25 from Rs 42?",
+        "23. Does ESAB Corporation have any stated intention regarding its 73.72% stake?",
+        "24. Why does the company not meet analysts or institutional investors, and will it consider earnings calls?",
+        "25. What is the predecessor auditor's tenure, and what were the reasons for the 2024 auditor change?"
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "investment_scorecard",
+   "title": "Investment scorecard",
+   "subsections": [
+    {
+     "title": "Scorecard (not a rating)",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "15-factor scorecard, 1-10, higher is better [AI]",
+       "columns": [
+        "#",
+        "Factor",
+        "Score 1-10",
+        "Basis"
+       ],
+       "rows": [
+        [
+         "1",
+         "Revenue visibility",
+         "4",
+         "No order book. Dealer run-rate plus parent allocation [F] (AR2026 p.142)"
+        ],
+        [
+         "2",
+         "Customer concentration",
+         "6",
+         "Third parties diversified; group about 22% [E]"
+        ],
+        [
+         "3",
+         "Margin quality",
+         "6",
+         "Stable about 18%, but no hedging and royalty drag [E]"
+        ],
+        [
+         "4",
+         "Earnings quality",
+         "7",
+         "Two-year CFO/PAT 0.99x. Low other income [E]"
+        ],
+        [
+         "5",
+         "Balance sheet",
+         "9",
+         "Debt-free. Hard assets 22% of total [E]"
+        ],
+        [
+         "6",
+         "Working capital",
+         "6",
+         "CCC about 35 days; related-party receivables stretched [E]"
+        ],
+        [
+         "7",
+         "Accounting quality",
+         "7",
+         "Big-4, unmodified, one KAM [F] (AR2026 p.97)"
+        ],
+        [
+         "8",
+         "Governance",
+         "5",
+         "Half-independent board, nominee chair, no analyst access [F] (AR2026 p.72, p.86)"
+        ],
+        [
+         "9",
+         "Related-party discipline",
+         "4",
+         "Omnibus approvals. Royalty terms undisclosed [F] (AR2026 p.23)"
+        ],
+        [
+         "10",
+         "Moat durability",
+         "5",
+         "Borrowed brand and IP [F] (AR2026 p.144)"
+        ],
+        [
+         "11",
+         "Growth durability",
+         "5",
+         "About 6% third-party growth [E]"
+        ],
+        [
+         "12",
+         "Capacity / optionality",
+         "4",
+         "No capacity data; marginal expansions only [MC] (AR2026 p.22)"
+        ],
+        [
+         "13",
+         "Valuation vs base DCF",
+         "1",
+         "Price is 12.6x the base value [F] (NUMBERS) [E]. Model invalid; score reflects model output only"
+        ],
+        [
+         "14",
+         "Valuation vs bull DCF",
+         "1",
+         "Price is about 9.6x the bull value [F] (NUMBERS) [E]. Same caveat"
+        ],
+        [
+         "15",
+         "Disclosure candour",
+         "4",
+         "Statutory minimum. No segment, volume or royalty disclosure"
+        ]
+       ]
+      },
+      {
+       "type": "p",
+       "text": "Simple average: **4.9 / 10** [E]. Excluding the two model-dependent valuation factors, which rest on invalid inputs, the average of the 13 operating factors is 5.5 [E]."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "final_thesis",
+   "title": "Final thesis",
+   "subsections": [
+    {
+     "title": "The case for owning",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "A debt-free, asset-light Indian welding franchise with 60% ROCE, a five-year revenue CAGR of about 14% and PAT CAGR of about 25%, a cash-backed 69% payout, and a parent that is steering export and engineering work to India [F] (AR2026 p.4, p.165) [E]. Accounting is clean and the balance sheet carries no hidden leverage [AI]."
+      }
+     ]
+    },
+    {
+     "title": "The case against",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "Arm's-length growth is about 6%. The growth engines are group-captive. The brand is rented at 3.44% of revenue on undisclosed terms. Margins are flat and unhedged. Disclosure is minimal and management does not engage. There is no reliable valuation anchor in our model [E] (AR2026 p.144, p.157) [F] (NUMBERS)."
+      }
+     ]
+    },
+    {
+     "title": "What the market may be missing",
+     "blocks": [
+      {
+       "type": "bullets",
+       "items": [
+        "Upside [AI]: the GCC and services line could keep compounding at 30%+ on low capital, and its value is not visible in welding-sector framing.",
+        "Downside [AI]: headline 9.8% growth hides about 6% third-party growth, and minority economics depend on parent transfer-pricing decisions that can change without shareholder approval under omnibus RPT approval [F] (AR2026 p.23)."
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Upside / downside framing",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "Model fair values versus current price of Rs 5,394 [F] (NUMBERS). Values are on a stale 2007 base and are shown for completeness, not as targets",
+       "columns": [
+        "Scenario",
+        "Fair value per share (Rs)",
+        "vs current price"
+       ],
+       "rows": [
+        [
+         "Bear",
+         "281.1",
+         "-94.8%"
+        ],
+        [
+         "Base",
+         "429.3",
+         "-92.0%"
+        ],
+        [
+         "Bull",
+         "563.8",
+         "-89.5%"
+        ]
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Five-year possibility space",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "Qualitatively [AI], the range runs between two outcomes. At one end, a steady 6-10% third-party compounder whose group-captive lines either keep adding growth or are reallocated by the parent. At the other, a business whose minority returns are trimmed by royalty or transfer-price changes. The binary variable is parent policy, not Indian welding demand. No quantitative path can be drawn from our current model."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "final_conclusion",
+   "title": "Research conclusion",
+   "subsections": [
+    {
+     "title": "Where the price sits and why",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "At Rs 5,394, the price is 9.6x to 19.2x our model's bull-to-bear fair values (Rs 563.8 to Rs 281.1) [F] (NUMBERS) [E]. **The gap is driven mainly by the model's Dec-2007 inputs, not by an identified mispricing.** Corrected for the base year, the gap would narrow substantially, by an amount we cannot state without re-running the model. The fundamental debate is whether a high-ROCE subsidiary with 22% related-party revenue and a 3.44% royalty deserves a franchise valuation. The FY26 evidence supports 'quality' and questions 'independence' [AI]."
+      }
+     ]
+    },
+    {
+     "title": "Horizon and re-review",
+     "blocks": [
+      {
+       "type": "bullets",
+       "items": [
+        "Horizon: suitable only for long-horizon holders comfortable with parent-controlled economics and low liquidity [AI]. This is not a near-term catalyst story.",
+        "Re-review 1: Q2 FY27 results on 4 Nov 2026. Test margin against 17.9% and revenue growth against 9.8% [F] (ANNOUNCEMENTS).",
+        "Re-review 2: once the statements data feed is corrected and the DCF re-run on FY26 figures.",
+        "Re-review 3: the FY27 annual report (expected around May 2027, by analogy with the 27 May 2026 approval [F] (AR2026 p.108)). Check the RPT note, royalty, EWAC receivable and inventory provision."
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "changes_since_last",
+   "title": "Changes since last report",
+   "subsections": [
+    {
+     "title": "Initial coverage",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "This is our initial coverage of ESAB India. No previous report exists in our records, so there are no prior numbers, guidance or risks to compare. The baseline for future updates is: FY26 revenue Rs 1,508.15 crore (+9.8%), operating EBITDA margin 17.9%, PAT Rs 206.69 crore including a net Rs 17.26 crore exceptional gain, related-party revenue 22.4%, royalty 3.44% of revenue, CFO Rs 180.69 crore, and promoter holding 73.72% [F] (AR2026 p.108, p.109, p.146) [E] [F] (NUMBERS)."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "quality_control",
+   "title": "Quality control",
+   "subsections": [
+    {
+     "title": "Second-pass review",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "QC checks",
+       "columns": [
+        "Check",
+        "Result",
+        "Note"
+       ],
+       "rows": [
+        [
+         "TAM / revenue conflation",
+         "Pass",
+         "No TAM exists in the documents. None used"
+        ],
+        [
+         "Order book / pipeline conflation",
+         "Pass",
+         "No order book disclosed. A-F table shows only bucket A quantified"
+        ],
+        [
+         "Management claims labelled",
+         "Pass",
+         "MD&A statements tagged [MC]. Board notes tagged [AI] (BOARD)"
+        ],
+        [
+         "Customer concentration shown both ways",
+         "Pass",
+         "Third-party (low) and group-aggregated (22%) both shown"
+        ],
+        [
+         "Cash-flow and working-capital completeness",
+         "Partial",
+         "Only FY25-FY26 cash flows available. FY18-FY24 not in evidence"
+        ],
+        [
+         "Current share count and market cap used",
+         "Pass",
+         "1.539 crore shares and Rs 8,304 crore match AR share count [F] (AR2026 p.134)"
+        ],
+        [
+         "Structural vs temporary distinction",
+         "Pass",
+         "Exceptional items, labour codes, margin drivers separated"
+        ],
+        [
+         "Measurable thesis breakers",
+         "Pass",
+         "Seven numeric thresholds"
+        ],
+        [
+         "No fabrication",
+         "Pass",
+         "Undisclosed items marked 'not disclosed'"
+        ],
+        [
+         "Labelling discipline",
+         "Pass",
+         "All statements labelled. Estimates marked [E]"
+        ],
+        [
+         "Discrepancies flagged",
+         "Pass",
+         "15 source conflicts tabulated in financial forensics"
+        ],
+        [
+         "Valuation transparency",
+         "**Fail (data)**",
+         "All valuation outputs rest on a 2007 base. Reported but flagged unusable. No replacement figures produced, per policy"
+        ],
+        [
+         "Bull case vs reverse DCF",
+         "Partial",
+         "Comparison made, but both sides rest on the stale base"
+        ],
+        [
+         "Balance",
+         "Pass",
+         "Bull and bear theses of comparable weight"
+        ],
+        [
+         "Tone",
+         "Pass",
+         "No rating, no target, no marketing language"
+        ]
+       ]
+      },
+      {
+       "type": "p",
+       "text": "Where evidence was thin: no earnings-call transcripts, no quarterly data, no peer data, no capacity or volume data, no royalty terms, no third-party customer names, and statements data limited to 2005-2007. The rating note is from 2020 and is a withdrawal [F] (RATING). A prospectus is not relevant for this long-listed company and was not available."
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "summary": {
+  "one_line": "ESAB India is a debt-free, 60%-ROCE welding franchise whose headline 9.8% FY26 growth rests increasingly on parent-group exports and services, while arm's-length growth is about 6% and 3.44% of revenue goes to the parent as royalty; our valuation model runs on 2007-era inputs and cannot anchor a view on price.",
+  "bull_points": [
+   "[F] Capital-light and debt-free: ROCE 60.0%, ROE 52.3%, capex about 2% of revenue and no borrowings (AR2026 p.22, p.165).",
+   "[E] Cash-backed earnings: FY25-FY26 cumulative CFO of Rs 379.5 crore against PAT of Rs 382.1 crore (0.99x), funding a 69% payout (AR2026 p.4, p.109).",
+   "[E] Group engineering and GCC services grew 36.5% to Rs 124.59 crore, adding about a quarter of FY26 revenue growth on minimal capital (AR2026 p.141).",
+   "[E] Five-year compounding: total revenue CAGR about 13.9% and PAT CAGR about 25% over FY22-FY26 (AR2026 p.4).",
+   "[F] Clean audit: unmodified opinions from Deloitte, a single conventional KAM on inventory, audit trail operating (AR2026 p.97, p.100)."
+  ],
+  "bear_points": [
+   "[E] Third-party (non-group) revenue grew only about 6.4% in FY26, against 23.6% for related-party revenue, which is now 22.4% of revenue (AR2026 p.157).",
+   "[E] About 99% of 'outside India' revenue (Rs 252.49 crore) goes to ESAB group entities, so exports are an allocation decision by the parent, not market share won (AR2026 p.157, p.166).",
+   "[F] Trademark fee to ESAB Europe of Rs 51.93 crore (3.44% of revenue, about 19% of EBITDA) on undisclosed terms; the brand is rented, not owned (AR2026 p.144).",
+   "[E] Operating EBITDA margin flat at 17.9%, unhedged, with a 5% input-cost shock worth about -16% of EBITDA; the 17.8% PAT growth includes a net Rs 17.26 crore exceptional gain (AR2026 p.108, p.146).",
+   "[F] Valuation unanchored: our statements data and DCF are built on Dec-2007 figures (sales Rs 339 crore against FY26 Rs 1,508 crore), so the model's fair values and the 153.8x P/E are unusable (NUMBERS)."
+  ],
+  "watch_points": [
+   "Q2 FY27 results on 4 Nov 2026: revenue growth against FY26's 9.8% and operating EBITDA margin against 17.9%; possible interim dividend (ANNOUNCEMENTS).",
+   "Commodity and rupee pass-through: management flagged Q4 FY26 pressure from commodities, energy and a weaker rupee (AR2026 p.20).",
+   "Next step in the income tax penalty dispute after CIT(A) upheld Rs 1.23 crore and Rs 21.87 lakh on 20 Aug 2026 (ANNOUNCEMENTS).",
+   "Related-party receivable from EWAC Alloys (Rs 48.85 crore, about 205 days of billings) and third-party debtor days (about 49) at the next balance sheet (AR2026 p.160).",
+   "Correction of the statements data feed and re-run of the DCF on FY26 figures before any valuation conclusion."
+  ],
+  "guidance": [
+   "No quantitative revenue, margin, capex or utilisation guidance was given; no earnings-call transcript was available.",
+   "Outlook: 'The short-term outlook remains challenging, and the medium-term outlook has multiple external dependencies to call' [MC] (AR2026 p.21).",
+   "Opportunities named: 'Development of new products, export opportunities for goods and services, capital goods cycle revival' [MC] (AR2026 p.21).",
+   "Final dividend of Rs 25 per share for FY26 proposed for approval at the AGM on 29 Jul 2026 [F] (AR2026 p.17).",
+   "Board meeting on 4 Nov 2026 to consider Q2 FY27 results and a possible interim dividend [F] (ANNOUNCEMENTS).",
+   "Unspent CSR of Rs 28.80 lakh to be spent in FY27 [F] (AR2026 p.36).",
+   "Investment of up to Rs 40 lakh for 26% of a 1 MW solar SPV approved on 11 Aug 2026 [F] (ANNOUNCEMENTS)."
+  ]
+ },
+ "usage": {
+  "engine": "claude-code",
+  "model": "opus",
+  "sessions": 1,
+  "turns": 49,
+  "estimated_api_cost_usd": 5.754,
+  "input_tokens": 74,
+  "output_tokens": 94749,
+  "cache_read_input_tokens": 7007258,
+  "cache_creation_input_tokens": 307187,
+  "cost_usd": null
+ }
+}

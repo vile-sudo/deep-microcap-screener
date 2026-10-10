@@ -1,0 +1,736 @@
+{
+ "slug": "solar-polysilicon-ingot-wafer-upstream",
+ "name": "Solar Polysilicon, Ingot & Wafer: India's Missing Upstream Link",
+ "icon": "chip",
+ "edition": "2026-W41",
+ "updated": "2026-10-10",
+ "scope": "India's push to build polysilicon, ingot and wafer capacity under ALMM List-III and a proposed polysilicon subsidy, and which listed solar makers are committing capex to it.",
+ "summary": {
+  "one_line": "India makes 200+ GW of modules but only ~2 GW of ingots/wafers and no polysilicon. ALMM List-III, effective 1 June 2028, has listed makers announcing about 54 GW of ingot-wafer capacity. The market is already separating winners from laggards, and Chinese wafer prices near cyclical lows make the economics depend on protection.",
+  "key_points": [
+   "India has over 200 GW/yr of module capacity and 27 GW/yr of cells, but only 2 GW of ingot-wafer capacity and no polysilicon. It imports 98% of its wafers and 100% of its polysilicon (S3).",
+   "MNRE's ALMM List-III amendment (reported 18 Mar 2026) requires ALMM-listed wafers from 1 June 2028. The first list is issued only when at least three independent units have 15 GW combined, and wafer makers must hold equivalent ingot capacity (S1).",
+   "On 21 Aug 2026 the MNRE Secretary set a target of at least 30 GW of polysilicon by 2030, at about Rs 850 crore/GW including metallurgical-grade silicon (~Rs 25,000 crore in total). A separate scheme is being prepared, but no details were given (S2). Reports describe a shift toward an upfront capex subsidy (S23).",
+   "Formal ingot-wafer commitments: Waaree 10 GW / ~Rs 6,200 crore at Nagpur, ground broken Mar 2026 (S6). Premier 10 GW / ~Rs 6,000 crore at Naidupeta, phase 1 by Dec 2027 (S7). Tata Power (TPREL) 10 GW / up to Rs 6,500 crore (S8). Vikram Solar 9 GW at Gangaikondan (S9).",
+   "Earlier-stage names: Emmvee plans 9 GW by FY30 (S15) and Saatvik has a 'proposed' 6 GW (S11). Websol has only an equipment MoU with Linton, with capex still under evaluation (S13, S14).",
+   "Chinese wafer prices remain depressed: FOB China M10 wafers were $0.149/pc on 8 Sep 2026, and leading wafer makers run at about 50% utilisation (S4). That makes Indian wafers a policy-protected product rather than a cost-led one.",
+   "The US has set Section 232 minimum import prices of $100/kg for ingots/wafers and $21/kg for polysilicon, plus a 15% tariff, effective 4 Dec 2026 (S5). This creates a potential export niche for non-Chinese upstream supply.",
+   "Share prices already diverge sharply: as of Sep 2026, Premier is ~+102% and Waaree ~+66% above their IPO prices, while Saatvik is ~-12% and Vikram Solar ~-50% (S19). The market is pricing execution, not the theme."
+  ],
+  "for_investors": [
+   {
+    "title": "Who benefits",
+    "tone": "good",
+    "points": [
+     "The earliest movers to reach ALMM List-III: Waaree (construction began Mar 2026) (S6) and Premier (phase 1 targeted for Dec 2027) (S7). The first list needs only 15 GW across three independent units (S1).",
+     "Integrated groups already making wafers: Adani has 2 GW of operating ingot-wafer capacity (S16). Reliance has completed a wafer pilot plant, and its polysilicon plant is nearing completion (S17).",
+     "Any polysilicon entrant, if the proposed capex subsidy for at least 30 GW by 2030 is notified (S2, S23)."
+    ]
+   },
+   {
+    "title": "Who is hurt / risks",
+    "tone": "bad",
+    "points": [
+     "Pure module assemblers without an upstream plan may face wafer-supply constraints and margin pressure after June 2028 (S1).",
+     "Cheap Chinese wafers ($0.149/pc M10, Sep 2026) widen the cost gap for domestic wafers (S4).",
+     "US countervailing duties of nearly 126% (preliminary, Feb 2026) hit export-heavy names; Waaree had ~1/3 of Q3 revenue from overseas (S18).",
+     "Balance-sheet strain: Rs 5,600-6,500 crore projects are large relative to smaller makers, and Saatvik's CEO has cited Rs 8,000-10,000 crore for a fully integrated plant (S12)."
+    ]
+   },
+   {
+    "title": "What to watch",
+    "tone": "watch",
+    "points": [
+     "Notification of the polysilicon subsidy scheme: its size, eligibility and whether it is a capex or a PLI design (S2, S23).",
+     "Whether 15 GW across three independent units is ready in time to trigger the first List-III, or whether the deadline is deferred (S1, S24).",
+     "Phase-1 commissioning at Premier (Dec 2027) and Waaree, and the start of construction at Vikram and TPREL (S7, S9, S8).",
+     "The US Section 232 floor prices taking effect on 4 Dec 2026 (S5)."
+    ]
+   }
+  ]
+ },
+ "kpis": [
+  {
+   "label": "Wafers imported",
+   "value": "98%",
+   "sub": "India, 2026 (S3)"
+  },
+  {
+   "label": "Ingot-wafer capacity",
+   "value": "2 GW",
+   "sub": "vs 200+ GW modules, 27 GW cells, 2026 (S3)"
+  },
+  {
+   "label": "ALMM List-III effective",
+   "value": "1 Jun 2028",
+   "sub": "first list needs 15 GW across 3+ units (S1)"
+  },
+  {
+   "label": "Polysilicon target",
+   "value": "30 GW by 2030",
+   "sub": "MNRE Secretary, 21 Aug 2026 (S2)"
+  },
+  {
+   "label": "Polysilicon + MG-Si capex",
+   "value": "~Rs 850 cr/GW",
+   "sub": "MNRE estimate, Aug 2026 (S2)"
+  },
+  {
+   "label": "China M10 wafer price",
+   "value": "$0.149/pc",
+   "sub": "FOB, 8 Sep 2026 (S4)"
+  },
+  {
+   "label": "US wafer import floor",
+   "value": "$100/kg",
+   "sub": "Section 232, effective 4 Dec 2026 (S5)"
+  }
+ ],
+ "sections": [
+  {
+   "id": "theme_explainer",
+   "title": "The upstream gap",
+   "subsections": [
+    {
+     "title": "Value chain and import dependence",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "The crystalline solar chain runs metallurgical-grade silicon -> polysilicon -> ingots -> wafers -> cells -> modules. India has built the downstream end quickly. It has over 200 GW/yr of module capacity and 27 GW/yr of cells, but only 2 GW of ingot-wafer capacity and no polysilicon. As a result it imports 98% of its wafers and 100% of its polysilicon, and over 90% of the key upstream equipment (S3). China supplies about 95% of the world's wafers and polysilicon (S3). In FY26, India's PV-cell imports rose 86% to $3.06 bn as a record 51 GW of solar deployment pulled in cells (S3)."
+      },
+      {
+       "type": "table",
+       "caption": "India solar manufacturing capacity by stage (2026)",
+       "columns": [
+        "Stage",
+        "Capacity",
+        "Import dependence",
+        "Source"
+       ],
+       "rows": [
+        [
+         "Modules",
+         "200+ GW/yr",
+         "Module imports fell 53.8% in FY26",
+         "S3"
+        ],
+        [
+         "Cells",
+         "27 GW/yr",
+         "Cell imports $3.06 bn in FY26, +86%",
+         "S3"
+        ],
+        [
+         "Ingots / wafers",
+         "2 GW (Adani)",
+         "98% of wafers imported",
+         "S3, S16"
+        ],
+        [
+         "Polysilicon",
+         "None",
+         "100% imported",
+         "S3"
+        ]
+       ]
+      },
+      {
+       "type": "callout",
+       "tone": "info",
+       "text": "The brief's '~30 GW of cells' compares with 27 GW in BusinessToday's June 2026 count (S3). The only operating ingot-wafer capacity confirmed by a company is Adani's 2 GW (S16)."
+      }
+     ]
+    },
+    {
+     "title": "Global price backdrop",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "Chinese upstream prices are close to cyclical lows. FOB China M10 and 210R wafers were $0.149/pc and $0.156/pc on 8 Sep 2026, after a mid-August rally faded. Leading Chinese wafer makers run at about 50%, and second-tier makers at 30-40% (S4). A reported Chinese plan would cap 2026 polysilicon output at 1.0-1.1 million t, about 20% below 2025, but it is not officially verified (S4)."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "policy_and_capex",
+   "title": "Policy and announced capex",
+   "subsections": [
+    {
+     "title": "ALMM List-III and the polysilicon scheme",
+     "blocks": [
+      {
+       "type": "bullets",
+       "items": [
+        "ALMM List-III takes effect on 1 June 2028 and covers net-metering and open-access projects. Projects already in the pipeline are grandfathered (S1).",
+        "The first list is issued only when at least three independent wafer units, not under common ownership, have 15 GW combined. Wafer makers seeking enlistment must have equivalent ingot capacity (S1).",
+        "From the effective date, List-I modules must use ALMM-listed cells and wafers. Section 63 bids submitted more than seven days after the first List-III must specify ALMM wafers (S1).",
+        "On the draft rules, industry argued the schedule was too stringent and the 15 GW threshold too small relative to cell and module capacity (S24).",
+        "Polysilicon: the MNRE Secretary targets at least 30 GW by 2030 at about Rs 850 crore/GW including MG-silicon, about Rs 25,000 crore in investment. A separate scheme is being prepared, and the existing PLI is expected to yield only very small polysilicon capacity (S2).",
+        "Digitimes reported in Aug 2026 that India is weighing capital subsidies for polysilicon (S23). No outlay, eligibility rules or notification date had been published as of this edition."
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Announced ingot-wafer projects",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "Listed-company ingot/wafer commitments (as reported)",
+       "columns": [
+        "Company",
+        "Capacity",
+        "Capex",
+        "Location",
+        "Timeline / status",
+        "Source"
+       ],
+       "rows": [
+        [
+         "Waaree Energies",
+         "10 GW ingot + 10 GW wafer",
+         "~Rs 6,200 cr",
+         "Butibori, Nagpur (MH)",
+         "Ground broken Mar 2026; no commissioning date published",
+         "S6"
+        ],
+        [
+         "Premier Energies",
+         "10 GW ingot + 10 GW wafer",
+         "~Rs 6,000 cr over 3 yrs (part of Rs 12,500 cr programme)",
+         "Naidupeta (AP), 200 acres",
+         "5 GW by Dec 2027; 5 GW by end-2028",
+         "S7"
+        ],
+        [
+         "Tata Power (TPREL)",
+         "10 GW (2 x 5 GW)",
+         "Up to Rs 6,500 cr",
+         "Not disclosed",
+         "Board-approved new business line; ~5-yr payback guided",
+         "S8"
+        ],
+        [
+         "Vikram Solar",
+         "9 GW (raised from 6 GW)",
+         "Rs 3,726 cr for 6 GW; ~Rs 5,600 cr reported for 9 GW",
+         "Gangaikondan (TN)",
+         "6 GW by FY29 in earlier plan; 12 GW roadmap by FY30",
+         "S9, S10, S25"
+        ],
+        [
+         "Emmvee",
+         "9 GW",
+         "Not disclosed on call (internal accruals)",
+         "Not disclosed",
+         "5 GW FY29, 4 GW FY30, subject to ALMM-III",
+         "S15"
+        ],
+        [
+         "Saatvik Green",
+         "6 GW (proposed)",
+         "CEO: Rs 8,000-10,000 cr for integrated MP project",
+         "Madhya Pradesh",
+         "No date disclosed",
+         "S11, S12"
+        ],
+        [
+         "Websol Energy",
+         "Not disclosed",
+         "Under evaluation",
+         "Not finalised",
+         "Linton equipment MoU; aiming ahead of Jun 2028",
+         "S13, S14"
+        ],
+        [
+         "Adani (Adani Enterprises)",
+         "2 GW operating",
+         "n/a",
+         "Not stated in source",
+         "Operating",
+         "S16"
+        ],
+        [
+         "Reliance Industries",
+         "Part of 20 GW integrated poly-to-module plan",
+         "Not disclosed",
+         "Jamnagar (GJ)",
+         "Wafer pilot done; polysilicon plant nearing completion (Jul 2026)",
+         "S17"
+        ]
+       ]
+      },
+      {
+       "type": "chart",
+       "title": "Announced ingot/wafer capacity by listed company",
+       "unit": "GW",
+       "series": [
+        {
+         "name": "Announced capacity",
+         "points": [
+          [
+           "Waaree",
+           10
+          ],
+          [
+           "Premier",
+           10
+          ],
+          [
+           "Tata Power",
+           10
+          ],
+          [
+           "Vikram",
+           9
+          ],
+          [
+           "Emmvee",
+           9
+          ],
+          [
+           "Saatvik",
+           6
+          ],
+          [
+           "Adani (operating)",
+           2
+          ]
+         ]
+        }
+       ],
+       "source": "Source: company announcements as reported (S6, S7, S8, S9, S15, S11, S16)"
+      },
+      {
+       "type": "callout",
+       "tone": "warn",
+       "text": "Commitments in the table total about 54 GW, against 2 GW operating today (S3). Only Waaree and Premier have broken ground or published dated phase targets (S6, S7). Vikram's 9 GW capex comes from secondary reports and should be checked against its exchange filing (S25)."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "listed_company_impact",
+   "title": "Listed company impact",
+   "subsections": [
+    {
+     "title": "Balance sheets and funding",
+     "blocks": [
+      {
+       "type": "bullets",
+       "items": [
+        "Premier funds the ~Rs 6,000 crore ingot-wafer plant within a broader Rs 12,500 crore capex programme. No external financing partners were named (S7).",
+        "Emmvee says its 9 GW programme will be funded primarily from internal accruals (S15).",
+        "Websol will use surplus cash first and then debt. It has avoided firm timelines on large projects (S14).",
+        "Saatvik reported FY26 revenue of Rs 4,548 crore (+111%) and PAT of Rs 357 crore (S11). Its CEO's Rs 8,000-10,000 crore integrated-plant estimate is more than 20x FY26 PAT (S12, S11).",
+        "None of these companies has commercial-scale ingot-wafer operating history. Adani is the only listed group with operating ingot-wafer capacity (S16)."
+       ]
+      }
+     ]
+    },
+    {
+     "title": "What is priced in",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "Solar IPO performance vs issue price (~18-21 Sep 2026)",
+       "columns": [
+        "Company",
+        "IPO price (Rs)",
+        "vs IPO"
+       ],
+       "rows": [
+        [
+         "Premier Energies",
+         "450",
+         "~+102%"
+        ],
+        [
+         "Waaree Energies",
+         "1,503",
+         "~+66%"
+        ],
+        [
+         "Emmvee",
+         "217",
+         "~+52%"
+        ],
+        [
+         "Saatvik Green",
+         "n/a",
+         "~-12%"
+        ],
+        [
+         "Vikram Solar",
+         "332",
+         "~-50%"
+        ]
+       ]
+      },
+      {
+       "type": "p",
+       "text": "SaurEnergy's Sep 2026 IPO report card concludes the market now values solar companies individually rather than as one theme. It names value-chain integration, order-book conversion, capital intensity and export exposure as the drivers (S19). Coverage of the Feb 2026 US duty sell-off grouped Waaree, Premier, Vikram and Websol together as export-exposed module and cell names, not as an ingot-wafer theme (S18). Live 6- and 12-month price moves and valuation multiples come from the dashboard's numbers.json feed and are not restated here."
+      },
+      {
+       "type": "callout",
+       "tone": "info",
+       "text": "Size tiers: Waaree and Premier are the most covered and best performing. Vikram and Saatvik trade below their IPO prices despite announced upstream plans (S19), so their ingot-wafer optionality is less priced but also less certain. Tata Power, Reliance and Adani carry the theme as a small part of much larger groups (S8, S17, S16)."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "research_house_views",
+   "title": "Research house and analyst views",
+   "subsections": [
+    {
+     "title": "Views on record",
+     "blocks": [
+      {
+       "type": "bullets",
+       "items": [
+        "Mastertrust (Ravi Singh, Feb 2026): Waaree is the most vulnerable to US duties, with about one-third of Q3 revenue from overseas. About 20% of Vikram's order book is export-linked, while Premier has lower export dependence (S18).",
+        "WealthMills (Kranthi Bathini, Feb 2026): the duties are negative and valuations stretched, but domestic demand is growing (S18).",
+        "JMK Research on the draft ALMM-III: industry views the schedule as stringent and the 15 GW trigger as small relative to downstream capacity (S24).",
+        "BusinessToday (Jun 2026): adding 30-40 GW of upstream capacity by 2030 needs tens of billions of dollars, with integrated poly-wafer-cell plants at $150-350 mn/GW (S3).",
+        "Tata Power estimates domestic ingot-wafer demand will exceed 50 GW by 2030 (S8)."
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "risks_and_catalysts",
+   "title": "Risks and catalysts",
+   "subsections": [
+    {
+     "title": "Catalysts",
+     "blocks": [
+      {
+       "type": "bullets",
+       "items": [
+        "Formal notification of the polysilicon capex/PLI scheme (target at least 30 GW by 2030) (S2, S23).",
+        "Premier's phase-1 commissioning (Dec 2027, production in Q1 2028) and progress at Waaree's Nagpur site (S7, S6).",
+        "First ALMM List-III publication once 15 GW across three independent units is operational (S1).",
+        "US Section 232 floors ($100/kg wafers, $21/kg polysilicon) from 4 Dec 2026, which may open a premium for non-Chinese upstream supply (S5).",
+        "Reliance's polysilicon and large-scale wafer commissioning over the coming quarters (S17)."
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Risks",
+     "blocks": [
+      {
+       "type": "bullets",
+       "items": [
+        "Deferral risk: the List-III trigger depends on three independent producers reaching 15 GW, and industry has already called the timeline stringent (S1, S24).",
+        "Cost competitiveness: Chinese wafers trade at $0.149/pc with heavy idle capacity, so Indian wafers depend on ALMM protection (S4).",
+        "Execution: none of the six universe names has run commercial ingot-wafer lines, and timelines already show drift (Vikram's plan moved from 6 GW by FY29 to 9 GW by about Apr 2029; Emmvee's 9 GW is split over FY29-FY30 and conditional on ALMM-III) (S10, S25, S15).",
+        "Trade: US countervailing duties of nearly 126% (preliminary) on Indian solar imports weigh on export-led cash flows that fund capex (S18).",
+        "Polysilicon remains unproven in India: no capacity exists today (S3), the scheme is not yet notified (S2), and GAIL's MG-Si-to-module idea is still at the due-diligence stage (S21)."
+       ]
+      },
+      {
+       "type": "callout",
+       "tone": "warn",
+       "text": "Upstream suppliers (quartz crucibles, graphite hot zones, diamond wire, crystal pullers, MG-silicon): this edition found no Indian listed company with a company-confirmed supply role. GAIL is exploring an MG-Si-to-module venture, subject to due diligence and board approval (S21). This is a genuine coverage gap at the small-cap supplier tier, not an omission."
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "companies": [
+  {
+   "name": "Waaree Energies",
+   "nse": "WAAREEENER",
+   "bse": null,
+   "bucket": "integrated_cell_module_makers",
+   "role": "Largest module maker. Building a 10 GW ingot + 10 GW wafer complex at Butibori, Nagpur, for ~Rs 6,200 crore; ground broken Mar 2026 (S6).",
+   "impact": "Likely among the first three independent units needed to trigger List-III. Export exposure (~1/3 of Q3 revenue overseas) adds US-duty risk (S1, S18). Trades ~66% above its IPO price (S19)."
+  },
+  {
+   "name": "Premier Energies",
+   "nse": "PREMIERENE",
+   "bse": null,
+   "bucket": "integrated_cell_module_makers",
+   "role": "Cell and module maker. Building 10 GW of ingot/wafer at Naidupeta (AP) for ~Rs 6,000 crore in two 5 GW phases (S7).",
+   "impact": "Has the clearest dated timeline (phase 1 by Dec 2027) and lower export dependence (S7, S18). Best-performing solar IPO (~+102%), so heavily discovered (S19)."
+  },
+  {
+   "name": "Tata Power",
+   "nse": "TATAPOWER",
+   "bse": null,
+   "bucket": "power_utility_entrants",
+   "role": "Through TPREL, approved a 10 GW ingot/wafer line (2 x 5 GW) for up to Rs 6,500 crore to supply its existing cell and module business (S8).",
+   "impact": "Captive demand and a guided ~5-year payback, but solar manufacturing is a small part of a diversified utility. Site and timeline are not yet disclosed (S8)."
+  },
+  {
+   "name": "Vikram Solar",
+   "nse": "VIKRAMSOLR",
+   "bse": null,
+   "bucket": "emerging_midsmall_caps",
+   "role": "Module and cell maker that inaugurated a 6 GW module plant at Gangaikondan in 2026. The board raised its planned ingot/wafer plant at Gangaikondan (TN) from 6 GW to 9 GW (S9, S25).",
+   "impact": "Capex is reported at ~Rs 5,600 crore for 9 GW, against Rs 3,726 crore earlier for 6 GW (S25, S10). Stock is ~50% below its IPO price, so upstream optionality is little priced but execution risk is high (S19)."
+  },
+  {
+   "name": "Saatvik Green Energy",
+   "nse": "SAATVIKGL",
+   "bse": "544526",
+   "bucket": "emerging_midsmall_caps",
+   "role": "4.8 GW module maker building an Odisha cell and module plant. Announced a proposed 6 GW ingot/wafer entry (S11).",
+   "impact": "Its CEO cited Rs 8,000-10,000 crore for a fully integrated Madhya Pradesh project, against FY26 PAT of Rs 357 crore, so funding is the key question (S12, S11). Trades ~12% below its IPO price (S19)."
+  },
+  {
+   "name": "Websol Energy System",
+   "nse": "WEBELSOLAR",
+   "bse": null,
+   "bucket": "emerging_midsmall_caps",
+   "role": "1.2-1.35 GW cell maker with a Linton Crystal Technologies MoU for ingot/wafer equipment and technology (S13).",
+   "impact": "The earliest stage among the six: no capacity or capex committed, and funding is to come from cash first, then debt (S13, S14)."
+  },
+  {
+   "name": "Emmvee Photovoltaic Power",
+   "nse": null,
+   "bse": null,
+   "bucket": "emerging_midsmall_caps",
+   "role": "Module and cell maker heading to 16.3 GW modules and 8.9 GW cells. Plans 9 GW of ingot/wafer by FY30, funded mainly from internal accruals (S15).",
+   "impact": "Not in the brief's universe but qualifies on a stated plan. Timing is conditional on ALMM-III (S15). Trades ~52% above its IPO price (S19)."
+  },
+  {
+   "name": "Adani Enterprises",
+   "nse": "ADANIENT",
+   "bse": null,
+   "bucket": "power_utility_entrants",
+   "role": "Operates India's only confirmed 2 GW ingot-wafer line alongside 4 GW of cells and 4 GW of modules (S16).",
+   "impact": "Incumbent upstream position ahead of List-III, but solar is a small part of a conglomerate (S16)."
+  },
+  {
+   "name": "Reliance Industries",
+   "nse": "RELIANCE",
+   "bse": null,
+   "bucket": "power_utility_entrants",
+   "role": "Building an integrated polysilicon-to-module complex at Jamnagar targeting 20 GW. Its wafer pilot is complete and the polysilicon plant is nearing completion (S17).",
+   "impact": "Potentially India's first polysilicon producer, but immaterial to group earnings near term (S17)."
+  },
+  {
+   "name": "GAIL (India)",
+   "nse": "GAIL",
+   "bse": "532155",
+   "bucket": "other",
+   "role": "Exploring an SPV with an unnamed partner covering MG-silicon, polysilicon, ingot/wafer, cells, modules and glass (S21).",
+   "impact": "Evaluation only: subject to due diligence and board approval, so not yet a confirmed participant (S21)."
+  }
+ ],
+ "sources": [
+  {
+   "id": "S1",
+   "publisher": "Energetica India",
+   "title": "MNRE extends ALMM to solar wafers and ingots, to be effective from June 1, 2028",
+   "url": "https://www.energetica-india.net/news/mnre-extends-almm-to-solar-wafers-and-ingots-to-be-effective-from-june-1-2028",
+   "date": "2026-03-18",
+   "kind": "news"
+  },
+  {
+   "id": "S2",
+   "publisher": "ETV Bharat",
+   "title": "India aims 30 GW polysilicon manufacturing capacity by 2030: MNRE Secy",
+   "url": "https://www.etvbharat.com/en/business/india-aims-30-gw-polysilicon-manufacturing-capacity-by-2030-mnre-secy-enn26082104829",
+   "date": "2026-08-21",
+   "kind": "news"
+  },
+  {
+   "id": "S3",
+   "publisher": "BusinessToday",
+   "title": "Behind India's import dependence is solar installations",
+   "url": "https://www.businesstoday.in/magazine/deep-dive/story/behind-indias-import-dependence-is-solar-installations-539458-2026-06-27",
+   "date": "2026-06-27",
+   "kind": "news"
+  },
+  {
+   "id": "S4",
+   "publisher": "pv magazine USA / OPIS",
+   "title": "China wafer prices fall as August rally fades; polysilicon outlook remains uncertain",
+   "url": "https://pv-magazine-usa.com/2026/09/11/china-wafer-prices-fall-as-august-rally-fades-polysilicon-outlook-remains-uncertain/",
+   "date": "2026-09-11",
+   "kind": "research"
+  },
+  {
+   "id": "S5",
+   "publisher": "pv magazine USA",
+   "title": "US announces tariffs, minimum import price on polysilicon imports",
+   "url": "https://pv-magazine-usa.com/2026/08/07/us-announces-tariffs-minimum-import-price-on-polysilicon-imports/",
+   "date": "2026-08-07",
+   "kind": "news"
+  },
+  {
+   "id": "S6",
+   "publisher": "pv magazine",
+   "title": "Waaree Energies begins construction of 10 GW ingot, wafer plant in India",
+   "url": "https://www.pv-magazine.com/2026/03/16/waaree-energies-begins-construction-of-10-gw-ingot-wafer-plant-in-india/",
+   "date": "2026-03-16",
+   "kind": "news"
+  },
+  {
+   "id": "S7",
+   "publisher": "PV Tech",
+   "title": "Premier Energies moves ahead with 10GW ingot-wafer facility in Andhra Pradesh, India",
+   "url": "https://www.pv-tech.org/premier-energies-moves-ahead-with-10gw-ingot-wafer-facility-in-andhra-pradesh-india/",
+   "date": "2026-07-09",
+   "kind": "news"
+  },
+  {
+   "id": "S8",
+   "publisher": "Energetica India",
+   "title": "Tata Power Renewables approves INR 6,500 cr investment for 10 GW PV ingot and wafer plant",
+   "url": "https://www.energetica-india.net/news/tata-power-renewables-approves-inr-6500-cr-investment-for-10-gw-pv-ingot-and-wafer-plant",
+   "date": "2026-05-01",
+   "kind": "news"
+  },
+  {
+   "id": "S9",
+   "publisher": "PV Tech",
+   "title": "Vikram Solar to add 9GW wafer/ingot capacity at Tamil Nadu hub",
+   "url": "https://www.pv-tech.org/vikram-solar-to-add-9gw-wafer-ingot-capacity-at-tamil-nadu-hub/",
+   "date": "2026-08-21",
+   "kind": "news"
+  },
+  {
+   "id": "S10",
+   "publisher": "Arihant Capital",
+   "title": "Vikram Solar Q4 PAT jumps 22% YoY to Rs 110 cr (board approves Rs 3,726 cr for 6 GW wafer-ingot)",
+   "url": "https://www.arihantcapital.com/company-information/companynewsdetails/25128010329",
+   "date": "2026-05-07",
+   "kind": "research"
+  },
+  {
+   "id": "S11",
+   "publisher": "SolarQuarter",
+   "title": "Saatvik Green Energy reports 111% FY26 revenue growth, expands integrated solar manufacturing capacity",
+   "url": "https://solarquarter.com/2026/05/21/saatvik-green-energy-limited-reports-111-fy26-revenue-growth-expands-integrated-solar-manufacturing-capacity/",
+   "date": "2026-05-21",
+   "kind": "news"
+  },
+  {
+   "id": "S12",
+   "publisher": "BusinessToday",
+   "title": "Saatvik Green Energy's long term value unlocking has just begun, says CEO Prashant Mathur",
+   "url": "https://www.businesstoday.in/markets/stocks/story/saatvik-green-energys-long-term-value-unlocking-has-just-begun-says-ceo-prashant-mathur-505615-2025-12-08",
+   "date": "2025-12-08",
+   "kind": "news"
+  },
+  {
+   "id": "S13",
+   "publisher": "pv magazine",
+   "title": "Websol eyes further silver reduction as TOPCon capacity expands",
+   "url": "https://www.pv-magazine.com/2026/08/21/websol-eyes-further-silver-reduction-as-topcon-capacity-expands/",
+   "date": "2026-08-21",
+   "kind": "news"
+  },
+  {
+   "id": "S14",
+   "publisher": "Arthneeti",
+   "title": "Websol Energy System Q4 FY26 earnings call analysis",
+   "url": "https://www.arthneeti.com/stocks/websol-energy-system-ltd/concall/q4-fy26-earnings-call-analysis",
+   "date": "2026-10-10",
+   "kind": "other"
+  },
+  {
+   "id": "S15",
+   "publisher": "Energetica India",
+   "title": "Emmvee plans 9 GW ingot and wafer manufacturing capacity by FY30",
+   "url": "https://www.energetica-india.net/news/emmvee-plans-9-gw-ingot-and-wafer-manufacturing-capacity-by-fy30",
+   "date": "2026-07-27",
+   "kind": "news"
+  },
+  {
+   "id": "S16",
+   "publisher": "Adani Enterprises",
+   "title": "Integrated Annual Report 2026 - Solar Manufacturing",
+   "url": "https://www.adanienterprises.com/digital-reports/enterprises/2026/solar-manufacturing.html",
+   "date": "2026-10-10",
+   "kind": "company"
+  },
+  {
+   "id": "S17",
+   "publisher": "TaiyangNews",
+   "title": "Reliance advances ingot, wafer lines, targets 40 GWh batteries",
+   "url": "https://taiyangnews.info/business/reliance-advances-ingot-wafer-lines-targets-40-gwh-batteries",
+   "date": "2026-07-21",
+   "kind": "news"
+  },
+  {
+   "id": "S18",
+   "publisher": "BusinessToday",
+   "title": "Solar stocks tumble: Waaree, Premier Energies, Vikram Solar slide on US import duty move; analysts cautious",
+   "url": "https://www.businesstoday.in/markets/stocks/story/solar-stocks-tumble-waaree-premier-energies-vikram-solar-slide-on-us-import-duty-move-analysts-cautious-517882-2026-02-25",
+   "date": "2026-02-25",
+   "kind": "news"
+  },
+  {
+   "id": "S19",
+   "publisher": "Saur Energy (via Now.Solar)",
+   "title": "SaurEnergy Explains - India's Solar IPO Report Card",
+   "url": "https://now.solar/2026/09/22/saurenergy-explains-indias-solar-ipo-report-card-why-the-market-loves-solar-but-not-every-solar-stock-saur-energy/",
+   "date": "2026-09-22",
+   "kind": "research"
+  },
+  {
+   "id": "S21",
+   "publisher": "EQ Mag Pro",
+   "title": "Indian gas supplier GAIL keen on launching solar manufacturing",
+   "url": "https://www.eqmagpro.com/indian-gas-supplier-gail-keen-on-launching-solar-manufacturing-eq-mag/",
+   "date": "2026-10-10",
+   "kind": "news"
+  },
+  {
+   "id": "S23",
+   "publisher": "DigiTimes",
+   "title": "India weighs new capital subsidies to build domestic polysilicon capacity",
+   "url": "https://www.digitimes.com/news/a20260824VL202/polysilicon-solar-capacity-manufacturing-government.html",
+   "date": "2026-08-24",
+   "kind": "news"
+  },
+  {
+   "id": "S24",
+   "publisher": "JMK Research",
+   "title": "MNRE proposes ALMM extension to wafers and ingots",
+   "url": "https://jmkresearch.com/mnre-proposes-almm-extension-to-wafers-and-ingots/",
+   "date": "2026-10-10",
+   "kind": "research"
+  },
+  {
+   "id": "S25",
+   "publisher": "Power Peak Digest",
+   "title": "Vikram Solar raises wafer-ingot capacity to 9 GW",
+   "url": "https://powerpeakdigest.com/vikram-solar-wafer-ingot-capacity-9gw/",
+   "date": "2026-10-10",
+   "kind": "news"
+  }
+ ],
+ "method": "Web research on 2026-10-10 using WebSearch and WebFetch. Primary-leaning sources were opened where accessible: trade press reporting MNRE orders and secretary remarks, company results and earnings calls, and Adani's annual report. Exchange filings at NSE and the PowerPeakDigest page could not be fetched (timeout or 403), and screener.in returned errors. Figures from those (Vikram 9 GW capex, Websol call summary, JMK and DigiTimes views) are taken from search-result snippets and labelled accordingly. Where a publication date could not be confirmed, the source date is the access date (2026-10-10). Live share prices and valuations are left to the dashboard's numbers.json. Searches for listed upstream-material and equipment suppliers (quartz, graphite, diamond wire, crystal pullers) and for Solex and Insolation found no company-confirmed listed involvement; Insolation states an ingot-wafer intent without capacity, and its listing status was not verified, so it is excluded. Source IDs S20 and S22 are intentionally unused. No ratings or price targets.",
+ "bucket_labels": {
+  "integrated_cell_module_makers": [
+   "Integrated solar makers moving upstream",
+   "Listed module/cell manufacturers with announced ingot-wafer capex (largest scale, most covered)"
+  ],
+  "emerging_midsmall_caps": [
+   "Smaller solar makers building backward integration",
+   "Small/mid caps with stated ingot-wafer plans or MoUs, earlier in the cycle and less covered"
+  ],
+  "power_utility_entrants": [
+   "Utility / diversified entrants",
+   "Large diversified groups adding an ingot-wafer plant to captive solar supply chains"
+  ],
+  "other": [
+   "Other",
+   ""
+  ]
+ },
+ "kind": "theme"
+}

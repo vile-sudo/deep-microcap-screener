@@ -1,0 +1,5743 @@
+{
+ "code": "SBCL",
+ "name": "Shivalik Bimetal Controls Ltd",
+ "period": "FY27-Q1",
+ "period_label": "Q1 FY27",
+ "results_quarter": "Jun 2026",
+ "generated_at": "2026-10-10T07:01+05:30",
+ "basis": "consolidated",
+ "screener_url": "https://www.screener.in/company/SBCL/consolidated/",
+ "sources": [
+  {
+   "id": "NUMBERS",
+   "type": "numbers",
+   "title": "screener.in consolidated statements + computed metrics",
+   "url": "https://www.screener.in/company/SBCL/consolidated/",
+   "date": null
+  },
+  {
+   "id": "SCREENER",
+   "type": "profile",
+   "title": "screener.in company profile",
+   "url": "https://www.screener.in/company/SBCL/consolidated/",
+   "date": null
+  },
+  {
+   "id": "AR2026",
+   "type": "annual_report",
+   "title": "Annual Report 2026",
+   "url": "https://www.bseindia.com/xml-data/corpfiling/AttachHis/29034569-b42f-4091-8cae-6ae977182fca.pdf",
+   "date": "2026"
+  },
+  {
+   "id": "CALL Aug 2026",
+   "type": "transcript",
+   "title": "Earnings call transcript, Aug 2026",
+   "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=5967f84b-294d-4fb1-aff1-7ffa983bd059.pdf",
+   "date": "Aug 2026"
+  },
+  {
+   "id": "CALL May 2026",
+   "type": "transcript",
+   "title": "Earnings call transcript, May 2026",
+   "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=fc9f1353-6c83-4608-9025-4203d8443915.pdf",
+   "date": "May 2026"
+  },
+  {
+   "id": "CALL Feb 2026",
+   "type": "transcript",
+   "title": "Earnings call transcript, Feb 2026",
+   "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=22080911-cd0a-4565-815a-6e3af07b3bc8.pdf",
+   "date": "Feb 2026"
+  },
+  {
+   "id": "CALL Nov 2025",
+   "type": "transcript",
+   "title": "Earnings call transcript, Nov 2025",
+   "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=19adc7ec-5a40-4af1-b5ea-2010374af248.pdf",
+   "date": "Nov 2025"
+  },
+  {
+   "id": "PPT Aug 2026",
+   "type": "presentation",
+   "title": "Investor presentation, Aug 2026",
+   "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=d6ab1623-428f-4579-9e19-2ed03ba98ffd.pdf",
+   "date": "Aug 2026"
+  },
+  {
+   "id": "RATING",
+   "type": "credit_rating",
+   "title": "Rating update | 12 Mar from crisil",
+   "url": "https://www.crisil.com/mnt/winshare/Ratings/RatingList/RatingDocs/ShivalikBimetalControlsLimited_March 12_ 2026_RR_391549.html",
+   "date": null
+  },
+  {
+   "id": "ANNOUNCEMENTS",
+   "type": "announcements",
+   "title": "Latest exchange announcements",
+   "url": "https://www.screener.in/company/SBCL/consolidated/#documents",
+   "date": null
+  },
+  {
+   "id": "BOARD",
+   "type": "board_notes",
+   "title": "This dashboard's earlier research notes (analyst notes, not company disclosure)",
+   "url": null,
+   "date": null
+  }
+ ],
+ "quant": {
+  "basis": "consolidated",
+  "units": "Rs crore unless stated",
+  "annual": {
+   "columns": [
+    "Mar 2017",
+    "Mar 2018",
+    "Mar 2019",
+    "Mar 2020",
+    "Mar 2021",
+    "Mar 2022",
+    "Mar 2023",
+    "Mar 2024",
+    "Mar 2025",
+    "Mar 2026"
+   ],
+   "sales": [
+    119.0,
+    158.0,
+    193.0,
+    187.0,
+    204.0,
+    324.0,
+    470.0,
+    509.0,
+    508.0,
+    571.0
+   ],
+   "expenses": [
+    100.0,
+    132.0,
+    158.0,
+    166.0,
+    168.0,
+    251.0,
+    361.0,
+    403.0,
+    405.0,
+    440.0
+   ],
+   "ebitda": [
+    19.0,
+    26.0,
+    36.0,
+    21.0,
+    36.0,
+    73.0,
+    109.0,
+    106.0,
+    104.0,
+    131.0
+   ],
+   "opm": [
+    16.0,
+    16.0,
+    18.0,
+    11.0,
+    18.0,
+    23.0,
+    23.0,
+    21.0,
+    20.0,
+    23.0
+   ],
+   "other_income": [
+    2.0,
+    5.0,
+    7.0,
+    5.0,
+    6.0,
+    9.0,
+    11.0,
+    22.0,
+    14.0,
+    14.0
+   ],
+   "interest": [
+    3.0,
+    3.0,
+    4.0,
+    3.0,
+    2.0,
+    3.0,
+    7.0,
+    5.0,
+    4.0,
+    5.0
+   ],
+   "depreciation": [
+    5.0,
+    5.0,
+    5.0,
+    6.0,
+    6.0,
+    6.0,
+    11.0,
+    12.0,
+    12.0,
+    14.0
+   ],
+   "pbt": [
+    14.0,
+    23.0,
+    34.0,
+    17.0,
+    34.0,
+    73.0,
+    102.0,
+    112.0,
+    103.0,
+    127.0
+   ],
+   "tax_rate": [
+    40.0,
+    27.0,
+    29.0,
+    22.0,
+    26.0,
+    25.0,
+    23.0,
+    25.0,
+    25.0,
+    24.0
+   ],
+   "pat": [
+    8.0,
+    17.0,
+    25.0,
+    13.0,
+    25.0,
+    55.0,
+    79.0,
+    84.0,
+    77.0,
+    96.0
+   ],
+   "eps": [
+    1.43,
+    2.87,
+    4.28,
+    2.34,
+    4.43,
+    9.57,
+    13.73,
+    14.63,
+    13.38,
+    16.64
+   ],
+   "payout": [
+    12.0,
+    14.0,
+    9.0,
+    9.0,
+    9.0,
+    7.0,
+    9.0,
+    12.0,
+    20.0,
+    24.0
+   ],
+   "equity_capital": [
+    4.0,
+    8.0,
+    8.0,
+    8.0,
+    8.0,
+    8.0,
+    12.0,
+    12.0,
+    12.0,
+    12.0
+   ],
+   "reserves": [
+    65.0,
+    75.0,
+    97.0,
+    108.0,
+    132.0,
+    184.0,
+    254.0,
+    330.0,
+    394.0,
+    470.0
+   ],
+   "borrowings": [
+    29.0,
+    36.0,
+    45.0,
+    25.0,
+    29.0,
+    58.0,
+    59.0,
+    42.0,
+    42.0,
+    71.0
+   ],
+   "other_liabilities": [
+    18.0,
+    28.0,
+    27.0,
+    23.0,
+    52.0,
+    58.0,
+    66.0,
+    59.0,
+    60.0,
+    83.0
+   ],
+   "total_assets": [
+    116.0,
+    147.0,
+    176.0,
+    163.0,
+    221.0,
+    308.0,
+    390.0,
+    443.0,
+    508.0,
+    636.0
+   ],
+   "fixed_assets": [
+    43.0,
+    45.0,
+    45.0,
+    45.0,
+    46.0,
+    79.0,
+    118.0,
+    120.0,
+    137.0,
+    150.0
+   ],
+   "cwip": [
+    4.0,
+    5.0,
+    6.0,
+    18.0,
+    25.0,
+    8.0,
+    7.0,
+    14.0,
+    24.0,
+    35.0
+   ],
+   "investments": [
+    7.0,
+    8.0,
+    11.0,
+    11.0,
+    13.0,
+    17.0,
+    8.0,
+    11.0,
+    13.0,
+    16.0
+   ],
+   "other_assets": [
+    61.0,
+    89.0,
+    115.0,
+    88.0,
+    137.0,
+    205.0,
+    258.0,
+    298.0,
+    334.0,
+    435.0
+   ],
+   "cfo": [
+    12.0,
+    6.0,
+    4.0,
+    41.0,
+    30.0,
+    -3.0,
+    66.0,
+    69.0,
+    94.0,
+    55.0
+   ],
+   "cfi": [
+    -3.0,
+    -7.0,
+    -7.0,
+    -14.0,
+    -15.0,
+    -24.0,
+    -41.0,
+    -41.0,
+    -58.0,
+    -68.0
+   ],
+   "cff": [
+    -17.0,
+    1.0,
+    3.0,
+    -27.0,
+    0.0,
+    23.0,
+    -18.0,
+    -29.0,
+    -26.0,
+    -0.0
+   ],
+   "fcf": [
+    9.0,
+    -2.0,
+    -2.0,
+    27.0,
+    15.0,
+    -28.0,
+    35.0,
+    47.0,
+    63.0,
+    20.0
+   ],
+   "debtor_days": [
+    81.0,
+    78.0,
+    65.0,
+    60.0,
+    77.0,
+    67.0,
+    72.0,
+    82.0,
+    80.0,
+    99.0
+   ],
+   "inventory_days": [
+    153.0,
+    182.0,
+    264.0,
+    172.0,
+    253.0,
+    260.0,
+    196.0,
+    165.0,
+    166.0,
+    179.0
+   ],
+   "payable_days": [
+    48.0,
+    78.0,
+    56.0,
+    41.0,
+    127.0,
+    95.0,
+    63.0,
+    50.0,
+    49.0,
+    65.0
+   ],
+   "ccc": [
+    187.0,
+    181.0,
+    273.0,
+    192.0,
+    202.0,
+    232.0,
+    206.0,
+    197.0,
+    197.0,
+    213.0
+   ],
+   "wc_days": [
+    68.0,
+    86.0,
+    105.0,
+    108.0,
+    92.0,
+    104.0,
+    109.0,
+    125.0,
+    124.0,
+    128.0
+   ],
+   "roce": [
+    16.0,
+    24.0,
+    28.0,
+    14.0,
+    23.0,
+    36.0,
+    38.0,
+    33.0,
+    26.0,
+    27.0
+   ],
+   "equity": [
+    69.0,
+    83.0,
+    105.0,
+    116.0,
+    140.0,
+    192.0,
+    266.0,
+    342.0,
+    406.0,
+    482.0
+   ],
+   "capex": [
+    3.0,
+    8.0,
+    6.0,
+    14.0,
+    15.0,
+    25.0,
+    31.0,
+    22.0,
+    31.0,
+    35.0
+   ],
+   "ttm": {
+    "sales": 616.0,
+    "ebitda": 142.0,
+    "opm": 23.0,
+    "other_income": 18.0,
+    "interest": 5.0,
+    "depreciation": 14.0,
+    "pbt": 140.0,
+    "pat": 106.0,
+    "eps": 18.41
+   }
+  },
+  "quarterly": {
+   "columns": [
+    "Sep 2023",
+    "Dec 2023",
+    "Mar 2024",
+    "Jun 2024",
+    "Sep 2024",
+    "Dec 2024",
+    "Mar 2025",
+    "Jun 2025",
+    "Sep 2025",
+    "Dec 2025",
+    "Mar 2026",
+    "Jun 2026"
+   ],
+   "sales": [
+    128.0,
+    126.0,
+    128.0,
+    126.0,
+    127.0,
+    123.0,
+    132.0,
+    137.0,
+    137.0,
+    134.0,
+    163.0,
+    182.0
+   ],
+   "ebitda": [
+    29.0,
+    25.0,
+    22.0,
+    24.0,
+    27.0,
+    25.0,
+    28.0,
+    32.0,
+    31.0,
+    32.0,
+    35.0,
+    43.0
+   ],
+   "opm": [
+    23.0,
+    20.0,
+    17.0,
+    19.0,
+    21.0,
+    20.0,
+    22.0,
+    23.0,
+    23.0,
+    24.0,
+    22.0,
+    24.0
+   ],
+   "other_income": [
+    2.0,
+    2.0,
+    16.0,
+    4.0,
+    3.0,
+    4.0,
+    4.0,
+    3.0,
+    6.0,
+    2.0,
+    4.0,
+    6.0
+   ],
+   "interest": [
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0
+   ],
+   "depreciation": [
+    3.0,
+    3.0,
+    3.0,
+    3.0,
+    3.0,
+    3.0,
+    3.0,
+    3.0,
+    3.0,
+    4.0,
+    4.0,
+    4.0
+   ],
+   "pbt": [
+    27.0,
+    23.0,
+    33.0,
+    24.0,
+    27.0,
+    24.0,
+    28.0,
+    30.0,
+    32.0,
+    30.0,
+    35.0,
+    44.0
+   ],
+   "tax_rate": [
+    26.0,
+    26.0,
+    23.0,
+    24.0,
+    25.0,
+    25.0,
+    26.0,
+    25.0,
+    23.0,
+    25.0,
+    25.0,
+    25.0
+   ],
+   "pat": [
+    20.0,
+    17.0,
+    26.0,
+    18.0,
+    20.0,
+    18.0,
+    21.0,
+    23.0,
+    25.0,
+    22.0,
+    26.0,
+    33.0
+   ],
+   "eps": [
+    3.53,
+    2.94,
+    4.46,
+    3.09,
+    3.46,
+    3.17,
+    3.65,
+    3.95,
+    4.31,
+    3.85,
+    4.52,
+    5.73
+   ],
+   "sales_yoy": [
+    null,
+    null,
+    null,
+    null,
+    -0.8,
+    -2.4,
+    3.1,
+    8.7,
+    7.9,
+    8.9,
+    23.5,
+    32.8
+   ],
+   "pat_yoy": [
+    null,
+    null,
+    null,
+    null,
+    0.0,
+    5.9,
+    -19.2,
+    27.8,
+    25.0,
+    22.2,
+    23.8,
+    43.5
+   ]
+  },
+  "derived": {
+   "roe": [
+    null,
+    22.4,
+    26.6,
+    11.8,
+    19.5,
+    33.1,
+    34.5,
+    27.6,
+    20.6,
+    21.6
+   ],
+   "debt_equity": [
+    0.42,
+    0.43,
+    0.43,
+    0.22,
+    0.21,
+    0.3,
+    0.22,
+    0.12,
+    0.1,
+    0.15
+   ],
+   "interest_cover": [
+    5.7,
+    8.7,
+    9.5,
+    6.7,
+    18.0,
+    25.3,
+    15.6,
+    23.4,
+    26.8,
+    26.4
+   ],
+   "cfo_pat": [
+    1.5,
+    0.35,
+    0.16,
+    3.15,
+    1.2,
+    -0.05,
+    0.84,
+    0.82,
+    1.22,
+    0.57
+   ],
+   "capex_sales": [
+    2.5,
+    5.1,
+    3.1,
+    7.5,
+    7.4,
+    7.7,
+    6.6,
+    4.3,
+    6.1,
+    6.1
+   ],
+   "fixed_asset_turnover": [
+    2.77,
+    3.51,
+    4.29,
+    4.16,
+    4.43,
+    4.1,
+    3.98,
+    4.24,
+    3.71,
+    3.81
+   ],
+   "other_income_pct_pbt": [
+    14.3,
+    21.7,
+    20.6,
+    29.4,
+    17.6,
+    12.3,
+    10.8,
+    19.6,
+    13.6,
+    11.0
+   ],
+   "cumulative": {
+    "cfo_pat_3y": 0.85,
+    "fcf_3y": 130.0,
+    "cfo_pat_5y": 0.72,
+    "fcf_5y": 137.0
+   },
+   "growth": {
+    "sales_3y": 6.7,
+    "sales_5y": 22.9,
+    "sales_9y": 19.0,
+    "ebitda_3y": 6.3,
+    "ebitda_5y": 29.5,
+    "ebitda_9y": 23.9,
+    "pat_3y": 6.7,
+    "pat_5y": 30.9,
+    "pat_9y": 31.8,
+    "sales_ttm_vs_fy": 7.9
+   },
+   "promoter_chg_1y": 0.43
+  },
+  "shareholding": {
+   "columns": [
+    "Sep 2023",
+    "Dec 2023",
+    "Mar 2024",
+    "Jun 2024",
+    "Sep 2024",
+    "Dec 2024",
+    "Mar 2025",
+    "Jun 2025",
+    "Sep 2025",
+    "Dec 2025",
+    "Mar 2026",
+    "Jun 2026"
+   ],
+   "rows": {
+    "Promoters": [
+     51.09,
+     51.09,
+     51.13,
+     51.14,
+     33.18,
+     33.18,
+     33.18,
+     33.18,
+     33.18,
+     33.18,
+     33.36,
+     33.61
+    ],
+    "FIIs": [
+     4.18,
+     3.61,
+     3.26,
+     2.73,
+     3.96,
+     3.93,
+     3.63,
+     3.14,
+     3.03,
+     2.59,
+     1.73,
+     2.04
+    ],
+    "DIIs": [
+     1.45,
+     1.82,
+     1.9,
+     2.33,
+     20.02,
+     21.11,
+     21.06,
+     21.0,
+     20.2,
+     19.71,
+     20.0,
+     14.54
+    ],
+    "Public": [
+     43.28,
+     43.49,
+     43.7,
+     43.8,
+     42.84,
+     41.8,
+     42.13,
+     42.67,
+     43.61,
+     44.54,
+     44.9,
+     49.81
+    ],
+    "No. of Shareholders": [
+     53111.0,
+     56266.0,
+     61155.0,
+     65473.0,
+     67848.0,
+     70612.0,
+     69689.0,
+     67484.0,
+     66293.0,
+     64010.0,
+     60956.0,
+     65391.0
+    ]
+   }
+  },
+  "valuation": {
+   "price": 1042.0,
+   "market_cap": 6000.0,
+   "high_52w": 1216.0,
+   "low_52w": 369.0,
+   "from_high_pct": -14.3,
+   "book_value": 83.6,
+   "dividend_yield": 0.38,
+   "pe_ttm": 56.6,
+   "ev": 6071.0,
+   "ev_ebitda_ttm": 42.8,
+   "ev_sales_ttm": 9.86,
+   "pb": 12.46,
+   "net_debt_note": "EV = market cap + latest borrowings. Screener's public page does not split cash out of other assets, so cash is not netted off; investments are shown separately.",
+   "debt": 71.0,
+   "investments": 16.0,
+   "earnings_basis": "trailing twelve months",
+   "dcf": {
+    "available": true,
+    "meaningful": true,
+    "method": "5-year FCFF: EBITDA - tax on EBIT - capex - change in net working capital; growth fades linearly from the starting rate to the year-5 rate; Gordon terminal value; equity = EV - borrowings.",
+    "inputs": {
+     "base_sales_ttm": 616.0,
+     "ebitda_margin_base": 21.0,
+     "starting_growth_base": 7.9,
+     "growth_basis": "median of 3-year, 5-year and TTM sales growth, capped 0-30%",
+     "da_pct_sales": 2.5,
+     "fixed_asset_turnover": 3.81,
+     "capex_rule": "depreciation + new sales / fixed-asset turnover (median of the last three years)",
+     "wc_days": 125.7,
+     "tax_rate": 25.2,
+     "rf": 7.0,
+     "erp": 7.0,
+     "beta": 1.15,
+     "cost_of_equity": 15.0,
+     "cost_of_debt_post_tax": 7.5,
+     "debt_weight": 1.2,
+     "wacc": 15.0,
+     "terminal_growth": 5.5,
+     "shares_cr": 5.758
+    },
+    "scenarios": {
+     "bear": {
+      "assumptions": {
+       "start_growth": 3.2,
+       "growth_by_year5": 5.0,
+       "ebitda_margin": 17.0
+      },
+      "projection": [
+       {
+        "year": 1,
+        "growth": 3.2,
+        "sales": 635.5,
+        "ebitda": 108.0,
+        "fcff": 57.3,
+        "pv": 49.9
+       },
+       {
+        "year": 2,
+        "growth": 3.6,
+        "sales": 658.5,
+        "ebitda": 111.9,
+        "fcff": 57.7,
+        "pv": 43.7
+       },
+       {
+        "year": 3,
+        "growth": 4.1,
+        "sales": 685.3,
+        "ebitda": 116.5,
+        "fcff": 58.3,
+        "pv": 38.4
+       },
+       {
+        "year": 4,
+        "growth": 4.5,
+        "sales": 716.4,
+        "ebitda": 121.8,
+        "fcff": 59.1,
+        "pv": 33.8
+       },
+       {
+        "year": 5,
+        "growth": 5.0,
+        "sales": 752.3,
+        "ebitda": 127.9,
+        "fcff": 60.1,
+        "pv": 29.9
+       }
+      ],
+      "pv_explicit": 195.7,
+      "terminal_value": 647.5,
+      "pv_terminal": 322.4,
+      "ev": 518.1,
+      "equity_value": 447.1,
+      "per_share": 77.6
+     },
+     "base": {
+      "assumptions": {
+       "start_growth": 7.9,
+       "growth_by_year5": 10.0,
+       "ebitda_margin": 21.0
+      },
+      "projection": [
+       {
+        "year": 1,
+        "growth": 7.9,
+        "sales": 664.7,
+        "ebitda": 139.6,
+        "fcff": 62.7,
+        "pv": 54.5
+       },
+       {
+        "year": 2,
+        "growth": 8.4,
+        "sales": 720.7,
+        "ebitda": 151.3,
+        "fcff": 66.0,
+        "pv": 49.9
+       },
+       {
+        "year": 3,
+        "growth": 8.9,
+        "sales": 785.2,
+        "ebitda": 164.9,
+        "fcff": 69.8,
+        "pv": 45.9
+       },
+       {
+        "year": 4,
+        "growth": 9.5,
+        "sales": 859.6,
+        "ebitda": 180.5,
+        "fcff": 74.1,
+        "pv": 42.4
+       },
+       {
+        "year": 5,
+        "growth": 10.0,
+        "sales": 945.5,
+        "ebitda": 198.6,
+        "fcff": 79.0,
+        "pv": 39.4
+       }
+      ],
+      "pv_explicit": 232.2,
+      "terminal_value": 1129.2,
+      "pv_terminal": 562.4,
+      "ev": 794.6,
+      "equity_value": 723.6,
+      "per_share": 125.7
+     },
+     "bull": {
+      "assumptions": {
+       "start_growth": 13.7,
+       "growth_by_year5": 13.0,
+       "ebitda_margin": 23.0
+      },
+      "projection": [
+       {
+        "year": 1,
+        "growth": 13.7,
+        "sales": 700.2,
+        "ebitda": 161.0,
+        "fcff": 56.5,
+        "pv": 49.2
+       },
+       {
+        "year": 2,
+        "growth": 13.5,
+        "sales": 794.7,
+        "ebitda": 182.8,
+        "fcff": 64.8,
+        "pv": 49.0
+       },
+       {
+        "year": 3,
+        "growth": 13.3,
+        "sales": 900.6,
+        "ebitda": 207.1,
+        "fcff": 74.1,
+        "pv": 48.8
+       },
+       {
+        "year": 4,
+        "growth": 13.2,
+        "sales": 1019.2,
+        "ebitda": 234.4,
+        "fcff": 84.7,
+        "pv": 48.5
+       },
+       {
+        "year": 5,
+        "growth": 13.0,
+        "sales": 1151.7,
+        "ebitda": 264.9,
+        "fcff": 96.6,
+        "pv": 48.1
+       }
+      ],
+      "pv_explicit": 243.6,
+      "terminal_value": 1567.6,
+      "pv_terminal": 780.7,
+      "ev": 1024.3,
+      "equity_value": 953.3,
+      "per_share": 165.6
+     }
+    },
+    "sensitivity": {
+     "wacc": [
+      13.5,
+      15.0,
+      16.5
+     ],
+     "g": [
+      4.5,
+      5.5,
+      6.5
+     ],
+     "values": [
+      [
+       144.2,
+       153.5,
+       165.4
+      ],
+      [
+       120.0,
+       125.7,
+       132.7
+      ],
+      [
+       101.9,
+       105.6,
+       109.9
+      ]
+     ]
+    },
+    "reverse_dcf": {
+     "implied_5y_sales_cagr": 87.5,
+     "base_case_5y_cagr_equivalent": 8.9,
+     "note": "Constant sales growth for five years, at the base margin and the same WACC and terminal growth, that makes the DCF equal today's EV."
+    },
+    "upside_pct": {
+     "bear": -92.6,
+     "base": -87.9,
+     "bull": -84.1
+    }
+   }
+  },
+  "red_flags": [
+   {
+    "level": "red",
+    "title": "Price needs growth well above trend",
+    "detail": "Today's price implies about 88% a year sales growth for five years, against 9% in the base case.",
+    "label": "[E]"
+   },
+   {
+    "level": "amber",
+    "title": "Borrowings jumped",
+    "detail": "Borrowings rose from Rs 42 cr to Rs 71 cr in a year.",
+    "label": "[F]"
+   },
+   {
+    "level": "green",
+    "title": "Profits turn into cash",
+    "detail": "Operating cash flow was 0.85x reported profit over the last three years.",
+    "label": "[E]"
+   },
+   {
+    "level": "green",
+    "title": "High returns on capital",
+    "detail": "ROCE 27% last year.",
+    "label": "[F]"
+   }
+  ],
+  "latest_quarter": "Jun 2026"
+ },
+ "pack_chars": 0,
+ "model_id": "claude-code:opus",
+ "sections": [
+  {
+   "id": "executive_summary",
+   "title": "Executive investment summary",
+   "subsections": [
+    {
+     "title": "What the company actually does",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "Shivalik Bimetal Controls (SBCL) joins dissimilar metals and sells the result as strip, finished components and, since FY26, small assemblies [F] (AR2026 p.23). It has three established product lines: thermostatic bimetal/trimetal strip and parts made by high-pressure diffusion bonding; electron-beam-welded (EBW) low-ohmic shunt resistors (strip and finished resistors); and silver electrical contacts, made in the wholly owned subsidiary Shivalik Engineered Products (SEPPL) [F] (AR2026 p.23-24). A fourth line, busbar connectors, cell-contacting-system (CCS) assemblies and PCB assemblies, is being built at a new Pune facility [F] (AR2026 p.24, p.39). The company earns its money mainly on conversion value: customers pay for metal, and the company says raw-material costs are passed through [MC] (CALL Feb 2026; CALL Nov 2025)."
+      },
+      {
+       "type": "table",
+       "caption": "FY26 consolidated revenue by product line (Rs crore)",
+       "columns": [
+        "Product line",
+        "FY26 revenue",
+        "% of consolidated",
+        "YoY",
+        "Source"
+       ],
+       "rows": [
+        [
+         "Shunt resistors (standalone)",
+         "230.7",
+         "40.3%",
+         "+8.6%",
+         "[F] (AR2026 p.38, p.12)"
+        ],
+        [
+         "Thermostatic bimetals (standalone)",
+         "231.3",
+         "40.4%",
+         "+2.9%",
+         "[F] (AR2026 p.38, p.40)"
+        ],
+        [
+         "Electrical contacts (SEPPL turnover)",
+         "110.9-111.2",
+         "19.4%",
+         "+54.9%",
+         "[F] (AR2026 p.38, p.50)"
+        ],
+        [
+         "Busbar / PCB assemblies",
+         "Not separately disclosed",
+         "'beginning to ramp'",
+         "n.a.",
+         "[F] (AR2026 p.38, p.41)"
+        ],
+        [
+         "Consolidated revenue from operations",
+         "570.9",
+         "100%",
+         "+12.3%",
+         "[F] (AR2026 p.184)"
+        ]
+       ]
+      },
+      {
+       "type": "p",
+       "text": "End markets as indicated by management: switchgear absorbs about 80% of bimetal sales, and about 60% of contacts revenue also goes into switchgear, so switchgear-linked demand is 45-50% of total revenue [MC] (CALL Feb 2026; CALL Aug 2026). For shunts, about 60% goes to automotive and about 35% to energy meters [MC] (CALL Feb 2026). Revenue from smart-meter applications was Rs 75-80 crore in FY26, up from Rs 30-40 crore [MC] (CALL May 2026; AR2026 p.13). The audited accounts report a single operating segment, so none of these end-market splits is audited [F] (AR2026 p.216, p.40)."
+      },
+      {
+       "type": "table",
+       "caption": "Geography, consolidated (Rs crore)",
+       "columns": [
+        "Region",
+        "FY25",
+        "FY26",
+        "% of FY26",
+        "YoY"
+       ],
+       "rows": [
+        [
+         "India",
+         "257.7",
+         "301.0",
+         "52.7% [E]",
+         "+16.8% [E]"
+        ],
+        [
+         "America",
+         "122.0",
+         "102.4",
+         "17.9% [E]",
+         "-16.0% [E]"
+        ],
+        [
+         "Europe",
+         "59.7",
+         "80.6",
+         "14.1% [E]",
+         "+35.0% [E]"
+        ],
+        [
+         "Others (mainly Asia)",
+         "68.9",
+         "86.9",
+         "15.2% [E]",
+         "+26.0% [E]"
+        ],
+        [
+         "Total",
+         "508.3",
+         "570.9",
+         "100%",
+         "+12.3%"
+        ]
+       ]
+      },
+      {
+       "type": "p",
+       "text": "Source for the geography table is the audited consolidated note [F] (AR2026 p.217). On this basis exports were about 47% of consolidated FY26 revenue [E] (AR2026 p.217). The widely quoted '57% exports' is a standalone figure (56.65%) [F] (AR2026 p.92), even though the annual report also presents it alongside consolidated figures [F] (AR2026 p.38). The company says it has 300+ OEM and Tier-1 customers in 38 countries [MC] (AR2026 p.8). One customer contributed Rs 100.2 crore, or 17.54% of consolidated revenue, in FY26, against 13.47% in FY25 [F] (AR2026 p.217)."
+      },
+      {
+       "type": "callout",
+       "tone": "info",
+       "text": "Listing status: this is not a recent listing. The stock has traded for decades (BSE code 513097; the presentation timeline puts the NSE listing at 2002) [F] (AR2026 p.76; PPT Aug 2026). The evidence base covers ten years of statements [F] (NUMBERS). What is recent is the ownership and leadership change: promoter holding fell from 51.14% to 33.18% in the September 2024 quarter [F] (NUMBERS), and both sons of the chairman joined the board in September and November 2024 [F] (AR2026 p.84)."
+      }
+     ]
+    },
+    {
+     "title": "Bull thesis",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "Bull thesis",
+       "columns": [
+        "#",
+        "Thesis",
+        "Evidence",
+        "Financial impact",
+        "Time horizon",
+        "Confidence"
+       ],
+       "rows": [
+        [
+         "1",
+         "Shift from strip to components is lifting value per kg",
+         "Standalone gross margin rose from 46.57% to 49.39% in FY26 and was 51.48% in Q1 FY27 [F] (AR2026 p.25; PPT Aug 2026). The component share of shunt supply rose from about 55% to 65% [MC] (CALL May 2026). Standalone gross profit per kg rose about 13% [E] (AR2026 p.25, p.138)",
+         "Standalone EBITDA margin rose from 22.35% to 24.32% [F] (AR2026 p.25)",
+         "Under way; 1-3 years",
+         "Medium-high"
+        ],
+        [
+         "2",
+         "The capital base is largely built, leaving operating leverage",
+         "Management says the asset base supports more than Rs 1,300 crore of revenue [MC] (AR2026 p.38). Bimetal utilisation is 40-45% and EBW welding 65-70% [MC] (CALL Aug 2026). Maintenance and automation capex is Rs 10-15 crore a year [MC] (CALL May 2026)",
+         "FY26 incremental EBITDA was about 43 paise per incremental rupee of revenue [MC] (AR2026 p.10); FY26 ROCE was 27% [F] (NUMBERS)",
+         "1-3 years",
+         "Medium"
+        ],
+        [
+         "3",
+         "The largest US shunt customer is recovering, now buying components rather than strip",
+         "Americas shunt revenue rose 30% in Q1 FY27 [F] (PPT Aug 2026). Revenue from the largest customer rose from Rs 68.5 crore to Rs 100.2 crore [F] (AR2026 p.217). Management expects that customer to return to and then exceed its peak, now at higher value add [MC] (CALL May 2026)",
+         "Mix-accretive; size not quantified by the company",
+         "FY27-FY28",
+         "Medium"
+        ],
+        [
+         "4",
+         "Localisation of smart meters and relays",
+         "Smart-meter revenue rose from Rs 30-40 crore to Rs 75-80 crore and is expected to double again [MC] (CALL May 2026). Only 4.69 crore of the 20.33 crore sanctioned RDSS meters were installed [F] (AR2026 p.36)",
+         "Shunt India revenue grew 27.4% to Rs 85.9 crore [F] (AR2026 p.12)",
+         "6-8 quarters per management [MC] (CALL May 2026)",
+         "Medium"
+        ],
+        [
+         "5",
+         "Pune CCS, busbar and PCBA assemblies",
+         "Phase I consent to operate received; valid to 30 June 2032 [F] (PPT Aug 2026). One two-wheeler EV programme is in steady production [MC] (CALL Aug 2026). Capex is Rs 20-25 crore [MC] (CALL Aug 2026)",
+         "Rs 300-400 crore in about three years [MC] (CALL Aug 2026). This is aspiration, not orders",
+         "FY27-FY29",
+         "Low"
+        ],
+        [
+         "6",
+         "Contacts subsidiary scale-up",
+         "SEPPL turnover rose 54.9% to Rs 111.2 crore and its PAT rose 194% to Rs 10.3 crore [F] (AR2026 p.50); Q1 FY27 contacts revenue was Rs 50.6 crore [F] (PPT Aug 2026)",
+         "SEPPL contributed 10.8% of consolidated profit [F] (AR2026 p.226)",
+         "Under way",
+         "Medium (partly silver price)"
+        ],
+        [
+         "7",
+         "Strong balance sheet",
+         "Cash and bank balances of Rs 104.7 crore against borrowings of Rs 59.4 crore [F] (AR2026 p.183, p.206); Crisil A/Stable [F] (RATING)",
+         "Self-funded growth; optionality for small acquisitions [MC] (CALL Aug 2026)",
+         "Ongoing",
+         "High"
+        ]
+       ]
+      },
+      {
+       "type": "p",
+       "text": "Driver classification [AI]: (1) mix shift: company-specific; (2) spare capacity: company-specific; (3) US customer recovery: partly cyclical (inventory, tariffs) and partly company-specific (new patented designs at the customer); (4) smart meters: structural (localisation policy), cyclical in timing; (5) Pune assemblies: company-specific, riding the structural EV localisation theme; (6) contacts: company-specific volume plus a cyclical silver-price component; (7) balance sheet: company-specific."
+      }
+     ]
+    },
+    {
+     "title": "Bear thesis: reasons not to own it",
+     "blocks": [
+      {
+       "type": "bullets",
+       "items": [
+        "1. Valuation leaves no room for error. At Rs 1,042 the stock trades at 56.6x trailing EPS and 42.8x EV/EBITDA [F] (NUMBERS). Our reverse DCF implies about 87.5% annual sales growth for five years, against 8.9% in the base case [E] (NUMBERS). Even the bull DCF value of Rs 165.6 a share is 84% below the price [E] (NUMBERS).",
+        "2. Headline growth is flattered by metal prices and a subsidiary. Of Q1 FY27's Rs 45.6 crore YoY revenue increase, about Rs 30 crore came from contacts, whose revenue roughly 2.5x'd [E] (PPT Aug 2026). Management attributes about half of that revenue growth to silver prices [MC] (CALL Aug 2026). Standalone revenue grew 12.95% [F] (PPT Aug 2026).",
+        "3. Volumes are flat to down. FY26 standalone volumes fell 0.6% [F] (AR2026 p.49). Shunt kg fell 2.2% in FY26 and 11.06% in Q1 FY27 [F] (AR2026 p.43; PPT Aug 2026). India bimetal revenue fell 7.7% in FY26 [F] (AR2026 p.40). The volume series also changed basis to include wastage [MC] (CALL May 2026).",
+        "4. Cash conversion weakened sharply. FY26 CFO was Rs 55 crore against PAT of Rs 96 crore (0.57x) [F] (NUMBERS). Receivables rose Rs 44 crore and inventories Rs 22 crore [F] (AR2026 p.183). Net working capital reached 258 days (standalone basis) after the CFO said in February it would return to the prior year's range by March 2026 [F] (AR2026 p.26) [MC] (CALL Feb 2026).",
+        "5. Customer concentration is rising, not falling. The largest customer was 17.54% of consolidated and 21.68% of standalone revenue in FY26, up from 13.47% and 15.67% [F] (AR2026 p.217, p.169). Management expects the US shunt customer to roughly double its business [MC] (CALL May 2026).",
+        "6. Governance and finance-function churn. The statutory auditor resigned on 6 August 2026 citing resources [F] (AR2026 p.239). Management thanked the CFO for 'his contribution' and promised an 'orderly finance transition' [MC] (CALL Aug 2026). The company secretary resigned effective 7 December 2026 [F] (ANNOUNCEMENTS). All three executive directors are one family, and the governance report says there are no inter-se relationships among directors while the remuneration annexure says the chairman is father of the MD and WTD [F] (AR2026 p.74, p.90).",
+        "7. Guidance on the new business keeps moving. Year-one assembly revenue was Rs 50-70 crore (PCBA, Nov 2025), then Rs 70-80 crore (Feb 2026), then 10-15% of Rs 300-400 crore (Aug 2026), while the three-year figure rose from Rs 250-300 crore to Rs 300-400 crore [MC] (CALL Nov 2025; CALL Feb 2026; CALL Aug 2026). The main Pune facility will be fully operational only in October 2026 [MC] (CALL Aug 2026).",
+        "8. Mix is margin-dilutive at the consolidated level. Consolidated gross margin fell 119 bps YoY to 43.40% in Q1 FY27 [F] (PPT Aug 2026). Busbar assemblies are guided at about 12-13% EBITDA [MC] (AR2026 p.43). Contacts are described as low-margin [MC] (CALL May 2026).",
+        "9. Dilution optionality without a stated need. Shareholders amended the Articles on 2 September 2026 to enable warrants and convertibles 'for future capital raising' [F] (ANNOUNCEMENTS; AR2026 p.240), although the company calls itself net cash and self-funding [MC] (AR2026 p.38).",
+        "10. Single-region manufacturing and tariff exposure. Core plants are in Solan, Himachal Pradesh [F] (AR2026 p.79). US strip shipments fall under 50% Section 232 tariffs on copper and steel [MC] (CALL Feb 2026)."
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Key debates",
+     "blocks": [
+      {
+       "type": "bullets",
+       "items": [
+        "Is 20-30% FY27 growth organic? Bull: Q1 grew 33.4% and management guides 20-30% [F] (PPT Aug 2026) [MC] (CALL Aug 2026). Bear: standalone grew 13%, and the rest is mainly silver-inflated contacts revenue [E] (PPT Aug 2026). The market may be capitalising commodity-inflated revenue [AI].",
+        "Is the margin step-up structural? Bull: standalone gross margin is up about 490 bps in two years (46.57% FY25 to 51.48% Q1 FY27) [E] (AR2026 p.25; PPT Aug 2026). Bear: consolidated gross margin is down YoY in Q1, and FY26 consolidated EBITDA benefited from Rs 4.2 crore lower sales commission [F] (AR2026 p.212). We think the standalone improvement looks durable but consolidated margins will drift down as contacts and assemblies grow [AI].",
+        "Concentration: management says the largest customer will stay below 17-18% [MC] (CALL Aug 2026), but it was already 17.54% in FY26 [F] (AR2026 p.217). Either the largest customer is not the US shunt account, or the ceiling is already reached. The documents do not resolve this [AI].",
+        "Pune: is it a real business or a narrative? Real: consent to operate, one programme in production, Rs 20-25 crore capex [F] (PPT Aug 2026) [MC] (CALL Aug 2026). Unproven: no disclosed order value, customer or revenue, and year-one targets keep shifting [AI].",
+        "Valuation: the market may be pricing the company as an electrification platform. Our model prices it as a 9% grower at 21% margins and a 15% WACC [F] (NUMBERS). The gap is too large to close on near-term earnings [AI]."
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Variant perception",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "Our variant view [AI]: SBCL is a good niche business in two mature strip technologies (bimetal and EBW shunts) and is improving its mix. The stock, however, is priced as if the Pune assembly business and the US customer recovery were already contracted, multi-hundred-crore revenue streams. They are disclosed only as management ranges with no order book [F] (AR2026 p.46). The overlooked facts point the other way: FY26 cash conversion was weak, concentration on the largest customer is rising, the auditor and CFO are changing, and silver price inflation flatters FY27 growth. On the other side, the bear case may underrate how much standalone EBITDA margin (27.5% in Q1 FY27) [F] (PPT Aug 2026) can compound if components keep displacing strip."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "company_history",
+   "title": "Corporate history and group structure",
+   "subsections": [
+    {
+     "title": "Corporate timeline",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "Timeline (as disclosed)",
+       "columns": [
+        "Date",
+        "Event"
+       ],
+       "rows": [
+        [
+         "June 1984",
+         "Incorporated as a private limited company; N.S. Ghumman director from 18-06-1984 [F] (PPT Aug 2026; AR2026 p.84)"
+        ],
+        [
+         "May / Oct 1986",
+         "Converted to public limited company; first thermostatic bimetal plant (company calls it Asia's first) [MC] (PPT Aug 2026)"
+        ],
+        [
+         "1994-2000",
+         "Cathode-ray-tube parts business; EBW technology and know-how acquired in 2000 [MC] (PPT Aug 2026)"
+        ],
+        [
+         "2002",
+         "In-house R&D unit government-recognised; NSE listing per company timeline [MC] (PPT Aug 2026; AR2026 p.45)"
+        ],
+        [
+         "2006",
+         "JV with Checon Corporation (USA) for silver contacts [MC] (PPT Aug 2026)"
+        ],
+        [
+         "4 Mar 2008",
+         "Innovative Clad Solutions (ICS) JV associated (now 16.01%; partners ArcelorMittal Stainless and Nickel Alloys and Dnick Holding) [F] (AR2026 p.58; PPT Aug 2026)"
+        ],
+        [
+         "2011",
+         "Equipment of Sandvik Heating Technology AB acquired for cold bonding [MC] (PPT Aug 2026)"
+        ],
+        [
+         "2015",
+         "Shunt resistor line launched [F] (AR2026 p.39)"
+        ],
+        [
+         "12 Apr 2022 / 2023",
+         "SEPPL a subsidiary from 12-04-2022 per AOC-1 [F] (AR2026 p.57), but the company describes the Checon buy-out as 2023 [MC] (PPT Aug 2026; CALL May 2026). The dates are not reconciled"
+        ],
+        [
+         "FY2022-23",
+         "Bonus issue of 19,201,400 shares [F] (AR2026 p.155)"
+        ],
+        [
+         "Nov 2023",
+         "MoU with Metalor for a contacts JV; later described as not aligned with company interests [F] (AR2026 p.60) [MC] (CALL May 2026)"
+        ],
+        [
+         "Sep 2024 quarter",
+         "Promoter holding falls from 51.14% to 33.18%; DII holding rises from 2.33% to 20.02% [F] (NUMBERS)"
+        ],
+        [
+         "28 Sep 2024 / 6 Nov 2024",
+         "Kabir Ghumman and Sumer Ghumman appointed to the board [F] (AR2026 p.84)"
+        ],
+        [
+         "10 Oct 2024",
+         "Shivalik Bimetals Europe SRL (Italy) becomes a subsidiary [F] (AR2026 p.57)"
+        ],
+        [
+         "5-6 Feb 2026",
+         "Board approves Pune busbar/connector facility, about Rs 20 crore [MC] (CALL Feb 2026; AR2026 p.50)"
+        ],
+        [
+         "12 Mar 2026",
+         "Crisil reaffirms A/Stable / A1 on Rs 115 crore of bank lines [F] (RATING)"
+        ],
+        [
+         "Aug 2026 (post Q1)",
+         "Pune Phase I consent to operate, valid to 30 June 2032 [F] (PPT Aug 2026)"
+        ],
+        [
+         "6-7 Aug 2026",
+         "Arora Gupta & Co resigns as statutory auditor; Walker Chandiok appointed [F] (AR2026 p.52, p.239)"
+        ],
+        [
+         "2 Sep 2026",
+         "42nd AGM: all seven resolutions passed, including the Articles amendment and the auditor appointment [F] (ANNOUNCEMENTS)"
+        ],
+        [
+         "7 Sep 2026",
+         "Company secretary resigns, effective 7 Dec 2026 [F] (ANNOUNCEMENTS)"
+        ]
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Subsidiaries and group structure",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "Group entities, FY26 (Rs crore)",
+       "columns": [
+        "Entity",
+        "Incorporated / associated",
+        "Business",
+        "Latest revenue",
+        "Latest PAT"
+       ],
+       "rows": [
+        [
+         "Shivalik Engineered Products Pvt Ltd (100%)",
+         "Subsidiary from 12-04-2022 [F] (AR2026 p.57)",
+         "Electrical contacts; material subsidiary [F] (AR2026 p.74)",
+         "111.20 [F] (AR2026 p.57)",
+         "10.34 [F] (AR2026 p.57)"
+        ],
+        [
+         "Shivalik Bimetal Engineers Pvt Ltd (100%)",
+         "Incorporated FY2007-08 [MC] (PPT Aug 2026); subsidiary from 29-04-2022 [F] (AR2026 p.57)",
+         "Technical and engineering services [MC] (PPT Aug 2026)",
+         "3.75 [F] (AR2026 p.57)",
+         "0.67 [F] (AR2026 p.57)"
+        ],
+        [
+         "Shivalik Bimetals Europe SRL, Italy (100%)",
+         "10-10-2024 [F] (AR2026 p.57)",
+         "EU sales presence, Milan [F] (AR2026 p.39)",
+         "2.46 [F] (AR2026 p.57)",
+         "0.01 [F] (AR2026 p.57)"
+        ],
+        [
+         "Innovative Clad Solutions Pvt Ltd (16.01% JV)",
+         "04-03-2008 [F] (AR2026 p.58)",
+         "Clad metals, Pithampur SEZ [F] (AR2026 p.8)",
+         "302.39 (FY25: 152.59) [F] (AR2026 p.50)",
+         "21.00; share consolidated 3.35 [F] (AR2026 p.58)"
+        ]
+       ]
+      },
+      {
+       "type": "p",
+       "text": "SEPPL net worth is Rs 33.8 crore and total assets Rs 99.0 crore [F] (AR2026 p.57). The parent guarantees Rs 27.87 crore of SEPPL bank facilities and has pledged Rs 7.11 crore of fixed deposits for its overdraft [F] (AR2026 p.133). SBEPL's Rs 3.75 crore turnover is close to the Rs 3.735 crore 'forwarding and freight' the parent paid a wholly owned subsidiary [F] (AR2026 p.170). We infer SBEPL may be functioning as an internal logistics or service entity, which is not how it is described [AI]."
+      }
+     ]
+    },
+    {
+     "title": "How recent is the current business?",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "The legacy bimetal business is four decades old, but most of what drives the investment case is recent [AI]. Shunts date from 2015 [F] (AR2026 p.39). Contacts have been consolidated only since FY23, and that partly explains the jump in sales from Rs 324 crore to Rs 470 crore that year [F] (NUMBERS; AR2026 p.57) [AI]. The component-led shunt mix is a 2024-26 development [MC] (CALL Nov 2025). Assemblies started in FY26 [F] (AR2026 p.41), and the current executive team took board seats in late 2024 [F] (AR2026 p.84). Five-year growth rates (sales 22.9%) therefore mix acquisition, a customer boom-bust and organic growth; the three-year sales CAGR is 6.7% [F] (NUMBERS)."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "business_model",
+   "title": "Business model and value chain",
+   "subsections": [
+    {
+     "title": "Production flow",
+     "blocks": [
+      {
+       "type": "bullets",
+       "items": [
+        "1. Procure alloys: nickel alloys, copper and copper alloys (including manganin for shunts), stainless steel and silver; a large share is imported [MC] (AR2026 p.44; CALL Aug 2026; CALL Nov 2025).",
+        "2. Bond or weld: high-pressure diffusion bonding or cold bonding for bimetal/trimetal strip; strip EBW for shunt material [F] (AR2026 p.23, p.37).",
+        "3. Precision strip processing: slitting, levelling, tension control [MC] (PPT Aug 2026).",
+        "4. Stamping, tooling and finishing into parts, with in-house stamping, tool-room and reliability testing [MC] (AR2026 p.43).",
+        "5. For contacts (SEPPL), braze, weld or clad silver alloys onto copper substrates and join them onto stampings [F] (AR2026 p.24).",
+        "6. Assemble busbars, CCS and PCBA at Pune, buying PCBs and wiring from outside and integrating in-house shunts and connectors [F] (RATING).",
+        "7. Ship to OEM and Tier-1 customers; development cycles of 18-24 months and roughly 24-month re-qualification [MC] (CALL Nov 2025; AR2026 p.37)."
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Capability by process stage",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "Capability map",
+       "columns": [
+        "Stage",
+        "In-house?",
+        "Claimed differentiation",
+        "Evidence quality"
+       ],
+       "rows": [
+        [
+         "Alloy production",
+         "No; imports plus indigenisation programme",
+         "20-25% local sourcing expected near term [MC] (AR2026 p.43)",
+         "Not verified; no import split disclosed [AI]"
+        ],
+        [
+         "Diffusion / cold bonding",
+         "Yes",
+         "77 proprietary bimetal grades vs a global median of 10 [MC] (PPT Aug 2026)",
+         "Company-stated only [AI]"
+        ],
+        [
+         "Electron-beam welding of strip",
+         "Yes; machines built in-house at about half the import cost",
+         "'Asia's largest EBW strip facility' [MC] (PPT Aug 2026)",
+         "No third-party corroboration [AI]"
+        ],
+        [
+         "Stamping / tooling / testing",
+         "Yes",
+         "Component conversion [MC] (AR2026 p.43)",
+         "Consistent with gross margin trend [F] (AR2026 p.25)"
+        ],
+        [
+         "Silver contact joining",
+         "Yes (SEPPL)",
+         "Transparent silver pricing, tooling [MC] (CALL May 2026)",
+         "Revenue growth evidenced [F] (AR2026 p.50)"
+        ],
+        [
+         "PCBA / busbar assembly",
+         "Yes, from 2026 (Pune)",
+         "EB-welded busbars; 'no Indian competitor' [MC] (CALL Feb 2026)",
+         "Early stage; CTO received [F] (PPT Aug 2026)"
+        ]
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Where value is captured",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "Value is captured at the joining step, where weld or bond quality determines current-sensing accuracy and thermal behaviour [MC] (CALL Feb 2026), and at component conversion, where finished parts carry 'nearly double' the value add of strip [MC] (CALL May 2026). The financial evidence is consistent with this. Standalone gross margin (49.39%) is above consolidated (45.21%) because contacts carry precious-metal pass-through [F] (AR2026 p.42) [MC] (CALL May 2026). In assemblies, 60-65% of value is bought-in material [MC] (CALL Feb 2026), so value capture per rupee of revenue is structurally lower [AI]."
+      }
+     ]
+    },
+    {
+     "title": "Outsourcing and capital intensity",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "Outsourced job work was Rs 3.9 crore and contract labour Rs 9.2 crore in FY26 [F] (AR2026 p.212). Fixed-asset turnover was 3.81x in FY26 [F] (NUMBERS), and the company says Pune needs only Rs 20-25 crore because the costly EBW capacity already sits in Solan [MC] (CALL Aug 2026). Working capital is the real capital intensity: inventory alone was Rs 153 crore against net fixed assets of Rs 122 crore [F] (AR2026 p.183). We class the model as light on fixed assets but heavy on working capital [AI]."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "products",
+   "title": "Product portfolio",
+   "subsections": [
+    {
+     "title": "Product family",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "Product family map",
+       "columns": [
+        "Product",
+        "Application",
+        "Segment",
+        "Customer",
+        "Competitive intensity",
+        "Growth outlook",
+        "Margin potential"
+       ],
+       "rows": [
+        [
+         "Thermostatic bimetal/trimetal strip",
+         "MCB trip mechanisms, appliances, auto thermostats [F] (AR2026 p.23)",
+         "Bimetal",
+         "4-6 large switchgear makers hold 70-80% of Indian consumption [MC] (CALL Aug 2026)",
+         "Low; few global suppliers, e.g. EMS [MC] (CALL May 2026)",
+         "India flat (-7.7% FY26); Europe +47% [F] (AR2026 p.40)",
+         "High but mature [MC] (AR2026 p.40)"
+        ],
+        [
+         "Bimetal components (stamped parts)",
+         "Same, supplied ready-to-use",
+         "Bimetal",
+         "Existing switchgear customers [MC] (CALL Aug 2026)",
+         "Low-moderate",
+         "Small uplift [MC] (CALL Aug 2026)",
+         "Higher than strip [MC]"
+        ],
+        [
+         "EBW shunt strip",
+         "Raw material for resistor makers",
+         "Shunts",
+         "Vishay historically [MC] (CALL Nov 2025)",
+         "Moderate: 'strip can be sourced from a competitor' [MC] (CALL Aug 2026)",
+         "Shrinking: one third of year-ago level in Q1 FY27 [MC] (CALL Aug 2026)",
+         "Lowest in shunts [MC]"
+        ],
+        [
+         "EBW shunt components / resistors",
+         "BMS, EV and ICE electronics, smart meters, ESS [F] (AR2026 p.23)",
+         "Shunts",
+         "Vishay, Denso, Hella, Japanese Tier-1s, relay makers [MC] (CALL Feb 2026; CALL Nov 2025)",
+         "Low-moderate; few EBW makers, a German competitor [MC] (CALL Aug 2026)",
+         "Shunt revenue +18.7% in Q1 FY27 [F] (PPT Aug 2026)",
+         "High [MC]"
+        ],
+        [
+         "Smart DC current sensor (shunt + PCB)",
+         "Plug-and-play current sensing [F] (AR2026 p.43)",
+         "Shunts/assemblies",
+         "Not disclosed",
+         "Not disclosed",
+         "Not quantified",
+         "Not disclosed"
+        ],
+        [
+         "Silver electrical contacts and sub-assemblies",
+         "Breakers, relays, smart-meter latching relays [F] (AR2026 p.24)",
+         "Contacts (SEPPL)",
+         "Relay and switchgear makers; not named",
+         "High: 'very large addressable market... low margins' [MC] (CALL May 2026)",
+         "+54.9% FY26; about 2.5x YoY Q1 FY27 [F] (AR2026 p.50) [E] (PPT Aug 2026)",
+         "Low gross margin (precious metal) [MC] (CALL May 2026)"
+        ],
+        [
+         "Busbar / CCS assemblies",
+         "Two-wheeler EV battery packs [MC] (CALL Aug 2026)",
+         "Assemblies (Pune)",
+         "One 2W OEM via a Tier-1 pack maker (NDA) [MC] (CALL Aug 2026)",
+         "'No competition' in EB-welded busbars in India [MC] (CALL Feb 2026)",
+         "Rs 300-400 crore in 3 years [MC] (CALL Aug 2026)",
+         "About 12-13% EBITDA [MC] (AR2026 p.43)"
+        ],
+        [
+         "PCB assemblies",
+         "BMS, integrated shunt PCBs [F] (AR2026 p.24)",
+         "Assemblies",
+         "Not disclosed",
+         "High: generic EMS activity [AI]",
+         "Rs 50-55 crore FY27 [MC] (AR2026 p.43)",
+         "40-50% gross contribution [MC] (AR2026 p.42)"
+        ]
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Commodity-like versus differentiated",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "Commodity-like [AI]: EBW shunt strip, which management itself says can be sourced from a competitor [MC] (CALL Aug 2026); standard silver contacts, where pricing is metal-plus-surcharge [MC] (CALL May 2026); and generic PCB assembly. Differentiated [AI]: proprietary bimetal grades designed into switchgear at specification stage [MC] (AR2026 p.23), and precision EBW shunt components where accuracy, not price, decides supplier choice [MC] (CALL Aug 2026). The mix is shifting towards differentiated shunt components and, at the same time, towards commodity-like contacts and assemblies. The net effect is visible in standalone gross margin rising while consolidated gross margin fell in Q1 FY27 [F] (PPT Aug 2026)."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "segments",
+   "title": "Segment performance",
+   "subsections": [
+    {
+     "title": "Segment revenue",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "Product-line revenue (Rs crore; FY24 and earlier not disclosed by product)",
+       "columns": [
+        "Line",
+        "FY25",
+        "FY26",
+        "FY26 mix",
+        "FY26 growth",
+        "Q1 FY26",
+        "Q1 FY27",
+        "Q1 growth"
+       ],
+       "rows": [
+        [
+         "Shunt resistors",
+         "212.4 [E]",
+         "230.7",
+         "40.3%",
+         "+8.6%",
+         "57.5 [E]",
+         "68.2",
+         "+18.7%"
+        ],
+        [
+         "Thermostatic bimetals",
+         "224.8 [E]",
+         "231.3",
+         "40.4%",
+         "+2.9%",
+         "59.2 [E]",
+         "63.6",
+         "+7.4%"
+        ],
+        [
+         "Electrical contacts",
+         "71.8 (SEPPL turnover)",
+         "111.2",
+         "19.4%",
+         "+54.9%",
+         "about 19.9 [E]",
+         "50.6",
+         "about +154% [E]"
+        ],
+        [
+         "Consolidated",
+         "508.3",
+         "570.9",
+         "100%",
+         "+12.3%",
+         "136.6",
+         "182.2",
+         "+33.4%"
+        ]
+       ]
+      },
+      {
+       "type": "p",
+       "text": "Sources: FY26 lines (AR2026 p.38, p.50); FY25 back-calculated from disclosed growth rates [E] (AR2026 p.12); Q1 figures [F] (PPT Aug 2026). Q1 FY26 contacts is derived as consolidated minus standalone (136.6 - 116.7) and includes eliminations [E] (PPT Aug 2026). Segment margins are not disclosed. The company reports one statutory segment and calls product splits 'management's indication' [F] (AR2026 p.40). The only margin proxies are standalone (shunt plus bimetal) EBITDA of 24.32% in FY26 and 27.52% in Q1 FY27 [F] (AR2026 p.25; PPT Aug 2026), and SEPPL's PAT margin of about 9.3% [E] (AR2026 p.57)."
+      }
+     ]
+    },
+    {
+     "title": "Why each segment moved",
+     "blocks": [
+      {
+       "type": "bullets",
+       "items": [
+        "Shunts, management view: India demand from smart meters, automotive and BMS; conversion of strip to parts; the US customer recovering in component form [MC] (AR2026 p.12; CALL Aug 2026). About 70-75% of Q1 shunt growth is attributed to value addition and the rest to commodity prices [MC] (CALL Aug 2026). Our read: realisation per kg rose about 33% YoY in Q1 while kg fell 11% [E] (PPT Aug 2026). Some of that is copper pass-through, and part of the kg decline reflects the shrinking strip business [AI].",
+        "Bimetals, management view: Indian MCB consumption is flat because the real-estate boom is concentrated in luxury housing; US developments were paused by tariffs [MC] (CALL May 2026). In August, management reported the first volume uptick in 4-5 quarters [MC] (CALL Aug 2026). Our read: FY26 growth came entirely from Europe (+Rs 16 crore) while India fell Rs 9 crore [F] (AR2026 p.25). Management claims about 90% domestic share [MC] (CALL May 2026), so growth depends on market growth plus exports [AI].",
+        "Contacts, management view: about 31-32 points of the roughly 60% growth was business growth and the rest silver [MC] (CALL May 2026), helped by new plant capacity [MC] (CALL May 2026). Our read: the disclosed SEPPL figure is +54.9% [F] (AR2026 p.50). Management quoted both 60% and 54% [MC] (CALL May 2026), which is not reconciled, and silver has 'more than doubled' YoY [MC] (CALL Aug 2026)."
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Order-driven versus organic",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "None of the segments runs on a disclosed order book [F] (AR2026 p.46). Shunts and bimetals sell against customer schedules and forecasts on long-running part numbers [MC] (CALL Aug 2026), so they behave like organic run-rate businesses with customer-specific step changes (for example the Vishay destock) [AI]. Assemblies are programme-driven: revenue depends on the volumes of specific EV models [MC] (CALL Aug 2026)."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "revenue_bridge",
+   "title": "Revenue bridge",
+   "subsections": [
+    {
+     "title": "FY25 to FY26 consolidated bridge",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "Revenue bridge FY25 to FY26 (Rs crore)",
+       "columns": [
+        "Driver",
+        "Impact Rs cr",
+        "Basis"
+       ],
+       "rows": [
+        [
+         "FY25 consolidated revenue",
+         "508.3",
+         "[F] (AR2026 p.184)"
+        ],
+        [
+         "Shunts: India",
+         "+18.5 approx.",
+         "Rs 67 crore to Rs 85.9 crore [F] (AR2026 p.25, p.12)"
+        ],
+        [
+         "Shunts: Americas",
+         "-16.5 approx.",
+         "Rs 72 crore to Rs 55.5 crore [F] (AR2026 p.25, p.40)"
+        ],
+        [
+         "Shunts: Europe and Rest of Asia",
+         "+16.3 approx.",
+         "Europe 25 to 28.65; RoA 49 to 61.16 [F] (AR2026 p.25, p.40)"
+        ],
+        [
+         "Bimetals: Europe",
+         "+15.7 approx.",
+         "35 to 50.73 [F] (AR2026 p.25, p.40)"
+        ],
+        [
+         "Bimetals: India, Americas, RoA",
+         "-9.2 approx.",
+         "India 124 to 115; Americas 50 to 46.94; RoA 16 to 19 [F] (AR2026 p.25, p.40)"
+        ],
+        [
+         "Contacts (SEPPL), of which silver about 15-16 per management",
+         "+39.4",
+         "71.79 to 111.20 [F] (AR2026 p.50); silver share [MC] (CALL May 2026) [E]"
+        ],
+        [
+         "Residual: rounding, eliminations, other subsidiaries",
+         "-1.8",
+         "Residual [E]"
+        ],
+        [
+         "FY26 consolidated revenue",
+         "570.9",
+         "[F] (AR2026 p.184)"
+        ]
+       ]
+      },
+      {
+       "type": "p",
+       "text": "Reading [AI]: about 63% of FY26 growth came from contacts, and roughly two-fifths of that is attributed to silver [E] (AR2026 p.50) [MC] (CALL May 2026). Standalone (shunt plus bimetal) growth was Rs 24.7 crore, or 5.7% [F] (AR2026 p.49)."
+      }
+     ]
+    },
+    {
+     "title": "Current year: what is known",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "Q1 FY27 consolidated revenue was Rs 182.2 crore (+33.4%) [F] (PPT Aug 2026). Standalone added Rs 15.1 crore (shunts +10.75, bimetals +4.36) [E] (PPT Aug 2026), and contacts added about Rs 30.5 crore [E] (PPT Aug 2026). Management guides 20-30% FY27 growth 'if things go as per forecast' [MC] (CALL Aug 2026). Assembly revenue was 'minimal' in Q1, and most of it is expected from Q2 onward, limited until the main Pune facility is operational in October [MC] (CALL Aug 2026). No deferred orders or contracted backlog are disclosed [F] (AR2026 p.46). TTM revenue is Rs 616 crore [F] (NUMBERS)."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "export_domestic",
+   "title": "Export and domestic mix",
+   "subsections": [
+    {
+     "title": "Geography by year",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "Revenue by geography (Rs crore)",
+       "columns": [
+        "Region",
+        "FY25 consolidated",
+        "FY26 consolidated",
+        "% of FY26",
+        "1-yr growth (CAGR not computable: two years disclosed)"
+       ],
+       "rows": [
+        [
+         "India",
+         "257.7",
+         "301.0",
+         "52.7%",
+         "+16.8%"
+        ],
+        [
+         "America",
+         "122.0",
+         "102.4",
+         "17.9%",
+         "-16.0%"
+        ],
+        [
+         "Europe",
+         "59.7",
+         "80.6",
+         "14.1%",
+         "+35.0%"
+        ],
+        [
+         "Others",
+         "68.9",
+         "86.9",
+         "15.2%",
+         "+26.0%"
+        ]
+       ]
+      },
+      {
+       "type": "p",
+       "text": "Source: [F] (AR2026 p.217); percentages and growth [E]. Standalone exports were 56.65% of standalone turnover [F] (AR2026 p.92). In Q1 FY27 exports were 54% [F] (PPT Aug 2026), but the presentation does not state whether this is a standalone or consolidated figure. India's share of standalone core-product revenue rose to about 46% in Q1 FY27 [F] (PPT Aug 2026)."
+      }
+     ]
+    },
+    {
+     "title": "Strategy or mix?",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "The falling export share is mostly mix, not strategy [AI]. The US customer's destocking cut Americas shunt revenue by about 23% [F] (AR2026 p.44). Domestic smart-meter demand and the largely domestic contacts business grew faster [F] (AR2026 p.12, p.50). Europe's rise does reflect a deliberate step: the Milan subsidiary was set up in October 2024 [F] (AR2026 p.57, p.39)."
+      }
+     ]
+    },
+    {
+     "title": "Currency, tariffs and location",
+     "blocks": [
+      {
+       "type": "bullets",
+       "items": [
+        "Currency: FX earnings were Rs 252.0 crore and FX outgo Rs 205.5 crore (standalone) [F] (AR2026 p.56), a substantial natural hedge. Net FX gain of Rs 5.6 crore sat in other income in FY26 [F] (AR2026 p.208). The company also carries Rs 34.1 crore of foreign-currency loans [F] (AR2026 p.205).",
+        "Tariffs: a 50% US tariff on India hit orders in the September and December 2025 quarters [MC] (CALL Nov 2025; CALL Feb 2026). Copper and stainless strip attract Section 232 tariffs, which accelerated the shift to components [MC] (CALL Feb 2026). Management says tariffs were expected to fall to 18% [MC] (CALL Feb 2026); the current status is not documented.",
+        "Single location: the core plants are in Solan district, Himachal Pradesh [F] (AR2026 p.79), and the borrowings are secured on them [F] (AR2026 p.205). Pune adds a second site only for assemblies [F] (AR2026 p.39). We see natural-hazard and logistics concentration as an undisclosed risk [AI]."
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "customer_forensics",
+   "title": "Customer forensics",
+   "subsections": [
+    {
+     "title": "Concentration trend",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "Customer concentration",
+       "columns": [
+        "Metric",
+        "FY25",
+        "FY26",
+        "Source"
+       ],
+       "rows": [
+        [
+         "Largest customer, Rs crore",
+         "68.50",
+         "100.16",
+         "[F] (AR2026 p.217)"
+        ],
+        [
+         "Largest customer, % consolidated",
+         "13.47%",
+         "17.54%",
+         "[F] (AR2026 p.217)"
+        ],
+        [
+         "Largest customer, % standalone",
+         "15.67%",
+         "21.68%",
+         "[F] (AR2026 p.169)"
+        ],
+        [
+         "Top 5 customers",
+         "Not disclosed",
+         "Not disclosed",
+         "-"
+        ],
+        [
+         "Top 10 customers",
+         "Not disclosed",
+         "Not disclosed",
+         "-"
+        ],
+        [
+         "Historical peak (largest customer)",
+         "35-40% ('37-38%'), a few years ago",
+         "-",
+         "[MC] (CALL Aug 2026; CALL May 2026)"
+        ]
+       ]
+      },
+      {
+       "type": "callout",
+       "tone": "warn",
+       "text": "Statements on concentration conflict. In November 2025 management said exposure had come down 'to about 17-18%' [MC] (CALL Nov 2025). In May 2026 it said 'about 13-14%' [MC] (CALL May 2026). In August 2026 it said the customer 'will not cross 17-18%' even after recovery [MC] (CALL Aug 2026). The audited FY26 figure is already 17.54% [F] (AR2026 p.217). These are not reconciled, and the documents do not name the >10% customer."
+      }
+     ]
+    },
+    {
+     "title": "Named customers",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "Customers named in the documents",
+       "columns": [
+        "Customer",
+        "Relationship years",
+        "Revenue by year"
+       ],
+       "rows": [
+        [
+         "Vishay (US resistor maker)",
+         "Not disclosed; strip supply 'two or three years ago' at peak; white-label agreement [MC] (CALL May 2026; CALL Feb 2026)",
+         "Not disclosed; peak 35-40% of revenue [MC]"
+        ],
+        [
+         "Denso (Japan)",
+         "New; commercial supply begun or starting [MC] (CALL Feb 2026)",
+         "Not disclosed"
+        ],
+        [
+         "Hella China",
+         "Existing customer; new India development [MC] (CALL Nov 2025)",
+         "Not disclosed"
+        ],
+        [
+         "BYD",
+         "Development via Vishay, not direct [MC] (CALL Nov 2025)",
+         "Not disclosed"
+        ],
+        [
+         "Havells",
+         "Cited as an example of a domestic bimetal customer [MC] (CALL Nov 2025)",
+         "Not disclosed"
+        ]
+       ]
+      },
+      {
+       "type": "p",
+       "text": "Unnamed but described: a major two-wheeler OEM supplied via its battery-pack Tier-1 under NDA [MC] (CALL Aug 2026); 'two or three automotive giants' at the end of the Vishay chain [MC] (CALL Aug 2026); two non-Chinese BMS makers producing in China [MC] (CALL Aug 2026). The company's 'relationships lasting 20+ years' claim has no customer-level evidence [MC] (PPT Aug 2026)."
+      }
+     ]
+    },
+    {
+     "title": "Case studies and contract form",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "The documents contain no customer case studies with figures. On contract form, the Vishay white-label agreement is the only named agreement [MC] (CALL Feb 2026). Elsewhere business runs on part-number approvals and customer forecasts that management 'moderates' [MC] (CALL May 2026). Commodity risk is managed through back-to-back contracts with customers [F] (AR2026 p.74). No long-term volume contracts are disclosed [F] (AR2026 p.131)."
+      }
+     ]
+    },
+    {
+     "title": "Is concentration improving?",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "On the evidence, no [AI]. The largest customer's share rose by 4.1 points (consolidated) and 6.0 points (standalone) in FY26 [F] (AR2026 p.217, p.169), and management's own plan is for the US shunt customer to grow fastest [MC] (CALL May 2026). In management's favour, concentration is far below the 35-40% peak [MC] (CALL Aug 2026), and switchgear exposure is spread across several large OEMs [MC] (CALL Aug 2026)."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "client_analysis",
+   "title": "Client analysis",
+   "subsections": [
+    {
+     "title": "Per-client view",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "Identifiable clients",
+       "columns": [
+        "Client",
+        "What they do",
+        "Why they buy from SBCL",
+        "Product",
+        "Approved supplier?",
+        "Duration",
+        "Sticky?",
+        "Growing?",
+        "Wallet-share upside"
+       ],
+       "rows": [
+        [
+         "Vishay",
+         "Global resistor maker [MC] (CALL Feb 2026)",
+         "Welding accuracy needed for its new patented designs 'only from Shivalik' [MC] (CALL Nov 2025)",
+         "EBW strip then finished resistors; white label",
+         "Yes [MC]",
+         "Multi-year; not disclosed",
+         "Yes for components; strip is replaceable [MC] (CALL Aug 2026)",
+         "Yes, per forecasts [MC] (CALL May 2026)",
+         "High but raises concentration [AI]"
+        ],
+        [
+         "Denso",
+         "Japanese auto Tier-1",
+         "Not stated",
+         "Shunts",
+         "Commercial supply begun [MC] (CALL Feb 2026)",
+         "New",
+         "Unknown",
+         "Starting",
+         "Unknown"
+        ],
+        [
+         "Hella China",
+         "Auto electronics Tier-1",
+         "Not stated",
+         "Shunt components",
+         "Yes [MC] (CALL Nov 2025)",
+         "Not disclosed",
+         "Unknown",
+         "India development on track [MC]",
+         "Moderate"
+        ],
+        [
+         "2W EV OEM (unnamed) via pack Tier-1",
+         "Large two-wheeler maker in EVs",
+         "EB-welded CCS for safety [MC] (CALL Aug 2026)",
+         "CCS / busbar assemblies",
+         "In steady production for one model [MC] (CALL Aug 2026)",
+         "Months",
+         "Unproven",
+         "Ramping",
+         "Large if the model sells; 2-3 more designs in development [MC]"
+        ],
+        [
+         "Switchgear majors (e.g. Havells)",
+         "MCB and breaker makers",
+         "Grades designed in; costly re-validation [MC] (CALL May 2026)",
+         "Bimetal strip and parts; contacts",
+         "Yes",
+         "Long",
+         "Yes [AI]",
+         "Flat in India [F] (AR2026 p.40)",
+         "Limited: about 90% share already [MC] (CALL May 2026)"
+        ],
+        [
+         "Smart-meter relay makers (unnamed)",
+         "Relay manufacturers localising in India",
+         "Shunt plus contacts for latching relays",
+         "Shunts, contacts",
+         "Yes",
+         "2-3 years",
+         "Moderate",
+         "Yes [MC] (CALL May 2026)",
+         "Contacts capacity added late [MC]"
+        ]
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Overall read",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "The customer base is high quality and technically sticky in its core, but disclosure is thin. Only five customers are named, none with revenue, and the >10% customer is unidentified in the audited notes [F] (AR2026 p.217) [AI]. Growth is concentrated in two relationships, Vishay and one EV two-wheeler programme, that management cannot detail because of NDAs [MC] (CALL Aug 2026)."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "order_book",
+   "title": "Order book forensics",
+   "subsections": [
+    {
+     "title": "What is disclosed",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "No order book, backlog, book-to-bill or L1 position is disclosed in any document [F] (AR2026 p.46). The annual report says busbar and PCB opportunities 'were converted into firm orders' and that there are 'four to five projects in hand', without values [MC] (AR2026 p.43). Management's own words on visibility: customers give 'very black and white numbers' [MC] (CALL Aug 2026), and 'we only take those things which are already materializing into development, or sampling... pilot lots' into the revenue model [MC] (CALL May 2026)."
+      },
+      {
+       "type": "table",
+       "caption": "Order metrics",
+       "columns": [
+        "Metric",
+        "Value",
+        "Comment"
+       ],
+       "rows": [
+        [
+         "Order book",
+         "Not disclosed",
+         "No figure in AR, presentation or calls"
+        ],
+        [
+         "Book-to-bill",
+         "Not computable",
+         "-"
+        ],
+        [
+         "Revenue visibility",
+         "Customer forecasts; Vishay 'black and white numbers' [MC] (CALL Aug 2026)",
+         "Forecasts are not contracts [AI]"
+        ],
+        [
+         "Assembly 'firm orders'",
+         "Value not disclosed [MC] (AR2026 p.43)",
+         "-"
+        ]
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Execution timeline for quantified items",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "Management revenue ramps (statements, not orders)",
+       "columns": [
+        "Item",
+        "FY27",
+        "FY28",
+        "FY29",
+        "Source"
+       ],
+       "rows": [
+        [
+         "PCBA (Nov 2025 view)",
+         "Rs 50-70 crore",
+         "-",
+         "-",
+         "[MC] (CALL Nov 2025)"
+        ],
+        [
+         "All assemblies (Feb 2026 view)",
+         "Rs 70-80 crore",
+         "Rs 150-200 crore",
+         "Rs 250-300 crore",
+         "[MC] (CALL Feb 2026)"
+        ],
+        [
+         "Assemblies (AR, Aug 2026)",
+         "Rs 70-80 crore (PCBA 50-55)",
+         "-",
+         "Rs 250-300 crore over 3 years",
+         "[MC] (AR2026 p.43)"
+        ],
+        [
+         "Pune CCS/busbar (May 2026 view)",
+         "-",
+         "-",
+         "Rs 250-350 crore in 2-3 years",
+         "[MC] (CALL May 2026)"
+        ],
+        [
+         "Pune CCS/busbar (Aug 2026 view)",
+         "10-15% of Rs 300-400 crore",
+         "Rs 150-200 crore",
+         "Rs 300 crore onwards",
+         "[MC] (CALL Aug 2026)"
+        ]
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Mandatory A-F separation",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "Revenue evidence ladder",
+       "columns": [
+        "Category",
+        "Content",
+        "Rs crore",
+        "Label"
+       ],
+       "rows": [
+        [
+         "A. Confirmed revenue",
+         "FY26 consolidated revenue; Q1 FY27 revenue",
+         "570.9; 182.2",
+         "[F] (AR2026 p.184; PPT Aug 2026)"
+        ],
+        [
+         "B. Contracted, not recognised",
+         "'Firm orders' for assemblies; value not disclosed",
+         "Not disclosed",
+         "[MC] (AR2026 p.43)"
+        ],
+        [
+         "C. Qualified opportunity",
+         "One 2W EV CCS programme in steady production; 2-3 further designs; Vishay forecasts; Denso and Japanese customers ramping",
+         "Not quantified",
+         "[MC] (CALL Aug 2026; CALL Feb 2026)"
+        ],
+        [
+         "D. Tender pipeline",
+         "Not applicable (no government tenders); none disclosed",
+         "None",
+         "[AI]"
+        ],
+        [
+         "E. Management aspiration",
+         "FY27 growth 20-30%; Pune Rs 300-400 crore in 3 years; 30%+ five-year growth; new verticals",
+         "Ranges only",
+         "[MC] (CALL Aug 2026; CALL May 2026)"
+        ],
+        [
+         "F. Industry TAM",
+         "EV shunt market US$2.98bn (2024) to US$4.09bn (2029); India smart meters US$298m (2025); EV industry Rs 20 lakh crore by 2030",
+         "Context only",
+         "[F] (PPT Aug 2026; AR2026 p.36, p.34)"
+        ]
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "business_line_deep_dives",
+   "title": "Business line deep dives",
+   "subsections": [
+    {
+     "title": "Deep dive 1: EBW shunts and the US customer recovery",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "Position in the chain: SBCL makes EB-welded resistive strip and finished shunts. Resistor makers such as Vishay sell them on to automotive Tier-1s and OEMs, including large US and Chinese EV makers [MC] (CALL Aug 2026). What exists today: FY26 shunt revenue of Rs 230.7 crore, of which Americas Rs 55.5 crore (-23%) and India Rs 85.9 crore (+27%) [F] (AR2026 p.40). In Q1 FY27 shunt revenue was Rs 68.2 crore (+18.7%) and Americas shunts Rs 15.8 crore (+30%) [F] (PPT Aug 2026). Narrative: Vishay back to peak and beyond in FY27-28 'with a much higher value add' [MC] (CALL Aug 2026; CALL May 2026). There is no government exposure; anchor-customer exposure is up to 17.5-21.7% of revenue if the largest customer is Vishay, which is not confirmed [F] (AR2026 p.217, p.169) [AI]."
+      },
+      {
+       "type": "table",
+       "caption": "Shunt opportunity sizing",
+       "columns": [
+        "Figure",
+        "Basis"
+       ],
+       "rows": [
+        [
+         "EV shunt market US$2.98bn (2024) to US$4.09bn (2029), 6.5-6.8% CAGR",
+         "Third-party estimates cited by the company [F] (PPT Aug 2026)"
+        ],
+        [
+         "'EV shunt TAM 3x ICE' vs 'each EV carries 2x shunt value vs ICE'",
+         "Both appear in the same presentation and are not reconciled [F] (PPT Aug 2026)"
+        ],
+        [
+         "SBCL FY26 shunt revenue Rs 230.7 crore",
+         "[F] (AR2026 p.40)"
+        ],
+        [
+         "Realistic: US peak recovery plus India smart-meter and 2W demand; management targets shunt baseline growth of 13-19%",
+         "[MC] (CALL Feb 2026)"
+        ]
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Deep dive 2: Pune CCS, busbar and PCBA assemblies",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "Position in the chain: SBCL becomes a Tier-2 sub-assembly supplier to battery-pack makers. It buys PCBs and wiring and integrates its own busbars, shunts and connectors [F] (RATING). What exists: Phase I consent to operate [F] (PPT Aug 2026); a rented, ready-to-use facility [MC] (CALL Feb 2026); one programme for one OEM in steady production; Phase I capacity can serve 'only that one particular model' [MC] (CALL Aug 2026). The annual report says the facility has 'commenced commercial production' [MC] (AR2026 p.39), while the August call says the main facility becomes fully operational only in October [MC] (CALL Aug 2026). Content per vehicle is Rs 2,000-3,000 per 2W assembly with 60-65% material cost [MC] (CALL Feb 2026). Margin is about 12-13% EBITDA for busbars [MC] (AR2026 p.43). Rajeev Ranjan said ECMS grant eligibility was applied for [MC] (CALL Feb 2026)."
+      },
+      {
+       "type": "table",
+       "caption": "Pune opportunity sizing",
+       "columns": [
+        "Figure",
+        "Basis"
+       ],
+       "rows": [
+        [
+         "India EV industry Rs 20 lakh crore by 2030",
+         "Industry TAM, not company revenue [F] (AR2026 p.34)"
+        ],
+        [
+         "India EV sales about 2.3 million units in 2025 (all EV types)",
+         "[F] (AR2026 p.34)"
+        ],
+        [
+         "Rs 300-400 crore at Rs 2,000-3,000 per assembly implies 1.0-2.0 million assemblies a year",
+         "Illustrative arithmetic [E] (CALL Aug 2026; CALL Feb 2026)"
+        ],
+        [
+         "Management target Rs 300-400 crore in about 3 years",
+         "[MC] (CALL Aug 2026)"
+        ],
+        [
+         "Realistic near term: one model, phase I capacity, FY27 'minimal' to 10-15% of target",
+         "[MC] (CALL Aug 2026)"
+        ]
+       ]
+      },
+      {
+       "type": "p",
+       "text": "Strategic implication [AI]: the Rs 300-400 crore target implies an assembly count equal to roughly half to most of India's total 2025 EV unit sales, unless higher-value four-wheeler assemblies (over Rs 5,000) [MC] (CALL Feb 2026) are included. We treat it as aspiration (category E) until order values are disclosed."
+      }
+     ]
+    },
+    {
+     "title": "Deep dive 3: Contacts and smart-meter localisation",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "Position: SEPPL supplies silver contacts and contact sub-assemblies to relay and switchgear makers; smart-meter latching relays are 'a notable growth vector' [MC] (AR2026 p.40). What exists: FY26 turnover Rs 111.2 crore and PAT Rs 10.3 crore [F] (AR2026 p.57); Q1 FY27 revenue Rs 50.6 crore [F] (PPT Aug 2026). Government exposure is indirect: smart-meter demand is driven by the RDSS programme, under which 4.69 crore of 20.33 crore sanctioned meters had been installed [F] (AR2026 p.36). Management says it will not base its growth story on smart meters and calls them 'a bonus' [MC] (CALL May 2026)."
+      },
+      {
+       "type": "table",
+       "caption": "Smart-meter sizing",
+       "columns": [
+        "Figure",
+        "Basis"
+       ],
+       "rows": [
+        [
+         "India smart-meter market US$298m (2025) to US$3.6bn (2034), 30.96% CAGR",
+         "[F] (AR2026 p.36)"
+        ],
+        [
+         "Smart-meter market US$250.7m (2023) to US$763.2m (2031), about 15% CAGR",
+         "[F] (PPT Aug 2026). Disagrees with the annual report; not reconciled"
+        ],
+        [
+         "SBCL smart-meter revenue Rs 75-80 crore in FY26 (shunts about Rs 70 crore)",
+         "[MC] (CALL May 2026)"
+        ],
+        [
+         "Realistic: 'double again' in FY27, then plateau risk if installations fall below half of plan",
+         "[MC] (CALL May 2026)"
+        ]
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "capacity",
+   "title": "Capacity and utilisation",
+   "subsections": [
+    {
+     "title": "Facility map",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "Facilities",
+       "columns": [
+        "Facility",
+        "Location",
+        "Process",
+        "Installed capacity",
+        "Utilisation",
+        "Notes"
+       ],
+       "rows": [
+        [
+         "SBCL Plant 1",
+         "Chambaghat, Solan, HP [F] (AR2026 p.79)",
+         "Strip EBW for shunts; stamping, tooling, R&D [F] (AR2026 p.43)",
+         "Not disclosed in units",
+         "Welding about 65-70% [MC] (CALL Aug 2026)",
+         "Factory on leasehold land; mortgaged to banks [F] (AR2026 p.205)"
+        ],
+        [
+         "SBCL Plant 2",
+         "Solan, HP [MC] (PPT Aug 2026)",
+         "Diffusion / cold bonding of bimetals [F] (AR2026 p.43)",
+         "Not disclosed in units",
+         "About 40-45% [MC] (CALL Aug 2026)",
+         "Capacity installed ahead of demand [MC] (CALL Aug 2026)"
+        ],
+        [
+         "SEPPL Plant 3",
+         "Solan, HP (Unit IV, Kather) [F] (AR2026 p.79)",
+         "Silver contacts: brazing, welding, cladding [F] (AR2026 p.24)",
+         "Not disclosed",
+         "Not disclosed",
+         "New plant partly ready for 7-8 months as at May 2026 [MC] (CALL May 2026)"
+        ],
+        [
+         "Pune R&D and CCS project",
+         "Pune, Maharashtra [F] (AR2026 p.8)",
+         "PCBA, busbar and CCS assembly",
+         "Phase I can serve 'only one particular model' [MC] (CALL Aug 2026)",
+         "Not disclosed",
+         "Rented ready-to-use premises [MC] (CALL Feb 2026); CTO valid to 30 Jun 2032 [F] (PPT Aug 2026)"
+        ],
+        [
+         "ICS JV (16.01%)",
+         "Pithampur SEZ, MP [F] (AR2026 p.8)",
+         "Clad metals [MC] (PPT Aug 2026)",
+         "Not disclosed",
+         "Not disclosed",
+         "Equity-accounted; turnover Rs 302.4 crore [F] (AR2026 p.50)"
+        ]
+       ]
+      },
+      {
+       "type": "p",
+       "text": "The company says the existing asset base 'can support more than Rs 1,300 crore of revenue' [MC] (AR2026 p.43). In May 2026 management agreed that this implies average utilisation of about 43-45% on a theoretical basis, or 'around 60%' if bottleneck processes are counted [MC] (CALL May 2026). It expects 75-80% in about two years without incremental capex [MC] (CALL May 2026). No installed capacity in kg, pieces or line count is disclosed in any document [AI]."
+      }
+     ]
+    },
+    {
+     "title": "Utilisation trend and drivers",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "No historical utilisation series is disclosed, so a trend cannot be built [AI]. Qualitatively: bimetal capacity was added 'earlier' in anticipation of US export volumes that tariffs then stalled [MC] (CALL May 2026; CALL Feb 2026), and FY26 bimetal volumes were flat (+0.8%) [F] (AR2026 p.43). EBW welding utilisation is higher because component conversion consumes more welding per kg sold [AI], and management says welding capacity can be added within 2-3 months from spares [MC] (CALL Aug 2026)."
+      }
+     ]
+    },
+    {
+     "title": "Revenue potential from higher utilisation (sensitivity, not base case)",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "Utilisation sensitivity at FY26 realisations [E]",
+       "columns": [
+        "Line",
+        "FY26 revenue",
+        "Utilisation assumed now",
+        "Utilisation in sensitivity",
+        "Implied revenue",
+        "Basis"
+       ],
+       "rows": [
+        [
+         "Bimetals",
+         "231.3",
+         "42.5% (mid of 40-45%)",
+         "75%",
+         "about 408",
+         "[E] linear scaling of (AR2026 p.40) and (CALL Aug 2026)"
+        ],
+        [
+         "Shunts (welding-constrained)",
+         "230.7",
+         "67.5% (mid of 65-70%)",
+         "90%",
+         "about 308",
+         "[E] linear scaling of (AR2026 p.40) and (CALL Aug 2026)"
+        ]
+       ]
+      },
+      {
+       "type": "p",
+       "text": "This is a capacity sensitivity [E], not a forecast. It assumes demand exists and that mix and price stay at FY26 levels. Bimetal demand in India is flat [F] (AR2026 p.40), so filling capacity relies on bulk export business that management says may cost '1% or 2% margin' [MC] (CALL May 2026)."
+      }
+     ]
+    },
+    {
+     "title": "Lease expiries",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "Group leases run from 11 months to 9 years [F] (AR2026 p.216). Undiscounted lease payments are Rs 2.1 crore within one year, Rs 9.1 crore in 1-5 years and Rs 4.5 crore beyond five years [F] (AR2026 p.216). The main Chambaghat factory sits on leasehold land [F] (AR2026 p.205), but its expiry date is not disclosed. Pune is rented [MC] (CALL Feb 2026), also with no term disclosed."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "capex_forensics",
+   "title": "Capex forensics",
+   "subsections": [
+    {
+     "title": "Historical capex",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "Capex history (Rs crore)",
+       "columns": [
+        "FY",
+        "Capex",
+        "Sales",
+        "Capex/sales",
+        "EBITDA",
+        "Capex/EBITDA [E]",
+        "Capital commitments"
+       ],
+       "rows": [
+        [
+         "FY17",
+         "3",
+         "119",
+         "2.5%",
+         "19",
+         "16%",
+         "n.d."
+        ],
+        [
+         "FY18",
+         "8",
+         "158",
+         "5.1%",
+         "26",
+         "31%",
+         "n.d."
+        ],
+        [
+         "FY19",
+         "6",
+         "193",
+         "3.1%",
+         "36",
+         "17%",
+         "n.d."
+        ],
+        [
+         "FY20",
+         "14",
+         "187",
+         "7.5%",
+         "21",
+         "67%",
+         "n.d."
+        ],
+        [
+         "FY21",
+         "15",
+         "204",
+         "7.4%",
+         "36",
+         "42%",
+         "n.d."
+        ],
+        [
+         "FY22",
+         "25",
+         "324",
+         "7.7%",
+         "73",
+         "34%",
+         "n.d."
+        ],
+        [
+         "FY23",
+         "31",
+         "470",
+         "6.6%",
+         "109",
+         "28%",
+         "n.d."
+        ],
+        [
+         "FY24",
+         "22",
+         "509",
+         "4.3%",
+         "106",
+         "21%",
+         "n.d."
+        ],
+        [
+         "FY25",
+         "31",
+         "508",
+         "6.1%",
+         "104",
+         "30%",
+         "5.0 [F] (AR2026 p.214)"
+        ],
+        [
+         "FY26",
+         "35",
+         "571",
+         "6.1%",
+         "131",
+         "27%",
+         "11.9 [F] (AR2026 p.214)"
+        ]
+       ]
+      },
+      {
+       "type": "p",
+       "text": "Source: capex, sales, EBITDA and capex/sales [F] (NUMBERS); capex/EBITDA [E]. Cumulative capex over FY17-FY26 was Rs 190 crore [E] (NUMBERS). FY26 cash capex of Rs 34.6 crore matches the cash-flow statement; the separate Rs 39.7 crore placed in fixed deposits is treasury, not capex [F] (AR2026 p.185)."
+      }
+     ]
+    },
+    {
+     "title": "Incremental revenue versus incremental capital",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "From FY21 to FY26, sales rose Rs 367 crore while net fixed assets plus CWIP rose Rs 114 crore (Rs 71 crore to Rs 185 crore), about Rs 3.2 of revenue per incremental rupee of fixed capital [E] (NUMBERS). The figure is flattered by the FY23 consolidation of SEPPL [AI]. Over FY23-FY26 the ratio is about 1.7x (Rs 101 crore of sales on Rs 60 crore of fixed capital) [E] (NUMBERS). This deterioration reflects capacity built ahead of demand and automation spending [MC] (CALL Nov 2025). CWIP rose to Rs 33.8 crore, of which Rs 17.8 crore is more than a year old and Rs 4.4 crore more than three years old [F] (AR2026 p.196). In November 2025 the CFO said about Rs 20 crore of SEPPL CWIP would be capitalised by December 2025 [MC] (CALL Nov 2025)."
+      }
+     ]
+    },
+    {
+     "title": "Planned capex and funding",
+     "blocks": [
+      {
+       "type": "bullets",
+       "items": [
+        "Pune: Rs 20 crore [MC] (CALL Feb 2026), restated as Rs 20-25 crore [MC] (CALL Aug 2026), funded by internal accruals [F] (AR2026 p.50; RATING).",
+        "Maintenance and automation: Rs 10-15 crore a year [MC] (CALL May 2026).",
+        "Possible acquisitions, technology partnerships or a greenfield new vertical, not sized [MC] (CALL Aug 2026).",
+        "Articles amended to permit warrants and convertibles 'for future capital raising initiatives' [F] (AR2026 p.240)."
+       ]
+      },
+      {
+       "type": "p",
+       "text": "Classification [AI]: fixed-asset light (capex 4-8% of sales over a decade [F] (NUMBERS)) but working-capital heavy. Overall the model is moderately capital-intensive once inventory is counted."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "raw_materials",
+   "title": "Raw materials and input-cost exposure",
+   "subsections": [
+    {
+     "title": "Key inputs and import dependence",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "Key inputs are silver (contacts), nickel alloys (bimetals) and copper and copper alloys (shunts, busbars) [F] (AR2026 p.44) [MC] (CALL Aug 2026). The import share by year and by country is not disclosed. The standalone foreign-exchange outgo of Rs 205.5 crore against standalone material consumption of Rs 243.9 crore [F] (AR2026 p.56, p.138) suggests heavy import dependence. This is an upper-bound inference, because outgo also includes non-material items [AI]. Indigenisation of nickel alloys was expected to reach 20-25% of consumption 'in maybe another three-four months' as of November 2025 and about 50% 'next year' [MC] (CALL Nov 2025). The annual report still says 20-25% 'in the near term' [MC] (AR2026 p.43). The company also buys Rs 24.4 crore of goods from its ICS JV [F] (AR2026 p.170)."
+      }
+     ]
+    },
+    {
+     "title": "Price context and pass-through",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "Price context from the documents only: silver bullion is 'just a little bit over double' YoY in Q1 FY27 [MC] (CALL Aug 2026), and copper has seen a 'substantial increase' [MC] (CALL Aug 2026). Management claims full pass-through [MC] (CALL Feb 2026; CALL Nov 2025), and the governance report cites back-to-back contracts with customers [F] (AR2026 p.74). Management concedes exceptions: during the contacts plant move, higher silver inventory created exposure [MC] (CALL Feb 2026), and a small surcharge margin rises with silver [MC] (CALL May 2026). The evidence partly supports the claim: FY26 consolidated gross margin rose 212 bps while metals rose [F] (AR2026 p.42). Pass-through, however, mechanically lowers reported margin percentages, as seen in Q1 consolidated gross margin of 43.40% vs 44.60% [F] (PPT Aug 2026) [AI]."
+      }
+     ]
+    },
+    {
+     "title": "EBITDA sensitivity to an input-cost shock",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "FY26 EBITDA sensitivity, before any pass-through [E]",
+       "columns": [
+        "Shock",
+        "Cost base shocked",
+        "Cost increase",
+        "EBITDA after shock",
+        "EBITDA margin",
+        "EBITDA change"
+       ],
+       "rows": [
+        [
+         "Base FY26",
+         "-",
+         "-",
+         "131",
+         "23%",
+         "-"
+        ],
+        [
+         "+5% materials",
+         "Material cost about 312.8 (AR2026 p.184)",
+         "15.6",
+         "115.4",
+         "20.2%",
+         "-12%"
+        ],
+        [
+         "+10% materials",
+         "Material cost about 312.8",
+         "31.3",
+         "99.7",
+         "17.5%",
+         "-24%"
+        ],
+        [
+         "+5% all operating costs",
+         "Expenses 440 (NUMBERS)",
+         "22.0",
+         "109.0",
+         "19.1%",
+         "-17%"
+        ],
+        [
+         "+10% all operating costs",
+         "Expenses 440 (NUMBERS)",
+         "44.0",
+         "87.0",
+         "15.2%",
+         "-34%"
+        ]
+       ]
+      },
+      {
+       "type": "p",
+       "text": "Computed [E] from FY26 EBITDA of Rs 131 crore and sales of Rs 571 crore (NUMBERS) and consolidated materials consumed less inventory change (AR2026 p.184). Even a 10% unrecovered material shock would take EBITDA margin to about 17.5%, the level at which Crisil's downgrade trigger ('below 17-18%') applies [F] (RATING). Pass-through means the realistic hit is a lag effect, not this full amount [AI]."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "margin_analysis",
+   "title": "Margin analysis",
+   "subsections": [
+    {
+     "title": "Margin trend",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "Consolidated margin trend (Rs crore)",
+       "columns": [
+        "Period",
+        "Revenue",
+        "Gross margin proxy",
+        "EBITDA",
+        "EBITDA %",
+        "PAT",
+        "PAT % [E]"
+       ],
+       "rows": [
+        [
+         "FY17",
+         "119",
+         "n.d.",
+         "19",
+         "16%",
+         "8",
+         "6.7%"
+        ],
+        [
+         "FY18",
+         "158",
+         "n.d.",
+         "26",
+         "16%",
+         "17",
+         "10.8%"
+        ],
+        [
+         "FY19",
+         "193",
+         "n.d.",
+         "36",
+         "18%",
+         "25",
+         "13.0%"
+        ],
+        [
+         "FY20",
+         "187",
+         "n.d.",
+         "21",
+         "11%",
+         "13",
+         "7.0%"
+        ],
+        [
+         "FY21",
+         "204",
+         "n.d.",
+         "36",
+         "18%",
+         "25",
+         "12.3%"
+        ],
+        [
+         "FY22",
+         "324",
+         "n.d.",
+         "73",
+         "23%",
+         "55",
+         "17.0%"
+        ],
+        [
+         "FY23",
+         "470",
+         "n.d.",
+         "109",
+         "23%",
+         "79",
+         "16.8%"
+        ],
+        [
+         "FY24",
+         "509",
+         "n.d.",
+         "106",
+         "21%",
+         "84",
+         "16.5%"
+        ],
+        [
+         "FY25",
+         "508",
+         "43.1% (AR2026 p.20)",
+         "104",
+         "20%",
+         "77",
+         "15.2%"
+        ],
+        [
+         "FY26",
+         "571",
+         "45.2% (AR2026 p.20)",
+         "131",
+         "23%",
+         "96",
+         "16.8%"
+        ],
+        [
+         "TTM Jun-26",
+         "616",
+         "n.d.",
+         "142",
+         "23%",
+         "106",
+         "17.2%"
+        ],
+        [
+         "Q1 FY26",
+         "137",
+         "44.6% (PPT Aug 2026)",
+         "32",
+         "23%",
+         "23",
+         "16.8%"
+        ],
+        [
+         "Q1 FY27",
+         "182",
+         "43.4% (PPT Aug 2026)",
+         "43",
+         "24%",
+         "33",
+         "18.1%"
+        ]
+       ]
+      },
+      {
+       "type": "p",
+       "text": "Revenue, EBITDA, EBITDA % and PAT [F] (NUMBERS); gross margin as cited; PAT % [E]. Standalone gross margin was 46.57% (FY25), 49.39% (FY26) and 51.48% (Q1 FY27) [F] (AR2026 p.25; PPT Aug 2026)."
+      }
+     ]
+    },
+    {
+     "title": "Drivers year by year",
+     "blocks": [
+      {
+       "type": "bullets",
+       "items": [
+        "FY20 (11%): sharp dip; cause not explained in the documents. Temporary [AI].",
+        "FY22-FY23 (23%): the Vishay strip boom and SEPPL consolidation [MC] (CALL May 2026; CALL Nov 2025). Partly cyclical: the customer later destocked for 1.5 years [MC] (CALL Nov 2025).",
+        "FY24-FY25 (21%, 20%): largest-customer decline, US EV slowdown and raw-material and mix pressure [F] (AR2026 p.41). Cyclical and customer-specific.",
+        "FY26 (23%): component mix and realisation [MC] (AR2026 p.42); lower commission on sales (Rs 5.8 crore vs Rs 10.0 crore) and packing (Rs 3.9 crore vs Rs 5.9 crore) [F] (AR2026 p.212), worth about 1.1 points of margin [E]; partly offset by employee cost +25% [F] (AR2026 p.42). Mostly structural, with some cost items of unclear durability [AI].",
+        "Q1 FY27 (24%): standalone EBITDA margin 27.52% [F] (PPT Aug 2026), diluted by contacts at the consolidated level, where gross margin fell 119 bps [F] (PPT Aug 2026)."
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Is the improvement structural?",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "Bottom line [AI]: the standalone improvement looks structural. Gross margin has risen for six consecutive reported periods while volumes fell, which fits a shift to components [F] (AR2026 p.25; PPT Aug 2026). The consolidated EBITDA margin is likely to stay in the 21-24% band rather than rise. Contacts (silver-inflated) and busbar assemblies (about 12-13% EBITDA [MC] (AR2026 p.43)) are growing faster than the core. Management's own blended guide is 23-25% [MC] (CALL Feb 2026; AR2026 p.43); the 21% used in our base DCF is lower [F] (NUMBERS)."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "unit_economics",
+   "title": "Unit economics",
+   "subsections": [
+    {
+     "title": "What can and cannot be built",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "Disclosed: kg volumes (including wastage) and revenue for shunts and bimetals, and standalone cost of materials [F] (AR2026 p.25, p.138; PPT Aug 2026). Not disclosed: material cost by product, piece counts, capacity in units, assembly volumes, contacts volumes. The volume series changed basis in Q4 FY26 to include wastage, so long-run kg comparisons are unreliable [MC] (CALL May 2026). Management itself warns that kg understates value as parts get smaller [MC] (CALL May 2026)."
+      }
+     ]
+    },
+    {
+     "title": "Realisation and contribution per kg",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "Per-kg economics (Rs per kg) [E]",
+       "columns": [
+        "Metric",
+        "FY25",
+        "FY26",
+        "Change",
+        "Q1 FY26",
+        "Q1 FY27",
+        "Change"
+       ],
+       "rows": [
+        [
+         "Shunt realisation",
+         "1,891",
+         "2,101",
+         "+11%",
+         "1,984",
+         "2,649",
+         "+33%"
+        ],
+        [
+         "Bimetal realisation",
+         "1,751",
+         "1,787",
+         "+2%",
+         "1,827",
+         "1,866",
+         "+2%"
+        ],
+        [
+         "Standalone revenue per kg",
+         "1,817",
+         "1,931",
+         "+6%",
+         "n.d.",
+         "n.d.",
+         "-"
+        ],
+        [
+         "Standalone material cost per kg",
+         "971",
+         "977",
+         "+1%",
+         "n.d.",
+         "n.d.",
+         "-"
+        ],
+        [
+         "Standalone gross contribution per kg",
+         "846",
+         "954",
+         "+13%",
+         "n.d.",
+         "n.d.",
+         "-"
+        ]
+       ]
+      },
+      {
+       "type": "p",
+       "text": "Method [E]: product revenue divided by kg including wastage (AR2026 p.25; PPT Aug 2026). FY25 product revenue is back-calculated from FY26 growth rates (AR2026 p.12, p.40). The standalone material cost is materials consumed plus the change in inventory (AR2026 p.138), divided by total kg. Contribution per kg rose 13% on near-flat material cost per kg, consistent with value added per kg rising and not with metal inflation [AI]."
+      }
+     ]
+    },
+    {
+     "title": "What would have to be true for unit economics to improve further",
+     "blocks": [
+      {
+       "type": "bullets",
+       "items": [
+        "Strip keeps shrinking as a share of shunt kg: the component share was about 65% in FY26 [MC] (AR2026 p.12), and strip in Q1 FY27 was one third of the year-ago level [MC] (CALL Aug 2026).",
+        "Bimetal parts substitute for strip, which management calls 'minimal' so far [MC] (CALL Aug 2026).",
+        "Indigenised alloys arrive at or below import cost; management says initial costs may be higher [MC] (CALL Nov 2025).",
+        "Volume returns to absorb fixed costs, which rose with employee costs +25% [F] (AR2026 p.42)."
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "financial_forensics",
+   "title": "Financial statement forensics",
+   "subsections": [
+    {
+     "title": "Data availability caveat",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "Our statements data is screener.in's consolidated series (rounded to Rs crore) for FY17-FY26 and 12 quarters [F] (NUMBERS). The FY26 annual report gives audited consolidated and standalone statements for FY25-FY26 only [F] (AR2026 p.183-185). Earlier annual reports, quarterly cash flows and a FY27 interim balance sheet were not available. The FY23 consolidation of SEPPL breaks comparability across FY22-FY23 [AI]."
+      }
+     ]
+    },
+    {
+     "title": "Income statement",
+     "blocks": [
+      {
+       "type": "bullets",
+       "items": [
+        "Revenue CAGR: 3-year 6.7%, 5-year 22.9%, 9-year 19.0% [F] (NUMBERS). The 5-year figure includes consolidation and the customer boom [AI].",
+        "Other income: Rs 12.3 crore in FY26, consisting of FX gain 5.6, interest 6.2 and a government grant that fell from Rs 3.6 crore to almost nil [F] (AR2026 p.208). FY24 other income of Rs 22 crore included a Rs 16 crore Q4 FY24 spike [F] (NUMBERS) that the documents do not explain.",
+        "Q1 FY27 other income of Rs 5.6 crore doubled YoY and was 12.8% of PBT [E] (PPT Aug 2026). PBT growth of 44% vs EBITDA growth of 35% partly reflects this [F] (PPT Aug 2026).",
+        "Exceptional items: Rs 0.92 crore expense in FY26 and Rs 0.26 crore income in Q1 FY27, unexplained [F] (AR2026 p.184; PPT Aug 2026).",
+        "Share of JV profit rose to Rs 3.35 crore from Rs 1.68 crore [F] (AR2026 p.184).",
+        "Tax rate 24-25%, stable [F] (NUMBERS)."
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Balance sheet",
+     "blocks": [
+      {
+       "type": "bullets",
+       "items": [
+        "Total assets rose 25% to Rs 636 crore in FY26 [F] (NUMBERS), outpacing revenue growth of 12% [AI].",
+        "Borrowings rose from Rs 42 crore to Rs 71 crore including leases [F] (NUMBERS). Bank debt alone rose from Rs 32.6 crore to Rs 59.4 crore [F] (AR2026 p.206). Rs 34.1 crore of it is foreign-currency loans and Rs 11.0 crore is new SEPPL cash credit [F] (AR2026 p.205).",
+        "At the same time fixed deposits rose by Rs 39.7 crore [F] (AR2026 p.185). The group borrows short-term while holding deposits [AI], likely an FX or interest carry and liquidity choice that is not explained.",
+        "Receivables rose 40% to Rs 155.5 crore; 83% are not yet due and only Rs 0.3 crore is over six months [F] (AR2026 p.200). This is a timing and term issue rather than a credit-quality one [AI].",
+        "Inventory rose 17% to Rs 153.0 crore, with WIP of Rs 72.8 crore the largest component [F] (AR2026 p.199)."
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Cash flow and ratios",
+     "blocks": [
+      {
+       "type": "bullets",
+       "items": [
+        "CFO fell from Rs 93.6 crore to Rs 54.9 crore on a Rs 49.7 crore working-capital outflow [F] (AR2026 p.185).",
+        "FCF was Rs 20 crore in FY26 vs Rs 63 crore in FY25; cumulative 5-year FCF was Rs 137 crore [F] (NUMBERS).",
+        "Dividends rose to Rs 20.2 crore paid [F] (AR2026 p.185); payout 24% [F] (NUMBERS).",
+        "ROCE 27% (38% peak in FY23), ROE 21.6%, debt/equity 0.15, interest cover 26.4x [F] (NUMBERS). Returns are high but below the FY22-FY23 peak [AI]."
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Discrepancies between sources (shown, not reconciled)",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "Source conflicts",
+       "columns": [
+        "Item",
+        "Source A",
+        "Source B",
+        "Comment"
+       ],
+       "rows": [
+        [
+         "FY22-FY24 EBITDA (standalone 5-year table)",
+         "79 / 112 / 123 (EBITDA % 24/27/27) (PPT Aug 2026)",
+         "74 / 104 / 102 (23/25/23%) (AR2026 p.41)",
+         "Not reconciled; both labelled as the same series"
+        ],
+        [
+         "Revenue FY22-FY26 in presentation (324 to 462)",
+         "Shown on a slide headed with consolidated data (PPT Aug 2026)",
+         "Standalone per AR (AR2026 p.41); consolidated 570.9 (AR2026 p.184)",
+         "Explains the earlier '572.9 vs 462' puzzle: 230.7 + 231.3 + 110.9 = 572.9 is the sum of product lines before eliminations [E]"
+        ],
+        [
+         "FY25 / FY24 revenue",
+         "508 / 509 (NUMBERS)",
+         "Operating income 512.11 / 520.61 (RATING)",
+         "Not reconciled (likely definitional)"
+        ],
+        [
+         "Export share",
+         "about 57% 'of FY26 revenue' (AR2026 p.38)",
+         "Outside India 47.3% consolidated [E] (AR2026 p.217); 56.65% standalone (AR2026 p.92)",
+         "57% is a standalone figure"
+        ],
+        [
+         "Debt status",
+         "'Zero-debt company', 'Net Debt Nil' (PPT Aug 2026)",
+         "Borrowings 59.4 plus leases 11.75 (AR2026 p.206, p.216); 71 (NUMBERS)",
+         "Net-cash is accurate; 'zero-debt' is not"
+        ],
+        [
+         "Gross margin",
+         "49.39% (PPT Aug 2026, moat slide)",
+         "45.21% consolidated (AR2026 p.42)",
+         "PPT uses the standalone figure"
+        ],
+        [
+         "Shunt India revenue FY26",
+         "85.9 (AR2026 p.12)",
+         "85.4 (AR2026 p.50)",
+         "Minor"
+        ],
+        [
+         "SEPPL becomes subsidiary",
+         "12-04-2022 (AR2026 p.57)",
+         "Checon buy-out 2023 (PPT Aug 2026; CALL May 2026)",
+         "Not reconciled"
+        ],
+        [
+         "Contacts growth FY26",
+         "+54.90% (AR2026 p.50)",
+         "'about 60%' (CALL May 2026)",
+         "Not reconciled"
+        ],
+        [
+         "Largest customer share",
+         "17.54% FY26 (AR2026 p.217)",
+         "'about 13-14%' (CALL May 2026)",
+         "Not reconciled"
+        ],
+        [
+         "Q1 FY27 PAT growth",
+         "44.86% (PPT Aug 2026)",
+         "43.5% (NUMBERS, rounded quarters)",
+         "Rounding"
+        ],
+        [
+         "Auditor fee",
+         "New auditor Rs 60 lakh a year; 'no material change' (AR2026 p.239)",
+         "Outgoing auditor paid Rs 32.29 lakh group-wide (AR2026 p.74)",
+         "About 86% higher [E]; the statement of 'no material change' is not supported"
+        ],
+        [
+         "Earlier research notes",
+         "FY25 sales 449 to 437, '1,122,955 pieces', exports 57%, P/E 68 (BOARD)",
+         "Standalone FY24 to FY25 figures; units are kg (AR2026 p.25); P/E now 56.6 (NUMBERS)",
+         "Notes mixed standalone and consolidated data"
+        ]
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "working_capital",
+   "title": "Working capital",
+   "subsections": [
+    {
+     "title": "Why headline days mislead",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "Our statements data shows working-capital days of 128 [F] (NUMBERS), while the company reports net working capital of 258 days for FY26 [F] (AR2026 p.26). The bases differ (sales vs cost, standalone vs consolidated), and neither alone shows that the FY26 build was in receivables (+Rs 44 crore) as much as inventory [F] (AR2026 p.183) [AI]."
+      }
+     ]
+    },
+    {
+     "title": "Component build",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "Working-capital components (Rs crore; days)",
+       "columns": [
+        "FY",
+        "Inventories",
+        "Receivables",
+        "Payables",
+        "Debtor days",
+        "Inventory days",
+        "Payable days",
+        "CCC"
+       ],
+       "rows": [
+        [
+         "FY21",
+         "70",
+         "43",
+         "35",
+         "77",
+         "253",
+         "127",
+         "202"
+        ],
+        [
+         "FY22",
+         "115",
+         "59",
+         "42",
+         "67",
+         "260",
+         "95",
+         "232"
+        ],
+        [
+         "FY23",
+         "132",
+         "93",
+         "42",
+         "72",
+         "196",
+         "63",
+         "206"
+        ],
+        [
+         "FY24",
+         "128",
+         "114",
+         "39",
+         "82",
+         "165",
+         "50",
+         "197"
+        ],
+        [
+         "FY25",
+         "131",
+         "111",
+         "38",
+         "80",
+         "166",
+         "49",
+         "197"
+        ],
+        [
+         "FY26",
+         "153",
+         "156",
+         "56",
+         "99",
+         "179",
+         "65",
+         "213"
+        ],
+        [
+         "Q1 FY27 (standalone, company basis)",
+         "n.d.",
+         "n.d.",
+         "n.d.",
+         "83 (collection)",
+         "203",
+         "41",
+         "NWC 245"
+        ]
+       ]
+      },
+      {
+       "type": "p",
+       "text": "Balances [F] (PPT Aug 2026 consolidated balance sheet); days [F] (NUMBERS); Q1 FY27 days [F] (PPT Aug 2026)."
+      }
+     ]
+    },
+    {
+     "title": "Drivers: management versus evidence",
+     "blocks": [
+      {
+       "type": "bullets",
+       "items": [
+        "Receivables: the CFO attributes the rise to a higher export share, with credit counted from receipt plus 15-45 days of transit [MC] (CALL May 2026). Evidence: the consolidated export share actually fell (India +16.8%) [E] (AR2026 p.217), so the explanation is not supported by the geography data [AI]. Receivables are largely current [F] (AR2026 p.200).",
+        "Inventory: copper for Pune assemblies plus geopolitical safety stock [MC] (CALL May 2026); bought-out components for the assembly ramp [MC] (AR2026 p.42). Evidence: raw material in transit rose to Rs 2.5 crore and WIP to Rs 72.8 crore [F] (AR2026 p.199).",
+        "Missed commitment: in February 2026 the CFO said NWC would be back in the prior year's range by March 2026 [MC] (CALL Feb 2026). It went from 218 to 258 days [F] (AR2026 p.26). In November 2025 management targeted a 30-day reduction with 50% local sourcing [MC] (CALL Nov 2025)."
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Cash-conversion consequence and bank limits",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "FY26 CFO/PAT was 0.57x; 3-year 0.85x; 5-year 0.72x [F] (NUMBERS). Bank-limit utilisation averaged about 47% over the twelve months to October 2025 [F] (RATING). Working-capital lines are secured on current assets with quarterly statements that agree with books [F] (AR2026 p.133). No covenants are disclosed. A tripartite receivables-financing arrangement for customers on terms beyond 90 days is mentioned [MC] (CALL Feb 2026) but not disclosed in the accounts."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "balance_sheet_quality",
+   "title": "Balance sheet quality",
+   "subsections": [
+    {
+     "title": "Asset composition",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "FY26 consolidated assets (Rs crore)",
+       "columns": [
+        "Category",
+        "Items",
+        "Amount",
+        "% of total [E]"
+       ],
+       "rows": [
+        [
+         "Hard assets",
+         "PPE 122.3, CWIP 33.8, ROU 20.8, investment property 1.9",
+         "178.8",
+         "28.1%"
+        ],
+        [
+         "Working-capital assets",
+         "Inventories 153.0, receivables 155.5, other current 15.6",
+         "324.1",
+         "51.0%"
+        ],
+        [
+         "Cash and bank",
+         "Cash 7.0, deposits 97.7",
+         "104.7",
+         "16.5%"
+        ],
+        [
+         "Investments",
+         "ICS JV (equity method) 16.1, other 0.1",
+         "16.2",
+         "2.5%"
+        ],
+        [
+         "Soft assets",
+         "Goodwill 2.0, intangibles 2.5, intangibles under development 1.0",
+         "5.6",
+         "0.9%"
+        ],
+        [
+         "Other",
+         "Deposits, advances",
+         "6.5",
+         "1.0%"
+        ],
+        [
+         "Total",
+         "",
+         "636.0",
+         "100%"
+        ]
+       ]
+      },
+      {
+       "type": "p",
+       "text": "Source [F] (AR2026 p.183); groupings [E]. Soft assets are negligible, and over half the balance sheet is working capital [AI]."
+      }
+     ]
+    },
+    {
+     "title": "Liabilities, contingents and off-balance-sheet items",
+     "blocks": [
+      {
+       "type": "bullets",
+       "items": [
+        "Equity Rs 481.3 crore; bank borrowings Rs 59.4 crore (non-current 11.8, current 47.6); lease liabilities Rs 11.75 crore; trade payables Rs 55.9 crore [F] (AR2026 p.183, p.206, p.216).",
+        "Contingent liabilities total about Rs 8.6 crore: bank guarantees 0.52, customs duty on bonded material 3.28, buyer's credit interest 0.20, JV duty foregone 4.55, JV claims 0.07 [F] (AR2026 p.214).",
+        "Capital commitments Rs 11.9 crore; export obligations against Rs 6.6 crore of advance-authorisation duty savings [F] (AR2026 p.214).",
+        "Parent corporate guarantee of Rs 27.87 crore for SEPPL and FDs of Rs 7.11 crore pledged for SEPPL's overdraft [F] (AR2026 p.133, p.201).",
+        "Investment-property land is sub judice in the HP High Court; book value Rs 1.9 crore, agreed sale price Rs 3.6 crore [F] (AR2026 p.197).",
+        "No pending litigation against the company per the auditor [F] (AR2026 p.131)."
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Related-party leases and overall assessment",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "Rent paid to KMP, relatives and KMP-influenced enterprises totalled about Rs 0.3 crore in FY26, down from Rs 1.1 crore [F] (AR2026 p.218), immaterial [AI]. Overall the balance sheet is strong: net cash of about Rs 45 crore excluding leases [E] (AR2026 p.183, p.206) and Crisil A/Stable [F] (RATING). Its quality is diluted by heavy, rising working capital [AI]."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "accounting_quality",
+   "title": "Accounting quality",
+   "subsections": [
+    {
+     "title": "Auditor and opinions",
+     "blocks": [
+      {
+       "type": "bullets",
+       "items": [
+        "Auditor history: Arora Gupta & Co (Solan) was reappointed at the 38th AGM in September 2022 for five years, then resigned on 6 August 2026 citing 'professional commitments and the practical difficulty in deploying adequate audit resources commensurate with the expanded audit requirements' [F] (AR2026 p.52, p.239). Walker Chandiok & Co LLP was appointed from 7 August 2026 [F] (AR2026 p.239). Auditors before 2022 are not covered in the documents.",
+        "FY26 opinions on standalone and consolidated statements are unmodified, with no qualifications [F] (AR2026 p.52, p.74). Internal financial controls opinion unmodified [F] (AR2026 p.131).",
+        "Key audit matters: new labour codes; contingent liabilities and capital commitments [F] (AR2026 p.129, p.177). Both are generic; there is no KAM on revenue, inventory or receivables despite the working-capital build [AI].",
+        "Emphasis of matter: none is reported in the documents [F] (AR2026 p.129-131).",
+        "CARO: no adverse remarks; corporate guarantee and FD security for the subsidiary reported; no auditor resignation 'during the year', since it came after the report date [F] (AR2026 p.133-134).",
+        "Audit trail: operated throughout the year with no tampering, but the foreign subsidiary's audit-trail information was 'not provided' [F] (AR2026 p.132, p.180).",
+        "Restatements: none disclosed in the documents."
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Unusual items and overall assessment",
+     "blocks": [
+      {
+       "type": "bullets",
+       "items": [
+        "SEPPL acquisition accounting: goodwill Rs 2.0 crore plus customer-relationship and know-how intangibles being amortised [F] (AR2026 p.197). Small.",
+        "Borrowing cost of Rs 0.77 crore capitalised into CWIP [F] (AR2026 p.196), alongside ageing CWIP.",
+        "The governance report says directors have no inter-se relationships, while the remuneration annexure shows the chairman is father of the MD and WTD [F] (AR2026 p.74, p.90). This is a disclosure-quality lapse [AI].",
+        "The new auditor's fee is about 86% above the outgoing auditor's group fee, yet described as no material change [E] (AR2026 p.239, p.74)."
+       ]
+      },
+      {
+       "type": "p",
+       "text": "Assessment [AI]: there are no red flags in the opinions themselves. The FY26 numbers, however, were audited by a small regional firm that has since resigned over resourcing. The first limited review by a Big-6-type firm (Q2 FY27) is therefore a meaningful test. The documents do not cover prior-year auditor history, management letters or any secretarial non-compliance beyond 'none' [F] (AR2026 p.52)."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "group_structure_rpt",
+   "title": "Group structure and related-party transactions",
+   "subsections": [
+    {
+     "title": "Subsidiaries: role and status",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "Entities",
+       "columns": [
+        "Entity",
+        "Role",
+        "Status"
+       ],
+       "rows": [
+        [
+         "SEPPL (100%)",
+         "Contacts manufacturing; material subsidiary",
+         "Active; guaranteed by parent [F] (AR2026 p.74, p.133)"
+        ],
+        [
+         "SBEPL (100%)",
+         "Described as technical/engineering services [MC] (PPT Aug 2026); revenue Rs 3.75 crore [F] (AR2026 p.57)",
+         "Active"
+        ],
+        [
+         "Shivalik Bimetals Europe SRL (100%)",
+         "EU customer access [F] (AR2026 p.39)",
+         "Active; revenue Rs 2.46 crore [F] (AR2026 p.57)"
+        ],
+        [
+         "ICS (16.01% JV)",
+         "Clad metal supplier to SBCL [F] (AR2026 p.170)",
+         "Equity-accounted [F] (AR2026 p.58)"
+        ],
+        [
+         "Metalor JV",
+         "Planned contacts JV",
+         "MoU not taken forward [F] (AR2026 p.60)"
+        ]
+       ]
+      },
+      {
+       "type": "p",
+       "text": "The documents contain no non-compete or common-pursuit disclosure. Enterprises over which KMP have significant influence are Ace Marketing Services, TSL Holdings and Amar Engineering [F] (AR2026 p.217). Promoter entities OD Finance and Investment (15.73%) and Sirmaur Hospitality (0.91%) hold shares [F] (AR2026 p.156). Their businesses are not described."
+      }
+     ]
+    },
+    {
+     "title": "Related-party transactions",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "FY26 related-party transactions (Rs crore)",
+       "columns": [
+        "Category",
+        "Amount",
+        "Economic substance"
+       ],
+       "rows": [
+        [
+         "Managerial remuneration (consolidated KMP)",
+         "10.83 (FY25 8.85) [F] (AR2026 p.218)",
+         "Executive directors 7.54 [F] (AR2026 p.73), about 7.9% of consolidated PAT [E]"
+        ],
+        [
+         "Goods purchased from ICS JV (standalone)",
+         "24.36 (FY25 20.51) [F] (AR2026 p.170)",
+         "Input supply from the clad-metal JV; arm's-length terms not evidenced"
+        ],
+        [
+         "Forwarding and freight paid to a WOS",
+         "3.74 (FY25 0.14) [F] (AR2026 p.170)",
+         "Intra-group; matches SBEPL turnover [AI]"
+        ],
+        [
+         "Marketing support services to a WOS",
+         "2.50 (FY25 0.97) [F] (AR2026 p.170)",
+         "Intra-group; likely Europe SRL [AI]"
+        ],
+        [
+         "Goods sold to WOS",
+         "1.02 [F] (AR2026 p.170)",
+         "Intra-group"
+        ],
+        [
+         "Rent to KMP, relatives and KMP enterprises",
+         "about 0.30 [F] (AR2026 p.218)",
+         "Immaterial"
+        ],
+        [
+         "Sitting fees",
+         "0.12 [F] (AR2026 p.218)",
+         "Normal"
+        ],
+        [
+         "Corporate guarantee outstanding (SEPPL)",
+         "27.87 [F] (AR2026 p.170)",
+         "Contingent exposure"
+        ]
+       ]
+      },
+      {
+       "type": "p",
+       "text": "Related-party sales were 0.23% of standalone sales [F] (AR2026 p.103). No transactions were material under Section 188 [F] (AR2026 p.53). Promoter-group guarantees for the company's debt are not disclosed. The flow runs the other way: the parent guarantees the subsidiary [F] (AR2026 p.133). Related-party discipline looks good outside remuneration [AI]."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "management",
+   "title": "Management, board and alignment",
+   "subsections": [
+    {
+     "title": "Leadership",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "Leadership and key personnel",
+       "columns": [
+        "Role",
+        "Name",
+        "Age",
+        "Since",
+        "Background"
+       ],
+       "rows": [
+        [
+         "Chairman and Whole-time Director (promoter)",
+         "N.S. Ghumman",
+         "76",
+         "Director from 18-06-1984 [F] (AR2026 p.84)",
+         "B.E. (Hons); 53 years' experience; previously Tradex Gestion SA, Switzerland [F] (AR2026 p.90)"
+        ],
+        [
+         "Managing Director (promoter)",
+         "Kabir Ghumman",
+         "40",
+         "Employed from 01-05-2011; board 28-09-2024 [F] (AR2026 p.90, p.84)",
+         "B.Tech Mechanical; 18 years; son of the chairman [F] (AR2026 p.90)"
+        ],
+        [
+         "Whole-time Director (promoter)",
+         "Sumer Ghumman",
+         "40",
+         "Board 06-11-2024; employment 31-01-2025 [F] (AR2026 p.84, p.90)",
+         "Graduate in accounting and finance; 18 years; son of the chairman; leads earnings calls [F] (AR2026 p.90; CALL Aug 2026)"
+        ],
+        [
+         "Chief Financial Officer",
+         "Rajeev Ranjan",
+         "41",
+         "07-01-2015 [F] (AR2026 p.90)",
+         "Chartered professional; 15 years [F] (AR2026 p.90). Management signalled a finance transition [MC] (CALL Aug 2026); no formal announcement in the documents"
+        ],
+        [
+         "Company Secretary",
+         "Aarti Sahni",
+         "Not disclosed",
+         "Not disclosed",
+         "Resigned effective 7 Dec 2026 [F] (ANNOUNCEMENTS)"
+        ],
+        [
+         "Head of Sales and Marketing",
+         "Kanav Anand",
+         "43",
+         "01-01-2004 [F] (AR2026 p.90)",
+         "B.Sc (Hons) Business Management; Rs 1.41 crore remuneration [F] (AR2026 p.90)"
+        ],
+        [
+         "Head of Commercial and Administration",
+         "Mukesh Kumar Verma",
+         "58",
+         "01-03-1995 [F] (AR2026 p.90)",
+         "Chartered professional; 31 years [F] (AR2026 p.90)"
+        ],
+        [
+         "Non-executive, non-independent director",
+         "G.S. Gill",
+         "Not disclosed",
+         "28-09-1998 [F] (AR2026 p.84)",
+         "Attended 1 of 5 board meetings [F] (AR2026 p.65)"
+        ]
+       ]
+      },
+      {
+       "type": "p",
+       "text": "The board has 10 members: 3 executive (all one family), 1 non-executive and 6 independent [F] (AR2026 p.65). FY26 board attendance was weak for several independents: Anu Ahluwalia 1/5, Sukrita Goyal 1/5, Shrikant Baldi 1/3 eligible, Swarnjit Singh 3/5 [F] (AR2026 p.65-66). The audit committee includes the WTD Sumer Ghumman alongside two independents [F] (AR2026 p.69). The chairs of the audit, nomination and stakeholder committees missed the last AGM [F] (AR2026 p.69, p.71, p.72)."
+      }
+     ]
+    },
+    {
+     "title": "Governance timeline",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "Board, KMP and auditor changes",
+       "columns": [
+        "Date",
+        "Change"
+       ],
+       "rows": [
+        [
+         "Sep 2024 quarter",
+         "Promoter holding falls from 51.14% to 33.18% [F] (NUMBERS). Our earlier notes attribute this to the Sandhu family's exit [AI] (BOARD); not verifiable in the company documents available"
+        ],
+        [
+         "28 Sep 2024",
+         "Kabir Ghumman to board; Sukrita Goyal appointed independent director [F] (AR2026 p.84)"
+        ],
+        [
+         "6 Nov 2024",
+         "Sumer Ghumman to board [F] (AR2026 p.84)"
+        ],
+        [
+         "16 Sep 2025",
+         "Dr Shrikant Baldi appointed independent director [F] (AR2026 p.51)"
+        ],
+        [
+         "6 Aug 2026",
+         "Statutory auditor Arora Gupta & Co resigns [F] (AR2026 p.239)"
+        ],
+        [
+         "7 Aug 2026",
+         "Walker Chandiok & Co LLP appointed; CFO transition flagged on the call [F] (AR2026 p.239) [MC] (CALL Aug 2026)"
+        ],
+        [
+         "2 Sep 2026",
+         "AGM re-appoints Kabir Ghumman and approves auditors and the Articles amendment [F] (ANNOUNCEMENTS)"
+        ],
+        [
+         "7 Sep 2026",
+         "Company secretary resigns, effective 7 Dec 2026 [F] (ANNOUNCEMENTS)"
+        ]
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Alignment and skin in the game",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "Promoter group holding was 33.61% at June 2026, up 0.43 points in a year [F] (NUMBERS). It comprises OD Finance and Investment 15.73%, N.S. Ghumman 7.80%, Kabir Ghumman 3.70%, Sumer Ghumman 3.62%, Tejinderjeet Kaur Ghumman 1.60% and Sirmaur Hospitality 0.91% (March 2026) [F] (AR2026 p.156). During FY26 Sumer's holding halved and Kabir's rose by a similar number of shares, an intra-family transfer [F] (AR2026 p.156) [AI]. The sons bought 86,750 and 41,565 shares on 30 March 2026 [F] (AR2026 p.73). Pledges are not disclosed in any document provided, and our statements data does not include pledge data. DII holding fell from 20.00% to 14.54% in the June 2026 quarter, while public holding rose to 49.81% [F] (NUMBERS). There is no ESOP plan [F] (AR2026 p.80)."
+      }
+     ]
+    },
+    {
+     "title": "Compensation and self-dealing indicators",
+     "blocks": [
+      {
+       "type": "bullets",
+       "items": [
+        "Executive director pay in FY26: N.S. Ghumman Rs 3.22 crore, Kabir Rs 2.16 crore, Sumer Rs 2.16 crore; total Rs 7.54 crore [F] (AR2026 p.73), about 9.2% of standalone PAT [E] (AR2026 p.25).",
+        "Increases: Kabir +22.9%, Sumer +495.3% (a part-year base), CFO +13.2%, median employee +11.2% [F] (AR2026 p.89).",
+        "Chairman's pay is 104x the median employee's [F] (AR2026 p.89).",
+        "Related-party rent and asset sales are small (about Rs 0.4 crore) [F] (AR2026 p.218); no material RPTs under Section 188 [F] (AR2026 p.53).",
+        "Disclosure lapse: the governance report says no director has any inter-se relationship [F] (AR2026 p.74), but the chairman is father of both executive directors [F] (AR2026 p.90)."
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Management and promoter scorecard",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "Scorecard (1 = poor, 10 = excellent)",
+       "columns": [
+        "Factor",
+        "Score 1-10",
+        "Rationale"
+       ],
+       "rows": [
+        [
+         "Execution track record",
+         "7",
+         "PAT CAGR 31% over five years; survived the loss of 20%+ a year from the largest customer [F] (NUMBERS) [MC] (CALL Nov 2025)"
+        ],
+        [
+         "Capital allocation",
+         "6",
+         "Self-funded, ROCE 27% [F] (NUMBERS); ageing CWIP and FDs held alongside new debt [F] (AR2026 p.196, p.185)"
+        ],
+        [
+         "Alignment / skin in the game",
+         "6",
+         "33.6% promoter group, with family directors buying in March 2026 [F] (NUMBERS; AR2026 p.73)"
+        ],
+        [
+         "Compensation",
+         "5",
+         "Rs 7.5 crore for three family executives; +495% for one [F] (AR2026 p.73, p.89)"
+        ],
+        [
+         "Board independence and functioning",
+         "4",
+         "Family-only executive board; low ID attendance; WTD on the audit committee [F] (AR2026 p.65, p.69)"
+        ],
+        [
+         "Related-party conduct",
+         "8",
+         "Small, transparent RPTs [F] (AR2026 p.218)"
+        ],
+        [
+         "Disclosure candour",
+         "5",
+         "Good call access, but NDA-limited customer data and inconsistent concentration figures [MC] (CALL May 2026; CALL Aug 2026) [F] (AR2026 p.217)"
+        ],
+        [
+         "Guidance reliability",
+         "5",
+         "FY26 growth beat the November range, but the NWC promise was missed and assembly targets keep moving [MC] (CALL Nov 2025; CALL Feb 2026)"
+        ],
+        [
+         "KMP and auditor stability",
+         "3",
+         "Auditor, CFO and CS changes within about five weeks [F] (AR2026 p.239; ANNOUNCEMENTS) [MC] (CALL Aug 2026)"
+        ],
+        [
+         "Simple average",
+         "5.4",
+         "[E]"
+        ]
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "competitive_landscape",
+   "title": "Competitive landscape",
+   "subsections": [
+    {
+     "title": "Disclosed peer set",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "Peer comparison as disclosed",
+       "columns": [
+        "Peer",
+        "Revenue",
+        "Margins",
+        "RoNW",
+        "P/E",
+        "Date"
+       ],
+       "rows": [
+        [
+         "'Global median' (unnamed peers)",
+         "Not disclosed",
+         "Gross margin 37% vs SBCL 49.39%",
+         "Not disclosed",
+         "Not disclosed",
+         "Aug 2026 [MC] (PPT Aug 2026)"
+        ],
+        [
+         "Named listed peers with financials",
+         "None in the documents",
+         "-",
+         "-",
+         "-",
+         "-"
+        ]
+       ]
+      },
+      {
+       "type": "p",
+       "text": "No document provides a named peer set with revenue, margin, RoNW or P/E. The company's 'global median' comparison (grades 10 vs 77; R&D 0.6% vs 1%; net debt 0.8x vs nil) has no named constituents or source [MC] (PPT Aug 2026). It also compares a standalone SBCL gross margin with an undefined peer median [AI]."
+      }
+     ]
+    },
+    {
+     "title": "Competitors named by management",
+     "blocks": [
+      {
+       "type": "bullets",
+       "items": [
+        "EMS (thermostatic bimetal): described as formerly part of Texas Instruments, now under a German parent, and moving capacity to other products and under-serving marquee customers [MC] (CALL May 2026). In practice this is a global incumbent retreating, an opportunity rather than a threat [AI].",
+        "'A German competitor' in EBW shunts, preferred by some customers for accuracy on specific designs [MC] (CALL Aug 2026). It is unnamed, so its scale cannot be compared [AI].",
+        "Contacts competitors 'not the most transparent' on silver pricing [MC] (CALL May 2026); unnamed.",
+        "Busbar assemblies: 'as of now there is no competition' in India for EB-welded designs [MC] (CALL Feb 2026). This ignores non-EBW busbar and CCS makers and importers, which management concedes supply most packs today [MC] (CALL Aug 2026) [AI]."
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Listed comparables and assessment",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "No listed comparables are provided in the documents, and we do not introduce outside figures. Assessment [AI]: in bimetals SBCL appears to face a consolidating oligopoly; it claims about 90% Indian share [MC] (CALL May 2026), and supplier numbers 'actually reduced' [MC] (CALL May 2026). In EBW shunts it is one of a few specialists but sells partly through a dominant customer that is also a resistor competitor of other buyers. In contacts and PCBA, competition is broad and price-led [MC] (CALL May 2026). Crisil characterises the niche as having 'negligible competition' [F] (RATING), a view based on management inputs."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "moat",
+   "title": "Moat assessment",
+   "subsections": [
+    {
+     "title": "Moat-factor scorecard",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "Moat scorecard (1 = none, 10 = very strong)",
+       "columns": [
+        "Factor",
+        "Score 1-10",
+        "Rationale"
+       ],
+       "rows": [
+        [
+         "Brand",
+         "4",
+         "B2B component; no brand pricing evidence [AI]"
+        ],
+        [
+         "Switching costs",
+         "7",
+         "Designed in at specification stage; about 24-month re-qualification [MC] (AR2026 p.37); switchgear re-validation is 'long drawn and costly' [MC] (CALL May 2026)"
+        ],
+        [
+         "Regulatory / approval barriers",
+         "6",
+         "Customer and OEM approvals and plant audits for EV parts [MC] (CALL May 2026); no formal certifications cited [AI]"
+        ],
+        [
+         "Technology / IP",
+         "7",
+         "EBW know-how since the mid-1990s; 77 grades; in-house machine build [MC] (CALL Feb 2026; PPT Aug 2026); no patents disclosed [AI]"
+        ],
+        [
+         "Scale / cost",
+         "6",
+         "Claimed largest EBW strip capacity; machines at half import cost [MC] (PPT Aug 2026); spare capacity is under-absorbed [MC] (CALL Aug 2026)"
+        ],
+        [
+         "Relationship durability",
+         "6",
+         "300+ customers; the largest customer cut purchases about 20% a year for three years [MC] (CALL Nov 2025)"
+        ],
+        [
+         "Network effects",
+         "1",
+         "None [AI]"
+        ],
+        [
+         "Input control",
+         "3",
+         "Imported alloys; indigenisation incomplete [MC] (AR2026 p.43)"
+        ],
+        [
+         "Simple average",
+         "5.0",
+         "[E]"
+        ]
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Two questions the scores cannot answer",
+     "blocks": [
+      {
+       "type": "bullets",
+       "items": [
+        "Who captures the value in EBW shunts, SBCL or its largest customer? If Vishay's patented accuracy is what wins OEM orders [MC] (CALL Aug 2026), SBCL's pricing power may sit downstream of a customer that can also dual-source [AI].",
+        "Will the moat travel into assemblies? Busbar and PCBA carry 60-65% bought-in content [MC] (CALL Feb 2026) and about 12-13% EBITDA [MC] (AR2026 p.43). The EBW edge may be a small share of the assembly's value [AI]."
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Overall moat conclusion",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "We see a narrow, process-based moat in bimetals and precision EBW shunts, built on switching costs and know-how rather than scale or IP that can be checked [AI]. Market-share claims ('largest in India', 'double-digit global share') are company-stated with no independent study [MC] (PPT Aug 2026). The moat is weaker in contacts and unproven in assemblies [AI]."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "industry_structure",
+   "title": "Industry structure and TAM",
+   "subsections": [
+    {
+     "title": "Headline TAM figures as stated",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "TAM figures (as stated by the source)",
+       "columns": [
+        "Market",
+        "Figure",
+        "Source"
+       ],
+       "rows": [
+        [
+         "India electrical equipment consumption",
+         "US$59bn FY2025; production potential US$195-235bn by 2035",
+         "[F] (AR2026 p.35)"
+        ],
+        [
+         "India smart-meter market",
+         "US$298m (2025) to US$3.6bn (2034), 30.96% CAGR",
+         "[F] (AR2026 p.36)"
+        ],
+        [
+         "Smart-meter market (presentation)",
+         "US$250.7m (2023) to US$763.2m (2031), about 15% CAGR",
+         "[F] (PPT Aug 2026); conflicts with the AR, not reconciled"
+        ],
+        [
+         "RDSS smart meters",
+         "20.33 crore sanctioned; 4.69 crore installed",
+         "[F] (AR2026 p.36)"
+        ],
+        [
+         "India switchgear",
+         "About 5.9% CAGR through 2034",
+         "[F] (AR2026 p.36)"
+        ],
+        [
+         "EV shunt market",
+         "US$2.98bn (2024) to US$4.09bn (2029)",
+         "[F] (PPT Aug 2026)"
+        ],
+        [
+         "Data-centre power infrastructure",
+         "US$45bn+ by 2035, 15% CAGR",
+         "[F] (PPT Aug 2026)"
+        ],
+        [
+         "India EV industry",
+         "Rs 20,00,000 crore by 2030",
+         "[F] (AR2026 p.34)"
+        ],
+        [
+         "Automotive software and electronics",
+         "US$519bn by 2035",
+         "[F] (AR2026 p.31)"
+        ]
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Why TAM is not company revenue",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "Illustrative only [E]: 0.01% of the Rs 20 lakh crore EV industry figure would be Rs 200 crore, about a third of SBCL's TTM revenue of Rs 616 crore (NUMBERS; AR2026 p.34). This shows how meaningless share-of-TAM arithmetic is for a component maker whose content per vehicle is a few hundred rupees per shunt or Rs 2,000-3,000 per 2W assembly [MC] (CALL Feb 2026). Management itself warns that end-market growth does not translate to SBCL. Smart-meter growth did not reach it while relays were imported [MC] (CALL Aug 2026)."
+      }
+     ]
+    },
+    {
+     "title": "Bottom-up framing",
+     "blocks": [
+      {
+       "type": "bullets",
+       "items": [
+        "Bimetals: SBCL's India sales track MCB volumes in the 4-6 switchgear majors that hold 70-80% of consumption [MC] (CALL Aug 2026). Growth equals switchgear volume growth plus export share gains [AI].",
+        "Shunts: SBCL revenue equals customer part-number volumes times realisation per part. The largest swing factor is one US customer's programmes [MC] (CALL May 2026).",
+        "Smart meters: revenue grows with relays made in India, not with meters installed [MC] (CALL May 2026).",
+        "Assemblies: revenue equals EV model volumes times assemblies per model times Rs 2,000-3,000 [MC] (CALL Feb 2026)."
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Concentration and channel structure",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "Customer-side concentration is high in bimetals (a few switchgear OEMs) and in EBW shunts (resistor makers such as Vishay sit between SBCL and OEMs) [MC] (CALL Aug 2026; CALL Nov 2025). Supplier-side concentration is high too: there are few global bimetal and EBW strip makers [MC] (CALL May 2026). Sales go direct and through agents; FY26 commission on sales was Rs 5.8 crore [F] (AR2026 p.212), and sales offices span the US, EU, Brazil, Russia, Japan, Taiwan, South Korea and China [F] (AR2026 p.38)."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "structural_themes",
+   "title": "Structural themes",
+   "subsections": [
+    {
+     "title": "Themes supported by company evidence",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "Evidence-backed themes",
+       "columns": [
+        "Theme",
+        "Supporting evidence",
+        "Evidence strength"
+       ],
+       "rows": [
+        [
+         "Strip-to-component value migration",
+         "Standalone gross margin 46.6% to 49.4% to 51.5% [F] (AR2026 p.25; PPT Aug 2026); gross contribution per kg +13% [E]",
+         "Strong"
+        ],
+        [
+         "Smart-meter and relay localisation in India",
+         "Shunt India revenue +27.4% [F] (AR2026 p.12); smart-meter revenue Rs 75-80 crore [MC] (CALL May 2026)",
+         "Moderate"
+        ],
+        [
+         "Europe customer proximity",
+         "Europe revenue +35% consolidated [E] (AR2026 p.217); Milan subsidiary [F] (AR2026 p.39)",
+         "Moderate"
+        ],
+        [
+         "US tariffs forcing component supply",
+         "Strip under Section 232 tariffs; Americas shunts +30% in Q1 FY27 [MC] (CALL Feb 2026) [F] (PPT Aug 2026)",
+         "Moderate"
+        ],
+        [
+         "EV 2W pack localisation",
+         "One programme in production; CTO received [MC] (CALL Aug 2026) [F] (PPT Aug 2026)",
+         "Weak (early)"
+        ]
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Narrative themes not supported by evidence",
+     "blocks": [
+      {
+       "type": "bullets",
+       "items": [
+        "Data centres and AI ('3x' component demand) [MC] (CALL Nov 2025). Management says it 'is very difficult for us to specify' data-centre revenue [MC] (CALL Feb 2026); no revenue is evidenced.",
+        "China-plus-one dual sourcing ('SBCL gains share as India's only EBW shunt house') [MC] (PPT Aug 2026). No customer wins are attributed to it.",
+        "Energy-storage systems: listed as an application, but no revenue is disclosed [MC] (PPT Aug 2026).",
+        "ESG credentials lowering the cost of capital [MC] (PPT Aug 2026). There is no evidence; the BRSR is not externally assured [F] (AR2026 p.91).",
+        "'Institutional validation': DII holding fell from 20.0% to 14.5% in the latest quarter [F] (NUMBERS)."
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Net structural assessment",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "One theme, component migration, is well evidenced and company-specific. Two (smart meters, Europe) are evidenced but finite or cyclical. The electrification and data-centre narrative that probably supports the multiple is largely unevidenced in revenue [AI]."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "guidance_tracker",
+   "title": "Guidance tracker",
+   "subsections": [
+    {
+     "title": "Guidance versus actuals",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "Guidance tracker",
+       "columns": [
+        "Item",
+        "Guidance given?",
+        "What management said",
+        "Status vs actuals"
+       ],
+       "rows": [
+        [
+         "FY26 revenue",
+         "Yes",
+         "12-15%, cut to high single digit/'maybe touch double digits' [MC] (CALL Nov 2025); 10-12% [MC] (CALL Feb 2026)",
+         "Met: +12.3% consolidated [F] (AR2026 p.184); standalone +5.7% [F] (AR2026 p.49)"
+        ],
+        [
+         "FY27 revenue",
+         "Yes",
+         "13-14% to 17-18% [MC] (CALL Nov 2025); 'upwards of 20, closer to 30' [MC] (CALL May 2026); 20-30% [MC] (CALL Aug 2026)",
+         "Pending; Q1 +33.4% with silver help [F] (PPT Aug 2026). Guidance rose each quarter"
+        ],
+        [
+         "EBITDA margin",
+         "Yes",
+         "+200 bps over three years [MC] (CALL Nov 2025); blended 23-25% [MC] (CALL Feb 2026)",
+         "FY26 22.9%, Q1 FY27 23.7% [F] (AR2026 p.20; PPT Aug 2026): on track at the low end"
+        ],
+        [
+         "Order book",
+         "No",
+         "Not given; 'firm orders' without value [MC] (AR2026 p.43)",
+         "Not trackable"
+        ],
+        [
+         "Capex",
+         "Yes",
+         "Pune Rs 20 crore [MC] (CALL Feb 2026), then Rs 20-25 crore [MC] (CALL Aug 2026); maintenance Rs 10-15 crore a year [MC] (CALL May 2026)",
+         "FY26 capex Rs 35 crore [F] (NUMBERS); Pune spend not separately reported"
+        ],
+        [
+         "Utilisation",
+         "Yes",
+         "About 60% effective now, 75-80% in about two years [MC] (CALL May 2026)",
+         "Pending; no disclosed series"
+        ],
+        [
+         "New products: assemblies",
+         "Yes",
+         "PCBA revenue from Q4 FY26 [MC] (CALL Nov 2025); FY27 Rs 70-80 crore [MC] (CALL Feb 2026); FY27 10-15% of Rs 300-400 crore and main plant in October [MC] (CALL Aug 2026)",
+         "Slipping: Q1 'minimal' [MC] (CALL Aug 2026)"
+        ],
+        [
+         "New verticals",
+         "Yes",
+         "'Very soon' formal announcement [MC] (CALL Nov 2025); 'more concrete information' by the next call [MC] (CALL Aug 2026)",
+         "Pending, repeatedly deferred"
+        ],
+        [
+         "Working capital",
+         "Yes",
+         "NWC back to the FY25 range by March 2026 [MC] (CALL Feb 2026); -30 days with indigenisation [MC] (CALL Nov 2025)",
+         "Missed: 218 to 258 days [F] (AR2026 p.26); Q1 FY27 245 [F] (PPT Aug 2026)"
+        ],
+        [
+         "Raw-material indigenisation",
+         "Yes",
+         "20-25% local in 3-4 months (from Nov 2025) [MC] (CALL Nov 2025)",
+         "Not confirmed as achieved; AR still says 'near term' [MC] (AR2026 p.43)"
+        ],
+        [
+         "Largest customer",
+         "Yes",
+         "Back to peak in FY27; share capped at 16-18% [MC] (CALL May 2026)",
+         "FY26 already 17.54% [F] (AR2026 p.217)"
+        ],
+        [
+         "Smart meters",
+         "Yes",
+         "Revenue to double again in FY27 [MC] (CALL May 2026)",
+         "Pending"
+        ],
+        [
+         "Fund-raising",
+         "No numeric guidance",
+         "Articles amended to enable warrants and convertibles [F] (AR2026 p.240)",
+         "Enabling only; no issue announced [F] (ANNOUNCEMENTS)"
+        ]
+       ]
+      },
+      {
+       "type": "p",
+       "text": "There is no prior quarterly report from us to test against; this is initial coverage. The tracker above tests the company's own statements across four calls."
+      }
+     ]
+    },
+    {
+     "title": "Pattern of guidance behaviour",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "Pattern [AI]: management tends to raise medium-term revenue ambitions (FY27 growth 13-18% to 20-30%; Pune Rs 250-300 crore to Rs 300-400 crore) while near-term operational commitments slip (working capital, indigenisation, assembly start-up, new-vertical announcements). The annual report explicitly avoids 'hard numeric guidance' [F] (AR2026 p.46), while the calls give numbers freely [MC] (CALL Aug 2026). Investors should weight the audited and quarterly figures, not call ranges."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "earnings_quality",
+   "title": "Earnings quality",
+   "subsections": [
+    {
+     "title": "PAT versus cash",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "PAT vs CFO (Rs crore)",
+       "columns": [
+        "FY",
+        "PAT",
+        "CFO",
+        "CFO - PAT",
+        "CFO/PAT"
+       ],
+       "rows": [
+        [
+         "FY17",
+         "8",
+         "12",
+         "4",
+         "1.50"
+        ],
+        [
+         "FY18",
+         "17",
+         "6",
+         "-11",
+         "0.35"
+        ],
+        [
+         "FY19",
+         "25",
+         "4",
+         "-21",
+         "0.16"
+        ],
+        [
+         "FY20",
+         "13",
+         "41",
+         "28",
+         "3.15"
+        ],
+        [
+         "FY21",
+         "25",
+         "30",
+         "5",
+         "1.20"
+        ],
+        [
+         "FY22",
+         "55",
+         "-3",
+         "-58",
+         "-0.05"
+        ],
+        [
+         "FY23",
+         "79",
+         "66",
+         "-13",
+         "0.84"
+        ],
+        [
+         "FY24",
+         "84",
+         "69",
+         "-15",
+         "0.82"
+        ],
+        [
+         "FY25",
+         "77",
+         "94",
+         "17",
+         "1.22"
+        ],
+        [
+         "FY26",
+         "96",
+         "55",
+         "-41",
+         "0.57"
+        ],
+        [
+         "10-year total",
+         "479",
+         "374",
+         "-105",
+         "0.78 [E]"
+        ]
+       ]
+      },
+      {
+       "type": "p",
+       "text": "PAT, CFO and CFO/PAT [F] (NUMBERS); differences and totals [E]. 3-year CFO/PAT 0.85x; 5-year 0.72x [F] (NUMBERS). Growth years (FY18-FY19, FY22, FY26) consistently consume cash in working capital [AI]."
+      }
+     ]
+    },
+    {
+     "title": "Composition of profit",
+     "blocks": [
+      {
+       "type": "bullets",
+       "items": [
+        "Other income was 11.0% of FY26 PBT [F] (NUMBERS), mainly FX gain (Rs 5.6 crore) and interest (Rs 6.2 crore) [F] (AR2026 p.208). In Q1 FY27 it was 12.8% of PBT [E] (PPT Aug 2026).",
+        "JV share of profit Rs 3.35 crore, non-cash [F] (AR2026 p.185).",
+        "One-offs: exceptional expense Rs 0.92 crore (FY26) and income Rs 0.26 crore (Q1 FY27), unexplained [F] (AR2026 p.184; PPT Aug 2026). The government grant fell from Rs 3.58 crore to Rs 0.01 crore [F] (AR2026 p.208).",
+        "ESOP: none [F] (AR2026 p.80).",
+        "Tax rate 24.5% vs a statutory 25.17% [E] (AR2026 p.213); normal.",
+        "Cost lines that helped FY26 margin: commission on sales -Rs 4.2 crore, packing -Rs 2.0 crore [F] (AR2026 p.212). Their durability is not explained."
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Net earnings-quality conclusion",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "Conclusion [AI]: reported profit is clean in composition (no ESOP, small one-offs, normal tax), but cash conversion is mediocre and cyclical. Ten-year CFO is 78% of PAT [E] (NUMBERS), and FY26 is 57% [F] (NUMBERS). Earnings quality is acceptable, not high. A sustained return to above 0.9x CFO/PAT is the evidence needed before treating the margin step-up as cash-backed."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "forecast",
+   "title": "Forecast model",
+   "subsections": [
+    {
+     "title": "Methodology",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "We use only the base case of our DCF model [F] (NUMBERS): a five-year free cash flow to the firm (FCFF) projection from TTM sales of Rs 616 crore. Growth fades linearly from 7.9% (the median of 3-year, 5-year and TTM sales growth) to 10% in year 5, at a 21% EBITDA margin. Depreciation is 2.5% of sales. Capex equals depreciation plus new sales divided by fixed-asset turnover (3.81x). Working capital is held at 125.7 days, tax at 25.2%, WACC at 15.0% (cost of equity 15%: risk-free 7%, ERP 7%, beta 1.15), and terminal growth at 5.5%. Equity value is EV minus borrowings, on 5.758 crore shares [F] (NUMBERS). The model does not add back cash [F] (NUMBERS)."
+      }
+     ]
+    },
+    {
+     "title": "Base-case forecast",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "Base-case projection (Rs crore) from our DCF model",
+       "columns": [
+        "Model year",
+        "Approx. fiscal period",
+        "Sales growth",
+        "Sales",
+        "EBITDA",
+        "FCFF"
+       ],
+       "rows": [
+        [
+         "Year 1",
+         "12m to Jun-2027 (approx. FY27E)",
+         "7.9%",
+         "664.7",
+         "139.6",
+         "62.7"
+        ],
+        [
+         "Year 2",
+         "approx. FY28E",
+         "8.4%",
+         "720.7",
+         "151.3",
+         "66.0"
+        ],
+        [
+         "Year 3",
+         "approx. FY29E",
+         "8.9%",
+         "785.2",
+         "164.9",
+         "69.8"
+        ],
+        [
+         "Year 4",
+         "approx. FY30E",
+         "9.5%",
+         "859.6",
+         "180.5",
+         "74.1"
+        ],
+        [
+         "Year 5",
+         "approx. FY31E",
+         "10.0%",
+         "945.5",
+         "198.6",
+         "79.0"
+        ]
+       ]
+      },
+      {
+       "type": "p",
+       "text": "Source [F] (NUMBERS). Drivers: year-1 EBITDA (Rs 139.6 crore) is below TTM EBITDA of Rs 142 crore [F] (NUMBERS), because the 21% margin assumption is below the 23% achieved [F] (NUMBERS). FCFF is roughly 45% of EBITDA [E] (NUMBERS) after tax, capex and the working-capital build implied by 125.7 days. The terminal value accounts for about 71% of EV (Rs 562.4 crore of Rs 794.6 crore) [E] (NUMBERS)."
+      }
+     ]
+    },
+    {
+     "title": "Key driver tree",
+     "blocks": [
+      {
+       "type": "bullets",
+       "items": [
+        "Sales = standalone (shunts + bimetals) + contacts + assemblies [AI].",
+        "Shunts = kg x realisation. Kg is falling as strip shrinks; realisation is rising with components and copper [F] (PPT Aug 2026) [MC] (CALL Aug 2026).",
+        "Bimetals = Indian switchgear volumes + export share gains [MC] (CALL May 2026).",
+        "Contacts = volume + silver price pass-through [MC] (CALL May 2026).",
+        "Assemblies = EV programme volumes x Rs 2,000-3,000 per unit [MC] (CALL Feb 2026).",
+        "EBITDA margin = mix of standalone (about 24-27.5%) [F] (AR2026 p.25; PPT Aug 2026) vs contacts and assemblies (lower) [MC] (AR2026 p.43).",
+        "FCFF = EBITDA - tax - capex (3.81x asset turn) - working capital (125.7 days) [F] (NUMBERS)."
+       ]
+      }
+     ]
+    },
+    {
+     "title": "What the forecast deliberately does not assume",
+     "blocks": [
+      {
+       "type": "bullets",
+       "items": [
+        "Management's 20-30% FY27 growth or 30%+ five-year growth [MC] (CALL Aug 2026; CALL May 2026).",
+        "Any Pune or assembly revenue beyond what is embedded in trend growth.",
+        "The 23-25% EBITDA margin management guides [MC] (CALL Feb 2026).",
+        "Acquisitions, new verticals or equity issuance [MC] (CALL Aug 2026) [F] (AR2026 p.240).",
+        "Any working-capital release from indigenisation [MC] (CALL Nov 2025).",
+        "The Rs 105 crore of cash and bank balances [F] (AR2026 p.183), which is not added to equity value [F] (NUMBERS)."
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "scenarios",
+   "title": "Scenario analysis",
+   "subsections": [
+    {
+     "title": "Bull, base and bear",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "DCF scenarios from our model",
+       "columns": [
+        "Scenario",
+        "Narrative",
+        "Starting growth",
+        "Growth by year 5",
+        "EBITDA margin",
+        "Year-5 sales (Rs cr)",
+        "Per-share value (Rs)"
+       ],
+       "rows": [
+        [
+         "Bear",
+         "Contacts normalise with silver, the US customer stalls, and assemblies dilute margin [AI]",
+         "3.2%",
+         "5.0%",
+         "17%",
+         "752.3",
+         "77.6"
+        ],
+        [
+         "Base",
+         "Trend growth; mix gains offset by dilution [AI]",
+         "7.9%",
+         "10.0%",
+         "21%",
+         "945.5",
+         "125.7"
+        ],
+        [
+         "Bull",
+         "Component mix, US recovery and Pune all deliver at the current margin [AI]",
+         "13.7%",
+         "13.0%",
+         "23%",
+         "1,151.7",
+         "165.6"
+        ]
+       ]
+      },
+      {
+       "type": "p",
+       "text": "Scenario inputs and values [F] (NUMBERS); narratives [AI]."
+      }
+     ]
+    },
+    {
+     "title": "Probability weighting",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "Qualitatively [AI]: Q1 FY27 delivery and the visible standalone mix shift make the bear case (3% growth, 17% margin) the least likely of the three over the next 12-18 months. The bull case assumptions (about 13-14% growth at 23% margin) are below management guidance and look achievable on current evidence. On our reading the bull case deserves at least as much weight as the base case. We do not attach numeric probabilities, because the conclusion does not depend on them: all three values sit 84-93% below the price [F] (NUMBERS)."
+      }
+     ]
+    },
+    {
+     "title": "Sensitivity",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "Base-case value per share (Rs) by WACC and terminal growth",
+       "columns": [
+        "WACC \\ g",
+        "4.5%",
+        "5.5%",
+        "6.5%"
+       ],
+       "rows": [
+        [
+         "13.5%",
+         "144.2",
+         "153.5",
+         "165.4"
+        ],
+        [
+         "15.0%",
+         "120.0",
+         "125.7",
+         "132.7"
+        ],
+        [
+         "16.5%",
+         "101.9",
+         "105.6",
+         "109.9"
+        ]
+       ]
+      },
+      {
+       "type": "p",
+       "text": "Source [F] (NUMBERS). The grid spans Rs 102-165, and the most generous cell (13.5% WACC, 6.5% terminal growth) is roughly equal to the bull scenario [F] (NUMBERS). Within any parameter set the grid allows, the gap to the Rs 1,042 price comes from growth, not from discount-rate choices [AI]."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "valuation",
+   "title": "Valuation",
+   "subsections": [
+    {
+     "title": "Current trading context",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "Market data",
+       "columns": [
+        "Metric",
+        "Value",
+        "Source"
+       ],
+       "rows": [
+        [
+         "Price",
+         "Rs 1,042",
+         "[F] (NUMBERS)"
+        ],
+        [
+         "Market cap",
+         "Rs 6,000 crore",
+         "[F] (NUMBERS)"
+        ],
+        [
+         "52-week range",
+         "Rs 369 - Rs 1,216 (14.3% below high)",
+         "[F] (NUMBERS)"
+        ],
+        [
+         "P/E (TTM EPS Rs 18.41)",
+         "56.6x",
+         "[F] (NUMBERS)"
+        ],
+        [
+         "EV / EBITDA (TTM)",
+         "42.8x",
+         "[F] (NUMBERS)"
+        ],
+        [
+         "EV / Sales (TTM)",
+         "9.86x",
+         "[F] (NUMBERS)"
+        ],
+        [
+         "P/B (book value Rs 83.6)",
+         "12.46x",
+         "[F] (NUMBERS)"
+        ],
+        [
+         "Dividend yield",
+         "0.38%",
+         "[F] (NUMBERS)"
+        ],
+        [
+         "EV basis",
+         "Market cap + Rs 71 crore borrowings; cash not netted",
+         "[F] (NUMBERS)"
+        ]
+       ]
+      },
+      {
+       "type": "p",
+       "text": "Context: the stock traded between Rs 342 and Rs 605 on NSE during FY26 [F] (AR2026 p.76), so most of the re-rating to Rs 1,042 happened after the Q4 FY26 and Q1 FY27 results [AI]."
+      }
+     ]
+    },
+    {
+     "title": "Multiples versus peers",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "No disclosed peer set with multiples exists in the documents (see Competitive landscape), so a relative valuation cannot be built from the evidence. We do not import outside peer multiples [AI]."
+      }
+     ]
+    },
+    {
+     "title": "Interpreting the DCF",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "The DCF says the business, valued on its own trend and at a 15% cost of capital, is worth Rs 78-166 a share [F] (NUMBERS). Three assumptions drive the low values [AI]: (1) a 15% WACC, which is high for a net-cash, A-rated company [F] (RATING) but reflects the model's equity-risk inputs; (2) 125.7 working-capital days, which absorbs a large share of EBITDA growth, consistent with FY26's 0.57x cash conversion [F] (NUMBERS); (3) growth starting at 7.9% against guidance of 20-30%. None of these is unreasonable on the audited history: three-year sales CAGR 6.7%, ten-year CFO/PAT about 0.78x [F] (NUMBERS) [E]. A reader who rejects the model must believe in a step change that the audited numbers do not yet show [AI]."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "priced_in",
+   "title": "What is priced in",
+   "subsections": [
+    {
+     "title": "Reverse DCF",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "Growth required vs evidence",
+       "columns": [
+        "Measure",
+        "Sales growth",
+        "Source"
+       ],
+       "rows": [
+        [
+         "Implied by price (constant 5-year CAGR, base margin, same WACC and terminal growth)",
+         "87.5% a year",
+         "[F] (NUMBERS)"
+        ],
+        [
+         "Base case, five-year equivalent",
+         "8.9%",
+         "[F] (NUMBERS)"
+        ],
+        [
+         "Bull case",
+         "13.7% falling to 13.0%",
+         "[F] (NUMBERS)"
+        ],
+        [
+         "History: 3-year / 5-year / 9-year",
+         "6.7% / 22.9% / 19.0%",
+         "[F] (NUMBERS)"
+        ],
+        [
+         "Q1 FY27 YoY",
+         "33.4%",
+         "[F] (PPT Aug 2026)"
+        ],
+        [
+         "Management FY27 / five-year aspiration",
+         "20-30% / 'back to 30-plus'",
+         "[MC] (CALL Aug 2026; CALL May 2026)"
+        ]
+       ]
+      }
+     ]
+    },
+    {
+     "title": "The key forensic conclusion",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "**Within our model's framework, the price requires roughly three times management's own most aggressive growth aspiration, sustained for five years.** It is about four times the best five-year CAGR in the company's history, and that history includes an acquisition [E] (NUMBERS) [AI]. Even a business that met management's 30% target every year would, on these assumptions, not reach the value the market implies [AI]."
+      }
+     ]
+    },
+    {
+     "title": "Strongest counter-argument",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "For balance [AI]: the reverse DCF uses a 21% margin, a 15% WACC and a five-year horizon with 5.5% terminal growth. A business with 27% ROCE [F] (NUMBERS), more than half its capacity idle [MC] (CALL May 2026) and repeated new-vertical launches could compound above 20% for longer than five years, and markets often price Indian electrification small-caps on long-duration optionality. Operating leverage on idle capacity could also lift margins above 21%. This argument explains why the stock trades where it does. It does not close the gap inside any parameter set in our sensitivity grid [F] (NUMBERS)."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "catalysts",
+   "title": "Catalysts and overhangs",
+   "subsections": [
+    {
+     "title": "Near term (0-3 months)",
+     "blocks": [
+      {
+       "type": "bullets",
+       "items": [
+        "Q2 FY27 results: the trading window closed from 1 October 2026 until 48 hours after results [F] (ANNOUNCEMENTS); the company's calendar says results within 45 days of quarter-end, i.e. by mid-November 2026 [F] (AR2026 p.76).",
+        "First limited review by Walker Chandiok (appointed 7 August 2026) [F] (AR2026 p.239); the Q2 review should be its first [AI].",
+        "Main Pune facility 'fully operational only in October' [MC] (CALL Aug 2026).",
+        "New-vertical announcement (specialised electronic material; automotive fuses) promised 'by the time we have our next earnings call' [MC] (CALL Aug 2026).",
+        "Replacement of the company secretary before 7 December 2026 [F] (ANNOUNCEMENTS) and naming of a new CFO (timing not disclosed) [MC] (CALL Aug 2026)."
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Medium term (3-12 months)",
+     "blocks": [
+      {
+       "type": "bullets",
+       "items": [
+        "FY27 results (around May 2027) against the 20-30% growth guide [MC] (CALL Aug 2026).",
+        "US customer ramp: peak-level revenue 'in four quarters or six quarters' [MC] (CALL May 2026).",
+        "Bimetal export developments adding revenue 'about a year from now' [MC] (CALL Aug 2026).",
+        "ECMS grant approval for PCBA [MC] (CALL Feb 2026).",
+        "Smart-meter revenue doubling [MC] (CALL May 2026)."
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Longer term (1-3 years)",
+     "blocks": [
+      {
+       "type": "bullets",
+       "items": [
+        "Pune revenue of Rs 150-200 crore in year two and Rs 300 crore-plus thereafter [MC] (CALL Aug 2026).",
+        "Four-wheeler CCS and assemblies [MC] (CALL Aug 2026).",
+        "Nickel-alloy indigenisation to about 50% [MC] (CALL Nov 2025)."
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Overhangs (distinct from catalysts)",
+     "blocks": [
+      {
+       "type": "bullets",
+       "items": [
+        "Dilution: Articles amended on 2 September 2026 to permit warrants and convertibles [F] (ANNOUNCEMENTS; AR2026 p.240); no issue announced.",
+        "Institutional selling: DII holding fell from 20.00% to 14.54% in the June 2026 quarter [F] (NUMBERS).",
+        "Pledges: not disclosed in the documents; status unknown.",
+        "Litigation: the land sale is sub judice (small) [F] (AR2026 p.197); otherwise no pending litigation [F] (AR2026 p.131).",
+        "Lock-ins: not applicable (not a recent IPO).",
+        "KMP vacancies: CFO transition and CS exit [MC] (CALL Aug 2026) [F] (ANNOUNCEMENTS)."
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "risks_matrix",
+   "title": "Risk matrix",
+   "subsections": [
+    {
+     "title": "Risks ranked",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "Risk matrix (most serious first)",
+       "columns": [
+        "Risk",
+        "Category",
+        "Evidence",
+        "Severity 1-5",
+        "Likelihood 1-5"
+       ],
+       "rows": [
+        [
+         "Valuation de-rating if growth normalises",
+         "Valuation",
+         "Reverse DCF 87.5% vs base 8.9% [F] (NUMBERS)",
+         "5",
+         "4"
+        ],
+        [
+         "Silver-inflated growth reverses",
+         "Earnings quality",
+         "About half of contacts growth from silver [MC] (CALL Aug 2026; CALL May 2026)",
+         "4",
+         "3"
+        ],
+        [
+         "Working capital keeps absorbing cash",
+         "Financial",
+         "CFO/PAT 0.57; NWC 258 days [F] (NUMBERS; AR2026 p.26)",
+         "4",
+         "4"
+        ],
+        [
+         "Largest-customer dependence rises",
+         "Customer",
+         "17.54% consolidated / 21.68% standalone [F] (AR2026 p.217, p.169)",
+         "4",
+         "3"
+        ],
+        [
+         "Finance-function and audit transition issues",
+         "Governance",
+         "Auditor resigned; CFO and CS leaving [F] (AR2026 p.239; ANNOUNCEMENTS)",
+         "4",
+         "2"
+        ],
+        [
+         "Pune assembly ramp disappoints",
+         "Execution",
+         "Shifting targets; Q1 revenue 'minimal' [MC] (CALL Aug 2026)",
+         "3",
+         "3"
+        ],
+        [
+         "Margin dilution from mix",
+         "Margin",
+         "Q1 consolidated gross margin -119 bps [F] (PPT Aug 2026)",
+         "3",
+         "4"
+        ],
+        [
+         "US tariff / trade disruption",
+         "Macro",
+         "50% tariff hit orders in FY26 [MC] (CALL Nov 2025)",
+         "3",
+         "3"
+        ],
+        [
+         "Equity dilution via warrants",
+         "Capital",
+         "Articles amendment [F] (AR2026 p.240)",
+         "3",
+         "2"
+        ],
+        [
+         "Domestic bimetal stagnation",
+         "Demand",
+         "India bimetal -7.7% [F] (AR2026 p.40)",
+         "2",
+         "3"
+        ],
+        [
+         "Raw-material import / FX shock",
+         "Input",
+         "FX outgo Rs 205.5 crore [F] (AR2026 p.56)",
+         "3",
+         "2"
+        ],
+        [
+         "Single-region plant concentration",
+         "Operational",
+         "Core plants in Solan [F] (AR2026 p.79)",
+         "4",
+         "1"
+        ],
+        [
+         "Smart-meter rollout slowdown",
+         "Demand",
+         "4.69 of 20.33 crore meters installed [F] (AR2026 p.36)",
+         "2",
+         "3"
+        ]
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "thesis_breakers",
+   "title": "Thesis breakers",
+   "subsections": [
+    {
+     "title": "Measurable breakers",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "Thesis breakers",
+       "columns": [
+        "Thesis breaker",
+        "Measurable threshold",
+        "What it would confirm"
+       ],
+       "rows": [
+        [
+         "Mix shift stalls",
+         "Standalone gross margin below 47% for two consecutive quarters (Q1 FY27: 51.48%) [F] (PPT Aug 2026)",
+         "The component-margin story is not structural"
+        ],
+        [
+         "Growth guidance fails",
+         "FY27 consolidated revenue growth below 15% (guide 20-30%) [MC] (CALL Aug 2026)",
+         "Guidance unreliable; FY27 growth was commodity-led"
+        ],
+        [
+         "Cash conversion stays weak",
+         "FY27 CFO/PAT below 0.7x or NWC above 260 days",
+         "Working capital is structural, not transitional"
+        ],
+        [
+         "Concentration rises",
+         "Largest customer above 22% of consolidated revenue",
+         "Customer risk is back towards the old peak"
+        ],
+        [
+         "Pune fails to ramp",
+         "FY27 assembly revenue below Rs 30 crore (low end of 10-15% of Rs 300 crore) [MC] (CALL Aug 2026)",
+         "The assembly narrative is not becoming revenue"
+        ],
+        [
+         "Accounting surprise",
+         "Any modified review or audit opinion, emphasis of matter, or restatement under the new auditor",
+         "Prior numbers were less reliable"
+        ],
+        [
+         "Dilutive issue",
+         "Warrants or preferential issue to promoters at a discount",
+         "Governance risk to minority holders"
+        ],
+        [
+         "Margin dilution",
+         "Consolidated EBITDA margin below 20% for a year",
+         "Mix dilution outweighs the component gains"
+        ]
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Thesis-confirming signals",
+     "blocks": [
+      {
+       "type": "bullets",
+       "items": [
+        "Standalone revenue growth above 15% with kg volumes stable or rising.",
+        "CFO/PAT above 0.9x with NWC days falling towards 218 (FY25) [F] (AR2026 p.26).",
+        "Disclosure of assembly order values, customers or quarterly assembly revenue.",
+        "A clean first limited review and audit by Walker Chandiok.",
+        "Largest-customer share flat or falling while US shunt revenue grows."
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "monitoring_dashboard",
+   "title": "Quarterly monitoring dashboard",
+   "subsections": [
+    {
+     "title": "Dashboard",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "Metrics to track",
+       "columns": [
+        "Metric",
+        "Source",
+        "Latest value with period",
+        "What to watch"
+       ],
+       "rows": [
+        [
+         "Consolidated revenue growth",
+         "Results / presentation",
+         "+33.4% (Q1 FY27) [F] (PPT Aug 2026)",
+         "Above 20% without silver help"
+        ],
+        [
+         "Standalone revenue growth",
+         "Presentation",
+         "+12.95% (Q1 FY27) [F] (PPT Aug 2026)",
+         "The organic core; above 15% is confirming"
+        ],
+        [
+         "Standalone gross margin",
+         "Presentation",
+         "51.48% (Q1 FY27) [F] (PPT Aug 2026)",
+         "Holding above 49%"
+        ],
+        [
+         "Consolidated EBITDA margin",
+         "Results",
+         "23.72% (Q1 FY27) [F] (PPT Aug 2026)",
+         "Dilution from contacts and assemblies"
+        ],
+        [
+         "Contacts revenue",
+         "Presentation",
+         "Rs 50.63 crore (Q1 FY27) [F] (PPT Aug 2026)",
+         "Growth vs silver price direction"
+        ],
+        [
+         "Shunt / bimetal kg",
+         "Presentation",
+         "257,491 kg (-11.1%) / 340,864 kg (+5.1%) (Q1 FY27) [F] (PPT Aug 2026)",
+         "Shunt kg stabilising"
+        ],
+        [
+         "Americas shunt revenue",
+         "Presentation",
+         "Rs 15.83 crore, +30% (Q1 FY27) [F] (PPT Aug 2026)",
+         "US customer recovery pace"
+        ],
+        [
+         "Net working-capital days",
+         "Presentation",
+         "245 (Q1 FY27, standalone) [F] (PPT Aug 2026)",
+         "Below 218"
+        ],
+        [
+         "CFO / PAT",
+         "Annual / half-year cash flow",
+         "0.57x (FY26) [F] (NUMBERS)",
+         "Above 0.9x"
+        ],
+        [
+         "Largest customer share",
+         "Annual report note",
+         "17.54% (FY26) [F] (AR2026 p.217)",
+         "Below 18%"
+        ],
+        [
+         "Other income % of PBT",
+         "Results",
+         "12.8% (Q1 FY27) [E] (PPT Aug 2026)",
+         "Below 10%"
+        ],
+        [
+         "Promoter / DII holding",
+         "Shareholding pattern",
+         "33.61% / 14.54% (Jun 2026) [F] (NUMBERS)",
+         "DII trend; any pledge disclosure"
+        ]
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "red_flag_checklist",
+   "title": "Red-flag checklist",
+   "subsections": [
+    {
+     "title": "GREEN",
+     "blocks": [
+      {
+       "type": "bullets",
+       "items": [
+        "High returns on capital: ROCE 27% in FY26 [F] (NUMBERS, rule-based flag).",
+        "Profits turn into cash over three years: CFO/PAT 0.85x [E] (NUMBERS, rule-based flag). The FY26 figure alone (0.57x) is weak.",
+        "Unmodified audit opinions, clean CARO, audit trail operating [F] (AR2026 p.52, p.133, p.132).",
+        "Related-party transactions are small and disclosed [F] (AR2026 p.218).",
+        "Net-cash balance sheet; Crisil A/Stable; bank-limit utilisation about 47% [F] (AR2026 p.183; RATING).",
+        "Receivables largely not due; only Rs 0.3 crore is over six months [F] (AR2026 p.200)."
+       ]
+      }
+     ]
+    },
+    {
+     "title": "AMBER",
+     "blocks": [
+      {
+       "type": "bullets",
+       "items": [
+        "Borrowings rose from Rs 42 crore to Rs 71 crore in a year [F] (NUMBERS, rule-based flag).",
+        "Statutory auditor resigned on 6 August 2026 citing resources [F] (AR2026 p.239).",
+        "CFO transition flagged [MC] (CALL Aug 2026); company secretary resigned [F] (ANNOUNCEMENTS).",
+        "FY26 CFO/PAT of 0.57x; NWC up from 218 to 258 days against guidance [F] (NUMBERS; AR2026 p.26) [MC] (CALL Feb 2026).",
+        "Largest customer up from 13.47% to 17.54% [F] (AR2026 p.217); management statements conflict [MC] (CALL May 2026).",
+        "Q1 growth led by silver-inflated contacts [MC] (CALL Aug 2026).",
+        "Governance report denies inter-se relationships that the annexure shows [F] (AR2026 p.74, p.90).",
+        "CWIP of Rs 17.8 crore older than one year [F] (AR2026 p.196).",
+        "Articles amended to enable warrants and convertibles [F] (AR2026 p.240).",
+        "Moving assembly targets and deferred new-vertical announcements [MC] (CALL Nov 2025; CALL Aug 2026).",
+        "Inconsistent figures between the presentation and the annual report (EBITDA history, 'zero-debt', export share) [F] (PPT Aug 2026; AR2026 p.41, p.217)."
+       ]
+      }
+     ]
+    },
+    {
+     "title": "RED",
+     "blocks": [
+      {
+       "type": "bullets",
+       "items": [
+        "Price needs growth far above trend: the reverse DCF implies about 88% a year for five years vs 9% in the base case [E] (NUMBERS, rule-based flag).",
+        "Even the bull-case DCF value is 84.1% below the current price [F] (NUMBERS)."
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "management_questions",
+   "title": "Questions for management",
+   "subsections": [
+    {
+     "title": "Customers and concentration",
+     "blocks": [
+      {
+       "type": "bullets",
+       "items": [
+        "1. Is the customer contributing Rs 100.2 crore (17.54%) in FY26 the US resistor customer? If so, how does that reconcile with 'about 13-14%' stated in May 2026?",
+        "2. Where is the US customer's white-label revenue booked geographically, given that Americas revenue fell 16% while the largest customer grew 46%?",
+        "3. What are the top-5 and top-10 customer shares for FY25 and FY26?",
+        "4. Who held the 'firm orders' for assemblies, and what is their value and delivery schedule?"
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Growth quality and guidance",
+     "blocks": [
+      {
+       "type": "bullets",
+       "items": [
+        "5. What would Q1 FY27 consolidated growth have been at constant silver and copper prices?",
+        "6. How much of FY27's 20-30% growth guide assumes current metal prices?",
+        "7. Why did commission on sales fall from Rs 10.0 crore to Rs 5.8 crore, to whom is commission paid, and is the saving permanent?",
+        "8. What explains the differences between the presentation's FY22-FY24 EBITDA (79/112/123) and the annual report's (74/104/102)?"
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Pune and assemblies",
+     "blocks": [
+      {
+       "type": "bullets",
+       "items": [
+        "9. Is FY27 assembly revenue 10-15% of Rs 300-400 crore, or 15-16% of total revenue? These differ by about Rs 50-80 crore.",
+        "10. What is Phase I's installed capacity in assemblies per month, and what capex is needed beyond Rs 20-25 crore?",
+        "11. Is the Pune lease long enough to cover the CTO's validity to June 2032?",
+        "12. What EBITDA margin did assemblies earn in Q1 FY27, and when does PCBA reach the 40-50% gross contribution cited?"
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Working capital and cash",
+     "blocks": [
+      {
+       "type": "bullets",
+       "items": [
+        "13. Why did NWC rise to 258 days when the February guide was a return to the prior-year range?",
+        "14. Why hold Rs 97.7 crore in deposits while raising short-term foreign-currency loans and cash credit?",
+        "15. What share of raw materials is imported today, and from which countries?",
+        "16. What is the status of nickel-alloy indigenisation against the 20-25% target given in November 2025?"
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Governance and audit",
+     "blocks": [
+      {
+       "type": "bullets",
+       "items": [
+        "17. Did the outgoing auditor raise any matters with the audit committee before resigning, and will the resignation letter be published in full?",
+        "18. Why is the new auditor's Rs 60 lakh fee described as 'no material change' from Rs 32.29 lakh?",
+        "19. When will a new CFO be appointed, and is Rajeev Ranjan leaving? Why was there no exchange filing?",
+        "20. Why does the governance report state no inter-se relationships among directors?",
+        "21. What do OD Finance and Investment, TSL Holdings, Ace Marketing and Amar Engineering do, and do any of them transact with SBCL's customers or suppliers?"
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Capital allocation and dilution",
+     "blocks": [
+      {
+       "type": "bullets",
+       "items": [
+        "22. Why enable warrants and convertibles while net cash? Is a promoter warrant issue under consideration?",
+        "23. What is the size and valuation discipline for the two acquisition or JV targets mentioned?",
+        "24. Which CWIP projects are older than three years (Rs 4.4 crore), and why have they not been capitalised?",
+        "25. What business does SBEPL do, given its turnover matches freight charges paid by the parent?"
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "investment_scorecard",
+   "title": "Investment scorecard",
+   "subsections": [
+    {
+     "title": "Scorecard (not a rating)",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "Fifteen-factor scorecard",
+       "columns": [
+        "#",
+        "Factor",
+        "Score 1-10",
+        "Basis"
+       ],
+       "rows": [
+        [
+         "1",
+         "Revenue visibility",
+         "4",
+         "No order book; customer forecasts only [F] (AR2026 p.46)"
+        ],
+        [
+         "2",
+         "Customer concentration",
+         "5",
+         "Top customer 17.5% and rising [F] (AR2026 p.217)"
+        ],
+        [
+         "3",
+         "Margin quality",
+         "6",
+         "Standalone mix gains; consolidated dilution [F] (PPT Aug 2026)"
+        ],
+        [
+         "4",
+         "Earnings quality",
+         "5",
+         "Clean composition, weak cash conversion [F] (NUMBERS)"
+        ],
+        [
+         "5",
+         "Balance sheet",
+         "8",
+         "Net cash; Crisil A [F] (AR2026 p.183; RATING)"
+        ],
+        [
+         "6",
+         "Working capital",
+         "3",
+         "NWC 258 days, rising [F] (AR2026 p.26)"
+        ],
+        [
+         "7",
+         "Accounting quality",
+         "6",
+         "Clean opinions; auditor resigned [F] (AR2026 p.52, p.239)"
+        ],
+        [
+         "8",
+         "Governance",
+         "5",
+         "Family executive board; disclosure lapse; KMP churn [F] (AR2026 p.65, p.74)"
+        ],
+        [
+         "9",
+         "Related-party discipline",
+         "8",
+         "Small RPTs [F] (AR2026 p.218)"
+        ],
+        [
+         "10",
+         "Moat durability",
+         "6",
+         "Process moat in core; weaker in new lines [AI]"
+        ],
+        [
+         "11",
+         "Growth durability",
+         "5",
+         "3-year CAGR 6.7%; Q1 +33% partly silver [F] (NUMBERS) [MC] (CALL Aug 2026)"
+        ],
+        [
+         "12",
+         "Capacity / optionality",
+         "7",
+         "Over Rs 1,300 crore supportable; Pune [MC] (AR2026 p.43)"
+        ],
+        [
+         "13",
+         "Valuation vs base DCF",
+         "1",
+         "-87.9% [F] (NUMBERS)"
+        ],
+        [
+         "14",
+         "Valuation vs bull DCF",
+         "1",
+         "-84.1% [F] (NUMBERS)"
+        ],
+        [
+         "15",
+         "Disclosure candour",
+         "5",
+         "Open calls but conflicting figures [AI]"
+        ],
+        [
+         "",
+         "Simple average",
+         "5.0",
+         "[E]"
+        ]
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "final_thesis",
+   "title": "Final thesis",
+   "subsections": [
+    {
+     "title": "The case for owning",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "SBCL has a real, defensible process niche in bimetals and EBW shunts, a visible shift to higher-value components (standalone gross margin 51.5% in Q1 FY27) [F] (PPT Aug 2026), idle capacity that needs little capex [MC] (AR2026 p.43), a net-cash balance sheet [F] (AR2026 p.183) and several growth options (US recovery, smart meters, Pune assemblies) [MC] (CALL Aug 2026). If FY27 delivers 20-30% growth at 23-24% margins, earnings could compound quickly from a low capital base [AI]."
+      }
+     ]
+    },
+    {
+     "title": "The case against",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "The price discounts growth that no scenario in our model, nor management's own guidance, reaches [F] (NUMBERS). Growth is flattered by silver [MC] (CALL Aug 2026). Volumes are flat to down [F] (AR2026 p.49). Cash conversion fell to 0.57x [F] (NUMBERS). The largest customer is gaining share of revenue [F] (AR2026 p.217). The auditor, CFO and company secretary are changing at the same time [F] (AR2026 p.239; ANNOUNCEMENTS) [MC] (CALL Aug 2026)."
+      }
+     ]
+    },
+    {
+     "title": "What the market may be missing",
+     "blocks": [
+      {
+       "type": "bullets",
+       "items": [
+        "On the downside: Q1's 33% includes roughly Rs 15 crore of silver-related contacts revenue on management's own split [E] (PPT Aug 2026; CALL Aug 2026), and FY26 EBITDA benefited from lower commission and packing costs [F] (AR2026 p.212).",
+        "On the upside: standalone EBITDA margin of 27.5% [F] (PPT Aug 2026) is well above the 21% in our base DCF [F] (NUMBERS), and operating leverage on 40-45% bimetal utilisation could surprise [MC] (CALL Aug 2026)."
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Upside / downside framing",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "Scenario values from our DCF model vs price Rs 1,042",
+       "columns": [
+        "Scenario",
+        "Fair value per share",
+        "vs current price"
+       ],
+       "rows": [
+        [
+         "Bear",
+         "Rs 77.6",
+         "-92.6%"
+        ],
+        [
+         "Base",
+         "Rs 125.7",
+         "-87.9%"
+        ],
+        [
+         "Bull",
+         "Rs 165.6",
+         "-84.1%"
+        ]
+       ]
+      },
+      {
+       "type": "p",
+       "text": "Source [F] (NUMBERS)."
+      }
+     ]
+    },
+    {
+     "title": "Five-year possibility space",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "Our model brackets year-5 sales between Rs 752 crore (bear) and Rs 1,152 crore (bull), with Rs 946 crore in the base [F] (NUMBERS). Management's aspiration of 30%+ growth [MC] (CALL May 2026) and Rs 1,300 crore of capacity-supported revenue [MC] (AR2026 p.43) sit above the bull case. Even that upper end, under our model's economics, does not reach the value implied by today's price [F] (NUMBERS) [AI]."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "final_conclusion",
+   "title": "Final conclusion",
+   "subsections": [
+    {
+     "title": "Research view (no rating, no price target)",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "At Rs 1,042, every fair value our DCF produces sits 84-93% below the price (bear Rs 77.6, base Rs 125.7, bull Rs 165.6) [F] (NUMBERS). The gap is driven almost entirely by growth expectations. The reverse DCF needs about 88% annual sales growth [E] (NUMBERS), against a business that grew 6.7% a year over three years [F] (NUMBERS) and guides 20-30% for FY27 [MC] (CALL Aug 2026). The operating story is better than the trailing numbers: real mix improvement and spare capacity. But the stock price already capitalises far more than the evidence shows [AI]."
+      },
+      {
+       "type": "p",
+       "text": "Horizon guidance [AI]: this is a long-duration story whose evidence will arrive slowly, through assembly revenue disclosure, cash conversion and the new auditor's work. Re-review points: (1) Q2 FY27 results, expected by mid-November 2026 [F] (AR2026 p.76), for silver-adjusted growth, NWC days and the first Walker Chandiok review; (2) appointment of a new CFO and company secretary; (3) any use of the new warrant and convertible powers; (4) the FY27 annual report (around August 2027) for largest-customer share, CFO/PAT and assembly revenue."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "changes_since_last",
+   "title": "Changes since last report",
+   "subsections": [
+    {
+     "title": "Initial coverage",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "This is our initial coverage of Shivalik Bimetal Controls; there is no prior quarterly report to compare against. Our earlier dashboard notes [AI] (BOARD) are superseded where they conflict with audited data. Those notes mixed standalone FY24-FY25 revenue (Rs 449 crore to Rs 437 crore) with the consolidated series (Rs 509 crore to Rs 508 crore) [F] (NUMBERS; AR2026 p.41), described kg volumes as 'pieces' [F] (AR2026 p.25), and cited a 57% export share that is a standalone figure [F] (AR2026 p.92)."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "quality_control",
+   "title": "Quality control",
+   "subsections": [
+    {
+     "title": "Second-pass review",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "QC checks",
+       "columns": [
+        "Check",
+        "Result",
+        "Note"
+       ],
+       "rows": [
+        [
+         "TAM / revenue conflation",
+         "Pass",
+         "TAM shown only as context with illustrative [E] arithmetic; conflicting smart-meter TAMs flagged"
+        ],
+        [
+         "Order book / pipeline conflation",
+         "Pass",
+         "A-F ladder used; no order book exists; management ramps labelled [MC]"
+        ],
+        [
+         "Management claims labelled",
+         "Pass",
+         "Call and presentation statements carry [MC]"
+        ],
+        [
+         "Customer concentration shown both ways",
+         "Pass",
+         "Rise from 13.5% to 17.5% vs fall from the 35-40% peak; conflicting statements shown"
+        ],
+        [
+         "Cash flow and working capital completeness",
+         "Pass with gap",
+         "Annual cash flows complete; no quarterly cash flow or Q1 balance sheet available"
+        ],
+        [
+         "Current share count and market cap",
+         "Pass",
+         "5.758 crore shares; Rs 6,000 crore market cap [F] (NUMBERS; AR2026 p.51)"
+        ],
+        [
+         "Structural vs temporary distinction",
+         "Pass",
+         "Silver, copper, tariffs and one-off cost savings separated from mix"
+        ],
+        [
+         "Measurable thesis breakers",
+         "Pass",
+         "Eight numeric thresholds"
+        ],
+        [
+         "No fabrication",
+         "Pass",
+         "Capacity in units, import split, top-5/10 customers, pledges, peer multiples stated as not disclosed"
+        ],
+        [
+         "Labelling discipline",
+         "Pass with caveat",
+         "Derived per-kg and bridge items labelled [E]; utilisation sensitivity uses linear scaling"
+        ],
+        [
+         "Discrepancies flagged",
+         "Pass",
+         "13 source conflicts shown unreconciled in Financial statement forensics"
+        ],
+        [
+         "Valuation transparency",
+         "Pass",
+         "All valuation figures come from our model; no new fair values"
+        ],
+        [
+         "Bull case vs reverse DCF",
+         "Pass",
+         "Bull 13-14% vs implied 87.5% explicitly compared"
+        ],
+        [
+         "Balance",
+         "Pass",
+         "Bull table, counter-argument to the reverse DCF and confirming signals included"
+        ],
+        [
+         "Tone",
+         "Pass",
+         "No rating, no price target, no marketing language"
+        ]
+       ]
+      },
+      {
+       "type": "callout",
+       "tone": "warn",
+       "text": "Evidence was thin on: installed capacity, segment margins, import dependence, the identity of the largest customer, assembly order values, pre-FY25 product-line revenue, and the reasons for the CFO change. Conclusions in these areas are [AI] and should be re-tested as disclosure improves."
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "summary": {
+  "one_line": "Shivalik Bimetal is a real process-niche business with a genuine shift to higher-value components and a net-cash balance sheet, but at Rs 1,042 it is priced for about 88% annual growth while silver-inflated revenue, weak FY26 cash conversion, rising customer concentration and simultaneous auditor/CFO/CS changes argue that the evidence lags the price by a wide margin.",
+  "bull_points": [
+   "Mix shift to components is lifting value per kg: standalone gross margin rose from 46.57% (FY25) to 49.39% (FY26) and 51.48% in Q1 FY27 [F] (AR2026 p.25; PPT Aug 2026); standalone gross contribution per kg rose about 13% on flat material cost per kg [E] (AR2026 p.25, p.138).",
+   "Spare capacity with low capex needs: management says the asset base supports over Rs 1,300 crore of revenue, with bimetal utilisation at 40-45% and maintenance capex of Rs 10-15 crore a year [MC] (AR2026 p.43; CALL Aug 2026; CALL May 2026).",
+   "Q1 FY27 showed the US recovery starting: Americas shunt revenue +30%, consolidated revenue +33.4%, EBITDA +35% and PAT +45% [F] (PPT Aug 2026).",
+   "Net-cash balance sheet: cash and bank of Rs 104.7 crore vs bank debt of Rs 59.4 crore; ROCE 27%; Crisil A/Stable [F] (AR2026 p.183, p.206; NUMBERS; RATING).",
+   "Growth options in smart-meter localisation (smart-meter revenue Rs 75-80 crore and expected to double) and Pune EV assemblies (Rs 300-400 crore potential) [MC] (CALL May 2026; CALL Aug 2026)."
+  ],
+  "bear_points": [
+   "Valuation: the reverse DCF implies about 87.5% annual sales growth for five years vs 8.9% in the base case; bear/base/bull fair values of Rs 77.6/125.7/165.6 are 84-93% below the price [F] (NUMBERS).",
+   "Growth quality: about two-thirds of Q1 FY27's revenue increase came from the contacts subsidiary [E] (PPT Aug 2026), about half of whose growth management attributes to silver prices [MC] (CALL Aug 2026). FY26 standalone volumes fell 0.6% and Q1 shunt kg fell 11% [F] (AR2026 p.49; PPT Aug 2026).",
+   "Cash conversion: FY26 CFO of Rs 55 crore vs PAT of Rs 96 crore (0.57x); NWC rose from 218 to 258 days despite February guidance to return to the prior-year range [F] (NUMBERS; AR2026 p.26) [MC] (CALL Feb 2026).",
+   "Concentration rising: the largest customer rose from 13.47% to 17.54% of consolidated revenue (21.68% standalone), contradicting management's 'about 13-14%' in May 2026 [F] (AR2026 p.217, p.169) [MC] (CALL May 2026).",
+   "Governance churn: the statutory auditor resigned on 6 Aug 2026, a CFO transition was flagged, and the CS resigned effective 7 Dec 2026 [F] (AR2026 p.239; ANNOUNCEMENTS) [MC] (CALL Aug 2026). The Articles now enable warrants and convertibles [F] (AR2026 p.240)."
+  ],
+  "watch_points": [
+   "Q2 FY27 results (expected by mid-November 2026): standalone growth and contacts growth net of silver; consolidated vs standalone gross margin [F] (AR2026 p.76) [AI].",
+   "First limited review by Walker Chandiok and any comments; appointment of a new CFO and company secretary [F] (AR2026 p.239; ANNOUNCEMENTS).",
+   "Net working-capital days (Q1 FY27: 245) and any half-year cash-flow statement; CFO/PAT above 0.9x would be confirming [F] (PPT Aug 2026) [AI].",
+   "Pune main facility operational in October 2026 and first disclosure of assembly revenue or order values [MC] (CALL Aug 2026).",
+   "Any use of the new warrant/convertible powers, promised new-vertical announcements, and DII holding trend (14.54% in Jun 2026) [F] (AR2026 p.240; NUMBERS) [MC] (CALL Aug 2026)."
+  ],
+  "guidance": [
+   "FY27 consolidated revenue growth 'somewhere between the 20% to 30%' if customer forecasts hold [MC] (CALL Aug 2026).",
+   "FY27 standalone mix about 44-45% bimetal and 54-55% shunts [MC] (CALL Aug 2026).",
+   "Contacts (wholly owned subsidiary) about 30-35% of FY27 consolidated revenue [MC] (CALL Aug 2026).",
+   "PCBA and busbar assemblies about 15-16% of total revenue in the first year [MC] (CALL Aug 2026).",
+   "Pune CCS/busbar business Rs 300-400 crore in about three years: year 1 about 10-15% of that, year 2 Rs 150-200 crore, Rs 300 crore onwards thereafter [MC] (CALL Aug 2026).",
+   "Pune project capex about Rs 20-25 crore; main Pune manufacturing facility fully operational only in October 2026 [MC] (CALL Aug 2026).",
+   "Further 2W CCS designs (2-3) to convert to business by the end of this year [MC] (CALL Aug 2026).",
+   "Largest customer will not cross about 17-18% of revenue, staying 'well below 20%', even after recovery [MC] (CALL Aug 2026).",
+   "Shunt growth: about 70-75% from value-added conversion and the rest from commodity prices; strip sales at about one third of the year-ago level [MC] (CALL Aug 2026).",
+   "Capacity utilisation: EBW welding about 65-70%; thermostatic bimetal about 40-45% [MC] (CALL Aug 2026).",
+   "Bimetal export developments to add revenue in about 4 quarters; first domestic bimetal volume uptake in 4-5 quarters [MC] (CALL Aug 2026).",
+   "New verticals (specialised electronic material; automotive fuses) via partnership or acquisition, with more concrete information by the next earnings call [MC] (CALL Aug 2026).",
+   "Priorities: margin quality, working-capital efficiency, cash conversion, selective capital allocation [MC] (CALL Aug 2026)."
+  ]
+ },
+ "usage": {
+  "engine": "claude-code",
+  "model": "opus",
+  "sessions": 1,
+  "turns": 63,
+  "estimated_api_cost_usd": 8.825,
+  "input_tokens": 104,
+  "output_tokens": 108914,
+  "cache_read_input_tokens": 14384289,
+  "cache_creation_input_tokens": 471144,
+  "cost_usd": null
+ }
+}
