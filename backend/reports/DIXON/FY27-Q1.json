@@ -1,0 +1,5813 @@
+{
+ "code": "DIXON",
+ "name": "Dixon Technologies (India) Ltd",
+ "period": "FY27-Q1",
+ "period_label": "Q1 FY27",
+ "results_quarter": "Jun 2026",
+ "generated_at": "2026-10-11T06:23+05:30",
+ "basis": "consolidated",
+ "screener_url": "https://www.screener.in/company/DIXON/consolidated/",
+ "sources": [
+  {
+   "id": "NUMBERS",
+   "type": "numbers",
+   "title": "screener.in consolidated statements + computed metrics",
+   "url": "https://www.screener.in/company/DIXON/consolidated/",
+   "date": null
+  },
+  {
+   "id": "SCREENER",
+   "type": "profile",
+   "title": "screener.in company profile",
+   "url": "https://www.screener.in/company/DIXON/consolidated/",
+   "date": null
+  },
+  {
+   "id": "AR2026",
+   "type": "annual_report",
+   "title": "Annual Report 2026",
+   "url": "https://www.bseindia.com/xml-data/corpfiling/AttachHis/5ef88e3c-352d-4223-a8ec-bdd7d3aa31c1.pdf",
+   "date": "2026"
+  },
+  {
+   "id": "CALL Aug 2026",
+   "type": "transcript",
+   "title": "Earnings call transcript, Aug 2026",
+   "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=7ce2ca16-3043-48f4-97f9-a62a6a086c2f.pdf",
+   "date": "Aug 2026"
+  },
+  {
+   "id": "CALL May 2026",
+   "type": "transcript",
+   "title": "Earnings call transcript, May 2026",
+   "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=38b72f07-55a6-4503-91fd-ed3b2c209e96.pdf",
+   "date": "May 2026"
+  },
+  {
+   "id": "CALL Feb 2026",
+   "type": "transcript",
+   "title": "Earnings call transcript, Feb 2026",
+   "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=ad6e72f1-b5f8-4a75-8e45-f2e88c7525e0.pdf",
+   "date": "Feb 2026"
+  },
+  {
+   "id": "CALL Oct 2025",
+   "type": "transcript",
+   "title": "Earnings call transcript, Oct 2025",
+   "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=95dbb3ac-5662-4cd9-a145-78effb6c373c.pdf",
+   "date": "Oct 2025"
+  },
+  {
+   "id": "PPT Aug 2026",
+   "type": "presentation",
+   "title": "Investor presentation, Aug 2026",
+   "url": "https://dixon-website.s3.ap-south-1.amazonaws.com/uploads/07150914-1f3b-43ce-82f2-f8543b60027d-EarningPresentation-Q1FY26-27.pdf",
+   "date": "Aug 2026"
+  },
+  {
+   "id": "RATING",
+   "type": "credit_rating",
+   "title": "Rating update | 6 Jan from icra",
+   "url": "https://www.icra.in/Rationale/ShowRationaleReport/?Id=140153",
+   "date": null
+  },
+  {
+   "id": "ANNOUNCEMENTS",
+   "type": "announcements",
+   "title": "Latest exchange announcements",
+   "url": "https://www.screener.in/company/DIXON/consolidated/#documents",
+   "date": null
+  },
+  {
+   "id": "BOARD",
+   "type": "board_notes",
+   "title": "This dashboard's earlier research notes (analyst notes, not company disclosure)",
+   "url": null,
+   "date": null
+  }
+ ],
+ "quant": {
+  "basis": "consolidated",
+  "units": "Rs crore unless stated",
+  "annual": {
+   "columns": [
+    "Mar 2017",
+    "Mar 2018",
+    "Mar 2019",
+    "Mar 2020",
+    "Mar 2021",
+    "Mar 2022",
+    "Mar 2023",
+    "Mar 2024",
+    "Mar 2025",
+    "Mar 2026"
+   ],
+   "sales": [
+    2457.0,
+    2842.0,
+    2984.0,
+    4400.0,
+    6448.0,
+    10697.0,
+    12192.0,
+    17691.0,
+    38860.0,
+    48873.0
+   ],
+   "expenses": [
+    2365.0,
+    2729.0,
+    2848.0,
+    4172.0,
+    6156.0,
+    10313.0,
+    11673.0,
+    16986.0,
+    37345.0,
+    47000.0
+   ],
+   "ebitda": [
+    92.0,
+    113.0,
+    136.0,
+    228.0,
+    292.0,
+    384.0,
+    519.0,
+    705.0,
+    1515.0,
+    1873.0
+   ],
+   "opm": [
+    3.7,
+    4.0,
+    4.6,
+    5.0,
+    4.5,
+    3.6,
+    4.3,
+    4.0,
+    3.9,
+    3.8
+   ],
+   "other_income": [
+    1.0,
+    4.0,
+    6.0,
+    5.0,
+    1.0,
+    4.0,
+    4.0,
+    32.0,
+    497.0,
+    731.0
+   ],
+   "interest": [
+    16.0,
+    13.0,
+    26.0,
+    39.0,
+    33.0,
+    49.0,
+    64.0,
+    81.0,
+    162.0,
+    141.0
+   ],
+   "depreciation": [
+    11.0,
+    15.0,
+    22.0,
+    37.0,
+    44.0,
+    84.0,
+    115.0,
+    162.0,
+    281.0,
+    393.0
+   ],
+   "pbt": [
+    66.0,
+    88.0,
+    94.0,
+    157.0,
+    217.0,
+    255.0,
+    345.0,
+    494.0,
+    1570.0,
+    2071.0
+   ],
+   "tax_rate": [
+    28.0,
+    31.0,
+    32.0,
+    23.0,
+    26.0,
+    25.0,
+    26.0,
+    24.0,
+    21.0,
+    21.0
+   ],
+   "pat": [
+    48.0,
+    61.0,
+    63.0,
+    120.0,
+    160.0,
+    190.0,
+    255.0,
+    375.0,
+    1233.0,
+    1644.0
+   ],
+   "eps": [
+    8.66,
+    10.76,
+    11.19,
+    20.81,
+    27.28,
+    32.05,
+    42.9,
+    61.47,
+    181.87,
+    236.61
+   ],
+   "payout": [
+    14.0,
+    4.0,
+    4.0,
+    4.0,
+    4.0,
+    6.0,
+    7.0,
+    8.0,
+    4.0,
+    4.0
+   ],
+   "equity_capital": [
+    11.0,
+    11.0,
+    11.0,
+    12.0,
+    12.0,
+    12.0,
+    12.0,
+    12.0,
+    12.0,
+    12.0
+   ],
+   "reserves": [
+    186.0,
+    304.0,
+    367.0,
+    530.0,
+    726.0,
+    985.0,
+    1273.0,
+    1683.0,
+    2998.0,
+    4665.0
+   ],
+   "borrowings": [
+    43.0,
+    45.0,
+    141.0,
+    87.0,
+    295.0,
+    667.0,
+    453.0,
+    489.0,
+    671.0,
+    994.0
+   ],
+   "other_liabilities": [
+    549.0,
+    606.0,
+    971.0,
+    1069.0,
+    1814.0,
+    2613.0,
+    2941.0,
+    4806.0,
+    13077.0,
+    13481.0
+   ],
+   "total_assets": [
+    789.0,
+    966.0,
+    1491.0,
+    1697.0,
+    2846.0,
+    4277.0,
+    4679.0,
+    6990.0,
+    16758.0,
+    19152.0
+   ],
+   "fixed_assets": [
+    137.0,
+    179.0,
+    241.0,
+    414.0,
+    550.0,
+    1003.0,
+    1244.0,
+    1996.0,
+    2774.0,
+    4172.0
+   ],
+   "cwip": [
+    2.0,
+    16.0,
+    19.0,
+    10.0,
+    72.0,
+    22.0,
+    120.0,
+    68.0,
+    257.0,
+    571.0
+   ],
+   "investments": [
+    0.0,
+    11.0,
+    8.0,
+    0.0,
+    95.0,
+    141.0,
+    44.0,
+    20.0,
+    536.0,
+    1007.0
+   ],
+   "other_assets": [
+    650.0,
+    759.0,
+    1224.0,
+    1273.0,
+    2128.0,
+    3111.0,
+    3272.0,
+    4905.0,
+    13191.0,
+    13403.0
+   ],
+   "cfo": [
+    53.0,
+    68.0,
+    -3.0,
+    237.0,
+    170.0,
+    273.0,
+    726.0,
+    584.0,
+    1150.0,
+    1782.0
+   ],
+   "cfi": [
+    -43.0,
+    -100.0,
+    -64.0,
+    -99.0,
+    -265.0,
+    -464.0,
+    -356.0,
+    -531.0,
+    -1093.0,
+    -1138.0
+   ],
+   "cff": [
+    -8.0,
+    42.0,
+    69.0,
+    -57.0,
+    63.0,
+    304.0,
+    -330.0,
+    -70.0,
+    -27.0,
+    -108.0
+   ],
+   "fcf": [
+    15.0,
+    -5.0,
+    -82.0,
+    129.0,
+    2.0,
+    -145.0,
+    276.0,
+    16.0,
+    254.0,
+    724.0
+   ],
+   "debtor_days": [
+    42.0,
+    38.0,
+    63.0,
+    43.0,
+    62.0,
+    46.0,
+    51.0,
+    48.0,
+    65.0,
+    49.0
+   ],
+   "inventory_days": [
+    47.0,
+    47.0,
+    57.0,
+    47.0,
+    47.0,
+    43.0,
+    32.0,
+    39.0,
+    41.0,
+    31.0
+   ],
+   "payable_days": [
+    84.0,
+    75.0,
+    103.0,
+    89.0,
+    108.0,
+    86.0,
+    81.0,
+    92.0,
+    111.0,
+    86.0
+   ],
+   "ccc": [
+    5.0,
+    10.0,
+    17.0,
+    1.0,
+    1.0,
+    3.0,
+    2.0,
+    -6.0,
+    -5.0,
+    -7.0
+   ],
+   "wc_days": [
+    7.0,
+    8.0,
+    12.0,
+    9.0,
+    9.0,
+    3.0,
+    -2.0,
+    -2.0,
+    2.0,
+    -3.0
+   ],
+   "roce": [
+    37.0,
+    34.0,
+    27.0,
+    34.0,
+    30.0,
+    23.0,
+    24.0,
+    29.0,
+    40.0,
+    29.0
+   ],
+   "equity": [
+    197.0,
+    315.0,
+    378.0,
+    542.0,
+    738.0,
+    997.0,
+    1285.0,
+    1695.0,
+    3010.0,
+    4677.0
+   ],
+   "capex": [
+    38.0,
+    73.0,
+    79.0,
+    108.0,
+    168.0,
+    418.0,
+    450.0,
+    568.0,
+    896.0,
+    1058.0
+   ],
+   "ttm": {
+    "sales": 51585.0,
+    "ebitda": 1847.0,
+    "opm": 3.6,
+    "other_income": 1263.0,
+    "interest": 129.0,
+    "depreciation": 407.0,
+    "pbt": 2574.0,
+    "pat": 2082.0,
+    "eps": 308.83
+   }
+  },
+  "quarterly": {
+   "columns": [
+    "Sep 2023",
+    "Dec 2023",
+    "Mar 2024",
+    "Jun 2024",
+    "Sep 2024",
+    "Dec 2024",
+    "Mar 2025",
+    "Jun 2025",
+    "Sep 2025",
+    "Dec 2025",
+    "Mar 2026",
+    "Jun 2026"
+   ],
+   "sales": [
+    4943.0,
+    4818.0,
+    4658.0,
+    6580.0,
+    11534.0,
+    10454.0,
+    10293.0,
+    12836.0,
+    14855.0,
+    10672.0,
+    10511.0,
+    15548.0
+   ],
+   "ebitda": [
+    199.0,
+    184.0,
+    182.0,
+    248.0,
+    426.0,
+    391.0,
+    443.0,
+    482.0,
+    561.0,
+    414.0,
+    408.0,
+    463.0
+   ],
+   "opm": [
+    4.0,
+    3.8,
+    3.9,
+    3.8,
+    3.7,
+    3.7,
+    4.3,
+    3.8,
+    3.8,
+    3.9,
+    3.9,
+    3.0
+   ],
+   "other_income": [
+    3.0,
+    4.0,
+    19.0,
+    16.0,
+    206.0,
+    10.0,
+    265.0,
+    8.0,
+    497.0,
+    139.0,
+    90.0,
+    537.0
+   ],
+   "interest": [
+    17.0,
+    22.0,
+    21.0,
+    29.0,
+    38.0,
+    41.0,
+    46.0,
+    33.0,
+    38.0,
+    43.0,
+    24.0,
+    24.0
+   ],
+   "depreciation": [
+    36.0,
+    41.0,
+    51.0,
+    55.0,
+    66.0,
+    75.0,
+    86.0,
+    93.0,
+    96.0,
+    99.0,
+    105.0,
+    107.0
+   ],
+   "pbt": [
+    149.0,
+    126.0,
+    130.0,
+    180.0,
+    529.0,
+    285.0,
+    576.0,
+    366.0,
+    924.0,
+    412.0,
+    370.0,
+    869.0
+   ],
+   "tax_rate": [
+    24.0,
+    23.0,
+    25.0,
+    22.0,
+    22.0,
+    24.0,
+    19.0,
+    23.0,
+    19.0,
+    22.0,
+    19.0,
+    17.0
+   ],
+   "pat": [
+    113.0,
+    97.0,
+    97.0,
+    140.0,
+    412.0,
+    216.0,
+    465.0,
+    280.0,
+    746.0,
+    321.0,
+    298.0,
+    718.0
+   ],
+   "eps": [
+    18.02,
+    16.12,
+    15.91,
+    22.34,
+    65.15,
+    28.5,
+    66.54,
+    37.2,
+    110.72,
+    47.34,
+    42.17,
+    108.6
+   ],
+   "sales_yoy": [
+    null,
+    null,
+    null,
+    null,
+    133.3,
+    117.0,
+    121.0,
+    95.1,
+    28.8,
+    2.1,
+    2.1,
+    21.1
+   ],
+   "pat_yoy": [
+    null,
+    null,
+    null,
+    null,
+    264.6,
+    122.7,
+    379.4,
+    100.0,
+    81.1,
+    48.6,
+    -35.9,
+    156.4
+   ]
+  },
+  "derived": {
+   "roe": [
+    null,
+    23.8,
+    18.2,
+    26.1,
+    25.0,
+    21.9,
+    22.3,
+    25.2,
+    52.4,
+    42.8
+   ],
+   "debt_equity": [
+    0.22,
+    0.14,
+    0.37,
+    0.16,
+    0.4,
+    0.67,
+    0.35,
+    0.29,
+    0.22,
+    0.21
+   ],
+   "interest_cover": [
+    5.1,
+    7.8,
+    4.6,
+    5.0,
+    7.6,
+    6.2,
+    6.4,
+    7.1,
+    10.7,
+    15.7
+   ],
+   "cfo_pat": [
+    1.1,
+    1.11,
+    -0.05,
+    1.98,
+    1.06,
+    1.44,
+    2.85,
+    1.56,
+    0.93,
+    1.08
+   ],
+   "capex_sales": [
+    1.5,
+    2.6,
+    2.6,
+    2.5,
+    2.6,
+    3.9,
+    3.7,
+    3.2,
+    2.3,
+    2.2
+   ],
+   "fixed_asset_turnover": [
+    17.93,
+    15.88,
+    12.38,
+    10.63,
+    11.72,
+    10.67,
+    9.8,
+    8.86,
+    14.01,
+    11.71
+   ],
+   "other_income_pct_pbt": [
+    1.5,
+    4.5,
+    6.4,
+    3.2,
+    0.5,
+    1.6,
+    1.2,
+    6.5,
+    31.7,
+    35.3
+   ],
+   "cumulative": {
+    "cfo_pat_3y": 1.08,
+    "fcf_3y": 994.0,
+    "cfo_pat_5y": 1.22,
+    "fcf_5y": 1125.0
+   },
+   "growth": {
+    "sales_3y": 58.9,
+    "sales_5y": 49.9,
+    "sales_9y": 39.4,
+    "ebitda_3y": 53.4,
+    "ebitda_5y": 45.0,
+    "ebitda_9y": 39.8,
+    "pat_3y": 86.1,
+    "pat_5y": 59.4,
+    "pat_9y": 48.1,
+    "sales_ttm_vs_fy": 5.5
+   },
+   "promoter_chg_1y": -0.4
+  },
+  "shareholding": {
+   "columns": [
+    "Sep 2023",
+    "Dec 2023",
+    "Mar 2024",
+    "Jun 2024",
+    "Sep 2024",
+    "Dec 2024",
+    "Mar 2025",
+    "Jun 2025",
+    "Sep 2025",
+    "Dec 2025",
+    "Mar 2026",
+    "Jun 2026"
+   ],
+   "rows": {
+    "Promoters": [
+     33.8,
+     33.63,
+     33.44,
+     33.24,
+     32.89,
+     32.42,
+     32.27,
+     28.95,
+     28.92,
+     28.83,
+     28.69,
+     28.55
+    ],
+    "FIIs": [
+     15.66,
+     17.41,
+     17.85,
+     19.33,
+     22.69,
+     23.22,
+     21.81,
+     20.55,
+     20.69,
+     18.68,
+     18.3,
+     17.87
+    ],
+    "DIIs": [
+     27.44,
+     26.39,
+     27.01,
+     26.08,
+     23.14,
+     22.61,
+     23.07,
+     26.68,
+     28.93,
+     29.06,
+     28.14,
+     28.38
+    ],
+    "Public": [
+     23.11,
+     22.58,
+     21.71,
+     21.34,
+     21.27,
+     21.73,
+     22.86,
+     23.81,
+     21.45,
+     23.43,
+     24.87,
+     25.2
+    ],
+    "No. of Shareholders": [
+     285566.0,
+     267536.0,
+     252843.0,
+     267314.0,
+     285363.0,
+     320193.0,
+     375630.0,
+     408369.0,
+     341162.0,
+     405075.0,
+     470326.0,
+     470189.0
+    ]
+   }
+  },
+  "valuation": {
+   "price": 12774.0,
+   "market_cap": 78139.0,
+   "high_52w": 17440.0,
+   "low_52w": 9600.0,
+   "from_high_pct": -26.8,
+   "book_value": 769.0,
+   "dividend_yield": 0.08,
+   "pe_ttm": 37.5,
+   "ev": 79133.0,
+   "ev_ebitda_ttm": 42.8,
+   "ev_sales_ttm": 1.53,
+   "pb": 16.61,
+   "net_debt_note": "EV = market cap + latest borrowings. Screener's public page does not split cash out of other assets, so cash is not netted off; investments are shown separately.",
+   "debt": 994.0,
+   "investments": 1007.0,
+   "earnings_basis": "trailing twelve months",
+   "dcf": {
+    "available": true,
+    "meaningful": true,
+    "method": "5-year FCFF: EBITDA - tax on EBIT - capex - change in net working capital; growth fades linearly from the starting rate to the year-5 rate; Gordon terminal value; equity = EV - borrowings.",
+    "inputs": {
+     "base_sales_ttm": 51585.0,
+     "ebitda_margin_base": 3.9,
+     "starting_growth_base": 30.0,
+     "growth_basis": "median of 3-year, 5-year and TTM sales growth, capped 0-30%",
+     "da_pct_sales": 0.8,
+     "fixed_asset_turnover": 10.0,
+     "capex_rule": "depreciation + new sales / fixed-asset turnover (median of the last three years)",
+     "wc_days": 0.0,
+     "tax_rate": 25.2,
+     "rf": 7.0,
+     "erp": 7.0,
+     "beta": 1.15,
+     "cost_of_equity": 15.0,
+     "cost_of_debt_post_tax": 7.5,
+     "debt_weight": 1.3,
+     "wacc": 15.0,
+     "terminal_growth": 5.5,
+     "shares_cr": 6.117
+    },
+    "scenarios": {
+     "bear": {
+      "assumptions": {
+       "start_growth": 12.0,
+       "growth_by_year5": 5.0,
+       "ebitda_margin": 1.0
+      },
+      "projection": [
+       {
+        "year": 1,
+        "growth": 12.0,
+        "sales": 57775.2,
+        "ebitda": 577.8,
+        "fcff": -534.4,
+        "pv": -464.9
+       },
+       {
+        "year": 2,
+        "growth": 10.2,
+        "sales": 63697.2,
+        "ebitda": 637.0,
+        "fcff": -498.9,
+        "pv": -377.5
+       },
+       {
+        "year": 3,
+        "growth": 8.5,
+        "sales": 69111.4,
+        "ebitda": 691.1,
+        "fcff": -440.2,
+        "pv": -289.8
+       },
+       {
+        "year": 4,
+        "growth": 6.8,
+        "sales": 73776.4,
+        "ebitda": 737.8,
+        "fcff": -358.4,
+        "pv": -205.2
+       },
+       {
+        "year": 5,
+        "growth": 5.0,
+        "sales": 77465.3,
+        "ebitda": 774.7,
+        "fcff": -255.4,
+        "pv": -127.2
+       }
+      ],
+      "pv_explicit": -1464.6,
+      "terminal_value": -3239.8,
+      "pv_terminal": -1613.9,
+      "ev": -3078.5,
+      "equity_value": -4072.5,
+      "per_share": -665.8
+     },
+     "base": {
+      "assumptions": {
+       "start_growth": 30.0,
+       "growth_by_year5": 10.0,
+       "ebitda_margin": 3.9
+      },
+      "projection": [
+       {
+        "year": 1,
+        "growth": 30.0,
+        "sales": 67060.5,
+        "ebitda": 2615.4,
+        "fcff": 5.4,
+        "pv": 4.7
+       },
+       {
+        "year": 2,
+        "growth": 25.0,
+        "sales": 83825.6,
+        "ebitda": 3269.2,
+        "fcff": 264.6,
+        "pv": 200.3
+       },
+       {
+        "year": 3,
+        "growth": 20.0,
+        "sales": 100590.8,
+        "ebitda": 3923.0,
+        "fcff": 652.9,
+        "pv": 429.8
+       },
+       {
+        "year": 4,
+        "growth": 15.0,
+        "sales": 115679.4,
+        "ebitda": 4511.5,
+        "fcff": 1169.9,
+        "pv": 670.0
+       },
+       {
+        "year": 5,
+        "growth": 10.0,
+        "sales": 127247.3,
+        "ebitda": 4962.6,
+        "fcff": 1789.9,
+        "pv": 891.6
+       }
+      ],
+      "pv_explicit": 2196.3,
+      "terminal_value": 25477.7,
+      "pv_terminal": 12691.8,
+      "ev": 14888.1,
+      "equity_value": 13894.1,
+      "per_share": 2271.4
+     },
+     "bull": {
+      "assumptions": {
+       "start_growth": 43.5,
+       "growth_by_year5": 13.0,
+       "ebitda_margin": 5.9
+      },
+      "projection": [
+       {
+        "year": 1,
+        "growth": 43.5,
+        "sales": 74024.5,
+        "ebitda": 4367.4,
+        "fcff": 577.7,
+        "pv": 502.5
+       },
+       {
+        "year": 2,
+        "growth": 35.9,
+        "sales": 100580.8,
+        "ebitda": 5934.3,
+        "fcff": 1178.2,
+        "pv": 891.6
+       },
+       {
+        "year": 3,
+        "growth": 28.2,
+        "sales": 128994.8,
+        "ebitda": 7610.7,
+        "fcff": 2075.5,
+        "pv": 1366.3
+       },
+       {
+        "year": 4,
+        "growth": 20.6,
+        "sales": 155600.0,
+        "ebitda": 9180.4,
+        "fcff": 3270.5,
+        "pv": 1872.9
+       },
+       {
+        "year": 5,
+        "growth": 13.0,
+        "sales": 175828.0,
+        "ebitda": 10373.9,
+        "fcff": 4679.3,
+        "pv": 2331.0
+       }
+      ],
+      "pv_explicit": 6964.2,
+      "terminal_value": 64555.0,
+      "pv_terminal": 32158.2,
+      "ev": 39122.5,
+      "equity_value": 38128.5,
+      "per_share": 6233.2
+     }
+    },
+    "sensitivity": {
+     "wacc": [
+      13.5,
+      15.0,
+      16.5
+     ],
+     "g": [
+      4.5,
+      5.5,
+      6.5
+     ],
+     "values": [
+      [
+       2650.4,
+       2849.5,
+       3105.9
+      ],
+      [
+       2149.1,
+       2271.4,
+       2422.6
+      ],
+      [
+       1778.7,
+       1856.7,
+       1950.3
+      ]
+     ]
+    },
+    "reverse_dcf": {
+     "implied_5y_sales_cagr": 84.0,
+     "base_case_5y_cagr_equivalent": 19.8,
+     "note": "Constant sales growth for five years, at the base margin and the same WACC and terminal growth, that makes the DCF equal today's EV."
+    },
+    "upside_pct": {
+     "bear": -105.2,
+     "base": -82.2,
+     "bull": -51.2
+    }
+   }
+  },
+  "red_flags": [
+   {
+    "level": "red",
+    "title": "Price needs growth well above trend",
+    "detail": "Today's price implies about 84% a year sales growth for five years, against 20% in the base case.",
+    "label": "[E]"
+   },
+   {
+    "level": "amber",
+    "title": "Profit leans on other income",
+    "detail": "Other income is 35% of profit before tax.",
+    "label": "[E]"
+   },
+   {
+    "level": "green",
+    "title": "Profits turn into cash",
+    "detail": "Operating cash flow was 1.08x reported profit over the last three years.",
+    "label": "[E]"
+   },
+   {
+    "level": "green",
+    "title": "High returns on capital",
+    "detail": "ROCE 29% last year.",
+    "label": "[F]"
+   }
+  ],
+  "latest_quarter": "Jun 2026"
+ },
+ "pack_chars": 0,
+ "model_id": "claude-code:opus",
+ "sections": [
+  {
+   "id": "executive_summary",
+   "title": "Executive investment summary: a scale assembler at a policy hinge, priced for a different business",
+   "subsections": [
+    {
+     "title": "What the company actually does",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "Dixon is an Indian electronics manufacturing services (EMS) and original design manufacturing (ODM) group. It assembles smartphones and feature phones, telecom customer-premises equipment, laptops, LED TVs, refrigerators and washing machines for brand owners, and it is now adding components such as camera modules and display modules [F] (AR2026 p.78-81). In plain terms it is paid a conversion charge on a bill of materials that the customer largely specifies. Management describes mobile revenue as 'a function of the bill of material ... plus our conversion charge', with an 'EBITDA per unit' agreed by complexity [MC] (CALL May 2026). Group EMS work was about 89% of revenue and ODM/components about 11% [MC] (AR2026 p.98)."
+      },
+      {
+       "type": "p",
+       "text": "**End markets.** FY26 revenue mix was Mobile and Other EMS 91%, Consumer Electronics and Refrigerators 6%, Home Appliances 3% [F] (AR2026 p.78). Lighting went into a 50:50 joint venture with Signify from 1 August 2025 and is no longer consolidated [F] (AR2026 p.505). **Geography.** Domestic revenue was Rs 43,452 cr and exports Rs 5,421 cr in FY26, against Rs 37,118 cr and Rs 1,742 cr in FY25 [F] (AR2026 p.467). Exports therefore rose from about 4.5% to about 11.1% of revenue [E] (AR2026 p.467). **Customers.** Three customers made up about 62% of consolidated revenue in FY26, up from 60% in FY25 [F] (AR2026 p.497). Named customers include Motorola, Samsung, HP, Asus, Acer, Lenovo, Airtel (through the telecom subsidiary), Transsion-group entities (through Ismartu) and Eureka Forbes [F] (AR2026 p.23-44, p.141, p.228; CALL Oct 2025; CALL May 2026)."
+      },
+      {
+       "type": "p",
+       "text": "**Listing status.** Dixon is not a recent listing. It was incorporated in 1993 and has ten years of consolidated statements in our dataset [F] (AR2026 p.236; NUMBERS). An investor on the October 2025 call referred to the company raising capital in 2017 [F] (CALL Oct 2025), but the annual report does not restate the IPO date [F] (AR2026 p.156). No prospectus was available to us, so the pre-2017 history rests on the company's own timeline [AI]."
+      }
+     ]
+    },
+    {
+     "title": "Bull thesis",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "Bull thesis: strongest arguments for ownership",
+       "columns": [
+        "#",
+        "Thesis",
+        "Evidence",
+        "Financial impact",
+        "Time horizon",
+        "Confidence"
+       ],
+       "rows": [
+        [
+         "1",
+         "Scale leader in Indian smartphone EMS with share gains in a falling market",
+         "[MC] FY26 volume about 32-33m smartphones; volume held flat in FY27 while the market contracts by double digits (CALL May 2026; CALL Aug 2026). [F] Smartphone capacity of 65m units installed at 31 Mar 2026 (AR2026 p.78)",
+         "Volume flat, revenue up through bill-of-materials inflation: Q1 FY27 sales +21% YoY [F] (NUMBERS)",
+         "0-12 months",
+         "Medium"
+        ],
+        [
+         "2",
+         "Vivo JV adds a second large anchor customer",
+         "[F] PN3 approval received July 2026; consummation pending (CALL Aug 2026). [MC] 20-22m units a year on an annualised basis (CALL May 2026)",
+         "Not quantified in revenue terms by the company; 49% would go to the partner under a 51:49 structure [MC] (CALL Oct 2025)",
+         "Revenue from Q3 FY27 per management",
+         "Medium-low (repeated slippage)"
+        ],
+        [
+         "3",
+         "Backward integration into components lifts margins",
+         "[F] ECMS approvals for camera modules, optical transceivers (2 Jan 2026) and display modules (30 Mar 2026) (AR2026 p.141-142). [MC] Display target of Rs 5,500-6,000 cr at 80-90% utilisation with mid-teens margin (CALL May 2026)",
+         "[MC] +40-50 bps group margin once deployed (CALL May 2026)",
+         "FY28 onward",
+         "Low-medium"
+        ],
+        [
+         "4",
+         "Mobile PLI 2 and export pivot",
+         "[MC] Incentive of 2.5-5% on incremental production plus about 1.5% for localisation, effective 1 Apr 2026 per management's understanding; guidelines awaited (CALL Aug 2026). [F] Exports Rs 5,421 cr in FY26 vs Rs 1,742 cr (AR2026 p.467)",
+         "[MC] 15-20m additional units, Rs 18,000-20,000 cr revenue in 'a couple of years' (CALL Aug 2026)",
+         "12-36 months",
+         "Low (scheme not notified in our documents)"
+        ],
+        [
+         "5",
+         "Diversification: telecom, IT hardware, appliances",
+         "[MC] Telecom about Rs 2,100 cr and IT hardware about Rs 1,350 cr in Q1 FY27 (CALL Aug 2026). [F] Aviat IP licence for microwave radios (30 Sep 2026) and Gemtek optical-transceiver JV (7 Oct 2026) (ANNOUNCEMENTS)",
+         "[MC] Telecom FY27 Rs 6,700-7,000 cr (CALL Aug 2026)",
+         "0-24 months",
+         "Medium"
+        ],
+        [
+         "6",
+         "Capital efficiency: negative working capital funds growth",
+         "[F] CCC of -7 days in FY26; CFO/PAT 1.08x over 3 years; ROCE 29% (NUMBERS)",
+         "Growth largely self-funded; no equity raised beyond ESOPs [F] (AR2026 p.143)",
+         "Ongoing",
+         "Medium (Q1 FY27 reversed)"
+        ],
+        [
+         "7",
+         "Policy alignment: ECMS, PLI, telecom manufacturing zones",
+         "[MC] Gwalior telecom zone with about 50% capital subsidy (CALL Aug 2026). [F] ECMS outlay of Rs 40,000 cr in Budget 2026-27 (AR2026 p.88)",
+         "Not quantifiable from disclosures",
+         "1-3 years",
+         "Medium"
+        ]
+       ]
+      },
+      {
+       "type": "p",
+       "text": "**Driver classification** [AI]: #1 is company-specific, though it sits on a cyclical handset market. #2 is company-specific and approval-dependent. #3 is company-specific and execution-dependent. #4 and #7 are structural but policy-dependent, so they can reverse at policy discretion. #5 is company-specific. #6 is structural to the EMS model but cyclical in timing, as Q1 FY27 showed."
+      }
+     ]
+    },
+    {
+     "title": "Bear thesis: reasons not to own it",
+     "blocks": [
+      {
+       "type": "bullets",
+       "items": [
+        "1. **Valuation detached from every modelled case.** Price Rs 12,774 vs DCF per-share values of Rs -665.8 (bear), Rs 2,271.4 (base) and Rs 6,233.2 (bull). The reverse DCF needs about 84% annual sales growth for five years, against 19.8% in the base case [F] (NUMBERS).",
+        "2. **Thin, falling operating margin.** Q1 FY27 operating margin was 3.0% vs 3.8% a year earlier [F] (PPT Aug 2026). The mobile segment margin was 2.6% [F] (PPT Aug 2026), below the 2.8-3.2% range management indicated in January [MC] (CALL Feb 2026). Management expects no margin improvement in FY27 [MC] (CALL Aug 2026).",
+        "3. **Reported earnings flattered by investment gains.** Other income was 35.3% of FY26 PBT [F] (NUMBERS). Q1 FY27 PAT of Rs 718 cr includes a Rs 519 cr fair-value gain on Aditya Infotech; adjusted PAT after minority interest was Rs 218 cr, down 3% [F] (PPT Aug 2026).",
+        "4. **Severe customer concentration.** The top three customers are about 62% of revenue, rising [F] (AR2026 p.497). Names and amounts are not disclosed [F] (AR2026 p.497; CALL Oct 2025).",
+        "5. **PLI receivable risk.** The auditor flagged with an emphasis of matter Rs 1,110 cr of PLI 'overflow' incentive accrued but not yet determined by the government agency, against a Rs 726 cr pass-through liability to the customer [F] (AR2026 p.409, p.509).",
+        "6. **Guidance credibility.** FY26 smartphone volume guidance of 40-42m (Oct 2025) ended at about 32-33m. The FY27 telecom target was cut from Rs 7,500-8,000 cr to Rs 6,700-7,000 cr within one quarter. Vivo approval was 'coming weeks' in October 2025 and arrived in July 2026 [MC] (CALL Oct 2025; CALL May 2026; CALL Aug 2026).",
+        "7. **Working-capital reversal.** In Q1 FY27 inventories rose from Rs 3,837 cr to Rs 6,728 cr. CFO was Rs -341 cr and FCF Rs -676 cr [F] (PPT Aug 2026).",
+        "8. **Value leakage to JV partners.** NCI took Rs 205.6 cr of FY26 profit [F] (AR2026 p.419). The growth vehicles are 51-74% owned: Vivo 51%, Longcheer 74%, Inventec 60%, HKC 74%, Gemtek 60% [F] (AR2026 p.141-146; ANNOUNCEMENTS; CALL Oct 2025).",
+        "9. **Policy dependency.** Mobile PLI 1 expired in March 2026 and took about 0.5% of mobile margin with it [MC] (CALL Feb 2026; CALL Aug 2026). The FY27-FY28 margin path depends on PLI 2 and ECMS rules that, per management, are still awaited [MC] (CALL Aug 2026).",
+        "10. **Promoter selling.** The promoter group fell from 33.80% (Sep 2023) to 28.55% (Jun 2026) [F] (NUMBERS). Sunil Vachani sold about 19.75 lakh shares in FY26 [F] (AR2026 p.348-349)."
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Key debates",
+     "blocks": [
+      {
+       "type": "bullets",
+       "items": [
+        "**Is the margin trough temporary?** Bull: percentage margins are optically diluted by memory-price pass-through and absolute per-unit profit is intact [MC] (CALL May 2026). Bear: the absolute figures also fell. Adjusted EBITDA was Rs 472 cr vs Rs 484 cr and adjusted PAT Rs 218 cr vs Rs 225 cr [F] (PPT Aug 2026). The 'optical' explanation does not cover a decline in absolute profit [AI].",
+        "**Are components a moat or a capex sink?** The display JV needs Rs 1,100-1,200 cr of capex [MC] (CALL Feb 2026). Q Tech carries Rs 523 cr of goodwill and had negative net assets of Rs -82.9 cr at FY26 [F] (AR2026 p.505, p.507). The market may be underestimating execution and integration risk [AI].",
+        "**Is concentration risk or stickiness?** Several large customers are also JV partners: Airtel via Beetel, Transsion via Ismartu, the Q Tech parent, and Longcheer [F] (AR2026 p.23-58). That raises switching costs but means the customer captures part of the value through NCI and pricing [AI].",
+        "**Does the market overvalue policy?** PLI 2 and ECMS are real tailwinds, but the documents contain no notified PLI 2 guidelines. All quantification is management's understanding [MC] (CALL Aug 2026).",
+        "**Could the market be too bearish on cash?** FY26 FCF was Rs 724 cr and 3-year CFO/PAT was 1.08x [F] (NUMBERS). If Q1 FY27 inventory build is truly strategic, it unwinds and cash conversion stays good [AI]."
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Variant perception",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "[AI] The consensus framing is that Dixon is a high-growth compounder in a temporary margin air pocket. Our reading of the evidence is different. Dixon is a 3-4% margin assembler. Its reported earnings growth in FY26 and Q1 FY27 came mainly from mark-to-market gains on a listed investment, not from operations. Its growth narrative has relied on a sequence of approval-dependent JVs that have each slipped by one to three quarters. Its reported EPS of Rs 271.59 is computed on profit including minority interests [F] (AR2026 p.477), while our statements data shows Rs 236.61 [F] (NUMBERS). Even our bull DCF case, which assumes 43.5% starting growth and a 5.9% EBITDA margin never achieved historically, values the shares at about half the current price [F] (NUMBERS). The variant risk on the upside is a combination we cannot model from the disclosures: Vivo closing, PLI 2 at the 5% export band, and display margins in the mid-teens all arriving together in FY28 [AI]."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "company_history",
+   "title": "Company history and group structure",
+   "subsections": [
+    {
+     "title": "Corporate timeline",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "Corporate timeline (company-stated where marked)",
+       "columns": [
+        "Date",
+        "Event"
+       ],
+       "rows": [
+        [
+         "15 Jan 1993",
+         "[F] Incorporated; Sunil Vachani a director from incorporation (AR2026 p.234, p.236)"
+        ],
+        [
+         "1994",
+         "[MC] Began colour TV manufacturing (AR2026 p.84)"
+        ],
+        [
+         "2007-2008",
+         "[MC] LCD TVs; CFL lighting and reverse logistics (AR2026 p.84)"
+        ],
+        [
+         "2010",
+         "[MC] LED TVs and washing machines; sheet metal and plastic moulding integrated (AR2026 p.84)"
+        ],
+        [
+         "2016",
+         "[MC] Mobile phones (AR2026 p.84)"
+        ],
+        [
+         "2017",
+         "[MC] Security/surveillance products (AR2026 p.84); capital raise referred to by an investor (CALL Oct 2025). Prospectus not available"
+        ],
+        [
+         "12 Apr 2019",
+         "[F] Padget Electronics, now the main mobile/IT subsidiary, listed in Form AOC-1 with this date (AR2026 p.514)"
+        ],
+        [
+         "15 Jan 2020",
+         "[F] Dixon Electro Appliances (telecom; 51%, Beetel/Airtel 49%) (AR2026 p.514, p.23)"
+        ],
+        [
+         "19 Mar 2021",
+         "[F] Stock split, Rs 10 into five Rs 2 shares (AR2026 p.157)"
+        ],
+        [
+         "15 May 2021",
+         "[F] Rexxam Dixon AC-PCB JV, 40% (AR2026 p.514)"
+        ],
+        [
+         "27 Apr 2022",
+         "[F] Califonix (wearables JV with Imagine Marketing), 50%, consolidated (AR2026 p.514)"
+        ],
+        [
+         "2023",
+         "[MC] Refrigerators added (AR2026 p.84)"
+        ],
+        [
+         "8 Jul 2024",
+         "[F] AIL Dixon JV stake swapped into Aditya Infotech shares (AR2026 p.511)"
+        ],
+        [
+         "14 Aug 2024",
+         "[F] 50.1% of Ismartu India (Transsion-linked) acquired (AR2026 p.514)"
+        ],
+        [
+         "1 Aug 2025",
+         "[F] Lighting moved into Lightanium, a 50:50 JV with Signify (AR2026 p.141, p.505)"
+        ],
+        [
+         "26 Sep 2025",
+         "[F] 51% of Kunshan Q Tech Microelectronics (India) acquired for Rs 553 cr (AR2026 p.504-505)"
+        ],
+        [
+         "18 Oct 2025",
+         "[F] Inventec JV (Dixon IT Devices, 60:40) closed (AR2026 p.141)"
+        ],
+        [
+         "2 Jan 2026",
+         "[F] ECMS approvals: camera modules (Q Tech), optical transceivers (AR2026 p.141-142)"
+        ],
+        [
+         "3 Mar 2026",
+         "[F] Longcheer JV (Dixtel Infocom, 74:26) closed (AR2026 p.142)"
+        ],
+        [
+         "30 Mar 2026",
+         "[F] ECMS approval for display modules (AR2026 p.142)"
+        ],
+        [
+         "31 Mar 2026",
+         "[MC] Mobile PLI 1 expired (CALL Aug 2026)"
+        ],
+        [
+         "Jul 2026",
+         "[MC] PN3 approval for Vivo JV received; consummation pending (CALL Aug 2026)"
+        ],
+        [
+         "30 Sep 2026",
+         "[F] DEAPL signed IP licence with Aviat for microwave radios (ANNOUNCEMENTS)"
+        ],
+        [
+         "7 Oct 2026",
+         "[F] Gemtek JV signed; Dixon Electroconnect to make optical transceivers, 60/40, targeted by 3 Feb 2027 (ANNOUNCEMENTS)"
+        ]
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Subsidiaries and group structure",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "Group entities, FY26 (Rs cr; turnover and PAT from Form AOC-1 / Board's report)",
+       "columns": [
+        "Entity",
+        "Incorporated / acquired",
+        "Business",
+        "Latest revenue",
+        "Latest PAT"
+       ],
+       "rows": [
+        [
+         "Padget Electronics (100%)",
+         "12 Apr 2019",
+         "Mobile, IT hardware (Noida, Chennai)",
+         "36,926 [F] (AR2026 p.514)",
+         "488.6 [F] (AR2026 p.514)"
+        ],
+        [
+         "Ismartu India (50.1%)",
+         "14 Aug 2024",
+         "Mobile/feature phones, Transsion-linked; exports to Africa",
+         "7,356 [F] (AR2026 p.514)",
+         "232.7 [F] (AR2026 p.514)"
+        ],
+        [
+         "Dixon Electro Appliances (51%)",
+         "15 Jan 2020",
+         "Telecom CPE, microwave radios",
+         "5,663 [F] (AR2026 p.514)",
+         "160.5 [F] (AR2026 p.514)"
+        ],
+        [
+         "Kunshan Q Tech Microelectronics India (51%)",
+         "26 Sep 2025",
+         "Camera and fingerprint modules",
+         "979 [F] (AR2026 p.514)",
+         "-1.1 [F] (AR2026 p.514)"
+        ],
+        [
+         "Dixon Electro Manufacturing (100%)",
+         "16 Mar 2021",
+         "Manufacturing",
+         "836 [F] (AR2026 p.514)",
+         "37.2 [F] (AR2026 p.514)"
+        ],
+        [
+         "Califonix Tech (50%, consolidated)",
+         "27 Apr 2022",
+         "Wearables and hearables",
+         "568 [F] (AR2026 p.514)",
+         "24.0 [F] (AR2026 p.514)"
+        ],
+        [
+         "Dixon Global (100%)",
+         "27 Oct 2010",
+         "Trading",
+         "64.6 [F] (AR2026 p.514)",
+         "3.0 [F] (AR2026 p.514)"
+        ],
+        [
+         "Dixon Display Technologies (100%; HKC partner pending)",
+         "25 Aug 2023",
+         "Display modules (pre-revenue)",
+         "Nil [F] (AR2026 p.514)",
+         "-0.2 [F] (AR2026 p.514)"
+        ],
+        [
+         "Dixtel Infocom (74%, Longcheer 26%)",
+         "20 Sep 2023",
+         "Smartphone JV (pre-revenue)",
+         "Nil [F] (AR2026 p.514)",
+         "-0.2 [F] (AR2026 p.514)"
+        ],
+        [
+         "Dixon IT Devices (60%, Inventec 40%)",
+         "19 Sep 2024",
+         "IT hardware JV (pre-revenue)",
+         "Nil [F] (AR2026 p.514)",
+         "-1.4 [F] (AR2026 p.514)"
+        ],
+        [
+         "Dixon Electroconnect / Teletech / Electrocorp (100%)",
+         "2024-2025",
+         "Optical transceivers / telecom / Li-ion cells (shells)",
+         "Nil [F] (AR2026 p.514)",
+         "Nominal losses [F] (AR2026 p.514)"
+        ],
+        [
+         "Rexxam Dixon (40% JV)",
+         "15 May 2021",
+         "AC PCBAs",
+         "Not consolidated",
+         "Share of profit 16.3 [F] (AR2026 p.515)"
+        ],
+        [
+         "Lightanium Technologies (50% JV with Signify)",
+         "26 Jun 2025",
+         "Lighting",
+         "Not consolidated",
+         "Share of profit 5.2 [F] (AR2026 p.515)"
+        ]
+       ]
+      }
+     ]
+    },
+    {
+     "title": "What the timeline reveals",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "[AI] Dixon is a 33-year-old company, but the business that drives today's valuation is very recent. Mobile and Other EMS was Rs 10,919 cr in FY24 and Rs 44,257 cr in FY26 [F] (AR2026 p.106). Q Tech, Ismartu, Inventec, Longcheer, Signify and all three ECMS approvals date from August 2024 or later [F] (AR2026 p.141-146, p.514). The display plant, the Vivo JV, the Inventec plant and the Gemtek JV produced no revenue by Q1 FY27 [F] (CALL Aug 2026; ANNOUNCEMENTS). The track record that matters for the thesis is therefore under two years old. The legacy consumer-electronics and lighting businesses that built the 30-year record are now 6% of revenue or deconsolidated [F] (AR2026 p.78, p.505)."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "business_model",
+   "title": "Business model: where Dixon sits in the chain",
+   "subsections": [
+    {
+     "title": "Production flow",
+     "blocks": [
+      {
+       "type": "bullets",
+       "items": [
+        "1. Brand customer awards a model or programme and specifies the bill of materials. In EMS mode the brand often controls key component sourcing such as memory [MC] (CALL May 2026).",
+        "2. Components are imported. Standalone CIF imports were Rs 2,064 cr [F] (AR2026 p.178-179). Group foreign-currency payables were Rs 8,198 cr, largely in USD, CNY and JPY [F] (AR2026 p.481-486).",
+        "3. Surface-mount PCB assembly, final assembly, testing and packing at Noida, Chennai, Tirupati and other plants [F] (AR2026 p.87).",
+        "4. In-house value-add steps: sheet metal and plastic moulding (since 2010), camera modules (Q Tech), and displays and SSDs (under construction) [MC] (AR2026 p.84; CALL Aug 2026).",
+        "5. Dispatch to brand (domestic) or export. Revenue recognised at a point in time [F] (AR2026 p.467).",
+        "6. PLI or other incentives accrue to Dixon as applicant. Part of them is passed to the customer: 'amount refundable to customers' was Rs 964 cr at FY26 [F] (AR2026 p.463)."
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Capability by process stage",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "Capability map",
+       "columns": [
+        "Stage",
+        "Dixon capability today",
+        "Evidence"
+       ],
+       "rows": [
+        [
+         "Product design",
+         "ODM in TVs, washing machines, refrigerators and lighting; smartphone design via Longcheer partnership",
+         "[MC] (CALL Aug 2026; AR2026 p.98)"
+        ],
+        [
+         "Component sourcing",
+         "Limited control in EMS; pass-through",
+         "[MC] (CALL May 2026)"
+        ],
+        [
+         "Components: camera modules",
+         "Operating (Q Tech), about 70m capacity",
+         "[F] (AR2026 p.78-81)"
+        ],
+        [
+         "Components: display modules",
+         "Plant built, machinery installing; trials Q3 FY27",
+         "[MC] (CALL Aug 2026)"
+        ],
+        [
+         "Components: SSD, optical transceivers, enclosures",
+         "Planned or starting",
+         "[MC] (CALL Aug 2026); [F] (ANNOUNCEMENTS)"
+        ],
+        [
+         "PCB assembly and box build",
+         "Core competence across verticals",
+         "[F] (AR2026 p.78-81)"
+        ],
+        [
+         "Plastics and sheet metal",
+         "In-house",
+         "[MC] (AR2026 p.84)"
+        ],
+        [
+         "Branding and distribution",
+         "None; B2B only",
+         "[F] (AR2026 p.283-284)"
+        ]
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Where value is captured",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "[AI] Value capture is thin and structural. FY26 materials consumption (cost of materials plus inventory change) was about Rs 45,277 cr, roughly 92.6% of revenue [E] (AR2026 p.419). In Q1 FY27 cost of materials rose to 94.2% of operating revenue [F] (PPT Aug 2026). Dixon earns its return through asset turns rather than price: fixed-asset turnover was 11.7x in FY26 [F] (NUMBERS). Components such as display (targeted mid-teens margin) [MC] (CALL May 2026) are the only route to higher value capture disclosed, and they are not yet producing."
+      }
+     ]
+    },
+    {
+     "title": "Outsourcing and capital intensity",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "Contractor wages and job work were Rs 432 cr in FY26 [F] (AR2026 p.469-470). The group had 4,394 on-roll and 26,351 off-roll workers [F] (AR2026 p.77), so labour is heavily contract-based [AI]. Capex/sales was 2.2% in FY26 and 3.2-3.9% in FY22-FY24 [F] (NUMBERS). Factories are increasingly leased: right-of-use assets rose from Rs 569 cr to Rs 831 cr [F] (AR2026 p.418). The model is asset-light on fixed capital. The components push (display, Q Tech) raises capital intensity [AI]."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "products",
+   "title": "Product portfolio",
+   "subsections": [
+    {
+     "title": "Product family table",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "Product families",
+       "columns": [
+        "Product",
+        "Application",
+        "Segment",
+        "Customer",
+        "Competitive intensity",
+        "Growth outlook",
+        "Margin potential"
+       ],
+       "rows": [
+        [
+         "Smartphones",
+         "Domestic and export handsets",
+         "Mobile & EMS",
+         "Motorola, Oppo via Longcheer, Transsion via Ismartu; Vivo pending [MC] (CALL May 2026)",
+         "High [AI]",
+         "Volume flat FY27 ex-Vivo [MC] (CALL Aug 2026)",
+         "Low: 2.6% segment margin Q1 FY27 [F] (PPT Aug 2026)"
+        ],
+        [
+         "Feature phones",
+         "Domestic, Africa exports",
+         "Mobile & EMS",
+         "Two largest Indian feature-phone brands [MC] (CALL Aug 2026)",
+         "Medium",
+         "Export-led [MC]",
+         "Not disclosed"
+        ],
+        [
+         "Telecom CPE and microwave radios",
+         "Routers, FWA, set-top boxes, backhaul radios",
+         "Mobile & EMS",
+         "Airtel (sales Rs 2,497 cr FY26) [F] (AR2026 p.23-28); US radio customer, Aviat licence [F] (ANNOUNCEMENTS)",
+         "Medium",
+         "Rs 6,700-7,000 cr FY27 [MC] (CALL Aug 2026)",
+         "5.1% op margin Q1 FY27 [MC] (CALL Aug 2026)"
+        ],
+        [
+         "IT hardware",
+         "Laptops, desktops, AIOs, tablets",
+         "Mobile & EMS",
+         "HP, Asus, Acer, Lenovo [MC] (CALL Oct 2025)",
+         "High",
+         "Q1 FY27 about Rs 1,350 cr [MC] (CALL Aug 2026)",
+         "Below mobile [MC] (CALL Aug 2026)"
+        ],
+        [
+         "Camera modules",
+         "Smartphones, auto",
+         "Mobile & EMS",
+         "Android brands incl. Motorola, Vivo, Samsung, Oppo [MC] (CALL Feb 2026)",
+         "High (imports)",
+         "70m to 180-190m capacity [MC] (CALL Aug 2026)",
+         "'Sub-10%' EBITDA target [MC] (CALL Oct 2025)"
+        ],
+        [
+         "Display modules",
+         "Mobile, IT, auto",
+         "Mobile & EMS (planned)",
+         "Captive plus auto OEMs [MC] (CALL May 2026)",
+         "Unknown",
+         "Production from end Q3/Q4 FY27 [MC]",
+         "Mid-teens target [MC] (CALL May 2026)"
+        ],
+        [
+         "LED TVs, IFPD, signage",
+         "Consumer and commercial displays",
+         "Consumer Electronics",
+         "Xiaomi, Samsung, Hisense, Panasonic, others [F] (AR2026 p.228)",
+         "High",
+         "Segment revenue -19% FY26 [F] (AR2026 p.106)",
+         "5.9% op margin Q1 FY27 incl. refrigerators [F] (PPT Aug 2026)"
+        ],
+        [
+         "Refrigerators",
+         "Direct cool, mini bars",
+         "Consumer Electronics",
+         "Haier onboarding [MC] (CALL Feb 2026)",
+         "Medium",
+         "Capacity to 3-3.2m [MC] (CALL Aug 2026)",
+         "Not disclosed separately"
+        ],
+        [
+         "Washing machines, robotic vacuums",
+         "SAWM, FATL, front-load",
+         "Home Appliances",
+         "Bosch, Voltas-Beko, Samsung, Eureka Forbes [F] (AR2026 p.228, p.141)",
+         "Medium",
+         "+22% YoY Q1 FY27 [F] (PPT Aug 2026)",
+         "8.4% op margin Q1 FY27 [F] (PPT Aug 2026)"
+        ],
+        [
+         "Wearables and hearables",
+         "TWS, smartwatches",
+         "Mobile & EMS (Califonix)",
+         "Imagine Marketing (boAt) [F] (AR2026 p.146)",
+         "High",
+         "Adjacent categories [MC] (CALL Aug 2026)",
+         "'Healthy' [MC]"
+        ]
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Commodity-like vs differentiated",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "[AI] Smartphone, feature-phone, IT hardware and telecom CPE assembly is commodity-like conversion. Dixon's edge is scale, approvals and policy-linked capacity, not product IP. The ODM lines (washing machines, refrigerators, TVs) carry Dixon-owned designs and earn higher percentage margins: Home Appliances 8.4% vs mobile 2.6% in Q1 FY27 [F] (PPT Aug 2026). They are small, though: 3% and 6% of revenue [F] (AR2026 p.78). Microwave radios, optical transceivers and displays could be differentiated, but today they rely on partner IP (Aviat licence, Gemtek, HKC) [F] (ANNOUNCEMENTS; AR2026 p.141)."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "segments",
+   "title": "Segment analysis",
+   "subsections": [
+    {
+     "title": "Segment revenue",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "Segment revenue (Rs cr, converted from Rs Mn in the annual report chart; chart text partly garbled, values as read) [F] (AR2026 p.106); residual vs consolidated sales [E] (NUMBERS)",
+       "columns": [
+        "Segment",
+        "FY24",
+        "FY25",
+        "FY26",
+        "FY26 mix",
+        "FY25 growth",
+        "FY26 growth"
+       ],
+       "rows": [
+        [
+         "Mobile & Other EMS",
+         "10,919",
+         "33,043",
+         "44,257",
+         "90.6%",
+         "+202.6%",
+         "+33.9%"
+        ],
+        [
+         "Consumer Electronics & Refrigerators",
+         "4,148",
+         "3,590",
+         "2,892",
+         "5.9%",
+         "-13.5%",
+         "-19.4%"
+        ],
+        [
+         "Home Appliances",
+         "1,205",
+         "1,366",
+         "1,426",
+         "2.9%",
+         "+13.4%",
+         "+4.4%"
+        ],
+        [
+         "Residual (lighting to Jul 2025, other; unexplained)",
+         "1,419",
+         "861",
+         "298",
+         "0.6%",
+         "n.m.",
+         "n.m."
+        ],
+        [
+         "Consolidated sales",
+         "17,691",
+         "38,860",
+         "48,873",
+         "100%",
+         "+119.7%",
+         "+25.8%"
+        ]
+       ]
+      },
+      {
+       "type": "table",
+       "caption": "Latest quarterly segment data (Rs cr) [F] (PPT Aug 2026)",
+       "columns": [
+        "Segment",
+        "Q1 FY26 revenue",
+        "Q1 FY27 revenue",
+        "Q1 FY26 op margin",
+        "Q1 FY27 op margin",
+        "Capital employed Q1 FY27",
+        "ROCE TTM"
+       ],
+       "rows": [
+        [
+         "Mobile & Other EMS",
+         "11,663",
+         "14,179",
+         "3.4%",
+         "2.6%",
+         "3,128",
+         "48% (85%)"
+        ],
+        [
+         "Consumer Electronics & Refrigerators",
+         "672",
+         "987",
+         "6.0%",
+         "5.9%",
+         "875",
+         "16% (21%)"
+        ],
+        [
+         "Home Appliances",
+         "313",
+         "382",
+         "11.5%",
+         "8.4%",
+         "497",
+         "29% (38%)"
+        ]
+       ]
+      },
+      {
+       "type": "callout",
+       "tone": "warn",
+       "text": "Annual segment margins are not disclosed. The consolidated accounts report a single segment, 'Electronics Goods', with no segment results or assets [F] (AR2026 p.497). Quarterly segment margins appear only in investor presentations [F] (PPT Aug 2026). Management declined to split telecom, wearables and Q Tech within Mobile & EMS [MC] (CALL May 2026), though it gave ad-hoc figures on later calls."
+      }
+     ]
+    },
+    {
+     "title": "Why segments moved",
+     "blocks": [
+      {
+       "type": "bullets",
+       "items": [
+        "**Mobile & EMS.** Management cites memory-led price pass-through and share gains [MC] (CALL Aug 2026). [AI] FY26 growth of +33.9% includes the first full year of Ismartu (Rs 7,356 cr turnover), consolidation of Q Tech from 26 Sep 2025, and telecom growth from about Rs 3,600 cr to Rs 5,000 cr [F] (AR2026 p.514) [MC] (CALL May 2026). Organic smartphone growth was modest: volumes of about 32-33m in FY26 against 40-42m guided [MC] (CALL Oct 2025; CALL May 2026).",
+        "**Consumer Electronics.** Management cites GST-cut deferral, energy-norm transition and memory costs [MC] (CALL Oct 2025; CALL Feb 2026; CALL Aug 2026). [AI] Three consecutive years of decline suggest share loss or a deliberate de-emphasis, not only transient factors.",
+        "**Home Appliances.** Management cites capacity additions and new products [MC] (CALL Aug 2026). [AI] Growth is real but slow, and Q1 FY27 margin fell 310 bps on polymer and FX costs [F] (PPT Aug 2026), which undercuts the claim of full pass-through in ODM [MC] (CALL May 2026).",
+        "**Order-driven vs organic** [AI]: All segments are programme- and order-driven by nature. Mobile volumes are set by brand allocation, with 2-3 months of visibility [MC] (CALL Aug 2026). Telecom depends on Airtel's capex cycle (related-party customer). Appliances are closest to organic demand-driven."
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "revenue_bridge",
+   "title": "Revenue bridge",
+   "subsections": [
+    {
+     "title": "FY25 to FY26 bridge",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "FY26 revenue bridge (Rs cr)",
+       "columns": [
+        "Driver",
+        "Impact Rs cr",
+        "Basis"
+       ],
+       "rows": [
+        [
+         "FY25 consolidated sales",
+         "38,860",
+         "[F] (NUMBERS)"
+        ],
+        [
+         "Mobile & Other EMS segment change",
+         "+11,214",
+         "[F] segment chart (AR2026 p.106)"
+        ],
+        [
+         "  of which telecom (management figures)",
+         "about +1,400",
+         "[MC] Rs 3,600 cr to Rs 5,000 cr (CALL May 2026)"
+        ],
+        [
+         "  of which Q Tech consolidation from 26 Sep 2025",
+         "Not separately disclosed",
+         "[F] Revenue contribution since acquisition not disclosed (AR2026 p.504-505)"
+        ],
+        [
+         "Consumer Electronics & Refrigerators change",
+         "-698",
+         "[F] (AR2026 p.106)"
+        ],
+        [
+         "Home Appliances change",
+         "+60",
+         "[F] (AR2026 p.106)"
+        ],
+        [
+         "Residual (incl. lighting deconsolidation from 1 Aug 2025)",
+         "-563",
+         "[E] residual"
+        ],
+        [
+         "FY26 consolidated sales",
+         "48,873",
+         "[F] (NUMBERS)"
+        ],
+        [
+         "Memo: exports change",
+         "+3,679",
+         "[F] Rs 1,742 cr to Rs 5,421 cr (AR2026 p.467)"
+        ]
+       ]
+      }
+     ]
+    },
+    {
+     "title": "What is known for FY27",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "Q1 FY27 sales were Rs 15,548 cr, +21.1% YoY [F] (NUMBERS). Smartphone volume was about 7.5m units [MC] (CALL Aug 2026), so growth was price-led. Management's FY27 target is 'almost Rs 56,000 cr without the Vivo numbers', with mobile volume flat [MC] (CALL May 2026). That is about +14.6% on FY26 [E]. Q2 FY27 smartphone orders are 9-9.2m units [MC] (CALL Aug 2026). There is no deferred-order or backlog disclosure. Customer advances of Rs 491 cr at FY26 are the only balance-sheet sign of prepaid orders [F] (AR2026 p.465)."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "export_domestic",
+   "title": "Exports, domestic mix and trade exposure",
+   "subsections": [
+    {
+     "title": "Geography",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "Revenue by geography (Rs cr)",
+       "columns": [
+        "Region",
+        "FY25",
+        "FY26",
+        "% of FY26",
+        "Growth"
+       ],
+       "rows": [
+        [
+         "India",
+         "37,118",
+         "43,452",
+         "88.9%",
+         "+17.1% [E]"
+        ],
+        [
+         "Outside India",
+         "1,742",
+         "5,421",
+         "11.1%",
+         "+211% [E]"
+        ],
+        [
+         "Total",
+         "38,860",
+         "48,873",
+         "100%",
+         "+25.8%"
+        ]
+       ]
+      },
+      {
+       "type": "p",
+       "text": "Source: [F] (AR2026 p.467). The country split is not disclosed. Management names the US (anchor customer, understood to be Motorola) and Africa (Transsion via Ismartu) as destinations [MC] (CALL May 2026). Management put FY26 exports at about Rs 5,375 cr [MC] (CALL May 2026) against Rs 5,421 cr in the accounts [F] (AR2026 p.467). The two figures are close but not reconciled. Q1 FY27 exports were about Rs 1,100 cr, about 0.6-0.7m smartphones [MC] (CALL Aug 2026). A multi-year CAGR cannot be computed because only two years are disclosed."
+      }
+     ]
+    },
+    {
+     "title": "Strategy or mix?",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "[AI] The FY26 export jump is customer mix, not a broad strategy. It comes from one anchor's US programme and Ismartu's Africa shipments. The same anchor 'has started manufacturing with another EMS company' [MC] (CALL Feb 2026), which exposes the export line to allocation shifts. Management expects FY27 export run-rate to be similar to FY26 [MC] (CALL Feb 2026). Q1 FY27 at about Rs 1,100 cr is a lower quarterly run-rate than FY26's average of about Rs 1,355 cr [E]."
+      }
+     ]
+    },
+    {
+     "title": "Currency, tariff and location risk",
+     "blocks": [
+      {
+       "type": "bullets",
+       "items": [
+        "**Currency.** Net foreign-currency exposure was Rs 7,552 cr, of which only Rs 142 cr of payables was hedged. A 1% move changes PBT by Rs 75.5 cr [F] (AR2026 p.481-486), about 3.6% of FY26 PBT [E]. Management says EMS is 'an absolute pass-through. So there is no currency risk' [MC] (CALL May 2026). Yet FX hurt Q Tech margins and the Q1 FY27 appliance margin [MC] (CALL Aug 2026). The pass-through claim is not fully supported [AI].",
+        "**Tariffs.** Management says mobile phones are tariff-exempt in all markets, so the EU FTA (Jan 2026) helps lighting and TVs rather than phones [MC] (CALL Feb 2026). No dated US tariff measures affecting Dixon are disclosed in the documents.",
+        "**Location concentration.** Mobile manufacturing is concentrated in Noida (Sectors 60, 63, 68, 90) with an IT campus in Chennai [F] (AR2026 p.87). The new 1m sq ft anchor-customer facility is also in Noida [MC] (CALL Aug 2026). A regional disruption in the NCR would hit most of revenue [AI]."
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "customer_forensics",
+   "title": "Customer forensics",
+   "subsections": [
+    {
+     "title": "Concentration trend",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "Customer concentration",
+       "columns": [
+        "Measure",
+        "FY25",
+        "FY26",
+        "Source"
+       ],
+       "rows": [
+        [
+         "Top 3 customers, consolidated",
+         "60%",
+         "62%",
+         "[F] (AR2026 p.497)"
+        ],
+        [
+         "Top 3 customers, standalone",
+         "45% (top 2)",
+         "49%",
+         "[F] (AR2026 p.382)"
+        ],
+        [
+         "Top 1",
+         "Not disclosed",
+         "Not disclosed",
+         "[F] (AR2026 p.497)"
+        ],
+        [
+         "Top 5 / top 10",
+         "Not disclosed",
+         "Not disclosed",
+         "-"
+        ],
+        [
+         "Customers above 10% of receivables",
+         "-",
+         "3",
+         "[F] (AR2026 p.484)"
+        ]
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Named customers",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "Named customers with any disclosed revenue",
+       "columns": [
+        "Customer",
+        "Relationship",
+        "Revenue by year"
+       ],
+       "rows": [
+        [
+         "Bharti Airtel (via DEAPL)",
+         "Partner Beetel holds 49% of DEAPL since 2020",
+         "Sales Rs 2,496.7 cr FY26; Rs 1,159.8 cr FY27 to date [F] (AR2026 p.23-28)"
+        ],
+        [
+         "G-Mobile Devices (Transsion distributor, via Ismartu)",
+         "Since Ismartu acquisition Aug 2024",
+         "Sales Rs 3,644.5 cr FY26 [F] (AR2026 p.39-44)"
+        ],
+        [
+         "Motorola",
+         "Anchor; also export customer",
+         "Not disclosed [MC] (CALL May 2026)"
+        ],
+        [
+         "Samsung, Xiaomi, Hisense, Panasonic, Acer, others",
+         "Various",
+         "Not disclosed [F] (AR2026 p.228)"
+        ],
+        [
+         "HP, Asus, Lenovo, Acer (IT)",
+         "From FY25-FY26",
+         "Not disclosed [MC] (CALL Oct 2025)"
+        ],
+        [
+         "Vivo",
+         "JV pending",
+         "Nil [MC] (CALL Aug 2026)"
+        ]
+       ]
+      },
+      {
+       "type": "callout",
+       "tone": "warn",
+       "text": "Management states that the share of revenue from anchor clients is 'confidential information, and we don't share that' [MC] (CALL Oct 2025). The only customer revenues disclosed come from related-party approvals, because the customer is also a JV partner's group company [F] (AR2026 p.23-44)."
+      }
+     ]
+    },
+    {
+     "title": "Agreements and case studies",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "No long-term supply agreements or minimum-volume contracts are disclosed. Visibility is described as 'short-term', with two months of order book [MC] (CALL Aug 2026). The disclosed case studies are qualitative: Eureka Forbes robotic vacuums, a US microwave-radio customer, Signify lighting exports [F] (AR2026 p.141) [MC] (CALL Oct 2025). Related-party approval caps run through FY2028-29 (Airtel Rs 4,500 cr a year; Longcheer Rs 9,000 cr a year) [F] (AR2026 p.23-58). These are shareholder ceilings, not contracted volumes [AI]."
+      }
+     ]
+    },
+    {
+     "title": "Is concentration improving?",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "[AI] Shown both ways. On the disclosed metric, concentration is worsening: top 3 went from 60% to 62% [F] (AR2026 p.497). On the narrative, it should improve: Vivo, Longcheer, Inventec and new IT brands would add names [MC] (CALL Aug 2026). But Vivo alone at 20-22m units [MC] (CALL May 2026) would likely become a top-3 customer, so concentration is more likely to rotate than to fall. One anchor has already allocated volume to a rival EMS [MC] (CALL Feb 2026)."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "client_analysis",
+   "title": "Client-by-client analysis",
+   "subsections": [
+    {
+     "title": "Client table",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "Identifiable clients",
+       "columns": [
+        "Client",
+        "What they do",
+        "Why they buy from Dixon",
+        "Product",
+        "Approved supplier?",
+        "Duration",
+        "Sticky?",
+        "Growing?",
+        "Wallet-share upside"
+       ],
+       "rows": [
+        [
+         "Motorola",
+         "Smartphone brand",
+         "Scale, India PLI base, US exports",
+         "Smartphones",
+         "Yes",
+         "Multi-year",
+         "Medium: has added another EMS [MC] (CALL Feb 2026)",
+         "Yes per mgmt [MC]",
+         "Exports under PLI 2 [MC] (CALL Aug 2026)"
+        ],
+        [
+         "Transsion group (Ismartu/G-Mobile/Tecno)",
+         "Global feature/smart phone brand",
+         "JV partner (49.9% of Ismartu)",
+         "Feature phones, smartphones",
+         "Yes",
+         "Since Aug 2024",
+         "High (equity tie)",
+         "Africa exports [MC]",
+         "Medium"
+        ],
+        [
+         "Bharti Airtel",
+         "Telecom operator",
+         "Partner Beetel owns 49% of DEAPL",
+         "CPE, FWA, set-top boxes",
+         "Yes",
+         "Since 2020",
+         "High (equity tie)",
+         "Flat QoQ Q2 [MC] (CALL Aug 2026)",
+         "Limited by Airtel capex [AI]"
+        ],
+        [
+         "Longcheer / Oppo",
+         "Smartphone ODM",
+         "JV (74:26)",
+         "Smartphones",
+         "Yes",
+         "JV from Mar 2026",
+         "High",
+         "8-10m units FY27 [MC] (CALL Feb 2026)",
+         "Other IoT categories [MC]"
+        ],
+        [
+         "Vivo",
+         "Smartphone brand",
+         "JV (51:49), PN3 approved",
+         "Smartphones",
+         "Pending",
+         "-",
+         "-",
+         "20-22m units annualised [MC] (CALL May 2026)",
+         "Large if closed"
+        ],
+        [
+         "HP, Asus, Acer, Lenovo",
+         "PC brands",
+         "IT PLI, capacity",
+         "Laptops, AIOs, desktops, tablets",
+         "Yes",
+         "1-2 years",
+         "Low-medium",
+         "Yes [MC] (CALL Aug 2026)",
+         "Top 4 of 5 brands already on board [MC]"
+        ],
+        [
+         "Samsung",
+         "Electronics brand",
+         "ODM/OEM",
+         "TVs, appliances; Q Tech camera modules",
+         "Yes",
+         "Not disclosed",
+         "Medium",
+         "Not disclosed",
+         "Not disclosed"
+        ],
+        [
+         "Signify",
+         "Lighting brand",
+         "JV partner",
+         "Lighting",
+         "Yes",
+         "JV from Aug 2025",
+         "High",
+         "2x target [MC] (CALL May 2026)",
+         "Exports"
+        ],
+        [
+         "Eureka Forbes",
+         "Appliance brand",
+         "ODM",
+         "Robotic vacuums",
+         "Yes",
+         "From FY26",
+         "Unknown",
+         "Order book 'healthy' [MC]",
+         "Unknown"
+        ]
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Overall read",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "[AI] The most durable relationships are the ones where the customer owns equity in the Dixon entity that serves it (Airtel, Transsion, Longcheer, Signify, and potentially Vivo). Those relationships are sticky, but the customer is on both sides of the price. Value is shared through NCI, and governance relies on related-party pricing tests [F] (AR2026 p.23). The pure third-party relationships (Motorola, PC brands) are the ones exposed to allocation risk, and the one disclosed instance of a multi-sourcing shift came from that group."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "order_book",
+   "title": "Order book forensics",
+   "subsections": [
+    {
+     "title": "What is disclosed",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "**No order book, backlog or L1 position is disclosed** in the annual report or the investor presentation [F] (AR2026 p.190-193; PPT Aug 2026). Management uses 'order book' qualitatively: 'healthy order book' for telecom, IT hardware, robotic vacuums and refrigerators [MC] (CALL Aug 2026). The only quantified figure is: 'our order book for Q2 to be precise, is somewhere around 9 million to 9.2 million' smartphones [MC] (CALL Aug 2026). The CFO framed this as 'short-term visibility' [MC] (CALL Aug 2026)."
+      }
+     ]
+    },
+    {
+     "title": "Metrics",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "Order-book metrics",
+       "columns": [
+        "Metric",
+        "Value",
+        "Basis"
+       ],
+       "rows": [
+        [
+         "Order book (Rs cr)",
+         "Not disclosed",
+         "[F] (AR2026; PPT Aug 2026)"
+        ],
+        [
+         "Book-to-bill",
+         "Not computable",
+         "-"
+        ],
+        [
+         "Visibility",
+         "About 2 months (smartphones, Q2 FY27)",
+         "[MC] (CALL Aug 2026)"
+        ],
+        [
+         "Customer advances",
+         "Rs 491 cr (FY26) vs Rs 55 cr (FY25)",
+         "[F] (AR2026 p.465)"
+        ]
+       ]
+      },
+      {
+       "type": "table",
+       "caption": "Execution timeline for quantified items",
+       "columns": [
+        "Item",
+        "Quantity",
+        "Promised timing",
+        "Status"
+       ],
+       "rows": [
+        [
+         "Q2 FY27 smartphones",
+         "9-9.2m units",
+         "Jul-Sep 2026",
+         "Pending; Q2 results due"
+        ],
+        [
+         "H1 FY27 smartphones",
+         "16-16.5m units",
+         "By Sep 2026",
+         "Q1 delivered about 7.5m [MC] (CALL Aug 2026)"
+        ],
+        [
+         "Microwave radios (US customer)",
+         "Not quantified",
+         "Commercial production Mar 2026; exports FY27",
+         "Scaled up per mgmt [MC] (CALL Aug 2026)"
+        ],
+        [
+         "Lighting export orders (US and European chains)",
+         "Not quantified",
+         "From Q2 FY27",
+         "Pending [MC]"
+        ]
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Revenue quality ladder (A-F)",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "Separating confirmed revenue from aspiration",
+       "columns": [
+        "Tier",
+        "Definition",
+        "Dixon content",
+        "Rs cr / units",
+        "Label"
+       ],
+       "rows": [
+        [
+         "A",
+         "Confirmed revenue",
+         "FY26 sales; Q1 FY27 sales",
+         "48,873; 15,548",
+         "[F] (NUMBERS)"
+        ],
+        [
+         "B",
+         "Contracted, not recognised",
+         "No disclosed backlog; customer advances only",
+         "491 (advances)",
+         "[F] (AR2026 p.465)"
+        ],
+        [
+         "C",
+         "Qualified opportunity",
+         "Q2 smartphone orders; Vivo JV (PN3 approved); telecom FY27 outlook",
+         "9-9.2m units; 20-22m units annualised; Rs 6,700-7,000 cr",
+         "[MC] (CALL Aug 2026; CALL May 2026)"
+        ],
+        [
+         "D",
+         "Tender pipeline",
+         "Not applicable (private B2B); no tenders disclosed",
+         "-",
+         "[AI]"
+        ],
+        [
+         "E",
+         "Management aspiration",
+         "Rs 1 lakh cr revenue in 3-4 years; Rs 56,000 cr FY27 ex-Vivo; display Rs 5,500-6,000 cr; Q Tech Rs 6,000-7,000 cr; PLI 2 exports Rs 18,000-20,000 cr; specialty EMS Rs 3,000-4,000 cr",
+         "-",
+         "[MC] (CALL Oct 2025; CALL May 2026; CALL Aug 2026)"
+        ],
+        [
+         "F",
+         "Industry TAM",
+         "Indian EMS US$40-45bn (FY25) to more than US$150bn (FY30), per KPMG",
+         "-",
+         "[F] stated in (AR2026 p.188); context only"
+        ]
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "business_line_deep_dives",
+   "title": "Business-line deep dives",
+   "subsections": [
+    {
+     "title": "1. Smartphones: PLI 1 sunset, Vivo and PLI 2",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "**Where Dixon sits.** Final assembly and testing for brands, with camera-module sub-assembly via Q Tech [F] (AR2026 p.78-81). **What exists.** About 32-33m smartphones in FY26, including about 4-4.5m exported [MC] (CALL May 2026). Installed capacity is 65m [F] (AR2026 p.78). **Narrative vs reality.** In October 2025 management guided FY27 to 55-60m units including Vivo, and 'maintained' 60-65m [MC] (CALL Oct 2025). By May 2026 the guidance was flat ex-Vivo [MC] (CALL May 2026). **Government exposure.** PLI income across four schemes was about Rs 360 cr net in FY26, of which mobile and EMS about Rs 250 cr [MC] (CALL May 2026). Padget's Rs 1,110 cr overflow claim is undetermined [F] (AR2026 p.509)."
+      },
+      {
+       "type": "table",
+       "caption": "Smartphone opportunity framing",
+       "columns": [
+        "Figure",
+        "Basis"
+       ],
+       "rows": [
+        [
+         "TAM: Indian EMS US$40-45bn FY25",
+         "[F] KPMG, stated in (AR2026 p.188); not company revenue"
+        ],
+        [
+         "SAM: Indian outsourced smartphone market; Dixon about 55-60% at 60m units per an analyst's estimate",
+         "[MC] analyst framing accepted by mgmt (CALL Oct 2025; CALL May 2026)"
+        ],
+        [
+         "Realistic near-term: 32-33m units ex-Vivo plus 20-22m Vivo annualised",
+         "[MC] (CALL May 2026)"
+        ],
+        [
+         "Export upside: 15-20m units, Rs 18,000-20,000 cr",
+         "[MC] (CALL Aug 2026)"
+        ]
+       ]
+      },
+      {
+       "type": "p",
+       "text": "[AI] Strategic implication: with domestic share already high, mobile growth now depends on Vivo and on exports under a PLI 2 that is not yet notified in our documents. Without them, the FY27 smartphone line is price inflation on flat units."
+      }
+     ]
+    },
+    {
+     "title": "2. Components: displays and camera modules",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "**What exists.** Q Tech, 51% owned since 26 Sep 2025: Rs 979 cr turnover with a net loss, and negative net assets of Rs -82.9 cr at FY26 [F] (AR2026 p.514). Goodwill of Rs 523 cr [F] (AR2026 p.505). It is funded by Rs 360 cr of ECBs from its Chinese parent [F] (AR2026 p.459). Q Tech margins are 'not to the same potential as what we had thought' [MC] (CALL Aug 2026). The display plant is built, with machinery installing [MC] (CALL Aug 2026). **Narrative drift.** Q Tech revenue target: Rs 6,000-7,000 cr in 2-3 years (Oct 2025), then about Rs 2,500 cr (May 2026) [MC]. Display: trials 'by Q2' (Feb 2026), then Q3 FY27 (May and Aug 2026) [MC]."
+      },
+      {
+       "type": "table",
+       "caption": "Component opportunity framing",
+       "columns": [
+        "Figure",
+        "Basis"
+       ],
+       "rows": [
+        [
+         "Camera module import market about US$350-400m",
+         "[MC] (CALL Feb 2026)"
+        ],
+        [
+         "Display revenue Rs 5,500-6,000 cr at 80-90% utilisation, mid-teens margin",
+         "[MC] (CALL May 2026)"
+        ],
+        [
+         "Display aspiration US$800-900m in 2-3 years",
+         "[MC] (CALL Oct 2025)"
+        ],
+        [
+         "Display capex Rs 1,100-1,200 cr; camera module capex Rs 250-300 cr",
+         "[MC] (CALL Feb 2026)"
+        ],
+        [
+         "Delivered to date: display nil; Q Tech about Rs 500 cr in Q1 FY27",
+         "[MC] (CALL Aug 2026)"
+        ]
+       ]
+      },
+      {
+       "type": "p",
+       "text": "[AI] Strategic implication: this is the only disclosed route to structurally higher margins. It is pre-revenue in display, loss-making in camera modules, and partner-dependent (HKC 26%, Q Tech parent 49%). It deserves an option value, not a base-case one."
+      }
+     ]
+    },
+    {
+     "title": "3. Telecom and IT hardware",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "Telecom grew from about Rs 700 cr to Rs 3,600 cr to Rs 5,000 cr over FY24-FY26 [MC] (CALL May 2026). Q1 FY27 was about Rs 2,100 cr at a 5.1% operating margin [MC] (CALL Aug 2026). Airtel accounted for Rs 2,497 cr of DEAPL's sales in FY26 [F] (AR2026 p.23-28), so roughly half of telecom revenue is from a related-party operator [E]. IT hardware: management said Q1 FY27 was about Rs 1,350 cr, and in the same call 'approximately INR1,300-odd crores which we did in the whole year last year' [MC] (CALL Aug 2026). In February it had guided FY26 IT hardware to about Rs 1,500 cr [MC] (CALL Feb 2026). These figures are not reconciled."
+      },
+      {
+       "type": "table",
+       "caption": "Telecom and IT framing",
+       "columns": [
+        "Figure",
+        "Basis"
+       ],
+       "rows": [
+        [
+         "Indian IT hardware market US$12-13bn; Dixon potential US$1.5-2bn domestic",
+         "[MC] (CALL Oct 2025)"
+        ],
+        [
+         "Telecom FY27 Rs 6,700-7,000 cr (cut from Rs 7,500-8,000 cr)",
+         "[MC] (CALL Aug 2026; CALL May 2026)"
+        ],
+        [
+         "IT hardware FY27 more than Rs 4,000 cr",
+         "[MC] (CALL May 2026)"
+        ],
+        [
+         "Microwave radio aspiration: business 'close to $1 billion' in a couple of years",
+         "[MC] (CALL Oct 2025)"
+        ]
+       ]
+      },
+      {
+       "type": "p",
+       "text": "[AI] Strategic implication: telecom is the best-margin EMS line disclosed. Its growth leans on a related-party operator and on partner IP (Aviat licence). IT hardware is scaling quickly but at below-mobile margins, so it adds revenue more than profit."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "capacity",
+   "title": "Capacity and utilisation",
+   "subsections": [
+    {
+     "title": "Facility map",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "Facilities and installed capacity (capacity as of 31 Mar 2026 by product, not by plant)",
+       "columns": [
+        "Facility",
+        "Location",
+        "Process",
+        "Installed capacity",
+        "Utilisation",
+        "Notes"
+       ],
+       "rows": [
+        [
+         "Padget mobile plants",
+         "Noida Sec-60, 63, 68 [F] (AR2026 p.87)",
+         "Smartphone and feature-phone assembly",
+         "Smartphones 65m; feature phones 40m (group) [F] (AR2026 p.78)",
+         "About 50% for smartphones [E] (32-33m / 65m)",
+         "New 1m sq ft anchor-customer plant from Q3 FY27 [MC] (CALL Aug 2026)"
+        ],
+        [
+         "Dixon mobile",
+         "Noida Sec-90 [F] (AR2026 p.87)",
+         "Mobile assembly",
+         "Included above",
+         "Not disclosed",
+         "-"
+        ],
+        [
+         "Chennai IT campus",
+         "Chennai [F] (AR2026 p.87)",
+         "Laptops, AIOs, desktops",
+         "2.5m [F] (AR2026 p.107); 'almost around 2 million' [MC] (CALL Aug 2026)",
+         "Not disclosed",
+         "Inventec JV plant end Q3/early Q4 FY27 [MC]"
+        ],
+        [
+         "Telecom",
+         "Noida Sec-85; Ludhiana [F] (AR2026 p.87)",
+         "CPE, radios",
+         "22m units [F] (AR2026 p.81)",
+         "Not disclosed",
+         "Gwalior zone planned [MC] (CALL Aug 2026)"
+        ],
+        [
+         "Wearables (Califonix)",
+         "Noida Sec-85 [F] (AR2026 p.87)",
+         "TWS, smartwatches",
+         "36m [F] (AR2026 p.81)",
+         "Not disclosed",
+         "-"
+        ],
+        [
+         "Washing machines and TVs",
+         "Tirupati; Dehradun [F] (AR2026 p.87)",
+         "SAWM, FATL, front-load, TV",
+         "SAWM 2.5m; FATL 0.6m; front-load 0.2m; TV 5m [F] (AR2026 p.78-79)",
+         "Not disclosed",
+         "Tirupati +0.3m units [MC] (CALL Aug 2026)"
+        ],
+        [
+         "Refrigerators",
+         "Greater Noida Kasna [F] (AR2026 p.87)",
+         "Direct cool, mini bars",
+         "2.4m [F] (AR2026 p.80)",
+         "Not disclosed",
+         "Expansion to 3-3.2m [MC] (CALL Aug 2026); MD&A says 1.2m to 2m (AR2026 p.192), not reconciled"
+        ],
+        [
+         "Camera modules (Q Tech)",
+         "Not disclosed in our extracts",
+         "Camera and fingerprint modules",
+         "About 70m [F] (AR2026 p.81)",
+         "Not disclosed",
+         "To 180-190m over 15-18 months [MC] (CALL Aug 2026)"
+        ],
+        [
+         "Display modules (HKC JV)",
+         "Not disclosed",
+         "Display assembly",
+         "Phase 1: 24m mobile + 2-2.4m IT/auto (under installation) [MC] (CALL May 2026)",
+         "Nil (pre-production)",
+         "Trials Q3 FY27 [MC]"
+        ],
+        [
+         "Rexxam (JV) / Lightanium (JV)",
+         "Noida B-18; Noida C-33, Vadodara [F] (AR2026 p.87)",
+         "AC PCBA; lighting",
+         "Not disclosed",
+         "Not disclosed",
+         "Equity-accounted"
+        ]
+       ]
+      },
+      {
+       "type": "p",
+       "text": "The group reports 30 facilities of about 6.4m sq ft [F] (AR2026 p.85), but 29 manufacturing units elsewhere in the same report [F] (AR2026 p.107). These are not reconciled."
+      }
+     ]
+    },
+    {
+     "title": "Utilisation trend and drivers",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "Utilisation is not disclosed for any plant [F] (AR2026). The only computable proxy is smartphones. Volume of about 32-33m [MC] (CALL May 2026) against 65m installed capacity [F] (AR2026 p.78) implies roughly 50% [E]. Q1 FY27 at 7.5m units annualises to 30m, about 46% [E]. Management attributes the weak volumes to a memory-cost-driven market contraction of 10-12% [MC] (CALL Aug 2026). Capacity is being added anyway: a new 1m sq ft Noida plant and the Longcheer plant [MC] (CALL Aug 2026; CALL May 2026). [AI] Capacity is being built ahead of demand that depends on Vivo and PLI 2."
+      }
+     ]
+    },
+    {
+     "title": "Revenue potential from higher utilisation (sensitivity, not base case)",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "[E] Sensitivity only. Management's own export arithmetic (Rs 18,000-20,000 cr for 15-20m units) [MC] (CALL Aug 2026) implies about Rs 9,000-13,300 of revenue per smartphone. On that basis, every 10m additional units (about 15 points of smartphone utilisation) would add roughly Rs 9,000-13,300 cr of revenue. At the Q1 FY27 Mobile & EMS margin of 2.6% [F] (PPT Aug 2026), that is about Rs 230-350 cr of operating profit. Raising smartphone utilisation from about 50% to 75% (+16m units) would add about Rs 14,400-21,300 cr of revenue [E]. This is arithmetic on management figures, not a forecast."
+      }
+     ]
+    },
+    {
+     "title": "Lease expiries",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "Consolidated undiscounted lease payments are Rs 569 cr: Rs 66 cr within one year, Rs 111 cr in 1-3 years, Rs 119 cr in 3-5 years and Rs 231 cr beyond five years [F] (AR2026 p.461-463). Plant-by-plant lease expiries are not disclosed."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "capex_forensics",
+   "title": "Capex forensics",
+   "subsections": [
+    {
+     "title": "Historical capex",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "Capex history (Rs cr) [F] (NUMBERS); capex/EBITDA [E]; commitments [F] (AR2026 p.475)",
+       "columns": [
+        "Year",
+        "Capex",
+        "Capex/revenue",
+        "Capex/EBITDA",
+        "Capital commitments"
+       ],
+       "rows": [
+        [
+         "FY22",
+         "418",
+         "3.9%",
+         "109%",
+         "Not disclosed"
+        ],
+        [
+         "FY23",
+         "450",
+         "3.7%",
+         "87%",
+         "Not disclosed"
+        ],
+        [
+         "FY24",
+         "568",
+         "3.2%",
+         "81%",
+         "Not disclosed"
+        ],
+        [
+         "FY25",
+         "896",
+         "2.3%",
+         "59%",
+         "162"
+        ],
+        [
+         "FY26",
+         "1,058",
+         "2.2%",
+         "56%",
+         "294"
+        ],
+        [
+         "Q1 FY27",
+         "335",
+         "2.2%",
+         "72% of operating EBITDA",
+         "Not disclosed"
+        ]
+       ]
+      },
+      {
+       "type": "p",
+       "text": "The cash-flow statement shows PPE and CWIP purchases of Rs 1,067.5 cr in FY26 [F] (AR2026 p.420-421), against Rs 1,058 cr in our statements data and in management commentary [F] (NUMBERS) [MC] (CALL May 2026). Acquisitions of subsidiaries absorbed a further Rs 430.5 cr, mainly Q Tech [F] (AR2026 p.421). CWIP doubled to Rs 571 cr, and Rs 165 cr of it is more than one year old [F] (AR2026 p.443)."
+      }
+     ]
+    },
+    {
+     "title": "Incremental revenue vs incremental capital",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "Incremental sales per incremental net fixed assets plus CWIP [E] (NUMBERS)",
+       "columns": [
+        "Year",
+        "Change in sales",
+        "Change in NFA + CWIP",
+        "Ratio"
+       ],
+       "rows": [
+        [
+         "FY24",
+         "+5,499",
+         "+700",
+         "7.9x"
+        ],
+        [
+         "FY25",
+         "+21,169",
+         "+967",
+         "21.9x"
+        ],
+        [
+         "FY26",
+         "+10,013",
+         "+1,712",
+         "5.8x"
+        ],
+        [
+         "FY24-FY26 cumulative",
+         "+36,681 (vs FY23)",
+         "Capex 2,522",
+         "14.5x"
+        ]
+       ]
+      },
+      {
+       "type": "p",
+       "text": "[AI] Capital productivity fell sharply in FY26. FY25 benefited from filling existing mobile capacity. FY26 capex went into components, new plants and Q Tech, which have not yet produced revenue. The Rs 523 cr of Q Tech goodwill [F] (AR2026 p.505) is not in these ratios, which flatters them."
+      }
+     ]
+    },
+    {
+     "title": "Planned capex and funding",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "FY27 capex will be 'in the similar range' as FY26, focused on display, IT and camera modules [MC] (CALL May 2026). Display Rs 1,100-1,200 cr, Q Tech Rs 250-300 cr, optical transceivers Rs 50 cr, enclosures Rs 50-60 cr [MC] (CALL Feb 2026). The ECMS application covered about Rs 3,000 cr over three years [MC] (CALL Oct 2025). Funding is internal accruals [MC] (CALL May 2026), plus partner equity and Q Tech parent ECBs [F] (AR2026 p.459, p.505). The Vivo acquisition consideration is 'confidential' [MC] (CALL Feb 2026)."
+      }
+     ]
+    },
+    {
+     "title": "Classification",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "[AI] Historically asset-light: capex is 2-4% of sales and fixed-asset turnover above 10x [F] (NUMBERS). The business is moving towards moderate capital intensity as component plants (lower asset turns, by management's own admission) are added [MC] (CALL Oct 2025)."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "raw_materials",
+   "title": "Raw materials and input-cost exposure",
+   "subsections": [
+    {
+     "title": "Key inputs and import dependence",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "Key inputs are memory chips, semiconductors, display panels and modules, polymers and metals [MC] (CALL Feb 2026; CALL Aug 2026) [F] (AR2026 p.198). Standalone CIF imports were Rs 2,064 cr in FY26 vs Rs 2,430 cr [F] (AR2026 p.178-179). Group foreign-currency payables were Rs 8,198 cr, about 76% of trade payables [E] (AR2026 p.481-486, p.418), denominated in USD, CNY and JPY [F]. Import share by country and by year is not disclosed. R&D centres are 'across India and China' [F] (AR2026 p.89). Only 49% of standalone sourcing is from within India [F] (AR2026 p.281)."
+      }
+     ]
+    },
+    {
+     "title": "Price context and pass-through",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "Management describes a memory 'super cycle': DRAM contract prices rose sharply over two quarters to January 2026 and were expected to rise further in mid-2026 [MC] (CALL Feb 2026). Management says EMS is 'immediate pass on ... no impact', while ODM can see 'a lag of a couple of months' [MC] (CALL Feb 2026; CALL May 2026). **Evidence:** cost of materials rose to 94.2% of operating revenue from 92.5% in Q1 FY27 [F] (PPT Aug 2026). Absolute operating profit fell 4% [F] (PPT Aug 2026). Home Appliances margin fell from 11.5% to 8.4% on polymer and FX costs [F] (PPT Aug 2026). [AI] Pass-through protects the rupee conversion fee in EMS, broadly. It does not protect ODM margins, and it does not protect volume, because higher prices shrink demand."
+      }
+     ]
+    },
+    {
+     "title": "EBITDA sensitivity to input-cost shock",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "FY26 base: materials about Rs 45,277 cr (cost of materials plus inventory change, AR2026 p.419); EBITDA Rs 1,873 cr (NUMBERS). All figures [E].",
+       "columns": [
+        "Scenario",
+        "Cost hit Rs cr",
+        "EBITDA after (no pass-through)",
+        "Hit if 90% passed through",
+        "EBITDA after (90%)",
+        "Hit if 98% passed through",
+        "EBITDA after (98%)"
+       ],
+       "rows": [
+        [
+         "+5% input cost",
+         "2,264",
+         "-391 (121% of EBITDA)",
+         "226",
+         "1,647 (-12%)",
+         "45",
+         "1,828 (-2%)"
+        ],
+        [
+         "+10% input cost",
+         "4,528",
+         "-2,655 (242% of EBITDA)",
+         "453",
+         "1,420 (-24%)",
+         "91",
+         "1,782 (-5%)"
+        ]
+       ]
+      },
+      {
+       "type": "p",
+       "text": "[AI] With materials at about 93% of revenue, the business is viable only because of pass-through. A two-percentage-point leak in pass-through on a 10% shock costs about 5% of EBITDA. The Q1 FY27 appliance margin compression shows that leakage does happen in ODM."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "margin_analysis",
+   "title": "Margin analysis",
+   "subsections": [
+    {
+     "title": "Margin trend",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "Margins (Rs cr). Revenue, EBITDA and PAT from our statements data (NUMBERS); gross margin proxy = 1 - materials/revenue [E] (AR2026 p.419; PPT Aug 2026)",
+       "columns": [
+        "Period",
+        "Revenue",
+        "Gross margin proxy",
+        "EBITDA",
+        "EBITDA %",
+        "PAT",
+        "PAT %"
+       ],
+       "rows": [
+        [
+         "FY22",
+         "10,697",
+         "Not computable",
+         "384",
+         "3.6%",
+         "190",
+         "1.8%"
+        ],
+        [
+         "FY23",
+         "12,192",
+         "Not computable",
+         "519",
+         "4.3%",
+         "255",
+         "2.1%"
+        ],
+        [
+         "FY24",
+         "17,691",
+         "Not computable",
+         "705",
+         "4.0%",
+         "375",
+         "2.1%"
+        ],
+        [
+         "FY25",
+         "38,860",
+         "7.8%",
+         "1,515",
+         "3.9%",
+         "1,233",
+         "3.2%"
+        ],
+        [
+         "FY26",
+         "48,873",
+         "7.4%",
+         "1,873",
+         "3.8%",
+         "1,644",
+         "3.4%"
+        ],
+        [
+         "Q1 FY27 (reported)",
+         "15,548",
+         "5.8%",
+         "463",
+         "3.0%",
+         "718",
+         "4.6%"
+        ],
+        [
+         "Q1 FY27 (company-adjusted)",
+         "15,548",
+         "5.8%",
+         "463",
+         "3.0%",
+         "273 pre-NCI",
+         "1.8%"
+        ],
+        [
+         "TTM Jun 2026",
+         "51,585",
+         "-",
+         "1,847",
+         "3.6%",
+         "2,082",
+         "4.0%"
+        ]
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Drivers year by year",
+     "blocks": [
+      {
+       "type": "bullets",
+       "items": [
+        "**FY23 (+70 bps EBITDA margin):** not explained in our documents; pre-dates the transcripts.",
+        "**FY24-FY26 (4.0% to 3.8%):** mix shift to mobile. Mobile & EMS went from 62% to 91% of revenue [E] (AR2026 p.106). [AI] Structural dilution.",
+        "**FY25-FY26 PAT margin up (3.2% to 3.4%):** driven by other income of Rs 731 cr, including the Aditya Infotech fair-value gain [F] (NUMBERS; AR2026 p.468). Temporary.",
+        "**Q1 FY27 (3.0%):** PLI 1 expiry and price-driven revenue inflation [MC] (CALL Aug 2026). Absolute adjusted EBITDA also fell 2% [F] (PPT Aug 2026). [AI] The PLI loss is structural until PLI 2 replaces it; the price effect is temporary."
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Bottom line",
+     "blocks": [
+      {
+       "type": "callout",
+       "tone": "warn",
+       "text": "[AI] There has been no structural margin improvement. Operating EBITDA margin has stayed in a 3.6-4.3% band for five years and has now dropped to 3.0% [F] (NUMBERS). Reported PAT margin gains come from investment gains. Management's own path is no improvement in FY27 and +40-50 bps once components are deployed [MC] (CALL May 2026; CALL Aug 2026)."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "unit_economics",
+   "title": "Unit economics",
+   "subsections": [
+    {
+     "title": "What can and cannot be built",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "Smartphone volumes are disclosed on calls, and segment revenue is disclosed quarterly. Smartphone revenue, feature-phone volumes and per-unit conversion fees are not. Management says it earns 'a per unit conversion charge' [MC] (CALL May 2026) but does not quantify it. Anything below is an indicative upper bound."
+      }
+     ]
+    },
+    {
+     "title": "Indicative per-unit build (Q1 FY27)",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "Indicative smartphone unit economics [E], method in rows",
+       "columns": [
+        "Item",
+        "Value",
+        "Method"
+       ],
+       "rows": [
+        [
+         "Mobile & EMS revenue",
+         "Rs 14,179 cr",
+         "[F] (PPT Aug 2026)"
+        ],
+        [
+         "Less telecom, IT hardware, Q Tech",
+         "about Rs 3,950 cr",
+         "[MC] Rs 2,100 + 1,350 + 500 cr (CALL Aug 2026)"
+        ],
+        [
+         "Residual (smartphones, feature phones, wearables)",
+         "about Rs 10,229 cr",
+         "[E] subtraction"
+        ],
+        [
+         "Smartphones",
+         "7.5m units",
+         "[MC] (CALL Aug 2026)"
+        ],
+        [
+         "Blended realisation per smartphone (upper bound)",
+         "about Rs 13,600",
+         "[E] residual / units; overstated by feature-phone and wearable revenue"
+        ],
+        [
+         "Export realisation",
+         "about Rs 15,700-18,300",
+         "[E] Rs 1,100 cr / 0.6-0.7m units (CALL Aug 2026)"
+        ],
+        [
+         "Material cost share",
+         "about 94%",
+         "[F] group (PPT Aug 2026)"
+        ],
+        [
+         "Segment operating profit ex-telecom",
+         "about Rs 266 cr, 2.2%",
+         "[E] Rs 373 cr less 5.1% x Rs 2,100 cr"
+        ],
+        [
+         "Indicative operating profit per smartphone",
+         "about Rs 300 (upper bound)",
+         "[E] 2.2% x Rs 13,600"
+        ]
+       ]
+      }
+     ]
+    },
+    {
+     "title": "What would have to be true for improvement",
+     "blocks": [
+      {
+       "type": "bullets",
+       "items": [
+        "[AI] Higher localisation: camera modules and displays made in-house, each adding a component margin to the same unit.",
+        "[AI] PLI 2 incentive retained by Dixon rather than passed to brands. Management would not commit on retention [MC] (CALL Aug 2026).",
+        "[AI] Higher utilisation of the 65m smartphone capacity through Vivo and exports.",
+        "[AI] Memory prices stabilising, so volume recovers without further dilution of the percentage margin."
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "financial_forensics",
+   "title": "Financial statement forensics",
+   "subsections": [
+    {
+     "title": "Data availability caveat",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "Our statements data is consolidated, sourced from screener.in, and reports PAT before minority interest. Screener does not split cash from other assets [F] (NUMBERS). The FY26 annual report is the only annual report available to us. Prior-year audit reports, prospectus and segment margins were not available. The ICRA rating document provided contains only a login page and no rationale [F] (RATING). The annual report states ICRA reaffirmed [ICRA]AA (Stable)/[ICRA]A1+ [F] (AR2026 p.144)."
+      }
+     ]
+    },
+    {
+     "title": "Income statement observations",
+     "blocks": [
+      {
+       "type": "bullets",
+       "items": [
+        "FY26 PBT of Rs 2,071 cr includes other income of Rs 731 cr, i.e. 35.3% of PBT [F] (NUMBERS). Of the annual report's Rs 713 cr other income, Rs 670.8 cr is the gain on disposal or fair value of investments, mainly Aditya Infotech [F] (AR2026 p.468).",
+        "Management's adjusted FY26 PAT after minority interest was Rs 845 cr [MC] (CALL May 2026), against reported owners' PAT of Rs 1,438.6 cr [F] (AR2026 p.419). About 41% of reported owners' profit was non-operating [E].",
+        "In FY25 the Aditya gain (Rs 460 cr) was shown as an exceptional item. In FY26 the gain sits inside other income [F] (AR2026 p.470, p.468). This presentation change makes FY26 'profit before exceptional items' look stronger [AI].",
+        "Effective tax rate is about 20.6% due to s.115BAB concessional rates and capital-gain treatment [F] (AR2026 p.470-474).",
+        "NCI share of profit rose to Rs 205.6 cr from Rs 137.0 cr [F] (AR2026 p.419)."
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Balance sheet observations",
+     "blocks": [
+      {
+       "type": "bullets",
+       "items": [
+        "Goodwill rose to Rs 580 cr from Rs 57 cr, almost entirely Q Tech [F] (AR2026 p.418, p.505).",
+        "Government incentive receivables were Rs 1,225 cr current plus Rs 66 cr non-current [F] (AR2026 p.449), about 26% of owners' equity [E].",
+        "Trade payables of Rs 10,722 cr exceed inventories plus receivables of Rs 10,367 cr [F] (AR2026 p.418). Suppliers fund the business.",
+        "Equity rose to Rs 4,677 cr from Rs 3,010 cr [F] (NUMBERS), helped by ESOP issuance of Rs 246.9 cr [F] (AR2026 p.421)."
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Cash flow observations",
+     "blocks": [
+      {
+       "type": "bullets",
+       "items": [
+        "FY26 CFO was Rs 1,782 cr and FCF Rs 724 cr [F] (NUMBERS). CFO benefited from receivables falling by Rs 576 cr, partly offset by payables falling by Rs 717 cr [F] (AR2026 p.420).",
+        "FY25 CFO of Rs 1,150 cr relied on a Rs 5,413 cr increase in payables [F] (AR2026 p.420). The FY25 base was supplier-funded.",
+        "Investing cash flow included Rs 658 cr of Aditya share sale proceeds, offset by Rs 430.5 cr of subsidiary acquisitions [F] (AR2026 p.421).",
+        "Q1 FY27: CFO Rs -341 cr; FCF Rs -676 cr; working capital consumed Rs 812 cr [F] (PPT Aug 2026)."
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Ratio suite",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "ROE was 42.8% and ROCE 29% in FY26 [F] (NUMBERS). Management reports ROCE of 44.8% and ROE of 28.1% excluding exceptional items, on its own capital-employed definition [MC] (CALL May 2026; AR2026 p.106). Debt/equity is 0.21 [F] (NUMBERS). Interest cover is 15.7x [F] (NUMBERS). Fixed-asset turnover fell to 11.7x from 14.0x [F] (NUMBERS). [AI] ROE on our data is inflated by investment gains, and management's ROE is lower than ours because it excludes them. Both sets are shown; they are not reconciled."
+      }
+     ]
+    },
+    {
+     "title": "Discrepancies between sources (shown, not reconciled)",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "Source conflicts",
+       "columns": [
+        "Item",
+        "Source A",
+        "Source B",
+        "Comment"
+       ],
+       "rows": [
+        [
+         "FY26 EPS",
+         "Rs 271.59 basic (AR2026 p.419, p.477)",
+         "Rs 236.61 (NUMBERS)",
+         "[AI] Annual report EPS appears to use PAT including NCI"
+        ],
+        [
+         "FY26 borrowings",
+         "Rs 468 cr (AR2026 p.418; PPT Aug 2026)",
+         "Rs 994 cr (NUMBERS)",
+         "[E] Difference of about Rs 527 cr equals lease liabilities"
+        ],
+        [
+         "FY26 other income",
+         "Rs 713 cr (AR2026 p.419)",
+         "Rs 731 cr (NUMBERS)",
+         "Not reconciled"
+        ],
+        [
+         "FY26 revenue",
+         "Rs 48,872.8 cr (AR2026 p.419)",
+         "Rs 48,893 cr (CALL May 2026; AR2026 p.101)",
+         "Management figure likely includes other items"
+        ],
+        [
+         "FY26 ROCE",
+         "29% (NUMBERS)",
+         "44.8% (AR2026 p.106)",
+         "Different capital bases"
+        ],
+        [
+         "FY26 working-capital days",
+         "Debtor 49, inventory 31, payable 86, CCC -7 (NUMBERS)",
+         "Debtor 52, inventory 33, creditor 93, NWC -8 (PPT Aug 2026)",
+         "Different formulas"
+        ],
+        [
+         "Share-based payment FY26",
+         "Rs 60.8 cr P&L (AR2026 p.469)",
+         "Rs 98.2 cr equity statement (AR2026 p.422)",
+         "Not reconciled"
+        ],
+        [
+         "Atul Lall ESOP perquisite FY26",
+         "Rs 74.86 cr (AR2026 p.217)",
+         "Rs 50.91 cr (AR2026 p.397)",
+         "Not reconciled"
+        ],
+        [
+         "Q Tech net assets",
+         "Rs 30 cr at acquisition (AR2026 p.505)",
+         "Rs -82.9 cr at FY26 (AR2026 p.507)",
+         "NCI of Rs 114.5 cr recognised on acquisition does not tie (AR2026 p.457)"
+        ],
+        [
+         "Q3 FY26 mobile operating profit",
+         "Rs 1,050 cr on Rs 9,750 cr revenue (CALL Feb 2026)",
+         "Segment margin about 3.4-3.6% elsewhere (PPT Aug 2026)",
+         "[AI] Likely transcript error"
+        ],
+        [
+         "Q3 FY26 smartphone volume",
+         "6.9m (CALL Feb 2026)",
+         "6.8m (same call)",
+         "Minor"
+        ],
+        [
+         "FY26 IT hardware revenue",
+         "About Rs 1,500 cr expected (CALL Feb 2026)",
+         "About Rs 1,300 cr 'whole year last year' (CALL Aug 2026)",
+         "Not reconciled"
+        ],
+        [
+         "Q1 FY27 other income",
+         "Rs 537 cr (NUMBERS)",
+         "Rs 528 cr + Rs 9 cr JV share (PPT Aug 2026)",
+         "Classification"
+        ],
+        [
+         "Refrigerator capacity",
+         "2.4m (AR2026 p.80)",
+         "1.2m to 2m (AR2026 p.192)",
+         "Within the same report"
+        ],
+        [
+         "Promoter decline",
+         "5.2 points over 'eight quarters' (BOARD)",
+         "33.80% to 28.55% over twelve quarters (NUMBERS)",
+         "Our earlier note miscounted the quarters"
+        ]
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "working_capital",
+   "title": "Working capital",
+   "subsections": [
+    {
+     "title": "Why headline days mislead",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "Negative CCC of -7 days in FY26 [F] (NUMBERS) reflects supplier credit rather than fast collection. Payables of Rs 10,722 cr fund inventories and receivables of Rs 10,367 cr [F] (AR2026 p.418). The headline also excludes Rs 1,291 cr of government incentive receivables [F] (AR2026 p.449) and Rs 964 cr of amounts refundable to customers [F] (AR2026 p.463), which sit in other financial assets and liabilities. Any change in supplier terms or in PLI timing swings cash by more than a year's FCF [AI]."
+      }
+     ]
+    },
+    {
+     "title": "Component build",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "Working-capital components (Rs cr; days from NUMBERS for years, PPT basis for Q1)",
+       "columns": [
+        "Item",
+        "FY25",
+        "FY26",
+        "Q1 FY27"
+       ],
+       "rows": [
+        [
+         "Inventories",
+         "3,992 [F] (AR2026 p.418)",
+         "3,837 [F]",
+         "6,728 [F] (PPT Aug 2026)"
+        ],
+        [
+         "Trade receivables",
+         "6,965 [F]",
+         "6,530 [F]",
+         "8,526 [F] (PPT Aug 2026)"
+        ],
+        [
+         "Trade payables",
+         "10,884 [F]",
+         "10,722 [F]",
+         "Not disclosed; current liabilities 17,242 vs 12,590 [F] (PPT Aug 2026)"
+        ],
+        [
+         "Debtor days",
+         "65",
+         "49",
+         "46 (PPT)"
+        ],
+        [
+         "Inventory days",
+         "41",
+         "31",
+         "37 (PPT)"
+        ],
+        [
+         "Payable days",
+         "111",
+         "86",
+         "88 (PPT)"
+        ],
+        [
+         "CCC / NWC days",
+         "-5",
+         "-7",
+         "-5 (PPT)"
+        ]
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Drivers and evidence",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "Management attributes the Q1 build to 'strategic inventories' bought ahead of memory price increases, and to paying out 'floating cash' received at the end of March. It calls this a 'temporary phenomenon' [MC] (CALL Aug 2026). Evidence: inventory rose 75% in a quarter in which revenue was up 21% YoY [F] (PPT Aug 2026; NUMBERS). Raw materials in transit already fell from Rs 578 cr to Rs 324 cr during FY26 [F] (AR2026 p.450). Customer advances of Rs 491 cr at March [F] (AR2026 p.465) are consistent with the 'floating cash' explanation [AI]."
+      }
+     ]
+    },
+    {
+     "title": "Cash-conversion consequence and bank limits",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "Q1 FY27 CFO was Rs -341 cr. Net cash fell from Rs 773 cr to Rs 226 cr, and short-term borrowings rose to Rs 219 cr [F] (PPT Aug 2026). Fund-based working-capital limits are rated [ICRA]AA (Stable)/A1+ [F] (AR2026 p.144). Quarterly stock statements agree with books [F] (AR2026 p.511). No covenants are disclosed [F] (AR2026 p.457-465). Letters of credit outstanding were Rs 663 cr [F] (AR2026 p.475)."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "balance_sheet_quality",
+   "title": "Balance sheet quality",
+   "subsections": [
+    {
+     "title": "Asset composition",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "Consolidated assets at 31 Mar 2026 (Rs cr) [F] (AR2026 p.418); grouping and % [E]",
+       "columns": [
+        "Bucket",
+        "Items",
+        "Rs cr",
+        "% of total"
+       ],
+       "rows": [
+        [
+         "Hard assets",
+         "PPE 2,720; CWIP 571; right-of-use 831",
+         "4,122",
+         "21.5%"
+        ],
+        [
+         "Working-capital assets",
+         "Inventories 3,837; receivables 6,530; other current financial assets 1,243 (mostly incentive receivables); other current 586",
+         "12,196",
+         "63.6%"
+        ],
+        [
+         "Cash and investments",
+         "Cash 767; bank 174; current investments 300; non-current investments 707 (incl. Aditya 505)",
+         "1,948",
+         "10.2%"
+        ],
+        [
+         "Soft assets",
+         "Goodwill 580; intangibles 41",
+         "621",
+         "3.2%"
+        ],
+        [
+         "Other",
+         "Tax, deferred tax and other non-current",
+         "275",
+         "1.4%"
+        ],
+        [
+         "Total",
+         "",
+         "19,162",
+         "100%"
+        ]
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Liabilities, contingents and off-balance-sheet items",
+     "blocks": [
+      {
+       "type": "bullets",
+       "items": [
+        "Borrowings Rs 468 cr, including Rs 360 cr of ECB from Q Tech's Chinese parent at 1-year SOFR + 0.25%. Lease liabilities Rs 527 cr [F] (AR2026 p.418, p.459).",
+        "Contingent liabilities rose to about Rs 530 cr from about Rs 165 cr. Customs/excise is Rs 398 cr and income tax Rs 94 cr [E] from (AR2026 p.474). The note does not explain the increase. Includes a DRI customs show-cause notice of Rs 34.9 cr at a subsidiary [F] (AR2026 p.475).",
+        "Corporate guarantees of Rs 567.9 cr were given to two suppliers on behalf of Padget, one with no specified limit [F] (AR2026 p.475; AR2026 p.365-366).",
+        "Letters of credit Rs 663 cr; bank guarantees Rs 136 cr [F] (AR2026 p.475).",
+        "PLI overflow: Rs 1,110 cr accrued, with a Rs 726 cr pass-through liability, so net exposure is about Rs 384 cr [E] (AR2026 p.509). That is about 23% of FY26 PAT [E] (NUMBERS)."
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Related-party leases",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "No rent paid to promoters or their relatives was found [F] (AR2026 p.387-403). The one lease flagged as not at arm's length runs the other way: Dixon leased its C-33 Noida premises to the Lightanium JV for 11 months at Rs 20,000 a month [F] (AR2026 p.167)."
+      }
+     ]
+    },
+    {
+     "title": "Assessment",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "[AI] Moderate quality. Leverage is low and cash is net positive. But two-thirds of assets are working capital funded by suppliers. A large, uncertain government receivable sits on the balance sheet. Contingent liabilities tripled, and an unlimited supplier guarantee is outstanding. The balance sheet is liquid but dependent on counterparties: suppliers, the government and customers."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "accounting_quality",
+   "title": "Accounting quality",
+   "subsections": [
+    {
+     "title": "Auditor and opinion",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "Statutory auditor: S.N. Dhawan & Co LLP, re-appointed at the 30th AGM (2023) for a second term to the 35th AGM [F] (AR2026 p.152). It therefore served a prior term, and the firm before it is not stated in our documents. Standalone and consolidated opinions for FY26 are unmodified [F] (AR2026 p.299, p.409). Two subsidiaries were audited by other auditors: revenue Rs 7,424 cr and PAT Rs 235.7 cr [F] (AR2026 p.412), about 15% of group revenue [E]. Prior-year audit reports were not available, so the opinion history cannot be tested beyond FY26."
+      }
+     ]
+    },
+    {
+     "title": "KAMs, emphasis of matter and CARO",
+     "blocks": [
+      {
+       "type": "bullets",
+       "items": [
+        "**Emphasis of matter (consolidated):** Rs 1,110 cr PLI overflow incentive at Padget, not yet determined by the PMA, supported by a legal opinion [F] (AR2026 p.409, p.509).",
+        "**KAMs:** standalone, impairment of investments in subsidiaries and JVs [F] (AR2026 p.299-300); consolidated, goodwill impairment [F] (AR2026 p.410). The goodwill impairment note gives discount rates only for DEAPL and Ismartu, not for Q Tech's Rs 523 cr [F] (AR2026 p.446).",
+        "**CARO:** standalone clean. Consolidated clause (xxi) cites clause (ix)(d) remarks against Dixon Display Technologies and Q Tech India [F] (AR2026 p.413). [AI] Clause (ix)(d) usually concerns short-term funds used for long-term purposes.",
+        "**Audit trail:** clean standalone. In one subsidiary the edit log was enabled only from 24 Feb 2025 [F] (AR2026 p.415). Another subsidiary keeps daily backups on servers outside India [F] (AR2026 p.413)."
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Restatements and unusual accounting",
+     "blocks": [
+      {
+       "type": "bullets",
+       "items": [
+        "No restatements or policy changes found [F] (AR2026 p.512).",
+        "EPS is computed on PAT including NCI. Basic Rs 271.59 vs about Rs 237.6 on owners' profit [F] (AR2026 p.477) [E].",
+        "The Aditya gain moved from exceptional items (FY25) to other income (FY26) [F] (AR2026 p.470, p.468).",
+        "Q Tech goodwill was computed as consideration minus 100% of net assets, with no NCI in the calculation; the NCI figure does not reconcile [F] (AR2026 p.505, p.457).",
+        "A Rs 69.4 cr NCI dividend appears to be charged in both the owners' equity and the NCI column [F] (AR2026 p.422, p.446, p.457).",
+        "All revenue, including services, is shown as recognised at a point in time, though the policy says services are recognised over time [F] (AR2026 p.429, p.467).",
+        "No common-control transactions found [F] (AR2026)."
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Assessment and gaps",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "[AI] Clean opinions, but several presentation choices consistently flatter the headline numbers: EPS basis, other-income classification, and accrual of an undetermined incentive. There are also internal inconsistencies in NCI, ESOP and goodwill. We rate accounting quality as adequate with caution. Not covered by our documents: auditor history before the second term, prior-year KAMs, internal-audit findings (EY and Deloitte are internal auditors [F] (AR2026 p.139)), and audit and non-audit fee split. Group auditor fees total about Rs 2.4 cr [E] (AR2026 p.224)."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "group_structure_rpt",
+   "title": "Group structure and related-party transactions",
+   "subsections": [
+    {
+     "title": "Subsidiaries: role and status",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "Entities, role and status [F] (AR2026 p.503-515; p.230-231)",
+       "columns": [
+        "Entity",
+        "Holding",
+        "Role",
+        "Status"
+       ],
+       "rows": [
+        [
+         "Padget Electronics",
+         "100%",
+         "Mobile and IT engine; material subsidiary",
+         "Operating; Rs 36,926 cr turnover"
+        ],
+        [
+         "Ismartu India",
+         "50.1%",
+         "Transsion-linked phones",
+         "Operating"
+        ],
+        [
+         "Dixon Electro Appliances",
+         "51%",
+         "Telecom (Airtel partner)",
+         "Operating"
+        ],
+        [
+         "Q Tech India",
+         "51%",
+         "Camera modules",
+         "Operating, loss-making, negative net assets"
+        ],
+        [
+         "Califonix",
+         "50% (consolidated)",
+         "Wearables (boAt partner)",
+         "Operating"
+        ],
+        [
+         "Dixon Electro Manufacturing",
+         "100%",
+         "Manufacturing",
+         "Operating"
+        ],
+        [
+         "Dixon Display Technologies",
+         "100% (HKC 26% pending)",
+         "Display modules",
+         "Pre-revenue"
+        ],
+        [
+         "Dixtel Infocom",
+         "74%",
+         "Longcheer smartphone JV",
+         "Pre-revenue"
+        ],
+        [
+         "Dixon IT Devices",
+         "60%",
+         "Inventec JV",
+         "Pre-revenue"
+        ],
+        [
+         "Dixon Electroconnect / Teletech / Electrocorp / Global",
+         "100%",
+         "Optical transceivers / telecom / Li-ion / trading",
+         "Shells or small"
+        ],
+        [
+         "Rexxam Dixon; Lightanium",
+         "40%; 50%",
+         "AC PCBA; lighting",
+         "Equity-accounted JVs"
+        ]
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Group companies and non-compete",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "The promoter holding company Prikar Holding is named, and Vachani is a director [F] (AR2026 p.72). Entities influenced by KMP: Light House Partners, Topline Electronics, Smartice entities [F] (AR2026 p.387-388). No non-compete or common-pursuit disclosure was found [F] (AR2026). Kamla Vachani holds 6.25% but is not classified in the promoter group [F] (AR2026 p.348-349)."
+      }
+     ]
+    },
+    {
+     "title": "Related-party transactions",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "Related-party transactions FY26 (Rs cr)",
+       "columns": [
+        "Category",
+        "Amount",
+        "Economic substance"
+       ],
+       "rows": [
+        [
+         "KMP cash remuneration (consolidated)",
+         "24.8 [F] (AR2026 p.397-398)",
+         "Normal"
+        ],
+        [
+         "KMP ESOP perquisites",
+         "76.8 [F] (AR2026 p.397-398); Lall alone 74.86 per remuneration table (AR2026 p.217)",
+         "Large relative to cash pay"
+        ],
+        [
+         "Non-executive sitting fees and commission",
+         "1.1 [F] (AR2026 p.217)",
+         "Normal"
+        ],
+        [
+         "DEAPL sales to Bharti Airtel (JV partner group)",
+         "2,496.7 [F] (AR2026 p.23-28)",
+         "Customer is also 49% partner: core revenue"
+        ],
+        [
+         "Padget sales to Ismartu (intra-group)",
+         "8,211.3 [F] (AR2026 p.28-34)",
+         "Eliminated on consolidation"
+        ],
+        [
+         "Padget purchases from Tecno Mobile (Transsion)",
+         "4,060 [F] (AR2026 p.34-38)",
+         "Component supply from partner group"
+        ],
+        [
+         "Ismartu sales to G-Mobile (negative net worth Rs -404.7 cr)",
+         "3,644.5 [F] (AR2026 p.39-44)",
+         "Credit exposure to a weak distributor"
+        ],
+        [
+         "Q Tech purchases from Q Tech International",
+         "1,528.8 [F] (AR2026 p.44-49)",
+         "Parent supplies inputs; transfer-pricing risk"
+        ],
+        [
+         "Q Tech ECB from parent",
+         "359.7 [F] (AR2026 p.459)",
+         "Parent funding; lenders not in RPT note"
+        ],
+        [
+         "Lighting slump sale to Lightanium",
+         "140.3 [F] (AR2026 p.498)",
+         "One-off; gain Rs 21.9 cr"
+        ],
+        [
+         "Smartice service charges (KMP-influenced)",
+         "0.22 [F] (AR2026 p.391)",
+         "Immaterial"
+        ],
+        [
+         "Gratuity trust contribution",
+         "7.0 [F] (AR2026 p.499)",
+         "Normal"
+        ]
+       ]
+      },
+      {
+       "type": "p",
+       "text": "Shareholders are asked to approve forward caps for FY2027-29: Airtel Rs 4,500 cr a year; Padget-Ismartu Rs 12,331 cr; Tecno Rs 4,500 cr; G-Mobile Rs 8,011 cr (182.5% of the counterparty's turnover); Q Tech parent Rs 4,803 cr; Longcheer Rs 16,200 cr combined, for an entity with nil turnover [F] (AR2026 p.23-58). [AI] The headline numbers are large because the JV partners are both customers and suppliers. The governance risk is pricing between Dixon's minority-shared subsidiaries and partner groups, not promoter self-dealing."
+      }
+     ]
+    },
+    {
+     "title": "Guarantees",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "No promoter-group guarantees for Dixon's borrowings are disclosed. Dixon gave Rs 567.9 cr of corporate guarantees to suppliers on behalf of Padget [F] (AR2026 p.475). Corporate guarantees to banks for subsidiaries fell to nil from Rs 579.7 cr [F] (AR2026 p.365-366)."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "management",
+   "title": "Management, board and alignment",
+   "subsections": [
+    {
+     "title": "Leadership",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "Board and key management [F] (AR2026 p.70-73, p.203, p.226, p.234)",
+       "columns": [
+        "Role",
+        "Name",
+        "Age",
+        "Since",
+        "Background"
+       ],
+       "rows": [
+        [
+         "Executive Chairman, promoter",
+         "Sunil Vachani",
+         "57",
+         "Director since 15 Jan 1993",
+         "Founder; Associate of Applied Arts in Business Administration (American College, London)"
+        ],
+        [
+         "Vice Chairman and MD",
+         "Atul B. Lall",
+         "64",
+         "Board since 30 Jun 2000",
+         "MMS, BITS Pilani; also on boards of Max Estates, Happy Forgings, Aditya Infotech"
+        ],
+        [
+         "Director and Group CFO",
+         "Saurabh Gupta",
+         "43",
+         "Board since 17 Oct 2025",
+         "CA, CS, MBA (MDI), AMP Harvard; ex-PVR, Unitech, McKinsey"
+        ],
+        [
+         "President, Chief Legal Counsel and Group CS",
+         "Ashish Kumar",
+         "Not disclosed",
+         "Not disclosed",
+         "Company Secretary"
+        ],
+        [
+         "Non-executive, non-independent director",
+         "Manoj Maheshwari",
+         "60",
+         "3 May 2025 (previously independent)",
+         "Audit Committee and NRC member"
+        ],
+        [
+         "Independent director",
+         "Dr. Rakesh Mohan",
+         "78",
+         "2 Feb 2021; second term to 2031",
+         "Background not detailed in our documents; re-appointed past age 75"
+        ],
+        [
+         "Independent director",
+         "Keng Tsung Kuo",
+         "67",
+         "12 Apr 2019",
+         "Not detailed"
+        ],
+        [
+         "Independent director (Audit Committee chair)",
+         "Arun Seth",
+         "74",
+         "29 Sep 2023",
+         "16 other directorships"
+        ],
+        [
+         "Independent director",
+         "Geeta Mathur",
+         "59",
+         "24 Oct 2024",
+         "Boards incl. Info Edge, Ashok Leyland"
+        ],
+        [
+         "COO Mobile (senior management)",
+         "Pankaj Sharma",
+         "Not disclosed",
+         "Not disclosed",
+         "Received 25,000 ESOPs in FY26"
+        ]
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Governance timeline",
+     "blocks": [
+      {
+       "type": "bullets",
+       "items": [
+        "29 Sep 2023: S.N. Dhawan & Co LLP re-appointed statutory auditor to the 35th AGM [F] (AR2026 p.152).",
+        "3 May 2025: Manoj Maheshwari stepped down as an independent director and was re-appointed the same day as non-independent. Approved with 7.42% of votes against [F] (AR2026 p.151, p.219).",
+        "FY26: SBYN & Associates appointed secretarial auditor for FY26-FY30 [F] (AR2026 p.152).",
+        "17 Oct 2025: Saurabh Gupta appointed Director-Finance; 9.00% of votes against [F] (AR2026 p.151, p.219).",
+        "2 Feb 2026: Rakesh Mohan's second term begins, continuing past age 75 [F] (AR2026 p.151).",
+        "25-26 May 2026: Atul Lall resigned from and was re-appointed to the Aditya Infotech board, a company in which Dixon holds a listed stake [F] (AR2026 p.70-73).",
+        "28 Sep 2026 AGM: re-appointment of Vachani and Lall for 2027-2032, each with remuneration caps of Rs 15 cr a year [F] (AR2026 p.56-66)."
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Alignment and skin in the game",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "Shareholding trend (%) [F] (NUMBERS)",
+       "columns": [
+        "Holder",
+        "Sep 2023",
+        "Jun 2024",
+        "Jun 2025",
+        "Jun 2026"
+       ],
+       "rows": [
+        [
+         "Promoters",
+         "33.80",
+         "33.24",
+         "28.95",
+         "28.55"
+        ],
+        [
+         "FIIs",
+         "15.66",
+         "19.33",
+         "20.55",
+         "17.87"
+        ],
+        [
+         "DIIs",
+         "27.44",
+         "26.08",
+         "26.68",
+         "28.38"
+        ],
+        [
+         "Public",
+         "23.11",
+         "21.34",
+         "23.81",
+         "25.20"
+        ],
+        [
+         "No. of shareholders",
+         "285,566",
+         "267,314",
+         "408,369",
+         "470,189"
+        ]
+       ]
+      },
+      {
+       "type": "p",
+       "text": "The promoter group fell 5.25 points over 12 quarters, including 3.32 points in the June 2025 quarter [E] (NUMBERS). Sunil Vachani personally sold about 19.75 lakh shares in FY26, taking his holding from 5.34% to 2.04% [F] (AR2026 p.348-349). In October 2025 Atul Lall said promoter, family and his own holding combined was 'more than 42%' and 'we don't see any more dilutions happening' [MC] (CALL Oct 2025). From disclosed holdings we can reconstruct about 38.2%: promoter group 28.68%, Kamla Vachani 6.25%, Lall 3.28% [E] (AR2026 p.70-73, p.348-349). The two are not reconciled. Since that call, promoter holding slipped from 28.92% to 28.55% [F] (NUMBERS), consistent with ESOP dilution of about 0.94% [E] (AR2026 p.143). Pledges are not disclosed in the documents."
+      }
+     ]
+    },
+    {
+     "title": "Compensation and self-dealing indicators",
+     "blocks": [
+      {
+       "type": "bullets",
+       "items": [
+        "FY26 remuneration: Vachani Rs 7.22 cr; Lall Rs 81.89 cr, including a Rs 74.86 cr ESOP perquisite; Gupta Rs 26.57 cr, including Rs 18.50 cr ESOP [F] (AR2026 p.217). The related-party note shows Lall's perquisite as Rs 50.91 cr [F] (AR2026 p.397). Not reconciled.",
+        "Proposed caps of Rs 15 cr a year (Rs 6 cr fixed plus Rs 9 cr bonus) for Vachani and Lall exclude ESOP perquisites and cover the full term to 2032 [F] (AR2026 p.56-66).",
+        "Commission is set as an absolute cap, not as a percentage of profit [F] (AR2026 p.56-62).",
+        "No rent or asset transactions with promoters found [F] (AR2026 p.387-403). The Chairman is executive, and the company 'partially complied' with separation of the Chairman and MD roles [F] (AR2026 p.228).",
+        "No SEBI or exchange penalties in three years; no whistle-blower complaints [F] (AR2026 p.226-227)."
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Management and promoter scorecard",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "Scorecard (1 = poor, 10 = excellent) [AI]",
+       "columns": [
+        "Factor",
+        "Score 1-10",
+        "Rationale"
+       ],
+       "rows": [
+        [
+         "Capital allocation track record",
+         "7",
+         "No external equity since listing; 29% ROCE [F] (NUMBERS); but Q Tech goodwill on negative net assets"
+        ],
+        [
+         "Execution vs guidance",
+         "4",
+         "FY26 volume miss; repeated JV and plant slippage (see guidance tracker)"
+        ],
+        [
+         "Disclosure candour",
+         "4",
+         "No customer shares; single-segment reporting; inconsistent numbers on calls"
+        ],
+        [
+         "Promoter alignment",
+         "5",
+         "Promoter stake falling; >42% claim not reconcilable"
+        ],
+        [
+         "Board independence",
+         "6",
+         "50% independent; independent-to-non-independent reclassification"
+        ],
+        [
+         "Related-party discipline",
+         "6",
+         "No promoter self-dealing; large partner RPT caps"
+        ],
+        [
+         "Compensation reasonableness",
+         "4",
+         "ESOP perquisites at about 10x cash pay for the MD"
+        ],
+        [
+         "Balance-sheet stewardship",
+         "7",
+         "Low debt; but unlimited supplier guarantee and PLI accrual"
+        ],
+        [
+         "Simple average",
+         "5.4",
+         "(7+4+4+5+6+6+4+7)/8 [E]"
+        ]
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "competitive_landscape",
+   "title": "Competitive landscape",
+   "subsections": [
+    {
+     "title": "Disclosed peer set",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "Peer comparison",
+       "columns": [
+        "Peer",
+        "Revenue",
+        "Margins",
+        "RoNW",
+        "P/E"
+       ],
+       "rows": [
+        [
+         "No peer set disclosed in the annual report, presentations or transcripts; no prospectus available",
+         "Not disclosed",
+         "Not disclosed",
+         "Not disclosed",
+         "Not disclosed"
+        ]
+       ]
+      },
+      {
+       "type": "p",
+       "text": "Our statements data contains no peer multiples [F] (NUMBERS). We therefore do not present listed comparable figures. Any peer numbers would be invented."
+      }
+     ]
+    },
+    {
+     "title": "Competitors named by management",
+     "blocks": [
+      {
+       "type": "bullets",
+       "items": [
+        "'Another EMS company' (unnamed) now receives a share of one anchor customer's volume [MC] (CALL Feb 2026). [AI] Dixon's largest customers are actively dual-sourcing.",
+        "'Other U.S. operators' and other outsourcers lost share in FY27 per the CFO [MC] (CALL Aug 2026). They are unnamed.",
+        "Foxconn is cited by an analyst as a server-EMS benchmark [F] (CALL Aug 2026). It is a comparison point, not a disclosed competitor.",
+        "China: management cites a 4-5% cost disability in IT hardware and an earlier 10-12% disability in mobiles [MC] (CALL Oct 2025; CALL Aug 2026). [AI] The real competitor set is Chinese and Taiwanese EMS/ODMs, several of which Dixon has chosen to partner with (Longcheer, Inventec, HKC, Gemtek, Q Tech)."
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Assessment",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "[AI] Dixon competes on scale, speed and policy eligibility in a market where customers are larger than the supplier. Partnering with Chinese and Taiwanese firms brings capability quickly, but it confirms that technology leadership sits with partners. The competitive position looks strongest in domestic smartphone assembly and feature phones. Management claims about two-thirds of Indian feature-phone production [MC] (CALL Aug 2026). The position is weakest in TVs, where segment revenue fell 19% in FY26 [F] (AR2026 p.106)."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "moat",
+   "title": "Moat assessment",
+   "subsections": [
+    {
+     "title": "Moat-factor scorecard",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "Moat scorecard (1 = none, 10 = very strong) [AI]",
+       "columns": [
+        "Factor",
+        "Score 1-10",
+        "Rationale"
+       ],
+       "rows": [
+        [
+         "Brand",
+         "1",
+         "B2B white-label; no consumer brand"
+        ],
+        [
+         "Switching costs",
+         "4",
+         "Model qualification and line setup take time, but anchors dual-source [MC] (CALL Feb 2026)"
+        ],
+        [
+         "Regulatory / approval barriers",
+         "5",
+         "PLI, ECMS and PN3 approvals favour incumbents but are time-limited; PLI 1 has expired [MC] (CALL Aug 2026)"
+        ],
+        [
+         "Technology / IP",
+         "3",
+         "R&D 0.47% of standalone turnover [F] (AR2026 p.179); key IP licensed from partners [F] (ANNOUNCEMENTS)"
+        ],
+        [
+         "Scale / cost",
+         "7",
+         "65m smartphone capacity; largest domestic EMS by its own description [F] (AR2026 p.78)"
+        ],
+        [
+         "Relationship durability",
+         "6",
+         "Equity-linked partnerships with customers (Airtel, Transsion, Signify, Longcheer)"
+        ],
+        [
+         "Network effects",
+         "1",
+         "None"
+        ],
+        [
+         "Input control",
+         "2",
+         "Brands control key components such as memory [MC] (CALL May 2026)"
+        ],
+        [
+         "Simple average",
+         "3.6",
+         "29/8 [E]"
+        ]
+       ]
+      },
+      {
+       "type": "p",
+       "text": "Our earlier internal note called this 'the weakest moat on the large-cap list ... a lead, not a wall' [F] (BOARD). This assessment is consistent with that view."
+      }
+     ]
+    },
+    {
+     "title": "Questions the scores cannot answer",
+     "blocks": [
+      {
+       "type": "bullets",
+       "items": [
+        "[AI] Can Dixon keep PLI 2 incentives, or will brands claim them, as they appear to have done under PLI 1? Management declined to answer on retention [MC] (CALL Aug 2026).",
+        "[AI] Will components create genuine cost advantage, or simply move Dixon into capital-intensive businesses where the partner (HKC, Q Tech parent) holds the technology?"
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Conclusion",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "[AI] Narrow and policy-dependent. Dixon's advantage is scale and early capacity, renewed every few years by government schemes and new partnerships. That is a lead that must be bought again repeatedly, not a structural moat."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "industry_structure",
+   "title": "Industry structure",
+   "subsections": [
+    {
+     "title": "Headline TAM figures as stated",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "Market sizes quoted in company documents (context only, not company revenue)",
+       "columns": [
+        "Figure",
+        "Source as stated"
+       ],
+       "rows": [
+        [
+         "Indian EMS US$40-45bn (FY25) rising to more than US$150bn by FY30",
+         "KPMG, in (AR2026 p.188)"
+        ],
+        [
+         "Global EMS US$640-650bn (2025) to US$1,200-1,250bn (2035)",
+         "KPMG, in (AR2026 p.186-187)"
+        ],
+        [
+         "Indian electronics production Rs 11.3 lakh cr (2024-25) to Rs 27.7 lakh cr (2027-28)",
+         "Economic Times, in (AR2026 p.88)"
+        ],
+        [
+         "Indian mobile production Rs 5.45 lakh cr",
+         "(AR2026 p.88)"
+        ],
+        [
+         "US$500bn Indian electronics by FY30, 25% outsourced",
+         "(AR2026 p.97)"
+        ],
+        [
+         "Indian IT hardware market US$12-13bn",
+         "[MC] (CALL Oct 2025)"
+        ],
+        [
+         "Camera module import market US$350-400m",
+         "[MC] (CALL Feb 2026)"
+        ]
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Why TAM is not company revenue",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "[E] Illustrative only: Dixon's FY26 revenue of Rs 48,873 cr [F] (NUMBERS) is about 4.3% of the Rs 11.3 lakh cr electronics production figure [F] (AR2026 p.88). Its Mobile & EMS revenue of Rs 44,257 cr is about 8.1% of the Rs 5.45 lakh cr mobile production figure [F] (AR2026 p.88, p.106). These ratios mix years and definitions. Dixon's revenue includes pass-through components and non-mobile products. [AI] Growth in TAM does not convert into Dixon revenue without customer wins, policy support and capacity. An investor on the latest call described Indian phone exports as having emerged from the Apple ecosystem [F] (CALL Aug 2026). Apple is not named as a Dixon customer in any of our documents."
+      }
+     ]
+    },
+    {
+     "title": "Bottom-up framing",
+     "blocks": [
+      {
+       "type": "bullets",
+       "items": [
+        "Smartphones: about 32-33m units ex-Vivo, plus Vivo 20-22m annualised if closed [MC] (CALL May 2026), at an implied Rs 9,000-13,600 per unit [E].",
+        "Telecom: Rs 6,700-7,000 cr FY27 [MC] (CALL Aug 2026).",
+        "IT hardware: more than Rs 4,000 cr FY27 [MC] (CALL May 2026).",
+        "Appliances and consumer electronics: Q1 FY27 run-rate Rs 1,369 cr a quarter [F] (PPT Aug 2026).",
+        "[AI] The sum of these is broadly consistent with management's Rs 56,000 cr FY27 ex-Vivo target [MC] (CALL May 2026). TAM figures add nothing to that build."
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Concentration and channel structure",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "Claimed shares: about 37% of outsourced TV manufacturing, about 35% of semi-automatic washing machines, about 15% of fully automatic top-loaders, about 25% of consumer lighting manufacturing [MC] (SCREENER), and about two-thirds of Indian feature-phone production [MC] (CALL Aug 2026). An analyst estimated 55-60% of outsourced smartphones at 60m units [MC] (CALL Oct 2025). The channel is purely B2B to brands. Brand concentration (Samsung, Vivo, Transsion, Motorola, Apple) sets the bargaining structure [AI]."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "structural_themes",
+   "title": "Structural themes",
+   "subsections": [
+    {
+     "title": "Themes supported by company evidence",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "Theme evidence",
+       "columns": [
+        "Theme",
+        "Supporting evidence",
+        "Evidence strength"
+       ],
+       "rows": [
+        [
+         "Import substitution of finished electronics",
+         "Revenue Rs 2,457 cr (FY17) to Rs 48,873 cr (FY26) [F] (NUMBERS)",
+         "Strong"
+        ],
+        [
+         "Policy-led EMS build-out",
+         "PLI income about Rs 360 cr net FY26 [MC] (CALL May 2026); ECMS approvals [F] (AR2026 p.141-142)",
+         "Strong but time-limited"
+        ],
+        [
+         "Export pivot",
+         "Exports Rs 1,742 cr to Rs 5,421 cr [F] (AR2026 p.467)",
+         "Moderate (customer-specific)"
+        ],
+        [
+         "Diversification beyond mobile",
+         "Telecom about Rs 5,000 cr FY26 [MC] (CALL May 2026); IT hardware ramp [MC]",
+         "Moderate"
+        ],
+        [
+         "Partnership model with Asian ODMs",
+         "Inventec, Longcheer, HKC, Gemtek, Q Tech closed or signed [F] (AR2026 p.141-146; ANNOUNCEMENTS)",
+         "Strong (as structure); outcomes unproven"
+        ]
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Themes in the narrative but not supported",
+     "blocks": [
+      {
+       "type": "bullets",
+       "items": [
+        "[AI] 'Margin expansion from backward integration': no component revenue at display level yet; Q Tech loss-making [F] (AR2026 p.514).",
+        "[AI] 'Industrial / specialty high-margin EMS': consultant hired, 'couple of serious inorganic opportunities' [MC] (CALL May 2026); no transaction by Oct 2026 [F] (ANNOUNCEMENTS).",
+        "[AI] 'Data-centre servers': 'early' with no numbers [MC] (CALL May 2026; CALL Aug 2026).",
+        "[AI] 'Design-led / IP-led transformation': R&D 0.47% of standalone turnover [F] (AR2026 p.179); key IP licensed.",
+        "[AI] 'Rs 1 lakh cr revenue in 3-4 years' [MC] (CALL Oct 2025): requires roughly doubling FY26 revenue with Vivo still unconsummated."
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Net assessment",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "[AI] The structural tailwind (onshoring electronics assembly) is real, and Dixon is its main domestic beneficiary. The second-order themes priced into the stock (components, specialty EMS, servers) are at the announcement stage."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "guidance_tracker",
+   "title": "Guidance tracker",
+   "subsections": [
+    {
+     "title": "Current guidance (Q1 FY27 call) vs actuals",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "Guidance tracker",
+       "columns": [
+        "Item",
+        "Guidance given?",
+        "What management said [MC]",
+        "Status vs actuals"
+       ],
+       "rows": [
+        [
+         "Revenue",
+         "Yes (May)",
+         "'Targeting almost Rs 56,000 cr without the Vivo numbers', 15-17% growth (CALL May 2026)",
+         "Q1 FY27 Rs 15,548 cr, +21% [F] (NUMBERS): on track"
+        ],
+        [
+         "Smartphone volumes",
+         "Yes",
+         "Q2 order book 9-9.2m; H1 16-16.5m; FY27 close to last year's 32-33m ex-Vivo (CALL Aug 2026)",
+         "Q1 7.5m [MC]; pending"
+        ],
+        [
+         "Margins",
+         "Yes",
+         "'We are not expecting a margin improvement' in FY27; improvement in FY28 (CALL Aug 2026); +40-50 bps when components are deployed (CALL May 2026)",
+         "Q1 operating margin 3.0% [F] (PPT Aug 2026); mobile 2.6% vs 2.8-3.2% guided in Feb: missed"
+        ],
+        [
+         "Order book",
+         "Qualitative only",
+         "'Healthy' across telecom, IT, appliances; smartphone Q2 9-9.2m (CALL Aug 2026)",
+         "No disclosed book"
+        ],
+        [
+         "Capex",
+         "Yes",
+         "FY27 'in the similar range' as FY26, about Rs 1,000 cr (CALL May 2026)",
+         "Q1 Rs 335 cr [F] (PPT Aug 2026): on track"
+        ],
+        [
+         "Utilisation",
+         "No",
+         "Not given",
+         "Not disclosed"
+        ],
+        [
+         "New products",
+         "Yes",
+         "Vivo JV revenue from Q3; display trials Q3, mass production end Q3/Q4; Inventec JV end Q3/early Q4; SSD from Q3; front-load washers Q3; dishwashers and microwaves Q3; Noida plant Q3 (CALL Aug 2026)",
+         "Pending; each item has slipped at least once before"
+        ],
+        [
+         "Telecom",
+         "Yes",
+         "Rs 6,700-7,000 cr FY27; Q2 flat QoQ (CALL Aug 2026)",
+         "Cut from Rs 7,500-8,000 cr (CALL May 2026)"
+        ],
+        [
+         "IT hardware",
+         "Yes (May)",
+         "More than Rs 4,000 cr FY27 (CALL May 2026); 'keep on ramping' (CALL Aug 2026)",
+         "Q1 about Rs 1,350 cr [MC]: on track"
+        ],
+        [
+         "Fund-raising",
+         "Yes",
+         "Internal accruals adequate; 'not looking at' external capital (CALL Oct 2025; CALL May 2026)",
+         "Q1 ESOP proceeds Rs 168 cr; short-term borrowings Rs 111 cr [F] (PPT Aug 2026)"
+        ]
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Back-test of earlier guidance",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "No previous report exists for this coverage, so this is initial coverage. Instead we tested guidance from the four transcripts against later outcomes:"
+      },
+      {
+       "type": "table",
+       "caption": "Earlier guidance vs outcome",
+       "columns": [
+        "Item",
+        "Said (date)",
+        "Outcome",
+        "Verdict"
+       ],
+       "rows": [
+        [
+         "FY26 smartphone volume",
+         "40-42m (Oct 2025)",
+         "About 32-33m (May 2026)",
+         "Missed"
+        ],
+        [
+         "Q4 FY26 smartphone volume",
+         "7-7.5m (Feb 2026)",
+         "About 5.6m (May 2026)",
+         "Missed"
+        ],
+        [
+         "FY27 smartphones incl. Vivo",
+         "55-60m / 60-65m (Oct 2025)",
+         "Flat about 32m ex-Vivo; Vivo pending (Aug 2026)",
+         "Missed so far"
+        ],
+        [
+         "Vivo approval",
+         "'Coming weeks' (Oct 2025); 'fairly close' (Feb 2026)",
+         "PN3 July 2026 (CALL Aug 2026)",
+         "Late by about 3 quarters"
+        ],
+        [
+         "Noida 1m sq ft plant",
+         "By Mar 2026 (Oct 2025)",
+         "Q3 FY27 (Aug 2026)",
+         "Slipped"
+        ],
+        [
+         "Longcheer plant",
+         "Apr 2026 (Oct 2025)",
+         "Q3 FY27 (May 2026)",
+         "Slipped"
+        ],
+        [
+         "Display production",
+         "Plant operational Mar-Apr 2026 (Oct 2025)",
+         "Mass production end Q3/Q4 FY27 (Aug 2026)",
+         "Slipped"
+        ],
+        [
+         "Inventec JV",
+         "Operational Q1 FY27 (Oct 2025)",
+         "End Q3/early Q4 FY27 (Aug 2026)",
+         "Slipped"
+        ],
+        [
+         "FY26 telecom revenue",
+         "Rs 4,800 cr (Oct 2025); Rs 5,200 cr (Feb 2026)",
+         "About Rs 5,000 cr (May 2026)",
+         "Broadly met"
+        ],
+        [
+         "FY26 capex",
+         "Rs 1,100-1,150 cr (Feb 2026)",
+         "Rs 1,058 cr [F] (NUMBERS)",
+         "Met"
+        ],
+        [
+         "Q Tech revenue",
+         "Rs 6,000-7,000 cr in 2-3 years (Oct 2025)",
+         "About Rs 2,500 cr target (May 2026)",
+         "Reset lower"
+        ],
+        [
+         "New smartphone ODM customer",
+         "Start Q4 FY26 (Oct 2025); conclude by Q1 FY27 (Feb 2026)",
+         "Not mentioned since",
+         "Unresolved"
+        ],
+        [
+         "Specialty EMS acquisitions",
+         "'At least a couple' in FY27 (May 2026)",
+         "None announced by 10 Oct 2026 (ANNOUNCEMENTS)",
+         "Pending"
+        ]
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Pattern",
+     "blocks": [
+      {
+       "type": "callout",
+       "tone": "bad",
+       "text": "[AI] Management says 'we never give any guidance' [MC] (CALL Oct 2025), then provides granular targets each quarter. Financial targets that are mostly within its control (capex, telecom) are broadly met. Targets that depend on approvals, plant start-ups or market volume are consistently late or missed by 15-25%. Investors should haircut timing on every approval-dependent item by at least one to two quarters."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "earnings_quality",
+   "title": "Earnings quality",
+   "subsections": [
+    {
+     "title": "PAT vs cash",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "PAT vs CFO (Rs cr) [F] (NUMBERS; PPT Aug 2026); difference [E]",
+       "columns": [
+        "Year",
+        "PAT",
+        "CFO",
+        "CFO - PAT",
+        "CFO/PAT"
+       ],
+       "rows": [
+        [
+         "FY19",
+         "63",
+         "-3",
+         "-66",
+         "-0.05"
+        ],
+        [
+         "FY20",
+         "120",
+         "237",
+         "117",
+         "1.98"
+        ],
+        [
+         "FY21",
+         "160",
+         "170",
+         "10",
+         "1.06"
+        ],
+        [
+         "FY22",
+         "190",
+         "273",
+         "83",
+         "1.44"
+        ],
+        [
+         "FY23",
+         "255",
+         "726",
+         "471",
+         "2.85"
+        ],
+        [
+         "FY24",
+         "375",
+         "584",
+         "209",
+         "1.56"
+        ],
+        [
+         "FY25",
+         "1,233",
+         "1,150",
+         "-83",
+         "0.93"
+        ],
+        [
+         "FY26",
+         "1,644",
+         "1,782",
+         "138",
+         "1.08"
+        ],
+        [
+         "Q1 FY27",
+         "718",
+         "-341",
+         "-1,059",
+         "n.m."
+        ],
+        [
+         "3-year cumulative (FY24-26)",
+         "-",
+         "-",
+         "-",
+         "1.08"
+        ],
+        [
+         "5-year cumulative (FY22-26)",
+         "-",
+         "-",
+         "-",
+         "1.22"
+        ]
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Composition of profit",
+     "blocks": [
+      {
+       "type": "bullets",
+       "items": [
+        "Other income was 35.3% of FY26 PBT and 31.7% of FY25 PBT, against 1-6% before FY24 [F] (NUMBERS).",
+        "One-offs: the Aditya Infotech gain was Rs 670.8 cr in FY26 (in other income), Rs 460 cr in FY25 (exceptional), and Rs 519 cr in Q1 FY27 [F] (AR2026 p.468, p.470; PPT Aug 2026). Lighting slump-sale gain Rs 21.9 cr [F] (AR2026 p.468).",
+        "ESOP expense was Rs 60.8 cr in FY26 and Rs 85.1 cr in FY25 (P&L basis) [F] (AR2026 p.469).",
+        "PLI: about Rs 360 cr net across schemes in FY26 [MC] (CALL May 2026), booked in other operating revenue on accrual [F] (AR2026 p.428-429). Rs 1,110 cr overflow accrued but undetermined [F] (AR2026 p.509).",
+        "Tax rate 21% in FY26, 17% in Q1 FY27 [F] (NUMBERS)."
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Conclusion",
+     "blocks": [
+      {
+       "type": "callout",
+       "tone": "warn",
+       "text": "[AI] Mixed. Over the cycle, operating profit converts to cash because suppliers fund working capital. Since FY25, however, reported PAT has been inflated by mark-to-market gains on one listed holding. Those gains are non-cash until sold and will reverse if the Aditya share price falls. Management's own adjusted after-NCI PAT is about 59% of reported owners' PAT for FY26 (Rs 845 cr vs Rs 1,438.6 cr) [E] (CALL May 2026; AR2026 p.419). Valuation should be anchored to adjusted operating earnings, not the TTM figure."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "forecast",
+   "title": "Forecast model",
+   "subsections": [
+    {
+     "title": "Methodology",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "Our DCF model is a five-year FCFF projection from TTM sales of Rs 51,585 cr. FCFF is EBITDA less tax on EBIT, less capex, less change in net working capital. Growth fades linearly from the starting rate to the year-5 rate, followed by a Gordon terminal value; equity equals EV less borrowings [F] (NUMBERS). Capex equals depreciation plus new sales divided by a fixed-asset turnover of 10x. Working-capital days are set at zero. WACC is 15.0% (risk-free 7%, ERP 7%, beta 1.15), terminal growth 5.5%, tax 25.2%, and 6.117 cr shares [F] (NUMBERS)."
+      }
+     ]
+    },
+    {
+     "title": "Base-case assumptions",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "Starting growth is 30%: the median of 3-year (58.9%), 5-year (49.9%) and TTM (5.5%) sales growth, capped at 30%. Growth fades to 10% by year 5. EBITDA margin is 3.9% and D&A 0.8% of sales [F] (NUMBERS). [AI] The 30% start is above management's own FY27 ex-Vivo target of about Rs 56,000 cr [MC] (CALL May 2026). The base case therefore implicitly assumes Vivo or export upside arrives."
+      }
+     ]
+    },
+    {
+     "title": "Base-case projection",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "Base case (Rs cr) [F] (NUMBERS). Years run from the TTM Jun-2026 base, so Year 1 is approximately FY27E-FY28E",
+       "columns": [
+        "Year",
+        "Approx. fiscal",
+        "Sales growth",
+        "Sales",
+        "EBITDA",
+        "FCFF"
+       ],
+       "rows": [
+        [
+         "Year 1",
+         "~FY27E/28E",
+         "30.0%",
+         "67,060.5",
+         "2,615.4",
+         "5.4"
+        ],
+        [
+         "Year 2",
+         "~FY28E/29E",
+         "25.0%",
+         "83,825.6",
+         "3,269.2",
+         "264.6"
+        ],
+        [
+         "Year 3",
+         "~FY29E/30E",
+         "20.0%",
+         "100,590.8",
+         "3,923.0",
+         "652.9"
+        ],
+        [
+         "Year 4",
+         "~FY30E/31E",
+         "15.0%",
+         "115,679.4",
+         "4,511.5",
+         "1,169.9"
+        ],
+        [
+         "Year 5",
+         "~FY31E/32E",
+         "10.0%",
+         "127,247.3",
+         "4,962.6",
+         "1,789.9"
+        ]
+       ]
+      },
+      {
+       "type": "p",
+       "text": "PV of explicit FCFF Rs 2,196.3 cr; terminal value Rs 25,477.7 cr (PV Rs 12,691.8 cr); EV Rs 14,888.1 cr; equity Rs 13,894.1 cr; Rs 2,271.4 per share [F] (NUMBERS). About 85% of EV is terminal value [E]."
+      }
+     ]
+    },
+    {
+     "title": "Driver tree",
+     "blocks": [
+      {
+       "type": "bullets",
+       "items": [
+        "Sales = smartphone units x realisation (memory-price driven) + telecom + IT hardware + appliances + components [AI]",
+        "EBITDA = sales x 3.9% blended margin; mobile is about 2.6-3.4%, telecom about 5%, appliances 8-11% [F] (PPT Aug 2026) [MC] (CALL Aug 2026)",
+        "Capex = D&A + incremental sales / 10x turnover [F] (NUMBERS)",
+        "FCFF is near zero in Year 1 because high growth consumes capex, despite zero working capital [AI]",
+        "Value is dominated by terminal-year FCFF and the WACC-g spread of 9.5 points [E]"
+       ]
+      }
+     ]
+    },
+    {
+     "title": "What the forecast does not assume",
+     "blocks": [
+      {
+       "type": "bullets",
+       "items": [
+        "[AI] No other income, including Aditya Infotech fair-value gains or treasury income.",
+        "[AI] No deduction for minority interests (NCI was Rs 710 cr of book equity [F] (AR2026 p.418)). This overstates owners' value in a JV-heavy structure.",
+        "[AI] Cash and investments (about Rs 1,948 cr) are not added. EV is market cap plus borrowings only [F] (NUMBERS).",
+        "[AI] No step-up in margin from components or PLI 2, and no working-capital release or absorption.",
+        "[AI] No Vivo, Gemtek or specialty-EMS acquisitions explicitly."
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "scenarios",
+   "title": "Scenarios",
+   "subsections": [
+    {
+     "title": "Bull / base / bear",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "Scenario outputs [F] (NUMBERS); narratives [AI]",
+       "columns": [
+        "Scenario",
+        "Narrative",
+        "Starting growth",
+        "Growth by year 5",
+        "EBITDA margin",
+        "Per-share value",
+        "vs price Rs 12,774"
+       ],
+       "rows": [
+        [
+         "Bull",
+         "Vivo closes, PLI 2 at the 5% export band, display and camera modules lift margins to 5.9%",
+         "43.5%",
+         "13.0%",
+         "5.9%",
+         "Rs 6,233.2",
+         "-51.2%"
+        ],
+        [
+         "Base",
+         "Growth fades from 30% with margins flat at 3.9%",
+         "30.0%",
+         "10.0%",
+         "3.9%",
+         "Rs 2,271.4",
+         "-82.2%"
+        ],
+        [
+         "Bear",
+         "Demand slump, PLI loss not replaced, margin collapses to 1%",
+         "12.0%",
+         "5.0%",
+         "1.0%",
+         "Rs -665.8",
+         "-105.2%"
+        ]
+       ]
+      },
+      {
+       "type": "p",
+       "text": "Bull year-5 sales are Rs 175,828 cr at EBITDA Rs 10,373.9 cr. Bear FCFF is negative every year and equity value is Rs -4,072.5 cr [F] (NUMBERS)."
+      }
+     ]
+    },
+    {
+     "title": "Probability weighting (qualitative)",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "[AI] The base case is the most likely of the three. The bull case needs margins at 5.9%, above the best year in a decade (5.0% in FY20) [F] (NUMBERS), so it is a low-probability outcome. The bear case's 1% margin is below any year in the record. It represents a stress, not a central risk. Any reasonable weighting gives a value far below the market price."
+      }
+     ]
+    },
+    {
+     "title": "Sensitivity",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "Base-case per-share value by WACC and terminal growth (Rs) [F] (NUMBERS)",
+       "columns": [
+        "WACC \\ g",
+        "4.5%",
+        "5.5%",
+        "6.5%"
+       ],
+       "rows": [
+        [
+         "13.5%",
+         "2,650.4",
+         "2,849.5",
+         "3,105.9"
+        ],
+        [
+         "15.0%",
+         "2,149.1",
+         "2,271.4",
+         "2,422.6"
+        ],
+        [
+         "16.5%",
+         "1,778.7",
+         "1,856.7",
+         "1,950.3"
+        ]
+       ]
+      },
+      {
+       "type": "p",
+       "text": "[AI] Even the most generous cell (13.5% WACC, 6.5% growth) gives Rs 3,105.9, about a quarter of the price. Discount-rate choice does not close the gap. Only growth and margin assumptions far above the bull case would."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "valuation",
+   "title": "Valuation",
+   "subsections": [
+    {
+     "title": "Trading context",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "Market data [F] (NUMBERS)",
+       "columns": [
+        "Metric",
+        "Value"
+       ],
+       "rows": [
+        [
+         "Price",
+         "Rs 12,774"
+        ],
+        [
+         "Market cap",
+         "Rs 78,139 cr"
+        ],
+        [
+         "52-week high / low",
+         "Rs 17,440 / Rs 9,600 (26.8% below high)"
+        ],
+        [
+         "P/E (TTM)",
+         "37.5x"
+        ],
+        [
+         "EV/EBITDA (TTM)",
+         "42.8x"
+        ],
+        [
+         "EV/sales (TTM)",
+         "1.53x"
+        ],
+        [
+         "P/B",
+         "16.61x"
+        ],
+        [
+         "Dividend yield",
+         "0.08%"
+        ],
+        [
+         "EV",
+         "Rs 79,133 cr (market cap + Rs 994 cr borrowings; cash not netted)"
+        ]
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Multiples vs peers",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "No peer set is disclosed in our documents, and our statements data contains no peer multiples [F] (NUMBERS). We do not compare multiples. [AI] Note the denominator: TTM PAT of Rs 2,082 cr [F] (NUMBERS) includes the Rs 519 cr Q1 FY27 Aditya gain and the FY26 Q2 gain, and is before minority interest. On management's adjusted after-NCI earnings the P/E would be materially higher than 37.5x. We do not compute that figure."
+      }
+     ]
+    },
+    {
+     "title": "Interpreting the DCF",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "[AI] The DCF penalises Dixon for what it is: a 3.9% EBITDA-margin business that must reinvest most of its operating cash to grow. With 15% WACC and capex tied to sales, FCFF is negligible until growth slows. Assumptions that cut both ways: excluding cash and other income understates value slightly, while ignoring NCI overstates it. Neither moves the result by more than a few hundred rupees per share against a gap of more than Rs 10,000."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "priced_in",
+   "title": "What the price implies",
+   "subsections": [
+    {
+     "title": "Reverse DCF",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "The reverse DCF solves for constant five-year sales growth at the base 3.9% margin, the same WACC and terminal growth, that equates the DCF to today's EV. The answer is **about 84% a year for five years**, against a base-case 5-year CAGR equivalent of 19.8% [F] (NUMBERS). History: 3-year sales CAGR 58.9%, 5-year 49.9%, 9-year 39.4%; TTM growth over FY26 5.5% [F] (NUMBERS). The bull case starts at 43.5% and fades to 13% [F] (NUMBERS)."
+      }
+     ]
+    },
+    {
+     "title": "Key forensic conclusion",
+     "blocks": [
+      {
+       "type": "callout",
+       "tone": "bad",
+       "text": "[AI] The price requires growth above Dixon's best-ever multi-year record, sustained for five more years from a base roughly 20x larger than FY17, at today's margin. Alternatively it requires a margin structure the company has never shown. Management's most ambitious target, Rs 1 lakh cr in 3-4 years [MC] (CALL Oct 2025), implies roughly 20-27% CAGR from FY26 [E], far below 84%."
+      }
+     ]
+    },
+    {
+     "title": "Strongest counter-argument",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "[AI] The market may not value Dixon on a margin-constant DCF at all. It may be paying for: (1) a platform that compounds through repeated policy cycles; (2) components that could change the margin structure, with display targeted at mid-teens [MC] (CALL May 2026); (3) negative working capital, which makes growth nearly self-funding; and (4) scarcity value as India's largest listed EMS name. If EBITDA margin reached 6-7% on Rs 1 lakh cr revenue, the gap would narrow sharply. But that combination sits outside even our bull case, and nothing disclosed today evidences it."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "catalysts",
+   "title": "Catalysts and overhangs",
+   "subsections": [
+    {
+     "title": "Near-term (0-3 months)",
+     "blocks": [
+      {
+       "type": "bullets",
+       "items": [
+        "Q2 FY27 results (quarter ended 30 Sep 2026; date not announced in our documents). Test: 9-9.2m smartphone units [MC] (CALL Aug 2026), working-capital reversal, mobile margin.",
+        "PLI 2 guidelines, expected 'in a couple of weeks' from 31 Jul 2026 [MC] (CALL Aug 2026). Not yet confirmed in our documents.",
+        "Vivo JV consummation, expected 'within the next two months' of 31 Jul 2026 [MC] (CALL Aug 2026).",
+        "Display trials, Noida plant start and SSD line, all from Q3 FY27 (Oct-Dec 2026) [MC] (CALL Aug 2026)."
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Medium-term (3-12 months)",
+     "blocks": [
+      {
+       "type": "bullets",
+       "items": [
+        "Vivo revenue from Q3 FY27 [MC] (CALL Aug 2026).",
+        "Gemtek JV completion, targeted by 3 Feb 2027 [F] (ANNOUNCEMENTS).",
+        "Display mass production and Inventec plant, end Q3/Q4 FY27 [MC] (CALL Aug 2026).",
+        "FY27 annual report (around Aug 2027): customer concentration, PLI overflow status, Q Tech goodwill test [AI]."
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Longer-term (1-3 years)",
+     "blocks": [
+      {
+       "type": "bullets",
+       "items": [
+        "PLI 2 export volumes: 15-20m units [MC] (CALL Aug 2026).",
+        "Q Tech capacity at 180-190m, 15-18 months from Aug 2026 [MC] (CALL Aug 2026).",
+        "Component margin uplift in FY28 [MC] (CALL May 2026)."
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Overhangs (distinct from catalysts)",
+     "blocks": [
+      {
+       "type": "bullets",
+       "items": [
+        "Aditya Infotech stake: 28.1 lakh shares are marked to market quarterly and swing reported PAT [F] (AR2026 p.446; PPT Aug 2026).",
+        "PLI overflow receivable of Rs 1,110 cr pending PMA determination [F] (AR2026 p.509).",
+        "ESOP dilution: about 9.26 lakh options outstanding or exercisable, about 1.5% of shares [E] (AR2026 p.489-490).",
+        "Promoter selling: Vachani sold about 19.75 lakh shares in FY26 [F] (AR2026 p.348-349). No pledges are disclosed.",
+        "Customs disputes: Rs 398 cr contingent [F] (AR2026 p.474). No lock-in expiries apply; the company is long listed."
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "risks_matrix",
+   "title": "Risk matrix",
+   "subsections": [
+    {
+     "title": "Risks ranked",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "Risk matrix (severity and likelihood 1-5) [AI]",
+       "columns": [
+        "Risk",
+        "Category",
+        "Evidence",
+        "Severity 1-5",
+        "Likelihood 1-5"
+       ],
+       "rows": [
+        [
+         "De-rating toward fundamental value",
+         "Valuation",
+         "Price about 2x bull DCF [F] (NUMBERS)",
+         "5",
+         "3"
+        ],
+        [
+         "Mobile margin erosion without PLI",
+         "Margin",
+         "Mobile 2.6% Q1 FY27 [F] (PPT Aug 2026)",
+         "4",
+         "4"
+        ],
+        [
+         "Anchor customer reallocates volume",
+         "Customer",
+         "Top 3 = 62% [F] (AR2026 p.497); dual-sourcing [MC] (CALL Feb 2026)",
+         "5",
+         "3"
+        ],
+        [
+         "Vivo JV fails or is delayed further",
+         "Execution",
+         "Nine months from 'coming weeks' to PN3 [MC] (CALL Oct 2025; CALL Aug 2026)",
+         "4",
+         "3"
+        ],
+        [
+         "PLI overflow receivable not paid",
+         "Accounting / policy",
+         "Auditor EoM, Rs 1,110 cr [F] (AR2026 p.409)",
+         "4",
+         "2"
+        ],
+        [
+         "PLI 2 weaker than management's understanding",
+         "Policy",
+         "Guidelines awaited [MC] (CALL Aug 2026)",
+         "4",
+         "3"
+        ],
+        [
+         "Memory-cost demand shock",
+         "Market",
+         "Market down 10-12% [MC] (CALL Aug 2026)",
+         "3",
+         "4"
+        ],
+        [
+         "Working capital reversal persists",
+         "Cash",
+         "CFO Rs -341 cr Q1 [F] (PPT Aug 2026)",
+         "3",
+         "3"
+        ],
+        [
+         "Component projects underperform (Q Tech, display)",
+         "Execution / capital",
+         "Q Tech negative net assets [F] (AR2026 p.514)",
+         "3",
+         "3"
+        ],
+        [
+         "Aditya stake mark-down",
+         "Earnings quality",
+         "Fair value through P&L [F] (AR2026 p.468)",
+         "2",
+         "3"
+        ],
+        [
+         "Related-party pricing with JV partners",
+         "Governance",
+         "Caps up to 263% of counterparty turnover [F] (AR2026 p.44-49)",
+         "3",
+         "2"
+        ],
+        [
+         "Unhedged FX on Rs 7,552 cr exposure",
+         "Market",
+         "1% = Rs 75.5 cr PBT [F] (AR2026 p.481-486)",
+         "3",
+         "2"
+        ],
+        [
+         "Customs/tax disputes",
+         "Legal",
+         "Contingents about Rs 530 cr [E] (AR2026 p.474)",
+         "2",
+         "2"
+        ],
+        [
+         "Key-person dependence",
+         "Governance",
+         "Succession rated High risk by the company [F] (AR2026 p.136-138)",
+         "3",
+         "2"
+        ]
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "thesis_breakers",
+   "title": "Thesis breakers and confirming signals",
+   "subsections": [
+    {
+     "title": "Thesis breakers",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "Measurable thesis breakers [AI]",
+       "columns": [
+        "Thesis breaker",
+        "Measurable threshold",
+        "What it would confirm"
+       ],
+       "rows": [
+        [
+         "Mobile margin keeps falling",
+         "Mobile & EMS operating margin below 2.5% in Q2 or Q3 FY27 (PPT)",
+         "PLI loss not offset; pass-through is leaking"
+        ],
+        [
+         "Vivo slips again",
+         "Not consummated by 31 Dec 2026",
+         "Approval-dependent growth is unreliable"
+        ],
+        [
+         "Volume guidance missed",
+         "Q2 FY27 smartphones below 8.0m vs 9-9.2m order book",
+         "Order book is not firm"
+        ],
+        [
+         "Working capital does not normalise",
+         "H1 FY27 CFO negative or inventory days above 40 (PPT basis) at Sep 2026",
+         "Inventory build was not 'strategic'"
+        ],
+        [
+         "Concentration worsens",
+         "Top-3 customers above 65% in FY27 annual report",
+         "Rising dependence"
+        ],
+        [
+         "PLI receivable impaired",
+         "Any write-down or reversal of the Rs 1,110 cr overflow claim",
+         "Earnings were overstated"
+        ],
+        [
+         "Display slips",
+         "No mass production by 31 Mar 2027",
+         "Margin path pushed beyond FY28"
+        ],
+        [
+         "Promoter exits further",
+         "Promoter group below 28.0%",
+         "Weakening alignment"
+        ]
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Thesis-confirming signals",
+     "blocks": [
+      {
+       "type": "bullets",
+       "items": [
+        "[AI] PLI 2 notified with an export band near 5% and retention by Dixon visible in margins.",
+        "[AI] Vivo revenue appears in Q3 FY27 numbers.",
+        "[AI] Mobile margin back to 3.2% or higher with adjusted PAT growth above 15% YoY.",
+        "[AI] Display revenue booked in Q4 FY27 and Q Tech turning profitable.",
+        "[AI] Disclosure upgrade: customer shares or segment margins in the annual report."
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "monitoring_dashboard",
+   "title": "Monitoring dashboard",
+   "subsections": [
+    {
+     "title": "Quarterly dashboard",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "Metrics to track",
+       "columns": [
+        "Metric",
+        "Source",
+        "Latest value with period",
+        "What to watch"
+       ],
+       "rows": [
+        [
+         "Revenue growth YoY",
+         "Results",
+         "+21.1%, Q1 FY27 [F] (NUMBERS)",
+         "Volume vs price split"
+        ],
+        [
+         "Operating EBITDA margin",
+         "Presentation",
+         "3.0%, Q1 FY27 [F] (PPT Aug 2026)",
+         "Recovery above 3.5%"
+        ],
+        [
+         "Mobile & EMS margin",
+         "Presentation",
+         "2.6%, Q1 FY27 [F] (PPT Aug 2026)",
+         "Below 2.5% breaks thesis"
+        ],
+        [
+         "Smartphone volume",
+         "Call",
+         "7.5m, Q1 FY27 [MC] (CALL Aug 2026)",
+         "9-9.2m in Q2"
+        ],
+        [
+         "Adjusted PAT after NCI",
+         "Presentation",
+         "Rs 218 cr, Q1 FY27 [F] (PPT Aug 2026)",
+         "Growth vs reported"
+        ],
+        [
+         "Other income / PBT",
+         "Results",
+         "35.3%, FY26 [F] (NUMBERS)",
+         "Aditya gains"
+        ],
+        [
+         "CFO and FCF",
+         "Presentation",
+         "Rs -341 cr / Rs -676 cr, Q1 FY27 [F] (PPT Aug 2026)",
+         "Turn positive in H1"
+        ],
+        [
+         "Inventory days",
+         "Presentation",
+         "37, Q1 FY27 [F] (PPT Aug 2026)",
+         "Return to about 33"
+        ],
+        [
+         "Net cash",
+         "Presentation",
+         "Rs 226 cr, Jun 2026 [F] (PPT Aug 2026)",
+         "Trend"
+        ],
+        [
+         "Exports",
+         "Call",
+         "About Rs 1,100 cr, Q1 FY27 [MC] (CALL Aug 2026)",
+         "PLI 2 effect"
+        ],
+        [
+         "Telecom revenue",
+         "Call",
+         "About Rs 2,100 cr, Q1 FY27 [MC] (CALL Aug 2026)",
+         "Rs 6,700-7,000 cr FY27 run-rate"
+        ],
+        [
+         "Promoter holding",
+         "Shareholding",
+         "28.55%, Jun 2026 [F] (NUMBERS)",
+         "Further sales"
+        ]
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "red_flag_checklist",
+   "title": "Red-flag checklist",
+   "subsections": [
+    {
+     "title": "GREEN",
+     "blocks": [
+      {
+       "type": "bullets",
+       "items": [
+        "[E] Profits turn into cash: CFO was 1.08x PAT over three years (rule-based flag) (NUMBERS).",
+        "[F] High returns on capital: ROCE 29% in FY26 (rule-based flag) (NUMBERS).",
+        "[F] Low leverage: debt/equity 0.21; interest cover 15.7x (NUMBERS).",
+        "[F] Unmodified audit opinions; standalone CARO clean (AR2026 p.299, p.304-309, p.409).",
+        "[F] No SEBI or exchange penalties in three years; no whistle-blower complaints (AR2026 p.226-227).",
+        "[F] No rent or asset dealings with promoters (AR2026 p.387-403)."
+       ]
+      }
+     ]
+    },
+    {
+     "title": "AMBER",
+     "blocks": [
+      {
+       "type": "bullets",
+       "items": [
+        "[E] Profit leans on other income: 35% of PBT (rule-based flag) (NUMBERS).",
+        "[F] Customer concentration: top 3 about 62% and rising (AR2026 p.497).",
+        "[E] Contingent liabilities tripled to about Rs 530 cr; supplier guarantee with no limit (AR2026 p.474-475).",
+        "[F] ESOP perquisites of Rs 74.86 cr for the MD (AR2026 p.217).",
+        "[F] Large forward related-party caps with JV-partner groups, including a distributor with negative net worth (AR2026 p.39-44).",
+        "[F] Promoter holding down 5.25 points in three years (NUMBERS).",
+        "[F] Q Tech goodwill of Rs 523 cr on negative net assets; no impairment inputs disclosed (AR2026 p.446, p.505, p.507).",
+        "[F] CARO clause (ix)(d) remarks at two subsidiaries (AR2026 p.413)."
+       ]
+      }
+     ]
+    },
+    {
+     "title": "RED",
+     "blocks": [
+      {
+       "type": "bullets",
+       "items": [
+        "[E] Price needs growth well above trend: about 84% a year for five years vs 20% in the base case (rule-based flag) (NUMBERS).",
+        "[F] Emphasis of matter on a Rs 1,110 cr undetermined PLI overflow accrual (AR2026 p.409, p.509).",
+        "[F] EPS of Rs 271.59 computed on PAT including NCI, vs Rs 236.61 in our statements data (AR2026 p.477; NUMBERS).",
+        "[F] Q1 FY27: negative CFO and adjusted PAT down 3% while reported PAT rose 156% (PPT Aug 2026).",
+        "[MC] Repeated slippage on volume, JV and plant guidance (CALL Oct 2025; CALL Feb 2026; CALL May 2026; CALL Aug 2026)."
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "management_questions",
+   "title": "Questions for management",
+   "subsections": [
+    {
+     "title": "Customers and volumes",
+     "blocks": [
+      {
+       "type": "bullets",
+       "items": [
+        "1. What share of FY26 revenue came from the single largest customer, and how did it change from FY25?",
+        "2. Which anchor customer has moved volume to another EMS, and what share of its India volume does Dixon now hold?",
+        "3. How much of the 9-9.2m Q2 smartphone order book was firm purchase orders at 31 Jul 2026?",
+        "4. What were FY26 feature-phone volumes, and the smartphone revenue split between domestic and export?"
+       ]
+      }
+     ]
+    },
+    {
+     "title": "PLI and policy",
+     "blocks": [
+      {
+       "type": "bullets",
+       "items": [
+        "5. What is the ageing of the Rs 1,110 cr overflow claim by performance year, and what happens to the Rs 726 cr customer liability if the PMA rejects it?",
+        "6. What share of PLI 1 incentive did Dixon retain vs pass to brands, by year?",
+        "7. Has PLI 2 been notified, and does the brand-wise FY26 baseline exclude Vivo volumes from eligibility?",
+        "8. What PLI income is embedded in the Rs 314 cr of 'other incentives' in FY26 revenue?"
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Accounting and disclosure",
+     "blocks": [
+      {
+       "type": "bullets",
+       "items": [
+        "9. Why is consolidated EPS computed on profit including non-controlling interests?",
+        "10. Why was the Aditya gain exceptional in FY25 but in other income in FY26?",
+        "11. How was Q Tech goodwill of Rs 523 cr tested, and why did net assets fall from Rs 30 cr to Rs -83 cr?",
+        "12. Which subsidiaries triggered the CARO (ix)(d) remarks, and for what amounts?",
+        "13. What explains the tripling of consolidated contingent liabilities, mainly customs?"
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Working capital and cash",
+     "blocks": [
+      {
+       "type": "bullets",
+       "items": [
+        "14. How much of the Rs 2,891 cr Q1 inventory increase was memory, and at what price was it bought?",
+        "15. What were trade payables at 30 Jun 2026, and have supplier credit terms changed?",
+        "16. What is the credit exposure to G-Mobile Devices, given its negative net worth of Rs -404.7 cr?"
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Components and JVs",
+     "blocks": [
+      {
+       "type": "bullets",
+       "items": [
+        "17. What is the Vivo JV consideration, and how will profits be shared under the 51:49 structure?",
+        "18. What revenue and EBITDA did Q Tech contribute after 26 Sep 2025?",
+        "19. What utilisation and price assumptions underpin the mid-teens display margin target?",
+        "20. Why was the FY27 telecom target cut from Rs 7,500-8,000 cr to Rs 6,700-7,000 cr within one quarter?",
+        "21. What were FY26 IT hardware revenues: Rs 1,300 cr or Rs 1,500 cr?"
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Governance and capital",
+     "blocks": [
+      {
+       "type": "bullets",
+       "items": [
+        "22. How is the 'more than 42%' combined promoter-family-MD holding computed?",
+        "23. Why are ESOP perquisites excluded from the proposed Rs 15 cr remuneration caps?",
+        "24. What drove the reclassification of Manoj Maheshwari from independent to non-independent director on the same day?",
+        "25. How does Mr Lall's directorship at Aditya Infotech interact with decisions on Dixon's remaining stake?"
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "investment_scorecard",
+   "title": "Investment scorecard",
+   "subsections": [
+    {
+     "title": "Scorecard (not a rating)",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "Fifteen-factor scorecard (1 = weak, 10 = strong) [AI]",
+       "columns": [
+        "#",
+        "Factor",
+        "Score 1-10",
+        "Basis"
+       ],
+       "rows": [
+        [
+         "1",
+         "Revenue visibility",
+         "3",
+         "No order book; about 2 months of visibility [MC] (CALL Aug 2026)"
+        ],
+        [
+         "2",
+         "Customer concentration",
+         "3",
+         "Top 3 = 62% [F] (AR2026 p.497)"
+        ],
+        [
+         "3",
+         "Margin quality",
+         "3",
+         "3.0% operating margin, falling [F] (PPT Aug 2026)"
+        ],
+        [
+         "4",
+         "Earnings quality",
+         "4",
+         "Other income 35% of PBT [F] (NUMBERS)"
+        ],
+        [
+         "5",
+         "Balance sheet",
+         "6",
+         "Low debt; PLI receivable and guarantees [F] (AR2026 p.418, p.475)"
+        ],
+        [
+         "6",
+         "Working capital",
+         "6",
+         "Negative CCC, reversed in Q1 [F] (NUMBERS; PPT Aug 2026)"
+        ],
+        [
+         "7",
+         "Accounting quality",
+         "5",
+         "Clean opinion; EoM; presentation choices [F] (AR2026 p.409)"
+        ],
+        [
+         "8",
+         "Governance",
+         "5",
+         "Independent board; executive chair; large ESOPs [F] (AR2026 p.203, p.217)"
+        ],
+        [
+         "9",
+         "Related-party discipline",
+         "6",
+         "No promoter self-dealing; large partner caps [F] (AR2026 p.23-58)"
+        ],
+        [
+         "10",
+         "Moat durability",
+         "3",
+         "Scale and policy lead only [AI]"
+        ],
+        [
+         "11",
+         "Growth durability",
+         "6",
+         "Multiple verticals; policy support [MC]"
+        ],
+        [
+         "12",
+         "Capacity / optionality",
+         "7",
+         "Display, Vivo, PLI 2, Gemtek [MC] (CALL Aug 2026)"
+        ],
+        [
+         "13",
+         "Valuation vs base DCF",
+         "1",
+         "Price 5.6x base value [E] (NUMBERS)"
+        ],
+        [
+         "14",
+         "Valuation vs bull DCF",
+         "2",
+         "Price 2.0x bull value [E] (NUMBERS)"
+        ],
+        [
+         "15",
+         "Disclosure candour",
+         "4",
+         "No customer or segment margins; inconsistent call data"
+        ],
+        [
+         "",
+         "Simple average",
+         "4.3",
+         "64/15 [E]"
+        ]
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "final_thesis",
+   "title": "Final thesis",
+   "subsections": [
+    {
+     "title": "The case for owning",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "[AI] Dixon is India's largest domestic EMS platform. It has 65m units of smartphone capacity [F] (AR2026 p.78), a decade of 39% sales CAGR [F] (NUMBERS), negative working capital and low debt. It is positioned for PLI 2, the Vivo JV and component localisation, any of which could re-accelerate growth from FY28."
+      }
+     ]
+    },
+    {
+     "title": "The case against",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "[AI] Operating profit is flat to down, margins are at a five-year low, and reported earnings are propped up by investment gains. Customers are concentrated and dual-sourcing. Every growth lever is approval-dependent and has slipped. The price exceeds the bull-case DCF by about 2x."
+      }
+     ]
+    },
+    {
+     "title": "What the market may be missing",
+     "blocks": [
+      {
+       "type": "bullets",
+       "items": [
+        "[AI] Downside: adjusted earnings are far below headline TTM PAT, and JV structures route an increasing share of profits to partners through NCI.",
+        "[AI] Upside: if PLI 2 export incentives are retained rather than passed through, a 2.5-5% incentive on incremental production [MC] (CALL Aug 2026) would be very large relative to a 3% margin."
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Upside / downside framing",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "Fair value per share vs current price Rs 12,774 [F] (NUMBERS)",
+       "columns": [
+        "Scenario",
+        "Fair value per share",
+        "vs current price"
+       ],
+       "rows": [
+        [
+         "Bull",
+         "Rs 6,233.2",
+         "-51.2%"
+        ],
+        [
+         "Base",
+         "Rs 2,271.4",
+         "-82.2%"
+        ],
+        [
+         "Bear",
+         "Rs -665.8",
+         "-105.2%"
+        ]
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Five-year possibility space",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "[AI] Over five years the model's range runs from Rs 77,465 cr sales at a 1% margin (bear) to Rs 175,828 cr at 5.9% (bull) [F] (NUMBERS). Management's aspiration of Rs 1 lakh cr in 3-4 years [MC] (CALL Oct 2025) sits between base and bull on revenue. The decisive variable is margin, not revenue: the business must prove it can hold more than 4% without PLI 1."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "final_conclusion",
+   "title": "Research view",
+   "subsections": [
+    {
+     "title": "Conclusion (no rating, no price target)",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "[AI] At Rs 12,774 the shares trade about 2.0x our bull-case value of Rs 6,233.2, 5.6x the base of Rs 2,271.4, and far above a bear case that is negative [E] (NUMBERS). The gap is driven by a market expectation of roughly 84% annual growth at current margins, or equivalently a step-change in margins, that nothing in the disclosures yet evidences [F] (NUMBERS). Fundamentals are sound on cash and leverage but weak on margins, concentration and disclosure. This is a policy-and-execution option priced as a certainty. It suits only investors with a multi-year horizon who are willing to underwrite PLI 2, Vivo and components together."
+      },
+      {
+       "type": "p",
+       "text": "**When to re-review:** Q2 FY27 results (volumes vs 9-9.2m; CFO; mobile margin); notification of PLI 2 guidelines; Vivo JV consummation and its first quarter of revenue (Q3 FY27); display mass production (Q4 FY27); and the FY27 annual report for customer concentration, PLI overflow status and Q Tech goodwill."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "changes_since_last",
+   "title": "Changes since last report",
+   "subsections": [
+    {
+     "title": "Initial coverage",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "This is initial coverage. No previous report exists, so there are no prior numbers, guidance items or theses to compare against. The guidance tracker back-tests management's statements across the October 2025 to August 2026 calls instead."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "quality_control",
+   "title": "Quality control",
+   "subsections": [
+    {
+     "title": "Second-pass review",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "QC checks",
+       "columns": [
+        "Check",
+        "Result",
+        "Note"
+       ],
+       "rows": [
+        [
+         "TAM/revenue conflation",
+         "Pass",
+         "TAM shown as context only; illustrative shares labelled [E]"
+        ],
+        [
+         "Order book / pipeline conflation",
+         "Pass",
+         "A-F ladder separates confirmed revenue from aspiration; no order book disclosed"
+        ],
+        [
+         "Management claims labelled",
+         "Pass",
+         "[MC] used for all call statements"
+        ],
+        [
+         "Customer concentration both ways",
+         "Pass",
+         "Disclosed worsening vs narrative diversification shown"
+        ],
+        [
+         "Cash-flow and working-capital completeness",
+         "Pass with caveat",
+         "Q1 FY27 payables not disclosed"
+        ],
+        [
+         "Current share count and market cap",
+         "Pass",
+         "6.117 cr shares; Rs 78,139 cr (NUMBERS)"
+        ],
+        [
+         "Structural vs temporary",
+         "Pass",
+         "Margin drivers classified by year"
+        ],
+        [
+         "Measurable thesis breakers",
+         "Pass",
+         "Eight numeric thresholds"
+        ],
+        [
+         "No fabrication",
+         "Pass",
+         "Peer data, utilisation and customer shares stated as not disclosed"
+        ],
+        [
+         "Labelling discipline",
+         "Pass with caveat",
+         "Some table cells inherit labels from captions"
+        ],
+        [
+         "Discrepancies flagged",
+         "Pass",
+         "15 source conflicts tabulated, not reconciled"
+        ],
+        [
+         "Valuation transparency",
+         "Pass",
+         "All valuation figures from our DCF model; no new multiples"
+        ],
+        [
+         "Bull case vs reverse DCF",
+         "Pass",
+         "84% implied vs 43.5% bull start"
+        ],
+        [
+         "Balance",
+         "Pass",
+         "Bull table and counter-argument included"
+        ],
+        [
+         "Tone",
+         "Pass",
+         "No rating or target"
+        ],
+        [
+         "Thin evidence",
+         "Flag",
+         "Rating rationale document was a login page; no prospectus; segment chart partly garbled; segment margins only quarterly; customer names largely via BRSR and related-party approvals"
+        ]
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "summary": {
+  "one_line": "Dixon is India's largest domestic EMS platform with sound cash conversion and low leverage, but operating margins are at a five-year low, reported earnings lean on investment gains, every growth lever is approval-dependent and has slipped, and the Rs 12,774 price sits about 2x above even our bull-case DCF value of Rs 6,233.",
+  "bull_points": [
+   "[F] Scale leader: 65m smartphone units of installed capacity and FY26 revenue of Rs 48,873 cr, a 39.4% nine-year sales CAGR (AR2026 p.78; NUMBERS).",
+   "[F] Cash-generative, supplier-funded model: CCC of -7 days, 3-year CFO/PAT of 1.08x, FY26 FCF of Rs 724 cr, debt/equity 0.21 (NUMBERS).",
+   "[F] Growth options being built: Vivo JV PN3 approved in July 2026, ECMS approvals for camera, display and optical modules, and the Gemtek JV signed 7 Oct 2026 (CALL Aug 2026; AR2026 p.141-142; ANNOUNCEMENTS).",
+   "[MC] PLI 2 could pay 2.5-5% on incremental production plus about 1.5% for localisation, and could add 15-20m export units worth Rs 18,000-20,000 cr in a couple of years (CALL Aug 2026).",
+   "[F] Exports tripled to Rs 5,421 cr in FY26 from Rs 1,742 cr (AR2026 p.467)."
+  ],
+  "bear_points": [
+   "[F] Valuation: price Rs 12,774 vs DCF values of Rs 6,233 (bull), Rs 2,271 (base) and Rs -666 (bear); the reverse DCF implies about 84% annual sales growth for five years (NUMBERS).",
+   "[F] Margins falling: Q1 FY27 operating margin 3.0% vs 3.8%, mobile segment 2.6%; adjusted PAT after NCI Rs 218 cr, down 3%, while reported PAT rose 156% on a Rs 519 cr Aditya Infotech fair-value gain (PPT Aug 2026).",
+   "[F] Auditor emphasis of matter on Rs 1,110 cr of PLI overflow incentive accrued but not determined by the government agency (AR2026 p.409, p.509).",
+   "[F] Top three customers about 62% of revenue and rising (AR2026 p.497); one anchor has shifted volume to another EMS [MC] (CALL Feb 2026).",
+   "[MC] Guidance slippage: FY26 smartphones guided at 40-42m, delivered about 32-33m; Vivo, Noida, display and Inventec timelines each slipped by 1-3 quarters; FY27 telecom target cut within one quarter (CALL Oct 2025; CALL May 2026; CALL Aug 2026)."
+  ],
+  "watch_points": [
+   "Q2 FY27 smartphone volume vs the 9-9.2m order book, and mobile segment margin vs 2.6% in Q1.",
+   "Working-capital reversal: H1 FY27 CFO turning positive and inventory falling from Rs 6,728 cr.",
+   "Vivo JV consummation, expected within two months of 31 Jul 2026, with revenue from Q3 FY27.",
+   "Notification of PLI 2 guidelines and evidence of how much incentive Dixon retains.",
+   "Display trial start (Q3 FY27) and any update on the PLI overflow receivable."
+  ],
+  "guidance": [
+   "Smartphone order book for Q2 FY27 'somewhere around 9 million to 9.2 million'; 20-25% QoQ volume growth; H1 FY27 about 16-16.5m units (CALL Aug 2026).",
+   "FY27 smartphone volume close to last year's 32-33m, excluding Vivo (CALL Aug 2026).",
+   "Vivo JV transaction to conclude 'within the next two months'; revenue from Q3 FY27 (CALL Aug 2026).",
+   "No margin improvement expected in FY27; margins to start improving in FY28 (CALL Aug 2026).",
+   "Telecom revenue Rs 6,700-7,000 cr in FY27, with decent growth next year; Q2 telecom roughly flat QoQ (CALL Aug 2026).",
+   "IT hardware to 'keep on ramping'; Inventec JV factory operational end Q3 or early Q4 FY27; SSD manufacturing from Q3 (CALL Aug 2026).",
+   "Display: trials from the beginning of Q3, mass production from end Q3 or beginning Q4 FY27 (CALL Aug 2026).",
+   "Q Tech camera-module capacity from 70m to 180-190m a year over 15-18 months (CALL Aug 2026).",
+   "New 1m sq ft Noida facility for the anchor customer to start operations in Q3 FY27 (CALL Aug 2026).",
+   "Working-capital build described as 'temporary', to correct from here (CALL Aug 2026).",
+   "PLI 2 export volumes could add 15-20m units, about Rs 18,000-20,000 cr of revenue, in a couple of years with two anchor customers (CALL Aug 2026).",
+   "Home appliances: front-load washers launched in Q3; dishwashers and microwave ovens from Q3; Tirupati +0.3m units; refrigerator capacity to about 3-3.2m with new categories by Q4 FY27 (CALL Aug 2026).",
+   "Lighting export deliveries to the largest US and German retail chains in Q2-Q3 FY27 (CALL Aug 2026).",
+   "Mini LED TVs to move to an OEM model by Q2 FY27; Rexxam Chennai facility operational from August 2026 (CALL Aug 2026).",
+   "Carried from the May 2026 call: FY27 revenue about Rs 56,000 cr ex-Vivo; FY27 capex in a similar range to FY26; IT hardware above Rs 4,000 cr in FY27 (CALL May 2026)."
+  ]
+ },
+ "usage": {
+  "engine": "claude-code",
+  "model": "opus",
+  "sessions": 1,
+  "turns": 20,
+  "estimated_api_cost_usd": 13.874,
+  "input_tokens": 26,
+  "output_tokens": 81680,
+  "cache_read_input_tokens": 3101880,
+  "cache_creation_input_tokens": 95988,
+  "cost_usd": null
+ }
+}

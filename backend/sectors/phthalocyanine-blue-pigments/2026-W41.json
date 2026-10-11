@@ -1,0 +1,711 @@
+{
+ "slug": "phthalocyanine-blue-pigments",
+ "name": "Phthalocyanine Blue Pigments",
+ "icon": "flask",
+ "edition": "2026-W41",
+ "updated": "2026-10-11",
+ "scope": "Global phthalocyanine (Pc) blue/green pigment demand outlook to 2035 and which Indian listed makers are positioned for higher-value electronics/optical grades versus traditional ink, coating and plastics end-uses.",
+ "summary": {
+  "one_line": "IndexBox expects Pc blue demand to grow ~5% a year to 2035, with electronics/optical grades the fastest-growing slice. Every Indian listed maker we checked still sells commodity ink/coating/plastics grades, none has disclosed an electronics-grade product or capex, and Meghmani says it is deliberately running pigments at only 40-45% utilisation.",
+  "key_points": [
+   "IndexBox (28 Sep 2026, page updated 1 Oct) forecasts a ~5.0% CAGR in global Pc blue consumption over 2026-2035, taking its index to ~163 by 2035 (2025=100). It sees electronics/optical rising from 15-18% of demand in 2026 to 22-25% by 2035, but its own segment table puts that share at just 10% today (S1).",
+   "IndexBox says specialty grades command a 30-50% premium over standard grades. It puts copper, phthalic anhydride and energy at 55-65% of production cost, and China at 70-80% of global capacity (S1).",
+   "Correction from last week: IndexBox's top-producer list is BASF, Clariant, DIC, Heubach and Sudarshan, with Meghmani not on it (S1). Meghmani's own claim is ~14% global share and a top-3 rank by capacity (S2). CRISIL calls it the largest producer of CPC blue and a top-three global player in pigment blue (S3).",
+   "New this week: in an interview published on 2 Oct 2026, Meghmani's CMD said the company is deliberately holding pigment utilisation at 40-45% because of price pressure and Chinese excess capacity. The plan is to add application grades with better realisation, with no major capex for the next 1-2 years (S6). FY26 pigment revenue was Rs 461 crore at a 3.3% EBITDA margin (S7).",
+   "Sudarshan's Q1 FY27 pigment revenue was Rs 2,605 crore (+6% YoY), with business EBITDA margin up to 9.8% from 6.2%. Management says volume growth needs no new capacity capex (S8). Its 27 Aug 2026 launch was a violet high-performance pigment, not a Pc or colour-filter product (S9).",
+   "Asahi Songwon, a CPC-blue specialist, posted Q1 FY27 revenue of Rs 188.9 crore (+26%) and PAT of Rs 19.02 crore, already above its full-year FY26 PAT. It is running blue at 80-85% utilisation and plans debottlenecking rather than major expansion (S13).",
+   "None of the eight Indian listed names reviewed discloses a PB 15:6, colour-filter or electronics-grade Pc product or capex. That segment is supplied by majors such as DIC, whose FASTOGEN BLUE PB 15:6 colour-filter grades rely on sub-micron particle control (S20). For Indian listed companies, the electronics-grade opportunity is aspirational, not revenue (S6, S8, S13, S14)."
+  ],
+  "for_investors": [
+   {
+    "title": "Who benefits",
+    "tone": "good",
+    "points": [
+     "Cost-efficient CPC-blue specialists in a cyclical recovery. Asahi Songwon's Q1 FY27 EBITDA rose 171% YoY to Rs 32.59 crore at a 17.3% margin (S13).",
+     "Sudarshan, the only Indian name with a global specialty portfolio (~1,600 products, 19 sites in 11 countries). It cites growth in regulated specialty packaging and digital inks (S8).",
+     "Meghmani if its push into higher-realisation application grades works. Its Q1 FY27 pigment margin recovered to 12.1% despite 39% utilisation (S4, S6)."
+    ]
+   },
+   {
+    "title": "Who is hurt / risks",
+    "tone": "bad",
+    "points": [
+     "Chinese overcapacity: China holds 70-80% of capacity (S1), and Meghmani cites Chinese excess capacity for its price pressure (S6). Shreyas says Chinese duties on Indian phthalocyanines have cost Indian makers much of their China business (S17).",
+     "Export and tariff exposure: ~85% of Meghmani's FY26 revenue was exports (S6), and CRISIL moved its outlook to Negative after US tariffs and weak Western demand hit pigments (S3). AksharChem's CARE outlook is also Negative (S14).",
+     "Raw-material lag: Asahi Songwon's inputs are mostly crude-oil derivatives, and CARE notes a lag before finished-goods prices reset (S12). India extended anti-dumping duty on phthalic anhydride for five years on 5 Aug 2026 (S22)."
+    ]
+   },
+   {
+    "title": "What to watch",
+    "tone": "watch",
+    "points": [
+     "Q2 FY27 results (expected late Oct-Nov 2026): Meghmani pigment utilisation against its 40-45% target (S6); Sudarshan, whose management said it would reassess FY27 guidance after Q2 (S8).",
+     "Any Indian listed-company disclosure of PB 15:6, stabilised PB 15:4 or colour-filter customer qualification. None was found this week.",
+     "Sudarshan's One SAP go-live and Heubach-group margin, 6.5% vs 15.3% for legacy Sudarshan in Q1 FY27 (S8)."
+    ]
+   }
+  ]
+ },
+ "kpis": [
+  {
+   "label": "Global Pc blue demand CAGR",
+   "value": "~5.0%",
+   "sub": "2026-2035, IndexBox forecast (S1)"
+  },
+  {
+   "label": "Electronics/optical share of demand",
+   "value": "15-18% → 22-25%",
+   "sub": "2026 → 2035, IndexBox (S1)"
+  },
+  {
+   "label": "Specialty-grade premium",
+   "value": "30-50%",
+   "sub": "vs standard grades, IndexBox (S1)"
+  },
+  {
+   "label": "Meghmani pigment utilisation",
+   "value": "39%",
+   "sub": "Q1 FY27; CMD targets 40-45% (S4, S6)"
+  },
+  {
+   "label": "Sudarshan pigment revenue",
+   "value": "Rs 2,605 cr",
+   "sub": "Q1 FY27, +6% YoY (S8)"
+  },
+  {
+   "label": "Asahi Songwon blue utilisation",
+   "value": "80-85%",
+   "sub": "Aug 2026 (S13)"
+  }
+ ],
+ "sections": [
+  {
+   "id": "theme_explainer",
+   "title": "Theme explainer",
+   "subsections": [
+    {
+     "title": "What Pc pigment is and how it is made",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "Copper phthalocyanine (CuPc) is described as the highest-volume pigment produced. It is made either by heating phthalonitrile with a copper salt (usually copper(I) chloride) at about 200-240°C, or from phthalic anhydride and urea; the solvent process yields over 95% and the solvent-free baking process 70-80% (S21). Of its five polymorphs, the beta and metastable alpha forms are the most common (S21). Indian makers typically produce CPC blue crude and convert it into Alpha and Beta Blue (S12). Chlorinating CPC blue crude with aluminium chloride gives CPC green (Pigment Green 7) (S14)."
+      },
+      {
+       "type": "table",
+       "caption": "Pc pigment grades and where they go",
+       "columns": [
+        "Grade",
+        "Typical use",
+        "Source"
+       ],
+       "rows": [
+        [
+         "CPC blue crude",
+         "Intermediate for Alpha/Beta Blue and Green 7",
+         "(S12, S14)"
+        ],
+        [
+         "PB 15:3 (beta blue)",
+         "Water/solvent inks and paints, offset and gravure inks",
+         "(S19)"
+        ],
+        [
+         "PB 15:6 (epsilon) and specialty grades",
+         "LCD colour filters; IndexBox's electronics/optical segment",
+         "(S20, S1)"
+        ],
+        [
+         "Pigment Green 7 (CPC green)",
+         "Printing ink, plastics, paint",
+         "(S14)"
+        ]
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Why electronics-grade is different",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "DIC sells three PB 15:6 colour-filter blues (FASTOGEN BLUE C500 standard, A530 high-contrast, A540 high-brightness). It says colour-filter performance depends on particle-size control in the submicron range, surface treatment and dispersion design that prevents agglomeration during photolithography, plus high transmittance, colour purity and heat resistance (S20). IndexBox says specialty grades carry a 30-50% premium over standard grades (S1)."
+      },
+      {
+       "type": "callout",
+       "tone": "info",
+       "text": "Making a different crystal form alone does not make a product electronics-grade. Suppliers also need dispersion and surface-treatment know-how and qualification with photoresist and panel makers, and the incumbents are majors such as DIC (S20). No Indian listed maker has disclosed this capability."
+      }
+     ]
+    },
+    {
+     "title": "Demand outlook",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "IndexBox forecasts a ~5.0% CAGR in global Pc blue consumption over 2026-2035, with its index reaching ~163 in 2035 (2025=100). It sees electronics/optical growing from 15-18% to 22-25% of demand. Its segment table, however, shows printing inks 35%, paints and coatings 30%, plastics 20%, electronics/optical 10% and textiles/other 5%. The 10% conflicts with its 15-18% figure for 2026, so treat the baseline as approximate (S1). Asia-Pacific is ~55% of the market (S1)."
+      },
+      {
+       "type": "chart",
+       "title": "IndexBox: Pc blue demand by end-use (current estimate)",
+       "unit": "% of demand",
+       "series": [
+        {
+         "name": "Share of demand",
+         "points": [
+          [
+           "Printing inks",
+           35
+          ],
+          [
+           "Paints & coatings",
+           30
+          ],
+          [
+           "Plastics",
+           20
+          ],
+          [
+           "Electronics/optical",
+           10
+          ],
+          [
+           "Textiles/other",
+           5
+          ]
+         ]
+        }
+       ],
+       "source": "Source: IndexBox (S1)"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "policy_and_capex",
+   "title": "Industry structure, trade policy and capex",
+   "subsections": [
+    {
+     "title": "Global and Indian standing",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "China holds 70-80% of global Pc capacity. IndexBox names BASF, Clariant, DIC, Heubach and Sudarshan as top producers (S1), and since March 2025 Sudarshan owns Heubach, which held Clariant's former pigments business (S8, S10). Meghmani says it has ~14% global Pc share and ranks top-3 by capacity (S2). CRISIL calls it the largest CPC blue producer, backward-integrated into CPC blue (S3). Shreyas Intermediates says it contributes up to ~15% of India's copper phthalocyanine market (S16). The industry is export-led: about 85% of Meghmani's FY26 revenue (S6), ~69% of Asahi Songwon's FY26 revenue (S13) and ~55% of AksharChem's 9M FY26 sales (S14) came from exports."
+      }
+     ]
+    },
+    {
+     "title": "Trade measures and capex",
+     "blocks": [
+      {
+       "type": "bullets",
+       "items": [
+        "Phthalic anhydride (PA): India continued anti-dumping duty for five years via Notification 20/2026-Customs (ADD) dated 5 Aug 2026, following DGTR's 7 May 2026 findings. The duty is USD 40.08/t on Chinese-origin and USD 140.17/t on Korean-origin PA (S22). This settles last week's open item: it protects PA producers but raises a key Pc input cost for pigment makers.",
+        "China: Shreyas Intermediates' FY25 MD&A says a steep Chinese duty on phthalocyanines from India has cost Indian makers a sizeable share of their China business, and that Chinese producers now compete with them in global markets (S17).",
+        "Capex is minimal across the group. Meghmani has completed its major capex for the next 1-2 years (S6); Sudarshan needs no new capacity capex for volume growth (S8); Asahi Songwon will grow through debottlenecking (S13); AksharChem's recent capex went into precipitated silica (S14)."
+       ]
+      },
+      {
+       "type": "callout",
+       "tone": "warn",
+       "text": "We found no announced Indian listed-company capex for PB 15:6 or colour-filter-grade Pc pigment in any source reviewed this edition."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "listed_company_impact",
+   "title": "Listed company impact",
+   "subsections": [
+    {
+     "title": "Pc makers: exposure and positioning",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "Indian listed Pc pigment exposure (latest disclosed)",
+       "columns": [
+        "Company",
+        "Pc products",
+        "Capacity / utilisation",
+        "Latest pigment data",
+        "Electronics-grade move?"
+       ],
+       "rows": [
+        [
+         "Meghmani Organics (MOL)",
+         "CPC-based blue and green pigments; ~14% global share claim (S2, S6)",
+         "39% in Q1 FY27; CMD targets 40-45% (S4, S6)",
+         "Q1 FY27 pigment revenue Rs 131.3 cr, 12.1% EBITDA margin; FY26 Rs 461 cr at 3.3% (S4, S7)",
+         "None; 'application grades' with better realisation (S6)"
+        ],
+        [
+         "Sudarshan Chemical (SUDARSCHEM)",
+         "Global pigment portfolio incl. Heubach/Clariant assets (S8)",
+         "19 sites, 11 countries; no capacity capex needed (S8)",
+         "Q1 FY27 pigment revenue Rs 2,605 cr, 9.8% business EBITDA margin (S8)",
+         "Specialty packaging, digital inks; no colour-filter disclosure (S8)"
+        ],
+        [
+         "Asahi Songwon (ASAHISONG)",
+         "CPC blue crude, Beta and Alpha Blue (S12)",
+         "13,800 MTPA (CARE also cites 13,200 MTPA at Sep-2024); 80-85% utilisation (S12, S13)",
+         "Q1 FY27 revenue Rs 188.9 cr, PAT Rs 19.02 cr (S13)",
+         "None; 'higher-value products' unspecified (S13)"
+        ],
+        [
+         "AksharChem (AKSHARCHEM)",
+         "CPC green (Pigment Green 7) (S14)",
+         "2,400 MTPA CPC green (S14)",
+         "9M FY26 net loss Rs 5.24 cr (S14)",
+         "None disclosed"
+        ],
+        [
+         "Ishan Dyes & Chemicals (ISHANCH)",
+         "CPC blue crude and pigment blue (S15)",
+         "n/a",
+         "n/a",
+         "None disclosed"
+        ],
+        [
+         "Shreyas Intermediates (BSE 526335)",
+         "Phthalocyanine blue crude and downstream pigments (S16, S17)",
+         "Up to ~15% of India's CuPc market (company claim) (S16)",
+         "n/a",
+         "None disclosed"
+        ],
+        [
+         "Ushanti Colour Chem (UCL, NSE SME)",
+         "Copper phthalocyanine crude, alpha/beta blue, green (S18)",
+         "n/a",
+         "n/a",
+         "None disclosed"
+        ],
+        [
+         "Vipul Organics (BSE 530627)",
+         "SUNTONE PB 15:3 beta blue (S19)",
+         "n/a",
+         "n/a",
+         "None disclosed"
+        ]
+       ]
+      },
+      {
+       "type": "p",
+       "text": "Our reading is that Indian listed makers take part in Pc growth mainly through the traditional ink, coatings and plastics base. Asahi Songwon, Ishan and Shreyas are CPC-blue-crude based (S12, S15, S16), and AksharChem is in green (S14). Meghmani is the largest in commodity blue but is choosing margin over volume (S6). Sudarshan has the broadest specialty reach but has disclosed no colour-filter product (S8, S9)."
+      }
+     ]
+    },
+    {
+     "title": "Adjacent names and market-cap coverage",
+     "blocks": [
+      {
+       "type": "bullets",
+       "items": [
+        "Sudarshan Colorants India (formerly Heubach Colorants India) took its new name on 12 Dec 2025 (S10). It makes pigments and colorants; Q1 FY27 revenue was Rs 222.39 crore and net profit Rs 20.36 crore, up 19% (S11). It is a specialty-pigment adjacency, not a confirmed Pc maker."
+       ]
+      },
+      {
+       "type": "callout",
+       "tone": "info",
+       "text": "Market-cap coverage (9 Oct 2026): Sudarshan ~Rs 9,290 crore (S24) is the largest. There is no large-cap pure Pc maker listed in India. The rest are small or micro caps: Meghmani ~Rs 1,485 crore (S23), Asahi Songwon ~Rs 430 crore (S25), Ushanti ~Rs 278 crore (S18) and Shreyas ~Rs 55 crore (S16)."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "research_house_views",
+   "title": "Coverage and what is priced in",
+   "subsections": [
+    {
+     "title": "Credit-rating and media views",
+     "blocks": [
+      {
+       "type": "bullets",
+       "items": [
+        "CRISIL (27 Apr 2026) reaffirmed Meghmani at Crisil A but revised its outlook to Negative. It noted 9M FY26 pigment revenue down 16% to Rs 353 crore at a 3.4% margin, hit by US tariffs, weak Europe/North America demand and high channel inventory (S3).",
+        "CARE upgraded Asahi Songwon to CARE A/Positive in January 2025, citing better realisations, restocking and industry consolidation (S12). CARE reaffirmed AksharChem at CARE A- in February 2026 with a Negative outlook (S14).",
+        "Media coverage of Meghmani centres on margin defence at low utilisation (S5, S6). Sudarshan coverage focuses on Heubach integration (S8), and Asahi Songwon coverage on its earnings rebound (S13).",
+        "We found no broker or media coverage linking any of these stocks to electronics-grade Pc demand. The IndexBox electronics theme is not part of the stock narratives."
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Share-price performance",
+     "blocks": [
+      {
+       "type": "chart",
+       "title": "Share-price returns to 9 Oct 2026",
+       "unit": "%",
+       "series": [
+        {
+         "name": "6-month return",
+         "points": [
+          [
+           "MOL",
+           20.48
+          ],
+          [
+           "SUDARSCHEM",
+           45.69
+          ],
+          [
+           "ASAHISONG",
+           57.06
+          ]
+         ]
+        },
+        {
+         "name": "1-year return",
+         "points": [
+          [
+           "MOL",
+           -28.21
+          ],
+          [
+           "SUDARSCHEM",
+           -10.11
+          ],
+          [
+           "ASAHISONG",
+           27.73
+          ]
+         ]
+        }
+       ],
+       "source": "Source: Kotak Neo (S23, S24, S25); performance-table figures"
+      },
+      {
+       "type": "p",
+       "text": "All three stocks are up sharply over six months: Asahi Songwon +57% (S25), Sudarshan +46% (S24) and Meghmani +20% (S23). Six-month gains narrowed from last week's readings. Over one year, Meghmani is still down ~26-28%, depending on the page's method (S23), and Sudarshan ~10% (S24). The move reflects a cyclical margin recovery in commodity pigments, not an electronics-grade re-rating."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "risks_and_catalysts",
+   "title": "Risks and catalysts",
+   "subsections": [
+    {
+     "title": "Risks",
+     "blocks": [
+      {
+       "type": "bullets",
+       "items": [
+        "Input costs: copper, PA and energy are 55-65% of production cost (S1). Asahi Songwon has a supply arrangement for PA but remains exposed to crude-linked input swings (S12). AksharChem's green line depends on CPC blue crude and aluminium chloride (S14).",
+        "Chinese competition and trade barriers: China holds 70-80% of capacity (S1), and Chinese duties have shut Indian makers out of much of the China market (S17).",
+        "Customer concentration: key clients (DIC, Sun Chemical, Clariant, BASF) were ~50% of Asahi Songwon's H1 FY25 revenue, down from 70-80% earlier (S12).",
+        "Execution: Sudarshan's acquired group earned a 6.5% margin vs 15.3% for legacy Sudarshan in Q1 FY27. One SAP is still pending, and the RIECO engineering arm posted negative EBITDA (S8).",
+        "The electronics-grade opportunity is aspirational: no Indian listed maker reports PB 15:6 revenue, and incumbents already sell dedicated colour-filter grades (S20)."
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Catalysts to watch",
+     "blocks": [
+      {
+       "type": "bullets",
+       "items": [
+        "Q2 FY27 results (late Oct-Nov 2026): Meghmani pigment utilisation vs its 40-45% target and its application-grade mix (S6); Sudarshan's FY27 guidance of Rs 9,800-10,200 crore revenue and ~Rs 800 crore EBITDA, which management said it would revisit after Q2 (S8); whether Asahi Songwon sustains its Q1 margin (S13).",
+        "Any announcement of PB 15:6, stabilised PB 15:4 or colour-filter qualification by an Indian listed maker. This would be the first hard evidence of participation in IndexBox's fastest-growing segment (S1).",
+        "Effect of the extended PA anti-dumping duty on pigment-maker input costs (S22)."
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "companies": [
+  {
+   "name": "Meghmani Organics Ltd",
+   "nse": "MOL",
+   "bse": "543331",
+   "bucket": "phthalocyanine_makers",
+   "role": "Claims ~14% global Pc pigment share and a top-3 rank by capacity (S2). It focuses on copper phthalocyanine-based pigments and is backward-integrated into CPC blue (S3, S6).",
+   "impact": "Exposure is to the traditional end-use base. The company is holding utilisation at 40-45% amid Chinese overcapacity and adding better-realisation application grades, with no electronics-grade disclosure (S6). CRISIL's outlook is Negative (S3)."
+  },
+  {
+   "name": "Sudarshan Chemical Industries Ltd",
+   "nse": "SUDARSCHEM",
+   "bse": "506655",
+   "bucket": "phthalocyanine_makers",
+   "role": "Global pigment major after the Heubach acquisition; listed by IndexBox among the top Pc blue producers (S1, S8).",
+   "impact": "Broadest specialty reach of the Indian names (~1,600 products). Q1 FY27 pigment revenue was Rs 2,605 crore and it needs no capacity capex (S8); no colour-filter disclosure."
+  },
+  {
+   "name": "Asahi Songwon Colors Ltd",
+   "nse": "ASAHISONG",
+   "bse": "532853",
+   "bucket": "phthalocyanine_makers",
+   "role": "CPC blue crude, Beta Blue and Alpha Blue maker with 13,800 MTPA, supplying DIC, Sun Chemical, Clariant and BASF (S12).",
+   "impact": "Clear beneficiary of the commodity-blue recovery: Q1 FY27 PAT was Rs 19.02 crore at 80-85% blue utilisation (S13). No electronics grade disclosed."
+  },
+  {
+   "name": "AksharChem (India) Ltd",
+   "nse": "AKSHARCHEM",
+   "bse": null,
+   "bucket": "phthalocyanine_makers",
+   "role": "Makes CPC green (Pigment Green 7), with 2,400 MTPA of capacity and EU REACH registration for up to 1,000 MTPA (S14).",
+   "impact": "Commodity green exposure. 9M FY26 net loss was Rs 5.24 crore on weak realisations and US tariffs; CARE outlook Negative (S14)."
+  },
+  {
+   "name": "Ishan Dyes and Chemicals Ltd",
+   "nse": "ISHANCH",
+   "bse": "531109",
+   "bucket": "phthalocyanine_makers",
+   "role": "Manufactures CPC blue crude and pigment blue (S15).",
+   "impact": "Micro-cap exposure to commodity blue; no electronics-grade disclosure (S15)."
+  },
+  {
+   "name": "Shreyas Intermediates Ltd",
+   "nse": null,
+   "bse": "526335",
+   "bucket": "phthalocyanine_makers",
+   "role": "Makes phthalocyanine blue crude and downstream pigments, and claims up to ~15% of India's copper phthalocyanine market (S16).",
+   "impact": "Says Chinese duties have cost it China business and turned Chinese makers into global rivals (S17). Market cap ~Rs 55 crore (S16)."
+  },
+  {
+   "name": "Ushanti Colour Chem Ltd",
+   "nse": "UCL",
+   "bse": null,
+   "bucket": "phthalocyanine_makers",
+   "role": "NSE SME-listed maker of copper phthalocyanine crude and alpha/beta blue and green pigments (S18).",
+   "impact": "Micro-cap exposure to textile, ink and paint end-uses; no electronics-grade disclosure (S18)."
+  },
+  {
+   "name": "Vipul Organics Ltd",
+   "nse": null,
+   "bse": "530627",
+   "bucket": "phthalocyanine_makers",
+   "role": "Sells SUNTONE Pigment Blue 15:3 beta-blue phthalocyanine for inks and paints (S19).",
+   "impact": "Small participant in standard-grade Pc blue (S19)."
+  },
+  {
+   "name": "Sudarshan Colorants India Ltd",
+   "nse": "SUDARCOLOR",
+   "bse": "506390",
+   "bucket": "other",
+   "role": "Formerly Heubach Colorants India, renamed 12 Dec 2025 (S10); a pigments and colorants maker in the Sudarshan group (S11).",
+   "impact": "Adjacent specialty-pigment exposure. Q1 FY27 net profit was Rs 20.36 crore, up 19% (S11)."
+  }
+ ],
+ "sources": [
+  {
+   "id": "S1",
+   "publisher": "IndexBox",
+   "title": "Phthalocyanine Blue Pigments Market To 2035: Electronics Demand Drives 5.0% CAGR",
+   "url": "https://www.indexbox.io/blog/phthalocyanine-blue-pigments-market-forecast-to-2035-electronics-demand-drives-5-0-cagr/",
+   "date": "2026-09-28",
+   "kind": "research"
+  },
+  {
+   "id": "S2",
+   "publisher": "Meghmani Organics Ltd",
+   "title": "Pigments - Our business",
+   "url": "https://meghmani.com/our-business/pigments/",
+   "date": "2026-10-11",
+   "kind": "company"
+  },
+  {
+   "id": "S3",
+   "publisher": "CRISIL Ratings",
+   "title": "Rating Rationale: Meghmani Organics Limited",
+   "url": "https://www.crisil.com/mnt/winshare/Ratings/RatingList/RatingDocs/MeghmaniOrganicsLimited_April 27_ 2026_RR_394416.html",
+   "date": "2026-04-27",
+   "kind": "primary"
+  },
+  {
+   "id": "S4",
+   "publisher": "Indian Chemical News",
+   "title": "Meghmani Organics Q1 FY27 profit surges 42% despite weak demand",
+   "url": "https://www.indianchemicalnews.com/chemical/lite/meghmani-organics-q1-fy27-profit-surges-42-despite-weak-demand-31293",
+   "date": "2026-07-30",
+   "kind": "news"
+  },
+  {
+   "id": "S5",
+   "publisher": "Multibagg",
+   "title": "Meghmani Organics Q1 FY27: Lower revenue, stronger margins, and a clearer operating playbook",
+   "url": "https://www.multibagg.ai/market-pulse/articles/q1fy27-margins-96750",
+   "date": "2026-07-30",
+   "kind": "news"
+  },
+  {
+   "id": "S6",
+   "publisher": "Indian Chemical News",
+   "title": "Building a resilient, sustainable future in crop protection and pigment solutions: Ankit Patel, CMD, Meghmani Organics",
+   "url": "https://www.indianchemicalnews.com/interviews/building-a-resilient-sustainable-future-in-crop-protection-and-pigment-solutions-ankit-patel-cmd-meghmani-organics-627",
+   "date": "2026-10-02",
+   "kind": "news"
+  },
+  {
+   "id": "S7",
+   "publisher": "FilingReader",
+   "title": "Meghmani Organics reports 27% EBITDA growth despite pigment slump",
+   "url": "https://filingreader.com/news-wire/mumbai/2026-05-19/meghmani-organics-reports-27-ebitda-growth-despite-pigment-slump",
+   "date": "2026-05-19",
+   "kind": "news"
+  },
+  {
+   "id": "S8",
+   "publisher": "Multibagg",
+   "title": "Sudarshan Q1 FY27: Integration gains lift margins, while volatility and RIECO remain watchpoints",
+   "url": "https://www.multibagg.ai/market-pulse/articles/sudarshan-q1-98084",
+   "date": "2026-08-13",
+   "kind": "news"
+  },
+  {
+   "id": "S9",
+   "publisher": "Investywise",
+   "title": "Sudarshan Chemical: Launches New High-Performance Pigment 'Sudaperm Violet 3040C'",
+   "url": "https://www.investywise.com/sudarshan-chemical-new-product-launch/",
+   "date": "2026-08-27",
+   "kind": "news"
+  },
+  {
+   "id": "S10",
+   "publisher": "FilingReader",
+   "title": "Heubach Colorants India rebrands as Sudarshan Colorants India",
+   "url": "https://filingreader.com/news-wire/mumbai/2025-12-12/heubach-colorants-india-rebrands-as-sudarshan-colorants-india",
+   "date": "2025-12-12",
+   "kind": "news"
+  },
+  {
+   "id": "S11",
+   "publisher": "Whalesbook",
+   "title": "Sudarshan Colorants India Q1 FY27 Profit Up 19% to Rs 20.36 Crore",
+   "url": "https://www.whalesbook.com/corporate-news/English/chemicals/Sudarshan-Colorants-India-Q1-FY27-Profit-Up-19percent-to-indian-rupee2036-Crore/6a734c5210bce1fd203faede",
+   "date": "2026-10-11",
+   "kind": "news"
+  },
+  {
+   "id": "S12",
+   "publisher": "CARE Ratings (CareEdge)",
+   "title": "Press Release: Asahi Songwon Colors Limited",
+   "url": "https://www.careratings.com/upload/CompanyFiles/PR/202501130103_Asahi_Songwon_Colors_Limited.pdf",
+   "date": "2025-01-17",
+   "kind": "primary"
+  },
+  {
+   "id": "S13",
+   "publisher": "DSIJ",
+   "title": "Asahi Songwon Colors' 3 Growth Drivers: Pigments, AZO and APIs Power Specialty Chemicals Shift",
+   "url": "https://insights.dsij.in/appmindshare/asahi-songwon-colors-3-growth-drivers-pigments-azo-and-apis-power-specialty-chemicals-shift-59190",
+   "date": "2026-08-25",
+   "kind": "news"
+  },
+  {
+   "id": "S14",
+   "publisher": "CARE Ratings (CareEdge)",
+   "title": "Press Release: Aksharchem (India) Limited",
+   "url": "https://www.careratings.com/upload/CompanyFiles/PR/202602120234_Aksharchem_(India)_Limited.pdf",
+   "date": "2026-02-26",
+   "kind": "primary"
+  },
+  {
+   "id": "S15",
+   "publisher": "Screener.in",
+   "title": "Ishan Dyes and Chemicals Ltd - company profile",
+   "url": "https://www.screener.in/company/ISHANCH/consolidated/",
+   "date": "2026-10-11",
+   "kind": "other"
+  },
+  {
+   "id": "S16",
+   "publisher": "Screener.in",
+   "title": "Shreyas Intermediates Ltd - company profile",
+   "url": "https://www.screener.in/company/526335/",
+   "date": "2026-10-09",
+   "kind": "other"
+  },
+  {
+   "id": "S17",
+   "publisher": "IIFL (India Infoline)",
+   "title": "Shreyas Intermediates Ltd - Management Discussion and Analysis (FY25)",
+   "url": "https://www.indiainfoline.com/company/shreyas-intermediates-ltd/management-discussions/3366",
+   "date": "2026-10-11",
+   "kind": "company"
+  },
+  {
+   "id": "S18",
+   "publisher": "Screener.in",
+   "title": "Ushanti Colour Chem Ltd - company profile",
+   "url": "https://www.screener.in/company/UCL/consolidated/",
+   "date": "2026-10-06",
+   "kind": "other"
+  },
+  {
+   "id": "S19",
+   "publisher": "SpecialChem",
+   "title": "SUNTONE Pigment Blue 15.3 - Vipul Organics (technical datasheet)",
+   "url": "https://www.specialchem.com/coatings/product/vipul-organics-suntone-pigment-blue-15-3",
+   "date": "2026-10-11",
+   "kind": "other"
+  },
+  {
+   "id": "S20",
+   "publisher": "DIC Corporation",
+   "title": "Pigments for Display Application",
+   "url": "https://www.dic-global.com/en/products/digital_pigments/",
+   "date": "2026-10-11",
+   "kind": "company"
+  },
+  {
+   "id": "S21",
+   "publisher": "Wikipedia",
+   "title": "Copper phthalocyanine",
+   "url": "https://en.wikipedia.org/wiki/Copper_phthalocyanine",
+   "date": "2026-10-11",
+   "kind": "other"
+  },
+  {
+   "id": "S22",
+   "publisher": "TaxGuru",
+   "title": "Finance Ministry continues anti-dumping duty on Phthalic Anhydride from China and Korea (Notification 20/2026-Customs (ADD))",
+   "url": "https://taxguru.in/custom-duty/finance-ministry-continues-anti-dumping-duty-phthalic-anhydride-china-korea.html",
+   "date": "2026-08-05",
+   "kind": "primary"
+  },
+  {
+   "id": "S23",
+   "publisher": "Kotak Neo",
+   "title": "Meghmani Organics share price",
+   "url": "https://www.kotakneo.com/stocks/meghmani-organics-share-price",
+   "date": "2026-10-09",
+   "kind": "other"
+  },
+  {
+   "id": "S24",
+   "publisher": "Kotak Neo",
+   "title": "Sudarshan Chemical Industries share price",
+   "url": "https://www.kotakneo.com/stocks/sudarshan-chemical-industries-share-price/",
+   "date": "2026-10-09",
+   "kind": "other"
+  },
+  {
+   "id": "S25",
+   "publisher": "Kotak Neo",
+   "title": "Asahi Songwon Colors share price",
+   "url": "https://www.kotakneo.com/stocks/asahi-songwon-colors-share-price/",
+   "date": "2026-10-09",
+   "kind": "other"
+  }
+ ],
+ "method": "Weekly refresh of the 2026-W40 edition, researched on 2026-10-11 with web search and direct page fetches. IndexBox (S1) was re-read: its top-producer list (BASF, Clariant, DIC, Heubach, Sudarshan) does not include Meghmani, correcting last week's text. New this week: Meghmani's CMD interview (2 Oct 2026), CRISIL's April 2026 Negative outlook, Meghmani's FY26 pigment figures, the final PA anti-dumping notification (5 Aug 2026, replacing last week's 'recommended' status), and two more small listed CPC makers, Ishan Dyes and Shreyas Intermediates. Asahi Songwon's Q1 FY27 numbers were updated. Both CARE rationales were re-read in full. Dropped as unverifiable or stale: the Justia patent (403), the Global Trade Alert record (its preview contradicts its own title on country of origin), and the DIC India and older share-price pages. Share prices are Kotak Neo performance-table figures as of 9 Oct 2026; the dashboard's screener numbers take precedence (numbers.json was empty this week). Dates equal to 2026-10-11 are access dates where no publication date was shown. Bodal, Kiri and other dye makers were not added because no source confirmed Pc pigment manufacture. No ratings or price targets are given.",
+ "bucket_labels": {
+  "phthalocyanine_makers": [
+   "Phthalocyanine & organic pigment makers",
+   "Indian listed manufacturers of phthalocyanine blue/green pigments"
+  ],
+  "other": [
+   "Other",
+   ""
+  ]
+ },
+ "kind": "theme"
+}

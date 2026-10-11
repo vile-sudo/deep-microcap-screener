@@ -859,6 +859,20 @@
     "544710": "error: 500 Server Error: Internal Server Error for url: https://www.screener.in/company/544710/consolidated/",
     "544310": "error: 500 Server Error: Internal Server Error for url: https://www.screener.in/company/544310/consolidated/"
    }
+  },
+  {
+   "on": "2026-10-11",
+   "written": [
+    "OCCLLTD:FY27-Q1",
+    "DIXON:FY27-Q1"
+   ],
+   "spent_usd": null,
+   "skipped": {
+    "VIMTALABS": "already covers Dec 2024",
+    "SIMPLEXCAS": "already covers Sep 2021",
+    "FLUIDOM": "already covers Mar 2023",
+    "KENNAMET": "already covers Sep 2022"
+   }
   }
  ],
  "seen_new_results": {
@@ -1383,6 +1397,24 @@
    "cost_usd": null,
    "api_equivalent_usd": 5.754,
    "minutes": 14.3
+  },
+  "OCCLLTD": {
+   "period": "FY27-Q1",
+   "on": "2026-10-11",
+   "engine": "claude-code",
+   "tokens_out": 103034,
+   "cost_usd": null,
+   "api_equivalent_usd": 7.034,
+   "minutes": 15.4
+  },
+  "DIXON": {
+   "period": "FY27-Q1",
+   "on": "2026-10-11",
+   "engine": "claude-code",
+   "tokens_out": 81680,
+   "cost_usd": null,
+   "api_equivalent_usd": 13.874,
+   "minutes": 17.3
   }
  }
 }
