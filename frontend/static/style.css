@@ -2610,3 +2610,18 @@ mark.tr-hit.cur{background:#f59e0b;color:#111}
 .ss-table td small{display:block;font-size:11px;color:var(--muted)}
 .ss-tfbar{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:0 0 12px}
 .ss-tfnav{display:inline-flex;gap:6px}
+
+/* through the day + breadth history */
+.ssi-live{display:inline-flex;align-items:center;gap:5px;margin-left:8px;font-size:11px;font-weight:700;color:#15803d;text-transform:uppercase;letter-spacing:.06em;vertical-align:middle}
+.ssi-live i{width:7px;height:7px;border-radius:50%;background:#16a34a;animation:sslive 1.6s infinite}
+.ssi-daysel{min-width:120px;padding-top:5px;padding-bottom:5px}
+.ssi-add{width:auto;min-width:0;padding:3px 8px;font-size:12px;border-radius:999px}
+.ssi-x{border:0;background:none;color:var(--muted);font-size:14px;line-height:1;cursor:pointer;padding:0 0 0 2px;margin-left:2px}
+.ssi-x:hover{color:var(--ink)}
+.ssi-note{margin:6px 0 0;font-size:12px}
+.ssl-dot{stroke:var(--surface);stroke-width:2}
+.ssi .ssc-legend,.ssbh .ssc-legend{align-items:center}
+.ssi select.gal-select{height:30px;min-height:0;padding:2px 28px 2px 10px;font-size:12.5px;width:auto;border-radius:8px}
+.ssi .ssi-add{border-radius:999px;height:27px}
+.ssi .cp-card-h{flex-wrap:wrap;gap:8px}
+@media (max-width:640px){ .ssi .ssc-chip,.ssbh .ssc-chip{font-size:11.5px;padding:2px 8px} .ssi .ssc-legend{gap:4px} }

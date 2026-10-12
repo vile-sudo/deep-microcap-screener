@@ -385,8 +385,8 @@ def _keep_old_delivery(daily: dict) -> None:
 
 
 def build_daily(days: list, secs: list, resolved: dict, n500: list, cache: Path | None, px: "_Prices") -> dict:
-    """Every session of the last INDEX_SESSIONS: per sector [share up %, median move %, stocks that traded], and the
-    Nifty 500 [share of its constituents up %, the index's own move %, constituents that traded]."""
+    """Every session of the last INDEX_SESSIONS: per sector [share up %, median move %, stocks that traded, share down %],
+    and the Nifty 500 [share of its constituents up %, the index's own move %, constituents that traded, share down %]."""
     first = max(px.lo + 1, len(days) - INDEX_SESSIONS)
     span = list(range(first, len(days)))
     idx = index_closes([days[i - 1][0] for i in span[:1]] + [days[i][0] for i in span], cache, INDEX_FILE_BUDGET)
@@ -395,7 +395,8 @@ def build_daily(days: list, secs: list, resolved: dict, n500: list, cache: Path 
         v = [m for m in (px.move(ex, key, i) for ex, key in keys) if m is not None]
         if not v:
             return None
-        return [round(100 * sum(x > 0 for x in v) / len(v), 1), round(statistics.median(v), 2), len(v)]
+        return [round(100 * sum(x > 0 for x in v) / len(v), 1), round(statistics.median(v), 2), len(v),
+                round(100 * sum(x < 0 for x in v) / len(v), 1)]   # last: share down, for the advance-decline line
 
     out = {"dates": [days[i][0].isoformat() for i in span], "sectors": {}, "nifty500": []}
     keys500 = [("NSE", k) for k in n500]
@@ -403,7 +404,7 @@ def build_daily(days: list, secs: list, resolved: dict, n500: list, cache: Path 
         r = row(keys500, i)
         a, b = idx.get(days[i][0]), idx.get(days[i - 1][0])
         ret = round((a / b - 1) * 100, 2) if a and b else None
-        out["nifty500"].append([r[0], ret, r[2]] if r else [None, ret, 0])
+        out["nifty500"].append([r[0], ret, r[2], r[3]] if r else [None, ret, 0, None])
     for sec in secs:
         keys = resolved.get(sec["slug"], [])
         out["sectors"][sec["slug"]] = [row(keys, i) for i in span]

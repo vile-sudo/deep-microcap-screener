@@ -201,6 +201,20 @@ async def _filing_alerts_loop():
         await asyncio.sleep(60)
 
 
+async def _sector_intraday_loop():
+    """Every minute in market hours: a 5-minute record of every sector for Sector Strength's
+    through-the-day chart (app/sector_intraday.py; needs Zerodha connected)."""
+    from . import sector_intraday
+    log = logging.getLogger("deepsweep")
+    await asyncio.sleep(30)
+    while True:
+        try:
+            await asyncio.to_thread(sector_intraday.tick)
+        except Exception as e:  # noqa: BLE001
+            log.warning("sector intraday record failed: %s", e)
+        await asyncio.sleep(60)
+
+
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     # Make sure tables exist even if `python -m app.seed` was never run
@@ -217,6 +231,7 @@ async def lifespan(app: FastAPI):
     alerts_task = asyncio.create_task(_us_alerts_loop())
     desktop_push_task = asyncio.create_task(_desktop_push_loop())
     filing_alerts_task = asyncio.create_task(_filing_alerts_loop())
+    intraday_task = asyncio.create_task(_sector_intraday_loop())
     try:
         yield
     finally:
@@ -224,6 +239,7 @@ async def lifespan(app: FastAPI):
         alerts_task.cancel()
         desktop_push_task.cancel()
         filing_alerts_task.cancel()
+        intraday_task.cancel()
 
 
 app = FastAPI(

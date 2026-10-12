@@ -10,6 +10,7 @@ GET  /api/market/trending   board companies breaking their 1-day, 1-week,
                             the market is open and Zerodha is connected;
                             otherwise from the latest end-of-day session.
 GET  /api/sector-strength/live  today's moves for Sector Strength, from Zerodha (app/sector_live.py)
+GET  /api/sector-strength/intraday[?date=]  a day's 5-minute record of every sector (app/sector_intraday.py)
 GET  /api/kite/status       is Zerodha configured / connected
 GET  /api/kite/login?key=   start the daily Zerodha login (needs KITE_ADMIN_KEY)
 GET  /api/kite/callback     where Zerodha sends the login back
@@ -254,6 +255,19 @@ def sector_strength_live():
     """Today's move for every Sector Strength stock and the Nifty 500, from Zerodha (app/sector_live.py)."""
     from .. import sector_live
     return sector_live.snapshot()
+
+
+@router.get("/api/sector-strength/intraday")
+def sector_strength_intraday(date: str | None = None):
+    """One day's 5-minute record (the latest kept day when no date is given), and the days on file."""
+    import re
+    from fastapi import HTTPException
+    from .. import sector_intraday
+    days = sector_intraday.days()
+    if date is not None and not re.fullmatch(r"\d{4}-\d{2}-\d{2}", date):
+        raise HTTPException(status_code=400, detail="bad date")
+    d = date or (days[-1] if days else None)
+    return {"days": days, "day": sector_intraday.load(d) if d else None}
 
 
 @router.get("/api/kite/status")

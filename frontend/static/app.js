@@ -6496,6 +6496,7 @@ function sscDraw(){
   hit.addEventListener('touchmove', e=>{ if(e.touches[0]) move(e.touches[0]); }, {passive:true});
   hit.addEventListener('mouseleave', ()=>{ tip.hidden=true; cross.setAttribute('visibility','hidden'); });
 }
+window.addEventListener('resize', ()=>{ clearTimeout(SSC.rtl); SSC.rtl=setTimeout(()=>{ if(VIEW==='sstrength'){ const b=document.getElementById('ss-body'); if(b){ ssiWire(b); ssbhWire(b); } } },220); });
 window.addEventListener('resize', ()=>{ clearTimeout(SSC.rt); SSC.rt=setTimeout(()=>{ if(document.getElementById('ssc-box')) sscDraw(); },200); });
 
 /* ---------- Sector Strength: how broadly each tracked sector is moving ----------
@@ -6527,6 +6528,8 @@ function ssCols(){
 /* Zerodha's live prices: fetched with the page, then every minute while the market is open and this tab is on screen */
 async function ssLiveLoad(first){
   try{ SS.live=await fetchJSON('/api/sector-strength/live'); }catch(e){ SS.live={status:'error'}; }
+  /* the through-the-day chart gains a point every 5 minutes: reload it while live and today is the day in view */
+  if(SS.live && SS.live.status==='live' && Date.now()-SSI.loadedAt>290000 && (!SSI.date || SSI.date===SS.live.date)){ SSI.date=null; await ssiLoad(); }
   if(first && SS.live && ['live','closed'].includes(SS.live.status) && !/[#&]sw=/.test(location.hash)) SS.sel='live';
   clearTimeout(SS.liveT);
   if(SS.live && (SS.live.status==='live' || SS.live.status==='loading'))
@@ -6584,6 +6587,7 @@ async function openSStrength(){
   }
   if(!SS.data.sectors || !SS.data.sectors.length){ body.innerHTML='<p class="view-hint">Not built yet — it refreshes automatically after each trading day.</p>'; return; }
   ssRender();
+  if(!SSI.days) ssiLoad().then(()=>{ if(VIEW==='sstrength') ssRender(); });
   if(!SS.liveAsked){ SS.liveAsked=true; ssLiveLoad(true).then(()=>{ if(VIEW==='sstrength') ssRender(); }); }
   else if(SS.live && SS.live.status==='live' && Date.now()-Date.parse(SS.live.as_of)>60000) ssLiveLoad().then(()=>{ if(VIEW==='sstrength') ssRender(); });
 }
@@ -6607,6 +6611,7 @@ function ssRender(){
       : 'Over the last N days: <b>3D</b> is the change from the close three sessions ago to the latest close (the sum of those days\' moves, compounded) — not a single day\'s move. Switch to <b>Day by day</b> to see each session separately.'}</p>`;
   body.innerHTML = ctr + (SS.slug ? ssDetail() : sscHtml() + ssOverview());
   if(body.querySelector('#ssc-box')) sscWire(body);
+  ssiWire(body); ssbhWire(body);
   body.querySelectorAll('[data-ssm]').forEach(b=>b.onclick=()=>{ if(SS.mode===b.dataset.ssm) return; SS.histDate=null; SS.mode=b.dataset.ssm; SS.sel = SS.sel==='live' && ssLiveCol().length ? 'live' : SS.mode==='day' ? 'd'+((d.sessions||[]).length-1) : 'r3'; SS.sort=null; ssSave(); ssRender(); syncURL(); });
   body.querySelectorAll('[data-ssw]').forEach(b=>b.onclick=()=>{ SS.sel=b.dataset.ssw; SS.sort=null; SS.histDate=null; ssSave(); ssRender(); syncURL(); });
   document.getElementById('ss-liq').onchange=e=>{ SS.liquid=e.target.checked; ssSave(); ssRender(); };
@@ -6725,7 +6730,7 @@ function ssOverview(){
       <ol class="ss-lead">${lead.map(s=>`<li><span>${esc(s.symbol||s.code)}</span><small>${esc((s.full_name||s.name||'').slice(0,28))}</small>${ssPct(cur.get(s))}</li>`).join('')||'<li class="nd">—</li>'}</ol></article>`; };
   const grp=g=>rows.filter(r=>(r.sec.group||'theme')===g);
   /* the per-sector cards were dropped on request: the table above carries the same numbers */
-  return heatOut + ssTrendFlow() + ssRankGrid() + `
+  return heatOut + ssiHtml() + ssTrendFlow() + ssRankGrid() + `
     <p class="caveat">Every listed company in each sector's NSE industries — NSE and BSE, main board and SME — from the exchanges' own closing prices (splits and bonuses accounted for). "vs Nifty 500" is the sector's median stock minus the index. A market-breadth monitor for research, not a buy list: our backtest found broad sector moves gave no dependable edge on their own.</p>`;
 }
 /* streaks and beats against the Nifty 500, from the daily file: a day "beats" when the sector's median stock
@@ -6863,6 +6868,154 @@ function ssRankGrid(){
       return `<td style="background:${col(x)}" title="${ea(s.name)} · ${ea(rcDayShort(D.dates[i]))}${x?` · rank ${x[0]} of ${x[2]} · ${x[1]>0?'+':''}${fmt(x[1],2)} pts vs Nifty 500`:' · no data'}">${x?x[0]:''}</td>`; }).join('')}</tr>`).join('')}
     </tbody></table></div></div>`;
 }
+/* ---------- a plain line chart for Sector Strength's newer cards: one y-axis, end labels, a crosshair tooltip ----------
+   o: {n, xTick(i) -> label or '', tipTitle(i), series:[{label,color,dash,vals}], yFmt(v), zero} */
+function ssLine(box, o){
+  if(!box) return;
+  const vis=o.series.filter(s=>s.vals.some(v=>v!=null));
+  if(!vis.length){ box.innerHTML='<p class="view-hint">No data for this view yet.</p>'; return; }
+  const W=Math.max(300, box.clientWidth||800), H=o.h||Math.max(220, Math.min(340, Math.round(W*0.34))), L=6, R=60, T=10, B=24, n=o.n;
+  const all=vis.flatMap(s=>s.vals.filter(v=>v!=null));
+  let lo=Math.min(...all), hi=Math.max(...all); if(o.zero){ lo=Math.min(lo,0); hi=Math.max(hi,0); }
+  if(o.min!=null) lo=Math.min(lo,o.min); if(o.max!=null) hi=Math.max(hi,o.max);
+  if(hi-lo<1e-9){ hi+=1; lo-=1; }
+  const pad=(hi-lo)*0.06; lo-=pad; hi+=pad;
+  const x=i=>L+(W-L-R)*(n>1?i/(n-1):0), y=v=>T+(H-T-B)*(1-(v-lo)/(hi-lo));
+  const step=[0.1,0.2,0.25,0.5,1,2,2.5,5,10,20,25,50,100,200,250,500,1000,2000,5000].find(st=>(hi-lo)/st<=6)||10000;
+  let grid='';
+  for(let v=Math.ceil(lo/step)*step; v<=hi+1e-9; v+=step){ const vv=Math.abs(v)<1e-9?0:v; grid+=`<line x1="${L}" x2="${W-R}" y1="${y(vv)}" y2="${y(vv)}" class="${vv===0&&o.zero?'zero':''}"/><text x="${W-R+6}" y="${y(vv)+4}">${o.yFmt(vv,true)}</text>`; }
+  let xl=''; for(let i=0;i<n;i++){ const t=o.xTick(i); if(t) xl+=`<text x="${x(i)}" y="${H-6}" text-anchor="${i===0?'start':i===n-1?'end':'middle'}">${esc(t)}</text>`; }
+  const path=s=>{ let d='', pen=false; s.vals.forEach((v,i)=>{ if(v==null){ pen=false; return; } d+=(pen?'L':'M')+x(i).toFixed(1)+','+y(v).toFixed(1); pen=true; }); return d; };
+  const lines=vis.map(s=>`<path d="${path(s)}" style="stroke:${s.color}" class="${s.dash?'dash':''}"/>`).join('');
+  const ends=vis.map(s=>{ let i=s.vals.length-1; while(i>=0&&s.vals[i]==null) i--; return {s, i, v:s.vals[i], yy:i>=0?y(s.vals[i]):null}; }).filter(e=>e.i>=0).sort((a,b)=>a.yy-b.yy);
+  for(let k=1;k<ends.length;k++) if(ends[k].yy-ends[k-1].yy<15) ends[k].yy=ends[k-1].yy+15;
+  const dots=ends.map(e=>`<circle cx="${x(e.i)}" cy="${y(e.v)}" r="3.5" style="fill:${e.s.color}" class="ssl-dot"/>`).join('');
+  const tags=ends.map(e=>`<g class="ssc-tag" transform="translate(${W-R+2},${e.yy-9})"><rect width="${R-4}" height="18" rx="4" style="fill:${e.s.color}"/><text x="${(R-4)/2}" y="13" text-anchor="middle">${o.yFmt(e.v)}</text></g>`).join('');
+  box.innerHTML=`<svg viewBox="0 0 ${W} ${H}" width="100%" height="${H}" class="ssc-svg"><g class="ssc-grid">${grid}</g><g class="ssc-x">${xl}</g><g class="ssc-lines">${lines}</g>${dots}${tags}
+    <line class="ssc-cross" y1="${T}" y2="${H-B}" x1="0" x2="0" visibility="hidden"/><rect class="ssc-hit" x="${L}" y="${T}" width="${W-L-R}" height="${H-T-B}"/></svg><div class="ssc-tip" hidden></div>`;
+  const svg=box.querySelector('svg'), hit=box.querySelector('.ssc-hit'), cross=box.querySelector('.ssc-cross'), tip=box.querySelector('.ssc-tip');
+  const move=ev=>{
+    const rc=svg.getBoundingClientRect(), px=(ev.clientX-rc.left)*W/rc.width;
+    const i=Math.max(0,Math.min(n-1,Math.round((px-L)/((W-L-R)/Math.max(1,n-1)))));
+    const rows=vis.map(s=>({s,v:s.vals[i]})).filter(r=>r.v!=null).sort((a,b)=>b.v-a.v);
+    if(!rows.length){ tip.hidden=true; cross.setAttribute('visibility','hidden'); return; }
+    cross.setAttribute('x1',x(i)); cross.setAttribute('x2',x(i)); cross.setAttribute('visibility','visible');
+    tip.innerHTML=`<b>${esc(o.tipTitle(i))}</b>`+rows.map(r=>`<div><i style="background:${r.s.color}"></i>${esc(r.s.label)}<span>${o.yFmt(r.v)}</span></div>`).join('');
+    tip.hidden=false;
+    const left=(x(i)/W)*rc.width, want=left>rc.width/2 ? left-tip.offsetWidth-12 : left+12;
+    tip.style.left=Math.max(0, Math.min(rc.width-tip.offsetWidth, want))+'px';   /* stays inside the card on a phone */
+  };
+  hit.addEventListener('mousemove', move);
+  hit.addEventListener('touchmove', e=>{ if(e.touches[0]) move(e.touches[0]); }, {passive:true});
+  hit.addEventListener('mouseleave', ()=>{ tip.hidden=true; cross.setAttribute('visibility','hidden'); });
+}
+const ssSigned=(v,d=2,u='%')=>v==null?'—':`${v>0?'+':''}${fmt(v,d)}${u}`;
+
+/* ---------- Through the day: Zerodha's live prices, recorded every 5 minutes (app/sector_intraday.py) ---------- */
+const SSI={days:null, cache:{}, date:null, metric:'vs', picked:null, loadedAt:0};
+const SSI_SLOTS=(()=>{ const a=[]; for(let m=9*60+15;m<=15*60+30;m+=5) a.push(String(Math.floor(m/60)).padStart(2,'0')+':'+String(m%60).padStart(2,'0')); return a; })();
+async function ssiLoad(date){
+  const j=await fetchJSON('/api/sector-strength/intraday'+(date?'?date='+encodeURIComponent(date):'')).catch(()=>null);
+  if(!j) return;
+  SSI.days=j.days||[]; SSI.loadedAt=Date.now();
+  if(j.day){ SSI.cache[j.day.date]=j.day; if(!SSI.date || !date) SSI.date = date || j.day.date; }
+}
+function ssiDay(){ return SSI.date ? SSI.cache[SSI.date] : null; }
+/* each sector's value at every slot for the metric in view; the Nifty 500 alongside (none for "vs Nifty 500": it is the zero line) */
+function ssiVals(day, slug){
+  const at=Object.fromEntries(day.times.map((t,k)=>[t,k]));
+  return SSI_SLOTS.map(t=>{ const k=at[t]; if(k==null) return null;
+    const n=day.nifty500[k]||[];
+    if(slug==='nifty500') return SSI.metric==='med' ? n[0] : SSI.metric==='up' ? n[1] : null;
+    const r=(day.sectors[slug]||[])[k]; if(!r) return null;
+    return SSI.metric==='vs' ? (n[0]==null?null:+(r[0]-n[0]).toFixed(2)) : SSI.metric==='med' ? r[0] : r[1]; });
+}
+const ssiLast=v=>{ for(let i=v.length-1;i>=0;i--) if(v[i]!=null) return v[i]; return null; };
+/* default lines: the three strongest and three weakest sectors at the latest point -- a clean picture, not 28 lines */
+function ssiDefault(day){
+  const m=SSI.metric; SSI.metric='vs';
+  const r=SS.data.sectors.map(s=>({slug:s.slug, v:ssiLast(ssiVals(day,s.slug))})).filter(x=>x.v!=null).sort((a,b)=>b.v-a.v);
+  SSI.metric=m;
+  return [...new Set(r.slice(0,3).concat(r.slice(-3)).map(x=>x.slug))];
+}
+function ssiHtml(){
+  if(!SSI.days) return '';
+  const day=ssiDay();
+  if(!day) return `<div class="cp-card ssi"><div class="cp-card-h"><h3>Through the day</h3></div><p class="view-hint" style="margin:0">Starts recording the first day Zerodha is connected: every sector, every 5 minutes from 9:15 to 3:30. Days are kept, so you can look back at any of them.</p></div>`;
+  const today=new Date().toLocaleDateString('en-CA',{timeZone:'Asia/Kolkata'});
+  const live=day.date===today && SS.live && SS.live.status==='live';
+  const picked=SSI.picked || ssiDefault(day);
+  const names=Object.fromEntries(SS.data.sectors.map(s=>[s.slug,s.name]));
+  const M=[['vs','vs Nifty 500','Each sector\'s median stock minus the Nifty 500, through the day'],['med','Median move','The median stock\'s move from yesterday\'s close'],['up','% of stocks up','Share of the sector\'s stocks above yesterday\'s close']];
+  const days=(SSI.days||[]).slice().reverse();
+  return `<div class="cp-card ssi"><div class="cp-card-h"><h3>Through the day${live?' <span class="ssi-live"><i></i>live</span>':''}</h3>
+      <span class="ssc-ctl"><span class="cp-range">${M.map(([k,l,t])=>`<button type="button" data-ssim="${k}" class="${SSI.metric===k?'on':''}" title="${ea(t)}">${l}</button>`).join('')}</span>
+      <select class="gal-select ssi-daysel" id="ssi-day" aria-label="Day">${days.map(d=>`<option value="${d}"${d===day.date?' selected':''}>${d===today?'Today':esc(rcDayShort(d))}</option>`).join('')}</select></span></div>
+    <div class="ssc-legend">${(SSI.metric==='vs'?[]:[{k:'nifty500',l:'Nifty 500',c:SSC_COLORS.nifty500,d:1}]).concat(picked.map(k=>({k,l:names[k]||k,c:sscColor(k)}))).map(x=>`<span class="ssc-chip"><i style="background:${x.c}" class="${x.d?'dash':''}"></i>${esc(x.l)}${x.k!=='nifty500'?`<button type="button" class="ssi-x" data-ssix="${ea(x.k)}" aria-label="Remove ${ea(x.l)}">×</button>`:''}</span>`).join('')}
+      <select class="gal-select ssi-add" id="ssi-add" aria-label="Add a sector"><option value="">+ Add sector</option>${SS.data.sectors.filter(s=>!picked.includes(s.slug)).map(s=>`<option value="${ea(s.slug)}">${esc(s.name)}</option>`).join('')}</select>
+      ${SSI.picked?'<button type="button" class="bp-link" id="ssi-reset">Strongest &amp; weakest 3</button>':''}</div>
+    <div class="ssc-box" id="ssi-box"></div>
+    <p class="cp-sub ssi-note">${day.times.length} readings, ${esc(day.times[0])}–${esc(day.times[day.times.length-1])} · from Zerodha's live prices, every 5 minutes · ${SSI.picked?'your pick':'showing the 3 strongest and 3 weakest sectors at the last reading'}</p></div>`;
+}
+function ssiWire(root){
+  const box=root.querySelector('#ssi-box'); if(!box) return;
+  const day=ssiDay(), picked=SSI.picked || ssiDefault(day), names=Object.fromEntries(SS.data.sectors.map(s=>[s.slug,s.name]));
+  const series=(SSI.metric==='vs'?[]:[{label:'Nifty 500', color:SSC_COLORS.nifty500, dash:true, vals:ssiVals(day,'nifty500')}])
+    .concat(picked.map(k=>({label:names[k]||k, color:sscColor(k), vals:ssiVals(day,k)})));
+  ssLine(box, {n:SSI_SLOTS.length, series, zero:SSI.metric!=='up', min:SSI.metric==='up'?0:null, max:SSI.metric==='up'?100:null,
+    xTick:i=>{ const t=SSI_SLOTS[i], narrow=(box.clientWidth||800)<560;
+      return t==='09:15'||t==='15:30'||(t.endsWith(':00')&&t!=='15:00'&&(!narrow||['11:00','13:00'].includes(t)))?t.replace(/^0/,''):''; },
+    tipTitle:i=>`${rcDayShort(day.date)} · ${SSI_SLOTS[i]}`,
+    yFmt:(v,axis)=>SSI.metric==='up' ? fmt(v,0)+'%' : SSI.metric==='vs' ? ssSigned(v,axis?1:2,axis?'':' pts') : ssSigned(v,axis?1:2)});
+  root.querySelectorAll('[data-ssim]').forEach(b=>b.onclick=()=>{ SSI.metric=b.dataset.ssim; ssRender(); });
+  root.querySelectorAll('[data-ssix]').forEach(b=>b.onclick=()=>{ SSI.picked=picked.filter(k=>k!==b.dataset.ssix); ssRender(); });
+  const add=root.querySelector('#ssi-add'); if(add) add.onchange=()=>{ if(add.value){ SSI.picked=picked.concat([add.value]); ssRender(); } };
+  const rs=root.querySelector('#ssi-reset'); if(rs) rs.onclick=()=>{ SSI.picked=null; ssRender(); };
+  const ds=root.querySelector('#ssi-day'); if(ds) ds.onchange=async()=>{ const d=ds.value; if(!SSI.cache[d]) await ssiLoad(d); SSI.date=d; ssRender(); };
+}
+
+/* ---------- Breadth history on a sector's page: ~3 years from daily.json, against the Nifty 500 ---------- */
+const SSBH={metric:'a50', range:'1Y'};
+const SSBH_R=[['3M',63],['6M',126],['1Y',250],['3Y',99999]];
+function ssbhSeries(slug){
+  const D=SS.daily, T=(D&&D.trend)||{}, h=T[slug]||{}, nh=T.nifty500||{};
+  const n=(D.dates||[]).length, s0=Math.max(0, n-(SSBH_R.find(r=>r[0]===SSBH.range)||SSBH_R[2])[1]);
+  const sl=a=>(a||[]).slice(s0);
+  const avg=(a,w)=>a.map((_,i)=>{ const t=a.slice(Math.max(0,i-w+1),i+1).filter(v=>v!=null); return t.length===Math.min(w,i+1)&&t.length?t.reduce((p,v)=>p+v,0)/t.length:null; });
+  let f;
+  if(SSBH.metric==='a50' || SSBH.metric==='a200') f=x=>sl(x[SSBH.metric==='a50'?'a50':'a200']);
+  else if(SSBH.metric==='hl') f=x=>{ const hl=(x.hi||[]).map((v,i)=>v==null||x.lo[i]==null||!x.n[i]?null:100*(v-x.lo[i])/x.n[i]); return sl(avg(hl,10)); };
+  /* advancers minus decliners (stocks that didn't move count as neither), as a share of the sector, added up day by day */
+  else f=(x,daily)=>{ let c=0; return sl(daily.map(r=>r&&r[0]!=null?(r[3]!=null?r[0]-r[3]:2*r[0]-100):null)).map(u=>{ if(u==null) return null; c+=u/100; return +c.toFixed(2); }); };
+  const sec=SS.data.sectors.find(s=>s.slug===slug);
+  return {dates:(D.dates||[]).slice(s0), series:[
+    {label:'Nifty 500', color:SSC_COLORS.nifty500, dash:true, vals:f(nh, D.nifty500||[])},
+    {label:sec?sec.name:slug, color:sscColor(slug), vals:f(h, D.sectors[slug]||[])}]};
+}
+function ssbhHtml(sec){
+  const D=SS.daily; if(!D || !D.trend || !D.trend[sec.slug]) return '';
+  const M=[['a50','Above 50-DMA'],['a200','Above 200-DMA'],['hl','52W highs − lows'],['ad','Advance–decline line']];
+  const NOTE={a50:'Share of the stocks closing above their 50-day average.', a200:'Share of the stocks closing above their 200-day average.',
+    hl:'Stocks at a 52-week high minus those at a 52-week low, as a % of the sector (10-day average) — above 0, more new highs than lows.',
+    ad:'Running total, from the start of the range, of each day\'s advancers minus decliners as a share of the sector — rising means more stocks up than down, day after day.'};
+  return `<div class="cp-card ssbh"><div class="cp-card-h"><h3>Breadth history</h3>
+      <span class="ssc-ctl"><span class="cp-range">${M.map(([k,l])=>`<button type="button" data-ssbhm="${k}" class="${SSBH.metric===k?'on':''}">${l}</button>`).join('')}</span>
+      <span class="cp-range">${SSBH_R.map(([k])=>`<button type="button" data-ssbhr="${k}" class="${SSBH.range===k?'on':''}">${k}</button>`).join('')}</span></span></div>
+    <div class="ssc-legend"><span class="ssc-chip"><i style="background:${sscColor(sec.slug)}"></i>${esc(sec.name)}</span><span class="ssc-chip"><i style="background:${SSC_COLORS.nifty500}" class="dash"></i>Nifty 500</span></div>
+    <div class="ssc-box" id="ssbh-box" data-slug="${ea(sec.slug)}"></div>
+    <p class="cp-sub ssi-note">${NOTE[SSBH.metric]}</p></div>`;
+}
+function ssbhWire(root){
+  const box=root.querySelector('#ssbh-box'); if(!box) return;
+  const {dates, series}=ssbhSeries(box.dataset.slug), n=dates.length, pct=SSBH.metric==='a50'||SSBH.metric==='a200';
+  const every=Math.max(1, Math.ceil(n/6));
+  ssLine(box, {n, series, zero:!pct, min:pct?0:null, max:pct?100:null,
+    xTick:i=>i%every===0 ? new Date(dates[i]+'T00:00:00Z').toLocaleDateString('en-IN',{month:'short',year:n>300?'2-digit':undefined,day:n<=130?'numeric':undefined,timeZone:'UTC'}) : '',
+    tipTitle:i=>rcDayLong(dates[i]),
+    yFmt:(v,axis)=>pct ? fmt(v,0)+'%' : SSBH.metric==='hl' ? ssSigned(v,axis?0:1) : ssSigned(v,axis?0:1,'')});
+  root.querySelectorAll('[data-ssbhm]').forEach(b=>b.onclick=()=>{ SSBH.metric=b.dataset.ssbhm; ssRender(); });
+  root.querySelectorAll('[data-ssbhr]').forEach(b=>b.onclick=()=>{ SSBH.range=b.dataset.ssbhr; ssRender(); });
+}
 function ssPastDetail(sec){
   const k=sec.slug+'|'+SS.histDate, got=(SS.dayCache||{})[k];
   if(!got){
@@ -6944,6 +7097,7 @@ function ssDetail(){
     <div class="cp-card"><div class="cp-card-h"><h3>${esc(sec.name)}</h3><span class="cp-sub">${all.length} stocks${fresh?` · ${fresh} listed in the last year`:''}${noTrade?` · ${noTrade} listed but not traded recently`:''}</span></div>${head}</div>
     ${ssFlowCard(sec)}
     ${sscHtml(sec.slug)}
+    ${ssbhHtml(sec)}
     <div class="cp-card"><div class="ss-tools"><input type="search" id="ss-q" class="gal-search" placeholder="Search this sector…" value="${ea(SS.q)}" autocomplete="off">
       <div class="ss-chips">${inds.map(i=>`<button type="button" data-ss-ind="${ea(i)}" class="${SS.ind===i?'on':''}">${esc(i)} <small>${sec.stocks.filter(s=>s.industry===i).length}</small></button>`).join('')}</div></div>
     <div class="co-tablewrap"><table class="co-table ss-table"><thead><tr>${th('name','Company','co-name-h')}<th>Exch.</th>${th('close','Price')}
