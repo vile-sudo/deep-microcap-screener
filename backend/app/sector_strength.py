@@ -26,7 +26,7 @@ Daily breadth (daily.json, GET /api/sector-strength/daily): for every session of
 a past day comes from the chart candles instead (GET /api/sector-strength/day).
 
 Trend breadth and money flow (latest.json "trend" / "flow" per sector, and their daily history in daily.json):
-the share of a sector's stocks above their 50- and 200-day averages, how many closed at a 52-week high or low
+the share of a sector's stocks above their 50- and 200-day exponential moving averages (EMA), how many closed at a 52-week high or low
 (all on split-adjusted closes), the sector's traded value against its own 20-session average, and -- NSE
 stocks only, from NSE's daily delivery file -- the share of that value taken into demat (delivery) against
 its 20-session average.
@@ -460,7 +460,7 @@ def delivery_books(days: list, cache: Path | None) -> dict:
 
 
 def build_trend_flow(days: list, secs: list, resolved: dict, n500: list, cache: Path | None, px: "_Prices") -> dict:
-    """Per stock (latest session): above 50/200-day average, 52-week high/low, delivery %. Per sector and the Nifty
+    """Per stock (latest session): above 50/200-day EMA, 52-week high/low, delivery %. Per sector and the Nifty
     500: today's figures, and their daily history over the same span as daily.json."""
     last = len(days) - 1
     first = max(px.lo + 1, len(days) - INDEX_SESSIONS)
@@ -485,17 +485,32 @@ def build_trend_flow(days: list, secs: list, resolved: dict, n500: list, cache: 
             traded.append(close[j] is not None)
             p.append(p[-1] + (cur or 0.0))
         firstj = next((j for j in range(n) if lev[j] is not None), None)
-        stock[k] = (lev, p, firstj, tsum)
+        stock[k] = (lev, p, firstj, tsum, _ema(lev, firstj, 50), _ema(lev, firstj, 200))
         return stock[k]
 
+    def _ema(lev, firstj, w):
+        """Exponential moving average of the split-adjusted closes (weight 2/(w+1)), seeded with the simple
+        average of the first w sessions; None until a stock has w sessions."""
+        out = [None] * len(lev)
+        if firstj is None or len(lev) - firstj < w:
+            return out
+        a, e = 2 / (w + 1), sum(lev[firstj:firstj + w]) / w
+        out[firstj + w - 1] = e
+        for j in range(firstj + w, len(lev)):
+            if lev[j] is not None:
+                e = a * lev[j] + (1 - a) * e
+            out[j] = e
+        return out
+
     def flags(ex, key, i):
-        lev, p, firstj, _ = series(ex, key)
+        lev, p, firstj, _, e50, e200 = series(ex, key)
         j = i - px.lo
         if firstj is None or j < firstj or lev[j] is None:
             return None
         age = j - firstj + 1
-        a50 = lev[j] > (p[j + 1] - p[j - 49]) / 50 if age >= 50 else None
-        a200 = lev[j] > (p[j + 1] - p[j - 199]) / 200 if age >= 200 else None
+        # above the 50- / 200-day exponential moving average (the "a50" / "a200" fields keep their names)
+        a50 = lev[j] > e50[j] if e50[j] is not None else None
+        a200 = lev[j] > e200[j] if e200[j] is not None else None
         hi = lo = None
         if age >= 250:
             win = lev[j - 249:j + 1]

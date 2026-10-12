@@ -6816,7 +6816,7 @@ function ssTrendFlow(){
       <span style="flex:1"></span>
       <button type="button" class="btn ghost" id="ss-tfcsv" title="This table for ${ea(rcDayLong(date))}">⬇ This day (CSV)</button>
       <button type="button" class="btn ghost" id="ss-tfcsvall" title="Every sector, every session since ${ea(DD[0]?rcDayLong(DD[0]):'')}">⬇ Full 3 years (CSV)</button></div>
-    <div class="ss-heatwrap"><table class="ss-heat ss-tf"><thead><tr>${th('name','Sector')}${th('a50','Above<br>50-DMA','Share of the sector\'s stocks closing above their 50-day average')}${th('a200','Above<br>200-DMA','Share above the 200-day average')}
+    <div class="ss-heatwrap"><table class="ss-heat ss-tf"><thead><tr>${th('name','Sector')}${th('a50','Above<br>50-EMA','Share of the sector\'s stocks closing above their 50-day EMA')}${th('a200','Above<br>200-EMA','Share above the 200-day EMA')}
       ${th('hi','52W<br>highs','Stocks that closed at a 52-week high')}${th('lo','52W<br>lows','Stocks that closed at a 52-week low')}${th('vr','Value traded<br>vs 20D avg','The sector\'s traded value against its own 20-session average')}
       ${th('dl','Delivery %','Share of NSE traded value taken into demat, against its 20-session average (sorts by the gap)')}${live?th('live','Live value<br>today','Traded so far today (Zerodha), as a share of a full day\'s 20D average'):''}
       ${th('st','Streak vs<br>Nifty 500','Sessions in a row the median stock beat (▲) or lagged (▼) the Nifty 500')}${th('b10','Beat N500<br>last 10D')}${th('b20','Beat N500<br>last 20D')}</tr></thead><tbody>
@@ -6824,9 +6824,9 @@ function ssTrendFlow(){
     ${rows.map((r,ri)=>`${ri===0||gOrd(rows[ri-1])!==gOrd(r)?`<tr class="ss-grp"><td colspan="${live?11:10}">${SS_GRP[r.sec.group||'theme']}</td></tr>`:''}${row(r.sec.name, `${r.t.n??'—'} stocks`, r.t, r.f,
       (live?`<td>${r.live!=null?`<b>₹${fmtI(r.live)} Cr</b><small>${r.liveR!=null?fmt(100*r.liveR,0)+'% of 20D avg':''}</small>`:'—'}</td>`:'')+`<td>${strk(r.streak)}</td><td>${bt(r.b10)}</td><td>${bt(r.b20)}</td>`, ` data-ss="${ea(r.sec.slug)}"`)}`).join('')}
     </tbody></table></div>
-    <p class="cp-sub" style="margin-top:8px">50/200-DMA and 52-week figures use split-adjusted closes; a stock needs 50 / 200 / 250 sessions of history to count. Value traded counts NSE and BSE; delivery % is NSE only, from NSE's daily delivery file. ⚠ = one or two stocks traded 3×+ their own normal and made up a big part of the sector's money; "rest" is the ratio without them (hover for amounts; latest day only). "Beat" means the sector's median stock rose more than the Nifty 500 that day; streak and beats count back from the date shown. Delivery % goes back as far as NSE's delivery files have been collected.</p></div>`;
+    <p class="cp-sub" style="margin-top:8px">50/200-EMA and 52-week figures use split-adjusted closes; a stock needs 50 / 200 / 250 sessions of history to count. Value traded counts NSE and BSE; delivery % is NSE only, from NSE's daily delivery file. ⚠ = one or two stocks traded 3×+ their own normal and made up a big part of the sector's money; "rest" is the ratio without them (hover for amounts; latest day only). "Beat" means the sector's median stock rose more than the Nifty 500 that day; streak and beats count back from the date shown. Delivery % goes back as far as NSE's delivery files have been collected.</p></div>`;
 }
-const SS_CSV_HEAD=['Date','Sector','Group','Stocks','% above 50-DMA','% above 200-DMA','52W highs','52W lows','Value traded (Rs Cr)','Value 20D avg (Rs Cr)','Value vs 20D avg (x)','Delivery %','Delivery 20D avg %'];
+const SS_CSV_HEAD=['Date','Sector','Group','Stocks','% above 50-EMA','% above 200-EMA','52W highs','52W lows','Value traded (Rs Cr)','Value 20D avg (Rs Cr)','Value vs 20D avg (x)','Delivery %','Delivery 20D avg %'];
 function ssCsvRow(date, name, group, t, f){
   const r=v=>v==null||v===''?'':(typeof v==='number'?+v.toFixed(2):v);
   return [date, name, group, r(t.n), r(t.above50), r(t.above200), r(t.hi52), r(t.lo52), r(f.value_cr), r(f.value_avg20_cr), r(f.value_ratio), r(f.deliv_pct), r(f.deliv_avg20_pct)];
@@ -6994,8 +6994,8 @@ function ssbhSeries(slug){
 }
 function ssbhHtml(sec){
   const D=SS.daily; if(!D || !D.trend || !D.trend[sec.slug]) return '';
-  const M=[['a50','Above 50-DMA'],['a200','Above 200-DMA'],['hl','52W highs − lows'],['ad','Advance–decline line']];
-  const NOTE={a50:'Share of the stocks closing above their 50-day average.', a200:'Share of the stocks closing above their 200-day average.',
+  const M=[['a50','Above 50-EMA'],['a200','Above 200-EMA'],['hl','52W highs − lows'],['ad','Advance–decline line']];
+  const NOTE={a50:'Share of the stocks closing above their 50-day EMA.', a200:'Share of the stocks closing above their 200-day EMA.',
     hl:'Stocks at a 52-week high minus those at a 52-week low, as a % of the sector (10-day average) — above 0, more new highs than lows.',
     ad:'Running total, from the start of the range, of each day\'s advancers minus decliners as a share of the sector — rising means more stocks up than down, day after day.'};
   return `<div class="cp-card ssbh"><div class="cp-card-h"><h3>Breadth history</h3>
@@ -7057,7 +7057,7 @@ function ssValCell(s, cur){
 }
 function ssTrendTags(s){
   const t=(ok,l,tip)=>ok==null?'':`<i class="ss-tr ${ok?'up':'dn'}" title="${tip} ${ok?'above':'below'}">${l}</i>`;
-  return (t(s.a50,'50','Close vs 50-day average:')+t(s.a200,'200','Close vs 200-day average:')
+  return (t(s.a50,'50','Close vs 50-day EMA:')+t(s.a200,'200','Close vs 200-day EMA:')
     +(s.hi52?'<i class="ss-tr hi" title="Closed at a 52-week high">52W high</i>':'')+(s.lo52?'<i class="ss-tr lo" title="Closed at a 52-week low">52W low</i>':''))||'—';
 }
 function ssFlowCard(sec){
@@ -7101,7 +7101,7 @@ function ssDetail(){
     <div class="cp-card"><div class="ss-tools"><input type="search" id="ss-q" class="gal-search" placeholder="Search this sector…" value="${ea(SS.q)}" autocomplete="off">
       <div class="ss-chips">${inds.map(i=>`<button type="button" data-ss-ind="${ea(i)}" class="${SS.ind===i?'on':''}">${esc(i)} <small>${sec.stocks.filter(s=>s.industry===i).length}</small></button>`).join('')}</div></div>
     <div class="co-tablewrap"><table class="co-table ss-table"><thead><tr>${th('name','Company','co-name-h')}<th>Exch.</th>${th('close','Price')}
-      ${cols.map(c=>th(c.k, c.label+(c.k===cur.k?' •':''))).join('')}${th('a50','Trend<small>DMA · 52W</small>')}${th('dlv','Delivery<small>% today</small>')}${th('val',`Value traded<small>₹ Cr · ${esc(ssValDay(cur))}</small>`)}${th('turnover_cr','Turnover<small>₹ Cr/day, 20D</small>')}</tr></thead>
+      ${cols.map(c=>th(c.k, c.label+(c.k===cur.k?' •':''))).join('')}${th('a50','Trend<small>EMA · 52W</small>')}${th('dlv','Delivery<small>% today</small>')}${th('val',`Value traded<small>₹ Cr · ${esc(ssValDay(cur))}</small>`)}${th('turnover_cr','Turnover<small>₹ Cr/day, 20D</small>')}</tr></thead>
     <tbody>${rows.map(s=>{ const bd=s.exchange==='NSE'?byNse[s.symbol]:byCode[String(s.code)]||byNse[s.code];
       return `<tr class="${s.liquid?'':'ss-ill'}"><td class="co-name"><span class="ss-nm">${esc(s.full_name||s.name)}</span>
         <small>${esc(s.symbol||s.code)} · ${esc(s.industry)}</small>${ssIsSme(s,sme)?'<i class="ss-tag sme">SME</i>':''}${s.listed?`<i class="ss-tag ipo" title="First traded ${esc(rcDayLong(s.listed))}">New listing · ${esc(ssDay(s.listed))}</i>`:''}${s.liquid?'':'<i class="ss-tag">Illiquid</i>'}${bd?`<a href="#" class="ss-tag board" data-co="${ea(bd.code)}" title="On the board — open its page">On the board</a>`:''}</td>
