@@ -6931,13 +6931,9 @@ function ssiVals(day, slug){
     return SSI.metric==='vs' ? (n[0]==null?null:+(r[0]-n[0]).toFixed(2)) : SSI.metric==='med' ? r[0] : r[1]; });
 }
 const ssiLast=v=>{ for(let i=v.length-1;i>=0;i--) if(v[i]!=null) return v[i]; return null; };
-/* default lines: the three strongest and three weakest sectors at the latest point -- a clean picture, not 28 lines */
-function ssiDefault(day){
-  const m=SSI.metric; SSI.metric='vs';
-  const r=SS.data.sectors.map(s=>({slug:s.slug, v:ssiLast(ssiVals(day,s.slug))})).filter(x=>x.v!=null).sort((a,b)=>b.v-a.v);
-  SSI.metric=m;
-  return [...new Set(r.slice(0,3).concat(r.slice(-3)).map(x=>x.slug))];
-}
+/* default lines: the sectors followed most closely; "+ Add sector" / × change them for the visit */
+const SSI_DEFAULT=['chemicals','defence','financial-services','auto','power','jewellery'];
+function ssiDefault(){ const have=new Set(SS.data.sectors.map(s=>s.slug)); return SSI_DEFAULT.filter(k=>have.has(k)); }
 function ssiHtml(){
   if(!SSI.days) return '';
   const day=ssiDay();
@@ -6953,9 +6949,9 @@ function ssiHtml(){
       <select class="gal-select ssi-daysel" id="ssi-day" aria-label="Day">${days.map(d=>`<option value="${d}"${d===day.date?' selected':''}>${d===today?'Today':esc(rcDayShort(d))}</option>`).join('')}</select></span></div>
     <div class="ssc-legend">${(SSI.metric==='vs'?[]:[{k:'nifty500',l:'Nifty 500',c:SSC_COLORS.nifty500,d:1}]).concat(picked.map(k=>({k,l:names[k]||k,c:sscColor(k)}))).map(x=>`<span class="ssc-chip"><i style="background:${x.c}" class="${x.d?'dash':''}"></i>${esc(x.l)}${x.k!=='nifty500'?`<button type="button" class="ssi-x" data-ssix="${ea(x.k)}" aria-label="Remove ${ea(x.l)}">×</button>`:''}</span>`).join('')}
       <select class="gal-select ssi-add" id="ssi-add" aria-label="Add a sector"><option value="">+ Add sector</option>${SS.data.sectors.filter(s=>!picked.includes(s.slug)).map(s=>`<option value="${ea(s.slug)}">${esc(s.name)}</option>`).join('')}</select>
-      ${SSI.picked?'<button type="button" class="bp-link" id="ssi-reset">Strongest &amp; weakest 3</button>':''}</div>
+      ${SSI.picked?'<button type="button" class="bp-link" id="ssi-reset">Back to default sectors</button>':''}</div>
     <div class="ssc-box" id="ssi-box"></div>
-    <p class="cp-sub ssi-note">${day.times.length} readings, ${esc(day.times[0])}–${esc(day.times[day.times.length-1])} · from Zerodha's live prices, every 5 minutes · ${SSI.picked?'your pick':'showing the 3 strongest and 3 weakest sectors at the last reading'}</p></div>`;
+    <p class="cp-sub ssi-note">${day.times.length} readings, ${esc(day.times[0])}–${esc(day.times[day.times.length-1])} · from Zerodha's live prices, every 5 minutes · ${SSI.picked?'your pick':'default sectors'}</p></div>`;
 }
 function ssiWire(root){
   const box=root.querySelector('#ssi-box'); if(!box) return;
