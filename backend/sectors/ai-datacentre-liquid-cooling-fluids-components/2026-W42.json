@@ -1,0 +1,793 @@
+{
+ "slug": "ai-datacentre-liquid-cooling-fluids-components",
+ "name": "AI Data-Centre Liquid Cooling: Fluids, Hoses & Heat Exchangers",
+ "icon": "chip",
+ "edition": "2026-W42",
+ "updated": "2026-10-12",
+ "scope": "Indian listed suppliers of coolants/dielectric fluids, liquid-cooling skids and hoses, and heat exchangers/cooling systems for AI data centres, and how much of the theme is already priced in.",
+ "summary": {
+  "one_line": "Aeroflex (skids) and KRN (heat exchangers) are still the only Indian listed names with quantified data-centre cooling revenue. The fluids leg has products but no disclosed sales, and it has already re-rated on transformer-oil earnings. This week the theme cooled: over the past month KRN is down 13%, Aeroflex 7%, and Savita is 11% below its 30 Sep record.",
+  "key_points": [
+   "IndexBox forecasts an 18.5% CAGR for direct-to-chip liquid cooling over 2026-2035 (baseline 12.0%), and 15.2% for immersion-cooling fluids. It puts the practical limit of air cooling at 30-50 kW per rack, against AI racks above 100 kW (S1, S2).",
+   "JLL puts India's data-centre capacity at 1.6 GW in mid-2026 and expects 6 GW by 2029. H1 2026 absorption was 101 MW, 82% of it pre-committed hyperscale capacity. JLL says USD 110 bn of investment is needed by 2029 (S3).",
+   "Aeroflex sold Rs 32.4 cr of liquid-cooling SFN skids in Q1 FY27, about 23% of revenue. Skid capacity is 9,000 units a year, targeted at 15,000 by Q3 FY27, with Rs 102 cr of capex budgeted for skids and hoses (S7).",
+   "Data centres were about 16% of KRN's FY26 revenue (18.7% in Q4), and Vertiv's quality audit has been approved. FY26 operating cash flow was -Rs 113.80 cr (S10).",
+   "Savita (QuantiCool PG 25 coolant for direct liquid cooling) and Apar (Poweroil DC 10 immersion fluid) have data-centre products but disclose no revenue from them. Their re-rating rests on transformer-oil margins, which Apar partly attributes to inventory gains (S9, S12, S13, S14, S15).",
+   "Blue Star took about Rs 1,500 cr of data-centre MEP orders in Q1 FY27 and targets about Rs 4,000 cr of data-centre MEP revenue by FY29. Its Q1 FY27 call did not mention liquid cooling, and it has a 10-12% share in data-centre chillers (S16).",
+   "Not every hyperscale build is going liquid. Google says its USD 15 bn Visakhapatnam campus will use advanced air cooling to protect local water, and the project faces litigation (S24).",
+   "Added this week: BPCL, a large cap, co-developed an Indian data-centre liquid coolant with Refroid and plans to use it in its own data centres first, with no sales disclosed (S25)."
+  ],
+  "for_investors": [
+   {
+    "title": "Who benefits",
+    "tone": "good",
+    "points": [
+     "Aeroflex: skids earn 22-26% EBITDA margins against 16-20% for hoses, and capacity is rising from 9,000 to 15,000 units (S7).",
+     "KRN: Vertiv's audit is approved, with prototype and then mass production to follow drawing approvals. Plant II utilisation is guided to about 50% in FY27 and about 80% the year after (S10).",
+     "Blue Star: guides to about Rs 3,000 cr of data-centre MEP inflow in FY27 and about Rs 4,500 cr in FY28. Its June 2026 MEP order book was above Rs 7,700 cr (S16).",
+     "Fluids makers (Savita, Apar, Castrol, BPCL) have coolants ready or in trials. That is an option not yet visible in their reported numbers (S9, S14, S17, S25)."
+    ]
+   },
+   {
+    "title": "Who is hurt / risks",
+    "tone": "bad",
+    "points": [
+     "Aeroflex's liquid-cooling orders so far (about Rs 16 cr in two orders by Oct 2025) come from one US-listed client's Indian data centre. It also faces a Rs 41.76 cr tax demand for AY2018-19, which it is appealing (S5, S6).",
+     "KRN's working capital is stretched: FY26 operating cash flow was -Rs 113.80 cr, inventories Rs 272.91 cr and current borrowings Rs 187.10 cr (S10).",
+     "Apar says Q1 FY27 oil margins included inventory gains that reverse when gas-oil prices fall, and the same commodity sensitivity applies to Savita (S15).",
+     "Air cooling is still being chosen for some Indian hyperscale sites, for example Google in Visakhapatnam (S24). Local CDU makers such as KühlTherm are adding capacity that competes with component suppliers (S19)."
+    ]
+   },
+   {
+    "title": "What to watch",
+    "tone": "watch",
+    "points": [
+     "Q2 FY27 results (late Oct to Nov 2026): Aeroflex's skid revenue share, which was 23% in Q1, and KRN's data-centre mix, which was 18.7% in Q4 FY26 (S7, S10).",
+     "Whether Aeroflex discloses a second liquid-cooling customer (S5).",
+     "First disclosed data-centre fluid revenue at Savita, Apar, Castrol or BPCL (S12, S15, S17, S25).",
+     "JLL's next half-yearly update on progress toward 6 GW by 2029, and hyperscalers' cooling choices (S3, S24)."
+    ]
+   }
+  ]
+ },
+ "kpis": [
+  {
+   "label": "India DC capacity",
+   "value": "1.6 GW to 6 GW",
+   "sub": "mid-2026 to 2029E, JLL (S3)"
+  },
+  {
+   "label": "Direct-to-chip CAGR",
+   "value": "18.5%",
+   "sub": "2026-2035E, IndexBox; 12.0% baseline (S1)"
+  },
+  {
+   "label": "Immersion fluids CAGR",
+   "value": "15.2%",
+   "sub": "2026-2035E, IndexBox (S2)"
+  },
+  {
+   "label": "Aeroflex skid revenue",
+   "value": "Rs 32.4 cr (~23%)",
+   "sub": "Q1 FY27 (S7)"
+  },
+  {
+   "label": "KRN data-centre share",
+   "value": "~16%",
+   "sub": "FY26; 18.7% in Q4 FY26 (S10)"
+  },
+  {
+   "label": "Blue Star DC MEP inflow",
+   "value": "~Rs 1,500 cr",
+   "sub": "Q1 FY27; ~Rs 3,000 cr FY27 guide (S16)"
+  },
+  {
+   "label": "Aeroflex 1-year return",
+   "value": "+200.8%",
+   "sub": "to 12 Oct 2026; 1 month -7.2% (S8)"
+  }
+ ],
+ "sections": [
+  {
+   "id": "theme_explainer",
+   "title": "Theme explainer: why AI is forcing liquid cooling",
+   "subsections": [
+    {
+     "title": "Technologies and growth forecasts",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "Liquid cooling removes heat with a fluid instead of air. In direct-to-chip (DTC) systems, a coolant, typically a propylene-glycol/water mix such as Savita's 25% PG product, runs through cold plates on the processors (S9). Coolant distribution units (CDUs), manifolds, skids and hoses circulate it, and heat exchangers pass the heat on to facility water. In immersion cooling, servers sit in a dielectric (non-conductive) fluid such as Apar's Poweroil DC 10 (S14). IndexBox's direct-to-chip report says air cooling hits its physical limits above 30 kW per rack and stops being viable for hyperscalers above 50 kW, while AI/ML racks exceed 100 kW (S1). Netweb says its joint DTC work with Vertiv aims to cross 200 kW of IT load per rack (S18)."
+      },
+      {
+       "type": "table",
+       "caption": "Liquid-cooling forecasts (the forecasters' figures, not ours)",
+       "columns": [
+        "Segment",
+        "Forecaster",
+        "Headline",
+        "Alternative / detail",
+        "Period"
+       ],
+       "rows": [
+        [
+         "Direct-to-chip liquid cooling",
+         "IndexBox (article 23 Sep 2026; report update 1 Oct 2026)",
+         "18.5% CAGR; index 545 by 2035 (2025=100)",
+         "Baseline 12.0% CAGR, but the page gives a baseline index of ~420, which implies about 15%",
+         "2026-2035 (S1)"
+        ],
+        [
+         "Immersion cooling fluids",
+         "IndexBox",
+         "15.2% CAGR; index 420 by 2035 (2025=100)",
+         "Data-centre cooling is 45% of 2026 demand",
+         "2026-2035 (S2)"
+        ]
+       ]
+      },
+      {
+       "type": "callout",
+       "tone": "info",
+       "text": "IndexBox puts data-centre cooling at 45% of immersion-fluid demand in 2026. The rest comes from EV batteries (20%), HPC (15%), power transformers (10%) and crypto mining (10%) (S2). So Indian fluids makers can fill their ester and glycol plants with transformer and EV demand even if data-centre orders are slow to come."
+      },
+      {
+       "type": "callout",
+       "tone": "warn",
+       "text": "Correction this week: last edition dated the IndexBox direct-to-chip article 1 Oct 2026. The article is dated 23 Sep 2026, and 1 Oct is the report-update date. The page's 12.0% baseline CAGR and its ~420 baseline index do not reconcile (S1)."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "policy_and_capex",
+   "title": "India build-out, capex and local content",
+   "subsections": [
+    {
+     "title": "India data-centre pipeline",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "JLL's mid-year report (31 Aug 2026) estimates India's capacity at 1.6 GW in mid-2026 and expects it to triple to 6 GW by 2029. H1 2026 absorption was 101 MW, 82% of it pre-committed hyperscale capacity, and new supply was 85 MW. JLL counts more than USD 50 bn of hyperscaler commitments and says USD 110 bn of investment is needed by 2029. It lists liquid, direct-to-chip and immersion cooling among the green practices being adopted (S3). Cooling choices are not uniform, though: Google says its USD 15 bn Visakhapatnam campus will use advanced air cooling to protect local water resources. Activists have challenged the project in the Andhra Pradesh High Court over water stress (S24)."
+      },
+      {
+       "type": "chart",
+       "title": "India data-centre capacity (JLL)",
+       "unit": "GW",
+       "series": [
+        {
+         "name": "Capacity",
+         "points": [
+          [
+           "Mid-2026",
+           1.6
+          ],
+          [
+           "2029E",
+           6.0
+          ]
+         ]
+        }
+       ],
+       "source": "Source: JLL India Data Centre 2026 Mid-Year Report (S3)"
+      },
+      {
+       "type": "callout",
+       "tone": "warn",
+       "text": "We still have no accessible source that splits India's cooling spend between liquid and air over the next 3-5 years, so we give no estimate. Google's choice of air cooling at Visakhapatnam (S24) is a reminder that the liquid share will vary by site, water availability and rack density."
+      }
+     ]
+    },
+    {
+     "title": "Imported vs made in India",
+     "blocks": [
+      {
+       "type": "bullets",
+       "items": [
+        "CDUs and rear-door heat exchangers: the unlisted Ahmedabad start-up KühlTherm launched Indian-made CDUs and RDHx units in Aug 2026. It has 300 MW of capacity and targets 2 GW by 2027 (S19). We found no Indian listed CDU or cold-plate maker.",
+        "Racks and servers: Netweb and Vertiv both design, engineer and manufacture in India, and Vertiv supplies CDUs and free-cooling chillers for Netweb's rack-scale systems (S18).",
+        "Skids and hoses: Aeroflex makes SFN skid assemblies in India and is expanding flexible-hose capacity from 17.5 to 20.0 mn metres a year (S7).",
+        "Heat exchangers: KRN's new Plant II ran at about 15% utilisation in FY26 (S10).",
+        "Fluids: Savita's Phase 2 synthetic-ester plant was commissioned on 28 Feb 2026 (S11), and it sells QuantiCool glycol coolants for direct liquid cooling (S9). Apar markets Poweroil DC 10 (S14). Castrol says its coolants are ready for India and in tests with OEMs (S17). BPCL co-developed an Indian data-centre coolant with Refroid (S25)."
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "listed_company_impact",
+   "title": "Listed company impact",
+   "subsections": [
+    {
+     "title": "Flow components and heat exchangers (quantified exposure)",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "On 18 Dec 2025, Aeroflex's board approved Rs 97.56 cr of capex to raise skid capacity to 15,000 units a year, funded by Rs 42.56 cr of internal accruals and a Rs 55 cr preferential issue (S4). ICICI Direct's Q2 FY26 note records two liquid-cooling orders of about Rs 16 cr in total from a US client, including a Rs 7.8 cr follow-on for the client's Indian data centre, and an agreement to supply as that client builds Indian capacity (S5). In Q1 FY27, total income rose 72.4% to Rs 145.97 cr, PAT rose 162% to Rs 18.79 cr and EBITDA margin was 23.04%. Skids contributed Rs 32.4 cr, and capex is now Rs 102 cr, of which Rs 48 cr is for skids and Rs 54 cr for hoses (S7)."
+      },
+      {
+       "type": "p",
+       "text": "Data centres were about 16% of KRN's FY26 consolidated revenue of Rs 600.06 cr, and 18.7% in Q4. Vertiv's quality-audit approval is complete, and prototype and mass production follow drawing approvals (S10). Blue Star's data-centre exposure is MEP projects and chillers, not disclosed liquid-cooling hardware. It took about Rs 1,500 cr of data-centre MEP orders in Q1 FY27 and targets data-centre MEP revenue of about Rs 4,000 cr, close to 20% of the total, by FY29. In chillers, its data-centre share is 10-12% against four or five multinationals (S16)."
+      },
+      {
+       "type": "table",
+       "caption": "Data-centre exposure by company (company-reported where available)",
+       "columns": [
+        "Company",
+        "Bucket",
+        "Data-centre product",
+        "DC revenue share / size",
+        "Stage"
+       ],
+       "rows": [
+        [
+         "Aeroflex",
+         "Flow components",
+         "Liquid-cooling SFN skids, SS hoses",
+         "~23% (skids, Q1 FY27) (S7)",
+         "Re-rated"
+        ],
+        [
+         "KRN Heat Exchanger",
+         "Heat exchange",
+         "Heat-exchanger coils for DC cooling",
+         "~16% FY26; 18.7% Q4 (S10)",
+         "Re-rated"
+        ],
+        [
+         "Blue Star",
+         "Heat exchange",
+         "DC MEP projects, chillers",
+         "DC MEP ~Rs 1,350-1,400 cr FY27 guide (S16)",
+         "MEP scaling; no liquid-cooling disclosure"
+        ],
+        [
+         "Savita Oil",
+         "Coolant fluids",
+         "QuantiCool PG 25 DLC coolant; ester fluids",
+         "Not disclosed (S9, S12)",
+         "Stock re-rated on transformer oils"
+        ],
+        [
+         "Apar Industries",
+         "Coolant fluids",
+         "Poweroil DC 10 immersion fluid; DC cables",
+         "Fluids not disclosed (S14, S15)",
+         "Stock re-rated on oils/cables"
+        ],
+        [
+         "Castrol India",
+         "Coolant fluids",
+         "Immersion and DTC coolants under OEM tests",
+         "'Not a material part' (S17)",
+         "Early"
+        ],
+        [
+         "BPCL",
+         "Coolant fluids",
+         "Indian data-centre liquid coolant co-developed with Refroid",
+         "Not disclosed; own-use first (S25)",
+         "Early"
+        ],
+        [
+         "Netweb Technologies",
+         "Other",
+         "DTC liquid-cooled GPU racks with Vertiv",
+         "Not disclosed (S18)",
+         "Adjacent"
+        ]
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Fluids leg: products ready, revenue undisclosed",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "Savita's data-centre page lists QuantiCool PG 25, a propylene-glycol coolant 'designed exclusively' for direct liquid cooling, plus a QuantiCool DLC grade. It names no immersion dielectric, customers or revenue (S9). Q1 FY27 standalone revenue rose 49.6% to Rs 1,479.76 cr and PAT to Rs 292.25 cr, with no data-centre disclosure (S12). Apar's oils EBITDA rose 214.2% to Rs 329 cr in Q1 FY27. Its data-centre progress is in US cables (approvals for contractors serving Meta, Microsoft and Google), and the coverage does not mention fluids (S15). Castrol India says data-centre cooling is not yet material because announced projects are not yet consuming fluid (S17). BPCL's coolant, developed with Refroid, is to be shown first in BPCL's own data centres, with no volumes disclosed (S25)."
+      },
+      {
+       "type": "callout",
+       "tone": "info",
+       "text": "Coverage by size: the two small caps, Aeroflex and KRN, are the only names reporting quantified data-centre cooling revenue (S7, S10). Savita (small cap), Castrol, Blue Star and Netweb (mid caps), and Apar and BPCL (large caps) have products or adjacencies but no disclosed data-centre cooling revenue. We found no Indian listed CDU or cold-plate maker; the domestic CDU makers we found, such as KühlTherm, are unlisted (S19). That gap reflects how early the niche is."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "research_house_views",
+   "title": "Research house and media views",
+   "subsections": [
+    {
+     "title": "How much is priced in",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "Returns to 12 Oct 2026 (Anand Rathi quote pages; table values used where the page text differs) and valuation (screener.in feed, 11 Oct 2026, except Savita from Anand Rathi)",
+       "columns": [
+        "Company",
+        "Mkt cap (Rs cr)",
+        "P/E",
+        "1m",
+        "3m",
+        "6m",
+        "1y"
+       ],
+       "rows": [
+        [
+         "Aeroflex",
+         "6,888",
+         "102.8",
+         "-7.2%",
+         "+28.5%",
+         "+89.8%",
+         "+200.8% (S8)"
+        ],
+        [
+         "KRN",
+         "9,073",
+         "93.5",
+         "-13.4%",
+         "+14.4%",
+         "+43.8%",
+         "+67.2% (S21)"
+        ],
+        [
+         "Savita Oil",
+         "5,238",
+         "12.3",
+         "+10.8%",
+         "+31.3%",
+         "+126.7%",
+         "+90.8% (S20)"
+        ],
+        [
+         "Apar",
+         "75,303",
+         "63.7",
+         "+3.1%",
+         "+27.9%",
+         "+67.2%",
+         "+112.5% (S22)"
+        ],
+        [
+         "Blue Star",
+         "32,364",
+         "63.6",
+         "+8.0%",
+         "-2.6%",
+         "-4.9%",
+         "-16.9% (S23)"
+        ],
+        [
+         "Castrol India",
+         "19,255",
+         "18.1",
+         "n/a",
+         "n/a",
+         "n/a",
+         "n/a"
+        ],
+        [
+         "Netweb",
+         "28,069",
+         "107.5",
+         "n/a",
+         "n/a",
+         "n/a",
+         "n/a"
+        ]
+       ]
+      },
+      {
+       "type": "chart",
+       "title": "6-month share-price return to 12 Oct 2026",
+       "unit": "%",
+       "series": [
+        {
+         "name": "6-month return",
+         "points": [
+          [
+           "Savita",
+           126.73
+          ],
+          [
+           "Aeroflex",
+           89.81
+          ],
+          [
+           "Apar",
+           67.15
+          ],
+          [
+           "KRN",
+           43.8
+          ],
+          [
+           "Blue Star",
+           -4.93
+          ]
+         ]
+        }
+       ],
+       "source": "Source: Anand Rathi quote pages (S8, S20, S21, S22, S23)"
+      },
+      {
+       "type": "bullets",
+       "items": [
+        "Savita closed at Rs 763.95, about 11.5% below its 52-week high of Rs 862.80 (S20). Coverage of its record high on 30 Sep credited transformer oils, not data-centre coolants (S13).",
+        "Aeroflex trades about 11% below its 52-week high of Rs 583.70 (S8). KRN is 17% below its high of Rs 1,676.25 (S21). Both rose sharply on the liquid-cooling story and fell over the past month.",
+        "Broker coverage is thin. ICICI Direct publishes result updates on Aeroflex (S5). Otherwise, coverage is mostly retail and fintech media such as Trade Brains, DSIJ, ScanX, Whalesbook and Multibagg (S7, S10, S13, S15, S17)."
+       ]
+      },
+      {
+       "type": "callout",
+       "tone": "warn",
+       "text": "The Anand Rathi pages are internally inconsistent: each page's narrative text and FAQ give different return and P/E figures from its own table. Savita's P/E is shown as 12.26 in the table and 15.03 in the FAQ (S20). Treat the returns as indicative; the dashboard shows live numbers."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "risks_and_catalysts",
+   "title": "Risks and catalysts",
+   "subsections": [
+    {
+     "title": "Key risks",
+     "blocks": [
+      {
+       "type": "bullets",
+       "items": [
+        "Single-customer dependence: Aeroflex's disclosed liquid-cooling orders come from one US client's Indian data centre (S5). Last edition's 'India-exclusive' wording could not be re-confirmed this week because the transcript page now returns an error, so we have dropped it.",
+        "Tax dispute: Aeroflex faces an income-tax demand of Rs 41.76 cr for AY2018-19 (order dated 25 Mar 2026) over disallowed interest-waiver claims on working-capital loans. It is appealing and says it expects no material impact (S6).",
+        "Working capital: KRN's FY26 operating cash flow was -Rs 113.80 cr, compared with +Rs 21.44 cr in FY25 (S10).",
+        "Margin reversal in fluids: Apar booked about Rs 93 cr of inventory-valuation provision, and DSIJ says its 19.3% oil margin is unlikely to be a normalised run rate (S15).",
+        "Technology choice: hyperscalers may still choose air cooling where water is scarce (S24), and IndexBox lists competition from direct-to-chip as a constraint on immersion fluids (S2).",
+        "Competition: global OEMs (Vertiv) and new local CDU makers (KühlTherm, targeting 2 GW by 2027) are localising (S18, S19)."
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Catalysts and dates",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "Upcoming catalysts",
+       "columns": [
+        "Company",
+        "Catalyst",
+        "Timing"
+       ],
+       "rows": [
+        [
+         "Aeroflex",
+         "Skid capacity from 9,000 to 15,000 units; hose capacity to 20 mn m",
+         "By Q3 FY27 (S7)"
+        ],
+        [
+         "Aeroflex / KRN",
+         "Q2 FY27 results: skid share and DC mix",
+         "Late Oct to Nov 2026 (S7, S10)"
+        ],
+        [
+         "KRN",
+         "Vertiv prototype then mass production; Plant II utilisation toward ~50%",
+         "FY27 (S10)"
+        ],
+        [
+         "Blue Star",
+         "DC MEP inflow ~Rs 3,000 cr; FY28 inflow ~Rs 4,500 cr",
+         "FY27-FY28 (S16)"
+        ],
+        [
+         "Savita / Apar / Castrol / BPCL",
+         "First disclosed data-centre fluid revenue",
+         "Not dated (S12, S15, S17, S25)"
+        ],
+        [
+         "Sector",
+         "JLL half-yearly update; outcome of the Visakhapatnam litigation",
+         "H2 2026 onward (S3, S24)"
+        ]
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "companies": [
+  {
+   "name": "Aeroflex Industries Ltd",
+   "nse": "AEROFLEX",
+   "bse": "543972",
+   "bucket": "flow_components",
+   "role": "Makes stainless-steel flexible hoses and liquid-cooling SFN skid assemblies, and has supplied skids for a US-listed client's Indian data centre (S5, S7).",
+   "impact": "Skids were about 23% of Q1 FY27 revenue, with capacity heading to 15,000 units by Q3 FY27. It is the most direct listed exposure, but it depends on one customer and faces a Rs 41.76 cr tax demand. The stock is up 201% over one year but down 7% over one month (S6, S7, S8)."
+  },
+  {
+   "name": "KRN Heat Exchanger and Refrigeration Ltd",
+   "nse": "KRN",
+   "bse": "544263",
+   "bucket": "heat_exchange_systems",
+   "role": "Makes fin-and-tube heat-exchanger coils for HVAC&R, including data-centre cooling, and has Vertiv's quality-audit approval (S10).",
+   "impact": "Data centres were about 16% of FY26 revenue (18.7% in Q4). Working capital is stretched, and the stock is down 13% over one month (S10, S21)."
+  },
+  {
+   "name": "Blue Star Ltd",
+   "nse": "BLUESTARCO",
+   "bse": "500067",
+   "bucket": "heat_exchange_systems",
+   "role": "Delivers data-centre MEP projects and chillers, with about a 30% share in data-centre MEP and 10-12% in data-centre chillers (S16).",
+   "impact": "Data-centre MEP is scaling toward about Rs 4,000 cr of revenue by FY29. No liquid-cooling revenue is disclosed, and the stock is down 17% over one year (S16, S23)."
+  },
+  {
+   "name": "Savita Oil Technologies Ltd",
+   "nse": "SAVITAOIL",
+   "bse": null,
+   "bucket": "coolant_fluids",
+   "role": "Sells QuantiCool PG 25 propylene-glycol coolant for direct liquid cooling, and commissioned Phase 2 of its synthetic-ester plant on 28 Feb 2026 (S9, S11).",
+   "impact": "The stock is up 127% over six months on transformer-oil profits, but is 11.5% off its record high. Data-centre fluid revenue is not disclosed (S12, S13, S20)."
+  },
+  {
+   "name": "Apar Industries Ltd",
+   "nse": "APARINDS",
+   "bse": null,
+   "bucket": "coolant_fluids",
+   "role": "Markets Poweroil DC 10, a single-phase immersion dielectric fluid, alongside data-centre cables (S14).",
+   "impact": "Its data-centre progress is visible in US cable approvals, not fluids. Oil margins include inventory gains that can reverse (S15)."
+  },
+  {
+   "name": "Castrol India Ltd",
+   "nse": "CASTROLIND",
+   "bse": null,
+   "bucket": "coolant_fluids",
+   "role": "Has immersion and direct-to-chip coolants ready for India and in tests with OEMs (S17).",
+   "impact": "Management calls data-centre cooling not yet material and the tests long-term, so there is no near-term earnings effect (S17)."
+  },
+  {
+   "name": "Bharat Petroleum Corporation Ltd",
+   "nse": "BPCL",
+   "bse": null,
+   "bucket": "coolant_fluids",
+   "role": "Co-developed, with Refroid Technologies, what it calls India's first indigenous liquid coolant for AI data centres (S25).",
+   "impact": "Large-cap optionality only: deployment starts in BPCL's own data centres, with no volumes or revenue disclosed (S25)."
+  },
+  {
+   "name": "Netweb Technologies India Ltd",
+   "nse": "NETWEB",
+   "bse": null,
+   "bucket": "other",
+   "role": "Indian server OEM building direct-to-chip liquid-cooled GPU systems with Vertiv's CDUs and free-cooling chillers (S18).",
+   "impact": "A downstream adjacency that pulls through liquid-cooling content rather than making fluids or hardware for it (S18)."
+  }
+ ],
+ "sources": [
+  {
+   "id": "S1",
+   "publisher": "IndexBox",
+   "title": "Direct To Chip Liquid Cooling Market Forecast to Accelerate by 2035, Driven by AI Rack Power Density",
+   "url": "https://www.indexbox.io/blog/direct-to-chip-liquid-cooling-market-forecast-to-accelerate-by-2035-driven-by-ai-rack-power-density/",
+   "date": "2026-09-23",
+   "kind": "research"
+  },
+  {
+   "id": "S2",
+   "publisher": "IndexBox",
+   "title": "Immersion Cooling Fluids Market To 2035: AI Data Center Demand Drives Growth",
+   "url": "https://www.indexbox.io/blog/immersion-cooling-fluids-market-forecast-to-2035-ai-data-center-demand-drives-growth/",
+   "date": "2026-10-01",
+   "kind": "research"
+  },
+  {
+   "id": "S3",
+   "publisher": "JLL",
+   "title": "India Data Centre 2026 Mid-Year Report",
+   "url": "https://www.jll.com/en-in/insights/market-dynamics/india-data-centers",
+   "date": "2026-08-31",
+   "kind": "research"
+  },
+  {
+   "id": "S4",
+   "publisher": "ICICI Direct",
+   "title": "Aeroflex Industries board has approved a Rs 97 crore expansion plan",
+   "url": "https://www.icicidirect.com/research/equity/trending-news/aeroflex-industries-board-has-approved-a-rs-97-crore-expansion-plan",
+   "date": "2025-12-19",
+   "kind": "news"
+  },
+  {
+   "id": "S5",
+   "publisher": "ICICI Direct (ICICI Securities)",
+   "title": "Aeroflex Industries - Result Update Q2FY26: Faring well even in challenging times",
+   "url": "https://www.icicidirect.com/mailcontent/idirect_aeroflex_q2fy26.pdf",
+   "date": "2025-10-29",
+   "kind": "research"
+  },
+  {
+   "id": "S6",
+   "publisher": "Whalesbook",
+   "title": "Aeroflex Industries to Appeal Rs 41.76 Cr Tax Demand, Sees No Material Impact",
+   "url": "https://www.whalesbook.com/corporate-news/English/industrial-goodsservices/Aeroflex-Industries-to-Appeal-indian-rupee4176-Cr-Tax-Demand-Sees-No-Material-Impact/69c64bd563d6db8f4b534903",
+   "date": "2026-03-27",
+   "kind": "news"
+  },
+  {
+   "id": "S7",
+   "publisher": "ScanX",
+   "title": "Aeroflex Industries Q1FY27 Net Profit Surges 162% on Liquid Cooling Demand",
+   "url": "https://scanx.trade/stock-market-news/companies/aeroflex-industries-q1-results-net-profit-surges-to-191m-rupees-revenue-nearly-doubles-yoy/46710162",
+   "date": "2026-07-28",
+   "kind": "news"
+  },
+  {
+   "id": "S8",
+   "publisher": "Anand Rathi",
+   "title": "Aeroflex Industries Ltd share price today",
+   "url": "https://anandrathi.com/stocks/aeroflex-industries-ltd/share-price-today",
+   "date": "2026-10-12",
+   "kind": "other"
+  },
+  {
+   "id": "S9",
+   "publisher": "Savita Oil Technologies",
+   "title": "Data Centers - QuantiCool coolants for direct liquid cooling",
+   "url": "https://savita.com/applications/data-digital-infrastructure/data-centers/",
+   "date": "2026-10-12",
+   "kind": "company"
+  },
+  {
+   "id": "S10",
+   "publisher": "Multibagg",
+   "title": "KRN Heat Exchanger in FY26: Growth Scales Up, but Working Capital Becomes the Plot",
+   "url": "https://www.multibagg.ai/market-pulse/articles/krn-fy26-growth-93993",
+   "date": "2026-05-16",
+   "kind": "news"
+  },
+  {
+   "id": "S11",
+   "publisher": "F&L Asia",
+   "title": "Savita Oil expands synthetic ester capacity with Phase 2 plant commissioning",
+   "url": "https://www.fuelsandlubes.com/savita-oil-expands-synthetic-ester-capacity-with-phase-2-plant-commissioning/",
+   "date": "2026-03-03",
+   "kind": "news"
+  },
+  {
+   "id": "S12",
+   "publisher": "Sahi",
+   "title": "Savita Oil Technologies Q1 Net Profit Rises To 2.92b Rupees On 14.7b Revenue",
+   "url": "https://www.sahi.com/news/savita-oil-technologies-q1-net-profit-rises-to-2-92b-rupees-on-14-7b-revenue-1611-PE1_COR",
+   "date": "2026-08-06",
+   "kind": "news"
+  },
+  {
+   "id": "S13",
+   "publisher": "Whalesbook",
+   "title": "Savita Oil Technologies Hits Record High After 200% Rally",
+   "url": "https://www.whalesbook.com/news/English/other/Savita-Oil-Technologies-Hits-Record-High-After-200percent-Rally/6abc9c145aacb956d085b696",
+   "date": "2026-09-30",
+   "kind": "news"
+  },
+  {
+   "id": "S14",
+   "publisher": "APAR Industries",
+   "title": "Future-Proof Data Centres with APAR Cables, Connectivity and Cooling",
+   "url": "https://apar.com/future-proof-data-centres-with-apar-cables-connectivity-cooling/",
+   "date": "2025-12-19",
+   "kind": "company"
+  },
+  {
+   "id": "S15",
+   "publisher": "DSIJ",
+   "title": "APAR Industries Has Returned 2,678% in Five Years and 125% in the Past Year. Q1 FY27 Was the Best Quarter in the Company's History",
+   "url": "https://insights.dsij.in/dsijarticledetail/apar-industries-has-returned-2678-in-five-years-and-125-in-the-past-year-q1-fy27-was-the-best-quarter-in-the-companys-history-id010-59392",
+   "date": "2026-10-05",
+   "kind": "news"
+  },
+  {
+   "id": "S16",
+   "publisher": "StockAnalysis",
+   "title": "Blue Star Q1 FY2026-27 Earnings Call Transcript",
+   "url": "https://stockanalysis.com/quote/bom/500067/transcripts/661917-q1-26-27/",
+   "date": "2026-08-07",
+   "kind": "company"
+  },
+  {
+   "id": "S17",
+   "publisher": "Trade Brains",
+   "title": "Castrol India: Can Its 40% Data-Centre Cooling Opportunity Become a New Business?",
+   "url": "https://tradebrains.in/indian-markets/castrol-india-can-its-40-data-centre-cooling-opportunity-become-a-new-business-12459036",
+   "date": "2026-08-31",
+   "kind": "news"
+  },
+  {
+   "id": "S18",
+   "publisher": "TimesTech",
+   "title": "Vertiv & Netweb Deliver Liquid Cooling for AI Data Centers",
+   "url": "https://timestech.in/vertiv-netweb-deliver-liquid-cooling-for-ai-data-centers/",
+   "date": "2026-02-26",
+   "kind": "news"
+  },
+  {
+   "id": "S19",
+   "publisher": "Analytics India Magazine",
+   "title": "KühlTherm Launches Made-in-India Liquid Cooling Systems for AI Data Centres",
+   "url": "https://analyticsindiamag.com/ai-news/khltherm-launches-made-in-india-liquid-cooling-systems-for-ai-data-centres",
+   "date": "2026-08-07",
+   "kind": "news"
+  },
+  {
+   "id": "S20",
+   "publisher": "Anand Rathi",
+   "title": "Savita Oil Technologies Ltd share price today",
+   "url": "https://anandrathi.com/stocks/savita-oil-technologies-ltd/share-price-today",
+   "date": "2026-10-12",
+   "kind": "other"
+  },
+  {
+   "id": "S21",
+   "publisher": "Anand Rathi",
+   "title": "KRN Heat Exchanger and Refrigeration Ltd share price today",
+   "url": "https://anandrathi.com/stocks/krn-heat-exchanger-and-refrigeration-ltd/share-price-today",
+   "date": "2026-10-12",
+   "kind": "other"
+  },
+  {
+   "id": "S22",
+   "publisher": "Anand Rathi",
+   "title": "Apar Industries Ltd share price today",
+   "url": "https://anandrathi.com/stocks/apar-industries-ltd/share-price-today",
+   "date": "2026-10-12",
+   "kind": "other"
+  },
+  {
+   "id": "S23",
+   "publisher": "Anand Rathi",
+   "title": "Blue Star Ltd share price today",
+   "url": "https://anandrathi.com/stocks/blue-star-ltd/share-price-today",
+   "date": "2026-10-12",
+   "kind": "other"
+  },
+  {
+   "id": "S24",
+   "publisher": "New Straits Times (Reuters)",
+   "title": "Google's US$15bil India data centre project battles water, wildlife concerns",
+   "url": "https://www.nst.com.my/amp/business/corporate/2026/08/1505601/googles-us15bil-india-data-centre-project-battles-water-wildlife",
+   "date": "2026-08-06",
+   "kind": "news"
+  },
+  {
+   "id": "S25",
+   "publisher": "The Machine Maker",
+   "title": "BPCL and Refroid Technologies Introduce India's First Indigenous Liquid Coolant for AI-Powered Data Centers",
+   "url": "https://themachinemaker.com/news/bpcl-and-refroid-technologies-introduce-indias-first-indigenous-liquid-coolant-for-ai-powered-data-centers/",
+   "date": "2025-02-04",
+   "kind": "news"
+  }
+ ],
+ "method": "W42 refresh of the W41 edition, researched on 2026-10-12 with web search and page fetches.\n\nRe-opened and re-checked this week: IndexBox direct-to-chip (date corrected to 23 Sep 2026), JLL, Aeroflex Q1 FY27 (ScanX), KRN FY26 (Multibagg), the Savita product page, Apar (DSIJ), the Blue Star Q1 FY27 transcript, Castrol (Trade Brains), Netweb/Vertiv (TimesTech) and the Aeroflex tax demand.\n\nThe Alpha Spread Aeroflex transcript now returns 403, so it is replaced by ICICI Direct's Q2 FY26 result update. That note supports the single US-client orders but not the 'India-exclusive' wording, which we have dropped. We do not report ICICI Direct's rating or target.\n\nNew this week:\n- 1/3/6/12-month returns from Anand Rathi quote pages dated 12 Oct 2026. These pages are internally inconsistent, and we use their table values.\n- Google's air-cooling choice at Visakhapatnam, a counter-signal to the liquid-cooling thesis.\n- BPCL's coolant co-developed with Refroid (dated 2025, newly found this week).\n\nCarried over from W41 without re-opening: IndexBox immersion fluids, ICICI Direct capex news, F&L Asia, Sahi, Whalesbook (Savita), the Apar product page and KühlTherm; search results this week were consistent with them. A Univest article reported Savita fell 5.25% on 8 Oct 2026 with no company trigger identified.\n\nDropped as not re-verified or to keep the source list tight: Trade Brains cooling-capex article, KRN Q1 FY27 (Tribune), Apar Q4 FY26 (Multibagg), Informist Blue Star, Schneider Motivair release, and the Gulf Oil (Motor India) article. Gulf Oil is removed from the company list for lack of a re-confirmed source.\n\nScreened but excluded for lack of a company-confirmed liquid-cooling product: Voltas, Amber, Kirloskar Oil Engines, Schneider Electric Infrastructure, Aeroflex Neu, Indian Oil and HPCL.\n\nValuations come from the screener.in feed dated 11 Oct 2026, which has no Savita entry; Savita's market cap and P/E come from Anand Rathi. No ratings or price targets.",
+ "bucket_labels": {
+  "coolant_fluids": [
+   "Coolants & Dielectric Fluids",
+   "Glycol coolants and immersion/dielectric fluids for data-centre liquid cooling - the earliest, least re-rated leg"
+  ],
+  "flow_components": [
+   "Hoses, Skids & Fluid Networks",
+   "Flexible hoses, liquid-cooling skids and fluid-handling assemblies inside racks and CDUs"
+  ],
+  "heat_exchange_systems": [
+   "Heat Exchangers & Cooling Systems",
+   "Heat exchangers, chillers and integrated cooling systems for data-centre halls"
+  ],
+  "other": [
+   "Other",
+   ""
+  ]
+ },
+ "kind": "theme"
+}

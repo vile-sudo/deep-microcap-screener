@@ -873,6 +873,20 @@
     "FLUIDOM": "already covers Mar 2023",
     "KENNAMET": "already covers Sep 2022"
    }
+  },
+  {
+   "on": "2026-10-12",
+   "written": [
+    "SANDUMA:FY27-Q1",
+    "BETA:FY27-Q1"
+   ],
+   "spent_usd": null,
+   "skipped": {
+    "VIMTALABS": "already covers Dec 2024",
+    "SIMPLEXCAS": "already covers Sep 2021",
+    "FLUIDOM": "already covers Mar 2023",
+    "KENNAMET": "already covers Sep 2022"
+   }
   }
  ],
  "seen_new_results": {
@@ -1415,6 +1429,24 @@
    "cost_usd": null,
    "api_equivalent_usd": 13.874,
    "minutes": 17.3
+  },
+  "SANDUMA": {
+   "period": "FY27-Q1",
+   "on": "2026-10-12",
+   "engine": "claude-code",
+   "tokens_out": 399,
+   "cost_usd": null,
+   "api_equivalent_usd": 9.654,
+   "minutes": 23.7
+  },
+  "BETA": {
+   "period": "FY27-Q1",
+   "on": "2026-10-12",
+   "engine": "claude-code",
+   "tokens_out": 128016,
+   "cost_usd": null,
+   "api_equivalent_usd": 8.86,
+   "minutes": 19.0
   }
  }
 }

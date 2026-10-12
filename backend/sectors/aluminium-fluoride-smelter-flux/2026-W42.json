@@ -1,0 +1,655 @@
+{
+ "slug": "aluminium-fluoride-smelter-flux",
+ "name": "Aluminium Fluoride (AlF3): Smelter Flux Import Substitution from Fertiliser Fluorine By-Product",
+ "icon": "chip",
+ "edition": "2026-W42",
+ "updated": "2026-10-12",
+ "scope": "India's aluminium fluoride (AlF3) supply chain: the smelter build-out driving flux demand, the fertiliser FSA by-product route, and listed makers, entrants and smelter buyers.",
+ "summary": {
+  "one_line": "India's smelters are adding roughly 1.3 Mtpa of announced capacity. At 14-20 kg of AlF3 per tonne, that implies about 18-26 kt of extra flux demand by around 2030. The announced domestic supply response (Alufluoride +6 kt to 24 kt, Paradeep's planned 15 kt) is about that size, but it depends on a by-product (FSA) that is scarce and was disrupted by the 2026 Hormuz shock.",
+  "key_points": [
+   "AlF3 is used in the cryolite bath of aluminium electrolysis to lower the melting point and raise conductivity (S10). Alufluoride puts consumption at 14-20 kg per tonne of aluminium and says fewer than five Indian firms make it, with imports filling the gap (S3).",
+   "Announced smelter additions: Hindalco is adding 3.6 lakh tpa at Aditya, Sambalpur, for Rs 21,000 cr (announced 27 Jan 2026) (S6). NALCO is adding 0.5 Mtpa at Angul using EGA DX+ Ultra technology, targeting early 2030 (S7), which takes it from 4.6 to about 9.6 lakh t (S8). BALCO's new smelter already made 24 kt of trial output in Q1 FY27 (S17).",
+   "Alufluoride completed its expansion to 24,000 tpa in June 2026 (S3)(S5). An FSA shortage linked to West Asia then cut Q1 FY27 sales to Rs 26.6 cr, from Rs 43.8 cr a year earlier (S4). Its FSA comes from IFFCO Paradeep (more than 17,500 tpa contract), Coromandel (about 4,500 tpa) and Paradeep Phosphates (as available) (S3).",
+   "Paradeep Phosphates approved a Rs 250 cr, 15,000 tpa AlF3 plant on 28 Jul 2026 (S2). Management guides to commissioning in 22-24 months, Rs 180-200 cr revenue and at least Rs 50 cr EBITDA. It currently makes 9,000-10,000 tpa of FSA and sells all of it to outside parties (S1).",
+   "Scale matters. Paradeep's targeted AlF3 revenue is under 1% of its FY26 consolidated sales of Rs 21,826 cr (S14). The same Rs 180-200 cr is roughly equal to Alufluoride's entire FY26 sales of Rs 209 cr (S4).",
+   "NALCO invited JV/partnership EoIs for AlF3, CPC and coal-tar pitch on 21 Sep 2026, closing 12 Oct 2026. Bidders need FSA or alumina-hydrate supply and credentials in supplying smelters (S9).",
+   "China sets the price reference. SMM quoted Chinese AlF3 at 11,500-12,500 yuan/t on 24 Sep 2026, with producers loss-making on high fluorite costs and running at low rates (S16)."
+  ],
+  "for_investors": [
+   {
+    "title": "Who benefits",
+    "tone": "good",
+    "points": [
+     "Alufluoride: the only qualified pure-play. It already supplies Hindalco, Vedanta and NALCO (S4) and has 24,000 tpa of installed capacity (S3). Earnings are highly sensitive to FSA availability.",
+     "Paradeep Phosphates: turns 9,000-10,000 tpa of low-value FSA into a non-subsidy product (S1). Strategically useful, but small against fertiliser earnings (S14).",
+     "NALCO and other smelters: more domestic AlF3 supply and a possible JV would cut import dependence for the Angul expansion (S9)."
+    ]
+   },
+   {
+    "title": "Who is hurt / risks",
+    "tone": "bad",
+    "points": [
+     "Alufluoride buys part of its FSA from Paradeep Phosphates (S3). Paradeep plans to use its entire HFSA output in its own AlF3 plant (S1), so this source is likely to disappear around 2028.",
+     "FSA output depends on phosphoric acid runs. Paradeep said it was running around 70% of phosphoric capacity, with 70-75% of global sulphur and ammonia trade passing through Hormuz (S1).",
+     "Customer concentration: Alufluoride's largest customer was 69.27% of its FY25 AlF3 revenue (S3)."
+    ]
+   },
+   {
+    "title": "What to watch",
+    "tone": "watch",
+    "points": [
+     "NALCO's EoI shortlist or partner announcement, after the 12 Oct 2026 close (S9).",
+     "Alufluoride's Q2 FY27 volumes. Management expected Q2 to recover toward last year's level (S3).",
+     "Paradeep's engineering and ordering milestones for the AlF3 plant (S1), and BALCO reaching full ramp-up by Q4 FY27 (S17)."
+    ]
+   }
+  ]
+ },
+ "kpis": [
+  {
+   "label": "AlF3 use per tonne of aluminium",
+   "value": "14-20 kg",
+   "sub": "Alufluoride MD&A, FY26 (S3)"
+  },
+  {
+   "label": "Alufluoride installed capacity",
+   "value": "24,000 tpa",
+   "sub": "completed Jun 2026 (S3)"
+  },
+  {
+   "label": "Paradeep AlF3 plant",
+   "value": "15,000 tpa / Rs 250 cr",
+   "sub": "board approval 28 Jul 2026 (S2)"
+  },
+  {
+   "label": "Announced smelter additions",
+   "value": "~1.3 Mtpa",
+   "sub": "Hindalco 360 kt + NALCO 500 kt + BALCO 435 kt (S6)(S7)(S18)"
+  },
+  {
+   "label": "China AlF3 price",
+   "value": "11,500-12,500 yuan/t",
+   "sub": "SMM, 24 Sep 2026 (S16)"
+  },
+  {
+   "label": "Alufluoride Q1 FY27 sales",
+   "value": "Rs 26.6 cr",
+   "sub": "vs Rs 43.8 cr in Q1 FY26 (S4)"
+  }
+ ],
+ "sections": [
+  {
+   "id": "theme_explainer",
+   "title": "What AlF3 is and how the fertiliser by-product route works",
+   "subsections": [
+    {
+     "title": "The product and its demand driver",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "Aluminium fluoride is added to the cryolite bath in aluminium electrolysis to lower its melting point and increase conductivity (S10). Alufluoride says 14-20 kg of AlF3 is used per tonne of aluminium. It describes the Indian market as supplied by fewer than five domestic makers plus imports, and says only a few can supply high-purity, low-bulk-density material to the major smelters (S3). AlF3 is therefore a consumable whose volume rises in line with primary aluminium output."
+      },
+      {
+       "type": "p",
+       "text": "Import data is thin and comes from secondary sources. OEC data for 2022 lists India as the world's second-largest importer of aluminium fluoride, at about USD 82.3 mn (S19). We found no official 2025-26 import volume and no anti-dumping case on AlF3."
+      },
+      {
+       "type": "callout",
+       "tone": "info",
+       "text": "China sets the price reference. SMM quoted Chinese AlF3 at 11,500-12,500 yuan/t on 24 Sep 2026. Fluorite (97% wet powder) was 3,350-3,850 yuan/t, and SMM said producers were generally loss-making and running at low rates (S16). Chinese costs are high, so Chinese prices are firm rather than predatory for now."
+      }
+     ]
+    },
+    {
+     "title": "The FSA route and its bottleneck",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "In the wet route, aluminium hydroxide is reacted with hydrofluosilicic acid (FSA/HFSA), the silica is filtered out, and the AlF3 is crystallised and dried (S10). FSA is a by-product of phosphoric acid made at phosphate fertiliser plants, so AlF3 supply depends on fertiliser operating rates (S3)(S5)."
+      },
+      {
+       "type": "bullets",
+       "items": [
+        "Paradeep Phosphates makes about 9,000-10,000 tpa of FSA today and sells all of it to outside parties (S1).",
+        "Alufluoride's FSA supply: an IFFCO Paradeep contract above 17,500 tpa (expandable to 19,000 tpa), about 4,500 tpa from Coromandel's Visakhapatnam and Kakinada (Kakinada from Apr 2026), and Paradeep Phosphates 'as available' (S3).",
+        "In 2026, West Asia hostilities disrupted sulphur and ammonia supply through Hormuz, which constrained FSA output. Alufluoride scaled back operations in May 2026 (S5). Paradeep said 70-75% of global sulphur and ammonia trade passes through Hormuz and that it was running about 70% of phosphoric capacity (S1)."
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "policy_and_capex",
+   "title": "Smelter build-out and AlF3 capacity response",
+   "subsections": [
+    {
+     "title": "Smelter capacity additions and implied AlF3 demand",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "Announced primary aluminium additions and implied AlF3 need at 14-20 kg/t (S3). The demand columns are our arithmetic, not company guidance.",
+       "columns": [
+        "Project",
+        "Added capacity (tpa)",
+        "Timing",
+        "Implied AlF3 (tpa, low-high)",
+        "Source"
+       ],
+       "rows": [
+        [
+         "Hindalco Aditya, Sambalpur (Rs 21,000 cr)",
+         "360,000",
+         "Announced 27 Jan 2026; timeline not disclosed",
+         "5,040-7,200",
+         "(S6)"
+        ],
+        [
+         "NALCO Angul brownfield (4.6 to ~9.6 lakh t)",
+         "500,000",
+         "Commissioning targeted early 2030",
+         "7,000-10,000",
+         "(S7)(S8)"
+        ],
+        [
+         "Vedanta BALCO new smelter",
+         "435,000",
+         "Trial output Q1 FY27; full ramp by Q4 FY27",
+         "6,090-8,700",
+         "(S17)(S18)"
+        ],
+        [
+         "Total",
+         "1,295,000",
+         "2026-2030",
+         "18,130-25,900",
+         "calc"
+        ]
+       ]
+      },
+      {
+       "type": "p",
+       "text": "Vedanta's wider plan is to reach about 3.1 Mtpa of aluminium capacity by FY28, at a reported cost of Rs 13,226 cr, according to Outlook Business citing sources (S18). In Q1 FY27, BALCO produced 168 kt, up 16.7% year on year (S17)."
+      }
+     ]
+    },
+    {
+     "title": "Domestic AlF3 supply additions",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "Announced Indian AlF3 capacity moves",
+       "columns": [
+        "Company",
+        "Move",
+        "Capacity",
+        "Status",
+        "Source"
+       ],
+       "rows": [
+        [
+         "Alufluoride",
+         "Brownfield expansion, Visakhapatnam",
+         "18,000 to 24,000 tpa",
+         "Completed Jun 2026",
+         "(S3)(S5)"
+        ],
+        [
+         "Paradeep Phosphates",
+         "New AlF3 plant at Paradeep, Rs 250 cr",
+         "15,000 tpa",
+         "Approved 28 Jul 2026; basic engineering under way; 22-24 months",
+         "(S1)(S2)"
+        ],
+        [
+         "NALCO",
+         "JV/partner EoI for AlF3 (plus CPC, coal-tar pitch)",
+         "Not specified",
+         "EoI issued 21 Sep, closed 12 Oct 2026",
+         "(S9)"
+        ],
+        [
+         "SPIC / Tanfac",
+         "No AlF3-specific expansion found",
+         "Not disclosed",
+         "-",
+         "(S11)(S12)(S13)"
+        ]
+       ]
+      },
+      {
+       "type": "callout",
+       "tone": "warn",
+       "text": "On paper, the new supply (+6 kt Alufluoride, +15 kt Paradeep) is about the size of the 18-26 kt of implied new demand. But both depend on FSA from the same few east-coast phosphoric acid plants (S1)(S3). Feedstock, not plant capacity, is the binding limit."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "listed_company_impact",
+   "title": "Listed company impact",
+   "subsections": [
+    {
+     "title": "Dedicated AlF3 makers",
+     "blocks": [
+      {
+       "type": "chart",
+       "title": "Alufluoride quarterly sales (Rs cr)",
+       "unit": "Rs cr",
+       "series": [
+        {
+         "name": "Sales",
+         "points": [
+          [
+           "Sep-24",
+           53.2
+          ],
+          [
+           "Dec-24",
+           47.6
+          ],
+          [
+           "Mar-25",
+           54.0
+          ],
+          [
+           "Jun-25",
+           43.8
+          ],
+          [
+           "Sep-25",
+           54.8
+          ],
+          [
+           "Dec-25",
+           58.6
+          ],
+          [
+           "Mar-26",
+           51.6
+          ],
+          [
+           "Jun-26",
+           26.6
+          ]
+         ]
+        }
+       ],
+       "source": "Source: screener.in (S4)"
+      },
+      {
+       "type": "p",
+       "text": "Alufluoride's sales grew from Rs 88 cr in FY22 to Rs 209 cr in FY26, with net profit rising from Rs 4 cr to Rs 24 cr and operating margins of 16-22% (S4). In FY25 it produced a record 16,377 t and dispatched 15,831 t (S3). Q1 FY27 sales fell to Rs 26.6 cr on the FSA disruption. The company's press release says Q1 PAT fell 12% to Rs 2.7 cr and that the FSA issue was resolved, while screener shows Rs 2.88 cr (S4). Its shares were admitted to NSE trading on 17 Aug 2026 (S4). The largest customer was 69.27% of FY25 AlF3 revenue (S3)."
+      },
+      {
+       "type": "p",
+       "text": "SPIC's 'Greenstar' AlF3 (ALF-96) is made by the FSA-alumina hydrate route. Its named customers are Hindalco, Dubal, Stella and Foundry Service (S10). SPIC does not disclose AlF3 capacity or revenue. Screener describes it as mainly a urea and nitrogenous fertiliser maker, with FY26 sales of Rs 2,956 cr (S11). Tanfac lists AlF3 among its HF-derived products (S12). Its Rs 495 cr expansion is mainly a Rs 405 cr, 20,000 t HFC-32 refrigerant plant, not AlF3 (S13). Neither company discloses AlF3 as a material earnings line."
+      }
+     ]
+    },
+    {
+     "title": "Fertiliser entrant and smelter integrator",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "At the midpoint of guidance, Paradeep's AlF3 plant implies about Rs 1.2-1.33 lakh/t realisation (Rs 180-200 cr on 15,000 t; our arithmetic from S1). That is close to Alufluoride's FY25 blended revenue per tonne dispatched of about Rs 1.19 lakh (Rs 189 cr on 15,831 t; our arithmetic from S3 and S4, including by-products). Management's long-term aim is for at least 20% of EBITDA to come from non-subsidy businesses (S1). For now the AlF3 plant is small next to Q1 FY27 revenue of Rs 6,124 cr and PAT of Rs 393 cr (S1)."
+      },
+      {
+       "type": "p",
+       "text": "NALCO has a market cap of about Rs 58,019 cr and TTM consolidated net profit of Rs 6,751 cr (S15). Any AlF3 JV would be immaterial to its earnings. Its value is supply security for the Angul expansion (S7)(S9). The EoI asks for HBD AlF3 (at least 90% purity, bulk density at least 1.3 g/cc) and LBD AlF3 (at least 95%, at least 0.75 g/cc), plus access to FSA or alumina hydrate (S9). That profile fits fertiliser FSA holders and existing makers such as Alufluoride, though no respondents have been disclosed."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "research_house_views",
+   "title": "Research house views and market positioning",
+   "subsections": [
+    {
+     "title": "Coverage and re-rating",
+     "blocks": [
+      {
+       "type": "bullets",
+       "items": [
+        "We found no broker or mainstream media report grouping these stocks as an 'AlF3 theme'. Coverage is company-by-company (S2)(S5).",
+        "Paradeep rose 14.54% intraday to Rs 159.50 on 29 Jul 2026 after Q1 results and the AlF3 approval (S2). It last closed at Rs 147 (9 Oct 2026), against a high/low of Rs 182/99.7 on screener (S14). We could not confirm the brief's six-month and one-year return figures from an opened source.",
+        "Alufluoride closed at Rs 683 on 9 Oct 2026 (+5.9% that day), near the top of its Rs 701/378 range, with a market cap of about Rs 534 cr and a P/E of 21.6 (S4)(S20). That does not match a stock that has 'retraced' as of today.",
+        "Analyst questions on Paradeep's Q1 FY27 call (Elara Securities, Aequitas, HDFC AMC and others) covered AlF3 timing, realisation and grade. Management said the plant would target Odisha smelters and would need no qualification period (S1). This is management's view, not independently verified."
+       ]
+      },
+      {
+       "type": "table",
+       "caption": "Valuation snapshot (screener.in, close 9 Oct 2026)",
+       "columns": [
+        "Company",
+        "Mcap (Rs cr)",
+        "P/E",
+        "Source"
+       ],
+       "rows": [
+        [
+         "Alufluoride",
+         "534",
+         "21.6",
+         "(S4)"
+        ],
+        [
+         "SPIC",
+         "1,245",
+         "7.2",
+         "(S11)"
+        ],
+        [
+         "Tanfac Industries",
+         "6,807",
+         "101",
+         "(S12)"
+        ],
+        [
+         "Paradeep Phosphates",
+         "15,240",
+         "14.0",
+         "(S14)"
+        ],
+        [
+         "NALCO",
+         "58,019",
+         "8.6",
+         "(S15)"
+        ]
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "risks_and_catalysts",
+   "title": "Risks and catalysts",
+   "subsections": [
+    {
+     "title": "Risks",
+     "blocks": [
+      {
+       "type": "bullets",
+       "items": [
+        "FSA shortage: Alufluoride's Q1 FY27 sales fell about 39% year on year when West Asia disruption cut feedstock (S4)(S5).",
+        "Supplier turning competitor: Paradeep supplies FSA to Alufluoride (S3) but plans to use all of its HFSA in its own plant (S1).",
+        "Price: the Chinese benchmark rose from loss-making levels on fluorite cost push (S16). If fluorite eases, imports could get cheaper.",
+        "Concentration: Alufluoride's top customer was 69% of FY25 AlF3 revenue (S3). Demand is tied to three smelter groups (S4).",
+        "Project slippage: NALCO's earlier expansion plans were repeatedly delayed (S8). Its new smelter is targeted for early 2030 (S7). Paradeep's timeline is 22-24 months from Jul 2026 (S1).",
+        "Liquidity: Alufluoride's market cap is about Rs 500 cr, with only 3.17k shares traded on 9 Oct 2026 (S20)."
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Catalysts (next 6-12 months)",
+     "blocks": [
+      {
+       "type": "bullets",
+       "items": [
+        "NALCO EoI shortlist or partner selection after the 12 Oct 2026 close (S9).",
+        "Alufluoride's Q2 FY27 results: a test of whether volumes recover toward last year's level as management expected (S3)(S4).",
+        "Paradeep's AlF3 engineering, sourcing and ordering, alongside its phosphoric acid expansion to 6 lakh t by Dec 2026 and 7 lakh t by about Aug-Sep 2027, which adds HFSA (S1).",
+        "BALCO reaching full ramp-up by Q4 FY27 (S17), and Hindalco disclosing a construction timetable for the Aditya expansion (S6).",
+        "Any DGTR or customs action on AlF3 imports. None was found as of this edition."
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "companies": [
+  {
+   "name": "Alufluoride Ltd",
+   "nse": "ALUFLUOR",
+   "bse": "524634",
+   "bucket": "dedicated_alf3_makers",
+   "role": "India's largest maker of low-bulk-density AlF3, qualified at Hindalco, Vedanta and NALCO (S4). It converts fertiliser FSA into AlF3 at Visakhapatnam, with 24,000 tpa installed (S3).",
+   "impact": "The most direct play on smelter growth, but FSA-constrained. Q1 FY27 sales were Rs 26.6 cr vs Rs 43.8 cr (S4), and Paradeep's captive plant could take away one FSA source (S1)(S3)."
+  },
+  {
+   "name": "Southern Petrochemicals Industries Corporation (SPIC)",
+   "nse": "SPIC",
+   "bse": "590030",
+   "bucket": "dedicated_alf3_makers",
+   "role": "Makes Greenstar ALF-96 AlF3 by the FSA route and supplies Hindalco, Dubal and others (S10). Mainly a urea maker (S11).",
+   "impact": "AlF3 capacity and revenue are undisclosed. With FY26 sales of Rs 2,956 cr (S11), it is unlikely to be a meaningful earnings driver on current evidence."
+  },
+  {
+   "name": "Tanfac Industries Ltd",
+   "nse": "TANFACIND",
+   "bse": "506854",
+   "bucket": "dedicated_alf3_makers",
+   "role": "HF-based fluorochemicals maker whose products include aluminium fluoride (S12).",
+   "impact": "Growth is driven by HF and a Rs 405 cr HFC-32 plant (S13), not AlF3. The stock trades at about 101x earnings (S12), so the AlF3 theme is marginal for it."
+  },
+  {
+   "name": "Paradeep Phosphates Ltd",
+   "nse": "PARADEEP",
+   "bse": "543530",
+   "bucket": "fertiliser_byproduct_entrants",
+   "role": "DAP/NPK maker producing 9,000-10,000 tpa of FSA. It is building a Rs 250 cr, 15,000 tpa AlF3 plant (S1)(S2).",
+   "impact": "Guided Rs 180-200 cr revenue and at least Rs 50 cr EBITDA in about 2028 (S1). Strategically useful for non-subsidy mix, but under 1% of FY26 sales (S14)."
+  },
+  {
+   "name": "Coromandel International Ltd",
+   "nse": "COROMANDEL",
+   "bse": "506395",
+   "bucket": "fertiliser_byproduct_entrants",
+   "role": "Supplies about 4,500 tpa of FSA to Alufluoride from its Visakhapatnam and Kakinada phosphoric acid plants (S3).",
+   "impact": "An FSA supplier only. No AlF3 plant has been announced, but it is a natural candidate if fertiliser makers follow Paradeep (S3)."
+  },
+  {
+   "name": "National Aluminium Company Ltd (NALCO)",
+   "nse": "NATIONALUM",
+   "bse": "532234",
+   "bucket": "smelter_backward_integration",
+   "role": "Smelter with 4.6 lakh t capacity (S8), adding 0.5 Mtpa at Angul by early 2030 (S7). It sought AlF3 JV partners through an EoI (S9).",
+   "impact": "Supply security rather than earnings. A JV would be small against TTM profit of Rs 6,751 cr (S15)."
+  },
+  {
+   "name": "Hindalco Industries Ltd",
+   "nse": "HINDALCO",
+   "bse": "500440",
+   "bucket": "smelter_backward_integration",
+   "role": "AlF3 buyer from Alufluoride and SPIC (S4)(S10). Adding a 3.6 lakh tpa smelter at Aditya (S6).",
+   "impact": "Implies about 5-7 kt/yr of extra AlF3 demand (calc on S3, S6). No captive AlF3 plan found."
+  },
+  {
+   "name": "Vedanta Ltd",
+   "nse": "VEDL",
+   "bse": "500295",
+   "bucket": "smelter_backward_integration",
+   "role": "AlF3 customer of Alufluoride (S4). Ramping up the new BALCO smelter (S17) toward about 3.1 Mtpa group capacity by FY28 (S18).",
+   "impact": "The nearest-term demand addition (BALCO full ramp by Q4 FY27) (S17). No captive AlF3 plan found."
+  }
+ ],
+ "sources": [
+  {
+   "id": "S1",
+   "publisher": "Paradeep Phosphates Ltd",
+   "title": "Q1 FY27 Earnings Conference Call transcript (hosted by Antique Stock Broking)",
+   "url": "https://www.paradeepphosphates.com/uploads/content/antique-paradeepphos-jul31-20261786019126.pdf",
+   "date": "2026-07-31",
+   "kind": "company"
+  },
+  {
+   "id": "S2",
+   "publisher": "Business Today",
+   "title": "Paradeep Phosphates shares jump 15% on strong Q1 results, Rs 250-crore AlF3 plant approval",
+   "url": "https://www.businesstoday.in/markets/stocks/story/paradeep-phosphates-shares-jump-13-on-strong-q1-results-rs-250-crore-alf3-plant-approval-545880-2026-07-29",
+   "date": "2026-07-29",
+   "kind": "news"
+  },
+  {
+   "id": "S3",
+   "publisher": "IIFL (reproducing Alufluoride FY26 annual report MD&A)",
+   "title": "Alufluoride Ltd - Management Discussions",
+   "url": "https://www.indiainfoline.com/company/alufluoride-ltd/management-discussions/4079",
+   "date": "2026-10-12",
+   "kind": "company"
+  },
+  {
+   "id": "S4",
+   "publisher": "screener.in",
+   "title": "Alufluoride Ltd - financials and announcements",
+   "url": "https://www.screener.in/company/ALUFLUOR/",
+   "date": "2026-10-09",
+   "kind": "other"
+  },
+  {
+   "id": "S5",
+   "publisher": "SAHI",
+   "title": "Alufluoride Expands Visakhapatnam Plant Capacity to 24,000 TPA in June 2026",
+   "url": "https://www.sahi.com/news/alufluoride-expands-visakhapatnam-plant-capacity-to-24-000-tpa-in-june-2026-1581-PE1_COR",
+   "date": "2026-07-15",
+   "kind": "news"
+  },
+  {
+   "id": "S6",
+   "publisher": "Hindalco Industries (BSE filing)",
+   "title": "Hindalco announces Rs 21,000-crore smelter expansion; commissions FRP and battery foil facilities in Odisha",
+   "url": "https://bsmedia.business-standard.com/_media/bs/data/announcements/bse/27012026/37aeb6e6-4e66-48ea-94c2-e7cd40de9537.pdf",
+   "date": "2026-01-27",
+   "kind": "company"
+  },
+  {
+   "id": "S7",
+   "publisher": "Shanghai Metals Market (SMM)",
+   "title": "NALCO Signs EGA Tech Pact for Angul Smelter Expansion",
+   "url": "https://news.metal.com/en/newscontent/104101600-nalco-signs-ega-tech-pact-for-angul-smelter-expansion",
+   "date": "2026-09-07",
+   "kind": "news"
+  },
+  {
+   "id": "S8",
+   "publisher": "WebIndia123 (news agency copy)",
+   "title": "NALCO plans 5 lakh tonne smelter, capacity to ~9.6 lakh tonnes",
+   "url": "https://news.webindia123.com/news/Articles/India/20250828/4355033.html",
+   "date": "2025-08-28",
+   "kind": "news"
+  },
+  {
+   "id": "S9",
+   "publisher": "PSU Connect",
+   "title": "NALCO Invites EOI for JV/Partnership in Aluminium Fluoride, CPC & Coal Tar Pitch",
+   "url": "https://www.psuconnect.in/psu-news/nalco-invites-eoi-for-jv-partnership-in-aluminium-fluoride-cpc-coal-tar-pitch",
+   "date": "2026-09-21",
+   "kind": "news"
+  },
+  {
+   "id": "S10",
+   "publisher": "SPIC",
+   "title": "SPIC ALF-96 (Aluminium Fluoride) product page",
+   "url": "https://www.spic.in/productcms/spic-alf-96-aluminium-fluoride/",
+   "date": "2026-10-12",
+   "kind": "company"
+  },
+  {
+   "id": "S11",
+   "publisher": "screener.in",
+   "title": "Southern Petrochemicals Industries Corp (SPIC)",
+   "url": "https://www.screener.in/company/SPIC/",
+   "date": "2026-10-09",
+   "kind": "other"
+  },
+  {
+   "id": "S12",
+   "publisher": "screener.in",
+   "title": "Tanfac Industries Ltd",
+   "url": "https://www.screener.in/company/TANFACIND/",
+   "date": "2026-10-09",
+   "kind": "other"
+  },
+  {
+   "id": "S13",
+   "publisher": "FilingReader",
+   "title": "Tanfac Industries posts record revenue, plans INR495 crore expansion",
+   "url": "https://filingreader.com/news-wire/mumbai/2026-05-16/tanfac-industries-posts-record-revenue-plans-inr495-crore-expansion",
+   "date": "2026-05-16",
+   "kind": "news"
+  },
+  {
+   "id": "S14",
+   "publisher": "screener.in",
+   "title": "Paradeep Phosphates Ltd (consolidated)",
+   "url": "https://www.screener.in/company/PARADEEP/consolidated/",
+   "date": "2026-10-09",
+   "kind": "other"
+  },
+  {
+   "id": "S15",
+   "publisher": "screener.in",
+   "title": "National Aluminium Company Ltd (consolidated)",
+   "url": "https://www.screener.in/company/NATIONALUM/consolidated/",
+   "date": "2026-10-09",
+   "kind": "other"
+  },
+  {
+   "id": "S16",
+   "publisher": "Shanghai Metals Market (SMM)",
+   "title": "Raw Material Divergence, Costs Stay High, Aluminum Fluoride Edges Up Amid Intensifying Competition [SMM Fluoride Salt Weekly Review]",
+   "url": "https://news.metal.com/newscontent/104133989-raw-material-divergence-costs-stay-high-aluminum-fluoride-edges-up-amid-intensifying-competition-smm-fluoride-salt-weekly-review",
+   "date": "2026-09-24",
+   "kind": "research"
+  },
+  {
+   "id": "S17",
+   "publisher": "Business Today",
+   "title": "Vedanta Aluminium: Geojit note as BALCO expansion nears full capacity",
+   "url": "https://www.businesstoday.in/markets/stocks/story/vedanta-aluminium-shares-geojit-assigns-buy-as-balco-expansion-nears-full-capacity-checks-target-553033-2026-09-03",
+   "date": "2026-09-03",
+   "kind": "news"
+  },
+  {
+   "id": "S18",
+   "publisher": "Outlook Business",
+   "title": "Vedanta Plans to Invest Rs 13,226 Cr to Ramp Up Aluminium Capacity",
+   "url": "https://www.outlookbusiness.com/corporate/vedanta-plans-to-invest-13226-cr-to-ramp-up-aluminium-capacity",
+   "date": "2026-10-12",
+   "kind": "news"
+  },
+  {
+   "id": "S19",
+   "publisher": "OEC (Observatory of Economic Complexity)",
+   "title": "Aluminium fluoride trade profile (HS 282612)",
+   "url": "https://www.oec.world/en/profile/hs/aluminium-fluoride",
+   "date": "2026-10-12",
+   "kind": "other"
+  },
+  {
+   "id": "S20",
+   "publisher": "MarketsMojo (Motilal Oswal)",
+   "title": "Alufluoride stock page",
+   "url": "https://marketsmojo.motilaloswal.com/stocks-analysis/news-action/alufluoride-595395-0",
+   "date": "2026-10-09",
+   "kind": "other"
+  }
+ ],
+ "method": "First edition, researched on 2026-10-12 with web search and direct page fetches. Primary documents opened: Paradeep's Q1 FY27 call transcript, Hindalco's 27 Jan 2026 exchange filing, SPIC's product page, and Alufluoride's FY26 MD&A (via IIFL). Market data comes from screener.in pages (close 9 Oct 2026); numbers.json was not present in the folder. Some sources were seen only in search results because the pages blocked fetching: PSU Connect (S9), Outlook Business (S18) and OEC (S19). Their figures are attributed and treated as secondary. Undated pages carry the access date. Implied AlF3 demand and realisation figures are our own arithmetic and are labelled as such. We found no listed mid- or large-cap fertiliser company other than Paradeep with an announced AlF3 plant; the small-cap pure-play universe is effectively one stock (Alufluoride). Not verified: the brief's six-month and one-year return figures for Paradeep, the April 2026 peak for Alufluoride, the companies that answered NALCO's EoI, AlF3 revenue shares for SPIC and Tanfac, Hindalco's commissioning date, and any 2025-26 India import volumes. These are omitted or flagged. No ratings or price targets.",
+ "bucket_labels": {
+  "dedicated_alf3_makers": [
+   "Dedicated AlF3 producers",
+   "Small caps already making aluminium fluoride and expanding capacity"
+  ],
+  "fertiliser_byproduct_entrants": [
+   "Fertiliser by-product entrants",
+   "Phosphate fertiliser makers converting fluorine by-product into AlF3"
+  ],
+  "smelter_backward_integration": [
+   "Smelter backward integration",
+   "Aluminium producers planning captive or partnered AlF3 supply"
+  ],
+  "other": [
+   "Other",
+   ""
+  ]
+ },
+ "kind": "theme"
+}

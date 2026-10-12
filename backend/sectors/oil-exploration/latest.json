@@ -1,18 +1,40 @@
 {
- "updated": "2026-10-11T06:04+05:30",
+ "updated": "2026-10-12T06:17+05:30",
  "figures": [
   {
-   "label": "Brent crude",
-   "value": "$104.43/bbl",
+   "label": "Brent crude (futures settle)",
+   "value": "$104.72/bbl",
    "as_of": "2026-10-09",
-   "note": "+0.14% on the day; -2.97% on the month",
+   "note": "+0.42% (+44 cents) on the day; WTI $91.85",
    "source": {
-    "publisher": "Trading Economics",
-    "url": "https://tradingeconomics.com/commodity/brent-crude-oil"
+    "publisher": "Nation Thailand",
+    "url": "https://nationthailand.com/news/world/40072074"
    }
   }
  ],
  "items": [
+  {
+   "date": "2026-10-10",
+   "title": "Brent settles at $104.72 on 9 Oct as Gulf of Mexico storm shut-ins offset Iran-talk relief",
+   "text": "Brent futures settled at $104.72/bbl on Friday 9 October, up 44 cents (0.42%), and WTI at $91.85, up 36 cents (0.39%). Producers halted more than 70% of US Gulf crude output ahead of Hurricane Isaias, lifting prices after earlier losses driven by Trump's pledge not to attack Iran before the midterm elections and China's planned resumption of refined fuel exports. Crude holding above $100 keeps ONGC and Oil India realisations high but weighs on oil marketing companies' margins and India's import bill.",
+   "tone": "watch",
+   "companies": [
+    "ONGC",
+    "OIL",
+    "IOC",
+    "BPCL",
+    "HINDPETRO"
+   ],
+   "sources": [
+    {
+     "publisher": "Nation Thailand",
+     "title": "Oil rises as Isaias cuts over 70% of US Gulf output on Oct 9",
+     "url": "https://nationthailand.com/news/world/40072074",
+     "date": "2026-10-10"
+    }
+   ],
+   "added": "2026-10-12"
+  },
   {
    "date": "2026-10-08",
    "title": "Nifty closes at 18-month low of 22,231.80 as crude jump and tighter-money fears hit Indian equities",

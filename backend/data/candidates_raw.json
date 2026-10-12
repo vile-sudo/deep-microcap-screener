@@ -11309,7 +11309,7 @@
      ]
     }
    },
-   "profiled_on": "2026-10-11"
+   "profiled_on": "2026-10-12"
   }
  },
  {
@@ -15292,6 +15292,577 @@
     }
    },
    "profiled_on": "2026-10-11"
+  }
+ },
+ {
+  "sym": "539787",
+  "name": "HealthCare Global Enterprises Ltd",
+  "board": "BSE",
+  "isin": "INE075I01017",
+  "listed": null,
+  "hint": "pharma & healthcare",
+  "why": "mid-cap sweep",
+  "mktcap_cr": 8798.38,
+  "plausible": true,
+  "verdict": null,
+  "seen_on": "2026-10-12",
+  "source": "sweep",
+  "moat_signal": true,
+  "moat_evidence": [
+   "monopoly claim: \"For instance, we were among the first healthcare providers in India to standardise molecular diagnostics technologies, including genomic testing and molecular imaging, including 128 slice PET-CT scans in the diagnosis and staging of\" (prospectus, company-stated)",
+   "monopoly claim: \"We were also the first healthcare provider in India to perform computer assisted tumour navigation surgery.\" (prospectus, company-stated)"
+  ],
+  "profile": {
+   "symbol": "539787",
+   "company": "Healthcare Global Enterprises Limited",
+   "isin": "INE075I01017",
+   "board": "BSE",
+   "source": {
+    "document": "draft prospectus",
+    "url": "https://nsearchives.nseindia.com/corporate/d_Healthcare.zip",
+    "filed": "24-Jul-2015",
+    "pdf_bytes": 6456833,
+    "extracted_chars": 1951555
+   },
+   "grade": "company-stated",
+   "verified_against": null,
+   "claims": {
+    "accreditation": {
+     "count": 15,
+     "dropped_as_industry_commentary": 7,
+     "terms": [
+      "AERB",
+      "NABL",
+      "NABH",
+      "ISO9001",
+      "ISO 9001"
+     ],
+     "evidence": [
+      {
+       "match": "AERB",
+       "sentence": "Under the “HCG” brand, we operate the largest cancer care network in India in terms of the total number of cancer treatment centres licensed by the AERB as of March 31, 2015."
+      },
+      {
+       "match": "NABL",
+       "sentence": "Our Triesta central reference laboratory is accredited by NABL in India, as well as by CAP for quality assurance of laboratory tests performed."
+      },
+      {
+       "match": "AERB",
+       "sentence": "Our Strengths Largest provider of cancer care in India with a proven track record Our HCG network is the largest provider of cancer care in India in terms of the total number of cancer treatment centres licensed by the AERB as of March 31, 2015."
+      }
+     ]
+    },
+    "monopoly_claim": {
+     "count": 2,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "first healthcare providers in India",
+      "first healthcare provider in India"
+     ],
+     "evidence": [
+      {
+       "match": "first healthcare providers in India",
+       "sentence": "For instance, we were among the first healthcare providers in India to standardise molecular diagnostics technologies, including genomic testing and molecular imaging, including 128 slice PET-CT scans in the diagnosis and staging of"
+      },
+      {
+       "match": "first healthcare provider in India",
+       "sentence": "We were also the first healthcare provider in India to perform computer assisted tumour navigation surgery."
+      }
+     ]
+    },
+    "ip": {
+     "count": 10,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "trademark",
+      "trademarks",
+      "patent",
+      "patents",
+      "PATENT"
+     ],
+     "evidence": [
+      {
+       "match": "trademark",
+       "sentence": "For example, we currently do not own the trademark to the phrase, “specialist in cancer care” that we use in conjunction with our logo."
+      },
+      {
+       "match": "trademarks",
+       "sentence": "We also do not own the trademarks “HCG HOSPITALS” and “TRIESTA SCIENCES”."
+      },
+      {
+       "match": "patent",
+       "sentence": "In addition, we cannot assure you that we will be able to obtain, maintain, protect or enforce patent rights, or protect confidential and proprietary information, in relation to the clinical trials or the research and developments activities we undertake, for various reasons."
+      }
+     ]
+    }
+   },
+   "risk_factors": {
+    "promoter_litigation": {
+     "count": 12,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "criminal proceedings",
+      "criminal proceeding",
+      "criminal complaint",
+      "proceedings against our Promoters",
+      "Proceedings against our Promoters",
+      "proceedings involving our Promoters",
+      "Criminal Proceedings"
+     ],
+     "evidence": [
+      {
+       "match": "criminal proceedings",
+       "sentence": "Two of our Promoters and one of our Directors are party to criminal proceedings and if convicted, our business and reputation could be adversely affected."
+      },
+      {
+       "match": "criminal proceedings",
+       "sentence": "Ganesh Nayak are party to criminal proceedings."
+      },
+      {
+       "match": "criminal proceeding",
+       "sentence": "In respect of the criminal proceeding against Dr."
+      }
+     ]
+    },
+    "related_party": {
+     "count": 28,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "RELATED PARTY TRANSACTIONS",
+      "related party transactions",
+      "Related Party Transactions",
+      "Related party transactions",
+      "Related Party transactions"
+     ],
+     "evidence": [
+      {
+       "match": "RELATED PARTY TRANSACTIONS",
+       "sentence": "214 RELATED PARTY TRANSACTIONS ."
+      },
+      {
+       "match": "related party transactions",
+       "sentence": "We have entered into, and will continue to enter into, related party transactions."
+      },
+      {
+       "match": "related party transactions",
+       "sentence": "These related party transactions include, among others, sale of pharmacy products and consumables, medical services rendered, loans and advances, security deposits, proceeds from allotment of shares, trade receivables, rent received and payment of remuneration."
+      }
+     ]
+    }
+   },
+   "objects_of_the_issue": {
+    "offer_for_sale": {
+     "count": 85,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "OFFER FOR SALE",
+      "Offer for Sale",
+      "offer for sale"
+     ],
+     "evidence": [
+      {
+       "match": "OFFER FOR SALE",
+       "sentence": "HARE) AGGREGATING UP TO `[●] MILLION (“OFFER”) COMPRISING A FRESH ISSUE OF UP TO 11,600,000 EQUITY SHARES AGGREGATING UP TO `[●] MILLION (“FRESH ISSUE”) AND AN OFFER FOR SALE OF UP TO 19,498,000 EQUITY SHARES BY THE SELLING SHAREHOLDERS (AS DEFINED HEREUNDER) AGGREGATING UP TO `[●] MILLION (“OFFER FOR SALE”)."
+      },
+      {
+       "match": "OFFER FOR SALE",
+       "sentence": "ION (“FRESH ISSUE”) AND AN OFFER FOR SALE OF UP TO 19,498,000 EQUITY SHARES BY THE SELLING SHAREHOLDERS (AS DEFINED HEREUNDER) AGGREGATING UP TO `[●] MILLION (“OFFER FOR SALE”)."
+      },
+      {
+       "match": "Offer for Sale",
+       "sentence": "The Other Selling Shareholders severally and not jointly accept responsibility that this Draft Red Herring Prospectus contains all information about them as Other Selling Shareholders in the context of the Offer for Sale and further assume responsibility for statements in relation to them included in this Draft Red Herring Prospectus."
+      }
+     ]
+    },
+    "fresh_issue": {
+     "count": 34,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "FRESH ISSUE",
+      "Fresh Issue",
+      "fresh issue"
+     ],
+     "evidence": [
+      {
+       "match": "FRESH ISSUE",
+       "sentence": "SSUER”) FOR CASH AT A PRICE OF `[●] PER EQUITY SHARE (INCLUDING A SHARE PREMIUM OF `[●] PER EQUITY SHARE) AGGREGATING UP TO `[●] MILLION (“OFFER”) COMPRISING A FRESH ISSUE OF UP TO 11,600,000 EQUITY SHARES AGGREGATING UP TO `[●] MILLION (“FRESH ISSUE”) AND AN OFFER FOR SALE OF UP TO 19,498,000 EQUITY SHARES BY THE SELLING SHAREHOLDERS (AS DEFINED HEREUNDER) AGGREGATING UP TO `[●] MILLION (“OFFER FOR SALE”)."
+      },
+      {
+       "match": "FRESH ISSUE",
+       "sentence": "OF `[●] PER EQUITY SHARE) AGGREGATING UP TO `[●] MILLION (“OFFER”) COMPRISING A FRESH ISSUE OF UP TO 11,600,000 EQUITY SHARES AGGREGATING UP TO `[●] MILLION (“FRESH ISSUE”) AND AN OFFER FOR SALE OF UP TO 19,498,000 EQUITY SHARES BY THE SELLING SHAREHOLDERS (AS DEFINED HEREUNDER) AGGREGATING UP TO `[●] MILLION (“OFFER FOR SALE”)."
+      },
+      {
+       "match": "Fresh Issue",
+       "sentence": "s) Basis of Allotment Bid Bid Amount Bid cum Application Form Description Unless the context otherwise requires, allotment of the Equity Shares pursuant to the Fresh Issue and transfer of the Equity Shares offered by the Selling Shareholders pursuant to the Offer for Sale to the successful Bidders Note or advice or intimation of Allotment sent to the Bidders"
+      }
+     ]
+    },
+    "capital_expenditure": {
+     "count": 37,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "expansion of our",
+      "Expansion of our",
+      "capital expenditure",
+      "Capital expenditure",
+      "setting up of",
+      "CAPITAL EXPENDITURE"
+     ],
+     "evidence": [
+      {
+       "match": "expansion of our",
+       "sentence": "Our and HCG MediSurge's net losses are primarily attributable to insufficient revenue to cover the expenses incurred on significant amount of debt obtained, and the depreciation expenses resulting from capital investments, in relation to the operation and expansion of our and HCG Medi-Surge's businesses."
+      },
+      {
+       "match": "Expansion of our",
+       "sentence": "See also, “Management's Discussion and Analysis of Financial Condition and Results of Operations – Factors Affecting our Financial Results – Expansion of our HCG Network and our Milann Network” on page 256."
+      },
+      {
+       "match": "capital expenditure",
+       "sentence": "For instance, we may incur higher capital expenditure in establishing our cancer centres in Africa than we have currently anticipated."
+      }
+     ]
+    },
+    "working_capital": {
+     "count": 9,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "working capital requirements",
+      "working capital requirement"
+     ],
+     "evidence": [
+      {
+       "match": "working capital requirements",
+       "sentence": "Our ability to pay dividends in the future will depend upon future earnings, financial condition, cash flows, working capital requirements and capital expenditures."
+      },
+      {
+       "match": "working capital requirements",
+       "sentence": "The amount of future dividend payments, if any, will depend upon a number of factors, including but not limited to our future earnings, financial condition, cash flows, working capital requirements, contractual obligations, applicable Indian legal restrictions and capital expenditures."
+      },
+      {
+       "match": "working capital requirements",
+       "sentence": "R Regulations, including but not restricted towards strategic initiatives and acquisitions, funding initial stages of equity contribution towards our projects, working capital requirements, investments into our subsidiaries, part or full debt repayment/prepayment of our Company or any of its Subsidiaries (excluding LLPs), strengthening of our marketing capabilities and towards repayment and prepayment penalty or premium on loans as may be applicable."
+      }
+     ]
+    },
+    "general_corporate": {
+     "count": 7,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "General corporate purposes",
+      "general corporate purposes",
+      "General Corporate Purposes"
+     ],
+     "evidence": [
+      {
+       "match": "General corporate purposes",
+       "sentence": "General corporate purposes (collectively, referred to herein as the “Objects”)."
+      },
+      {
+       "match": "General corporate purposes",
+       "sentence": "Utilization of Net Proceeds The proposed utilisation of the Net Proceeds is set forth in the table below: Amount (in `million) Particulars Purchase of medical equipment Investment in IT software, services and hardware Pre-payment of debt General corporate purposes(1) Total Net Proceeds (1) 519."
+      },
+      {
+       "match": "General corporate purposes",
+       "sentence": "51 Fiscal 2018 Fiscal 2019 - - Particulars Total estimated costs Investment in IT software, services and hardware(1) Pre-payment of debt General corporate purposes(2) Total (1) (2) (3) Amount to be funded from the Net Proceeds Estimated Utilisation of Net Proceeds Fiscal 2017 Fiscal 2018 Fiscal 2019 499."
+      }
+     ]
+    }
+   },
+   "profiled_on": "2026-10-12"
+  }
+ },
+ {
+  "sym": "544322",
+  "name": "Unimech Aerospace and Manufacturing Ltd",
+  "board": "BSE",
+  "isin": "INE0U3I01011",
+  "listed": null,
+  "hint": "defence & aerospace",
+  "why": "mid-cap sweep",
+  "mktcap_cr": 8821.83,
+  "plausible": true,
+  "verdict": null,
+  "seen_on": "2026-10-12",
+  "source": "sweep",
+  "moat_signal": true,
+  "moat_evidence": [
+   "import substitution: \"While there is no separate expenditure head for research and development in the our financial statements, our Company has undertaken various activities for enhancement of manufacturing capabilities and overall process, such as development of shock mount, polyurethane protector with silicon removal, indigenization programs for imported standard parts and technology and software improvements, the approximate expenditures incurred for the last three Fiscal Years and the six months period ended Sept\" (prospectus, company-stated)"
+  ],
+  "profile": {
+   "symbol": "544322",
+   "company": "Unimech Aerospace and Manufacturing Limited",
+   "isin": "INE0U3I01011",
+   "board": "BSE",
+   "source": {
+    "document": "final prospectus",
+    "url": "https://nsearchives.nseindia.com/corporate/FP_INE0U3I01011_30DEC2024.pdf",
+    "filed": "30-Dec-2024",
+    "pdf_bytes": 8026772,
+    "extracted_chars": 1729946
+   },
+   "grade": "company-stated",
+   "verified_against": null,
+   "claims": {
+    "accreditation": {
+     "count": 5,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "ISO 9001",
+      "ISO 45001"
+     ],
+     "evidence": [
+      {
+       "match": "ISO 9001",
+       "sentence": "We adhere to stringent quality standards and measures as per AS9100D & BS EN ISO 9001:2015, being the industry norms for aerospace."
+      },
+      {
+       "match": "ISO 9001",
+       "sentence": "Our both manufacturing facilities are accredited with AS 9001D, BS EN ISO 9001 and ISO 45001:2018."
+      },
+      {
+       "match": "ISO 9001",
+       "sentence": "We adhere to stringent quality standards and measures for our products as per AS9100D & BS EN ISO 9001:2015, being the industry norms for aerospace."
+      }
+     ]
+    },
+    "import_substitution": {
+     "count": 1,
+     "dropped_as_industry_commentary": 13,
+     "terms": [
+      "indigenization"
+     ],
+     "evidence": [
+      {
+       "match": "indigenization",
+       "sentence": "While there is no separate expenditure head for research and development in the our financial statements, our Company has undertaken various activities for enhancement of manufacturing capabilities and overall process, such as development of shock mount, polyurethane protector with silicon removal, indigenization programs for imported standard parts and technology and software improvements, the approximate expenditures incurred for the last three Fiscal Years and the six months period ended Sept"
+      }
+     ]
+    },
+    "ip": {
+     "count": 10,
+     "dropped_as_industry_commentary": 11,
+     "terms": [
+      "trademarks",
+      "patent",
+      "trademark"
+     ],
+     "evidence": [
+      {
+       "match": "trademarks",
+       "sentence": "While our Company has registered three trademarks in India, and may register our other intellectual property in the future, if we fail to register the appropriate intellectual property, or our efforts to protect relevant intellectual prope"
+      },
+      {
+       "match": "patent",
+       "sentence": "Our success and ability to compete depends, in part, on our ability to protect our intellectual property and proprietary rights and we generally rely on patent and trademark laws, and confidentiality or license agreements with our employees, consultants, customers and other third parties, and generally limit access to and distribution of our proprietary information, in order to protect our intellectual property rights and maintain our competitive position."
+      },
+      {
+       "match": "trademark",
+       "sentence": "Our Company and our Material Subsidiary has filed an application for the registration of one trademark, respectively, under Class 12 of the Trademarks Act, 1999, which are pending registration."
+      }
+     ]
+    }
+   },
+   "risk_factors": {
+    "customer_concentration": {
+     "count": 42,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "top five customers",
+      "top 10 customers",
+      "top 3 customers",
+      "Top 3 customers",
+      "Top 5 customers",
+      "customer concentration",
+      "Customer Concentration",
+      "top 5 customers"
+     ],
+     "evidence": [
+      {
+       "match": "top five customers",
+       "sentence": "• We are dependent on our top five customers who contribute to 94."
+      },
+      {
+       "match": "top 10 customers",
+       "sentence": "Certain names of our top 10 customers and top 10 suppliers are not mentioned in this Prospectus due to confidentiality reasons and non-receipt of consents."
+      },
+      {
+       "match": "top five customers",
+       "sentence": "We are dependent on our top five customers who contribute to 94."
+      }
+     ]
+    },
+    "promoter_litigation": {
+     "count": 11,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "criminal proceedings",
+      "Criminal proceedings",
+      "criminal case",
+      "Criminal Proceedings"
+     ],
+     "evidence": [
+      {
+       "match": "criminal proceedings",
+       "sentence": "The summary of outstanding matters set out below includes details of outstanding criminal proceedings, tax proceedings, statutory and regulatory actions and other material pending litigation involving our Company, Subsidiaries, Directors and Promoters."
+      },
+      {
+       "match": "criminal proceedings",
+       "sentence": "com) ^Additions to property, plant and equipment is on consolidated basis 363 SECTION VI - LEGAL AND OTHER INFORMATION OUTSTANDING LITIGATION AND MATERIAL DEVELOPMENTS Except as disclosed in this section, there are no outstanding (i) criminal proceedings involving our Company, Subsidiaries, Promoters and Directors (“Relevant Parties”); (ii) actions taken by regulatory or statutory authorities against the Relevant Parties; (iii) cl"
+      },
+      {
+       "match": "criminal proceedings",
+       "sentence": "In terms of the Materiality Policy, all outstanding litigation/ arbitration proceedings involving the Relevant Parties, other than (I) all outstanding criminal proceedings (including matters which are at an FIR stage even if no cognizance has been taken by any court); (II) all actions (including all penalties and show cause notices) by statutory and"
+      }
+     ]
+    },
+    "related_party": {
+     "count": 26,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "RELATED PARTY TRANSACTIONS",
+      "related party transactions",
+      "related party transaction",
+      "Related Party Transactions",
+      "related parties Transactions"
+     ],
+     "evidence": [
+      {
+       "match": "RELATED PARTY TRANSACTIONS",
+       "sentence": "323 RELATED PARTY TRANSACTIONS ."
+      },
+      {
+       "match": "related party transactions",
+       "sentence": "Summary of related party transactions The details of related party transactions entered into by our Company for the six months period ended September 30, 2024, and financial years ended March 31, 2024, March 31,"
+      },
+      {
+       "match": "related party transactions",
+       "sentence": "00% For details of the related party transactions, see “Restated Consolidated Financial Information” on page 271."
+      }
+     ]
+    }
+   },
+   "objects_of_the_issue": {
+    "offer_for_sale": {
+     "count": 46,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "OFFER FOR SALE",
+      "Offer for Sale",
+      "offer for sale"
+     ],
+     "evidence": [
+      {
+       "match": "OFFER FOR SALE",
+       "sentence": "*Subject to finalisation of Basis of Allotment DETAILS OF THE SELLING SHAREHOLDERS, OFFER FOR SALE AND WEIGHTED AVERAGE COST OF ACQUISITION NAME OF THE SELLING TYPE NO."
+      },
+      {
+       "match": "OFFER FOR SALE",
+       "sentence": "00 MILLION (THE “FRESH ISSUE”) AND AN OFFER FOR SALE OF 31,84,713* EQUITY SHARES OF FACE VALUE OF ₹5 EACH AGGREGATING TO ₹ 2,500."
+      },
+      {
+       "match": "OFFER FOR SALE",
+       "sentence": "00 MILLION (THE “OFFER FOR SALE”), COMPRISING 5,73,248* EQUITY SHARES OF FACE VALUE OF ₹5 EACH AGGREGATING TO ₹ 450."
+      }
+     ]
+    },
+    "fresh_issue": {
+     "count": 55,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "Fresh Issue",
+      "FRESH ISSUE",
+      "fresh issue"
+     ],
+     "evidence": [
+      {
+       "match": "Fresh Issue",
+       "sentence": "DETAILS OF THE OFFER TYPE FRESH OFFER FOR TOTAL OFFER SIZE ELIGIBILITY AND SHARE RESERVATION AMONG QIBS, NIBS, RIBS AND ELIGIBLE ISSUE SIZE SALE SIZE EMPLOYEES Fresh Issue and Offer for 31,84,713* 31,84,713* 63,69,426* Equity Shares of face value of ₹ The Offer has been made through Book Building process, in terms of Rule 19(2)(b) of Securities Sale Equity Shares Equity Shares of 5 each aggregating to ₹ 5,000."
+      },
+      {
+       "match": "FRESH ISSUE",
+       "sentence": "00 MILLION (THE “OFFER”) COMPRISING A FRESH ISSUE OF 31,84,713* EQUITY SHARES OF FACE VALUE OF ₹5 EACH BY OUR COMPANY AGGREGATING TO ₹ 2,500."
+      },
+      {
+       "match": "FRESH ISSUE",
+       "sentence": "00 MILLION (THE “FRESH ISSUE”) AND AN OFFER FOR SALE OF 31,84,713* EQUITY SHARES OF FACE VALUE OF ₹5 EACH AGGREGATING TO ₹ 2,500."
+      }
+     ]
+    },
+    "capital_expenditure": {
+     "count": 41,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "capital expenditure",
+      "setting up of",
+      "expansion of our",
+      "purchase of equipment",
+      "purchase of plant"
+     ],
+     "evidence": [
+      {
+       "match": "capital expenditure",
+       "sentence": "Particulars Funding of capital expenditure for expansion through purchase of machineries and equipment by our Company; Funding working capital requirements of our Company; Investment in our Material Subsidiary for: a."
+      },
+      {
+       "match": "capital expenditure",
+       "sentence": "Funding of capital expenditure for expansion through purchase of machineries and equipment; b."
+      },
+      {
+       "match": "setting up of",
+       "sentence": "Under the terms of the allotment by KIADB to us, we are required to comply with various conditions such as adhering to the timelines for completion of setting up of the manufacturing facility and commencement of manufacturing activity."
+      }
+     ]
+    },
+    "working_capital": {
+     "count": 63,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "working capital requirements",
+      "working capital requirement",
+      "Working capital requirements",
+      "Working Capital Requirements",
+      "Working Capital Requirement"
+     ],
+     "evidence": [
+      {
+       "match": "working capital requirements",
+       "sentence": "Particulars Funding of capital expenditure for expansion through purchase of machineries and equipment by our Company; Funding working capital requirements of our Company; Investment in our Material Subsidiary for: a."
+      },
+      {
+       "match": "working capital requirements",
+       "sentence": "funding its working capital requirements; and c."
+      },
+      {
+       "match": "working capital requirements",
+       "sentence": "• Our business works on a longer gestation period wherein, there is considerable time gap of 7 to 28 weeks between the receipt of order and the payment, thereby, affecting our working capital requirements."
+      }
+     ]
+    },
+    "general_corporate": {
+     "count": 9,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "General corporate purposes",
+      "general corporate purposes"
+     ],
+     "evidence": [
+      {
+       "match": "General corporate purposes",
+       "sentence": "repayment / prepayment, in full or part, of certain borrowings; General corporate purposes(1) Net Proceeds(1) (1) The amount utilised for general corporate purposes shall not exceed 25% of the Gross Proceeds."
+      },
+      {
+       "match": "general corporate purposes",
+       "sentence": ") funding its working capital requirements; and (c) repayment / prepayment, in full or part, of certain borrowings availed by our Material Subsidiary; and (iv) general corporate purposes."
+      },
+      {
+       "match": "General corporate purposes",
+       "sentence": "General corporate purposes."
+      }
+     ]
+    }
+   },
+   "profiled_on": "2026-10-12"
   }
  }
 ]
