@@ -147605,7 +147605,7 @@
      ]
     }
    },
-   "profiled_on": "2026-10-12"
+   "profiled_on": "2026-10-13"
   }
  },
  {
@@ -147868,7 +147868,7 @@
      ]
     }
    },
-   "profiled_on": "2026-10-12"
+   "profiled_on": "2026-10-13"
   }
  },
  {
@@ -154594,7 +154594,7 @@
      ]
     }
    },
-   "profiled_on": "2026-10-12"
+   "profiled_on": "2026-10-13"
   }
  },
  {
@@ -163733,5 +163733,887 @@
   "source": "sweep",
   "moat_signal": null,
   "moat_evidence": null
+ },
+ {
+  "sym": "RKFAL",
+  "name": "R.K. Fashion Accessories Limited",
+  "board": "SME",
+  "isin": "INE2O2Y01016",
+  "listed": "12-Oct-26",
+  "hint": null,
+  "why": "sector unknown, SME platform",
+  "plausible": true,
+  "verdict": null,
+  "seen_on": "2026-10-13",
+  "source": "new-listing",
+  "moat_signal": null,
+  "moat_evidence": null,
+  "profile": {
+   "symbol": "RKFAL",
+   "company": "R.K. Fashion Accessories Limited",
+   "isin": "INE2O2Y01016",
+   "board": "SME",
+   "source": {
+    "document": "draft prospectus",
+    "url": "https://nsearchives.nseindia.com/emerge/corporates/content/AD_IPO_7139_30072026185627.zip",
+    "filed": "27-May-2026",
+    "pdf_bytes": 15993622,
+    "extracted_chars": 1192892
+   },
+   "grade": "company-stated",
+   "verified_against": null,
+   "claims": {
+    "accreditation": {
+     "count": 1,
+     "dropped_as_industry_commentary": 1,
+     "terms": [
+      "BIS"
+     ],
+     "evidence": [
+      {
+       "match": "BIS",
+       "sentence": "QUALITY CERTIFICATIONS: The Company does not hold any Quality, Environmental, Product or Standards-Related Certifications, including ISO certifications or Bureau of Indian Standards (BIS) registrations, in its name as on the date 335 of this Draft Red Herring Prospectus."
+      }
+     ]
+    },
+    "ip": {
+     "count": 1,
+     "dropped_as_industry_commentary": 3,
+     "terms": [
+      "trademarks"
+     ],
+     "evidence": [
+      {
+       "match": "trademarks",
+       "sentence": "COMPETITORS Name of the Company Banaras Beads Limited LIST OF INTELLECTUAL PROPERTY 206 Our company has applied for multiple trademarks under to strengthen its intellectual property rights and protect its brand identity in the market."
+      }
+     ]
+    }
+   },
+   "risk_factors": {
+    "customer_concentration": {
+     "count": 4,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "top ten customers",
+      "top 10 customers"
+     ],
+     "evidence": [
+      {
+       "match": "top ten customers",
+       "sentence": "Our top ten customers have contributed 15."
+      },
+      {
+       "match": "top 10 customers",
+       "sentence": "In the financial years ended on March 31, 2026, March 31, 2025 and March 31 2024 as per Restated Financials, the contributions of our top 5 and top 10 customers are as follows: (Amount ₹ in Lakhs) Particulars For Financial Year For Financial Year For Financial Year ended ended March 31, 2026 ended March 31, 2025 March 31, 2024 Amount % of Sales Amount % of Sales Amount % of Sales Top 5 337."
+      },
+      {
+       "match": "top 10 customers",
+       "sentence": "Our relationship or year of association with top 10 customers are as followsSerial No."
+      }
+     ]
+    },
+    "promoter_litigation": {
+     "count": 14,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "Proceedings against our Promoter",
+      "criminal proceedings",
+      "Criminal proceedings",
+      "criminal cases"
+     ],
+     "evidence": [
+      {
+       "match": "Proceedings against our Promoter",
+       "sentence": "is Draft Red Herring Prospectus Disciplinary actions by the Statutory or Criminal Tax SEBI or Stock Name of Entity Regulatory Proceedings Proceedings Exchanges Proceedings against our Promoter Material Civil Litigations Aggregate amount involved (₹ in Lakhs) Company By the Nil Company Nil Nil Nil Nil Nil Against the Nil Company 03 Nil Nil Nil 33."
+      },
+      {
+       "match": "Proceedings against our Promoter",
+       "sentence": "Nil Nil Nil Nil Nil KMP/SMP 31 Disciplinary actions by the Statutory or Criminal Tax SEBI or Stock Name of Entity Regulatory Proceedings Proceedings Exchanges Proceedings against our Promoter Material Civil Litigations Aggregate amount involved (₹ in Lakhs) By our Nil KMP/SMP Nil Nil Nil Nil Nil Against the Nil KMP/SMP 01 Nil Nil Nil 0."
+      },
+      {
+       "match": "criminal proceedings",
+       "sentence": "Compliance with this Act is relevant for entities in relation to criminal proceedings against them or their personnel."
+      }
+     ]
+    },
+    "related_party": {
+     "count": 28,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "RELATED PARTY TRANSACTIONS",
+      "related party transaction",
+      "related party transactions",
+      "Related Party Transactions"
+     ],
+     "evidence": [
+      {
+       "match": "RELATED PARTY TRANSACTIONS",
+       "sentence": "… 295 RELATED PARTY TRANSACTIONS ."
+      },
+      {
+       "match": "RELATED PARTY TRANSACTIONS",
+       "sentence": "SUMMARY OF RELATED PARTY TRANSACTIONS FOR LAST 3 YEARS: A summary of related party transactions for the financial year ended March 31, 2026, March 31, 2025 and March 31, 2024 as per AS 18 – Related Party Disclos"
+      },
+      {
+       "match": "related party transaction",
+       "sentence": "10 Revenue from Operations Sum of all related party transaction as a % of revenue from operations 3,035."
+      }
+     ]
+    }
+   },
+   "objects_of_the_issue": {
+    "offer_for_sale": {
+     "count": 6,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "OFFER FOR SALE",
+      "Offer for Sale",
+      "offer for sale"
+     ],
+     "evidence": [
+      {
+       "match": "OFFER FOR SALE",
+       "sentence": "AURANGZEB DETAILS OF THE OFFER TYPE FRESH ISSUE OFFER FOR SALE SIZE (by TOTAL OFFER SIZE ELIGIBLITY AND SHARE RESERVATION SIZE number of shares or by amount in Rs."
+      },
+      {
+       "match": "Offer for Sale",
+       "sentence": "Offer/ Offer Size/ Initial Public Offer/ IPO/ Issue/ Initial Public Issue The Draft Red Herring Prospectus, the Red Herring Prospectus and the Offer Prospectus together with the Bid cum Application Form including the abridged Documents prospectus and any addendum or corrigendum to such offering documents; Offer for Sale shall mean a method of offering equity shares to the public by Offer for Sale existing shareholders of the issuer company."
+      },
+      {
+       "match": "Offer for Sale",
+       "sentence": "Documents prospectus and any addendum or corrigendum to such offering documents; Offer for Sale shall mean a method of offering equity shares to the public by Offer for Sale existing shareholders of the issuer company."
+      }
+     ]
+    },
+    "fresh_issue": {
+     "count": 14,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "FRESH ISSUE",
+      "Fresh Issue",
+      "fresh issue"
+     ],
+     "evidence": [
+      {
+       "match": "FRESH ISSUE",
+       "sentence": "AURANGZEB DETAILS OF THE OFFER TYPE FRESH ISSUE OFFER FOR SALE SIZE (by TOTAL OFFER SIZE ELIGIBLITY AND SHARE RESERVATION SIZE number of shares or by amount in Rs."
+      },
+      {
+       "match": "Fresh Issue",
+       "sentence": ") Up to 42,67,200 Equity The Offer is being made through Book Building Process Fresh Issue Fresh issue of NIL Shares of face value of ₹ in terms of Regulation 229(2) and 253(1) of Chapter IX of Upto 42,67,200 10/each of our Equity Shares of Company aggregating up SEBI (ICDR) Regulation, 2018 as amended."
+      },
+      {
+       "match": "Fresh Issue",
+       "sentence": "Allot or Unless the context otherwise requires, allotment of Equity Shares pursuant to the Allotment or Fresh Issue to the successful Bidders."
+      }
+     ]
+    },
+    "capital_expenditure": {
+     "count": 28,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "capital expenditure",
+      "expansion of our",
+      "setting up of",
+      "CAPITAL EXPENDITURE",
+      "Capital Expenditure",
+      "purchase of plant",
+      "purchase of Machinery"
+     ],
+     "evidence": [
+      {
+       "match": "capital expenditure",
+       "sentence": "Our ability to pay dividends in the future will depend upon our future earnings, financial condition, cash flows, working capital requirements, capital expenditure and restrictive covenants in our financing arrangements."
+      },
+      {
+       "match": "expansion of our",
+       "sentence": "We may retain all our future earnings, if any, for use in the operations and expansion of our business."
+      },
+      {
+       "match": "setting up of",
+       "sentence": "In FY2027 it is projected to reduce to 11 days due to stocking up of finished goods in proposed B2B and B2C showrooms in Kolkata located at Ezra Street and Rash Behari Avenue respectively and further to remain at same level in FY2028 due to stocking up in proposed new showrooms and setting up of own new plating facility in Baruipur, Kolkata."
+      }
+     ]
+    },
+    "working_capital": {
+     "count": 26,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "working capital requirements",
+      "working capital requirement",
+      "Working capital requirement"
+     ],
+     "evidence": [
+      {
+       "match": "working capital requirements",
+       "sentence": "ent with our national and international partners; Our ability to manage our working capital cycles and generate sufficient cash flows to satisfy any additional working capital requirements; Our dependence on limited number of customers for a significant portion of our revenues; Our ability to increase scope of Offering and entering new emerging segments and"
+      },
+      {
+       "match": "working capital requirements",
+       "sentence": "In Lakhs except Percentage) % of Net Offer Particulars Amount Proceeds To meet the working capital requirements 181."
+      },
+      {
+       "match": "working capital requirements",
+       "sentence": "Our inability to meet our working capital requirements may adversely affect our results of operations."
+      }
+     ]
+    },
+    "general_corporate": {
+     "count": 17,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "General Corporate Purpose",
+      "general corporate purpose",
+      "General Corporate Purposes",
+      "general corporate purposes"
+     ],
+     "evidence": [
+      {
+       "match": "General Corporate Purpose",
+       "sentence": "A Foreign Portfolio Investor who has been registered pursuant to the of Securities and Exchange Board of India (Foreign Portfolio Investors) Regulations, 2014, provided that any FII or QFI who holds a valid certificate of registration shall be 9 Fresh Offer General Corporate Purpose General Information Document GID or Gross Proceeds Listing Agreement Lot Size Market Maker Market Making Agreement Market Maker Reservation Portion Minimum Promoters Contribu"
+      },
+      {
+       "match": "general corporate purpose",
+       "sentence": "Include such identified purposes for which no specific amount is allocated or any amount so specified towards general corporate purpose or any such purpose by whatever name called, in the offer document."
+      },
+      {
+       "match": "general corporate purpose",
+       "sentence": "Provided that any offer related expenses shall not be considered as a part of general corporate purpose merely because no specific amount has been allocated for such expenses in the offer document."
+      }
+     ]
+    }
+   },
+   "profiled_on": "2026-10-13"
+  }
+ },
+ {
+  "sym": "544824",
+  "name": "Triveni Power Transmission Ltd",
+  "board": "BSE",
+  "isin": "INE2WKE01011",
+  "listed": null,
+  "hint": "renewable & power",
+  "why": "sector plausible",
+  "plausible": true,
+  "verdict": null,
+  "seen_on": "2026-10-13",
+  "source": "new-listing",
+  "moat_signal": null,
+  "moat_evidence": null
+ },
+ {
+  "sym": "544985",
+  "name": "Axis NIFTY Bank ETF",
+  "board": "BSE",
+  "isin": "INF846K01X63",
+  "listed": null,
+  "hint": "financial services",
+  "why": "sector ruled out",
+  "plausible": false,
+  "verdict": null,
+  "seen_on": "2026-10-13",
+  "source": "new-listing",
+  "moat_signal": null,
+  "moat_evidence": null
+ },
+ {
+  "sym": "751145",
+  "name": "Natco Pharma Ltd",
+  "board": "BSE",
+  "isin": "INE987B20018",
+  "listed": null,
+  "hint": "pharma & healthcare",
+  "why": "sector plausible",
+  "plausible": true,
+  "verdict": null,
+  "seen_on": "2026-10-13",
+  "source": "new-listing",
+  "moat_signal": null,
+  "moat_evidence": null
+ },
+ {
+  "sym": "514318",
+  "name": "Jattashankar Industries Ltd",
+  "board": "BSE",
+  "isin": "INE722N01014",
+  "listed": null,
+  "hint": "industrial & capital goods",
+  "why": "small-cap sweep",
+  "mktcap_cr": 301.44,
+  "plausible": true,
+  "verdict": null,
+  "seen_on": "2026-10-13",
+  "source": "sweep",
+  "moat_signal": null,
+  "moat_evidence": null
+ },
+ {
+  "sym": "533167",
+  "name": "Coromandel Engineering Company Ltd",
+  "board": "BSE",
+  "isin": "INE312J01012",
+  "listed": null,
+  "hint": "precision engineering",
+  "why": "small-cap sweep",
+  "mktcap_cr": 303.31,
+  "plausible": true,
+  "verdict": null,
+  "seen_on": "2026-10-13",
+  "source": "sweep",
+  "moat_signal": null,
+  "moat_evidence": null
+ },
+ {
+  "sym": "530741",
+  "name": "Ovobel Foods Ltd",
+  "board": "BSE",
+  "isin": "INE812S01012",
+  "listed": null,
+  "hint": "agri & food",
+  "why": "small-cap sweep",
+  "mktcap_cr": 308.3,
+  "plausible": true,
+  "verdict": null,
+  "seen_on": "2026-10-13",
+  "source": "sweep",
+  "moat_signal": null,
+  "moat_evidence": null
+ },
+ {
+  "sym": "544824",
+  "name": "Triveni Power Transmission Ltd",
+  "board": "BSE",
+  "isin": "INE2WKE01011",
+  "listed": null,
+  "hint": "renewable & power",
+  "why": "mid-cap sweep",
+  "mktcap_cr": 7163.63,
+  "plausible": true,
+  "verdict": null,
+  "seen_on": "2026-10-13",
+  "source": "sweep",
+  "moat_signal": null,
+  "moat_evidence": null
+ },
+ {
+  "sym": "544280",
+  "name": "Afcons Infrastructure Ltd",
+  "board": "BSE",
+  "isin": "INE101I01011",
+  "listed": null,
+  "hint": "construction & building materials",
+  "why": "mid-cap sweep",
+  "mktcap_cr": 8837.86,
+  "plausible": true,
+  "verdict": null,
+  "seen_on": "2026-10-13",
+  "source": "sweep",
+  "moat_signal": null,
+  "moat_evidence": null,
+  "profile": {
+   "symbol": "544280",
+   "company": "Afcons Infrastructure Limited",
+   "isin": "INE101I01011",
+   "board": "BSE",
+   "source": {
+    "document": "final prospectus",
+    "url": "https://nsearchives.nseindia.com/corporate/FP_INE101I01011_30OCT2024.pdf",
+    "filed": "30-Oct-2024",
+    "pdf_bytes": 11553070,
+    "extracted_chars": 2555415
+   },
+   "grade": "company-stated",
+   "verified_against": null,
+   "claims": {
+    "accreditation": {
+     "count": 2,
+     "dropped_as_industry_commentary": 4,
+     "terms": [
+      "NABL",
+      "ISO 45001"
+     ],
+     "evidence": [
+      {
+       "match": "NABL",
+       "sentence": "Furthermore, our commitment to quality is underscored by accreditations, such as the accreditation that was granted to our weld coupon testing laboratory in Chenab by the National Accreditation Board for Testing and Calibration Laboratories (“NABL”)."
+      },
+      {
+       "match": "ISO 45001",
+       "sentence": "Our Afcons Occupational Health Safety and Environment Management System is established in compliance with the internationally recognized OHSMS: ISO 45001:2018 and EMS: ISO 14001:2015."
+      }
+     ]
+    },
+    "ip": {
+     "count": 8,
+     "dropped_as_industry_commentary": 6,
+     "terms": [
+      "trademarks",
+      "trademark"
+     ],
+     "evidence": [
+      {
+       "match": "trademarks",
+       "sentence": "We have registered a number of trademarks and have also filed applications to register certain trademarks."
+      },
+      {
+       "match": "trademarks",
+       "sentence": "Our existing trademarks may expire, and we cannot assure you that we will be able to renew them after expiry."
+      },
+      {
+       "match": "trademark",
+       "sentence": "Our pending and future trademark applications may not be approved."
+      }
+     ]
+    }
+   },
+   "risk_factors": {
+    "customer_concentration": {
+     "count": 1,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "Customer Concentration"
+     ],
+     "evidence": [
+      {
+       "match": "Customer Concentration",
+       "sentence": "Supplier or Customer Concentration A significant portion of our business is attributable to government or government-owned customers."
+      }
+     ]
+    },
+    "promoter_litigation": {
+     "count": 12,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "Criminal Proceedings",
+      "criminal proceedings",
+      "criminal case",
+      "criminal complaint",
+      "Proceedings against our Promoter"
+     ],
+     "evidence": [
+      {
+       "match": "Criminal Proceedings",
+       "sentence": "I ICDR Regulations and the Materiality Policy is provided below: Name Entity of By our Company Against our Company By our Subsidiaries Against our Subsidiaries Criminal Proceedings Tax Proceedings (direct and indirect tax) 8 NIL 12 Disciplinary actions by SEBI or Stock Exchanges against our Promoters Material civil litigation Aggregate amount involved (₹ in million)(1) Company N."
+      },
+      {
+       "match": "Criminal Proceedings",
+       "sentence": "19 Name Entity of Criminal Proceedings Tax Proceedings (direct and indirect tax) Statutory or Regulatory Proceedings Disciplinary actions by SEBI or Stock Exchanges against our Promoters Material civil litigation Aggregate amount involved (₹ in million)(1) NIL NIL NIL N."
+      },
+      {
+       "match": "Criminal Proceedings",
+       "sentence": "Name Entity of By our Company Against our Company By our Subsidiaries Against our Subsidiaries Criminal Proceedings Tax Proceedings (direct and indirect tax) 8 NIL 12 Statutory or Regulatory Proceedings Disciplinary actions by SEBI or Stock Exchanges against our Promoters Material civil litigation Aggregate amount involved (₹ in million)(1) Company N."
+      }
+     ]
+    },
+    "related_party": {
+     "count": 31,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "RELATED PARTY TRANSACTIONS",
+      "Related Party Transactions",
+      "related party transactions",
+      "Related party transactions"
+     ],
+     "evidence": [
+      {
+       "match": "RELATED PARTY TRANSACTIONS",
+       "sentence": "558 RELATED PARTY TRANSACTIONS ."
+      },
+      {
+       "match": "Related Party Transactions",
+       "sentence": "21 Summary of entity wise Related Party Transactions (₹ in millions) Sr No Name of Related Party with which transaction Three months ended, June 30, 2024 B Consolidated Income of AIL 32,134."
+      },
+      {
+       "match": "related party transactions",
+       "sentence": "00% - 28 For further details of the related party transactions, see “Financial Information - Restated Consolidated Financial Information - Notes to Restated Consolidated Financial Information - Note 34: Related party disclosures” at page 506."
+      }
+     ]
+    }
+   },
+   "objects_of_the_issue": {
+    "offer_for_sale": {
+     "count": 47,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "OFFER FOR SALE",
+      "Offer for Sale",
+      "offer for sale"
+     ],
+     "evidence": [
+      {
+       "match": "OFFER FOR SALE",
+       "sentence": "DETAILS OF THE OFFER FOR SALE BY SELLING SHAREHOLDER NAME OF THE SELLING SHAREHOLDER TYPE NUMBER OF EQUITY SHARES OFFERED / AMOUNT (IN ₹ MILLION) 90,280,777** Equity Shares of face value of ₹ 10 each aggregating to"
+      },
+      {
+       "match": "Offer for Sale",
+       "sentence": "s and information specifically pertain to the Selling Shareholder and the Equity Shares of face value of ₹ 10 each offered by the Selling Shareholder under the Offer for Sale, are true and correct in all material respects and are not misleading in any material respect."
+      },
+      {
+       "match": "OFFER FOR SALE",
+       "sentence": ") COMPRISING A FRESH ISSUE OF 27,054,542 EQUITY SHARES** OF FACE VALUE OF ₹ 10 EACH AGGREGATING TO ₹ 12,500 MILLION** BY OUR COMPANY (THE “FRESH ISSUE”) AND AN OFFER FOR SALE OF 90,280,777 EQUITY SHARES** OF FACE VALUE OF ₹ 10 EACH AGGREGATING TO ₹ 41,800 MILLION** BY GOSWAMI INFRATECH PRIVATE LIMITED (THE “OFFER FOR SALE”)."
+      }
+     ]
+    },
+    "fresh_issue": {
+     "count": 37,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "Fresh Issue",
+      "FRESH ISSUE",
+      "fresh issue"
+     ],
+     "evidence": [
+      {
+       "match": "Fresh Issue",
+       "sentence": "HE OFFER TO THE PUBLIC FRESH OFFER FOR TOTAL OFFER ELIGIBILITY AND SHARE RESERVATION AMONG QIBs, TYPE ISSUE SIZE SALE SIZE SIZE NIBs, RIBs & ELIGIBLE EMPLOYEES Fresh Issue and Offer for 27,054,542** 90,280,777** Sale Equity Shares Equity Shares of of face value face value of ₹ 10 of ₹ 10 each each aggregating to aggregating to ₹ 41,800 million** ₹ 12,500 mil"
+      },
+      {
+       "match": "FRESH ISSUE",
+       "sentence": "E OF FACE VALUE OF ₹ 10 EACH (INCLUDING A SHARE PREMIUM OF ₹ 453 PER EQUITY SHARE) (“OFFER PRICE”) AGGREGATING TO ₹ 54,300 MILLION** (THE “OFFER”) COMPRISING A FRESH ISSUE OF 27,054,542 EQUITY SHARES** OF FACE VALUE OF ₹ 10 EACH AGGREGATING TO ₹ 12,500 MILLION** BY OUR COMPANY (THE “FRESH ISSUE”) AND AN OFFER FOR SALE OF 90,280,777 EQUITY SHARES** OF FACE VALUE OF ₹ 10 EACH AGGREGATING TO ₹ 41,800 MILLION** BY GOSWAMI INFRATECH PRIVATE LIMITED (THE “OFFER FOR SALE”)."
+      },
+      {
+       "match": "FRESH ISSUE",
+       "sentence": "ILLION** (THE “OFFER”) COMPRISING A FRESH ISSUE OF 27,054,542 EQUITY SHARES** OF FACE VALUE OF ₹ 10 EACH AGGREGATING TO ₹ 12,500 MILLION** BY OUR COMPANY (THE “FRESH ISSUE”) AND AN OFFER FOR SALE OF 90,280,777 EQUITY SHARES** OF FACE VALUE OF ₹ 10 EACH AGGREGATING TO ₹ 41,800 MILLION** BY GOSWAMI INFRATECH PRIVATE LIMITED (THE “OFFER FOR SALE”)."
+      }
+     ]
+    },
+    "capital_expenditure": {
+     "count": 52,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "Capital expenditure",
+      "capital expenditure",
+      "Capital Expenditure",
+      "expansion of our",
+      "setting up of"
+     ],
+     "evidence": [
+      {
+       "match": "Capital expenditure",
+       "sentence": "Objects of the Offer Our Company proposes to utilise the Net Proceeds towards funding the following objects: (In ₹ million) Particulars Capital expenditure towards purchase of construction equipment Funding long term working capital requirements Prepayment or scheduled repayment of a portion of certain outstanding borrowings and acceptances availed by our Company General corporate purposes*# Total# Amount 800."
+      },
+      {
+       "match": "capital expenditure",
+       "sentence": "In such circumstances, we may need to continue to incur significant working capital expenditure to complete the project or risk the termination of our contracts."
+      },
+      {
+       "match": "capital expenditure",
+       "sentence": "ermine the outcome of proposals for corporate action requiring approval of our Board or shareholders, such as lending and investment policies, revenue budgets, capital expenditure, dividend policy and strategic acquisitions."
+      }
+     ]
+    },
+    "working_capital": {
+     "count": 40,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "working capital requirements",
+      "Working Capital Requirements",
+      "working capital requirement"
+     ],
+     "evidence": [
+      {
+       "match": "working capital requirements",
+       "sentence": "Objects of the Offer Our Company proposes to utilise the Net Proceeds towards funding the following objects: (In ₹ million) Particulars Capital expenditure towards purchase of construction equipment Funding long term working capital requirements Prepayment or scheduled repayment of a portion of certain outstanding borrowings and acceptances availed by our Company General corporate purposes*# Total# Amount 800."
+      },
+      {
+       "match": "working capital requirements",
+       "sentence": "If we experience insufficient cash flows or are unable to access suitable financing to meet working capital requirements and loan repayment obligations, our business, financial condition and results of operations could be adversely affected."
+      },
+      {
+       "match": "working capital requirements",
+       "sentence": "Our business requires a significant amount of working capital which is based on certain assumptions, and accordingly, any change in such assumptions will result in changes to our working capital requirements."
+      }
+     ]
+    },
+    "general_corporate": {
+     "count": 14,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "General corporate purposes",
+      "general corporate purposes",
+      "General Corporate Purposes"
+     ],
+     "evidence": [
+      {
+       "match": "General corporate purposes",
+       "sentence": "long term working capital requirements Prepayment or scheduled repayment of a portion of certain outstanding borrowings and acceptances availed by our Company General corporate purposes*# Total# Amount 800."
+      },
+      {
+       "match": "general corporate purposes",
+       "sentence": "17 # The amount to be utilised for general corporate purposes shall not exceed 25% of the gross proceeds of the Fresh Issue, in accordance with the SEBI ICDR Regulations."
+      },
+      {
+       "match": "general corporate purposes",
+       "sentence": "Our Company proposes to deploy a certain portion from the Net Proceeds towards general corporate purposes as approved by our Board from time to time."
+      }
+     ]
+    }
+   },
+   "profiled_on": "2026-10-13"
+  }
+ },
+ {
+  "sym": "530343",
+  "name": "Genus Power Infrastructures Ltd",
+  "board": "BSE",
+  "isin": "INE955D01029",
+  "listed": null,
+  "hint": "renewable & power",
+  "why": "mid-cap sweep",
+  "mktcap_cr": 9017.75,
+  "plausible": true,
+  "verdict": null,
+  "seen_on": "2026-10-13",
+  "source": "sweep",
+  "moat_signal": null,
+  "moat_evidence": null
+ },
+ {
+  "sym": "506655",
+  "name": "Sudarshan Chemical Industries Ltd",
+  "board": "BSE",
+  "isin": "INE659A01023",
+  "listed": null,
+  "hint": "chemicals",
+  "why": "mid-cap sweep",
+  "mktcap_cr": 9157.47,
+  "plausible": true,
+  "verdict": null,
+  "seen_on": "2026-10-13",
+  "source": "sweep",
+  "moat_signal": null,
+  "moat_evidence": null
+ },
+ {
+  "sym": "505700",
+  "name": "Elecon Engineering Company Ltd",
+  "board": "BSE",
+  "isin": "INE205B01031",
+  "listed": null,
+  "hint": "precision engineering",
+  "why": "mid-cap sweep",
+  "mktcap_cr": 9181.32,
+  "plausible": true,
+  "verdict": null,
+  "seen_on": "2026-10-13",
+  "source": "sweep",
+  "moat_signal": null,
+  "moat_evidence": null
+ },
+ {
+  "sym": "506767",
+  "name": "Alkyl Amines Chemicals Ltd",
+  "board": "BSE",
+  "isin": "INE150B01039",
+  "listed": null,
+  "hint": "chemicals",
+  "why": "mid-cap sweep",
+  "mktcap_cr": 9330.46,
+  "plausible": true,
+  "verdict": null,
+  "seen_on": "2026-10-13",
+  "source": "sweep",
+  "moat_signal": null,
+  "moat_evidence": null
+ },
+ {
+  "sym": "540750",
+  "name": "Indian Energy Exchange Ltd",
+  "board": "BSE",
+  "isin": "INE022Q01020",
+  "listed": null,
+  "hint": "renewable & power",
+  "why": "mid-cap sweep",
+  "mktcap_cr": 9409.07,
+  "plausible": true,
+  "verdict": null,
+  "seen_on": "2026-10-13",
+  "source": "sweep",
+  "moat_signal": true,
+  "moat_evidence": [
+   "monopoly claim: \"We are the first energy exchange in India, having commenced operations in June 2008.\" (prospectus, company-stated)"
+  ],
+  "profile": {
+   "symbol": "540750",
+   "company": "Indian Energy Exchange Limited",
+   "isin": "INE022Q01020",
+   "board": "BSE",
+   "source": {
+    "document": "draft prospectus",
+    "url": "https://nsearchives.nseindia.com/corporate/d_Indian.zip",
+    "filed": "16-Jun-2017",
+    "pdf_bytes": 4523560,
+    "extracted_chars": 1158617
+   },
+   "grade": "company-stated",
+   "verified_against": null,
+   "claims": {
+    "accreditation": {
+     "count": 2,
+     "dropped_as_industry_commentary": 1,
+     "terms": [
+      "ISO 9001"
+     ],
+     "evidence": [
+      {
+       "match": "ISO 9001",
+       "sentence": "In August 2016, we received three ISO Certifications: ISO 9001:2008 for quality management, ISO 27001:2013 for information security management and ISO 14001:2004 for environment management."
+      },
+      {
+       "match": "ISO 9001",
+       "sentence": "Our Company received certification under ISO 9001:2008 and ISO 14001:2004 from Bureau Veritas Certification Holding SAS- UK Branch in August 2016 certifying that management system of our Company was in accordance with the management system standards of ISO 9001:2008 and ISO 14001:2004."
+      }
+     ]
+    },
+    "monopoly_claim": {
+     "count": 1,
+     "dropped_as_industry_commentary": 1,
+     "terms": [
+      "first energy exchange in India"
+     ],
+     "evidence": [
+      {
+       "match": "first energy exchange in India",
+       "sentence": "We are the first energy exchange in India, having commenced operations in June 2008."
+      }
+     ]
+    },
+    "ip": {
+     "count": 13,
+     "dropped_as_industry_commentary": 3,
+     "terms": [
+      "proprietary technology",
+      "trademark",
+      "Trademarks",
+      "PATENT"
+     ],
+     "evidence": [
+      {
+       "match": "proprietary technology",
+       "sentence": "We cannot assure you that we will be able to successfully implement new technologies or develop proprietary technology adequately addressing our participants’ requirements or emerging industry standards, in a timely and cost effective manner, or at all."
+      },
+      {
+       "match": "trademark",
+       "sentence": "We have applied for, but have not yet obtained, a trademark registration for our corporate logo."
+      },
+      {
+       "match": "trademark",
+       "sentence": "Our Company had entered into a deed of assignment dated October 8, 2015 with FTIL for assignment and transfer of this trademark and the copyright in the original artistic work vesting therein from FTIL in favour of our Company."
+      }
+     ]
+    }
+   },
+   "risk_factors": {
+    "promoter_litigation": {
+     "count": 7,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "Criminal Proceedings",
+      "criminal proceedings",
+      "criminal complaint",
+      "criminal complaints"
+     ],
+     "evidence": [
+      {
+       "match": "Criminal Proceedings",
+       "sentence": "Nature of Case Criminal Proceedings Civil Proceedings Actions by statutory/ regulatory authorities Direct Tax Indirect Tax Number of Outstanding Cases Nil 1 3 6 Nil Amount involved (in ₹ million) Nil Not ascertainable Not ascertainable 5."
+      },
+      {
+       "match": "criminal proceedings",
+       "sentence": "256 SECTION VI: LEGAL AND OTHER INFORMATION OUTSTANDING LITIGATION AND OTHER MATERIAL DEVELOPMENTS Except as stated in this section, there are no (i) outstanding criminal proceedings, (ii) actions taken by statutory or regulatory authorities or (iii) litigation determined to be material in terms of the Materiality Policy (as defined below) against our Company"
+      },
+      {
+       "match": "criminal proceedings",
+       "sentence": "In relation to (iii) above, our Board in its meeting held on June 12, 2017, has adopted a policy for identification of Group Companies, material creditors and material legal proceedings (“Materiality Policy”) pursuant to which all pending litigation involving our Company and our Directors, other than criminal proceedings, tax matters, and statutory or regulatory actions, would be considered ‘material’ if (i) the monetary amount of claim by or against the entity or person in any such pending procee"
+      }
+     ]
+    },
+    "related_party": {
+     "count": 8,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "related party transactions",
+      "RELATED PARTY TRANSACTIONS"
+     ],
+     "evidence": [
+      {
+       "match": "related party transactions",
+       "sentence": "We have in the past entered into related party transactions and may continue to do so in the future."
+      },
+      {
+       "match": "related party transactions",
+       "sentence": "While we believe that all such related party transactions that we have entered into are legitimate business transactions conducted on an arms’ length basis, we cannot assure you that we could not have achieved more favorable terms had such arrangements not been entered into with related parties."
+      },
+      {
+       "match": "related party transactions",
+       "sentence": "Further, we cannot assure you that these or any future related party transactions that we may enter into, individually or in the aggregate, will not have an adverse effect on our business, financial condition, results of operations and prospects."
+      }
+     ]
+    }
+   },
+   "objects_of_the_issue": {
+    "offer_for_sale": {
+     "count": 32,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "OFFER FOR SALE",
+      "offer for sale",
+      "Offer for Sale"
+     ],
+     "evidence": [
+      {
+       "match": "OFFER FOR SALE",
+       "sentence": "ALUE OF ₹ 10 EACH (“EQUITY SHARES”) OF INDIAN ENERGY EXCHANGE LIMITED (OUR “COMPANY” OR THE “ISSUER”) FOR CASH AT A PRICE OF ₹ [●] PER EQUITY SHARE, THROUGH AN OFFER FOR SALE BY THE PERSONS LISTED IN ANNEXURE A (THE “SELLING SHAREHOLDERS”), AGGREGATING UP TO ₹ [●] MILLION (THE “OFFER”)."
+      },
+      {
+       "match": "offer for sale",
+       "sentence": "Bids being received at or above the Offer Price Non-Resident A person resident outside India as defined under FEMA and includes NRIs, FVCIs and FPIs Offer The offer for sale of up to 6,065,009 Equity Shares by the Selling Shareholders at the Offer Price aggregating up to ₹ [●] million in terms of the Red Herring Prospectus Offer Agreement The agreement date"
+      },
+      {
+       "match": "offer for sale",
+       "sentence": "The Offer is an offer for sale by the Selling Shareholders."
+      }
+     ]
+    },
+    "fresh_issue": {
+     "count": 1,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "fresh issue"
+     ],
+     "evidence": [
+      {
+       "match": "fresh issue",
+       "sentence": "The size of the fresh issue as disclosed in the draft red herring prospectus dated December 31, 2015, being ₹ 6,500 Million, has been reduced accordingly."
+      }
+     ]
+    },
+    "capital_expenditure": {
+     "count": 7,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "expansion of our",
+      "setting up of",
+      "capital expenditure"
+     ],
+     "evidence": [
+      {
+       "match": "expansion of our",
+       "sentence": "We may decide to retain all of our earnings to finance the development and expansion of our business and, therefore, may not declare dividends on the Equity Shares."
+      },
+      {
+       "match": "setting up of",
+       "sentence": "In December 2006, CERC issued guidelines for setting up of Power Exchanges."
+      },
+      {
+       "match": "setting up of",
+       "sentence": "Post public hearing in December 2006, CERC issued guidelines for setting up of Power Exchanges."
+      }
+     ]
+    }
+   },
+   "profiled_on": "2026-10-13"
+  }
  }
 ]

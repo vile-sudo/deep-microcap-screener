@@ -1,18 +1,50 @@
 {
- "updated": "2026-10-12T06:17+05:30",
+ "updated": "2026-10-13T08:33+05:30",
  "figures": [
   {
-   "label": "Brent crude (futures settle)",
-   "value": "$104.72/bbl",
-   "as_of": "2026-10-09",
-   "note": "+0.42% (+44 cents) on the day; WTI $91.85",
+   "label": "Brent crude (futures)",
+   "value": "$106.19/bbl",
+   "as_of": "2026-10-12",
+   "note": "+$1.24 (+1.2%) by 11:24 GMT; highest since 29 Sep; eased toward $105 on 13 Oct p",
    "source": {
-    "publisher": "Nation Thailand",
-    "url": "https://nationthailand.com/news/world/40072074"
+    "publisher": "The Sunday Guardian",
+    "url": "https://sundayguardianlive.com/world/oil-prices-today-brent-crude-climbs-to-near-two-week-high-at-10619-as-houthi-attacks-on-saudi-arabia-and-strait-of-hormuz-tanker-strikes-raise-supply-fears-304200/"
+   }
+  },
+  {
+   "label": "WTI crude",
+   "value": "$92.96/bbl",
+   "as_of": "2026-10-12",
+   "note": "+$1.11 (+1.2%) by 11:24 GMT",
+   "source": {
+    "publisher": "The Sunday Guardian",
+    "url": "https://sundayguardianlive.com/world/oil-prices-today-brent-crude-climbs-to-near-two-week-high-at-10619-as-houthi-attacks-on-saudi-arabia-and-strait-of-hormuz-tanker-strikes-raise-supply-fears-304200/"
    }
   }
  ],
  "items": [
+  {
+   "date": "2026-10-12",
+   "title": "Brent rises above $106 to highest since 29 Sep on Houthi strike on Riyadh airport, Hormuz tanker attacks",
+   "text": "Brent futures rose $1.24, or 1.2%, to $106.19 a barrel by 11:24 GMT on 12 October, the highest since 29 September; WTI gained $1.11 to $92.96. The Houthis claimed a Saturday attack on Riyadh's King Khalid International Airport, and UKMTO reported a tanker struck by a drone near Sohar, Oman and another vessel damaged in the Strait of Hormuz. Higher crude supports upstream realisations for ONGC and Oil India but widens under-recoveries and import-bill pressure for India.",
+   "tone": "watch",
+   "companies": [
+    "ONGC",
+    "OIL",
+    "IOC",
+    "BPCL",
+    "HINDPETRO"
+   ],
+   "sources": [
+    {
+     "publisher": "The Sunday Guardian",
+     "title": "Oil Prices Today: Brent Crude Climbs to Near Two-Week High at $106.19 as Houthi Attacks on Saudi Arabia and Strait of Hormuz Tanker Strikes Raise Supply Fears",
+     "url": "https://sundayguardianlive.com/world/oil-prices-today-brent-crude-climbs-to-near-two-week-high-at-10619-as-houthi-attacks-on-saudi-arabia-and-strait-of-hormuz-tanker-strikes-raise-supply-fears-304200/",
+     "date": "2026-10-12"
+    }
+   ],
+   "added": "2026-10-13"
+  },
   {
    "date": "2026-10-10",
    "title": "Brent settles at $104.72 on 9 Oct as Gulf of Mexico storm shut-ins offset Iran-talk relief",

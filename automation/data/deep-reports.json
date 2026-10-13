@@ -887,6 +887,20 @@
     "FLUIDOM": "already covers Mar 2023",
     "KENNAMET": "already covers Sep 2022"
    }
+  },
+  {
+   "on": "2026-10-13",
+   "written": [
+    "544710:FY26-Q4",
+    "544310:FY26-Q4"
+   ],
+   "spent_usd": null,
+   "skipped": {
+    "VIMTALABS": "already covers Dec 2024",
+    "SIMPLEXCAS": "already covers Sep 2021",
+    "FLUIDOM": "already covers Mar 2023",
+    "KENNAMET": "already covers Sep 2022"
+   }
   }
  ],
  "seen_new_results": {
@@ -1447,6 +1461,24 @@
    "cost_usd": null,
    "api_equivalent_usd": 8.86,
    "minutes": 19.0
+  },
+  "544710": {
+   "period": "FY26-Q4",
+   "on": "2026-10-13",
+   "engine": "claude-code",
+   "tokens_out": 98639,
+   "cost_usd": null,
+   "api_equivalent_usd": 5.168,
+   "minutes": 14.6
+  },
+  "544310": {
+   "period": "FY26-Q4",
+   "on": "2026-10-13",
+   "engine": "claude-code",
+   "tokens_out": 117999,
+   "cost_usd": null,
+   "api_equivalent_usd": 8.852,
+   "minutes": 18.0
   }
  }
 }
