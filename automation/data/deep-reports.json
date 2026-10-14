@@ -901,6 +901,20 @@
     "FLUIDOM": "already covers Mar 2023",
     "KENNAMET": "already covers Sep 2022"
    }
+  },
+  {
+   "on": "2026-10-14",
+   "written": [
+    "SELLOWRAP:FY27-Q1",
+    "532067:FY27-Q1"
+   ],
+   "spent_usd": null,
+   "skipped": {
+    "VIMTALABS": "already covers Dec 2024",
+    "SIMPLEXCAS": "already covers Sep 2021",
+    "FLUIDOM": "already covers Mar 2023",
+    "KENNAMET": "already covers Sep 2022"
+   }
   }
  ],
  "seen_new_results": {
@@ -1479,6 +1493,24 @@
    "cost_usd": null,
    "api_equivalent_usd": 8.852,
    "minutes": 18.0
+  },
+  "SELLOWRAP": {
+   "period": "FY27-Q1",
+   "on": "2026-10-14",
+   "engine": "claude-code",
+   "tokens_out": 129580,
+   "cost_usd": null,
+   "api_equivalent_usd": 8.086,
+   "minutes": 19.2
+  },
+  "532067": {
+   "period": "FY27-Q1",
+   "on": "2026-10-14",
+   "engine": "claude-code",
+   "tokens_out": 111367,
+   "cost_usd": null,
+   "api_equivalent_usd": 7.275,
+   "minutes": 17.3
   }
  }
 }
