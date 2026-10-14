@@ -170,6 +170,30 @@ def results_preview(request: Request):
                          {"asof": None, "upcoming": [], "scorecard": {}, "backtest": {}})
 
 
+_RPV_ALL: dict = {"stamp": None, "doc": None}
+
+
+@router.get("/api/results-preview/stock")
+def results_preview_stock(q: str = Query(..., min_length=1, max_length=60)):
+    """Results Preview's "Check a stock": the next-result call for companies matching q (symbol or name)."""
+    path = BASE_DIR / "data" / "results_preview" / "all.json"
+    try:
+        stamp = path.stat().st_mtime
+    except OSError:
+        return {"asof": None, "matches": []}
+    if _RPV_ALL["stamp"] != stamp:
+        import json
+        _RPV_ALL["doc"], _RPV_ALL["stamp"] = json.loads(path.read_text(encoding="utf-8")), stamp
+    doc, t = _RPV_ALL["doc"], q.strip().lower()
+    rows = doc.get("companies", {}).values()
+    exact = [r for r in rows if (r.get("symbol") or "").lower() == t]
+    words = t.split()   # every word must appear in the symbol, the full name or the exchange's short name
+    rest = [r for r in rows if r not in exact
+            and all(w in f'{r.get("symbol") or ""} {r.get("name") or ""} {r.get("alias") or ""}'.lower() for w in words)]
+    rest.sort(key=lambda r: (not r.get("board"), r.get("symbol") or ""))
+    return {"asof": doc.get("asof"), "matches": (exact + rest)[:12]}
+
+
 @router.get("/api/insider-trades")
 def insider_trades(request: Request):
     return file_response(request, INSIDER_TRADES_FILE,

@@ -4495,7 +4495,7 @@ async function openMessages(){
    and "seen up to" are saved to the account, or to this browser with accounts off. */
 const AL_WINDOWS=['1D','1W','1M','6M','1Y'];
 const AL_WLABEL={'1D':'1-day','1W':'1-week','1M':'1-month','6M':'6-month','1Y':'1-year'};
-const AL_DEFAULT={highs:['1W','1M','6M','1Y'], lows:['1W','1M','6M','1Y'], ipo:true, vcp:true, deals:true, insiders:true, scope:'board', notify:false};
+const AL_DEFAULT={highs:['1W','1M','6M','1Y'], lows:['1W','1M','6M','1Y'], ipo:true, vcp:true, deals:true, insiders:true, previews:true, scope:'board', notify:false};
 const AL={prefs:null, seen:null, data:null, type:'all'};
 
 function alPrefs(){
@@ -4519,7 +4519,7 @@ function alMarkSeen(date){
   else { try{ localStorage.setItem('dms.alerts.seen', date); }catch(e){} }
 }
 function alQuery(p, sessions){
-  const q=new URLSearchParams({highs:p.highs.join(','), lows:p.lows.join(','), ipo:p.ipo?'1':'0', vcp:p.vcp?'1':'0', deals:p.deals?'1':'0', insiders:p.insiders?'1':'0', scope:p.scope, sessions:String(sessions||5)});
+  const q=new URLSearchParams({highs:p.highs.join(','), lows:p.lows.join(','), ipo:p.ipo?'1':'0', vcp:p.vcp?'1':'0', deals:p.deals?'1':'0', insiders:p.insiders?'1':'0', previews:p.previews===false?'0':'1', scope:p.scope, sessions:String(sessions||5)});
   if(AL.seen) q.set('seen', AL.seen);
   if(p.scope==='watchlist' && WMODE!=='server') q.set('codes',[...WATCH].join(','));
   return '/api/alerts?'+q.toString();
@@ -4549,7 +4549,8 @@ async function alertsInit(){
 }
 
 const AL_TYPES=[['all','All'],['high','New highs'],['low','New lows'],['ipo_breakout','IPO base breakouts'],['vcp_breakout','Base breakouts'],
-  ['deal_buy','Buying clusters'],['deal_sell','Selling clusters'],['insider_buy','Insider buying'],['insider_sell','Insider selling']];
+  ['deal_buy','Buying clusters'],['deal_sell','Selling clusters'],['insider_buy','Insider buying'],['insider_sell','Insider selling'],
+  ['rp_soon','Results due'],['rp_post','Overnight result read'],['rp_out','Results vs preview']];
 function alLabel(it){
   if(it.type==='ipo_breakout') return `<span class="al-chip al-ipo">&#9650; IPO base breakout</span>`;
   if(it.type==='vcp_breakout') return `<span class="al-chip al-vcp">&#9650; Base breakout</span>`;
@@ -4620,7 +4621,26 @@ function alInsiderRow(it, byCode){
     </div>
   </li>`;
 }
+/* Results Preview (app/results_preview.py): a confident call reporting within two days, and how it turned out */
+function alPreviewRow(it, byCode){
+  const d=it.code && byCode[it.code];
+  const pc=v=>v==null?'—':Math.round(v*100)+'%';
+  if(it.type==='rp_post') return `<li class="al-row"><div class="al-main">
+      <div class="al-name">${d?`<button type="button" class="al-link" data-al-open="${esc(d.code)}">${esc(d.name)}</button>`:`<b>${esc(it.name)}</b>`}<span class="al-sym">${esc(it.symbol||'')}</span></div>
+      <div class="al-what"><span class="al-chip ${it.tone==='up'?'al-dbuy':'al-dsell'}">${esc(it.verdict)}</span><span class="al-wins">${esc(it.quarter)}: sales ${it.sales_g==null?'—':(it.sales_g>0?'+':'')+fmt(it.sales_g,1)+'%'}, profit ${it.profit_g==null?'—':(it.profit_g>0?'+':'')+fmt(it.profit_g,1)+'%'} YoY</span></div>
+      <div class="al-detail">${esc(it.action||'')}</div></div><div class="al-side"><div class="al-acts"><button type="button" class="btn" data-al-rpv="1">Results Preview</button></div></div></li>`;
+  const what = it.type==='rp_soon'
+    ? `<span class="al-chip al-vcp">Results ${esc(rcDayShort(it.date))}</span><span class="al-wins">profit up ${pc(it.p_profit)} · growth faster ${pc(it.p_accel)}</span>`
+    : `<span class="al-chip ${it.hit?'al-dbuy':'al-dsell'}">${it.hit?'✓ Preview right':'✗ Preview wrong'}</span><span class="al-wins">${esc(it.quarter)}: sales ${it.actual_g!=null?(it.actual_g>0?'+':'')+fmt(it.actual_g,1)+'%':'—'} YoY, profit ${it.profit_up?'up':'down'} · called ${pc(it.p_profit)} profit up</span>`;
+  return `<li class="al-row"><div class="al-main">
+      <div class="al-name">${d?`<button type="button" class="al-link" data-al-open="${esc(d.code)}">${esc(d.name)}</button>`:`<b>${esc(it.name)}</b>`}<span class="al-sym">${esc(it.symbol||'')}</span></div>
+      <div class="al-what">${what}</div>
+      ${(it.why||[]).length?`<div class="al-detail">${it.why.map(esc).join(' · ')}</div>`:''}
+      ${it.react!=null?`<div class="al-detail">Result day: stock ${it.react>0?'up':'down'} ${it.react>0?'+':''}${fmt(it.react,2)}%</div>`:''}
+    </div><div class="al-side"><div class="al-acts"><button type="button" class="btn" data-al-rpv="1">Results Preview</button></div></div></li>`;
+}
 function alRow(it, byCode){
+  if(it.type==='rp_soon' || it.type==='rp_out' || it.type==='rp_post') return alPreviewRow(it, byCode);
   if(it.type==='deal_buy' || it.type==='deal_sell') return alDealRow(it, byCode);
   if(it.type==='insider_buy' || it.type==='insider_sell') return alInsiderRow(it, byCode);
   const d=it.code && byCode[it.code], on=d && WATCH.has(d.code);
@@ -4756,6 +4776,8 @@ async function openAlerts(showSettings){
           <label class="al-tg${p.deals?' on':''}" title="A stock where several institutions were on the same side (buying or selling) of NSE's disclosed bulk/block deals"><input type="checkbox" id="al-deals" ${p.deals?'checked':''}>Deal clusters</label></div></div>
         <div class="al-set-row"><b>Insider trading</b><div class="al-toggles">
           <label class="al-tg${p.insiders?' on':''}" title="A stock where several different insiders (promoters/directors/KMPs) were on the same side (buying or selling) within a rolling week"><input type="checkbox" id="al-insiders" ${p.insiders?'checked':''}>Insider clusters</label></div></div>
+        <div class="al-set-row"><b>Results Preview</b><div class="al-toggles">
+          <label class="al-tg${p.previews!==false?' on':''}" title="A confident Results Preview call reporting within two days, and how it turned out once the result is in"><input type="checkbox" id="al-previews" ${p.previews!==false?'checked':''}>Results due / vs preview</label></div></div>
         <div class="al-set-row"><b>Which stocks</b><div class="al-toggles">
           ${[['watchlist','My watchlist'],['board','Board companies'],['market','Whole market']].map(([v,l])=>`<label class="al-tg${p.scope===v?' on':''}"><input type="radio" name="al-scope" value="${v}" ${p.scope===v?'checked':''}>${l}</label>`).join('')}</div></div>
         <p class="al-note">Whole market adds every actively traded NSE/BSE company that is not on the board — the same universe as Screen any Chart. For those: base and IPO base breakouts across all of it, plus 6-month and 1-year highs and lows for the liquid NSE subset. 1D = above yesterday's high / below yesterday's low. Deal clusters and insider clusters always cover the whole NSE market (most flagged names are not on the board), whichever of these three you pick.</p>
@@ -4776,6 +4798,7 @@ async function openAlerts(showSettings){
       p.ipo=document.getElementById('al-ipo').checked; p.vcp=document.getElementById('al-vcp').checked;
       p.deals=document.getElementById('al-deals').checked;
       p.insiders=document.getElementById('al-insiders').checked;
+      p.previews=document.getElementById('al-previews').checked;
       p.scope=(mbody.querySelector('input[name="al-scope"]:checked')||{}).value||'board';
       const wantNotify=document.getElementById('al-notify').checked;
       if(wantNotify && 'Notification' in window && Notification.permission!=='granted'){
@@ -4790,6 +4813,7 @@ async function openAlerts(showSettings){
     mbody.querySelectorAll('[data-al-open]').forEach(b=>b.onclick=()=>{ closeModal(); CURRENT=[byCode[b.dataset.alOpen]]; openDrawer(byCode[b.dataset.alOpen]); });
     mbody.querySelectorAll('[data-al-chart]').forEach(b=>b.onclick=()=>openChart(b.dataset.alChart));
     mbody.querySelectorAll('[data-al-deals]').forEach(b=>b.onclick=()=>{ closeModal(); openDealsFor(b.dataset.alDeals); });
+    mbody.querySelectorAll('[data-al-rpv]').forEach(b=>b.onclick=()=>{ closeModal(); setView('rpreview'); });
     mbody.querySelectorAll('[data-al-insiders]').forEach(b=>b.onclick=()=>{ closeModal(); openInsiderTradesFor(b.dataset.alInsiders); });
     mbody.querySelectorAll('[data-al-star]').forEach(b=>b.onclick=()=>{ togglePin(b.dataset.alStar); const on=WATCH.has(b.dataset.alStar); b.classList.toggle('on',on); b.innerHTML=on?'&#9733;':'&#9734;'; });
   };
@@ -6607,7 +6631,7 @@ window.addEventListener('resize', ()=>{ clearTimeout(SSC.rt); SSC.rt=setTimeout(
    Results Preview -- app/results_preview.py: for companies reporting in the next three weeks, the chance
    growth speeds up and profit rises, an expected growth figure and the reasons; a scorecard that grades
    every prediction once the result is out; and the walk-forward backtest. A preview, never a buy list. */
-const RPV={data:null, tab:'upcoming', open:null, q:''};
+const RPV={data:null, tab:new URLSearchParams(location.hash.slice(1)).get('pt')||'upcoming', open:null, q:'', scope:'board', live:null, rd:{side:'', q:'', scope:'all', sort:'date'}, chk:{q:'', res:null, busy:false}};
 async function openRPreview(){
   const body=document.getElementById('rpv-body');
   if(!RPV.data){
@@ -6616,9 +6640,18 @@ async function openRPreview(){
     if(!RPV.data || !RPV.data.asof){ body.innerHTML='<p class="view-hint">The first preview is built by the nightly run.</p>'; return; }
   }
   rpvRender();
+  /* on results day, the live move from Zerodha (the same snapshot Sector Strength uses) */
+  const today=new Date().toLocaleDateString('en-CA',{timeZone:'Asia/Kolkata'});
+  if((RPV.data.upcoming||[]).some(r=>r.date===today) && !RPV.liveAsked){
+    RPV.liveAsked=true;
+    try{ const L=await fetchJSON('/api/sector-strength/live'); if(L && ['live','closed'].includes(L.status)){ RPV.live=L; if(VIEW==='rpreview') rpvRender(); } }catch(e){}
+  }
 }
 const rpvPct=p=>p==null?'—':Math.round(p*100)+'%';
-/* a probability as a small bar centred on 50% -- green to the right (likely), red to the left */
+const rpvDate=d=>d?new Date(d+'T00:00:00Z').toLocaleDateString('en-IN',{weekday:'short',day:'2-digit',month:'short',year:'numeric',timeZone:'UTC'}):'—';
+/* "filed 2:51 PM" -- during market hours the move is that day's; after 3:30 PM it is the next session's */
+const rpvFiled=f=>{ if(!f||f.length<16||f.slice(11,16)==='00:00') return ''; const [h,m]=f.slice(11,16).split(':').map(Number); return `filed ${rpvDate(f.slice(0,10)).replace(/^\w+, /,'')} ${(h%12)||12}:${String(m).padStart(2,'0')} ${h<12?'AM':'PM'}`; };
+const rpvMove=(raw)=>raw==null?'—':`<span class="rpv-rd ${raw>0?'up':'dn'}">${raw>0?'▲ up':'▼ down'} ${raw>0?'+':''}${fmt(raw,2)}%</span>`;
 function rpvBar(p){
   if(p==null) return '—';
   const v=Math.round(p*100), w=Math.abs(v-50), left=v>=50?50:v;
@@ -6634,10 +6667,18 @@ function rpvVerdict(r){
   if(a<=.4) return ['Growth may slow','dn'];
   return ['No clear call',''];
 }
+/* the chart going in: what the market is already pricing in */
+function rpvChart(c){
+  if(!c || c.ret20==null) return '—';
+  const tag = (c.ret20>=8 || (c.hi1m!=null && c.hi1m>=-2 && c.ret20>0)) ? ['priced in','dn'] : (c.ret20<=-8 || (c.hi1m!=null && c.hi1m<=-10)) ? ['low expectations','up'] : ['neutral',''];
+  return `<span class="${c.ret20>0?'ov-up':'ov-dn'}">${c.ret20>0?'+':''}${fmt(c.ret20,1)}%</span> vs mkt<small>${c.hi1m!=null?`${fmt(Math.abs(c.hi1m),1)}% ${c.hi1m<0?'below':'above'} 1-mo high`:''} · <span class="rpv-ctag ${tag[1]}">${tag[0]}</span></small>`;
+}
+/* only shown once the backtest says it beats guessing: ranking (AUC) 0.56+ and more right than the usual outcome */
+function rpvReactOk(){ const r=(RPV.data.backtest||{}).react||{}; return r.auc!=null && r.auc>=0.56 && r.hit>r.always_majority+1; }
 function rpvRender(){
   const d=RPV.data, body=document.getElementById('rpv-body'), b=d.backtest||{}, sc=d.scorecard||{};
-  document.getElementById('rpv-asof').textContent=`Updated ${rcDayLong(d.asof)}`;
-  const tabs=[['upcoming',`Upcoming results <small>${(d.upcoming||[]).length}</small>`],['scorecard',`Scorecard <small>${(sc.rows||[]).length}</small>`],['backtest','Backtest']];
+  document.getElementById('rpv-asof').textContent=`Updated ${rcDayLong(d.asof)} · learns from ${fmtI(d.inputs?.companies||0)} companies`;
+  const tabs=[['upcoming',`Upcoming results <small>${(d.upcoming||[]).length}</small>`],['reported',`Just reported <small>${(d.reported||[]).length}</small>`],['check','Check a stock'],['resday',`Result day: who beat <small>${(d.recent||[]).length}</small>`],['scorecard',`Scorecard <small>${(sc.rows||[]).length}</small>`],['backtest','Backtest'],['after','After the result']];
   const bAcc=b.accel||{}, bPro=b.profit||{};
   const strip=`<div class="rpv-strip">
       <div><span>Profit up/down, backtest</span><b>${bPro.hit!=null?bPro.hit+'%':'—'}</b><small>right · vs ${bPro.always_majority??'—'}% by always guessing the usual</small></div>
@@ -6647,55 +6688,207 @@ function rpvRender(){
   let html=strip+`<div class="dl-tabs" role="tablist">${tabs.map(([k,l])=>`<button class="dl-tab${RPV.tab===k?' on':''}" type="button" data-rpvt="${k}" role="tab" aria-selected="${RPV.tab===k}">${l}</button>`).join('')}</div>`;
   if(RPV.tab==='upcoming') html+=rpvUpcoming(d);
   else if(RPV.tab==='scorecard') html+=rpvScorecard(sc, d);
+  else if(RPV.tab==='after') html+=rpvAfter(b);
+  else if(RPV.tab==='resday') html+=rpvResDay(d);
+  else if(RPV.tab==='reported') html+=rpvReported(d);
+  else if(RPV.tab==='check') html+=rpvCheck(d);
   else html+=rpvBacktest(b, d);
-  html+=`<p class="caveat">A research preview, not advice or a buy list. It reads only what was public before each quarter ended — the last four quarters' results, management's guidance on earnings calls, new-capacity and order-win filings (order values read from the filings) and margins — and is checked every night against what companies then reported. Backtests of order wins, sector breadth and this preview found no dependable trading edge on their own.</p>`;
+  html+=`<p class="caveat">A research preview, not advice or a buy list. It reads only what was public before each result — four quarters of results, management's guidance and what was said on the last earnings call, new-capacity and order-win filings (order values read from the filings), input-commodity prices, peers that already reported, and the chart going in — and is checked every night against what companies then reported.</p>`;
   body.innerHTML=html;
   body.querySelectorAll('[data-rpvt]').forEach(x=>x.onclick=()=>{ RPV.tab=x.dataset.rpvt; rpvRender(); syncURL(); });
+  body.querySelectorAll('[data-rpvs]').forEach(x=>x.onclick=()=>{ RPV.scope=x.dataset.rpvs; rpvRender(); });
   body.querySelectorAll('[data-rpvo]').forEach(x=>x.onclick=e=>{ if(e.target.closest('a')) return; RPV.open = RPV.open===x.dataset.rpvo ? null : x.dataset.rpvo; rpvRender(); });
   const q=document.getElementById('rpv-q'); if(q) q.oninput=()=>{ clearTimeout(RPV.t); RPV.t=setTimeout(()=>{ RPV.q=q.value.trim().toLowerCase(); rpvRender(); const n=document.getElementById('rpv-q'); n.focus(); n.setSelectionRange(n.value.length,n.value.length); },150); };
   body.querySelectorAll('[data-co]').forEach(a=>a.onclick=e=>{ e.preventDefault(); e.stopPropagation(); openCompanyPage(a.dataset.co); });
+  rpvWireResDay(body); rpvWireCheck(body);
+}
+/* ---- the overnight read: results filed out of market hours, scored on the actual numbers before the next open */
+function rpvReported(d){
+  const all=(d.reported||[]).filter(r=>RPV.scope==='all'||r.board), pb=(d.backtest||{}).post||{}, live=pb.live||{};
+  const sg=(v,dp=1)=>v==null?'—':`${v>0?'+':''}${fmt(v,dp)}%`;
+  const fifths=pb.fifths||[], top=fifths[0], bot=fifths[fifths.length-1];
+  const intro=`<div class="rpv-post-intro"><b>The overnight read.</b> Most companies file results after the 3:30 PM close, so the numbers are public before the next morning's open. Each one is scored on what it actually reported — sales and profit vs a year ago, against last quarter's pace, margins, a swing into loss or profit — plus the stock's trend and its own result-day record.
+    In the backtest (${fmtI(pb.n||0)} out-of-hours results; ranking quality ${pb.auc??'—'} vs ${pb.pre_auc??'—'} before the numbers were known): the strongest fifth closed up ${top?top.up+'%':'—'} of the time next session (opening gap ${top?sg(top.gap):'—'}), the weakest fifth ${bot?bot.up+'%':'—'} (gap ${bot?sg(bot.gap):'—'}).
+    <b>Most of the move is in the opening gap</b>: from the open, even strong results slipped ${top?sg(top.oc):'—'} that day on average, while weak ones kept falling (${bot?sg(bot.oc):'—'}, ${bot?sg(bot.o3):'—'} over 3 sessions).
+    ${live.called?`<br>Live record so far: <b>${live.right} of ${live.called}</b> directional reads right.`:''}</div>`;
+  const scope=`<div class="mv-toolbar"><div class="rc-seg" role="group" aria-label="Companies"><button type="button" data-rpvs="board" class="${RPV.scope==='board'?'on':''}">Board companies</button><button type="button" data-rpvs="all" class="${RPV.scope==='all'?'on':''}">All listed</button></div></div>`;
+  if(!all.length) return intro+scope+'<p class="view-hint">No results filed in the last few days with numbers on file yet — reads appear the evening a company reports (runs at 9:30 PM and 11:30 PM IST, and again overnight).</p>';
+  return intro+scope+`<div class="mv-tablewrap"><table class="mv-table rpv-table"><thead><tr><th>Filed</th><th>Company</th><th class="n">Sales<small>YoY · last qtr</small></th><th class="n">Profit<small>YoY</small></th><th class="n">Margin<small>vs a year ago</small></th>
+      <th>Overnight read<small>chance it closes up next session</small></th><th class="n">Expected<small>gap · open→close</small></th><th class="n">What happened<small>gap · day</small></th></tr></thead><tbody>
+    ${all.map(r=>`<tr><td><b>${esc(rpvDate(r.filed.slice(0,10)))}</b><small>${esc(r.quarter)} · ${esc(rpvFiled(r.filed).replace(/^filed \S+ \S+ \S+ /,''))}${r.in_hours?' · in market hours':''}</small></td>
+      <td>${r.code?`<a href="#" data-co="${ea(r.code)}" class="rpv-co"><b class="mv-tick">${esc(r.symbol)}</b></a>`:`<b class="mv-tick">${esc(r.symbol)}</b>`}<span class="mv-name">${esc(r.name)}</span><small>${esc(r.sector||'')}</small></td>
+      <td class="n"><b>${sg(r.sales_g)}</b><small>was ${sg(r.last_g)}</small></td>
+      <td class="n">${r.profit_g==null?(r.np!=null&&r.np0!=null&&r.np0<=0?(r.np>0?'<span class="ov-up">loss → profit</span>':'<span class="ov-dn">still a loss</span>'):'—'):`<b class="${r.profit_g>0?'ov-up':'ov-dn'}">${sg(r.profit_g)}</b>`}</td>
+      <td class="n">${r.margin_ch==null?'—':`${r.margin_ch>0?'+':''}${fmt(r.margin_ch,1)} pts`}</td>
+      <td class="rpv-readc"><span class="rpv-call ${r.tone}">${esc(r.verdict)}</span><small><b>${rpvPct(r.p_up)}</b> chance it closes up · ${esc(r.action)}</small></td>
+      <td class="n">${r.exp?`${sg(r.exp.gap)}<small>then ${sg(r.exp.oc)}</small>`:'—'}</td>
+      <td class="n">${r.result?`<span class="rpv-rd ${r.result.move>0?'up':'dn'}">${sg(r.result.gap)} · ${r.result.move>0?'▲':'▼'} ${sg(r.result.move,2)}</span><small>${esc(rpvDate(r.result.date))}</small>`:'<span class="cp-sub">next session</span>'}</td></tr>`).join('')}
+    </tbody></table></div>
+    <p class="cp-sub" style="margin-top:8px">“Expected” is the median opening gap and open-to-close move of past results that were read alike. Results filed during market hours partly moved the stock the same day. A research read, not advice.</p>`;
+}
+/* ---- every recent result day: did the stock close up or down that session (its own move), and what we had said */
+function rpvResDay(d){
+  const R=RPV.rd, all=d.recent||[];
+  if(!all.length) return '<p class="view-hint">No result days in the last four months yet.</p>';
+  let rows=all.filter(r=>(R.scope==='all'||r.board) && (!R.side || (R.side==='beat'?r.react>0:r.react<=0))
+    && (!R.q || ((r.name||'')+' '+(r.symbol||'')).toLowerCase().includes(R.q)));
+  if(R.sort==='best') rows=rows.slice().sort((a,b)=>b.react-a.react); else if(R.sort==='worst') rows=rows.slice().sort((a,b)=>a.react-b.react);
+  const beat=all.filter(r=>(R.scope==='all'||r.board) && r.react>0).length, tot=all.filter(r=>R.scope==='all'||r.board).length;
+  const shown=rows.slice(0,400);
+  const ok=(p,y)=>p==null||y==null?'':((p>=.5)===!!y?' <span class="ov-up">✓</span>':' <span class="ov-dn">✗</span>');
+  return `<div class="mv-toolbar"><input id="rpv-rdq" class="gal-search" type="search" placeholder="Search company" value="${ea(R.q)}" autocomplete="off">
+      <div class="rc-seg" role="group" aria-label="Outcome">${[['','All'],['beat','▲ Closed up'],['lag','▼ Closed down']].map(([k,l])=>`<button type="button" data-rdside="${k}" class="${R.side===k?'on':''}">${l}</button>`).join('')}</div>
+      <div class="rc-seg" role="group" aria-label="Companies">${[['all','All listed'],['board','Board companies']].map(([k,l])=>`<button type="button" data-rdscope="${k}" class="${R.scope===k?'on':''}">${l}</button>`).join('')}</div>
+      <select class="gal-select" id="rpv-rdsort" aria-label="Sort"><option value="date"${R.sort==='date'?' selected':''}>Newest first</option><option value="best"${R.sort==='best'?' selected':''}>Biggest rise first</option><option value="worst"${R.sort==='worst'?' selected':''}>Biggest fall first</option></select></div>
+    <p class="cp-sub">Last four months: <b>${fmtI(beat)}</b> of ${fmtI(tot)} stocks closed up on their result day (${tot?Math.round(100*beat/tot):0}%). Result day = the session the market could first react in (the filing day if results came out before the 3:30 PM close, else the next session); the move is the stock's own close-to-close change.${rows.length>shown.length?` Showing the first ${shown.length} of ${fmtI(rows.length)}.`:''}</p>
+    <div class="mv-tablewrap"><table class="mv-table rpv-table"><thead><tr><th>Result</th><th>Company</th><th class="n">Sales<small>YoY</small></th><th>Profit</th><th class="n">Result day<small>the stock's own move</small></th><th>What we said before<small>rise chance · profit-up chance</small></th></tr></thead><tbody>
+    ${shown.map(r=>`<tr><td><b>${esc(rpvDate(r.date))}</b><small>${esc(r.quarter)} results${rpvFiled(r.filed)?' · '+esc(rpvFiled(r.filed)):''}</small></td>
+      <td>${r.code?`<a href="#" data-co="${ea(r.code)}" class="rpv-co"><b class="mv-tick">${esc(r.symbol)}</b></a>`:`<b class="mv-tick">${esc(r.symbol)}</b>`}<span class="mv-name">${esc(r.name)}</span><small>${esc(r.sector||'')}</small></td>
+      <td class="n">${ssSigned(r.g,1)}</td><td>${r.profit_up==null?'—':r.profit_up?'<span class="ov-up">up</span>':'<span class="ov-dn">down</span>'}</td>
+      <td class="n">${rpvMove(r.raw??r.react)}</td>
+      <td>${r.p_react==null?'<span class="cp-sub">—</span>':`${rpvPct(r.p_react)}${ok(r.p_react,r.react>0)} · ${rpvPct(r.p_profit)}${ok(r.p_profit,r.profit_up)}`}</td></tr>`).join('') || '<tr><td colspan="6" class="nd">No match.</td></tr>'}
+    </tbody></table></div>
+    <p class="cp-sub" style="margin-top:8px">“What we said before” is the walk-forward call made only from information before that result (blank where the company wasn't in a tested quarter).</p>`;
+}
+function rpvWireResDay(body){
+  const R=RPV.rd;
+  body.querySelectorAll('[data-rdside]').forEach(b=>b.onclick=()=>{ R.side=b.dataset.rdside; rpvRender(); });
+  body.querySelectorAll('[data-rdscope]').forEach(b=>b.onclick=()=>{ R.scope=b.dataset.rdscope; rpvRender(); });
+  const so=document.getElementById('rpv-rdsort'); if(so) so.onchange=()=>{ R.sort=so.value; rpvRender(); };
+  const q=document.getElementById('rpv-rdq'); if(q) q.oninput=()=>{ clearTimeout(RPV.t2); RPV.t2=setTimeout(()=>{ R.q=q.value.trim().toLowerCase(); rpvRender(); const n=document.getElementById('rpv-rdq'); n.focus(); n.setSelectionRange(n.value.length,n.value.length); },150); };
+}
+/* ---- Check a stock: type a name, get its next-result call */
+function rpvCheck(d){
+  const C=RPV.chk, br=(d.backtest||{}).trade_react||{}, rr=(br.react||[]);
+  const top=rr.find(x=>x.group.startsWith('Top')), bot=rr.find(x=>x.group.startsWith('Bottom'));
+  const res=C.res;
+  let out=`<div class="rpv-check"><div class="rpv-chkbar"><input id="rpv-chk" class="gal-search" type="search" placeholder="Type a company name or NSE symbol — e.g. MODISONLTD, Bajaj Consumer" value="${ea(C.q)}" autocomplete="off">
+      <label class="rpv-chkdate" title="If you know the result date and it isn't announced on NSE/BSE yet"><span>Result date</span><input type="date" id="rpv-chkd" class="gal-select" value="${ea(C.date||'')}"></label>
+      <button type="button" class="btn" id="rpv-chkgo">Check</button></div>`;
+  if(C.busy) out+='<p class="view-hint">Checking…</p>';
+  else if(res && !res.matches.length) out+=`<p class="view-hint">No company found for “${esc(C.q)}” among the ${fmtI(d.inputs?.companies||0)} with quarterly results on file.</p>`;
+  else if(res){
+    const r=res.matches[C.pick||0];
+    const hist=r.history||[], hb=hist.filter(h=>h.react>0).length;
+    /* the result-day call, calibrated: what really happened to stocks scored like this (the model's bin) and to
+       stocks with a result-day record like this one's (its own bin), averaged -- never the raw model number */
+    const rday=C.date||r.date, rknown=!!C.date||r.date_known;
+    const dist=(d.backtest?.react_dist||[]).find(x=>r.p_react>=x.lo && r.p_react<x.hi);
+    const own=(r.history||[]).map(h=>h.raw??h.react).filter(v=>v!=null);
+    const ownUp=own.filter(v=>v>0).length, ownAvg=own.length?own.reduce((a,v)=>a+v,0)/own.length:null;
+    const hd=own.length>=3 ? (d.backtest?.hist_dist||[]).find(x=>ownUp/own.length>=x.lo && ownUp/own.length<x.hi) : null;
+    const parts=[dist,hd].filter(Boolean), chance=parts.length?parts.reduce((a,x)=>a+x.up,0)/parts.length:null;
+    const med=parts.length?parts.reduce((a,x)=>a+x.median,0)/parts.length:null;
+    const p25=parts.length?parts.reduce((a,x)=>a+x.p25,0)/parts.length:null, p75=parts.length?parts.reduce((a,x)=>a+x.p75,0)/parts.length:null;
+    const dir=chance==null?null:chance>=55?'UP':chance<=40?'DOWN':null;
+    const lean=dir==='UP'?['Leans: closes up','up']:dir==='DOWN'?['Leans: closes down','dn']:['No clear direction',''];
+    const sg=v=>`${v>0?'+':''}${fmt(v,1)}%`;
+    const head=`<div class="rpv-pred ${dir==='UP'?'up':dir==='DOWN'?'dn':''}">
+        <div class="rpv-pred-h"><span>Prediction for the result day · <b>${esc(rpvDate(rday))}</b>${rknown?'':' <em>(expected — date not announced; set it above if you know it)</em>'}</span>
+          <b>${dir?`Leans ${dir}`:'No clear direction'}${chance!=null?` · ${Math.round(chance)}% chance it closes up`:''}</b></div>
+        <div class="rpv-pred-g">
+          <div><span>Expected move that day</span><b>${med==null?'—':sg(med)}</b><small>${p25!=null?`most likely between ${sg(p25)} and ${sg(p75)} (the middle half of similar past results)`:''}</small></div>
+          ${hd?`<div><span>This stock's own result days</span><b>up ${ownUp} of ${own.length}</b><small>average ${sg(ownAvg)} · stocks with a record like this closed up ${hd.up}% of the time next (${fmtI(hd.n)} cases)</small></div>`
+              :`<div><span>This stock's own result days</span><b>${own.length?`up ${ownUp} of ${own.length}`:'—'}</b><small>${own.length?'too few to lean on (needs 3+)':'no result day with prices on file yet'}</small></div>`}
+          ${dist?`<div><span>The model's score</span><b>${rpvPct(r.p_react)}</b><small>stocks scored like this closed up ${dist.up}% of the time (${fmtI(dist.n)} past results)</small></div>`:''}
+        </div>
+        <p class="rpv-honest" style="margin:10px 0 0">Across all past results only ${(d.backtest?.react||{}).base??'—'}% of stocks closed up on their result day, so “down” is the usual outcome. Whether a particular stock goes up or down that day is hard to predict — this is a lean, not a forecast; the range is the more useful part.</p></div>`;
+    out+=`${res.matches.length>1?`<div class="rpv-picks">${res.matches.map((m,i)=>`<button type="button" class="ssc-chip${i===(C.pick||0)?' on':''}" data-chkpick="${i}">${esc(m.symbol)} <small>${esc((m.name||'').slice(0,28))}</small></button>`).join('')}</div>`:''}
+      ${head}
+      <div class="cp-card rpv-chkcard"><div class="cp-card-h"><h3>${r.code?`<a href="#" data-co="${ea(r.code)}">${esc(r.name)}</a>`:esc(r.name)} <small class="cp-sub">${esc(r.symbol)} · ${esc(r.sector||'')}</small></h3>
+        <span class="cp-sub">${esc(r.quarter)} results · ${r.date_known?`<b>${esc(rcDayLong(r.date))}</b>`:`expected around ${esc(rcDayLong(r.date))} (date not announced yet)`}</span></div>
+        <div class="rpv-chkgrid">
+          <div class="rpv-big3"><span>Closes up on result day?</span><b class="${lean[1]==='up'?'ov-up':lean[1]==='dn'?'ov-dn':''}">${chance==null?'—':Math.round(chance)+'%'}</b><small>${lean[0]} (calibrated — see above)</small></div>
+          <div class="rpv-big3"><span>Profit up vs a year ago?</span><b class="${r.p_profit>=.6?'ov-up':r.p_profit<=.4?'ov-dn':''}">${rpvPct(r.p_profit)}</b><small>backtest: right ${(d.backtest?.profit||{}).hit}% of the time</small></div>
+          <div class="rpv-big3"><span>Sales growth faster than last quarter (${ssSigned(r.last_g,0)})?</span><b class="${r.p_accel>=.6?'ov-up':r.p_accel<=.4?'ov-dn':''}">${rpvPct(r.p_accel)}</b><small>backtest: right ${(d.backtest?.accel||{}).hit}% of the time</small></div>
+        </div>
+        ${rpvHistTable(hist)}
+        <h4 class="rpv-why-h">Why</h4><ul class="rpv-whyl">${(r.drivers||[]).map(x=>`<li class="${x.tone}"><span>${esc(x.text)}</span>${x.quote?`<q>${esc(x.quote)}</q>`:''}</li>`).join('')}</ul>
+        <p class="cp-sub">Model ${esc(res.asof||'')} · refitted every night on every reported quarter. Not advice.</p></div>`;
+  } else out+=`<p class="view-hint">Works for any of the ${fmtI(d.inputs?.companies||0)} companies with quarterly results on file — whether or not its result date is announced.</p>`;
+  return out+'</div>';
+}
+/* the last year of result days: what was reported, and whether the stock closed up or down on the day */
+function rpvHistTable(hist){
+  const since=new Date(Date.now()-365*864e5).toLocaleDateString('en-CA',{timeZone:'Asia/Kolkata'});
+  const yr=(hist||[]).filter(h=>h.date>=since).slice().reverse();
+  if(!yr.length) return '<p class="cp-sub">No result day with prices in the last year on file.</p>';
+  const up=yr.filter(h=>(h.raw??h.react)>0).length;
+  return `<div class="rpv-hy"><h4 class="rpv-why-h">Last 1 year of result days — closed up ${up} of ${yr.length} times</h4>
+    <div class="mv-tablewrap"><table class="mv-table rpv-table"><thead><tr><th>Result day</th><th class="n">Sales<small>YoY</small></th><th>Profit<small>vs a year ago</small></th><th>Growth<small>vs last quarter</small></th>
+      <th class="n">Result day<small>the stock's own move</small></th><th class="n">5 days before → 3 after<small>vs market</small></th><th class="n">Next 20 sessions<small>vs market</small></th></tr></thead><tbody>
+    ${yr.map(h=>`<tr><td><b>${esc(rpvDate(h.date))}</b><small>${esc(h.quarter)} results${rpvFiled(h.filed)?' · '+esc(rpvFiled(h.filed)):''}</small></td><td class="n">${ssSigned(h.g,1)}</td>
+      <td>${h.profit_up==null?'—':h.profit_up?'<span class="ov-up">up</span>':'<span class="ov-dn">down</span>'}</td><td>${h.accel?'<span class="ov-up">faster</span>':'<span class="ov-dn">slower</span>'}</td>
+      <td class="n">${rpvMove(h.raw??h.react)}</td>
+      <td class="n">${ssPct(h.swing,2)}</td><td class="n">${ssPct(h.post20,2)}</td></tr>`).join('')}</tbody></table></div>
+    <p class="cp-sub" style="margin-top:6px">Result day = the session the market could first react in: the filing day when results came out before the 3:30 PM close, else the next session. The move is the stock's own close-to-close change that session — not compared with the market.</p></div>`;
+}
+function rpvWireCheck(body){
+  const C=RPV.chk, inp=document.getElementById('rpv-chk'); if(!inp) return;
+  const go=async()=>{ const v=inp.value.trim(); if(!v) return; C.q=v; C.date=(document.getElementById('rpv-chkd')||{}).value||''; C.busy=true; C.pick=0; rpvRender();
+    try{ C.res=await fetchJSON('/api/results-preview/stock?q='+encodeURIComponent(v)); }catch(e){ C.res={matches:[]}; }
+    C.busy=false; rpvRender(); };
+  document.getElementById('rpv-chkgo').onclick=go;
+  inp.onkeydown=e=>{ if(e.key==='Enter') go(); };
+  if(!C.res && !C.busy) inp.focus();
+  body.querySelectorAll('[data-chkpick]').forEach(b=>b.onclick=()=>{ C.pick=+b.dataset.chkpick; rpvRender(); });
 }
 function rpvUpcoming(d){
-  const rows=(d.upcoming||[]).filter(r=>!RPV.q || (r.name+' '+(r.symbol||'')).toLowerCase().includes(RPV.q));
-  if(!(d.upcoming||[]).length) return '<p class="view-hint">No board company is due to report in the next three weeks.</p>';
-  return `<div class="mv-toolbar"><input id="rpv-q" class="gal-search" type="search" placeholder="Search company" value="${ea(RPV.q)}" autocomplete="off"></div>
+  const all=d.upcoming||[];
+  if(!all.length) return '<p class="view-hint">No company with results on file is due to report in the next three weeks.</p>';
+  const rows=all.filter(r=>(RPV.scope==='all' || r.board) && (!RPV.q || ((r.name||'')+' '+(r.symbol||'')).toLowerCase().includes(RPV.q)));
+  const today=new Date().toLocaleDateString('en-CA',{timeZone:'Asia/Kolkata'}), L=RPV.live, showR=rpvReactOk();
+  const liveMove=r=>{ if(!L || r.date!==today) return ''; const v=(L.moves||{})['NSE:'+r.symbol]; return v==null?'':`<small class="rpv-live">● live ${v>0?'+':''}${fmt(v,2)}%</small>`; };
+  return `<div class="mv-toolbar"><input id="rpv-q" class="gal-search" type="search" placeholder="Search company" value="${ea(RPV.q)}" autocomplete="off">
+      <div class="rc-seg" role="group" aria-label="Companies"><button type="button" data-rpvs="board" class="${RPV.scope==='board'?'on':''}">Board companies <small>${all.filter(r=>r.board).length}</small></button><button type="button" data-rpvs="all" class="${RPV.scope==='all'?'on':''}">All listed <small>${all.length}</small></button></div></div>
     <div class="mv-tablewrap"><table class="mv-table rpv-table"><thead><tr><th>Result</th><th>Company</th><th class="n">Last quarter<small>sales YoY</small></th>
-      <th>Profit up YoY?</th><th>Growth faster?</th><th>Call</th></tr></thead><tbody>
-    ${rows.map(r=>{ const [v,tone]=rpvVerdict(r), k=r.code+'|'+r.quarter, open=RPV.open===k;
-      return `<tr class="rpv-row${open?' open':''}" data-rpvo="${ea(k)}"><td><b>${esc(rcDayShort(r.date))}</b><small>${esc(r.quarter)} · ${r.status==='confirmed'?'confirmed':'expected'}</small></td>
-        <td><a href="#" data-co="${ea(r.code)}" class="rpv-co"><b class="mv-tick">${esc(r.symbol||r.code)}</b></a><span class="mv-name">${esc(r.name)}</span></td>
-        <td class="n">${ssSigned(r.last_g,1)}</td>
-        <td>${rpvBar(r.p_profit)}</td><td>${rpvBar(r.p_accel)}</td>
+      <th>Profit up YoY?</th><th>Growth faster?</th>${showR?'<th>Closes up?<small>result day</small></th>':''}<th>Chart going in<small>20 sessions</small></th><th>Call</th></tr></thead><tbody>
+    ${rows.map(r=>{ const [v,tone]=rpvVerdict(r), k=r.key+'|'+r.quarter, open=RPV.open===k;
+      return `<tr class="rpv-row${open?' open':''}" data-rpvo="${ea(k)}"><td><b>${esc(rcDayShort(r.date))}</b><small>${esc(r.quarter)} · ${r.status==='confirmed'?'confirmed':'expected'}</small>${liveMove(r)}</td>
+        <td>${r.code?`<a href="#" data-co="${ea(r.code)}" class="rpv-co"><b class="mv-tick">${esc(r.symbol)}</b></a>`:`<b class="mv-tick">${esc(r.symbol)}</b>`}<span class="mv-name">${esc(r.name)}</span><small>${esc(r.sector||'')}</small></td>
+        <td class="n">${ssSigned(r.last_g,1)}</td><td>${rpvBar(r.p_profit)}</td><td>${rpvBar(r.p_accel)}</td>${showR?`<td>${rpvBar(r.p_react)}</td>`:''}
+        <td class="rpv-chart">${rpvChart(r.chart)}</td>
         <td><span class="rpv-call ${tone}">${esc(v)}</span><small>${esc(r.confidence)} confidence · ${open?'hide':'why'} ▾</small></td></tr>
-        ${open?`<tr class="rpv-why"><td colspan="6"><ul>${r.drivers.map(x=>`<li class="${x.tone}"><span>${esc(x.text)}</span>${x.quote?`<q>${esc(x.quote)}</q>`:''}</li>`).join('')}</ul></td></tr>`:''}`; }).join('')}
+        ${open?`<tr class="rpv-why"><td colspan="${showR?8:7}"><ul>${r.drivers.map(x=>`<li class="${x.tone}"><span>${esc(x.text)}</span>${x.quote?`<q>${esc(x.quote)}</q>`:''}</li>`).join('')}</ul></td></tr>`:''}`; }).join('') || `<tr><td colspan="8" class="nd">No match.</td></tr>`}
     </tbody></table></div>
-    <p class="cp-sub" style="margin-top:8px">“Growth faster?” compares this quarter's year-on-year sales growth with last quarter's. Click a row for the reasons. Confidence is how far the stronger of the two chances is from 50/50.</p>`;
+    <p class="cp-sub" style="margin-top:8px">“Growth faster?” compares this quarter's year-on-year sales growth with last quarter's. “Chart going in” is the stock against the market over the 20 sessions before, and how far it sits from its 1-month high — what the market already expects. ${showR?'':'A “closes up on result day” chance isn\'t shown here: in the backtest it was barely better than a coin toss (Check a stock shows it, with that warning).'} Click a row for the reasons.</p>`;
 }
 function rpvScorecard(sc, d){
   const rows=sc.rows||[];
-  if(!rows.length) return `<p class="view-hint">Every prediction is saved and graded here once that company's result is out — ${d.pending||0} predictions are waiting for their results now. The backtest tab shows how the same model did on past quarters.</p>`;
+  if(!rows.length) return `<p class="view-hint">Every prediction is saved and graded here once that company's result is out — ${d.pending||0} predictions are waiting for their results now. The Backtest tab shows how the same model did on past quarters.</p>`;
   const ok=(p,y)=>y==null?'—':((p>=.5)===!!y?'<span class="ov-up">✓</span>':'<span class="ov-dn">✗</span>');
-  return `<div class="mv-tablewrap"><table class="mv-table"><thead><tr><th>Result</th><th>Company</th><th class="n">Last quarter<small>sales YoY</small></th><th class="n">This quarter<small>sales YoY</small></th><th>Profit up?</th><th>Growth faster?</th><th class="n">Stock vs market<small>day before → after</small></th></tr></thead><tbody>
+  return `<div class="mv-tablewrap"><table class="mv-table rpv-table"><thead><tr><th>Result</th><th>Company</th><th class="n">Last quarter<small>sales YoY</small></th><th class="n">This quarter<small>sales YoY</small></th><th>Profit up?</th><th>Growth faster?</th><th class="n">Result day<small>the stock's own move</small></th></tr></thead><tbody>
     ${rows.map(r=>`<tr><td>${esc(rcDayShort(r.date))}<small>${esc(r.quarter)}</small></td><td><b class="mv-tick">${esc(r.symbol||r.code)}</b><span class="mv-name">${esc(r.name)}</span></td>
       <td class="n">${ssSigned(r.last_g,1)}</td><td class="n"><b>${ssSigned(r.actual_g,1)}</b></td>
       <td>${rpvPct(r.p_profit)} ${ok(r.p_profit,r.profit_up)}</td><td>${rpvPct(r.p_accel)} ${ok(r.p_accel,r.accel)}</td><td class="n">${ssPct(r.react,2)}</td></tr>`).join('')}</tbody></table></div>`;
 }
+function rpvTable(rows, head, own){
+  return `<table class="mv-table rpv-t"><thead><tr><th>${head}</th><th class="n">Cases</th><th class="n">Median<small>${own?'move':'vs market'}</small></th><th class="n">Average<small>${own?'move':'vs market'}</small></th><th class="n">${own?'Closed up':'Beat the market'}</th></tr></thead><tbody>
+    ${(rows||[]).map(x=>`<tr><td>${esc(x.group)}</td><td class="n">${fmtI(x.n)}</td><td class="n">${ssPct(x.median,2)}</td><td class="n">${ssPct(x.mean,2)}</td><td class="n">${x.beat}%</td></tr>`).join('')}</tbody></table>`;
+}
 function rpvBacktest(b, d){
   if(!b.n) return '<p class="view-hint">The backtest runs with the nightly build.</p>';
   const cal=s=>`<table class="mv-table rpv-cal"><thead><tr><th>Predicted chance</th><th class="n">Cases</th><th class="n">Actually happened</th></tr></thead><tbody>${(s.buckets||[]).map(x=>`<tr><td>${x.range}</td><td class="n">${fmtI(x.n)}</td><td class="n"><b>${x.actual}%</b></td></tr>`).join('')}</tbody></table>`;
-  const trade=t=>`<table class="mv-table"><thead><tr><th>Stocks ranked by the predicted chance</th><th class="n">Trades</th><th class="n">5 days before → 3 after<small>median vs market</small></th><th class="n">Beat the market</th><th class="n">Result-day reaction<small>median vs market</small></th></tr></thead><tbody>
-    ${t.map(x=>`<tr><td>${esc(x.group)}</td><td class="n">${fmtI(x.n)}</td><td class="n">${ssPct(x.swing_median,2)}</td><td class="n">${x.swing_beat}%</td><td class="n">${ssPct(x.react_median,2)}</td></tr>`).join('')}</tbody></table>`;
-  const ge=b.growth_error||{};
+  const card=(t,s,what)=>`<div class="cp-card"><h3>${t}</h3><p class="rpv-big">${s.hit??'—'}%<small> right</small></p><p class="cp-sub">Always guessing the usual outcome: ${s.always_majority}%. ${what} in ${s.base}% of cases. Ranking quality (AUC, 0.5 = coin toss): <b>${s.auc??'—'}</b>.</p>${cal(s)}</div>`;
+  const inp=d.inputs||{};
   return `<div class="rpv-bt">
-    <p class="cp-sub">Walk-forward: each quarter (${esc((b.quarters||[]).join(', '))}) was predicted by a model fitted only on the quarters reported before it — ${fmtI(b.n)} company-quarters. ${fmtI(d.inputs?.order_values||0)} order values read from filings; guidance for ${fmtI(d.inputs?.with_guidance||0)} companies.</p>
-    <div class="rpv-grid">
-      <div class="cp-card"><h3>Profit up vs a year ago</h3><p class="rpv-big">${b.profit.hit}%<small> right</small></p><p class="cp-sub">Always guessing the usual outcome: ${b.profit.always_majority}%. Profit rose in ${b.profit.base}% of cases.</p>${cal(b.profit)}</div>
-      <div class="cp-card"><h3>Growth faster than last quarter</h3><p class="rpv-big">${b.accel.hit}%<small> right</small></p><p class="cp-sub">Always guessing the usual outcome: ${b.accel.always_majority}%. Growth sped up in ${b.accel.base}% of cases.</p>${cal(b.accel)}</div>
-      <div class="cp-card"><h3>A growth number?</h3><p class="rpv-big">Not shown</p><p class="cp-sub">Predicting the exact sales growth figure missed by ±${ge.model_median??'—'} pts — no better than simply repeating last quarter's growth (±${ge.naive_median??'—'} pts), so the page shows the two chances, which do beat guessing, instead of a growth number.</p></div>
-    </div>
-    <div class="cp-card"><h3>Would it have paid? — by chance of profit up</h3>${trade(b.trade_profit||[])}
-      <p class="cp-sub" style="margin-top:6px">All result trades together: median ${ssPct((b.trade_all||{}).swing_median,2)} vs the market (${fmtI((b.trade_all||{}).n||0)} trades). The board is made of stocks picked for doing well, which lifts every row — read the gap between the top and bottom thirds, not the level.</p></div>
-    <div class="cp-card"><h3>Would it have paid? — by chance of faster growth</h3>${trade(b.trade_accel||[])}</div></div>`;
+    <p class="cp-sub">Walk-forward: each quarter (${esc((b.quarters||[]).join(', '))}) predicted by models fitted only on quarters reported before it — ${fmtI(b.n)} company-quarters from ${fmtI(b.companies||0)} companies. Inputs: ${fmtI(inp.order_values||0)} order values read from filings, guidance for ${fmtI(inp.with_guidance||0)} companies, ${fmtI(inp.calls_read||0)} earnings calls read by Claude, ${fmtI(inp.commodities||0)} input commodities, peers and charts.</p>
+    <div class="rpv-grid">${card('Profit up vs a year ago', b.profit||{}, 'Profit rose')}${card('Growth faster than last quarter', b.accel||{}, 'Growth sped up')}${card('Stock closes up on its result day', b.react||{}, 'The stock closed up')}</div>
+    <div class="cp-card"><h3>Would it have paid? — stocks ranked by the chance of profit up</h3>
+      ${rpvTable((b.trade_profit||{}).swing, '5 sessions before → 3 after')}
+      <p class="cp-sub" style="margin-top:6px">All result trades together: median ${ssPct(b.all_swing_median,2)} vs the market.</p></div>
+    ${(b.post&&b.post.fifths)?`<div class="cp-card"><h3>The overnight read — after the numbers are out (${fmtI(b.post.n)} out-of-hours results, ranking quality ${b.post.auc})</h3>
+      <table class="mv-table rpv-t"><thead><tr><th>Results ranked by the read</th><th class="n">Cases</th><th class="n">Closed up<small>next session</small></th><th class="n">Opening gap<small>median</small></th><th class="n">Open → close<small>median</small></th><th class="n">Open → 3 sessions<small>median</small></th></tr></thead><tbody>
+      ${b.post.fifths.map(x=>`<tr><td>${esc(x.group)}</td><td class="n">${fmtI(x.n)}</td><td class="n">${x.up}%</td><td class="n">${ssSigned(x.gap,2)}</td><td class="n">${ssSigned(x.oc,2)}</td><td class="n">${ssSigned(x.o3,2)}</td></tr>`).join('')}</tbody></table>
+      <p class="cp-sub" style="margin-top:6px">The stock's own moves (not vs the market). The edge is real but sits mostly in the opening gap — after the open, strong results tended to fade and weak ones kept falling.</p></div>`:''}
+    <div class="cp-card"><h3>The chart going in — and the result-day move</h3>${rpvTable((b.chart_setup||{}).rows, 'Before the result', true)}
+      <p class="cp-sub" style="margin-top:6px">What the price already says about expectations, against how the stock itself moved on its result day.</p></div></div>`;
+}
+function rpvAfter(b){
+  const p=b.pead||[];
+  if(!p.length) return '<p class="view-hint">Runs with the nightly build.</p>';
+  return `<div class="rpv-bt"><p class="cp-sub">Does a stock keep moving after its result? Bought at the close the day after the result, against the market. No prediction involved — this only uses what the result and the first day's reaction were.</p>
+    ${p.map(t=>`<div class="cp-card"><h3>${esc(t.label)}</h3>${rpvTable(t.rows,'After the result')}</div>`).join('')}</div>`;
 }
 
 /* ---------- Sector Strength: how broadly each tracked sector is moving ----------

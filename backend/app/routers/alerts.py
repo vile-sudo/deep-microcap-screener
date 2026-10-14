@@ -41,6 +41,8 @@ INSIDER_CLUSTERS_FILE = BASE_DIR / "data" / "insider_trades" / "clusters.json"
 WINDOWS = ["1D", "1W", "1M", "6M", "1Y"]
 DEAL_TYPES = ("deal_buy", "deal_sell")
 INSIDER_TYPES = ("insider_buy", "insider_sell")
+PREVIEW_TYPES = ("rp_soon", "rp_out", "rp_post")         # Results Preview (app/results_preview.py)
+PREVIEW_FILE = BASE_DIR / "data" / "results_preview" / "alerts.json"
 
 
 @lru_cache(maxsize=4)
@@ -62,11 +64,18 @@ def load() -> dict:
     doc = _read_or(ALERTS_FILE, {"latest": None, "sessions": []})
     clusters = _read_or(CLUSTERS_FILE, {"sessions": []})
     insider_clusters = _read_or(INSIDER_CLUSTERS_FILE, {"sessions": []})
+    previews = _read_or(PREVIEW_FILE, {"sessions": []})
     by_date: dict[str, list[dict]] = {s["date"]: list(s["items"]) for s in doc.get("sessions", [])}
     for s in clusters.get("sessions", []):
         by_date.setdefault(s["date"], []).extend(s["items"])
     for s in insider_clusters.get("sessions", []):
         by_date.setdefault(s["date"], []).extend(s["items"])
+    # Results Preview runs after the close it reads, so its newest items join the latest market session
+    # rather than opening a session of their own ahead of it
+    last_mkt = max(by_date) if by_date else None
+    for s in previews.get("sessions", []):
+        d = min(s["date"], last_mkt) if last_mkt else s["date"]
+        by_date.setdefault(d, []).extend(s["items"])
     dates = sorted(by_date)
     latest = max(doc.get("latest") or "", dates[-1] if dates else "") or None
     return {"latest": latest, "market_windows": doc.get("market_windows", ["6M", "1Y"]),
@@ -80,7 +89,7 @@ def _set(value: str | None) -> set[str]:
 @router.get("")
 def get_alerts(request: Request, db: Session = Depends(get_db),
                highs: str = Query("1W,1M,6M,1Y"), lows: str = Query("1W,1M,6M,1Y"),
-               ipo: bool = True, vcp: bool = True, deals: bool = True, insiders: bool = True,
+               ipo: bool = True, vcp: bool = True, deals: bool = True, insiders: bool = True, previews: bool = True,
                scope: str = Query("board", pattern="^(watchlist|board|market)$"),
                sessions: int = Query(5, ge=1, le=15), seen: str | None = None, codes: str | None = None):
     doc = load()
@@ -95,6 +104,8 @@ def get_alerts(request: Request, db: Session = Depends(get_db),
 
     def keep(it: dict) -> bool:
         t = it["type"]
+        if t in PREVIEW_TYPES:
+            return previews and (watch is None or it.get("code") in watch)
         if t in DEAL_TYPES or t in INSIDER_TYPES:
             # not gated by `scope` (see the module docstring): only by the watchlist filter, when that's
             # the active scope, and by whether this cluster kind is wanted at all

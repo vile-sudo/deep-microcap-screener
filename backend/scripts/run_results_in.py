@@ -155,7 +155,9 @@ def parse(html: str) -> dict | None:
         links = {a_.get_text(strip=True).lower(): a_["href"] for a_ in li.select("a[href]")}
         if date and links.get("transcript"):
             calls.append({"date": date.group(1), "transcript": links["transcript"], "ppt": links.get("ppt")})
-    return {"quarters": quarters, "annual": annual, "concalls": calls[:KEEP_CALLS], "top": _top(soup), "profile": _profile(soup)}
+    h1 = soup.select_one("h1")
+    return {"quarters": quarters, "annual": annual, "concalls": calls[:KEEP_CALLS], "top": _top(soup), "profile": _profile(soup),
+            "name": h1.get_text(" ", strip=True) if h1 else None}
 
 
 MONTHS = {m: i for i, m in enumerate(["jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec"], 1)}
