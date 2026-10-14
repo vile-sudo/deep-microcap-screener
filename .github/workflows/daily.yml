@@ -165,6 +165,18 @@ jobs:
         working-directory: ./backend
         run: python scripts/run_insider_clusters.py
 
+      # The Deals page's ~3-year history (app/disclosures_archive.py): the published SQLite file plus
+      # tonight's deals, announcements and insider trades, published again as a release asset (too big
+      # for git). The server pulls it from the release and folds in the latest feeds itself.
+      - name: 1g. Deals page history
+        id: dealshistory
+        continue-on-error: true
+        timeout-minutes: 15
+        working-directory: ./backend
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python scripts/disclosures_archive.py update
+
       - name: 2. Discovery scan
         id: discovery
         continue-on-error: true

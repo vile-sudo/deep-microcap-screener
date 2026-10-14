@@ -2625,3 +2625,11 @@ mark.tr-hit.cur{background:#f59e0b;color:#111}
 .ssi .ssi-add{border-radius:999px;height:27px}
 .ssi .cp-card-h{flex-wrap:wrap;gap:8px}
 @media (max-width:640px){ .ssi .ssc-chip,.ssbh .ssc-chip{font-size:11.5px;padding:2px 8px} .ssi .ssc-legend{gap:4px} }
+
+/* Deals page history: Period box + custom dates */
+.dh-period{display:inline-flex;align-items:center;gap:6px;flex-wrap:wrap}
+.dh-custom{display:inline-flex;align-items:center;gap:6px}
+.dh-custom[hidden]{display:none}
+.dh-custom input{width:auto;min-width:0}
+.dh-to{color:var(--muted);font-size:12.5px}
+.dh-more{display:flex;align-items:center;gap:12px;margin:12px 0 4px}

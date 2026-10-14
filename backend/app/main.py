@@ -215,6 +215,17 @@ async def _sector_intraday_loop():
         await asyncio.sleep(60)
 
 
+async def _disclosures_warmup():
+    """Fetch the Deals page's history file (app/disclosures_archive.py) soon after startup, so the first
+    person to open an older period doesn't wait for the download."""
+    from . import disclosures_archive
+    await asyncio.sleep(40)
+    try:
+        await asyncio.to_thread(disclosures_archive.archive_path)
+    except Exception as e:  # noqa: BLE001
+        logging.getLogger("deepsweep").warning("deals history warm-up failed: %s", e)
+
+
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     # Make sure tables exist even if `python -m app.seed` was never run
@@ -232,6 +243,7 @@ async def lifespan(app: FastAPI):
     desktop_push_task = asyncio.create_task(_desktop_push_loop())
     filing_alerts_task = asyncio.create_task(_filing_alerts_loop())
     intraday_task = asyncio.create_task(_sector_intraday_loop())
+    warmup_task = asyncio.create_task(_disclosures_warmup())
     try:
         yield
     finally:
@@ -240,6 +252,7 @@ async def lifespan(app: FastAPI):
         desktop_push_task.cancel()
         filing_alerts_task.cancel()
         intraday_task.cancel()
+        warmup_task.cancel()
 
 
 app = FastAPI(

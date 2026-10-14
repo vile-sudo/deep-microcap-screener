@@ -13,6 +13,8 @@ GET /api/announcements    every non-routine filing on record
                           (scripts/run_announcements.py), newest first --
                           category, a one-line summary, the filing PDF, and
                           the board code when the symbol is on this board
+GET /api/disclosures/{deals|ann|ins}?from=&to=  ~3 years of the three tabs above, paged and filtered
+                          server-side (app/disclosures_archive.py)
 GET /api/insider-trades   India board: insider trading & SAST disclosures
                           (scripts/run_insider_trades.py), newest first --
                           promoters/directors/KMPs' own buy/sell/pledge
@@ -84,7 +86,7 @@ this router only reads them.
 """
 import re
 
-from fastapi import APIRouter, HTTPException, Request
+from fastapi import APIRouter, HTTPException, Query, Request
 from fastapi.responses import Response
 
 from ..json_file import file_response
@@ -136,6 +138,27 @@ def announcement_categories():
     """NSE filing categories for the "Get notified" picker (app/filing_alerts.py) -- every one seen so far."""
     from ..filing_alerts import known_categories
     return {"categories": known_categories()}
+
+
+@router.get("/api/disclosures/{kind}")
+def disclosures_history(kind: str, frm: str = Query(..., alias="from"), to: str = Query(...), q: str = "",
+                        type: str = "", side: str = "", cat: str = "", board: int = 0, sort: str = "date",
+                        offset: int = 0, limit: int = 200):
+    """The Deals page's history (~3 years, app/disclosures_archive.py): one page of deals ("deals"),
+    announcements ("ann") or insider trades ("ins") between two dates, with the page's own filters."""
+    from .. import disclosures_archive as A
+    from ..movers.companies import board_map
+    if kind not in ("deals", "ann", "ins"):
+        raise HTTPException(status_code=404, detail="unknown kind")
+    if not re.fullmatch(r"\d{4}-\d{2}-\d{2}", frm) or not re.fullmatch(r"\d{4}-\d{2}-\d{2}", to):
+        raise HTTPException(status_code=400, detail="dates as YYYY-MM-DD")
+    filters = {"deals": {"kind": type, "side": side}, "ann": {"kind": cat}, "ins": {"transaction_type": type, "category": cat}}[kind]
+    bmap = board_map()
+    res = A.query(kind, frm, to, q=q.strip()[:80], filters=filters, board=sorted(bmap) if board else None,
+                  sort=sort, offset=max(0, offset), limit=max(1, min(limit, 500)))
+    for r in res["rows"]:
+        r["board_code"] = bmap.get(r.get("symbol"))
+    return res
 
 
 @router.get("/api/insider-trades")

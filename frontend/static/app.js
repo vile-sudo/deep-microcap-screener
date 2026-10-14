@@ -2740,7 +2740,7 @@ async function openDeals(){
 }
 
 function dlBuildControls(){
-  DL.built=true;
+  DL.built=true; dhInject('deals');
   const dates=[...new Set(DL.data.deals.map(d=>d.date))].sort().reverse();
   const dateSel=document.getElementById('dl-date');
   dateSel.innerHTML='<option value="">Every day on record</option>'+
@@ -2753,6 +2753,7 @@ function dlBuildControls(){
   boardBtn.onclick=()=>{ DL.boardOnly=!DL.boardOnly; boardBtn.classList.toggle('on',DL.boardOnly);
     boardBtn.setAttribute('aria-pressed',String(DL.boardOnly)); dlRenderTable(); };
   document.getElementById('dl-clear').onclick=()=>{
+    const per=document.getElementById('dl-period'); if(per && per.value){ per.value=''; per.onchange(); }
     document.getElementById('dl-q').value=''; document.getElementById('dl-date').value='';
     document.getElementById('dl-kind').value=''; document.getElementById('dl-side').value='';
     document.getElementById('dl-sort').value='value';
@@ -2782,6 +2783,7 @@ function dlRows(){
 
 function dlRenderTable(){
   const body=document.getElementById('dl-body'); if(!body) return;
+  if(dhActive('deals')) return dhRender('deals',true);
   const rows=dlRows();
   document.getElementById('dl-count').textContent=`${fmtI(rows.length)} of ${fmtI(DL.data.deals.length)}`;
   body.innerHTML = rows.length ? `<div class="mv-tablewrap"><table class="mv-table"><thead><tr>
@@ -2801,6 +2803,99 @@ function dlRowHtml(d){
     <td class="n">${bpInr(d.price,2)}</td>
     <td class="n">${fmt(d.value_cr,2)}</td>
   </tr>`;
+}
+
+
+/* ==================================================================
+   Deals page history: any period in the last ~3 years, for all three tabs. "Recent" is the nightly feed
+   loaded whole and filtered in the browser (as before); any other period asks the server, which keeps
+   every deal, non-routine announcement and insider trade since 2023 (app/disclosures_archive.py) and
+   returns them a page at a time with the same filters applied. */
+const DH_TABS={
+  deals:{render:()=>dlRenderTable(), p:'dl', kind:'deals', st:()=>DL, sortOk:['value','date'], row:d=>dlRowHtml(d),
+    head:'<th>Date</th><th>Company</th><th>Type</th><th>Client</th><th>Side</th><th class="n">Quantity</th><th class="n">Price</th><th class="n">Value ₹cr</th>',
+    params:()=>({type:dhVal('dl-kind'), side:dhVal('dl-side'), sort:dhVal('dl-sort')||'value'}), noun:'deals'},
+  ann:{render:()=>anRenderTable(), p:'an', kind:'ann', st:()=>AN, row:a=>anRowHtml(a),
+    head:'<th>Filed</th><th>Company</th><th>Category</th><th>Summary</th>',
+    params:()=>({cat:dhVal('an-kind'), sort:dhVal('an-sort')==='weight'?'weight':'date'}), noun:'announcements'},
+  ins:{render:()=>inRenderTable(), p:'in', kind:'ins', st:()=>IN, row:t=>inRowHtml(t),
+    head:'<th>Date</th><th>Company</th><th>Person</th><th>Category</th><th>Type</th><th class="n">Quantity</th><th class="n">Value ₹cr</th><th class="n">Holding</th>',
+    params:()=>({type:dhVal('in-type'), cat:dhVal('in-cat'), sort:dhVal('in-sort')||'date'}), noun:'insider trades'},
+};
+const DH={};   /* per tab: {rows, total, offset, seq, loading} */
+const dhVal=id=>((document.getElementById(id)||{}).value||'').trim();
+const dhIso=d=>d.toLocaleDateString('en-CA',{timeZone:'Asia/Kolkata'});
+const DH_FIRST_YEAR=2023;
+/* the Period box and its From/To dates, put in front of a tab's day picker */
+function dhInject(tab){
+  const c=DH_TABS[tab], P=c.p, day=document.getElementById(P+'-date');
+  if(!day || document.getElementById(P+'-period')) return;
+  const yNow=new Date().getFullYear(), years=[]; for(let y=yNow;y>=DH_FIRST_YEAR;y--) years.push(y);
+  const wrap=document.createElement('span'); wrap.className='dh-period';
+  wrap.innerHTML=`<select class="gal-select" id="${P}-period" aria-label="Period" title="Pick a period in the last 3 years, a calendar year, or your own dates">
+      <option value="">Recent (nightly feed)</option><option value="3m">Last 3 months</option><option value="6m">Last 6 months</option>
+      <option value="1y">Last 1 year</option><option value="3y">Last 3 years</option>
+      <optgroup label="Calendar year">${years.map(y=>`<option value="y${y}">${y}</option>`).join('')}</optgroup>
+      <option value="custom">Custom dates…</option></select>
+    <span class="dh-custom" id="${P}-custom" hidden><input type="date" class="gal-select" id="${P}-from" aria-label="From">
+      <span class="dh-to">to</span><input type="date" class="gal-select" id="${P}-to" aria-label="To"></span>`;
+  day.parentNode.insertBefore(wrap, day);
+  const per=document.getElementById(P+'-period'), cu=document.getElementById(P+'-custom');
+  const today=dhIso(new Date()), min=`${DH_FIRST_YEAR}-01-01`;
+  ['from','to'].forEach(k=>{ const el=document.getElementById(`${P}-${k}`); el.min=min; el.max=today; el.onchange=()=>dhRender(tab,true); });
+  per.onchange=()=>{
+    const v=per.value; cu.hidden=v!=='custom'; day.hidden=!!v;
+    if(v==='custom'){ const f=document.getElementById(P+'-from'), t=document.getElementById(P+'-to');
+      if(!t.value) t.value=today; if(!f.value){ const d=new Date(); d.setMonth(d.getMonth()-1); f.value=dhIso(d); } }
+    if(!v){ DH[tab]=null; dhRestoreOpts(tab); c.render(); } else dhRender(tab,true);
+  };
+}
+/* the period in view as [from, to], or null for "Recent" */
+function dhRange(tab){
+  const P=DH_TABS[tab].p, v=dhVal(P+'-period'); if(!v) return null;
+  const t=new Date(), to=dhIso(t), back=n=>{ const d=new Date(); d.setDate(d.getDate()-n); return dhIso(d); };
+  if(v==='3m') return [back(91),to]; if(v==='6m') return [back(182),to]; if(v==='1y') return [back(365),to]; if(v==='3y') return [back(1096),to];
+  if(v[0]==='y') return [`${v.slice(1)}-01-01`, `${v.slice(1)}-12-31`<to?`${v.slice(1)}-12-31`:to];
+  const f=dhVal(P+'-from'), e=dhVal(P+'-to');
+  if(!f||!e) return null;
+  return f<=e?[f,e]:[e,f];
+}
+const dhActive=tab=>!!dhVal(DH_TABS[tab].p+'-period');
+/* insider types and categories differ in the older NSE report: offer the history's own while a period is on */
+function dhSetOpts(tab, j){
+  if(tab!=='ins' || !j.types) return;
+  [['in-type',j.types,'Every transaction type'],['in-cat',j.categories,'Every category']].forEach(([id,list,all])=>{
+    const el=document.getElementById(id); if(!el || el.dataset.dh) return;
+    el.dataset.recent=el.innerHTML; el.dataset.dh='1'; const cur=el.value;
+    el.innerHTML=`<option value="">${all}</option>`+list.map(x=>`<option value="${esc(x)}">${esc(x)}</option>`).join('');
+    el.value=list.includes(cur)?cur:'';
+  });
+}
+function dhRestoreOpts(tab){
+  if(tab!=='ins') return;
+  ['in-type','in-cat'].forEach(id=>{ const el=document.getElementById(id); if(el && el.dataset.dh){ el.innerHTML=el.dataset.recent; delete el.dataset.dh; el.value=''; } });
+}
+async function dhRender(tab, reset){
+  const c=DH_TABS[tab], P=c.p, body=document.getElementById(P+'-body'), cnt=document.getElementById(P+'-count');
+  const r=dhRange(tab);
+  if(!r){ body.innerHTML='<p class="view-hint">Pick both dates.</p>'; cnt.textContent=''; return; }
+  const st=DH[tab] && !reset ? DH[tab] : (DH[tab]={rows:[], total:0, offset:0, seq:0});
+  const seq=++st.seq;
+  if(reset){ st.rows=[]; st.offset=0; body.innerHTML='<p class="view-hint">Searching the history…</p>'; }
+  const prm=new URLSearchParams({from:r[0], to:r[1], q:dhVal(P+'-q'), board:c.st().boardOnly?'1':'0', offset:String(st.offset), limit:'200'});
+  Object.entries(c.params()).forEach(([k,v])=>{ if(v) prm.set(k,v); });
+  let j; try{ j=await fetchJSON(`/api/disclosures/${c.kind}?${prm}`); }catch(e){ j=null; }
+  if(seq!==st.seq) return;   /* a newer request replaced this one */
+  if(!j){ body.innerHTML='<p class="view-hint">The history could not be loaded just now — try again in a moment.</p>'; return; }
+  if(!j.available){ body.innerHTML='<p class="view-hint">The history is being set up on the server — try again in a minute.</p>'; return; }
+  dhSetOpts(tab, j);
+  st.rows=st.rows.concat(j.rows); st.total=j.total; st.offset=st.rows.length;
+  cnt.textContent=`${fmtI(st.total)} ${c.noun} · ${mvDay(r[0])} – ${mvDay(r[1])}${st.rows.length<st.total?` · showing ${fmtI(st.rows.length)}`:''}`;
+  document.getElementById('dl-asof').textContent=j.first?`History on file: ${mvDay(j.first)} – ${mvDay(j.last)}`:'';
+  body.innerHTML = st.rows.length ? `<div class="mv-tablewrap"><table class="mv-table"><thead><tr>${c.head}</tr></thead><tbody>${st.rows.map(c.row).join('')}</tbody></table></div>
+      ${st.rows.length<st.total?`<div class="dh-more"><button type="button" class="btn" id="${P}-more">Load ${fmtI(Math.min(200,st.total-st.rows.length))} more</button><span class="cp-sub">${fmtI(st.total-st.rows.length)} more in this period</span></div>`:''}`
+    : `<p class="view-hint">Nothing matches in this period — widen the dates or clear a filter.</p>`;
+  const more=document.getElementById(P+'-more'); if(more) more.onclick=()=>{ more.disabled=true; more.textContent='Loading…'; dhRender(tab,false); };
 }
 
 /* Announcements sub-tab of the same section -- NSE's corporate filings,
@@ -2826,7 +2921,7 @@ async function openAnnouncements(){
 }
 
 function anBuildControls(){
-  AN.built=true;
+  AN.built=true; dhInject('ann');
   const dates=[...new Set(AN.data.announcements.map(a=>a.date))].sort().reverse();
   const dateSel=document.getElementById('an-date');
   dateSel.innerHTML='<option value="">Every day on record</option>'+
@@ -2839,6 +2934,7 @@ function anBuildControls(){
   boardBtn.onclick=()=>{ AN.boardOnly=!AN.boardOnly; boardBtn.classList.toggle('on',AN.boardOnly);
     boardBtn.setAttribute('aria-pressed',String(AN.boardOnly)); anRenderTable(); };
   document.getElementById('an-clear').onclick=()=>{
+    const per=document.getElementById('an-period'); if(per && per.value){ per.value=''; per.onchange(); }
     document.getElementById('an-q').value=''; document.getElementById('an-date').value='';
     document.getElementById('an-kind').value=''; document.getElementById('an-sort').value='date';
     AN.boardOnly=false; boardBtn.classList.remove('on'); boardBtn.setAttribute('aria-pressed','false');
@@ -2959,6 +3055,7 @@ function anRows(){
 
 function anRenderTable(){
   const body=document.getElementById('an-body'); if(!body) return;
+  if(dhActive('ann')) return dhRender('ann',true);
   const rows=anRows();
   document.getElementById('an-count').textContent=`${fmtI(rows.length)} of ${fmtI(AN.data.announcements.length)}`;
   body.innerHTML = rows.length ? `<div class="mv-tablewrap"><table class="mv-table"><thead><tr>
@@ -2989,12 +3086,14 @@ function anFilingMove(a){
   return `<span class="an-move${chase?' chase':''}"${chase?` title="${AN_CHASE_TIP}"`:''}>${chase?'⚠ ':''}Filing day ${sign(a.move_pct)} (${sign(a.move_excess)} vs market)${chase?' — don\'t chase':''}</span>`;
 }
 
+/* NSE sends some summaries with characters as HTML codes (&#2344; for Hindi text): show the characters */
+const anText=t=>String(t||'').replace(/&#(\d+);/g,(m,n)=>String.fromCodePoint(+n)).replace(/&#x([0-9a-f]+);/gi,(m,n)=>String.fromCodePoint(parseInt(n,16))).replace(/&quot;/g,'"').replace(/&amp;/g,'&');
 function anRowHtml(a){
   return `<tr>
     <td>${esc(mvDay(a.date))}</td>
     <td><b class="mv-tick">${esc(a.symbol)}</b><span class="mv-name">${esc(a.name||a.symbol)}</span>${a.board_code?'<span class="mv-onboard">On the board</span>':''}</td>
     <td><span class="an-cat">${esc(a.kind)}</span>${anOrderSize(a)}${anFilingMove(a)}</td>
-    <td class="an-summary">${a.url?`<a href="${esc(a.url)}" target="_blank" rel="noopener">${esc(a.summary||a.category)} ↗</a>`:esc(a.summary||a.category)}</td>
+    <td class="an-summary">${a.url?`<a href="${esc(a.url)}" target="_blank" rel="noopener">${esc(anText(a.summary||a.category))} ↗</a>`:esc(anText(a.summary||a.category))}</td>
   </tr>`;
 }
 
@@ -3032,7 +3131,7 @@ async function openInsiderTrades(){
 }
 
 function inBuildControls(){
-  IN.built=true;
+  IN.built=true; dhInject('ins');
   const dates=[...new Set(IN.data.trades.map(t=>t.date))].sort().reverse();
   const dateSel=document.getElementById('in-date');
   dateSel.innerHTML='<option value="">Every day on record</option>'+
@@ -3051,6 +3150,7 @@ function inBuildControls(){
   boardBtn.onclick=()=>{ IN.boardOnly=!IN.boardOnly; boardBtn.classList.toggle('on',IN.boardOnly);
     boardBtn.setAttribute('aria-pressed',String(IN.boardOnly)); inRenderTable(); };
   document.getElementById('in-clear').onclick=()=>{
+    const per=document.getElementById('in-period'); if(per && per.value){ per.value=''; per.onchange(); }
     document.getElementById('in-q').value=''; document.getElementById('in-date').value='';
     document.getElementById('in-type').value=''; document.getElementById('in-cat').value='';
     document.getElementById('in-sort').value='date';
@@ -3080,6 +3180,7 @@ function inRows(){
 
 function inRenderTable(){
   const body=document.getElementById('in-body'); if(!body) return;
+  if(dhActive('ins')) return dhRender('ins',true);
   const rows=inRows();
   document.getElementById('in-count').textContent=`${fmtI(rows.length)} of ${fmtI(IN.data.trades.length)}`;
   body.innerHTML = rows.length ? `<div class="mv-tablewrap"><table class="mv-table"><thead><tr>
