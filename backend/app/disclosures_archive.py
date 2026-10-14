@@ -50,6 +50,8 @@ CREATE TABLE IF NOT EXISTS ins (k TEXT PRIMARY KEY, date TEXT, symbol TEXT, name
   transaction_type TEXT, side TEXT, quantity REAL, value_cr REAL, mode TEXT, pre_qty REAL, pre_pct REAL,
   post_qty REAL, post_pct REAL, sec_type TEXT, broadcast_at TEXT, regulation TEXT);
 CREATE TABLE IF NOT EXISTS meta (key TEXT PRIMARY KEY, value TEXT);
+CREATE TABLE IF NOT EXISTS orders (k TEXT PRIMARY KEY, symbol TEXT, date TEXT, order_cr REAL, months REAL, not_order INTEGER);
+CREATE INDEX IF NOT EXISTS orders_sym ON orders(symbol, date);
 CREATE INDEX IF NOT EXISTS deals_date ON deals(date);
 CREATE INDEX IF NOT EXISTS deals_sym ON deals(symbol);
 CREATE INDEX IF NOT EXISTS ann_date ON ann(date);
@@ -122,6 +124,11 @@ def fold_feeds(con: sqlite3.Connection) -> dict:
         rows = d.get({"deals": "deals", "ann": "announcements", "ins": "trades"}[kind]) or []
         if kind == "ann":
             rows = [r for r in rows if r.get("kind") != "routine filing" and r.get("seq_id")]
+            # order values read from the filing PDFs (scripts/run_announcements.py) -- kept apart from the
+            # filing rows so re-folding a filing never loses them (Results Preview's order-inflow input)
+            con.executemany("INSERT OR REPLACE INTO orders VALUES (?,?,?,?,?,?)",
+                            [(str(r["seq_id"]), r["symbol"], r["date"], r.get("order_cr"), r.get("order_months"),
+                              1 if r.get("not_order") else 0) for r in rows if r.get("order_checked")])
         added[kind] = upsert(con, kind, rows)
     con.commit()
     return added

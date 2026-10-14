@@ -2077,6 +2077,35 @@ tbody tr:hover,tbody tr:nth-child(even):hover{background:#f2f9fd}
 .nav-market-link:hover{border-color:#bfe3f3;box-shadow:0 4px 12px -8px rgba(11,57,84,.45)}
 
 /* ================================================================
+   Header clock -- the live date and time, in the same pill shape as
+   .nav-market-link and the Alerts bell. order:1 keeps it with the
+   other account-area controls when .nav-in wraps (see the note above);
+   the explicit [hidden] rule is needed because this class sets
+   display, which would otherwise beat the hidden attribute and flash
+   an empty pill before clock.js fills it.
+   ================================================================ */
+.nav-clock{display:inline-flex;align-items:baseline;gap:7px;flex:none;height:40px;padding:0 14px;border:1px solid var(--grid);border-radius:999px;background:var(--surface,#fff);color:var(--ink);font:inherit;font-size:13.5px;font-weight:600;white-space:nowrap;cursor:default;order:1;margin-left:auto}
+.nav-clock[hidden]{display:none}
+/* the clock leads the account-area group, so it takes over the auto margin
+   that pushes that group right -- left on both, the two autos would split the
+   free space and strand the clock out in the middle of the bar. .nav-upd is
+   hidden until /api/charts answers, so the push cannot live there anyway. */
+.nav-clock ~ .nav-upd{margin-left:0}
+/* ...and hands it back for the moment before clock.js fills the pill, or on a
+   browser with no IST data, where the pill stays hidden for good */
+.nav-clock[hidden] ~ .nav-upd{margin-left:auto}
+.nav-clock svg{align-self:center;width:17px;height:17px;flex:none;fill:none;stroke:var(--acc-dark,#075a85);stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+.nc-date{color:var(--ink)}
+/* tabular figures: without them the seconds change width as they count and
+   the whole pill twitches once a second */
+.nc-time{font-variant-numeric:tabular-nums;font-feature-settings:"tnum" 1;color:var(--ink)}
+.nc-tz{color:var(--muted);font-size:11px;font-weight:700;letter-spacing:.05em}
+/* the header is crowded long before phone width, so shed the date first and
+   the timezone tag next -- the ticking time is the part worth keeping */
+@media (max-width:1500px){ .nav-clock .nc-date{display:none} }
+@media (max-width:900px){ .nav-clock .nc-tz{display:none} .nav-clock{padding:0 11px} }
+
+/* ================================================================
    Alerts bell and panel
    ================================================================ */
 .nav-bell{position:relative;display:inline-flex;align-items:center;gap:6px;flex:none;height:40px;padding:0 12px;border:1px solid var(--grid);border-radius:999px;background:var(--surface,#fff);color:var(--ink);font:inherit;font-size:13.5px;font-weight:600;cursor:pointer}
@@ -2633,3 +2662,37 @@ mark.tr-hit.cur{background:#f59e0b;color:#111}
 .dh-custom input{width:auto;min-width:0}
 .dh-to{color:var(--muted);font-size:12.5px}
 .dh-more{display:flex;align-items:center;gap:12px;margin:12px 0 4px}
+
+/* Results Preview */
+.rpv-strip{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:0 0 14px}
+.rpv-strip>div{background:var(--surface);border:1px solid var(--ring);border-radius:12px;padding:10px 14px}
+.rpv-strip span{display:block;font-size:10.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.rpv-strip b{display:block;font-size:22px;margin:2px 0;font-variant-numeric:tabular-nums}
+.rpv-strip small{color:var(--muted);font-size:11.5px}
+.rpv-table td small{display:block;color:var(--muted);font-size:11px}
+.rpv-row{cursor:pointer}
+.rpv-row.open td{background:color-mix(in srgb,var(--s1) 6%,transparent)}
+.rpv-co{text-decoration:none}
+.rpv-bar{position:relative;display:inline-block;width:70px;height:6px;border-radius:999px;background:var(--grid);vertical-align:middle;margin-right:6px}
+.rpv-bar i{position:absolute;top:0;bottom:0;border-radius:999px}
+.rpv-bar i.up{background:#16a34a}.rpv-bar i.dn{background:#dc2626}
+.rpv-bar b.mid{position:absolute;left:50%;top:-2px;bottom:-2px;width:1px;background:var(--axis)}
+.rpv-pv{font-weight:700;font-variant-numeric:tabular-nums;font-size:12.5px}
+.rpv-call{display:inline-block;font-weight:700;font-size:12px;padding:2px 8px;border-radius:999px;background:var(--grid);color:var(--ink2)}
+.rpv-call.up{background:rgba(22,163,74,.13);color:#15803d}.rpv-call.dn{background:rgba(220,38,38,.12);color:#b91c1c}
+.rpv-why td{background:color-mix(in srgb,var(--s1) 4%,transparent)}
+.rpv-why ul{margin:4px 0;padding-left:18px}
+.rpv-why li{margin:5px 0;font-size:13px}
+.rpv-why li.up::marker{color:#16a34a}.rpv-why li.dn::marker{color:#dc2626}
+.rpv-why q{display:block;color:var(--muted);font-size:12px;font-style:italic;margin-top:2px}
+.rpv-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.rpv-grid .cp-card{margin:0}
+.rpv-big{font-size:28px;font-weight:800;margin:4px 0}
+.rpv-big small{font-size:13px;color:var(--muted);font-weight:600}
+.rpv-cal{margin-top:8px}
+.rpv-bt>.cp-card{margin-top:12px}
+@media (max-width:900px){ .rpv-strip,.rpv-grid{grid-template-columns:1fr} }
+@media (min-width:1101px){ .nav .nav-tabs .side-link{padding:0 7px;gap:4px} }
+@media (min-width:1101px) and (max-width:1399px){ .nav .nav-tabs .side-link{padding:0 5px;gap:3px;font-size:11.5px} .nav .nav-tabs .side-link svg{width:12px;height:12px} }
+.rpv-table th small{display:block}
+.rpv-bt th small,.rpv-section th small{display:block}

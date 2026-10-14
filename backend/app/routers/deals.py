@@ -15,6 +15,7 @@ GET /api/announcements    every non-routine filing on record
                           the board code when the symbol is on this board
 GET /api/disclosures/{deals|ann|ins}?from=&to=  ~3 years of the three tabs above, paged and filtered
                           server-side (app/disclosures_archive.py)
+GET /api/results-preview  Results Preview: upcoming results' predicted direction, scorecard, backtest
 GET /api/insider-trades   India board: insider trading & SAST disclosures
                           (scripts/run_insider_trades.py), newest first --
                           promoters/directors/KMPs' own buy/sell/pledge
@@ -159,6 +160,14 @@ def disclosures_history(kind: str, frm: str = Query(..., alias="from"), to: str 
     for r in res["rows"]:
         r["board_code"] = bmap.get(r.get("symbol"))
     return res
+
+
+@router.get("/api/results-preview")
+def results_preview(request: Request):
+    """Results Preview (app/results_preview.py): upcoming results with predicted direction and reasons,
+    the live scorecard and the walk-forward backtest."""
+    return file_response(request, BASE_DIR / "data" / "results_preview" / "latest.json",
+                         {"asof": None, "upcoming": [], "scorecard": {}, "backtest": {}})
 
 
 @router.get("/api/insider-trades")

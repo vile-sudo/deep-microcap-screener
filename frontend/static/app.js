@@ -259,9 +259,9 @@ let sortKey='final_score', sortDir=-1;
      method    - how the scores work
    Moving to another page clears whatever was picked on the last one, so a theme
    chosen on Themes never quietly narrows what Screens shows. */
-const VIEWS=['overview','companies','company','themes','market','filters','gallery','reports','rescal','ipor','sectors','sstrength','deals','news','method'];
+const VIEWS=['overview','companies','company','themes','market','filters','gallery','reports','rescal','rpreview','ipor','sectors','sstrength','deals','news','method'];
 const NAV={'overview-link':'overview','companies-link':'companies','market-link':'market',
-           'filters-link':'filters','gallery-link':'gallery','reports-link':'reports','rescal-link':'rescal','ipor-link':'ipor','sectors-link':'sectors','sstrength-link':'sstrength','deals-link':'deals','news-link':'news'};
+           'filters-link':'filters','gallery-link':'gallery','reports-link':'reports','rescal-link':'rescal','rpv-link':'rpreview','ipor-link':'ipor','sectors-link':'sectors','sstrength-link':'sstrength','deals-link':'deals','news-link':'news'};
 const LENSES=['overhang','heavycap','guide15','guideany','turn','debtfix','caputil','pivot','haslens','ipo','asme','auto'];
 const TILE_LABEL={all:'Companies on the board',overhang:'High P/E + heavy CWIP',guide15:'Management guides > 15%',
                   turn:'PAT turned positive',debtfix:'Debt restructuring + turning profitable',
@@ -298,6 +298,7 @@ function setView(v, opts){
   if(VIEW==='filters'){ flWireTabs(); if(FL.tab==='movers') openMovers(); }
   if(VIEW==='deals') openDeals();
   if(VIEW==='rescal') openResCal();
+  if(VIEW==='rpreview'){ const pt=new URLSearchParams(location.hash.slice(1)).get('pt'); if(pt) RPV.tab=pt; openRPreview(); }
   if(VIEW==='companies') openCompanies();
   if(VIEW==='sstrength') openSStrength();
   if(VIEW==='company') coPageRender();
@@ -1423,6 +1424,7 @@ function syncURL(){
   if(VIEW==='sectors' && SC.slug){ p.set('s',SC.slug); if(SC.edition) p.set('se',SC.edition); }
   if(VIEW==='sstrength'){ if(SS.slug) p.set('ss',SS.slug); if(SS.sel!=='r3') p.set('sw',SS.sel); }
   if(VIEW==='ipor' && IPR.symbol) p.set('ip',IPR.symbol);
+  if(VIEW==='rpreview' && RPV.tab!=='upcoming') p.set('pt',RPV.tab);
   if(VIEW==='deals' && DL.tab && DL.tab!=='deals') p.set('dt',DL.tab);
   if(VIEW==='company' && CO.code){ p.set('c',CO.code); if(CO.tab!=='overview') p.set('ct',CO.tab); }
   if(VIEW==='reports' && RP.code){ p.set('r',RP.code); if(DR.period) p.set('rp',DR.period); if(DR.tab==='board') p.set('rt','board'); }
@@ -6599,6 +6601,102 @@ function sscDraw(){
 }
 window.addEventListener('resize', ()=>{ clearTimeout(SSC.rtl); SSC.rtl=setTimeout(()=>{ if(VIEW==='sstrength'){ const b=document.getElementById('ss-body'); if(b){ ssiWire(b); ssbhWire(b); } } },220); });
 window.addEventListener('resize', ()=>{ clearTimeout(SSC.rt); SSC.rt=setTimeout(()=>{ if(document.getElementById('ssc-box')) sscDraw(); },200); });
+
+
+/* ==================================================================
+   Results Preview -- app/results_preview.py: for companies reporting in the next three weeks, the chance
+   growth speeds up and profit rises, an expected growth figure and the reasons; a scorecard that grades
+   every prediction once the result is out; and the walk-forward backtest. A preview, never a buy list. */
+const RPV={data:null, tab:'upcoming', open:null, q:''};
+async function openRPreview(){
+  const body=document.getElementById('rpv-body');
+  if(!RPV.data){
+    body.innerHTML='<p class="view-hint">Loading…</p>';
+    try{ RPV.data=await fetchJSON('/api/results-preview'); }catch(e){ RPV.data=null; }
+    if(!RPV.data || !RPV.data.asof){ body.innerHTML='<p class="view-hint">The first preview is built by the nightly run.</p>'; return; }
+  }
+  rpvRender();
+}
+const rpvPct=p=>p==null?'—':Math.round(p*100)+'%';
+/* a probability as a small bar centred on 50% -- green to the right (likely), red to the left */
+function rpvBar(p){
+  if(p==null) return '—';
+  const v=Math.round(p*100), w=Math.abs(v-50), left=v>=50?50:v;
+  return `<span class="rpv-bar" title="${v}% chance"><i style="left:${left}%;width:${w}%" class="${v>=50?'up':'dn'}"></i><b class="mid"></b></span><span class="rpv-pv ${v>=60?'ov-up':v<=40?'ov-dn':''}">${v}%</span>`;
+}
+function rpvVerdict(r){
+  const a=r.p_accel, pr=r.p_profit;
+  if(a>=.6 && pr>=.6) return ['Likely strong','up'];
+  if(a<=.4 && pr<=.4) return ['Likely weak','dn'];
+  if(pr>=.65) return ['Profit likely up','up'];
+  if(pr<=.35) return ['Profit at risk','dn'];
+  if(a>=.6) return ['Growth may speed up','up'];
+  if(a<=.4) return ['Growth may slow','dn'];
+  return ['No clear call',''];
+}
+function rpvRender(){
+  const d=RPV.data, body=document.getElementById('rpv-body'), b=d.backtest||{}, sc=d.scorecard||{};
+  document.getElementById('rpv-asof').textContent=`Updated ${rcDayLong(d.asof)}`;
+  const tabs=[['upcoming',`Upcoming results <small>${(d.upcoming||[]).length}</small>`],['scorecard',`Scorecard <small>${(sc.rows||[]).length}</small>`],['backtest','Backtest']];
+  const bAcc=b.accel||{}, bPro=b.profit||{};
+  const strip=`<div class="rpv-strip">
+      <div><span>Profit up/down, backtest</span><b>${bPro.hit!=null?bPro.hit+'%':'—'}</b><small>right · vs ${bPro.always_majority??'—'}% by always guessing the usual</small></div>
+      <div><span>Growth faster/slower, backtest</span><b>${bAcc.hit!=null?bAcc.hit+'%':'—'}</b><small>right · vs ${bAcc.always_majority??'—'}% by always guessing the usual</small></div>
+      <div><span>Live scorecard</span><b>${(sc.profit||{}).n?((sc.profit||{}).hit+'%'):'—'}</b><small>${(sc.profit||{}).n?`profit calls right, ${sc.profit.n} graded`:`${d.pending||0} predictions waiting for results`}</small></div>
+    </div>`;
+  let html=strip+`<div class="dl-tabs" role="tablist">${tabs.map(([k,l])=>`<button class="dl-tab${RPV.tab===k?' on':''}" type="button" data-rpvt="${k}" role="tab" aria-selected="${RPV.tab===k}">${l}</button>`).join('')}</div>`;
+  if(RPV.tab==='upcoming') html+=rpvUpcoming(d);
+  else if(RPV.tab==='scorecard') html+=rpvScorecard(sc, d);
+  else html+=rpvBacktest(b, d);
+  html+=`<p class="caveat">A research preview, not advice or a buy list. It reads only what was public before each quarter ended — the last four quarters' results, management's guidance on earnings calls, new-capacity and order-win filings (order values read from the filings) and margins — and is checked every night against what companies then reported. Backtests of order wins, sector breadth and this preview found no dependable trading edge on their own.</p>`;
+  body.innerHTML=html;
+  body.querySelectorAll('[data-rpvt]').forEach(x=>x.onclick=()=>{ RPV.tab=x.dataset.rpvt; rpvRender(); syncURL(); });
+  body.querySelectorAll('[data-rpvo]').forEach(x=>x.onclick=e=>{ if(e.target.closest('a')) return; RPV.open = RPV.open===x.dataset.rpvo ? null : x.dataset.rpvo; rpvRender(); });
+  const q=document.getElementById('rpv-q'); if(q) q.oninput=()=>{ clearTimeout(RPV.t); RPV.t=setTimeout(()=>{ RPV.q=q.value.trim().toLowerCase(); rpvRender(); const n=document.getElementById('rpv-q'); n.focus(); n.setSelectionRange(n.value.length,n.value.length); },150); };
+  body.querySelectorAll('[data-co]').forEach(a=>a.onclick=e=>{ e.preventDefault(); e.stopPropagation(); openCompanyPage(a.dataset.co); });
+}
+function rpvUpcoming(d){
+  const rows=(d.upcoming||[]).filter(r=>!RPV.q || (r.name+' '+(r.symbol||'')).toLowerCase().includes(RPV.q));
+  if(!(d.upcoming||[]).length) return '<p class="view-hint">No board company is due to report in the next three weeks.</p>';
+  return `<div class="mv-toolbar"><input id="rpv-q" class="gal-search" type="search" placeholder="Search company" value="${ea(RPV.q)}" autocomplete="off"></div>
+    <div class="mv-tablewrap"><table class="mv-table rpv-table"><thead><tr><th>Result</th><th>Company</th><th class="n">Last quarter<small>sales YoY</small></th>
+      <th>Profit up YoY?</th><th>Growth faster?</th><th>Call</th></tr></thead><tbody>
+    ${rows.map(r=>{ const [v,tone]=rpvVerdict(r), k=r.code+'|'+r.quarter, open=RPV.open===k;
+      return `<tr class="rpv-row${open?' open':''}" data-rpvo="${ea(k)}"><td><b>${esc(rcDayShort(r.date))}</b><small>${esc(r.quarter)} · ${r.status==='confirmed'?'confirmed':'expected'}</small></td>
+        <td><a href="#" data-co="${ea(r.code)}" class="rpv-co"><b class="mv-tick">${esc(r.symbol||r.code)}</b></a><span class="mv-name">${esc(r.name)}</span></td>
+        <td class="n">${ssSigned(r.last_g,1)}</td>
+        <td>${rpvBar(r.p_profit)}</td><td>${rpvBar(r.p_accel)}</td>
+        <td><span class="rpv-call ${tone}">${esc(v)}</span><small>${esc(r.confidence)} confidence · ${open?'hide':'why'} ▾</small></td></tr>
+        ${open?`<tr class="rpv-why"><td colspan="6"><ul>${r.drivers.map(x=>`<li class="${x.tone}"><span>${esc(x.text)}</span>${x.quote?`<q>${esc(x.quote)}</q>`:''}</li>`).join('')}</ul></td></tr>`:''}`; }).join('')}
+    </tbody></table></div>
+    <p class="cp-sub" style="margin-top:8px">“Growth faster?” compares this quarter's year-on-year sales growth with last quarter's. Click a row for the reasons. Confidence is how far the stronger of the two chances is from 50/50.</p>`;
+}
+function rpvScorecard(sc, d){
+  const rows=sc.rows||[];
+  if(!rows.length) return `<p class="view-hint">Every prediction is saved and graded here once that company's result is out — ${d.pending||0} predictions are waiting for their results now. The backtest tab shows how the same model did on past quarters.</p>`;
+  const ok=(p,y)=>y==null?'—':((p>=.5)===!!y?'<span class="ov-up">✓</span>':'<span class="ov-dn">✗</span>');
+  return `<div class="mv-tablewrap"><table class="mv-table"><thead><tr><th>Result</th><th>Company</th><th class="n">Last quarter<small>sales YoY</small></th><th class="n">This quarter<small>sales YoY</small></th><th>Profit up?</th><th>Growth faster?</th><th class="n">Stock vs market<small>day before → after</small></th></tr></thead><tbody>
+    ${rows.map(r=>`<tr><td>${esc(rcDayShort(r.date))}<small>${esc(r.quarter)}</small></td><td><b class="mv-tick">${esc(r.symbol||r.code)}</b><span class="mv-name">${esc(r.name)}</span></td>
+      <td class="n">${ssSigned(r.last_g,1)}</td><td class="n"><b>${ssSigned(r.actual_g,1)}</b></td>
+      <td>${rpvPct(r.p_profit)} ${ok(r.p_profit,r.profit_up)}</td><td>${rpvPct(r.p_accel)} ${ok(r.p_accel,r.accel)}</td><td class="n">${ssPct(r.react,2)}</td></tr>`).join('')}</tbody></table></div>`;
+}
+function rpvBacktest(b, d){
+  if(!b.n) return '<p class="view-hint">The backtest runs with the nightly build.</p>';
+  const cal=s=>`<table class="mv-table rpv-cal"><thead><tr><th>Predicted chance</th><th class="n">Cases</th><th class="n">Actually happened</th></tr></thead><tbody>${(s.buckets||[]).map(x=>`<tr><td>${x.range}</td><td class="n">${fmtI(x.n)}</td><td class="n"><b>${x.actual}%</b></td></tr>`).join('')}</tbody></table>`;
+  const trade=t=>`<table class="mv-table"><thead><tr><th>Stocks ranked by the predicted chance</th><th class="n">Trades</th><th class="n">5 days before → 3 after<small>median vs market</small></th><th class="n">Beat the market</th><th class="n">Result-day reaction<small>median vs market</small></th></tr></thead><tbody>
+    ${t.map(x=>`<tr><td>${esc(x.group)}</td><td class="n">${fmtI(x.n)}</td><td class="n">${ssPct(x.swing_median,2)}</td><td class="n">${x.swing_beat}%</td><td class="n">${ssPct(x.react_median,2)}</td></tr>`).join('')}</tbody></table>`;
+  const ge=b.growth_error||{};
+  return `<div class="rpv-bt">
+    <p class="cp-sub">Walk-forward: each quarter (${esc((b.quarters||[]).join(', '))}) was predicted by a model fitted only on the quarters reported before it — ${fmtI(b.n)} company-quarters. ${fmtI(d.inputs?.order_values||0)} order values read from filings; guidance for ${fmtI(d.inputs?.with_guidance||0)} companies.</p>
+    <div class="rpv-grid">
+      <div class="cp-card"><h3>Profit up vs a year ago</h3><p class="rpv-big">${b.profit.hit}%<small> right</small></p><p class="cp-sub">Always guessing the usual outcome: ${b.profit.always_majority}%. Profit rose in ${b.profit.base}% of cases.</p>${cal(b.profit)}</div>
+      <div class="cp-card"><h3>Growth faster than last quarter</h3><p class="rpv-big">${b.accel.hit}%<small> right</small></p><p class="cp-sub">Always guessing the usual outcome: ${b.accel.always_majority}%. Growth sped up in ${b.accel.base}% of cases.</p>${cal(b.accel)}</div>
+      <div class="cp-card"><h3>A growth number?</h3><p class="rpv-big">Not shown</p><p class="cp-sub">Predicting the exact sales growth figure missed by ±${ge.model_median??'—'} pts — no better than simply repeating last quarter's growth (±${ge.naive_median??'—'} pts), so the page shows the two chances, which do beat guessing, instead of a growth number.</p></div>
+    </div>
+    <div class="cp-card"><h3>Would it have paid? — by chance of profit up</h3>${trade(b.trade_profit||[])}
+      <p class="cp-sub" style="margin-top:6px">All result trades together: median ${ssPct((b.trade_all||{}).swing_median,2)} vs the market (${fmtI((b.trade_all||{}).n||0)} trades). The board is made of stocks picked for doing well, which lifts every row — read the gap between the top and bottom thirds, not the level.</p></div>
+    <div class="cp-card"><h3>Would it have paid? — by chance of faster growth</h3>${trade(b.trade_accel||[])}</div></div>`;
+}
 
 /* ---------- Sector Strength: how broadly each tracked sector is moving ----------
    Every listed company (NSE + BSE, main board and SME) in five sectors against the Nifty 500 (the index's
