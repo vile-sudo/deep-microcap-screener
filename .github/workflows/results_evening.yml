@@ -7,16 +7,22 @@ name: Results evening read
 # and the bell's "Overnight result read" alerts are ready the evening a company reports, not only after
 # daily.yml's 02:00 IST run (which repeats all of this).
 #
-# Two times, as deals_evening.yml does: 21:30 IST catches the 4-8 PM filings, 23:30 IST the late ones (and
-# covers a dropped schedule). Commits use GITHUB_TOKEN, which never re-triggers workflows.
+# Several times through the night (see the schedule): the first catches the 4-8 PM filings, later ones the late
+# filings and any run GitHub delayed or dropped. Commits use GITHUB_TOKEN, which never re-triggers workflows.
 
 permissions:
   contents: write
 
 on:
+  # Five runs so the read is there before the 9:15 AM open even when GitHub starts scheduled jobs hours late
+  # (it often does; off-the-hour minutes are delayed less). Each run is cheap and only commits what changed;
+  # the 07:47 run is the last catch-up before the open.
   schedule:
-    - cron: '0 16 * * *'       # 21:30 IST
-    - cron: '0 18 * * *'       # 23:30 IST
+    - cron: '17 16 * * *'      # 21:47 IST
+    - cron: '47 17 * * *'      # 23:17 IST
+    - cron: '17 20 * * *'      # 01:47 IST
+    - cron: '47 23 * * *'      # 05:17 IST
+    - cron: '17 2 * * *'       # 07:47 IST
   workflow_dispatch:
 
 concurrency:

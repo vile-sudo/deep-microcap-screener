@@ -68,7 +68,7 @@ permissions:
 
 on:
   schedule:
-    - cron: '30 20 * * *'      # 02:00 IST, every day (20:30 UTC the previous day)
+    - cron: '47 18 * * *'   # 00:17 IST -- moved up from 02:00 so GitHub's usual 2-4 h start delay still finishes well before the 9:15 open
   workflow_dispatch:
     inputs:
       max_add:
