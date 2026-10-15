@@ -6768,19 +6768,24 @@ function rpvPead(){
   </div>`;
   const buy=(d.to_buy||[]), hold=(d.holdings||[]), watch=(d.watch||[]);
   const M=d.morning||[], E=d.early||{}, ef=E.fifths||[], e5=ef.find(x=>x.sq===5)||{}, e1=ef.find(x=>x.sq===1)||{};
-  const mcall={buy:['Buy at the open','al-dbuy'],avoid:['Avoid','al-dsell'],none:['No signal','']};
+  const mcall={buy:['Buy at the open','al-dbuy'],avoid:['Avoid','al-dsell'],none:['No signal',''],track:['Watch the reaction','al-vcp']};
   const mrow=r=>`<tr><td>${r.code?`<a href="#" data-co="${ea(r.code)}" class="rpv-co"><b class="mv-tick">${esc(r.symbol)}</b></a>`:`<b class="mv-tick">${esc(r.symbol)}</b>`}<span class="mv-name">${esc(r.name)}</span><small>${esc(r.sector||'')}</small></td>
       <td><span class="al-chip ${mcall[r.call][1]}">${mcall[r.call][0]}</span>${r.cheap?'<small>under ₹100 — skipped</small>':''}</td>
       <td>${esc(r.q)}<small>${esc(rpvFiled(r.filed))}</small></td>
       <td class="n"><b>${r.sue>0?'+':''}${fmt(r.sue,2)}</b><small>fifth ${r.sq} of 5</small></td>
       <td class="n">${r.np!=null?fmt(r.np,1):'—'} cr<small>expected ${r.exp!=null?fmt(r.exp,1):'—'} cr</small></td>
       <td class="n">${r.price!=null?'₹'+fmt(r.price,2):'—'}</td>
-      <td>${r.sq===5&&!r.cheap?`<small>Full strategy: also buy on day +2 if the 3-day move reaches +${r.ear_needed??'—'}% vs Nifty 500</small>`:''}</td></tr>`;
-  const mBuy=M.filter(r=>r.call==='buy'), mAvoid=M.filter(r=>r.call==='avoid'), mNone=M.filter(r=>r.call==='none');
-  const morning=`<div class="cp-card rpp-morning"><h3>Before the open — ${esc(rpvDate(d.next_session))} <small class="cp-sub">${M.length} results filed since the last close · updated ${esc((d.generated_at||'').replace('T',' ').slice(0,16))} IST</small></h3>
+      <td>${r.reacted?(r.call==='track'?`<small>Reacted ${esc(rcDayShort(r.reaction_day))} (filed in market hours). Move so far ${r.ear_sofar==null?'—':ssSigned(r.ear_sofar,2)} vs the +${r.ear_needed??'—'}% needed — ${r.on_track?'<b class="ov-up">on track</b>':'not there yet'}; the full strategy buys on ${esc(rcDayShort(r.buy_day))} if the 3-day move holds above it.</small>`:`<small>Reacted ${esc(rcDayShort(r.reaction_day))} (filed in market hours).</small>`)
+        :(r.sq===5&&!r.cheap?`<small>Full strategy: also buy on day +2 if the 3-day move reaches +${r.ear_needed??'—'}% vs Nifty 500</small>`:'')}</td></tr>`;
+  const M0=M.filter(r=>!r.reacted), M1=M.filter(r=>r.reacted);
+  const mBuy=M0.filter(r=>r.call==='buy'), mAvoid=M0.filter(r=>r.call==='avoid'), mNone=M0.filter(r=>r.call==='none');
+  const rOrder={track:0,avoid:1,none:2}, M1s=M1.slice().sort((a,b)=>rOrder[a.call]-rOrder[b.call]||b.sue-a.sue);
+  const morning=`<div class="cp-card rpp-morning"><h3>Before the open — ${esc(rpvDate(d.next_session))} <small class="cp-sub">${M0.length} results filed since the last close · updated ${esc((d.generated_at||'').replace('T',' ').slice(0,16))} IST</small></h3>
     <p class="cp-sub">Results filed after the close react in the next session. Each is scored overnight on its profit surprise (SUE) against this season's cut-offs: <b>top fifth → buy at the 9:15 open</b> and hold 60 sessions (the early version of the strategy), <b>bottom fifth → avoid</b>. Backtest, 3 years: top fifth ${e5.win??'—'}% closed higher after 60 sessions, average ${ssSigned(e5.avg,2)} (${ssSigned(e5.xs,2)} vs Nifty 500); bottom fifth ${e1.win??'—'}%, average ${ssSigned(e1.avg,2)} (${ssSigned(e1.xs,2)} vs Nifty 500).</p>
-    ${M.length?`<div class="mv-tablewrap"><table class="mv-table rpv-table"><thead><tr><th>Company</th><th>Call</th><th>Result</th><th class="n">SUE<small>profit surprise</small></th><th class="n">Net profit<small>vs expected</small></th><th class="n">Last close</th><th></th></tr></thead><tbody>
-      ${[...mBuy,...mAvoid,...mNone].map(mrow).join('')}</tbody></table></div>`:'<p class="view-hint">No results filed since the last close have numbers on file yet — the overnight runs (about 9:45 PM, 11:15 PM, 1:45 AM, 5:15 AM and 7:45 AM IST) fill this in before the open.</p>'}</div>`;
+    ${M0.length?`<div class="mv-tablewrap"><table class="mv-table rpv-table"><thead><tr><th>Company</th><th>Call</th><th>Result</th><th class="n">SUE<small>profit surprise</small></th><th class="n">Net profit<small>vs expected</small></th><th class="n">Last close</th><th></th></tr></thead><tbody>
+      ${[...mBuy,...mAvoid,...mNone].map(mrow).join('')}</tbody></table></div>`:'<p class="view-hint">No results filed since the last close have numbers on file yet — the overnight runs (about 9:45 PM, 11:15 PM, 1:45 AM, 5:15 AM and 7:45 AM IST) fill this in before the open.</p>'}
+    ${M1.length?`<h4 class="rpp-sub">Already reacted — filed during market hours (${M1.length})</h4><div class="mv-tablewrap"><table class="mv-table rpv-table"><thead><tr><th>Company</th><th>Call</th><th>Result</th><th class="n">SUE<small>profit surprise</small></th><th class="n">Net profit<small>vs expected</small></th><th class="n">Last close</th><th></th></tr></thead><tbody>
+      ${M1s.map(mrow).join('')}</tbody></table></div>`:''}</div>`;
   const earlyBt=ef.length?`<div class="cp-card"><h3>Early version — decided before 9 AM on the profit surprise alone, bought at the reaction-day open, held 60 sessions</h3>
     <table class="mv-table rpv-t"><thead><tr><th>SUE fifth</th><th class="n">Trades</th><th class="n">Win rate</th><th class="n">Average</th><th class="n">Median</th><th class="n">vs Nifty 500</th></tr></thead><tbody>
     ${ef.map(x=>`<tr${x.sq===5?' class="rpp-hl"':''}><td>${x.sq===5?'Top fifth — buy':x.sq===1?'Bottom fifth — avoid':'Fifth '+x.sq}</td><td class="n">${fmtI(x.n||0)}</td><td class="n">${x.win??'—'}%</td><td class="n">${sg(x.avg)}</td><td class="n">${sg(x.median)}</td><td class="n">${sg(x.xs)}</td></tr>`).join('')}</tbody></table>

@@ -226,6 +226,7 @@ def build(mk, ix, rows, today: date) -> dict:
                 ev["stage"] = "reacting"
                 r0, b0 = (px[i][1] / px[i - 2][1] - 1) * 100, bm.ret(px[i - 2][0], px[i][0])
                 ev["ear_sofar"] = r0 - b0 if b0 is not None else None
+                ev["px_last"] = px[-1][1]
                 events.append(ev)
                 continue
             b3 = bm.ret(px[i - 2][0], px[i + 1][0])
@@ -270,7 +271,6 @@ def build(mk, ix, rows, today: date) -> dict:
             prev = {"q": q, "sue": _cuts([ev["sue"] for ev in elig]), "ear": _cuts([ev["ear"] for ev in elig])}
     current_cuts = {"from": prev["q"], "sue": _r(prev["sue"][3]), "ear": _r(prev["ear"][3])} if prev else None
 
-    build.events = events          # kept for ad-hoc analysis
     traded = [ev for ev in events if ev.get("signal") and ev.get("entry")]
     done = [ev for ev in traded if ev["stage"] == "closed"]
 
@@ -346,12 +346,22 @@ def build(mk, ix, rows, today: date) -> dict:
     nxt = _next_session(now)
     morning = []
     for ev in events:
-        if ev["stage"] != "reacting" or not ev.get("sq") or _reaction_session(ev["filed"]) != nxt:
+        if ev["stage"] != "reacting" or not ev.get("sq"):
             continue
+        rs = _reaction_session(ev["filed"])
+        need = _r((used.get(ev["q"]) or {}).get("ear", [None] * 4)[3])
         cheap = (ev.get("px_last") or 0) < MIN_PRICE
-        call = "buy" if ev["sq"] == 5 and not cheap else "avoid" if ev["sq"] == 1 else "none"
-        morning.append({**row(ev), "call": call, "cheap": cheap, "price": _r(ev.get("px_last")),
-                        "ear_needed": _r((used.get(ev["q"]) or {}).get("ear", [None] * 4)[3])})
+        if rs == nxt:
+            call = "buy" if ev["sq"] == 5 and not cheap else "avoid" if ev["sq"] == 1 else "none"
+            morning.append({**row(ev), "call": call, "cheap": cheap, "price": _r(ev.get("px_last")), "ear_needed": need, "reacted": False})
+        elif rs < nxt and (nxt - rs).days <= 5:
+            # filed during market hours: it already reacted, too late for the early version; the full strategy
+            # decides after the next close (3-day move vs the cut-off) and buys the session after
+            on = ev["sq"] == 5 and not cheap and ev.get("ear_sofar") is not None and need is not None and ev["ear_sofar"] >= need
+            call = "track" if ev["sq"] == 5 and not cheap else "avoid" if ev["sq"] == 1 else "none"
+            morning.append({**row(ev), "call": call, "cheap": cheap, "price": _r(ev.get("px_last")), "ear_needed": need, "reacted": True,
+                            "ear_sofar": _r(ev.get("ear_sofar")), "on_track": on, "reaction_day": rs.isoformat(),
+                            "buy_day": _next_weekday(_next_weekday(rs)).isoformat()})
     morning.sort(key=lambda x: -(x["sue"] or 0))
     early_g = [ev for ev in events if ev.get("e_ret") is not None and ev.get("sq") and (ev.get("e_px") or 0) >= MIN_PRICE]
     early_hold = [ev for ev in events if ev.get("sq") == 5 and ev.get("o0") and ev.get("e_ret") is None and (ev.get("e_px") or 0) >= MIN_PRICE
