@@ -51,7 +51,8 @@ COMMOD_FILE = OUT_DIR / "commodities.json"
 ALERTS_FILE = OUT_DIR / "alerts.json"
 ALL_FILE = OUT_DIR / "all.json"
 NAMES_FILE = OUT_DIR / "names.json"
-POST_LOG = OUT_DIR / "overnight_reads.json"     # every overnight read, graded once the next session is in            # full company names (NSE's equity list), refreshed weekly                # every company's next-result call -- the "Check a stock" box          # merged into the India Alerts bell by routers/alerts.load()
+POST_LOG = OUT_DIR / "overnight_reads.json"
+BT_ROWS_FILE = OUT_DIR / "backtest_rows.json"   # every stock behind the backtest tables (loaded on demand)     # every overnight read, graded once the next session is in            # full company names (NSE's equity list), refreshed weekly                # every company's next-result call -- the "Check a stock" box          # merged into the India Alerts bell by routers/alerts.load()
 UPCOMING_DAYS = 21
 MON = {m: i for i, m in enumerate(["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"], 1)}
 NAN = float("nan")
@@ -853,7 +854,7 @@ def run() -> dict:
         ms = {t: fit(train, t) for t in ("accel", "profit_up", "react_up")}
         pa, pp, pr = predict(ms["accel"], test), predict(ms["profit_up"], test), predict(ms["react_up"], test)
         for r, a, p, x in zip(test, pa, pp, pr):
-            bt.append({**{k: r.get(k) for k in ("key", "q", "accel", "profit_up", "react", "react_up", "swing", "post20", "post40")},
+            bt.append({**{k: r.get(k) for k in ("key", "q", "accel", "profit_up", "react", "react_up", "swing", "post20", "post40", "rday", "rd", "g")},
                        "p_accel": a, "p_profit": p, "p_react": x, "board": bool(mk.ent[r["key"]].get("code")),
                        "ret20": r["f"]["ret20"], "hi1m": r["f"]["hi1m"]})
     tr = [r for r in bt if r.get("react") is not None]
@@ -1035,6 +1036,19 @@ def run() -> dict:
                "base": round(100 * sum(r["react"] > 0 for _, r in pres) / len(pres), 1) if pres else None,
                "pre_auc": backtest["react"].get("auc"), "fifths": post_fifths(pres), "bins": pdist}
     backtest["post"] = post_bt
+    # the stocks behind every backtest table: what was predicted (walk-forward, before it happened) and what happened
+    def _r(v, n=2):
+        return None if v is None or (isinstance(v, float) and math.isnan(v)) else round(v, n)
+    nm = lambda k: (mk.ent[k]["symbol"], mk.ent[k]["name"], bool(mk.ent[k].get("code")))
+    pre_rows = [{"s": nm(r["key"])[0], "n": nm(r["key"])[1], "b": nm(r["key"])[2], "q": r["q"], "d": r.get("rday") or r.get("rd"),
+                 "pp": _r(r["p_profit"], 3), "pa": _r(r["p_accel"], 3), "pr": _r(r["p_react"], 3),
+                 "pu": r.get("profit_up"), "ac": r.get("accel"), "g": _r(r.get("g"), 1), "mv": _r(r.get("react")), "sw": _r(r.get("swing"))}
+                for r in bt]
+    post_rows = [{"s": nm(r["key"])[0], "n": nm(r["key"])[1], "b": nm(r["key"])[2], "q": r["q"], "d": r.get("rday"), "f": r.get("filed"),
+                  "p": _r(p, 3), "g": _r(r["a"].get("_g"), 1), "pg": _r(r["a"].get("_pg"), 1), "mv": _r(r.get("react")),
+                  "gap": _r(r.get("gap")), "oc": _r(r.get("oc")), "o3": _r(r.get("o3"))} for p, r in pres]
+    BT_ROWS_FILE.write_text(json.dumps({"asof": today.isoformat(), "pre": pre_rows, "post": post_rows}, separators=(",", ":"),
+                                       ensure_ascii=False), encoding="utf-8")
     pm = fit_post(after_rows)
     reported = []
     since3 = (today - timedelta(days=4)).isoformat()

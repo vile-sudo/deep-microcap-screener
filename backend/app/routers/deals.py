@@ -173,6 +173,12 @@ def results_preview(request: Request):
 _RPV_ALL: dict = {"stamp": None, "doc": None}
 
 
+@router.get("/api/results-preview/backtest-rows")
+def results_preview_backtest_rows(request: Request):
+    """Every company-quarter behind Results Preview's backtest tables: the walk-forward prediction and the outcome."""
+    return file_response(request, BASE_DIR / "data" / "results_preview" / "backtest_rows.json", {"pre": [], "post": []})
+
+
 @router.get("/api/results-preview/stock")
 def results_preview_stock(q: str = Query(..., min_length=1, max_length=60)):
     """Results Preview's "Check a stock": the next-result call for companies matching q (symbol or name)."""

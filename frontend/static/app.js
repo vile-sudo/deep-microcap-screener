@@ -6631,6 +6631,7 @@ window.addEventListener('resize', ()=>{ clearTimeout(SSC.rt); SSC.rt=setTimeout(
    Results Preview -- app/results_preview.py: for companies reporting in the next three weeks, the chance
    growth speeds up and profit rises, an expected growth figure and the reasons; a scorecard that grades
    every prediction once the result is out; and the walk-forward backtest. A preview, never a buy list. */
+const RPVB={rows:null, busy:false, test:'post', group:'', q:'', qtr:'', sort:'score', page:1};
 const RPV={data:null, tab:new URLSearchParams(location.hash.slice(1)).get('pt')||'upcoming', open:null, q:'', scope:'board', live:null, rd:{side:'', q:'', scope:'all', sort:'date'}, chk:{q:'', res:null, busy:false}};
 async function openRPreview(){
   const body=document.getElementById('rpv-body');
@@ -6700,7 +6701,7 @@ function rpvRender(){
   body.querySelectorAll('[data-rpvo]').forEach(x=>x.onclick=e=>{ if(e.target.closest('a')) return; RPV.open = RPV.open===x.dataset.rpvo ? null : x.dataset.rpvo; rpvRender(); });
   const q=document.getElementById('rpv-q'); if(q) q.oninput=()=>{ clearTimeout(RPV.t); RPV.t=setTimeout(()=>{ RPV.q=q.value.trim().toLowerCase(); rpvRender(); const n=document.getElementById('rpv-q'); n.focus(); n.setSelectionRange(n.value.length,n.value.length); },150); };
   body.querySelectorAll('[data-co]').forEach(a=>a.onclick=e=>{ e.preventDefault(); e.stopPropagation(); openCompanyPage(a.dataset.co); });
-  rpvWireResDay(body); rpvWireCheck(body);
+  rpvWireResDay(body); rpvWireCheck(body); rpvWireBt(body);
 }
 /* ---- the overnight read: results filed out of market hours, scored on the actual numbers before the next open */
 function rpvReported(d){
@@ -6882,8 +6883,61 @@ function rpvBacktest(b, d){
       <table class="mv-table rpv-t"><thead><tr><th>Results ranked by the read</th><th class="n">Cases</th><th class="n">Closed up<small>next session</small></th><th class="n">Opening gap<small>median</small></th><th class="n">Open → close<small>median</small></th><th class="n">Open → 3 sessions<small>median</small></th></tr></thead><tbody>
       ${b.post.fifths.map(x=>`<tr><td>${esc(x.group)}</td><td class="n">${fmtI(x.n)}</td><td class="n">${x.up}%</td><td class="n">${ssSigned(x.gap,2)}</td><td class="n">${ssSigned(x.oc,2)}</td><td class="n">${ssSigned(x.o3,2)}</td></tr>`).join('')}</tbody></table>
       <p class="cp-sub" style="margin-top:6px">The stock's own moves (not vs the market). The edge is real but sits mostly in the opening gap — after the open, strong results tended to fade and weak ones kept falling.</p></div>`:''}
+    ${rpvBtStocks()}
     <div class="cp-card"><h3>The chart going in — and the result-day move</h3>${rpvTable((b.chart_setup||{}).rows, 'Before the result', true)}
       <p class="cp-sub" style="margin-top:6px">What the price already says about expectations, against how the stock itself moved on its result day.</p></div></div>`;
+}
+/* ---- the stocks behind the backtest: every company-quarter, the walk-forward call and what happened.
+   Groups are ranked within each quarter, the same way the tables above are built. */
+const RPVB_TESTS={post:['Overnight read (after the numbers)','p',5],profit:['Profit up vs a year ago','pp',3],accel:['Growth faster than last quarter','pa',3],react:['Closes up on result day (before the numbers)','pr',3]};
+function rpvBtGroups(rows, key, n){
+  const byq={}; rows.forEach(r=>{ if(r[key]!=null) (byq[r.q]=byq[r.q]||[]).push(r); });
+  Object.values(byq).forEach(g=>{ g.sort((a,b)=>a[key]-b[key]); g.forEach((r,i)=>{ r._grp=Math.min(n-1,Math.floor(i*n/g.length)); }); });
+}
+function rpvBtStocks(){
+  const B=RPVB;
+  if(!B.rows) return `<div class="cp-card" id="rpvb"><h3>The stocks in the backtest</h3><p class="cp-sub">Every company and quarter the backtest was run on — what was predicted (before it happened) and what really happened.</p>
+      <button type="button" class="btn" id="rpvb-load">${B.busy?'Loading…':'Show the stocks'}</button></div>`;
+  const [label,key,n]=RPVB_TESTS[B.test], post=B.test==='post';
+  const src=(post?B.rows.post:B.rows.pre).filter(r=>r[key]!=null);
+  rpvBtGroups(src,key,n);
+  const gname=n===5?['Weakest fifth','2nd fifth','Middle fifth','4th fifth','Strongest fifth']:['Bottom third (least likely)','Middle third','Top third (most likely)'];
+  const qtrs=[...new Set(src.map(r=>r.q))].sort((a,b)=>rcQ(b)-rcQ(a));
+  let rows=src.filter(r=>(B.group===''||r._grp===+B.group) && (!B.qtr||r.q===B.qtr) && (!B.q||(r.s+' '+(r.n||'')).toLowerCase().includes(B.q)));
+  const sk={score:(a,b)=>b[key]-a[key], date:(a,b)=>String(b.d||'').localeCompare(String(a.d||'')), move:(a,b)=>(b.mv??-99)-(a.mv??-99), name:(a,b)=>a.s.localeCompare(b.s)}[B.sort];
+  rows=rows.slice().sort(sk);
+  const per=200, pages=Math.max(1,Math.ceil(rows.length/per)); B.page=Math.min(B.page,pages);
+  const shown=rows.slice((B.page-1)*per, B.page*per);
+  const up=rows.filter(r=>r.mv!=null && r.mv>0).length, withMv=rows.filter(r=>r.mv!=null).length;
+  const yes=(v,good)=>v==null?'—':v?`<span class="ov-up">${good}</span>`:`<span class="ov-dn">no</span>`;
+  const sg=(v,d=2)=>v==null?'—':`${v>0?'+':''}${fmt(v,d)}%`;
+  const head = post
+    ? '<th>Result day</th><th>Company</th><th class="n">Read<small>chance it closes up</small></th><th class="n">Sales<small>YoY</small></th><th class="n">Profit<small>YoY</small></th><th class="n">Opening gap</th><th class="n">Open → close</th><th class="n">Day\'s move</th>'
+    : `<th>Result day</th><th>Company</th><th class="n">${esc(label)}<small>predicted chance</small></th><th class="n">Sales<small>YoY</small></th><th>Profit up?</th><th>Growth faster?</th><th class="n">Result-day move</th>`;
+  const body = shown.map(r=>post
+    ? `<tr><td><b>${esc(rpvDate(r.d))}</b><small>${esc(r.q)}${r.f?` · filed ${esc(rpvFiled(r.f).replace(/^filed /,''))}`:''}</small></td><td><b class="mv-tick">${esc(r.s)}</b><span class="mv-name">${esc(r.n||'')}</span></td>
+        <td class="n"><b>${rpvPct(r.p)}</b><small>${esc(gname[r._grp])}</small></td><td class="n">${sg(r.g,1)}</td><td class="n">${sg(r.pg,1)}</td><td class="n">${sg(r.gap)}</td><td class="n">${sg(r.oc)}</td><td class="n">${rpvMove(r.mv)}</td></tr>`
+    : `<tr><td><b>${esc(rpvDate(r.d))}</b><small>${esc(r.q)}</small></td><td><b class="mv-tick">${esc(r.s)}</b><span class="mv-name">${esc(r.n||'')}</span></td>
+        <td class="n"><b>${rpvPct(r[key])}</b><small>${esc(gname[r._grp])}</small></td><td class="n">${sg(r.g,1)}</td><td>${yes(r.pu,'up')}</td><td>${yes(r.ac,'faster')}</td><td class="n">${r.mv==null?'—':rpvMove(r.mv)}</td></tr>`).join('');
+  return `<div class="cp-card" id="rpvb"><h3>The stocks in the backtest</h3>
+    <div class="mv-toolbar rpvb-bar">
+      <select class="gal-select" id="rpvb-test" aria-label="Test">${Object.entries(RPVB_TESTS).map(([k,[l]])=>`<option value="${k}"${B.test===k?' selected':''}>${esc(l)}</option>`).join('')}</select>
+      <select class="gal-select" id="rpvb-group" aria-label="Group"><option value="">Every group</option>${gname.map((g,i)=>`<option value="${i}"${B.group===String(i)?' selected':''}>${esc(g)}</option>`).reverse().join('')}</select>
+      <select class="gal-select" id="rpvb-qtr" aria-label="Quarter"><option value="">Every quarter</option>${qtrs.map(q=>`<option${B.qtr===q?' selected':''}>${esc(q)}</option>`).join('')}</select>
+      <input id="rpvb-q" class="gal-search" type="search" placeholder="Search a company" value="${ea(B.q)}" autocomplete="off">
+      <select class="gal-select" id="rpvb-sort" aria-label="Sort"><option value="score"${B.sort==='score'?' selected':''}>Highest chance first</option><option value="date"${B.sort==='date'?' selected':''}>Newest first</option><option value="move"${B.sort==='move'?' selected':''}>Biggest rise first</option><option value="name"${B.sort==='name'?' selected':''}>A–Z</option></select></div>
+    <p class="cp-sub"><b>${fmtI(rows.length)}</b> company-quarters · ${withMv?`${fmtI(up)} of ${fmtI(withMv)} closed up on their result day (${Math.round(100*up/withMv)}%)`:''}. Each call was made by a model fitted only on quarters reported before it.</p>
+    <div class="mv-tablewrap"><table class="mv-table rpv-table"><thead><tr>${head}</tr></thead><tbody>${body||'<tr><td colspan="8" class="nd">No match.</td></tr>'}</tbody></table></div>
+    ${pages>1?`<div class="dh-more"><button type="button" class="btn" data-rpvbp="-1" ${B.page<=1?'disabled':''}>‹ Previous</button><span class="cp-sub">page ${B.page} of ${pages}</span><button type="button" class="btn" data-rpvbp="1" ${B.page>=pages?'disabled':''}>Next ›</button></div>`:''}</div>`;
+}
+function rcQ(q){ const [m,y]=String(q).split(' '); return (+y)*12+['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'].indexOf(m); }
+function rpvWireBt(body){
+  const B=RPVB, ld=document.getElementById('rpvb-load');
+  if(ld) ld.onclick=async()=>{ B.busy=true; rpvRender(); try{ B.rows=await fetchJSON('/api/results-preview/backtest-rows'); }catch(e){ B.rows={pre:[],post:[]}; } B.busy=false; rpvRender(); document.getElementById('rpvb')?.scrollIntoView({block:'start'}); };
+  const keep=()=>{ rpvRender(); document.getElementById('rpvb')?.scrollIntoView({block:'start'}); };
+  [['rpvb-test','test'],['rpvb-group','group'],['rpvb-qtr','qtr'],['rpvb-sort','sort']].forEach(([id,k])=>{ const el=document.getElementById(id); if(el) el.onchange=()=>{ B[k]=el.value; if(k==='test') B.group=''; B.page=1; keep(); }; });
+  const q=document.getElementById('rpvb-q'); if(q) q.oninput=()=>{ clearTimeout(B.t); B.t=setTimeout(()=>{ B.q=q.value.trim().toLowerCase(); B.page=1; keep(); const n=document.getElementById('rpvb-q'); n.focus(); n.setSelectionRange(n.value.length,n.value.length); },200); };
+  body.querySelectorAll('[data-rpvbp]').forEach(b=>b.onclick=()=>{ B.page+= +b.dataset.rpvbp; keep(); });
 }
 function rpvAfter(b){
   const p=b.pead||[];
