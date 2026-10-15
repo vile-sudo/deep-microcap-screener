@@ -6712,6 +6712,92 @@ function rpvRender(){
   body.querySelectorAll('[data-co]').forEach(a=>a.onclick=e=>{ e.preventDefault(); e.stopPropagation(); openCompanyPage(a.dataset.co); });
   rpvWireResDay(body); rpvWireCheck(body); rpvWireBt(body); rpvWirePead(body);
 }
+/* ---- SRWD SUE and EAR calculators (india_pead_screener's SQLite via /api/pead/calc) */
+const PCALC={q:'', res:null, busy:false, actual:'', sret:'', bret:'', q5:null, q5busy:false};
+const pcQ=d=>{ if(!d) return '—'; const m=+d.slice(5,7), y=+d.slice(0,4); return `${['Mar','Jun','Sep','Dec'][Math.floor((m-1)/3)]} ${y}`; };
+function pcNum(v,dp=2){ return v==null||isNaN(v)?'—':fmt(v,dp); }
+function pcCalc(){
+  const P=PCALC, r=P.res;
+  let body='';
+  if(P.busy) body='<p class="view-hint">Calculating…</p>';
+  else if(r&&r.error) body=`<p class="view-hint">${esc(r.error)}</p>`;
+  else if(r&&r.matches) body=r.matches.length?`<p class="cp-sub">Pick one:</p><div class="pc-matches">${r.matches.map(m=>`<button type="button" class="btn" data-pcpick="${ea(m.symbol)}">${esc(m.symbol)} · ${esc(m.name||'')}</button>`).join('')}</div>`:'<p class="view-hint">No company found (banks, NBFCs, insurers and utilities are outside the strategy).</p>';
+  else if(r&&r.symbol){
+    const f=r.forecast||{}, cut=r.cuts||{}, h=r.history||[], last=h[0]||{}, grp=r.group||{};
+    const metric=(f.metric||last.metric||'net_profit')==='eps'?'EPS (₹)':'Net profit (₹ cr)';
+    const recent=last.announcement_date && (Date.now()-new Date(last.announcement_date))/864e5<=20;
+    // --- SUE calculator: the quarter just reported (if recent), else the upcoming one with a what-if
+    const sueCut=recent&&grp.sue_q5!=null?grp.sue_q5:cut.sue;
+    const exp=recent?last.expected:f.expected, sig=recent?last.sigma:f.sigma, base=recent?null:f.base, dr=recent?last.drift:f.drift;
+    const act=P.actual!==''?parseFloat(P.actual):(recent?last.actual:null);
+    let sue=null; if(act!=null&&!isNaN(act)&&exp!=null&&sig) sue=Math.max(-10,Math.min(10,(act-exp)/sig));
+    if(recent&&P.actual===''&&last.sue!=null) sue=last.sue;
+    const need=exp!=null&&sig&&sueCut!=null?exp+sueCut*sig:null;
+    const sueFinal=recent&&P.actual===''&&last.sue_q!=null;
+    const sueQ5=sueFinal?last.sue_q===5:(sue!=null&&sueCut!=null?sue>=sueCut:null);
+    const sueWhy=recent&&P.actual===''&&last.sue==null?(last.sue_reason||'no SUE'):'';
+    const sueCard=`<div class="pc-panel"><h4>SRWD SUE calculator <small>${esc(recent?pcQ(last.quarter_end_date)+' (just reported)':pcQ(f.quarter_end_date)+' (upcoming)')}</small></h4>
+      <table class="pc-kv">
+        ${recent?'':`<tr><td>Same quarter last year</td><td>${pcNum(base)}</td></tr>`}
+        <tr><td>Drift <small>avg YoY change, last 4 quarters</small></td><td>${dr!=null&&dr>0?'+':''}${pcNum(dr)}</td></tr>
+        <tr><td><b>Expected</b> <small>last year + drift</small></td><td><b>${pcNum(exp)}</b></td></tr>
+        <tr><td>σ <small>sd of ${recent?last.n_errors:f.n_errors} earlier forecast errors</small></td><td>${pcNum(sig)}</td></tr>
+        <tr><td>Q5 entry level <small>${recent&&grp.sue_q5!=null?'its reporting week':'typical, recent weeks'}</small></td><td>SUE ≥ ${pcNum(sueCut)}</td></tr>
+        <tr><td><b>${metric} needed for Q5</b></td><td><b>${pcNum(need)}</b></td></tr>
+        <tr><td>Actual ${metric}</td><td><input type="number" step="any" id="pc-act" class="pc-in" placeholder="${recent&&last.actual!=null?pcNum(last.actual):'enter when out'}" value="${ea(P.actual)}"></td></tr>
+        <tr class="pc-res"><td><b>SUE</b></td><td><b>${sue==null?(sueWhy?esc(sueWhy):'—'):(sue>0?'+':'')+fmt(sue,2)}</b></td></tr>
+      </table>
+      <div class="pc-verdict ${sueQ5==null?'':sueQ5?'ok':'no'}">${sueQ5==null?'Enter the actual figure to score it':sueFinal?(sueQ5?'✓ SUE quintile 5':`✗ Not quintile 5 (quintile ${last.sue_q})`):(sueQ5?'✓ Above the Q5 entry level':'✗ Below the Q5 entry level')+'<small> — final once its reporting week is ranked</small>'}</div></div>`;
+    // --- EAR calculator: the latest announcement's 3-day move vs Nifty 500, or a what-if
+    const earCut=recent&&grp.ear_q5!=null?grp.ear_q5:cut.ear;
+    let ear=recent?last.ear:null, sr=recent?last.stock_ret3:null, br=recent?last.bench_ret3:null;
+    if(P.sret!==''){ sr=parseFloat(P.sret)/100; br=P.bret!==''?parseFloat(P.bret)/100:0; ear=sr-br; }
+    const earFinal=recent&&P.sret===''&&last.ear_q!=null;
+    const earQ5=earFinal?last.ear_q===5:(ear!=null&&earCut!=null?ear>=earCut:null);
+    const earCard=`<div class="pc-panel"><h4>EAR calculator <small>${recent?`reaction ${esc(rpvDate(last.announcement_date_used||''))}`:'next result'}</small></h4>
+      <table class="pc-kv">
+        <tr><td>Window <small>close t0−1 → close t0+1</small></td><td>${recent&&last.price_date_minus1?`${esc(last.price_date_minus1)} → ${esc(last.price_date_plus1)}`:'—'}</td></tr>
+        <tr><td>Stock 3-day return</td><td><input type="number" step="any" id="pc-sret" class="pc-in" placeholder="${sr!=null?pcNum(sr*100):'%'}" value="${ea(P.sret)}"> %</td></tr>
+        <tr><td>Nifty 500 3-day return</td><td><input type="number" step="any" id="pc-bret" class="pc-in" placeholder="${br!=null?pcNum(br*100):'%'}" value="${ea(P.bret)}"> %</td></tr>
+        <tr><td>Q5 entry level</td><td>EAR ≥ ${earCut!=null?'+'+fmt(earCut*100,2)+'%':'—'}</td></tr>
+        <tr class="pc-res"><td><b>EAR</b></td><td><b>${ear==null?(recent&&last.ear_reason?esc(last.ear_reason):'—'):(ear>0?'+':'')+fmt(ear*100,2)+'%'}</b></td></tr>
+      </table>
+      <div class="pc-verdict ${earQ5==null?'':earQ5?'ok':'no'}">${earQ5==null?'Known after the session following the result':earFinal?(earQ5?'✓ EAR quintile 5':`✗ Not quintile 5 (quintile ${last.ear_q})`):(earQ5?'✓ Above the Q5 entry level':'✗ Below the Q5 entry level')+'<small> — final once its reporting week is ranked</small>'}</div></div>`;
+    const both=sueQ5===true&&earQ5===true, fin=sueFinal&&earFinal;
+    const inter=`<div class="pc-inter ${both?'ok':sueQ5===false||earQ5===false?'no':''}">${both?`<b>${esc(r.symbol)} ${fin?'sits at the intersection':'is on course for the intersection'}: SUE Q5 and EAR Q5</b> — the strategy buys it on day +2${fin?'':' if its reporting week’s ranking confirms it'}.`:sueQ5===false||earQ5===false?`<b>Not at the intersection</b> — it needs both SUE and EAR in quintile 5.`:'The intersection needs both calculators in quintile 5.'}</div>`;
+    const rows=h.map(x=>`<tr><td>${esc(pcQ(x.quarter_end_date))}</td><td>${esc(x.announcement_date||'—')}${x.announcement_time?`<small>${esc(x.announcement_time)}</small>`:''}</td><td class="n">${pcNum(x.actual)}</td><td class="n">${pcNum(x.expected)}</td>
+      <td class="n"><b>${x.sue==null?'—':(x.sue>0?'+':'')+fmt(x.sue,2)}</b>${x.sue==null&&x.sue_reason?`<small>${esc(x.sue_reason)}</small>`:''}</td><td class="n">${x.sue_q??'—'}</td>
+      <td class="n">${x.ear==null?'—':(x.ear>0?'+':'')+fmt(x.ear*100,2)+'%'}</td><td class="n">${x.ear_q??'—'}</td><td>${x.qualifies?'<span class="al-chip al-dbuy">Q5 ∩ Q5</span>':''}</td>
+      <td class="n">${x.car21==null?'—':ssSigned(x.car21*100,1)}</td><td class="n">${x.car61==null?'—':ssSigned(x.car61*100,1)}</td></tr>`).join('');
+    body=`<div class="pc-head"><b class="mv-tick">${esc(r.symbol)}</b> ${esc(r.name||'')} <small class="cp-sub">${esc((r.sector||'').replace(/-/g,' '))} · engine updated ${esc((r.updated_at||'').slice(0,16).replace('T',' '))} UTC</small></div>
+      <div class="pc-grid">${sueCard}${earCard}</div>${inter}
+      <h4 class="rpp-sub">Stored history (SQLite) — last ${h.length} quarters</h4>
+      <div class="mv-tablewrap"><table class="mv-table rpv-t"><thead><tr><th>Quarter</th><th>Announced</th><th class="n">Actual</th><th class="n">Expected</th><th class="n">SUE</th><th class="n">SUE Q</th><th class="n">EAR</th><th class="n">EAR Q</th><th></th><th class="n">CAR +2..+21</th><th class="n">CAR +2..+61</th></tr></thead><tbody>${rows}</tbody></table></div>`;
+  }
+  return `<div class="cp-card pc-card"><h3>SRWD SUE &amp; EAR calculators</h3>
+    <p class="cp-sub">Enter a company. <b>SUE</b> = (actual − expected) ÷ σ, where expected = the same quarter last year + drift (average year-on-year change of the last 4 quarters) and σ = the standard deviation of the stock's own earlier forecast errors. <b>EAR</b> = the stock's return from the close before the reaction session to the close after it, minus the Nifty 500's. Quintiles are ranked among stocks reporting the same week; a stock qualifies when both are in quintile 5. Every score is stored in the engine's SQLite database.</p>
+    <div class="mv-toolbar"><input type="search" id="pc-q" class="mv-search" placeholder="Company name or NSE symbol" value="${ea(P.q)}"><button type="button" class="btn" id="pc-go">Calculate</button></div>
+    ${body}</div>`;
+}
+function pcQ5Card(){
+  const P=PCALC;
+  if(!P.q5){ if(!P.q5busy){ P.q5busy=true; fetchJSON('/api/pead/q5?days=120').then(j=>{P.q5=j;}).catch(()=>{P.q5={rows:[]};}).finally(()=>{P.q5busy=false; if(RPV.tab==='pead') rpvRender();}); } return ''; }
+  const s=P.q5.stats||{}, rows=P.q5.rows||[];
+  if(!rows.length&&!s.q5) return '';
+  return `<div class="cp-card"><h3>At the intersection — SUE Q5 ∩ EAR Q5, last ${P.q5.days} days <small class="cp-sub">${rows.length} stocks</small></h3>
+    <p class="cp-sub">All history in the database: ${fmtI(s.q5||0)} intersections; average return vs Nifty 500 from day +2 to +61: <b>${s.q5_car61==null?'—':ssSigned(s.q5_car61*100,2)}</b> (beat it ${s.q5_beat61==null?'—':Math.round(s.q5_beat61*100)+'%'} of the time) against ${s.all_car61==null?'—':ssSigned(s.all_car61*100,2)} for every ranked result.</p>
+    <div class="mv-tablewrap"><table class="mv-table rpv-t"><thead><tr><th>Company</th><th>Reaction</th><th class="n">SUE</th><th class="n">EAR</th><th class="n">Profit<small>actual vs expected</small></th><th class="n">CAR +2..+21</th><th class="n">CAR +2..+61</th></tr></thead><tbody>
+    ${rows.map(x=>`<tr><td><a href="#" data-pcpick="${ea(x.symbol)}"><b class="mv-tick">${esc(x.symbol)}</b></a><span class="mv-name">${esc(x.name||'')}</span></td><td>${esc(rpvDate(x.announcement_date_used||''))}<small>${esc(pcQ(x.quarter_end_date))}</small></td>
+      <td class="n">+${fmt(x.sue,2)}</td><td class="n">${ssSigned(x.ear*100,2)}</td><td class="n">${pcNum(x.actual,1)}<small>vs ${pcNum(x.expected,1)}</small></td>
+      <td class="n">${x.car21==null?'—':ssSigned(x.car21*100,1)}</td><td class="n">${x.car61==null?'—':ssSigned(x.car61*100,1)}</td></tr>`).join('')}</tbody></table></div></div>`;
+}
+function pcWire(body){
+  const P=PCALC, go=async(q)=>{ P.q=q; P.actual=P.sret=P.bret=''; if(!q) return; P.busy=true; rpvRender(); try{ P.res=await fetchJSON('/api/pead/calc?q='+encodeURIComponent(q)); }catch(e){ P.res={error:'Could not reach the calculator.'}; } P.busy=false; rpvRender(); document.querySelector('.pc-card')?.scrollIntoView({block:'start'}); };
+  const q=document.getElementById('pc-q'); if(q) q.onkeydown=e=>{ if(e.key==='Enter') go(q.value.trim()); };
+  const b=document.getElementById('pc-go'); if(b) b.onclick=()=>go(document.getElementById('pc-q').value.trim());
+  body.querySelectorAll('[data-pcpick]').forEach(x=>x.onclick=e=>{ e.preventDefault(); go(x.dataset.pcpick); });
+  [['pc-act','actual'],['pc-sret','sret'],['pc-bret','bret']].forEach(([id,k])=>{ const el=document.getElementById(id); if(el) el.onchange=()=>{ P[k]=el.value; rpvRender(); }; });
+}
 /* ---- Earnings drift (PEAD): Quantpedia's post-earnings-announcement strategy, long only (app/pead.py) */
 const RPVP={data:null, busy:false, show:'all', q:''};
 function rpvPeadChart(curve){
@@ -6814,11 +6900,12 @@ function rpvPead(){
     <div class="mv-toolbar"><div class="rc-seg" role="group">${[['all','All'],['closed','Closed'],['open','Held now']].map(([k,l])=>`<button type="button" data-rpps="${k}" class="${P.show===k?'on':''}">${l}</button>`).join('')}</div>
     <input type="search" id="rpp-q" class="mv-search" placeholder="Find a stock" value="${ea(P.q)}"></div>
     ${rpvPeadRows(tr.slice(0,300), false)}${tr.length>300?`<p class="cp-sub">Showing the latest 300.</p>`:''}</div>`;
-  return intro+morning+strip+buyCard+(hold.length?`<div class="cp-card"><h3>Held now <small class="cp-sub">${hold.length} positions, equal weight</small></h3>${rpvPeadRows(hold, true)}</div>`:'')+watchCard
+  return intro+morning+pcCalc()+pcQ5Card()+strip+buyCard+(hold.length?`<div class="cp-card"><h3>Held now <small class="cp-sub">${hold.length} positions, equal weight</small></h3>${rpvPeadRows(hold, true)}</div>`:'')+watchCard
     +`<div class="cp-card"><h3>The portfolio vs the Nifty 500</h3>${rpvPeadChart(cv)}</div>`+cmp+earlyBt+earlyHold+grid+coh+trades
     +`<p class="cp-sub">Backtest caveats: ${(d.cohorts||[]).length} results seasons — profits before Sep 2023 come from the companies' NSE XBRL filings (kept only where they match screener.in's numbers on the overlapping quarters), later ones from screener.in; one bad season still moves a short record a lot. Prices are split-adjusted closes and opens; companies that later delisted are missing (survivorship), which flatters every group alike. Costs are a flat ${(d.rules||{}).cost}% per round trip. A research strategy, not advice.</p>`;
 }
 function rpvWirePead(body){
+  pcWire(body);
   body.querySelectorAll('[data-rpps]').forEach(x=>x.onclick=()=>{ RPVP.show=x.dataset.rpps; rpvRender(); });
   const q=document.getElementById('rpp-q'); if(q) q.oninput=()=>{ clearTimeout(RPVP.t); RPVP.t=setTimeout(()=>{ RPVP.q=q.value.trim(); rpvRender(); const n=document.getElementById('rpp-q'); if(n){ n.focus(); n.setSelectionRange(n.value.length,n.value.length); } },200); };
 }

@@ -3,7 +3,7 @@
 screener.in keeps 12 quarters, and the strategy's profit surprise (SUE) needs 7 of them before the first
 signal, so on screener data alone the backtest starts in mid-2025. This adds the three years before:
 
-- quarterly net profit (Jun 2021 - Jun 2024) from each company's results XBRL on NSE, on the same basis
+- quarterly net profit (Jun 2019 - Jun 2024) from each company's results XBRL on NSE, on the same basis
   (consolidated / standalone) screener uses, checked against screener's numbers where the two overlap;
 - when each of those results was filed (NSE's broadcast time), which decides the reaction session;
 - daily prices for Apr 2023 - Feb 2024 from the NSE bhavcopies (.bhav_cache), corporate-action safe
@@ -32,7 +32,8 @@ BACKEND_DIR = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(BACKEND_DIR))
 OUT = BACKEND_DIR / "data" / "results_preview" / "pead_history.json.gz"
 BHAV = BACKEND_DIR / ".bhav_cache"
-Q_FROM, Q_TO = date(2021, 6, 30), date(2024, 6, 30)       # quarters fetched from XBRL
+Q_FROM, Q_TO = date(2019, 6, 30), date(2024, 6, 30)       # quarters fetched from XBRL (SRWD SUE with a forecast-error
+                                                           # sigma needs 16 quarters before the first score)
 PX_FROM, PX_TO = "2023-04-01", "2024-02-29"                # prices from the bhavcopies
 UA = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/124.0 Safari/537.36",
       "Accept": "application/json, text/plain, */*", "Referer": "https://www.nseindia.com/companies-listing/corporate-filings-financial-results"}
@@ -86,7 +87,7 @@ def xbrl_np(text: str, qs: date, qe: date) -> float | None:
     return None
 
 
-def fetch_company(s: requests.Session, sym: str, basis: str) -> dict | None:
+def fetch_company(s: requests.Session, sym: str, basis: str, have: set | None = None) -> dict | None:
     r = s.get(f"https://www.nseindia.com/api/corporates-financial-results?index=equities&symbol={sym}&period=Quarterly", timeout=40)
     if r.status_code in (401, 403):
         raise PermissionError
@@ -106,6 +107,8 @@ def fetch_company(s: requests.Session, sym: str, basis: str) -> dict | None:
             continue
         if not (Q_FROM <= qe <= Q_TO) or (qe - qs).days > 95 or not x.get("xbrl") or x.get("cumulative") == "Cumulative":
             continue
+        if have and label(qe) in have:
+            continue                     # already on file from an earlier run
         rank = 0 if x.get("consolidated") == want else 1
         cur = picks.get(qe)
         if cur is None or rank < cur[0]:
@@ -123,7 +126,7 @@ def fetch_company(s: requests.Session, sym: str, basis: str) -> dict | None:
                 time.sleep(2)
         return qe, rank, None, x
 
-    with ThreadPoolExecutor(4) as ex:
+    with ThreadPoolExecutor(8) as ex:
         for qe, rank, np_, x in ex.map(one, sorted(picks.items())):
             try:
                 filed = datetime.strptime(x.get("broadCastDate") or x.get("filingDate"), "%d-%b-%Y %H:%M:%S").isoformat()
@@ -199,17 +202,21 @@ def main() -> int:
     sec = json.loads((BACKEND_DIR / "data" / "sector_strength" / "latest.json").read_text(encoding="utf-8")).get("sectors") or []
     skip = {s.get("symbol") for x in sec if x.get("group") == "nse" for s in x.get("stocks") or []
             if x["slug"] in EXCLUDE_SECTORS or s.get("industry") in EXCLUDE_INDUSTRIES}
-    todo = sorted(s for s in basis if s not in skip and s not in d["companies"] and d["failed"].get(s, 0) < 2)
+    # new companies, and ones fetched before the window reached back to Q_FROM
+    def short(sym):
+        c = d["companies"].get(sym)
+        return c is not None and not c.get("from") == Q_FROM.isoformat() and any(v.get("np") is not None for v in c["q"].values())
+    todo = sorted(s for s in basis if s not in skip and (s not in d["companies"] or short(s)) and d["failed"].get(s, 0) < 2)
     print(f"pead history: {len(todo)} companies to fetch ({len(d['companies'])} done)", flush=True)
     s = session()
     for i, sym in enumerate(todo, 1):
         try:
-            got = fetch_company(s, sym, basis[sym])
+            got = fetch_company(s, sym, basis[sym], {k for k, v in ((d["companies"].get(sym) or {}).get("q") or {}).items() if v.get("np") is not None})
         except PermissionError:
             time.sleep(30)
             s = session()
             try:
-                got = fetch_company(s, sym, basis[sym])
+                got = fetch_company(s, sym, basis[sym], {k for k, v in ((d["companies"].get(sym) or {}).get("q") or {}).items() if v.get("np") is not None})
             except (PermissionError, requests.RequestException):
                 got = None
         except requests.RequestException:
@@ -228,7 +235,9 @@ def main() -> int:
                         ok += 1
                     else:
                         bad += 1
-            d["companies"][sym] = {"basis": basis[sym], "q": got, "check": [ok, bad]}
+            old = (d["companies"].get(sym) or {}).get("q") or {}
+            chk = [ok, bad] if ok + bad else ((d["companies"].get(sym) or {}).get("check") or [0, 0])
+            d["companies"][sym] = {"basis": basis[sym], "q": {**old, **got}, "check": chk, "from": Q_FROM.isoformat()}
         if i % 25 == 0:
             save(d)
             print(f"  ...{i}/{len(todo)}", flush=True)

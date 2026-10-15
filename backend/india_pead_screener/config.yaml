@@ -1,0 +1,38 @@
+# india_pead_screener -- SRWD SUE x EAR screen for Indian results (see README.md)
+
+data_paths:
+  quarterly_financials: data/raw/quarterly_financials.csv
+  daily_prices: data/raw/daily_prices.csv
+  benchmark_prices: data/raw/benchmark_prices.csv
+
+srwd:
+  metric: "eps"                 # "eps" (primary) or "net_profit" (labelled separately in the output)
+  drift_window: 4               # N, 2-8: average of the last N year-on-year quarterly changes
+  min_quarters_history: 16      # usable quarters up to and including the scored one
+  min_forecast_errors: 4        # earlier SRWD forecast errors needed for sigma (ddof=1)
+  sigma_window: 12              # at most this many of the latest earlier forecast errors
+  sue_winsorization: [-10, 10]
+
+ear:
+  benchmark: "NIFTY500"         # NIFTY500, NIFTY200 or CUSTOM (whatever benchmark_prices.csv holds)
+  window_days: [-1, 0, 1]
+  after_close_time: "15:30"     # a filing at/after this time (announcement_time column) reacts the next session
+
+quintiles:
+  group_by: "date"              # "date" (announcement_date_used), "week" or "season" (the fiscal quarter)
+  min_universe_size: 20
+  number_of_buckets: 5
+
+strategy:
+  mode: "long_only"             # long_only or long_short
+  entry_lag_days: 2
+  forward_windows: [21, 61]
+
+filters:
+  min_median_daily_turnover: 10000000   # Rs, median over the 60 sessions before the announcement (needs a turnover column)
+  exclude_negative_eps: true
+  min_price: 0                  # Rs, close on the session before the announcement; 0 = off
+
+output:
+  dir: output
+  sqlite: output/pead.sqlite    # every run's SUE / EAR scores are stored here (see src/store.py)

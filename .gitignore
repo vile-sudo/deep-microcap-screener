@@ -65,3 +65,11 @@ reports-pdf/
 reports-today.txt
 backend/data/sector_intraday/
 backend/data/disclosures/
+
+# PEAD engine outputs (the SQLite is published as a release asset by scripts/run_pead_engine.py)
+backend/data/pead_engine/
+backend/india_pead_screener/output/*
+!backend/india_pead_screener/output/.gitkeep
+backend/india_pead_screener/data/raw/*.csv
+backend/india_pead_screener/data/processed/*
+!backend/india_pead_screener/data/processed/.gitkeep

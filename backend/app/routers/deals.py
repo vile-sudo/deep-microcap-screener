@@ -176,6 +176,21 @@ def results_preview_pead(request: Request):
     return file_response(request, BASE_DIR / "data" / "results_preview" / "pead.json", {"asof": None, "holdings": [], "trades": []})
 
 
+@router.get("/api/pead/calc")
+def pead_calc(q: str = Query(..., min_length=1, max_length=60)):
+    """SRWD SUE and EAR calculators (india_pead_screener's SQLite): a company's next-quarter expectation, its
+    scored history, and the current Q5 entry levels."""
+    from .. import pead_store
+    return pead_store.calc(q)
+
+
+@router.get("/api/pead/q5")
+def pead_q5(days: int = Query(120, ge=7, le=1200)):
+    """Recent stocks at the intersection: SUE quintile 5 and EAR quintile 5."""
+    from .. import pead_store
+    return pead_store.q5(days)
+
+
 _RPV_ALL: dict = {"stamp": None, "doc": None}
 
 

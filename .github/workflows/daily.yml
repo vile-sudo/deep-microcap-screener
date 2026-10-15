@@ -103,7 +103,7 @@ jobs:
         run: |
           sudo apt-get update -qq
           sudo apt-get install -y -qq poppler-utils unzip
-          pip install -r backend/requirements.txt beautifulsoup4 anthropic pypdf scikit-learn numpy
+          pip install -r backend/requirements.txt beautifulsoup4 anthropic pypdf scikit-learn numpy pandas pyyaml
           cd automation
           npm install --no-audit --no-fund
           npx playwright install --with-deps chromium
@@ -224,6 +224,17 @@ jobs:
         timeout-minutes: 20
         working-directory: ./backend
         run: python scripts/run_results_preview.py
+
+      # PEAD engine (backend/india_pead_screener): SRWD SUE and EAR for every result, quintiles, the Q5 x Q5
+      # intersection; its SQLite is published as the "pead-engine" release asset for the calculators.
+      - name: 1h3. PEAD engine (SUE x EAR)
+        id: peadengine
+        continue-on-error: true
+        timeout-minutes: 20
+        working-directory: ./backend
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python scripts/run_pead_engine.py
 
       - name: 2. Discovery scan
         id: discovery

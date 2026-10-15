@@ -44,7 +44,7 @@ jobs:
           python-version: '3.12'
 
       - name: Install dependencies
-        run: pip install -r backend/requirements.txt beautifulsoup4 pypdf scikit-learn numpy anthropic
+        run: pip install -r backend/requirements.txt beautifulsoup4 pypdf scikit-learn numpy anthropic pandas pyyaml
 
       - name: Today's filings
         continue-on-error: true
@@ -75,6 +75,14 @@ jobs:
         timeout-minutes: 15
         working-directory: ./backend
         run: python scripts/run_results_preview.py
+
+      - name: PEAD engine (SUE x EAR calculators)
+        continue-on-error: true
+        timeout-minutes: 15
+        working-directory: ./backend
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python scripts/run_pead_engine.py
 
       - name: Commit
         id: commit
