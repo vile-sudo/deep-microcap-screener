@@ -24,7 +24,7 @@ import json
 import math
 import statistics
 from collections import defaultdict
-from datetime import date
+from datetime import date, datetime, timedelta, timezone
 from pathlib import Path
 
 HOLD = 60                    # sessions held
@@ -107,6 +107,27 @@ def _prices(rows: list, old: list | None) -> list:
     return [(d, c * k, None, (o * k) if o else None) for d, o, c in old if d < first and c] + list(rows)
 
 
+IST = timezone(timedelta(hours=5, minutes=30))
+
+
+def _next_weekday(d: date) -> date:
+    d += timedelta(days=1)
+    while d.weekday() >= 5:
+        d += timedelta(days=1)
+    return d
+
+
+def _next_session(now: datetime) -> date:
+    """The next session that hasn't closed yet (weekends skipped; exchange holidays aren't known here)."""
+    d = now.date()
+    return d if d.weekday() < 5 and now.strftime("%H:%M") < "15:30" else _next_weekday(d)
+
+
+def _reaction_session(filed: str) -> date:
+    d = date.fromisoformat(filed[:10])
+    return d if d.weekday() < 5 and filed[11:16] < "15:30" else _next_weekday(d)
+
+
 def _cuts(xs: list[float]) -> list[float]:
     xs = sorted(xs)
     return [xs[int(len(xs) * k / 5)] for k in (1, 2, 3, 4)]
@@ -185,9 +206,22 @@ def build(mk, ix, rows, today: date) -> dict:
             if i is None or i < 3:
                 if filed[:10] >= px[-1][0]:
                     ev["stage"] = "reacting"              # announced; its reaction session isn't in the data yet
+                    ev["px_last"] = px[-1][1]
                     events.append(ev)
                 continue
             ev["day0"] = px[i][0]
+            # the early variant: decided before the open on the SUE alone, bought at the reaction session's open
+            o0 = px[i][3] or None
+            if o0 and i + HOLD - 1 < len(px):
+                j0 = i + HOLD - 1
+                ev["e_ret"] = (px[j0][1] / o0 - 1) * 100
+                m0 = bm.ret(px[i - 1][0], px[j0][0])
+                ev["e_xs"] = ev["e_ret"] - m0 if m0 is not None else None
+                ev["e_px"] = px[i - 1][1]
+                ev["gap0"] = (o0 / px[i - 1][1] - 1) * 100
+            if o0:
+                ev.update({"o0": o0, "e_now": (px[-1][1] / o0 - 1) * 100, "e_held": len(px) - i, "e_last": px[-1][1],
+                           "e_px": px[i - 1][1], "e_mkt": bm.ret(px[i - 1][0], px[-1][0])})
             if i + 1 >= len(px):
                 ev["stage"] = "reacting"
                 r0, b0 = (px[i][1] / px[i - 2][1] - 1) * 100, bm.ret(px[i - 2][0], px[i][0])
@@ -236,6 +270,7 @@ def build(mk, ix, rows, today: date) -> dict:
             prev = {"q": q, "sue": _cuts([ev["sue"] for ev in elig]), "ear": _cuts([ev["ear"] for ev in elig])}
     current_cuts = {"from": prev["q"], "sue": _r(prev["sue"][3]), "ear": _r(prev["ear"][3])} if prev else None
 
+    build.events = events          # kept for ad-hoc analysis
     traded = [ev for ev in events if ev.get("signal") and ev.get("entry")]
     done = [ev for ev in traded if ev["stage"] == "closed"]
 
@@ -305,8 +340,33 @@ def build(mk, ix, rows, today: date) -> dict:
         for ev in events:
             if ev["stage"] == "reacting" and ev["q"] == qs[-1] and _fifth(ev["sue"], cur["sue"]) == 5:
                 watch.append({**row(ev), "ear_sofar": _r(ev.get("ear_sofar"))})
+    # ---- before the open: results filed since the last close react in the next session; the early variant
+    # decides on the profit surprise alone (SUE fifth) and buys the top fifth at that session's open
+    now = datetime.now(IST)
+    nxt = _next_session(now)
+    morning = []
+    for ev in events:
+        if ev["stage"] != "reacting" or not ev.get("sq") or _reaction_session(ev["filed"]) != nxt:
+            continue
+        cheap = (ev.get("px_last") or 0) < MIN_PRICE
+        call = "buy" if ev["sq"] == 5 and not cheap else "avoid" if ev["sq"] == 1 else "none"
+        morning.append({**row(ev), "call": call, "cheap": cheap, "price": _r(ev.get("px_last")),
+                        "ear_needed": _r((used.get(ev["q"]) or {}).get("ear", [None] * 4)[3])})
+    morning.sort(key=lambda x: -(x["sue"] or 0))
+    early_g = [ev for ev in events if ev.get("e_ret") is not None and ev.get("sq") and (ev.get("e_px") or 0) >= MIN_PRICE]
+    early_hold = [ev for ev in events if ev.get("sq") == 5 and ev.get("o0") and ev.get("e_ret") is None and (ev.get("e_px") or 0) >= MIN_PRICE
+                  and (ev.get("e_held") or 0) >= 1]
+    early = {
+        "fifths": [{"sq": k, **stats([{"ret": ev["e_ret"], "xs": ev["e_xs"]} for ev in early_g if ev["sq"] == k])} for k in (5, 4, 3, 2, 1)],
+        "seasons": [{"q": q, **stats([{"ret": ev["e_ret"], "xs": ev["e_xs"]} for ev in early_g if ev["q"] == q and ev["sq"] == 5])}
+                    for q in qs if any(ev["q"] == q and ev["sq"] == 5 for ev in early_g)],
+        "holdings": [{**row(ev), "entry": _r(ev["o0"]), "entry_date": ev["day0"], "last": _r(ev["e_last"]), "ret": _r(ev["e_now"]),
+                      "xs": _r(ev["e_now"] - ev["e_mkt"]) if ev.get("e_mkt") is not None else None, "held": ev["e_held"]}
+                     for ev in sorted(early_hold, key=lambda e: e["day0"], reverse=True)],
+    }
     return {
-        "asof": today.isoformat(), "source": QUANTPEDIA,
+        "asof": today.isoformat(), "generated_at": now.isoformat(timespec="minutes"), "next_session": nxt.isoformat(), "source": QUANTPEDIA,
+        "morning": morning, "early": early,
         "rules": {"hold": HOLD, "min_price": MIN_PRICE, "cost": COST, "excluded": len(excluded)},
         "cuts": current_cuts, "seasons": seasons,
         "summary": {"trades": len(traded), "closed": len(done), "open": len(hold), **{f"c_{k}": v for k, v in stats(done).items()}},

@@ -894,6 +894,10 @@ def write_alerts(today: date, upcoming: list, newly: list, reported: list | None
     for r in (pead or {}).get("to_buy") or []:          # PEAD: qualified tonight, the entry is the next open
         items.append({"type": "rp_pead", "scope": "board", "code": r.get("code"), "symbol": r["symbol"], "name": r["name"],
                       "quarter": r["q"], "sue": r["sue"], "ear": r["ear"], "filed": r["filed"]})
+    for r in (pead or {}).get("morning") or []:         # PEAD early entry: a top-fifth profit surprise, buy at the open
+        if r["call"] == "buy":
+            items.append({"type": "rp_pead", "early": True, "scope": "board", "code": r.get("code"), "symbol": r["symbol"],
+                          "name": r["name"], "quarter": r["q"], "sue": r["sue"], "filed": r["filed"], "session": pead.get("next_session")})
     doc = _load(ALERTS_FILE, {"sessions": []})
     sessions = {x["date"]: x["items"] for x in doc.get("sessions") or []}
     sessions[today.isoformat()] = items

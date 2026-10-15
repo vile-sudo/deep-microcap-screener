@@ -4625,6 +4625,10 @@ function alInsiderRow(it, byCode){
 function alPreviewRow(it, byCode){
   const d=it.code && byCode[it.code];
   const pc=v=>v==null?'—':Math.round(v*100)+'%';
+  if(it.type==='rp_pead' && it.early) return `<li class="al-row"><div class="al-main">
+      <div class="al-name">${d?`<button type="button" class="al-link" data-al-open="${esc(d.code)}">${esc(d.name)}</button>`:`<b>${esc(it.name)}</b>`}<span class="al-sym">${esc(it.symbol||'')}</span></div>
+      <div class="al-what"><span class="al-chip al-dbuy">Earnings drift: buy at the open</span><span class="al-wins">${esc(it.quarter)} · profit surprise SUE +${fmt(it.sue,2)} (top fifth)</span></div>
+      <div class="al-detail">Filed after the close; the early version buys at the ${esc(rcDayShort(it.session||''))} open and holds 60 sessions.</div></div><div class="al-side"><div class="al-acts"><button type="button" class="btn" data-al-rpv="pead">Strategy</button></div></div></li>`;
   if(it.type==='rp_pead') return `<li class="al-row"><div class="al-main">
       <div class="al-name">${d?`<button type="button" class="al-link" data-al-open="${esc(d.code)}">${esc(d.name)}</button>`:`<b>${esc(it.name)}</b>`}<span class="al-sym">${esc(it.symbol||'')}</span></div>
       <div class="al-what"><span class="al-chip al-dbuy">Earnings drift: buy next open</span><span class="al-wins">${esc(it.quarter)} · profit surprise SUE +${fmt(it.sue,2)} · 3-day move ${it.ear>0?'+':''}${fmt(it.ear,2)}% vs Nifty 500</span></div>
@@ -6763,7 +6767,26 @@ function rpvPead(){
     ${tile('Portfolio', last?sg(last[1],1):'—', `Nifty 500 ${last?sg(last[2],1):'—'} · worst fall ${fmt(maxdd*100,1)}%`)}
   </div>`;
   const buy=(d.to_buy||[]), hold=(d.holdings||[]), watch=(d.watch||[]);
-  const buyCard=`<div class="cp-card"><h3>Buy at the next open <small class="cp-sub">${buy.length?buy.length+' qualified':'none qualified tonight'}</small></h3>
+  const M=d.morning||[], E=d.early||{}, ef=E.fifths||[], e5=ef.find(x=>x.sq===5)||{}, e1=ef.find(x=>x.sq===1)||{};
+  const mcall={buy:['Buy at the open','al-dbuy'],avoid:['Avoid','al-dsell'],none:['No signal','']};
+  const mrow=r=>`<tr><td>${r.code?`<a href="#" data-co="${ea(r.code)}" class="rpv-co"><b class="mv-tick">${esc(r.symbol)}</b></a>`:`<b class="mv-tick">${esc(r.symbol)}</b>`}<span class="mv-name">${esc(r.name)}</span><small>${esc(r.sector||'')}</small></td>
+      <td><span class="al-chip ${mcall[r.call][1]}">${mcall[r.call][0]}</span>${r.cheap?'<small>under ₹100 — skipped</small>':''}</td>
+      <td>${esc(r.q)}<small>${esc(rpvFiled(r.filed))}</small></td>
+      <td class="n"><b>${r.sue>0?'+':''}${fmt(r.sue,2)}</b><small>fifth ${r.sq} of 5</small></td>
+      <td class="n">${r.np!=null?fmt(r.np,1):'—'} cr<small>expected ${r.exp!=null?fmt(r.exp,1):'—'} cr</small></td>
+      <td class="n">${r.price!=null?'₹'+fmt(r.price,2):'—'}</td>
+      <td>${r.sq===5&&!r.cheap?`<small>Full strategy: also buy on day +2 if the 3-day move reaches +${r.ear_needed??'—'}% vs Nifty 500</small>`:''}</td></tr>`;
+  const mBuy=M.filter(r=>r.call==='buy'), mAvoid=M.filter(r=>r.call==='avoid'), mNone=M.filter(r=>r.call==='none');
+  const morning=`<div class="cp-card rpp-morning"><h3>Before the open — ${esc(rpvDate(d.next_session))} <small class="cp-sub">${M.length} results filed since the last close · updated ${esc((d.generated_at||'').replace('T',' ').slice(0,16))} IST</small></h3>
+    <p class="cp-sub">Results filed after the close react in the next session. Each is scored overnight on its profit surprise (SUE) against this season's cut-offs: <b>top fifth → buy at the 9:15 open</b> and hold 60 sessions (the early version of the strategy), <b>bottom fifth → avoid</b>. Backtest, 3 years: top fifth ${e5.win??'—'}% closed higher after 60 sessions, average ${ssSigned(e5.avg,2)} (${ssSigned(e5.xs,2)} vs Nifty 500); bottom fifth ${e1.win??'—'}%, average ${ssSigned(e1.avg,2)} (${ssSigned(e1.xs,2)} vs Nifty 500).</p>
+    ${M.length?`<div class="mv-tablewrap"><table class="mv-table rpv-table"><thead><tr><th>Company</th><th>Call</th><th>Result</th><th class="n">SUE<small>profit surprise</small></th><th class="n">Net profit<small>vs expected</small></th><th class="n">Last close</th><th></th></tr></thead><tbody>
+      ${[...mBuy,...mAvoid,...mNone].map(mrow).join('')}</tbody></table></div>`:'<p class="view-hint">No results filed since the last close have numbers on file yet — the overnight runs (about 9:45 PM, 11:15 PM, 1:45 AM, 5:15 AM and 7:45 AM IST) fill this in before the open.</p>'}</div>`;
+  const earlyBt=ef.length?`<div class="cp-card"><h3>Early version — decided before 9 AM on the profit surprise alone, bought at the reaction-day open, held 60 sessions</h3>
+    <table class="mv-table rpv-t"><thead><tr><th>SUE fifth</th><th class="n">Trades</th><th class="n">Win rate</th><th class="n">Average</th><th class="n">Median</th><th class="n">vs Nifty 500</th></tr></thead><tbody>
+    ${ef.map(x=>`<tr${x.sq===5?' class="rpp-hl"':''}><td>${x.sq===5?'Top fifth — buy':x.sq===1?'Bottom fifth — avoid':'Fifth '+x.sq}</td><td class="n">${fmtI(x.n||0)}</td><td class="n">${x.win??'—'}%</td><td class="n">${sg(x.avg)}</td><td class="n">${sg(x.median)}</td><td class="n">${sg(x.xs)}</td></tr>`).join('')}</tbody></table>
+    <p class="cp-sub" style="margin-top:6px">Top fifth by season: ${(E.seasons||[]).map(x=>`${esc(x.q)} ${sg(x.avg,1)}`).join(' · ')}. It trades ~3× as many stocks as the full strategy for a similar average; the full strategy waits for the price reaction to confirm.</p></div>`:'';
+  const earlyHold=(E.holdings||[]).length?`<div class="cp-card"><h3>Early version — held now <small class="cp-sub">${E.holdings.length} positions</small></h3>${rpvPeadRows(E.holdings, true)}</div>`:'';
+  const buyCard=`<div class="cp-card"><h3>Full strategy — buy at the next open <small class="cp-sub">${buy.length?buy.length+' qualified':'none qualified tonight'}</small></h3>
     ${buy.length?buy.map(r=>`<div class="rpp-buy"><b class="mv-tick">${esc(r.symbol)}</b> ${esc(r.name)} · ${esc(r.q)} · SUE <b>+${fmt(r.sue,2)}</b> · EAR <b>${sg(r.ear)}</b></div>`).join(''):'<p class="cp-sub">A stock qualifies once its results are out and the session after the reaction has closed; it is bought at the open of the following session.</p>'}</div>`;
   const watchCard=watch.length?`<div class="cp-card"><h3>Watching — big profit surprise, reaction still coming in <small class="cp-sub">${watch.length}</small></h3>
     <div class="mv-tablewrap"><table class="mv-table rpv-t"><thead><tr><th>Company</th><th>Result</th><th class="n">SUE</th><th class="n">Move so far<small>vs Nifty 500</small></th></tr></thead><tbody>
@@ -6786,8 +6809,8 @@ function rpvPead(){
     <div class="mv-toolbar"><div class="rc-seg" role="group">${[['all','All'],['closed','Closed'],['open','Held now']].map(([k,l])=>`<button type="button" data-rpps="${k}" class="${P.show===k?'on':''}">${l}</button>`).join('')}</div>
     <input type="search" id="rpp-q" class="mv-search" placeholder="Find a stock" value="${ea(P.q)}"></div>
     ${rpvPeadRows(tr.slice(0,300), false)}${tr.length>300?`<p class="cp-sub">Showing the latest 300.</p>`:''}</div>`;
-  return intro+strip+buyCard+(hold.length?`<div class="cp-card"><h3>Held now <small class="cp-sub">${hold.length} positions, equal weight</small></h3>${rpvPeadRows(hold, true)}</div>`:'')+watchCard
-    +`<div class="cp-card"><h3>The portfolio vs the Nifty 500</h3>${rpvPeadChart(cv)}</div>`+cmp+grid+coh+trades
+  return intro+morning+strip+buyCard+(hold.length?`<div class="cp-card"><h3>Held now <small class="cp-sub">${hold.length} positions, equal weight</small></h3>${rpvPeadRows(hold, true)}</div>`:'')+watchCard
+    +`<div class="cp-card"><h3>The portfolio vs the Nifty 500</h3>${rpvPeadChart(cv)}</div>`+cmp+earlyBt+earlyHold+grid+coh+trades
     +`<p class="cp-sub">Backtest caveats: ${(d.cohorts||[]).length} results seasons — profits before Sep 2023 come from the companies' NSE XBRL filings (kept only where they match screener.in's numbers on the overlapping quarters), later ones from screener.in; one bad season still moves a short record a lot. Prices are split-adjusted closes and opens; companies that later delisted are missing (survivorship), which flatters every group alike. Costs are a flat ${(d.rules||{}).cost}% per round trip. A research strategy, not advice.</p>`;
 }
 function rpvWirePead(body){
