@@ -53,6 +53,9 @@ ALL_FILE = OUT_DIR / "all.json"
 NAMES_FILE = OUT_DIR / "names.json"
 POST_LOG = OUT_DIR / "overnight_reads.json"
 BT_ROWS_FILE = OUT_DIR / "backtest_rows.json"   # every stock behind the backtest tables (loaded on demand)     # every overnight read, graded once the next session is in            # full company names (NSE's equity list), refreshed weekly                # every company's next-result call -- the "Check a stock" box          # merged into the India Alerts bell by routers/alerts.load()
+PEAD_FILE = OUT_DIR / "pead.json"                  # Earnings drift (PEAD) strategy -- app/pead.py
+READ_FILE = DATA / "results_read" / "latest.json"   # Claude's read of each results filing (scripts/run_results_read.py)
+CLAUDE_SINCE = "2026-07-01"   # Claude's training data ends Jun 2026: only later filings are an honest test of its read
 UPCOMING_DAYS = 21
 MON = {m: i for i, m in enumerate(["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"], 1)}
 NAN = float("nan")
@@ -830,7 +833,45 @@ def drivers(f: dict, mk: Market) -> list[dict]:
 
 
 # ------------------------------------------------------------------ alerts for the bell
-def write_alerts(today: date, upcoming: list, newly: list, reported: list | None = None) -> None:
+def claude_record(rows, pres, reads: dict) -> dict:
+    """Claude's read of each results filing against what the stock then did, for filings after its training data
+    ends -- next to the numbers model's call on the same stocks, so the two can be compared like for like."""
+    pn = {id(r): p for p, r in pres}
+    xs = []
+    for r in rows:
+        if r.get("react") is None or not r.get("filed") or not r["key"].startswith("NSE:") or r["filed"][:10] < CLAUDE_SINCE:
+            continue
+        c = reads.get(f"{r['key'][4:]}|{r['filed']}")
+        if c:
+            xs.append((c, r, pn.get(id(r))))
+    if not xs:
+        return {"n": 0, "since": CLAUDE_SINCE}
+    up = lambda g: round(100 * sum(r["react"] > 0 for _, r, _ in g) / len(g), 1)
+    md = lambda g, k: round(statistics.median([r[k] for _, r, _ in g if r.get(k) is not None]), 2) if any(r.get(k) is not None for _, r, _ in g) else None
+    by_v = []
+    for v in ("strong", "good", "mixed", "weak", "poor"):
+        g = [x for x in xs if x[0].get("verdict") == v]
+        if g:
+            by_v.append({"verdict": v, "n": len(g), "up": up(g), "react": md(g, "react"), "gap": md(g, "gap"), "oc": md(g, "oc")})
+    by_p = []
+    for lo, hi in ((0, 30), (30, 45), (45, 60), (60, 101)):
+        g = [x for x in xs if lo <= x[0].get("p_up", 0) < hi]
+        if g:
+            by_p.append({"range": f"{lo}–{min(hi, 100)}%", "n": len(g), "up": up(g), "react": md(g, "react")})
+    both = [x for x in xs if x[2] is not None]
+    ys = [int(r["react"] > 0) for _, r, _ in both]
+    cmp = {"n": len(both), "claude": _auc([c["p_up"] for c, _, _ in both], ys), "numbers": _auc([p for *_, p in both], ys),
+           "together": _auc([(c["p_up"] / 100 + p) / 2 for c, _, p in both], ys)} if len(both) >= 30 else {"n": len(both)}
+    return {"since": CLAUDE_SINCE, "n": len(xs), "base": up(xs), "auc": _auc([c["p_up"] for c, _, _ in xs], [int(r["react"] > 0) for _, r, _ in xs]),
+            "by_verdict": by_v, "by_p": by_p, "compare": cmp,
+            "after_hours": sum(1 for _, r, _ in xs if r.get("after")),
+            "rows": [{"s": r["key"][4:], "q": r["q"], "d": r.get("rday"), "f": r["filed"], "v": c.get("verdict"), "cp": c.get("p_up"),
+                      "p": None if p is None else round(p, 3), "mv": round(r["react"], 2),
+                      "gap": None if r.get("gap") is None else round(r["gap"], 2), "sum": c.get("summary")}
+                     for c, r, p in sorted(xs, key=lambda x: x[1]["filed"], reverse=True)[:600]]}
+
+
+def write_alerts(today: date, upcoming: list, newly: list, reported: list | None = None, pead: dict | None = None) -> None:
     """Today's Results Preview alerts (board companies only): a confident call reporting within two days
     ("rp_soon"), and a confident call whose result just came out -- right or wrong ("rp_out")."""
     items = []
@@ -850,6 +891,9 @@ def write_alerts(today: date, upcoming: list, newly: list, reported: list | None
             items.append({"type": "rp_post", "scope": "board", "code": r["code"], "symbol": r["symbol"], "name": r["name"],
                           "quarter": r["quarter"], "filed": r["filed"], "verdict": r["verdict"], "tone": r["tone"], "action": r["action"],
                           "sales_g": r["sales_g"], "profit_g": r["profit_g"], "p_up": r["p_up"]})
+    for r in (pead or {}).get("to_buy") or []:          # PEAD: qualified tonight, the entry is the next open
+        items.append({"type": "rp_pead", "scope": "board", "code": r.get("code"), "symbol": r["symbol"], "name": r["name"],
+                      "quarter": r["q"], "sue": r["sue"], "ear": r["ear"], "filed": r["filed"]})
     doc = _load(ALERTS_FILE, {"sessions": []})
     sessions = {x["date"]: x["items"] for x in doc.get("sessions") or []}
     sessions[today.isoformat()] = items
@@ -1063,6 +1107,8 @@ def run() -> dict:
                "base": round(100 * sum(r["react"] > 0 for _, r in pres) / len(pres), 1) if pres else None,
                "pre_auc": backtest["react"].get("auc"), "fifths": post_fifths(pres), "bins": pdist}
     backtest["post"] = post_bt
+    reads = (_load(READ_FILE, {}) or {}).get("reads") or {}
+    backtest["claude"] = claude_record(rows, pres, reads)
     # the stocks behind every backtest table: what was predicted (walk-forward, before it happened) and what happened
     def _r(v, n=2):
         return None if v is None or (isinstance(v, float) and math.isnan(v)) else round(v, n)
@@ -1109,6 +1155,9 @@ def run() -> dict:
                          "margin_ch": None if a["_om"] is None else round(a["_om"], 1),
                          "verdict": rd["verdict"], "tone": rd["tone"], "action": rd["action"],
                          "exp": {k: rd["bin"].get(k) for k in ("up", "gap", "oc", "o3", "n")} if rd.get("bin") else None,
+                         "claude": {k: (reads.get(f"{key[4:]}|{filed}") or {}).get(k) for k in
+                                    ("verdict", "p_up", "summary", "positives", "negatives", "quality_flags", "revenue_yoy_pct", "profit_yoy_pct", "basis")}
+                         if reads.get(f"{key[4:]}|{filed}") else None,
                          "result": res})
     reported.sort(key=lambda r: r["filed"], reverse=True)
     plog = _load(POST_LOG, {})
@@ -1125,7 +1174,14 @@ def run() -> dict:
                        "right": sum(1 for x in called if x.get("hit")),
                        "rows": sorted([x for x in plog.values() if x.get("result")], key=lambda x: x["filed"], reverse=True)[:200]}
 
-    write_alerts(today, upcoming, newly, reported)
+    pd = None
+    try:
+        from . import pead
+        pd = pead.build(mk, ix, rows, today)
+        PEAD_FILE.write_text(json.dumps(pd, separators=(",", ":"), ensure_ascii=False, default=str), encoding="utf-8")
+    except Exception as e:  # noqa: BLE001 - the strategy page must never break the nightly read
+        print(f"results preview: PEAD failed ({type(e).__name__}: {e})")
+    write_alerts(today, upcoming, newly, reported, pd)
     out = {"asof": today.isoformat(), "generated_at": datetime.now(timezone.utc).isoformat(timespec="seconds"),
            "upcoming": upcoming, "scorecard": scorecard, "backtest": backtest, "recent": recent, "reported": reported,
            "pending": sum(1 for r in log.values() if not r.get("graded")),

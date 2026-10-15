@@ -170,6 +170,12 @@ def results_preview(request: Request):
                          {"asof": None, "upcoming": [], "scorecard": {}, "backtest": {}})
 
 
+@router.get("/api/results-preview/pead")
+def results_preview_pead(request: Request):
+    """Earnings drift (PEAD) strategy (app/pead.py): live holdings, next-session buys, the backtest."""
+    return file_response(request, BASE_DIR / "data" / "results_preview" / "pead.json", {"asof": None, "holdings": [], "trades": []})
+
+
 _RPV_ALL: dict = {"stamp": None, "doc": None}
 
 

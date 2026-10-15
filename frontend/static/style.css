@@ -2736,3 +2736,10 @@ mark.tr-hit.cur{background:#f59e0b;color:#111}
 .rpv-post-intro{background:color-mix(in srgb,var(--s1) 6%,var(--surface));border:1px solid var(--ring);border-radius:12px;padding:10px 14px;font-size:13px;line-height:1.55;margin:0 0 12px;color:var(--ink2)}
 .rpv-table td.rpv-readc{white-space:normal;min-width:300px;max-width:420px}.rpv-table td.rpv-readc small{white-space:normal;line-height:1.4;margin-top:3px}
 .rpvb-bar{flex-wrap:wrap;gap:8px}.rpvb-bar .gal-select{width:auto}
+
+.rpv-cl{margin-top:4px;font-size:12px}.rpv-cl summary{cursor:pointer;color:var(--ink2)}.rpv-cl ul{margin:4px 0 0 16px;padding:0;white-space:normal}.rpv-cl li{margin:2px 0;line-height:1.35}
+.rpp-rules{margin:8px 0 0 18px;padding:0}.rpp-rules li{margin:3px 0;line-height:1.45}
+.rpp-strip{grid-template-columns:repeat(auto-fit,minmax(160px,1fr))}
+.rpp-chart{width:100%;height:auto;display:block}.rpp-legend{display:flex;flex-wrap:wrap;gap:14px;font-size:12px;margin-top:4px}.rpp-legend i{display:inline-block;width:12px;height:3px;margin-right:5px;vertical-align:middle}
+.rpp-grid td small{display:block}.rpp-grid td.rpp-pick{outline:2px solid #16a34a;outline-offset:-2px}.rpp-hl td{font-weight:700}
+.rpp-buy{padding:6px 0;border-bottom:1px solid var(--grid)}

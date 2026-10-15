@@ -4550,7 +4550,7 @@ async function alertsInit(){
 
 const AL_TYPES=[['all','All'],['high','New highs'],['low','New lows'],['ipo_breakout','IPO base breakouts'],['vcp_breakout','Base breakouts'],
   ['deal_buy','Buying clusters'],['deal_sell','Selling clusters'],['insider_buy','Insider buying'],['insider_sell','Insider selling'],
-  ['rp_soon','Results due'],['rp_post','Overnight result read'],['rp_out','Results vs preview']];
+  ['rp_soon','Results due'],['rp_post','Overnight result read'],['rp_out','Results vs preview'],['rp_pead','Earnings drift buy']];
 function alLabel(it){
   if(it.type==='ipo_breakout') return `<span class="al-chip al-ipo">&#9650; IPO base breakout</span>`;
   if(it.type==='vcp_breakout') return `<span class="al-chip al-vcp">&#9650; Base breakout</span>`;
@@ -4625,6 +4625,10 @@ function alInsiderRow(it, byCode){
 function alPreviewRow(it, byCode){
   const d=it.code && byCode[it.code];
   const pc=v=>v==null?'—':Math.round(v*100)+'%';
+  if(it.type==='rp_pead') return `<li class="al-row"><div class="al-main">
+      <div class="al-name">${d?`<button type="button" class="al-link" data-al-open="${esc(d.code)}">${esc(d.name)}</button>`:`<b>${esc(it.name)}</b>`}<span class="al-sym">${esc(it.symbol||'')}</span></div>
+      <div class="al-what"><span class="al-chip al-dbuy">Earnings drift: buy next open</span><span class="al-wins">${esc(it.quarter)} · profit surprise SUE +${fmt(it.sue,2)} · 3-day move ${it.ear>0?'+':''}${fmt(it.ear,2)}% vs Nifty 500</span></div>
+      <div class="al-detail">Top fifth on both: the strategy buys at the next open and holds 60 sessions.</div></div><div class="al-side"><div class="al-acts"><button type="button" class="btn" data-al-rpv="pead">Strategy</button></div></div></li>`;
   if(it.type==='rp_post') return `<li class="al-row"><div class="al-main">
       <div class="al-name">${d?`<button type="button" class="al-link" data-al-open="${esc(d.code)}">${esc(d.name)}</button>`:`<b>${esc(it.name)}</b>`}<span class="al-sym">${esc(it.symbol||'')}</span></div>
       <div class="al-what"><span class="al-chip ${it.tone==='up'?'al-dbuy':'al-dsell'}">${esc(it.verdict)}</span><span class="al-wins">${esc(it.quarter)}: sales ${it.sales_g==null?'—':(it.sales_g>0?'+':'')+fmt(it.sales_g,1)+'%'}, profit ${it.profit_g==null?'—':(it.profit_g>0?'+':'')+fmt(it.profit_g,1)+'%'} YoY</span></div>
@@ -4640,7 +4644,7 @@ function alPreviewRow(it, byCode){
     </div><div class="al-side"><div class="al-acts"><button type="button" class="btn" data-al-rpv="1">Results Preview</button></div></div></li>`;
 }
 function alRow(it, byCode){
-  if(it.type==='rp_soon' || it.type==='rp_out' || it.type==='rp_post') return alPreviewRow(it, byCode);
+  if(it.type==='rp_soon' || it.type==='rp_out' || it.type==='rp_post' || it.type==='rp_pead') return alPreviewRow(it, byCode);
   if(it.type==='deal_buy' || it.type==='deal_sell') return alDealRow(it, byCode);
   if(it.type==='insider_buy' || it.type==='insider_sell') return alInsiderRow(it, byCode);
   const d=it.code && byCode[it.code], on=d && WATCH.has(d.code);
@@ -4813,7 +4817,7 @@ async function openAlerts(showSettings){
     mbody.querySelectorAll('[data-al-open]').forEach(b=>b.onclick=()=>{ closeModal(); CURRENT=[byCode[b.dataset.alOpen]]; openDrawer(byCode[b.dataset.alOpen]); });
     mbody.querySelectorAll('[data-al-chart]').forEach(b=>b.onclick=()=>openChart(b.dataset.alChart));
     mbody.querySelectorAll('[data-al-deals]').forEach(b=>b.onclick=()=>{ closeModal(); openDealsFor(b.dataset.alDeals); });
-    mbody.querySelectorAll('[data-al-rpv]').forEach(b=>b.onclick=()=>{ closeModal(); setView('rpreview'); });
+    mbody.querySelectorAll('[data-al-rpv]').forEach(b=>b.onclick=()=>{ closeModal(); if(b.dataset.alRpv==='pead') RPV.tab='pead'; setView('rpreview'); });
     mbody.querySelectorAll('[data-al-insiders]').forEach(b=>b.onclick=()=>{ closeModal(); openInsiderTradesFor(b.dataset.alInsiders); });
     mbody.querySelectorAll('[data-al-star]').forEach(b=>b.onclick=()=>{ togglePin(b.dataset.alStar); const on=WATCH.has(b.dataset.alStar); b.classList.toggle('on',on); b.innerHTML=on?'&#9733;':'&#9734;'; });
   };
@@ -6679,7 +6683,7 @@ function rpvReactOk(){ const r=(RPV.data.backtest||{}).react||{}; return r.auc!=
 function rpvRender(){
   const d=RPV.data, body=document.getElementById('rpv-body'), b=d.backtest||{}, sc=d.scorecard||{};
   document.getElementById('rpv-asof').textContent=`Updated ${rcDayLong(d.asof)} · learns from ${fmtI(d.inputs?.companies||0)} companies`;
-  const tabs=[['upcoming',`Upcoming results <small>${(d.upcoming||[]).length}</small>`],['reported',`Just reported <small>${(d.reported||[]).length}</small>`],['check','Check a stock'],['resday',`Result day: who beat <small>${(d.recent||[]).length}</small>`],['scorecard',`Scorecard <small>${(sc.rows||[]).length}</small>`],['backtest','Backtest'],['after','After the result']];
+  const tabs=[['upcoming',`Upcoming results <small>${(d.upcoming||[]).length}</small>`],['reported',`Just reported <small>${(d.reported||[]).length}</small>`],['check','Check a stock'],['resday',`Result day: who beat <small>${(d.recent||[]).length}</small>`],['scorecard',`Scorecard <small>${(sc.rows||[]).length}</small>`],['backtest','Backtest'],['after','After the result'],['pead','Earnings drift strategy']];
   const bAcc=b.accel||{}, bPro=b.profit||{};
   const strip=`<div class="rpv-strip">
       <div><span>Profit up/down, backtest</span><b>${bPro.hit!=null?bPro.hit+'%':'—'}</b><small>right · vs ${bPro.always_majority??'—'}% by always guessing the usual</small></div>
@@ -6693,6 +6697,7 @@ function rpvRender(){
   else if(RPV.tab==='resday') html+=rpvResDay(d);
   else if(RPV.tab==='reported') html+=rpvReported(d);
   else if(RPV.tab==='check') html+=rpvCheck(d);
+  else if(RPV.tab==='pead') html+=rpvPead();
   else html+=rpvBacktest(b, d);
   html+=`<p class="caveat">A research preview, not advice or a buy list. It reads only what was public before each result — four quarters of results, management's guidance and what was said on the last earnings call, new-capacity and order-win filings (order values read from the filings), input-commodity prices, peers that already reported, and the chart going in — and is checked every night against what companies then reported.</p>`;
   body.innerHTML=html;
@@ -6701,7 +6706,93 @@ function rpvRender(){
   body.querySelectorAll('[data-rpvo]').forEach(x=>x.onclick=e=>{ if(e.target.closest('a')) return; RPV.open = RPV.open===x.dataset.rpvo ? null : x.dataset.rpvo; rpvRender(); });
   const q=document.getElementById('rpv-q'); if(q) q.oninput=()=>{ clearTimeout(RPV.t); RPV.t=setTimeout(()=>{ RPV.q=q.value.trim().toLowerCase(); rpvRender(); const n=document.getElementById('rpv-q'); n.focus(); n.setSelectionRange(n.value.length,n.value.length); },150); };
   body.querySelectorAll('[data-co]').forEach(a=>a.onclick=e=>{ e.preventDefault(); e.stopPropagation(); openCompanyPage(a.dataset.co); });
-  rpvWireResDay(body); rpvWireCheck(body); rpvWireBt(body);
+  rpvWireResDay(body); rpvWireCheck(body); rpvWireBt(body); rpvWirePead(body);
+}
+/* ---- Earnings drift (PEAD): Quantpedia's post-earnings-announcement strategy, long only (app/pead.py) */
+const RPVP={data:null, busy:false, show:'all', q:''};
+function rpvPeadChart(curve){
+  if(!curve||curve.length<2) return '';
+  const W=800,H=230,P=34, xs=curve.map((_,i)=>i), ys=curve.flatMap(c=>[c[1],c[2]]);
+  const lo=Math.min(0,...ys), hi=Math.max(0,...ys), sx=i=>P+(W-P-8)*i/(curve.length-1), sy=v=>8+(H-8-22)*(hi-v)/((hi-lo)||1);
+  const line=k=>curve.map((c,i)=>`${i?'L':'M'}${sx(i).toFixed(1)},${sy(c[k]).toFixed(1)}`).join('');
+  const ticks=[lo,0,hi].filter((v,i,a)=>a.indexOf(v)===i).map(v=>`<line x1="${P}" x2="${W-8}" y1="${sy(v)}" y2="${sy(v)}" stroke="var(--grid)"/><text x="${P-4}" y="${sy(v)+4}" text-anchor="end" font-size="11" fill="var(--ink2)">${v>0?'+':''}${Math.round(v)}%</text>`).join('');
+  const lab=[0,Math.floor(curve.length/2),curve.length-1].map(i=>`<text x="${sx(i)}" y="${H-4}" text-anchor="${i===0?'start':i===curve.length-1?'end':'middle'}" font-size="11" fill="var(--ink2)">${esc(rpvDate(curve[i][0]))}</text>`).join('');
+  const last=curve[curve.length-1];
+  return `<svg viewBox="0 0 ${W} ${H}" class="rpp-chart" role="img" aria-label="Strategy vs Nifty 500">${ticks}${lab}
+    <path d="${line(2)}" fill="none" stroke="#94a3b8" stroke-width="1.6"/><path d="${line(1)}" fill="none" stroke="#16a34a" stroke-width="2.2"/></svg>
+    <div class="rpp-legend"><span><i style="background:#16a34a"></i>Strategy ${ssSigned(last[1],1)}</span><span><i style="background:#94a3b8"></i>Nifty 500 ${ssSigned(last[2],1)}</span><span class="cp-sub">equal weight across every position held that day; cash when none</span></div>`;
+}
+function rpvPeadRows(rows, live){
+  const sg=v=>v==null?'—':`<span class="${v>0?'ov-up':v<0?'ov-dn':''}">${v>0?'+':''}${fmt(v,2)}%</span>`;
+  return `<div class="mv-tablewrap"><table class="mv-table rpv-table"><thead><tr><th>Company</th><th>Result</th><th class="n">SUE<small>profit surprise, σ</small></th><th class="n">EAR<small>3-day move vs Nifty 500</small></th>
+    <th class="n">Bought<small>open, 2nd session</small></th><th class="n">${live?'Now':'Sold'}</th><th class="n">Return</th><th class="n">vs Nifty 500</th><th class="n">Sessions<small>of 60</small></th></tr></thead><tbody>
+    ${rows.map(r=>`<tr><td>${r.code?`<a href="#" data-co="${ea(r.code)}" class="rpv-co"><b class="mv-tick">${esc(r.symbol)}</b></a>`:`<b class="mv-tick">${esc(r.symbol)}</b>`}<span class="mv-name">${esc(r.name)}</span><small>${esc(r.sector||'')}</small></td>
+      <td>${esc(r.q)}<small>filed ${esc(rpvDate((r.filed||'').slice(0,10)))}</small></td>
+      <td class="n"><b>${r.sue!=null?(r.sue>0?'+':'')+fmt(r.sue,2):'—'}</b><small>profit ${r.np!=null?fmt(r.np,1):'—'} vs ${r.exp!=null?fmt(r.exp,1):'—'} cr expected</small></td>
+      <td class="n">${sg(r.ear)}</td>
+      <td class="n">${r.entry!=null?'₹'+fmt(r.entry,2):'—'}<small>${esc(rpvDate(r.entry_date||''))}</small></td>
+      <td class="n">${r.last!=null?'₹'+fmt(r.last,2):'—'}<small>${esc(rpvDate(r.last_date||''))}</small></td>
+      <td class="n"><b>${sg(r.ret)}</b></td><td class="n">${sg(r.xs)}</td><td class="n">${r.held??'—'}</td></tr>`).join('')}
+    </tbody></table></div>`;
+}
+function rpvPead(){
+  const P=RPVP;
+  if(!P.data){
+    if(!P.busy){ P.busy=true; fetchJSON('/api/results-preview/pead').then(j=>{P.data=j;}).catch(()=>{P.data={error:'Could not load the strategy.'};}).finally(()=>{P.busy=false; if(RPV.tab==='pead') rpvRender();}); }
+    return '<p class="view-hint">Loading the earnings-drift strategy…</p>';
+  }
+  const d=P.data;
+  if(d.error||!d.asof) return `<p class="view-hint">${esc(d.error||'The strategy is built with the nightly results run — not built yet.')}</p>`;
+  const s=d.summary||{}, cuts=d.cuts||{}, cv=d.curve||[], last=cv[cv.length-1];
+  const sg=(v,dp=2)=>v==null?'—':`${v>0?'+':''}${fmt(v,dp)}%`;
+  const tile=(l,v,sub)=>`<div><span>${l}</span><b>${v}</b><small>${sub}</small></div>`;
+  let maxdd=0, peak=1; cv.forEach(c=>{ const n=1+c[1]/100; peak=Math.max(peak,n); maxdd=Math.min(maxdd,n/peak-1); });
+  const intro=`<div class="rpv-post-intro"><b>Earnings drift (PEAD), long only.</b> Stocks whose profit beat their own trend by the widest margin <i>and</i> that the market bid up hardest around the announcement tend to keep drifting higher for weeks (<a href="${esc(d.source)}" target="_blank" rel="noopener">Quantpedia: post-earnings announcement effect ↗</a>). The rules, run automatically on every NSE result:
+    <ol class="rpp-rules">
+      <li><b>Universe:</b> NSE companies with quarterly results; financials (banks, NBFCs, insurers) and utilities (power, water, city gas) left out (${fmtI((d.rules||{}).excluded||0)} companies); stocks under ₹${fmt((d.rules||{}).min_price||100,0)} skipped.</li>
+      <li><b>SUE — the profit surprise:</b> expected profit = the same quarter last year + the average year-on-year change of the last 4 quarters (seasonal random walk with drift); SUE = (actual − expected) ÷ the standard deviation of those year-on-year changes.</li>
+      <li><b>EAR — the price reaction:</b> the stock's move over the session before, the reaction session and the one after, minus the Nifty 500.</li>
+      <li><b>Buy:</b> top fifth on both, using the <i>previous</i> results season's cut-offs (now SUE ≥ ${cuts.sue??'—'}, EAR ≥ ${cuts.ear!=null?'+'+cuts.ear+'%':'—'}, from ${esc(cuts.from||'—')} results) — at the open of the 2nd session after the announcement, equal weight.</li>
+      <li><b>Sell:</b> after ${(d.rules||{}).hold||60} sessions (about a quarter).</li>
+    </ol></div>`;
+  const strip=`<div class="rpv-strip rpp-strip">
+    ${tile('Closed trades', fmtI(s.c_n||0), `${fmtI(s.open||0)} held now · ${fmtI(s.trades||0)} in all`)}
+    ${tile('Win rate', s.c_win!=null?s.c_win+'%':'—', `closed above the buy price · ${s.c_beat??'—'}% beat the Nifty 500`)}
+    ${tile('Average trade', sg(s.c_avg), `median ${sg(s.c_median)} · ${sg(s.c_avg_cost)} after ${(d.rules||{}).cost}% costs`)}
+    ${tile('vs Nifty 500', sg(s.c_xs), 'average per trade, same 60 sessions')}
+    ${tile('Portfolio', last?sg(last[1],1):'—', `Nifty 500 ${last?sg(last[2],1):'—'} · worst fall ${fmt(maxdd*100,1)}%`)}
+  </div>`;
+  const buy=(d.to_buy||[]), hold=(d.holdings||[]), watch=(d.watch||[]);
+  const buyCard=`<div class="cp-card"><h3>Buy at the next open <small class="cp-sub">${buy.length?buy.length+' qualified':'none qualified tonight'}</small></h3>
+    ${buy.length?buy.map(r=>`<div class="rpp-buy"><b class="mv-tick">${esc(r.symbol)}</b> ${esc(r.name)} · ${esc(r.q)} · SUE <b>+${fmt(r.sue,2)}</b> · EAR <b>${sg(r.ear)}</b></div>`).join(''):'<p class="cp-sub">A stock qualifies once its results are out and the session after the reaction has closed; it is bought at the open of the following session.</p>'}</div>`;
+  const watchCard=watch.length?`<div class="cp-card"><h3>Watching — big profit surprise, reaction still coming in <small class="cp-sub">${watch.length}</small></h3>
+    <div class="mv-tablewrap"><table class="mv-table rpv-t"><thead><tr><th>Company</th><th>Result</th><th class="n">SUE</th><th class="n">Move so far<small>vs Nifty 500</small></th></tr></thead><tbody>
+    ${watch.map(r=>`<tr><td><b class="mv-tick">${esc(r.symbol)}</b><span class="mv-name">${esc(r.name)}</span></td><td>${esc(r.q)}<small>filed ${esc(rpvDate((r.filed||'').slice(0,10)))}</small></td><td class="n">+${fmt(r.sue,2)}</td><td class="n">${sg(r.ear_sofar)}</td></tr>`).join('')}</tbody></table></div>
+    <p class="cp-sub" style="margin-top:6px">They need the 3-day move to reach the EAR cut-off (${cuts.ear!=null?'+'+cuts.ear+'%':'—'}) by the close of the session after the reaction.</p></div>`:'';
+  const cmp=`<div class="cp-card"><h3>Does the combination matter? — 60-session returns of closed trades</h3>
+    <table class="mv-table rpv-t"><thead><tr><th>Group</th><th class="n">Trades</th><th class="n">Win rate</th><th class="n">Average</th><th class="n">Median</th><th class="n">vs Nifty 500<small>average</small></th></tr></thead><tbody>
+    ${(d.compare||[]).map((x,i)=>`<tr${i===0?' class="rpp-hl"':''}><td>${esc(x.group)}</td><td class="n">${fmtI(x.n||0)}</td><td class="n">${x.win??'—'}%</td><td class="n">${sg(x.avg)}</td><td class="n">${sg(x.median)}</td><td class="n">${sg(x.xs)}</td></tr>`).join('')}</tbody></table></div>`;
+  const heat=v=>v==null?'':`background:${v>=0?`rgba(22,163,74,${Math.min(.45,Math.abs(v)/20)})`:`rgba(220,38,38,${Math.min(.45,Math.abs(v)/20)})`}`;
+  const grid=`<div class="cp-card"><h3>Every SUE × EAR bucket — average 60-session return vs Nifty 500</h3>
+    <div class="mv-tablewrap"><table class="mv-table rpp-grid"><thead><tr><th>SUE fifth ↓ / EAR fifth →</th>${[1,2,3,4,5].map(k=>`<th class="n">EAR ${k}${k===5?' (top)':k===1?' (bottom)':''}</th>`).join('')}</tr></thead><tbody>
+    ${(d.grid||[]).map(g=>`<tr><td>SUE ${g.sq}${g.sq===5?' (top)':g.sq===1?' (bottom)':''}</td>${g.cells.map((c,j)=>`<td class="n${g.sq===5&&j===4?' rpp-pick':''}" style="${heat(c.xs)}"><b>${sg(c.xs,1)}</b><small>${c.win??'—'}% up · ${fmtI(c.n)}</small></td>`).join('')}</tr>`).join('')}
+    </tbody></table></div><p class="cp-sub" style="margin-top:6px">Outlined: the bucket the strategy buys.</p></div>`;
+  const coh=`<div class="cp-card"><h3>By results season</h3><table class="mv-table rpv-t"><thead><tr><th>Results for</th><th class="n">Trades</th><th class="n">Still held</th><th class="n">Win rate</th><th class="n">Average</th><th class="n">vs Nifty 500</th></tr></thead><tbody>
+    ${(d.cohorts||[]).map(x=>`<tr><td>${esc(x.q)}</td><td class="n">${fmtI(x.n)}</td><td class="n">${fmtI(x.open)}</td><td class="n">${x.win}%</td><td class="n">${sg(x.avg)}</td><td class="n">${sg(x.xs)}</td></tr>`).join('')}</tbody></table>
+    <p class="cp-sub" style="margin-top:6px">Each season's cut-offs come from the season before (${(d.seasons||[]).map(x=>`${esc(x.q)}: SUE ≥ ${x.sue_cut}, EAR ≥ +${x.ear_cut}%`).join(' · ')}).</p></div>`;
+  const q=P.q.toLowerCase();
+  const tr=(d.trades||[]).filter(r=>(P.show==='all'||(P.show==='open'?r.stage==='open':r.stage==='closed')) && (!q||`${r.symbol} ${r.name}`.toLowerCase().includes(q)));
+  const trades=`<div class="cp-card"><h3>Every trade <small class="cp-sub">${fmtI(tr.length)}</small></h3>
+    <div class="mv-toolbar"><div class="rc-seg" role="group">${[['all','All'],['closed','Closed'],['open','Held now']].map(([k,l])=>`<button type="button" data-rpps="${k}" class="${P.show===k?'on':''}">${l}</button>`).join('')}</div>
+    <input type="search" id="rpp-q" class="mv-search" placeholder="Find a stock" value="${ea(P.q)}"></div>
+    ${rpvPeadRows(tr.slice(0,300), false)}${tr.length>300?`<p class="cp-sub">Showing the latest 300.</p>`:''}</div>`;
+  return intro+strip+buyCard+(hold.length?`<div class="cp-card"><h3>Held now <small class="cp-sub">${hold.length} positions, equal weight</small></h3>${rpvPeadRows(hold, true)}</div>`:'')+watchCard
+    +`<div class="cp-card"><h3>The portfolio vs the Nifty 500</h3>${rpvPeadChart(cv)}</div>`+cmp+grid+coh+trades
+    +`<p class="cp-sub">Backtest caveats: ${(d.cohorts||[]).length} results seasons — profits before Sep 2023 come from the companies' NSE XBRL filings (kept only where they match screener.in's numbers on the overlapping quarters), later ones from screener.in; one bad season still moves a short record a lot. Prices are split-adjusted closes and opens; companies that later delisted are missing (survivorship), which flatters every group alike. Costs are a flat ${(d.rules||{}).cost}% per round trip. A research strategy, not advice.</p>`;
+}
+function rpvWirePead(body){
+  body.querySelectorAll('[data-rpps]').forEach(x=>x.onclick=()=>{ RPVP.show=x.dataset.rpps; rpvRender(); });
+  const q=document.getElementById('rpp-q'); if(q) q.oninput=()=>{ clearTimeout(RPVP.t); RPVP.t=setTimeout(()=>{ RPVP.q=q.value.trim(); rpvRender(); const n=document.getElementById('rpp-q'); if(n){ n.focus(); n.setSelectionRange(n.value.length,n.value.length); } },200); };
 }
 /* ---- the overnight read: results filed out of market hours, scored on the actual numbers before the next open */
 function rpvReported(d){
@@ -6716,17 +6807,39 @@ function rpvReported(d){
   const scope=`<div class="mv-toolbar"><div class="rc-seg" role="group" aria-label="Companies"><button type="button" data-rpvs="board" class="${RPV.scope==='board'?'on':''}">Board companies</button><button type="button" data-rpvs="all" class="${RPV.scope==='all'?'on':''}">All listed</button></div></div>`;
   if(!all.length) return intro+scope+'<p class="view-hint">No results filed in the last few days with numbers on file yet — reads appear the evening a company reports (runs at 9:30 PM and 11:30 PM IST, and again overnight).</p>';
   return intro+scope+`<div class="mv-tablewrap"><table class="mv-table rpv-table"><thead><tr><th>Filed</th><th>Company</th><th class="n">Sales<small>YoY · last qtr</small></th><th class="n">Profit<small>YoY</small></th><th class="n">Margin<small>vs a year ago</small></th>
-      <th>Overnight read<small>chance it closes up next session</small></th><th class="n">Expected<small>gap · open→close</small></th><th class="n">What happened<small>gap · day</small></th></tr></thead><tbody>
+      <th>Overnight read<small>chance it closes up next session</small></th><th>Claude's read of the filing<small>on trial — see Backtest</small></th><th class="n">Expected<small>gap · open→close</small></th><th class="n">What happened<small>gap · day</small></th></tr></thead><tbody>
     ${all.map(r=>`<tr><td><b>${esc(rpvDate(r.filed.slice(0,10)))}</b><small>${esc(r.quarter)}${r.half?' half-year':''} · ${esc(rpvFiled(r.filed).replace(/^filed \S+ \S+ \S+ /,''))}${r.in_hours?' · in market hours':''}</small></td>
       <td>${r.code?`<a href="#" data-co="${ea(r.code)}" class="rpv-co"><b class="mv-tick">${esc(r.symbol)}</b></a>`:`<b class="mv-tick">${esc(r.symbol)}</b>`}<span class="mv-name">${esc(r.name)}</span><small>${esc(r.sector||'')}</small></td>
       <td class="n"><b>${sg(r.sales_g)}</b><small>was ${sg(r.last_g)}</small></td>
       <td class="n">${r.profit_g==null?(r.np!=null&&r.np0!=null&&r.np0<=0?(r.np>0?'<span class="ov-up">loss → profit</span>':'<span class="ov-dn">still a loss</span>'):'—'):`<b class="${r.profit_g>0?'ov-up':'ov-dn'}">${sg(r.profit_g)}</b>`}</td>
       <td class="n">${r.margin_ch==null?'—':`${r.margin_ch>0?'+':''}${fmt(r.margin_ch,1)} pts`}</td>
       <td class="rpv-readc"><span class="rpv-call ${r.tone}">${esc(r.verdict)}</span><small><b>${rpvPct(r.p_up)}</b> chance it closes up · ${esc(r.action)}</small></td>
+      <td class="rpv-readc">${rpvClaude(r.claude)}</td>
       <td class="n">${r.exp?`${sg(r.exp.gap)}<small>then ${sg(r.exp.oc)}</small>`:'—'}</td>
       <td class="n">${r.result?`<span class="rpv-rd ${r.result.move>0?'up':'dn'}">${sg(r.result.gap)} · ${r.result.move>0?'▲':'▼'} ${sg(r.result.move,2)}</span><small>${esc(rpvDate(r.result.date))}</small>`:'<span class="cp-sub">next session</span>'}</td></tr>`).join('')}
     </tbody></table></div>
     <p class="cp-sub" style="margin-top:8px">“Expected” is the median opening gap and open-to-close move of past results that were read alike. Results filed during market hours partly moved the stock the same day. A research read, not advice.</p>`;
+}
+/* ---- Claude's read of the results filing (scripts/run_results_read.py): on trial, graded in the Backtest tab */
+const RPV_CV={strong:['Strong','up'],good:['Good','up'],mixed:['Mixed',''],weak:['Weak','dn'],poor:['Poor','dn']};
+function rpvClaude(c){
+  if(!c) return '<span class="cp-sub">reading…</span>';
+  const v=RPV_CV[c.verdict]||[c.verdict||'—',''];
+  const li=(xs,cls)=>(xs||[]).slice(0,3).map(x=>`<li class="${cls}">${esc(x)}</li>`).join('');
+  const flags=(c.quality_flags||[]).length?`<li class="ov-dn">⚠ ${esc(c.quality_flags.slice(0,2).join('; '))}</li>`:'';
+  return `<span class="rpv-call ${v[1]}">${esc(v[0])}</span><small><b>${c.p_up}%</b> chance it closes up · ${esc(c.summary||'')}</small>
+    <details class="rpv-cl"><summary>why</summary><ul>${li(c.positives,'ov-up')}${li(c.negatives,'ov-dn')}${flags}</ul></details>`;
+}
+function rpvClaudeCard(c){
+  if(!c) return '';
+  const sg=v=>v==null?'—':`${v>0?'+':''}${fmt(v,2)}%`;
+  const cmp=c.compare||{};
+  if(!c.n) return `<div class="cp-card"><h3>Claude's read of the filing — live trial</h3><p class="cp-sub">Each results PDF is read by Claude the evening it is filed. Only filings after ${esc(rpvDate(c.since))} count (Claude's training data ends before then, so it cannot already know how the stock moved). No graded reads yet.</p></div>`;
+  return `<div class="cp-card"><h3>Claude's read of the filing — live trial since ${esc(rpvDate(c.since))} (${fmtI(c.n)} graded results, ranking quality ${c.auc??'—'})</h3>
+    <p class="cp-sub">Claude reads each results PDF (and press release) the evening it is filed and says how likely the stock is to close up in the first session that trades on it. Only filings after its training data ends are counted, so it cannot already know the answer. ${fmtI(c.n)} results; ${c.base}% of them closed up.</p>
+    <table class="mv-table rpv-t"><thead><tr><th>Claude's verdict</th><th class="n">Cases</th><th class="n">Closed up</th><th class="n">Day move<small>median</small></th><th class="n">Opening gap<small>median</small></th><th class="n">Open → close<small>median</small></th></tr></thead><tbody>
+    ${(c.by_verdict||[]).map(x=>`<tr><td><span class="rpv-call ${(RPV_CV[x.verdict]||['',''])[1]}">${esc((RPV_CV[x.verdict]||[x.verdict])[0])}</span></td><td class="n">${fmtI(x.n)}</td><td class="n">${x.up}%</td><td class="n">${sg(x.react)}</td><td class="n">${sg(x.gap)}</td><td class="n">${sg(x.oc)}</td></tr>`).join('')}</tbody></table>
+    ${cmp.claude!=null?`<p class="cp-sub" style="margin-top:6px">Same ${fmtI(cmp.n)} out-of-hours results, ranking quality (0.5 = coin toss): <b>Claude ${cmp.claude}</b> · numbers model ${cmp.numbers} · the two averaged ${cmp.together}. Claude's read stays off the main read until it has proved itself over a couple of results seasons.</p>`:''}</div>`;
 }
 /* ---- every recent result day: did the stock close up or down that session (its own move), and what we had said */
 function rpvResDay(d){
@@ -6883,6 +6996,7 @@ function rpvBacktest(b, d){
       <table class="mv-table rpv-t"><thead><tr><th>Results ranked by the read</th><th class="n">Cases</th><th class="n">Closed up<small>next session</small></th><th class="n">Opening gap<small>median</small></th><th class="n">Open → close<small>median</small></th><th class="n">Open → 3 sessions<small>median</small></th></tr></thead><tbody>
       ${b.post.fifths.map(x=>`<tr><td>${esc(x.group)}</td><td class="n">${fmtI(x.n)}</td><td class="n">${x.up}%</td><td class="n">${ssSigned(x.gap,2)}</td><td class="n">${ssSigned(x.oc,2)}</td><td class="n">${ssSigned(x.o3,2)}</td></tr>`).join('')}</tbody></table>
       <p class="cp-sub" style="margin-top:6px">The stock's own moves (not vs the market). The edge is real but sits mostly in the opening gap — after the open, strong results tended to fade and weak ones kept falling.</p></div>`:''}
+    ${rpvClaudeCard(b.claude)}
     ${rpvBtStocks()}
     <div class="cp-card"><h3>The chart going in — and the result-day move</h3>${rpvTable((b.chart_setup||{}).rows, 'Before the result', true)}
       <p class="cp-sub" style="margin-top:6px">What the price already says about expectations, against how the stock itself moved on its result day.</p></div></div>`;

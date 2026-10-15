@@ -201,6 +201,20 @@ jobs:
           if [ -z "$ANTHROPIC_API_KEY" ]; then unset ANTHROPIC_API_KEY; fi
           python scripts/run_call_outlook.py
 
+      # Claude's read of each results filing (scripts/run_results_read.py): collects batches the evening runs left
+      # running and reads anything missed. Graded live in Results Preview from 1 Jul 2026 on.
+      - name: 1h2. Results filings read (Claude API)
+        id: resultsread
+        continue-on-error: true
+        timeout-minutes: 40
+        working-directory: ./backend
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          RESULTS_READ_MODEL: ${{ vars.RESULTS_READ_MODEL || 'claude-opus-5-5' }}
+        run: |
+          if [ -z "$ANTHROPIC_API_KEY" ]; then unset ANTHROPIC_API_KEY; fi
+          python scripts/run_results_read.py --wait 20
+
       # Results Preview (app/results_preview.py): refit on every reported quarter, rerun the walk-forward
       # backtest, predict companies reporting in the next three weeks, grade predictions whose results are in.
       # Reads the Deals history just refreshed above (capacity and order filings).
@@ -387,7 +401,7 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add backend/data/companies_raw.json backend/data/candidates_raw.json backend/data/build_stamp.json \
-                  backend/data/asme_raw.json backend/data/deals backend/data/fii_dii backend/data/announcements backend/data/insider_trades backend/chart_data backend/data/sector_strength backend/data/results_preview backend/data/results_universe backend/data/call_outlook \
+                  backend/data/asme_raw.json backend/data/deals backend/data/fii_dii backend/data/announcements backend/data/insider_trades backend/chart_data backend/data/sector_strength backend/data/results_preview backend/data/results_universe backend/data/call_outlook backend/data/results_read \
                   automation/data/candidates-queue.json automation/data/reviewed-symbols.json \
                   automation/data/listings-snapshot.json automation/data/asme-scan.json
           for f in automation/data/auto-screen.json automation/data/weekly-report.md automation/data/profiles \

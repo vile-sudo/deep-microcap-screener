@@ -41,7 +41,7 @@ INSIDER_CLUSTERS_FILE = BASE_DIR / "data" / "insider_trades" / "clusters.json"
 WINDOWS = ["1D", "1W", "1M", "6M", "1Y"]
 DEAL_TYPES = ("deal_buy", "deal_sell")
 INSIDER_TYPES = ("insider_buy", "insider_sell")
-PREVIEW_TYPES = ("rp_soon", "rp_out", "rp_post")         # Results Preview (app/results_preview.py)
+PREVIEW_TYPES = ("rp_soon", "rp_out", "rp_post", "rp_pead")         # Results Preview (app/results_preview.py)
 PREVIEW_FILE = BASE_DIR / "data" / "results_preview" / "alerts.json"
 
 
