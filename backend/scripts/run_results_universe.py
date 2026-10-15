@@ -86,6 +86,12 @@ def main() -> int:
         # just reported first, then never fetched (NSE before BSE: NSE has the result dates), then the oldest
         prio = 0 if (ex == "NSE" and sym in fresh) else (1 if ex == "NSE" else 2) if k not in out else 3
         todo.append((prio, (out.get(k) or {}).get("at") or "", k, rec, ex, sym))
+    # a company that just declared results but isn't actively traded enough to be in the universe list (SME,
+    # thinly traded): fetch it too, so the overnight read covers every result declared
+    listed = {(s.get("exchange"), str(s.get("symbol") or "")) for s in uni.values()}
+    for sym in sorted(fresh):
+        if ("NSE", sym) not in listed:
+            todo.append((0, (out.get(f"NSE:{sym}") or {}).get("at") or "", f"NSE:{sym}", {"nse_code": sym, "bse_code": None}, "NSE", sym))
     todo.sort(key=lambda x: (x[0], x[1], x[2]))
     todo = todo[:a.budget]
     session = requests.Session()

@@ -51,6 +51,8 @@ LINES = {                       # screener row label (prefix, lower case) -> our
     "other income": "other_income", "interest": "interest", "depreciation": "depreciation",
     "profit before tax": "pbt", "tax %": "tax_pct", "net profit": "net_profit", "eps in rs": "eps",
     "dividend payout %": "payout_pct",
+    # banks and NBFCs: screener labels their lines differently -- same meaning for our purposes
+    "revenue": "sales", "financing profit": "operating_profit", "financing margin %": "opm",
 }
 
 
