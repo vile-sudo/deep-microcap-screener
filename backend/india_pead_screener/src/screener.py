@@ -43,8 +43,9 @@ def run(cfg: dict, fin: pd.DataFrame, px: pd.DataFrame, bench: pd.DataFrame) -> 
     dq = check_inputs(fin, px)
     sue = compute_sue(fin, metric, s["drift_window"], s["min_quarters_history"], s["min_forecast_errors"],
                       s.get("sigma_window", 12), s["sue_winsorization"], flt.get("exclude_negative_eps", True))
-    if "announcement_time" in fin:
-        sue = sue.merge(fin[["symbol", "quarter_end_date", "announcement_time"]], on=["symbol", "quarter_end_date"], how="left")
+    extra = [c for c in ("announcement_time", "actual_source") if c in fin]
+    if extra:
+        sue = sue.merge(fin[["symbol", "quarter_end_date", *extra]], on=["symbol", "quarter_end_date"], how="left")
     ear = compute_ear(sue, px, bench, tuple(e["window_days"]), e.get("after_close_time", "15:30"))
     res = pd.concat([sue.reset_index(drop=True), ear.drop(columns=["symbol", "announcement_date"]).reset_index(drop=True)], axis=1)
 

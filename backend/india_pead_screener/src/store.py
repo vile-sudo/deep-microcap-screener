@@ -27,7 +27,8 @@ CREATE TABLE IF NOT EXISTS scores (
   sue_raw REAL, sue REAL, sue_reason TEXT,
   price_date_minus1 TEXT, price_date_plus1 TEXT, stock_ret3 REAL, bench_ret3 REAL, ear REAL, ear_reason TEXT,
   quintile_group TEXT, sue_q INTEGER, ear_q INTEGER, sue_pct REAL, ear_pct REAL, qualifies INTEGER, signal TEXT,
-  car21 REAL, car61 REAL, dq_flag TEXT, first_seen TEXT, updated_at TEXT,
+  car21 REAL, car61 REAL, dq_flag TEXT, first_seen TEXT, updated_at TEXT, actual_source TEXT,
+  sofar_date TEXT, stock_ret_sofar REAL, bench_ret_sofar REAL, ear_sofar REAL,
   PRIMARY KEY (symbol, quarter_end_date, metric));
 CREATE INDEX IF NOT EXISTS scores_ann ON scores(announcement_date_used);
 CREATE INDEX IF NOT EXISTS scores_q5 ON scores(qualifies, announcement_date_used);
@@ -45,11 +46,22 @@ CREATE TABLE IF NOT EXISTS runs (run_at TEXT, rows INTEGER, q5 INTEGER, config T
 CREATE TABLE IF NOT EXISTS meta (key TEXT PRIMARY KEY, value TEXT);
 """
 
+SCORE_COLS = ["symbol", "quarter_end_date", "metric", "fiscal_year", "fiscal_quarter", "announcement_date", "announcement_time",
+              "announcement_date_used", "actual", "expected", "drift", "raw_surprise", "sigma", "n_errors", "quarters_history",
+              "sue_raw", "sue", "sue_reason", "price_date_minus1", "price_date_plus1", "stock_ret3", "bench_ret3", "ear", "ear_reason",
+              "quintile_group", "sue_q", "ear_q", "sue_pct", "ear_pct", "qualifies", "signal", "car21", "car61", "dq_flag",
+              "first_seen", "updated_at", "actual_source", "sofar_date", "stock_ret_sofar", "bench_ret_sofar", "ear_sofar"]
+
 
 def connect(path: Path) -> sqlite3.Connection:
     path.parent.mkdir(parents=True, exist_ok=True)
     con = sqlite3.connect(str(path))
     con.executescript(SCHEMA)
+    cols = {r[1] for r in con.execute("PRAGMA table_info(scores)")}
+    for c, t in (("actual_source", "TEXT"), ("sofar_date", "TEXT"), ("stock_ret_sofar", "REAL"), ("bench_ret_sofar", "REAL"),
+                 ("ear_sofar", "REAL")):
+        if c not in cols:                           # databases from before the column existed
+            con.execute(f"ALTER TABLE scores ADD COLUMN {c} {t}")
     return con
 
 
@@ -87,8 +99,9 @@ def save(con: sqlite3.Connection, res: pd.DataFrame, fc: pd.DataFrame, dq: pd.Da
                      r.sue_reason, _s(r.price_date_minus1), _s(r.price_date_plus1), _s(r.stock_return_3d), _s(r.benchmark_return_3d),
                      _s(r.EAR), r.ear_reason, _s(r.quintile_group), _s(r.sue_quintile), _s(r.ear_quintile), _s(r.sue_percentile),
                      _s(r.ear_percentile), int(bool(r.qualifies_pead_q5)), r.pead_signal, _s(r.forward_car_21d), _s(r.forward_car_61d),
-                     r.data_quality_flag, (prev[4] if prev else now), now))
-    con.executemany(f"INSERT OR REPLACE INTO scores VALUES ({','.join('?' * 36)})", rows)
+                     r.data_quality_flag, (prev[4] if prev else now), now, _s(getattr(r, "actual_source", None)),
+                     _s(r.sofar_date), _s(r.stock_return_sofar), _s(r.benchmark_return_sofar), _s(r.EAR_sofar)))
+    con.executemany(f"INSERT OR REPLACE INTO scores ({','.join(SCORE_COLS)}) VALUES ({','.join('?' * len(SCORE_COLS))})", rows)
     con.execute("DELETE FROM forecasts")
     con.executemany("INSERT INTO forecasts VALUES (?,?,?,?,?,?,?,?,?)",
                     [(r.symbol, r.metric, _s(r.quarter_end_date), _s(r.base), _s(r.expected), _s(r.drift), _s(r.forecast_error_std),

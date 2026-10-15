@@ -2752,3 +2752,5 @@ mark.tr-hit.cur{background:#f59e0b;color:#111}
 .pc-verdict.ok,.pc-inter.ok{background:rgba(22,163,74,.13);color:#15803d}.pc-verdict.no,.pc-inter.no{background:rgba(220,38,38,.10);color:#b91c1c}
 .pc-inter{margin-top:12px;padding:10px 12px;border-radius:8px;background:var(--grid)}.pc-head{margin-top:10px}.pc-matches{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
 .pc-verdict small{font-weight:400}
+.pc-src{color:#7c3aed!important}
+.pc-kv .pc-in+.pc-in{margin-left:4px}

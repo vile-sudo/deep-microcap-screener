@@ -56,7 +56,8 @@ MON = {m: i for i, m in enumerate(["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Ju
 SCHEMA = {
     "type": "object",
     "additionalProperties": False,
-    "required": ["verdict", "p_up", "basis", "revenue_yoy_pct", "profit_yoy_pct", "positives", "negatives", "quality_flags", "summary"],
+    "required": ["verdict", "p_up", "basis", "revenue_yoy_pct", "profit_yoy_pct", "period_end", "figures",
+                 "positives", "negatives", "quality_flags", "summary"],
     "properties": {
         "verdict": {"type": "string", "enum": ["strong", "good", "mixed", "weak", "poor"],
                     "description": "How this quarter's result reads for the stock, against the company's own recent trend"},
@@ -73,6 +74,23 @@ SCHEMA = {
                           "description": "Things that make the headline number misleading: exceptional/one-off items, profit carried by "
                                          "other income, tax write-backs, auditor qualifications, restatements. Empty if none"},
         "summary": {"type": "string", "description": "One plain sentence for a trader reading it before the market opens"},
+        "period_end": {"type": ["string", "null"], "description": "Last day of the quarter (or half-year) reported, YYYY-MM-DD"},
+        "figures": {
+            "type": "object", "additionalProperties": False, "required": ["consolidated", "standalone"],
+            "description": "The reported figures for THIS quarter alone (three months; not the half-year or year-to-date "
+                           "column), in Rs crore -- convert from lakhs (/100), millions (/10) or rupees (/1e7). Null where "
+                           "the filing doesn't give that set of results.",
+            "properties": {k: {"type": "object", "additionalProperties": False,
+                               "required": ["revenue_cr", "net_profit_cr", "prev_year_net_profit_cr"],
+                               "properties": {
+                                   "revenue_cr": {"type": ["number", "null"], "description": "Revenue from operations"},
+                                   "net_profit_cr": {"type": ["number", "null"],
+                                                     "description": "Profit for the period after tax (total, before the split "
+                                                                    "into owners / non-controlling interests; excluding OCI)"},
+                                   "prev_year_net_profit_cr": {"type": ["number", "null"],
+                                                               "description": "The same figure for the same quarter last year"}}}
+                           for k in ("consolidated", "standalone")},
+        },
     },
 }
 
@@ -301,13 +319,15 @@ def main() -> int:
     ap.add_argument("--dry-run", action="store_true")
     ap.add_argument("--limit", type=int, default=0)
     ap.add_argument("--after-hours", action="store_true", help="only filings made outside market hours (the backfill)")
+    ap.add_argument("--refigure", action="store_true", help="also re-read filings whose read has no reported figures")
     ap.add_argument("--wait", type=int, default=12, help="minutes to wait for the new batch before leaving it for the next run")
     a = ap.parse_args()
     env_key()
     d = load()
     since = a.since or (date.today() - timedelta(days=4)).isoformat()
     inflight = {fid for m in d["pending"].values() for fid in m["ids"].values()}
-    todo = [f for f in filings(since) if f["id"] not in d["reads"] and f["id"] not in inflight
+    todo = [f for f in filings(since) if (f["id"] not in d["reads"] or (a.refigure and "figures" not in d["reads"][f["id"]]))
+            and f["id"] not in inflight
             and (d["failed"].get(f["id"]) or {}).get("tries", 0) < 3]
     if a.after_hours:
         todo = [f for f in todo if not ("09:00" <= f["filed"][11:16] < "15:30")]

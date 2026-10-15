@@ -95,6 +95,13 @@ def _history() -> dict:
         return {}
 
 
+def hist_ok(check: list) -> bool:
+    """Use a company's NSE XBRL history when it matches screener on the overlapping quarters: all of them, or
+    all but one (a single restated quarter) when at least two match. A wrong basis mismatches every quarter."""
+    ok, bad = check
+    return bad == 0 or (ok >= 2 and bad == 1)
+
+
 def _prices(rows: list, old: list | None) -> list:
     """The chart's [(date, close, volume, open)], with older bhavcopy days put in front, scaled to meet it."""
     if not rows or not old:
@@ -142,6 +149,7 @@ def _r(v, n=2):
 
 
 def build(mk, ix, rows, today: date) -> dict:
+    from . import results_read as CR
     from .results_preview import lag_of, qend, reaction_index
     bm = Bench()
     if not bm.days:
@@ -174,11 +182,13 @@ def build(mk, ix, rows, today: date) -> dict:
             continue
         npq = {}
         h = (H.get("companies") or {}).get(sym)
-        if h and not h["check"][1]:                      # older quarters only where they agree with screener
+        if h and hist_ok(h["check"]):                    # older quarters only where they agree with screener
             npq.update({lab: v["np"] for lab, v in h["q"].items() if v.get("np") is not None})
         for lab, v in zip(P0, e["q"].get("net_profit") or []):
             if v is not None:
                 npq[lab] = v
+        claude = {lab: v for lab, v in CR.quarters(sym).items() if lab not in npq and v.get("np") is not None}
+        npq.update({lab: v["np"] for lab, v in claude.items()})
         if not npq:
             continue
         labs = sorted(npq, key=qend)
@@ -196,13 +206,14 @@ def build(mk, ix, rows, today: date) -> dict:
             if s is None:
                 continue
             filed = mk.result_filed(key, qe) if qe >= date(2023, 9, 30) else None
-            filed = filed or ((h or {}).get("q", {}).get(P[t]) or {}).get("filed")
+            filed = filed or ((h or {}).get("q", {}).get(P[t]) or {}).get("filed") or (claude.get(P[t]) or {}).get("filed")
             if not filed:
                 continue
             i = reaction_index(px, filed)
             ev = {"key": key, "symbol": e["symbol"], "name": e["name"], "board": bool(e.get("code")), "code": e.get("code"),
                   "q": P[t], "qe": qe.isoformat(), "filed": filed, "sue": s[0], "np": NP[t],
-                  "exp": s[1], "sector": (mk.sector.get(key) or "").replace("-", " ")}
+                  "exp": s[1], "sector": (mk.sector.get(key) or "").replace("-", " "),
+                  "src": "claude" if P[t] in claude else None}
             if i is None or i < 3:
                 if filed[:10] >= px[-1][0]:
                     ev["stage"] = "reacting"              # announced; its reaction session isn't in the data yet
@@ -328,7 +339,7 @@ def build(mk, ix, rows, today: date) -> dict:
         out = {k: ev.get(k) for k in ("symbol", "name", "board", "code", "q", "filed", "day0", "entry_date", "last_date", "held", "stage", "sector")}
         out.update({"sue": _r(ev["sue"]), "ear": _r(ev.get("ear")), "entry": _r(ev.get("entry")), "last": _r(ev.get("last")),
                     "ret": _r(ev.get("ret")), "mkt": _r(ev.get("mkt")), "xs": _r(ev.get("xs")), "np": _r(ev.get("np")), "exp": _r(ev.get("exp")),
-                    "sq": ev.get("sq"), "eq": ev.get("eq")})
+                    "sq": ev.get("sq"), "eq": ev.get("eq"), "src": ev.get("src")})
         return out
 
     hold = sorted([ev for ev in traded if ev["stage"] == "open"], key=lambda e: e["entry_date"], reverse=True)

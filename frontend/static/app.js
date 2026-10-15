@@ -6743,29 +6743,32 @@ function pcCalc(){
         <tr><td><b>Expected</b> <small>last year + drift</small></td><td><b>${pcNum(exp)}</b></td></tr>
         <tr><td>σ <small>sd of ${recent?last.n_errors:f.n_errors} earlier forecast errors</small></td><td>${pcNum(sig)}</td></tr>
         <tr><td>Q5 entry level <small>${recent&&grp.sue_q5!=null?'its reporting week':'typical, recent weeks'}</small></td><td>SUE ≥ ${pcNum(sueCut)}</td></tr>
-        <tr><td><b>${metric} needed for Q5</b></td><td><b>${pcNum(need)}</b></td></tr>
-        <tr><td>Actual ${metric}</td><td><input type="number" step="any" id="pc-act" class="pc-in" placeholder="${recent&&last.actual!=null?pcNum(last.actual):'enter when out'}" value="${ea(P.actual)}"></td></tr>
+        <tr><td><b>${metric} needed for Q5</b>${need==null&&!sig?'<small>needs σ: at least 4 earlier forecast errors</small>':''}</td><td><b>${pcNum(need)}</b></td></tr>
+        <tr><td>Actual ${metric}${recent&&last.actual_source==='claude'?'<small class="pc-src">read by Claude from the filing on '+esc(last.announcement_date||'')+'</small>':recent&&last.actual_source?'<small>'+esc(last.actual_source==='screener'?'screener.in':'NSE XBRL')+'</small>':''}</td><td><input type="number" step="any" id="pc-act" class="pc-in" placeholder="${recent&&last.actual!=null?pcNum(last.actual):'enter when out'}" value="${ea(P.actual)}"></td></tr>
         <tr class="pc-res"><td><b>SUE</b></td><td><b>${sue==null?(sueWhy?esc(sueWhy):'—'):(sue>0?'+':'')+fmt(sue,2)}</b></td></tr>
       </table>
       <div class="pc-verdict ${sueQ5==null?'':sueQ5?'ok':'no'}">${sueQ5==null?'Enter the actual figure to score it':sueFinal?(sueQ5?'✓ SUE quintile 5':`✗ Not quintile 5 (quintile ${last.sue_q})`):(sueQ5?'✓ Above the Q5 entry level':'✗ Below the Q5 entry level')+'<small> — final once its reporting week is ranked</small>'}</div></div>`;
     // --- EAR calculator: the latest announcement's 3-day move vs Nifty 500, or a what-if
     const earCut=recent&&grp.ear_q5!=null?grp.ear_q5:cut.ear;
     let ear=recent?last.ear:null, sr=recent?last.stock_ret3:null, br=recent?last.bench_ret3:null;
+    const sofar=recent&&ear==null&&last.ear_sofar!=null;          // window still open: the move so far, filled in automatically
+    if(sofar){ ear=last.ear_sofar; sr=last.stock_ret_sofar; br=last.bench_ret_sofar; }
     if(P.sret!==''){ sr=parseFloat(P.sret)/100; br=P.bret!==''?parseFloat(P.bret)/100:0; ear=sr-br; }
     const earFinal=recent&&P.sret===''&&last.ear_q!=null;
     const earQ5=earFinal?last.ear_q===5:(ear!=null&&earCut!=null?ear>=earCut:null);
     const earCard=`<div class="pc-panel"><h4>EAR calculator <small>${recent?`reaction ${esc(rpvDate(last.announcement_date_used||''))}`:'next result'}</small></h4>
       <table class="pc-kv">
-        <tr><td>Window <small>close t0−1 → close t0+1</small></td><td>${recent&&last.price_date_minus1?`${esc(last.price_date_minus1)} → ${esc(last.price_date_plus1)}`:'—'}</td></tr>
-        <tr><td>Stock 3-day return</td><td><input type="number" step="any" id="pc-sret" class="pc-in" placeholder="${sr!=null?pcNum(sr*100):'%'}" value="${ea(P.sret)}"> %</td></tr>
-        <tr><td>Nifty 500 3-day return</td><td><input type="number" step="any" id="pc-bret" class="pc-in" placeholder="${br!=null?pcNum(br*100):'%'}" value="${ea(P.bret)}"> %</td></tr>
+        <tr><td>Window <small>close t0−1 → close t0+1</small></td><td>${recent&&last.price_date_minus1?(sofar?`${esc(last.price_date_minus1)} → ${esc(last.sofar_date)} <small>so far</small>`:`${esc(last.price_date_minus1)} → ${esc(last.price_date_plus1)}`):'—'}</td></tr>
+        <tr><td>Stock 3-day return${sofar?'<small>so far</small>':''}</td><td><b>${sr!=null?ssSigned(sr*100,2):'—'}</b></td></tr>
+        <tr><td>Nifty 500 3-day return${sofar?'<small>so far</small>':''}</td><td><b>${br!=null?ssSigned(br*100,2):'—'}</b></td></tr>
+        <tr><td><small>Try other returns (optional)</small></td><td><input type="number" step="any" id="pc-sret" class="pc-in" placeholder="stock %" value="${ea(P.sret)}"> <input type="number" step="any" id="pc-bret" class="pc-in" placeholder="Nifty %" value="${ea(P.bret)}"></td></tr>
         <tr><td>Q5 entry level</td><td>EAR ≥ ${earCut!=null?'+'+fmt(earCut*100,2)+'%':'—'}</td></tr>
-        <tr class="pc-res"><td><b>EAR</b></td><td><b>${ear==null?(recent&&last.ear_reason?esc(last.ear_reason):'—'):(ear>0?'+':'')+fmt(ear*100,2)+'%'}</b></td></tr>
+        <tr class="pc-res"><td><b>EAR</b>${sofar?'<small>so far — final after the session following the result</small>':''}</td><td><b>${ear==null?(recent&&last.ear_reason?esc(last.ear_reason):'—'):(ear>0?'+':'')+fmt(ear*100,2)+'%'}</b></td></tr>
       </table>
-      <div class="pc-verdict ${earQ5==null?'':earQ5?'ok':'no'}">${earQ5==null?'Known after the session following the result':earFinal?(earQ5?'✓ EAR quintile 5':`✗ Not quintile 5 (quintile ${last.ear_q})`):(earQ5?'✓ Above the Q5 entry level':'✗ Below the Q5 entry level')+'<small> — final once its reporting week is ranked</small>'}</div></div>`;
+      <div class="pc-verdict ${earQ5==null?'':earQ5?'ok':'no'}">${earQ5==null?'Known after the session following the result':sofar&&P.sret===''?(earQ5?'↗ On track for the Q5 entry level':'↘ Below the Q5 entry level so far')+'<small> — the window closes after the next session</small>':earFinal?(earQ5?'✓ EAR quintile 5':`✗ Not quintile 5 (quintile ${last.ear_q})`):(earQ5?'✓ Above the Q5 entry level':'✗ Below the Q5 entry level')+'<small> — final once its reporting week is ranked</small>'}</div></div>`;
     const both=sueQ5===true&&earQ5===true, fin=sueFinal&&earFinal;
     const inter=`<div class="pc-inter ${both?'ok':sueQ5===false||earQ5===false?'no':''}">${both?`<b>${esc(r.symbol)} ${fin?'sits at the intersection':'is on course for the intersection'}: SUE Q5 and EAR Q5</b> — the strategy buys it on day +2${fin?'':' if its reporting week’s ranking confirms it'}.`:sueQ5===false||earQ5===false?`<b>Not at the intersection</b> — it needs both SUE and EAR in quintile 5.`:'The intersection needs both calculators in quintile 5.'}</div>`;
-    const rows=h.map(x=>`<tr><td>${esc(pcQ(x.quarter_end_date))}</td><td>${esc(x.announcement_date||'—')}${x.announcement_time?`<small>${esc(x.announcement_time)}</small>`:''}</td><td class="n">${pcNum(x.actual)}</td><td class="n">${pcNum(x.expected)}</td>
+    const rows=h.map(x=>`<tr><td>${esc(pcQ(x.quarter_end_date))}</td><td>${esc(x.announcement_date||'—')}${x.announcement_time?`<small>${esc(x.announcement_time)}</small>`:''}</td><td class="n">${pcNum(x.actual)}${x.actual_source==='claude'?'<small class="pc-src">Claude</small>':''}</td><td class="n">${pcNum(x.expected)}</td>
       <td class="n"><b>${x.sue==null?'—':(x.sue>0?'+':'')+fmt(x.sue,2)}</b>${x.sue==null&&x.sue_reason?`<small>${esc(x.sue_reason)}</small>`:''}</td><td class="n">${x.sue_q??'—'}</td>
       <td class="n">${x.ear==null?'—':(x.ear>0?'+':'')+fmt(x.ear*100,2)+'%'}</td><td class="n">${x.ear_q??'—'}</td><td>${x.qualifies?'<span class="al-chip al-dbuy">Q5 ∩ Q5</span>':''}</td>
       <td class="n">${x.car21==null?'—':ssSigned(x.car21*100,1)}</td><td class="n">${x.car61==null?'—':ssSigned(x.car61*100,1)}</td></tr>`).join('');
@@ -6859,7 +6862,7 @@ function rpvPead(){
       <td><span class="al-chip ${mcall[r.call][1]}">${mcall[r.call][0]}</span>${r.cheap?'<small>under ₹100 — skipped</small>':''}</td>
       <td>${esc(r.q)}<small>${esc(rpvFiled(r.filed))}</small></td>
       <td class="n"><b>${r.sue>0?'+':''}${fmt(r.sue,2)}</b><small>fifth ${r.sq} of 5</small></td>
-      <td class="n">${r.np!=null?fmt(r.np,1):'—'} cr<small>expected ${r.exp!=null?fmt(r.exp,1):'—'} cr</small></td>
+      <td class="n">${r.np!=null?fmt(r.np,1):'—'} cr<small>expected ${r.exp!=null?fmt(r.exp,1):'—'} cr${r.src==='claude'?' · read by Claude from the filing':''}</small></td>
       <td class="n">${r.price!=null?'₹'+fmt(r.price,2):'—'}</td>
       <td>${r.reacted?(r.call==='track'?`<small>Reacted ${esc(rcDayShort(r.reaction_day))} (filed in market hours). Move so far ${r.ear_sofar==null?'—':ssSigned(r.ear_sofar,2)} vs the +${r.ear_needed??'—'}% needed — ${r.on_track?'<b class="ov-up">on track</b>':'not there yet'}; the full strategy buys on ${esc(rcDayShort(r.buy_day))} if the 3-day move holds above it.</small>`:`<small>Reacted ${esc(rcDayShort(r.reaction_day))} (filed in market hours).</small>`)
         :(r.sq===5&&!r.cheap?`<small>Full strategy: also buy on day +2 if the 3-day move reaches +${r.ear_needed??'—'}% vs Nifty 500</small>`:'')}</td></tr>`;

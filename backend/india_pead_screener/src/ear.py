@@ -16,7 +16,8 @@ import numpy as np
 import pandas as pd
 
 OUT_COLS = ["symbol", "announcement_date", "announcement_date_used", "price_date_minus1", "price_date_0",
-            "price_date_plus1", "stock_return_3d", "benchmark_return_3d", "EAR", "ear_reason"]
+            "price_date_plus1", "stock_return_3d", "benchmark_return_3d", "EAR", "ear_reason",
+            "sofar_date", "stock_return_sofar", "benchmark_return_sofar", "EAR_sofar"]
 
 
 def reaction_date(dates: list, ann: pd.Timestamp, ann_time: str | None = None, after_close: str = "15:30"):
@@ -31,7 +32,8 @@ def ear_one(stock: pd.Series, bench: pd.Series, ann: pd.Timestamp, ann_time: str
             window=(-1, 0, 1), after_close: str = "15:30") -> dict:
     """EAR for one announcement. `stock` and `bench`: adjusted closes indexed by trading date (sorted)."""
     out = {"announcement_date_used": pd.NaT, "price_date_minus1": pd.NaT, "price_date_0": pd.NaT, "price_date_plus1": pd.NaT,
-           "stock_return_3d": np.nan, "benchmark_return_3d": np.nan, "EAR": np.nan, "ear_reason": ""}
+           "stock_return_3d": np.nan, "benchmark_return_3d": np.nan, "EAR": np.nan, "ear_reason": "",
+           "sofar_date": pd.NaT, "stock_return_sofar": np.nan, "benchmark_return_sofar": np.nan, "EAR_sofar": np.nan}
     dates = list(stock.index)
     i = reaction_date(dates, ann, ann_time, after_close)
     if i is None:
@@ -41,6 +43,14 @@ def ear_one(stock: pd.Series, bench: pd.Series, ann: pd.Timestamp, ann_time: str
     out["announcement_date_used"] = dates[i]
     if lo < 0 or hi >= len(dates):
         out["ear_reason"] = "window not complete yet" if hi >= len(dates) else "no price before the announcement"
+        if lo >= 0 and hi >= len(dates) and i < len(dates):
+            # the window so far (never used for quintiles): t0-1 close -> the latest close in the data
+            a, b = dates[lo], dates[-1]
+            ba, bb = bench.get(a), bench.get(b)
+            if stock.iloc[lo] > 0 and ba and bb:
+                out.update({"price_date_minus1": a, "sofar_date": b, "stock_return_sofar": stock.iloc[-1] / stock.iloc[lo] - 1,
+                            "benchmark_return_sofar": bb / ba - 1})
+                out["EAR_sofar"] = out["stock_return_sofar"] - out["benchmark_return_sofar"]
         return out
     d0, d1 = dates[lo], dates[hi]
     out.update({"price_date_minus1": d0, "price_date_0": dates[i], "price_date_plus1": d1})
@@ -69,7 +79,7 @@ def compute_ear(events: pd.DataFrame, prices: pd.DataFrame, bench: pd.DataFrame,
         s = by.get(r.symbol)
         base = {"symbol": r.symbol, "announcement_date": r.announcement_date}
         if s is None or s.empty or pd.isna(r.announcement_date):
-            rows.append({**base, **{k: (pd.NaT if "date" in k else np.nan) for k in OUT_COLS[2:9]},
+            rows.append({**base, **{k: (pd.NaT if "date" in k else np.nan) for k in OUT_COLS[2:] if k != "ear_reason"},
                          "ear_reason": "no prices" if s is None or s.empty else "no announcement date"})
             continue
         rows.append({**base, **ear_one(s, bd, r.announcement_date, getattr(r, "announcement_time", None), window, after_close)})

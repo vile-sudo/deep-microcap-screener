@@ -107,6 +107,7 @@ def from_app(backend_dir: Path) -> dict:
     sys.path.insert(0, str(backend_dir))
     from app import pead as P
     from app import results_preview as RP
+    from app import results_read as CR
 
     mk = RP.Market()
     bm = P.Bench()
@@ -126,15 +127,19 @@ def from_app(backend_dir: Path) -> dict:
             continue
         rec: dict[str, dict] = {}
         h = (H.get("companies") or {}).get(sym)
-        if h and not h["check"][1]:          # XBRL history only where it agrees with screener on the overlap
+        if h and P.hist_ok(h["check"]):      # XBRL history only where it agrees with screener on the overlap
             for lab, v in h["q"].items():
                 if v.get("np") is not None:
-                    rec[lab] = {"np": v["np"], "eps": None, "filed": v.get("filed")}
+                    rec[lab] = {"np": v["np"], "eps": None, "filed": v.get("filed"), "src": "nse_xbrl"}
         for i, lab in enumerate(P0):
             np_ = (e["q"].get("net_profit") or [None] * len(P0))[i] if i < len(e["q"].get("net_profit") or []) else None
             eps = (e["q"].get("eps") or [None] * len(P0))[i] if i < len(e["q"].get("eps") or []) else None
             if np_ is not None:
-                rec[lab] = {"np": np_, "eps": eps, "filed": (rec.get(lab) or {}).get("filed")}
+                rec[lab] = {"np": np_, "eps": eps, "filed": (rec.get(lab) or {}).get("filed"), "src": "screener"}
+        # a quarter screener hasn't caught up with yet: Claude's read of the filing, the evening it came out
+        for lab, v in CR.quarters(sym).items():
+            if lab not in rec and v.get("np") is not None:
+                rec[lab] = {"np": v["np"], "eps": None, "filed": v["filed"], "src": "claude"}
         if not rec:
             continue
         for lab, v in rec.items():
@@ -144,7 +149,7 @@ def from_app(backend_dir: Path) -> dict:
             fin.append({"symbol": sym, "fiscal_year": fy, "fiscal_quarter": fq, "quarter_end_date": qe,
                         "announcement_date": filed[:10] if filed else None, "announcement_time": filed[11:16] if filed else None,
                         "reported_eps": v["eps"], "net_profit": v["np"], "shares_outstanding": None,
-                        "exceptional_items": None, "tax_adjustments": None, "sector": mk.sector.get(key)})
+                        "exceptional_items": None, "tax_adjustments": None, "sector": mk.sector.get(key), "actual_source": v["src"]})
         rows = P._prices(mk.prices(key), (H.get("prices") or {}).get(sym))
         for d, c, vol, o in rows:
             px.append((sym, d, c, c, c * vol if vol else np.nan))
@@ -155,4 +160,5 @@ def from_app(backend_dir: Path) -> dict:
     f, p, b = prepare(fin, pxd, bench)
     f["announcement_time"] = fin["announcement_time"].values
     f["sector"] = fin["sector"].values
+    f["actual_source"] = fin["actual_source"].values
     return {"fin": f, "px": p, "bench": b, "names": names, "excluded": len(excluded)}

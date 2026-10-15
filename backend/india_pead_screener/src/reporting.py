@@ -7,7 +7,7 @@ import pandas as pd
 
 from .screener import RESULT_COLS
 
-EXTRA = ["metric", "quarter_end_date", "announcement_time", "announcement_date_used", "price_date_minus1", "price_date_0",
+EXTRA = ["metric", "actual_source", "quarter_end_date", "announcement_time", "announcement_date_used", "price_date_minus1", "price_date_0",
          "price_date_plus1", "n_forecast_errors", "quarters_history", "SUE_raw", "sue_percentile", "ear_percentile",
          "quintile_group", "sue_reason", "ear_reason"]
 
