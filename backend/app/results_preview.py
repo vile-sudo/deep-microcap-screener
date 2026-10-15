@@ -84,12 +84,34 @@ def qend(label: str) -> date:
     return date(y, m, 30 if m in (6, 9) else 31)
 
 
-def next_label(label: str) -> str:
-    qe = qend(label) + timedelta(days=92)
-    return f"{[k for k, v in MON.items() if v == qe.month][0]} {qe.year}"
+def next_label(label: str, lag: int = 4) -> str:
+    """The period after `label`: three months on for a quarterly reporter, six for a half-yearly one."""
+    m, y = label.split()
+    n = MON[m] - 1 + (3 if lag == 4 else 6)
+    return f"{[k for k, v in MON.items() if v == n % 12 + 1][0]} {int(y) + n // 12}"
+
+
+def lag_of(P: list[str]) -> int:
+    """How many periods back "the same period last year" is: 4 for a quarterly reporter, 2 for a half-yearly one
+    (most SME companies report every six months), 0 when the periods are irregular."""
+    try:
+        if not P or any(p.split()[0] not in ("Mar", "Jun", "Sep", "Dec") for p in P):
+            return 0
+        gaps = [(qend(b) - qend(a)).days for a, b in zip(P, P[1:])]
+        if gaps and all(88 <= g <= 94 for g in gaps):
+            return 4
+        if gaps and all(178 <= g <= 186 for g in gaps):
+            return 2
+    except (KeyError, ValueError, IndexError):
+        pass
+    return 0
 
 
 def standard(P: list[str]) -> bool:
+    return lag_of(P) > 0
+
+
+def _standard_quarterly(P: list[str]) -> bool:
     """Quarters ending Mar/Jun/Sep/Dec, one after another -- "the same quarter last year" is 4 back only then."""
     try:
         return bool(P) and all(p.split()[0] in ("Mar", "Jun", "Sep", "Dec") for p in P) and \
@@ -396,16 +418,17 @@ def features(mk: Market, ix: Index, key: str, t: int, qe: date, asof: str, peers
     e = mk.ent[key]
     q = e["q"]
     S, NP, OPM = q.get("sales") or [], q.get("net_profit") or [], q.get("opm") or []
-    if t < 5 or t - 1 >= len(S) or t - 5 >= len(S):
+    L = lag_of(q.get("periods") or []) or 4          # periods in a year: 4 quarterly, 2 half-yearly
+    if t < L + 1 or t - 1 >= len(S):
         return None
-    g1 = _yoy(S[t - 1], S[t - 5])
+    g1 = _yoy(S[t - 1], S[t - 1 - L])
     if g1 is None:
         return None
-    trail = _yoy(sum(x or 0 for x in S[t - 4:t]), sum(x or 0 for x in S[t - 8:t - 4])) if t >= 8 else None
-    base = _yoy(S[t - 4], S[t - 8]) if t >= 8 else None
-    pg1 = _yoy(NP[t - 1], NP[t - 5]) if t - 5 < len(NP) and NP[t - 5] and NP[t - 5] > 0 else None
-    opm_ch = (OPM[t - 1] - OPM[t - 5]) if t - 1 < len(OPM) and OPM[t - 1] is not None and OPM[t - 5] is not None else None
-    yr_sales = sum(x for x in S[max(0, t - 4):t] if x)
+    trail = _yoy(sum(x or 0 for x in S[t - L:t]), sum(x or 0 for x in S[t - 2 * L:t - L])) if t >= 2 * L else None
+    base = _yoy(S[t - L], S[t - 2 * L]) if t >= 2 * L else None
+    pg1 = _yoy(NP[t - 1], NP[t - 1 - L]) if t - 1 - L < len(NP) and NP[t - 1 - L] and NP[t - 1 - L] > 0 else None
+    opm_ch = (OPM[t - 1] - OPM[t - 1 - L]) if t - 1 < len(OPM) and OPM[t - 1] is not None and OPM[t - 1 - L] is not None else None
+    yr_sales = sum(x for x in S[max(0, t - L):t] if x)
     sym = key[4:] if key.startswith("NSE:") else ""
     g = mk.guided(e.get("code"), qe)
     ym, call = mk.call_before(e.get("code"), qe)
@@ -414,7 +437,7 @@ def features(mk: Market, ix: Index, key: str, t: int, qe: date, asof: str, peers
     six = (qe - timedelta(days=182)).isoformat()
     inflow = [(d, v, m) for d, v, m in mk.orders.get(sym, []) if six < d <= qe.isoformat()]
     # revenue due this quarter from orders already won: each spread evenly over its execution period
-    q0, due = qe - timedelta(days=91), 0.0
+    q0, due = qe - timedelta(days=91 if L == 4 else 182), 0.0
     for d, v, m in mk.orders.get(sym, []):
         d0 = date.fromisoformat(d)
         if d0 > qe:
@@ -424,7 +447,7 @@ def features(mk: Market, ix: Index, key: str, t: int, qe: date, asof: str, peers
         overlap = (min(d1, qe) - max(d0, q0)).days
         if overlap > 0:
             due += v * overlap / (30.4 * months)
-    base_q = S[t - 4] if t - 4 < len(S) else None
+    base_q = S[t - L] if t - L < len(S) else None
     sec = mk.sector.get(key)
     ic, ic_notes = input_cost(sec, qe, mk.com)
     pr = peers.get((sec, qe.isoformat()), [])
@@ -461,16 +484,17 @@ def build(mk: Market, ix: Index):
     base_rows, peers = [], defaultdict(list)
     for key, e in mk.ent.items():
         P, S, NP = e["q"].get("periods") or [], e["q"].get("sales") or [], e["q"].get("net_profit") or []
-        if not standard(P):
+        L = lag_of(P)
+        if not L:
             continue
-        for t in range(5, len(P)):
+        for t in range(L + 1, len(P)):
             qe = qend(P[t])
-            g, g1 = _yoy(S[t], S[t - 4]), _yoy(S[t - 1], S[t - 5])
+            g, g1 = _yoy(S[t], S[t - L]), _yoy(S[t - 1], S[t - 1 - L])
             if g is None or g1 is None:
                 continue
             filed = mk.result_filed(key, qe)
             rd = filed[:10] if filed else None
-            pu = (NP[t] > NP[t - 4]) if NP[t] is not None and NP[t - 4] is not None and NP[t - 4] > 0 else None
+            pu = (NP[t] > NP[t - L]) if NP[t] is not None and NP[t - L] is not None and NP[t - L] > 0 else None
             base_rows.append((key, t, qe, rd, g, g1, pu, P[t], filed))
             if rd and mk.sector.get(key):
                 peers[(mk.sector[key], qe.isoformat())].append((rd, 1 if g > g1 else 0, _clip(g), key))
@@ -614,17 +638,18 @@ def actual_features(q: dict, t: int, g1: float) -> dict:
     """What the result itself showed (known the moment it is filed): sales growth and its change vs last
     quarter's pace, profit growth and its change, sales vs the previous quarter, margin change, loss <-> profit."""
     S, NP, OPM = q.get("sales") or [], q.get("net_profit") or [], q.get("opm") or []
-    g = _yoy(S[t], S[t - 4])
-    pg = _yoy(NP[t], NP[t - 4]) if NP[t - 4] and NP[t - 4] > 0 else None
-    pg1 = _yoy(NP[t - 1], NP[t - 5]) if t >= 5 and NP[t - 5] and NP[t - 5] > 0 else None
-    om = (OPM[t] - OPM[t - 4]) if t < len(OPM) and OPM[t] is not None and OPM[t - 4] is not None else None
+    L = lag_of(q.get("periods") or []) or 4
+    g = _yoy(S[t], S[t - L])
+    pg = _yoy(NP[t], NP[t - L]) if NP[t - L] and NP[t - L] > 0 else None
+    pg1 = _yoy(NP[t - 1], NP[t - 1 - L]) if t >= L + 1 and NP[t - 1 - L] and NP[t - 1 - L] > 0 else None
+    om = (OPM[t] - OPM[t - L]) if t < len(OPM) and OPM[t] is not None and OPM[t - L] is not None else None
     om1 = (OPM[t] - OPM[t - 1]) if t < len(OPM) and OPM[t] is not None and OPM[t - 1] is not None else None
     return {"a_g": _clip(g), "a_dg": _clip(None if g is None else g - g1, -100, 100), "a_pg": _clip(pg, -100, 300),
             "a_dpg": _clip(None if pg is None or pg1 is None else pg - pg1, -300, 300), "a_qoq": _clip(_yoy(S[t], S[t - 1]), -80, 150),
             "a_om": _clip(om, -30, 30), "a_om1": _clip(om1, -30, 30),
-            "a_l2p": 1.0 if (NP[t] or 0) > 0 and (NP[t - 4] or 0) <= 0 else 0.0,
-            "a_p2l": 1.0 if (NP[t] or 0) <= 0 and (NP[t - 4] or 0) > 0 else 0.0,
-            "_g": g, "_pg": pg, "_om": om, "_np": NP[t], "_np0": NP[t - 4]}
+            "a_l2p": 1.0 if (NP[t] or 0) > 0 and (NP[t - L] or 0) <= 0 else 0.0,
+            "a_p2l": 1.0 if (NP[t] or 0) <= 0 and (NP[t - L] or 0) > 0 else 0.0,
+            "_g": g, "_pg": pg, "_om": om, "_np": NP[t], "_np0": NP[t - L]}
 
 
 def _XP(rows):
@@ -897,7 +922,7 @@ def run() -> dict:
     want = {}
     for it in (cal.get("events") or []) + (cal.get("items") or []):
         sym = str(it.get("symbol") or "").upper()
-        if not it.get("date") or "half" in str(it.get("result") or "").lower():
+        if not it.get("date"):            # half-yearly reporters are handled too (lag_of)
             continue
         key = next((k for k in (f"NSE:{sym}", f"BSE:{sym}") if k in mk.ent), None)
         if key is None and it.get("code"):
@@ -917,7 +942,7 @@ def run() -> dict:
         P = mk.ent[key]["q"].get("periods") or []
         if not standard(P) or not (today - timedelta(days=1) <= d <= today + timedelta(days=UPCOMING_DAYS)):
             continue
-        target = next_label(P[-1])
+        target = next_label(P[-1], lag_of(P))
         if qend(target) >= d or (d - qend(target)).days > 120:   # not ended yet / an old quarter: results on file are stale
             continue
         f = features(mk, ix, key, len(P), qend(target), min(it["date"], today.isoformat() + "~"), peers)
@@ -931,7 +956,7 @@ def run() -> dict:
         e = mk.ent[key]
         conf = max(abs((a or .5) - .5), abs((p or .5) - .5))
         rec = {"key": key, "code": e.get("code"), "symbol": e["symbol"], "name": e["name"], "board": bool(e.get("code")),
-               "sector": (mk.sector.get(key) or "").replace("-", " "), "quarter": target, "date": it["date"], "status": it.get("status"),
+               "sector": (mk.sector.get(key) or "").replace("-", " "), "quarter": target, "half": lag_of(mk.ent[key]["q"].get("periods") or []) == 2, "date": it["date"], "status": it.get("status"),
                "last_g": round(f["_ctx"]["g1"], 1), "p_accel": round(a, 3), "p_profit": round(p, 3), "p_react": round(x, 3),
                "confidence": "high" if conf >= .2 else "medium" if conf >= .1 else "low",
                "chart": {k: (None if math.isnan(f[k]) else round(f[k], 1)) for k in ("ret20", "ret5", "hi1m", "hi52", "volr")},
@@ -949,7 +974,7 @@ def run() -> dict:
         P = e["q"].get("periods") or []
         if not standard(P) or (today - qend(P[-1])).days > 200:
             continue
-        target = next_label(P[-1])
+        target = next_label(P[-1], lag_of(P))
         it = want.get(key)
         if it and date.fromisoformat(it["date"]) <= qend(target):
             it = None                       # that calendar date was the result just reported, not the next one
@@ -964,7 +989,8 @@ def run() -> dict:
     for (key, target, d, known, f), a, p, x in zip(acand, A_, P_, X_):
         e = mk.ent[key]
         allc[key] = {"key": key, "code": e.get("code"), "symbol": e["symbol"], "name": e["name"], "board": bool(e.get("code")),
-                     "sector": (mk.sector.get(key) or "").replace("-", " "), "quarter": target, "date": d, "date_known": known,
+                     "sector": (mk.sector.get(key) or "").replace("-", " "), "quarter": target, "half": lag_of(e["q"].get("periods") or []) == 2,
+                     "date": d, "date_known": known,
                      "last_g": round(f["_ctx"]["g1"], 1), "p_accel": round(a, 3), "p_profit": round(p, 3), "p_react": round(x, 3),
                      "chart": {k: (None if math.isnan(f[k]) else round(f[k], 1)) for k in ("ret20", "hi1m", "hi52")},
                      "drivers": drivers(f, mk),
@@ -997,7 +1023,8 @@ def run() -> dict:
         if rec["quarter"] not in P:
             continue
         t = P.index(rec["quarter"])
-        g = _yoy(S[t], S[t - 4]) if t >= 4 else None
+        L = lag_of(P) or 4
+        g = _yoy(S[t], S[t - L]) if t >= L else None
         if g is None:
             continue
         filed = mk.result_filed(rec["key"], qend(rec["quarter"])) or f"{rec.get('date')}T00:00:00"
@@ -1005,7 +1032,7 @@ def run() -> dict:
         i = reaction_index(pxr, filed) if pxr else None
         ex = (pxr[i][1] / pxr[i - 1][1] - 1) * 100 if i else None      # the stock's own result-day move
         rec.update({"graded": True, "actual_g": round(g, 1), "accel": int(g > rec["last_g"]),
-                    "profit_up": int(NP[t] > NP[t - 4]) if NP[t] is not None and NP[t - 4] and NP[t - 4] > 0 else None,
+                    "profit_up": int(NP[t] > NP[t - L]) if NP[t] is not None and NP[t - L] and NP[t - L] > 0 else None,
                     "react": round(ex, 2) if ex is not None else None, "rday": pxr[i][0] if i else None})
         rec["react_up"] = None if rec["react"] is None else int(rec["react"] > 0)
         newly.append(rec)
@@ -1075,7 +1102,7 @@ def run() -> dict:
                    "gap": round((px[i][3] / px[i - 1][1] - 1) * 100, 2) if px[i][3] else None}
         tm = filed[11:16]
         reported.append({"key": key, "code": e.get("code"), "symbol": e["symbol"], "name": e["name"], "board": bool(e.get("code")),
-                         "sector": (mk.sector.get(key) or "").replace("-", " "), "quarter": P[-1], "filed": filed,
+                         "sector": (mk.sector.get(key) or "").replace("-", " "), "quarter": P[-1], "half": lag_of(P) == 2, "filed": filed,
                          "in_hours": "09:00" <= tm < "15:30", "p_up": round(p, 3),
                          "sales_g": None if a["_g"] is None else round(a["_g"], 1), "last_g": round(f["g1"], 1),
                          "profit_g": None if a["_pg"] is None else round(a["_pg"], 1), "np": a["_np"], "np0": a["_np0"],

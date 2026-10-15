@@ -6717,7 +6717,7 @@ function rpvReported(d){
   if(!all.length) return intro+scope+'<p class="view-hint">No results filed in the last few days with numbers on file yet — reads appear the evening a company reports (runs at 9:30 PM and 11:30 PM IST, and again overnight).</p>';
   return intro+scope+`<div class="mv-tablewrap"><table class="mv-table rpv-table"><thead><tr><th>Filed</th><th>Company</th><th class="n">Sales<small>YoY · last qtr</small></th><th class="n">Profit<small>YoY</small></th><th class="n">Margin<small>vs a year ago</small></th>
       <th>Overnight read<small>chance it closes up next session</small></th><th class="n">Expected<small>gap · open→close</small></th><th class="n">What happened<small>gap · day</small></th></tr></thead><tbody>
-    ${all.map(r=>`<tr><td><b>${esc(rpvDate(r.filed.slice(0,10)))}</b><small>${esc(r.quarter)} · ${esc(rpvFiled(r.filed).replace(/^filed \S+ \S+ \S+ /,''))}${r.in_hours?' · in market hours':''}</small></td>
+    ${all.map(r=>`<tr><td><b>${esc(rpvDate(r.filed.slice(0,10)))}</b><small>${esc(r.quarter)}${r.half?' half-year':''} · ${esc(rpvFiled(r.filed).replace(/^filed \S+ \S+ \S+ /,''))}${r.in_hours?' · in market hours':''}</small></td>
       <td>${r.code?`<a href="#" data-co="${ea(r.code)}" class="rpv-co"><b class="mv-tick">${esc(r.symbol)}</b></a>`:`<b class="mv-tick">${esc(r.symbol)}</b>`}<span class="mv-name">${esc(r.name)}</span><small>${esc(r.sector||'')}</small></td>
       <td class="n"><b>${sg(r.sales_g)}</b><small>was ${sg(r.last_g)}</small></td>
       <td class="n">${r.profit_g==null?(r.np!=null&&r.np0!=null&&r.np0<=0?(r.np>0?'<span class="ov-up">loss → profit</span>':'<span class="ov-dn">still a loss</span>'):'—'):`<b class="${r.profit_g>0?'ov-up':'ov-dn'}">${sg(r.profit_g)}</b>`}</td>
@@ -6798,7 +6798,7 @@ function rpvCheck(d){
     out+=`${res.matches.length>1?`<div class="rpv-picks">${res.matches.map((m,i)=>`<button type="button" class="ssc-chip${i===(C.pick||0)?' on':''}" data-chkpick="${i}">${esc(m.symbol)} <small>${esc((m.name||'').slice(0,28))}</small></button>`).join('')}</div>`:''}
       ${head}
       <div class="cp-card rpv-chkcard"><div class="cp-card-h"><h3>${r.code?`<a href="#" data-co="${ea(r.code)}">${esc(r.name)}</a>`:esc(r.name)} <small class="cp-sub">${esc(r.symbol)} · ${esc(r.sector||'')}</small></h3>
-        <span class="cp-sub">${esc(r.quarter)} results · ${r.date_known?`<b>${esc(rcDayLong(r.date))}</b>`:`expected around ${esc(rcDayLong(r.date))} (date not announced yet)`}</span></div>
+        <span class="cp-sub">${esc(r.quarter)} ${r.half?'half-year ':''}results · ${r.date_known?`<b>${esc(rcDayLong(r.date))}</b>`:`expected around ${esc(rcDayLong(r.date))} (date not announced yet)`}</span></div>
         <div class="rpv-chkgrid">
           <div class="rpv-big3"><span>Closes up on result day?</span><b class="${lean[1]==='up'?'ov-up':lean[1]==='dn'?'ov-dn':''}">${chance==null?'—':Math.round(chance)+'%'}</b><small>${lean[0]} (calibrated — see above)</small></div>
           <div class="rpv-big3"><span>Profit up vs a year ago?</span><b class="${r.p_profit>=.6?'ov-up':r.p_profit<=.4?'ov-dn':''}">${rpvPct(r.p_profit)}</b><small>backtest: right ${(d.backtest?.profit||{}).hit}% of the time</small></div>

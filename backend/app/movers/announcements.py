@@ -98,7 +98,13 @@ def load_announcements(
         lambda: client.get_json(ANNOUNCEMENTS_URL.format(start=nse_date(day), end=nse_date(day))),
         label=f"announcements for {day.isoformat()}",
     )
-    return as_records(payload)
+    # NSE keeps SME (Emerge) companies' filings in a separate list -- without it no SME result is ever seen
+    sme = cached_json(
+        cache_dir / f"{day.isoformat()}-sme.json",
+        lambda: client.get_json(ANNOUNCEMENTS_URL.replace("index=equities", "index=sme").format(start=nse_date(day), end=nse_date(day))),
+        label=f"SME announcements for {day.isoformat()}",
+    )
+    return as_records(payload) + as_records(sme)
 
 
 def filings_for_session(
