@@ -86,8 +86,21 @@ class Bench:
         got = index_closes([date.fromisoformat(d) for d in want], Path(__file__).resolve().parent.parent / ".bhav_cache", 15)
         for d, v in got.items():
             self.lvl[d.isoformat()] = v
+        miss = [d for d in want if d not in self.lvl]
+        if miss:                                     # NSE's archive often refuses cloud runners: Yahoo's ^CRSLDX
+            try:                                     # is the same Nifty 500 close
+                import requests
+                r = requests.get("https://query1.finance.yahoo.com/v8/finance/chart/%5ECRSLDX?range=3mo&interval=1d",
+                                 headers={"User-Agent": "Mozilla/5.0"}, timeout=30).json()["chart"]["result"][0]
+                ist = timezone(timedelta(hours=5, minutes=30))
+                for t, c in zip(r["timestamp"], r["indicators"]["quote"][0]["close"]):
+                    d = datetime.fromtimestamp(t, ist).date().isoformat()
+                    if d in miss and c:
+                        self.lvl[d] = round(float(c), 2)
+            except Exception:  # noqa: BLE001 - a missing day only leaves that EAR blank
+                pass
         self.days = sorted(self.lvl)
-        return len(got)
+        return sum(1 for d in want if d in self.lvl)
 
 
 _MON = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
