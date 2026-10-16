@@ -75,6 +75,20 @@ class Bench:
         a, b = self.at(d0), self.at(d1)
         return (b / a - 1) * 100 if a and b else None
 
+    def fill(self, dates) -> int:
+        """Sessions after the last day in Sector Strength's index history (it can lag a day or two): fetched from
+        NSE's daily index file, cached in .bhav_cache -- so EAR never uses a stale Nifty 500 close."""
+        last = self.days[-1] if self.days else "0000"
+        want = sorted({str(d)[:10] for d in dates if str(d)[:10] > last})[-15:]
+        if not want:
+            return 0
+        from .sector_strength import index_closes
+        got = index_closes([date.fromisoformat(d) for d in want], Path(__file__).resolve().parent.parent / ".bhav_cache", 15)
+        for d, v in got.items():
+            self.lvl[d.isoformat()] = v
+        self.days = sorted(self.lvl)
+        return len(got)
+
 
 _MON = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
 HISTORY = Path(__file__).resolve().parent.parent / "data" / "results_preview" / "pead_history.json.gz"
@@ -154,6 +168,7 @@ def build(mk, ix, rows, today: date) -> dict:
     bm = Bench()
     if not bm.days:
         return {"asof": today.isoformat(), "error": "no Nifty 500 history"}
+    bm.fill(ix.lvl)                                  # every session the market index has (all stocks' prices)
     excluded = {}
     try:
         sectors = json.loads(SECTORS.read_text(encoding="utf-8")).get("sectors") or []

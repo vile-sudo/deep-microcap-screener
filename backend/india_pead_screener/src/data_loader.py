@@ -114,6 +114,8 @@ def from_app(backend_dir: Path) -> dict:
     H = P._history()
     for d, v in (H.get("nifty500") or {}).items():
         bm.lvl.setdefault(d, v)
+    bm.days = sorted(bm.lvl)
+    bm.fill(RP.Index(mk).lvl)                        # recent sessions the index history hasn't caught up with
     sectors = json.loads(P.SECTORS.read_text(encoding="utf-8")).get("sectors") or []
     excluded = {f"NSE:{s.get('symbol')}" for x in sectors if x.get("group") == "nse" for s in x.get("stocks") or []
                 if x["slug"] in P.EXCLUDE_SECTORS or s.get("industry") in P.EXCLUDE_INDUSTRIES}

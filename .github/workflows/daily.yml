@@ -225,17 +225,6 @@ jobs:
         working-directory: ./backend
         run: python scripts/run_results_preview.py
 
-      # PEAD engine (backend/india_pead_screener): SRWD SUE and EAR for every result, quintiles, the Q5 x Q5
-      # intersection; its SQLite is published as the "pead-engine" release asset for the calculators.
-      - name: 1h3. PEAD engine (SUE x EAR)
-        id: peadengine
-        continue-on-error: true
-        timeout-minutes: 20
-        working-directory: ./backend
-        env:
-          GH_TOKEN: ${{ github.token }}
-        run: python scripts/run_pead_engine.py
-
       - name: 2. Discovery scan
         id: discovery
         continue-on-error: true
@@ -405,6 +394,18 @@ jobs:
               --notes "PDFs of the dashboard's quarterly deep-dive research reports, uploaded by the daily workflow. Not investment advice."
             gh release upload reports reports-pdf/*.pdf --clobber
           fi
+
+      # PEAD engine (backend/india_pead_screener): SRWD SUE and EAR for every result, quintiles, the Q5 x Q5
+      # intersection; its SQLite is published as the "pead-engine" release asset for the calculators.
+      # Runs after the charts (step 5) and Sector Strength so EAR has the day's closes and Nifty 500.
+      - name: 1h3. PEAD engine (SUE x EAR)
+        id: peadengine
+        continue-on-error: true
+        timeout-minutes: 20
+        working-directory: ./backend
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python scripts/run_pead_engine.py
 
       - name: 10. Commit
         id: commit
