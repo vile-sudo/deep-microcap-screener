@@ -115,7 +115,6 @@ def from_app(backend_dir: Path) -> dict:
     for d, v in (H.get("nifty500") or {}).items():
         bm.lvl.setdefault(d, v)
     bm.days = sorted(bm.lvl)
-    bm.fill(RP.Index(mk).lvl)                        # recent sessions the index history hasn't caught up with
     sectors = json.loads(P.SECTORS.read_text(encoding="utf-8")).get("sectors") or []
     excluded = {f"NSE:{s.get('symbol')}" for x in sectors if x.get("group") == "nse" for s in x.get("stocks") or []
                 if x["slug"] in P.EXCLUDE_SECTORS or s.get("industry") in P.EXCLUDE_INDUSTRIES}
@@ -156,6 +155,9 @@ def from_app(backend_dir: Path) -> dict:
         for d, c, vol, o in rows:
             px.append((sym, d, c, c, c * vol if vol else np.nan))
         names[sym] = e["name"]
+    # recent sessions Sector Strength's Nifty 500 history hasn't caught up with (it can trail the prices)
+    added = bm.fill({r[1] for r in px[-200000:]})
+    print(f"benchmark: Nifty 500 through {bm.days[-1]} ({added} recent sessions filled in)")
     fin = pd.DataFrame(fin)
     pxd = pd.DataFrame(px, columns=["symbol", "date", "close_price", "adjusted_close_price", "turnover"])
     bench = pd.DataFrame(sorted(bm.lvl.items()), columns=["date", "benchmark_close"])

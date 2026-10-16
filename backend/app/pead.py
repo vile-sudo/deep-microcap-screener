@@ -181,7 +181,10 @@ def build(mk, ix, rows, today: date) -> dict:
     bm = Bench()
     if not bm.days:
         return {"asof": today.isoformat(), "error": "no Nifty 500 history"}
-    bm.fill(ix.lvl)                                  # every session the market index has (all stocks' prices)
+    recent = set(ix.lvl)                             # every session in the price data, then fill the Nifty 500 gaps
+    for k in [k for k in mk.ent if k.startswith("NSE:")][:300]:
+        recent.update(r[0] for r in mk.prices(k)[-10:])
+    bm.fill(recent)
     excluded = {}
     try:
         sectors = json.loads(SECTORS.read_text(encoding="utf-8")).get("sectors") or []
