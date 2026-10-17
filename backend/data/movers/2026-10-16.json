@@ -1,7 +1,7 @@
 {
  "trade_date": "2026-10-16",
  "threshold_percent": 4.0,
- "generated_at": "2026-10-17T11:40:21+05:30",
+ "generated_at": "2026-10-17T14:27:50+05:30",
  "stats": {
   "scanned": 3397,
   "flagged": 394,
@@ -329,16 +329,9 @@
    "raw_pct_change": 13.8,
    "corporate_action": null,
    "why": {
-    "headline": "M&A Or Stake (Scanx)",
-    "confidence": "low",
+    "headline": "Bulk deal of Rs 14.2 crore",
+    "confidence": "medium",
     "evidence": [
-     {
-      "tier": "news",
-      "kind": "M&A or stake",
-      "detail": "Euro Pratik promoters raise stake to 72.72% via open market",
-      "url": "https://news.google.com/rss/articles/CBMitgFBVV95cUxOMnhoSTA1ZUk5ek9xU05RcDVtblZGUG9USzEtaURtMUdJcGFwVER2dEEyY05ZXzZ3OVh2WlZnSGsxTDVmRWZYUk1CdzM3X2lxczRqTzBfSzluQW1wMjdGMTVZYzJ3aC1FaEpyeEpmNDdDREE5eEJwbFowbndmSmhqX2QxVmVEYzBoTHZ5ZFBEZ0F0aHNHMGpSaTRqZUlMRnhUUEdPZEdiOHIxNFlPbHJjRFpOSGVaUQ?oc=5",
-      "source": "Scanx"
-     },
      {
       "tier": "deal",
       "kind": "bulk deal",
@@ -2289,16 +2282,9 @@
    "raw_pct_change": 5.55,
    "corporate_action": null,
    "why": {
-    "headline": "Fundraise Or Deal (Economic Times)",
+    "headline": "Broker Action (NDTV Profit)",
     "confidence": "medium",
     "evidence": [
-     {
-      "tier": "news",
-      "kind": "fundraise or deal",
-      "detail": "Dhoot Transmission Ltd. IPO",
-      "url": "https://news.google.com/rss/articles/CBMijwFBVV95cUxPbjhJQk5zTk83Z2d0MGFYdzdmLVBVY2JtMnM0Vmw1NWVtZTRHQWNxMkNxWjhGc0ZTZWhZMmJDWHpFbTRqem11ZXVvT3dGdVJ4Q3ktUHZYMUg0cEY1ZWc5WkNSVWZtdldkTUljNjBqTlU0aThQZmRwTWtxV2dXVzEzMEJqbUlQSnBhNGtOTFd2SQ?oc=5",
-      "source": "Economic Times"
-     },
      {
       "tier": "news",
       "kind": "broker action",
@@ -2312,6 +2298,13 @@
       "detail": "Dhoot Transmissions Stock Jumps Over 3% After Nomura Initiates Coverage With 'Buy'",
       "url": "https://news.google.com/rss/articles/CBMiywFBVV95cUxPYlA5dmtWTmR0eW9KVVczRkhTWUdKWGJ4UEEtY2R5SVhOYjBKQUpSM0wtbTVHQWlVYXRIdHREUVRsOUhuVXMyLXBBdGVHR0ZaSmRuZ2kyQmJrZHdxd3R1YWFOUGM2R3owSjl6cFZmMHJGdS1NcVM3YnViNDlaQUJTazBscmE1NlZ1VmFsU3A5cFU4UG5jMTdEUzZOUUxacXoxbWFlb2wxU3ZSQ2pHMUpLSVo1MGdDa0RzYjRhV05ETmdOd25mMTRnWURuONIB0wFBVV95cUxOcmd2UEVzamhKNWhIcnlqRFVzazRUQ001LXdLTWY3VEJpaW5USTRkTkNSUFFiMnVjMXpmaU0yQU94YWJwdHNKT2xKU0J1anktSHBldGRsSUlxa2huVktHNDZhWXVoaVpLeU1iZG1DdV9IS05xNHhoWFh2MnF1TVJyM2EyeDFVSzZBRWpPaG1jWTliS1JGWDd5aHUzTXg4N0xrSFM5TWtHeWRJQ0N6YVE1aEIzTmRNWUpBbEh4R1NlYlNmNGZ3REhQZ0RsVmpUYWJkWFRr?oc=5",
       "source": "NDTV Profit"
+     },
+     {
+      "tier": "news",
+      "kind": "broker action",
+      "detail": "Dhoot Transmission share price target ₹1,800: Nomura initiates at Buy",
+      "url": "https://news.google.com/rss/articles/CBMizAFBVV95cUxNTk5mblE0YVNnd1RiVXhzUnVndFY4YWpRbG1mcU5iYmxJcnhZVkxGVmhIN0lXRnFwaU5KSXJzdlloU0lrTWNUQVIybUNiMW02WW5mWGFURVVWM1BrR3l6VkFBTl9hT0o2cG02QU1mMTN1M2E1V2pwYzNzZ1hTek1aY2dwcEh5a2FId1VZdkljcDU3Y3k4TnFsNzFGbWt3RjZVSXJVLUhBWkpWbWwxVUhHbFA3OG11Y2dROTV0dUstZjdsNXJYSFdMcXF1blo?oc=5",
+      "source": "Business Upturn"
      }
     ]
    },
@@ -4027,9 +4020,17 @@
    "raw_pct_change": 4.89,
    "corporate_action": null,
    "why": {
-    "headline": "No disclosed reason",
-    "confidence": "none",
-    "evidence": []
+    "headline": "Management Change (Scanx)",
+    "confidence": "low",
+    "evidence": [
+     {
+      "tier": "news",
+      "kind": "management change",
+      "detail": "LCC Infotech appoints Ronak Thakor as additional executive director",
+      "url": "https://news.google.com/rss/articles/CBMivgFBVV95cUxPSXVoMEg3aDNlU1NLZjU3VUxDOHk4SkZPMkJaYTh1LVNoc2xvdEtoRGc2dVZwWkFHajMxbWF3bjNUcTVSWll4VVNEaHhVSFMtQlo4dGl6b05VOFhXcjZDVjBhNHlnLTVfNlU0WG8tNURSMElPa3doVzdMd21jMlVjZG9zSGRGUG1tWE9tcFQwalM0NnNSVVJXSEp5dnBUZ2lIb2lNZTdDU1BjYkJFTy1mNzJhZmxWRGVVX0xvcHN3?oc=5",
+      "source": "Scanx"
+     }
+    ]
    },
    "news_checked": true
   },
@@ -4055,6 +4056,13 @@
       "detail": "Sadhana Nitrochem CFO Vimal Jain Resigns Effective October 13",
       "url": "https://news.google.com/rss/articles/CBMikAFBVV95cUxNa3ZFZDVXd05mT2VOMXhJVDBwMVJpYTctSTJSalVLZHpia0JUN1Y4c05Jb3ByWVRYMGFudzhoZWFqUFNOSDNxUzZtcmJaaEZPbzZPZjZfdXlGd09tSVB6MWdNOFh6OEdHOUdlc09aZ0ludjQzU21oc1prMzU0aEd6TVl3UGhiSlMzd3VVTTBTR0g?oc=5",
       "source": "Sahi"
+     },
+     {
+      "tier": "news",
+      "kind": "fundraise or deal",
+      "detail": "Sadhana Nitrochem Receives Trading Approval for Rights Issue Shares",
+      "url": "https://news.google.com/rss/articles/CBMi0wFBVV95cUxQTm5JUkc0ZmN3U0FYUzhFNFV0U2xwZVptYmtWdXMyQ1NfRGh6Z3k3bFhLd3ZUX3VfNmZlUm0xbG5sNlZxazVZU3BCVjRVaGJKYjEySHozTXRaTFE1ZlpuNWhYQ2Juc3RDYU81bFlWMnhyTUdpQzgzQVY5RU1valM1Zl9ab3BIZ0JXcERuVThHNEYtVGcydW1BcTVza0hlWHhvb2V1N0FjTHhIT2Q1T2xkei1oZUVGVjMyZXBvODU5ODFhekJ6dFk1X2pwV2x0Vi1uMjZF?oc=5",
+      "source": "Scanx"
      }
     ]
    },
@@ -5711,17 +5719,17 @@
      },
      {
       "tier": "news",
-      "kind": "order win",
-      "detail": "India's Tech Mahindra jumps most in over six years as deal wins fuel growth optimism",
-      "url": "https://news.google.com/rss/articles/CBMinwFBVV95cUxQUF8xdGYxd3ZQUkRMN2lMRWJfd2QzX1RieVdYMnlxUTFXLVdMVWpnemtuZ25ZZUJEbjZuU0tXamRkbDZDRGpqZ3I2OF9ITWRZcHgzV3JZWlRlRjlGRU10OUJrXzNKX3NrZS1RbC1pTWZRd2FkMlVEYnVoNmhmQmRyVU1LbWVFZ2VDeS16SFVucnBHVFdTRGtoN2JzNG45MTg?oc=5",
-      "source": "Reuters"
-     },
-     {
-      "tier": "news",
       "kind": "capital action",
       "detail": "Tech leaders, Wall Street CEOs, governments split over 'AI doom' fears",
       "url": "https://news.google.com/rss/articles/CBMisgFBVV95cUxOVG9SVFRUdWs4Y0dKakJtbjk5NmtsVUxJWXpjSlQ4TWQzZVpJZmNEVVVLNW1jWHdHZld1eU5rVTZFbjJ4bDZ6cHF6WXozUDdyejE5QUE1V2xpRWpuRXN4RnR0M1JfNkFKXzA2eDdsbDhkYkdMRkhKamtyUkRJWXdtX1pfT0JUOVYwbUxrUGN0SEFlUEo2RkdMWndMeWljNVZrbXpXSzBhVENta1lCLVIxbExB?oc=5",
       "source": "Reuters"
+     },
+     {
+      "tier": "news",
+      "kind": "results",
+      "detail": "Tech Mahindra Q2 Results: Margin moves closer to 15% target; Board approves bonus, dividend",
+      "url": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxORXlWbkpnU1kxQ0FSSW12NG9pd1NQWFNobmtmR2lPSGY4WUxrV2VwYUZETzNkUWdlRGcxWjJNUE40SnBPMnAwYTZoMUdlY3hwQlRZSExRbUk4MlpQaG9WRlVIUVhmTGI2Rml4OE1nNXFMQ3JBVUpxOGxsTG5odzgxdl9QOUp3RDdFQ21fSTVia3FIZHphdzVTUUpjNWVZWEhmRTZsWnJEWG9oS3pzMTdhSzRTcnFBZkxD0gG-AUFVX3lxTE5KVC1PenpuNnc1UTBsZWlicjRGUXdqRU9wVGt5RXVfdEhydmtmVUlEaG5KY3g1Y2N4dHN6ZXd2RFlqMTB4RWtPLUVFSzctNDV3VkNTNVI5NHNMWS1veXNwbjF0WnRfVW44QWVMUzVoMlpBU0Z0NGlzaFo3TGI0UGRqZTA0bkJ3SFRDOEQtcVJHdjZxcDhoYW5lNzZ1UDhpdjFqVWxvWkd5TXhJam9QVFUtSkpKb3JSWjRxSlRCSXc?oc=5",
+      "source": "CNBC TV18"
      }
     ]
    },
@@ -7197,17 +7205,9 @@
    "raw_pct_change": -4.9,
    "corporate_action": null,
    "why": {
-    "headline": "Results (Scanx)",
-    "confidence": "low",
-    "evidence": [
-     {
-      "tier": "news",
-      "kind": "results",
-      "detail": "Syrma SGS eyes 35%+ revenue growth, targets ₹1,600 crore exports and ₹1,200 crore ODM in FY27",
-      "url": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxOWHJiLWZDZW10aG1CcFJ5V0V4UTNTOXlTYlNHX2JBeDZLYl9HUTBGdGI3cjNYdjJFUFEwRTVoVk5vdTlVZHJzMWJzRFhHczlyY3NDbTY4TmNId1R2UHVodmFjTDVNYUlDY2NqVlNIX0pLYVotdzA0VUdSWGtQZjdWNlprUkUwc1ROVWluVVZBeXhIOXRvNUtFME9mNTJnZ1FiblVwZ25KSmEwWkVGYXFzVnhlb0J4LW5lS3BF?oc=5",
-      "source": "Scanx"
-     }
-    ]
+    "headline": "No disclosed reason",
+    "confidence": "none",
+    "evidence": []
    },
    "news_checked": true
   },
@@ -7989,17 +7989,9 @@
    "raw_pct_change": -5.21,
    "corporate_action": null,
    "why": {
-    "headline": "Fundraise Or Deal (Scanx)",
-    "confidence": "low",
-    "evidence": [
-     {
-      "tier": "news",
-      "kind": "fundraise or deal",
-      "detail": "Apar Industries opens e-voting for ₹2,500 crore fund raising EGM",
-      "url": "https://news.google.com/rss/articles/CBMivgFBVV95cUxQR3RJc2RVR1dUQTNFazBmUFZwYW9iZ0JUNWFneExQN2QtR18wRTRpS0lIYXYyTTVWNDBsVEEzVi15TWQ0YzdPZEJhUlE5NUMyV0R0NGVHN3ZDc0lFS0RiVl8xTFhSbF82bXpVZWdkTUZxdXJ4REppYXlHMk9Mc2wzZXJRZGZoZjc2TnJ0MDgzRlJOeFhJWnBlTVkxdWpKQlJYZW1IaFdQN3FlcHFyLURnZTdRRzlBM0FhU21OQ0x3?oc=5",
-      "source": "Scanx"
-     }
-    ]
+    "headline": "No disclosed reason",
+    "confidence": "none",
+    "evidence": []
    },
    "news_checked": true
   },
@@ -8321,9 +8313,16 @@
    "raw_pct_change": -6.62,
    "corporate_action": null,
    "why": {
-    "headline": "Bulk deal of Rs 18.5 crore",
-    "confidence": "medium",
+    "headline": "Operations (Scanx)",
+    "confidence": "low",
     "evidence": [
+     {
+      "tier": "news",
+      "kind": "operations",
+      "detail": "Parag Milk Foods invests ₹100 Cr to quadruple paneer capacity to 80 MT/day",
+      "url": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxNV3BkbVBTd2RzS005anFQRzVObm1mcC1Md3BxeWhSWUhLbmVjUW9HbmNKY1FTSm1GemtjWk9xc1NZT01ibnB3bks2YnB4SS01aXJsUm04aktqTHQ0a1NYSXBiU1ZYcUxsVU5UTE1YZ0FDdWxFU0ZpcEd4ZGZwc1lOU3hDbWFnLTNwTmRHd0x6NjNMX0VyTV9oUDd2TnBuaGE2T1g3RzJtYTFJMTRHUzdLSHpNQVZ3UWdHQzRGOUhJZExsZw?oc=5",
+      "source": "Scanx"
+     },
      {
       "tier": "deal",
       "kind": "bulk deal",
