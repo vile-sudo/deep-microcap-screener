@@ -1,7 +1,7 @@
 {
  "trade_date": "2026-10-16",
  "threshold_percent": 4.0,
- "generated_at": "2026-10-18T14:43:51+05:30",
+ "generated_at": "2026-10-19T12:19:02+05:30",
  "stats": {
   "scanned": 3397,
   "flagged": 394,
@@ -274,15 +274,15 @@
    "raw_pct_change": 14.47,
    "corporate_action": null,
    "why": {
-    "headline": "M&A Or Stake (Scanx)",
-    "confidence": "low",
+    "headline": "Fundraise Or Deal (Economic Times)",
+    "confidence": "medium",
     "evidence": [
      {
       "tier": "news",
-      "kind": "M&A or stake",
-      "detail": "LRSD Capital reduces Rays of Belief stake to 4.16% via open market sale",
-      "url": "https://news.google.com/rss/articles/CBMivgFBVV95cUxNUEViMjl5M1h6RHhmQjk1NDJacndWMTJaN3YwNjVQZFFJdGtjdFhDTmJvakc4Zzh4eVc1MWtSNldIcm9SMTNrMm9ueHFWZXRCU3N5dTNKeDBLNllqOVpDZ3Jfa0ROMG5IMkkyNU00dHN6Yl9zU05lcW9La3hOY1Y5QURoS2lKNDRhSFVDckd6b3AxMzlhNHdsNnZYMjdxMVhhM0I3RjI3RmxRQmwzRWhyVXRURk8xeW9lY3FmUm9n?oc=5",
-      "source": "Scanx"
+      "kind": "fundraise or deal",
+      "detail": "Rays of Belief Ltd. IPO Review - Rays of Belief Ltd. IPO Dates, Issue Price, Subscription and Allotment Status",
+      "url": "https://news.google.com/rss/articles/CBMiigFBVV95cUxPWTBhNDU1c0xRTDZORXVneDkyeExrUEJkOVBXei1ndkhmMDRjZHFrZXQ4RUswbUR5cTJKSW5vQnlxQ3J3MEotQ0FERnk1cFdLUTkyc1dEYlVVY1IxOFlrN0dtTm0zR0xLazVWSkpadU9Gc2JUZEUzbVliQ21SYk5RS25FZHV2ajZGU1E?oc=5",
+      "source": "Economic Times"
      },
      {
       "tier": "deal",
@@ -700,9 +700,17 @@
    "raw_pct_change": 9.85,
    "corporate_action": null,
    "why": {
-    "headline": "No disclosed reason",
-    "confidence": "none",
-    "evidence": []
+    "headline": "Operations (Scanx)",
+    "confidence": "low",
+    "evidence": [
+     {
+      "tier": "news",
+      "kind": "operations",
+      "detail": "Avro India secures NSE, BSE approval for listing 10,60,900 equity shares",
+      "url": "https://news.google.com/rss/articles/CBMivwFBVV95cUxQUFBnMm1Sbjd1c0dYaDk0QmNBWDl5NHAtWXhWYnVCM2QwbFBIZVJsX1dwQWc0SFV6ekRqeHE0ZmNLNWMwS2pfUmJseFJHZGZKOTNEQnhCeWtqcndrTHFNdXhYTjBkOWpkWklTSUo1YVpJTExxTVdpTTgySWtrTmM0R2xDbVRuV1Nwa0l6dVNwYjJDbTdYWWN6WmpIQlBXS05PRmFfYVRhdy04SzhhNmNRSU5zWVVMY1JtaF9WcmhjZw?oc=5",
+      "source": "Scanx"
+     }
+    ]
    },
    "news_checked": true
   },
@@ -1668,7 +1676,7 @@
    "raw_pct_change": 6.4,
    "corporate_action": null,
    "why": {
-    "headline": "Investor Meeting disclosed to the exchange",
+    "headline": "Investor Meeting, reported by Economic Times",
     "confidence": "high",
     "evidence": [
      {
@@ -1684,6 +1692,13 @@
       "detail": "Steamhouse India Limited has informed the Exchange about Cancellation of Scheduled Investors & Analysts Plant VisitThis is with reference to our letter dated 15th October 2026, we would like to inform you that the Investors & Analysts Plant Visit scheduled on 23rd October 2026, has been cancelled du",
       "url": "https://nsearchives.nseindia.com/corporate/CAVAIBHAVGATTANI_16102026120213_Investor_Meet_-_Cancellation.pdf",
       "source": "16 Oct 12:02"
+     },
+     {
+      "tier": "news",
+      "kind": "fundraise or deal",
+      "detail": "Steamhouse India Ltd. IPO Review - Steamhouse India Ltd. IPO Dates, Issue Price, Subscription and Allotment Status",
+      "url": "https://news.google.com/rss/articles/CBMijAFBVV95cUxNdVJsTGRfOFBVSVhIcGZDdVZRc3Q2VjhNVVNVaDBuUGpVYVJRRjFnc0ItZ3FfSm5TRndnNlhoeWxCdkhjcmlNZ1F6YUZTTDZTR1hhTzh0Qk1hQTlPRGQ4MGNvSjVibi14Ukp4QjBrbDlYeVhMWmV4OG5yUXRTRnpEdy1CcTluaFZTdExSaw?oc=5",
+      "source": "Economic Times"
      }
     ]
    },
@@ -2612,9 +2627,24 @@
    "raw_pct_change": 5.17,
    "corporate_action": null,
    "why": {
-    "headline": "No disclosed reason",
-    "confidence": "none",
-    "evidence": []
+    "headline": "Results (Scanx)",
+    "confidence": "low",
+    "evidence": [
+     {
+      "tier": "news",
+      "kind": "results",
+      "detail": "Nitin Spinners Q1FY27 net profit jumps 84% as margins expand",
+      "url": "https://news.google.com/rss/articles/CBMivAFBVV95cUxPcF9maWlZVW5ETHdGLXdOb0gyWGJRTjlkWmtpRXZkOGVFWnBWT204WkJWMWM4a3VWRmktcU5DWGJCTmk1TW9lN09EVDJ2VUZyZmU5LUEtS2tGeVM0djV1M25rMUVmN3g4NFpINFozdVdKaWxNeTZuN2RwbUxoS3NJR3dCZ0RlWkRHRW5ZRXNOYWdDd29lRlZkRzhaN01oWm1lR1ZDUWZ0a2E2di1uSWEzbmlxaHNIdHhHS3VZcg?oc=5",
+      "source": "Scanx"
+     },
+     {
+      "tier": "news",
+      "kind": "capital action",
+      "detail": "Nitin Spinners fixes Sep 14 record date for ₹3 dividend",
+      "url": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxQQ2Q0ZVgzWjlsb2hUVHcxRy04LWp0TVBheUpwMDE0VVVGYTNmOEFLeGx4WS1mSzZYNWRtTjNXZXJpV0VUdFB1dzZrYURZdEJDQ3dESTgtWW1lYUxBTmtzdHNLd1hDUk5LTnY2WnF1Ukl4cnRrYWxtQ3l6LU5wUzYybHRfcTQ5bG0tWWpLazlTUG5CVEpvaEIzMFNpd2o5UHFOazJGYW9jRGxEcmF1a2xrbkR2d2dZU0ZU?oc=5",
+      "source": "Scanx"
+     }
+    ]
    },
    "news_checked": true
   },
@@ -3117,7 +3147,7 @@
    "raw_pct_change": 4.99,
    "corporate_action": null,
    "why": {
-    "headline": "Operations, reported by Sahi",
+    "headline": "Results, reported by Economic Times",
     "confidence": "high",
     "evidence": [
      {
@@ -3129,10 +3159,10 @@
      },
      {
       "tier": "news",
-      "kind": "operations",
-      "detail": "Venus Remedies Receives Five Marketing Approvals In Kazakhstan, Peru, Kuwait, Argentina",
-      "url": "https://news.google.com/rss/articles/CBMirwFBVV95cUxNX3dpcGFfTWpIclc4XzE4Mktqd18zZWU2LVZTZWJFc1VkRkxRVGtJel9sczNSMW1CRUN4XzVSNFB6MFZBTWZLeG4zTjNZUGN3b1ZuU3pFOGRvSTRvNWRJRVJiR3pRbnNoM3kyZURRdlRIZk1PLTBOcUl5WDVoeFVwc3pMUzBSTWt6MVgtb3M4aDg0dGVKZUJVMnJqaHEtNFltcG1JQzZPT1NfZW1ZV09R?oc=5",
-      "source": "Sahi"
+      "kind": "results",
+      "detail": "Venus Remedies Yearly results, Financial Summary",
+      "url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxPU0RTWXlvU2xTX2dIdGhUVF83dEE0MFdNdlFvdlBqbGtUZmNBUlRNTVhHb1d4MFF3QzBpZ0VUQmtNaW9mZjJ5SnZWVjRtX2hLcHFHbVlMOHYxamlscVAzQ3pNVlFwQ3haRWhFaXB6TW9uSDV6eGtZRUFMdG9veG1YNVBLUFpjb1dE?oc=5",
+      "source": "Economic Times"
      }
     ]
    },
@@ -3151,9 +3181,17 @@
    "raw_pct_change": 4.99,
    "corporate_action": null,
    "why": {
-    "headline": "No disclosed reason",
-    "confidence": "none",
-    "evidence": []
+    "headline": "Results (Scanx)",
+    "confidence": "low",
+    "evidence": [
+     {
+      "tier": "news",
+      "kind": "results",
+      "detail": "GSM Foils Q1 FY26 sales rise to ₹96.69 crore, June sales up 92.9%",
+      "url": "https://news.google.com/rss/articles/CBMi2wFBVV95cUxOMmExeXpIZDVmLUxEeHNXSTJBNm9maGowS2JGLXNkQTlQRmtWSHlzYUd5S1ZSR3pMS0ZQMHd0VEItU0FYdF9ZRXVqcmhWb216R0J3Vm96WjN5dWZDTWV3OWpsaFpDb1E1WmNiNnhvajh6enlnbDVBY2dsTWw0OXhpT0MwSl9pYUZYdmQ0UW5rM0hqSGtGTWJpeGVzZDR0UXFfNW5aU3dXMEg3NHp6SG1DNUlrYW54SHJNc1FpRzhSWmVodk5pUXpjN3NiSk52Sk1xWU45UDVhdG9zazQ?oc=5",
+      "source": "Scanx"
+     }
+    ]
    },
    "news_checked": true
   },
@@ -3802,9 +3840,17 @@
    "raw_pct_change": 4.93,
    "corporate_action": null,
    "why": {
-    "headline": "No disclosed reason",
-    "confidence": "none",
-    "evidence": []
+    "headline": "M&A Or Stake (Scanx)",
+    "confidence": "low",
+    "evidence": [
+     {
+      "tier": "news",
+      "kind": "M&A or stake",
+      "detail": "Bhagyanagar India fixes October 8 record date for merger share allotment",
+      "url": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxOVUFhTXdXeFlHN0s3RURvbmlEM2JTLXowc1pmWXR6aUtHY0xja3k2ZEVBNDNRVVlaN2hjVmpQY3ZCWl9hUU03MEdsSUtNUEdUMXBzWXd2VEN5X0JSMGdkdlZvcnRmaWktNmVOS1Jrcmlnb0NKNjJVRkRUSFBodGpzRUdXTVZNVUhYNHJzZU53aDJyZktWb1VGbERaMGxUb0VWSjVwVEhnOFZyVVZLNU5xTk5ITExBME9zVVE1Wk1JNWdqZGc?oc=5",
+      "source": "Scanx"
+     }
+    ]
    },
    "news_checked": true
   },
@@ -3943,17 +3989,9 @@
    "raw_pct_change": 4.9,
    "corporate_action": null,
    "why": {
-    "headline": "M&A Or Stake (Scanx)",
-    "confidence": "low",
-    "evidence": [
-     {
-      "tier": "news",
-      "kind": "M&A or stake",
-      "detail": "Leading Leasing cuts Aqylon Nexus stake to 5.36% via open market sale",
-      "url": "https://news.google.com/rss/articles/CBMivwFBVV95cUxOQXNRMlF2NGtFY0hCelZBam1pem1CZW5qekJNZExCN3VqTXhaN3Q2c1lPSTVLRm43NTFEN2tOSHhDV1R3aE5yVVdRcUQwcHduQy1RRGpZTi1INzRHZjJybWxkdElRM1diMHRNOUhTWjIzakhUNHloTTJjVGl0eVhxcDBvSVJLWEJqYnpjQW90cms2NVJKakxiSjdLSFhaR3RPdnBuUGhYc0VsZ3N4ZFlyNjc3VEhob3ZTcGN1REx6dw?oc=5",
-      "source": "Scanx"
-     }
-    ]
+    "headline": "No disclosed reason",
+    "confidence": "none",
+    "evidence": []
    },
    "news_checked": true
   },
@@ -4192,7 +4230,7 @@
    "raw_pct_change": 4.82,
    "corporate_action": null,
    "why": {
-    "headline": "Operations, reported by CNBC TV18",
+    "headline": "Operations, reported by Sahi",
     "confidence": "high",
     "evidence": [
      {
@@ -4205,9 +4243,16 @@
      {
       "tier": "news",
       "kind": "operations",
-      "detail": "Omaxe partners with Lemon Tree Hotels for ₹4,000 crore hotel expansion",
-      "url": "https://news.google.com/rss/articles/CBMitgFBVV95cUxOVUo5VmhiVldmdnZLMkwtczVaQ0FqekxhZnAxUElySlRNYWd0Wjg2RGVVakNWUXV2RGktTXV5YlRwaXlXeFhIajZDVmdmUzRBX0RzTm5paUN1QkljLVhlZTFnMGFvN214UXdZVkwtYVItVkxydENHbDRnek9QSVcwbWNUX2hvZWY2MmhURHY2aHJESkNudTNIZW5POFNkZEhzdGswUmRJREx2ZEl4TU13aFdySzJlZ9IBuwFBVV95cUxQRGdOdWJSU2NUS0J1QWYtS0pCTElDLXQ2M3l5cU5UdklrMnB0bVhlTHI3Ym5KTXl3RVpnUzRmcGc0NDczVFgxSUdtRzVOQ1RSNHJIcl90ZE1yajJKVFpCeFFMcTh4OHNDVFFxUW1BWXV0cGtROWFGMHVpcVJMN1VQYkljalBkS1E5QjFPYzJLWWR1SlRycF81SmlpVi1IVFBISFZfejVmeUhScDVCZExiTmtlaTEtdHRQU05r?oc=5",
-      "source": "CNBC TV18"
+      "detail": "Omaxe Gets RERA Approval For Eternity-2 Commercial And Service Apartment Project In Mathura",
+      "url": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxPS2lfdUlENHdBODBFRGJFdDIzeU52Z3h1aEsyYnYtY2dFWGdtOXhxZTBwUzhLVGQybkU4NnptUG9jRGI1NjYzTVF5bDJib1Y2cTB5LU1kWU40TnoweTZUeHlEbm96YTBZNVZjOGJoN2thVkxkVnducGpRd2xKZ3hvLW4yVHpLR3liNnY3eldKSkhMQUpqZkIxQ213UGNGZDhEaENSaFF1b2YyNUxkc21ibVNtVzM0WnNU?oc=5",
+      "source": "Sahi"
+     },
+     {
+      "tier": "news",
+      "kind": "operations",
+      "detail": "Omaxe gets RERA approval for Eternity-2 project in Mathura",
+      "url": "https://news.google.com/rss/articles/CBMirAFBVV95cUxOQ3k4NWd3dURhcDRWdktLVV85TFgtME1NVVNYa1F3OVk4dWx4TTJMWFJGa1hBT0VlM2pWMVo5Y2ZzMUZTYTZLdUpYRkFvZF9TaWdJOWxtYkZIV201OHVNVzExQXpLNzZaLXMzLS0xdUNqYnlVVTVrcjhDZUgtS0hvQUNCSUxPZW94N1RIaVhBR3VmNEVKM2E1bVg3ZU1xTWsxcWotTlQ0UEVTWksz?oc=5",
+      "source": "Scanx"
      }
     ]
    },
@@ -4321,17 +4366,9 @@
    "raw_pct_change": 4.73,
    "corporate_action": null,
    "why": {
-    "headline": "Results (Scanx)",
-    "confidence": "low",
-    "evidence": [
-     {
-      "tier": "news",
-      "kind": "results",
-      "detail": "Kanpur Plastipack schedules Q2FY27 earnings call for October 29",
-      "url": "https://news.google.com/rss/articles/CBMitwFBVV95cUxPNVFCcWZ6UWJTbEFpY25TSjRzYlljNjdtQmFGUjhNWUd0UVNaQ3VRX3FyRnpDdkhLdkJwa3pKTm9SUzMyeFBlU3BLdHhuMm14cWtBU21uQWhnRnEzSkYxbmtsdWZ0UEs5Q1p6QjVSUWdHX3NBZzRIdnQ0NnphOXZ0ckRHeWd1X2pqcUc4TVdFcmI2VVF1WFBiSU90VGFtemwzRXQ0Z1RNNEtfekF3eTcza2xXanpyT00?oc=5",
-      "source": "Scanx"
-     }
-    ]
+    "headline": "No disclosed reason",
+    "confidence": "none",
+    "evidence": []
    },
    "news_checked": true
   },
@@ -4348,9 +4385,24 @@
    "raw_pct_change": 4.73,
    "corporate_action": null,
    "why": {
-    "headline": "No disclosed reason",
-    "confidence": "none",
-    "evidence": []
+    "headline": "Operations (Scanx)",
+    "confidence": "low",
+    "evidence": [
+     {
+      "tier": "news",
+      "kind": "operations",
+      "detail": "AXISCADES seeks slump sale approval for engineering services",
+      "url": "https://news.google.com/rss/articles/CBMixgFBVV95cUxNODBtWTQtQzlfZ1lNMjFPb3lqek5MRnFuRzQ1cVhHY1BVNVVXVTVydkZrc1BBSm9pakZhUUktTXVGWVRkZE50eVljY0xBODBCZ1I2eEg4RDZ1eFA0aUVqTWhscmdLekxrMy03QW44eDVfMDhwc3ZNa3Q0WTZGbUFSaGJBTUd5WFNWdTdtcjE0cGFRemY4VW5fVUtDblRhYXYzREN3Q2ppTy1OX1dkaWRSd2FTU2pvUFd3NUZEa1hqaHcwYklMSVE?oc=5",
+      "source": "Scanx"
+     },
+     {
+      "tier": "news",
+      "kind": "results",
+      "detail": "AXISCADES targets ₹1,377 crore revenue in FY27, eyes ₹9,000 cr by FY30",
+      "url": "https://news.google.com/rss/articles/CBMizAFBVV95cUxQZTYxLTlOdUZyRlFySFA0cGRnQmZaUm9TNjgtOGdFNE5HTmNCZm5UcWJLUmpYSlQwbmpsVDh2OU5DcS03Y3FCMzRqYmdIX0c0QUlmXzRLbFhXWXpzR29DWlRiSERSMVBJcFdoLS01dV9ZTnZCcmhfYXBVQkVZbVBFRVJRdVd5LXlNQk5mZnhSbHYtZUZVY0FVMFpSXy1mMmhtZy16RFVZLURCVkFVQnBMOTZoQmctazZKY01CUmZZLUhxQVhkSVdNSURGaFA?oc=5",
+      "source": "Scanx"
+     }
+    ]
    },
    "news_checked": true
   },
@@ -4521,16 +4573,16 @@
      {
       "tier": "news",
       "kind": "results",
-      "detail": "Dividend rush next week! Infosys, Nippon, Sagility, Cyient among 11 firms in focus for reward, Q2 results | List",
-      "url": "https://news.google.com/rss/articles/CBMihgJBVV95cUxPdGZEV1JpaGY2V2RlVm11SEtLbTJ0a0xKSmhWUXNlZjloak5BdFJRT0RhSndFd2s1Mk80aTF4YVhJckVlQ3lNV0xzM0NXd1I2SXU1MjlCX2VSenVybjZrNDJ2aFdrd0l6b1dsQkhfcEg0MGN5RFRaY2VnTFRLSC1TbUsxZEpEYnlPb0prRmhrN3lOVWxqV21vYXc4cDJZa191RWJGdktyVG02ZDMxLVlrSE5OTUlaN1J5MF84V2lheEFRajBrNkd2a2NXRW1mOC12ZmxZUG1qSmloWGRPVE9zMnBOTkJfZWxmUVRHVU04TmpjaDVFVG52Mm9NbDVVTk1UUE1oODNR0gGLAkFVX3lxTE1UZjI3a0xnVWpGeWpNN01ZblM5aTZyVXNRSk5NNmNTdG5aVVRGdkhtUm1rdUxiNlByYkJyc1NseUdFeFdYYzJiTFp5emVobE1SYTUxWVF6TzUxZVkyUm5iR3NWZjNnY21qUWQ3UUxldVZSOXhSQThicjc2cFRaWGRHMVFFSXA3WlhhRFZzSDdtYW85NnNZUFlJY2xZN2VNTE5fcXpDUGE1NHVKYTNhWVlwQXlOeTF5SW5NV3FDSS1JMFRfNlJob3BxZ1VWWkp3SFJydFk1ajBBTjhJTEM3S091WU9UbE41emRkWDY5MzJoalpyVEY2RWNEcEJIX1A2bFdnY2k1djFkNnNhaw?oc=5",
-      "source": "Mint"
+      "detail": "Infosys Q2 revenue growth likely to remain modest; analysts see guidance cut",
+      "url": "https://news.google.com/rss/articles/CBMi2gFBVV95cUxPV3FEa2x2TnZpWlVwdWJiZmYwRGkyRThnTVFFZ2twUHFmNDJ3djhxUE5OaTdRQWJ3eThPXzQ3c0ZDUDRRWjNXdWRhdFpYZlF0QURya291YW9LREtua3RMbHN3UUM3MkRWT1JzZGdNSFVQSFh1QmZ5cTJZNklCQTBhQkI2N05WbHJGR09fMm9FcGtNQlREampLTnFqU2xWOFFQMUpEUXdoWEpfeFNpeWhha3NDSlgzejdZZkUyUmtpVy1Dd3FNSkpRUEJYVjVYOFFvOHRuaEdsZ0FoQdIB4AFBVV95cUxPd2VJUUhJbVVTWHJMWWNxSU1qb1ZPeXhTekhvSXR5S1VlaDhuc1NiaDFMRU1CeVJlRWNJR1RqbWpjSTA4aUlaakZBbTNBUU14bTNwYndTNml4QUlDZzJkWEM3TVN2REUtdXpsSl8yZzdxRWx5ejBmZ1J2dEFhVlp4dkctVktybjhWc2pIMTF2ZHZWUmVWQ0dYSnlsNDRZT19rejJDNi1IUm8yeGtfNmY5R0hqTF94b0g3WENlVDJDMGM4VGxlRVBweHA2NkJvZmFCOFR4dUp1OWViZ0c3d1hhNA?oc=5",
+      "source": "Hindu BusinessLine"
      },
      {
       "tier": "news",
-      "kind": "operations",
-      "detail": "High data centre, chip costs and cheaper AI models pose risks to capacity usage: Infosys CEO",
-      "url": "https://news.google.com/rss/articles/CBMi-gFBVV95cUxOczc2SXIwYlVvTElRTm5WQUphQm9Ra2FPVWozMUUzSEE4eTN4NElwSDVsR3RPNlA4a0UweThqUjY3QXQtQ2NZNFl1VGV1UUZxVGo0b0xPc1g3SlVVVzVOZXNBUkxqUzB2NV9YZUVUU0xoYXBIUjlpaHl1ZDVReExxaG1kZlJ5bDdBTjdLamIyVG41UEdBMFJKcUZuVWxWVWtaQzlsMHNIeDd4Ymg5SmxZV1dhUVRHVnNwZDVTY285Ul9DRkVZOEswUlpWZzRYWS1zWnFqczRrRE9qY3pWNnNLTWNxOUVPRkRSSmg5YWNKLU9MN240TG1KQXl30gH_AUFVX3lxTE5vZHRFaTRubVdXdmNJem9TbTdCUy1DVWNrdkV3eXRFZF9QUUJJSkZ4Y3AwY0R6a2R2LXdvaktSMnp6MUNndFdLaFU0dFVyd0sxdTFFU0VZU2pKMUFIVmZIVWlOMUs0bEEweEEyUXJ3VXpBSkFzc2dTano3WHdDWFYwT0tNd0U3cjZfQlF1V015Mk1hUmhqcS1yNVVQZjBRMDZBQkY2NzVkSUFlLUpXRW9PaHFZY0oyUWZBajNYai1RTnJGR0cxVVM1UnVUcUExMFNpTXY2VmltQTZEV3FIYkhfdklLdXEzQWl5T2l3bFhlXzR2OERBS2dGbl9OdmZWQQ?oc=5",
-      "source": "Economic Times"
+      "kind": "results",
+      "detail": "Dividend rush next week! Infosys, Nippon, Sagility, Cyient among 11 firms in focus for reward, Q2 results | List",
+      "url": "https://news.google.com/rss/articles/CBMihgJBVV95cUxPdGZEV1JpaGY2V2RlVm11SEtLbTJ0a0xKSmhWUXNlZjloak5BdFJRT0RhSndFd2s1Mk80aTF4YVhJckVlQ3lNV0xzM0NXd1I2SXU1MjlCX2VSenVybjZrNDJ2aFdrd0l6b1dsQkhfcEg0MGN5RFRaY2VnTFRLSC1TbUsxZEpEYnlPb0prRmhrN3lOVWxqV21vYXc4cDJZa191RWJGdktyVG02ZDMxLVlrSE5OTUlaN1J5MF84V2lheEFRajBrNkd2a2NXRW1mOC12ZmxZUG1qSmloWGRPVE9zMnBOTkJfZWxmUVRHVU04TmpjaDVFVG52Mm9NbDVVTk1UUE1oODNR0gGLAkFVX3lxTE1UZjI3a0xnVWpGeWpNN01ZblM5aTZyVXNRSk5NNmNTdG5aVVRGdkhtUm1rdUxiNlByYkJyc1NseUdFeFdYYzJiTFp5emVobE1SYTUxWVF6TzUxZVkyUm5iR3NWZjNnY21qUWQ3UUxldVZSOXhSQThicjc2cFRaWGRHMVFFSXA3WlhhRFZzSDdtYW85NnNZUFlJY2xZN2VNTE5fcXpDUGE1NHVKYTNhWVlwQXlOeTF5SW5NV3FDSS1JMFRfNlJob3BxZ1VWWkp3SFJydFk1ajBBTjhJTEM3S091WU9UbE41emRkWDY5MzJoalpyVEY2RWNEcEJIX1A2bFdnY2k1djFkNnNhaw?oc=5",
+      "source": "Mint"
      }
     ]
    },
@@ -4587,22 +4639,22 @@
    "raw_pct_change": 4.6,
    "corporate_action": null,
    "why": {
-    "headline": "Results (Sahi)",
+    "headline": "Results (Scanx)",
     "confidence": "low",
     "evidence": [
+     {
+      "tier": "news",
+      "kind": "results",
+      "detail": "Paushak Limited posts 26% PAT rise in Q1FY27 on strong revenue growth",
+      "url": "https://news.google.com/rss/articles/CBMivAFBVV95cUxPdmZLNUdDaURWbEpJLUp4b0JpdkZPR2VzMU9ZeVFyTE5HdVhRY3YyVU81bjExV1ExYUFJRG5KVkdPUmk4MDNuR3dhc3BIVVc1RjVNYTgxTjM1bnZzc0xVeGRrYUhzWDVpZzJ6eXRCb1RuNGN6eGNEWERaWUwxZFQ2OFFlTG04OGMtazVwNjFmUG9qMnFyZjktQ1gxaE50clpNaGphZm9MMmNiTlQ2NExwYkFOVTJJdm5jeVRvLQ?oc=5",
+      "source": "Scanx"
+     },
      {
       "tier": "news",
       "kind": "results",
       "detail": "Paushak Ltd Q2 Revenue Rises To ₹89.3 Crore From ₹58.8 Crore YoY",
       "url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxQT1p1THZvM3FPWHZXcm1USmFVckRvM0dXOHZIc184Sm1lTEFtOE9RWThMVERtMkJicjV2S2ttbEE5c2E2emJTU2xIQkVYMzhYN0g5dWpMOVVlTThLWjB0V0FFZU5oR0t1ajNYWHJMRVFOWnZGR1JHendUc2NVY3Q0dFc1VDA1TEwxMFNDWFhuMFdmdw?oc=5",
       "source": "Sahi"
-     },
-     {
-      "tier": "news",
-      "kind": "results",
-      "detail": "Paushak Q2FY27 Results: Net profit up 57% YoY to ₹1,351 lakh",
-      "url": "https://news.google.com/rss/articles/CBMisAFBVV95cUxQYThFUDdmdFJZbEs1LXZRU1V1X2RYcWNBRUs3Y2ZFRTBvOUxFUWNBbk5LRnl6eUFUSGM4UWdoVU1fSk9ldlhnNm4xX2ZLYnRhUGNpWE0zdS14MHhIMlphUk5kM3EzeGo4ZnZvSml1S0hRRTlPQ1YzX0V1N0NUbWtVeGgyemEybDlDdENOUE9lMHIwdDloclBkSW8xMktnU2tDa0JGZFJ0aVRvVEZ5WmlSMw?oc=5",
-      "source": "Scanx"
      }
     ]
    },
@@ -4678,22 +4730,22 @@
    "raw_pct_change": 4.57,
    "corporate_action": null,
    "why": {
-    "headline": "M&A Or Stake (Reuters)",
+    "headline": "Order Win (Bloomberg)",
     "confidence": "medium",
     "evidence": [
-     {
-      "tier": "news",
-      "kind": "M&A or stake",
-      "detail": "Lufthansa in talks to take remaining 50.1% stake in TAP in future, CFO says",
-      "url": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxQVl83TW15QlY5UlEyRnJubWdKX3FLRDhFRUs3V0p5NEEydjJQLXpxdkRmSVVNem4xc1ppeldZb0NRSUJSSjhpNEJ4TVM2a1poYjRnMGlsUUhRSzRHbkRQWG1RaUNRZW44SmpaeWJvbXFuNnBOcUY0Smc4c3JNWVFON1ZVZHBSRkVLZWJCR1ZEbEcwcEtFWDF4a05oSWp0Y1BhXzZ2cHZleTE?oc=5",
-      "source": "Reuters"
-     },
      {
       "tier": "news",
       "kind": "order win",
       "detail": "UniCredit Wins ECB Approval to Take Control of Commerzbank",
       "url": "https://news.google.com/rss/articles/CBMirgFBVV95cUxNZDJPUnc1WU9fX0N2UzVweERqSW9aUVJjWWpVSDZxSEVCZG1adGVxazR2U1cxTWVTSnNOS1A0SGx3WVhpN0NZTkhBMG56R0hvXzZrZ3FHRWtoZ0Q0WWsyTllBbF9wU2JBWG9pQkNaX2t6cVRpNDFrVUdveXJPVjJhVC1yZDRrSS15Y2FKSlVOU3QwTy1IOVNVMHVmLWE3R2pmWHFHcUlHR1BnQzM4clE?oc=5",
       "source": "Bloomberg"
+     },
+     {
+      "tier": "news",
+      "kind": "M&A or stake",
+      "detail": "Lufthansa in talks to take remaining 50.1% stake in TAP in future, CFO says",
+      "url": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxQVl83TW15QlY5UlEyRnJubWdKX3FLRDhFRUs3V0p5NEEydjJQLXpxdkRmSVVNem4xc1ppeldZb0NRSUJSSjhpNEJ4TVM2a1poYjRnMGlsUUhRSzRHbkRQWG1RaUNRZW44SmpaeWJvbXFuNnBOcUY0Smc4c3JNWVFON1ZVZHBSRkVLZWJCR1ZEbEcwcEtFWDF4a05oSWp0Y1BhXzZ2cHZleTE?oc=5",
+      "source": "Reuters"
      },
      {
       "tier": "news",
@@ -4886,9 +4938,17 @@
    "raw_pct_change": 4.44,
    "corporate_action": null,
    "why": {
-    "headline": "No disclosed reason",
-    "confidence": "none",
-    "evidence": []
+    "headline": "M&A Or Stake (Scanx)",
+    "confidence": "low",
+    "evidence": [
+     {
+      "tier": "news",
+      "kind": "M&A or stake",
+      "detail": "Minerva Ventures acquires 9.08% stake in GACM Technologies via QIP",
+      "url": "https://news.google.com/rss/articles/CBMitAFBVV95cUxQOUtOMHU3ckFKQldTZmFJdDRSY2QtTmRuSnBqd0JlblRPX1RKMi00ZGl0NWYydDB4cDhwa2JTRDhYTzhfMVpuQjdPNnFTWFVZVS1OLTNjcW1ySS1HcU02TGI5bG4xbVRjLTdSdEE4NGxwR2xCYTZiS0FSVGVmc0t4TzRwTERYeXJ6SGdNVzhHZ0htalM4djlRczFDUEp4ZXNBMjRwYWF6VnVGQzRrYVduTHo5LWM?oc=5",
+      "source": "Scanx"
+     }
+    ]
    },
    "news_checked": true
   },
@@ -5183,6 +5243,13 @@
       "detail": "Rentomojo share price jumps 38% from IPO price in nearly 1 month | Check 5 factors driving the surge",
       "url": "https://news.google.com/rss/articles/CBMi-wFBVV95cUxOUjZkc1ZuMFJMYjF6S1BmODlGdlFVRFNyb3loQXZGTDdhaXMteHI4bDlxQjRjTlp2bHppZkFld05lS0ZJekVTbF91NHBfLUpSY21lSzllV1U4aEllbTFVbjhMS04xNDJEWUFqNzdYcVlzSXVTR3FEOFVwbEp6b21PVTMwZlgzTUd1VTJIYU9ZY3R3R0JjSmIwN3dvOUN5Q2s1amRNd19JbElZLS1NdHhweTU1YWxuSUp3Wml4dktBVXVXZjBTYnhPbVpUaHZVWmZiLU1CVVZrTEhJdmxBR0dyN2p1bmVlejFXSkRZb25ENTd2b2pvbkt6STAtUdIBgAJBVV95cUxPZzlWT3NFdDluZ1VTVHVTZkpXc25XOExRdVNMZXBNTG5JOGVmeGgyTV9mQy1uVzl0cUNoTGlTYWxXWTBJMHI2dFNINFA5N0tMQ2JUS2dweDF1OE1vMm5xbmtJN0ZtT0doWmQxbXFRUGVMVFFFdWN5aFR6R1p0RFk2YkRteHN0RU5MRks4T1EyMlhfdHJzaTI4WkRiQzAxZldsYWFoVFdvTjgwZkRWdHNXc3NfSmlTaUpjOVU4WmVNRVltWVoxX0dKVFhMWXF2dWFBeEh1XzV6a1ZQcW5BcmFnNEdlMGgyNk9sMWRMdnZ6eWRIb2t0WkZ1QnJmRDRpVzhK?oc=5",
       "source": "Mint"
+     },
+     {
+      "tier": "news",
+      "kind": "fundraise or deal",
+      "detail": "Rentomojo Ltd. IPO Review - Rentomojo Ltd. IPO Dates, Issue Price, Subscription and Allotment Status",
+      "url": "https://news.google.com/rss/articles/CBMigwFBVV95cUxNYlFXbElfM0hESTkxZ1h0M0xfaEZjaGs0R2FhbzN4cnpZdS1BZHdWVlkxRVJMQ0JtbzZzdDF3Mm5fM3VaQ1ZreGVJdDhUOWpoSnF6S1JFOHM4WEdYRnREU3ZvQ19YaFZQaWZMd3pHZHc5VnlQTjdPWnE0NWpWdmhFcEJFMA?oc=5",
+      "source": "Economic Times"
      }
     ]
    },
@@ -5786,15 +5853,15 @@
    "raw_pct_change": 4.07,
    "corporate_action": null,
    "why": {
-    "headline": "Fundraise Or Deal (Goodreturns)",
-    "confidence": "low",
+    "headline": "Fundraise Or Deal (Economic Times)",
+    "confidence": "medium",
     "evidence": [
      {
       "tier": "news",
       "kind": "fundraise or deal",
-      "detail": "Priority Jewels IPO Oversubscribed 29x On Day 2: GMP Spikes 22%; Should You Apply For Listing Gains?",
-      "url": "https://news.google.com/rss/articles/CBMi1wFBVV95cUxQcUhfdVVjX3FaUWNmSndZbmRTall5bTQ1MDhEZlE3WDVuNlBPOXBCNjFYbHowMWN5bVMxNUNLc0p3VlpHX1ZGSXh6VGQ2UkNteVgtWnlHNEs5TjBjb3N0YVlYSVF2Zk5HbFhEV2pkc2thc0VzaTdNdmE0eXJ3V2ZoVWJuQ0xsMWo5RERnSUVacklCNy1lSXVEaW40VTY4aE55ZDVTQ1NtYzFjVTR2YjFNWVNZVHQxQVctM2tLOUtuZnBhR2h2aTl1VVRYelhIcWFsT0lCaTg1RQ?oc=5",
-      "source": "Goodreturns"
+      "detail": "Priority Jewels Ltd. IPO Review - Priority Jewels Ltd. IPO Dates, Issue Price, Subscription and Allotment Status",
+      "url": "https://news.google.com/rss/articles/CBMiiwFBVV95cUxOTXZWNmVwZVZtelprME9lNy1nMDM2QmNFWkp3UXVDY0RsOHd2OTh3X2FGTEp2Mjk2OEFPQ1YzZlF6TzlsaFVmWTA5dzdyR0FQSVFxUnV1djczUDM2d2dpOGgtRDNlQ0g5aHd6TGxaMGtRTlNmdFkzWVkxRnd0T2hIZ0cyLUlfWl9Lb21F?oc=5",
+      "source": "Economic Times"
      }
     ]
    },
@@ -5985,15 +6052,22 @@
    "raw_pct_change": 4.0,
    "corporate_action": null,
    "why": {
-    "headline": "Results (Scanx)",
-    "confidence": "low",
+    "headline": "Results (Business Upturn)",
+    "confidence": "medium",
     "evidence": [
      {
       "tier": "news",
       "kind": "results",
-      "detail": "Rossari Biotech Q2FY27 Results: Revenue up 19% YoY to ₹6,976 mn",
-      "url": "https://news.google.com/rss/articles/CBMitAFBVV95cUxNWHY0eEhyUXB1SjdpYm9WNU45R0Q3THhqTzRIWDRLSGlha3ZmVXNJNzQyQWpHRGtyNnppQTZoWWY1QUtQQk9ESFlvZDdMMV9PS3h1V05hcWxHYzFNbWJqNkR6ZWxZQ1NkaUQ0Rk14RlduSkpfZjFWRDQyYVhSYVJZQ0tFbGx0bVZpQU1aMldoSkRKTnJQZGhfZkh0YVBqZkhtOVdGTmdyZGxYZnJQZ29kd0lQNW0?oc=5",
-      "source": "Scanx"
+      "detail": "Rossari Biotech achieves record revenue of Rs. 698 crores in Q2 FY27",
+      "url": "https://news.google.com/rss/articles/CBMipwFBVV95cUxPdHgtXzRobk50ZC1QWS1DT05VUTFybm9SOFNaOEFlcXNjZ0NSTWp5SmM4ZjNwZERTTXFVeTNKTXY5a24wcW9jUVRyVE9BZmVyQnVPaEpCZDF5aFNERElSNHlFNTlYS1VqTTVFb1EtZlpYanZsalZZOW9TbUsyc1VzdUJac1djTml1QzdiSzFIQ3lCYkg4X3VYWEFnTTJBazA0Rkg0c2FOMA?oc=5",
+      "source": "Business Upturn"
+     },
+     {
+      "tier": "news",
+      "kind": "results",
+      "detail": "Rossari Biotech reports Rs. 697.6 crores in quarterly revenue with export sales surging 33.8%",
+      "url": "https://news.google.com/rss/articles/CBMixwFBVV95cUxPRjVLZzBxckN2aEVIalFHMlFYaG5TTDlKSEkzNWpZYTNrd3ZTejNoTmZ1dEZYME1jUnR1VnJUNDVSb2VCMmNGOXZKenhYWGRvNEYxZU8wR1Q3RmNGOWpYYUVLSHRuazlBQmRxMkkzRjNtbnlzV2NCYkZYb2N4Wm0xUFhnZDJ1NFR6eHEwRFJuODJIV0hweVFIZXdGRGNmUzhPNTJ2OFRkM3kxZFMzZG94WjVyS2w4a1dCT0hDLTBiMFl6aXJYVzc0?oc=5",
+      "source": "Business Upturn"
      }
     ]
    },
@@ -6196,9 +6270,17 @@
    "raw_pct_change": -4.14,
    "corporate_action": null,
    "why": {
-    "headline": "No disclosed reason",
-    "confidence": "none",
-    "evidence": []
+    "headline": "Results (Scanx)",
+    "confidence": "low",
+    "evidence": [
+     {
+      "tier": "news",
+      "kind": "results",
+      "detail": "KRONOX Lab Sciences Limited Publishes Unaudited Financial Results for Q3 FY26",
+      "url": "https://news.google.com/rss/articles/CBMizgFBVV95cUxOajNaaXJJNHlCbklpa2NEam1PZld6SDlLTWRmeUN6MldDQ09veG85ZVpEQlZzQVNfdzlvRzl2SHQ4VVF1bXNIeEtPa2trVjVNaGpzb3hWM1ZtVWVxTUpqOGYzSW02c3pxSUNuRjNHbkJIY1VmMHI0aGVTZFItZlF4UzhCRDZueldOU0JrTG9PODBOZlJSRUpHQnhMR19rZ3BHOVdNRlZVcS15R1BuVjFJSzJIc0JiNlhzblA0bkplS2NvWTN4c3FuTmEta3Vldw?oc=5",
+      "source": "Scanx"
+     }
+    ]
    },
    "news_checked": true
   },
@@ -6268,16 +6350,16 @@
      {
       "tier": "news",
       "kind": "results",
-      "detail": "Angel One Dividend 2026: Check amount, record date, yield, history, Q2 results of broking stock",
-      "url": "https://news.google.com/rss/articles/CBMi7gFBVV95cUxPRkxXVG1VeXAxY21mWjJoUzJ2TmJUSGRSbVR3WnViNVZnSmYxN01JUWdWRDlLTHYwdDA0OUpUNm1uWmVwQ0p2amNqTEVvTjA2LUx3Q0hFWWtiX0tkQ054QWlTcGxTSUIyWndGbTZTNkU1MXROZ1d4ZWNrb1lFbDBaeXhwWGZGX0FVcW0xNzVWYUZDaFRWSzdxeFl4OXA3dEhuZGFnaFRSY25vVWRuYjVtS1NQUDdpOUlRU2pxRWMyZ1Y4TXl5MzFLSEkzanV3U183bGR1WGZ6TUt0Q1lUMFZBaFFwcWg1Qk9PeHJsSEVn0gHzAUFVX3lxTE9Wd3E3VFJYNG4xanVzVnNtY3RQZ0xmeTJHb2EzWFJ1ZW5VaVItRzhQc0piclZjWDVmZUxpZkw2NjlOX0hrX2Q0NlFjRWYtQmJyQkZadklLNUtCQ2lTUS1WRjhxMmplT2lSSWdZSVhYZWNwU2JmUWxhQ2VzNGIzYVB1eFRVN1UxRGpkVENIYUE2eVc3WUF1ZUtOSlQyY2VraS1UaXAxTWNTR3RKcWVpRTBLdVNtOHg5b3dCaWdCaFNpYnQ1M0JGQTV3b3d4V2JNeWFGRFRDQ3RROVVnWGU2Y3ctTm8waEVMUC1Lbld3LUNPS3RuVQ?oc=5",
+      "detail": "Angel One Q3 Results 2026 - Find Angel One Q3 Earnings Result | ANGELONE Q3 results",
+      "url": "https://news.google.com/rss/articles/CBMif0FVX3lxTE9oc2tnTmE5ZzV0WFF4R1hSMThGa2xhMjRYWHljMF9TNHA3U0cwbGRvYTVWcmsxWWcwVjNhMUhJdllaOG1HSVlCbk9WZkNwbG1ZUlZpVkJvcmdtS0czRWZNb3ViV3oyNklBN2pDRHZEWnB2cFVReWV6YnpJR280Wnc?oc=5",
       "source": "Mint"
      },
      {
       "tier": "news",
-      "kind": "regulatory or legal",
-      "detail": "BSE, NSE, Angel One shares see mixed reaction to the new SEBI CAS rules - Details here",
-      "url": "https://news.google.com/rss/articles/CBMi1gFBVV95cUxNcUtGTUdKck9xWTM0MjVjd21FNjk4eVdqQXJxYmVOdU1aXzU0YTJ6REFUb0kwQlBwSGpNUjZvT2lmNGh4ZmFyTTkybUtPcUJoWG5acjRRZC1zUzM0Uk5KX3NBdVYwemo2bUNyWlRiLXNrbGFobnlKZVRPZTExVk5NREVUdTM5eHZZRldOQlZnbDVjbjhjVVdDVkhGeXY5bHlWaGFGWFJiMXhMR3ZidUl5b2ZaTDBvbm5feXBwMktFMlQwZ1c1bXZXNmR5MTV5QWlNd1FqY0F30gHbAUFVX3lxTFA4ZThyTV9xN1J4ald3ekhYWlZ3S1BHZ1dYZHlqYzFmdUg3VFhsb0FlX0R4Zkg5aXVNX05mR21VN04wbEZSMUJWQXVhVHJfelA5YXpCSHVOSDJyZVZnZ0x3TVloNGx5N0FhODI3Q2xIa296WHg5ZEJlMXA5eFFwaS1tZVJ2ci10MHN0X2xOOW15TU4xR245cWRhVG11YThBaWhqcWZuTlAxTGRCWDBxV21kOTZXMllqUHJ5WnE5X0JzaHVZbFlNVnZyU05rUEtMSk5GTHhtbXZYcy15OA?oc=5",
-      "source": "CNBC TV18"
+      "kind": "capital action",
+      "detail": "Stock split, bonus, dividend, buyback record date in 19-25Oct week: Angel One, JSW, IRFC, Tech Mahindra, Modison, others",
+      "url": "https://news.google.com/rss/articles/CBMijgJBVV95cUxOdHZuMjA4MC1FYkdoTmppdjVXaFUxUUpPN0I5OENmblpPa1Z2VkJoQzdUS0VkQWZ3MUZmV2ZfeE9sTEtaRmVUeTZWQXdEX0NEZU1PRnJDSWhYYXg3THZSYnV0dkR0V1ZrQmlUVGZ2YzdCTWZ6MzM5b3NBQjZQTW5idi1GMDN4YjhVMU5qWElTZTEtRjcyUDIxWWdxOEYyal9IRW5pVDBmSVI4cWtSZWFPMWthLW5fYWY4MmFOakVlSlA3U0ZQTmZJYnNTeV9UVE1WWlowajZ6aHk2R1dyM3RDNlF5TVpzWVREOXB6SXZIX0lRaGxkWVFfWS15QXoxZXJ6M2dXV3BKdVZnZzMxY2fSAZMCQVVfeXFMTTdXTWloa0c5X0ZWaVl0VTFkRXVqSXdTY2dwZHgzTXNRc1BxbTl4WWdzUnhSdnpBeGl6V1dEUjRnSFZYdVdhUndxSklncjlKLXZUNGZtR2FEUVJUWDhLdHRyQ2hHNG9jWHdFRWZ1MGkwdE5sMUlnZlZJeXFmOExSUlV6a2ZaZGZ6S3drRTdWa2hfVU5aekdTdjJpR0I4NXZGYUxFU2JTR2hMVkt6Z29BUnlGU0JZWldocWJmUmZKSDZVYmRTZG9GWEhpcUdYNzY1M3VqeEFYalJ6VnVOVl8zclpEQ083R09WNlhQXzFzaGMzV2p1aTZsT0gyVzRoSFZibFVZNDBQT1FzeVZMX3U3VDB3ekk?oc=5",
+      "source": "Mint"
      }
     ]
    },
@@ -7374,6 +7456,13 @@
       "detail": "Eventions Q3 Results 2026 - Find Eventions Q3 Earnings Result | EVENTIONS Q3 results",
       "url": "https://news.google.com/rss/articles/CBMif0FVX3lxTE1VVmJGWFdUTXVUV3JoQzZWR0RIWmhHdlJfeHp6TGhHMVlLRHJrMjAyYkxYRXVJRnNUMmFTN2lkSy1BQW1UUzFpTmZyalE2MnZ3Sm5MNkNKb0lHVFEyVFJidmtkMFJFcmRPZlJoNXdaRlM5UHZXcjR0WW5MM1BtdHc?oc=5",
       "source": "Mint"
+     },
+     {
+      "tier": "news",
+      "kind": "results",
+      "detail": "Eventions Q1 Results 2026 - Find Eventions Q1 Earnings Result | EVENTIONS Q1 results",
+      "url": "https://news.google.com/rss/articles/CBMif0FVX3lxTE93Ym83X2I2b2loVGRaQjJvWHBmVEc2SDlLRkJmWkUzRHNTQzFkWGNueGlEcEduNXE1ZjE0ZldqU09Ja1hfUGd5MVBabzU3YS12SlJ0Qk5YZmlINlJpaHg5RUJkTW81cnk2dXR6ajRnSXBNbUxVOTJTQW1oWEROOW8?oc=5",
+      "source": "Mint"
      }
     ]
    },
@@ -7693,7 +7782,7 @@
    "raw_pct_change": -5.0,
    "corporate_action": null,
    "why": {
-    "headline": "Results, reported by Sahi",
+    "headline": "Results, reported by Mint",
     "confidence": "high",
     "evidence": [
      {
@@ -7712,10 +7801,10 @@
      },
      {
       "tier": "news",
-      "kind": "results",
-      "detail": "Modison Reports Q2 Standalone Net Profit Of ₹23.3 Crore With ₹280 Crore Revenue",
-      "url": "https://news.google.com/rss/articles/CBMipgFBVV95cUxQaHRFYXBBRWJtM1ZDVUd1SUZCMmNIdHNIekxMNjJzWlltaWxmcEgwX2pzRlBGRk00VTJ1b09YR3pWb3Z3OFN2SlljNURVOFRxa1hCSExkdTZDaHpiOTdDMEkzeWpVeUlQQ3VCWmpzNG9ORUlPcUdRSnpQWEJuUUktYU9sRzFCTnpuaXNjNHM5bk11dllJV2MxaWRnc3VUdU5ZcHdyRWtn?oc=5",
-      "source": "Sahi"
+      "kind": "capital action",
+      "detail": "Stock split, bonus, dividend, buyback record date in 19-25Oct week: Angel One, JSW, IRFC, Tech Mahindra, Modison, others",
+      "url": "https://news.google.com/rss/articles/CBMijgJBVV95cUxOdHZuMjA4MC1FYkdoTmppdjVXaFUxUUpPN0I5OENmblpPa1Z2VkJoQzdUS0VkQWZ3MUZmV2ZfeE9sTEtaRmVUeTZWQXdEX0NEZU1PRnJDSWhYYXg3THZSYnV0dkR0V1ZrQmlUVGZ2YzdCTWZ6MzM5b3NBQjZQTW5idi1GMDN4YjhVMU5qWElTZTEtRjcyUDIxWWdxOEYyal9IRW5pVDBmSVI4cWtSZWFPMWthLW5fYWY4MmFOakVlSlA3U0ZQTmZJYnNTeV9UVE1WWlowajZ6aHk2R1dyM3RDNlF5TVpzWVREOXB6SXZIX0lRaGxkWVFfWS15QXoxZXJ6M2dXV3BKdVZnZzMxY2fSAZMCQVVfeXFMTTdXTWloa0c5X0ZWaVl0VTFkRXVqSXdTY2dwZHgzTXNRc1BxbTl4WWdzUnhSdnpBeGl6V1dEUjRnSFZYdVdhUndxSklncjlKLXZUNGZtR2FEUVJUWDhLdHRyQ2hHNG9jWHdFRWZ1MGkwdE5sMUlnZlZJeXFmOExSUlV6a2ZaZGZ6S3drRTdWa2hfVU5aekdTdjJpR0I4NXZGYUxFU2JTR2hMVkt6Z29BUnlGU0JZWldocWJmUmZKSDZVYmRTZG9GWEhpcUdYNzY1M3VqeEFYalJ6VnVOVl8zclpEQ083R09WNlhQXzFzaGMzV2p1aTZsT0gyVzRoSFZibFVZNDBQT1FzeVZMX3U3VDB3ekk?oc=5",
+      "source": "Mint"
      }
     ]
    },
@@ -8088,7 +8177,7 @@
    "raw_pct_change": -5.43,
    "corporate_action": null,
    "why": {
-    "headline": "Results, reported by Mint",
+    "headline": "Results, reported by Business Standard",
     "confidence": "high",
     "evidence": [
      {
@@ -8115,16 +8204,16 @@
      {
       "tier": "news",
       "kind": "results",
-      "detail": "Shoppers Stop shares surge 15% ahead of Q2 2026 results tomorrow | What should investors watch next?",
-      "url": "https://news.google.com/rss/articles/CBMi-gFBVV95cUxQU3lJeWVTVm1EdDl0eTFBajJMZ0ZjaEp3bFlSQ0xoajV4aXhReGZyN1A1dUY0bVlqbjZaekptSDhOYmRpZHZvaDFvTWI3bWJyMG9BNXV4MWtCMk5fZzlhUW1lMG4yWWxiWkxHcnZ5SXQtWkZQaGJpamlGQlpVemlON3dwNXllUzdpUEEyRjJmbk5VTi1XRDE0ejhOTDB4cllGdG5ZbGhhbmpuSTZXeHVIWmdTSkpRbVB3VUdPNHZhcWlIV0RqU2UxeWlIRzN1SWYzQnhLYV9fZnFRMDZmWkp5ZmVGVVIzTHczY0lfTjR1QTJXX0VzNE1KclJB0gH_AUFVX3lxTE1Mam9IdVBWNG9Scml0Uzh3ZG9EUC12ekVORFhtcjlycGxCQXpuTVAxR2hOc0tKT0M3a0YtSUZDRWE3cHJ5RXBTQ0FVMmd3ODFuYzZaZ1pjOE03T2pUNkJBc2stWWZremRmQUdfdEkwT3dJaTJkYTF6cHREdk1SR09QT1ZBRUNoVUs2dks1VjlFWEpCdXNqQ29TRGxwMFd1QWpKM1Nhai0xTGZ1eGhyWHdLVy12ZUlnaUVvSEs2ZUdLcXhqajdLNnh6TlE3SnY2Z2UwM0ItYV91RWE4b2Rnend4WjBsZ19MWWd1TDJyaTdoR0ZjWGVCUzFCcXBRTUp2SQ?oc=5",
-      "source": "Mint"
+      "detail": "Shoppers Stop posts net profit of ₹3.11 cr in Q2, revenue grows 9%",
+      "url": "https://news.google.com/rss/articles/CBMi3gFBVV95cUxOMV84eTFFVno0ZHJ2VTlsY3V6UDdZcVdmR3ljUFNnMnkzWXdCT09SeGN3OFplZVZtb2pZb0pJc2Z2NzJ3ekFJZVFFOUZKZldyaVBvQVEwZ21pR0FmN3NrUjlNT3pmeWQ0VGxralloaWdReGR5QlU1T0dQM3RoeXgtTlZ2WXVqRk02UGNaYTZGUWtpcEhrXzUzX05lQ2cwX1NPZzB5T0RhQzVyM1NYemdMOWs2Zjd6Z1loajBndWNqTElpR0FrM2VaWTRKTmNxbHE0eG5zd0NkNXZDUWdjOWfSAeMBQVVfeXFMTm1NaXlOUE5rLW42MVVwS1F6WmduaFNzZm1OWFNweTd3d2FMQ1o3RkRqM21rNV9HaXRXZHpZSlpJZGdZazFrNkNvZXQxdUhsZmRUR1VZTVdWSDdVWERoRndsQ3NlTHAwSzliOXRMUkFuMV9MWEZORFhPS29sSDA2cTNEQ2xxOU1wVlhnWlNBVUhxZEY0N2JsTFBLZmk5RzNGVmZfaVNSWTRvWGxreGtaakFBYnJ3SEhObWxIVkFYRXl4blFQeURSbWVLb1J2dDdEOHd5eXlKOWFtc3pMN1NHRTRnRHM?oc=5",
+      "source": "Business Standard"
      },
      {
       "tier": "news",
       "kind": "results",
-      "detail": "Shoppers Stop posts net profit of ₹3.11 cr in Q2, revenue grows 9%",
-      "url": "https://news.google.com/rss/articles/CBMi3gFBVV95cUxOMV84eTFFVno0ZHJ2VTlsY3V6UDdZcVdmR3ljUFNnMnkzWXdCT09SeGN3OFplZVZtb2pZb0pJc2Z2NzJ3ekFJZVFFOUZKZldyaVBvQVEwZ21pR0FmN3NrUjlNT3pmeWQ0VGxralloaWdReGR5QlU1T0dQM3RoeXgtTlZ2WXVqRk02UGNaYTZGUWtpcEhrXzUzX05lQ2cwX1NPZzB5T0RhQzVyM1NYemdMOWs2Zjd6Z1loajBndWNqTElpR0FrM2VaWTRKTmNxbHE0eG5zd0NkNXZDUWdjOWfSAeMBQVVfeXFMTm1NaXlOUE5rLW42MVVwS1F6WmduaFNzZm1OWFNweTd3d2FMQ1o3RkRqM21rNV9HaXRXZHpZSlpJZGdZazFrNkNvZXQxdUhsZmRUR1VZTVdWSDdVWERoRndsQ3NlTHAwSzliOXRMUkFuMV9MWEZORFhPS29sSDA2cTNEQ2xxOU1wVlhnWlNBVUhxZEY0N2JsTFBLZmk5RzNGVmZfaVNSWTRvWGxreGtaakFBYnJ3SEhObWxIVkFYRXl4blFQeURSbWVLb1J2dDdEOHd5eXlKOWFtc3pMN1NHRTRnRHM?oc=5",
-      "source": "Business Standard"
+      "detail": "Shoppers Stop shares surge 15% ahead of Q2 2026 results tomorrow | What should investors watch next?",
+      "url": "https://news.google.com/rss/articles/CBMi-gFBVV95cUxQU3lJeWVTVm1EdDl0eTFBajJMZ0ZjaEp3bFlSQ0xoajV4aXhReGZyN1A1dUY0bVlqbjZaekptSDhOYmRpZHZvaDFvTWI3bWJyMG9BNXV4MWtCMk5fZzlhUW1lMG4yWWxiWkxHcnZ5SXQtWkZQaGJpamlGQlpVemlON3dwNXllUzdpUEEyRjJmbk5VTi1XRDE0ejhOTDB4cllGdG5ZbGhhbmpuSTZXeHVIWmdTSkpRbVB3VUdPNHZhcWlIV0RqU2UxeWlIRzN1SWYzQnhLYV9fZnFRMDZmWkp5ZmVGVVIzTHczY0lfTjR1QTJXX0VzNE1KclJB0gH_AUFVX3lxTE1Mam9IdVBWNG9Scml0Uzh3ZG9EUC12ekVORFhtcjlycGxCQXpuTVAxR2hOc0tKT0M3a0YtSUZDRWE3cHJ5RXBTQ0FVMmd3ODFuYzZaZ1pjOE03T2pUNkJBc2stWWZremRmQUdfdEkwT3dJaTJkYTF6cHREdk1SR09QT1ZBRUNoVUs2dks1VjlFWEpCdXNqQ29TRGxwMFd1QWpKM1Nhai0xTGZ1eGhyWHdLVy12ZUlnaUVvSEs2ZUdLcXhqajdLNnh6TlE3SnY2Z2UwM0ItYV91RWE4b2Rnend4WjBsZ19MWWd1TDJyaTdoR0ZjWGVCUzFCcXBRTUp2SQ?oc=5",
+      "source": "Mint"
      },
      {
       "tier": "news",
@@ -8283,9 +8372,16 @@
    "raw_pct_change": -6.62,
    "corporate_action": null,
    "why": {
-    "headline": "Bulk deal of Rs 18.5 crore",
-    "confidence": "medium",
+    "headline": "Operations (Scanx)",
+    "confidence": "low",
     "evidence": [
+     {
+      "tier": "news",
+      "kind": "operations",
+      "detail": "Parag Milk Foods invests ₹100 Cr to quadruple paneer capacity to 80 MT/day",
+      "url": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxNV3BkbVBTd2RzS005anFQRzVObm1mcC1Md3BxeWhSWUhLbmVjUW9HbmNKY1FTSm1GemtjWk9xc1NZT01ibnB3bks2YnB4SS01aXJsUm04aktqTHQ0a1NYSXBiU1ZYcUxsVU5UTE1YZ0FDdWxFU0ZpcEd4ZGZwc1lOU3hDbWFnLTNwTmRHd0x6NjNMX0VyTV9oUDd2TnBuaGE2T1g3RzJtYTFJMTRHUzdLSHpNQVZ3UWdHQzRGOUhJZExsZw?oc=5",
+      "source": "Scanx"
+     },
      {
       "tier": "deal",
       "kind": "bulk deal",
@@ -8875,7 +8971,7 @@
    "raw_pct_change": -12.9,
    "corporate_action": null,
    "why": {
-    "headline": "Results, reported by CNBC TV18",
+    "headline": "Results, reported by Mint",
     "confidence": "high",
     "evidence": [
      {
@@ -8901,17 +8997,17 @@
      },
      {
       "tier": "news",
-      "kind": "order win",
-      "detail": "Cyient DLM Q2 Result: Aerospace revenue jumps 62%, order book hits record high",
-      "url": "https://news.google.com/rss/articles/CBMixwFBVV95cUxNWUJ3c3o0YTlhdTF4QmVZcVRwTEQwa3l3TzFkSmJOeTJleVNhNXBpZ2RFWU8zR3F6LXBRY1F2bEYyZnBoc2tRajRlWDhOQ2JicmJVOG4xUFc0d20zc3U1WkhnZnJYUXk1UlBvNjNfVFFFcFI1Q013NjZHYUlhdWNtNmYwd1libFc1ZWN0RU5OLVFXQjVjRVprWTNleHNMdkZvTFlBTmdvUG1CcUVRcnhyT0lET3VTdU1hRXhLb0dWd3Z6aFJMTm1r0gHMAUFVX3lxTFBjc2NyVk1OUWtqY3BKdHk0QWhtWUI0UVBkUjB3ZlpKdnlKM3Y2SzJ0ZkRDaDBKZG9WSEtxU3lrZ2xBSVY3NVdzVE91VmE0Y21CV1AtbjlEbjJkclpKSDZUWGVRMWg1T3dnYlk2RnJ5QmJ3ZG5kbmUyS2kwUWhPazB4WDNpalBjemltOXpRNVhadEZ5TW1KWFljaS1zY0o3aFVydkZsODJoOHZqZTlkeXlINTlzZlM1SUZaQ0o5QTFWZW1FTjBjdFFpNW5nUg?oc=5",
-      "source": "CNBC TV18"
-     },
-     {
-      "tier": "news",
       "kind": "results",
       "detail": "Cyient DLM share price crashes 19% after Q2 results but up 213% from 52-week low: Should you buy? Check target prices",
       "url": "https://news.google.com/rss/articles/CBMikAJBVV95cUxON19GOHc2TzFweFdEY0xMbGxlNk15ZnYxQWFRbk9JRmRxZmZrRUFDNlBXWm1LUGdDeDc4aFJjN2kzWFNnSFV6RTNKeUdPNmFpVmJ6ZUtaYlhhMnBYUlZLTi01S3Q4Znk2MTR3Q3lMeWV0SU1FYWNGcFlpOU9pX2FfSDVBTEphMjRBWW1hR0l1ck9XeFdrZ1Z2bHNVMDZNRVFFbnl3NFd4eFc1NWZyN053QmZJR3JvZk1LY0x1WERtWVNjRXkzVDlTZXpxV1k4NlVXMDdxMF93WW5oUWRCMVJZcm03MUpKdzdtaWF1c1NpMFdhUlNDX216YUxPUmI3S295RUIxMlJkSHVQeHZ5N3lzX9IBlgJBVV95cUxOVzVueHJBUFVZaFdjS0lBQlpkQU52eEpuLVZ6TWhMZWpWeUhHbUx0RXA5YVdXN2RucWJxYW04Qjk4aG5GRFZuOG4wa19haEtIaHlnWmZaenN2UXEtLVQ3dGNGZG5SZ0FfeFltTWhmbUFtcHNNdm5lUERHenMyTER3TUJMWHBHYVQ5MFlzR3NIR3gxVGZGUkJEOHoxLS1jZk0yM2hrWG1Na3pfVmRMeFNreWEtei1yQ184Q2NnZWtrR1dCcy1WS2dqX1hVQzdON1JPa3ZibzdqTmZYLWNUMGdicG5haW1lS2FyZ1VXVHVSdWk0SEFzc3dxU0NwUll6ZHNTVkdRU3RqZU1KNXNVUmJtTDlWYmJIdw?oc=5",
       "source": "Mint"
+     },
+     {
+      "tier": "news",
+      "kind": "order win",
+      "detail": "Cyient DLM Q2 Result: Aerospace revenue jumps 62%, order book hits record high",
+      "url": "https://news.google.com/rss/articles/CBMixwFBVV95cUxNWUJ3c3o0YTlhdTF4QmVZcVRwTEQwa3l3TzFkSmJOeTJleVNhNXBpZ2RFWU8zR3F6LXBRY1F2bEYyZnBoc2tRajRlWDhOQ2JicmJVOG4xUFc0d20zc3U1WkhnZnJYUXk1UlBvNjNfVFFFcFI1Q013NjZHYUlhdWNtNmYwd1libFc1ZWN0RU5OLVFXQjVjRVprWTNleHNMdkZvTFlBTmdvUG1CcUVRcnhyT0lET3VTdU1hRXhLb0dWd3Z6aFJMTm1r0gHMAUFVX3lxTFBjc2NyVk1OUWtqY3BKdHk0QWhtWUI0UVBkUjB3ZlpKdnlKM3Y2SzJ0ZkRDaDBKZG9WSEtxU3lrZ2xBSVY3NVdzVE91VmE0Y21CV1AtbjlEbjJkclpKSDZUWGVRMWg1T3dnYlk2RnJ5QmJ3ZG5kbmUyS2kwUWhPazB4WDNpalBjemltOXpRNVhadEZ5TW1KWFljaS1zY0o3aFVydkZsODJoOHZqZTlkeXlINTlzZlM1SUZaQ0o5QTFWZW1FTjBjdFFpNW5nUg?oc=5",
+      "source": "CNBC TV18"
      },
      {
       "tier": "news",
@@ -8956,22 +9052,15 @@
    "raw_pct_change": -20.0,
    "corporate_action": null,
    "why": {
-    "headline": "Management Change (Scanx)",
-    "confidence": "low",
+    "headline": "Management Change (Mint)",
+    "confidence": "medium",
     "evidence": [
      {
       "tier": "news",
       "kind": "management change",
-      "detail": "Torrent Pharmaceuticals accepts resignation of Executive Director Amal Kelshikar",
-      "url": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxPU21jQ0hzZlBQdktFcDN4Tlo3Tm1kSkc3eDB3eHZ2ZzZtMDNoYWNiT1o2dW9tTnhPMGRBNzVENnBEeUdjdVlQUFBfOFBfZnV2MFRLNzluaGZNMFQyZjBNakh0QXBXTUsyOGR1ejk4ZzUyTm5SVHBPOF9kMFVKS296RXAwMG9Bam9xLU9tYmFuR0U4ZVg0T19LNEZfbUJNaHJDZFF6bzI4X1dpVHBPdDNXcGJvaWtKRXBCdHZtNkJYTnltdw?oc=5",
-      "source": "Scanx"
-     },
-     {
-      "tier": "news",
-      "kind": "order win",
-      "detail": "Amal Reports Q2 Revenue Growth To ₹130 Crore As EBITDA Margins Contract",
-      "url": "https://news.google.com/rss/articles/CBMinAFBVV95cUxNalZNZ2J5OVRTSVBVakh2cjVHSk81bkZkY1dWb3BvMTd6Wk9Cb0NveGI5RzBWUzR6aUtMTTVHME5jTkZPaDVwOER5NGdiTnpCVFVMRDdONGEySXhjY0hOblprV1hxSXRITkRodnFHallxQ1k2M2xtSzdPWFY4ZXpkR3d5dW5wU0VtdUFxSlVrd2FCVzRfREhTZWhLQlk?oc=5",
-      "source": "Sahi"
+      "detail": "Who is Amal Kelshikar? Why did he resign from the position of Torrent Pharmaceuticals' Executive Director? Explained",
+      "url": "https://news.google.com/rss/articles/CBMihgJBVV95cUxQY2xOWGZQVFFoeE1ieWY3M0hRcDgxMWh5NWJIMl9KMVNBYmNsbHhhdWY4OXF4M3VKcUVpMmM0V2V4dFJoUW1XUW41ckNnMFk1bmxtTTB0OC1DOXl3ZmszeWM5SUpEV3ZPMVFVM1N4NWxJRVV2SVJ2NGtxaTh2dFFOdFhPdmhXSlZRM05NMTB0X2kwUTZ3RjA4UXlEM3I0R2pBQXNkTHdrNDhkcTdhRVZNZDdEY1hEV1NxVm9fYk9jN05fVmtSMjFhM0w5a2xHQ0puS2taSkZ5eXJoZkc2bkNseXdPZE4zZ0NacGlrQ0JoMkZsR0d6Sk9OSDhWWUFGeFBvMFQ2NjZ30gGLAkFVX3lxTE9sMDM3Q2tEeHF5VUNSaHBYSVlaWmJiaWtUMmR6TDVwRkFUZkgyQ1UtYWZVNmtua1dVQ2JtSXFnSmRUMVVueFc5aUtCVVZCeEpEQ3JKV1Z5aEFlOThyNlZCZjZHdE9qMUI5NlVMc2tyUDVNLWhHNzdHeDRyYmQzUnlzcU1xcER2dFF0bUtfNnRSVW9oM1lDSXpmT1k0Z3I4cW5hUWlmN3djVlBpZHJGYmR3VkotekpQOWdiYU1CR0FyNWMxLUNVMjdHV1FRM0xoSGxSNno5QWNLQmw5OG5FTTR5YldreHJBeVQ2RGZJUk9SSmNDdVZLTFlYbHZ0bzY1c3EyRGdQUHNkOEpWQQ?oc=5",
+      "source": "Mint"
      }
     ]
    },
