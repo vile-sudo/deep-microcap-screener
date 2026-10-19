@@ -1,7 +1,7 @@
 {
  "trade_date": "2026-10-16",
  "threshold_percent": 4.0,
- "generated_at": "2026-10-19T12:19:02+05:30",
+ "generated_at": "2026-10-19T15:52:17+05:30",
  "stats": {
   "scanned": 3397,
   "flagged": 394,
@@ -624,9 +624,17 @@
    "raw_pct_change": 10.15,
    "corporate_action": null,
    "why": {
-    "headline": "No disclosed reason",
-    "confidence": "none",
-    "evidence": []
+    "headline": "M&A Or Stake (Scanx)",
+    "confidence": "low",
+    "evidence": [
+     {
+      "tier": "news",
+      "kind": "M&A or stake",
+      "detail": "Kotak Mahindra Mutual Fund crosses 5% stake in Molbio Diagnostics",
+      "url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxPM2NBNEJVbVEyMk5ucVFzRElXUlN4UGhqUXlJeFlTMVBfdDZLeDNBN2NvYUJLZXJtWVlxLWVsekJwXzJxQjQwRnVPYjhzd3BwNDFHbmxibGtJcFZlV3phaldxUDBZbWF2NnNtT1RGQUFzdXZicktIY1hKcmQxamwwR0NYWlBJZmJ3VllEMzZGd1B4TnpWMkRONVRVRUdQRl9ZQWRDLU43NVJrRWhwU3N1RGZubTI5LXJCVGc?oc=5",
+      "source": "Scanx"
+     }
+    ]
    },
    "news_checked": true
   },
@@ -2927,10 +2935,10 @@
      },
      {
       "tier": "news",
-      "kind": "broker action",
-      "detail": "HFCL brokerage view: Nuvama initiates with Buy, target ₹380",
-      "url": "https://news.google.com/rss/articles/CBMi4wFBVV95cUxNQ1Y1SWVYNTNpSVl0YzRTOU5zN2VtQ0hQeDVscHdfdEFFUndhbFFFTU5DM0ZaYTlRbTZScWxla3dDeWc4ZGwxREZUek94VU5yb1h5ZDBoc1pfY1N3MEt4UmxKekZQekZoZmJyaURsbEx0bHZDeGdJOU1DV0lXX1Q2MDlNUEwzengtdUx2ZnNhVllBMmtIdjFxNjdGRFp1Wjg0dlc3TzVNVVhVUnZRRE9fbC05SmdwMUpYN2ppSEQ1Sk95VmtOVUdfa1NnTkI4QUtad3dfOHQyZTNtODdNQlpPZEh1Yw?oc=5",
-      "source": "Business Upturn"
+      "kind": "results",
+      "detail": "HFCL Q2 Profit Jumps 448% To Rs 394 Crore, Revenue Rises 144%",
+      "url": "https://news.google.com/rss/articles/CBMipAFBVV95cUxNNUZYcXJpdVlHX0xqSHNmRnF3Y1dIS1lSZjlKVUhrTnBVdDNnUURjYUl2Tnk4Rzh5WGFxdmVoVEZKQlRpWnhhWGR3QW05dU94MllGWDh5R0lPQkd1aFl5cnVLOVFXNVhLbnV2WmFIcXBfc01JRWI2eWd0S2tSdzdlLTVaVGhiemhaNVdIQzNOMHJpWkxjZHJYRmVsZkFWZTVkeF9zOQ?oc=5",
+      "source": "Businessworld"
      }
     ]
    },
@@ -4211,9 +4219,17 @@
    "raw_pct_change": 4.82,
    "corporate_action": null,
    "why": {
-    "headline": "No disclosed reason",
-    "confidence": "none",
-    "evidence": []
+    "headline": "Order Win (Scanx)",
+    "confidence": "low",
+    "evidence": [
+     {
+      "tier": "news",
+      "kind": "order win",
+      "detail": "BGR Energy Systems Makes Public Announcement for NCLT CIRP Order",
+      "url": "https://news.google.com/rss/articles/CBMi3AFBVV95cUxNVDNJejFfc3FENTByQmdWM3Q2Z3ZBbUVyNkFra01YeEhGS056YTVPQUUyTVBmRWJoZUlQd1J4ODRUdkhaYXVWZXJ4ZjA5VWtLY0Y2bEcxZTEwcUtoVFlEQUQwbzFSLVp0MDVRaE4zTG1NVEdnWXlyTWtSNktqQmh4REhfTGJVbjJXblFVUUluYWlLWnh6UFJfN2dwMzlXaXZ5Zk42YjNDOThnR0NfaEZJSGJxS0ppNkNxY01ublFYMGdiUlFuQ1Y3NWw1dldrZDZvNFZJLXBOSkREMnhL?oc=5",
+      "source": "Scanx"
+     }
+    ]
    },
    "news_checked": true
   },
@@ -4366,9 +4382,17 @@
    "raw_pct_change": 4.73,
    "corporate_action": null,
    "why": {
-    "headline": "No disclosed reason",
-    "confidence": "none",
-    "evidence": []
+    "headline": "Results (Scanx)",
+    "confidence": "low",
+    "evidence": [
+     {
+      "tier": "news",
+      "kind": "results",
+      "detail": "Kanpur Plastipack schedules Q2FY27 earnings call for October 29",
+      "url": "https://news.google.com/rss/articles/CBMitwFBVV95cUxPNVFCcWZ6UWJTbEFpY25TSjRzYlljNjdtQmFGUjhNWUd0UVNaQ3VRX3FyRnpDdkhLdkJwa3pKTm9SUzMyeFBlU3BLdHhuMm14cWtBU21uQWhnRnEzSkYxbmtsdWZ0UEs5Q1p6QjVSUWdHX3NBZzRIdnQ0NnphOXZ0ckRHeWd1X2pqcUc4TVdFcmI2VVF1WFBiSU90VGFtemwzRXQ0Z1RNNEtfekF3eTcza2xXanpyT00?oc=5",
+      "source": "Scanx"
+     }
+    ]
    },
    "news_checked": true
   },
@@ -4742,17 +4766,17 @@
      },
      {
       "tier": "news",
-      "kind": "M&A or stake",
-      "detail": "Lufthansa in talks to take remaining 50.1% stake in TAP in future, CFO says",
-      "url": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxQVl83TW15QlY5UlEyRnJubWdKX3FLRDhFRUs3V0p5NEEydjJQLXpxdkRmSVVNem4xc1ppeldZb0NRSUJSSjhpNEJ4TVM2a1poYjRnMGlsUUhRSzRHbkRQWG1RaUNRZW44SmpaeWJvbXFuNnBOcUY0Smc4c3JNWVFON1ZVZHBSRkVLZWJCR1ZEbEcwcEtFWDF4a05oSWp0Y1BhXzZ2cHZleTE?oc=5",
-      "source": "Reuters"
-     },
-     {
-      "tier": "news",
       "kind": "results",
       "detail": "Take Five: Earnings, an election and an MSCI headache",
       "url": "https://news.google.com/rss/articles/CBMijAFBVV95cUxNWXNOV1lOOVZ1RFdoQ21GQ3VQcUJ0Z2ZoWFRPa2dvb3luRlBlNms3R0R5S0ZwMFk5M1RPSzJReGwyaDQ1T3doYUNjWm1ia1EtRzc2MUdlcHJqalg0QV9KdEJFUGI2WTZOOXlaT3BHWTRHU28wNFNEeGJSMzdtb0MzWEVaYmJFc1UtM012OA?oc=5",
       "source": "Reuters"
+     },
+     {
+      "tier": "news",
+      "kind": "broker action",
+      "detail": "Goldman’s Equity Traders Take Back Seat to Prime Brokerage Arm",
+      "url": "https://news.google.com/rss/articles/CBMiswFBVV95cUxOb0ZJeWw3T1ZSLUhxVUI1QWxJSU1sM2MzVmpiclZXRUZqNUNmX29wWHR2MVRSR3ItT0F4OW9OeGRkeU9idmsyVzc0NVhTVGNYdng3WVJRTmp6b1FRa1VCLXp3ZXFSaFo3c3lCNGtsWUlFQ0hPWjl0N09PbWhkdVlBeW9aa2h6R2g1R0phcVEzVmFOcGFSUVVWaHM2ZXhrbkE0UDUzSldybTRubVFfQ3UxS3ZQNA?oc=5",
+      "source": "Bloomberg"
      }
     ]
    },
@@ -4938,17 +4962,9 @@
    "raw_pct_change": 4.44,
    "corporate_action": null,
    "why": {
-    "headline": "M&A Or Stake (Scanx)",
-    "confidence": "low",
-    "evidence": [
-     {
-      "tier": "news",
-      "kind": "M&A or stake",
-      "detail": "Minerva Ventures acquires 9.08% stake in GACM Technologies via QIP",
-      "url": "https://news.google.com/rss/articles/CBMitAFBVV95cUxQOUtOMHU3ckFKQldTZmFJdDRSY2QtTmRuSnBqd0JlblRPX1RKMi00ZGl0NWYydDB4cDhwa2JTRDhYTzhfMVpuQjdPNnFTWFVZVS1OLTNjcW1ySS1HcU02TGI5bG4xbVRjLTdSdEE4NGxwR2xCYTZiS0FSVGVmc0t4TzRwTERYeXJ6SGdNVzhHZ0htalM4djlRczFDUEp4ZXNBMjRwYWF6VnVGQzRrYVduTHo5LWM?oc=5",
-      "source": "Scanx"
-     }
-    ]
+    "headline": "No disclosed reason",
+    "confidence": "none",
+    "evidence": []
    },
    "news_checked": true
   },
@@ -5862,6 +5878,13 @@
       "detail": "Priority Jewels Ltd. IPO Review - Priority Jewels Ltd. IPO Dates, Issue Price, Subscription and Allotment Status",
       "url": "https://news.google.com/rss/articles/CBMiiwFBVV95cUxOTXZWNmVwZVZtelprME9lNy1nMDM2QmNFWkp3UXVDY0RsOHd2OTh3X2FGTEp2Mjk2OEFPQ1YzZlF6TzlsaFVmWTA5dzdyR0FQSVFxUnV1djczUDM2d2dpOGgtRDNlQ0g5aHd6TGxaMGtRTlNmdFkzWVkxRnd0T2hIZ0cyLUlfWl9Lb21F?oc=5",
       "source": "Economic Times"
+     },
+     {
+      "tier": "news",
+      "kind": "results",
+      "detail": "Priority Jewels Ltd Q1 Results 2026 - Find Priority Jewels Ltd Q1 Earnings Result | PRIORITY Q1 results",
+      "url": "https://news.google.com/rss/articles/CBMijAFBVV95cUxNUjA5R2NPZHM2MWhGQWxVRFpVQkozdTh2ZEZ6VEkyM1YycGVOUWJTd1hiQ1ZjRUdSREhidUtXTm1FN2FtRzNWVnNiM2hWSVJTNXdJZllqRWhSN3pqalV1Mk5LQ05BXzdhTWJTenlUSTFhcE51XzdWVnVxb1hvT1JacU1fc2U4NVhGNVdlMw?oc=5",
+      "source": "Mint"
      }
     ]
    },
@@ -8372,16 +8395,9 @@
    "raw_pct_change": -6.62,
    "corporate_action": null,
    "why": {
-    "headline": "Operations (Scanx)",
-    "confidence": "low",
+    "headline": "Bulk deal of Rs 18.5 crore",
+    "confidence": "medium",
     "evidence": [
-     {
-      "tier": "news",
-      "kind": "operations",
-      "detail": "Parag Milk Foods invests ₹100 Cr to quadruple paneer capacity to 80 MT/day",
-      "url": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxNV3BkbVBTd2RzS005anFQRzVObm1mcC1Md3BxeWhSWUhLbmVjUW9HbmNKY1FTSm1GemtjWk9xc1NZT01ibnB3bks2YnB4SS01aXJsUm04aktqTHQ0a1NYSXBiU1ZYcUxsVU5UTE1YZ0FDdWxFU0ZpcEd4ZGZwc1lOU3hDbWFnLTNwTmRHd0x6NjNMX0VyTV9oUDd2TnBuaGE2T1g3RzJtYTFJMTRHUzdLSHpNQVZ3UWdHQzRGOUhJZExsZw?oc=5",
-      "source": "Scanx"
-     },
      {
       "tier": "deal",
       "kind": "bulk deal",
@@ -8866,7 +8882,7 @@
      {
       "tier": "news",
       "kind": "results",
-      "detail": "Sejal Glass Q2FY27 Results: EBITDA rises to ₹239 million, margin hits 17.31%",
+      "detail": "Sejal Glass Q2FY27 results: Revenue up 33%, EBITDA margin hits 18.35%",
       "url": "https://news.google.com/rss/articles/CBMivwFBVV95cUxPLWUzMlZld2QxRGFuazU5X3hHVHIwb3BxLUhsbWVILWE3ZlpHYXd6NFN0RWxJZFE3T3JIeFBpVWtiTzZjRVM4eUxSUFg5d09LcWtQb0RGb3NWQ0tYdTJaUmEyY2tvdGpQREZlX0xyWGxrbENaM3FxZ3RGaVppNG11Xzd3YUhvWHJtN3RlaW9zS1hUd2NVOGw4eTQ4a1BYU1l3cFdrUEpReE5WdWZDa19DSHRibS1TTy1WOXlIN1V4QQ?oc=5",
       "source": "Scanx"
      }
