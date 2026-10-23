@@ -1,0 +1,46 @@
+{
+ "slug": "solar-module-bom-frames-glass-encapsulant",
+ "name": "Solar Module Bill-of-Materials Localisation: Aluminium Frames, Solar Glass & Encapsulant Films",
+ "icon": "chip",
+ "scope": "As India's ALMM-II domestic-cell mandate pushes module makers to localise, the non-wafer inputs of a solar module (aluminium frames, solar glass, EVA/POE/EPE encapsulant films, backsheets) are being built in-house or by dedicated makers (Premier-Green Aluminium frame JV, Insolation Energy frame plant, Saatvik 2 GW EPE film line commissioned Dec 2025, Borosil Renewables 1,000 to 1,600 TPD glass expansion); distinct from the already-covered polysilicon/wafer theme, thinly covered as a group, and the stocks have not re-rated (Borosil ~-21% over 1 year, Saatvik ~-15% over 3 months as of Sep-Oct 2026), so it is early, though the policy driver is not brand new and commissioning dates are slipping.",
+ "questions": [
+  "What does a solar module bill of materials look like (glass, aluminium frame, encapsulant, backsheet, junction box, silver paste), what share of module cost is each, and which of these inputs does India still import mainly from China?",
+  "What is the current policy and demand driver (ALMM List-II cell mandate and its extension, domestic content, anti-dumping duty on solar glass from China/Vietnam, module capacity build-out) and how does it translate into demand for frames, glass and encapsulant over FY27-FY30?",
+  "What is Premier Energies doing on aluminium frames (Premier-Green Aluminium JV, 18,000 MTPA initial, target Mar 2027) and on glass sourcing, and how material is this to its economics?",
+  "What is the status of Insolation Energy's 18,000 MTPA aluminium frame plant at Narmadapuram (commissioning slipped past the Q1 FY27 target?) alongside its 4.5 GW cell plant, funding and balance-sheet risk?",
+  "How is Saatvik Green Energy's 2 GW in-house EPE encapsulant line performing, are there plans to add EVA/POE capacity, and does captive encapsulant improve margins?",
+  "Where does Borosil Renewables stand on the Rs 1,100 cr, 1,600 TPD solar glass expansion (commissioning pushed to Mar 2027), anti-dumping benefit, pricing and customer concentration?",
+  "Which other listed companies qualify with company-confirmed evidence (e.g. Waaree, Vikram Solar, Cosmo First, Jindal Poly, aluminium extruders such as Hindalco) for frames, glass, encapsulant or backsheet, and which are only inferred adjacencies?",
+  "Has the market already priced this in: share-price performance of each name over 3, 6 and 12 months, and has mainstream media or broker research grouped these as a theme?",
+  "What are the risks: module oversupply and price pressure, Chinese import dumping, raw-material (POE resin, aluminium billet) dependence, project delays, customer concentration, and falling module margins?",
+  "What catalysts are ahead: plant commissioning dates, ALMM-II/III notifications, further anti-dumping or safeguard decisions, quarterly results showing captive-input margin benefit?"
+ ],
+ "bucket_labels": {
+  "aluminium_frames": [
+   "Aluminium frames",
+   "Companies building module aluminium-frame capacity, mostly captive for their own cell/module lines"
+  ],
+  "solar_glass": [
+   "Solar glass",
+   "Domestic makers of solar PV glass benefiting from anti-dumping duty and module build-out"
+  ],
+  "encapsulant_films": [
+   "Encapsulant films",
+   "Companies with commissioned in-house EVA/POE/EPE encapsulant capacity"
+  ]
+ },
+ "universe": {
+  "aluminium_frames": [
+   "PREMIERENE",
+   "INA"
+  ],
+  "solar_glass": [
+   "BORORENEW"
+  ],
+  "encapsulant_films": [
+   "SAATVIKGL"
+  ]
+ },
+ "refresh": "weekly",
+ "kind": "theme"
+}

@@ -1,8 +1,8 @@
 {
- "scanned_on": "2026-10-14",
+ "scanned_on": "2026-10-23",
  "asme_certificate_rows": 642,
  "asme_distinct_entities": 393,
- "matched_listed_count": 40,
+ "matched_listed_count": 41,
  "matched": [
   {
    "symbol": "ADOR",
@@ -495,6 +495,30 @@
    ],
    "asmeRows": [
     "GE Power India Limited"
+   ]
+  },
+  {
+   "symbol": "HDFIRE",
+   "exch": [
+    "BSE",
+    "NSE"
+   ],
+   "listedName": "HD Fire Protect Limited",
+   "certs": [
+    "U"
+   ],
+   "since": "2011-06-06",
+   "latest": "2011-06-06",
+   "certDetails": [
+    {
+     "code": "U",
+     "first": "2011-06-06",
+     "latest": "2011-06-06",
+     "certificates": 1
+    }
+   ],
+   "asmeRows": [
+    "HD Fire Protect Limited"
    ]
   },
   {
@@ -1284,7 +1308,57 @@
    ]
   }
  ],
- "new_vs_last_scan": [],
+ "new_vs_last_scan": [
+  {
+   "symbol": "HDFIRE",
+   "exch": [
+    "BSE",
+    "NSE"
+   ],
+   "listedName": "HD Fire Protect Limited",
+   "certs": [
+    "U"
+   ],
+   "since": "2011-06-06",
+   "latest": "2011-06-06",
+   "certDetails": [
+    {
+     "code": "U",
+     "first": "2011-06-06",
+     "latest": "2011-06-06",
+     "certificates": 1
+    }
+   ],
+   "asmeRows": [
+    "HD Fire Protect Limited"
+   ]
+  }
+ ],
  "dropped_vs_last_scan": [],
- "new_vs_live_asme_certified_file": []
+ "new_vs_live_asme_certified_file": [
+  {
+   "symbol": "HDFIRE",
+   "exch": [
+    "BSE",
+    "NSE"
+   ],
+   "listedName": "HD Fire Protect Limited",
+   "certs": [
+    "U"
+   ],
+   "since": "2011-06-06",
+   "latest": "2011-06-06",
+   "certDetails": [
+    {
+     "code": "U",
+     "first": "2011-06-06",
+     "latest": "2011-06-06",
+     "certificates": 1
+    }
+   ],
+   "asmeRows": [
+    "HD Fire Protect Limited"
+   ]
+  }
+ ]
 }

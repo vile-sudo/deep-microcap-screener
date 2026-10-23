@@ -1,0 +1,840 @@
+{
+ "slug": "solar-module-bom-frames-glass-encapsulant",
+ "name": "Solar Module Bill-of-Materials Localisation: Aluminium Frames, Solar Glass & Encapsulant Films",
+ "icon": "chip",
+ "edition": "2026-W43",
+ "updated": "2026-10-23",
+ "scope": "Indian listed companies localising the non-wafer inputs of a solar module (aluminium frames, solar glass, EVA/POE/EPE encapsulants, backsheets) as ALMM List-II and trade remedies push module makers towards domestic supply.",
+ "summary": {
+  "one_line": "Frames, glass and encapsulant account for roughly a quarter to a third of module cost and are localising behind trade duties and ALMM, but most frame and glass capacity only arrives in 2027 and the five stocks tracked have fallen 19-60% over the past year (S10-S14).",
+  "key_points": [
+   "In a 2026 TOPCon bifacial module, glass is put at 10-13% of cost, the aluminium frame at 8-11%, encapsulant at 4-7%, backsheet/back-glass at 2-4% and junction box/ribbon at 2-4%. Silver paste is the single biggest non-cell input at 15-20% (PvClick projection built on Fraunhofer ISE/NREL, OPIS and ITRPV data) (S1).",
+   "Frames are still mostly imported. India imports nearly 400,000 tonnes of pre-fabricated solar frames a year, imports still meet about 75% of demand, and the domestic extruders' association says Chinese suppliers are getting around anti-dumping duty through minor value addition (ALEMAI, Sep 2025) (S2).",
+   "Trade protection for glass is in place. Anti-dumping duty of $658-664/MT on Chinese and $570-664/MT on Vietnamese textured tempered glass was finalised in Feb 2025 (S3), and the countervailing duty on Malaysian glass (9.71-10.14% of CIF) was extended for five years in June 2026 (S4). Encapsulants are still only under investigation, with a DGTR anti-dumping probe on POE/EPE/EVA from South Korea, Thailand and Vietnam opened in Sep 2025 (S24).",
+   "The domestic-cell mandate (ALMM List-II) took effect on 1 June 2026. Net-metering and open-access projects commissioned by 31 Dec 2026 are exempt (S5). Listed module capacity is 228.5 GW, against 35.5 GW of listed cell capacity (Sep 2026) (S6).",
+   "Most localisation capacity lands in 2027. Premier-Green Aluminium's 18,000 MTPA frame Phase 1 targets Mar 2027 (S7). Insolation's 18,000 MTA frame plant is now expected early 2027, against an earlier Q1 FY27 target (S9). Borosil's 600 TPD glass expansion has slipped from Dec 2026 to Mar 2027 and its cost has risen to Rs 1,100 cr (S18). Saatvik's 2 GW EPE line has been running since Dec 2025 (S15), with 3 GW more planned (S16).",
+   "Glass pricing has recovered behind the duties. Borosil's average ex-factory price rose to Rs 160.3/mm in Q1 FY27 from Rs 138.1/mm a year earlier, and its EBITDA margin rose to 34.8% from 20% (S19).",
+   "The market has not re-rated the group. One-year returns to 23 Oct 2026 are Insolation -60.2%, Borosil -39.8%, Waaree -33.6%, Saatvik -31.3% and Premier -18.8% (S10, S11, S12, S13, S14).",
+   "Waaree's Rs 3,900 cr, 2,500 TPD captive glass plant, approved in Mar 2026 (S20), would be larger than Borosil's entire post-expansion capacity of 1,600 TPD (S18). That makes it both a localisation signal and a long-dated competitive threat to Borosil."
+  ],
+  "for_investors": [
+   {
+    "title": "Who benefits",
+    "tone": "good",
+    "points": [
+     "Borosil Renewables, the incumbent domestic glass maker. It is protected by ADD on China/Vietnam (S3) and CVD on Malaysia (S4), and in Q1 FY27 it posted a 34.8% EBITDA margin on higher realisations (S19).",
+     "Integrated module makers that capture input margin: Premier (80% of the frame JV) (S7), Saatvik (captive EPE film, which the company says cuts freight, packaging and handling costs) (S15), and Insolation and Alpex (captive frames) (S8, S22).",
+     "Domestic encapsulant makers, if the DGTR probe on POE/EPE/EVA imports ends in duties (S24). Jindal Poly Films is the only listed name with a confirmed encapsulant subsidiary (Enerlite) (S21)."
+    ]
+   },
+   {
+    "title": "Who is hurt / risks",
+    "tone": "bad",
+    "points": [
+     "Module oversupply. Listed module capacity of 228.5 GW sits far above 35.5 GW of listed cell capacity (S6), so module-only players face margin pressure. Saatvik's EBITDA margin fell to 8.33% from 19.40% in Q1 FY27 (S16).",
+     "Balance-sheet stretch at the small end. Insolation's Rs 1,600 cr Narmadapuram capex (S9) is larger than its Rs 1,467 cr market cap (S13).",
+     "Borosil faces new captive competition (Waaree's 2,500 TPD plant) (S20) and project-cost inflation of Rs 150 cr on SG-4/SG-5 (S18).",
+     "Duty circumvention. ALEMAI reports Chinese frame exporters reclassifying products after minor value addition (S2)."
+    ]
+   },
+   {
+    "title": "What to watch",
+    "tone": "watch",
+    "points": [
+     "Borosil SG-4/SG-5 furnace firing, now Mar 2027 (S18).",
+     "Commissioning of the Premier-Green Aluminium frame Phase 1, targeted for Mar 2027 (S7), and of the Insolation frame plant, targeted early 2027 (S9).",
+     "Saatvik's added 3 GW of encapsulant capacity and its Odisha cell ramp (S16), and whether margins recover to the ~15% FY28 level Motilal Oswal expects (S17).",
+     "The DGTR finding in the POE/EPE/EVA encapsulant anti-dumping case (S24), and the end of the ALMM-II exemption for net-metering/open-access projects on 31 Dec 2026 (S5)."
+    ]
+   }
+  ]
+ },
+ "kpis": [
+  {
+   "label": "ALMM List-I module capacity",
+   "value": "228.5 GW",
+   "sub": "Sep 2026 (S6)"
+  },
+  {
+   "label": "ALMM List-II cell capacity",
+   "value": "35.5 GW",
+   "sub": "Aug-Sep 2026 (S6)"
+  },
+  {
+   "label": "Solar frame imports",
+   "value": "~400,000 t/yr",
+   "sub": "ALEMAI, Sep 2025 (S2)"
+  },
+  {
+   "label": "ADD on Chinese solar glass",
+   "value": "$658-664/MT",
+   "sub": "Final, Feb 2025 (S3)"
+  },
+  {
+   "label": "Borosil glass realisation",
+   "value": "Rs 160.3/mm",
+   "sub": "Q1 FY27 vs Rs 138.1 a year ago (S19)"
+  },
+  {
+   "label": "Borosil capacity",
+   "value": "1,000 to 1,600 TPD",
+   "sub": "Commissioning now Mar 2027 (S18)"
+  }
+ ],
+ "sections": [
+  {
+   "id": "theme_explainer",
+   "title": "Theme explainer: what is in a module besides the cell",
+   "subsections": [
+    {
+     "title": "Bill of materials and cost shares",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "Once cells (and the silver paste on them) are set aside, a crystalline-silicon module is mostly glass, an aluminium frame, encapsulant film around the cells, a backsheet or second glass sheet, and a junction box. The PvClick 2026 projection for a TOPCon bifacial module, built on Fraunhofer ISE/NREL data updated with OPIS, Bernreuter and ITRPV, puts these inputs together at roughly 26-39% of module cost (S1). The source's own text gives 12-14% for glass in glass-glass modules, compared with 10-13% in its table (S1)."
+      },
+      {
+       "type": "table",
+       "caption": "Estimated share of module cost by component, TOPCon bifacial, 2026 projection (S1)",
+       "columns": [
+        "Component",
+        "Share of module cost",
+        "Domestic localisation status (India)"
+       ],
+       "rows": [
+        [
+         "Silver paste",
+         "15-20%",
+         "Not covered in this report"
+        ],
+        [
+         "Glass (two sheets for glass-glass)",
+         "10-13%",
+         "Borosil 1,000 TPD now; ADD/CVD in force (S3, S4, S18)"
+        ],
+        [
+         "Aluminium frame",
+         "8-11%",
+         "~75% of demand still imported (S2)"
+        ],
+        [
+         "EVA/POE/EPE encapsulant",
+         "4-7%",
+         "AD probe on imports under way (S24)"
+        ],
+        [
+         "Backsheet or back-glass",
+         "2-4%",
+         "No listed pure-play identified"
+        ],
+        [
+         "Junction box, connectors, ribbon",
+         "2-4%",
+         "Not covered in this report"
+        ]
+       ]
+      },
+      {
+       "type": "p",
+       "text": "Input prices moved sharply in 2026. EVA rose 36.69% year-to-date to 13,350 RMB/t by 13 Apr 2026 (SunSirs, cited by PvClick). Chinese glass fell to 16.8-18 CNY/m2 in Apr 2026 from 22.5 CNY/m2 in Mar 2025, and LME aluminium held at $2,700-2,900/t in Q1 2026 (S1)."
+      }
+     ]
+    },
+    {
+     "title": "What India still imports",
+     "blocks": [
+      {
+       "type": "bullets",
+       "items": [
+        "Frames: nearly 400,000 t/yr of pre-fabricated solar frames are imported. Imports met 95% of domestic demand a year earlier and about 75% now, and the domestic extrusion industry runs at about 1.2 MTPA against 3 MTPA of installed capacity (S2).",
+        "Glass: the most localised of the three inputs. The government has nonetheless had to keep ADD on China and Vietnam (S3) and CVD on Malaysia (S4). A Sep 2026 report projects domestic glass capacity of 7,900 TPD by Mar 2027 against 11,000 TPD of demand (S18).",
+        "Encapsulants: domestic makers RenewSys, Vishakha Renewables and Navitas Alpha petitioned against imports from South Korea, Thailand and Vietnam. EVA from China, Malaysia, Saudi Arabia and Thailand already carries a duty from an earlier case (S24)."
+       ]
+      },
+      {
+       "type": "callout",
+       "tone": "info",
+       "text": "No primary customs-data source with a current India-specific split of glass, frame, encapsulant and backsheet imports by country was located for this edition. The import shares above come from industry bodies and trade petitions."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "policy_and_capex",
+   "title": "Policy drivers and capacity build-out",
+   "subsections": [
+    {
+     "title": "ALMM List-II and trade remedies",
+     "blocks": [
+      {
+       "type": "bullets",
+       "items": [
+        "ALMM List-II (cells) took effect on 1 June 2026. Bid projects with a last submission date on or before 31 Aug 2025 are exempt, and net-metering/open-access projects commissioned by 31 Dec 2026 are exempt (S5).",
+        "Listed capacity as of Sep 2026: List-I modules 228,524 MW, after 12,256 MW added that month; List-II cells 35,467 MW. The same article also cites 31,758 MW for List-II, a discrepancy it does not explain (S6).",
+        "Glass ADD (final, Feb 2025): $658-664/MT on China and $570-664/MT on Vietnam (S3).",
+        "Glass CVD on Malaysia extended five years in June 2026: 9.71% of CIF for Xinyi Solar and SBH Kibing, and 10.14% for others (S4).",
+        "Encapsulant AD investigation (POE, EPE, EVA) on South Korea, Thailand and Vietnam, initiated Sep 2025. No determination had been confirmed at the time of writing (S24)."
+       ]
+      },
+      {
+       "type": "p",
+       "text": "How this turns into demand: the cell mandate forces module makers to build cell lines, and the integrated players (Premier, Saatvik, Insolation, Alpex) are pairing those lines with captive frame or encapsulant capacity (S7, S9, S16, S22). No source located for this edition gives an FY27-FY30 tonnage forecast for frames or encapsulants. For glass, a Sep 2026 report projects a 3,100 TPD domestic shortfall (7,900 TPD capacity against 11,000 TPD demand) by Mar 2027, with domestic module manufacturing at 150-200 GW (S18)."
+      }
+     ]
+    },
+    {
+     "title": "Announced BOM capacity (company-confirmed)",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "Frame, glass and encapsulant projects by listed companies",
+       "columns": [
+        "Company",
+        "Input",
+        "Capacity",
+        "Status / target",
+        "Source"
+       ],
+       "rows": [
+        [
+         "Premier Energies (Premier-Green Aluminium, 80%)",
+         "Aluminium frames",
+         "18,000 MTPA Phase 1; 36,000 MTPA planned",
+         "Phase 1 target Mar 2027",
+         "S7"
+        ],
+        [
+         "Insolation Energy",
+         "Aluminium frames",
+         "18,000 MTA, Narmadapuram",
+         "Under construction; expected early 2027 (earlier Q1 FY27)",
+         "S8, S9"
+        ],
+        [
+         "Alpex Solar",
+         "Aluminium frames",
+         "12,000 MTPA planned",
+         "Was expected in FY26 (Sep 2025); current status not confirmed",
+         "S22"
+        ],
+        [
+         "Borosil Renewables",
+         "Solar glass",
+         "1,000 to 1,600 TPD (+2 x 300 TPD)",
+         "Slipped from Dec 2026 to Mar 2027; capex Rs 950 cr to Rs 1,100 cr",
+         "S18, S19"
+        ],
+        [
+         "Waaree Energies (Waaree Green Glass)",
+         "Solar glass",
+         "2,500 TPD; Rs 3,900 cr",
+         "Board approved Mar 2026; no commissioning date given",
+         "S20"
+        ],
+        [
+         "Saatvik Green Energy",
+         "EPE encapsulant",
+         "2 GW, plus 3 GW planned",
+         "2 GW commissioned Dec 2025",
+         "S15, S16"
+        ],
+        [
+         "Jindal Poly Films (Enerlite Solar Films)",
+         "Encapsulant films",
+         "Not disclosed; Enerlite FY25 turnover Rs 28 cr",
+         "Moved to 100% ownership (2025 deal)",
+         "S21"
+        ]
+       ]
+      },
+      {
+       "type": "callout",
+       "tone": "warn",
+       "text": "Commissioning dates are slipping across the group: Borosil (Dec 2026 to Mar 2027), Insolation frames (Q1 FY27 to early 2027) and Alpex frames (FY26 target, not yet confirmed complete) (S18, S9, S22)."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "listed_company_impact",
+   "title": "Listed company impact",
+   "subsections": [
+    {
+     "title": "Aluminium frames: Premier Energies, Insolation Energy, Alpex Solar",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "Premier Energies: Premier-Green Aluminium is 80% owned by Premier and 20% by Nuevosol Energy. It aims to raise Rs 60 cr in tranches and is building an 18,000 MTPA Phase 1 frame plant, targeted for Mar 2027, as part of a planned 36,000 MTPA, to support Premier's own modules (S7). At the time, Premier had 3.2 GW of cell and 5.1 GW of module capacity, with targets of 8.4 GW cells and 11.1 GW modules by June 2026 (S7). Since frames are 8-11% of module cost (S1), captive frames are a modest second-order margin lever compared with cells. No company disclosure quantifying the margin benefit, and no glass-supply contract for Premier, was found for this edition."
+      },
+      {
+       "type": "p",
+       "text": "Insolation Energy: Its Q1 FY27 revenue was Rs 745.40 cr, with EBITDA of Rs 76.87 cr and PAT of Rs 38.02 cr. It runs 5.5 GW of module capacity in Jaipur and is building 4.5 GW of cells and 18,000 MTA of frames as backward integration (S8). Mercom reports both the frame and cell plants are under construction and expected early 2027, with Rs 1,600 cr of capex at Narmadapuram (S9). That capex exceeds the company's Rs 1,467 cr market cap (S13), so funding and execution risk is high relative to the equity."
+      },
+      {
+       "type": "p",
+       "text": "Alpex Solar (NSE SME): Alpex raised Rs 260.17 cr by preferential issue in Sep 2025 to complete expansion across cells, modules and aluminium frames. Its 12,000 MTPA frame plant was then expected in FY26, alongside 1.6 GW of cells and a module capacity target of 3.6 GW (S22). Completion was not confirmed by a dated source for this edition."
+      }
+     ]
+    },
+    {
+     "title": "Solar glass: Borosil Renewables, Waaree, Asahi India Glass",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "Borosil Renewables: Q1 FY27 revenue was Rs 406 cr (+17.1%), EBITDA Rs 141 cr (34.8% margin) and PAT Rs 86.6 cr, against a loss a year earlier. The average ex-factory price was Rs 160.3/mm, including a fuel surcharge introduced in Mar 2026. Domestic revenue was Rs 391 cr and exports were Rs 14.3 cr, down from Rs 48.9 cr (S19). In Sep 2026 the board raised SG-4/SG-5 capex to Rs 1,100 cr from Rs 950 cr, with the extra Rs 150 cr funded from internal accruals. It pushed commissioning to Mar 2027, so revenue from the new furnaces now starts in Q1 FY28 (S18). Borosil's revenue is now overwhelmingly domestic (S19), but no customer-concentration disclosure was found for this edition."
+      },
+      {
+       "type": "p",
+       "text": "Waaree Energies: In Mar 2026 the board approved Rs 3,900 cr for a 2,500 TPD glass plant in the wholly owned Waaree Green Glass, funded by debt and internal accruals (S20). PL Research says Waaree's total capex plan is about Rs 300 bn, aimed at full backward integration (S25)."
+      },
+      {
+       "type": "p",
+       "text": "Asahi India Glass: In 2021 it announced an in-principle tie-up with Vishakha Group for a greenfield solar glass plant at Mundra, taking a minority stake, with commissioning expected in 18-24 months (S23). No later status was found, so this is treated as an unconfirmed adjacency."
+      }
+     ]
+    },
+    {
+     "title": "Encapsulant films: Saatvik Green Energy, Jindal Poly Films",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "Saatvik Green Energy: It commissioned a 2 GW in-house EPE (EVA-POE-EVA) line at Ambala in Dec 2025. The line is co-located with its 4.8 GW module plant, and the company says it cuts freight, packaging and handling costs (S15). Saatvik plans 3 GW more of encapsulant capacity. Q1 FY27 EBITDA margin fell to 8.33% from 19.40% on revenue of Rs 511 cr, versus Rs 915.7 cr a year earlier, which the company attributed to logistics, commodity and currency costs and to customers deferring purchases (S16). The captive film has therefore not yet visibly protected margins. Motilal Oswal expects EBITDA margin to rise from about 8% in FY27 to about 15% in FY28, driven mainly by the cell ramp (S17). No EVA- or POE-only line has been announced beyond the EPE expansion."
+      },
+      {
+       "type": "p",
+       "text": "Jindal Poly Films: In Apr 2025 it moved to full ownership of Enerlite Solar Films, an encapsulant-film maker it already held 33.05% of. Enerlite's unaudited turnover was Rs 43 cr in FY24 and Rs 28 cr in FY25 (S21), which is immaterial to the parent today."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "research_house_views",
+   "title": "Research house views and market pricing",
+   "subsections": [
+    {
+     "title": "Share-price performance",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "Share-price returns to 23 Oct 2026 (Business Today stock pages)",
+       "columns": [
+        "Company",
+        "1M",
+        "3M",
+        "6M",
+        "1Y",
+        "Mkt cap (Rs cr)",
+        "Source"
+       ],
+       "rows": [
+        [
+         "Borosil Renewables",
+         "-16.5%",
+         "-33.1%",
+         "-23.3%",
+         "-39.8%",
+         "5,834",
+         "S10"
+        ],
+        [
+         "Premier Energies",
+         "-4.8%",
+         "-15.5%",
+         "-12.8%",
+         "-18.8%",
+         "39,212",
+         "S11"
+        ],
+        [
+         "Saatvik Green Energy",
+         "-18.9%",
+         "-18.2%",
+         "-21.9%",
+         "-31.3%",
+         "4,620",
+         "S12"
+        ],
+        [
+         "Insolation Energy",
+         "-27.8%",
+         "-43.4%",
+         "-56.4%",
+         "-60.2%",
+         "1,467",
+         "S13"
+        ],
+        [
+         "Waaree Energies",
+         "-5.0%",
+         "-12.1%",
+         "-30.9%",
+         "-33.6%",
+         "68,173",
+         "S14"
+        ]
+       ]
+      },
+      {
+       "type": "chart",
+       "title": "Share-price return, 3M / 6M / 1Y to 23 Oct 2026",
+       "unit": "%",
+       "series": [
+        {
+         "name": "Borosil Renewables",
+         "points": [
+          [
+           "3M",
+           -33.05
+          ],
+          [
+           "6M",
+           -23.29
+          ],
+          [
+           "1Y",
+           -39.84
+          ]
+         ]
+        },
+        {
+         "name": "Premier Energies",
+         "points": [
+          [
+           "3M",
+           -15.47
+          ],
+          [
+           "6M",
+           -12.82
+          ],
+          [
+           "1Y",
+           -18.76
+          ]
+         ]
+        },
+        {
+         "name": "Saatvik Green",
+         "points": [
+          [
+           "3M",
+           -18.19
+          ],
+          [
+           "6M",
+           -21.85
+          ],
+          [
+           "1Y",
+           -31.27
+          ]
+         ]
+        },
+        {
+         "name": "Insolation Energy",
+         "points": [
+          [
+           "3M",
+           -43.4
+          ],
+          [
+           "6M",
+           -56.39
+          ],
+          [
+           "1Y",
+           -60.23
+          ]
+         ]
+        }
+       ],
+       "source": "Source: Business Today stock pages (S10, S11, S12, S13)"
+      },
+      {
+       "type": "callout",
+       "tone": "info",
+       "text": "The falls are steeper than the brief's starting assumptions (Borosil about -21% over 1Y, Saatvik about -15% over 3M). On 23 Oct 2026 Borosil was -39.8% over 1Y and close to its 52-week low of Rs 374.40 (S10), and Saatvik was -18.2% over 3M (S12)."
+      }
+     ]
+    },
+    {
+     "title": "Broker views and theme coverage",
+     "blocks": [
+      {
+       "type": "bullets",
+       "items": [
+        "Motilal Oswal on Saatvik (Sep 2026): it calls valuations reasonable given an order book of about Rs 9,700 cr, expects margins to rise from about 8% (FY27) to about 15% (FY28) on backward integration and cells, and projects revenue rising from Rs 4,548 cr (FY26) to Rs 8,351 cr (FY28) (S17).",
+        "PL Research on Waaree (May 2026): it raised FY27/FY28 estimates by 4.9% and 6.5% on integration-led cost benefits and a higher DCR mix, and noted Q4 FY26 margin pressure from silver, copper and logistics costs (S25).",
+        "Theme grouping: no broker or mainstream-media report was found that groups frames, glass and encapsulant makers as an investable theme. Coverage stays company-by-company or in trade press (Mercom, pv magazine, TaiyangNews), which supports the brief's view that the group is thinly covered."
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "risks_and_catalysts",
+   "title": "Risks and catalysts",
+   "subsections": [
+    {
+     "title": "Risks",
+     "blocks": [
+      {
+       "type": "bullets",
+       "items": [
+        "Module oversupply and margin compression: listed module capacity is 228.5 GW against 35.5 GW of listed cells (S6). Saatvik's margin more than halved year on year in Q1 FY27 (S16),.",
+        "Import dumping and circumvention: Chinese frame exporters are reportedly avoiding duty through minor processing (S2). Glass protection depends on duties that must be defended at each review (S3, S4).",
+        "Raw-material dependence: EVA prices rose 36.69% YTD by Apr 2026, and frame economics track LME aluminium, which was at $2,700-2,900/t in Q1 2026 (S1).",
+        "Project delays and cost overruns: Borosil's timeline slipped three months and its capex rose 15.8% (S18), and Insolation's frame target moved from Q1 FY27 to early 2027 (S9).",
+        "Captive competition for merchant suppliers: Waaree's 2,500 TPD glass plant (S20) could take away a large module-maker customer from Borosil once built.",
+        "Balance-sheet stretch: Insolation's Rs 1,600 cr capex is larger than its market cap (S9, S13)."
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Catalysts",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "Dated catalysts",
+       "columns": [
+        "Event",
+        "Timing",
+        "Source"
+       ],
+       "rows": [
+        [
+         "ALMM-II exemption ends for net-metering/open-access projects",
+         "31 Dec 2026",
+         "S5"
+        ],
+        [
+         "Insolation 18,000 MTA frame plant and 4.5 GW cell plant start-up",
+         "Early 2027",
+         "S9"
+        ],
+        [
+         "Borosil SG-4/SG-5 (600 TPD) commissioning",
+         "Mar 2027 (revenue from Q1 FY28)",
+         "S18"
+        ],
+        [
+         "Premier-Green Aluminium 18,000 MTPA Phase 1",
+         "Mar 2027",
+         "S7"
+        ],
+        [
+         "Saatvik Odisha 2.4 GW cells and +3 GW encapsulant",
+         "Cells: production Q3 FY27 per Motilal Oswal; encapsulant timing not disclosed",
+         "S16, S17"
+        ],
+        [
+         "DGTR finding on POE/EPE/EVA encapsulant imports",
+         "Pending (initiated Sep 2025)",
+         "S24"
+        ],
+        [
+         "Q2 FY27 results: first read on captive-input margin benefit (Saatvik EPE)",
+         "Oct-Nov 2026 (quarterly cycle)",
+         "S15, S16"
+        ]
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "companies": [
+  {
+   "name": "Premier Energies",
+   "nse": "PREMIERENE",
+   "bse": null,
+   "bucket": "aluminium_frames",
+   "role": "Integrated cell/module maker; holds 80% of Premier-Green Aluminium, which is building an 18,000 MTPA frame plant (Phase 1) toward 36,000 MTPA to supply Premier's own modules (S7).",
+   "impact": "Captive frames address an 8-11% cost line (S1), so the benefit is second-order to the cell ramp. Phase 1 is due Mar 2027 (S7). The stock is -18.8% over 1Y (S11)."
+  },
+  {
+   "name": "Insolation Energy",
+   "nse": "INA",
+   "bse": null,
+   "bucket": "aluminium_frames",
+   "role": "5.5 GW module maker in Jaipur building a 4.5 GW cell plant and an 18,000 MTA aluminium frame plant at Narmadapuram as backward integration (S8).",
+   "impact": "The frame plant has slipped to early 2027 (S9). Rs 1,600 cr of capex against a Rs 1,467 cr market cap and a -60.2% 1Y share price make it the highest-risk name in the group (S9, S13)."
+  },
+  {
+   "name": "Alpex Solar",
+   "nse": "ALPEXSOLAR",
+   "bse": null,
+   "bucket": "aluminium_frames",
+   "role": "NSE SME-listed module maker building a 12,000 MTPA aluminium frame plant plus 1.6 GW of cells, funded partly by a Rs 260.17 cr preferential issue (S22).",
+   "impact": "A small-cap way into captive frames. The FY26 commissioning target set in Sep 2025 has not been confirmed as met (S22)."
+  },
+  {
+   "name": "Borosil Renewables",
+   "nse": "BORORENEW",
+   "bse": null,
+   "bucket": "solar_glass",
+   "role": "India's incumbent solar glass maker with 1,000 TPD, expanding to 1,600 TPD at Bharuch (S18).",
+   "impact": "Benefits from ADD and CVD (S3, S4) and record realisations of Rs 160.3/mm (S19). However, expansion has slipped to Mar 2027 at higher cost (S18), Waaree is building captive glass (S20), and the stock is -39.8% over 1Y (S10)."
+  },
+  {
+   "name": "Waaree Energies",
+   "nse": "WAAREEENER",
+   "bse": null,
+   "bucket": "solar_glass",
+   "role": "India's largest module maker; approved a Rs 3,900 cr, 2,500 TPD solar glass plant in subsidiary Waaree Green Glass (S20).",
+   "impact": "Glass is one part of an approximately Rs 300 bn integration capex plan (S25). It could become Borosil's largest domestic competitor. The stock is -33.6% over 1Y (S14)."
+  },
+  {
+   "name": "Asahi India Glass",
+   "nse": "ASAHIINDIA",
+   "bse": "515030",
+   "bucket": "solar_glass",
+   "role": "Announced a minority-stake tie-up with Vishakha Group for a greenfield solar glass plant at Mundra in 2021 (S23).",
+   "impact": "Inferred adjacency only: no later status on the plant was found, so there is no confirmed solar-glass earnings stream (S23)."
+  },
+  {
+   "name": "Saatvik Green Energy",
+   "nse": "SAATVIKGL",
+   "bse": null,
+   "bucket": "encapsulant_films",
+   "role": "4.8 GW module maker with a captive 2 GW EPE encapsulant line commissioned at Ambala in Dec 2025 (S15), and 3 GW more planned (S16).",
+   "impact": "The captive film has not offset a fall in EBITDA margin to 8.33% in Q1 FY27 (S16). Motilal Oswal ties a recovery to about 15% in FY28 mainly to cells (S17). The stock is -31.3% over 1Y (S12)."
+  },
+  {
+   "name": "Jindal Poly Films",
+   "nse": "JINDALPOLY",
+   "bse": null,
+   "bucket": "encapsulant_films",
+   "role": "Film maker that moved to 100% ownership of Enerlite Solar Films, a PV encapsulant-film producer, in 2025 (S21).",
+   "impact": "Enerlite's turnover of Rs 28 cr in FY25 is immaterial to the parent today (S21). It would gain if the encapsulant AD probe leads to duties (S24)."
+  }
+ ],
+ "sources": [
+  {
+   "id": "S1",
+   "publisher": "PvClick",
+   "title": "Cost of the 2026 PV module BOM: 17% silver - what to do",
+   "url": "https://pvclick.com/en/cost-of-the-2026-pv-module-bom-17-silver-what-to-do/",
+   "date": "2026-04-15",
+   "kind": "research"
+  },
+  {
+   "id": "S2",
+   "publisher": "pv magazine India",
+   "title": "ALEMAI calls for policy intervention to support domestic aluminium extrusion manufacturers",
+   "url": "https://www.pv-magazine-india.com/2025/09/04/alemai-calls-for-policy-intervention-to-support-domestic-aluminium-extrusion-manufacturers/",
+   "date": "2025-09-04",
+   "kind": "news"
+  },
+  {
+   "id": "S3",
+   "publisher": "Mercom India",
+   "title": "India slaps anti-dumping duties on solar glass imports from China and Vietnam",
+   "url": "https://www.mercomindia.com/india-slaps-anti-dumping-duties-on-solar-glass-imports-from-china-and-vietnam",
+   "date": "2025-02-12",
+   "kind": "news"
+  },
+  {
+   "id": "S4",
+   "publisher": "pv magazine",
+   "title": "India extends countervailing duty on Malaysian solar glass imports for five years",
+   "url": "https://www.pv-magazine.com/2026/06/04/india-extends-countervailing-duty-on-malaysian-solar-glass-imports-for-five-years/",
+   "date": "2026-06-04",
+   "kind": "news"
+  },
+  {
+   "id": "S5",
+   "publisher": "Powerline",
+   "title": "MNRE clarifies applicability of ALMM List-II for solar PV cells",
+   "url": "https://powerline.net.in/2026/08/07/mnre-clarifies-applicability-of-almm-list-ii-for-solar-pv-cells/",
+   "date": "2026-08-07",
+   "kind": "news"
+  },
+  {
+   "id": "S6",
+   "publisher": "Energetica India",
+   "title": "ALMM update: solar module capacity surpasses 228 GW in September 2026",
+   "url": "https://www.energetica-india.net/news/almm-update-solar-module-capacity-surpasses-228-gw-in-september-2026",
+   "date": "2026-09-18",
+   "kind": "news"
+  },
+  {
+   "id": "S7",
+   "publisher": "Mercom India",
+   "title": "Premier-Green Aluminium to raise Rs 600 million for solar module frame production",
+   "url": "https://www.mercomindia.com/premier-green-aluminium-to-raise-%E2%82%B9600-million-for-solar-module-frame-production",
+   "date": "2025-11-28",
+   "kind": "news"
+  },
+  {
+   "id": "S8",
+   "publisher": "Insolation Energy Ltd",
+   "title": "Insolation Energy reports strong Q1 FY27 performance with revenue of Rs 745.40 crore",
+   "url": "https://insolationenergy.in/news/insolation-energy-reports-strong-q1-fy27-performance-with-revenue-of-745-40-crore",
+   "date": "2026-08-13",
+   "kind": "company"
+  },
+  {
+   "id": "S9",
+   "publisher": "Mercom India",
+   "title": "Strong solar module demand drives Insolation Energy's Q1 revenue up 105%",
+   "url": "https://www.mercomindia.com/strong-solar-module-demand-drives-insolation-energys-q1-revenue-up-105",
+   "date": "2026-08-13",
+   "kind": "news"
+  },
+  {
+   "id": "S10",
+   "publisher": "Business Today",
+   "title": "Borosil Renewables Ltd share price (BORORENEW)",
+   "url": "https://www.businesstoday.in/stocks/borosil-renewables-ltd-bororenew-share-price-361538",
+   "date": "2026-10-23",
+   "kind": "other"
+  },
+  {
+   "id": "S11",
+   "publisher": "Business Today",
+   "title": "Premier Energies Ltd share price (PREMIERENE)",
+   "url": "https://www.businesstoday.in/stocks/premier-energies-ltd-premierene-share-price-444485",
+   "date": "2026-10-23",
+   "kind": "other"
+  },
+  {
+   "id": "S12",
+   "publisher": "Business Today",
+   "title": "Saatvik Green Energy Ltd share price",
+   "url": "https://www.businesstoday.in/stocks/saatvik-green-energy-ltd-share-price-498415",
+   "date": "2026-10-23",
+   "kind": "other"
+  },
+  {
+   "id": "S13",
+   "publisher": "Business Today",
+   "title": "Insolation Energy Ltd share price",
+   "url": "https://www.businesstoday.in/stocks/insolation-energy-ltd-share-price-365426",
+   "date": "2026-10-23",
+   "kind": "other"
+  },
+  {
+   "id": "S14",
+   "publisher": "Business Today",
+   "title": "Waaree Energies Ltd share price (WAAREEENER)",
+   "url": "https://www.businesstoday.in/stocks/waaree-energies-ltd-waareeener-share-price-451759",
+   "date": "2026-10-23",
+   "kind": "other"
+  },
+  {
+   "id": "S15",
+   "publisher": "pv magazine",
+   "title": "Saatvik Green commissions 2 GW EPE film manufacturing facility",
+   "url": "https://www.pv-magazine.com/2025/12/24/saatvik-green-commissions-2-gw-epe-film-manufacturing-facility/",
+   "date": "2025-12-24",
+   "kind": "news"
+  },
+  {
+   "id": "S16",
+   "publisher": "TaiyangNews",
+   "title": "Saatvik advances 3.6 GW in Odisha; Q1 FY27 EBITDA declines",
+   "url": "https://taiyangnews.info/business/saatvik-odisha-mou-q1-fy27-financial-results",
+   "date": "2026-08-17",
+   "kind": "news"
+  },
+  {
+   "id": "S17",
+   "publisher": "Business Today",
+   "title": "35% up from 52 week low! Motilal Oswal sees more steam left in this renewable energy player",
+   "url": "https://www.businesstoday.in/markets/stocks/story/35-up-from-52-week-low-motilal-oswal-sees-more-steam-left-in-this-renewable-energy-player-557328-2026-09-23",
+   "date": "2026-09-23",
+   "kind": "research"
+  },
+  {
+   "id": "S18",
+   "publisher": "Sahi",
+   "title": "Borosil Renewables agrees to Rs 1100 crore project cost for 1600 TPD capacity expansion",
+   "url": "https://www.sahi.com/news/borosil-renewables-agrees-to-1100-crore-project-cost-for-1600-tpd-capacity-expansion",
+   "date": "2026-09-22",
+   "kind": "news"
+  },
+  {
+   "id": "S19",
+   "publisher": "Mercom India",
+   "title": "Borosil's revenue up 17% YoY in Q1, advances 600 TPD solar glass expansion",
+   "url": "https://mercomindia.com/borosils-revenue-up-17-yoy-in-q1-advances-600-tpd-solar-glass-expansion",
+   "date": "2026-07-17",
+   "kind": "news"
+  },
+  {
+   "id": "S20",
+   "publisher": "pv magazine India",
+   "title": "Waaree Energies approves INR 3,900 crore for solar glass factory",
+   "url": "https://www.pv-magazine-india.com/?p=14653",
+   "date": "2026-03-24",
+   "kind": "news"
+  },
+  {
+   "id": "S21",
+   "publisher": "pv magazine India",
+   "title": "Jindal Poly Films acquires Enerlite Solar Films",
+   "url": "https://www.pv-magazine-india.com/?p=9928",
+   "date": "2025-04-30",
+   "kind": "news"
+  },
+  {
+   "id": "S22",
+   "publisher": "pv magazine India",
+   "title": "Alpex Solar raises INR 260.17 crore through preferential issue",
+   "url": "https://www.pv-magazine-india.com/?p=13075",
+   "date": "2025-09-24",
+   "kind": "news"
+  },
+  {
+   "id": "S23",
+   "publisher": "Renewable Watch",
+   "title": "Asahi India Glass Limited partners with Vishakha Group for solar glass manufacturing in India",
+   "url": "https://renewablewatch.in/2021/08/05/asahi-india-glass-ltd-limited-partners-with-vishakha-group-for-solar-glass-manufacturing-in-india/",
+   "date": "2021-08-05",
+   "kind": "news"
+  },
+  {
+   "id": "S24",
+   "publisher": "TaiyangNews",
+   "title": "India initiates AD investigation into imported solar encapsulants",
+   "url": "https://taiyangnews.info/markets/india-initiates-ad-investigation-into-imported-solar-encapsulants",
+   "date": "2025-09-30",
+   "kind": "news"
+  },
+  {
+   "id": "S25",
+   "publisher": "PL Capital (Prabhudas Lilladher)",
+   "title": "Waaree Energies Q4FY26 result update: integration-led cost benefits to aid margins ahead",
+   "url": "https://www.plindia.com/pl-research/waaree-energies-waareeen-in-q4fy26-result-update-integration-led-cost-benefits-to-aid-margins-ahead/",
+   "date": "2026-05-01",
+   "kind": "research"
+  }
+ ],
+ "method": "First edition, researched on 23 Oct 2026 using web search and direct fetches of company releases, trade press (Mercom, pv magazine, TaiyangNews, Energetica, Powerline), broker notes reported by Business Today and PL Capital, and Business Today stock pages for returns to 23 Oct 2026. numbers.json was not present in the folder, so returns and market caps come from Business Today. PvClick (S1) is dated only to April 2026, so its date is approximate. Universe names were kept. Alpex Solar (small cap, frames), Waaree Energies (large cap, glass), Jindal Poly Films (encapsulant subsidiary) and Asahi India Glass (2021 solar-glass tie-up, status unconfirmed) were added with cited evidence. Several names were checked and excluded for lack of company-confirmed BOM involvement: Hindalco (no confirmed solar-frame supply found), Vikram Solar and Emmvee (no in-house frame, glass or encapsulant capacity found), and Cosmo First (no solar backsheet or encapsulant products found). Several pages could not be opened or gave no usable data: Premier's broker PDF, the Saatvik NSE press-release PDF, the AIS filing and the Hindalco reports. Where sources conflicted (Borosil commissioning Dec 2026 vs Mar 2027; List-II capacity 31.8 vs 35.5 GW), the later source or both figures are shown. No ratings or price targets are given.",
+ "bucket_labels": {
+  "aluminium_frames": [
+   "Aluminium frames",
+   "Companies building module aluminium-frame capacity, mostly captive for their own cell/module lines"
+  ],
+  "solar_glass": [
+   "Solar glass",
+   "Domestic makers of solar PV glass benefiting from anti-dumping duty and module build-out"
+  ],
+  "encapsulant_films": [
+   "Encapsulant films",
+   "Companies with commissioned in-house EVA/POE/EPE encapsulant capacity"
+  ],
+  "other": [
+   "Other",
+   ""
+  ]
+ },
+ "kind": "theme"
+}

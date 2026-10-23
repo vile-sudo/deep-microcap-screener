@@ -1,18 +1,77 @@
 {
- "updated": "2026-10-14T06:20+05:30",
+ "updated": "2026-10-23T15:06+05:30",
  "figures": [
   {
-   "label": "Brent crude",
-   "value": "about $106/bbl",
-   "as_of": "2026-10-13",
-   "note": "down nearly $1 (about 1%) on the day; WTI about $94",
+   "label": "Brent crude (futures, intraday)",
+   "value": "$112.33/bbl",
+   "as_of": "2026-10-22",
+   "note": "+$3.51 (+3.2%) at 1:05 p.m. EDT; WTI $99.29",
    "source": {
-    "publisher": "InvestingLive",
-    "url": "https://investinglive.com/commodities/catch-up-time-oil-settles-mixed-brent-near-106-booms-reported-near-aramco-hq-in-dhahran"
+    "publisher": "Reuters (via Lufkin Daily News)",
+    "url": "https://lufkindailynews.com/news_reuters/business/brent-hits-five-month-high-on-escalating-middle-east-conflict/article_85162ef6-5b38-53bd-820f-296c12247837.html"
+   }
+  },
+  {
+   "label": "India diesel export duty",
+   "value": "Rs 8.5/litre",
+   "as_of": "2026-10-16",
+   "note": "from Rs 16; petrol raised to Rs 2.5 from Rs 0.5",
+   "source": {
+    "publisher": "The Hans India",
+    "url": "https://www.thehansindia.com/business/govt-raises-petrol-export-duty-to-rs-25-per-litre-slashes-for-diesel-1132949"
    }
   }
  ],
  "items": [
+  {
+   "date": "2026-10-22",
+   "title": "Brent jumps 3.2% to $112.33 as Houthi attacks on Saudi Arabia escalate",
+   "text": "Brent futures rose $3.51 (3.2%) to $112.33 a barrel at 1:05 p.m. EDT on 22 October, a five-month high, as Houthi strikes on Saudi Arabia intensified and Aramco reportedly told staff to evacuate its Dhahran headquarters. Morgan Stanley estimated Middle East crude exports at about 17 mb/d last week versus roughly 18 mb/d on average in the 12 months before the Iran war (Kpler). Higher crude lifts realisations for upstream producers such as ONGC and Oil India but widens the import bill and squeezes fuel marketers.",
+   "tone": "watch",
+   "companies": [
+    "ONGC",
+    "OIL",
+    "IOC",
+    "BPCL",
+    "HINDPETRO"
+   ],
+   "sources": [
+    {
+     "publisher": "Reuters (via Lufkin Daily News)",
+     "title": "Brent hits five-month high on escalating Middle East conflict",
+     "url": "https://lufkindailynews.com/news_reuters/business/brent-hits-five-month-high-on-escalating-middle-east-conflict/article_85162ef6-5b38-53bd-820f-296c12247837.html",
+     "date": "2026-10-22"
+    }
+   ],
+   "added": "2026-10-23"
+  },
+  {
+   "date": "2026-10-16",
+   "title": "India raises petrol export duty to Rs 2.5/litre, cuts diesel to Rs 8.5 in fortnightly review",
+   "text": "A Finance Ministry notification effective 16 October raised the export duty on petrol to Rs 2.5 per litre from Rs 0.5 and cut diesel to Rs 8.5 per litre from Rs 16. The levies are reviewed every fortnight and track international crude and product prices. The lower diesel duty improves export margins for refiners, notably Reliance, while the levy remains a policy overhang on export-oriented refining.",
+   "tone": "info",
+   "companies": [
+    "RELIANCE",
+    "IOC",
+    "BPCL",
+    "HINDPETRO"
+   ],
+   "sources": [
+    {
+     "publisher": "The Hans India",
+     "title": "Govt raises petrol export duty to Rs 2.5 per litre, slashes for diesel",
+     "url": "https://www.thehansindia.com/business/govt-raises-petrol-export-duty-to-rs-25-per-litre-slashes-for-diesel-1132949",
+     "date": "2026-10-16"
+    },
+    {
+     "publisher": "Telangana Today",
+     "title": "Govt raises petrol export duty to Rs 2.5 per litre, slashes for diesel",
+     "url": "https://telanganatoday.com/govt-raises-petrol-export-duty-to-rs-2-5-per-litre-slashes-for-diesel",
+     "date": "2026-10-16"
+    }
+   ],
+   "added": "2026-10-23"
+  },
   {
    "date": "2026-10-13",
    "title": "Brent settles near $106 as Saudi-Houthi risk offsets US-Russia diesel deal hopes",

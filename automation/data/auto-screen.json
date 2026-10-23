@@ -14629,6 +14629,75 @@
   "INE2O2Y01016": {
    "on": "2026-10-13",
    "result": "not on screener"
+  },
+  "INE28SO01013": {
+   "on": "2026-10-23",
+   "result": "sector",
+   "detail": "no sector"
+  },
+  "INE0N2201019": {
+   "on": "2026-10-23",
+   "result": "known to the public",
+   "detail": "52,588 shareholders -- already public knowledge, over the 25,000 limit"
+  },
+  "INE18AK01028": {
+   "on": "2026-10-23",
+   "result": "known to the public",
+   "detail": "172,333 shareholders -- already public knowledge, over the 25,000 limit"
+  },
+  "INE0LXG20016": {
+   "on": "2026-10-23",
+   "result": "not on screener"
+  },
+  "INE356Y01018": {
+   "on": "2026-10-23",
+   "result": "sector",
+   "detail": "no sector"
+  },
+  "INE0LDG01026": {
+   "on": "2026-10-23",
+   "result": "sector",
+   "detail": "no sector"
+  },
+  "INE09PO01019": {
+   "on": "2026-10-23",
+   "result": "sector",
+   "detail": "no sector"
+  },
+  "INE0B9K01033": {
+   "on": "2026-10-23",
+   "result": "known to the public",
+   "detail": "50,732 shareholders -- already public knowledge, over the 25,000 limit"
+  },
+  "INE534A01028": {
+   "on": "2026-10-23",
+   "result": "sector",
+   "detail": "Telecommunication / Telecom - Services / Other Telecom Services"
+  },
+  "INE483S01038": {
+   "on": "2026-10-23",
+   "result": "known to the public",
+   "detail": "711,622 shareholders -- already public knowledge, over the 25,000 limit"
+  },
+  "INE133A01029": {
+   "on": "2026-10-23",
+   "result": "known to the public",
+   "detail": "50,984 shareholders -- already public knowledge, over the 25,000 limit"
+  },
+  "INE1UEL01023": {
+   "on": "2026-10-23",
+   "result": "sector",
+   "detail": "no sector"
+  },
+  "INE1KAA01025": {
+   "on": "2026-10-23",
+   "result": "sector",
+   "detail": "Financial Services / Finance / Non Banking Financial Company (NBFC)"
+  },
+  "INE566M01025": {
+   "on": "2026-10-23",
+   "result": "added",
+   "detail": "AZADIND"
   }
  },
  "runs": [
@@ -14919,6 +14988,17 @@
    "on": "2026-10-14",
    "fetched": 0,
    "added_codes": []
+  },
+  {
+   "on": "2026-10-23",
+   "fetched": 14,
+   "sector": 7,
+   "known to the public": 5,
+   "not on screener": 1,
+   "added": 1,
+   "added_codes": [
+    "AZADIND"
+   ]
   }
  ]
 }
