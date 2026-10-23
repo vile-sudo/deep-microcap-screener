@@ -99,7 +99,7 @@ jobs:
           if git diff --cached --quiet; then echo "Nothing changed"; exit 0; fi
           added=$(python -c "import json;r=json.load(open('automation/data/us-auto-screen.json'))['runs'][-1];print(len(r.get('added_codes',[])))" 2>/dev/null || echo 0)
           git commit -m "US auto-screen: ${added} added, lenses refreshed"
-          for i in 1 2 3; do git pull --rebase origin ${{ github.ref_name }} && git push origin HEAD:${{ github.ref_name }} && break; sleep 5; done
+          for i in 1 2 3; do { git pull --rebase -X theirs origin ${{ github.ref_name }} || { git rebase --abort; false; }; } && git push origin HEAD:${{ github.ref_name }} && break; sleep 5; done
           if [ -n "$AWS_HOST" ] && [ -n "$AWS_SSH_KEY" ]; then
             mkdir -p ~/.ssh
             printf '%s\n' "$AWS_SSH_KEY" > ~/.ssh/deploy_key

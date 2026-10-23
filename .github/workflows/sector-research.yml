@@ -100,7 +100,7 @@ jobs:
           git add backend/sectors
           if git diff --cached --quiet; then echo "Nothing changed"; exit 0; fi
           git commit -m "Sector & Themes update $(TZ=Asia/Kolkata date +%F)"
-          for i in 1 2 3; do git pull --rebase origin ${{ github.ref_name }} && git push origin HEAD:${{ github.ref_name }} && break; sleep 5; done
+          for i in 1 2 3; do { git pull --rebase -X theirs origin ${{ github.ref_name }} || { git rebase --abort; false; }; } && git push origin HEAD:${{ github.ref_name }} && break; sleep 5; done
           if [ -n "$AWS_HOST" ] && [ -n "$AWS_SSH_KEY" ]; then
             mkdir -p ~/.ssh
             printf '%s\n' "$AWS_SSH_KEY" > ~/.ssh/deploy_key

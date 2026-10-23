@@ -81,10 +81,18 @@ jobs:
             exit 0
           fi
           git commit -m "Movers scan"
+          # a concurrent run may have committed the same data files: on a conflict keep THIS run's
+          # version (-X theirs, the commit being replayed) instead of losing the whole commit
+          pushed=
           for i in 1 2 3; do
-            git pull --rebase origin ${{ github.ref_name }} && git push origin HEAD:${{ github.ref_name }} && break
+            if git pull --rebase -X theirs origin ${{ github.ref_name }}; then
+              git push origin HEAD:${{ github.ref_name }} && pushed=1 && break
+            else
+              git rebase --abort || true
+            fi
             sleep 5
           done
+          if [ -z "$pushed" ]; then echo "::error::could not push the data commit"; exit 1; fi
           echo "changed=true" >> "$GITHUB_OUTPUT"
 
       - name: Deploy to AWS
