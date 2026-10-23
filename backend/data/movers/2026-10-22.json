@@ -1,7 +1,7 @@
 {
  "trade_date": "2026-10-22",
  "threshold_percent": 4.0,
- "generated_at": "2026-10-23T12:06:25+05:30",
+ "generated_at": "2026-10-23T15:16:17+05:30",
  "stats": {
   "scanned": 3392,
   "flagged": 480,
@@ -1315,9 +1315,17 @@
    "raw_pct_change": 5.19,
    "corporate_action": null,
    "why": {
-    "headline": "No disclosed reason",
-    "confidence": "none",
-    "evidence": []
+    "headline": "Results (Business Upturn)",
+    "confidence": "medium",
+    "evidence": [
+     {
+      "tier": "news",
+      "kind": "results",
+      "detail": "Sakar Healthcare Q2 profit jumps 149% to ₹11.3 crore as revenue rises 52% to ₹87.4 crore; EBITDA margin at 27.85%",
+      "url": "https://news.google.com/rss/articles/CBMi4gFBVV95cUxPdDF3am1wUGpuclRkdnpNSDNEN2NDSkpsSjhzQXpGZXhRLUUyUG5JN0FTR3VheW5fRFBNZFZTZmQzUHpvSXJfTzQ0TFo3SFZsV21PQXg3RHlXYS1xV2cycEVoQ19tR1pkMXVDT3hORklfS1hvUFViVzRlaEliRi10RXBYRXpubTY5ZzAxSFJGUnNYQng0MjBGLVNnLXlMV3Z3ZzZyOU9HTWc1cWRiZE9ZZlE2Wk1zMzdvNW13eVRTS3Y2YnF2TUNKbGVQM0JpNlNjTndtTlFteEhKb09WcDRRX1B3?oc=5",
+      "source": "Business Upturn"
+     }
+    ]
    },
    "news_checked": true
   },
@@ -2568,22 +2576,22 @@
    "raw_pct_change": 4.16,
    "corporate_action": null,
    "why": {
-    "headline": "Broker Action (Economic Times)",
+    "headline": "Broker Action (Hindu BusinessLine)",
     "confidence": "medium",
     "evidence": [
-     {
-      "tier": "news",
-      "kind": "broker action",
-      "detail": "Fibe's NBFC arm EarlySalary gets rating upgrade from Crisil, India Ratings",
-      "url": "https://news.google.com/rss/articles/CBMizgFBVV95cUxORG9sYktTU21FZDktRVh1RnFzR3JLZnhJLUR1NTRGb0IwN2pIYnZjSVR0eWxiWDEzeTJOTVBmYXBzRVQzaWhSU3FuNmpLY2JNTXZaRWNOdGswZ3YtZjZwSi1zRTh0eVI5OXZWbXl3RnZnWWVSN1VZLWtqSnhGRkpMaHhtUF8yb1RjOC0ySlgyVU5VTTJZbGdsTlA2MFhzbnFPdnl4MVRzWjZmRFByVThOR1pkZEpxVHAyRWZZNDZ2d09JNUI5bzRZNlhjZ19Yd9IB0wFBVV95cUxPaTN1UDBobU1IeHVwSFFvQ0VBZENiUUFlVko4bExNaU1lejBYQmFJNlF0SHF3TjNtUWRBRWFlZlp6XzllUEdxTExxRFlFYWhhRmtaeW0tMW4wSkR0cmtFUjVYV1BxX1hlLUUtNlU3dC1mMXpQenZZZ3RlR2stckxoUGp2a1lleGdRRFlNdnRzak1IcnNLZDZrRk1aM2FWUEU3dFFwY3hNR3NOa3k1Z0o4ZWlIYVlEZjdWazl0cWRib3MtOEsxZ1NXUVZCZjJwZ3JRcGlN?oc=5",
-      "source": "Economic Times"
-     },
      {
       "tier": "news",
       "kind": "broker action",
       "detail": "Fibe’s EarlySalary gets rating upgrades from Crisil and India Ratings",
       "url": "https://news.google.com/rss/articles/CBMi0AFBVV95cUxOdkh6dGI5aExpc21pLWJLYkJ4VjNESHcwNUtMampDUnB5NE9UQlhEcENRWEV4MDZaejBaZ216SDktZUFqaFU4Rm5EYTlNNWl2OFlJTnpoVUlxTUhYZDd4aTYxcW5wN2g4Q2RLRmI5TnItRGUzeWg4NFE0NlNSUS1Jd2tzU09XUldzc2xFVGhkSTJEaUl2LUxqTGxCUVNpaTZic25VMTMwa0ZaX3lYN3B4R1VoLU1RT1gxdHJ3YTJhX2xKdmRNWWlvdGc5bTV2MURq0gHXAUFVX3lxTFBHSDd0eGVVLVhnZDVjMmhiT1NzN01vcW9RbGZQM191bmVxRzUxTDNQazRCQThoMm9YcnFlWHVNWXh4TlBXYXZIX25DeDJlR1NscWVvdkxudnpJNTI2YzY3OXZXSmZsN2ZWMm1HTXRvajBpSncxaTdSSWFHZTFUWFNKUnNBQWNHcFRGY3h0b0pCUFFVUFJCei1qTnUzR3A2OHcxZjJpUy13aUF3WXBWcW1McjhGek12QWpJWU1wUVJrdXJqY1NzQVF3SHl0Vlg5U0lCV01ZWi1V?oc=5",
       "source": "Hindu BusinessLine"
+     },
+     {
+      "tier": "news",
+      "kind": "broker action",
+      "detail": "Fibe's NBFC arm EarlySalary gets rating upgrade from Crisil, India Ratings",
+      "url": "https://news.google.com/rss/articles/CBMizgFBVV95cUxORG9sYktTU21FZDktRVh1RnFzR3JLZnhJLUR1NTRGb0IwN2pIYnZjSVR0eWxiWDEzeTJOTVBmYXBzRVQzaWhSU3FuNmpLY2JNTXZaRWNOdGswZ3YtZjZwSi1zRTh0eVI5OXZWbXl3RnZnWWVSN1VZLWtqSnhGRkpMaHhtUF8yb1RjOC0ySlgyVU5VTTJZbGdsTlA2MFhzbnFPdnl4MVRzWjZmRFByVThOR1pkZEpxVHAyRWZZNDZ2d09JNUI5bzRZNlhjZ19Yd9IB0wFBVV95cUxPaTN1UDBobU1IeHVwSFFvQ0VBZENiUUFlVko4bExNaU1lejBYQmFJNlF0SHF3TjNtUWRBRWFlZlp6XzllUEdxTExxRFlFYWhhRmtaeW0tMW4wSkR0cmtFUjVYV1BxX1hlLUUtNlU3dC1mMXpQenZZZ3RlR2stckxoUGp2a1lleGdRRFlNdnRzak1IcnNLZDZrRk1aM2FWUEU3dFFwY3hNR3NOa3k1Z0o4ZWlIYVlEZjdWazl0cWRib3MtOEsxZ1NXUVZCZjJwZ3JRcGlN?oc=5",
+      "source": "Economic Times"
      },
      {
       "tier": "news",
@@ -3016,9 +3024,17 @@
    "raw_pct_change": -4.08,
    "corporate_action": null,
    "why": {
-    "headline": "No disclosed reason",
-    "confidence": "none",
-    "evidence": []
+    "headline": "Order Win (Upstox)",
+    "confidence": "medium",
+    "evidence": [
+     {
+      "tier": "news",
+      "kind": "order win",
+      "detail": "Jupiter Wagons rallies nearly 10% on bagging ₹957-crore contract",
+      "url": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxQZ1dlc3V6ZzlaaXFmb25iX2g1WXlObkVmTk85YVI1TkZkQjU0SExZd0R1WVlOR2tKbWRpTjN6ZS1fczdRY2VvaGR2dnRKWDMzWEVWenpvdm85UUF0MW82Sk5La3NUMGtRMnlOR3dzakRZdlB3YlBLYW5od1RqRWVkVG9DVDN0Rlg4U0tCdVhpdFB2RC1rWENHWkstbGRWTEJrdHByNURBY2xsUVR5ZUNTNzFfbmZCMGJISWJrWWNIT2dxdw?oc=5",
+      "source": "Upstox"
+     }
+    ]
    },
    "news_checked": true
   },
@@ -5362,6 +5378,13 @@
      {
       "tier": "news",
       "kind": "results",
+      "detail": "Balkrishna Industries, CIE Automotive, Aye Finance Q2 Review: ICICI Securities Remains Bullish, Sees Up To 50% Upside",
+      "url": "https://news.google.com/rss/articles/CBMiggJBVV95cUxPZzFVa2Ziakp1NjdYdGtlUXN6VlZfcWVRd1V2RXFrNEZZQjFLUE85M3poaFAtdDNUNFVGOFVMcUFGQmp2NEZrbDVhYWZWbjdsZTJoTnpJVHF4R09RVDVvQ01FV2lKVVRJU0x6ZWU2M2Y5eTlKZ1R2SUN2eEhRSDVnTmZhVUxHUldvWEdRdWdwX181Mk1GcHA2TDJnM2wzUWwtUFhvdTdhWXg5a2NiTjI4RmJfbVc3WEFaZ29BYXhnZTlqV0Rfelp4akh2aDlFUEIyckxSSW9BdUtzTVkwUk1Od2hxVlZ5eXJmbUR2djlENy1Kc3dMSl90UUYteG9xUGpHWXc?oc=5",
+      "source": "NDTV Profit"
+     },
+     {
+      "tier": "news",
+      "kind": "results",
       "detail": "Aye Finance Q2 results: Net profit grows 3X to Rs 86.7 crore, total income up 18.4%",
       "url": "https://news.google.com/rss/articles/CBMi4AFBVV95cUxNZlZIV3FFNGxYcmFqYzBIR21PU0tnWWNLb1hIWE9hbWpBQ1VEX3NJd2ZiV2JBajJ2cE1aM21mMEVTcEhsMkgtVFppUUNuVzFrbmZFelhCT0kyVFlvVjQxOExjaFZPTWZDdHFTejUwTlJyMTlXNjkyTTBUaDctb1M0SWt0MmFLUFRRQW44NmJmZXRuXzZPT3NwMWxpLUMyU1YyaTdGRlZYRjFXUWtCb0RXV1VJZUZGaE84UUx4TW1VUlloZ3JlYW0tbEdFSkl0ZWVwaWlLRUhrVzVmRzRZdkh6Zg?oc=5",
       "source": "Business Upturn"
@@ -5383,14 +5406,21 @@
    "raw_pct_change": -4.73,
    "corporate_action": null,
    "why": {
-    "headline": "Order Win (Hindu BusinessLine)",
+    "headline": "Order Win (Reuters)",
     "confidence": "medium",
     "evidence": [
      {
       "tier": "news",
       "kind": "order win",
-      "detail": "Welspun Corp wins ₹5,500-crore US natural gas pipeline order",
-      "url": "https://news.google.com/rss/articles/CBMi6wFBVV95cUxOeGlCajNFbEdTUHkwcFc4Q0d3emFOd3ljcU5XalR2QzgyeXpIZThWUEJNMlRyOHFJOEQ3cjdDaXh2Wm54YVd0TGFkUVJCNkMzQ3REZUxnc25udlFiYkpMYlVnTG5iTFpDMGhvQVV6OGVwOXRYd0FLeUI3TG9pMGlhNnA2NnhYSlNaY0c1U0xjVVhaU0E2QU9obmR5ZlZubGdodEx0TXNXMTlRMHVDcnBLRmVzLUR5YTdPa2x1dDdjWTNHNVl6eFhpQWtCZ1NtcW9RNnV4NE4xeFozd0MtZER6VXdTWjRKMzc1T2pB0gHyAUFVX3lxTFBDODZ5dDNnVWNiZjJMQ2g1Y1J0aWkzMUhoUzVIT2tKVEx6d3NaZ2MtRXZ3bXpXd1RCM3JxT01fSlJlNHpFTXVObmF3a3Y2OThnXzhsODVKSXNiMzU5TnBSU1E3ZldDZGo1QUwxdFIwMTBNQmlva2pKQkhaN20xNkViVmpiZmVqeTA1VXV0dTJuMGNObk8zdWVfMmNnRk03UGl1cklfc3FOaUZxdXMzVXZjZlFBaXI1MjNpWTYwR0tucnFQa0ZhZjB4bVM3dTItZ3RRcGV6R1RQbEYxNmY1VEhmMjgzanJFWWdENUNGWUh5akNn?oc=5",
+      "detail": "India's Welspun bags $580 million US gas pipeline order tied to data centre buildout",
+      "url": "https://news.google.com/rss/articles/CBMiywFBVV95cUxNcWphMFNwdGZkOGo5TGZxMXk3SFhidGZOWXpKWV8xN2hYeXY2MlRITjRIZDM0ZE1RYnpPRTNzdzlaVEwwMGZnR0pqWG9Kd0xJbC1KX1gtUVZfRTZ2T0ZOZUw0bjJ2a3hBYWU4bDl0eWRQQXpUYllPTndTVEJxYzhXLWtETldoYmdOYkVLNUE4RWRPRGcyc1hBWFZUQmNsSXkxdTJkWnlQcURjOVJHZWhYZmc0X2x5OVlQSGpYMTRhb1lWOXBWNU8wLTh0UQ?oc=5",
+      "source": "Reuters"
+     },
+     {
+      "tier": "news",
+      "kind": "order win",
+      "detail": "Welspun Corp wins ₹5,500-crore US order for data centre gas pipeline",
+      "url": "https://news.google.com/rss/articles/CBMi3AFBVV95cUxOdDNZNmRsTW5VTFU0VjBIazhiOENLTDh6Y093dTFjd1FrLUNmaFI1bUlBYkJ5cU5WUXdidjVPcWNFZ0lnSld2MEVuWVZJTFR3M1g2ZWJKV0R4Ulh2c05wcDk4QUFqSVNvZWh4MVJ3aGtLX05DMXd6YmZwcDRfTmxFMWQ5WXNPaE5feEZLTDVHTXZYRXQtNGlNTkVFVjF4RzZqNEpDWWRGZ0ptUjM1OUk3MkNHYVJsNGVpQ3ptRVkyMDFyQ1NUeWVISUlqUU9zRkVXRzQ5cVNrVXZ4OFpW0gHjAUFVX3lxTE5JVlg4MlhNTHpxbFJ5WTdoMFZJUk1rWVh4ZUVOTWNOUHZ4MHpjNkhPdnFVbjdNTXA0blZzSGwwTnVjaS1heFpreGZiSDRBYWhQQUI1Q2xlMlFaMmdCUWJyQUZweGNpckIxMEhaMnFDQWVWT3UzVW0tWGdlbGc0X0hSQy1zSFVNeWFTX1owX1BLS3Y1MWRoaUUtekh0V3I3V0Jwc24zeVVtUTJEVDRyYm1YZElYQUZqelZNeFA1U3hPcjBfMW9uZExpVG1zZk9QNDI1OUJJQmdRNGd3NlFNZVRiRzJr?oc=5",
       "source": "Hindu BusinessLine"
      },
      {
@@ -5399,13 +5429,6 @@
       "detail": "Welspun Corp bags ₹5,500 crore US pipeline order, order book hits record",
       "url": "https://news.google.com/rss/articles/CBMixwFBVV95cUxOWTJBd1AtWkJ5dFJHZTZQY2MxQi11MUVDbzl1SkRoclItRV8zdFRpbW45eFExWmZTOE5od3cxa2xIOUE4ZGI0dWsxNGJtNGRubjdHVUxBQU1kYTM5elNSZTExNlVYRkZRREFmTnY2OWFiazhBNkhpa2doUnAtNlltTTFBX0l0SGRxcFdWWDBDSWlSckExYTNDa0QyVzd6TnFZbk1ra21aOWtQMDFUZTM1X1lfYk9GTU5hVVk4emVDdjh5dmVlVFZZ0gHMAUFVX3lxTE9HVUZQUkpiZkxaTnBCTHREY3ZFc0E1Qkhjbm5USnpGWk9DdmNha1dTSzhXRjFaOHRLb3NJYUwxMlItQm1GTzd4VG5FU0JxdHE4ZXl1TnZGRm1CcGNhTmo3ZmUyaTkyOXo4Z1ZJZ0RTdnpRdFp2UExNNG94Wm9VVXlBOVk1WFRvNHdkdlFZcHZjMWJEY0poSGlhQVFhbUJmM05PX2Eta2ltdlJ1NEx4NDdOZnBuTUllcU9MMlVIR1hib0x6dTVvNmpwT0hJTg?oc=5",
       "source": "Business Standard"
-     },
-     {
-      "tier": "news",
-      "kind": "order win",
-      "detail": "Welspun Corp bags ₹5,500 crore US natural gas pipeline order",
-      "url": "https://news.google.com/rss/articles/CBMi2gFBVV95cUxPRzRrZDZzM3h2MWxkQ0pvQlhKOTZ3VHpRSVg5OHNteE1SclkwcHhlVHlTLVQ0X0U3cjRhNVFUdHJ1OGlqSWdoQUVROGl1U19zbTdNOXozWS11ekVLX0QzeUJqZFhLQ1MwV3Aya1llVmJMT2ZsSWJTYWFLWXBXbkpGVlFDeXpLMFhjbmJDWl8ybno1LVR3RFNGWW9UY3lPSUJxcFBSMW9CY3ktSy1WRUlXR1dGRTVvbkJDWU9vVXhQbTFtQXlZTzJzcTMwZlRlWURiRzNDSGQ5WEZiZ9IB3wFBVV95cUxNcUxpUEU3OHc1TnA1eEhaUkJxNUtQTTFKMFFGWTJiSDlkQi0xRFd1MkhzOUQxT2Nzb1QyR3hsZEFseVlYQVNDRFMtUzZ1eHkzZ1Qzd3NEVDlkcldEbHEtRFZxZW5WeWpXMGUwLV9zdFFyS0hsR1VIdDYxeTBHUDZDaWJRWDVHanBSTlQ0RjNjZ2VId2dOY1B1VkpKc2Nja1g4SWdhSEFCZW9Vd0FQNTIxLTdkNG9VTFl4Q0MwUnFJQTc4a2w4YUNiUVlxSTVMS1J2c05Oc1kxS2I4N2w4U3JJ?oc=5",
-      "source": "Economic Times"
      }
     ]
    },
@@ -7044,9 +7067,23 @@
    "raw_pct_change": -4.99,
    "corporate_action": null,
    "why": {
-    "headline": "M&A Or Stake (Business Upturn)",
+    "headline": "Results (Economic Times)",
     "confidence": "medium",
     "evidence": [
+     {
+      "tier": "news",
+      "kind": "results",
+      "detail": "Sterlite Technologies Q2 Results: Profit surges 12,817% YoY to Rs 517 crore, revenue jumps 145%",
+      "url": "https://news.google.com/rss/articles/CBMiggJBVV95cUxPWTcxOU5fR21iU3JFbXRKUV9ScHBXTXlXbDNMWG40SWlkTFJSbl9XMms5V0I5dDRkZmlUalVoWEhiWFpIdEQwellTVFlxRFM4c3BITFJEMGFSNWhXaDNxZ3o3Tm9UQzFkMVEwZG9halQ3QW9GV09HdlZsNnhUa3lST0JrQkQtcURicnJKOEpMX1VHU0t0VER4QVJVN3VVZGJaQUQ0MFM2bEN1d0xxYldnN3JQVERUcDZkeWRyS1N2SVhDLTNFZllnZHd6eDB6R0lvaTVCX0phTTZYQ1dlMG5TNG9mSlpyUWc0bGFMTFI4dUlfRkpXRG5ZNXlNSE9CbGZHZHfSAYICQVVfeXFMT1k3MTlOX0dtYlNyRW10SlFfUnBwV015V2wzTFhuNElpZExSUm5fVzJrOVdCOXQ0ZGZpVGpVaFhIYlhaSHREMHpZU1RZcURTOHNwSExSRDBhUjVoV2gzcWd6N05vVEMxZDFRMGRvYWpUN0FvRldPR3ZWbDZ4VGt5Uk9Ca0JELXFEYnJySjhKTF9VR1NLdFREeEFSVTd1VWRiWkFENDBTNmxDdXdMcWJXZzdyUFREVHA2ZHlkcktTdklYQy0zRWZZZ2R3engwekdJb2k1Ql9KYU02WENXZTBuUzRvZkpaclFnNGxhTExSOHVJX0ZKV0RuWTV5TUhPQmxmR2R3?oc=5",
+      "source": "Economic Times"
+     },
+     {
+      "tier": "news",
+      "kind": "results",
+      "detail": "Sterlite Tech shares: Multibagger rebounds 10% from day's low after record Q2, says this",
+      "url": "https://news.google.com/rss/articles/CBMi5wFBVV95cUxPemY5b3VNam95WmtMTl9wLUNmM0J0ZEh5RVpfUFBpZjhnSmFNeHpNYkZYanh2b1Z5QU1lazRsNmhXYUpWWEpZT1Y3RThGVEdMMHNYdk91MjdSUjZmRjlXZXI4eWFXZHRxNlpkbWV0d3FkalZpVklVek5fQXM0NDBBRU00Q0IyQUloS0ZNUUYyT3BhZmdod1FsQjM3b1hfeWpJemgtVU5ra0haeHV6SlZ6dWtibUUwbzRyRVVvM1h4WGtXcWZBUjVmdWk1aDJwenAwckF5YW1PTlMtS0JJNkRtU3RqZDNBM3fSAewBQVVfeXFMTnZQVE00VGd3LTFJUUUta18zOUtXa2w4c3pZT0tKNHJ1SUhqNE5YWHhXOUNtTm1TSzNxQ0xRS1VMWUIyZ1B5WmtkeW42UjI0emluZENKWkVzNWs0UzhvaGlrVzZuUklka3MxTDY3azFHTUZlV0xGbUpJTEZDUTlNRGVyMTA4ZFpYOEJvTDVhYUZiNWkyaF9qSF9qdERPaTJGQzlUT3gwQk14Ym11UXI5SjVGdm1ka3FuR0ZjZnMzMWVsbXFxaHNUSWVUU1otUGVyVHU4SE5CZ28wd3MySG42Tk4zQ0xaY1RvWDBYRFU?oc=5",
+      "source": "Business Today"
+     },
      {
       "tier": "news",
       "kind": "M&A or stake",
@@ -7441,9 +7478,9 @@
      {
       "tier": "news",
       "kind": "results",
-      "detail": "HFCL Q2 net profit jumps 448% to Rs 394 crore",
-      "url": "https://news.google.com/rss/articles/CBMiywFBVV95cUxQMkhhZVJVTEJtU3piNERFUXhfX3BiVWFjNFFFd2hPRFcyMmJDTXJjcHNpTVV3N3ZoQkh0Qm1BRnZMSVg5bTJ4WUJtMndBeHdXbkpsVmNnWXFnYzhBMFhCOHV0VjBPS0NKaWxHQkZlaDNMRDlBS1pMdmFKMjRSZFJyRWRadFpxVWhqcUlXS0JocndobU5NTkFsOXB1dDFEcWhrWlctYktheWJrcXg0enh6ZFpjbl8wN2pSbUhZNXVEMkdNOTY0SXhVbVROMNIBxAFBVV95cUxNVDVWSmRaTGViUHdlb3BZWFlxbnpDbHQ1Nm93MFZWNmhEMHJwckJGY0QxejlpVElWeUV1dHpYTzVhU2pPc0VPUkNJQjUxblplWXhUMW9tRXpYZmZPWWFldURGYUZ1RGl2ajBJNjBfOTlsZ1BoWVVkMHBqOXRGNWtMaXBrTF9xUVhPM3hJQUo2amJXblRTc2NBaENtdDhRRXBfa2YtS3NtU3k3SjJ1WV94VVFLaTFJQm1OdFB5N0VMdHRZTXFG?oc=5",
-      "source": "Economic Times"
+      "detail": "HFCL hits 5% upper circuit after 'best-ever' quarterly show; Q2 PAT up 448%",
+      "url": "https://news.google.com/rss/articles/CBMi0wFBVV95cUxOdDhPTXhuZ0lJVGdmMF8zZ3pyRTJtWWNBQjVyanZ1MjZKNUFqZGM0X3o2OHVhU2Y3Y1QzYWJTWHVyaGpvb3hzdE9UcWdGMi1KMlNoN05YeTl3alZFcHZjSnllSGZXMWxMdFpTYWtYSks0bU0zWHlGR1FGOGNFRkJFNWF2V20yYjZEN19kOTIwbG4xSWgxWXFGMlUzZU5mS2sxOXFGNG0zeExCek5kdV9xYU5wU1dRVk0yS1hqVnZmX3VuXzlsaC1TeU5TeVVjSlhzT29z0gHYAUFVX3lxTE9XVy1fOHdOWkdMNU9Ob2VLU3N1RTc4NWhaNkcxTDBLNnRFLXpCME02MzVaZGd2dTd6bW1ocFZhR1hMc0JtOUhXTjk2Nkp5dEc1ZkFMWUh1Rkk5QU04QUQ2ek5ZM01DaV9Zc2RYTWdzQVh3S3RCbjJuOTlUMVFmNnJSdDBGOGI2X0lKRExJWEpPXzR2a29jeG1LVkRUNzJkNWlSbmZvVmFVSkR5YlpKNVVLa0JDU0hkdk8zOGxUTEdUY3hwMjk2N1FFZ2tEdXlsYW1iQ0RfNzdjTA?oc=5",
+      "source": "Business Standard"
      }
     ]
    },
@@ -8357,9 +8394,9 @@
      {
       "tier": "news",
       "kind": "results",
-      "detail": "Swiggy shares slide over 5% ahead of Q2 results. What are analysts saying?",
-      "url": "https://news.google.com/rss/articles/CBMi3gFBVV95cUxOdnBaTWluVTdDLUltTWRtVDlxTzd5VFo4MjNTNmF6UmQ1SFU0T1NxOEE0aE1HclU1eXAtX3RXaDMzVDFmRUNzRHVSRlYySWVNOW12RkZocDFvaGNOS1ZRRmc4a3lvLXVlaUhxdlU5QzBuUk5VcjdmUVRfSmEybGxyUkxscjlDSFllbmJfeTBKelBzMzBxdGFkOFllZkRGa1RDTy1KaFZ6c3BIMU92UmhJX3ZsU21HanVBTHBrNUduNnJrdmpaWnJqTm5rZTJIN3FjVHhKbEZHbG1UMU1EMHfSAeMBQVVfeXFMTnRUMnVIQk4wTFFjZFFDMndvYzBoU3E5dUh5NHJ1VGZDVF9hZjdUVE9GNnNDbHE3VGdnVkhtRGZCVEVDenZJVV8tRWtDek1Pc2FLVkRJN2VndUNFTjFsMUVwdW5PRHo5YWhORWtzeVpuUDRQQ3N6c29FcDlkSGRZR2xmWFBYRW8yVG9zZ09kdlAxTlN1WU1BcGRQS0pVcG50OEpTRnRISll5d1RfVk9YcTBzU3Rpc3ZsNExORGxxUkZYdWlmQk9lV1FxRnNublY2eDBXWWFxVzBDZGV0ZFNVRlpXYjg?oc=5",
-      "source": "Economic Times"
+      "detail": "Swiggy shares hit 15% lower circuit post-Q2 results; brokerages cut target prices over profitability...",
+      "url": "https://news.google.com/rss/articles/CBMiggJBVV95cUxOdWJTTW5QYjBSNEc0YTZobE4xZDNIU0IxWktkalNUQm5pUzdvR2dKa1p5cGgwTF9sNE93c0pqVjVqd0NYdUJ5YXRBb2oyYm5ieTFDeEtIQ05PXzN4RWVablFjeldJR0Y2WWdxWHRuempGdGVnTGZnUlZ0LW9rWEJsTGNKZExFa05KQXZBOTF6RzZWTmNaeGJVUkNoTXBUdTVlMDJ6TTJRb0pOOFJTRE81VDcxclpDZWppMUpmTWNrR01haTFyVnpXeWlOdmV6b2ZJZGRHd01fWlpuRlJKckc1VFR4SmhlUTkzWFdyeS1VX1huQnpZQkltVnJ1Y1N2M19IRXfSAYcCQVVfeXFMTjZQRjFlblVrNTZnZzRqakc4UDdNYzNwMlpicVNyc3NaaEdlM2FLbkpzd0U5MmVqZi1hSWZCUzV4bzJRdC1VR21HMFVSSm92emdFUzVvVEpEblVqRmZ1OS1yNFNWWDlTcE9xNzM4Y3RqSVBreExteGlPZ3Q2ZWlmeDRHTkFhV25YV0l6bUI0UG5mTjJGNDFVaGY5Z2NXZ015WEZOTTFZX3VKdFV2ZlRtdGFhUmJyNlRpVG1fSzZ1aDRtTVN2aUdubjZJNUp2LXdhRUQ5eDFQTXdQM2ZTNDl3NGRBWUNnems0MV9yTGxZbmplWkhWbUsyZ00xTTdkX25YVmQ1RXFVVlU?oc=5",
+      "source": "Moneycontrol"
      }
     ]
    },
@@ -8514,7 +8551,7 @@
    "raw_pct_change": -5.56,
    "corporate_action": null,
    "why": {
-    "headline": "Investor Meeting, reported by CNBC TV18",
+    "headline": "Investor Meeting, reported by Moneycontrol",
     "confidence": "high",
     "evidence": [
      {
@@ -8526,17 +8563,17 @@
      },
      {
       "tier": "news",
+      "kind": "M&A or stake",
+      "detail": "Finavenue Growth Fund raises stake in Ravita Engineering; Gallantt Ispat promoter sells Rs 150-crore...",
+      "url": "https://news.google.com/rss/articles/CBMigAJBVV95cUxORlJqOU5LTWdkZ2NIYWwzcGtSR2RrU3V3eERPTWMtUi11bHRZLTBDODg2UFdWZ2ZINllsbXc1c1hNcFhOSXhUT3NPejZiWGh6eDM4YzBiSmdnSTN4VWExOTZtdFlDSTVzVHF1ZGxqWVpiX3c2VGhOQVJ4MjNfRDNZYTZjWTMxc0ZyV2dLOUpUdjhzWk1KUV93OVJiRjk1YXFrVEMyY2dFejY5R2dsWjBTbWVoUURQeU5adWQ4Nnd5eXdLV0NMS0EtN2sxT0tQRVdlMk10dEFyamlmNTFlVHdWQ3hQcW9Vc2RTazF5eTVzWE94S3V0Tkg1QmlCVEJ3Wjlj0gGGAkFVX3lxTFBFSWVSM0RZcldqTGVna1FJXy04VWR3eEZuLUhKWU1mNFE3dW53azA5eXpxWWJRMUV1T0Vlc0NjT0RTYU52SDh4ZkZFSnVZd2t2djloV19DazBpeGk4c3p0R01SNGJGYkI3MnJ0cjBWcWJfZ0Z5bUpyRFVLMDRWcVJweDdjV0dDNDhrd01EQ0pGU29qWVlaMGNvQi14dGtqdV83UFB0OTlVbXQ0bXBacExYWGZ3LTVqUXMxdkJibjhTOUVyNHRKdkNTRWR5czM0YjNZUVg2V25URDRhek95NFhselRhclFpVktaYlBIR1Vla1k4ZTUzWDlGM25PRUZMVVVJak0wRHc?oc=5",
+      "source": "Moneycontrol"
+     },
+     {
+      "tier": "news",
       "kind": "results",
       "detail": "Gallantt Ispat Q2: Profit falls 32% to ₹60.5 crore despite 13% revenue growth",
       "url": "https://news.google.com/rss/articles/CBMivAFBVV95cUxNcWI2Z2JhMmNGYnVLMUc1UHhuLVpfQlUxMGFkMzZvdE9lWEdxZ252Xzg5TW5tRTEySHBaX05ISFlTTUlNeVlnNjFpUmkzcndiRkZnYndDRHdFbHhyMTNleklKZ1lLUlhnLTJxVGpTQTBHbjNGZDd2bVNudzIzMWExclVyNm5jZ0ltb2xQaXJrMmFtTmZZc1hlRVNMcU1uMHI2eU1NUTQtcG5BNXRsOW13SE92aVpZQ0RUWEdWc9IBwgFBVV95cUxPbjJIcHEyT1AxU3AzMjRRaTl6ZVdzWWNtUVFvM082Q0tTTFBSM1NQcThtWWdOblNBc0ppcHRrM2t2c3JMLUFlX1I0SkZneVRQbHBSVXMwc09rX29GZjJrYUQ4R3JvTEZxOTdaWE5pTXBtcHIyaDVUdGZ1WEx4eGdwY0pmc2VLY0kzcVY4aXpUNzlmNGJlc1dfbW1jRmpJVmQteFM4MC1nYmVWWTR6VTc4QkZVd19GODVXUXpCNXJaRmRXdw?oc=5",
       "source": "CNBC TV18"
-     },
-     {
-      "tier": "news",
-      "kind": "M&A or stake",
-      "detail": "Finavenue Growth Fund raises stake in Ravita Engineering; Gallantt Ispat promoter sells Rs 150-crore...",
-      "url": "https://news.google.com/rss/articles/CBMihgJBVV95cUxQRUllUjNEWXJXakxlZ2tRSV8tOFVkd3hGbi1ISllNZjRRN3Vud2swOXl6cVliUTFFdU9FZXNDY09EU2FOdkg4eGZGRUp1WXdrdnY5aFdfQ2swaXhpOHN6dEdNUjRiRmJCNzJydHIwVnFiX2dGeW1KckRVSzA0VnFScHg3Y1dHQzQ4a3dNRENKRlNvallZWjBjb0IteHRranVfN1BQdDk5VW10NG1wWnBMWFhmdy01alFzMXZCYm44UzlFcjR0SnZDU0VkeXMzNGIzWVFYNlduVEQ0YXpPeTRYbHpUYXJRaVZLWmJQSEdVZWtZOGU1M1g5RjNuT0VGTFVVSWpNMER30gGGAkFVX3lxTFBFSWVSM0RZcldqTGVna1FJXy04VWR3eEZuLUhKWU1mNFE3dW53azA5eXpxWWJRMUV1T0Vlc0NjT0RTYU52SDh4ZkZFSnVZd2t2djloV19DazBpeGk4c3p0R01SNGJGYkI3MnJ0cjBWcWJfZ0Z5bUpyRFVLMDRWcVJweDdjV0dDNDhrd01EQ0pGU29qWVlaMGNvQi14dGtqdV83UFB0OTlVbXQ0bXBacExYWGZ3LTVqUXMxdkJibjhTOUVyNHRKdkNTRWR5czM0YjNZUVg2V25URDRhek95NFhselRhclFpVktaYlBIR1Vla1k4ZTUzWDlGM25PRUZMVVVJak0wRHc?oc=5",
-      "source": "Moneycontrol"
      },
      {
       "tier": "deal",
@@ -8931,9 +8968,17 @@
    "raw_pct_change": -6.25,
    "corporate_action": null,
    "why": {
-    "headline": "No disclosed reason",
-    "confidence": "none",
-    "evidence": []
+    "headline": "Management Change (Scanx)",
+    "confidence": "low",
+    "evidence": [
+     {
+      "tier": "news",
+      "kind": "management change",
+      "detail": "Yogi appoints Rana Gopal Singh as additional executive director",
+      "url": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxNM2w0M19vcGIyb1Nja1RhWm1acGFnUnNfVzBiWnJ6dHl2aFNjMVYtX2FUQ1o3S0ZfR21QSlZBNEVFc1laRndsYkxzRkx3V3QtX1QtZEZEdkpGc0V6X2ctbWRBcHFoa3JZNXBzYzZjeUZsZzduZUFyQUk2Z1dXbUNFZ294b09VSUU3TkJNd2hsSy1fRzhhQjRfeU9VSVpISHBYcW95U3F0TUNmY2RvX05SaTNUQm8xa1ha?oc=5",
+      "source": "Scanx"
+     }
+    ]
    },
    "news_checked": true
   },
@@ -9238,7 +9283,7 @@
    "raw_pct_change": -7.01,
    "corporate_action": null,
    "why": {
-    "headline": "Results, reported by Hindu BusinessLine",
+    "headline": "Results, reported by Business Upturn",
     "confidence": "high",
     "evidence": [
      {
@@ -9247,13 +9292,6 @@
       "detail": "Wendt (India) Limited has informed the Exchange regarding a press release dated October 21, 2026, titled \"Unaudited financial results for the quarter ended 30th September 2026\".",
       "url": "https://nsearchives.nseindia.com/corporate/WENDT_21102026154043_pr_covering_letter_sd.pdf",
       "source": "21 Oct 15:48"
-     },
-     {
-      "tier": "news",
-      "kind": "results",
-      "detail": "Wendt’s consolidated net profit doubles in Q2 FY27",
-      "url": "https://news.google.com/rss/articles/CBMitwFBVV95cUxNWUZDTEpud29LbnFfOU9XaTFtcXptUTkxZTc3ODVVREU1ZFJkSlVMdVdDNjdhdXU4d3U1Y2ZCSUNSVUNfaTRTTVV3d0VNaWRQb194cXNkeENDN25ocnp5U2RJMzBlV2x5bTFsRHUxUXpuZ2pENXdQSHpsSGxXS1I3ZUU4elhEOGxWY2s2LWQwYmpKMmdzbG1kN2tOdGtndFpNWmFHeTRpcE1ZVWJvZExGRWh3VjRHeFHSAb4BQVVfeXFMTVRJZXN6QUJQTjEyYkI0aGNSWkhwa0tZM1JpTkdhdWNycWdubjR5VDhTbHh0QnpVU2p1S0p1Ujg1LXJ1V0hkR0pUSmlYYnJJMUxMenZLQ1NDbHhsY21rQmlUTV9YRXRvVFY2MHFfSGpjSDczZVpIeFk5ZzhXZ2tiejNqOFhCN2JxanZLNUNPUEZUcG1mREgzOTlhVHFINjZaZzNSNS12YnFqMjFkVGJpcUtTZlZwZ0VzNkNld01Ddw?oc=5",
-      "source": "Hindu BusinessLine"
      },
      {
       "tier": "news",
@@ -9535,16 +9573,9 @@
      {
       "tier": "news",
       "kind": "results",
-      "detail": "Jindal Saw Q2 FY27 slides: margins compress amid geopolitical strain By Investing.com",
-      "url": "https://news.google.com/rss/articles/CBMixwFBVV95cUxNSXVhWGt5NzI5cURNN0doMmtVNmNQMXdlQk5CaGUzc2ZSMnlXM3NYNmN5aVdYT2p3dFoyd1ptTHdjR0c4ZmZJaEtBc2pHLWRkd0Y5bjhWZHhWY3c1THdxVUNYVTduZ0h3cmJQV0Z4TEpjbHNqbDg0M0hNclF6YWZuekR4eTF0eTJqMWhwdUdHR3lZNTVvZVNyZkRSSm9yLU51N0hoNVJYNzZ0a1BpRHpZMVVxTEhRVE02X1JvU3lHME1vQkhTZFA0?oc=5",
+      "detail": "Jindal Saw Q2 FY27 slides: margins compress amid geopolitical strain",
+      "url": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxPaS12WF8zZEhMT3hzc3RkVEd6MU9nNTkxcWF5dFRHM3U4NDR1MDZ4MVhFMGhtVXhYUDJBYmVaMDFrQmFUUEZPQU5hR044OVVCZU9hSjdMdzlkQkxMOHlkUWhHQXZnZzFjMk5FVVA0MGxqeXA0U0ZjbXNMcC1UdjRsUktMUGN6VURjVURScjVHMEJxM1pkcnhWaDZrOWRFdGQwVWxZdGhhRUtVQjlfT0prWVdQVEpIS1FnVlJPZHgyMjRoQQ?oc=5",
       "source": "Investing.com"
-     },
-     {
-      "tier": "news",
-      "kind": "order win",
-      "detail": "Jindal Saw shares fall over 4% after Q2 profit plunges 69% and margin contracts",
-      "url": "https://news.google.com/rss/articles/CBMixAFBVV95cUxNRml0cVhoN2xqOTdJTm1wZWY5UDRhQU9JRjJBTWV0bmV5d0ZGaWNIeTRkcWozQ01EUjRabVFSNV9SSFVFLUEzdEotVUFSVWxaX19KNG1wdk9kNDdzc0daMUFieHk3X29NQVVieFlUOV9vNnZpQzNpcU9hOFlpVEY4NDBkRGN0aXRBeWdLMUx1Zkkzb3d6bUtNY3gxeUV5VnVJeEFzZ09uSkRxbWhDeV82Wl90WlN0dVgzcHBZZnA5OEE0dEs4?oc=5",
-      "source": "Business Upturn"
      }
     ]
    },
@@ -9737,10 +9768,10 @@
      },
      {
       "tier": "news",
-      "kind": "explainer",
-      "detail": "KEI Industries share price plunges 10%, nears 52-week low; here's why",
-      "url": "https://news.google.com/rss/articles/CBMizgFBVV95cUxNRXd1Y0JTdUFaYmZHQk5GelBSYTVVMzhNYjZDUE00MGNLZEJDRmNhMGtlY3ZYR2pEUGxfZ1ZYbnY0N2tEMzctRVViSXZUWVU1RjVyQnlMQldqaVlOSThwMEd4a2pGRDZPTFkwMjlpbmNFY1Q4TXRRU3JkNmI4ZlpVeGh0UzR0bG9xelZCOW14T1k3ajQtaXI4aU1nbnRjb0JQSXNaMFQ1ajdIam4wZ2lUVFpFYWZmNjFBbDE1NmE2bUJlZlV5M2QtSy1nTFVkd9IB0wFBVV95cUxNb05ieE1pZEFtRHBUUHlNczliT1VmcVhra0lfTndRZXNaZVdXU0I5VWNwQ21nUFhmU244WkxGenJkd2JydmhGOEFvd1pXRVVsWFcycDFSYTJ3cmFCQlhFVHM5Q0VsamMyM3dmc1B6aUtDd0xBYldfTmo3OEhFNWhOWFVmS2VhYml2M2JVSEtidDZyMks0elJVaGkwLVNqc2xJUlRZRU5aX3VmU1VUY213dHh6aWRfWU94RWRIbVRRS3lHV0p0eXNjVHFoMW9ReDJfODhR?oc=5",
-      "source": "Business Standard"
+      "kind": "results",
+      "detail": "KEI Industries shares tumble 8% despite Q2 profit rising 29%, revenue up 39%",
+      "url": "https://news.google.com/rss/articles/CBMi3wFBVV95cUxNSTZ6ZFdjSTNRVENQMkhBdmVTQzZ2T2FDRVlkOHRVZHRqdmlxbGV2bjlaTDd5b2JuSmVPcTBhc1YyUmM3SDZJZlNuRE45NXgtVUp1NUQwWWpxbmdRYW9VRjVqX0hPbFNvZFRIVUhxbkpEUkwzYVc2cHczeWpkRmhTRm55QjN3YjhXTERlRGo2YkR2Z0pVUllnamFES3ZYb3BsWkE0U0xtSjFLbF9aejRxOHpKRFF0QXYwMllYU3BleFZxaGVHbmp6MkVWaXZOQTNsb1FSOWtUUHQtRm0wMS1B0gHkAUFVX3lxTE1fa01ldlprTmtUN0JOU1BTV1VmVzI1Z25sWENjWVpsdHlUZnVFM3pNd1ZWdkl5c0dlX2ZwLUFvQVpvUGdoSEM0RzdiSkc5cU9fNlQ5OWx0a1FSUFZrMnI5dEFaQ2w3ZmNLY3RkWnYzRF9MX3N0N000Z2U5Y2NXTW1aS24zMmRDekxJR3FmTlpOWW9wMVNta1pSSDNIelE1Y2xiVk8tVHdjV1doMXFuTzl5U1Q0aHl1N2FZX2FEZGJVcENNdHVRLWl5bThWN1BfMjNIUUZURWpiLWM2OHB4U3NOWWpjSA?oc=5",
+      "source": "Economic Times"
      }
     ]
    },
