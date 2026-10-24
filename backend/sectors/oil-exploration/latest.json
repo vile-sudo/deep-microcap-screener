@@ -1,28 +1,79 @@
 {
- "updated": "2026-10-23T15:06+05:30",
+ "updated": "2026-10-24T04:38+05:30",
  "figures": [
   {
-   "label": "Brent crude (futures, intraday)",
-   "value": "$112.33/bbl",
-   "as_of": "2026-10-22",
-   "note": "+$3.51 (+3.2%) at 1:05 p.m. EDT; WTI $99.29",
+   "label": "Brent crude (futures settle)",
+   "value": "$116.72/bbl",
+   "as_of": "2026-10-23",
+   "note": "+3.14% on the day, +6% on the week; highest since 29 April",
    "source": {
-    "publisher": "Reuters (via Lufkin Daily News)",
-    "url": "https://lufkindailynews.com/news_reuters/business/brent-hits-five-month-high-on-escalating-middle-east-conflict/article_85162ef6-5b38-53bd-820f-296c12247837.html"
+    "publisher": "Yahoo Finance",
+    "url": "https://finance.yahoo.com/energy/articles/oil-prices-rise-supply-concerns-052617190.html"
    }
   },
   {
-   "label": "India diesel export duty",
-   "value": "Rs 8.5/litre",
-   "as_of": "2026-10-16",
-   "note": "from Rs 16; petrol raised to Rs 2.5 from Rs 0.5",
+   "label": "WTI crude (settle)",
+   "value": "$103.27/bbl",
+   "as_of": "2026-10-23",
+   "note": "+3.8% on the day",
    "source": {
-    "publisher": "The Hans India",
-    "url": "https://www.thehansindia.com/business/govt-raises-petrol-export-duty-to-rs-25-per-litre-slashes-for-diesel-1132949"
+    "publisher": "Yahoo Finance",
+    "url": "https://finance.yahoo.com/energy/articles/oil-prices-rise-supply-concerns-052617190.html"
+   }
+  },
+  {
+   "label": "Nifty 50",
+   "value": "22,600",
+   "as_of": "2026-10-23",
+   "note": "-0.39% on the day; -2.4% on the week",
+   "source": {
+    "publisher": "HDFC Sky",
+    "url": "https://hdfcsky.com/news/market-close-report-today-sensex-nifty-decline-for-fourth-day-as-oil-continues-climb"
    }
   }
  ],
  "items": [
+  {
+   "date": "2026-10-23",
+   "title": "Brent settles at $116.72, highest since 29 April, on Houthi attacks in Saudi Arabia",
+   "text": "Brent futures settled at $116.72/bbl on 23 October, up $3.55 (3.14%) and 6% on the week; WTI closed at $103.27. Houthi attacks across Saudi Arabia hit energy infrastructure, Aramco ordered an evacuation of its Dhahran headquarters, and October is the worst month on record for attacks on shipping near Hormuz. Partial offsets were a 400,000-barrel US SPR release and German reserve sales. Higher crude lifts realisations for upstream producers but raises India's import bill and pressure on marketing margins.",
+   "tone": "watch",
+   "companies": [
+    "ONGC",
+    "OIL",
+    "IOC",
+    "BPCL",
+    "HINDPETRO"
+   ],
+   "sources": [
+    {
+     "publisher": "Yahoo Finance",
+     "title": "Oil prices jump $3 on Houthi attacks, oil spill, highest settlement since April",
+     "url": "https://finance.yahoo.com/energy/articles/oil-prices-rise-supply-concerns-052617190.html",
+     "date": "2026-10-23"
+    }
+   ],
+   "added": "2026-10-24"
+  },
+  {
+   "date": "2026-10-23",
+   "title": "Nifty falls for fourth day to 22,600 as crude nears $114; ONGC up 1.11% to ₹227.50",
+   "text": "Nifty 50 closed at 22,600, down 87.65 points (0.39%), and Sensex at 73,123.83, down 125.56 points; both lost over 2% on the week (Nifty -2.4%, Sensex -2.2%). ONGC rose ₹2.50 (1.11%) to ₹227.50 and Reliance gained 0.46% to ₹1,190. The report cites Brent near $114 on Houthi attacks on Saudi Arabia; elevated oil is weighing on Indian equities broadly while benefiting producers.",
+   "tone": "info",
+   "companies": [
+    "ONGC",
+    "RELIANCE"
+   ],
+   "sources": [
+    {
+     "publisher": "HDFC Sky",
+     "title": "Markets Fall for 4th Day as Crude Nears $114; Nifty Ends at 22,600",
+     "url": "https://hdfcsky.com/news/market-close-report-today-sensex-nifty-decline-for-fourth-day-as-oil-continues-climb",
+     "date": "2026-10-23"
+    }
+   ],
+   "added": "2026-10-24"
+  },
   {
    "date": "2026-10-22",
    "title": "Brent jumps 3.2% to $112.33 as Houthi attacks on Saudi Arabia escalate",
