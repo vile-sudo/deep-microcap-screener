@@ -1,7 +1,7 @@
 {
  "trade_date": "2026-10-23",
  "threshold_percent": 4.0,
- "generated_at": "2026-10-24T12:21:12+05:30",
+ "generated_at": "2026-10-24T15:06:21+05:30",
  "stats": {
   "scanned": 3425,
   "flagged": 954,
@@ -2251,9 +2251,17 @@
    "raw_pct_change": -4.0,
    "corporate_action": null,
    "why": {
-    "headline": "No disclosed reason",
-    "confidence": "none",
-    "evidence": []
+    "headline": "Management Change (Scanx)",
+    "confidence": "low",
+    "evidence": [
+     {
+      "tier": "news",
+      "kind": "management change",
+      "detail": "PG Electroplast subsidiary NGM appoints Ruchika Bansal as independent director",
+      "url": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxONEJOVUVFaTUwZldUVHRUOHY5a1RGdmVwWkhNbl9SMi1VNGE1NTItNXRqODFMSDgzYUlQNF84aThWeWJta3AyeEhVVFVLMXlYZDJ5MW1DOWt3MUxoNXc4LTFvT2c1WFRGM0ltalM4eXByWmFJWXhlZTROdjN1R2hKbS1zZk1acXZON2czUkRVY2xiSmFLNmhSTDhBS2Ntdi1qdmRpQktvQllWbXl2OUxLYk1RUXFCZjFrOV9GZ2k0dno?oc=5",
+      "source": "Scanx"
+     }
+    ]
    },
    "news_checked": true
   },
@@ -2494,16 +2502,9 @@
    "raw_pct_change": -4.03,
    "corporate_action": null,
    "why": {
-    "headline": "Regulatory Or Legal (Times of India)",
+    "headline": "Order Win (Business Upturn)",
     "confidence": "medium",
     "evidence": [
-     {
-      "tier": "news",
-      "kind": "regulatory or legal",
-      "detail": "High court rejects discharge pleas of BJP MLA's kin in Rs 40cr bank loan fraud case",
-      "url": "https://news.google.com/rss/articles/CBMi8gFBVV95cUxPTjJNSkttZWJGblhTalhwSXJFYmd6SExmb0piVHFxSHQ5TjExVTNxeHNuZkNLTjREYThqQkhKZmFSU0VyRVB3THJRNGJVU0dneGNjeVo5N2huZzd6ZElHaFFMWE12YXZlWFp4ZmZMWWhUdlpGT3FEdUtNajZZSnJqMlIxR1M0ZnI2ZV81NC1KNnVkNDdid28wZkxHUVNjUHhrbTdqUmwtWHdYVFZaSVVCaGota25mWHpoRjU1WDlhMkNfNHNhSUYzZHEydVliLW1IRjd0dklGSmVGVjBUZTdNLVF0VGJoNzZnR0ZnUzRLbFR6Z9IB9wFBVV95cUxQaHJZekotUFZPR2FySENadVRZdHAtOWZRMFJSamRNblQ2dTRWRy14ZjRLaVJsQUNZLUhFT3RVUEFWNHNOaUc5OXBWOVRaelBEWjBSN1JCdkRWYmNobXRvQmV1MFc3UHVkd3hqMjhhaml5QW51YTQ0ZDZ6QTlBR1Y2M09paFpDWTgtNE9uZFFucWNZR3RUcEFzMklmRFVYUUMtTllQRFN2SXhOc050dndsckdyNV9URk5CQ09yUkRxYzR5dnhjWV82cHBQbVBISHktNlBNcG5nMDViSWJPVFBFa3RGS0I4MmVYamNOb0RRa01TalRneXRV?oc=5",
-      "source": "Times of India"
-     },
      {
       "tier": "news",
       "kind": "order win",
@@ -2516,6 +2517,13 @@
       "kind": "order win",
       "detail": "Magellanic Cloud subsidiary Provigil Surveillance wins ₹115 crore bid from Bank of Maharashtra",
       "url": "https://news.google.com/rss/articles/CBMizAFBVV95cUxPcFduYVFIZ19fVTRNVEFKU0QwZUhJM0FJM3Zvdnh0bDVvbEl6MlZKUC14bk1rNXZCbHJmOWZtMEFhTGVXQW51NEw3ODhBZFlOVUUyc1htYWhScmVxVXNLRlBRZ0Vid2RQLTFJc0d5Um00X3V5Y1VGLUdNZy1EZG9ra3FPR1VMcF9JUUMxcjFzYkI1WVg0TDkzTmd2RWlUUUYxektNY1E5WTk5TFBkNE5uR2lITUxLRnh1WVVzb2xEOERMT29jdXB0cG5ERlY?oc=5",
+      "source": "Business Upturn"
+     },
+     {
+      "tier": "news",
+      "kind": "order win",
+      "detail": "Magellanic Cloud's subsidiary emerges as L1 bidder in ₹228 crore Bank of Maharashtra e-surveillance tender",
+      "url": "https://news.google.com/rss/articles/CBMi2wFBVV95cUxOQktVRWZXQldfS25kLXBuZkg1TDZrS1g1a3RXZThZdGJwVEpic2ZfSFlTWW95MloxaFBPUVJhLUVGOEUwdS1weGhpbmU2QXZwZmtCcU5iem9UMG1DWFZhZFlXQkRtZkk0dHhlTVN3U3BKUlZKMS1WcDVzR2NHV285REJCVy05Uk5QellFVFFZYmFXRFZjWmRSLTRrdG8xS0tYY2wxZG5IU0E2UWR4b2ZSdm10anRHU3JaeE1GS1pybm54WHUwWVgyMFVMaGswU0JQRGFtM0REbkJYaGs?oc=5",
       "source": "Business Upturn"
      }
     ]
@@ -2752,6 +2760,13 @@
       "kind": "management change",
       "detail": "Themis Medicare dispatches ballot notice for Iyer re-appointment",
       "url": "https://news.google.com/rss/articles/CBMivgFBVV95cUxQWDJkcEMxYXZFT0ljR1oxT19XUnFjc2tCWlhMLW1uWVUtUWlkWk5hUjRaMUtyM2tydW5XN0szbjNfd3AwaUlIeUtJc1lXTjJLTXRST2lWYV9yQmJqRXdFbVBJX3ZST3V4RWdkWlV3MHRSa2pKLV8wTUYtWnpvRXdxSFlGNnFsMVhXYkp4b1N5eHk3UHdYUUZjNHVLLXFSellHb2t6cVJxWmpTVmNjOElLbjZ2dDZDczdLQTN5RGdB?oc=5",
+      "source": "Scanx"
+     },
+     {
+      "tier": "news",
+      "kind": "pledge or encumbrance",
+      "detail": "Themis Medicare promoter pledges 15 lakh shares for personal debt",
+      "url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxOSDZINkpKTUJHZEFGc0Q4YnFKcGdDUEpnSUlib0R5TTZBLVljTlB4UF90VTItU2ZxM1VtOUs0M1o2U1hWcDlSZXZtRXcyYlpWWS0tSDhsc2x2dFlldU50eXA0cXNzVzh5S1NHNktMYW5oM1huM254OUY3M0Vkak5QWVFlZExEQlVwM3RldlZrbGZpc1hKcTdrNWl3RTBnTTIxZmdvaG92ZHQxZV81US1lXzVkeXR6MFNCY3c?oc=5",
       "source": "Scanx"
      }
     ]
@@ -4045,16 +4060,16 @@
      {
       "tier": "news",
       "kind": "M&A or stake",
-      "detail": "After IDBI Bank sale, Centre looks at Central Bank, UCO Bank, 2 other PSU banks for stake cuts | Check terms here",
-      "url": "https://news.google.com/rss/articles/CBMi_wFBVV95cUxNWjhaeGtDUlZzZEVQTWNaZWlxeC1lMUlIanJ1N01xeUpvVlNEX0M3QnloYVlnbVNvQThvVE9DLTI3ZTd0eGowODZid1hBNVpKVlhaNWtfR19QVTBEQ2VnUkpXM0lvYTBFd0lSUThGRmhjSEpLaXBGNEpaamNUQ25aMmFnMEdFdUpsUmVZdUJyd3dzV3lIT0djQ1ZMTzltRlJaRllnb2JpTWVhaks3M3JfS2VNRmNCcnNmZHhQcnEyZzRGQnRnVndwd2NIUHdQLTdfYmU3VkN5Zmtkdk1SMWZ2SUJJRmNaMm96UWEwRmY1Q29BX19kQWo1VjYydVBJeHPSAYQCQVVfeXFMUDNKdVQ5MG5acXh0WXJQYVR4UUdDN3MwX2pyUnJpREJLcVVOM0lYcngxTjNtZXMtb2RwWVJYdTJNNzZEUU5Ob1lEUFpoYXVjV0toa0NuRVFaNTk4MWY5VGk3RGlBQl9UeE5CX3ZoM3cwZWJLTFZuNGUtRTVNLV9QcmNtZEpGYlVhWmVjM3hqdzlqeGtDX2Fwb0xBQUZBelJRRnpUN0pWTWJVb0dpLWRkaVpVanlpVUdLd3ZodkZKSU5mX1R6RFZPVWVuMTlaVWo2NXp2dWtmalJpaFdJVmczbDZVUVdyR2hQWVZUa1R3bV9zMndEUzloWjBhamQ4SVBrYmNpdVU?oc=5",
-      "source": "Mint"
+      "detail": "How Fairfax’s IDBI Bank acquisition could reshape its Indian financial services strategy",
+      "url": "https://news.google.com/rss/articles/CBMi4gFBVV95cUxPTnhzQWNVa2owOUR6UXV2bjJqbWxSc1FFc0ZWWldxQkdaMk1pZ0dPbTJXb3lqRm5GQ1VDcFV4N3JXR0pfc3pFVmU1ZjRIYlZpVVJPWjlSWkdhRUNmNEJ5RHlCTnJGZGt0MFlyVFNjM0lWX1dUSVllWW56SF83dnA1Y1pTWTBUcWthY1daUWNwQjBZeW85UU4xcFJhZm9iUXQxYVdjcmtNTlRUdS12QnhkSzNITXNXQ193alBOYmkyR3l1S2djQUlhS3BXbVN1UDBtLVJ0OC1IU1ZqZGxUYnQ4bUtB0gHnAUFVX3lxTFBJWjdMVlMtVUoxU3VDa1VPQzlNNldlY0h2SzZpSFc3cHdidnc1U2NGRU53R3Nuc0ZveVczSjU5cGJWMVg4WnhYeVBOaXFSajc0S2Y0WDhBb0JMQTE3aWI4Vm4tcFlYNHgwRmlTalp2ZFJKdWRXeTNoOG4wbFoxZEh6di1RYkhldi1BQUlGUmtqLU9Db0J0dW5uOVNreG0wNG80MlNnZ1pqMHN3WlNwaGVremtYV3RBcUF0aWtGWFRVNkVJNFEtaGlmOFpQaXZ3bXYwWVA4QWN4SGtaS0pyYmRBOFl0SjZwZw?oc=5",
+      "source": "Economic Times"
      },
      {
       "tier": "news",
       "kind": "M&A or stake",
-      "detail": "How Fairfax’s IDBI Bank acquisition could reshape its Indian financial services strategy",
-      "url": "https://news.google.com/rss/articles/CBMi4gFBVV95cUxPTnhzQWNVa2owOUR6UXV2bjJqbWxSc1FFc0ZWWldxQkdaMk1pZ0dPbTJXb3lqRm5GQ1VDcFV4N3JXR0pfc3pFVmU1ZjRIYlZpVVJPWjlSWkdhRUNmNEJ5RHlCTnJGZGt0MFlyVFNjM0lWX1dUSVllWW56SF83dnA1Y1pTWTBUcWthY1daUWNwQjBZeW85UU4xcFJhZm9iUXQxYVdjcmtNTlRUdS12QnhkSzNITXNXQ193alBOYmkyR3l1S2djQUlhS3BXbVN1UDBtLVJ0OC1IU1ZqZGxUYnQ4bUtB0gHnAUFVX3lxTFBJWjdMVlMtVUoxU3VDa1VPQzlNNldlY0h2SzZpSFc3cHdidnc1U2NGRU53R3Nuc0ZveVczSjU5cGJWMVg4WnhYeVBOaXFSajc0S2Y0WDhBb0JMQTE3aWI4Vm4tcFlYNHgwRmlTalp2ZFJKdWRXeTNoOG4wbFoxZEh6di1RYkhldi1BQUlGUmtqLU9Db0J0dW5uOVNreG0wNG80MlNnZ1pqMHN3WlNwaGVremtYV3RBcUF0aWtGWFRVNkVJNFEtaGlmOFpQaXZ3bXYwWVA4QWN4SGtaS0pyYmRBOFl0SjZwZw?oc=5",
-      "source": "Economic Times"
+      "detail": "After IDBI Bank sale, Centre looks at Central Bank, UCO Bank, 2 other PSU banks for stake cuts | Check terms here",
+      "url": "https://news.google.com/rss/articles/CBMi_wFBVV95cUxNWjhaeGtDUlZzZEVQTWNaZWlxeC1lMUlIanJ1N01xeUpvVlNEX0M3QnloYVlnbVNvQThvVE9DLTI3ZTd0eGowODZid1hBNVpKVlhaNWtfR19QVTBEQ2VnUkpXM0lvYTBFd0lSUThGRmhjSEpLaXBGNEpaamNUQ25aMmFnMEdFdUpsUmVZdUJyd3dzV3lIT0djQ1ZMTzltRlJaRllnb2JpTWVhaks3M3JfS2VNRmNCcnNmZHhQcnEyZzRGQnRnVndwd2NIUHdQLTdfYmU3VkN5Zmtkdk1SMWZ2SUJJRmNaMm96UWEwRmY1Q29BX19kQWo1VjYydVBJeHPSAYQCQVVfeXFMUDNKdVQ5MG5acXh0WXJQYVR4UUdDN3MwX2pyUnJpREJLcVVOM0lYcngxTjNtZXMtb2RwWVJYdTJNNzZEUU5Ob1lEUFpoYXVjV0toa0NuRVFaNTk4MWY5VGk3RGlBQl9UeE5CX3ZoM3cwZWJLTFZuNGUtRTVNLV9QcmNtZEpGYlVhWmVjM3hqdzlqeGtDX2Fwb0xBQUZBelJRRnpUN0pWTWJVb0dpLWRkaVpVanlpVUdLd3ZodkZKSU5mX1R6RFZPVWVuMTlaVWo2NXp2dWtmalJpaFdJVmczbDZVUVdyR2hQWVZUa1R3bV9zMndEUzloWjBhamQ4SVBrYmNpdVU?oc=5",
+      "source": "Mint"
      }
     ]
    },
@@ -5152,7 +5167,7 @@
       "tier": "news",
       "kind": "results",
       "detail": "Adani Green Energy shares fall 4% after Q2 results. What are Jefferies, JM Financial saying?",
-      "url": "https://news.google.com/rss/articles/CBMigAJBVV95cUxQUnN2TUZwMmIwaTN2VXpzaENYQmloci1NMEptZEZueXFveW1KWVJTVzV3R2FkYUxwN1c5ZlhERE10emlQSmNHWFZLNmw0TVprTnd1VHR0TXJwWFd2Z2FhX1VaZEJtTThyeXgxV29sbC1pZmpiVHlRMkhRNEQ1cElvRF9PaGdNTU8yUTVGWm90WmZxbVQta3VUNGtlLVp2V1BLNFB1SFRNTHZtM2xHSEtmZHpwVmVfQ0duOWVOc19Gb2Npb1d0Y1VCQUtSU0JPMDF5MG1ybzY5S0JDWUduRzROZ0JRQW10c0k2bGxWV2JSSkRhMnJyN252b183SDA3bDh30gH6AUFVX3lxTFAzWmE1eTc0NkhsV3NWQ2tJT3p1NHZhMmN6VXZHZFZvd0pPeEN5ZTFoQ2laY3RPbUJlZTk3RVNWRFhQTnFUTUFMYkdNRXhISlZkV1pCZUJhajUzRjg5VENFRm12WlNCeGZJZHduUGlodURWak1MOWZKSl9DMjhxVnlTM1lnWjdDeGlTbFY2WVA5UWUzbVVnODNDSUNwOGlQVkc5S1NMVEZOSkdoelNlSTAzU1BMSFhpaEdpNVpKbFN3Y3pNUVk0S1VscVVvRDBtMGdQTXRwN3dOU1VVenBJSFFoWDYtOW1OUWRwUkVfVHY4R3pQWDVwUVEtd0E?oc=5",
+      "url": "https://news.google.com/rss/articles/CBMi9AFBVV95cUxNbV9JekdCcm5GQVE4UHRPbmFjUS1NdURpelZadExOeWtjNGpadWdlQXV6YkF5RDdUM19ScVdFOU5tTk1sRFpqSDhhSERDV0NRc3JqUmFka2x2aGZrTTZlOWdKNDNKa0FtMkEtSHhSTmZ3QTJvQkpNUjNuOU1EUlNVSEJHYTA1MTdBWkc2QU5hZ3cxbjhxNU0zd2liNHBzRVVZSVlJa1VuNUsybFN3VFJBd0lpS19FWVJoUHJsTFR3TDR4TktnTEhxTXRqUXpiQVNISVJGVUZDT3lLc2lhU2F0bnp2RnRGVmtHSkt6Q01MMzlzVUlr0gH6AUFVX3lxTFAzWmE1eTc0NkhsV3NWQ2tJT3p1NHZhMmN6VXZHZFZvd0pPeEN5ZTFoQ2laY3RPbUJlZTk3RVNWRFhQTnFUTUFMYkdNRXhISlZkV1pCZUJhajUzRjg5VENFRm12WlNCeGZJZHduUGlodURWak1MOWZKSl9DMjhxVnlTM1lnWjdDeGlTbFY2WVA5UWUzbVVnODNDSUNwOGlQVkc5S1NMVEZOSkdoelNlSTAzU1BMSFhpaEdpNVpKbFN3Y3pNUVk0S1VscVVvRDBtMGdQTXRwN3dOU1VVenBJSFFoWDYtOW1OUWRwUkVfVHY4R3pQWDVwUVEtd0E?oc=5",
       "source": "Economic Times"
      }
     ]
@@ -10608,9 +10623,16 @@
    "raw_pct_change": -4.96,
    "corporate_action": null,
    "why": {
-    "headline": "Regulatory Or Legal (The Hindu)",
+    "headline": "Operations (The Hindu)",
     "confidence": "medium",
     "evidence": [
+     {
+      "tier": "news",
+      "kind": "operations",
+      "detail": "J&K Cabinet expansion, reshuffle to take place next week: CM",
+      "url": "https://news.google.com/rss/articles/CBMizwFBVV95cUxQREMtLTVveWI1aG1yNWJZLWhPUVlrYlhVUEVTRDd0c3lja1BDeDlZZ3JtUjdjZVhRcDVRZGYtci0tM2xGaGUyRGc1TDVfb3QzU01BYkFvS3FWV0ZjVXNFS3ZqY2RMN01YcjZPcmtUZWNLbGxkZ3d6VE9BMmY3ZVZnQXF0c09mRlZFVktrX3k5TVVGX2RxMTRobUFxTTMwb0liRVZaZWU4NF9wV2FNZzlDdU9ZUzlrUHNqQnloZGpXVUhDTmZ1RkVLQUt5RnBvUlnSAdYBQVVfeXFMT2tvNjl1eWRaelpkQzBGVEdwZmd3bksybUE1bnVOdG9CU2dXai1zemVMOVp1SXRqN2kzb2Q1eXNpWmlWc0xFV0t0SDFtUXlDekNmYjAtaVd2YlFtR2hlN1dfR3hpdHRLMElLRFZYWExENWYzZzRxbDlBUmxROFZLOE9NNXlpcW1OV2U3TTNuOC1vdHZOWDRUTlpQVkJPanpHakk2OGJDR25jOHdwT2p3Z3RmMmNPOW5qV0tPMXdYYjV4ZlRjSlZ4YXlhWFMxM3JjbzBxaGZHdw?oc=5",
+      "source": "The Hindu"
+     },
      {
       "tier": "news",
       "kind": "regulatory or legal",
@@ -10620,10 +10642,10 @@
      },
      {
       "tier": "news",
-      "kind": "broker action",
-      "detail": "Virgo Tarot Horoscope Today, October 24, 2026: Will Take Initiative, Spirit of Cooperation Will Prevail",
-      "url": "https://news.google.com/rss/articles/CBMirgJBVV95cUxOU25qSVdVZ2dQcW55eWpNQlpvLTgzZE9SMzA3THJVMnZDSmxGMzI3UkpLY2o5OFBMVEVFRUc4N3F0U056cmJXLUw4MFlWSXZnYUNVM3I0R3B4NjBtWGJpV1BaeGJ0WFQ0a0VXTm5EcjlfYmdZY0lBR25SMzZQZExWTERlN0QtMGdyZlVRLVFsblZDTDdVeXloZXF5TjIwNlRUVTVDajNpY1BfU2lWd1UzUUxkSW9JQVlXSS10Q2k0YWlKbWJqdDEwbkV5cG5Vd2J1azFyTjJfd3doVHlkTXpfUk55VWtDRFZEaS1NRkhvTjVqMGhzYThvcm9hTktHamVtNU1YR1NCVWVENHJZT2xhY21JdzNITWhjWW92Y3R0NnZmbV81ZWI5R0FQOEdGQdIBswJBVV95cUxOSjF1OU45cFNKR0F1dlFuajdfNnRqVHZMUEY1dWtJWS1WS2x0eEpETXdSay1CV2RRTm1yT21OazlWYjdzM3RkT2c1WjZ6d3NJUVMxQUJZQXhUbmktcERYbXlWcFpxQXZKOVJqZG44cmlDTUdKdXdaLXdzOFZyUEtXeDdiWFV0RW1OV1NZM1UxOW9UemRQM2FscFc1MlREWEtTb24yNEs1OXhZSEgybjRyNjQydV8xOFQ1UWUyaVRpWXFVR2RZVTZsSXExRTd3YlVZTEIzdWowbWN1ZWtBMFpXSWt1N2hvZzZrdkl5SDJrN3NrczlPbFVSNDIwbVJGSk53MEFRU0VmSUd2OWpYZG1yelVyVWNGbS1vNjRiUnQtVS1UbXEzZnhGV09DWGU2YmwtMVNn?oc=5",
-      "source": "India Today"
+      "kind": "operations",
+      "detail": "Jammu and Kashmir cabinet expansion: Omar Abdullah says reshuffle to take place next week",
+      "url": "https://news.google.com/rss/articles/CBMi2gFBVV95cUxNLWxGQjZwWXJVVGI2TGRqVWhpUm1nWVlvS1VXOWVvMWVtRloteXRBZTZ0M2pfeTRwYnZldDJwUnZ0SzloeF9NMzdmeEFBdDYtdXZ2MlJRTXRoSHEtT2Y5OHlKSWp6M2RYLUIxdVltdVFDTHctUXQzZFl2U3ZvaU5nd3JBV0NTa0lWdWI5d041T21IV2pKN1pxZmFLRUtPQm5Nd2JEZDV3QXNrLXNpNWFXVVFyRjZDRFlIMGtZTlQwZ0wxZi1CZWd4dHRWSFc1OGVLaW0xc1NCRHRoQdIB3wFBVV95cUxQMHN3ekVIeWU3TmJfaE5oYmdPRUprUlJVeVlYY0pLTElxUlVsd1ZGTEJNaTctUzZGUmp4UzRJRXpkbEdnSmxvVW9MZ0hVSEphdHdndDNCVXdUdnBhcEFrbXB6ZW5VYzl2TXNfcG03Wmo4bDdYWGY5cUZmOHlMdklGVHNGSmlvYVJpTG9hS05fVEIwaGZOLTRKbEVEQXBnVGhQNUlUNldHZ2l0SWUwWDlYV0pWZVF1R055d05XODlVWEwyb3o4NDUzSnNZalU2SjFQM0ctNktYUEVTQWFZajE4?oc=5",
+      "source": "Moneycontrol"
      }
     ]
    },
@@ -11304,9 +11326,17 @@
    "raw_pct_change": -4.98,
    "corporate_action": null,
    "why": {
-    "headline": "No disclosed reason",
-    "confidence": "none",
-    "evidence": []
+    "headline": "Order Win (Scanx)",
+    "confidence": "low",
+    "evidence": [
+     {
+      "tier": "news",
+      "kind": "order win",
+      "detail": "Cords Cable Industries gets CGST appeal order, ₹45.92 Cr demand set aside",
+      "url": "https://news.google.com/rss/articles/CBMivwFBVV95cUxOeWt3N0lFNGtuZzdnajRNYjFoVjh6Sl9PSlNlX2kyV3J0Ni1uUnhTLUVja2VweHRMbXBqRzFnMGVGQmtHbWlfamxnTFo5d3NJLUp0TjdSTDl6UTJGVDJLWkNSWWd4T19IZHA0QXR1OUw5NXFFclExWl9FT3BmWFRXLWVESklHRDdQYy0tTlVReW5sR1dDa3MxZC0ycFIxYURUY2ZDVUx0LW52R2tOUjNrcHhsbVFQTktMS3RDYnE3dw?oc=5",
+      "source": "Scanx"
+     }
+    ]
    },
    "news_checked": true
   },
@@ -12078,9 +12108,17 @@
    "raw_pct_change": -5.0,
    "corporate_action": null,
    "why": {
-    "headline": "No disclosed reason",
-    "confidence": "none",
-    "evidence": []
+    "headline": "Fundraise Or Deal (Scanx)",
+    "confidence": "low",
+    "evidence": [
+     {
+      "tier": "news",
+      "kind": "fundraise or deal",
+      "detail": "Natural Biogenex allots 9.46 lakh shares in ₹94.63 lakh rights issue",
+      "url": "https://news.google.com/rss/articles/CBMi2wFBVV95cUxPVDZ1d1MzTGd0eXRWUFQ1Vm1WdHdWb0NRM1gxd3l5d05qQWV5Z2pQeXR5amlFNFhMLUY3TC1ZaFJLdGtubkp3U1FjNzVBUTZyYUNkeEFVY0xpZ014QWRGdlpIQ0ZfUEFzTEl6NU5CZHdEVWpPS3pIVUNoTUlWWnppWk9GX0FsRXM2ZExoeWF2TFluQjN0QXNyMnhlUVRMZjVjRlhUUUkzSWhmZXItZmMtQ1BjNlRJSkZBYk9TZE0tdDh0MnBoalk2RFVIU0pzY3RMd3lEaHl4czR1cU0?oc=5",
+      "source": "Scanx"
+     }
+    ]
    },
    "news_checked": true
   },
@@ -13012,13 +13050,6 @@
       "detail": "ABB India appoints Suneel Kumar as CFO",
       "url": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxQSjMtcTVic3hVNXVMMnotc1l6NnZ5Q3NwS0RTRDVlUDJ5cGp5M2xuOWFISnlLelRyM1ZrQnFMX3ByRnBsbXJnN1QyQWxxWVUzYlVjNDhtRTlPYzV4cEs2Sjg4R0FWNS1PYlN5ZHFUQWFTb3RoY1ZQLUNRc1cxRDEzWGZPQmZWZm1yRDFHX2hxOFNZTElNZTJmT1I1RnJGejA3LVdiTjV0dU3SAa4BQVVfeXFMUEhJa3pINkJrb2NNd09uWHZiRmtNSVBQZTM0aEFSR0NjVWFVZVc2WlJ4ZlExOUJmV2d5OENaTU1QTUtsTzhrYjkyMUFFVXNpcE96WXoxclpPd2E3NTh0enRlNkxOS1hablZXRklfRnVEM0l4TF9iNU9YTVFUc1pxNlVUREdWQlFLQkNIRnRubURjM0FpUUluNm1zdENHcTl0a2psZzRYdFJlZUtqQmdB?oc=5",
       "source": "Economic Times"
-     },
-     {
-      "tier": "news",
-      "kind": "order win",
-      "detail": "ABB India brokerage view: Citi Sell with ₹6,075 target, parent order read-through explained",
-      "url": "https://news.google.com/rss/articles/CBMi4wFBVV95cUxNYVo4bXpKNFFNZ3ltX3p2TFBBdDU1ZFBLTm1xY1JNc1d4dnhTc3R0am01dVY4VVUzTVJtLVFLa3pHVE4tY3JJTmF4bnpZUk0wMm51NXZOSVNTX2hQTmpDZzctNnU1ZXVMc05sdlp5a1l4emtVUXB1SmptbU5zaUt3cEN2YW8tX18zbk16TUhfNE5leDNaak1TOFdiUjBDcXlscUN0ZnNJN2F2RGxQN3Y5UDNQMXNVMnNROFhBZzdqWXpkVjFOTmVqOEYwRVBGYUZJRVFWWW1zbjd3R2tBN0FZVGN4UQ?oc=5",
-      "source": "Business Upturn"
      }
     ]
    },
