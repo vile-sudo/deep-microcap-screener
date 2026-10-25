@@ -1,8 +1,8 @@
 {
- "scanned_on": "2026-10-23",
+ "scanned_on": "2026-10-24",
  "asme_certificate_rows": 642,
  "asme_distinct_entities": 393,
- "matched_listed_count": 39,
+ "matched_listed_count": 41,
  "matched": [
   {
    "symbol": "ADOR",
@@ -162,6 +162,29 @@
    ],
    "asmeRows": [
     "ATV PROJECTS INDIA LIMITED"
+   ]
+  },
+  {
+   "symbol": "BEWLTD",
+   "exch": [
+    "NSE-SME"
+   ],
+   "listedName": "BEW Engineering Limited",
+   "certs": [
+    "U"
+   ],
+   "since": "2016-09-02",
+   "latest": "2016-09-02",
+   "certDetails": [
+    {
+     "code": "U",
+     "first": "2016-09-02",
+     "latest": "2016-09-02",
+     "certificates": 1
+    }
+   ],
+   "asmeRows": [
+    "BEW Engineering Limited"
    ]
   },
   {
@@ -1260,19 +1283,80 @@
     "Thermax Limited (C&H Group) Unit-II",
     "Thermax Limited C&H Group (A Division of Thermax Limited) UNIT I"
    ]
-  }
- ],
- "new_vs_last_scan": [],
- "dropped_vs_last_scan": [
-  {
-   "symbol": "BEWLTD",
-   "listedName": "BEW Engineering Limited"
   },
   {
    "symbol": "UHTL",
-   "listedName": "United Heat Transfer Limited"
+   "exch": [
+    "NSE-SME"
+   ],
+   "listedName": "United Heat Transfer Limited",
+   "certs": [
+    "U"
+   ],
+   "since": "2022-06-09",
+   "latest": "2022-06-09",
+   "certDetails": [
+    {
+     "code": "U",
+     "first": "2022-06-09",
+     "latest": "2022-06-09",
+     "certificates": 1
+    }
+   ],
+   "asmeRows": [
+    "United Heat Transfer Limited"
+   ]
   }
  ],
+ "new_vs_last_scan": [
+  {
+   "symbol": "BEWLTD",
+   "exch": [
+    "NSE-SME"
+   ],
+   "listedName": "BEW Engineering Limited",
+   "certs": [
+    "U"
+   ],
+   "since": "2016-09-02",
+   "latest": "2016-09-02",
+   "certDetails": [
+    {
+     "code": "U",
+     "first": "2016-09-02",
+     "latest": "2016-09-02",
+     "certificates": 1
+    }
+   ],
+   "asmeRows": [
+    "BEW Engineering Limited"
+   ]
+  },
+  {
+   "symbol": "UHTL",
+   "exch": [
+    "NSE-SME"
+   ],
+   "listedName": "United Heat Transfer Limited",
+   "certs": [
+    "U"
+   ],
+   "since": "2022-06-09",
+   "latest": "2022-06-09",
+   "certDetails": [
+    {
+     "code": "U",
+     "first": "2022-06-09",
+     "latest": "2022-06-09",
+     "certificates": 1
+    }
+   ],
+   "asmeRows": [
+    "United Heat Transfer Limited"
+   ]
+  }
+ ],
+ "dropped_vs_last_scan": [],
  "new_vs_live_asme_certified_file": [
   {
    "symbol": "HDFIRE",

@@ -1,38 +1,50 @@
 {
- "updated": "2026-10-24T04:38+05:30",
+ "updated": "2026-10-25T04:06+05:30",
  "figures": [
   {
-   "label": "Brent crude (futures settle)",
+   "label": "Brent crude",
    "value": "$116.72/bbl",
    "as_of": "2026-10-23",
-   "note": "+3.14% on the day, +6% on the week; highest since 29 April",
+   "note": "Settle, +$3.55 (+3.14%); highest settlement since 29 April",
    "source": {
-    "publisher": "Yahoo Finance",
-    "url": "https://finance.yahoo.com/energy/articles/oil-prices-rise-supply-concerns-052617190.html"
+    "publisher": "FinanceFeeds (citing Reuters)",
+    "url": "https://financefeeds.com/brent-crude-oil-price-116-72-saturday-week-ahead-houthi-saudi-fed-28-october-bull-120-bear-108/"
    }
   },
   {
-   "label": "WTI crude (settle)",
+   "label": "WTI crude",
    "value": "$103.27/bbl",
    "as_of": "2026-10-23",
-   "note": "+3.8% on the day",
+   "note": "Settle, +3.8% on the day",
    "source": {
-    "publisher": "Yahoo Finance",
-    "url": "https://finance.yahoo.com/energy/articles/oil-prices-rise-supply-concerns-052617190.html"
-   }
-  },
-  {
-   "label": "Nifty 50",
-   "value": "22,600",
-   "as_of": "2026-10-23",
-   "note": "-0.39% on the day; -2.4% on the week",
-   "source": {
-    "publisher": "HDFC Sky",
-    "url": "https://hdfcsky.com/news/market-close-report-today-sensex-nifty-decline-for-fourth-day-as-oil-continues-climb"
+    "publisher": "FinanceFeeds (citing Reuters)",
+    "url": "https://financefeeds.com/brent-crude-oil-price-116-72-saturday-week-ahead-houthi-saudi-fed-28-october-bull-120-bear-108/"
    }
   }
  ],
  "items": [
+  {
+   "date": "2026-10-24",
+   "title": "HSBC raises 2026 Brent forecast to $90 from $80; warns stalemate could push crude to $120",
+   "text": "A 24 October market wrap reports HSBC lifted its 2026 Brent forecast to $90 from $80 and says a prolonged stalemate could push Brent to $120. The same wrap notes Goldman Sachs' December Brent forecast of $90, set earlier in October when Brent was near $107, and that Brent settled at $116.72 on 23 October, well above both. Higher crude supports realisations for upstream producers such as ONGC and Oil India, but raises the import bill and margin pressure for refiners in India.",
+   "tone": "watch",
+   "companies": [
+    "ONGC",
+    "OIL",
+    "IOC",
+    "BPCL",
+    "HINDPETRO"
+   ],
+   "sources": [
+    {
+     "publisher": "FinanceFeeds",
+     "title": "Brent Crude Oil Price: $116.72 Settle, Week Ahead Bull $120",
+     "url": "https://financefeeds.com/brent-crude-oil-price-116-72-saturday-week-ahead-houthi-saudi-fed-28-october-bull-120-bear-108/",
+     "date": "2026-10-24"
+    }
+   ],
+   "added": "2026-10-25"
+  },
   {
    "date": "2026-10-23",
    "title": "Brent settles at $116.72, highest since 29 April, on Houthi attacks in Saudi Arabia",
@@ -1251,25 +1263,6 @@
      "publisher": "Free Press Journal",
      "title": "OMCs May Have To Bear Rs 5 Per Litre Of Loss On Petrol As Brent Crude Crosses $100",
      "url": "https://www.freepressjournal.in/business/omcs-may-have-to-bear-5-per-litre-of-loss-on-petrol-as-brent-crude-crosses-100",
-     "date": "2026-09-10"
-    }
-   ],
-   "added": "2026-09-15"
-  },
-  {
-   "date": "2026-09-09",
-   "title": "HSBC, Goldman Sachs lift Brent forecasts as Indian basket hits $115.98",
-   "text": "India's crude basket hit $115.98/bbl on 9 September, pushing the September-to-date average to $104.09 (+15.4% versus August's $90.19). HSBC raised its 2026 Brent forecast to $90/bbl from $80, citing threats to Hormuz shipping, while Goldman Sachs sees Brent averaging $85 in December 2026 and $80 in 2027, with a risk scenario above $120 if attacks on shipping intensify. Higher-for-longer crude supports realisations for ONGC, Oil India and other Indian producers but raises the import bill.",
-   "tone": "watch",
-   "companies": [
-    "ONGC",
-    "OIL"
-   ],
-   "sources": [
-    {
-     "publisher": "Business Today",
-     "title": "Indian crude oil basket hits $115.98 a barrel: HSBC, Goldman Sachs raise Brent forecasts",
-     "url": "https://www.businesstoday.in/markets/stocks/story/indian-crude-oil-basket-hits-115-98-a-barrel-hsbc-goldman-sachs-raise-brent-forecasts-554552-2026-09-10",
      "date": "2026-09-10"
     }
    ],
