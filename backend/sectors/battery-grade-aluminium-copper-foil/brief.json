@@ -1,0 +1,39 @@
+{
+ "slug": "battery-grade-aluminium-copper-foil",
+ "name": "Li-ion Battery Current-Collector Foils: Aluminium & Copper Foil Localisation",
+ "icon": "chip",
+ "scope": "Ultra-thin aluminium (cathode) and copper (anode) foil is a lithium-ion cell input that India still largely imports (IndexBox India battery-foil report, May 2026: ~80-85% import-dependent, 18-22% CAGR to 2035); Hindalco commissioned India's first battery-grade foil line (Jan 2026), SRF's board approved a Rs 600 cr / 12,000 tpa battery-foil plant on 21 Oct 2026, Shyam Metalics announced battery-grade foil entry (2023), and a Rs 12,000-13,000 cr battery-component PLI that includes copper foil is reported as pending. Early on foil specifically (thin media coverage, not yet grouped in broker thematic notes), but only 3 mid/large-cap listed names are confirmed, no small cap, and copper foil has no confirmed listed Indian producer yet.",
+ "questions": [
+  "What is battery-grade aluminium and copper foil, what are the thickness/purity/qualification requirements, and how large is it as a share of Li-ion cell bill of materials (reported ~4-5%)?",
+  "How big is India's foil demand and import dependence (China/Japan/Korea share), and what do IndexBox and other market-research sources project to 2030/2035, given ACC-PLI and gigafactory build-outs?",
+  "What is the status and scope of the reported Rs 12,000-13,000 cr battery-component PLI (anode/cathode materials, electrolyte, separator, copper foil)? Is aluminium foil covered, and what are the timing and approval risks?",
+  "What exactly has Hindalco commissioned (Jan 2026 Odisha FRP + battery foil facility, Mouda line, up to 100 GWh support), what is the foil capacity, which cell makers have qualified it, and what is the revenue materiality versus Hindalco's total business?",
+  "What did SRF's board approve on 21 Oct 2026 (SRF Altech, Jetapur MP, Rs 600 cr in two phases, 12,000 tpa, phase 1 by Sep 2028), what customers/chemistries (Li-ion, sodium-ion) is it aimed at, and how does it fit SRF's existing aluminium foil business and anti-dumping protection?",
+  "What is the true status of Shyam Metalics' battery-grade foil (2023 announcement of 12-20 micron foil, July 2026 18,000 tpa Sambalpur foil plant, 60,000 tpa FRP plant): is battery foil actually being sold, and in what volume?",
+  "Is there any listed Indian copper-foil producer or announced plan (Hindalco/Nippon Denkai technology licence, others)? Check for company-confirmed plans before including names.",
+  "Has the market priced this in? Check six-month and one-year stock performance and broker/media coverage of Hindalco, SRF and Shyam Metalics, and whether any 'battery foil stocks' pieces exist.",
+  "Which other listed Indian companies (small and mid caps) have disclosed battery-foil plans, filings or rating-rationale mentions, so the universe can be extended beyond the three confirmed names?",
+  "What are the risks (Chinese pricing and the anti-dumping duty sunset on 15 Dec 2026, gigafactory delays, qualification cycles, PLI uncertainty, foil being a small part of group revenue) and the near-term catalysts (anti-dumping review, PLI approval, cell-maker qualifications, quarterly commentary)?"
+ ],
+ "bucket_labels": {
+  "commissioned_battery_foil": [
+   "Commissioned / Qualified Battery Foil",
+   "Listed companies with battery-grade foil capacity already built or announced as operating"
+  ],
+  "announced_foil_capacity": [
+   "Announced Foil Capacity",
+   "Companies with board-approved or publicly announced battery foil plants not yet producing at scale"
+  ]
+ },
+ "universe": {
+  "commissioned_battery_foil": [
+   "HINDALCO",
+   "SHYAMMETL"
+  ],
+  "announced_foil_capacity": [
+   "SRF"
+  ]
+ },
+ "refresh": "weekly",
+ "kind": "theme"
+}

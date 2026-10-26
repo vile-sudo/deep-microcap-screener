@@ -1,28 +1,56 @@
 {
- "updated": "2026-10-25T04:06+05:30",
+ "updated": "2026-10-26T04:17+05:30",
  "figures": [
   {
    "label": "Brent crude",
    "value": "$116.72/bbl",
    "as_of": "2026-10-23",
-   "note": "Settle, +$3.55 (+3.14%); highest settlement since 29 April",
+   "note": "+3.14% on the day; highest settle since 29 April; late quotes $117.23-$117.30",
    "source": {
-    "publisher": "FinanceFeeds (citing Reuters)",
-    "url": "https://financefeeds.com/brent-crude-oil-price-116-72-saturday-week-ahead-houthi-saudi-fed-28-october-bull-120-bear-108/"
+    "publisher": "The Star (Malaysia)",
+    "url": "https://www.thestar.com.my/aseanplus/aseanplus-news/2026/10/24/middle-east-mayhem-oil-prices-jump-us3-on-houthi-attacks-oil-spill-highest-settlement-since-april"
    }
   },
   {
    "label": "WTI crude",
    "value": "$103.27/bbl",
    "as_of": "2026-10-23",
-   "note": "Settle, +3.8% on the day",
+   "note": "+3.8% on the day",
    "source": {
-    "publisher": "FinanceFeeds (citing Reuters)",
-    "url": "https://financefeeds.com/brent-crude-oil-price-116-72-saturday-week-ahead-houthi-saudi-fed-28-october-bull-120-bear-108/"
+    "publisher": "The Star (Malaysia)",
+    "url": "https://www.thestar.com.my/aseanplus/aseanplus-news/2026/10/24/middle-east-mayhem-oil-prices-jump-us3-on-houthi-attacks-oil-spill-highest-settlement-since-april"
    }
   }
  ],
  "items": [
+  {
+   "date": "2026-10-25",
+   "title": "Houthis claim Yanbu, Rabigh strikes; Aramco evacuates Dhahran HQ as Brent holds near $117",
+   "text": "Houthi spokesman Yahya Saree on 24 October listed Aramco facilities at Yanbu, the Rabigh refinery and the East-West Pipeline as targets, though Saudi Arabia has not confirmed damage to oil infrastructure. The Star reports Aramco ordered its Dhahran headquarters evacuated, and the State Department ordered non-emergency staff out of its Saudi missions. Brent had settled at $116.72 on 23 October and was quoted at $117.23-$117.30 late; base case for the coming week is $112-$120. Higher crude helps ONGC and Oil India realisations but squeezes OMC margins and India's import bill.",
+   "tone": "watch",
+   "companies": [
+    "ONGC",
+    "OIL",
+    "IOC",
+    "BPCL",
+    "HINDPETRO"
+   ],
+   "sources": [
+    {
+     "publisher": "FinanceFeeds",
+     "title": "Brent Crude Price: $116.72 Into Sunday Open, Bull $120",
+     "url": "https://financefeeds.com/brent-crude-oil-price-116-72-sunday-futures-open-houthi-yanbu-rabigh-claims-riyadh-intercepts-fed-week-bull-120-bear-108/",
+     "date": "2026-10-25"
+    },
+    {
+     "publisher": "The Star (Malaysia)",
+     "title": "Middle East mayhem: Oil prices jump US$3 on Houthi attacks, oil spill, highest settlement since April",
+     "url": "https://www.thestar.com.my/aseanplus/aseanplus-news/2026/10/24/middle-east-mayhem-oil-prices-jump-us3-on-houthi-attacks-oil-spill-highest-settlement-since-april",
+     "date": "2026-10-24"
+    }
+   ],
+   "added": "2026-10-26"
+  },
   {
    "date": "2026-10-24",
    "title": "HSBC raises 2026 Brent forecast to $90 from $80; warns stalemate could push crude to $120",
@@ -1225,45 +1253,6 @@
      "title": "Oil Market Report - September 2026",
      "url": "https://www.iea.org/reports/oil-market-report-september-2026",
      "date": "2026-09-11"
-    }
-   ],
-   "added": "2026-09-15"
-  },
-  {
-   "date": "2026-09-10",
-   "title": "ONGC, Oil India shares jump as Brent tops $100 on Hormuz crisis",
-   "text": "ONGC gained nearly 2% and Oil India advanced about 2.4% on 10 September as Brent crude crossed $100/bbl (trading near $101.10) and WTI traded near $96.24, on escalating US-Iran tensions over the Middle East. Higher crude directly lifts realisations and profitability for India's state-run upstream producers.",
-   "tone": "good",
-   "companies": [
-    "ONGC",
-    "OIL"
-   ],
-   "sources": [
-    {
-     "publisher": "Free Press Journal",
-     "title": "ONGC, Oil India Shares Rise Over 2% As Brent Crude Crosses $100 Mark",
-     "url": "https://www.freepressjournal.in/business/ongc-oil-india-shares-rise-over-2-as-brent-crude-crosses-100-mark",
-     "date": "2026-09-10"
-    }
-   ],
-   "added": "2026-09-15"
-  },
-  {
-   "date": "2026-09-10",
-   "title": "OMC marketing margins turn deeply negative as Brent crosses $100",
-   "text": "Indian oil marketing companies are estimated to be losing about Rs 5 per litre on petrol and Rs 23 per litre on diesel after Brent crude crossed $100/bbl, up sharply from the $70-75 range before the Iran conflict, while retail pump prices have stayed frozen since April 2022. Continued crude strength without a retail price revision squeezes marketing margins for IOC, BPCL and HPCL, even as refining margins provide some offsetting cushion.",
-   "tone": "bad",
-   "companies": [
-    "IOC",
-    "BPCL",
-    "HINDPETRO"
-   ],
-   "sources": [
-    {
-     "publisher": "Free Press Journal",
-     "title": "OMCs May Have To Bear Rs 5 Per Litre Of Loss On Petrol As Brent Crude Crosses $100",
-     "url": "https://www.freepressjournal.in/business/omcs-may-have-to-bear-5-per-litre-of-loss-on-petrol-as-brent-crude-crosses-100",
-     "date": "2026-09-10"
     }
    ],
    "added": "2026-09-15"

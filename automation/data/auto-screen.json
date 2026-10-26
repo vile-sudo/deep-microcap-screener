@@ -14698,6 +14698,10 @@
    "on": "2026-10-23",
    "result": "added",
    "detail": "AZADIND"
+  },
+  "INE00TV01023": {
+   "on": "2026-10-26",
+   "result": "not on screener"
   }
  },
  "runs": [
@@ -15008,6 +15012,12 @@
   {
    "on": "2026-10-25",
    "fetched": 0,
+   "added_codes": []
+  },
+  {
+   "on": "2026-10-26",
+   "fetched": 1,
+   "not on screener": 1,
    "added_codes": []
   }
  ]

@@ -147803,7 +147803,7 @@
      ]
     }
    },
-   "profiled_on": "2026-10-24"
+   "profiled_on": "2026-10-25"
   }
  },
  {
@@ -148066,7 +148066,7 @@
      ]
     }
    },
-   "profiled_on": "2026-10-24"
+   "profiled_on": "2026-10-25"
   }
  },
  {
@@ -154792,7 +154792,7 @@
      ]
     }
    },
-   "profiled_on": "2026-10-24"
+   "profiled_on": "2026-10-25"
   }
  },
  {
@@ -170902,6 +170902,911 @@
   "plausible": true,
   "verdict": null,
   "seen_on": "2026-10-24",
+  "source": "sweep",
+  "moat_signal": null,
+  "moat_evidence": null
+ },
+ {
+  "sym": "KHAZANCHI",
+  "name": "Khazanchi Jewellers Limited",
+  "board": "NSE",
+  "isin": "INE0OWC01011",
+  "listed": "27-OCT-2026",
+  "hint": null,
+  "why": "sector unknown, SME platform",
+  "plausible": false,
+  "verdict": null,
+  "seen_on": "2026-10-25",
+  "source": "new-listing",
+  "moat_signal": null,
+  "moat_evidence": null
+ },
+ {
+  "sym": "530117",
+  "name": "Privi Speciality Chemicals Ltd",
+  "board": "BSE",
+  "isin": "INE959A01019",
+  "listed": null,
+  "hint": "chemicals",
+  "why": "mid-cap sweep",
+  "mktcap_cr": 12685.03,
+  "plausible": true,
+  "verdict": null,
+  "seen_on": "2026-10-25",
+  "source": "sweep",
+  "moat_signal": null,
+  "moat_evidence": null
+ },
+ {
+  "sym": "543960",
+  "name": "Concord Biotech Ltd",
+  "board": "BSE",
+  "isin": "INE338H01029",
+  "listed": null,
+  "hint": "pharma & healthcare",
+  "why": "mid-cap sweep",
+  "mktcap_cr": 12855.76,
+  "plausible": true,
+  "verdict": null,
+  "seen_on": "2026-10-25",
+  "source": "sweep",
+  "moat_signal": true,
+  "moat_evidence": [
+   "monopoly claim: \"Furthermore, Concord Biotech is among the few Indian immunosuppressant formulation manufacturers with US ANDA approvals to be integrated with in‐house fermentation‐based immunosuppressant APIs for select organ transplant drugs namely Tacrolimus, Mycophenolate Mofetil, and Mycophenolate Sodium.\" (prospectus, company-stated)",
+   "monopoly claim: \"In addition, we are among the few Indian immunosuppressant formulation manufacturers with ANDA approvals to be integrated with in-house fermentation-based immunosuppressant APIs for select organ transplant drugs, namely tacrolimus, mycophenolate mofetil and mycophenolate sodium.\" (prospectus, company-stated)",
+   "import substitution: \"We are one of the companies approved by the Government of India to receive incentives under the Production Linked Incentive (“PLI Scheme”) to promote domestic manufacturing of critical key starting materials, drug intermediates and APIs in India, by attracting large investments in the pharmaceutical sector and reduce India’s import dependence in critical APIs.\" (prospectus, company-stated)",
+   "import substitution: \"The subsidy income (including incentives received under the PLI Scheme) recognized by us for the Financial Years 2021, 2022 and 2023 was ₹1.\" (prospectus, company-stated)",
+   "import substitution: \"We are currently one of the companies approved by the Government of India to receive incentives under the PLI Scheme.\" (prospectus, company-stated)"
+  ],
+  "profile": {
+   "symbol": "543960",
+   "company": "Concord Biotech Limited",
+   "isin": "INE338H01029",
+   "board": "BSE",
+   "source": {
+    "document": "final prospectus",
+    "url": "https://nsearchives.nseindia.com/corporate/FP_INE338H01029_11AUG2023.pdf",
+    "filed": "11-Aug-2023",
+    "pdf_bytes": 18783179,
+    "extracted_chars": 1263042
+   },
+   "grade": "company-stated",
+   "verified_against": null,
+   "claims": {
+    "accreditation": {
+     "count": 37,
+     "dropped_as_industry_commentary": 8,
+     "terms": [
+      "USFDA",
+      "EUGMP",
+      "CDSCO",
+      "EU GMP"
+     ],
+     "evidence": [
+      {
+       "match": "USFDA",
+       "sentence": "As of the date of this Prospectus, none of the observations issued by the USFDA, Central Drugs Standard Control Organisation of India (“CDSCO”) or other external agencies require us to take any further action."
+      },
+      {
+       "match": "EUGMP",
+       "sentence": "For instance, pursuant to the inspection of our API manufacturing facility in Dholka in May 2017, certain observations were noted by the Government of Upper Bavaria of Germany and hence the European Union Good Manufacturing Practice (“EUGMP”) certificate was not issued to our Company for the Dholka facility."
+      },
+      {
+       "match": "EUGMP",
+       "sentence": "Accordingly, an EUGMP certificate was issued to our Company for the Dholka facility in October 2021."
+      }
+     ]
+    },
+    "monopoly_claim": {
+     "count": 2,
+     "dropped_as_industry_commentary": 3,
+     "terms": [
+      "among the few Indian immunosuppressant formulation manufacturers"
+     ],
+     "evidence": [
+      {
+       "match": "among the few Indian immunosuppressant formulation manufacturers",
+       "sentence": "Furthermore, Concord Biotech is among the few Indian immunosuppressant formulation manufacturers with US ANDA approvals to be integrated with in‐house fermentation‐based immunosuppressant APIs for select organ transplant drugs namely Tacrolimus, Mycophenolate Mofetil, and Mycophenolate Sodium."
+      },
+      {
+       "match": "among the few Indian immunosuppressant formulation manufacturers",
+       "sentence": "In addition, we are among the few Indian immunosuppressant formulation manufacturers with ANDA approvals to be integrated with in-house fermentation-based immunosuppressant APIs for select organ transplant drugs, namely tacrolimus, mycophenolate mofetil and mycophenolate sodium."
+      }
+     ]
+    },
+    "import_substitution": {
+     "count": 6,
+     "dropped_as_industry_commentary": 13,
+     "terms": [
+      "Production Linked Incentive",
+      "PLI Scheme",
+      "PLI scheme"
+     ],
+     "evidence": [
+      {
+       "match": "Production Linked Incentive",
+       "sentence": "We are one of the companies approved by the Government of India to receive incentives under the Production Linked Incentive (“PLI Scheme”) to promote domestic manufacturing of critical key starting materials, drug intermediates and APIs in India, by attracting large investments in the pharmaceutical sector and reduce India’s import dependence in critical APIs."
+      },
+      {
+       "match": "PLI Scheme",
+       "sentence": "The subsidy income (including incentives received under the PLI Scheme) recognized by us for the Financial Years 2021, 2022 and 2023 was ₹1."
+      },
+      {
+       "match": "PLI Scheme",
+       "sentence": "We are currently one of the companies approved by the Government of India to receive incentives under the PLI Scheme."
+      }
+     ]
+    },
+    "ip": {
+     "count": 30,
+     "dropped_as_industry_commentary": 35,
+     "terms": [
+      "trademarks",
+      "patents",
+      "patent",
+      "Patent",
+      "trademark",
+      "Trademarks"
+     ],
+     "evidence": [
+      {
+       "match": "trademarks",
+       "sentence": "If we are unable to obtain trademarks and patents for our products or protect such proprietary information, or inadvertently infringe on the patents of others, our business may be adversely affected."
+      },
+      {
+       "match": "trademarks",
+       "sentence": "We rely on trademarks, patents and non-competition agreements to protect our proprietary intellectual property and secrets."
+      },
+      {
+       "match": "patents",
+       "sentence": "Our existing patents and trademarks may expire, and we cannot assure you that we will be able to renew them after expiry."
+      }
+     ]
+    }
+   },
+   "risk_factors": {
+    "customer_concentration": {
+     "count": 1,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "dependence on a limited number of customers"
+     ],
+     "evidence": [
+      {
+       "match": "dependence on a limited number of customers",
+       "sentence": "28% While we have not experienced any instances of discontinuation of the purchases from our ten largest customers by revenue in the past three Financial Years, our dependence on a limited number of customers may expose us to risks such as significant reductions in demand for our products from them in the future, including due to reasons beyond our control, such as them experiencing adverse market conditions or financial difficulties."
+      }
+     ]
+    },
+    "promoter_litigation": {
+     "count": 1,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "criminal proceedings"
+     ],
+     "evidence": [
+      {
+       "match": "criminal proceedings",
+       "sentence": "289 SECTION VI: LEGAL AND OTHER INFORMATION OUTSTANDING LITIGATION AND MATERIAL DEVELOPMENTS Except as stated in this section, there are no outstanding (i) criminal proceedings; (ii) actions taken by statutory or regulatory authorities; (iii) claims related to direct and indirect taxes; and (iv) pending material litigation, in each case involving our Company, Directors or Promoters."
+      }
+     ]
+    },
+    "related_party": {
+     "count": 17,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "Related Party Transactions",
+      "related party transactions",
+      "Related party transactions",
+      "RELATED PARTY TRANSACTIONS"
+     ],
+     "evidence": [
+      {
+       "match": "Related Party Transactions",
+       "sentence": "Summary of Related Party Transactions A summary of related party transactions as per the requirements under Ind AS 24 – Related Party Disclosures read with the SEBI ICDR Regulations entered into by our Company w"
+      },
+      {
+       "match": "related party transactions",
+       "sentence": "26 For details of the related party transactions, see “Restated Consolidated Financial Information – Notes to the Restated Consolidated Financial Information – Note 39: Related Party Transactions” on page 249."
+      },
+      {
+       "match": "Related party transactions",
+       "sentence": "For details on our related-party transactions, see “Restated Consolidated Financial Information — Notes to the Restated Consolidated Financial Information — Note 39: Related party transactions” on page 249."
+      }
+     ]
+    }
+   },
+   "objects_of_the_issue": {
+    "offer_for_sale": {
+     "count": 33,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "Offer for Sale",
+      "OFFER FOR SALE",
+      "offer for sale"
+     ],
+     "evidence": [
+      {
+       "match": "Offer for Sale",
+       "sentence": "Highway Gujarat, India Assistant Vice President Telephone: 079-6813 8700 Ahmedabad – 380015 (Finance)) Gujarat, India Type Offer for Sale Fresh Issue Size Not applicable WEBSITE www."
+      },
+      {
+       "match": "Offer for Sale",
+       "sentence": "com THE PROMOTERS OF OUR COMPANY ARE SUDHIR VAID AND ANKUR VAID DETAILS OF THE OFFER Size of the Offer for Sale Total Offer Size Eligibility and Reservations 20,925,652* Equity Shares ₹15,505."
+      },
+      {
+       "match": "OFFER FOR SALE",
+       "sentence": "DETAILS OF THE SELLING SHAREHOLDER(S), OFFER FOR SALE AND THE WEIGHTED AVERAGE COST OF ACQUISITION NAME OF THE SELLING TYPE NUMBER OF EQUITY SHARES WEIGHTED AVERAGE COST OF SHAREHOLDER OFFERED ACQUISITION PER EQUITY SHARE (IN ₹)^ Helix Investment Holdings Pte."
+      }
+     ]
+    },
+    "fresh_issue": {
+     "count": 1,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "Fresh Issue"
+     ],
+     "evidence": [
+      {
+       "match": "Fresh Issue",
+       "sentence": "Highway Gujarat, India Assistant Vice President Telephone: 079-6813 8700 Ahmedabad – 380015 (Finance)) Gujarat, India Type Offer for Sale Fresh Issue Size Not applicable WEBSITE www."
+      }
+     ]
+    },
+    "capital_expenditure": {
+     "count": 18,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "capital expenditure",
+      "expansion of our",
+      "Expansion of our",
+      "Capital Expenditure"
+     ],
+     "evidence": [
+      {
+       "match": "capital expenditure",
+       "sentence": "As of March 31, 2021, 2022 and 2023, we also had capital expenditure relating to R&D amounting to ₹13."
+      },
+      {
+       "match": "expansion of our",
+       "sentence": "Our continued growth requires us to manage complexities such as those relating to increased headcount and the expansion of our international sales and marketing operations, manufacturing and R&D facilities as well as appropriate systems and controls, and depends on our ability to sustain and grow our market share in the markets in which we sell our products at present and in the future, such as China."
+      },
+      {
+       "match": "capital expenditure",
+       "sentence": "y governments, businesses and individuals in response to the pandemic; the effect on customer demand for and ability to pay for our products; the impact on our capital expenditure and product development projects; disruptions or restrictions on our employees’ and suppliers’ ability to work, travel or fulfil their obligations to us; any extended period of remote work arrangements; and strains on our or our customers’ business continuity plans."
+      }
+     ]
+    },
+    "working_capital": {
+     "count": 6,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "working capital requirements"
+     ],
+     "evidence": [
+      {
+       "match": "working capital requirements",
+       "sentence": "We have significant working capital requirements."
+      },
+      {
+       "match": "working capital requirements",
+       "sentence": "If we experience insufficient cash flows to fund our working capital requirements, there may be an adverse effect on our business, cash flows and results of operations."
+      },
+      {
+       "match": "working capital requirements",
+       "sentence": "Continued increases in our working capital requirements may have an adverse effect on our results of operations, cash flows and financial condition."
+      }
+     ]
+    }
+   },
+   "profiled_on": "2026-10-25"
+  }
+ },
+ {
+  "sym": "543413",
+  "name": "Tega Industries Ltd",
+  "board": "BSE",
+  "isin": "INE011K01018",
+  "listed": null,
+  "hint": "industrial & capital goods",
+  "why": "mid-cap sweep",
+  "mktcap_cr": 12933.98,
+  "plausible": true,
+  "verdict": null,
+  "seen_on": "2026-10-25",
+  "source": "sweep",
+  "moat_signal": true,
+  "moat_evidence": [
+   "monopoly claim: \"We are currently the second largest producer of polymer-based mill liners in the world, on the basis of revenues for calendar year 2020.\" (prospectus, company-stated)",
+   "monopoly claim: \"According to the F&S Report, we are the only player providing a ‘hybrid liner’ across both larger SAG mills in the segment range of (>9.\" (prospectus, company-stated)"
+  ],
+  "profile": {
+   "symbol": "543413",
+   "company": "Tega Industries Limited",
+   "isin": "INE011K01018",
+   "board": "BSE",
+   "source": {
+    "document": "final prospectus",
+    "url": "https://nsearchives.nseindia.com/corporate/FP_INE011K01018_08DEC2021.pdf",
+    "filed": "06-Dec-2021",
+    "pdf_bytes": 9248622,
+    "extracted_chars": 1427322
+   },
+   "grade": "company-stated",
+   "verified_against": null,
+   "claims": {
+    "accreditation": {
+     "count": 3,
+     "dropped_as_industry_commentary": 2,
+     "terms": [
+      "ISO 9001"
+     ],
+     "evidence": [
+      {
+       "match": "ISO 9001",
+       "sentence": "53 We have been awarded the Integrated Management System (IMS) certification by SGS India Limited, and are now certified for three management systems, which are: Quality Management System (QMS) – ISO 9001:2015 (India, South Africa), Environment Management System (EMS) – ISO 14001:2004 (India) and Occupational Health & Safety Management System (OHSMS) – OHSAS 18001:2007 (India)."
+      },
+      {
+       "match": "ISO 9001",
+       "sentence": "We undertake multiple stringent quality checks and have been awarded Integrated Management System (IMS) certification by SGS United Kingdom Limited, which are: Quality Management System (QMS) – ISO 9001:2015 (India, South Africa), Environment Management System (EMS) – ISO 14001:2015 (India) and Occupational Health & Safety Management System (OHSMS) – ISO 45001:2018 (India)."
+      },
+      {
+       "match": "ISO 9001",
+       "sentence": "Our Company was granted the Quality Certifications ISO 9001:2015, ISO 14001:2015 and ISO 45001:2018 accreditation."
+      }
+     ]
+    },
+    "monopoly_claim": {
+     "count": 2,
+     "dropped_as_industry_commentary": 11,
+     "terms": [
+      "largest producer",
+      "only player"
+     ],
+     "evidence": [
+      {
+       "match": "largest producer",
+       "sentence": "We are currently the second largest producer of polymer-based mill liners in the world, on the basis of revenues for calendar year 2020."
+      },
+      {
+       "match": "only player",
+       "sentence": "According to the F&S Report, we are the only player providing a ‘hybrid liner’ across both larger SAG mills in the segment range of (>9."
+      }
+     ]
+    },
+    "ip": {
+     "count": 39,
+     "dropped_as_industry_commentary": 12,
+     "terms": [
+      "patents",
+      "Patents",
+      "patent",
+      "patented",
+      "trademark",
+      "trademarks",
+      "trademarked"
+     ],
+     "evidence": [
+      {
+       "match": "patents",
+       "sentence": "Further, we also incur costs in obtaining patents for our products and operations."
+      },
+      {
+       "match": "patents",
+       "sentence": "For details see, “-Our efforts in obtaining and protecting our patents may be costly and unsuccessful, which may have an adverse effect on our business and results of operations” below."
+      },
+      {
+       "match": "patents",
+       "sentence": "Our efforts in obtaining and protecting our patents may be costly and unsuccessful, which may have an adverse effect on our business and results of operations."
+      }
+     ]
+    }
+   },
+   "risk_factors": {
+    "customer_concentration": {
+     "count": 4,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "top 10 customers",
+      "customer concentration"
+     ],
+     "evidence": [
+      {
+       "match": "top 10 customers",
+       "sentence": "As an average of the last three Fiscals, our top 10 customers accounted for only 29."
+      },
+      {
+       "match": "top 10 customers",
+       "sentence": "Ability to maintain and grow demand for our products from key customers We have a diversified client base with our top 10 customers accounting for 34."
+      },
+      {
+       "match": "customer concentration",
+       "sentence": "Supplier or customer concentration We procure certain of our primary raw materials, i."
+      }
+     ]
+    },
+    "promoter_litigation": {
+     "count": 6,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "criminal complaints",
+      "criminal proceedings",
+      "proceedings involving our Promoters"
+     ],
+     "evidence": [
+      {
+       "match": "criminal complaints",
+       "sentence": "^ These three criminal complaints have been filed by the Company against Tecpro Systems Ltd."
+      },
+      {
+       "match": "criminal proceedings",
+       "sentence": "As per the Materiality Policy, all pending litigation involving our Company, our Subsidiaries, our Promoters and our Directors, other than criminal proceedings, statutory or regulatory actions and taxation matters, are considered “material” if the monetary amount of claim by or against the entity or person, in any such pending litigation exceeds 0."
+      },
+      {
+       "match": "criminal proceedings",
+       "sentence": "354 SECTION VI: LEGAL AND OTHER INFORMATION OUTSTANDING LITIGATION AND OTHER MATERIAL DEVELOPMENTS Except as stated in this section, there are no outstanding, (i) criminal proceedings; (ii) actions taken by statutory or regulatory authorities; (iii) claims related to direct or indirect taxes, in a consolidated manner; or (iv) material civil litigation as per th"
+      }
+     ]
+    },
+    "single_site": {
+     "count": 1,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "single unit"
+     ],
+     "evidence": [
+      {
+       "match": "single unit",
+       "sentence": "The hybrid liner integrates the multiple lifter and platform components into one single unit reducing the total number of components within the mill."
+      }
+     ]
+    },
+    "related_party": {
+     "count": 19,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "Related Party Transactions",
+      "related party transactions",
+      "Related party transactions"
+     ],
+     "evidence": [
+      {
+       "match": "Related Party Transactions",
+       "sentence": "Summary of Related Party Transactions A summary of related party transactions, as per the requirements under Ind AS 24, are as follows: (in ₹ million) Transactions during the period / year ended Three months per"
+      },
+      {
+       "match": "related party transactions",
+       "sentence": "ring Limited Loans and advances given/(recovered)(net) TPW Engineering Limited ^Amount is below the rounding off norm adopted by our Company For details of the related party transactions and as reported in the Restated Consolidated Financial Information, see “Restated Consolidated Financial Information - Annexure V- Notes to the Restated Consolidated Financial Information – Note 46 – Related Party Transactions” beginning on page 287."
+      },
+      {
+       "match": "Related Party Transactions",
+       "sentence": "ated Financial Information, see “Restated Consolidated Financial Information - Annexure V- Notes to the Restated Consolidated Financial Information – Note 46 – Related Party Transactions” beginning on page 287."
+      }
+     ]
+    }
+   },
+   "objects_of_the_issue": {
+    "offer_for_sale": {
+     "count": 29,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "OFFER FOR SALE",
+      "Offer for Sale",
+      "offer for sale"
+     ],
+     "evidence": [
+      {
+       "match": "OFFER FOR SALE",
+       "sentence": "27* MILLION (THE “OFFER”) COMPRISING AN OFFER FOR SALE OF 3,314,657* EQUITY SHARES AGGREGATING TO ₹ 1,501,54* MILLION BY MADAN MOHAN MOHANKA, 662,931* EQUITY SHARES AGGREGATING TO ₹ 300."
+      },
+      {
+       "match": "Offer for Sale",
+       "sentence": "/ “Allotment”/ Unless the context otherwise requires, the allotment of the Equity Shares pursuant to the “Allot” transfer of the Offered Shares pursuant to the Offer for Sale to successful Bidders Allottee A successful Bidder to whom the Equity Shares are Allotted Anchor Escrow Accounts Accounts opened with Escrow Collection Bank and in whose favour the Anch"
+      },
+      {
+       "match": "Offer for Sale",
+       "sentence": "ty Shares for an amount of more than ₹ 200,000 (but not including NRIs other than Eligible NRIs) Offer The initial public offer of Equity Shares comprising the Offer for Sale."
+      }
+     ]
+    },
+    "capital_expenditure": {
+     "count": 16,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "Capital Expenditure",
+      "capital expenditure",
+      "expansion of our"
+     ],
+     "evidence": [
+      {
+       "match": "Capital Expenditure",
+       "sentence": "rm for the geometric progression ratio that provides a constant rate of return over the time period calculated as (end value / start value) ^ ( 1 / years ) – 1 Capital Expenditure Components used with conveyor belts Composite liner of rubber and steel Earnings before Interest and Taxes Restated profit before share of restated net profit of joint venture acco"
+      },
+      {
+       "match": "capital expenditure",
+       "sentence": "Our sources of additional capital, where required to meet our capital expenditure plans, may include the incurrence of debt or the issue of equity or debt securities or a combination of both."
+      },
+      {
+       "match": "expansion of our",
+       "sentence": "rn of the Company, including shareholding of the promoters;  entering into any schemes of mergers, amalgamations, compromise or reconstruction, acquisition;  expansion of our business by way of capex expenditure, acquisition, investment or and other arrangements;  undertaking any guarantee obligation on behalf of any other person;  declaring and paying d"
+      }
+     ]
+    },
+    "working_capital": {
+     "count": 7,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "working capital requirement",
+      "working capital requirements",
+      "Working Capital Requirements"
+     ],
+     "evidence": [
+      {
+       "match": "working capital requirement",
+       "sentence": "Also, provide working capital requirement and our loan base for the same and mention about the rate of interest The actual amount and timing of our future capital requirements may differ from estimates as a result"
+      },
+      {
+       "match": "working capital requirements",
+       "sentence": "Our working capital requirements may increase if the payment terms in our agreements include reduced advance payments or longer payment schedules."
+      },
+      {
+       "match": "working capital requirements",
+       "sentence": "Our leverage has several important consequences, including the following:  A portion of our cash flow from operations will be used towards repayment of debt, which will reduce the availability of cash to fund working capital requirements, capital expenditures, acquisitions and other general corporate purposes."
+      }
+     ]
+    },
+    "general_corporate": {
+     "count": 1,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "general corporate purposes"
+     ],
+     "evidence": [
+      {
+       "match": "general corporate purposes",
+       "sentence": "Our leverage has several important consequences, including the following:  A portion of our cash flow from operations will be used towards repayment of debt, which will reduce the availability of cash to fund working capital requirements, capital expenditures, acquisitions and other general corporate purposes."
+      }
+     ]
+    }
+   },
+   "profiled_on": "2026-10-25"
+  }
+ },
+ {
+  "sym": "532734",
+  "name": "Godawari Power and Ispat Ltd",
+  "board": "BSE",
+  "isin": "INE177H01039",
+  "listed": null,
+  "hint": "renewable & power",
+  "why": "mid-cap sweep",
+  "mktcap_cr": 12943.02,
+  "plausible": true,
+  "verdict": null,
+  "seen_on": "2026-10-25",
+  "source": "sweep",
+  "moat_signal": null,
+  "moat_evidence": null
+ },
+ {
+  "sym": "524404",
+  "name": "Marksans Pharma Ltd",
+  "board": "BSE",
+  "isin": "INE750C01026",
+  "listed": null,
+  "hint": "pharma & healthcare",
+  "why": "mid-cap sweep",
+  "mktcap_cr": 12994.47,
+  "plausible": true,
+  "verdict": null,
+  "seen_on": "2026-10-25",
+  "source": "sweep",
+  "moat_signal": null,
+  "moat_evidence": null
+ },
+ {
+  "sym": "539992",
+  "name": "Lloyds Engineering Works Ltd",
+  "board": "BSE",
+  "isin": "INE093R01011",
+  "listed": null,
+  "hint": "precision engineering",
+  "why": "mid-cap sweep",
+  "mktcap_cr": 13105.48,
+  "plausible": true,
+  "verdict": null,
+  "seen_on": "2026-10-25",
+  "source": "sweep",
+  "moat_signal": null,
+  "moat_evidence": null
+ },
+ {
+  "sym": "532783",
+  "name": "LT Foods Ltd",
+  "board": "BSE",
+  "isin": "INE818H01020",
+  "listed": null,
+  "hint": "agri & food",
+  "why": "mid-cap sweep",
+  "mktcap_cr": 13199.08,
+  "plausible": true,
+  "verdict": null,
+  "seen_on": "2026-10-25",
+  "source": "sweep",
+  "moat_signal": null,
+  "moat_evidence": null
+ },
+ {
+  "sym": "532756",
+  "name": "CIE Automotive India Ltd",
+  "board": "BSE",
+  "isin": "INE536H01010",
+  "listed": null,
+  "hint": "auto & mobility",
+  "why": "mid-cap sweep",
+  "mktcap_cr": 13359.25,
+  "plausible": true,
+  "verdict": null,
+  "seen_on": "2026-10-25",
+  "source": "sweep",
+  "moat_signal": null,
+  "moat_evidence": null
+ },
+ {
+  "sym": "544853",
+  "name": "Juniper Green Energy Ltd",
+  "board": "BSE",
+  "isin": "INE05C901015",
+  "listed": null,
+  "hint": "renewable & power",
+  "why": "mid-cap sweep",
+  "mktcap_cr": 13360.08,
+  "plausible": true,
+  "verdict": null,
+  "seen_on": "2026-10-25",
+  "source": "sweep",
+  "moat_signal": true,
+  "moat_evidence": [
+   "monopoly claim: \"Qualitative Factors Some of the qualitative factors which form the basis for computing the Issue Price are set forth below: • • • • • • • • We are among the top 10 largest renewable independent power producer (“IPPs”) in India in terms of Total Capacity as at March 31, 2026, where total capacity includes operational, under construction contracted and awarded projects.\" (prospectus, company-stated)",
+   "monopoly claim: \"36 times of weighted average cost of acquisition of primary issuances /secondary transactions of Equity Shares (as disclosed above) along with our Company’s KPIs and financial ratios for the Fiscals 2026, 2025 and 2024 • • • • • • • (f) We are among the top 10 largest renewable independent power producer (“IPPs”) in India in terms of Total Capacity as at March 31, 2026, where total capacity includes operational, under construction contracted and awarded projects.\" (prospectus, company-stated)",
+   "monopoly claim: \"Overview We are among the top 10 largest renewable independent power producer (“IPPs”) in India in terms of Total Capacity as at March 31, 2026, where total capacity includes operational, under construction contracted and awarded projects.\" (prospectus, company-stated)"
+  ],
+  "profile": {
+   "symbol": "544853",
+   "company": "Juniper Green Energy Limited",
+   "isin": "INE05C901015",
+   "board": "BSE",
+   "source": {
+    "document": "final prospectus",
+    "url": "https://nsearchives.nseindia.com/corporate/FP_INE05C901015_04AUG2026.pdf",
+    "filed": "04-Aug-2026",
+    "pdf_bytes": 12466973,
+    "extracted_chars": 2667411
+   },
+   "grade": "company-stated",
+   "verified_against": null,
+   "claims": {
+    "monopoly_claim": {
+     "count": 4,
+     "dropped_as_industry_commentary": 2,
+     "terms": [
+      "largest renewable independent power producer"
+     ],
+     "evidence": [
+      {
+       "match": "largest renewable independent power producer",
+       "sentence": "Qualitative Factors Some of the qualitative factors which form the basis for computing the Issue Price are set forth below: • • • • • • • • We are among the top 10 largest renewable independent power producer (“IPPs”) in India in terms of Total Capacity as at March 31, 2026, where total capacity includes operational, under construction contracted and awarded projects."
+      },
+      {
+       "match": "largest renewable independent power producer",
+       "sentence": "36 times of weighted average cost of acquisition of primary issuances /secondary transactions of Equity Shares (as disclosed above) along with our Company’s KPIs and financial ratios for the Fiscals 2026, 2025 and 2024 • • • • • • • (f) We are among the top 10 largest renewable independent power producer (“IPPs”) in India in terms of Total Capacity as at March 31, 2026, where total capacity includes operational, under construction contracted and awarded projects."
+      },
+      {
+       "match": "largest renewable independent power producer",
+       "sentence": "Overview We are among the top 10 largest renewable independent power producer (“IPPs”) in India in terms of Total Capacity as at March 31, 2026, where total capacity includes operational, under construction contracted and awarded projects."
+      }
+     ]
+    },
+    "ip": {
+     "count": 9,
+     "dropped_as_industry_commentary": 8,
+     "terms": [
+      "trademarks",
+      "trademark",
+      "patent",
+      "Trademarks"
+     ],
+     "evidence": [
+      {
+       "match": "trademarks",
+       "sentence": "As of the date of this Prospectus, we have nine registered trademarks under various classes."
+      },
+      {
+       "match": "trademarks",
+       "sentence": "We cannot guarantee that our registered trademarks will not be challenged subsequently by third parties or by employees who may have invented the basis of such applications as part of their employment with us."
+      },
+      {
+       "match": "trademarks",
+       "sentence": "Any improper use or infringement of our registered trademarks could adversely affect our business, financial condition, cash flows and results of operations."
+      }
+     ]
+    }
+   },
+   "risk_factors": {
+    "promoter_litigation": {
+     "count": 19,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "criminal proceedings",
+      "Criminal proceedings",
+      "criminal complaint",
+      "proceedings involving our Promoters"
+     ],
+     "evidence": [
+      {
+       "match": "criminal proceedings",
+       "sentence": "The summary of outstanding matters set out below includes details of criminal proceedings, tax proceedings, actions by statutory and regulatory authorities and material civil litigation (as defined in the section “Outstanding Litigation and Material Developments” on pa"
+      },
+      {
+       "match": "Criminal proceedings",
+       "sentence": "Name Company By our Company Against our Company Directors Criminal proceedings Tax proceedings Statutory or regulatory actions Disciplinary actions by the SEBI or Stock Exchanges against our Promoters in the last five years, including outstanding action Material civil litigations as per the Materiality Policy Nil NA NA NA 3 519."
+      },
+      {
+       "match": "Criminal proceedings",
+       "sentence": "78 54 Aggregate amount involved* (in ₹ million) Name Criminal proceedings Tax proceedings Statutory or regulatory actions Disciplinary actions by the SEBI or Stock Exchanges against our Promoters in the last five years, including outstanding action NA M"
+      }
+     ]
+    },
+    "related_party": {
+     "count": 31,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "RELATED PARTY TRANSACTIONS",
+      "related party transactions",
+      "Related Party Transactions",
+      "Related party transactions"
+     ],
+     "evidence": [
+      {
+       "match": "RELATED PARTY TRANSACTIONS",
+       "sentence": "97 SUMMARY OF RELATED PARTY TRANSACTIONS ."
+      },
+      {
+       "match": "related party transactions",
+       "sentence": "See “Our Management” on page 451 The equity shares of our Company of face value of ₹10 each Juniper Green Employee Stock Option Plan 2025, as described in “Capital Structure – Employee Stock Option Scheme” on page 164 Companies (other than our Corporate Promoters and Subsidiaries) with which there were related party transactions during the period covered by the Restated Consolidated Financial Information has been disclosed, as covered under the applicable accounting standards, and any other companie"
+      },
+      {
+       "match": "related party transactions",
+       "sentence": "We have in the past entered into a number of related party transactions and may continue to enter into related party transactions in the future that may involve conflicts of interest."
+      }
+     ]
+    }
+   },
+   "objects_of_the_issue": {
+    "offer_for_sale": {
+     "count": 2,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "offer for sale"
+     ],
+     "evidence": [
+      {
+       "match": "offer for sale",
+       "sentence": "Guarantees provided to third parties by our Promoters offering their Equity Shares in the offer for sale The Issue is a fresh issue of Equity Shares and our Promoters are not offering their Equity Shares through an offer for sale."
+      },
+      {
+       "match": "offer for sale",
+       "sentence": "Securities Act, if such an offer for sale is made otherwise than in compliance with Section 4(a)(2) or 685 unless made pursuant to Rule 144A or another available exemption from the registration under the U."
+      }
+     ]
+    },
+    "fresh_issue": {
+     "count": 10,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "Fresh Issue",
+      "FRESH ISSUE",
+      "fresh issue"
+     ],
+     "evidence": [
+      {
+       "match": "Fresh Issue",
+       "sentence": "DETAILS OF THE ISSUE TO PUBLIC Type Issue size Offer for Total Issue Eligibility and share reservation Sale size size Fresh Issue 80,009,150^ Equity Not 80,009,150^ The Issue was made pursuant to Regulation 6(1) of the Shares of face value of applicable Equity Securities and Exchange Board of India (Issue of Capital and ₹10 each aggregating to Shares of Disclosure Requirements) Regulations, 2018 (“SEBI ICDR ₹18,000."
+      },
+      {
+       "match": "FRESH ISSUE",
+       "sentence": "00 MILLION* (“FRESH ISSUE OR ”THE “ISSUE”)."
+      },
+      {
+       "match": "Fresh Issue",
+       "sentence": "Escrow Account(s) Escrow Collection Bank First Bidder or Sole Bidder Floor Price Fresh Issue or Issue Account(s) opened with the Escrow Collection Bank and in whose favour Anchor Investors transferred the money through direct credit/NEFT/RTGS/NACH in respect of the Bid Amount while submitting a Bid."
+      }
+     ]
+    },
+    "capital_expenditure": {
+     "count": 37,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "capital expenditure",
+      "Capital expenditure",
+      "Setting up of",
+      "setting up of"
+     ],
+     "evidence": [
+      {
+       "match": "capital expenditure",
+       "sentence": "While there have been no such material instances in Fiscals 2026, 2025 and 2024, any withdrawal of support or adverse changes in their policies may adversely affect the financing, capital expenditure, revenues, development or operations relating to the projects."
+      },
+      {
+       "match": "capital expenditure",
+       "sentence": "We have estimated capital expenditure for our projects based on current market conditions, however, with rising input/commodity cost and potentially higher costs for, or delay in, obtaining rights of way for our transm"
+      },
+      {
+       "match": "capital expenditure",
+       "sentence": "We estimate our capital expenditure based on current market conditions which are inherently subject to change due to a variety of factors including fluctuations in commodity prices, such as those for steel, copper, a"
+      }
+     ]
+    },
+    "working_capital": {
+     "count": 3,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "working capital requirements"
+     ],
+     "evidence": [
+      {
+       "match": "working capital requirements",
+       "sentence": "If the obligations under any of our financing documents are accelerated, we may have to dedicate a portion of our cash flow from operations to make payments under such financing documents, thereby reducing the availability of cash for our working capital requirements and other general corporate purposes."
+      },
+      {
+       "match": "working capital requirements",
+       "sentence": "We have significant working capital requirements."
+      },
+      {
+       "match": "working capital requirements",
+       "sentence": "Our funding is used to service our debt obligations, support working capital requirements (including margins for non-funded limits) and maintain various reserves such as the debt service reserve account and interest service reserve account, and cash reserves to manage fluctuations in operating cash flows."
+      }
+     ]
+    },
+    "general_corporate": {
+     "count": 17,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "general corporate purposes",
+      "General corporate purposes",
+      "general corporate purpose"
+     ],
+     "evidence": [
+      {
+       "match": "general corporate purposes",
+       "sentence": "Our debt and leverage position could have significant consequences on our operations including reducing the availability of our cash flows to fund working capital, capital expenditures, acquisitions and other general corporate purposes as a result of our debt service obligations; limiting our ability to obtain additional financing; impacting our credit rating; limiting our flexibility in planning for, or r"
+      },
+      {
+       "match": "general corporate purposes",
+       "sentence": "If the obligations under any of our financing documents are accelerated, we may have to dedicate a portion of our cash flow from operations to make payments under such financing documents, thereby reducing the availability of cash for our working capital requirements and other general corporate purposes."
+      },
+      {
+       "match": "general corporate purposes",
+       "sentence": "While we will use the Net Proceeds towards repayment/prepayment, in full or in part, of certain outstanding borrowings availed by our Company and Subsidiaries, and towards general corporate purposes, the amount of Net Proceeds to be used will be based on our management’s discretion."
+      }
+     ]
+    }
+   },
+   "profiled_on": "2026-10-25"
+  }
+ },
+ {
+  "sym": "500405",
+  "name": "Supreme Petrochem Ltd",
+  "board": "BSE",
+  "isin": "INE663A01033",
+  "listed": null,
+  "hint": "chemicals",
+  "why": "mid-cap sweep",
+  "mktcap_cr": 13422.39,
+  "plausible": true,
+  "verdict": null,
+  "seen_on": "2026-10-25",
   "source": "sweep",
   "moat_signal": null,
   "moat_evidence": null
