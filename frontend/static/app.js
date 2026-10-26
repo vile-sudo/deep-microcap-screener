@@ -6710,7 +6710,7 @@ function rpvRender(){
   body.querySelectorAll('[data-rpvo]').forEach(x=>x.onclick=e=>{ if(e.target.closest('a')) return; RPV.open = RPV.open===x.dataset.rpvo ? null : x.dataset.rpvo; rpvRender(); });
   const q=document.getElementById('rpv-q'); if(q) q.oninput=()=>{ clearTimeout(RPV.t); RPV.t=setTimeout(()=>{ RPV.q=q.value.trim().toLowerCase(); rpvRender(); const n=document.getElementById('rpv-q'); n.focus(); n.setSelectionRange(n.value.length,n.value.length); },150); };
   body.querySelectorAll('[data-co]').forEach(a=>a.onclick=e=>{ e.preventDefault(); e.stopPropagation(); openCompanyPage(a.dataset.co); });
-  rpvWireResDay(body); rpvWireCheck(body); rpvWireBt(body); rpvWirePead(body);
+  rpvWireResDay(body); rpvWireCheck(body); rpvWireBt(body); rpvWirePead(body); rpvWireRep(body);
 }
 /* ---- SRWD SUE and EAR calculators (india_pead_screener's SQLite via /api/pead/calc) */
 const PCALC={q:'', res:null, busy:false, actual:'', sret:'', bret:'', q5:null, q5busy:false};
@@ -6912,9 +6912,49 @@ function rpvWirePead(body){
   body.querySelectorAll('[data-rpps]').forEach(x=>x.onclick=()=>{ RPVP.show=x.dataset.rpps; rpvRender(); });
   const q=document.getElementById('rpp-q'); if(q) q.oninput=()=>{ clearTimeout(RPVP.t); RPVP.t=setTimeout(()=>{ RPVP.q=q.value.trim(); rpvRender(); const n=document.getElementById('rpp-q'); if(n){ n.focus(); n.setSelectionRange(n.value.length,n.value.length); } },200); };
 }
-/* ---- the overnight read: results filed out of market hours, scored on the actual numbers before the next open */
+/* ---- the overnight read: results filed out of market hours, scored on the actual numbers before the next open.
+   A date picker shows any earlier filing day: /api/results-preview/reported (the live reads kept each evening,
+   and before the live read began, the walk-forward backtest's reads). */
+const RPVR={date:'', days:null, rows:{}, busy:false};   // date '' = the latest few days, else one filing day
+function rpvRepDays(){
+  if(RPVR.days || RPVR.busy) return;
+  RPVR.busy=true;
+  fetchJSON('/api/results-preview/reported').then(j=>{ RPVR.days=j.days||[]; }).catch(()=>{ RPVR.days=[]; })
+    .finally(()=>{ RPVR.busy=false; if(RPV.tab==='reported') rpvRender(); });
+}
+function rpvRepLoad(date){
+  RPVR.date=date;
+  if(!date || RPVR.rows[date]){ rpvRender(); return; }
+  RPVR.rows[date]=null; rpvRender();
+  fetchJSON('/api/results-preview/reported?date='+encodeURIComponent(date)).then(j=>{ RPVR.rows[date]=j.rows||[]; if(j.days) RPVR.days=j.days; })
+    .catch(()=>{ RPVR.rows[date]=[]; }).finally(()=>{ if(RPV.tab==='reported' && RPVR.date===date) rpvRender(); });
+}
+function rpvRepRow(r, sg){
+  return `<tr><td><b>${esc(rpvDate(r.filed.slice(0,10)))}</b><small>${esc(r.quarter)}${r.half?' half-year':''} · ${esc(rpvFiled(r.filed).replace(/^filed \S+ \S+ \S+ /,''))}${r.in_hours?' · in market hours':''}${r.call==='backtest'?' · <span title="Read by the backtest model, fitted only on earlier quarters — the live read started later">backtest read</span>':''}</small></td>
+      <td>${r.code?`<a href="#" data-co="${ea(r.code)}" class="rpv-co"><b class="mv-tick">${esc(r.symbol)}</b></a>`:`<b class="mv-tick">${esc(r.symbol)}</b>`}<span class="mv-name">${esc(r.name)}</span><small>${esc(r.sector||'')}</small></td>
+      <td class="n"><b>${sg(r.sales_g)}</b><small>${r.last_g==null?'':'was '+sg(r.last_g)}</small></td>
+      <td class="n">${r.profit_g==null?(r.np!=null&&r.np0!=null&&r.np0<=0?(r.np>0?'<span class="ov-up">loss → profit</span>':'<span class="ov-dn">still a loss</span>'):'—'):`<b class="${r.profit_g>0?'ov-up':'ov-dn'}">${sg(r.profit_g)}</b>`}</td>
+      <td class="n">${r.margin_ch==null?'—':`${r.margin_ch>0?'+':''}${fmt(r.margin_ch,1)} pts`}</td>
+      <td class="rpv-readc"><span class="rpv-call ${r.tone}">${esc(r.verdict)}</span><small><b>${rpvPct(r.p_up)}</b> chance it closes up · ${esc(r.action)}</small></td>
+      <td class="rpv-readc">${rpvClaude(r.claude)}</td>
+      <td class="n">${r.exp?`${sg(r.exp.gap)}<small>then ${sg(r.exp.oc)}</small>`:'—'}</td>
+      <td class="n">${r.result?`<span class="rpv-rd ${r.result.move>0?'up':'dn'}">${sg(r.result.gap)} · ${r.result.move>0?'▲':'▼'} ${sg(r.result.move,2)}</span><small>${esc(rpvDate(r.result.date))}</small>`:'<span class="cp-sub">next session</span>'}</td></tr>`;
+}
+function rpvRepBar(){
+  rpvRepDays();
+  const days=(RPVR.days||[]).map(x=>x.date), cur=RPVR.date;
+  const prev=cur?days.filter(x=>x<cur).pop():days[days.length-1];   // from the latest view, ◀ opens the last day on file
+  const next=cur?days.find(x=>x>cur):null;
+  const span=days.length?`${fmtI(days.length)} filing days on file · ${esc(rpvDate(days[0]))} – ${esc(rpvDate(days[days.length-1]))}`:(RPVR.days?'no earlier days on file yet':'loading the days on file…');
+  return `<div class="mv-toolbar rpv-datebar">
+      <button type="button" class="btn" data-repgo="${ea(prev||'')}" ${prev?'':'disabled'} title="The previous day with results filed">◀ Previous day</button>
+      <label class="rpv-chkdate"><span>Filed on</span><input type="date" id="rpv-repd" class="gal-select" value="${ea(cur||'')}" ${days.length?`min="${days[0]}" max="${days[days.length-1]}"`:''}></label>
+      <button type="button" class="btn" data-repgo="${ea(next||'')}" ${next?'':'disabled'} title="The next day with results filed">Next day ▶</button>
+      <button type="button" class="btn" data-repgo="" ${cur?'':'disabled'} title="Back to the last few days">Latest</button>
+      <span class="cp-sub">${span}</span></div>`;
+}
 function rpvReported(d){
-  const all=(d.reported||[]).filter(r=>RPV.scope==='all'||r.board), pb=(d.backtest||{}).post||{}, live=pb.live||{};
+  const pb=(d.backtest||{}).post||{}, live=pb.live||{};
   const sg=(v,dp=1)=>v==null?'—':`${v>0?'+':''}${fmt(v,dp)}%`;
   const fifths=pb.fifths||[], top=fifths[0], bot=fifths[fifths.length-1];
   const intro=`<div class="rpv-post-intro"><b>The overnight read.</b> Most companies file results after the 3:30 PM close, so the numbers are public before the next morning's open. Each one is scored on what it actually reported — sales and profit vs a year ago, against last quarter's pace, margins, a swing into loss or profit — plus the stock's trend and its own result-day record.
@@ -6923,20 +6963,26 @@ function rpvReported(d){
     ${live.called?`<br>Live record so far: <b>${live.right} of ${live.called}</b> directional reads right.`:''}
     <br><span class="rpv-fresh">Read last updated <b>${d.generated_at?new Date(d.generated_at).toLocaleString('en-IN',{timeZone:'Asia/Kolkata',day:'2-digit',month:'short',hour:'numeric',minute:'2-digit'}):'—'} IST</b> · refreshed through the night (about 9:45 PM, 11:15 PM, 1:45 AM, 5:15 AM and 7:45 AM) so it is ready before the 9:15 AM open.</span></div>`;
   const scope=`<div class="mv-toolbar"><div class="rc-seg" role="group" aria-label="Companies"><button type="button" data-rpvs="board" class="${RPV.scope==='board'?'on':''}">Board companies</button><button type="button" data-rpvs="all" class="${RPV.scope==='all'?'on':''}">All listed</button></div></div>`;
-  if(!all.length) return intro+scope+'<p class="view-hint">No results filed in the last few days with numbers on file yet — reads appear the evening a company reports (runs at 9:30 PM and 11:30 PM IST, and again overnight).</p>';
-  return intro+scope+`<div class="mv-tablewrap"><table class="mv-table rpv-table"><thead><tr><th>Filed</th><th>Company</th><th class="n">Sales<small>YoY · last qtr</small></th><th class="n">Profit<small>YoY</small></th><th class="n">Margin<small>vs a year ago</small></th>
+  const head=intro+rpvRepBar()+scope;
+  let src, note='';
+  if(RPVR.date){
+    src=RPVR.rows[RPVR.date];
+    if(src==null) return head+'<p class="view-hint">Loading…</p>';
+    const nb=src.filter(r=>r.call==='backtest').length, liveFrom=((RPVR.days||[]).find(x=>x.live)||{}).date;
+    note=`<p class="cp-sub">${src.length?`<b>${fmtI(src.length)}</b> results filed on <b>${esc(rpvDate(RPVR.date))}</b>`:`No results on file for ${esc(rpvDate(RPVR.date))} — use ◀ / ▶ to jump to the nearest filing day`}${nb?`. ${nb===src.length?'All':fmtI(nb)} of them are <b>backtest reads</b>: the live read began${liveFrom?' on '+esc(rpvDate(liveFrom)):' later'}, so earlier days show what the walk-forward model (fitted only on earlier quarters) read — out-of-hours filings only, without margins or the sales pace`:''}.</p>`;
+  } else src=d.reported||[];
+  const all=src.filter(r=>RPV.scope==='all'||r.board);
+  if(!all.length) return head+note+(RPVR.date?(src.length?'<p class="view-hint">None of these are board companies — switch to All listed.</p>':'')
+    :'<p class="view-hint">No results filed in the last few days with numbers on file yet — reads appear the evening a company reports (runs at 9:30 PM and 11:30 PM IST, and again overnight). Pick an earlier day above.</p>');
+  return head+note+`<div class="mv-tablewrap"><table class="mv-table rpv-table"><thead><tr><th>Filed</th><th>Company</th><th class="n">Sales<small>YoY · last qtr</small></th><th class="n">Profit<small>YoY</small></th><th class="n">Margin<small>vs a year ago</small></th>
       <th>Overnight read<small>chance it closes up next session</small></th><th>Claude's read of the filing<small>on trial — see Backtest</small></th><th class="n">Expected<small>gap · open→close</small></th><th class="n">What happened<small>gap · day</small></th></tr></thead><tbody>
-    ${all.map(r=>`<tr><td><b>${esc(rpvDate(r.filed.slice(0,10)))}</b><small>${esc(r.quarter)}${r.half?' half-year':''} · ${esc(rpvFiled(r.filed).replace(/^filed \S+ \S+ \S+ /,''))}${r.in_hours?' · in market hours':''}</small></td>
-      <td>${r.code?`<a href="#" data-co="${ea(r.code)}" class="rpv-co"><b class="mv-tick">${esc(r.symbol)}</b></a>`:`<b class="mv-tick">${esc(r.symbol)}</b>`}<span class="mv-name">${esc(r.name)}</span><small>${esc(r.sector||'')}</small></td>
-      <td class="n"><b>${sg(r.sales_g)}</b><small>was ${sg(r.last_g)}</small></td>
-      <td class="n">${r.profit_g==null?(r.np!=null&&r.np0!=null&&r.np0<=0?(r.np>0?'<span class="ov-up">loss → profit</span>':'<span class="ov-dn">still a loss</span>'):'—'):`<b class="${r.profit_g>0?'ov-up':'ov-dn'}">${sg(r.profit_g)}</b>`}</td>
-      <td class="n">${r.margin_ch==null?'—':`${r.margin_ch>0?'+':''}${fmt(r.margin_ch,1)} pts`}</td>
-      <td class="rpv-readc"><span class="rpv-call ${r.tone}">${esc(r.verdict)}</span><small><b>${rpvPct(r.p_up)}</b> chance it closes up · ${esc(r.action)}</small></td>
-      <td class="rpv-readc">${rpvClaude(r.claude)}</td>
-      <td class="n">${r.exp?`${sg(r.exp.gap)}<small>then ${sg(r.exp.oc)}</small>`:'—'}</td>
-      <td class="n">${r.result?`<span class="rpv-rd ${r.result.move>0?'up':'dn'}">${sg(r.result.gap)} · ${r.result.move>0?'▲':'▼'} ${sg(r.result.move,2)}</span><small>${esc(rpvDate(r.result.date))}</small>`:'<span class="cp-sub">next session</span>'}</td></tr>`).join('')}
+    ${all.map(r=>rpvRepRow(r, sg)).join('')}
     </tbody></table></div>
-    <p class="cp-sub" style="margin-top:8px">“Expected” is the median opening gap and open-to-close move of past results that were read alike. Results filed during market hours partly moved the stock the same day. A research read, not advice.</p>`;
+    <p class="cp-sub" style="margin-top:8px">“Expected” is the median opening gap and open-to-close move of past results that were read alike. Results filed during market hours partly moved the stock the same day. Each read keeps the call made the evening it was filed. A research read, not advice.</p>`;
+}
+function rpvWireRep(body){
+  body.querySelectorAll('[data-repgo]').forEach(b=>b.onclick=()=>rpvRepLoad(b.dataset.repgo));
+  const i=document.getElementById('rpv-repd'); if(i) i.onchange=()=>{ if(/^\d{4}-\d{2}-\d{2}$/.test(i.value)) rpvRepLoad(i.value); };
 }
 /* ---- Claude's read of the results filing (scripts/run_results_read.py): on trial, graded in the Backtest tab */
 const RPV_CV={strong:['Strong','up'],good:['Good','up'],mixed:['Mixed',''],weak:['Weak','dn'],poor:['Poor','dn']};

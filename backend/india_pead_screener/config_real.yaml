@@ -1,0 +1,39 @@
+# india_pead_screener on real CSVs exported from the screener app (main.py --source app --export-csv data/raw),
+# with the app's settings -- for a standalone copy of this folder (python main.py --config config_real.yaml)
+
+data_paths:
+  quarterly_financials: data/raw/quarterly_financials.csv
+  daily_prices: data/raw/daily_prices.csv
+  benchmark_prices: data/raw/benchmark_prices.csv
+
+srwd:
+  metric: "net_profit"          # the app has net profit for every quarter back to 2019; EPS only for recent board quarters
+  drift_window: 4               # N, 2-8: average of the last N year-on-year quarterly changes
+  min_quarters_history: 16      # usable quarters up to and including the scored one
+  min_forecast_errors: 4        # earlier SRWD forecast errors needed for sigma (ddof=1)
+  sigma_window: 12              # at most this many of the latest earlier forecast errors
+  sue_winsorization: [-10, 10]
+
+ear:
+  benchmark: "NIFTY500"         # NIFTY500, NIFTY200 or CUSTOM (whatever benchmark_prices.csv holds)
+  window_days: [-1, 0, 1]
+  after_close_time: "15:30"     # a filing at/after this time (announcement_time column) reacts the next session
+
+quintiles:
+  group_by: "week"              # same-week reporters: a single day rarely has 20 eligible Indian stocks (see README)
+  min_universe_size: 20
+  number_of_buckets: 5
+
+strategy:
+  mode: "long_only"             # long_only or long_short
+  entry_lag_days: 2
+  forward_windows: [21, 61]
+
+filters:
+  min_median_daily_turnover: 10000000   # Rs 1 crore median daily turnover, 60 sessions before the announcement
+  exclude_negative_eps: true
+  min_price: 100                # Rs, close on the session before the announcement
+
+output:
+  dir: output
+  sqlite: output/pead.sqlite

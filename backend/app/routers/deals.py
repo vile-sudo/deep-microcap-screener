@@ -16,6 +16,7 @@ GET /api/announcements    every non-routine filing on record
 GET /api/disclosures/{deals|ann|ins}?from=&to=  ~3 years of the three tabs above, paged and filtered
                           server-side (app/disclosures_archive.py)
 GET /api/results-preview  Results Preview: upcoming results' predicted direction, scorecard, backtest
+GET /api/results-preview/reported?date=YYYY-MM-DD  "Just reported" for an earlier filing day (date picker)
 GET /api/insider-trades   India board: insider trading & SAST disclosures
                           (scripts/run_insider_trades.py), newest first --
                           promoters/directors/KMPs' own buy/sell/pledge
@@ -198,6 +199,70 @@ _RPV_ALL: dict = {"stamp": None, "doc": None}
 def results_preview_backtest_rows(request: Request):
     """Every company-quarter behind Results Preview's backtest tables: the walk-forward prediction and the outcome."""
     return file_response(request, BASE_DIR / "data" / "results_preview" / "backtest_rows.json", {"pre": [], "post": []})
+
+
+_RPV_REP: dict = {"stamp": None, "by_day": None}
+
+
+def _reported_days() -> dict:
+    """{filing day: [rows]} for the "Just reported" date picker. Two sources, the live one winning:
+    reported_archive.json (every read the page showed, with the call made that evening) and, for days before
+    it, the walk-forward backtest's out-of-hours results (backtest_rows.json: a call from a model fitted only
+    on earlier quarters, so it never saw the result it scores)."""
+    import json
+    rp = BASE_DIR / "data" / "results_preview"
+    files = [rp / "reported_archive.json", rp / "backtest_rows.json", rp / "latest.json", BASE_DIR / "data" / "results_read" / "latest.json"]
+    stamp = tuple(f.stat().st_mtime if f.exists() else 0 for f in files)
+    if _RPV_REP["stamp"] == stamp:
+        return _RPV_REP["by_day"]
+
+    def load(f, default):
+        try:
+            return json.loads(f.read_text(encoding="utf-8"))
+        except (OSError, ValueError):
+            return default
+    from ..results_preview import post_read
+    from ..movers.companies import board_map
+    live = (load(files[0], {}).get("rows") or {})
+    post = load(files[1], {}).get("post") or []
+    bins = ((load(files[2], {}).get("backtest") or {}).get("post") or {}).get("bins") or []
+    reads = (load(files[3], {}) or {}).get("reads") or {}
+    bmap = board_map()
+    rows = {k: v for k, v in live.items() if v.get("filed")}
+    for r in post:
+        k = f"NSE:{r['s']}|{r['q']}"
+        if k in rows or not r.get("f") or r.get("p") is None:
+            continue
+        rd = post_read(r["p"], {}, bins)
+        cl = reads.get(f"{r['s']}|{r['f']}")
+        rows[k] = {"key": f"NSE:{r['s']}", "code": bmap.get(r["s"]), "symbol": r["s"], "name": r["n"], "board": bool(r.get("b")),
+                   "sector": "", "quarter": r["q"], "half": False, "filed": r["f"], "in_hours": "09:00" <= r["f"][11:16] < "15:30",
+                   "p_up": r["p"], "sales_g": r.get("g"), "last_g": None, "profit_g": r.get("pg"), "np": None, "np0": None,
+                   "margin_ch": None, "verdict": rd["verdict"], "tone": rd["tone"], "action": rd["action"],
+                   "exp": {k2: rd["bin"].get(k2) for k2 in ("up", "gap", "oc", "o3", "n")} if rd.get("bin") else None,
+                   "claude": {k2: cl.get(k2) for k2 in ("verdict", "p_up", "summary", "positives", "negatives", "quality_flags")} if cl else None,
+                   "result": {"date": r["d"], "move": r["mv"], "gap": r.get("gap")} if r.get("d") and r.get("mv") is not None else None,
+                   "call": "backtest"}
+    by_day: dict = {}
+    for r in rows.values():
+        by_day.setdefault(r["filed"][:10], []).append(r)
+    for v in by_day.values():
+        v.sort(key=lambda r: r["filed"], reverse=True)
+    _RPV_REP.update(stamp=stamp, by_day=by_day)
+    return by_day
+
+
+@router.get("/api/results-preview/reported")
+def results_preview_reported(date: str = Query("", max_length=10)):
+    """Results Preview's "Just reported" for one earlier filing day (the date picker): every result filed that
+    day with its overnight read and what happened next session. Without a date: the days on file."""
+    by_day = _reported_days()
+    days = [{"date": d, "n": len(v), "live": sum(1 for r in v if r.get("call") == "live")} for d, v in sorted(by_day.items())]
+    if not date:
+        return {"days": days}
+    if not re.fullmatch(r"\d{4}-\d{2}-\d{2}", date):
+        raise HTTPException(status_code=400, detail="date as YYYY-MM-DD")
+    return {"date": date, "rows": by_day.get(date, []), "days": days}
 
 
 @router.get("/api/results-preview/stock")

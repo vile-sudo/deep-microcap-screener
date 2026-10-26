@@ -52,6 +52,7 @@ ALERTS_FILE = OUT_DIR / "alerts.json"
 ALL_FILE = OUT_DIR / "all.json"
 NAMES_FILE = OUT_DIR / "names.json"
 POST_LOG = OUT_DIR / "overnight_reads.json"
+REPORTED_ARCHIVE = OUT_DIR / "reported_archive.json"   # every day's "Just reported" read, kept for the date picker
 BT_ROWS_FILE = OUT_DIR / "backtest_rows.json"   # every stock behind the backtest tables (loaded on demand)     # every overnight read, graded once the next session is in            # full company names (NSE's equity list), refreshed weekly                # every company's next-result call -- the "Check a stock" box          # merged into the India Alerts bell by routers/alerts.load()
 PEAD_FILE = OUT_DIR / "pead.json"                  # Earnings drift (PEAD) strategy -- app/pead.py
 READ_FILE = DATA / "results_read" / "latest.json"   # Claude's read of each results filing (scripts/run_results_read.py)
@@ -723,6 +724,38 @@ def post_read(p: float, a: dict, dist: list) -> dict:
 
 
 
+
+def update_reported_archive(reported: list, plog: dict, make_row, ent: dict) -> None:
+    """Keep every "Just reported" read, so the tab can show any earlier day (the date picker). A row is stored
+    the first time a result is read and keeps that first call (p_up, verdict, expected move) -- what the page
+    said that evening; later runs only fill in what arrives afterwards (the next session's move, Claude's read).
+    Results the live log has but the archive lacks (the log predates the archive) are rebuilt with the call the
+    log recorded."""
+    arch = _load(REPORTED_ARCHIVE, {}).get("rows") or {}
+    call = ("p_up", "verdict", "tone", "action", "exp")
+    for r in reported:
+        k = f"{r['key']}|{r['quarter']}"
+        old = arch.get(k)
+        arch[k] = {**r, "call": "live"} if old is None else {**r, **{c: old.get(c) for c in call}, "call": "live"}
+    for k, rec in plog.items():
+        if k in arch or not rec.get("filed"):
+            continue
+        key, quarter = rec["key"], rec["quarter"]
+        P = ((ent.get(key) or {}).get("q") or {}).get("periods") or []
+        if quarter not in P:
+            continue
+        try:
+            r = make_row(key, P.index(quarter), rec["filed"], rec.get("p_up"))
+        except Exception:  # noqa: BLE001 - one odd company must not stop the archive
+            r = None
+        if r:
+            r.update({c: rec.get(c, r.get(c)) for c in ("verdict", "tone")})
+            if rec.get("result") and not r.get("result"):
+                r["result"] = rec["result"]
+            arch[k] = {**r, "call": "live"}
+    REPORTED_ARCHIVE.write_text(json.dumps({"rows": arch}, separators=(",", ":"), ensure_ascii=False, default=str), encoding="utf-8")
+
+
 def react_dist(rows) -> list:
     """For stocks the model gave a similar chance of closing up, how they really moved on the result day:
     how many closed up, the median move, and the middle half of moves (25th-75th percentile)."""
@@ -1127,6 +1160,40 @@ def run() -> dict:
     BT_ROWS_FILE.write_text(json.dumps({"asof": today.isoformat(), "pre": pre_rows, "post": post_rows}, separators=(",", ":"),
                                        ensure_ascii=False), encoding="utf-8")
     pm = fit_post(after_rows)
+
+    def reported_row(key: str, t: int, filed: str, p: float | None = None) -> dict | None:
+        """One company's overnight read for its result at period index t: the model's call (or p, a call already
+        made earlier), what the result showed, Claude's read and, once that session trades, what happened."""
+        e = mk.ent[key]
+        P = e["q"].get("periods") or []
+        f = features(mk, ix, key, t, qend(P[t]), filed[:10], peers)
+        if not f or (p is None and pm is None):
+            return None
+        add_history(f, hist.get(key, []), filed[:10])
+        a = actual_features(e["q"], t, f["g1"])
+        if p is None:
+            p = float(pm.predict_proba(_XP([{"f": f, "a": a}]))[0][1])
+        rd = post_read(p, a, pdist)
+        px = mk.prices(key)
+        i = reaction_index(px, filed) if px else None
+        res = None                                   # reaction_index is None until that session is in the data
+        if i is not None and i > 0:
+            res = {"date": px[i][0], "move": round((px[i][1] / px[i - 1][1] - 1) * 100, 2),
+                   "gap": round((px[i][3] / px[i - 1][1] - 1) * 100, 2) if px[i][3] else None}
+        tm = filed[11:16]
+        return {"key": key, "code": e.get("code"), "symbol": e["symbol"], "name": e["name"], "board": bool(e.get("code")),
+                "sector": (mk.sector.get(key) or "").replace("-", " "), "quarter": P[t], "half": lag_of(P) == 2, "filed": filed,
+                "in_hours": "09:00" <= tm < "15:30", "p_up": round(p, 3),
+                "sales_g": None if a["_g"] is None else round(a["_g"], 1), "last_g": round(f["g1"], 1),
+                "profit_g": None if a["_pg"] is None else round(a["_pg"], 1), "np": a["_np"], "np0": a["_np0"],
+                "margin_ch": None if a["_om"] is None else round(a["_om"], 1),
+                "verdict": rd["verdict"], "tone": rd["tone"], "action": rd["action"],
+                "exp": {k: rd["bin"].get(k) for k in ("up", "gap", "oc", "o3", "n")} if rd.get("bin") else None,
+                "claude": {k: (reads.get(f"{key[4:]}|{filed}") or {}).get(k) for k in
+                           ("verdict", "p_up", "summary", "positives", "negatives", "quality_flags", "revenue_yoy_pct", "profit_yoy_pct", "basis")}
+                if reads.get(f"{key[4:]}|{filed}") else None,
+                "result": res}
+
     reported = []
     since3 = (today - timedelta(days=4)).isoformat()
     for key, e in mk.ent.items():
@@ -1136,33 +1203,9 @@ def run() -> dict:
         filed = mk.result_filed(key, qend(P[-1]))
         if not filed or filed[:10] < since3:
             continue
-        t = len(P) - 1
-        f = features(mk, ix, key, t, qend(P[-1]), filed[:10], peers)
-        if not f or pm is None:
-            continue
-        add_history(f, hist.get(key, []), filed[:10])
-        a = actual_features(e["q"], t, f["g1"])
-        p = float(pm.predict_proba(_XP([{"f": f, "a": a}]))[0][1])
-        rd = post_read(p, a, pdist)
-        px = mk.prices(key)
-        i = reaction_index(px, filed) if px else None
-        res = None                                   # reaction_index is None until that session is in the data
-        if i is not None and i > 0:
-            res = {"date": px[i][0], "move": round((px[i][1] / px[i - 1][1] - 1) * 100, 2),
-                   "gap": round((px[i][3] / px[i - 1][1] - 1) * 100, 2) if px[i][3] else None}
-        tm = filed[11:16]
-        reported.append({"key": key, "code": e.get("code"), "symbol": e["symbol"], "name": e["name"], "board": bool(e.get("code")),
-                         "sector": (mk.sector.get(key) or "").replace("-", " "), "quarter": P[-1], "half": lag_of(P) == 2, "filed": filed,
-                         "in_hours": "09:00" <= tm < "15:30", "p_up": round(p, 3),
-                         "sales_g": None if a["_g"] is None else round(a["_g"], 1), "last_g": round(f["g1"], 1),
-                         "profit_g": None if a["_pg"] is None else round(a["_pg"], 1), "np": a["_np"], "np0": a["_np0"],
-                         "margin_ch": None if a["_om"] is None else round(a["_om"], 1),
-                         "verdict": rd["verdict"], "tone": rd["tone"], "action": rd["action"],
-                         "exp": {k: rd["bin"].get(k) for k in ("up", "gap", "oc", "o3", "n")} if rd.get("bin") else None,
-                         "claude": {k: (reads.get(f"{key[4:]}|{filed}") or {}).get(k) for k in
-                                    ("verdict", "p_up", "summary", "positives", "negatives", "quality_flags", "revenue_yoy_pct", "profit_yoy_pct", "basis")}
-                         if reads.get(f"{key[4:]}|{filed}") else None,
-                         "result": res})
+        r = reported_row(key, len(P) - 1, filed)
+        if r:
+            reported.append(r)
     reported.sort(key=lambda r: r["filed"], reverse=True)
     plog = _load(POST_LOG, {})
     for r in reported:
@@ -1173,6 +1216,7 @@ def run() -> dict:
             rec["result"] = r["result"]
             rec["hit"] = None if not rec["tone"] else (r["result"]["move"] > 0) == (rec["tone"] == "up")
     POST_LOG.write_text(json.dumps(plog, separators=(",", ":"), ensure_ascii=False), encoding="utf-8")
+    update_reported_archive(reported, plog, reported_row, mk.ent)
     called = [x for x in plog.values() if x.get("result") and x.get("tone")]
     post_bt["live"] = {"graded": sum(1 for x in plog.values() if x.get("result")), "called": len(called),
                        "right": sum(1 for x in called if x.get("hit")),

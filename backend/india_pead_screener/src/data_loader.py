@@ -65,6 +65,17 @@ def prepare(fin: pd.DataFrame, px: pd.DataFrame, bench: pd.DataFrame):
     return fin, px.sort_values(["symbol", "date"]), bench.dropna().sort_values("date")
 
 
+def export_csvs(d: dict, raw: Path) -> None:
+    """The app's three tables (from_app) as the README's CSVs, so a standalone copy of this folder can run on
+    real data: quarterly_financials.csv also carries announcement_time, sector, actual_source and company_name."""
+    raw.mkdir(parents=True, exist_ok=True)
+    fin = d["fin"].copy()
+    fin["company_name"] = fin["symbol"].map(d["names"])
+    fin.to_csv(raw / "quarterly_financials.csv", index=False, date_format="%Y-%m-%d")
+    d["px"].to_csv(raw / "daily_prices.csv", index=False, date_format="%Y-%m-%d")
+    d["bench"].to_csv(raw / "benchmark_prices.csv", index=False, date_format="%Y-%m-%d")
+
+
 def write_sample_data(raw: Path, seed: int = 7) -> None:
     """SYNTHETIC templates (clearly not market data) so the project runs end to end out of the box:
     30 made-up symbols, 20 quarters, daily prices and a benchmark."""

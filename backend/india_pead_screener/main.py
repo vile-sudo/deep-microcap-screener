@@ -27,6 +27,7 @@ def main(argv=None) -> int:
     ap.add_argument("--source", choices=["csv", "app"], default="csv")
     ap.add_argument("--metric", choices=["eps", "net_profit"], help="override srwd.metric")
     ap.add_argument("--db", help="SQLite file (default: output.sqlite in the config)")
+    ap.add_argument("--export-csv", help="with --source app: also write the three input CSVs to this folder")
     a = ap.parse_args(argv)
     cfg = load_config(Path(a.config))
     base = Path(a.config).resolve().parent
@@ -37,12 +38,18 @@ def main(argv=None) -> int:
         sectors = dict(zip(fin["symbol"], fin["sector"]))
         print(f"app data: {fin['symbol'].nunique()} companies, {len(fin)} quarters, {px['symbol'].nunique()} price series "
               f"({d['excluded']} financials/utilities left out)")
+        if a.export_csv:
+            data_loader.export_csvs(d, Path(a.export_csv))
+            print(f"input CSVs written to {a.export_csv}")
     else:
         raw = base / Path(cfg["data_paths"]["quarterly_financials"]).parent
         if not all((base / p).exists() for p in cfg["data_paths"].values()):
             print(f"input CSVs missing -- writing SYNTHETIC sample templates to {raw}")
             data_loader.write_sample_data(raw)
         fin, px, bench = data_loader.load_csvs(cfg["data_paths"], base)
+        if "company_name" in fin.columns:        # CSVs exported from the app (fetch_data.py)
+            names = dict(zip(fin["symbol"], fin["company_name"]))
+            sectors = dict(zip(fin["symbol"], fin["sector"])) if "sector" in fin.columns else None
     if a.metric:
         cfg["srwd"]["metric"] = a.metric
     res, dq, fc = screener.run(cfg, fin, px, bench)
