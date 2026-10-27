@@ -6942,7 +6942,7 @@ function rpvRepRow(r, sg){
 }
 function rpvRepBar(){
   rpvRepDays();
-  const days=(RPVR.days||[]).map(x=>x.date), cur=RPVR.date;
+  const days=(RPVR.days||[]).map(x=>x.date), cur=RPVR.date, today=dhIso(new Date());
   const prev=cur?days.filter(x=>x<cur).pop():days[days.length-1];   // from the latest view, ◀ opens the last day on file
   const next=cur?days.find(x=>x>cur):null;
   const span=days.length?`${fmtI(days.length)} filing days on file · ${esc(rpvDate(days[0]))} – ${esc(rpvDate(days[days.length-1]))}`:(RPVR.days?'no earlier days on file yet':'loading the days on file…');
@@ -6950,6 +6950,7 @@ function rpvRepBar(){
       <button type="button" class="btn" data-repgo="${ea(prev||'')}" ${prev?'':'disabled'} title="The previous day with results filed">◀ Previous day</button>
       <label class="rpv-chkdate"><span>Filed on</span><input type="date" id="rpv-repd" class="gal-select" value="${ea(cur||'')}" ${days.length?`min="${days[0]}" max="${days[days.length-1]}"`:''}></label>
       <button type="button" class="btn" data-repgo="${ea(next||'')}" ${next?'':'disabled'} title="The next day with results filed">Next day ▶</button>
+      <button type="button" class="btn${cur===today?' on':''}" data-repgo="${ea(today)}" title="Results filed today (IST)">Today</button>
       <button type="button" class="btn" data-repgo="" ${cur?'':'disabled'} title="Back to the last few days">Latest</button>
       <span class="cp-sub">${span}</span></div>`;
 }
@@ -6965,7 +6966,13 @@ function rpvReported(d){
   const scope=`<div class="mv-toolbar"><div class="rc-seg" role="group" aria-label="Companies"><button type="button" data-rpvs="board" class="${RPV.scope==='board'?'on':''}">Board companies</button><button type="button" data-rpvs="all" class="${RPV.scope==='all'?'on':''}">All listed</button></div></div>`;
   const head=intro+rpvRepBar()+scope;
   let src, note='';
-  if(RPVR.date){
+  const today=dhIso(new Date());
+  if(RPVR.date===today){
+    // today: the evening reads already in the latest list, plus anything the per-day file has (same filing kept once)
+    const seen=new Set(), key=r=>r.symbol+'|'+r.filed;
+    src=[...(d.reported||[]).filter(r=>(r.filed||'').slice(0,10)===today), ...(RPVR.rows[today]||[])].filter(r=>!seen.has(key(r)) && seen.add(key(r)));
+    note=`<p class="cp-sub">${src.length?`<b>${fmtI(src.length)}</b> results filed <b>today, ${esc(rpvDate(today))}</b>${RPVR.rows[today]==null?' · checking for more…':''}`:(RPVR.rows[today]==null?'Loading today’s results…':`No results with numbers on file for today (${esc(rpvDate(today))}) yet — reads appear the evening a company reports (about 9:45 PM, 11:15 PM and overnight). Results filed after the close are read before the next open.`)}</p>`;
+  } else if(RPVR.date){
     src=RPVR.rows[RPVR.date];
     if(src==null) return head+'<p class="view-hint">Loading…</p>';
     const nb=src.filter(r=>r.call==='backtest').length, liveFrom=((RPVR.days||[]).find(x=>x.live)||{}).date;
