@@ -14702,6 +14702,20 @@
   "INE00TV01023": {
    "on": "2026-10-26",
    "result": "not on screener"
+  },
+  "INE0BJO01010": {
+   "on": "2026-10-28",
+   "result": "sector",
+   "detail": "no sector"
+  },
+  "INE661T01029": {
+   "on": "2026-10-28",
+   "result": "sector",
+   "detail": "no sector"
+  },
+  "INE637H20024": {
+   "on": "2026-10-28",
+   "result": "not on screener"
   }
  },
  "runs": [
@@ -15017,6 +15031,13 @@
   {
    "on": "2026-10-26",
    "fetched": 1,
+   "not on screener": 1,
+   "added_codes": []
+  },
+  {
+   "on": "2026-10-28",
+   "fetched": 3,
+   "sector": 2,
    "not on screener": 1,
    "added_codes": []
   }

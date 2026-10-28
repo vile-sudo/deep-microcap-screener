@@ -147803,7 +147803,7 @@
      ]
     }
    },
-   "profiled_on": "2026-10-25"
+   "profiled_on": "2026-10-28"
   }
  },
  {
@@ -148066,7 +148066,7 @@
      ]
     }
    },
-   "profiled_on": "2026-10-25"
+   "profiled_on": "2026-10-28"
   }
  },
  {
@@ -154792,7 +154792,7 @@
      ]
     }
    },
-   "profiled_on": "2026-10-25"
+   "profiled_on": "2026-10-28"
   }
  },
  {
@@ -171807,6 +171807,1325 @@
   "plausible": true,
   "verdict": null,
   "seen_on": "2026-10-25",
+  "source": "sweep",
+  "moat_signal": null,
+  "moat_evidence": null
+ },
+ {
+  "sym": "BONDADA",
+  "name": "Bondada Engineering Limited",
+  "board": "NSE",
+  "isin": "INE0Q8P01029",
+  "listed": "29-OCT-2026",
+  "hint": "precision engineering",
+  "why": "sector plausible",
+  "plausible": true,
+  "verdict": null,
+  "seen_on": "2026-10-28",
+  "source": "new-listing",
+  "moat_signal": null,
+  "moat_evidence": null
+ },
+ {
+  "sym": "JPL",
+  "name": "Jio Platforms Limited",
+  "board": "NSE",
+  "isin": "INE0BJO01010",
+  "listed": "28-OCT-2026",
+  "hint": null,
+  "why": "sector unknown, SME platform",
+  "plausible": false,
+  "verdict": null,
+  "seen_on": "2026-10-28",
+  "source": "new-listing",
+  "moat_signal": true,
+  "moat_evidence": [
+   "monopoly claim: \"Transforming digital connectivity and digital services in India - We were the first to roll out 4G VoLTE connectivity at scale in India and the first company to achieve 100 million 4G customers in less than 180 days from commercial launch of our services, as per the Analysys Mason Report; - We are the first operator in India to launch a standalone 5G network, as per the Analysys Mason Report, and have also enabled large scale, rapid 5G adoption in India.\" (prospectus, company-stated)",
+   "monopoly claim: \"twork Towers, majority of which are fiberised; - In Fiscal, 2026, ~60% of India’s wireless data traffic was on our network, and as of June 30, 2026 we were the largest digital connectivity player, with ~1.\" (prospectus, company-stated)",
+   "monopoly claim: \"4 times the 4G+5G subscribers of the second largest player in India, as per the Analysys Mason Report; - As of June 30, 2026, our wireless broadband network covers more than 99% of the population, while our fixed broadband coverage extends to cover approximately 98% of all pin codes in India; - We hold 26,800.\" (prospectus, company-stated)"
+  ],
+  "profile": {
+   "symbol": "JPL",
+   "company": "Jio Platforms Limited",
+   "isin": "INE0BJO01010",
+   "board": "NSE",
+   "source": {
+    "document": "final prospectus",
+    "url": "https://nsearchives.nseindia.com/corporate/FP_INE0BJO01010_26OCT2026.pdf",
+    "filed": "26-Oct-2026",
+    "pdf_bytes": 11543981,
+    "extracted_chars": 2000227
+   },
+   "grade": "company-stated",
+   "verified_against": null,
+   "claims": {
+    "accreditation": {
+     "count": 2,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "ISO 27701",
+      "ISO 9001"
+     ],
+     "evidence": [
+      {
+       "match": "ISO 27701",
+       "sentence": "We have obtained assurance for our technology operations by certifying our cyber security and privacy programmes under the ISO/IEC 27001 and ISO 27701 standards."
+      },
+      {
+       "match": "ISO 9001",
+       "sentence": "Data centres that power our network are also certified to ISO 9001, ISO 14001, ISO 45001, ISO 22301, and ISO 20000-1, which demonstrate the robust systems and processes we have implemented to effectively manage risks and opportunities."
+      }
+     ]
+    },
+    "monopoly_claim": {
+     "count": 11,
+     "dropped_as_industry_commentary": 7,
+     "terms": [
+      "first operator in India",
+      "largest digital connectivity player",
+      "largest player",
+      "first company in India",
+      "first network in India"
+     ],
+     "evidence": [
+      {
+       "match": "first operator in India",
+       "sentence": "Transforming digital connectivity and digital services in India - We were the first to roll out 4G VoLTE connectivity at scale in India and the first company to achieve 100 million 4G customers in less than 180 days from commercial launch of our services, as per the Analysys Mason Report; - We are the first operator in India to launch a standalone 5G network, as per the Analysys Mason Report, and have also enabled large scale, rapid 5G adoption in India."
+      },
+      {
+       "match": "largest digital connectivity player",
+       "sentence": "twork Towers, majority of which are fiberised; - In Fiscal, 2026, ~60% of India’s wireless data traffic was on our network, and as of June 30, 2026 we were the largest digital connectivity player, with ~1."
+      },
+      {
+       "match": "largest player",
+       "sentence": "4 times the 4G+5G subscribers of the second largest player in India, as per the Analysys Mason Report; - As of June 30, 2026, our wireless broadband network covers more than 99% of the population, while our fixed broadband coverage extends to cover approximately 98% of all pin codes in India; - We hold 26,800."
+      }
+     ]
+    },
+    "ip": {
+     "count": 60,
+     "dropped_as_industry_commentary": 26,
+     "terms": [
+      "proprietary technology",
+      "trademark",
+      "trademarks",
+      "Trademark",
+      "patent",
+      "patents",
+      "proprietary technologies",
+      "Patent"
+     ],
+     "evidence": [
+      {
+       "match": "proprietary technology",
+       "sentence": "For instance, the Company intends to monetize its proprietary technology stack including cloud-native RAN, 5G core, OSS/BSS platforms, UBR-based fixed wireless access solutions, AI-driven network automation and digital services platforms in select ov"
+      },
+      {
+       "match": "trademark",
+       "sentence": "We do not control the use of the “Jio” trademark by other companies in the Reliance Group."
+      },
+      {
+       "match": "trademarks",
+       "sentence": "Several of the trademarks that we use in our business, including the “Jio” trademark, are owned by the Promoter and licensed or otherwise made available to us pursuant to the Trademark License Agreement dated January 20, 2015, as amended on March 18, 2020, between the Promoter, the Company and RJIL."
+      }
+     ]
+    }
+   },
+   "risk_factors": {
+    "promoter_litigation": {
+     "count": 19,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "Criminal proceedings",
+      "criminal proceedings",
+      "criminal complaint"
+     ],
+     "evidence": [
+      {
+       "match": "Criminal proceedings",
+       "sentence": "- Criminal proceedings Company Against the Company By the Company Subsidiaries Against the Subsidiaries By the Subsidiaries Directors Against the Directors By the Directors Promoter Against the Promoter"
+      },
+      {
+       "match": "criminal proceedings",
+       "sentence": "467 SECTION VI – LEGAL AND OTHER INFORMATION OUTSTANDING LITIGATION AND OTHER MATERIAL DEVELOPMENTS Except as disclosed in this section there are no outstanding litigation as of the date of this Prospectus, pertaining to (i) criminal proceedings, including first information reports involving the Company, Promoter, Subsidiaries and Directors (collectively “Relevant Parties”); (ii) actions taken by statutory and/ or regulat"
+      },
+      {
+       "match": "criminal proceedings",
+       "sentence": "Further, except as disclosed in this section, there are no outstanding litigation as of the date of this Prospectus, pertaining to (i) criminal proceedings, including first information reports involving the Key Managerial Personnel and Senior Management; and (ii) actions taken by regulatory and statutory authorities against the Key Managerial Personnel and Senior Management."
+      }
+     ]
+    },
+    "related_party": {
+     "count": 36,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "RELATED PARTY TRANSACTIONS",
+      "related party transaction",
+      "related party transactions",
+      "Related Party Transactions",
+      "Related party transactions"
+     ],
+     "evidence": [
+      {
+       "match": "RELATED PARTY TRANSACTIONS",
+       "sentence": "79 SUMMARY OF RELATED PARTY TRANSACTIONS ."
+      },
+      {
+       "match": "related party transaction",
+       "sentence": "(2) Recharge vouchers sold to Reliance Retail Limited are accounted as ‘Advance against services’ which is disclosed as a related party transaction under the head ‘Revenue received in advance’."
+      },
+      {
+       "match": "related party transactions",
+       "sentence": "Further, material related party transactions involving the Company and/ or its Subsidiaries have been conducted on an arm’s length basis in compliance with the provisions of the Companies Act, 2013 and other applicable"
+      }
+     ]
+    }
+   },
+   "objects_of_the_issue": {
+    "offer_for_sale": {
+     "count": 1,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "offer for sale"
+     ],
+     "evidence": [
+      {
+       "match": "offer for sale",
+       "sentence": "The Equity Shares shall also be subject to all applicable laws, guidelines, rules, notifications and regulations relating to an issue, offer for sale and listing and trading of securities, issued from time to time, by the SEBI, the GoI, the Stock Exchanges, the RoC, the RBI and/ or other authorities, as in force on the date of the Is"
+      }
+     ]
+    },
+    "fresh_issue": {
+     "count": 9,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "Fresh Issue",
+      "fresh issue"
+     ],
+     "evidence": [
+      {
+       "match": "Fresh Issue",
+       "sentence": "Centre Point, Panchwati 5 Rasta, Ambawadi, Ahmedabad 380 006, Gujarat, India TC-22, 5th Floor, A Wing, Reliance Corporate Park, Thane Belapur Road, Ghansoli, Navi Mumbai 400 701, Maharashtra, India TYPE Fresh Issue FRESH ISSUE SIZE 270,000,000 Equity Shares^* of face value of ₹10 each for cash at a price of ₹1,119* each (including a securities premium of ₹1,109* per Equity Share) aggregating to ₹301,876 million^* CONTACT PERSON(S) Ms."
+      },
+      {
+       "match": "Fresh Issue",
+       "sentence": "the inter-se allocation in the Net Issue between the Retail Portion and Non-Institutional Portion specified under the SEBI ICDR Regulations ^Subject to finalisation of Basis of Allotment Escrow Account(s) Escrow Collection Banks First or sole Bidder Floor Price Fresh Issue/ Issue Account(s) opened with the Escrow Collection Banks and to which Anchor Investors transferred the money through direct credit/ NEFT/ RTGS/ NACH in respect of the Bid Amount while sub"
+      },
+      {
+       "match": "fresh issue",
+       "sentence": "118 OBJECTS OF THE ISSUE The Issue comprises of a fresh issue of 270,000,000 Equity Shares^* of face value of ₹10 each for cash at a price of ₹1,119* each (including a securities premium of ₹1,109 * per Equity Share) aggregating to ₹301,876 million^*."
+      }
+     ]
+    },
+    "capital_expenditure": {
+     "count": 31,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "capital expenditure",
+      "Capital expenditure",
+      "setting up of",
+      "Capital Expenditure",
+      "expansion of our"
+     ],
+     "evidence": [
+      {
+       "match": "capital expenditure",
+       "sentence": "Capital employed as of the end of the year / period has been computed as total equity plus total borrowings plus deferred payments liabilities plus creditor for capital expenditure plus deferred tax liabilities (net), and reduced by cash and marketable securities, capital work-inprogress, other intangible assets under development and spectrum under developmen"
+      },
+      {
+       "match": "capital expenditure",
+       "sentence": "Further, bidding for new spectrum or replacing existing spectrum with another spectrum could require significant capital expenditure, and there is no assurance that we would be successful in bidding for the spectrum."
+      },
+      {
+       "match": "capital expenditure",
+       "sentence": "Given the capital-intensive nature of our industry and the scale of our growth initiatives, we expect that we will need to continue to tap various sources of funding to finance ongoing capital expenditure, technology upgrades and expansion into new digital services and geographies."
+      }
+     ]
+    },
+    "working_capital": {
+     "count": 3,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "working capital requirements",
+      "working capital requirement"
+     ],
+     "evidence": [
+      {
+       "match": "working capital requirements",
+       "sentence": "ies; (iii) payment of deferred payment liability; (iv) strengthening marketing capabilities and brand building exercises; (v) capital expenditure; (vi) funding working capital requirements; (vii) meeting ongoing general corporate purposes or contingencies; and/or (viii) any other purpose as may be approved by the Board or a duly appointed committee from time to time, subject to compliance with the Companies Act."
+      },
+      {
+       "match": "working capital requirements",
+       "sentence": "437 FINANCIAL INDEBTEDNESS The Company and the Subsidiaries have availed certain credit facilities in their ordinary course of business, for inter alia capital expenditure, working capital requirements and other business requirements."
+      },
+      {
+       "match": "working capital requirement",
+       "sentence": "These loans were primarily used to fund our capital expenditure and working capital requirement."
+      }
+     ]
+    },
+    "general_corporate": {
+     "count": 9,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "general corporate purposes",
+      "General corporate purposes"
+     ],
+     "evidence": [
+      {
+       "match": "general corporate purposes",
+       "sentence": "The objects of the Issue comprise (i) prepayment, in full or in part of certain outstanding borrowings availed by the Material Subsidiary, RJIL; and (ii) general corporate purposes."
+      },
+      {
+       "match": "General corporate purposes",
+       "sentence": "General corporate purposes, (collectively, the “Objects”)."
+      },
+      {
+       "match": "General corporate purposes",
+       "sentence": "Particulars Total estimated amount to be funded from the Net Proceeds (in ₹ million) Amount to be deployed from the Net Proceeds in Fiscal 2027 275,000 275,000 22,179 297,179 22,179 297,179 Prepayment, in full or in part, of certain outstanding borrowings availed by the Material Subsidiary, RJIL General corporate purposes* Net Proceeds * The amount utilised for general corporate purposes shall not exceed 25% of the Gross Proceeds."
+      }
+     ]
+    }
+   },
+   "profiled_on": "2026-10-28"
+  }
+ },
+ {
+  "sym": "PARASHLTH",
+  "name": "Paras Healthcare Limited",
+  "board": "NSE",
+  "isin": "INE661T01029",
+  "listed": "28-OCT-2026",
+  "hint": "pharma & healthcare",
+  "why": "sector plausible",
+  "plausible": true,
+  "verdict": null,
+  "seen_on": "2026-10-28",
+  "source": "new-listing",
+  "moat_signal": true,
+  "moat_evidence": [
+   "monopoly claim: \"60% The table below sets forth details of our purchases of supplies and equipment from our largest supplier, top 5 suppliers and top 10 suppliers, including as a percentage of total supplies and equipment purchased, in the periods / years indicated: 55 Particulars Largest supplier Top five\" (prospectus, company-stated)"
+  ],
+  "profile": {
+   "symbol": "PARASHLTH",
+   "company": "Paras Healthcare Limited",
+   "isin": "INE661T01029",
+   "board": "NSE",
+   "source": {
+    "document": "final prospectus",
+    "url": "https://nsearchives.nseindia.com/corporate/FP_INE661T01029_26OCT2026.pdf",
+    "filed": "26-Oct-2026",
+    "pdf_bytes": 11614087,
+    "extracted_chars": 2344461
+   },
+   "grade": "company-stated",
+   "verified_against": null,
+   "claims": {
+    "accreditation": {
+     "count": 12,
+     "dropped_as_industry_commentary": 22,
+     "terms": [
+      "NABH",
+      "NABL"
+     ],
+     "evidence": [
+      {
+       "match": "NABH",
+       "sentence": "Further, we maintain certain accreditations, including accreditations from the National Accreditation Board for Hospitals and Healthcare Providers (“NABH”) and National Accreditation Board for Testing and Calibration Laboratories (“NABL”) for our hospitals and our testing laboratories, respectively."
+      },
+      {
+       "match": "NABH",
+       "sentence": "We are also subject to periodic inspections by regulatory bodies such as Atomic Energy Regulatory Board, Department of Fire & Safety and NABH."
+      },
+      {
+       "match": "NABH",
+       "sentence": "Our focus on quality is further reinforced by seven of our hospitals being accredited by the NABH."
+      }
+     ]
+    },
+    "monopoly_claim": {
+     "count": 1,
+     "dropped_as_industry_commentary": 1,
+     "terms": [
+      "largest supplier"
+     ],
+     "evidence": [
+      {
+       "match": "largest supplier",
+       "sentence": "60% The table below sets forth details of our purchases of supplies and equipment from our largest supplier, top 5 suppliers and top 10 suppliers, including as a percentage of total supplies and equipment purchased, in the periods / years indicated: 55 Particulars Largest supplier Top five"
+      }
+     ]
+    },
+    "ip": {
+     "count": 24,
+     "dropped_as_industry_commentary": 14,
+     "terms": [
+      "trademark",
+      "trademarks",
+      "Patent",
+      "patents"
+     ],
+     "evidence": [
+      {
+       "match": "trademark",
+       "sentence": "We do not own a registered trademark for the word/ brand “Paras” and there is no formal arrangement governing the use of the “Paras” name/ brand by members of our Promoter Group."
+      },
+      {
+       "match": "trademarks",
+       "sentence": "As on the date of this Prospectus, our Company has registered 18 trademarks valid as of date in relation to “Paras Pharmacy”, “Paras Global Hospital”, “Paras HMRI Hospital”, “Paras Spring Meadows”, “Paras Hospitals”, “Paras Bliss”, “Paras Healthcare”, “Paras Cancer Centre”."
+      },
+      {
+       "match": "trademarks",
+       "sentence": "Our Company changed the logo and branding and has made applications for 29 trademarks for the new logos, out of which 25 of our trademark applications have been opposed."
+      }
+     ]
+    }
+   },
+   "risk_factors": {
+    "promoter_litigation": {
+     "count": 23,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "Criminal Proceedings",
+      "criminal cases",
+      "criminal complaint",
+      "criminal proceedings",
+      "proceedings against our Promoter"
+     ],
+     "evidence": [
+      {
+       "match": "Criminal Proceedings",
+       "sentence": "32 The table below sets forth a summary of outstanding litigation proceedings involving our Company, Subsidiaries, Promoter, Directors, Key Managerial Personnel and Senior Management as identified in terms of our Materiality Policy and as of the date of this Prospectus: Name of Entity Criminal Proceedings Tax Proceedings (direct and indirect tax) 6 Nil Against our Company 4 ^ By our Subsidiaries Against our Subsidiaries By our Company Statutory or Regulatory Proceedings Disciplinar"
+      },
+      {
+       "match": "criminal cases",
+       "sentence": "Certain criminal cases have been registered in connection with incidents at our hospitals, including, in relation to an alleged sexual harassment incident at the Patna Hospital, and allegations of medical negligence at the Kanpur Hospital and Gurugram Hospital."
+      },
+      {
+       "match": "criminal complaint",
+       "sentence": "Additionally, a criminal complaint has been filed under Sections 320, 322, 338, 420, 415, and 120(B) read with Section 34 of the IPC against Dr."
+      }
+     ]
+    },
+    "single_site": {
+     "count": 1,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "single facility"
+     ],
+     "evidence": [
+      {
+       "match": "single facility",
+       "sentence": "Thus, hospital chains that have presence across multiple cities and operate multiple facilities have been selected as our peer set, thereby excluding all single facility/ standalone hospitals."
+      }
+     ]
+    },
+    "related_party": {
+     "count": 30,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "RELATED PARTY TRANSACTIONS",
+      "related party transactions",
+      "Related Party Transaction",
+      "related party transaction",
+      "Related Party Transactions",
+      "Related Party transactions"
+     ],
+     "evidence": [
+      {
+       "match": "RELATED PARTY TRANSACTIONS",
+       "sentence": "86 SUMMARY OF RELATED PARTY TRANSACTIONS ."
+      },
+      {
+       "match": "related party transactions",
+       "sentence": "We have entered into related party transactions in the past and may continue to do so in the future, which may potentially involve conflicts of interest with equity shareholders."
+      },
+      {
+       "match": "related party transactions",
+       "sentence": "While all such transactions have been conducted on an arm’s length basis, in accordance with the Companies Act and other applicable regulations pertaining to the evaluation and approval of such transactions, all related party transactions that we may enter into post-listing will be subject to an approval by our Audit Committee, Board, or Shareholders, as required under the Companies Act and the SEBI Listing Regulations."
+      }
+     ]
+    }
+   },
+   "objects_of_the_issue": {
+    "offer_for_sale": {
+     "count": 59,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "Offer for Sale",
+      "OFFER FOR SALE",
+      "offer for sale"
+     ],
+     "evidence": [
+      {
+       "match": "Offer for Sale",
+       "sentence": "823 REGISTERED AND CORPORATE OFFICE 1st Floor, Tower B, Paras Twin Towers, Golf Course Road, Sector 54, Gurugram – 122 002, Haryana, India TYPE Fresh Issue and Offer for Sale CONTACT PERSON EMAIL AND TELEPHONE WEBSITE Rahul Kumar Telephone: +91 124 430 2163 www."
+      },
+      {
+       "match": "OFFER FOR SALE",
+       "sentence": "DHARMINDER KUMAR NAGAR DETAILS OF THE OFFER TO THE PUBLIC TOTAL FRESH ELIGIBILITY AND SHARE RESERVATION AMONG QIBs, OFFER FOR SALE SIZE OFFER ISSUE SIZE NIBs & RIBs SIZE 7,215,007 13,708,513 Equity 20,923,52 The Offer was made pursuant to Regulation 6(2) of the Securities Equity Shares^ of face value of 0 Equity an"
+      },
+      {
+       "match": "OFFER FOR SALE",
+       "sentence": "DETAILS OF THE OFFER FOR SALE BY SELLING SHAREHOLDERS AND WEIGHTED AVERAGE COST OF ACQUISITION WEIGHTED AVERAGE NUMBER OF EQUITY SHARES OF FACE NAME OF THE SELLING COST OF ACQUISITION TYPE VALUE OF ₹1 EACH OFFERED /"
+      }
+     ]
+    },
+    "fresh_issue": {
+     "count": 50,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "Fresh Issue",
+      "FRESH ISSUE",
+      "fresh issue",
+      "Fresh issue"
+     ],
+     "evidence": [
+      {
+       "match": "Fresh Issue",
+       "sentence": "5110HR1987PLC035823 REGISTERED AND CORPORATE OFFICE 1st Floor, Tower B, Paras Twin Towers, Golf Course Road, Sector 54, Gurugram – 122 002, Haryana, India TYPE Fresh Issue and Offer for Sale CONTACT PERSON EMAIL AND TELEPHONE WEBSITE Rahul Kumar Telephone: +91 124 430 2163 www."
+      },
+      {
+       "match": "FRESH ISSUE",
+       "sentence": "00 MILLION* (THE “OFFER”) COMPRISING A FRESH ISSUE OF 7,215,007 EQUITY SHARES* OF FACE VALUE OF ₹ 1 EACH AGGREGATING TO ₹ 5,000."
+      },
+      {
+       "match": "FRESH ISSUE",
+       "sentence": "00 MILLION* BY OUR COMPANY (THE “FRESH ISSUE”) AND AN OFFER FOR SALE OF 13,708,513 EQUITY SHARES* OF FACE VALUE OF ₹ 1 EACH (“OFFERED SHARES”) AGGREGATING TO ₹ 9,500."
+      }
+     ]
+    },
+    "capital_expenditure": {
+     "count": 47,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "Capital expenditure",
+      "capital expenditure",
+      "setting up of",
+      "expansion of our"
+     ],
+     "evidence": [
+      {
+       "match": "Capital expenditure",
+       "sentence": "l (c) Darbhanga Hospital (d) Panchkula Hospital (e) Udaipur Hospital (f) Ranchi Hospital (g) Srinagar Hospital (h) Kanpur Hospital Capital Employed (₹ million) Capital expenditure per bed or capex per bed (₹ million) Debt to Equity (times) Doctor-to-bed ratio EBITDA (₹ million) EBITDA growth rate (%) EBITDA Margin (%) In-patient revenue (₹ million) In-patien"
+      },
+      {
+       "match": "Capital expenditure",
+       "sentence": "Deferred Tax Liability is as presented in Restated Consolidated Financial Information Capital expenditure per bed is calculated as the aggregate of gross block of property, plant and equipment and right of use assets as appearing in Restated Consolidated Financial Information as at the end of the relevant period divided by the total bed capacity as of the end of the relevant period."
+      },
+      {
+       "match": "capital expenditure",
+       "sentence": "While we were profitable in Fiscal 2026, going forward, in pursuance of our strategy to scale operations at our existing hospitals and expand our hospital network in North India, we will incur additional capital expenditure."
+      }
+     ]
+    },
+    "working_capital": {
+     "count": 15,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "working capital requirements",
+      "Working capital requirements"
+     ],
+     "evidence": [
+      {
+       "match": "working capital requirements",
+       "sentence": "Any prolonged or systemic delays in reimbursements under government healthcare schemes or PSU arrangements may increase our working capital requirements, adversely impact our cash flows and result in higher outstanding receivables."
+      },
+      {
+       "match": "Working capital requirements",
+       "sentence": "93 43 Key purpose of the loan Healthcare infrastructure equipment Capital expenditure Capital expenditure Working capital requirements and S."
+      },
+      {
+       "match": "working capital requirements",
+       "sentence": "We may also require funds to meet our working capital requirements."
+      }
+     ]
+    },
+    "general_corporate": {
+     "count": 11,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "general corporate purposes",
+      "General corporate purposes"
+     ],
+     "evidence": [
+      {
+       "match": "general corporate purposes",
+       "sentence": "owned Subsidiary, PMHPL (which also operates our hospital in Srinagar), for repayment/prepayment of borrowings, in full or part, of such Subsidiary, and (iii) general corporate purposes."
+      },
+      {
+       "match": "General corporate purposes",
+       "sentence": "General corporate purposes# Net Proceeds#* (in ₹ million) Estimated Amount 3,209."
+      },
+      {
+       "match": "general corporate purposes",
+       "sentence": "06 # The amount to be utilised for general corporate purposes shall not exceed 25% of the Gross Proceeds, in accordance with the SEBI ICDR Regulations."
+      }
+     ]
+    }
+   },
+   "profiled_on": "2026-10-28"
+  }
+ },
+ {
+  "sym": "SHIVAM-RE1",
+  "name": "Shivam Autotech Ltd-RE",
+  "board": "NSE",
+  "isin": "INE637H20024",
+  "listed": "28-OCT-2026",
+  "hint": null,
+  "why": "sector unknown, SME platform",
+  "plausible": false,
+  "verdict": null,
+  "seen_on": "2026-10-28",
+  "source": "new-listing",
+  "moat_signal": null,
+  "moat_evidence": null
+ },
+ {
+  "sym": "545002",
+  "name": "Aditya Birla Sun Life BSE Total Market ETF",
+  "board": "BSE",
+  "isin": "INF209KC1746",
+  "listed": null,
+  "hint": null,
+  "why": "sector unknown, SME platform",
+  "plausible": false,
+  "verdict": null,
+  "seen_on": "2026-10-28",
+  "source": "new-listing",
+  "moat_signal": null,
+  "moat_evidence": null
+ },
+ {
+  "sym": "545003",
+  "name": "ICICI Prudential Nifty Pharma ETF",
+  "board": "BSE",
+  "isin": "INF109K1A716",
+  "listed": null,
+  "hint": "pharma & healthcare",
+  "why": "sector plausible",
+  "plausible": true,
+  "verdict": null,
+  "seen_on": "2026-10-28",
+  "source": "new-listing",
+  "moat_signal": null,
+  "moat_evidence": null
+ },
+ {
+  "sym": "545005",
+  "name": "Paras Healthcare Ltd",
+  "board": "BSE",
+  "isin": "INE661T01029",
+  "listed": null,
+  "hint": "pharma & healthcare",
+  "why": "mid-cap sweep",
+  "mktcap_cr": 7976.05,
+  "plausible": true,
+  "verdict": null,
+  "seen_on": "2026-10-28",
+  "source": "sweep",
+  "moat_signal": true,
+  "moat_evidence": [
+   "monopoly claim: \"60% The table below sets forth details of our purchases of supplies and equipment from our largest supplier, top 5 suppliers and top 10 suppliers, including as a percentage of total supplies and equipment purchased, in the periods / years indicated: 55 Particulars Largest supplier Top five\" (prospectus, company-stated)"
+  ],
+  "profile": {
+   "symbol": "545005",
+   "company": "Paras Healthcare Limited",
+   "isin": "INE661T01029",
+   "board": "BSE",
+   "source": {
+    "document": "final prospectus",
+    "url": "https://nsearchives.nseindia.com/corporate/FP_INE661T01029_26OCT2026.pdf",
+    "filed": "26-Oct-2026",
+    "pdf_bytes": 11614087,
+    "extracted_chars": 2344461
+   },
+   "grade": "company-stated",
+   "verified_against": null,
+   "claims": {
+    "accreditation": {
+     "count": 12,
+     "dropped_as_industry_commentary": 22,
+     "terms": [
+      "NABH",
+      "NABL"
+     ],
+     "evidence": [
+      {
+       "match": "NABH",
+       "sentence": "Further, we maintain certain accreditations, including accreditations from the National Accreditation Board for Hospitals and Healthcare Providers (“NABH”) and National Accreditation Board for Testing and Calibration Laboratories (“NABL”) for our hospitals and our testing laboratories, respectively."
+      },
+      {
+       "match": "NABH",
+       "sentence": "We are also subject to periodic inspections by regulatory bodies such as Atomic Energy Regulatory Board, Department of Fire & Safety and NABH."
+      },
+      {
+       "match": "NABH",
+       "sentence": "Our focus on quality is further reinforced by seven of our hospitals being accredited by the NABH."
+      }
+     ]
+    },
+    "monopoly_claim": {
+     "count": 1,
+     "dropped_as_industry_commentary": 1,
+     "terms": [
+      "largest supplier"
+     ],
+     "evidence": [
+      {
+       "match": "largest supplier",
+       "sentence": "60% The table below sets forth details of our purchases of supplies and equipment from our largest supplier, top 5 suppliers and top 10 suppliers, including as a percentage of total supplies and equipment purchased, in the periods / years indicated: 55 Particulars Largest supplier Top five"
+      }
+     ]
+    },
+    "ip": {
+     "count": 24,
+     "dropped_as_industry_commentary": 14,
+     "terms": [
+      "trademark",
+      "trademarks",
+      "Patent",
+      "patents"
+     ],
+     "evidence": [
+      {
+       "match": "trademark",
+       "sentence": "We do not own a registered trademark for the word/ brand “Paras” and there is no formal arrangement governing the use of the “Paras” name/ brand by members of our Promoter Group."
+      },
+      {
+       "match": "trademarks",
+       "sentence": "As on the date of this Prospectus, our Company has registered 18 trademarks valid as of date in relation to “Paras Pharmacy”, “Paras Global Hospital”, “Paras HMRI Hospital”, “Paras Spring Meadows”, “Paras Hospitals”, “Paras Bliss”, “Paras Healthcare”, “Paras Cancer Centre”."
+      },
+      {
+       "match": "trademarks",
+       "sentence": "Our Company changed the logo and branding and has made applications for 29 trademarks for the new logos, out of which 25 of our trademark applications have been opposed."
+      }
+     ]
+    }
+   },
+   "risk_factors": {
+    "promoter_litigation": {
+     "count": 23,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "Criminal Proceedings",
+      "criminal cases",
+      "criminal complaint",
+      "criminal proceedings",
+      "proceedings against our Promoter"
+     ],
+     "evidence": [
+      {
+       "match": "Criminal Proceedings",
+       "sentence": "32 The table below sets forth a summary of outstanding litigation proceedings involving our Company, Subsidiaries, Promoter, Directors, Key Managerial Personnel and Senior Management as identified in terms of our Materiality Policy and as of the date of this Prospectus: Name of Entity Criminal Proceedings Tax Proceedings (direct and indirect tax) 6 Nil Against our Company 4 ^ By our Subsidiaries Against our Subsidiaries By our Company Statutory or Regulatory Proceedings Disciplinar"
+      },
+      {
+       "match": "criminal cases",
+       "sentence": "Certain criminal cases have been registered in connection with incidents at our hospitals, including, in relation to an alleged sexual harassment incident at the Patna Hospital, and allegations of medical negligence at the Kanpur Hospital and Gurugram Hospital."
+      },
+      {
+       "match": "criminal complaint",
+       "sentence": "Additionally, a criminal complaint has been filed under Sections 320, 322, 338, 420, 415, and 120(B) read with Section 34 of the IPC against Dr."
+      }
+     ]
+    },
+    "single_site": {
+     "count": 1,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "single facility"
+     ],
+     "evidence": [
+      {
+       "match": "single facility",
+       "sentence": "Thus, hospital chains that have presence across multiple cities and operate multiple facilities have been selected as our peer set, thereby excluding all single facility/ standalone hospitals."
+      }
+     ]
+    },
+    "related_party": {
+     "count": 30,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "RELATED PARTY TRANSACTIONS",
+      "related party transactions",
+      "Related Party Transaction",
+      "related party transaction",
+      "Related Party Transactions",
+      "Related Party transactions"
+     ],
+     "evidence": [
+      {
+       "match": "RELATED PARTY TRANSACTIONS",
+       "sentence": "86 SUMMARY OF RELATED PARTY TRANSACTIONS ."
+      },
+      {
+       "match": "related party transactions",
+       "sentence": "We have entered into related party transactions in the past and may continue to do so in the future, which may potentially involve conflicts of interest with equity shareholders."
+      },
+      {
+       "match": "related party transactions",
+       "sentence": "While all such transactions have been conducted on an arm’s length basis, in accordance with the Companies Act and other applicable regulations pertaining to the evaluation and approval of such transactions, all related party transactions that we may enter into post-listing will be subject to an approval by our Audit Committee, Board, or Shareholders, as required under the Companies Act and the SEBI Listing Regulations."
+      }
+     ]
+    }
+   },
+   "objects_of_the_issue": {
+    "offer_for_sale": {
+     "count": 59,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "Offer for Sale",
+      "OFFER FOR SALE",
+      "offer for sale"
+     ],
+     "evidence": [
+      {
+       "match": "Offer for Sale",
+       "sentence": "823 REGISTERED AND CORPORATE OFFICE 1st Floor, Tower B, Paras Twin Towers, Golf Course Road, Sector 54, Gurugram – 122 002, Haryana, India TYPE Fresh Issue and Offer for Sale CONTACT PERSON EMAIL AND TELEPHONE WEBSITE Rahul Kumar Telephone: +91 124 430 2163 www."
+      },
+      {
+       "match": "OFFER FOR SALE",
+       "sentence": "DHARMINDER KUMAR NAGAR DETAILS OF THE OFFER TO THE PUBLIC TOTAL FRESH ELIGIBILITY AND SHARE RESERVATION AMONG QIBs, OFFER FOR SALE SIZE OFFER ISSUE SIZE NIBs & RIBs SIZE 7,215,007 13,708,513 Equity 20,923,52 The Offer was made pursuant to Regulation 6(2) of the Securities Equity Shares^ of face value of 0 Equity an"
+      },
+      {
+       "match": "OFFER FOR SALE",
+       "sentence": "DETAILS OF THE OFFER FOR SALE BY SELLING SHAREHOLDERS AND WEIGHTED AVERAGE COST OF ACQUISITION WEIGHTED AVERAGE NUMBER OF EQUITY SHARES OF FACE NAME OF THE SELLING COST OF ACQUISITION TYPE VALUE OF ₹1 EACH OFFERED /"
+      }
+     ]
+    },
+    "fresh_issue": {
+     "count": 50,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "Fresh Issue",
+      "FRESH ISSUE",
+      "fresh issue",
+      "Fresh issue"
+     ],
+     "evidence": [
+      {
+       "match": "Fresh Issue",
+       "sentence": "5110HR1987PLC035823 REGISTERED AND CORPORATE OFFICE 1st Floor, Tower B, Paras Twin Towers, Golf Course Road, Sector 54, Gurugram – 122 002, Haryana, India TYPE Fresh Issue and Offer for Sale CONTACT PERSON EMAIL AND TELEPHONE WEBSITE Rahul Kumar Telephone: +91 124 430 2163 www."
+      },
+      {
+       "match": "FRESH ISSUE",
+       "sentence": "00 MILLION* (THE “OFFER”) COMPRISING A FRESH ISSUE OF 7,215,007 EQUITY SHARES* OF FACE VALUE OF ₹ 1 EACH AGGREGATING TO ₹ 5,000."
+      },
+      {
+       "match": "FRESH ISSUE",
+       "sentence": "00 MILLION* BY OUR COMPANY (THE “FRESH ISSUE”) AND AN OFFER FOR SALE OF 13,708,513 EQUITY SHARES* OF FACE VALUE OF ₹ 1 EACH (“OFFERED SHARES”) AGGREGATING TO ₹ 9,500."
+      }
+     ]
+    },
+    "capital_expenditure": {
+     "count": 47,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "Capital expenditure",
+      "capital expenditure",
+      "setting up of",
+      "expansion of our"
+     ],
+     "evidence": [
+      {
+       "match": "Capital expenditure",
+       "sentence": "l (c) Darbhanga Hospital (d) Panchkula Hospital (e) Udaipur Hospital (f) Ranchi Hospital (g) Srinagar Hospital (h) Kanpur Hospital Capital Employed (₹ million) Capital expenditure per bed or capex per bed (₹ million) Debt to Equity (times) Doctor-to-bed ratio EBITDA (₹ million) EBITDA growth rate (%) EBITDA Margin (%) In-patient revenue (₹ million) In-patien"
+      },
+      {
+       "match": "Capital expenditure",
+       "sentence": "Deferred Tax Liability is as presented in Restated Consolidated Financial Information Capital expenditure per bed is calculated as the aggregate of gross block of property, plant and equipment and right of use assets as appearing in Restated Consolidated Financial Information as at the end of the relevant period divided by the total bed capacity as of the end of the relevant period."
+      },
+      {
+       "match": "capital expenditure",
+       "sentence": "While we were profitable in Fiscal 2026, going forward, in pursuance of our strategy to scale operations at our existing hospitals and expand our hospital network in North India, we will incur additional capital expenditure."
+      }
+     ]
+    },
+    "working_capital": {
+     "count": 15,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "working capital requirements",
+      "Working capital requirements"
+     ],
+     "evidence": [
+      {
+       "match": "working capital requirements",
+       "sentence": "Any prolonged or systemic delays in reimbursements under government healthcare schemes or PSU arrangements may increase our working capital requirements, adversely impact our cash flows and result in higher outstanding receivables."
+      },
+      {
+       "match": "Working capital requirements",
+       "sentence": "93 43 Key purpose of the loan Healthcare infrastructure equipment Capital expenditure Capital expenditure Working capital requirements and S."
+      },
+      {
+       "match": "working capital requirements",
+       "sentence": "We may also require funds to meet our working capital requirements."
+      }
+     ]
+    },
+    "general_corporate": {
+     "count": 11,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "general corporate purposes",
+      "General corporate purposes"
+     ],
+     "evidence": [
+      {
+       "match": "general corporate purposes",
+       "sentence": "owned Subsidiary, PMHPL (which also operates our hospital in Srinagar), for repayment/prepayment of borrowings, in full or part, of such Subsidiary, and (iii) general corporate purposes."
+      },
+      {
+       "match": "General corporate purposes",
+       "sentence": "General corporate purposes# Net Proceeds#* (in ₹ million) Estimated Amount 3,209."
+      },
+      {
+       "match": "general corporate purposes",
+       "sentence": "06 # The amount to be utilised for general corporate purposes shall not exceed 25% of the Gross Proceeds, in accordance with the SEBI ICDR Regulations."
+      }
+     ]
+    }
+   },
+   "profiled_on": "2026-10-28"
+  }
+ },
+ {
+  "sym": "504375",
+  "name": "IDream Film Infrastructure Company Ltd",
+  "board": "BSE",
+  "isin": "INE459E01012",
+  "listed": null,
+  "hint": "construction & building materials",
+  "why": "mid-cap sweep",
+  "mktcap_cr": 12831.25,
+  "plausible": true,
+  "verdict": null,
+  "seen_on": "2026-10-28",
+  "source": "sweep",
+  "moat_signal": null,
+  "moat_evidence": null
+ },
+ {
+  "sym": "532181",
+  "name": "Gujarat Mineral Development Corporation Ltd",
+  "board": "BSE",
+  "isin": "INE131A01031",
+  "listed": null,
+  "hint": "metals & mining",
+  "why": "mid-cap sweep",
+  "mktcap_cr": 13866.39,
+  "plausible": true,
+  "verdict": null,
+  "seen_on": "2026-10-28",
+  "source": "sweep",
+  "moat_signal": null,
+  "moat_evidence": null
+ },
+ {
+  "sym": "501423",
+  "name": "Shaily Engineering Plastics Ltd",
+  "board": "BSE",
+  "isin": "INE151G01028",
+  "listed": null,
+  "hint": "precision engineering",
+  "why": "mid-cap sweep",
+  "mktcap_cr": 14038.44,
+  "plausible": true,
+  "verdict": null,
+  "seen_on": "2026-10-28",
+  "source": "sweep",
+  "moat_signal": null,
+  "moat_evidence": null
+ },
+ {
+  "sym": "533107",
+  "name": "Swan Defence And Heavy Industries Ltd",
+  "board": "BSE",
+  "isin": "INE542F01020",
+  "listed": null,
+  "hint": "defence & aerospace",
+  "why": "mid-cap sweep",
+  "mktcap_cr": 14085.89,
+  "plausible": true,
+  "verdict": null,
+  "seen_on": "2026-10-28",
+  "source": "sweep",
+  "moat_signal": null,
+  "moat_evidence": null
+ },
+ {
+  "sym": "500085",
+  "name": "Chambal Fertilisers & Chemicals Ltd",
+  "board": "BSE",
+  "isin": "INE085A01013",
+  "listed": null,
+  "hint": "chemicals",
+  "why": "mid-cap sweep",
+  "mktcap_cr": 14405.45,
+  "plausible": true,
+  "verdict": null,
+  "seen_on": "2026-10-28",
+  "source": "sweep",
+  "moat_signal": null,
+  "moat_evidence": null
+ },
+ {
+  "sym": "502986",
+  "name": "Vardhman Textiles Ltd",
+  "board": "BSE",
+  "isin": "INE825A01020",
+  "listed": null,
+  "hint": "textiles & apparel",
+  "why": "mid-cap sweep",
+  "mktcap_cr": 14664.17,
+  "plausible": true,
+  "verdict": null,
+  "seen_on": "2026-10-28",
+  "source": "sweep",
+  "moat_signal": null,
+  "moat_evidence": null
+ },
+ {
+  "sym": "500645",
+  "name": "Deepak Fertilisers & Petrochemicals Corporation Ltd",
+  "board": "BSE",
+  "isin": "INE501A01019",
+  "listed": null,
+  "hint": "chemicals",
+  "why": "mid-cap sweep",
+  "mktcap_cr": 14666.31,
+  "plausible": true,
+  "verdict": null,
+  "seen_on": "2026-10-28",
+  "source": "sweep",
+  "moat_signal": null,
+  "moat_evidence": null
+ },
+ {
+  "sym": "544717",
+  "name": "Clean Max Enviro Energy Solutions Ltd",
+  "board": "BSE",
+  "isin": "INE647U01026",
+  "listed": null,
+  "hint": "renewable & power",
+  "why": "mid-cap sweep",
+  "mktcap_cr": 14728.92,
+  "plausible": true,
+  "verdict": null,
+  "seen_on": "2026-10-28",
+  "source": "sweep",
+  "moat_signal": true,
+  "moat_evidence": [
+   "monopoly claim: \"For example, we will be using Envision’s 5 MW turbine for the first time in India, and do not have experience in operating it.\" (prospectus, company-stated)",
+   "monopoly claim: \"For example, we were the first in India to purchase Envision’s 3.\" (prospectus, company-stated)",
+   "monopoly claim: \"3 MW turbine in the year 2022 and have recently partnered with Envision in 2025, placing the first order in India for the 5 MW turbine to optimise our upcoming CTU-Connected project in Koppal, Karnataka.\" (prospectus, company-stated)",
+   "import substitution: \"We will also continue to target new Conventional C&I customer acquisition across sectors aligned with India’s structural growth themes, such as Make in India, AI, GCCs, data centres, and infrastructure development.\" (prospectus, company-stated)"
+  ],
+  "profile": {
+   "symbol": "544717",
+   "company": "Clean Max Enviro Energy Solutions Limited",
+   "isin": "INE647U01026",
+   "board": "BSE",
+   "source": {
+    "document": "final prospectus",
+    "url": "https://nsearchives.nseindia.com/corporate/FP_INE647U01026_26FEB2026.pdf",
+    "filed": "26-Feb-2026",
+    "pdf_bytes": 15868548,
+    "extracted_chars": 4437169
+   },
+   "grade": "company-stated",
+   "verified_against": null,
+   "claims": {
+    "accreditation": {
+     "count": 3,
+     "dropped_as_industry_commentary": 4,
+     "terms": [
+      "ISO 14001",
+      "ISO 55001",
+      "ISO 45001"
+     ],
+     "evidence": [
+      {
+       "match": "ISO 14001",
+       "sentence": "Engineering, Procurement and Construction: Our ESG targets for our sites include renewable energy deployment, ISO 14001-compliant environment management, 100% water neutrality by 2030, implementing comprehensive waste management strategies, and prioritizing biodiversity conservation."
+      },
+      {
+       "match": "ISO 55001",
+       "sentence": "We are certified as per international standards under ISO 55001 (Asset Management Standard)."
+      },
+      {
+       "match": "ISO 45001",
+       "sentence": "In 2020, our OHSMS achieved full compliance with the global standards for occupational health and safety management, earning ISO 45001:2018 certification."
+      }
+     ]
+    },
+    "monopoly_claim": {
+     "count": 3,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "first time in India",
+      "first in India",
+      "first order in India"
+     ],
+     "evidence": [
+      {
+       "match": "first time in India",
+       "sentence": "For example, we will be using Envision’s 5 MW turbine for the first time in India, and do not have experience in operating it."
+      },
+      {
+       "match": "first in India",
+       "sentence": "For example, we were the first in India to purchase Envision’s 3."
+      },
+      {
+       "match": "first order in India",
+       "sentence": "3 MW turbine in the year 2022 and have recently partnered with Envision in 2025, placing the first order in India for the 5 MW turbine to optimise our upcoming CTU-Connected project in Koppal, Karnataka."
+      }
+     ]
+    },
+    "import_substitution": {
+     "count": 1,
+     "dropped_as_industry_commentary": 10,
+     "terms": [
+      "Make in India"
+     ],
+     "evidence": [
+      {
+       "match": "Make in India",
+       "sentence": "We will also continue to target new Conventional C&I customer acquisition across sectors aligned with India’s structural growth themes, such as Make in India, AI, GCCs, data centres, and infrastructure development."
+      }
+     ]
+    },
+    "ip": {
+     "count": 8,
+     "dropped_as_industry_commentary": 2,
+     "terms": [
+      "trademarks",
+      "Trademarks"
+     ],
+     "evidence": [
+      {
+       "match": "trademarks",
+       "sentence": "Our Company has 35 registered trademarks under the Trademarks Act, 1999 under class 4, 6, 7, 9, 11, 35, 37, 39, 40, 42, and 45."
+      },
+      {
+       "match": "trademarks",
+       "sentence": "For instance, the application for one of our trademarks was objected by the Registry of Trademarks, Mumbai, to which our Company has submitted a reply."
+      },
+      {
+       "match": "trademarks",
+       "sentence": "We have 35 registered trademarks as at the date of this Prospectus."
+      }
+     ]
+    }
+   },
+   "risk_factors": {
+    "customer_concentration": {
+     "count": 15,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "top 10 customers",
+      "Top 10 Customers"
+     ],
+     "evidence": [
+      {
+       "match": "top 10 customers",
+       "sentence": "If we are unable to generate adequate cash profits and make scheduled loan repayments, we may not be able to maintain our profitability Our top 10 customers, all of whom are based in India, contributed 34."
+      },
+      {
+       "match": "top 10 customers",
+       "sentence": "The proportion of Operational Capacity attributed to our top 10 customers is expected to increase as we begin commissioning projects under construction with certain of such customers."
+      },
+      {
+       "match": "top 10 customers",
+       "sentence": "Any failure to maintain renew or enter into new engagements with our top 10 customers could have a material adverse impact on our operations and financial condition Our PPAs or EAPAs may be terminated by counterparties upon the occurrence of certain events."
+      }
+     ]
+    },
+    "promoter_litigation": {
+     "count": 18,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "Criminal proceedings",
+      "criminal proceedings",
+      "criminal complaint"
+     ],
+     "evidence": [
+      {
+       "match": "Criminal proceedings",
+       "sentence": "Summary of Outstanding Litigation A summary of outstanding litigation proceedings involving our Company, Directors, Promoters, Subsidiaries, Key Managerial Personnel and members of Senior Management as on the date of this Prospectus in terms of the SEBI ICDR Regulations, is provided below: Name Criminal proceedings Company By our Company 1 Against our Company 2 ** Directors By our Directors Nil Against our Directors 1 Promoters By our Promoter Nil Against our Promoter 2 Subsidiaries By our S"
+      },
+      {
+       "match": "criminal proceedings",
+       "sentence": "The summary of outstanding matters set out below includes details of criminal proceedings, tax proceedings, actions by statutory and regulatory authorities and material civil litigation (as defined in the section “Outstanding Litigation and Material Developments” beginning on page 870) involving our Company, Subsidiaries, Promoters, Directors, and our Key Managerial Personnel."
+      },
+      {
+       "match": "Criminal proceedings",
+       "sentence": "st our Subsidiaries Key Managerial Personnel# By our Key Managerial Personnel Against our Key Managerial Personnel Senior Management## By our Senior Management Criminal proceedings Tax proceedings Actions taken by statutory or regulatory authorities Disciplinary actions by the SEBI or Stock Exchanges against our Promoters in the last five years, including ou"
+      }
+     ]
+    },
+    "related_party": {
+     "count": 33,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "related party transactions",
+      "Related party transactions",
+      "Related Party Transactions",
+      "related party transaction",
+      "Related Party transaction",
+      "RELATED PARTY TRANSACTIONS"
+     ],
+     "evidence": [
+      {
+       "match": "related party transactions",
+       "sentence": ", affiliates of a certain BRLM to the Offer We have in the past entered into a number of related party transactions and may continue to enter into related party transactions in the future, and there can be no assurance that we could not have achieved more favourable terms if such transact"
+      },
+      {
+       "match": "related party transactions",
+       "sentence": "Summary of related party transactions 26 A summary of related party transactions as per the requirements under Ind AS 24 – Related Party Disclosures, entered into by our Group with related parties for the six mo"
+      },
+      {
+       "match": "related party transactions",
+       "sentence": "For further details of the related party transactions, see “Other Financial Information – Related Party Transactions” on page 824."
+      }
+     ]
+    }
+   },
+   "objects_of_the_issue": {
+    "offer_for_sale": {
+     "count": 48,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "OFFER FOR SALE",
+      "Offer for Sale",
+      "offer for sale"
+     ],
+     "evidence": [
+      {
+       "match": "OFFER FOR SALE",
+       "sentence": "ONE HOLDINGS (DIFC) LIMITED AND KEMPINC LLP DETAILS OF THE OFFER TO THE PUBLIC FRESH ISSUE SIZE OF THE TYPE TOTAL OFFER SIZE^ ELIGIBILITY AND RESERVATION SIZE^ OFFER FOR SALE Fresh Issue Fresh issue of Offer for Sale of 29,315,993^ Equity Shares of The Offer was made pursuant to Regulation 6(1) and Offer for 11,425,906^ Equity 17,890,087^ Equity face value o"
+      },
+      {
+       "match": "Offer for Sale",
+       "sentence": "P DETAILS OF THE OFFER TO THE PUBLIC FRESH ISSUE SIZE OF THE TYPE TOTAL OFFER SIZE^ ELIGIBILITY AND RESERVATION SIZE^ OFFER FOR SALE Fresh Issue Fresh issue of Offer for Sale of 29,315,993^ Equity Shares of The Offer was made pursuant to Regulation 6(1) and Offer for 11,425,906^ Equity 17,890,087^ Equity face value of ₹ 1 each of the Securities and Exchange Board of India Sale Shares of face Shares of face value of aggregating to ₹ 30,838."
+      },
+      {
+       "match": "OFFER FOR SALE",
+       "sentence": "DETAILS OF THE OFFER FOR SALE NAME OF THE SELLING SHAREHOLDERS TYPE NUMBER OF EQUITY SHARES OF FACE VALUE OF ₹ 1 EACH OFFERED / AMOUNT (IN ₹ MILLION) Promoter Selling 2,041,341^ Equity Shares of face value of ₹ 1 each aggregating to ₹ Shareholder 2,149."
+      }
+     ]
+    },
+    "fresh_issue": {
+     "count": 56,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "FRESH ISSUE",
+      "Fresh Issue",
+      "Fresh issue",
+      "fresh issue"
+     ],
+     "evidence": [
+      {
+       "match": "FRESH ISSUE",
+       "sentence": "1, Churchgate Company Secretary and Telephone: +91 22 6252 0000 Mumbai - 400 020 Compliance Officer Maharashtra, India THE PROMOTERS OF OUR COMPANY: KULDEEP JAIN, PRATAP JAIN, NIDHI JAIN, BGTF ONE HOLDINGS (DIFC) LIMITED AND KEMPINC LLP DETAILS OF THE OFFER TO THE PUBLIC FRESH ISSUE SIZE OF THE TYPE TOTAL OFFER SIZE^ ELIGIBILITY AND RESERVATION SIZE^ OFFER FOR SALE Fresh Issue Fresh issue of Offer for Sale of 29,315,993^ Equity Shares of The Offer was made pursuant to"
+      },
+      {
+       "match": "Fresh Issue",
+       "sentence": "IFC) LIMITED AND KEMPINC LLP DETAILS OF THE OFFER TO THE PUBLIC FRESH ISSUE SIZE OF THE TYPE TOTAL OFFER SIZE^ ELIGIBILITY AND RESERVATION SIZE^ OFFER FOR SALE Fresh Issue Fresh issue of Offer for Sale of 29,315,993^ Equity Shares of The Offer was made pursuant to Regulation 6(1) and Offer for 11,425,906^ Equity 17,890,087^ Equity face value of ₹ 1 each of the Securities and Exchange Board of India Sale Shares of face Shares of face value of aggregating to ₹ 30,838."
+      },
+      {
+       "match": "Fresh issue",
+       "sentence": "AND KEMPINC LLP DETAILS OF THE OFFER TO THE PUBLIC FRESH ISSUE SIZE OF THE TYPE TOTAL OFFER SIZE^ ELIGIBILITY AND RESERVATION SIZE^ OFFER FOR SALE Fresh Issue Fresh issue of Offer for Sale of 29,315,993^ Equity Shares of The Offer was made pursuant to Regulation 6(1) and Offer for 11,425,906^ Equity 17,890,087^ Equity face value of ₹ 1 each of the Securities and Exchange Board of India Sale Shares of face Shares of face value of aggregating to ₹ 30,838."
+      }
+     ]
+    },
+    "capital_expenditure": {
+     "count": 44,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "Capital Expenditure",
+      "Capital expenditure",
+      "capital expenditure",
+      "expansion of our",
+      "setting up of"
+     ],
+     "evidence": [
+      {
+       "match": "Capital Expenditure",
+       "sentence": "Renewable Energy Services Segment includes Capital Expenditure Services and Carbon Services Total Income is as per the Restated Consolidated Statement of Profit and Loss and includes Revenue from operations and other income."
+      },
+      {
+       "match": "Capital expenditure",
+       "sentence": "ation reserve 17 Particulars Return on Net Worth Net Asset value per equity share Net Asset value per equity share (bonus and split adjusted) Cost Gross Margin Capital expenditure Total Capital expenditure Total Borrowings and Operational Debt (net off liquid assets) Funds invested in the business Funds invested in business at the beginning of the year Total"
+      },
+      {
+       "match": "Capital expenditure",
+       "sentence": "rs Return on Net Worth Net Asset value per equity share Net Asset value per equity share (bonus and split adjusted) Cost Gross Margin Capital expenditure Total Capital expenditure Total Borrowings and Operational Debt (net off liquid assets) Funds invested in the business Funds invested in business at the beginning of the year Total equity attributable to th"
+      }
+     ]
+    },
+    "working_capital": {
+     "count": 6,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "working capital requirements"
+     ],
+     "evidence": [
+      {
+       "match": "working capital requirements",
+       "sentence": "ance guarantees under such contracts and we may experience delays in completing the construction of our projects, which may increase our construction costs and working capital requirements, and may have a material adverse effect on our financial condition, cash flow and results of operations A portion of the Net Proceeds is proposed to be utilized for repaym"
+      },
+      {
+       "match": "working capital requirements",
+       "sentence": "We may be unable to accurately estimate costs for our STU-Capex business contracts, fail to maintain the quality and performance guarantees under such contracts and we may experience delays in completing the construction of our projects, which may increase our construction costs and working capital requirements, and may have a material adverse effect on our financial condition, cash flow and results of operations."
+      },
+      {
+       "match": "working capital requirements",
+       "sentence": "While we have not had such instances in the six months ended September 30, 2025 and the past three fiscals, any failure to accurately estimate costs could result in our actual costs exceeding our estimated costs, thereby causing an increase in our construction costs and working capital requirements, and as a result, we may impact our margins in this business vertical."
+      }
+     ]
+    },
+    "general_corporate": {
+     "count": 23,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "General corporate purposes",
+      "general corporate purposes",
+      "general corporate purpose",
+      "General corporate purpose"
+     ],
+     "evidence": [
+      {
+       "match": "General corporate purposes",
+       "sentence": "Objects of the Offer Our Company proposes to utilise the Net Proceeds towards funding the following objects: Objects Estimated amount to be funded from Net Proceeds(2) Repayment and/or pre-payment, in part or full, of all or certain outstanding borrowings of our Company and/or our Subsidiaries General corporate purposes(1) Total (1) (2) (in ₹ million) 11,226."
+      },
+      {
+       "match": "general corporate purposes",
+       "sentence": "63 The amount utilised for general corporate purposes shall not exceed 25% of the Gross Proceeds."
+      },
+      {
+       "match": "general corporate purposes",
+       "sentence": "Further, the proceeds from the Pre-IPO Placement, shall be completely utilised towards the general corporate purposes portion of the Objects of the Offer."
+      }
+     ]
+    }
+   },
+   "profiled_on": "2026-10-28"
+  }
+ },
+ {
+  "sym": "543350",
+  "name": "Vijaya Diagnostic Centre Ltd",
+  "board": "BSE",
+  "isin": "INE043W01024",
+  "listed": null,
+  "hint": "pharma & healthcare",
+  "why": "mid-cap sweep",
+  "mktcap_cr": 14840.94,
+  "plausible": true,
+  "verdict": null,
+  "seen_on": "2026-10-28",
   "source": "sweep",
   "moat_signal": null,
   "moat_evidence": null
