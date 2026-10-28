@@ -427,7 +427,7 @@ jobs:
             exit 0
           fi
           added=$(python -c "import json;r=json.load(open('automation/data/auto-screen.json'))['runs'][-1];print(len(r.get('added_codes',[])))" 2>/dev/null || echo 0)
-          reports=$(grep -c . reports-today.txt 2>/dev/null); reports=${reports:-0}   # grep -c prints 0 itself when empty
+          reports=$(grep -c . reports-today.txt 2>/dev/null || true); reports=${reports:-0}   # grep exits 1 on no match: under bash -e that must not end the step
           # Weekly editions are named YYYY-Wnn.json (e.g. 2026-W41.json) -- the old
           # ????-??.json pattern wanted exactly 2 characters after the dash and so
           # never matched a real edition file. It silently reported "0 sector
