@@ -493,6 +493,12 @@ jobs:
             echo "| deep-dive reports | ${{ steps.reports.outcome }} |"
             echo "| IPO reports | ${{ steps.iporeports.outcome }} |"
             echo "| report PDFs | ${{ steps.pdfs.outcome }} |"
+            echo "| market-wide results | ${{ steps.resultsuniverse.outcome }} |"
+            echo "| earnings-call outlook (Claude API) | ${{ steps.calloutlook.outcome }} |"
+            echo "| results filings read (Claude API) | ${{ steps.resultsread.outcome }} |"
+            echo "| Results Preview | ${{ steps.resultspreview.outcome }} |"
+            echo "| PEAD engine | ${{ steps.peadengine.outcome }} |"
+            echo "| **save (commit + push)** | ${{ steps.commit.outcome }} |"
           } >> "$GITHUB_STEP_SUMMARY"
           if [ -s reports-today.txt ]; then { echo; echo "Deep-dive reports written:"; sed 's/^/- /' reports-today.txt; } >> "$GITHUB_STEP_SUMMARY"; fi
           if [ -f automation/data/auto-screen.json ]; then

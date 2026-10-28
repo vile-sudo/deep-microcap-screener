@@ -1,0 +1,99 @@
+name: Data freshness
+
+# Uptime check proves the app answers; this proves the DATA behind it is current. Twice a day it checks
+# what the nightly jobs were supposed to have saved, and fails (so GitHub emails the repo owner) when:
+#   - the nightly "Daily update" commit is older than 30 hours (the 2 AM run did not save),
+#   - Sector Strength is 2+ weekdays behind (one exchange holiday is tolerated),
+#   - Results Preview has not been rebuilt for 14 hours (the results evening runs),
+#   - the last results evening run hit the Anthropic API's "credit balance is too low",
+#   - no deep-dive report has been saved for 4 days.
+# Added after the 14-22 Oct and 27-28 Oct gaps, where nightly runs computed everything but saved nothing.
+
+permissions:
+  contents: read
+  actions: read
+
+on:
+  schedule:
+    - cron: '30 3 * * *'      # 09:00 IST, after the 2 AM run and the 07:47 results run
+    - cron: '30 12 * * *'     # 18:00 IST
+  workflow_dispatch:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Check out repo
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 300
+
+      - name: Check
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          python3 - <<'EOF'
+          import json, subprocess, sys
+          from datetime import date, datetime, timedelta, timezone
+
+          now = datetime.now(timezone.utc)
+          today = (now + timedelta(hours=5, minutes=30)).date()          # IST
+          problems, ok = [], []
+
+          def git(*a):
+              return subprocess.run(["git", *a], capture_output=True, text=True).stdout.strip()
+
+          def age_h(iso):
+              return (now - datetime.fromisoformat(iso)).total_seconds() / 3600
+
+          # 1. the nightly commit
+          last = git("log", "-1", "--format=%cI", "--grep=^Daily update")
+          if not last or age_h(last) > 30:
+              problems.append(f"no 'Daily update' commit for {age_h(last):.0f} h (last {last}) -- the 2 AM run did not save")
+          else:
+              ok.append(f"Daily update saved {age_h(last):.0f} h ago")
+
+          # 2. Sector Strength: weekdays between its date and today, exclusive
+          try:
+              asof = date.fromisoformat(json.load(open("backend/data/sector_strength/latest.json", encoding="utf-8"))["asof"])
+              gap = sum(1 for k in range(1, (today - asof).days) if (asof + timedelta(days=k)).weekday() < 5)
+              (problems if gap >= 2 else ok).append(f"Sector Strength as of {asof} ({gap} weekday(s) missing)")
+          except Exception as e:  # noqa: BLE001
+              problems.append(f"Sector Strength unreadable: {e}")
+
+          # 3. Results Preview rebuilt by the evening runs
+          try:
+              gen = json.load(open("backend/data/results_preview/latest.json", encoding="utf-8"))["generated_at"]
+              (problems if age_h(gen) > 14 else ok).append(f"Results Preview built {age_h(gen):.0f} h ago")
+          except Exception as e:  # noqa: BLE001
+              problems.append(f"Results Preview unreadable: {e}")
+
+          # 4. the Anthropic API credit (Claude's read of results filings, earnings-call outlook)
+          rid = subprocess.run(["gh", "run", "list", "--workflow", "results_evening.yml", "--status", "completed", "--limit", "1",
+                                "--json", "databaseId", "--jq", ".[0].databaseId"], capture_output=True, text=True).stdout.strip()
+          if rid:
+              log = subprocess.run(["gh", "run", "view", rid, "--log"], capture_output=True, text=True, encoding="utf-8", errors="replace").stdout or ""
+              if "credit balance is too low" in log:
+                  problems.append("Anthropic API credit balance is too low -- Claude's results reads have stopped "
+                                  "(top up at console.anthropic.com > Plans & Billing)")
+              else:
+                  ok.append("Anthropic API answering in the last results run")
+
+          # 5. deep-dive reports
+          rep = git("log", "-1", "--format=%cI", "--", "backend/reports")
+          if rep and age_h(rep) > 96:
+              problems.append(f"no deep-dive report saved for {age_h(rep) / 24:.0f} days (last {rep[:10]})")
+          elif rep:
+              ok.append(f"deep-dive report saved {age_h(rep) / 24:.1f} days ago")
+
+          with open(__import__("os").environ["GITHUB_STEP_SUMMARY"], "a", encoding="utf-8") as s:
+              s.write("### Data freshness\n\n| check | |\n|---|---|\n")
+              s.writelines(f"| {p} | ❌ |\n" for p in problems)
+              s.writelines(f"| {o} | ✅ |\n" for o in ok)
+          for o in ok:
+              print("ok:", o)
+          for p in problems:
+              print(f"::error::{p}")
+          sys.exit(1 if problems else 0)
+          EOF

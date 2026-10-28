@@ -363,6 +363,13 @@ def write_report(company: dict, quant: dict, board: dict | None, previous: dict 
                       f"Research as needed and write only what is missing or broken, as valid JSON in the format TASK.md gives. Reply DONE when finished.")
         sections, summary, problems = _collect(work)
         if len(sections) < len(S.SECTION_IDS) * 0.8:
+            # say WHY in the CI log: the session's last reply and the last tool calls it made (session.log)
+            try:
+                tail = (work / "session.log").read_text(encoding="utf-8").splitlines()[-15:]
+            except OSError:
+                tail = []
+            print(f"    last reply: {str(res.get('result') or '')[:400]!r} (subtype {res.get('subtype')}, error {res.get('is_error')}, "
+                  f"denied {res.get('permission_denials')})\n    session.log tail:\n      " + "\n      ".join(tail), flush=True)
             raise RuntimeError(f"report incomplete after {usage['sessions']} sessions: {problems}")
         if problems:
             usage["incomplete"] = problems
