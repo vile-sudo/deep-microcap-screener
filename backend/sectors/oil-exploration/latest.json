@@ -1,18 +1,86 @@
 {
- "updated": "2026-10-28T17:31+05:30",
+ "updated": "2026-10-29T05:52+05:30",
  "figures": [
   {
    "label": "Brent crude",
-   "value": "$116.11/bbl",
+   "value": "$113.88/bbl",
    "as_of": "2026-10-27",
-   "note": "Quote at 10:11 p.m. ET, +1.3% over 24 hours; not an official settlement. Fortune",
+   "note": "-1.67% on the day (settle)",
    "source": {
-    "publisher": "TokenPost",
-    "url": "https://www.tokenpost.com/news/investing/42258"
+    "publisher": "Reuters via Investing.com",
+    "url": "https://www.investing.com/news/commodities-news/oil-eases-on-middle-east-diplomacy-hopes-saudi-attacks-keep-supply-worries-alive-4974185"
+   }
+  },
+  {
+   "label": "WTI crude",
+   "value": "$99.90/bbl",
+   "as_of": "2026-10-27",
+   "note": "-1.83% on the day (settle)",
+   "source": {
+    "publisher": "Reuters via Investing.com",
+    "url": "https://www.investing.com/news/commodities-news/oil-eases-on-middle-east-diplomacy-hopes-saudi-attacks-keep-supply-worries-alive-4974185"
+   }
+  },
+  {
+   "label": "Nifty 50",
+   "value": "22,698.85",
+   "as_of": "2026-10-28",
+   "note": "-0.22% on the day",
+   "source": {
+    "publisher": "HDFC Sky",
+    "url": "https://hdfcsky.com/news/market-close-report-today-october-28-2026-sensex-nifty-decline-as-oil-fed-fears-loom-amid-strong-jio-debut"
+   }
+  },
+  {
+   "label": "ONGC share price",
+   "value": "₹224.89",
+   "as_of": "2026-10-28",
+   "note": "-2.16% on the day",
+   "source": {
+    "publisher": "HDFC Sky",
+    "url": "https://hdfcsky.com/news/market-close-report-today-october-28-2026-sensex-nifty-decline-as-oil-fed-fears-loom-amid-strong-jio-debut"
    }
   }
  ],
  "items": [
+  {
+   "date": "2026-10-28",
+   "title": "Nifty Oil & Gas falls about 2%; Reliance down 3.19%, ONGC down 2.16% as Brent tops $115",
+   "text": "The Sensex closed at 73,246.03 (-0.48%) and the Nifty 50 at 22,698.85 (-0.22%) on 28 October, with oil and gas among the main drags. Reliance Industries fell 3.19% to ₹1,158 and ONGC fell 2.16% to ₹224.89, both among the top Nifty laggards. The report attributes the move to Brent rising above $115/bbl after an attack on a refinery in Saudi Arabia. High crude supports upstream realisations but raises inflation and import-bill concerns that weigh on Indian equities.",
+   "tone": "bad",
+   "companies": [
+    "ONGC",
+    "RELIANCE"
+   ],
+   "sources": [
+    {
+     "publisher": "HDFC Sky",
+     "title": "Sensex, Nifty Slip as Crude Near $115; IT, O&G Drag Markets",
+     "url": "https://hdfcsky.com/news/market-close-report-today-october-28-2026-sensex-nifty-decline-as-oil-fed-fears-loom-amid-strong-jio-debut",
+     "date": "2026-10-28"
+    }
+   ],
+   "added": "2026-10-29"
+  },
+  {
+   "date": "2026-10-27",
+   "title": "Brent settles at $113.88, down $1.93, on Middle East diplomacy; WTI $99.90",
+   "text": "Brent fell 1.67% to $113.88/bbl and WTI fell 1.83% to $99.90 on 27 October as Iran held talks with Saudi Arabia, Turkey and Pakistan. Prices stayed near six-month highs because of disrupted Middle East shipping, with no deal to end the war and Houthi attacks on Saudi Arabia continuing. Elevated crude keeps India's import bill and fuel-subsidy pressures high while supporting upstream realisations.",
+   "tone": "watch",
+   "companies": [
+    "ONGC",
+    "OIL"
+   ],
+   "sources": [
+    {
+     "publisher": "Reuters via Investing.com",
+     "title": "Oil falls almost $2 as Middle East talks help ease supply worries",
+     "url": "https://www.investing.com/news/commodities-news/oil-eases-on-middle-east-diplomacy-hopes-saudi-attacks-keep-supply-worries-alive-4974185",
+     "date": "2026-10-27"
+    }
+   ],
+   "added": "2026-10-29"
+  },
   {
    "date": "2026-10-27",
    "title": "Brent holds near $115 as Houthis claim missile strike on Saudi's largest refinery",
