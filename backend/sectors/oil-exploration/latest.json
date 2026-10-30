@@ -1,48 +1,56 @@
 {
- "updated": "2026-10-29T05:52+05:30",
+ "updated": "2026-10-30T06:02+05:30",
  "figures": [
   {
    "label": "Brent crude",
-   "value": "$113.88/bbl",
-   "as_of": "2026-10-27",
-   "note": "-1.67% on the day (settle)",
+   "value": "$114.88/bbl",
+   "as_of": "2026-10-29",
+   "note": "-44 cents (-0.38%) on the day",
    "source": {
-    "publisher": "Reuters via Investing.com",
-    "url": "https://www.investing.com/news/commodities-news/oil-eases-on-middle-east-diplomacy-hopes-saudi-attacks-keep-supply-worries-alive-4974185"
+    "publisher": "Reuters via Euronext",
+    "url": "https://live.euronext.com/en/financial-news/oil-prices-settles-lower-diplomacy-hopes-offset-some-mideast-supply-concerns"
    }
   },
   {
    "label": "WTI crude",
-   "value": "$99.90/bbl",
-   "as_of": "2026-10-27",
-   "note": "-1.83% on the day (settle)",
+   "value": "$102.00/bbl",
+   "as_of": "2026-10-29",
+   "note": "-78 cents (-0.76%) on the day",
    "source": {
-    "publisher": "Reuters via Investing.com",
-    "url": "https://www.investing.com/news/commodities-news/oil-eases-on-middle-east-diplomacy-hopes-saudi-attacks-keep-supply-worries-alive-4974185"
-   }
-  },
-  {
-   "label": "Nifty 50",
-   "value": "22,698.85",
-   "as_of": "2026-10-28",
-   "note": "-0.22% on the day",
-   "source": {
-    "publisher": "HDFC Sky",
-    "url": "https://hdfcsky.com/news/market-close-report-today-october-28-2026-sensex-nifty-decline-as-oil-fed-fears-loom-amid-strong-jio-debut"
-   }
-  },
-  {
-   "label": "ONGC share price",
-   "value": "₹224.89",
-   "as_of": "2026-10-28",
-   "note": "-2.16% on the day",
-   "source": {
-    "publisher": "HDFC Sky",
-    "url": "https://hdfcsky.com/news/market-close-report-today-october-28-2026-sensex-nifty-decline-as-oil-fed-fears-loom-amid-strong-jio-debut"
+    "publisher": "Reuters via Euronext",
+    "url": "https://live.euronext.com/en/financial-news/oil-prices-settles-lower-diplomacy-hopes-offset-some-mideast-supply-concerns"
    }
   }
  ],
  "items": [
+  {
+   "date": "2026-10-29",
+   "title": "Brent settles at $114.88, down 44 cents, as US-Iran talk hopes offset Houthi attacks on Saudi sites",
+   "text": "Brent futures settled at $114.88/bbl on 29 October (-0.38%) and WTI at $102.00 (-0.76%). Hopes of US-Iran talks weighed on prices, but Houthi claims of strikes on Saudi oil facilities (unconfirmed by Saudi Arabia), the Revolutionary Guards' report of three tankers hitting sea mines near Hormuz, and fears of a US attack on Iran after the 3 November midterms limited the fall. Crude near $115 keeps India's import costs high and supports upstream realisations, while squeezing refiners' and marketers' margins.",
+   "tone": "watch",
+   "companies": [
+    "ONGC",
+    "OIL",
+    "IOC",
+    "BPCL",
+    "HINDPETRO"
+   ],
+   "sources": [
+    {
+     "publisher": "Reuters via Euronext",
+     "title": "Oil prices settles lower as diplomacy hopes offset some Mideast supply concerns",
+     "url": "https://live.euronext.com/en/financial-news/oil-prices-settles-lower-diplomacy-hopes-offset-some-mideast-supply-concerns",
+     "date": "2026-10-29"
+    },
+    {
+     "publisher": "The Globe and Mail",
+     "title": "Oil prices fall as peace hopes offset fears of growing Middle East conflict",
+     "url": "https://www.theglobeandmail.com/investing/article-oil-prices-fall-as-peace-hopes-offset-fears-of-growing-middle-east/",
+     "date": "2026-10-29"
+    }
+   ],
+   "added": "2026-10-30"
+  },
   {
    "date": "2026-10-28",
    "title": "Nifty Oil & Gas falls about 2%; Reliance down 3.19%, ONGC down 2.16% as Brent tops $115",
@@ -1241,91 +1249,6 @@
     }
    ],
    "added": "2026-09-16"
-  },
-  {
-   "date": "2026-09-14",
-   "title": "Tanker rates to India surge 150% as West Asia crisis deepens",
-   "text": "Daily charter rates for tankers heading to India have jumped about 150%, from roughly $100,000 to $250,000, as the security situation in West Asia worsens; bunker fuel is up about 50% to near $900/tonne and insurance costs are up about 20%. West Asia supplies roughly 30% of India's oil and gas imports, so higher freight and insurance raise the landed cost of crude even if benchmark prices hold steady, adding further pressure on refiners' and OMCs' costs.",
-   "tone": "watch",
-   "companies": [
-    "IOC",
-    "BPCL",
-    "HINDPETRO",
-    "GESHIP"
-   ],
-   "sources": [
-    {
-     "publisher": "Millennium Post",
-     "title": "India-bound tanker rates surge 150% as West Asia crisis disrupts shipping",
-     "url": "https://www.millenniumpost.in/business/india-bound-tanker-rates-surge-150-as-west-asia-crisis-disrupts-shipping-675936",
-     "date": "2026-09-14"
-    }
-   ],
-   "added": "2026-09-16"
-  },
-  {
-   "date": "2026-09-14",
-   "title": "EIA September outlook lifts 2026 Brent forecast to $91.01, flags rising Gulf shut-ins",
-   "text": "The EIA's September Short-Term Energy Outlook put full-year 2026 Brent at $91.01/bbl (versus $69.04 in 2025) and sees prices easing to $73.74/bbl in 2027 as Middle East exports normalise, with Q3 2026 at $89.11 and Q4 at $90.66. The agency raised its estimate of Gulf crude production shut in to 6.7 mb/d in August, up from 5.0 mb/d in July, underscoring that Indian upstream producers' elevated realisations could persist near-term before a 2027 pullback.",
-   "tone": "watch",
-   "companies": [
-    "ONGC",
-    "OIL",
-    "RELIANCE",
-    "VOGL"
-   ],
-   "sources": [
-    {
-     "publisher": "Rigzone",
-     "title": "EIA Sees 2026 Oil Price Coming in $22 Higher Than Last Year",
-     "url": "https://www.rigzone.com/news/eia_sees_2026_oil_price_coming_in_22_higher_than_last_year-14-sep-2026-184606-article/",
-     "date": "2026-09-14"
-    }
-   ],
-   "added": "2026-09-16"
-  },
-  {
-   "date": "2026-09-14",
-   "title": "India's Russian crude imports fall 30% in Sept as Iraq, Venezuela fill the gap",
-   "text": "India's Russian crude imports dropped to about 1.42 million bpd in the first half of September, down 30% from August's 2.1 million bpd average, as tighter Russian availability and stronger Chinese competition for barrels bite, per Kpler data. Iraqi imports more than tripled to roughly 535,000 bpd, largely via ship-to-ship transfers outside the Strait of Hormuz, while Venezuelan crude added about 150,000 bpd; Saudi Arabia's East-West pipeline shutdown has further squeezed traditional Gulf supply. The shift toward costlier, non-discounted grades adds to crude sourcing costs for Indian refiners already squeezed by the retail price freeze.",
-   "tone": "watch",
-   "companies": [
-    "RELIANCE",
-    "IOC",
-    "BPCL",
-    "HINDPETRO"
-   ],
-   "sources": [
-    {
-     "publisher": "ThePrint",
-     "title": "India's Russian crude imports set to fall in September amid tighter supply, Iraq a key alternative",
-     "url": "https://theprint.in/economy/indias-russian-crude-imports-set-to-fall-in-september-amid-tighter-supply-iraq-a-key-alternative/3042166/",
-     "date": "2026-09-14"
-    }
-   ],
-   "added": "2026-09-15"
-  },
-  {
-   "date": "2026-09-14",
-   "title": "Brent hits 4-month high above $108 on Hormuz attack, Saudi pipeline shutdown",
-   "text": "Brent crude touched $108/bbl intraday on 14 September, its highest in four months, before settling near $107.22 (+1.27%); WTI rose to $102.66 (+1.52%). The move followed an attack on a merchant vessel in the Strait of Hormuz and Saudi Arabia's shutdown of its East-West pipeline after drone strikes, removing an alternate export route that had let crude bypass the chokepoint. Sustained high crude lifts realisations for India's upstream producers but adds to the country's import bill and inflation risk.",
-   "tone": "watch",
-   "companies": [],
-   "sources": [
-    {
-     "publisher": "OilPrice.com",
-     "title": "Brent Hits $108 as Saudi Pipeline Shutdown Deepens Supply Fears",
-     "url": "https://oilprice.com/Latest-Energy-News/World-News/Brent-Hits-108-as-Saudi-Pipeline-Shutdown-Deepens-Supply-Fears.html",
-     "date": "2026-09-14"
-    },
-    {
-     "publisher": "Euronews",
-     "title": "Oil surges past $107 as Hormuz attack and Saudi pipeline shutdown rattle markets",
-     "url": "https://www.euronews.com/business/2026/09/14/oil-surges-past-107-as-hormuz-attack-and-saudi-pipeline-shutdown-rattle-markets",
-     "date": "2026-09-14"
-    }
-   ],
-   "added": "2026-09-15"
   }
  ]
 }
