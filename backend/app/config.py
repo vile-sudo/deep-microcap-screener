@@ -9,6 +9,7 @@ a plain VPS, etc.) -- see DEPLOYMENT.md.
 from functools import lru_cache
 from pathlib import Path
 
+from pydantic import field_validator
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 BASE_DIR = Path(__file__).resolve().parent.parent  # .../backend
@@ -56,6 +57,13 @@ class Settings(BaseSettings):
     # to delayed index prices and end-of-day breakouts.
     kite_api_key: str = ""
     kite_api_secret: str = ""
+
+    @field_validator("kite_api_key", "kite_api_secret", mode="before")
+    @classmethod
+    def _clean_kite(cls, v):
+        """A stray space, Windows line ending or pair of quotes from editing .env breaks Zerodha's checksum
+        (sha256 of key + token + secret) with nothing visibly wrong in the file."""
+        return v.strip().strip('"').strip("'").strip() if isinstance(v, str) else v
     kite_admin_key: str = ""
 
     # --- News Channel (China/India/USA/Japan monopoly-sector news) -------------
