@@ -1,7 +1,7 @@
 {
  "trade_date": "2026-10-29",
  "threshold_percent": 4.0,
- "generated_at": "2026-10-30T13:21:39+05:30",
+ "generated_at": "2026-10-30T16:46:27+05:30",
  "stats": {
   "scanned": 3419,
   "flagged": 492,
@@ -133,9 +133,17 @@
    "raw_pct_change": 14.62,
    "corporate_action": null,
    "why": {
-    "headline": "No disclosed reason",
-    "confidence": "none",
-    "evidence": []
+    "headline": "Results (Scanx)",
+    "confidence": "low",
+    "evidence": [
+     {
+      "tier": "news",
+      "kind": "results",
+      "detail": "Zodiac Energy Q2FY27 Results: Net profit up 241% YoY to ₹9.18 crore",
+      "url": "https://news.google.com/rss/articles/CBMitAFBVV95cUxQOGswbmFmR09tMFo3VVFCUjZMT0xwT0plVXJ6SFg4Ynk1bmJBYmtiajlldnJMdVBBUm50U2xTYWlnT2k5UnJ0VnpwMjVNMWJrWENxOWZxdGswTmJ3dHZSM2ozbks0b2pTX0E1TWNvcU16Ri0yWHlINEYzN05ZQmhJLTNtMlh2aURLckJRd2ZYeThEbFhONF9mM19YMUJQMmQ4WFpHZmRqUERDa3k2eVJaSm1IVV8?oc=5",
+      "source": "Scanx"
+     }
+    ]
    },
    "news_checked": true
   },
@@ -3223,9 +3231,16 @@
    "raw_pct_change": 5.62,
    "corporate_action": null,
    "why": {
-    "headline": "Results (CNBC TV18)",
+    "headline": "M&A Or Stake (CNBC TV18)",
     "confidence": "medium",
     "evidence": [
+     {
+      "tier": "news",
+      "kind": "M&A or stake",
+      "detail": "RPG Life Sciences targets 25% API growth, eyes another acquisition within 12 months",
+      "url": "https://news.google.com/rss/articles/CBMiiAJBVV95cUxPUjA5SEN6VW9VNzd2ZGFwWlB5NWx0WG5TR0NUNXctdDFYcDBTMWJKUHJ5X25McVdEZDAzQ05aUGV0aGNOMlU5b2pYdlZYa1M0czBGS0dlVEhYdVNTczlXUGdwRXVxelpSUVEySmQ4aExaUDlOamFfODMzb1ViSDZrcmdHMVpXQnBOM3RTQ3FMZWJMRF9BTWdEQzJXNkpUTG1nbEdaY241WkI4OVRYU1ZoSDVwMXZzRllSdFhFYTBDVEtqRFA1dzNaN0dhRmo0SFl5SEIxWHROYm5CLVJLMTFlWi1OWmVwemMtSlhTdEJ5TWpYMl9WRnJKT0I1elo2QWhvai0wUXp1MWHSAY4CQVVfeXFMTTJQOFFNbVBuTFNSa2RiNzlrX0JMNS15bnd6N1lCdGhmSUlRRnA2aWFUaWlTd0ZlMmp3TWdyczYzaXM5eHNrWGlnanpSYUUyTXBqMlVTbWtyT19lRnl4T3Y4WjdLazE0N2VIR3lNeDFOUWlFaHNtWlRZcDJWYlZnOEcycGRNYTRIbDhyT3QyWkowTG5yNGd5NGY4X3NfY0pnZmx6cl9zMS15cW5CS3NHWU5uZVBscTNEMjA5NXVtZDJtd09pLTBEa2JwRjRKQkNraTlVZzd5MlUwSFJIakNTOGZCZTk5SUpxX2xMclA5ZzNfQnViX1RwX3VOWDZSZEJMVndVTzFSNjBlaTlSUmpR?oc=5",
+      "source": "CNBC TV18"
+     },
      {
       "tier": "news",
       "kind": "results",
@@ -3782,9 +3797,9 @@
      {
       "tier": "news",
       "kind": "results",
-      "detail": "Gravita India records Rs. 2902 crore revenue in H1FY27 amidst strategic expansions",
-      "url": "https://news.google.com/rss/articles/CBMivwFBVV95cUxPX3Z0enl0OVdPU3BSLTNwWGJkNjI0V2RpM0NsbXRuN0xNNjBYYVZnc3hpY3dvRXg3MGJlcllwamRpWEFsemtUY1BZRGpiUkRrZVpDcmxCcWloRC0xdnZKVmdrNjBXQURkNFoyWkIyRkVuQTRsWFJiVVVuaHZ5d1ZFcHdHRGpzN2dQN2lBeFd2OEJzYmZ5Nk9DbGlaMnBCTzF5V2Y0QmwzdUhwLWUxSXd6a0dGd0l0OGJyUlZqazBTOA?oc=5",
-      "source": "Business Upturn"
+      "detail": "Gravita Q2 FY27 slides: 38% revenue growth masks lead segment weakness",
+      "url": "https://news.google.com/rss/articles/CBMiyAFBVV95cUxONWszcDk3U2NQOVBqSDAwQjVJRU5hX2lRb3RPZHEtZUpGMlp2bjc0LVdtTTVRWkVfV2h4cjNuVklxU0FtRFMtd3pVWmphVjFSNGV5al9kZ0ZuMnpoaWoxRjZkQ0o3ajBUVGNHT1pndDRCWUhQZjUwYW0xSXFPbGY5Zkh1V2xRbjRKZnpZV3FlZ2ExS25WUGc0ZG4wNi1OT3loaG9IZVJQd0FnZUh2eHF6RFRxRkNIR3VuSWt3TEE1TGo0TG1UYzNPNw?oc=5",
+      "source": "Investing.com"
      }
     ]
    },
@@ -3936,17 +3951,17 @@
      },
      {
       "tier": "news",
-      "kind": "regulatory or legal",
-      "detail": "Indian court orders takedown of documentary on Adani, Modi",
-      "url": "https://news.google.com/rss/articles/CBMioAFBVV95cUxQRXhzaUVOakxHWU5rUVV0TGR3bXZNZ0VnazRJTnM3dVNoVXB4ZzM2dUJLekprWkJTckZtS2lSS3FyUmJPYkZtR19GWWFYWlFodnFUQ0hwQTNJZ2dSd1B2OWY4WnN0SUIwZC11c053VExrajZWRktnU0dRYUIzaUdsdmVsM1hwNk83WGVTbjRjQS1SX1BVcDBGWFY4Y3JFdUZQ?oc=5",
-      "source": "Reuters"
+      "kind": "results",
+      "detail": "Adani Enterprises Q2 results: Net profit declines 55% to Rs 1,492 crore, revenue rises 75%",
+      "url": "https://news.google.com/rss/articles/CBMi5wFBVV95cUxNdnYtZ0xWWHRvaTRnODBURXg3OWp2Slh1WEw5U3ZkMDF3aEtpT3pIZl9SdEhzMkRUVllZcWRmZTBzTlAzV2RBVVNPYUhwTkg2S1loRmJybWpvM3h3RjJEX0JqelBIbE55VlEtemdVa0xDd1RXdVhsU3BFVVJTN0MwTVFFRjVqZHdqdDhabzZtU3FfVERGb0NDbTl5c2licUd2amtvanlLNFdYUGpldndvSmkzYS1QMmFmOW5hNU9XUDlZeml2aEdWR29zZms5WGlJUEJZcGcxdTQtM2RvaC1lbVI3Vm9KeXPSAewBQVVfeXFMTXhvN0FnQ3A4b0dlMXdvc1NOV2NUOHBQZGpGb0RaMFBnTWJyY2NxZUUzTzJtR09IaTkxNThScUZsZXVzeUNxTHEzUEdwbzF1LU1mN1hOWlg4UnZHc0FrMmtya2pYNm5zd0xlbnpqZ2VTUDdnaHU1a21Dc083RHJaX0M0Nm9VLUJFNG9mbDk0cm9fTW1nQ0xGNWZGYkowb2Ruakx0TVlBSnlnZ3k0cy1tWmFuTHJJYWxwc2w5djZET05fblhiMUpFN1QyNkpsVGFmalhPSU9mT00zYXRLWVQxaEdOS0RrWlUyM2lIS3k?oc=5",
+      "source": "Moneycontrol"
      },
      {
       "tier": "news",
       "kind": "results",
-      "detail": "Adani Flagship’s $10 Billion Wipeout Raises Stake for Earnings",
-      "url": "https://news.google.com/rss/articles/CBMisgFBVV95cUxQWGRRRnBtN1R1cDNzUkhrRUViNVVIaWZTVl9rcFE3MEZtY3kwd09GX2lXbVlSaWNoQW1rcFZuOUl6R0IteWs2SS14UW1MWVR2X25qa00zV3BGQ0x4NUJ0UUhNdmVrWjFxTmZEdm1GUVRPeWFaU3RUVnJjbVptZU0zYlAydlRXUDB0TXJNZ1NYSWVOeGpqU3JhbV9GVV90dHk1UVJ1b2RJSGN0NzFKR19tVFpR?oc=5",
-      "source": "Bloomberg"
+      "detail": "Adani Enterprises Q2 profit drops 55% even as operating earnings surge 62%",
+      "url": "https://news.google.com/rss/articles/CBMi6gFBVV95cUxOSlNRRGtkZk96WXZFUkhLelNfN1NNajZDWVJLWmRZYkN4X0cwanYyb3BMQTFWaHFva0tNdGZGV0ZrUEtfYnN4OXBsYjNhX3VWUmcxWFZTSzFJZ0FVM3RzYmdNb0IzblNreC1HYUU3OFRkRk5CeUd4TGszc0IyS3hmQzdHNmRVMy1LWHU3bTVBbzNrZzNiZkFoaGh0Yks1UThhTFltcDMzNjhFN2ZHX1p1SkNvQlNfX2xyVm9pNW9xeDFkQWxQRDhaaGI3bW8wNV9fWXJVX0JBSno5dDVHTFNhVXpaSngwYi1jSXfSAe8BQVVfeXFMT0ExXzBVa1hiQy00MzVLUzZvdElET2w0SmpuNlpIT0ZMbWM2c2d0cUgyVTk0M1I2aDg4OTlkUDdSbWxNaE1vMzFQOGVuc0xTUlVZc0NfNnVxazBrLVRCY3hXUnFSRElVRzdfN0E4dEJrX3RQT1VxbzRYb2hOb0R5VVZzc1RJUFFlOWplenRNcXRjc0l4TFBSX2VlMzVMbXlYZExQWF9qUnNkU0t6dkdoVGtUalBNUi1wMjJBTU5ZZmMyNTZpZG1RTmRudGRPWHhXeDlHcGZDLXRkejVZcXFzd1VzMXFqZTItQkVoeVZZb0U?oc=5",
+      "source": "Business Standard"
      }
     ]
    },
@@ -5199,13 +5214,6 @@
       "source": "Businessworld"
      },
      {
-      "tier": "news",
-      "kind": "results",
-      "detail": "STL Networks Q2FY27 Results: Net loss narrows to ₹16 crore, revenue up 17%",
-      "url": "https://news.google.com/rss/articles/CBMitAFBVV95cUxOSXQyM0N4QXE2Nkk2bnpsb00xWkx1djVaOElyWHNqdFJwWVgyaGtDVmdyeVRMVDRqMlREa0JKZEs2cVR2VU5MZnJ0YnVjdjh0cU5sU29wd2g1TlhnM19TYmpVYkhJLVo4MDJnblBuSUlHRGJvRWhMTXBwUmUwb2FaZ25MQUc1ODNMVjBrd0VfS0dSdzhmX2Vjbjk4V1RYMXRNYUpfRFB6LWNMandEYWFpaDRxU1Y?oc=5",
-      "source": "Scanx"
-     },
-     {
       "tier": "deal",
       "kind": "bulk deal",
       "detail": "RAMDOOT REALTORS PVT LTD buy 2,747,100 shares (Rs 9.6 crore)",
@@ -5639,10 +5647,10 @@
      },
      {
       "tier": "news",
-      "kind": "results",
-      "detail": "Tech firms take fresh hit as earnings misses fan AI fears",
-      "url": "https://news.google.com/rss/articles/CBMivwFBVV95cUxQN0p0S2NMWWZWdWJDYUY1VVRtdzVVVzk0RHFYS29JVEJBTXdFUVB6d2k1LVRTME94cW1NMmF5ZjMwb0lFRGNSWHc3dlhHVDZXN2l1dlF6eWgzM08ybkVhbWJpSXU5RjhtQWdlbW0tTnphUGFRZUZ0QXJTNHY3X1B6bzJXYUp6STdnYUZqM09JeGFfWkx5QlFhblF3Y1FoRjRxMkIxQVo5MWhuRXJ4RnZWNm5McC1sNlVuYkcySzF1SdIBxgFBVV95cUxQSHJsaUNrOHJ1d0pacFdjNXV3UTFxWW9Mc2FDdzc2VTQyRU1idzVvSTFhbzFXQUY5dWRIY0pDNUNNUlJYZmN2VEl4b2x2OWUtVGotNWlSR1JyTlF0WVNvby1hWFdzSkxQZGV5WFRtU3EzSjhTMFNTYlJrSUlENncwQllLYXhSMGFTalZMazJ4S1BHR1ZuYlZyYTNkeVhxcmU2bGdXeGhEQVVzSnpkSThOTko5YW1tbGdRZEVadm5WSzlMQTljT3c?oc=5",
-      "source": "The Hindu"
+      "kind": "explainer",
+      "detail": "Silver falls 2%, gold prices also take hit: What's driving the fall?",
+      "url": "https://news.google.com/rss/articles/CBMiywFBVV95cUxQN1lMNFV1c19haW5iNjRpT2k2bzhmc3NpdVlMWjhOaFdvSWwxVWZVYzI1TmlQdHplZjhjMlh1UDVVejFmVHdUTDQ5b2dhaEkxa1hFNE9DM1VlbXNVbWJrdE1wMFJ3U0hmV0pOWlRsS2xzeG9TaE5MWkpVcU5vMmR4TERlc185aHJMZVZQcUpucWZ1MzNpMkFwZUJSRVgwM21EdHU2bW5qWXpEUGd5TkFHZUxiTDU5RHZYNDRmUkZzcEpncnoxZ2xpQ1Fyb9IB0AFBVV95cUxPUTFJbTNBeVRobTdJVkRuWXVKM2ltdm5Pb3hkeXlFUjJ4Wk9pMXFvRG1LUUJDTW1OZ1NpM0JMNmJGN3psNF90S1JTRXFHMUwxMjVVeEczU2xwWGhRUGVhOFpOanI4SWVuWGxEZjZNQjNXdnJvaHJNQUYyMXd4T2k3SjlQTjNoSmpDOFdHQXdlaWhCVS15c2dDZzg1RkJMTVhyb3pFR3FhbXowcm51LW9oWVhnOHlueVQtSENGUkJDSEdxLVFydGlZaUpUTUpmS1lS?oc=5",
+      "source": "Business Today"
      }
     ]
    },
@@ -6609,9 +6617,16 @@
    "raw_pct_change": 4.69,
    "corporate_action": null,
    "why": {
-    "headline": "Results (Economic Times)",
+    "headline": "Results (CNBC TV18)",
     "confidence": "medium",
     "evidence": [
+     {
+      "tier": "news",
+      "kind": "results",
+      "detail": "Blue Star Q2 results: Profit rises 26% to ₹124 crore, beating estimates on 21% revenue growth",
+      "url": "https://news.google.com/rss/articles/CBMi4gFBVV95cUxOMWE4RDZ1NEU4d2VqcTFtcEZHMDI2a1BGeUdpdjZqbktpN0N1bTJlc1RLN2ZCUjd5Z1R0Qk41X1Z4UlBWTUUwd1NqYk9xNFJHNmhCQ25IdzBEeGhTcnY4ME5PY1pRd1VEWWZjZXhmMk56SU1qUkJ4ZVRkQWFFVmVvV3RfNnF1dGh3SVpQQmtmbENnN3JEVjhtS2dCWnAtMU8wX0g3VWxNcUY0bHNvekZGTU9pdG5rUkx3ekVQWXRYWDBCejgwVU8tVzJEa0cya2RMYWdFQzllWGtpYTlRMHgxTXRn0gHnAUFVX3lxTE9wZ2NZWENRVzkzby03b3NVb2hTUjBKUmNNRjFlYThoRHlpRkV1WENFZkdyRUJrbHRqRVoxSTNEVzRQa29QV0M4VzhWVl9WdG90S2NRNHFPRVRxZEdrbG9VRzFmb2ZGWmlUWEE4QWpiQzJVdUJuaFVoemdTVHdnWW5wbjFCV3Z6dzFJMzN2NjU5X1RVamkwc0NWcTRhT0paYkFuVmhvazQ5bmM1cURxOGdINXpSSDFHUnNNVVNueGxPb3hIcDFCaE40SHJfU2xoTTVGUXlvRkNpaUdQVE45WVY1M1o2N1d1bw?oc=5",
+      "source": "CNBC TV18"
+     },
      {
       "tier": "news",
       "kind": "results",
@@ -6624,13 +6639,6 @@
       "kind": "results",
       "detail": "Blue Star expects H2 margin recovery as price hikes and cost cuts offset input costs",
       "url": "https://news.google.com/rss/articles/CBMijwJBVV95cUxNbEtSNnNGMXU2aFhNd1A4REdsSEFuOXF6WWZfM2pqMFB6RjZJWWhMZTVrQTBybDQwdlkzM1k0YldLdzhwVWc2Q2RnejBmc2JESFpzamxMMWhITDFybDhlZXNtZGpLX3lud0U2OUZxaUtNVkZxWm15LVFpaC1sZ3daZElTT2RTeUhwTEZURGhxZHExMko5eWJBRXFkRkVTUGY5VGNHamFqdFFNdU1DaEhnWTJQbWtBUEg0Z05KRmRJaTRhM3Q5SXNITVYyUVZvZVBGNEtkLU5CcmlNMjFoTTViLTZOYzI3djJKQTMyYWR1MWQzMVlpdWhmQTEtS3Z6b0hQSUROdHpXRVUycndYdHJv0gGPAkFVX3lxTE1sS1I2c0YxdTZoWE13UDhER2xIQW45cXpZZl8zamowUHpGNklZaExlNWtBMHJsNDB2WTMzWTRiV0t3OHBVZzZDZGd6MGZzYkRIWnNqbEwxaEhMMXJsOGVlc21kaktfeW53RTY5RnFpS01WRnFabXktUWloLWxnd1pkSVNPZFN5SHBMRlREaHFkcTEySjl5YkFFcWRGRVNQZjlUY0dqYWp0UU11TUNoSGdZMlBta0FQSDRnTkpGZElpNGEzdDlJc0hNVjJRVm9lUEY0S2QtTkJyaU0yMWhNNWItNk5jMjd2MkpBMzJhZHUxZDMxWWl1aGZBMS1LdnpvSFBJRE50eldFVTJyd1h0cm8?oc=5",
-      "source": "CNBC TV18"
-     },
-     {
-      "tier": "news",
-      "kind": "results",
-      "detail": "Blue Star Q2 results: Profit rises 26% to ₹124 crore, beating estimates on 21% revenue growth",
-      "url": "https://news.google.com/rss/articles/CBMi5wFBVV95cUxPcGdjWVhDUVc5M28tN29zVW9oU1IwSlJjTUYxZWE4aER5aUZFdVhDRWZHckVCa2x0akVaMUkzRFc0UGtvUFdDOFc4VlZfVnRvdEtjUTRxT0VUcWRHa2xvVUcxZm9mRlppVFhBOEFqYkMyVXVCbmhVaHpnU1R3Z1lucG4xQld2encxSTMzdjY1OV9UVWppMHNDVnE0YU9KWmJBblZob2s0OW5jNXFEcThnSDV6UkgxR1JzTVVTbnhsT294SHAxQmhONEhyX1NsaE01RlF5b0ZDaWlHUFROOVlWNTNaNjdXdW_SAecBQVVfeXFMT3BnY1lYQ1FXOTNvLTdvc1VvaFNSMEpSY01GMWVhOGhEeWlGRXVYQ0VmR3JFQmtsdGpFWjFJM0RXNFBrb1BXQzhXOFZWX1Z0b3RLY1E0cU9FVHFkR2tsb1VHMWZvZkZaaVRYQThBamJDMlV1Qm5oVWh6Z1NUd2dZbnBuMUJXdnp3MUkzM3Y2NTlfVFVqaTBzQ1ZxNGFPSlpiQW5WaG9rNDluYzVxRHE4Z0g1elJIMUdSc01VU254bE9veEhwMUJoTjRIcl9TbGhNNUZReW9GQ2lpR1BUTjlZVjUzWjY3V3Vv?oc=5",
       "source": "CNBC TV18"
      }
     ]
@@ -6734,7 +6742,7 @@
    "raw_pct_change": 4.65,
    "corporate_action": null,
    "why": {
-    "headline": "Investor Meeting disclosed to the exchange",
+    "headline": "Investor Meeting, reported by Moneycontrol",
     "confidence": "high",
     "evidence": [
      {
@@ -6743,6 +6751,13 @@
       "detail": "Cemindia Projects Limited has informed the Exchange about Schedule of Analysts/Institutional Investor Con. Call",
       "url": "https://nsearchives.nseindia.com/corporate/ITD_28102026165236_STK_ltr_concall_Invitation_Signed.pdf",
       "source": "28 Oct 16:53"
+     },
+     {
+      "tier": "news",
+      "kind": "order win",
+      "detail": "Adani Group-backed Cemindia Projects bags Rs 666-crore Bengaluru suburban rail contract",
+      "url": "https://news.google.com/rss/articles/CBMi3AFBVV95cUxPaGhpcXl2VVZ5Q2JWWjJsbk1BaXBqNTU3NWNISlZDMlQ3aG9IUkM2Qk04U1VtMkg3ZW5aeUNtWTVXRFJZZTRIZ3BrWE1rNHA5bGFiVkhqS3hzdnVDVnl4X3J1SjgxNTItSVR4SXozOV9fckJXRXk3SWRuUXI1ZTJZY1U2UXJsUWV1MVN6cG9ZRThBdjZDUlRGSXFFejFEQWhxZHNacHJranRjMFFzVDdPQ1ZZSk5RRkVzVWw1czBGWHVIckh4X3paV2JuN25MRWFQbndMbkt3QTFWVVR20gHiAUFVX3lxTE02NGNUb0tzdmFpbl9ieTFJNzIyOTZLQjdpTWdzdUxPTmctOVFUbmg1OFB1TGtsLTdyNHdRMjdLdGZndVF5X25SNHV5ZVpWRENreG9pWWprUXNKaDBJM0VPaE9vYmxtejhqMnNiRTdrcHRNUFlvRG94d25GeW9ZME5sX0ZkWjN1V0xKd1pHZXA5UmZQUEVtQTNaY2ZfVHRfclhsa1hMWXF3MlhOSnJScXoxODF4MnJsVnJkMGRXbHRKekVDMzQ2TEtFbG1ILVNKMWNoR2IyRmNBb1QzcnRLZURkSUE?oc=5",
+      "source": "Moneycontrol"
      }
     ]
    },
@@ -7103,9 +7118,17 @@
    "raw_pct_change": 4.46,
    "corporate_action": null,
    "why": {
-    "headline": "No disclosed reason",
-    "confidence": "none",
-    "evidence": []
+    "headline": "Operations (Sahi)",
+    "confidence": "low",
+    "evidence": [
+     {
+      "tier": "news",
+      "kind": "operations",
+      "detail": "Wanbury Secures Australian TGA GMP Compliance Certificate For Tanuku Plant",
+      "url": "https://news.google.com/rss/articles/CBMiogFBVV95cUxNZmY0N1VEcVQ0SHhaNVdqX01nSHRpSHE3SGZLTmFTU1A1OVJDVS12Q0pfRDc4Z1c4aDlWT3RkeTdPS3BHOURKcXllX283SGZ3SW05dGRoNlF0N1FudUd6M3dVWEptVDNETFdxMWNXeU5tX2xDRGROcmNoUjBDODhPTVdYZGVvQnRCSXFteWNnR2hRVkV4TXppM3ZWT3hhSTRvTnc?oc=5",
+      "source": "Sahi"
+     }
+    ]
    },
    "news_checked": true
   },
@@ -7633,7 +7656,7 @@
       "tier": "news",
       "kind": "results",
       "detail": "Marico’s Q2 profit flat as raw material costs bite",
-      "url": "https://news.google.com/rss/articles/CBMikwFBVV95cUxQelVuR0NxM2pwWGZaa0k4M2FwdVVjeVdrRkxGVVBPVmRub3NOMTFKN1JXN0g3SEZTYWJDS01zM3BMS291S09XY0ZpZ010QXZxYTBjdFdab19fRTNoRmFINk93Y0JnUmRNRDU4amlHMnBGOUxMWDVCYnhsOFdvNGxpNldhd1VoT0JTV3VPcVdNdjVKLUU?oc=5",
+      "url": "https://news.google.com/rss/articles/CBMilAFBVV95cUxNSFY1WHMzcVBfZmd2R2FTdFFOTHpHM1pXN2VKcmxQaW9iR21YaUQ5S19tdmEwZVdNejdfYXFzNGdPc3p3NmpoMldadUNiUURKQW5SOExTckdyVjQ2YVpOcFpOUVJ2Zjg3YjZUMjhSWmVVQ1VWTkJ5bHNaeVd6MnRaVkRaTWhKUTA3TmkxRWltRV9nT00x?oc=5",
       "source": "Financial Express"
      },
      {
@@ -7758,9 +7781,17 @@
    "raw_pct_change": 4.3,
    "corporate_action": null,
    "why": {
-    "headline": "No disclosed reason",
-    "confidence": "none",
-    "evidence": []
+    "headline": "Operations (Scanx)",
+    "confidence": "low",
+    "evidence": [
+     {
+      "tier": "news",
+      "kind": "operations",
+      "detail": "Kilburn Engineering approves ₹25 crore capex for subsidiary expansion",
+      "url": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxPNVR6VjI2N0hkYVhQUE1qRW5NQjIwbklUWlBsa05LMUFwdzloRUlQeE10NElzN2xlWlZudjRHQkNKLXpnVVRuejNpU3UtTllQM1VFaXIyTUtmLV9MSjFRc1YxUUYyemNfVGZZR0JHMjNzS2d0X053aHEtU3R3TGt6aUo1TFdhNzFwVVhrekNRa0ZIUnNHZjVYc3BQUlppdk5kek52TWtGU290RUdzYUw5Z0dYeU1OMWhZZGtj?oc=5",
+      "source": "Scanx"
+     }
+    ]
    },
    "news_checked": true
   },
@@ -10507,7 +10538,7 @@
      {
       "tier": "news",
       "kind": "capital action",
-      "detail": "BN Agrochem approves stock split and MOA alteration at EGM",
+      "detail": "BN Agrochem shareholders approve stock split with 100% votes in favour",
       "url": "https://news.google.com/rss/articles/CBMirAFBVV95cUxPX0sxbEdlS085dk95NjVESkU1RnRCaFRmSGZyOXFCbGw4VVJtcHNza18xMmFIOFhkY2VVU1lwTGpqLTcwcWNqN0g4SDdFU0xHRHEyak5WNzI4X1hxMHBVWG5GRkN1WS1iTGozRU5kM3hmX2RxaFF0WnhpVDJ3VUFST2FCNUN1VUdZLVZHNzl4bFQ0azB1Y25ySHE4a2VTYWFzZHRTazhWMmtabjVS?oc=5",
       "source": "Scanx"
      }
@@ -11116,16 +11147,9 @@
      {
       "tier": "news",
       "kind": "results",
-      "detail": "Hexaware Tech in focus after September quarter revenue lower than expectations, margins in-line",
-      "url": "https://news.google.com/rss/articles/CBMi2gFBVV95cUxPeFVUZEh4OEkzNlFFTVV3UmVfUGVXN3ZSSkw0d0JLSHVrQVpPSkRaQU41X0lSSnpsU1V2NHVEQ2JpMFFDR1BQamZ3d3dJSkJCUVhGdlNydUpiOVhoNXRBLXh5QTlDSXJjMDZxcW9ERWdIVmQxRDFCUlFDaEJvU2wtVFV4YmFrSnp1SWFiWWtBdUR1UzNaR0RVRktQUFEybWRub0YzeXNOSTVrM3NnMksxVzhCYVQtQThLQ2ExdTI4LW8wTUZ0b1RnVUtlOVFKZDZTaFNtd1poNUJKUdIB2gFBVV95cUxPeFVUZEh4OEkzNlFFTVV3UmVfUGVXN3ZSSkw0d0JLSHVrQVpPSkRaQU41X0lSSnpsU1V2NHVEQ2JpMFFDR1BQamZ3d3dJSkJCUVhGdlNydUpiOVhoNXRBLXh5QTlDSXJjMDZxcW9ERWdIVmQxRDFCUlFDaEJvU2wtVFV4YmFrSnp1SWFiWWtBdUR1UzNaR0RVRktQUFEybWRub0YzeXNOSTVrM3NnMksxVzhCYVQtQThLQ2ExdTI4LW8wTUZ0b1RnVUtlOVFKZDZTaFNtd1poNUJKUQ?oc=5",
+      "detail": "Hexaware Technologies shares fall over 3% after narrowing 2026 margin guidance",
+      "url": "https://news.google.com/rss/articles/CBMi1AFBVV95cUxPLXBqaU1UcFhXR2ltZUNINEYtNkl1cXljM19GdUxwRTR0bnNXcU82SjkyM0ZSZWJ1VTVHTHdPMlJDQ0FBcmR5X3JnWndfWm9ybzJvdmFhamRMbk5KVXBnZGRZa1psWDJaYWwyOWNmUnhlVHkzUzBha1ZnNWM1dmMzdFNRMm9nR3c5SXBoMXJoNzJCajducTFmSGZRYXdJZEJ4YmZTemVqUUpNVk5TT0xpSmk4QTVySXdpSk9mcXRma1J2Ql9UYjJJUDFJMVZwV2NncWVuOdIB2gFBVV95cUxPeFVUZEh4OEkzNlFFTVV3UmVfUGVXN3ZSSkw0d0JLSHVrQVpPSkRaQU41X0lSSnpsU1V2NHVEQ2JpMFFDR1BQamZ3d3dJSkJCUVhGdlNydUpiOVhoNXRBLXh5QTlDSXJjMDZxcW9ERWdIVmQxRDFCUlFDaEJvU2wtVFV4YmFrSnp1SWFiWWtBdUR1UzNaR0RVRktQUFEybWRub0YzeXNOSTVrM3NnMksxVzhCYVQtQThLQ2ExdTI4LW8wTUZ0b1RnVUtlOVFKZDZTaFNtd1poNUJKUQ?oc=5",
       "source": "CNBC TV18"
-     },
-     {
-      "tier": "news",
-      "kind": "results",
-      "detail": "Hexaware Reports Q3CY26 Revenue at USD 411.9 Mn, Up 4.3% YoY",
-      "url": "https://news.google.com/rss/articles/CBMipwFBVV95cUxPdkNURS1FWFUxX3VGSXpKRkVYMERRT2pHMHYyMjd3d3Uyd1pUb0ZkWk5TNE11d1NFSGx1czNtVXFzbTB4OG93ZWctWDQyNUticWlPdTJST0JSSVREVmUyWUlwaUd4XzB3d29wcnpjbmFTaVZHVUZCR0xSb2o3MWtOQlJsdmZvT2VHbmpGMW91WnNLU0JDeW9iUzZVX1dFcmFfMS1rRldFOA?oc=5",
-      "source": "PTI"
      },
      {
       "tier": "news",
