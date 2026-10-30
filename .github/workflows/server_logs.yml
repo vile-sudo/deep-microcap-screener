@@ -34,3 +34,27 @@ jobs:
           ssh-keyscan -H "$AWS_HOST" >> ~/.ssh/known_hosts 2>/dev/null
           ssh -i ~/.ssh/deploy_key -o StrictHostKeyChecking=yes "${AWS_SSH_USER:-ubuntu}@$AWS_HOST" \
             "cd ${AWS_DEPLOY_PATH:-/opt/screener-app} && git log --oneline -3 && git status --short | head -10 && echo '--- compose ps' && docker compose ps -a && echo '--- disk' && df -h / | tail -1 && echo '--- logs' && docker compose logs --tail=$LINES screener 2>&1 | sed -E 's/(apikey|api_key|token)=[^&[:space:]]+/\1=***/Ig'"
+
+      # Which Kite app the server is really using: length and a short hash of each value as the app reads them
+      # (compare with the same line printed for a local .env) -- never the values themselves.
+      - name: Kite settings (fingerprints only)
+        env:
+          AWS_HOST: ${{ secrets.AWS_HOST }}
+          AWS_SSH_KEY: ${{ secrets.AWS_SSH_KEY }}
+          AWS_SSH_USER: ${{ secrets.AWS_SSH_USER }}
+          AWS_DEPLOY_PATH: ${{ secrets.AWS_DEPLOY_PATH }}
+        run: |
+          if [ -z "$AWS_HOST" ] || [ -z "$AWS_SSH_KEY" ]; then exit 0; fi
+          cat > kite_fp.sh <<'SH'
+          cd "${1:-/opt/screener-app}"
+          echo "KITE_API_KEY lines in .env:    $(grep -c '^KITE_API_KEY=' .env)"
+          echo "KITE_API_SECRET lines in .env: $(grep -c '^KITE_API_SECRET=' .env)"
+          docker compose exec -T screener python - <<'PY'
+          import hashlib
+          from app.config import get_settings
+          s = get_settings()
+          fp = lambda v: f"{len(v)} chars, sha256 {hashlib.sha256(v.encode()).hexdigest()[:10]}"
+          print("as the app sees them -> KITE_API_KEY:", fp(s.kite_api_key), "| KITE_API_SECRET:", fp(s.kite_api_secret))
+          PY
+          SH
+          ssh -i ~/.ssh/deploy_key -o StrictHostKeyChecking=yes "${AWS_SSH_USER:-ubuntu}@$AWS_HOST" "bash -s -- ${AWS_DEPLOY_PATH:-/opt/screener-app}" < kite_fp.sh
