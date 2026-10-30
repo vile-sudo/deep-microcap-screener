@@ -4131,7 +4131,8 @@ function bpConnect(){
     <p class="mp bp-tok-msg" id="bp-tok-msg" role="status"></p>`);
   const f=document.getElementById('bp-key-form'), inp=document.getElementById('bp-key');
   (inp||document.getElementById('bp-tok')).focus();
-  f.onsubmit=e=>{ e.preventDefault(); location.href='/api/kite/login'+(inp?'?key='+encodeURIComponent(inp.value):''); };
+  const nxt=VIEW==='sstrength'?'next=sstrength':'';
+  f.onsubmit=e=>{ e.preventDefault(); const q=[nxt, inp?'key='+encodeURIComponent(inp.value):''].filter(Boolean).join('&'); location.href='/api/kite/login'+(q?'?'+q:''); };
   const tf=document.getElementById('bp-tok-form'), msg=document.getElementById('bp-tok-msg');
   tf.onsubmit=async e=>{
     e.preventDefault();
@@ -4143,7 +4144,7 @@ function bpConnect(){
       const j=await r.json().catch(()=>({}));
       if(!r.ok) throw new Error(j.detail||('HTTP '+r.status));
       msg.classList.add('ok'); msg.textContent='Connected'+(j.user?' as '+j.user:'')+'. Live prices are on.';
-      setTimeout(()=>{ closeModal(); bpStatus(); bpIndices(); }, 900);
+      setTimeout(()=>{ closeModal(); bpStatus(); bpIndices(); if(VIEW==='sstrength') ssLiveLoad().then(()=>{ if(VIEW==='sstrength') ssRender(); }); }, 900);
     }catch(err){ msg.classList.add('bad'); msg.textContent=err.message; btn.disabled=false; }
   };
 }
@@ -7267,8 +7268,10 @@ async function ssLiveLoad(first){
   if(SS.live && (SS.live.status==='live' || SS.live.status==='loading'))
     SS.liveT=setTimeout(()=>{ if(VIEW==='sstrength' && !document.hidden) ssLiveLoad().then(()=>{ if(VIEW==='sstrength') ssRender(); }); else ssLiveLoad(); }, SS.live.status==='loading'?8000:60000);
 }
-/* the daily Zerodha login, started from here and coming back here (an admin needs no key) */
+/* the daily Zerodha login, started from here and coming back here: the same window as Market view's, with
+   "paste a request token" for a Kite app whose Redirect URL points at another site */
 function ssKiteConnect(){
+  if(typeof bpConnect==='function'){ bpConnect(); return; }
   if(ME && ME.is_admin){ location.href='/api/kite/login?next=sstrength'; return; }
   smallModal(`<h3>Connect Zerodha</h3><p class="sub">Enter the Zerodha admin key (KITE_ADMIN_KEY), then log in at Zerodha. You'll come straight back here.</p>
     <form id="ss-kiteform" style="display:flex;gap:8px;margin-top:12px"><input type="password" id="ss-kitekey" class="gal-search" placeholder="Admin key" autocomplete="off" required style="flex:1"><button class="btn" type="submit">Continue</button></form>`);
