@@ -1,28 +1,50 @@
 {
- "updated": "2026-10-30T06:02+05:30",
+ "updated": "2026-10-31T05:36+05:30",
  "figures": [
   {
-   "label": "Brent crude",
-   "value": "$114.88/bbl",
-   "as_of": "2026-10-29",
-   "note": "-44 cents (-0.38%) on the day",
+   "label": "Brent crude (Dec futures, expiring)",
+   "value": "$117.64/bbl",
+   "as_of": "2026-10-30",
+   "note": "+2.4% on the day; Jan contract $113.43; +13.6% in October",
    "source": {
-    "publisher": "Reuters via Euronext",
-    "url": "https://live.euronext.com/en/financial-news/oil-prices-settles-lower-diplomacy-hopes-offset-some-mideast-supply-concerns"
+    "publisher": "The Korea Times",
+    "url": "https://www.koreatimes.co.kr/world/20261031/oil-jumps-2-settles-at-6-month-highs-on-fears-of-escalation-in-iran"
    }
   },
   {
    "label": "WTI crude",
-   "value": "$102.00/bbl",
-   "as_of": "2026-10-29",
-   "note": "-78 cents (-0.76%) on the day",
+   "value": "$104.12/bbl",
+   "as_of": "2026-10-30",
+   "note": "+2.1% on the day; +15.2% in October",
    "source": {
-    "publisher": "Reuters via Euronext",
-    "url": "https://live.euronext.com/en/financial-news/oil-prices-settles-lower-diplomacy-hopes-offset-some-mideast-supply-concerns"
+    "publisher": "The Korea Times",
+    "url": "https://www.koreatimes.co.kr/world/20261031/oil-jumps-2-settles-at-6-month-highs-on-fears-of-escalation-in-iran"
    }
   }
  ],
  "items": [
+  {
+   "date": "2026-10-30",
+   "title": "Brent settles at $117.64, a six-month high, after Hormuz tanker mine attack; up 13.6% in October",
+   "text": "Brent's expiring December contract settled at $117.64/bbl, up $2.76 (2.4%), after touching $118; the more active January contract settled at $113.43 and WTI at $104.12. The move followed what maritime sources called the first known limpet-mine strike on a tanker in the Strait of Hormuz since the war began, and fears of escalation after the 3 November US midterms; Qatari mediation and a letter from Vance seeking to revive talks had no Iranian response yet. Brent rose 13.6% in October (WTI +15.2%), which supports upstream realisations for ONGC and Oil India but raises the import bill and under-recovery pressure on oil marketing companies.",
+   "tone": "watch",
+   "companies": [
+    "ONGC",
+    "OIL",
+    "IOC",
+    "BPCL",
+    "HINDPETRO"
+   ],
+   "sources": [
+    {
+     "publisher": "The Korea Times",
+     "title": "Oil jumps 2%, settles at 6-month highs on fears of escalation in Iran",
+     "url": "https://www.koreatimes.co.kr/world/20261031/oil-jumps-2-settles-at-6-month-highs-on-fears-of-escalation-in-iran",
+     "date": "2026-10-31"
+    }
+   ],
+   "added": "2026-10-31"
+  },
   {
    "date": "2026-10-29",
    "title": "Brent settles at $114.88, down 44 cents, as US-Iran talk hopes offset Houthi attacks on Saudi sites",
@@ -1205,50 +1227,6 @@
     }
    ],
    "added": "2026-09-17"
-  },
-  {
-   "date": "2026-09-15",
-   "title": "Indian crude basket jumps to $128.70/bbl, highest since April",
-   "text": "PPAC data showed the Indian crude oil basket at $128.70/bbl on 15 September, nearly double the $67.16 level of 2 July though still below the March peak of $157.04. Every $10/bbl rise adds an estimated $13-14 billion a year to India's import bill and can lift retail inflation by 30-50 bps; analysts flagged HSBC and MOFSL now expect RBI rate hikes in October and December. Upstream producers ONGC and Oil India gain from stronger realisations, while OMCs are squeezed if pump prices stay frozen.",
-   "tone": "watch",
-   "companies": [
-    "ONGC",
-    "OIL",
-    "IOC",
-    "BPCL",
-    "HINDPETRO"
-   ],
-   "sources": [
-    {
-     "publisher": "Business Today",
-     "title": "Indian crude oil basket hits $128.70, highest since April: Impact on stocks, sectors, RBI policy",
-     "url": "https://www.businesstoday.in/markets/stocks/story/indian-crude-oil-basket-hits-128-70-highest-since-april-impact-on-stocks-sectors-rbi-policy-555557-2026-09-15",
-     "date": "2026-09-15"
-    }
-   ],
-   "added": "2026-09-16"
-  },
-  {
-   "date": "2026-09-15",
-   "title": "GAIL: LNG above $20/mmBtu curbing India gas demand, supply restored to 90-95%",
-   "text": "Speaking at Gastech in Bangkok, GAIL chairman Deepak Gupta said LNG prices above $20/mmBtu are hurting India's price-sensitive industrial demand as buyers switch to alternative fuels, with Asian spot LNG near $30/mmBtu versus about $10 pre-war. GAIL said it has used its trading capability to source LNG from alternative markets and restore supply to 90-95% of normal levels. Higher spot gas costs squeeze city-gas margins and raise input costs across GAIL, Petronet LNG and the CGD companies.",
-   "tone": "watch",
-   "companies": [
-    "GAIL",
-    "PETRONET",
-    "IGL",
-    "MGL",
-    "GUJGASLTD"
-   ],
-   "sources": [
-    {
-     "publisher": "BOE Report",
-     "title": "LNG demand in China and India expected to recover when Mideast war ends",
-     "url": "https://boereport.com/2026/09/15/lng-demand-in-china-and-india-expected-to-recover-when-mideast-war-ends/",
-     "date": "2026-09-15"
-    }
-   ],
-   "added": "2026-09-16"
   }
  ]
 }

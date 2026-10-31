@@ -11309,7 +11309,7 @@
      ]
     }
    },
-   "profiled_on": "2026-10-29"
+   "profiled_on": "2026-10-30"
   }
  },
  {
@@ -24080,6 +24080,534 @@
     }
    },
    "profiled_on": "2026-10-29"
+  }
+ },
+ {
+  "sym": "544606",
+  "name": "Pine Labs Ltd",
+  "board": "BSE",
+  "isin": "INE15B701018",
+  "listed": null,
+  "hint": "pharma & healthcare",
+  "why": "mid-cap sweep",
+  "mktcap_cr": 17719.62,
+  "plausible": true,
+  "verdict": null,
+  "seen_on": "2026-10-30",
+  "source": "sweep",
+  "moat_signal": true,
+  "moat_evidence": [
+   "monopoly claim: \"According to the Redseer Report, in India, our core market, we were the largest player in issuances of closed and semiclosed loop gift cards by transaction value in Fiscal Year 2025.\" (prospectus, company-stated)",
+   "monopoly claim: \"Figure 16: India – Gift cards TPV In ₹ billion (US$ billion), CY 2019, CY 2024, CY 2028P Source(s): PayNxt360 As of FY 2025, Pine Labs is the largest player in closed and semi-closed loop gift card issuances in India, in terms of transaction value.\" (prospectus, company-stated)",
+   "monopoly claim: \"In Fiscal Year 2025, we were the largest player in closed and semi-closed loop gift card issuances in India, in terms of transaction value.\" (prospectus, company-stated)"
+  ],
+  "profile": {
+   "symbol": "544606",
+   "company": "Pine Labs Limited",
+   "isin": "INE15B701018",
+   "board": "BSE",
+   "source": {
+    "document": "final prospectus",
+    "url": "https://nsearchives.nseindia.com/corporate/FP_INE15B701018_12NOV2025.pdf",
+    "filed": "12-Nov-2025",
+    "pdf_bytes": 15761976,
+    "extracted_chars": 2535495
+   },
+   "grade": "company-stated",
+   "verified_against": null,
+   "claims": {
+    "accreditation": {
+     "count": 3,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "ISO 27001",
+      "ISO27001"
+     ],
+     "evidence": [
+      {
+       "match": "ISO 27001",
+       "sentence": "In case of Setu, our entire technology stack is certified with relevant information security certifications such as ISO 27001:2013, and SOC 2 Type 2 attestation."
+      },
+      {
+       "match": "ISO27001",
+       "sentence": "Our closed-loop merchant prepaid platform is International Organization for Standardization certified in relation to ISO27001:2022 and attested for SOC 1, Type 2 attestation."
+      },
+      {
+       "match": "ISO 27001",
+       "sentence": "• Compliance and Certification: Our entire technology stack is certified with relevant information security certifications such as ISO 27001:2013, and SOC 2 Type 2 attestation."
+      }
+     ]
+    },
+    "monopoly_claim": {
+     "count": 3,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "largest player"
+     ],
+     "evidence": [
+      {
+       "match": "largest player",
+       "sentence": "According to the Redseer Report, in India, our core market, we were the largest player in issuances of closed and semiclosed loop gift cards by transaction value in Fiscal Year 2025."
+      },
+      {
+       "match": "largest player",
+       "sentence": "Figure 16: India – Gift cards TPV In ₹ billion (US$ billion), CY 2019, CY 2024, CY 2028P Source(s): PayNxt360 As of FY 2025, Pine Labs is the largest player in closed and semi-closed loop gift card issuances in India, in terms of transaction value."
+      },
+      {
+       "match": "largest player",
+       "sentence": "In Fiscal Year 2025, we were the largest player in closed and semi-closed loop gift card issuances in India, in terms of transaction value."
+      }
+     ]
+    },
+    "ip": {
+     "count": 16,
+     "dropped_as_industry_commentary": 15,
+     "terms": [
+      "trademarks",
+      "patents",
+      "patent",
+      "Patents",
+      "trademark",
+      "proprietary technology",
+      "patented"
+     ],
+     "evidence": [
+      {
+       "match": "trademarks",
+       "sentence": "We regard our trademarks, domain names, trade secrets, proprietary technologies, brands and similar intellectual property as critical to our success."
+      },
+      {
+       "match": "trademarks",
+       "sentence": "As on date of this Prospectus, there are 117 trademarks and 25 active domains registered in the name of our Company under the Trademarks Act, 1999."
+      },
+      {
+       "match": "trademarks",
+       "sentence": "Further, our Material Subsidiary has 31 trademarks and 8 active domains registered to its name under the Trademarks Act, 1999, and 2 patents registered to its name under the Patents Act, 1970."
+      }
+     ]
+    }
+   },
+   "risk_factors": {
+    "customer_concentration": {
+     "count": 5,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "top 10 customers",
+      "customer concentration"
+     ],
+     "evidence": [
+      {
+       "match": "top 10 customers",
+       "sentence": "Our top 10 customers accounted for 29."
+      },
+      {
+       "match": "top 10 customers",
+       "sentence": "• Our top 10 customers accounted for 29."
+      },
+      {
+       "match": "top 10 customers",
+       "sentence": "The following table sets out the revenue contributions from our top 1, top 5 and top 10 customers for periods/years indicated."
+      }
+     ]
+    },
+    "promoter_litigation": {
+     "count": 11,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "Criminal proceedings",
+      "Criminal Proceedings",
+      "criminal proceedings",
+      "criminal complaint"
+     ],
+     "evidence": [
+      {
+       "match": "Criminal proceedings",
+       "sentence": "age 481 in terms of the SEBI ICDR Regulations and the Materiality Policy as of the date of this Prospectus is provided below: Category of individuals/ entities Criminal proceedings Tax proceedings Company By our Company 2# Against our Company Nil Subsidiaries By our Subsidiaries Nil Against our Subsidiaries Nil Directors By our Directors Nil Against our Dire"
+      },
+      {
+       "match": "Criminal Proceedings",
+       "sentence": "For further details, see “Outstanding Litigation and Material Developments – Litigation involving our Company – Litigation by our Company – Criminal Proceedings” on page 482."
+      },
+      {
+       "match": "criminal proceedings",
+       "sentence": "ves, and repeat offences may be subjected to increased penalties, and non-payment within specified timelines can lead to further enforcement actions, including criminal proceedings."
+      }
+     ]
+    },
+    "related_party": {
+     "count": 21,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "related party transactions",
+      "Related Party Transactions",
+      "Related party transactions"
+     ],
+     "evidence": [
+      {
+       "match": "related party transactions",
+       "sentence": "Summary of related party transactions Set out below is a summary of related party transactions for the three-month periods ended June 30, 2025 and June 30, 2024, and for the Financial Years ended 2025, 2024 and"
+      },
+      {
+       "match": "related party transactions",
+       "sentence": "EBI ICDR Regulations, as derived from the Restated Consolidated Financial Information: (Remainder of this page has intentionally been left blank) 26 Details of related party transactions during the period/year: Particulars For the three months period ended June 30, 2025 2024 Investment made in associate Company Agya Technologies Private Limited Service charg"
+      },
+      {
+       "match": "related party transactions",
+       "sentence": "In addition to the above, below are related party transactions and balances before consolidation and elimination as applicable: Name of Entity Anumati Technologies Private Limited Beeconomic Singapore Pte Ltd Name of the counterparty Na"
+      }
+     ]
+    }
+   },
+   "objects_of_the_issue": {
+    "offer_for_sale": {
+     "count": 45,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "Offer for Sale",
+      "OFFER FOR SALE",
+      "offer for sale"
+     ],
+     "evidence": [
+      {
+       "match": "Offer for Sale",
+       "sentence": "408, 4th Floor, Time Tower, MG Road, DLF QE, Gurgaon – 122 002, Haryana, India TYPE Fresh Issue and Offer for Sale ^ CONTACT PERSON Neerav Mehta EMAIL AND TELEPHONE Email: cosecy@pinelabs."
+      },
+      {
+       "match": "OFFER FOR SALE",
+       "sentence": "* NAME OF THE SELLING SHAREHOLDERS ** DETAILS OF THE OFFER FOR SALE CATEGORY NUMBER OF EQUITY SHARES OFFERED / AMOUNT (₹ IN MILLION) WEIGHTED AVERAGE COST OF ACQUISITION PER EQUITY SHARE (IN ₹)# ^ Peak XV Partners Pine Investment Investor Selling 23,002,308 Equity Shares of face value of ₹ 1 5."
+      },
+      {
+       "match": "OFFER FOR SALE",
+       "sentence": "00 MILLION BY OUR COMPANY (“FRESH ISSUE”) AND AN OFFER FOR SALE OF 82,348,779 EQUITY SHARES OF FACE VALUE OF ₹ 1 EACH AGGREGATING TO ₹ 18,199."
+      }
+     ]
+    },
+    "fresh_issue": {
+     "count": 51,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "Fresh Issue",
+      "FRESH ISSUE",
+      "Fresh issue",
+      "fresh issue"
+     ],
+     "evidence": [
+      {
+       "match": "Fresh Issue",
+       "sentence": "408, 4th Floor, Time Tower, MG Road, DLF QE, Gurgaon – 122 002, Haryana, India TYPE Fresh Issue and Offer for Sale ^ CONTACT PERSON Neerav Mehta EMAIL AND TELEPHONE Email: cosecy@pinelabs."
+      },
+      {
+       "match": "FRESH ISSUE",
+       "sentence": "08^ MILLION COMPRISING A FRESH ISSUE OF 94,129,524^ EQUITY SHARES OF FACE VALUE OF ₹ 1 EACH AGGREGATING TO ₹ 20,800."
+      },
+      {
+       "match": "FRESH ISSUE",
+       "sentence": "00 MILLION BY OUR COMPANY (“FRESH ISSUE”) AND AN OFFER FOR SALE OF 82,348,779 EQUITY SHARES OF FACE VALUE OF ₹ 1 EACH AGGREGATING TO ₹ 18,199."
+      }
+     ]
+    },
+    "capital_expenditure": {
+     "count": 16,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "capital expenditure",
+      "Capital expenditure",
+      "expansion of our"
+     ],
+     "evidence": [
+      {
+       "match": "capital expenditure",
+       "sentence": "iii) developing and enhancing our technology, (iv) enhancing the reach of our solutions in international markets, (v) recruiting and retaining talent, and (vi) capital expenditure for investing in our network of digital check-out points."
+      },
+      {
+       "match": "capital expenditure",
+       "sentence": "ompany’s capital structure, management, ownership or control, alteration to constitutional documents, diversifying into non-core areas, undertaking any further capital expenditure, further investments by our Company, incurring additional indebtedness, pay dividends or make distributions, and sell, lease, license, transfer or otherwise dispose of assets."
+      },
+      {
+       "match": "capital expenditure",
+       "sentence": "Our capital expenditure comprises cash incurred on purchase of property, plant and equipment and intangible assets."
+      }
+     ]
+    },
+    "working_capital": {
+     "count": 4,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "working capital requirements"
+     ],
+     "evidence": [
+      {
+       "match": "working capital requirements",
+       "sentence": "While the declaration of dividends is at the discretion of our Board and subject to Shareholder approval as set out in the section “Dividend Policy” on page 331, the amount of future dividend payments by our Company, if any, will depend upon our future earnings, financial condition, cash flows, working capital requirements, capital expenditures, applicable Indian legal restrictions and other factors."
+      },
+      {
+       "match": "working capital requirements",
+       "sentence": "97 million in the three months period ended June 30, 2024 primarily due to higher interest expenses on financial liabilities measured at amortised cost for bank borrowings, which were incurred to finance and support the company’s business operations, including working capital requirements and day-to-day operations."
+      },
+      {
+       "match": "working capital requirements",
+       "sentence": "56 million in Fiscal Year 2024 primarily due to higher interest expenses on financial liabilities measured at amortised cost for bank borrowings, which were incurred to finance and support the company’s business operations, including working capital requirements and day-to-day operations."
+      }
+     ]
+    },
+    "general_corporate": {
+     "count": 14,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "General corporate purposes",
+      "general corporate purposes",
+      "General Corporate Purposes"
+     ],
+     "evidence": [
+      {
+       "match": "General corporate purposes",
+       "sentence": "stment in IT assets and expenditure towards cloud infrastructure Expenditure towards procurement of DCPs Expenditure towards technology development initiatives General corporate purposes and unidentified inorganic acquisitions Net Proceeds (1) Amount (₹ in million) 5,320."
+      },
+      {
+       "match": "general corporate purposes",
+       "sentence": "34 The amount to be utilised for general corporate purposes and unidentified inorganic acquisitions does not exceed 35% of the Gross Proceeds."
+      },
+      {
+       "match": "general corporate purposes",
+       "sentence": "The amount to be utilised for each of general corporate purposes or for unidentified inorganic acquisitions individually, does not exceed 25% of the Gross Proceeds."
+      }
+     ]
+    }
+   },
+   "profiled_on": "2026-10-30"
+  }
+ },
+ {
+  "sym": "544405",
+  "name": "Belrise Industries Ltd",
+  "board": "BSE",
+  "isin": "INE894V01022",
+  "listed": null,
+  "hint": "industrial & capital goods",
+  "why": "mid-cap sweep",
+  "mktcap_cr": 19971.69,
+  "plausible": true,
+  "verdict": null,
+  "seen_on": "2026-10-30",
+  "source": "sweep",
+  "moat_signal": true,
+  "moat_evidence": [
+   "monopoly claim: \"This engagement has positioned us as the largest supplier of sheet metal components to Bajaj Auto Limited during the Financial Year 2024.\" (prospectus, company-stated)",
+   "monopoly claim: \"We are the largest supplier of sheet metal and fabricated parts for Bajaj Auto Limited.\" (prospectus, company-stated)"
+  ],
+  "profile": {
+   "symbol": "544405",
+   "company": "Belrise Industries Limited",
+   "isin": "INE894V01022",
+   "board": "BSE",
+   "source": {
+    "document": "final prospectus",
+    "url": "https://nsearchives.nseindia.com/corporate/FP_INE894V01022_26MAY2025.pdf",
+    "filed": "26-May-2025",
+    "pdf_bytes": 6360356,
+    "extracted_chars": 1940084
+   },
+   "grade": "company-stated",
+   "verified_against": null,
+   "claims": {
+    "monopoly_claim": {
+     "count": 2,
+     "dropped_as_industry_commentary": 2,
+     "terms": [
+      "largest supplier"
+     ],
+     "evidence": [
+      {
+       "match": "largest supplier",
+       "sentence": "This engagement has positioned us as the largest supplier of sheet metal components to Bajaj Auto Limited during the Financial Year 2024."
+      },
+      {
+       "match": "largest supplier",
+       "sentence": "We are the largest supplier of sheet metal and fabricated parts for Bajaj Auto Limited."
+      }
+     ]
+    },
+    "ip": {
+     "count": 30,
+     "dropped_as_industry_commentary": 8,
+     "terms": [
+      "patents",
+      "patent",
+      "patented",
+      "trademarks",
+      "proprietary processes",
+      "trademark",
+      "Patents",
+      "Trademarks"
+     ],
+     "evidence": [
+      {
+       "match": "patents",
+       "sentence": "We possess certain technical knowledge about our products, including technical knowledge relating to process technology and patents that we have filed."
+      },
+      {
+       "match": "patent",
+       "sentence": "Our technical knowledge is one of our key assets, which may not be adequately protected by intellectual property rights such as patent registration."
+      },
+      {
+       "match": "patented",
+       "sentence": "The potential damage from such disclosure is increased as many of our designs and products are not patented, and thus we may have no recourse against copies of our products and designs that enter the market subsequent to such leakages."
+      }
+     ]
+    }
+   },
+   "risk_factors": {
+    "promoter_litigation": {
+     "count": 5,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "criminal proceedings",
+      "Criminal proceedings"
+     ],
+     "evidence": [
+      {
+       "match": "criminal proceedings",
+       "sentence": "The summary of the outstanding matters set out below includes details of criminal proceedings, tax proceedings, statutory and regulatory actions and other material pending litigation involving our Company and Promoters."
+      },
+      {
+       "match": "Criminal proceedings",
+       "sentence": "Stock Exchanges against our Promoters in the last five years, including outstanding action Material civil litigation Aggregat e amount involved (₹ in million)* Criminal proceedings Tax proceedings 12 23 Company NA NA Nil 168."
+      },
+      {
+       "match": "criminal proceedings",
+       "sentence": "487 SECTION VI: LEGAL AND OTHER INFORMATION OUTSTANDING LITIGATION AND MATERIAL DEVELOPMENTS Except as stated below, there are no outstanding (i) criminal proceedings (including matters at FIR stage where no / some cognizance has been taken by any court); (ii) actions by statutory or regulatory authorities; (iii) claims for any direct or indire"
+      }
+     ]
+    },
+    "related_party": {
+     "count": 37,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "related party transactions",
+      "Related Party Transactions"
+     ],
+     "evidence": [
+      {
+       "match": "related party transactions",
+       "sentence": "We have entered into, and may continue to enter into related party transactions."
+      },
+      {
+       "match": "related party transactions",
+       "sentence": "Summary of related party transactions The details of transactions with related parties for the nine months ended December 31, 2024 and December 31, 2023 and for the financial years ended March 31, 2024, March 31"
+      },
+      {
+       "match": "related party transactions",
+       "sentence": "37 - For details of the related party transactions, see “Related Party Transactions” on page 431."
+      }
+     ]
+    }
+   },
+   "objects_of_the_issue": {
+    "offer_for_sale": {
+     "count": 1,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "Offer for Sale"
+     ],
+     "evidence": [
+      {
+       "match": "Offer for Sale",
+       "sentence": "Payment of the applicable securities transactions tax on sale of unlisted equity shares by the Selling Shareholders under the Offer for Sale to the Government."
+      }
+     ]
+    },
+    "fresh_issue": {
+     "count": 9,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "FRESH ISSUE",
+      "Fresh Issue",
+      "fresh issue"
+     ],
+     "evidence": [
+      {
+       "match": "FRESH ISSUE",
+       "sentence": "com College Road, Pune Officer Telephone: +91(0240) 411106 Maharashtra, 2551206 India OUR PROMOTERS: SHRIKANT SHANKAR BADVE, SUPRIYA SHRIKANT BADVE AND SUMEDH SHRIKANT BADVE DETAILS OF THE ISSUE TO PUBLIC OFFER FRESH ISSUE TOTAL ISSUE ELIGIBILITY AND SHARE RESERVATION AMONG TYPE FOR SALE SIZE*** SIZE QIBS, NIIS, RIIS SIZE Fresh Issue 238,888,888* Not 238,888,888* The Issue was made pursuant to Regulation 6(1"
+      },
+      {
+       "match": "Fresh Issue",
+       "sentence": "ANT BADVE DETAILS OF THE ISSUE TO PUBLIC OFFER FRESH ISSUE TOTAL ISSUE ELIGIBILITY AND SHARE RESERVATION AMONG TYPE FOR SALE SIZE*** SIZE QIBS, NIIS, RIIS SIZE Fresh Issue 238,888,888* Not 238,888,888* The Issue was made pursuant to Regulation 6(1) of Securities Equity Shares of applicable Equity Shares and Exchange Board of India (Issue of Capital and Discl"
+      },
+      {
+       "match": "fresh issue",
+       "sentence": "The General Information Document shall be available on the websites of the Stock Exchanges and the Book Running Lead Managers “Gross Proceeds” Gross proceeds of the fresh issue that will be available to our Company “HSBC” HSBC Securities and Capital Markets (India) Private Limited “Issue” The initial public offer of 238,888,888* Equity Shares aggregating to ₹ 21,500."
+      }
+     ]
+    },
+    "capital_expenditure": {
+     "count": 23,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "setting up of",
+      "capital expenditure",
+      "Capital Expenditure"
+     ],
+     "evidence": [
+      {
+       "match": "setting up of",
+       "sentence": "In addition, we make significant decisions, including setting up of manufacturing facilities, determining the levels of business that we will seek and accept, supply schedules, raw material procurement commitments, personnel requirements and other resource requirements, based on our estimates of customer orders."
+      },
+      {
+       "match": "capital expenditure",
+       "sentence": "Our business requires significant capital expenditure."
+      },
+      {
+       "match": "capital expenditure",
+       "sentence": "Our business requires significant capital expenditure, and we require a significant amount of capital to establish new manufacturing facilities, maintain or upgrade equipment and machinery across our existing manufacturing facilities, and develop the required systems and production lines to introduce new products."
+      }
+     ]
+    },
+    "working_capital": {
+     "count": 5,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "working capital requirements"
+     ],
+     "evidence": [
+      {
+       "match": "working capital requirements",
+       "sentence": "50 million, and utilized for the purposes of working capital requirements such as vendor repayments and advances."
+      },
+      {
+       "match": "working capital requirements",
+       "sentence": "We cannot assure payment of dividends on the Equity Shares in the future and our ability to pay dividends in the future will depend upon future earnings, financial condition, cash flows, working capital requirements and capital expenditures."
+      },
+      {
+       "match": "working capital requirements",
+       "sentence": "Our ability to pay dividends in the future will depend upon our future results of operations, financial condition, cash flows, sufficient profitability, working capital requirements and capital expenditure requirements."
+      }
+     ]
+    },
+    "general_corporate": {
+     "count": 9,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "General corporate purposes",
+      "general corporate purposes",
+      "General Corporate Purposes"
+     ],
+     "evidence": [
+      {
+       "match": "General corporate purposes",
+       "sentence": "Objects of the Issue The Net Proceeds are proposed to be used in accordance with the details provided in the following table: Particulars Repayment/ prepayment, in full or in part, of certain outstanding borrowings availed by our Company General corporate purposes* * The amount utilised for general corporate purposes shall not exceed 25% of the Gross Proceeds."
+      },
+      {
+       "match": "General corporate purposes",
+       "sentence": "General corporate purposes The main objects and matters in furtherance of the main objects set out in the Memorandum of Association enable us to undertake (i) our existing business activities; and (ii) the activities proposed to be funded from the Net Proceeds."
+      },
+      {
+       "match": "General corporate purposes",
+       "sentence": "Utilisation of Net Proceeds The Net Proceeds are proposed to be utilised in accordance with the details provided in the following table: Particulars Repayment/pre-payment, in full or in part, of certain outstanding borrowings availed by our Company General corporate purposes(1) Net Proceeds Estimated amount (in ₹ million) 16,181."
+      }
+     ]
+    }
+   },
+   "profiled_on": "2026-10-30"
   }
  }
 ]
