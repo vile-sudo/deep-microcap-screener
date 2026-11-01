@@ -1,28 +1,56 @@
 {
- "updated": "2026-10-31T05:36+05:30",
+ "updated": "2026-11-01T04:53+05:30",
  "figures": [
   {
-   "label": "Brent crude (Dec futures, expiring)",
+   "label": "Brent crude (Dec contract, expiry)",
    "value": "$117.64/bbl",
    "as_of": "2026-10-30",
-   "note": "+2.4% on the day; Jan contract $113.43; +13.6% in October",
+   "note": "+$2.76 (+2.40%) on the day; WTI Dec $104.12",
    "source": {
-    "publisher": "The Korea Times",
-    "url": "https://www.koreatimes.co.kr/world/20261031/oil-jumps-2-settles-at-6-month-highs-on-fears-of-escalation-in-iran"
+    "publisher": "DTN",
+    "url": "https://www.dtnpf.com/agriculture/web/ag/news/world-policy/article/2026/10/30/wti-15-october-fears-iran-war"
    }
   },
   {
-   "label": "WTI crude",
-   "value": "$104.12/bbl",
+   "label": "Brent crude (Jan contract, front month)",
+   "value": "$113.43/bbl",
    "as_of": "2026-10-30",
-   "note": "+2.1% on the day; +15.2% in October",
+   "note": "+$2.63 on the day",
    "source": {
-    "publisher": "The Korea Times",
-    "url": "https://www.koreatimes.co.kr/world/20261031/oil-jumps-2-settles-at-6-month-highs-on-fears-of-escalation-in-iran"
+    "publisher": "FinanceFeeds",
+    "url": "https://financefeeds.com/brent-crude-oil-price-113-saturday-week-ahead-after-october-13-6-percent-gain-hormuz-mines-midterms-jobs-report-bull-120-bear-106/"
    }
   }
  ],
  "items": [
+  {
+   "date": "2026-10-30",
+   "title": "Brent front month rolls to January at $113.43 after December expires at $117.64",
+   "text": "The December Brent contract expired on 30 October at $117.64, up $2.76 (2.4%), after touching $118 intraday. The January contract, now the front month, settled at $113.43, up $2.63, so quotes after expiry look about $4 lower without any fall in prices. UKMTO reported a tanker hit by explosives attached by a small boat in Hormuz, described by sources as the first known successful limpet-mine strike there since the war began in February. For India, crude near $113-118 supports ONGC and Oil India realisations but raises import-bill and refiner margin pressure.",
+   "tone": "watch",
+   "companies": [
+    "ONGC",
+    "OIL",
+    "IOC",
+    "BPCL",
+    "HINDPETRO"
+   ],
+   "sources": [
+    {
+     "publisher": "FinanceFeeds",
+     "title": "Brent Crude Oil Price at $113.43: OPEC+ Meets Sunday",
+     "url": "https://financefeeds.com/brent-crude-oil-price-113-saturday-week-ahead-after-october-13-6-percent-gain-hormuz-mines-midterms-jobs-report-bull-120-bear-106/",
+     "date": "2026-10-31"
+    },
+    {
+     "publisher": "DTN",
+     "title": "WTI Up 15% in October on Fears of Iran War Escalation",
+     "url": "https://www.dtnpf.com/agriculture/web/ag/news/world-policy/article/2026/10/30/wti-15-october-fears-iran-war",
+     "date": "2026-10-30"
+    }
+   ],
+   "added": "2026-11-01"
+  },
   {
    "date": "2026-10-30",
    "title": "Brent settles at $117.64, a six-month high, after Hormuz tanker mine attack; up 13.6% in October",
@@ -1176,57 +1204,6 @@
     }
    ],
    "added": "2026-09-19"
-  },
-  {
-   "date": "2026-09-16",
-   "title": "Brent falls 2.7% as US says Saudi pipeline could restart 'within days'",
-   "text": "Brent crude fell about 2.7% to settle near $105.80/bbl (WTI down 3.2% to $102.43) after US Energy Secretary Chris Wright said Saudi Arabia's damaged East-West Pipeline, which had carried 4-5 million bpd (4-5% of global supply), should resume flows within days, even as some analysts warned satellite imagery shows the pumping station damage could take five to six weeks to fix. Any durable easing of Gulf supply risk would cool the crude spike that has driven Indian producer profits and import costs since the Hormuz shutdown began in February.",
-   "tone": "watch",
-   "companies": [
-    "ONGC",
-    "OIL",
-    "VOGL",
-    "RELIANCE",
-    "IOC",
-    "BPCL",
-    "HINDPETRO"
-   ],
-   "sources": [
-    {
-     "publisher": "Investing.com (Reuters)",
-     "title": "US energy chief says Saudi Arabia oil pipeline should be back online within days",
-     "url": "https://www.investing.com/news/commodities-news/us-energy-chief-says-saudi-arabia-oil-pipeline-should-be-back-online-within-days-4902318",
-     "date": "2026-09-15"
-    },
-    {
-     "publisher": "Trading Economics",
-     "title": "Brent Crude Oil - Price",
-     "url": "https://tradingeconomics.com/commodity/brent-crude-oil",
-     "date": "2026-09-16"
-    }
-   ],
-   "added": "2026-09-17"
-  },
-  {
-   "date": "2026-09-16",
-   "title": "Govt cuts windfall tax (SAED) on diesel, ATF exports in fortnightly review",
-   "text": "The government's fortnightly review cut the Special Additional Excise Duty on diesel exports to ₹20/litre from ₹25, and on ATF exports to ₹15/litre from ₹19, while the levy on petrol exports stays at ₹0.50/litre; domestic pump prices are unchanged. Lower export levies aid refiners with large export volumes such as Reliance and the state OMCs at a time crude costs remain elevated on the Hormuz disruption.",
-   "tone": "good",
-   "companies": [
-    "RELIANCE",
-    "IOC",
-    "BPCL",
-    "HINDPETRO"
-   ],
-   "sources": [
-    {
-     "publisher": "Whalesbook",
-     "title": "India Reduces Windfall Tax on Fuel Exports; Diesel Levy Cut to ₹20",
-     "url": "https://www.whalesbook.com/news/English/energy/India-Reduces-Windfall-Tax-on-Fuel-Exports-Diesel-Levy-Cut-to-indian-rupee20/6aaadcbded7f8e81734e0b54",
-     "date": "2026-09-16"
-    }
-   ],
-   "added": "2026-09-17"
   }
  ]
 }

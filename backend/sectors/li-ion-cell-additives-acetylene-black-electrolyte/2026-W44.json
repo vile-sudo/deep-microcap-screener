@@ -1,0 +1,737 @@
+{
+ "slug": "li-ion-cell-additives-acetylene-black-electrolyte",
+ "name": "Li-ion Cell Functional Additives: Acetylene Black & Electrolyte Additives (ECMS)",
+ "icon": "chip",
+ "edition": "2026-W44",
+ "updated": "2026-11-01",
+ "scope": "Conductive acetylene black and battery-grade electrolyte additives (VC, FEC and similar) in India after the first ECMS approvals of 17-18 Aug 2026: a narrow additive sub-leg of the Li-ion cell-materials theme, with two confirmed listed names (PCBL Chemical, Acutaas Chemicals) and a handful of adjacent ones.",
+ "summary": {
+  "one_line": "MeitY's fifth ECMS tranche gave India its first approvals for acetylene black (PCBL, Rs 329 cr) and electrolyte additives (Acutaas, Rs 256.47 cr). The theme is real but small: Acutaas is already selling VC/FEC from Jhagadia, PCBL has disclosed no capacity or timeline, and neither stock's move has been driven by this theme.",
+  "key_points": [
+   "On 17 Aug 2026 MeitY's fifth ECMS tranche approved 31 applications worth about Rs 6,844 cr. MeitY Secretary S Krishnan singled out raw materials such as acetylene black and electrolyte additives as deepening the value chain (S4).",
+   "PCBL Chemical received ECMS approval for a roughly Rs 329 cr acetylene black project (S1). The filing gives no capacity, location or execution timeline, and the stock rose 3.52% to Rs 326.55 on the day (S2).",
+   "Acutaas Chemicals' Jhagadia electrolyte-additives project has a total investment of Rs 256.47 cr. Rs 119.12 cr of capex qualifies for an incentive of up to 25%, a maximum of about Rs 29.78 cr, with benefits running through FY2030-31 (S3).",
+   "Acutaas is already producing. Phase 1 at Jhagadia (2,000 MTPA each of VC and FEC) was inaugurated on 19 Jan 2026 (S7). Prabhudas Lilladher reports 4,000 MTPA of VC/FEC ramping over about three years, with customers in North America and Korea approving its products (S8).",
+   "The economics are modest relative to the group. PL reports contracted VC/FEC realisations below US$10/kg (vs a VC spot price of about US$30/kg) and battery-chemical margins of 15-20% (S8). Acutaas guides to 38-40% group EBITDA margins (S11), and battery plus semiconductor chemicals were only about 1.2% of revenue in mid-2026 (S7).",
+   "End-market pull in India is still thin. Only 1.4 GWh (2.8%) of the 50 GWh ACC-PLI target had been commissioned on time as of Oct 2025 (S17).",
+   "The market has not priced the theme uniformly. As of 30 Oct, PCBL was down 16.46% over 3 months, 5.4% over 6 months and 25.81% over 1 year (S13). Acutaas was up 24.01%, 54.44% and 135.05% over the same periods (S12), driven by CDMO-led earnings, including Q2 FY27 revenue up 42.7% YoY (S10)."
+  ],
+  "for_investors": [
+   {
+    "title": "Who benefits",
+    "tone": "good",
+    "points": [
+     "Acutaas Chemicals is the only listed name with commercial VC/FEC supply, contracted capacity and an ECMS capex incentive (S3, S7, S8).",
+     "PCBL Chemical gains a first-mover option in Indian acetylene black through exclusive Ningxia Jinhua technology (S6) and ECMS approval (S1), though this is still pre-commercial.",
+     "Neogen Chemicals (electrolyte salts and additives) and Himadri (ENERGEX conductive carbon grades) are smaller, adjacent participants in the same additive slots (S19, S22)."
+    ]
+   },
+   {
+    "title": "Who is hurt / risks",
+    "tone": "bad",
+    "points": [
+     "Chinese pricing: contracted VC realisations below US$10/kg vs US$30/kg spot show how formula-linked pricing caps upside (S8).",
+     "Domestic cell demand is lagging. ACC-PLI commissioning was 2.8% of target as of Oct 2025 (S17), so early volumes depend on export customers.",
+     "The additive revenue is small next to each group's base. The ECMS incentive for Acutaas tops out at about Rs 29.78 cr (S3), against FY26 revenue of Rs 1,339.4 cr (S9).",
+     "PCBL depends on transferred Chinese technology (S5, S6) and has given no disclosed capacity or timeline for the ECMS project (S2)."
+    ]
+   },
+   {
+    "title": "What to watch",
+    "tone": "watch",
+    "points": [
+     "PCBL's Q2 FY27 results and call: any acetylene black capacity, site, commissioning date or customer sampling detail (S2).",
+     "Acutaas's VC/FEC utilisation ramp and commercialisation of its 3rd and 4th battery chemicals over the next few quarters (S8).",
+     "Neogen's 1,000 MT capacity due in H2 FY27 and final plant-trial approvals at US electrolyte makers (S19).",
+     "Further ECMS tranches, and any first ECMS incentive disbursements to these approvals (S3, S4)."
+    ]
+   }
+  ]
+ },
+ "kpis": [
+  {
+   "label": "PCBL ECMS project (acetylene black)",
+   "value": "Rs 329 cr",
+   "sub": "approved 17-18 Aug 2026 (S1)"
+  },
+  {
+   "label": "Acutaas ECMS project (electrolyte additives)",
+   "value": "Rs 256.47 cr",
+   "sub": "Rs 119.12 cr eligible capex; up to 25% incentive (S3)"
+  },
+  {
+   "label": "Acutaas VC + FEC capacity",
+   "value": "4,000 MTPA",
+   "sub": "ramp over ~3 years, per PL, Oct 2026 (S8)"
+  },
+  {
+   "label": "VC contracted vs spot price",
+   "value": "<US$10 vs ~US$30/kg",
+   "sub": "Acutaas contracts, per PL, Oct 2026 (S8)"
+  },
+  {
+   "label": "Global electrolyte additives market",
+   "value": "US$4.19 bn by 2033",
+   "sub": "Grand View Research forecast; 12.2% CAGR 2025-30 (S15)"
+  },
+  {
+   "label": "ACC-PLI capacity commissioned on time",
+   "value": "1.4 GWh of 50 GWh",
+   "sub": "as of Oct 2025, JMK Research (S17)"
+  },
+  {
+   "label": "6-month price return: PCBL vs Acutaas",
+   "value": "-5.4% vs +54.4%",
+   "sub": "as of 30 Oct 2026 (S12, S13)"
+  }
+ ],
+ "sections": [
+  {
+   "id": "theme_explainer",
+   "title": "Theme explainer",
+   "subsections": [
+    {
+     "title": "What these additives do",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "Acetylene black is a conductive filler that is added to electrode coatings to carry electrons between active-material particles. Besides Li-ion batteries, it is used in power cables, EV charging, electronics packaging, plastics, and paints and coatings (S5). Conductive carbon blacks build conductive networks at low loadings, which improves electron transport, rate capability and cycle life (S22). Vinylene carbonate (VC) and fluoroethylene carbonate (FEC) are electrolyte additives used in small amounts. Their main job is to form a stable solid-electrolyte interphase on the anode, which improves battery performance, safety and life (S7)."
+      },
+      {
+       "type": "callout",
+       "tone": "info",
+       "text": "Treat this as a narrow sub-leg of the cell-materials theme. Both inputs are small in volume and high in value, and in each listed company they sit beside a much larger core business: carbon black at PCBL, pharma intermediates and CDMO at Acutaas."
+      }
+     ]
+    },
+    {
+     "title": "Global market size",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "Third-party market estimates (scope and base years differ, so the numbers are not comparable)",
+       "columns": [
+        "Segment",
+        "Publisher",
+        "Estimate",
+        "Source"
+       ],
+       "rows": [
+        [
+         "Acetylene black (all uses)",
+         "Reportprime",
+         "~US$186 mn (2025) to ~US$285 mn (2032), 6.28% CAGR",
+         "S16"
+        ],
+        [
+         "Battery electrolyte additives",
+         "Grand View Research",
+         "US$4,190.1 mn by 2033; 12.2% CAGR 2025-30; VC 34.9% share and Asia Pacific 54.8% share in 2024",
+         "S15"
+        ]
+       ]
+      },
+      {
+       "type": "p",
+       "text": "VC is the largest single electrolyte additive by value, at 34.9% of the market in 2024 (S15). The acetylene black estimates cover every end use, not just batteries (S16)."
+      }
+     ]
+    },
+    {
+     "title": "India's import dependence and demand",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "India has had no commercial domestic acetylene black: PCBL describes its project as the country's first acetylene black plant, meant to serve the battery industry and reduce import dependence (S5, S2). Acutaas calls itself the first Indian manufacturer of VC and FEC (S7). Secondary trade-data aggregation puts FY2024-25 imports under HS 28030020 (acetylene black) at only about Rs 42 cr (S18). This edition could not confirm a China share of imports or a landed-cost gap from a citable source, so neither is stated here."
+      },
+      {
+       "type": "p",
+       "text": "Domestic cell demand, the natural anchor customer, is behind plan. Only 1.4 GWh (2.8%) of the 50 GWh ACC-PLI target had been commissioned on time as of Oct 2025, no incentives had been disbursed, and one 20 GWh allocation had been withdrawn (S17). Early additive volumes are therefore export-led: Acutaas's approvals come from North American and Korean customers (S8), and Neogen's from international electrolyte makers (S19)."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "policy_and_capex",
+   "title": "Policy and capex",
+   "subsections": [
+    {
+     "title": "The fifth ECMS tranche (17 Aug 2026)",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "MeitY approved 31 applications covering more than 20 products, with investment of about Rs 6,844 cr, projected production of Rs 82,243 cr and employment for 9,588 people. That brought cumulative approvals to 106 applications (S4). MeitY Secretary S Krishnan said the tranche deepens the value chain by approving raw materials such as acetylene black and electrolyte additives (S4)."
+      },
+      {
+       "type": "table",
+       "caption": "What the ECMS approvals granted",
+       "columns": [
+        "Item",
+        "PCBL Chemical",
+        "Acutaas Chemicals"
+       ],
+       "rows": [
+        [
+         "Product",
+         "Acetylene black, a conductive material for Li-ion batteries (S1)",
+         "Battery-grade electrolyte additives (S3)"
+        ],
+        [
+         "Investment",
+         "~Rs 329 cr (S1)",
+         "Rs 256.47 cr total (S3)"
+        ],
+        [
+         "Capex incentive",
+         "Not disclosed in the filing (S2)",
+         "Up to 25% on Rs 119.12 cr eligible capex, max ~Rs 29.78 cr (S3)"
+        ],
+        [
+         "Location",
+         "Not disclosed (S2)",
+         "Jhagadia, Gujarat (S3)"
+        ],
+        [
+         "Capacity",
+         "Not disclosed (S2)",
+         "Not stated in the approval (S3); 2,000 MTPA each of VC and FEC in Phase 1 (S7)"
+        ],
+        [
+         "Timeline",
+         "Not disclosed (S2)",
+         "Incentive period of five years from 27 Jan 2026 acknowledgement, running through FY2030-31 (S3)"
+        ]
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Company capex and technology",
+     "blocks": [
+      {
+       "type": "bullets",
+       "items": [
+        "PCBL signed a technology transfer agreement with China's Ningxia Jinhua Chemical in Feb 2025. A pilot plant at its Palej site in Gujarat was then expected 'in the next few months' (S5). The agreement grants PCBL exclusive rights to Jinhua's conductive carbon black technology for US$2 mn, alongside a proposed calcium carbide supply deal (S6). This edition found no confirmed pilot or commercial status and no cell-maker qualification or offtake disclosure.",
+        "Acutaas plans about Rs 220 cr of battery-chemicals capex at Jhagadia, plus Rs 40 cr for new products. Phase 2 is under construction (S7).",
+        "Acutaas expects its 3rd battery chemical to reach an asset turn of about 3x: roughly Rs 1.2 bn of peak revenue on roughly Rs 400 mn of capex (S8)."
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "listed_company_impact",
+   "title": "Listed company impact",
+   "subsections": [
+    {
+     "title": "Core names: PCBL and Acutaas",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "Acutaas is the only listed company with these additives in commercial supply. Its Jhagadia unit has 4,000 MTPA of VC/FEC capacity ramping over about three years, management says demand exceeds planned capacity, and pricing is formula-linked to raw materials and the rupee (S8). Battery chemicals are still a small part of the business. FY26 revenue was Rs 1,339.4 cr with PAT of Rs 356.4 cr (S9), and battery plus semiconductor chemicals were about 1.2% of revenue (S7)."
+      },
+      {
+       "type": "p",
+       "text": "Rough sizing (our arithmetic, not a forecast): 4,000 t at contracted realisations below US$10/kg (S8) implies under US$40 mn a year at full utilisation. Because battery-chemical margins of 15-20% (S8) are well below the 38-40% group EBITDA guidance (S11), this line would dilute group margins."
+      },
+      {
+       "type": "p",
+       "text": "PCBL's acetylene black is pre-commercial. The ECMS disclosure gives no capacity, timeline or expected revenue contribution (S2), so any earnings effect cannot yet be measured."
+      }
+     ]
+    },
+    {
+     "title": "Adjacent and overlapping names",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "Overlap with the existing cell-materials theme",
+       "columns": [
+        "Company",
+        "Additive exposure",
+        "Overlap / incremental?",
+        "Source"
+       ],
+       "rows": [
+        [
+         "Himadri Speciality",
+         "ENERGEX Li+ conductive carbon black grades for Li-ion cells",
+         "Mostly covered already via anode/LFP; conductive black is a direct competitor slot to acetylene black",
+         "S22, S20"
+        ],
+        [
+         "Neogen Chemicals",
+         "Lithium electrolyte salts and additives via Neogen Ionics",
+         "Incremental in additives; FY26 battery-chemicals revenue was Rs 36 cr",
+         "S19, S20"
+        ],
+        [
+         "Gujarat Fluorochemicals",
+         "LiPF6 salt in commercial sales; electrolyte formulations being qualified with Indian cell makers",
+         "Already covered; salt and electrolyte rather than VC/FEC",
+         "S21, S20"
+        ],
+        [
+         "Graphite India",
+         "Synthetic graphite anode (board-approved Rs 4,330 cr)",
+         "Already covered; not an additive",
+         "S24"
+        ],
+        [
+         "HEG",
+         "Graphite anode plan via subsidiary (2022 announcement)",
+         "Already covered; not an additive",
+         "S25"
+        ],
+        [
+         "SRF",
+         "Battery-grade aluminium foil, 12,000 tpa, Rs 600 cr",
+         "New cell-materials leg; not an additive",
+         "S23"
+        ]
+       ]
+      },
+      {
+       "type": "callout",
+       "tone": "warn",
+       "text": "Coverage by market cap is thin. Acutaas and PCBL are mid-caps (Acutaas was about Rs 26,936 cr in Jun 2026 (S7)). Neogen is the only small-cap with a cited additives programme. This edition found no micro- or small-cap with a cited acetylene black or VC/FEC statement, and that gap reflects the niche rather than a missed search."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "research_house_views",
+   "title": "Research house views",
+   "subsections": [
+    {
+     "title": "Broker and media framing",
+     "blocks": [
+      {
+       "type": "bullets",
+       "items": [
+        "Prabhudas Lilladher (Oct 2026) says Acutaas's VC/FEC demand exceeds planned capacity, battery-chemical margins will stay at 15-20%, and the 3rd and 4th battery products will commercialise over the next few quarters (S8).",
+        "PL's Q2 FY27 update (27 Oct 2026) notes Acutaas raised its FY27 revenue-growth guidance to about 30%, with an increasing battery-chemicals contribution alongside the CDMO ramp (S11).",
+        "Trade Brains' Jun 2026 'battery materials' list groups GFL, Himadri, Neogen, Acutaas and Tata Chemicals. PCBL is not on the list, and no outlet found in this edition groups PCBL and Acutaas as an 'additives' pair (S20)."
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Has the market priced it in?",
+     "blocks": [
+      {
+       "type": "chart",
+       "title": "Price return to 30 Oct 2026",
+       "unit": "%",
+       "series": [
+        {
+         "name": "PCBL Chemical",
+         "points": [
+          [
+           "3M",
+           -16.46
+          ],
+          [
+           "6M",
+           -5.4
+          ],
+          [
+           "1Y",
+           -25.81
+          ]
+         ]
+        },
+        {
+         "name": "Acutaas Chemicals",
+         "points": [
+          [
+           "3M",
+           24.01
+          ],
+          [
+           "6M",
+           54.44
+          ],
+          [
+           "1Y",
+           135.05
+          ]
+         ]
+        }
+       ],
+       "source": "Source: MarketsMOJO (S12, S13)"
+      },
+      {
+       "type": "p",
+       "text": "PCBL closed at Rs 274.05 on 30 Oct (S13), against a 52-week high of Rs 425.95 cited in Aug 2026 (S14). Its one-day rise after the ECMS approval (S2) has since reversed. Acutaas closed at Rs 4,010 (S12). Its run reflects CDMO-led results: Q2 FY27 revenue rose 42.7% to Rs 4,369 mn, PAT rose 71.4%, and the stock jumped 14.52% on results day (S10). On this evidence, neither move is driven by the additives theme."
+      },
+      {
+       "type": "callout",
+       "tone": "info",
+       "text": "The brief's 'up about 90% in six months' for Acutaas depends on the window. MarketsMOJO shows +54.44% for the six months to 30 Oct 2026 (S12)."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "risks_and_catalysts",
+   "title": "Risks and catalysts",
+   "subsections": [
+    {
+     "title": "Risks",
+     "blocks": [
+      {
+       "type": "bullets",
+       "items": [
+        "Chinese price competition: contracted VC realisations below US$10/kg against a spot of about US$30/kg, with formula-based pass-through pricing (S8).",
+        "Slow cell-maker build-out: ACC-PLI was 2.8% commissioned on time, with zero incentives disbursed as of Oct 2025 (S17).",
+        "Small relative size: Acutaas's maximum ECMS incentive of about Rs 29.78 cr (S3) and battery margins of 15-20% (S8) compare with a Rs 1,339 cr revenue base (S9).",
+        "Disclosure and timeline risk at PCBL, which has given no capacity or schedule (S2), plus dependence on Ningxia Jinhua technology (S6).",
+        "A thin listed universe: only two names hold ECMS approvals for these additives (S4)."
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Catalysts",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "Near-term catalysts",
+       "columns": [
+        "Catalyst",
+        "Timing",
+        "Source"
+       ],
+       "rows": [
+        [
+         "PCBL Q2 FY27 results and call: acetylene black capacity, site and timeline",
+         "Nov 2026",
+         "S2"
+        ],
+        [
+         "Acutaas commercialises its 3rd and 4th battery chemicals",
+         "Next few quarters",
+         "S8"
+        ],
+        [
+         "Acutaas VC/FEC ramp to 4,000 MTPA",
+         "Over ~3 years",
+         "S8"
+        ],
+        [
+         "Neogen adds 1,000 MT of capacity; US customer plant-trial approvals",
+         "H2 FY27",
+         "S19"
+        ],
+        [
+         "GFL electrolyte qualification with Indian cell makers",
+         "Ongoing",
+         "S21"
+        ],
+        [
+         "Further ECMS tranches or disbursements",
+         "Not scheduled",
+         "S4"
+        ]
+       ]
+      },
+      {
+       "type": "callout",
+       "tone": "warn",
+       "text": "This edition found no anti-dumping or customs-duty action on acetylene black, VC or FEC."
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "companies": [
+  {
+   "name": "PCBL Chemical Ltd",
+   "nse": "PCBL",
+   "bse": "506590",
+   "bucket": "conductive_carbon",
+   "role": "Carbon black maker building India's first acetylene black plant under exclusive Ningxia Jinhua technology, with ECMS approval for a ~Rs 329 cr project (S1, S5, S6).",
+   "impact": "A pre-commercial option: no disclosed capacity, timeline or revenue (S2). The stock is down 25.81% over 1 year to 30 Oct 2026 (S13)."
+  },
+  {
+   "name": "Acutaas Chemicals Ltd",
+   "nse": "ACUTAAS",
+   "bse": null,
+   "bucket": "electrolyte_additives",
+   "role": "First Indian VC/FEC maker. Jhagadia Phase 1 has 2,000 MTPA of each (S7), and the ECMS project is Rs 256.47 cr (S3).",
+   "impact": "Commercial supply is ramping toward 4,000 MTPA over ~3 years with North American and Korean approvals (S8). This is small next to the CDMO-led growth behind the stock (S10, S12)."
+  },
+  {
+   "name": "Neogen Chemicals Ltd",
+   "nse": "NEOGEN",
+   "bse": null,
+   "bucket": "electrolyte_additives",
+   "role": "Makes lithium electrolyte salts, additives and electrolytes through subsidiary Neogen Ionics (S19, S20).",
+   "impact": "Provisional approvals from four international customers, with 1,000 MT of capacity due in H2 FY27 (S19). FY26 battery-chemicals revenue was Rs 36 cr (S20)."
+  },
+  {
+   "name": "Himadri Speciality Chemical Ltd",
+   "nse": "HSCL",
+   "bse": null,
+   "bucket": "conductive_carbon",
+   "role": "Sells ENERGEX Li+ conductive carbon black grades as conductive additives for Li-ion cells (S22). It also commissioned an anode plant in Apr 2026 (S20).",
+   "impact": "A domestic competitor to imported or PCBL acetylene black in the conductive-additive slot. Largely overlaps the existing cell-materials theme (S20, S22)."
+  },
+  {
+   "name": "Gujarat Fluorochemicals Ltd",
+   "nse": "FLUOROCHEM",
+   "bse": null,
+   "bucket": "other",
+   "role": "Sells LiPF6 electrolyte salt commercially and is qualifying electrolyte formulations with Indian cell makers (S21).",
+   "impact": "Already part of the cell-materials theme; battery revenue was Rs 11 cr in Q4 FY26 (S20). Adjacent to additives rather than a VC/FEC play."
+  },
+  {
+   "name": "Graphite India Ltd",
+   "nse": "GRAPHITE",
+   "bse": null,
+   "bucket": "other",
+   "role": "Board-approved Rs 4,330 cr synthetic graphite anode materials investment (S24).",
+   "impact": "A cell-materials name; not incremental to the additive sub-theme."
+  },
+  {
+   "name": "HEG Ltd",
+   "nse": "HEG",
+   "bse": null,
+   "bucket": "other",
+   "role": "Announced a 20,000 tpa graphite anode project via a subsidiary in Nov 2022 (S25).",
+   "impact": "An anode adjacency based on an older announcement; not an additive play."
+  },
+  {
+   "name": "SRF Ltd",
+   "nse": "SRF",
+   "bse": null,
+   "bucket": "other",
+   "role": "Board-approved ~Rs 600 cr, 12,000 tpa battery-grade aluminium foil plant for Li-ion and Na-ion cells (S23).",
+   "impact": "A new cell-materials leg with Phase I due by Sep 2028; not an additive (S23)."
+  }
+ ],
+ "sources": [
+  {
+   "id": "S1",
+   "publisher": "NSE (PCBL Chemical filing)",
+   "title": "Intimation for ECMS Approval",
+   "url": "https://nsearchives.nseindia.com/corporate/PCBL_18082026152018_IntimationforECMSApproval.pdf",
+   "date": "2026-08-18",
+   "kind": "company"
+  },
+  {
+   "id": "S2",
+   "publisher": "DSIJ",
+   "title": "Rs 329 crore investment: this multibagger chemical company receives ECMS approval for acetylene black project",
+   "url": "https://insights.dsij.in/dsijarticledetail/rs-329-crore-investment-this-multibagger-chemical-company-receives-ecms-approval-for-acetylene-black-project-share-price-rises-35-59055",
+   "date": "2026-08-18",
+   "kind": "news"
+  },
+  {
+   "id": "S3",
+   "publisher": "Sahi",
+   "title": "Acutaas Chemicals Gets Electronics Components Scheme Approval For Electrolyte Additives Of Rs 256.47 Crores",
+   "url": "https://www.sahi.com/news/acutaas-chemicals-gets-electronics-components-scheme-approval-for-electrolyte-additives-of-256-47-crores-4817-PE1_COR",
+   "date": "2026-08-18",
+   "kind": "news"
+  },
+  {
+   "id": "S4",
+   "publisher": "NewKerala (IANS)",
+   "title": "ECMS approved investments cross target, reach Rs 69,548 crore",
+   "url": "https://www.newkerala.com/news/a/ecms-approved-investments-cross-target-reach-rs-69548-550.htm",
+   "date": "2026-08-20",
+   "kind": "news"
+  },
+  {
+   "id": "S5",
+   "publisher": "European Rubber Journal",
+   "title": "Indian carbon materials supplier signs technology transfer agreement with Ningxia Jinhua",
+   "url": "https://www.european-rubber-journal.com/article/2096936/pcbl-to-build-acetylene-black-plant-in-india",
+   "date": "2025-02-19",
+   "kind": "news"
+  },
+  {
+   "id": "S6",
+   "publisher": "FilingReader",
+   "title": "PCBL inks tech transfer deal with China's Jinhua",
+   "url": "https://filingreader.com/news-wire/mumbai/2025-02-21/pcbl-inks-tech-transfer-deal-with-chinas-jinhua",
+   "date": "2025-02-21",
+   "kind": "news"
+  },
+  {
+   "id": "S7",
+   "publisher": "Trade Brains",
+   "title": "Acutaas Chemicals: how this specialty chemicals stock is positioning for the EV boom",
+   "url": "https://tradebrains.in/acutaas-chemicals-how-this-specialty-chemicals-stock-is-positioning-for-the-ev-boom/",
+   "date": "2026-06-24",
+   "kind": "news"
+  },
+  {
+   "id": "S8",
+   "publisher": "Prabhudas Lilladher via Investment Guru India",
+   "title": "Acutaas Chemicals - PL Capital Mid & Small Cap Conference 2026 note",
+   "url": "https://investmentguruindia.com/newsdetail/buy-acutaas-chemicals-ltd-for-the-target-rs-3-790-by-prabhudas-lilladher-ltd361275",
+   "date": "2026-10-01",
+   "kind": "research"
+  },
+  {
+   "id": "S9",
+   "publisher": "FilingReader",
+   "title": "Acutaas Chemicals reports record profits and pivots to battery market",
+   "url": "https://filingreader.com/news-wire/mumbai/2026-05-06/acutaas-chemicals-reports-record-profits-and-pivots-to-battery-market",
+   "date": "2026-05-06",
+   "kind": "news"
+  },
+  {
+   "id": "S10",
+   "publisher": "Angel One",
+   "title": "Acutaas Chemicals share price surges over 14% after Q2FY27 net profit rises 71.4%",
+   "url": "https://www.angelone.in/news/stocks/acutaas-chemicals-share-price-surges-over-14-after-q2fy27-net-profit-rises-71-4",
+   "date": "2026-10-27",
+   "kind": "news"
+  },
+  {
+   "id": "S11",
+   "publisher": "Prabhudas Lilladher",
+   "title": "Acutaas Chemicals Q2 FY27 result update",
+   "url": "https://plindia.com/ResReport/ACUTAAS-27-10-26-PL.pdf",
+   "date": "2026-10-27",
+   "kind": "research"
+  },
+  {
+   "id": "S12",
+   "publisher": "MarketsMOJO",
+   "title": "Acutaas Chemicals - total returns",
+   "url": "https://marketsmojo.motilaloswal.com/stocks-analysis/total-returns/acutaas-chemicals-1003529-0",
+   "date": "2026-10-30",
+   "kind": "other"
+  },
+  {
+   "id": "S13",
+   "publisher": "MarketsMOJO",
+   "title": "PCBL Chemical - total returns",
+   "url": "https://marketsmojo.motilaloswal.com/stocks-analysis/total-returns/pcbl-chemical-694251-0",
+   "date": "2026-10-30",
+   "kind": "other"
+  },
+  {
+   "id": "S14",
+   "publisher": "IndiaInfoline",
+   "title": "PCBL Ltd share price",
+   "url": "https://www.indiainfoline.com/company/pcbl-ltd-share-price/435",
+   "date": "2026-08-19",
+   "kind": "other"
+  },
+  {
+   "id": "S15",
+   "publisher": "Grand View Research",
+   "title": "Battery Electrolyte Additives Market To Reach $4,190.1 Million By 2033",
+   "url": "https://www.grandviewresearch.com/press-release/global-battery-electrolyte-additives-market",
+   "date": "2026-10-31",
+   "kind": "research"
+  },
+  {
+   "id": "S16",
+   "publisher": "Reportprime",
+   "title": "Acetylene Black Market",
+   "url": "https://www.reportprime.com/acetylene-black-r243",
+   "date": "2026-10-31",
+   "kind": "research"
+  },
+  {
+   "id": "S17",
+   "publisher": "JMK Research & IEEFA",
+   "title": "Assessing India's incentive scheme to enhance the battery manufacturing ecosystem",
+   "url": "https://jmkresearch.com/renewable-sector-published-reports/assessing-indias-pli-scheme-for-advanced-chemistry-cells-2/",
+   "date": "2026-10-31",
+   "kind": "research"
+  },
+  {
+   "id": "S18",
+   "publisher": "Busy.in",
+   "title": "HSN Code 28030020: Carbon (Acetylene black)",
+   "url": "https://busy.in/hsn/hsn-28030020/",
+   "date": "2026-10-31",
+   "kind": "other"
+  },
+  {
+   "id": "S19",
+   "publisher": "NSE (Neogen Chemicals filing)",
+   "title": "Neogen Chemicals earnings presentation, Q1 FY27",
+   "url": "https://nsearchives.nseindia.com/corporate/NEOGEN_26072026165930_EP.pdf",
+   "date": "2026-07-26",
+   "kind": "company"
+  },
+  {
+   "id": "S20",
+   "publisher": "Trade Brains",
+   "title": "Top 5 stocks supplying critical battery materials for India's EV revolution",
+   "url": "https://tradebrains.in/top-5-stocks-supplying-critical-battery-materials-for-indias-ev-revolution/",
+   "date": "2026-06-25",
+   "kind": "news"
+  },
+  {
+   "id": "S21",
+   "publisher": "NSE (Gujarat Fluorochemicals filing)",
+   "title": "GFCL Investor Presentation 12 August 2026",
+   "url": "https://nsearchives.nseindia.com/corporate/FLUOROCHEM_12082026150128_GFCL_Investor_Presentation_12August2026.pdf",
+   "date": "2026-08-12",
+   "kind": "company"
+  },
+  {
+   "id": "S22",
+   "publisher": "Himadri Speciality Chemical",
+   "title": "High Conductive Carbon Black (ENERGEX)",
+   "url": "https://himadri.com/Conductive_black.php",
+   "date": "2026-10-31",
+   "kind": "company"
+  },
+  {
+   "id": "S23",
+   "publisher": "Indian Chemical News",
+   "title": "SRF Q2 profit jumps 31% to Rs 509 crore, revenue 35%",
+   "url": "https://www.indianchemicalnews.com/chemical/srf-q2-profit-jumps-31-to-rs-509-crore-revenue-35-32367",
+   "date": "2026-10-22",
+   "kind": "news"
+  },
+  {
+   "id": "S24",
+   "publisher": "ScanX",
+   "title": "Graphite India Board Approves Rs 4,330 Crore Investment in Synthetic Graphite Anode Materials for Lithium-Ion Batteries",
+   "url": "https://scanx.trade/stock-market-news/stocks/graphite-india-board-approves-4-330-crore-investment-in-synthetic-graphite-anode-materials-for-lithium-ion-batteries/31129033",
+   "date": "2026-10-31",
+   "kind": "news"
+  },
+  {
+   "id": "S25",
+   "publisher": "EVreporter",
+   "title": "HEG Ltd to set up manufacturing facility of graphite anode",
+   "url": "https://evreporter.com/heg-ltd-to-set-up-manufacturing-facility-of-graphite-anode/",
+   "date": "2022-11-14",
+   "kind": "news"
+  }
+ ],
+ "method": "First edition, researched on 31 Oct - 1 Nov 2026 with web search and page fetches. Exchange filings (PCBL, Neogen, GFL) were used where reachable; several NSE PDFs timed out, so their content is taken from search-result extracts. Company figures are cross-checked against news and broker notes (Prabhudas Lilladher), market sizing comes from named research houses, and price returns are MarketsMOJO snapshots dated 30 Oct 2026. Sources with no publication date on the page carry the access date (2026-10-31). Claims that could not be confirmed (China import share, landed-cost gap, PCBL pilot status, cell-maker offtakes, any anti-dumping action) are left out or flagged. The 'rough sizing' figure is the analyst's own arithmetic on a cited price, not a forecast. No ratings or price targets. numbers.json was not present in the folder.",
+ "bucket_labels": {
+  "conductive_carbon": [
+   "Conductive Carbon / Acetylene Black",
+   "Listed carbon-materials makers building conductive additives for cathode and anode electrodes"
+  ],
+  "electrolyte_additives": [
+   "Electrolyte Additives",
+   "Listed specialty-chemical makers producing battery-grade electrolyte additives such as VC and FEC"
+  ],
+  "other": [
+   "Other",
+   ""
+  ]
+ },
+ "kind": "theme"
+}
