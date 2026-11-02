@@ -1,28 +1,57 @@
 {
- "updated": "2026-11-01T04:53+05:30",
+ "updated": "2026-11-02T05:24+05:30",
  "figures": [
   {
-   "label": "Brent crude (Dec contract, expiry)",
-   "value": "$117.64/bbl",
+   "label": "Brent (January contract)",
+   "value": "$113.43/bbl",
    "as_of": "2026-10-30",
-   "note": "+$2.76 (+2.40%) on the day; WTI Dec $104.12",
+   "note": "Dec contract expired at $117.64; WTI $104.12",
    "source": {
-    "publisher": "DTN",
-    "url": "https://www.dtnpf.com/agriculture/web/ag/news/world-policy/article/2026/10/30/wti-15-october-fears-iran-war"
+    "publisher": "CNBC",
+    "url": "https://cnbc.com/2026/10/31/opec-oil-output-targets-december.html"
    }
   },
   {
-   "label": "Brent crude (Jan contract, front month)",
-   "value": "$113.43/bbl",
-   "as_of": "2026-10-30",
-   "note": "+$2.63 on the day",
+   "label": "OPEC+ core-7 target (December)",
+   "value": "~31 mb/d",
+   "as_of": "2026-11-01",
+   "note": "unchanged from September; next full meeting 29 Nov",
    "source": {
-    "publisher": "FinanceFeeds",
-    "url": "https://financefeeds.com/brent-crude-oil-price-113-saturday-week-ahead-after-october-13-6-percent-gain-hormuz-mines-midterms-jobs-report-bull-120-bear-106/"
+    "publisher": "The National",
+    "url": "https://www.thenationalnews.com/business/energy/2026/11/01/opec-holds-december-oil-output-targets-steady-as-iran-war-disrupts-supply/"
    }
   }
  ],
  "items": [
+  {
+   "date": "2026-11-01",
+   "title": "OPEC+ core-7 hold December output targets at September levels; full 21-member meeting on 29 Nov",
+   "text": "Seven core OPEC+ members kept December required production at September levels, about 31 million bpd combined (Saudi Arabia 10.478 mb/d, Russia 9.949 mb/d). Most Gulf members are pumping below target because of the Iran war, so the hold adds no supply. All 21 members meet on 29 November to set 2027 quotas after a capacity review due by mid-November; Rystad's Jorge Leon called the 2027 call 'extremely difficult', and forecasters warn of a 2027 surplus if Gulf flows normalise. For India, Brent staying elevated supports ONGC, Oil India and Vedanta realisations but raises the import bill and downstream cost pressure.",
+   "tone": "watch",
+   "companies": [
+    "ONGC",
+    "OIL",
+    "VOGL",
+    "IOC",
+    "BPCL",
+    "HINDPETRO"
+   ],
+   "sources": [
+    {
+     "publisher": "The National",
+     "title": "Opec+ holds December oil output targets steady as Iran war disrupts supply",
+     "url": "https://www.thenationalnews.com/business/energy/2026/11/01/opec-holds-december-oil-output-targets-steady-as-iran-war-disrupts-supply/",
+     "date": "2026-11-01"
+    },
+    {
+     "publisher": "CNBC",
+     "title": "OPEC+ keeps December oil output targets steady ahead of tougher call for 2027",
+     "url": "https://cnbc.com/2026/10/31/opec-oil-output-targets-december.html",
+     "date": "2026-10-31"
+    }
+   ],
+   "added": "2026-11-02"
+  },
   {
    "date": "2026-10-30",
    "title": "Brent front month rolls to January at $113.43 after December expires at $117.64",
