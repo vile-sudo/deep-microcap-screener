@@ -11309,7 +11309,7 @@
      ]
     }
    },
-   "profiled_on": "2026-11-01"
+   "profiled_on": "2026-11-03"
   }
  },
  {
@@ -24608,6 +24608,295 @@
     }
    },
    "profiled_on": "2026-10-30"
+  }
+ },
+ {
+  "sym": "SFCTECH",
+  "name": "SFC Environmental Technologies Limited",
+  "board": "NSE",
+  "isin": "INE0PKN01028",
+  "listed": "03-NOV-2026",
+  "hint": "it & software services",
+  "why": "sector ruled out",
+  "plausible": false,
+  "verdict": null,
+  "seen_on": "2026-11-03",
+  "source": "new-listing",
+  "moat_signal": true,
+  "moat_evidence": [
+   "monopoly claim: \"The working capital requirements are dependent on multiple factors such as trade receivables from our customers, which represent payments expected for goods and services rendered, inventories on account of business operations requirements, and other current assets (consisting only of advance to supplier and balance with government authorities).\" (prospectus, company-stated)",
+   "import substitution: \"Our Company had entered into a licensing agreement with IST-Anlagenbau GmbH for inhouse manufacturing of Solar Sludge Drying System in order to indigenise the manufacturing and to reduce costs.\" (prospectus, company-stated)",
+   "import substitution: \"Our Company had entered into a licensing agreement with ISTAnlagenbau GmbH for in-house manufacturing of Solar Sludge Drying System in order to indigenise the manufacturing and to reduce costs.\" (prospectus, company-stated)",
+   "import substitution: \"Our commitment to localize manufacturing was recognised at the Dun & Bradstreet award ceremony in 2024, where we were honoured with the ‘Champion of the Year’ accolade under the Atmanirbhar Abhiyan.\" (prospectus, company-stated)"
+  ],
+  "profile": {
+   "symbol": "SFCTECH",
+   "company": "SFC Environmental Technologies Limited",
+   "isin": "INE0PKN01028",
+   "board": "NSE",
+   "source": {
+    "document": "final prospectus",
+    "url": "https://nsearchives.nseindia.com/corporate/FP_INE0PKN01028_30OCT2026.pdf",
+    "filed": "30-Oct-2026",
+    "pdf_bytes": 13645803,
+    "extracted_chars": 2119156
+   },
+   "grade": "company-stated",
+   "verified_against": null,
+   "claims": {
+    "monopoly_claim": {
+     "count": 1,
+     "dropped_as_industry_commentary": 5,
+     "terms": [
+      "only of advance to supplier"
+     ],
+     "evidence": [
+      {
+       "match": "only of advance to supplier",
+       "sentence": "The working capital requirements are dependent on multiple factors such as trade receivables from our customers, which represent payments expected for goods and services rendered, inventories on account of business operations requirements, and other current assets (consisting only of advance to supplier and balance with government authorities)."
+      }
+     ]
+    },
+    "import_substitution": {
+     "count": 3,
+     "dropped_as_industry_commentary": 13,
+     "terms": [
+      "indigenise",
+      "Atmanirbhar"
+     ],
+     "evidence": [
+      {
+       "match": "indigenise",
+       "sentence": "Our Company had entered into a licensing agreement with IST-Anlagenbau GmbH for inhouse manufacturing of Solar Sludge Drying System in order to indigenise the manufacturing and to reduce costs."
+      },
+      {
+       "match": "indigenise",
+       "sentence": "Our Company had entered into a licensing agreement with ISTAnlagenbau GmbH for in-house manufacturing of Solar Sludge Drying System in order to indigenise the manufacturing and to reduce costs."
+      },
+      {
+       "match": "Atmanirbhar",
+       "sentence": "Our commitment to localize manufacturing was recognised at the Dun & Bradstreet award ceremony in 2024, where we were honoured with the ‘Champion of the Year’ accolade under the Atmanirbhar Abhiyan."
+      }
+     ]
+    },
+    "ip": {
+     "count": 18,
+     "dropped_as_industry_commentary": 8,
+     "terms": [
+      "trademarks",
+      "trademark",
+      "patent",
+      "proprietary technology",
+      "proprietary technologies"
+     ],
+     "evidence": [
+      {
+       "match": "trademarks",
+       "sentence": "As of the date of this Prospectus, our Company has registered three trademarks in India and we have additionally applied for the registration of five trademarks in India."
+      },
+      {
+       "match": "trademark",
+       "sentence": "Further, we have registered one trademark each in Austria and Vietnam."
+      },
+      {
+       "match": "patent",
+       "sentence": "Further, our Subsidiary, SFC Umwelttechnik GmbH has been awarded one patent for ‘Recooling system and method for operating a recooling system’ in Europe and has made applications for two patent registrations in Europe, one patent registration in Brazil and one patent registration in India."
+      }
+     ]
+    }
+   },
+   "risk_factors": {
+    "customer_concentration": {
+     "count": 15,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "top 10 customers",
+      "top 5 customers",
+      "customer concentration"
+     ],
+     "evidence": [
+      {
+       "match": "top 10 customers",
+       "sentence": "We derive a significant part of our revenue from our top 10 customers and we do not have long term 30 contracts with most of these customers."
+      },
+      {
+       "match": "top 10 customers",
+       "sentence": "We currently generate a significant portion of our revenues from our top 10 customers."
+      },
+      {
+       "match": "top 10 customers",
+       "sentence": "The following table sets out our revenue from our top 10 customers for the three months ended June 30, 2026, and for Fiscal 2026, Fiscal 2025 and Fiscal 2024, including as a percentage of revenue from operations for the respective periods: Three mont"
+      }
+     ]
+    },
+    "promoter_litigation": {
+     "count": 13,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "Criminal Proceedings",
+      "criminal proceedings",
+      "Criminal proceedings",
+      "proceedings involving our Promoters"
+     ],
+     "evidence": [
+      {
+       "match": "Criminal Proceedings",
+       "sentence": "Stock Exchanges against our Promoters in the last five years, including outstanding action Material civil litigation# Aggregate amount involved* (in ₹ million) Criminal Proceedings Tax Proceedings By the Company Against the Company Nil Nil Company NA NA Nil Nil 1 14 Nil NA Nil 58."
+      },
+      {
+       "match": "Criminal Proceedings",
+       "sentence": "84*# By the Promoters Against the Promoters 37 Category of individuals / entities By the Subsidiary Against the Subsidiary Criminal Proceedings Tax Proceedings Nil Nil 2 5 Disciplinary actions by SEBI or Stock Statutory or Exchanges against our Regulatory Promoters in the last Proceedings five years, including outstanding action Subsidiaries NA NA 10 NA Material civil litigation# Aggregate amount involved* (in ₹ million) Nil Nil 2 692."
+      },
+      {
+       "match": "criminal proceedings",
+       "sentence": "in) A summary of outstanding criminal proceedings and statutory or regulatory proceedings, as on the date of this Prospectus, involving our Key Managerial Personnel and Senior Management, as disclosed in “Outstanding Litigation a"
+      }
+     ]
+    },
+    "related_party": {
+     "count": 34,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "RELATED PARTY TRANSACTIONS",
+      "related party transactions",
+      "Related Party Transaction",
+      "Related Party Transactions"
+     ],
+     "evidence": [
+      {
+       "match": "RELATED PARTY TRANSACTIONS",
+       "sentence": "98 SUMMARY OF RELATED PARTY TRANSACTIONS ."
+      },
+      {
+       "match": "related party transactions",
+       "sentence": "We have entered, and will continue to enter, into related party transactions which may involve conflicts of interest."
+      },
+      {
+       "match": "related party transactions",
+       "sentence": "We have in the past entered into certain related party transactions with our Promoters, Key Managerial Personnel, Directors and our Subsidiaries."
+      }
+     ]
+    }
+   },
+   "objects_of_the_issue": {
+    "offer_for_sale": {
+     "count": 42,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "OFFER FOR SALE",
+      "Offer for Sale",
+      "offer for sale"
+     ],
+     "evidence": [
+      {
+       "match": "OFFER FOR SALE",
+       "sentence": "31 million * Subject to finalisation of Basis of Allotment DETAILS OF THE OFFER FOR SALE BY THE SELLING SHAREHOLDERS AND WEIGHTED AVERAGE COST OF ACQUISITION PER EQUITY SHARE WEIGHTE WEIGHTED D NUMBER OF AVERAGE NUMBER OF AVERAGE EQUITY COST OF NAME OF THE NAME OF THE EQUIT"
+      },
+      {
+       "match": "Offer for Sale",
+       "sentence": "Each of the Selling Shareholders, severally and not jointly, accepts responsibility for and only confirms the statements made or confirmed by such Selling Shareholder in this Prospectus to the extent of information specifically pertaining to itself and its respective portion of the Offered Shares in the Offer for Sale and assumes responsibility that such statements are true and correct in all material respects and are not misleading in any material respect."
+      },
+      {
+       "match": "OFFER FOR SALE",
+       "sentence": "00 MILLION* BY OUR COMPANY (“FRESH ISSUE”) AND AN OFFER FOR SALE OF 15,682,750* EQUITY SHARES OF FACE VALUE OF ₹2 EACH (“OFFERED SHARES”) AGGREGATING TO ₹5,175."
+      }
+     ]
+    },
+    "fresh_issue": {
+     "count": 52,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "FRESH ISSUE",
+      "Fresh Issue",
+      "fresh issue"
+     ],
+     "evidence": [
+      {
+       "match": "FRESH ISSUE",
+       "sentence": "ANY: SANDEEP SUDHAKAR ASOLKAR, PRIYA SANDEEP ASOLKAR, PRACHITI SANDEEP ASOLKAR AND SAKETCHANDRASINGH PRATAPSINGH DHANDORIYA DETAILS OF OFFER TO THE PUBLIC TYPE FRESH ISSUE OFFER FOR TOTAL ELIGIBILITY – 6(1) & SHARE RESERVATION AMONG QIB, NIB & SIZE SALE SIZE OFFER SIZE RIB Fresh 4,545,454* 15,682,750* Equity 20,228,204* The Offer was made pursuant to Regulat"
+      },
+      {
+       "match": "FRESH ISSUE",
+       "sentence": "THE OFFER COMPRISED A FRESH ISSUE OF 4,545,454* EQUITY SHARES (OF FACE VALUE OF ₹2 EACH) AGGREGATING TO ₹1,500."
+      },
+      {
+       "match": "FRESH ISSUE",
+       "sentence": "00 MILLION* BY OUR COMPANY (“FRESH ISSUE”) AND AN OFFER FOR SALE OF 15,682,750* EQUITY SHARES OF FACE VALUE OF ₹2 EACH (“OFFERED SHARES”) AGGREGATING TO ₹5,175."
+      }
+     ]
+    },
+    "capital_expenditure": {
+     "count": 36,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "capital expenditure",
+      "setting up of",
+      "Expansion of our",
+      "Capital expenditure",
+      "expansion of our",
+      "CAPITAL EXPENDITURE"
+     ],
+     "evidence": [
+      {
+       "match": "capital expenditure",
+       "sentence": "08) While our Company has experienced negative net cash flows from operating, investing, or financing activities in certain fiscal periods, such cash flows are in the ordinary course of business and are attributable to working capital movements, capital expenditure, acquisition of subsidiaries, dividend payments, repayment of borrowings and investments."
+      },
+      {
+       "match": "capital expenditure",
+       "sentence": "Our sources of additional financing, in the event that we need to draw on them to meet our working capital or capital expenditure needs, may include the incurrence of debt, the issue of equity or debt securities or a combination of both."
+      },
+      {
+       "match": "capital expenditure",
+       "sentence": "We require substantial capital expenditure / investment and working capital requirements in relation to our SWT business operations and may require additional financing including working capital to meet those requirements, which could have a material adverse effect on our results of operations, cash flows and financial condition."
+      }
+     ]
+    },
+    "working_capital": {
+     "count": 56,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "working capital requirements",
+      "working capital requirement"
+     ],
+     "evidence": [
+      {
+       "match": "working capital requirements",
+       "sentence": "Involvement in material legal proceedings; Delays in receiving payment of outstanding dues from third parties; Requirement of additional financing to meet our working capital requirements."
+      },
+      {
+       "match": "working capital requirements",
+       "sentence": "We have high working capital requirements, and may require additional financing to meet those requirements, which could have a material adverse effect on our results of operations, cash flows and financial condition."
+      },
+      {
+       "match": "working capital requirements",
+       "sentence": "Accordingly, our Company has substantial working capital requirements for carrying out our WWT business operations."
+      }
+     ]
+    },
+    "general_corporate": {
+     "count": 11,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "general corporate purposes",
+      "General corporate purposes"
+     ],
+     "evidence": [
+      {
+       "match": "general corporate purposes",
+       "sentence": "If the obligations under any of our financing agreements are accelerated, we may have to dedicate a substantial portion of our cash flow from operations to make payments under such financing documents, thereby reducing the availability of cash for our working capital requirements and other general corporate purposes."
+      },
+      {
+       "match": "general corporate purposes",
+       "sentence": "Furthermore, a part of the Net Proceeds shall also be used for funding our working capital requirements and general corporate purposes, and our estimates for the proposed expenditure are based on several variables, a significant variation in any one or a combination of which could have an adverse effect on our results of operation and financial condition."
+      },
+      {
+       "match": "general corporate purposes",
+       "sentence": "We propose to utilise the Net Proceeds towards funding the following objects: (a) prepayment of all or a portion of certain outstanding borrowings availed by our Company and its Subsidiary, namely Vasudha Waste Treatment Private Limited; (b) funding our working capital requirements; and (c) general corporate purposes."
+      }
+     ]
+    }
+   },
+   "profiled_on": "2026-11-03"
   }
  }
 ]

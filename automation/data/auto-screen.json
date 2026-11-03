@@ -14721,6 +14721,16 @@
    "on": "2026-11-02",
    "result": "sector",
    "detail": "no sector"
+  },
+  "INE0ZCQ01019": {
+   "on": "2026-11-03",
+   "result": "sector",
+   "detail": "no sector"
+  },
+  "INE0PKN01028": {
+   "on": "2026-11-03",
+   "result": "sector",
+   "detail": "no sector"
   }
  },
  "runs": [
@@ -15070,6 +15080,12 @@
    "on": "2026-11-02",
    "fetched": 1,
    "sector": 1,
+   "added_codes": []
+  },
+  {
+   "on": "2026-11-03",
+   "fetched": 2,
+   "sector": 2,
    "added_codes": []
   }
  ]
