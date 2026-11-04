@@ -14731,6 +14731,26 @@
    "on": "2026-11-03",
    "result": "sector",
    "detail": "no sector"
+  },
+  "INE2WCT01016": {
+   "on": "2026-11-04",
+   "result": "sector",
+   "detail": "no sector"
+  },
+  "INE2W6901017": {
+   "on": "2026-11-04",
+   "result": "sector",
+   "detail": "no sector"
+  },
+  "INE2IXO01012": {
+   "on": "2026-11-04",
+   "result": "sector",
+   "detail": "no sector"
+  },
+  "INE817A01050": {
+   "on": "2026-11-04",
+   "result": "sector",
+   "detail": "Information Technology / IT - Services / IT Enabled Services"
   }
  },
  "runs": [
@@ -15086,6 +15106,12 @@
    "on": "2026-11-03",
    "fetched": 2,
    "sector": 2,
+   "added_codes": []
+  },
+  {
+   "on": "2026-11-04",
+   "fetched": 4,
+   "sector": 4,
    "added_codes": []
   }
  ]

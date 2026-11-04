@@ -1,0 +1,611 @@
+{
+ "slug": "titanium-sponge-alloy-aerospace-chain",
+ "name": "Titanium: Sponge, Alloy & Mill Products for Aerospace and Defence",
+ "icon": "chip",
+ "edition": "2026-W45",
+ "updated": "2026-11-04",
+ "scope": "India's titanium chain from ilmenite to sponge, alloy, castings and tubes: where it is short, what is driving demand, the Aug-Oct 2026 sponge proposals, and which Indian listed companies are genuinely exposed.",
+ "summary": {
+  "one_line": "India's only sponge plant (KMML, 500 tpa nameplate but about 150 tpa actual per MIDHANI) cannot feed a defence alloy chain that Tejas, AMCA and submarines are pulling on. The Aug-Oct 2026 fixes (Adani's Rs 16,000 cr Srikakulam proposal, the Giredmet-Alt Metals pilot) are still proposals or pilots, so listed exposure today runs mostly through MIDHANI and PTC Industries.",
+  "key_points": [
+   "India has a single titanium sponge plant: KMML's 500 tpa unit at Chavara, Kerala, in production since 2011 with no capacity change since (S3, S4). MIDHANI says the plant actually turns out only about 150 tpa and imports sponge from Eastern Europe to cover the gap (S5).",
+   "Demand is defence-led. HAL has 180 Tejas Mk1A on order (83 + 97), plans 24 a year and then 30 a year by 2027-28, and names GE F404 engine deliveries as the binding constraint (S14). AMCA series production is slated for 2035 (S3).",
+   "On 21 Oct 2026, Adani's Rs 16,000 cr Srikakulam titanium park was reported as proposed: 2 lakh t of pigment and 10,000 t of titanium metal a year. It is subject to government approvals, and two further mineral leases have been sought but not yet approved (S1).",
+   "Rosatom's Giredmet signed a contract with Hyderabad-based Alt Metals for a titanium sponge pilot. The pilot is meant to produce design data for a 1,000 tpa plant, but no financing or construction timeline has been announced (S2).",
+   "MIDHANI melted 465 t of titanium in 9M FY26 against 390 t a year earlier, running near its full established capacity (S5). Titanium was about 19% of 9M revenue and about 27-29% of the order book (S5).",
+   "PTC Industries' titanium arm Aerolloy reported Q1 FY27 income of Rs 74.3 cr at a 45% EBITDA margin and signed an Airbus agreement for titanium castings on A320neo/A330neo/A350 (S9). The Odisha sponge MoU (Jan 2025) has no disclosed capacity, capex or timeline (S8).",
+   "The theme is thinly grouped. A retail 'titanium stocks' list puts MIDHANI and PTC next to many aluminium/copper/steel names (S20), and we found no broker report treating Indian titanium as a stand-alone theme."
+  ],
+  "for_investors": [
+   {
+    "title": "Who benefits",
+    "tone": "good",
+    "points": [
+     "MIDHANI: described as the only domestic source of qualified titanium alloys for defence (S4). It already supplies titanium alloys to HAL and ISRO, and to indigenous aero-engine programmes (S5, S7).",
+     "PTC Industries/Aerolloy: the most integrated private titanium play. It has VAR/VIM furnaces commissioned (S13), a VSSC order to convert 40 t of sponge into Ti-6Al-4V ingots (S11) and the Airbus castings agreement (S9).",
+     "Downstream tube makers (Ratnamani, Venus Pipes) gain if domestic titanium feedstock becomes available, though their titanium exposure is small and industrial rather than aerospace (S17, S16)."
+    ]
+   },
+   {
+    "title": "Who is hurt / risks",
+    "tone": "bad",
+    "points": [
+     "Sponge-starved alloy makers stay exposed to imports and geopolitics: MIDHANI says raw-material constraints are 'ever there' (S5).",
+     "Project slippage: PTC's EBCHR was guided for Q1 FY27 commissioning (S12), but its Q4 FY26 release reported only VIM/VAR commissioned and PAM ready for trials (S13). We found no confirmation that EBCHR has been commissioned.",
+     "Tejas output depends on GE engine deliveries (S14), so titanium demand timing is lumpy."
+    ]
+   },
+   {
+    "title": "What to watch",
+    "tone": "watch",
+    "points": [
+     "Andhra Pradesh decisions on Adani's two additional mineral leases, industrial incentives and the beach-sand mineral policy (S1).",
+     "Giredmet-Alt Metals pilot results and any financing for the 1,000 tpa plant (S2).",
+     "PTC EBCHR/PAM commissioning updates and any capex or site detail for the Odisha sponge plant (S12, S13, S8).",
+     "MIDHANI's capex DPR (about Rs 1,000 cr over three years, mainly automation) and its FY27 order-inflow target of Rs 1,500 cr (S6)."
+    ]
+   }
+  ]
+ },
+ "kpis": [
+  {
+   "label": "India sponge capacity (KMML)",
+   "value": "500 tpa",
+   "sub": "nameplate, unchanged since 2011 (S3)"
+  },
+  {
+   "label": "KMML actual sponge output",
+   "value": "~150 tpa",
+   "sub": "per MIDHANI, Feb 2026 call (S5)"
+  },
+  {
+   "label": "Tejas Mk1A on order",
+   "value": "180",
+   "sub": "83 + 97; 30/yr target by FY28 (S14)"
+  },
+  {
+   "label": "Adani Srikakulam proposal",
+   "value": "Rs 16,000 cr",
+   "sub": "10,000 t/yr Ti metal; unapproved (S1)"
+  },
+  {
+   "label": "Giredmet-Alt Metals target",
+   "value": "1,000 tpa",
+   "sub": "pilot only; Sep 2026 (S2)"
+  },
+  {
+   "label": "MIDHANI order book",
+   "value": "Rs 2,290 cr",
+   "sub": "Apr 2026, 79% defence (S6)"
+  },
+  {
+   "label": "Aerolloy Q1 FY27 income",
+   "value": "Rs 74.3 cr",
+   "sub": "45% EBITDA margin (S9)"
+  }
+ ],
+ "sections": [
+  {
+   "id": "theme_explainer",
+   "title": "The titanium chain and where India is short",
+   "subsections": [
+    {
+     "title": "Value chain",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "India holds the world's third-largest ilmenite and second-largest rutile deposits (S3, S4). It has relied on foreign suppliers for sponge and downstream products, even though sponge is the basic raw material for aerospace titanium alloys (S8). The chain runs ore → slag/TiCl4 → sponge → melted ingot/alloy → billets, bars, plates and sheets → castings, forgings and tubes (S8)."
+      },
+      {
+       "type": "table",
+       "caption": "India's titanium chain by stage",
+       "columns": [
+        "Stage",
+        "Indian players",
+        "Status"
+       ],
+       "rows": [
+        [
+         "Ilmenite to slag",
+         "IREL-UKTMP JV (IREUK Titanium), Odisha",
+         "JV formed; UKTMP supplies furnace technology and takes the slag (S22)"
+        ],
+        [
+         "Sponge",
+         "KMML (state PSU, unlisted)",
+         "500 tpa nameplate since 2011 (S3); about 150 tpa actual (S5)"
+        ],
+        [
+         "Sponge (proposed)",
+         "Adani group; Alt Metals (unlisted); PTC Industries",
+         "Proposal (S1), pilot (S2), MoU (S8)"
+        ],
+        [
+         "Melting/alloy",
+         "MIDHANI; PTC/Aerolloy",
+         "MIDHANI near full capacity (S5); Aerolloy VAR/VIM commissioned (S13)"
+        ],
+        [
+         "Castings/forgings",
+         "PTC/Aerolloy; Bharat Forge",
+         "Airbus castings agreement (S9); Boeing titanium flap-track forgings since 2016 (S19)"
+        ],
+        [
+         "Welded tubes",
+         "Ratnamani; Venus Pipes",
+         "Ratnamani Rs 99 cr titanium tube orders in 2019 (S17); Venus entering titanium welded tubes (S16)"
+        ]
+       ]
+      },
+      {
+       "type": "callout",
+       "tone": "warn",
+       "text": "MIDHANI says KMML produces only about 150 tpa against 500 tpa nameplate, and that the quality varies by grade (S5). Official import volumes for sponge (HS 810820) could not be confirmed from primary sources this edition, so none are shown."
+      }
+     ]
+    },
+    {
+     "title": "Demand drivers",
+     "blocks": [
+      {
+       "type": "bullets",
+       "items": [
+        "Tejas Mk1A: HAL's old capacity was 4-5 aircraft a year. The plan is to stabilise at 24 a year and then move to 30 by 2027-28, against 180 aircraft on order (S14).",
+        "AMCA series production is scheduled for 2035, and analysts quoted by Migflug argue that alloy qualification must start years earlier (S3, S4).",
+        "Submarine construction is named as additional titanium demand, but the reports give no tonnage (S4).",
+        "Civil aerospace: Aerolloy's Airbus agreement covers development, qualification, industrialisation and future supply of titanium castings (S9). MIDHANI says it is in advanced talks with foreign customers including Safran (S5).",
+        "Space: VSSC contracted PTC to convert 40 t of sponge into Ti-6Al-4V ingots (S11), and MIDHANI titanium goes into ISRO gas bottles and propellant tanks (S5)."
+       ]
+      },
+      {
+       "type": "callout",
+       "tone": "info",
+       "text": "We found no primary or industry-report figure for India's titanium consumption growth rate that we could verify, so none is quoted."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "policy_and_capex",
+   "title": "Recent moves: what is real and what is a proposal",
+   "subsections": [
+    {
+     "title": "Last 1-3 months",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "Upstream titanium initiatives",
+       "columns": [
+        "Initiative",
+        "Date",
+        "Scale",
+        "Status"
+       ],
+       "rows": [
+        [
+         "Adani titanium park, Srikakulam (AP)",
+         "Proposal Aug 2026; reported 21 Oct 2026",
+         "Rs 16,000 cr; 2 lakh t pigment + 10,000 t Ti metal/yr; 991 ha leases, ~6.68 Mt ilmenite (~10 yrs)",
+         "Subject to government approvals; two more leases sought, not approved; incentives and policy pending (S1)"
+        ],
+        [
+         "Giredmet (Rosatom) - Alt Metals pilot",
+         "Sep 2026",
+         "Data for a 1,000 tpa sponge plant",
+         "Pilot/technology transfer only; no financing or timeline (S2)"
+        ],
+        [
+         "KMML-SAIL JV",
+         "Idea revived Aug 2026",
+         "Not specified",
+         "Proposed; KMML's 1,000+ t expansion 'yet to materialise' (S4)"
+        ],
+        [
+         "IREL-UKTMP slag JV (IREUK Titanium)",
+         "Reported Nov 2024",
+         "Slag from low-grade Odisha ilmenite",
+         "JV formed; UKTMP to provide the furnace technology and take the slag (S22)"
+        ],
+        [
+         "PTC Industries Odisha sponge plant",
+         "MoU 30 Jan 2025",
+         "Not disclosed",
+         "MoU only; no capex, capacity or timeline (S8)"
+        ]
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Adani Ports: materiality",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "The mineral leases are held by Alluvial Heavy Minerals Ltd, and the proposal was presented by Karan Adani, MD of Adani Ports and SEZ, on behalf of the Adani Group (S1). We found no APSEZ exchange filing or board approval for the plant. The reporting describes it as a group proposal, still subject to approvals (S1). For scale: Rs 16,000 cr is about 41% of APSEZ's FY26 revenue of Rs 38,736 cr and close to its FY26 capex of Rs 15,320 cr (S15). Whether any of it would sit inside APSEZ is not disclosed."
+      }
+     ]
+    },
+    {
+     "title": "Company capex in alloy and melting",
+     "blocks": [
+      {
+       "type": "bullets",
+       "items": [
+        "MIDHANI: about Rs 1,000 cr capex over three years, mainly to automate ageing facilities, and not tied specifically to titanium (S6).",
+        "PTC/Aerolloy: the Lucknow titanium and superalloy plant was inaugurated in May 2025 with VAR, EBCHR, PAM and VIM technologies. It is described as a 'multi-million-dollar investment' on 50 acres, with no amount disclosed (S10). VIM and a VAR 400 furnace are commissioned, and the PAM furnace's installation is complete, ready for trials (S13).",
+        "Venus Pipes: a Rs 175 cr expansion (Rs 115 cr in the first phase) that includes new stainless and titanium welded tubes, with the welded tubes targeted for Dec 2025 (S16)."
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "listed_company_impact",
+   "title": "Listed company impact",
+   "subsections": [
+    {
+     "title": "Core titanium names",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "MIDHANI melted 465 t of titanium in 9M FY26 against 390 t a year earlier, with an analyst citing about 1,000 t of capacity and management saying utilisation is near full (S5). Reported FY26 figures vary. FPJ reports titanium output up about 40% and sales of Rs 1,206 cr (S7), while FilingReader reports titanium output 'set to double' to 700 t (S6). Treat the 700 t figure with caution."
+      },
+      {
+       "type": "chart",
+       "title": "MIDHANI titanium melted, nine months to December",
+       "unit": "tonnes",
+       "series": [
+        {
+         "name": "Titanium melted",
+         "points": [
+          [
+           "9M FY25",
+           390
+          ],
+          [
+           "9M FY26",
+           465
+          ]
+         ]
+        }
+       ],
+       "source": "Source: MIDHANI Q3 FY26 earnings call (S5)"
+      },
+      {
+       "type": "p",
+       "text": "PTC Industries: in Q1 FY27, consolidated total income was Rs 197.1 cr (+83% YoY) and PAT Rs 29.2 cr. Subsidiary Aerolloy contributed Rs 74.3 cr of income and Rs 22.1 cr of PAT (S9). Defence orders include a titanium cradle for the 105 mm light tank from ARDE (DRDO) (S9)."
+      }
+     ]
+    },
+    {
+     "title": "Size-tier coverage",
+     "blocks": [
+      {
+       "type": "callout",
+       "tone": "info",
+       "text": "Large caps (Adani Ports, HAL, Bharat Forge) are exposed only through a proposal, through demand, or through a small forging line. Pure titanium exposure sits in mid/small caps (MIDHANI, PTC). The tube makers (Ratnamani, Venus) have titanium as a minor line. We found no further small-cap name with a verifiable titanium business, and the honest state of this niche is a gap rather than a forced fit."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "research_house_views",
+   "title": "Research house and media views",
+   "subsections": [
+    {
+     "title": "Who is framing the theme",
+     "blocks": [
+      {
+       "type": "bullets",
+       "items": [
+        "Migflug cites Observer Research Foundation analysts Sameer Patil and Veer Puri, who frame titanium as a bottleneck that could constrain Tejas and AMCA (S3).",
+        "A June 2026 broker note on PTC (ICICI Direct-hosted, via Business Standard) said the company was 'on the verge' of commissioning its 5,000 tpa EBCHR plant. The same note listed commissioning or ramp-up delay as a risk (S12).",
+        "Rare Earth Exchanges calls the Giredmet deal 'a technology-transfer milestone, not confirmed new capacity' (S2).",
+        "smallcase's 'titanium stocks' list features MIDHANI and PTC but includes many non-titanium metal names (S20). This suggests the theme is not yet tightly defined in mainstream retail coverage."
+       ]
+      },
+      {
+       "type": "p",
+       "text": "Share-price data: the dashboard carries today's screener numbers. Sourced price points show PTC closing at Rs 14,005 on 14 May 2025 after the Lucknow inauguration (S10) and trading at Rs 17,733 on 7 Jan 2026 (S11)."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "risks_and_catalysts",
+   "title": "Risks and catalysts",
+   "subsections": [
+    {
+     "title": "Risks",
+     "blocks": [
+      {
+       "type": "bullets",
+       "items": [
+        "Slippage: PTC's EBCHR has not been confirmed as commissioned despite Q1 FY27 guidance (S12, S13). Upstream projects have no financing or timelines (S1, S2). The KMML expansion has not materialised (S4).",
+        "Raw material: MIDHANI depends on imported sponge (S5).",
+        "Qualification: OEM approval of domestic titanium suppliers is still pending, per Azad Engineering (S21). Airbus castings are at the development and qualification stage (S9).",
+        "Concentration: 79% of MIDHANI's order book is defence (S6). Tejas output is gated by GE engines (S14).",
+        "Valuation: the brief notes a MIDHANI P/E of about 57; refer to the dashboard's screener numbers. Valuation could not be independently verified this edition."
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Catalysts",
+     "blocks": [
+      {
+       "type": "bullets",
+       "items": [
+        "Andhra Pradesh approval of Adani's additional leases, incentives and the beach-sand mineral policy (S1).",
+        "Giredmet pilot test results and any decision on the 1,000 tpa plant (S2).",
+        "PTC EBCHR/PAM commissioning and Odisha sponge plant capex disclosure (S12, S13, S8).",
+        "MIDHANI capex DPR and order inflow against its Rs 1,500 cr FY27 target (S6).",
+        "HAL reaching 24 and then 30 Tejas a year (S14). We found no titanium-specific PLI or policy scheme in this edition."
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "companies": [
+  {
+   "name": "Adani Ports and Special Economic Zone",
+   "nse": "ADANIPORTS",
+   "bse": "532921",
+   "bucket": "upstream_sponge_ore",
+   "role": "Its MD presented the Adani Group's Rs 16,000 cr Srikakulam ilmenite-to-slag/TiO2/sponge proposal. The mineral leases sit with Alluvial Heavy Minerals Ltd (S1).",
+   "impact": "Optional and unapproved. No APSEZ filing found; the proposal is about 41% of FY26 revenue (S1, S15)."
+  },
+  {
+   "name": "PTC Industries",
+   "nse": "PTCIL",
+   "bse": "539006",
+   "bucket": "upstream_sponge_ore",
+   "role": "Odisha sponge MoU (S8). Through Aerolloy: titanium melting with VAR/VIM commissioned and PAM ready for trials, plus titanium castings (S13, S9).",
+   "impact": "The most integrated private titanium exposure: Airbus castings agreement and VSSC ingot order (S9, S11). The sponge and EBCHR timelines are unconfirmed (S8, S12)."
+  },
+  {
+   "name": "Mishra Dhatu Nigam (MIDHANI)",
+   "nse": "MIDHANI",
+   "bse": "541195",
+   "bucket": "alloy_and_castings",
+   "role": "The only domestic source of qualified defence titanium alloys (S4). Melted 465 t of titanium in 9M FY26 (S5).",
+   "impact": "Benefits from Tejas, ISRO and aero-engine demand (S5, S7) but is near full capacity and sponge-constrained (S5)."
+  },
+  {
+   "name": "Bharat Forge",
+   "nse": "BHARATFORG",
+   "bse": "500493",
+   "bucket": "alloy_and_castings",
+   "role": "Ships titanium flap-track forgings for the Boeing 737; says it is India's only forging company on Boeing's approved vendor list for titanium forgings (S19).",
+   "impact": "Titanium is a small niche within a large forging business. It is a downstream user of imported titanium input."
+  },
+  {
+   "name": "Venus Pipes & Tubes",
+   "nse": "VENUSPIPES",
+   "bse": "543528",
+   "bucket": "tubes_and_mill_products",
+   "role": "Its expansion includes new stainless and titanium welded tubes (S16).",
+   "impact": "Titanium volumes are undisclosed. The exposure is industrial, not aerospace (S16)."
+  },
+  {
+   "name": "Ratnamani Metals & Tubes",
+   "nse": "RATNAMANI",
+   "bse": "520111",
+   "bucket": "tubes_and_mill_products",
+   "role": "Makes titanium welded tubes; won Rs 99 cr of titanium welded tube orders in 2019 (S17).",
+   "impact": "An established titanium tube maker, but titanium is a minor line serving industrial heat-exchanger demand (S17)."
+  },
+  {
+   "name": "Hindustan Aeronautics",
+   "nse": "HAL",
+   "bse": "541154",
+   "bucket": "other",
+   "role": "Demand anchor: 180 Tejas Mk1A on order, targeting 30 a year by 2027-28 (S14). Works closely with MIDHANI on titanium alloys (S5).",
+   "impact": "A consumer, not a producer. Its ramp sets titanium alloy demand timing (S14)."
+  },
+  {
+   "name": "Azad Engineering",
+   "nse": "AZAD",
+   "bse": "544061",
+   "bucket": "other",
+   "role": "Precision aerospace and energy components maker, in talks with OEMs to approve indigenous titanium and superalloy suppliers (S21).",
+   "impact": "Adjacent only: aerospace and defence was 17% of Q2 FY26 revenue (S21)."
+  }
+ ],
+ "sources": [
+  {
+   "id": "S1",
+   "publisher": "Channel IAM",
+   "title": "Adani Group proposes Rs 16,000 crore titanium park in Srikakulam",
+   "url": "https://en.channeliam.com/?p=125405",
+   "date": "2026-10-21",
+   "kind": "news"
+  },
+  {
+   "id": "S2",
+   "publisher": "Rare Earth Exchanges",
+   "title": "Giredmet Signs Alt Metals Contract for Indian Titanium Sponge Pilot, Targets 1,000-Tonne Industrial Scale",
+   "url": "https://rareearthexchanges.com/?p=190541",
+   "date": "2026-09-16",
+   "kind": "news"
+  },
+  {
+   "id": "S3",
+   "publisher": "Migflug (Max Grünwald, citing ORF analysis)",
+   "title": "India's Titanium Bottleneck: The Metal That Could Ground Tejas and AMCA",
+   "url": "https://migflug.com/afterburner/india-titanium-bottleneck-tejas-amca-submarine-2026/",
+   "date": "2026-08-20",
+   "kind": "research"
+  },
+  {
+   "id": "S4",
+   "publisher": "Indian Defence News (repost of Mathrubhumi)",
+   "title": "Kerala's Titanium Bottleneck Threatens India's Defence Ambitions",
+   "url": "https://www.indiandefensenews.in/2026/08/keralas-titanium-bottleneck-threatens.html?m=0",
+   "date": "2026-08-22",
+   "kind": "news"
+  },
+  {
+   "id": "S5",
+   "publisher": "AlphaStreet",
+   "title": "Mishra Dhatu Nigam (MIDHANI) Q3 FY26 earnings call transcript",
+   "url": "https://alphastreet.com/india/mishra-dhatu-nigam-ltd-midhani-q3-2026-earnings-call-transcript",
+   "date": "2026-02-17",
+   "kind": "company"
+  },
+  {
+   "id": "S6",
+   "publisher": "FilingReader",
+   "title": "MIDHANI hits record revenue and plans INR1,000 crore expansion",
+   "url": "https://filingreader.com/news-wire/mumbai/2026-06-06/midhani-hits-record-revenue-and-plans-inr1000-crore-expansion",
+   "date": "2026-06-06",
+   "kind": "news"
+  },
+  {
+   "id": "S7",
+   "publisher": "Free Press Journal",
+   "title": "MIDHANI Reports Rs 1,206 Crore Record Sales Growth In FY26 Despite Supply Disruptions",
+   "url": "https://www.freepressjournal.in/business/midhani-reports-1206-crore-record-sales-growth-in-fy26-despite-supply-disruptions",
+   "date": "2026-04-01",
+   "kind": "news"
+  },
+  {
+   "id": "S8",
+   "publisher": "The Tribune (ANI)",
+   "title": "PTC Industries signs MoU with Odisha to invest in aerospace-grade titanium sponge manufacturing facility",
+   "url": "https://www.tribuneindia.com/news/business/ptc-industries-signs-mou-with-odisha-to-invest-in-aerospace-grade-titanium-sponge-manufacturing-facility",
+   "date": "2025-01-30",
+   "kind": "news"
+  },
+  {
+   "id": "S9",
+   "publisher": "Multibagg (summarising PTC Industries Q1 FY27 release)",
+   "title": "PTC Industries Q1FY27: Aerolloy scales up as Airbus and defence orders widen the platform",
+   "url": "https://www.multibagg.ai/market-pulse/articles/ptc-q1fy27-98357",
+   "date": "2026-08-17",
+   "kind": "company"
+  },
+  {
+   "id": "S10",
+   "publisher": "Ventura Securities",
+   "title": "PTC Industries share price surges nearly 10% after launching aerospace materials facility",
+   "url": "https://www.venturasecurities.com/news/stocks/ptc-industries-share-price-surges-nearly-10-after-launching-aerospace-materials-facility-to-reduce-dependence-on-critical-imports/",
+   "date": "2025-05-14",
+   "kind": "news"
+  },
+  {
+   "id": "S11",
+   "publisher": "Angel One",
+   "title": "PTC Industries share price in focus after securing order from Vikram Sarabhai Space Centre for titanium ingots",
+   "url": "https://www.angelone.in/news/stocks/ptc-industries-share-price-in-focus-after-securing-order-from-vikram-sarabhai-space-centre-for-titanium-ingots",
+   "date": "2026-01-07",
+   "kind": "news"
+  },
+  {
+   "id": "S12",
+   "publisher": "ICICI Direct (via Business Standard broker tips)",
+   "title": "PTC Industries company update (June 2026)",
+   "url": "https://bsmedia.business-standard.com/_media/bs/data/market-reports/equity-brokertips/2026-06/17803785450.91677700.pdf",
+   "date": "2026-06-02",
+   "kind": "research"
+  },
+  {
+   "id": "S13",
+   "publisher": "PTC Industries via NSE",
+   "title": "Press release Q4 FY26",
+   "url": "https://nsearchives.nseindia.com/corporate/PTCINDUSTRIES_03062026172535_Press_release_Exchange_Q4FY26_20260602.pdf",
+   "date": "2026-06-02",
+   "kind": "company"
+  },
+  {
+   "id": "S14",
+   "publisher": "IDRW (AFI)",
+   "title": "HAL targets 30 Tejas Mk1A fighters annually by 2027-28, CMD confirms",
+   "url": "https://idrw.org/hal-targets-30-tejas-mk1a-fighters-annually-by-2027-28-cmd-confirms/",
+   "date": "2026-07-20",
+   "kind": "news"
+  },
+  {
+   "id": "S15",
+   "publisher": "Adani Ports and SEZ",
+   "title": "APSEZ FY26 revenue grows 25%, outperforms guidance",
+   "url": "https://www.adaniports.com/newsroom/media-releases/apsez-fy26-revenue-grows-25-outperforms-guidance",
+   "date": "2026-04-30",
+   "kind": "company"
+  },
+  {
+   "id": "S16",
+   "publisher": "IIFL (India Infoline)",
+   "title": "Venus Pipes & Tubes surges 8% on fittings business entry and capacity expansion",
+   "url": "https://www.indiainfoline.com/news/companies/venus-pipes-tubes-surges-8-on-fittings-business-entry-and-capacity-expansion",
+   "date": "2024-02-29",
+   "kind": "news"
+  },
+  {
+   "id": "S17",
+   "publisher": "DSIJ",
+   "title": "Ratnamani Metals gains on order win",
+   "url": "https://insights.dsij.in/dsijarticledetail/ratnamani-metals-gains-on-order-win-7633",
+   "date": "2019-05-27",
+   "kind": "news"
+  },
+  {
+   "id": "S19",
+   "publisher": "The Machinist",
+   "title": "Bharat Forge ships 1st titanium forging to Boeing",
+   "url": "https://themachinist.in/news/1698/bharat-forge-ships-1st-titanium-forging-boeing",
+   "date": "2016-02-17",
+   "kind": "news"
+  },
+  {
+   "id": "S20",
+   "publisher": "smallcase",
+   "title": "List of Titanium Stocks in India",
+   "url": "https://www.smallcase.com/lists/titanium-stocks/",
+   "date": "2026-11-04",
+   "kind": "other"
+  },
+  {
+   "id": "S21",
+   "publisher": "Machinist.in",
+   "title": "Azad Engineering ramps up Hyderabad manufacturing capacity, targets 30 percent annual growth",
+   "url": "https://machinist.in/2025/11/azad-engineering-ramps-up-hyderabad-manufacturing-capacity-targets-30-percent-annual-growth/",
+   "date": "2025-11-08",
+   "kind": "news"
+  },
+  {
+   "id": "S22",
+   "publisher": "domain-b",
+   "title": "IREL, Kazakhstan's UKTMP to set up joint venture titanium slag unit in Odisha",
+   "url": "https://www.domain-b.com/management/m-a/irel-kazakhstan-s-uktmp-to-set-up-joint-venture-titanium-slag-unit-in-odisha",
+   "date": "2024-11-05",
+   "kind": "news"
+  }
+ ],
+ "method": "First edition, researched on 2026-11-04 using web search and direct page fetches of news, company releases and transcripts, and broker material. Every figure is tied to a fetched page or a search result. Where sources conflicted (MIDHANI FY26 titanium output), both are shown. Items we could not confirm were left out: official sponge import volumes, India titanium consumption growth, valuation multiples, the PTC EBCHR commissioning status and any APSEZ filing. The listed-company universe was checked across large, mid and small caps; only names with a cited titanium activity or direct demand link were included. No numbers.json was present in the folder, so stock-performance figures defer to the dashboard.",
+ "bucket_labels": {
+  "upstream_sponge_ore": [
+   "Ore-to-sponge",
+   "Companies planning titanium slag/sponge, the scarcest link in India's chain"
+  ],
+  "alloy_and_castings": [
+   "Alloy, castings & aerospace titanium",
+   "Producers of titanium alloy, melted ingot and precision titanium components for defence/aerospace"
+  ],
+  "tubes_and_mill_products": [
+   "Tubes & mill products",
+   "Makers of welded titanium tubes and other mill-form titanium for industrial uses"
+  ],
+  "other": [
+   "Other",
+   ""
+  ]
+ },
+ "kind": "theme"
+}

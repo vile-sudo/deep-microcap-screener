@@ -1,18 +1,46 @@
 {
- "updated": "2026-11-03T08:16+05:30",
+ "updated": "2026-11-04T06:46+05:30",
  "figures": [
   {
    "label": "Brent crude",
-   "value": "$104.77/bbl",
-   "as_of": "2026-11-02",
-   "note": "-7.6% on the day; WTI $96.46",
+   "value": "$103.60/bbl",
+   "as_of": "2026-11-03",
+   "note": "-$1.17 (-1.1%) on the day; WTI $96.09",
    "source": {
-    "publisher": "The Private Banker",
-    "url": "https://leprivatebanker.com/2026/11/02/oil-sinks-more-than-7-and-wti-breaks-below-100-as-iran-signals-room-for-peace-talks/"
+    "publisher": "CNBC",
+    "url": "https://cnbc.com/2026/11/03/oil-prices-climb-after-us-reportedly-strikes-irans-qeshm-island.html"
    }
   }
  ],
  "items": [
+  {
+   "date": "2026-11-03",
+   "title": "Brent settles at $103.60, down $1.17, for a second daily fall on US-Iran deal hopes",
+   "text": "Brent settled at $103.60/bbl and WTI at $96.09 on 3 November, after Monday's sell-off of more than 7%. Qatar is mediating and President Trump said Tehran wants a deal, but Iran's Foreign Ministry rejected diplomacy based on coercion, and at least four ship attacks have occurred since the start of the month. Iran has reportedly proposed a two-day Hormuz reopening plan tied to sanctions relief, which the US has not publicly accepted. Lower crude eases India's import bill and marketing-company costs but trims realisations for producers such as ONGC and Oil India.",
+   "tone": "watch",
+   "companies": [
+    "ONGC",
+    "OIL",
+    "IOC",
+    "BPCL",
+    "HINDPETRO"
+   ],
+   "sources": [
+    {
+     "publisher": "CNBC",
+     "title": "Crude oil prices fall for second day as market hopes for diplomatic resolution to Iran war",
+     "url": "https://cnbc.com/2026/11/03/oil-prices-climb-after-us-reportedly-strikes-irans-qeshm-island.html",
+     "date": "2026-11-03"
+    },
+    {
+     "publisher": "Mitrade",
+     "title": "Brent slips to $111 as a two-day Hormuz plan lands",
+     "url": "https://www.mitrade.com/insights/commodity-analysis/oil-news/brent-111-hormuz-two-day-plan-premium-20261102J1102",
+     "date": "2026-11-02"
+    }
+   ],
+   "added": "2026-11-04"
+  },
   {
    "date": "2026-11-02",
    "title": "Brent settles at $104.77, down 7.6%, as Iran signals openness to peace talks",
@@ -1123,29 +1151,6 @@
     }
    ],
    "added": "2026-09-22"
-  },
-  {
-   "date": "2026-09-19",
-   "title": "Hormuz oil and LNG shipments hit six-month high, says US CENTCOM commander",
-   "text": "US Central Command's Admiral Brad Cooper said oil and LNG shipments through the Strait of Hormuz over the past two weeks reached their highest level in six months, with more than 1 billion barrels of crude having moved through the strait in recent months under US naval escort and mine-clearance support. Brent still traded near $104/bbl on the day and the strait remains far below its pre-crisis baseline of about 85 daily transits, so this is an early signal rather than a resolution. A sustained pickup in Hormuz flows would ease the supply-shock premium that has lifted Indian crude-basket costs and freight since the crisis began in February 2026 -- a positive for refiners' import bill but a headwind to the elevated realisations that have boosted ONGC and Oil India.",
-   "tone": "watch",
-   "companies": [
-    "ONGC",
-    "OIL",
-    "RELIANCE",
-    "IOC",
-    "BPCL",
-    "HINDPETRO"
-   ],
-   "sources": [
-    {
-     "publisher": "The Spokesman-Review",
-     "title": "Hormuz oil shipments hit six-month high, U.S. commander says",
-     "url": "https://www.spokesman.com/stories/2026/sep/19/hormuz-oil-shipments-hit-six-month-high-us-command/",
-     "date": "2026-09-19"
-    }
-   ],
-   "added": "2026-09-20"
   }
  ]
 }

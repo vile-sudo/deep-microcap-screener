@@ -147803,7 +147803,7 @@
      ]
     }
    },
-   "profiled_on": "2026-11-03"
+   "profiled_on": "2026-11-04"
   }
  },
  {
@@ -148066,7 +148066,7 @@
      ]
     }
    },
-   "profiled_on": "2026-11-03"
+   "profiled_on": "2026-11-04"
   }
  },
  {
@@ -154792,7 +154792,7 @@
      ]
     }
    },
-   "profiled_on": "2026-11-03"
+   "profiled_on": "2026-11-04"
   }
  },
  {
@@ -177045,6 +177045,621 @@
   "plausible": true,
   "verdict": null,
   "seen_on": "2026-11-03",
+  "source": "sweep",
+  "moat_signal": null,
+  "moat_evidence": null
+ },
+ {
+  "sym": "ENNATURE",
+  "name": "Ennature Bio Pharma Limited",
+  "board": "NSE",
+  "isin": "INE2WCT01016",
+  "listed": "04-NOV-2026",
+  "hint": "pharma & healthcare",
+  "why": "sector plausible",
+  "plausible": true,
+  "verdict": null,
+  "seen_on": "2026-11-04",
+  "source": "new-listing",
+  "moat_signal": null,
+  "moat_evidence": null
+ },
+ {
+  "sym": "EVONILE",
+  "name": "Evonile Pharma Limited",
+  "board": "NSE",
+  "isin": "INE234A01025",
+  "listed": "20-APR-2026",
+  "hint": "pharma & healthcare",
+  "why": "sector plausible",
+  "plausible": true,
+  "verdict": null,
+  "seen_on": "2026-11-04",
+  "source": "new-listing",
+  "moat_signal": null,
+  "moat_evidence": null
+ },
+ {
+  "sym": "IGLSPIRITS",
+  "name": "IGL Spirits Limited",
+  "board": "NSE",
+  "isin": "INE2W6901017",
+  "listed": "04-NOV-2026",
+  "hint": null,
+  "why": "sector unknown, SME platform",
+  "plausible": false,
+  "verdict": null,
+  "seen_on": "2026-11-04",
+  "source": "new-listing",
+  "moat_signal": null,
+  "moat_evidence": null
+ },
+ {
+  "sym": "MELSTAR",
+  "name": "Melstar Information Technologies Limited",
+  "board": "NSE",
+  "isin": "INE817A01050",
+  "listed": "07-MAR-2000",
+  "hint": "it & software services",
+  "why": "sector ruled out",
+  "plausible": false,
+  "verdict": null,
+  "seen_on": "2026-11-04",
+  "source": "new-listing",
+  "moat_signal": null,
+  "moat_evidence": null
+ },
+ {
+  "sym": "MKJEWELS",
+  "name": "M. K. Sons Fine Jewels Limited",
+  "board": "NSE",
+  "isin": "INE2IXO01012",
+  "listed": "04-NOV-2026",
+  "hint": null,
+  "why": "sector unknown, SME platform",
+  "plausible": false,
+  "verdict": null,
+  "seen_on": "2026-11-04",
+  "source": "new-listing",
+  "moat_signal": null,
+  "moat_evidence": null,
+  "profile": {
+   "symbol": "MKJEWELS",
+   "company": "M. K. Sons Fine Jewels Limited",
+   "isin": "INE2IXO01012",
+   "board": "NSE",
+   "source": {
+    "document": "final prospectus",
+    "url": "https://nsearchives.nseindia.com/corporate/FP_INE2IXO01012_02NOV2026.pdf",
+    "filed": "02-Nov-2026",
+    "pdf_bytes": 9308458,
+    "extracted_chars": 1449508
+   },
+   "grade": "company-stated",
+   "verified_against": null,
+   "claims": {
+    "accreditation": {
+     "count": 7,
+     "dropped_as_industry_commentary": 21,
+     "terms": [
+      "BIS"
+     ],
+     "evidence": [
+      {
+       "match": "BIS",
+       "sentence": "Technical and industry related terms or abbreviations Term BIS DGF RBI MOSPI MSDE GST PMLA KYC IBEF CAGR FDI GDP GDS GNDI INR USD PPP YTD PLI CPD CZ GIA GJEPC GMS IGJS HUID RFID Tier 1 Tier 2 Tier 3 DPMS PMMY UAE UK US Description Bureau of Indian Standards D"
+      },
+      {
+       "match": "BIS",
+       "sentence": "(j) Commitment to quality: We deal exclusively in BIS hallmarked gold jewellery, and our diamond jewellery is accompanied by certification from gemological laboratories such as IGI and/or GIA."
+      },
+      {
+       "match": "BIS",
+       "sentence": "The company operates over 30 stores across India and is known for certified diamonds, BIS-hallmarked gold, and customer-focused services like lifetime buy-back."
+      }
+     ]
+    },
+    "ip": {
+     "count": 11,
+     "dropped_as_industry_commentary": 15,
+     "terms": [
+      "trademark",
+      "trademarks",
+      "Trademark"
+     ],
+     "evidence": [
+      {
+       "match": "trademark",
+       "sentence": "As on the date of this Prospectus, we have obtained registration of our trademark under classes 14 and 35 from the Registrar of Trademarks, India under the Trade Marks Act, 1999, as amended for further details see “Our BusinessIntellectual Property” on page 186."
+      },
+      {
+       "match": "trademark",
+       "sentence": "In the absence of the trademark registration, we may not be able to initiate an infringement action against any third party who may be infringing our trademark."
+      },
+      {
+       "match": "trademark",
+       "sentence": "With respect to our trademark that has been applied for and/or objected, we cannot assure you that we will be successful in such a challenge nor can we assure that eventually our trademark application will be approved, which in turn could result in monetary loss."
+      }
+     ]
+    }
+   },
+   "risk_factors": {
+    "promoter_litigation": {
+     "count": 5,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "Criminal Proceedings",
+      "proceedings against our Promoters",
+      "criminal proceedings"
+     ],
+     "evidence": [
+      {
+       "match": "Criminal Proceedings",
+       "sentence": "Particulars Company By our Company Against our Company Directors@ By our Directors Against our Directors Promoters By our Promoters Against our Promoters Disciplinary actions by Aggregate the SEBI or Other Amount Stock Material Involved* Exchanges Proceedings (₹ in million) against our Promoters Criminal Proceedings Tax Proceedings Statutory or Regulatory Proceedings NIL NIL 1 5 NIL NIL NIL NIL NIL NIL 37."
+      },
+      {
+       "match": "Criminal Proceedings",
+       "sentence": "15 NIL -^ -^ -^ -^ NIL NIL -^ NIL -^ -^ NIL NIL -^ -^ -^ -^ NIL NIL -^ NIL -^ -^ NIL Criminal Proceedings Group Company By our Group Company Against our Company Key Managerial Personnel By our Key Managerial Personnel Against our Key Managerial Personnel Senior Management By members o"
+      },
+      {
+       "match": "proceedings against our Promoters",
+       "sentence": "her Amount Stock Material Involved* Exchanges Proceedings (₹ in million) against our Promoters * To the extent ascertainable and quantifiable @ Excluding legal proceedings against our Promoters namely Ramchand Murlidhar Raimalani and Neelam Ramchand Raimalani."
+      }
+     ]
+    },
+    "related_party": {
+     "count": 22,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "RELATED PARTY TRANSACTIONS",
+      "related party transactions",
+      "Related Party Transactions",
+      "Related party Transactions"
+     ],
+     "evidence": [
+      {
+       "match": "RELATED PARTY TRANSACTIONS",
+       "sentence": "66 SUMMARY OF RELATED PARTY TRANSACTIONS ."
+      },
+      {
+       "match": "related party transactions",
+       "sentence": "Group Company The companies (other than our Subsidiaries) with which there were related party transactions during the three months period ended June 30, 2026 and Financial Years ended March 31, 2026, March 31, 2025 and March 31, 2024 in accordance with Ind AS 24, and any other co"
+      },
+      {
+       "match": "related party transactions",
+       "sentence": "We have entered into related party transactions in the past and may continue to do so in the future, which may potentially involve conflicts of interest with other shareholders."
+      }
+     ]
+    }
+   },
+   "objects_of_the_issue": {
+    "offer_for_sale": {
+     "count": 39,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "OFFER FOR SALE",
+      "Offer for Sale",
+      "offer for sale",
+      "Offer for sale"
+     ],
+     "evidence": [
+      {
+       "match": "OFFER FOR SALE",
+       "sentence": "in OUR PROMOTERS: RAMCHAND MURLIDHAR RAIMALANI, NEELAM RAMCHAND RAIMALANI AND KUSH RAMCHAND RAIMALANI DETAILS OF THE OFFER TO THE PUBLIC TYPE FRESH ISSUE SIZE OFFER FOR SALE SIZE Fresh Issue and 13,600,000^ Equity 3,400,000^ Offer for Sale Shares of face value Equity Shares of of ₹ 10 each face value of ₹ aggregating to ₹ 10 each aggregating to ₹ 2,203."
+      },
+      {
+       "match": "OFFER FOR SALE",
+       "sentence": "DETAILS OF THE OFFER FOR SALE Name of the Selling Shareholder Type Number / Amount of Equity Shares Offered Weighted Average Cost of Acquisition (in ₹ per Equity Share) # Ramchand Murlidhar Raimalani Promoter Selling Shareholder 3,400,000^ Equity Shares of face value ₹ 10 each aggregating to ₹ 550."
+      },
+      {
+       "match": "OFFER FOR SALE",
+       "sentence": "2^ MILLION BY OUR COMPANY (“FRESH ISSUE”) AND AN OFFER FOR SALE OF TO 3,400,000 EQUITY SHARES OF FACE VALUE OF ₹ 10 EACH AGGREGATING TO ₹ 550."
+      }
+     ]
+    },
+    "fresh_issue": {
+     "count": 39,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "FRESH ISSUE",
+      "Fresh Issue",
+      "fresh issue"
+     ],
+     "evidence": [
+      {
+       "match": "FRESH ISSUE",
+       "sentence": "in OUR PROMOTERS: RAMCHAND MURLIDHAR RAIMALANI, NEELAM RAMCHAND RAIMALANI AND KUSH RAMCHAND RAIMALANI DETAILS OF THE OFFER TO THE PUBLIC TYPE FRESH ISSUE SIZE OFFER FOR SALE SIZE Fresh Issue and 13,600,000^ Equity 3,400,000^ Offer for Sale Shares of face value Equity Shares of of ₹ 10 each face value of ₹ aggregating to ₹ 10 each aggregating to ₹ 2,203."
+      },
+      {
+       "match": "FRESH ISSUE",
+       "sentence": "SONS FINE JEWELS LIMITED (“COMPANY” OR “ISSUER”) FOR CASH AT A PRICE OF ₹ 162^ PER EQUITY SHARE (INCLUDING A SHARE PREMIUM OF ₹ 152^ PER EQUITY SHARE) (“OFFER PRICE”) AGGREGATING TO ₹ 2,754^ MILLION COMPRISING A FRESH ISSUE OF 13,600,000^ EQUITY SHARES OF FACE VALUE OF ₹ 10 EACH AGGREGATING TO ₹ 2,203."
+      },
+      {
+       "match": "FRESH ISSUE",
+       "sentence": "2^ MILLION BY OUR COMPANY (“FRESH ISSUE”) AND AN OFFER FOR SALE OF TO 3,400,000 EQUITY SHARES OF FACE VALUE OF ₹ 10 EACH AGGREGATING TO ₹ 550."
+      }
+     ]
+    },
+    "capital_expenditure": {
+     "count": 19,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "setting up of",
+      "capital expenditure",
+      "expansion of our"
+     ],
+     "evidence": [
+      {
+       "match": "setting up of",
+       "sentence": "We intend to utilize the Net Proceeds towards funding of inventory cost towards setting up of 1 new showroom in Maharashtra (\"New Showroom\") and expansion of existing showroom in Gujarat (\"Expansion\") as well as for repayment and/or pre-payment, in full or part, of certain borrowings availed by our Company, as detailed in the “Objects of the Offer” section beginning on page 94."
+      },
+      {
+       "match": "capital expenditure",
+       "sentence": "The Company has incurred negative cash flow from investing activities across all the reported periods primarily on account of capital expenditure towards purchase of property, plant and equipment and intangible assets for the period ended June 30, 2026 and Fiscal 2026."
+      },
+      {
+       "match": "setting up of",
+       "sentence": "There is no assurance that we will be able to obtain new properties, whether on lease, leave and license basis or through ownership, in suitable areas, on time, or on acceptable terms for setting up of our showrooms."
+      }
+     ]
+    },
+    "working_capital": {
+     "count": 9,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "working capital requirements"
+     ],
+     "evidence": [
+      {
+       "match": "working capital requirements",
+       "sentence": "A sustained increase in gold or diamond prices may lead to higher procurement and inventory holding costs, increased working capital requirements and interest costs, and may reduce consumer demand due to affordability concerns or deferment of purchases."
+      },
+      {
+       "match": "working capital requirements",
+       "sentence": "28 For the year ended March 31, 2025: The Company continued to experience negative cash flow from operating activities largely due to elevated inventory levels and increase in other current assets, indicating higher working capital requirements."
+      },
+      {
+       "match": "working capital requirements",
+       "sentence": "If we are unable to maintain the working capital requirements, on favorable terms, it may harm our operations, financial stability, and profitability."
+      }
+     ]
+    },
+    "general_corporate": {
+     "count": 11,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "General Corporate Purposes",
+      "general corporate purposes",
+      "General Corporate Purpose"
+     ],
+     "evidence": [
+      {
+       "match": "General Corporate Purposes",
+       "sentence": "General Corporate Purposes portion “GCP Portion” “General Information The General Information Document for investing in public issues prepared and issued Document” or “GID” in accordance with the SEBI"
+      },
+      {
+       "match": "General Corporate Purposes",
+       "sentence": "General Corporate Purposes (collectively, referred to herein as the “Objects”) In addition to the aforementioned objects, our Company intends to strengthen its capital base and expects to receive the"
+      },
+      {
+       "match": "General Corporate Purposes",
+       "sentence": "00 Company; 3 General Corporate Purposes* 115."
+      }
+     ]
+    }
+   },
+   "profiled_on": "2026-11-04"
+  }
+ },
+ {
+  "sym": "545011",
+  "name": "BLS Polymers Ltd",
+  "board": "BSE",
+  "isin": "INE0ZCQ01019",
+  "listed": null,
+  "hint": "chemicals",
+  "why": "small-cap sweep",
+  "mktcap_cr": 1670.52,
+  "plausible": true,
+  "verdict": null,
+  "seen_on": "2026-11-04",
+  "source": "sweep",
+  "moat_signal": null,
+  "moat_evidence": null,
+  "profile": {
+   "symbol": "545011",
+   "company": "BLS Polymers Limited",
+   "isin": "INE0ZCQ01019",
+   "board": "BSE",
+   "source": {
+    "document": "final prospectus",
+    "url": "https://nsearchives.nseindia.com/corporate/FP_INE0ZCQ01019_30OCT2026.pdf",
+    "filed": "30-Oct-2026",
+    "pdf_bytes": 21380644,
+    "extracted_chars": 1861358
+   },
+   "grade": "company-stated",
+   "verified_against": null,
+   "claims": {
+    "accreditation": {
+     "count": 8,
+     "dropped_as_industry_commentary": 1,
+     "terms": [
+      "BIS",
+      "ISO 9001",
+      "ISO 21809",
+      "NABL"
+     ],
+     "evidence": [
+      {
+       "match": "BIS",
+       "sentence": "Our quality testing procedures are in line with the testing standards prescribed under standards such as, American Society for Testing and Materials (“ASTM”), International Organization for Standardization (“ISO”) and Bureau of Indian Standards (“BIS”)."
+      },
+      {
+       "match": "ISO 9001",
+       "sentence": "The company has following certifications: 1) ISO 9001: 2015 2) EIL (Engineers India Ltd) for Pipe Coating Compounds 3) BSNL (Bharat Sanchar Nigam Limited) for Telecom Cable Compounds 235 Exports BLS Polymers is exporting its products to countries in Asia, Middle East and Africa such as Bangladesh, Egypt, Oman, United Arab Emirates, Saudi Arabia and Turkey."
+      },
+      {
+       "match": "ISO 9001",
+       "sentence": "As on the date of this Prospectus, our Manufacturing Facility has obtained ISO 9001:2015 certification for quality management systems."
+      }
+     ]
+    },
+    "ip": {
+     "count": 11,
+     "dropped_as_industry_commentary": 6,
+     "terms": [
+      "trademarks",
+      "trademark",
+      "Trademark",
+      "Patents"
+     ],
+     "evidence": [
+      {
+       "match": "trademarks",
+       "sentence": "Our Company has applied for registration of certain trademarks in its name."
+      },
+      {
+       "match": "trademarks",
+       "sentence": "Until such registrations are granted, our Company may not be able to prevent unauthorised use of such trademarks by third parties, which may lead to the dilution of our goodwill."
+      },
+      {
+       "match": "trademarks",
+       "sentence": "Pending the registration of these trademarks, any other vendor in the similar line of business as ours may use such trademarks and we may have a lesser recourse to initiate legal proceedings to protect our intellectual property."
+      }
+     ]
+    }
+   },
+   "risk_factors": {
+    "customer_concentration": {
+     "count": 16,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "top 10 customers",
+      "top ten customers",
+      "customer concentration",
+      "top five customers"
+     ],
+     "evidence": [
+      {
+       "match": "top 10 customers",
+       "sentence": "Our business largely depends upon our top 10 customers which contributed 61."
+      },
+      {
+       "match": "top 10 customers",
+       "sentence": "We derive a significant portion of our revenue from our top 10 customers."
+      },
+      {
+       "match": "top 10 customers",
+       "sentence": "Loss of all or a substantial portion of sales to any of our top 10 customers, in particular for any reason including, due to loss of business or 26 24 failure to negotiate acceptable terms, loss of market share of these customers in their industries, disputes"
+      }
+     ]
+    },
+    "promoter_litigation": {
+     "count": 10,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "Criminal Proceedings",
+      "criminal proceedings",
+      "criminal complaint",
+      "criminal case",
+      "Criminal proceedings"
+     ],
+     "evidence": [
+      {
+       "match": "Criminal Proceedings",
+       "sentence": "of Criminal Proceedings No."
+      },
+      {
+       "match": "criminal proceedings",
+       "sentence": "429 SECTION VII – LEGAL AND OTHER INFORMATION OUTSTANDING LITIGATION AND MATERIAL DEVELOPMENTS Except as disclosed in this section, there are no outstanding (i) criminal proceedings; (ii) actions taken by regulatory or statutory authorities; (iii) claims related to direct and indirect tax matters (disclosed in a consolidated manner); and (iv) other pending li"
+      },
+      {
+       "match": "criminal proceedings",
+       "sentence": "Further, there are no outstanding, (i) criminal proceedings; and (ii) actions by regulatory authorities and statutory authorities, against any Key Managerial Personnel and Senior Management of our Company."
+      }
+     ]
+    },
+    "single_site": {
+     "count": 2,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "single Manufacturing Facility"
+     ],
+     "evidence": [
+      {
+       "match": "single Manufacturing Facility",
+       "sentence": "We operate out of a single Manufacturing Facility which is located at Goa and is subject to operating risks."
+      },
+      {
+       "match": "single Manufacturing Facility",
+       "sentence": "Any shutdown of our Manufacturing Facility or other production problems caused by unforeseen events may reduce sales and adversely affect our business, cash flows, results of operations and financial condition We operate out of a single Manufacturing Facility which is located at Goa which is spread across an aggregate parcel of land admeasuring about 24,220 sq."
+      }
+     ]
+    },
+    "related_party": {
+     "count": 25,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "RELATED PARTY TRANSACTIONS",
+      "related party transactions",
+      "Related Party Transactions"
+     ],
+     "evidence": [
+      {
+       "match": "RELATED PARTY TRANSACTIONS",
+       "sentence": "87 SUMMARY OF RELATED PARTY TRANSACTIONS ."
+      },
+      {
+       "match": "RELATED PARTY TRANSACTIONS",
+       "sentence": "423 RELATED PARTY TRANSACTIONS ."
+      },
+      {
+       "match": "related party transactions",
+       "sentence": "We have in past entered into related party transactions and we may continue to do so in the future."
+      }
+     ]
+    }
+   },
+   "objects_of_the_issue": {
+    "offer_for_sale": {
+     "count": 1,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "Offer for Sale"
+     ],
+     "evidence": [
+      {
+       "match": "Offer for Sale",
+       "sentence": "com OUR PROMOTERS: VINOD AGGARWAL, SUSHIL AGGARWAL, MADHUKAR AGGARWAL, DIWAKAR AGGARWAL AND KARAN AGGARWAL DETAILS OF ISSUE TO PUBLIC Type Fresh Issue size Offer for Sale Total Issue size Eligibility and Share Reservation among QIB, NII &RII Fresh Issue 1,70,00,000 Equity Not Applicable 1,70,00,000 Equity Shares The Issue was being made pursuant to Regul"
+      }
+     ]
+    },
+    "fresh_issue": {
+     "count": 5,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "Fresh Issue",
+      "fresh Issue",
+      "fresh issue"
+     ],
+     "evidence": [
+      {
+       "match": "Fresh Issue",
+       "sentence": "com OUR PROMOTERS: VINOD AGGARWAL, SUSHIL AGGARWAL, MADHUKAR AGGARWAL, DIWAKAR AGGARWAL AND KARAN AGGARWAL DETAILS OF ISSUE TO PUBLIC Type Fresh Issue size Offer for Sale Total Issue size Eligibility and Share Reservation among QIB, NII &RII Fresh Issue 1,70,00,000 Equity Not Applicable 1,70,00,000 Equity Shares The Issue was being made"
+      },
+      {
+       "match": "fresh Issue",
+       "sentence": "Monitoring utilization of funds Since this is entirely a fresh Issue and Issue size is in excess of ₹ 10,000 lakhs, our Company has appointed Crisil Ratings Limited, a credit rating agency registered with SEBI for monitoring the utilization of the Gross Proceeds, in terms of Regulation 41 of the SEBI ICDR Regulations."
+      },
+      {
+       "match": "Fresh Issue",
+       "sentence": "mpany), for a duration of one year after the date of listing of the Equity Shares on the Stock Exchange or till the complete utilisation of the proceeds of the Fresh Issue as per the disclosure made in the Objects of the Issue Section, whichever is later or for such other duration as may be required under the SEBI ICDR Regulations."
+      }
+     ]
+    },
+    "capital_expenditure": {
+     "count": 29,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "capital expenditure",
+      "expansion of our",
+      "purchase of plant",
+      "Capital Expenditure"
+     ],
+     "evidence": [
+      {
+       "match": "capital expenditure",
+       "sentence": "The capital expenditure proposed to be funded from the Net Proceeds towards expansion of our Manufacturing Facility to enhance the production 3 24 Term “Registered Office” “Registrar of Companies” or “RoC"
+      },
+      {
+       "match": "expansion of our",
+       "sentence": "As we continue our growth by investing in the capacity expansion of our Manufacturing Facility, 28 24 we may encounter regulatory, personnel and other difficulties that may increase our expenses, which could delay our plans or impair our ability to become profitable in these areas."
+      },
+      {
+       "match": "capital expenditure",
+       "sentence": "For details of the proposed expansion, please refer to the chapter titled “Objects of the Issue – Financing the capital expenditure requirement towards expansion of our Manufacturing Facility by increasing the manufacturing capacity of certain of our existing products” on page 124 of this Prospectus."
+      }
+     ]
+    },
+    "working_capital": {
+     "count": 28,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "working capital requirements",
+      "Working Capital Requirements",
+      "working capital requirement"
+     ],
+     "evidence": [
+      {
+       "match": "working capital requirements",
+       "sentence": "Our inability to meet our working capital requirements including failure to realize receivables and inventories may have an adverse effect on our results of operations and overall business."
+      },
+      {
+       "match": "working capital requirements",
+       "sentence": "Our working capital requirements may increase if the payment terms in purchase orders received include reduced advance payments or longer payment schedules, or if there is delayed realization from our customers."
+      },
+      {
+       "match": "working capital requirements",
+       "sentence": "Continued increase in our working capital requirements may have a material adverse effect on our financial condition, results of operations and cash flows."
+      }
+     ]
+    },
+    "general_corporate": {
+     "count": 10,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "general corporate purposes",
+      "General Corporate Purposes",
+      "General corporate purposes"
+     ],
+     "evidence": [
+      {
+       "match": "general corporate purposes",
+       "sentence": "We propose to utilize the Net Proceeds for (i) financing the capital expenditure requirement towards expansion of our Manufacturing Facility by increasing the manufacturing capacity of certain of our existing products; (ii) funding working capital requirements of our Company; and (iii) general corporate purposes."
+      },
+      {
+       "match": "General Corporate Purposes",
+       "sentence": "Financing the capital expenditure requirement towards expansion of our existing manufacturing facility at Goa (“Manufacturing Facility”) by increasing the manufacturing capacity of certain of our existing products; Funding working capital requirements of our Company; and General Corporate Purposes."
+      },
+      {
+       "match": "General Corporate Purposes",
+       "sentence": "of our Manufacturing Facility by increasing the manufacturing capacity of certain of our existing products Funding working capital requirements of our Company General Corporate Purposes(1) Net Proceeds(1) (1) The amount to be utilised for general corporate purposes shall not exceed 25% of the Gross Proceeds."
+      }
+     ]
+    }
+   },
+   "profiled_on": "2026-11-04"
+  }
+ },
+ {
+  "sym": "500672",
+  "name": "Evonile Pharma Ltd",
+  "board": "BSE",
+  "isin": "INE234A01025",
+  "listed": null,
+  "hint": "pharma & healthcare",
+  "why": "small-cap sweep",
+  "mktcap_cr": 4246.45,
+  "plausible": true,
+  "verdict": null,
+  "seen_on": "2026-11-04",
+  "source": "sweep",
+  "moat_signal": null,
+  "moat_evidence": null
+ },
+ {
+  "sym": "543534",
+  "name": "Aether Industries Ltd",
+  "board": "BSE",
+  "isin": "INE0BWX01014",
+  "listed": null,
+  "hint": "industrial & capital goods",
+  "why": "mid-cap sweep",
+  "mktcap_cr": 19933.73,
+  "plausible": true,
+  "verdict": null,
+  "seen_on": "2026-11-04",
   "source": "sweep",
   "moat_signal": null,
   "moat_evidence": null
