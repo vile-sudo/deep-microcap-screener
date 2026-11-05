@@ -33,7 +33,7 @@ jobs:
           chmod 600 ~/.ssh/deploy_key
           ssh-keyscan -H "$AWS_HOST" >> ~/.ssh/known_hosts 2>/dev/null
           ssh -i ~/.ssh/deploy_key -o StrictHostKeyChecking=yes "${AWS_SSH_USER:-ubuntu}@$AWS_HOST" \
-            "cd ${AWS_DEPLOY_PATH:-/opt/screener-app} && git log --oneline -3 && git status --short | head -10 && echo '--- compose ps' && docker compose ps -a && echo '--- disk' && df -h / | tail -1 && echo '--- logs' && docker compose logs --tail=$LINES screener 2>&1 | sed -E 's/(apikey|api_key|token)=[^&[:space:]]+/\1=***/Ig'"
+            "cd ${AWS_DEPLOY_PATH:-/opt/screener-app} && git log --oneline -3 && git status --short | head -10 && echo '--- compose ps' && docker compose ps -a && echo '--- disk' && df -h / | tail -1 && echo '--- memory' && free -m && echo '--- docker disk' && docker system df && echo '--- logs' && docker compose logs --tail=$LINES screener 2>&1 | sed -E 's/(apikey|api_key|token)=[^&[:space:]]+/\1=***/Ig'"
 
       # Which Kite app the server is really using: length and a short hash of each value as the app reads them
       # (compare with the same line printed for a local .env) -- never the values themselves.
