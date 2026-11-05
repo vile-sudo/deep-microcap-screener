@@ -1,7 +1,7 @@
 {
  "trade_date": "2026-11-04",
  "threshold_percent": 4.0,
- "generated_at": "2026-11-04T18:19:42+05:30",
+ "generated_at": "2026-11-05T14:11:28+05:30",
  "stats": {
   "scanned": 3440,
   "flagged": 713,
@@ -12,7 +12,7 @@
  "moves": [
   {
    "symbol": "MELSTAR",
-   "name": "MELSTAR",
+   "name": "MELSTAR INFO TEC",
    "board_code": null,
    "series": "BE",
    "direction": "UP",
@@ -216,7 +216,7 @@
    "raw_pct_change": 17.04,
    "corporate_action": null,
    "why": {
-    "headline": "M&A, reported by Scanx",
+    "headline": "M&A disclosed to the exchange",
     "confidence": "high",
     "evidence": [
      {
@@ -232,13 +232,6 @@
       "detail": "Creative Newtech Limited has informed the Exchange regarding Outcome of Board Meeting held on November 04, 2026.",
       "url": "https://nsearchives.nseindia.com/corporate/CREATIVE_04112026122346_Outcome_of_BM_04112026.pdf",
       "source": "04 Nov 12:23"
-     },
-     {
-      "tier": "news",
-      "kind": "results",
-      "detail": "Creative Newtech Q2FY27 results: Net profit up 78% YoY to ₹12.65 crore",
-      "url": "https://news.google.com/rss/articles/CBMivAFBVV95cUxPR2Q4NjNEV2RJVEIzTEJwY0RuVTdLRWpZaHJWYzVCWXN5eFZ0MjdISXVMNkN1YlFOWHVlcENlUXRzVkF3Xzk0akxQREVPeTZuUkRXQXFmNkVmVnBvRGc1SUtTdFFLRXd1a3ZBMXVpTEx5TFFpdE5rQjh2eG5DRG9jTzJKVjBLeURmSFZOeEtjZFg0bVkzVVFiV2gzYTd6TXNUWjVmVVhkajJLQTVibEU1OXJDdElvb0Jaa0Y1Zw?oc=5",
-      "source": "Scanx"
      }
     ]
    },
@@ -319,7 +312,7 @@
    "raw_pct_change": 17.01,
    "corporate_action": null,
    "why": {
-    "headline": "Results disclosed to the exchange",
+    "headline": "Results, reported by Economic Times",
     "confidence": "high",
     "evidence": [
      {
@@ -342,6 +335,13 @@
       "detail": "Aimtron Electronics Limited has informed the Exchange regarding a press release dated November 04, 2026, titled \"Reports Strong H1 FY27 Performance With 83% Revenue Growth YoY Consolidated Order Book at INR 7332.67 Mn.\".",
       "url": "https://nsearchives.nseindia.com/corporate/AIMTRON_04112026145724_Intimation_Press_Release_04-11-2026.pdf",
       "source": "04 Nov 14:57"
+     },
+     {
+      "tier": "news",
+      "kind": "results",
+      "detail": "Aimtron’s H1FY27 net profit rises 71% to ₹34.8 crore, revenue up by 83%",
+      "url": "https://news.google.com/rss/articles/CBMi3AFBVV95cUxON0N4UjhiTEcxQlk4RUF6NjRzSVVyOFRqREg0LS1KZE0ycUFkNFZDWkR2UUtlVGMwNXdQeDQ0Z19RS3BFVVNPc1o2WVk2anJCMnFKSDJYazM0YkI2dUtVdW5uUnRRZURtYTZGVWQ0dFJkd28zbUNIYUxCX255Q3R3TnhLbGhxeEpPbzJyUV9mMGw0ZEZDektUcF9tZDM1NHFnRDVIWGFFZHc0MkZnMXNEN3lkVlFUQkE3VWV1Q2FndUVOQnk2R2ZLVXJuMlljUEhEWjRpbUJOZ0xPb1F30gHgAUFVX3lxTE1pU1RDdldLVnIzQV9qSUhCMlJZWFlwRzZCbHlJZkRobXZvYVBvcEFkbW9OMVpGZldjbjk4emZ6b1NVREMxVlp5M3FRSVc0eUxlWnUtM0xHOWpsckhwVzNfMWE5LWxVQ2NXLVB0TUlTWkRRbVlsVC12V19EREJWak9hZHY3T0lPcGVJeU5IWURBUDc1dk9UZUdUZ3k5RmdWcmMzajhiNGktVFVubGhXSnlpcGNVblpabndDWDU5NmxPM19QemItbUFHWVU4M1ZpVzVZNG9xNjI0VGwyb2l6Z29y?oc=5",
+      "source": "Economic Times"
      }
     ]
    },
@@ -439,7 +439,7 @@
    "raw_pct_change": 14.04,
    "corporate_action": null,
    "why": {
-    "headline": "M&A, reported by Moneycontrol",
+    "headline": "M&A, reported by Business Standard",
     "confidence": "high",
     "evidence": [
      {
@@ -465,6 +465,13 @@
      },
      {
       "tier": "news",
+      "kind": "M&A or stake",
+      "detail": "Fractal Analytics bets on large AI deals, mergers to drive growth",
+      "url": "https://news.google.com/rss/articles/CBMi1AFBVV95cUxNVlBlYlpZYkxubC1SNXE3SUgyV2xvR3BHaS1xWTUtcUhrRjJqWTJMdFQ5M0h3Um1WVjNXWDJhM2hVVUI1THVhWmZ5M1JPVkVhN1FuUlN5LW1MTWNHT0NZaVd4SDNYbFdQejVkS0VVV0MzclRZajFTa1dlRWlkUW54ZkV3XzM0blE4Nzl1cVRBdUlvVlZDZjgwWlFsMDk1QmEwV1J6RFJyUFQ5SlN5ZmU4LVhINFpueHdIMTQzOFV0cVFWX0t3T3ZHbXFkWElqc1FqVldCbNIB2gFBVV95cUxQcjVXeWpSRGtwekxHODVtTldQV0NjTDB4Q25ZRTR0b1h3YUpUcFUwMm83ZHZCam5LdkJaenF3cVo0SzBwVHlWS0lRRV9ZLUtQd2JBZzRZMl92QVN0Zm5Fc0RzTXVkRXQ3U0cwTzlRelFEaklZRTVNRThFWEkyRnZjQVNVdWEwWExCMnhueWFsdXpqQS1Bd28tWEt0MlFjaE9TaE9hZTd6Ymk3ZkNzb19lM2NpUUxMYmxaV1RFekZiYTFZRzc5UUNLZlF2SEFZRndLYmlhM1VzTERGQQ?oc=5",
+      "source": "Business Standard"
+     },
+     {
+      "tier": "news",
       "kind": "results",
       "detail": "Fractal Analytics shares rally 14% after Q2 net profit jumps 139% to Rs 79 crore",
       "url": "https://news.google.com/rss/articles/CBMi2wFBVV95cUxPZGRPeDlDa2dWWmR2WnFXenFOWWF0T0c4RHRuY1c1cTF2TDMwN0lUMWFSb0l5S0xOZC1obzd0TDVQUXBZVEc4WmZuRC1uQk1CaXU0LVpoTnZjVmVrcERteFFucXotUERlNlRXZGo1bjBRY2ZIRzZJX19wSEJLam1MWVBKYU00UDR1N3lSN1hObWFQTU02dHZFcFFVMnRGRTd1MHJlZENXdkZCLVRVZGZPRVJKWE5aNm1ER2F2SGFWUTJkdFRuUmpESFRNMWJZY29kaThQeUVlXzZLdUHSAeABQVVfeXFMTU8tdWxpemU1QTR6NUoyWjhRLW5uV3k3MnYzVVNfdnZ5V21OQl9kdGFnWnowNWt0emVVLVRObTc3ZkQya1hLbkY3WXFIcVdPUks3ZHBFZkFuQWp5M0l6WE96S3N1eXZJeVd6eTU3VVkxaFY4dk1TdnNjN3JMQkVXU1RmcW43NlVQNktKdWgxUWNiTkY1MV8ybGFBMUExYWE4RzB2SnFaX2Z6SldJVUtzTENvX1NwWUhmQVhyMW5CZXNFU2FYSV9TSVJ3WHlIOGpQdElONDlnMTFuU1pxczBISk8?oc=5",
@@ -473,16 +480,9 @@
      {
       "tier": "news",
       "kind": "results",
-      "detail": "Fractal Analytics reports multifold jump in net profit to ₹79.2 crore in Q2",
-      "url": "https://news.google.com/rss/articles/CBMi1wFBVV95cUxOLUo5enVKNnBfaFFhcklSbWtCWE0xWUg1OHFvZE9pV1NtbkZpY2t4anVMSVNXOGZqaF9KUXFUMWxxNkhCWEdCNEhYMXlzUjhsMVI3LWN0OTdIZ0w2c3kyQThvdXZuMlMwSUNJWTI2blhjR0FDQm5MZmNBUWFCanY0ZUJvVjhlZElKYTduX3VfNXk4ZnFpemM1c0t4ZDhSdndaR3ptdGFmR01DMW1uUjNzcHNpMTRxNjEteHF1b2hWVEpHeDRTYTJ1OFRZdTdxbTBzNTR5Tzh0SdIB3gFBVV95cUxORzh5RWRBLVo4ZEZraWIwbkZwOS1zYkJ4ZWhnU2cxNG03NmtvS2N6MGtRN1FZZ0R3NWdURE9lZG11R3ozY2tfSWx3Y09zWWx2TkVqQ2JaNC1abE40Nm1LQmhKUEJ0cnlOdDZFOXREckM3U0JqTFZUZUZtdXBHMlJHaGliS2FucVdaNWtieXFFVUR4Y0NnX1hkbFNZSnlkckk3WnV0bVM5SWJNTE9oVzJfQTMtQkp4VXZzY08yOVV5aTVNb3BKRjhzc19xREVRYi01RHBxTDJWYkRSSmQxT1E?oc=5",
-      "source": "Hindu BusinessLine"
-     },
-     {
-      "tier": "news",
-      "kind": "results",
-      "detail": "Fractal Analytics share price: AI stock rallies 12% after Q2 results - Net profit soars 139%, revenue crosses $100 mn",
-      "url": "https://news.google.com/rss/articles/CBMijAJBVV95cUxOWUZSTzN1TmlqMXV4WEprdTBlRWVOQnRmODQtMmEyQWVKbkVIR2F6VGVRWnRsS1JfU1owZW9tWFl5SGZvYkJScVVucUpVTlV3TlVNOE1qS0xFWkF6dy1iU2QzVmtvU2hVZ2lHWjF3WGhnSklJeC1SN2dVSl84Qy1iQmNsUFZ5UVF3Uk52TFowNTI3U2FHVGJCdDYzVUFtSjVaY1FVelJhcjNnMS1Zci1TcXpzRERaSkcxbHBXUXV4VmVHaGoyTUZ6NTZMMDZjcldsSWRqcTl4VXRQdktFTUZOcUtweWFNOFp1Si1kUDh5X2dxWExWQnJTYUsxSG5xWUlwYjFlVG9BYzl2cC1Q0gGSAkFVX3lxTE9TcHU0MlZLak1OYlJOZmluLU9YdVVva0ZrZ2hmVXJxcFhabVBLUEdoQ0p5SVIyZ3NRdWtvMTRQaWZRbHczclV5dVQ5a2VqbEJnOURMalozd2VXSjhfMXBpSWtvb2RIYnh5RGxBc045ci0wMEIydHd1aEZ2V081dFFqWHVVOXRZY284X1AzZThBd0dMUm9RSXl2VDFfZkVZZjZmVFphSkJiaUpYTTlDd2lQalZ1RDEyS1lpVkdtRVVXREFsY0ZGeUlTUVR0ZnhrcFY3UzZlM3ZaeDZWRk90ZlRBR2h6d0tPSTgzTFpDSWpBSjJvenBiLWZOd1N0RXlHRTJJcmc3ZVUyRGZwOHdjOWJiWFE?oc=5",
-      "source": "Mint"
+      "detail": "Fractal Analytics crosses $100 million in quarterly revenue, Q2 profit up 139%",
+      "url": "https://news.google.com/rss/articles/CBMi3gFBVV95cUxPekNjYXMzYnktQlJSZFg1ZDFWOXhmamlnYWZ5RzVHeHBMN0dQQmJkYWg4eHhQMFhkdnk3bkpCZVZiN25Gc0hDdnlhb1hpTC1oVDJ2SDVvcDlXTEVidjVmc3J1eGEySFJWNTNTRlZtRTB0V3RLcV9DMEt2RHNjMUZhOWdnaWdlYUpaRGx2RGZtaE1zQnE0VHBWWTZyZ2Y5NzZVem1KdXQ4UWlqMUR1TEVxODZrdldESEJUWWszXzVLbnZXemp2NHJpMmlldkdrcXZmcFBIbGF0ZTlvM3dITXfSAeMBQVVfeXFMTklFSFZGMHlpQjZVQXNBNWpPOE9uWnFFdnZ5Smc0WmROTm9zZDBoTERUZTdhRnNySHhqWXhXTjRBdEptM0U5NWJyazlqTlNxbVFpZ1czb1pUWXBHaU56bFpXUko2Yzh6UkVrbENCcW1jRk16UEZ1Y0prN3lyTlFLb2ptaUxTc01ZRVI5SEVwaUN2aWJlNWxodnBYeHVOMloyblBxM0ZRV1gxeGZWbGRZRXJMQnZNbjBFNF9pNnVSZ3o0YVpQS3RaYU5zdXVYeDFPU2tPT3V3eE9QQ0hKSVN2cGJtVTQ?oc=5",
+      "source": "Economic Times"
      }
     ]
    },
@@ -501,7 +501,7 @@
    "raw_pct_change": 13.59,
    "corporate_action": null,
    "why": {
-    "headline": "Results disclosed to the exchange",
+    "headline": "Results, reported by Scanx",
     "confidence": "high",
     "evidence": [
      {
@@ -524,6 +524,13 @@
       "detail": "Rushil Decor Limited has informed the Exchange regarding 'Comments of Board of Directors on one day delay in filling of Shareholding Pattern'.",
       "url": "https://nsearchives.nseindia.com/corporate/RUSHIL_03112026183057_Letter.pdf",
       "source": "03 Nov 18:31"
+     },
+     {
+      "tier": "news",
+      "kind": "results",
+      "detail": "Rushil Decor Q2FY27 Results: Net profit jumps 96.6% YoY to ₹101 million",
+      "url": "https://news.google.com/rss/articles/CBMivAFBVV95cUxPNmZ2R2hON0hLVFZldVBFeEloS2NWUjQ3NTF4LWJLaTJkd3pqV3VVSHFndXM3dFlQWjl2VWVnUmFmWExjMEhPNFJwNWJBdmdTQWp2aGRWSFgzTEt1c21XLWNyR1RmRmNyWUZ2Y0JDVHI1NUtXUF82M3J4aG9jQTRxeG5iSHg3R3dwUV9PUFFCaEtVVHVPazkzX2VESEFqZGhIRVIwWmVpd24yNkNQOGxpWHE1LUwxZ0ltcXdfZQ?oc=5",
+      "source": "Scanx"
      }
     ]
    },
@@ -570,7 +577,7 @@
       "tier": "news",
       "kind": "results",
       "detail": "HMA Agro Industries reports financial performance for Q2 2026",
-      "url": "https://news.google.com/rss/articles/CBMipAFBVV95cUxOcWR6eWRBQzBycV9WZEhld2tULXNaaUdKT0cxdTVJZjFBTVgxRnhPSC0tYzZJMV9mTUxDeXZKMVA4d1gxd2dLMnRTQTRvZmlydFFfa2NwMHFRRGFfV0RxYk5nQnV2SHVlVDZzeHp3ci1TQm41WHVzSjYwZlB4bEFWUlUwX1h6cEJXSUJuZHZ2d2h1UzJYVGROcXNwRGxxeUUxYm1LUA?oc=5",
+      "url": "https://news.google.com/rss/articles/CBMinwFBVV95cUxQY3FMUWlNWV9nZXNCQXhYcUllRTRqYzhWWFlHNUJPSkowTTRqSEhFUGJGVEx0YmN5enpIVjRRZ25tbXFsZGxoZEloRW9aVHlrdDhXQnBiRENNdXMzMkE2VXRJc3lBM1ZLeEFjRjV0TGZOamZUNm1lNWpfMWYzNVhwQUNIdnVvYi00enAzamwyNVpwTGVCWG8yTllJYV9Kb2M?oc=5",
       "source": "Business Upturn"
      }
     ]
@@ -627,6 +634,20 @@
       "detail": "Saregama shares surge 9% as Q2 profit jumps 48% to ₹65 crore, revenue up 37%",
       "url": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxQR1l2OTBJUWVHS0E5UXhlOElkWXdaQ0xRdXBWTlNFWk9EVE5NNGl1VXJ1ZWZtSGExLWhiZFJSSzA5RWhuR2FuVmY5SkxadGFIOHoxeWRRTXpPTlZEblJWT0g3SWJzX1pMUnBfNVhwOTdoSUw2ajBHX1p5b19feUdndF85Yk9RMUpkMjV3VW5zb3dYNW5IalJzOG1EZlZzT1dPbGpiYjFPdTXSAa4BQVVfeXFMTlQtbWlRa0lXUkFUQXREbHZXeTF1RnBDOE05aURCLUJnZjhXLXo2ZEgzNTlUaGV5NnNTR3R0ZV9SOUJCeklaeWp0dmF3Z1U2eXp1U1FuUXFZODFteVRaZnItWXJvZUczemtRU0lqWFlwcnBfNXBCNGY1SU9ERnBHYWlfVWRCUkkzejBwZ1NBUVJyV1pJTlREaXBfVkNybktTb2lTa0F6bVNNOG56d2R3?oc=5",
       "source": "CNBC TV18"
+     },
+     {
+      "tier": "deal",
+      "kind": "bulk deal",
+      "detail": "MICROCURVES TRADING PRIVATE LIMITED sell 1,206,521 shares (Rs 76.1 crore)",
+      "url": "",
+      "source": ""
+     },
+     {
+      "tier": "deal",
+      "kind": "bulk deal",
+      "detail": "MICROCURVES TRADING PRIVATE LIMITED buy 1,206,521 shares (Rs 76.0 crore)",
+      "url": "",
+      "source": ""
      }
     ]
    },
@@ -705,9 +726,9 @@
      {
       "tier": "news",
       "kind": "results",
-      "detail": "Alembic Pharma's Stock Hits Upper Circuit After Q2 Profit Zooms Over 81%",
-      "url": "https://news.google.com/rss/articles/CBMixwFBVV95cUxOSlpLcEhzMmVqYmNQSzFva0lyRHRVVEc0Vmg1ei1DVmpoeFVScFVaUk5JUzNSNGdHV3hzcVdWVTJBSE8xVDZKZ3lCelk1UHR3cEFubmlBdDlnMEwwQndUdFBSelNRa2g2UGQyR3BCX3p3aW1UTFViODZ6bHB0d3dlcS1IRXVFVGNZUGhkSmRjS3FLWC0zN1Jwajg5bmxhcm1XUkhwR1FpcXZOWmFGOGI1T01PX2t0OUJJbXdIX2FzbWN5MEFwRWxB0gHPAUFVX3lxTE9QdGdBTFAyX2Z4YmpJbzJCeGo5TlhoRXFvTzFNV3FxRlVyX3IwYkk5M2QtYjhHclVFMVZDdkpNWEU5M0FpTnd0TzdSVW11R2w5TkVjMkY2LUF5X1JaVWJ2d1ZrbXRsREF3SjdmTHhoejFWcEpmeTBoMFctZHg3bzdUZ0Frckt6Ui1Xd21aN3hldGt6dHNXVU9kb0dFaXE5aktJTVcxQ3dmejhkVUJuOUxfN2VkS0RnZzFYQk54eFo1am1MQ2hyVlp0bnJzZnhMcw?oc=5",
-      "source": "NDTV Profit"
+      "detail": "Alembic Pharma Q2 net profit climbs 81% to ₹335 crore on US branded pivot",
+      "url": "https://news.google.com/rss/articles/CBMi5wFBVV95cUxPejVNdFZHZHFyUFFaTGJPUUthaU9GcEpCRS0wdG1mNnhHSXg2UHhEQ0MxcmdnRmRoeExzdWR1TFgtSy1WTG9pcE1pSnJCM3REQ1VROGdaaW1zQmRhMlBrbTZ0RHJCTjlPMlZGaW9FVExrRVdOSjNNYnIweHRnMHJWMmJHZ0h2RnFUdDhVRW1RanB3NWU2VW1BUnFpUFdJS21nTU5WQ21LcmMxajdsU2h1NGtLSWJIVXVraDRBM0lVQmRQVm1fM1o2Q3VzZXpwT0FBT1dwbVoyRU1IYWV4S2EzbTlvUWJWYzjSAewBQVVfeXFMUEpwbXpCNjNVWktvaVdwX2k2c1F0cUlaNzdhaFpjb1FwZVo3dldnZnhtcmoxREFSNXAtNlkta0VTRVgyYTQ5bENpVDRjU25yU1Q3RTJzQkE0dUZEQkticXZEV05zMkRsMW83Z2lwLXA5S3lfRk9OZ2lKVC1XZVE5dTRLREdtb3NheFI0aGx3VE5BcDNhMnJXbklRVWNIdGxwQXlhajIyTWh6dnhBTGFkNXdPWWJkSUNoeEsteWZxTEh0c3Ryd0VBbnVyODdOck12LU1PbUdVX2tKWjRaeWkzeDd2UWdVcUVjM1ZHTXY?oc=5",
+      "source": "Economic Times"
      }
     ]
    },
@@ -791,8 +812,15 @@
      {
       "tier": "news",
       "kind": "results",
+      "detail": "Why Indo Count Industries shares are down 3% despite Q2 profit jumping 238% to ₹132 crore",
+      "url": "https://news.google.com/rss/articles/CBMi0wFBVV95cUxORHpxdEwwTHlZSlZ6dkt3dm9YY2RnSF96Ql84SDdaaWFCNm5zRVp1Zk85OUpSWWZFR2d1TXY4aTI4WkdvY3Vfem1yaUFmb2NDT3pMX1Q5YVdOVExNODZLLW9XdEVxVWdvZWZyRDRvQXByQ3cxZTRWcW1XcXVLaW5WQnFROXVJc1ZIcHFRblB1ME0zZm5aa0lrdHN6cmM0ck9VcWlkbjhSanljTjM3WDgtejFDZGh3V2VWb0IwalIxSXhUR3llM2J2ZHRhZ1NMSi12dENN?oc=5",
+      "source": "Business Upturn"
+     },
+     {
+      "tier": "news",
+      "kind": "results",
       "detail": "Indo Count Industries Q2 results: Net profit jumps 238.5% YoY to Rs 132 crore, revenue rises 57.4%",
-      "url": "https://news.google.com/rss/articles/CBMi-AFBVV95cUxQaUlHekJwNVhENjNpNlpEQ0NkUWxjMng3OFBJM0tETjdRNWdWM2RzR2tVUjlHN0VFOFEtMWN6R1JZaXlXcUV3b0tKcmxWdGNiUzJaalpjNXloUmJYb0dGOUtFN1RZMmNlWFJnYVVBOXFhN0FIY2R3QXB6NFk0NEZ4eVBLQXNiWnFXd0N3bmM4c2xiQjFFaGtsTzRtVnZYTTRUYjlXMEpSbEI3QUtOcXVMeGZ6VFBqakNlbEI0eFE5NWhabkJsMEZHMjZOazBCajNJZ1pqXzBLWTJReFd2VFVyYXdEX25SWXZUdGE2QzcyWWc1S0tRWjc5bg?oc=5",
+      "url": "https://news.google.com/rss/articles/CBMi8wFBVV95cUxPM0NKNDdYc3F1NjlyUThnRTN6VUVLQXljYm5BcVZHUVdCWUZ1TlhTM04tLXBYVlhmY0hCWEI2NkFGX2J1dm5EdTdhcHdPa1FpZ3hTaGN3ajdDZmRNVk5vTlY5YW80WjlNSV9hX3dMMFFNYlJuMXc5Q294Q1RKd1hzRTMtMkpyOWlTb3QtaUM3U3ZVTWtuNDlfN0dvQlM0bVBNSGRnU3RJVDRBZ1MxQnpwWHowcXNCQTY5eU0zcjczYXNFMEhtcktmT3Bfc3FfX25LTWNZWkpCdVdOeGJDZnp1QWZlMlZUb2hEc1RvS3dXdlJIT2c?oc=5",
       "source": "Business Upturn"
      }
     ]
@@ -831,9 +859,24 @@
    "raw_pct_change": 12.35,
    "corporate_action": null,
    "why": {
-    "headline": "No disclosed reason",
-    "confidence": "none",
-    "evidence": []
+    "headline": "Bulk deal of Rs 5.3 crore",
+    "confidence": "medium",
+    "evidence": [
+     {
+      "tier": "deal",
+      "kind": "bulk deal",
+      "detail": "ARIHANT CAPITAL MARKETS LIMITED buy 238,461 shares (Rs 5.3 crore)",
+      "url": "",
+      "source": ""
+     },
+     {
+      "tier": "deal",
+      "kind": "bulk deal",
+      "detail": "ARIHANT CAPITAL MARKETS LIMITED sell 124,001 shares (Rs 2.8 crore)",
+      "url": "",
+      "source": ""
+     }
+    ]
    },
    "news_checked": true
   },
@@ -986,7 +1029,7 @@
    "raw_pct_change": 11.89,
    "corporate_action": null,
    "why": {
-    "headline": "Results disclosed to the exchange",
+    "headline": "Results, reported by Scanx",
     "confidence": "high",
     "evidence": [
      {
@@ -995,6 +1038,20 @@
       "detail": "Rolex Rings Limited has submitted to the Exchange, the financial results for the period ended September 30, 2026.",
       "url": "https://nsearchives.nseindia.com/corporate/ROLEXRINGS_04112026133400_Results.pdf",
       "source": "04 Nov 13:35"
+     },
+     {
+      "tier": "news",
+      "kind": "results",
+      "detail": "Rolex Rings Q2FY27 Results: Net profit up 67% YoY to ₹74 crore",
+      "url": "https://news.google.com/rss/articles/CBMisgFBVV95cUxNZGpRcjQ3cGpnU2VwY3hrR1NSd093ZEEtc0dyZ015TEZ0RHdiOHBwLWhhMTNNdGZreHF0VmZBaUtpdUFSYjluZS1IQnJRUF9rYXBrdUxIZXctZUJxbmM4VXMzX3NwTWJHdTdnclRFYXN5eTVlRFRGa2FEMllIbHpPTWp1d2p6NmF5REdxeVlSdDRpdWlob0E2SXUtYnNfVnJSOGtxWGNTdlFTSmJLeVpJUUVB?oc=5",
+      "source": "Scanx"
+     },
+     {
+      "tier": "news",
+      "kind": "results",
+      "detail": "Rolex Rings Reports Q2 Standalone Net Profit of ₹740 Million, Up YoY",
+      "url": "https://news.google.com/rss/articles/CBMilwFBVV95cUxNX3hIcmQ1UmxMR0VUTHBxbEpqMV9HUnQ3UU9FNHhtWTVqTXliSHF3UjlURFVSRHJtTmtLMk1aV3VNcFJ1OFIya3NBcG9tN2dRMDFlSy1iQ21tNFgtSGM0MzVRbWRjN3lZcTdFQTRlX3FhY0t5M1BvdmtyV3BSaThKNjNDRnlVcnVkeGdEN1ZpT1NPQW96RnJn?oc=5",
+      "source": "Sahi"
      }
     ]
    },
@@ -1022,6 +1079,13 @@
       "detail": "Submission of Monitoring Agency Report for the Quarter ended September 30, 2026",
       "url": "https://nsearchives.nseindia.com/corporate/GANESH_NSE_03112026155003_Monitoring_Agency_Report_for_QTR_2.pdf",
       "source": "03 Nov 15:50"
+     },
+     {
+      "tier": "deal",
+      "kind": "bulk deal",
+      "detail": "PGIM INDIA EQUITY GROWTH OPPORTUNITIES FUND SERIES II buy 250,000 shares (Rs 4.8 crore)",
+      "url": "",
+      "source": ""
      }
     ]
    },
@@ -1226,7 +1290,7 @@
    "raw_pct_change": 10.52,
    "corporate_action": null,
    "why": {
-    "headline": "Results, reported by Business Upturn",
+    "headline": "Results, reported by PTI",
     "confidence": "high",
     "evidence": [
      {
@@ -1253,8 +1317,15 @@
      {
       "tier": "news",
       "kind": "results",
+      "detail": "Exicom Recalibrates Growth Trajectory on the Back of a Strong Q2; Doubles Down on EV Growth in India, Board Approves Tritium Divestment",
+      "url": "https://news.google.com/rss/articles/CBMiiwJBVV95cUxPYl9KMnVhYWtkRUU1QTZEUllYNF9nZFZZc09SeU5BM1BkWHVJd3l1SW5xTGxWOWp5aGpJVlZ6UEpIc3N2TUVZTkxlSlFlUUtlaC1zVS1aX2pHWlpwRkpDanBLLS03MnhlVG4ydlhBSWZUNmQtTTF4aE9YR19MT2p3bUFCaTlsREF3bjR3X29WbEw5VFFabElPQk9qSHNnbTZ5Y1JjcXZWQUhZOTZyU2txc0sweG5IX3M4MUlzVUYwVzlOdUZtcEcxUU9KaV9vR3BTdWRxSEd1ZjRraVJHX016UlR5dnk3WVkwTmZIM2ZjYUkyNzYxcXVmd01UWTBGOGJYc0g5N2FDZXJaODg?oc=5",
+      "source": "PTI"
+     },
+     {
+      "tier": "news",
+      "kind": "results",
       "detail": "Exicom Tele-Systems Q2 results: Net loss narrows to ₹51 crore, revenue jumps 37.8% to ₹388 crore",
-      "url": "https://news.google.com/rss/articles/CBMi4AFBVV95cUxPSTB6TENkWEs3M3EtMUp2WDdiWFlyckJTeGJHM0VVTTlpMm1oMDlCUWZBZEtvYktMS05UU1FuMllCSzhZakNQbG5CRGs4dlMwLXpOMk94VlNtQkxKUDRtZ1BBaDg3QVdPMEpvanQ2eUVmSEdFT1A4M3czS3JjOGgzYU5LSVEwSFFPN0V0RnAwSUZycFZQcjVXM0RDM0xvVU5oZXV5RV9TTTJZM1dDamNIdFR4dVloMWIzV1E5TEdnRC1IRi05dGRFaWtyRXpEVHZQNDFMOU1HZmNrS0tNSzc3UQ?oc=5",
+      "url": "https://news.google.com/rss/articles/CBMi2wFBVV95cUxObnJYS09CRjhiVm9qSkU4c2c3VlE3U0c2bjhpNHdzMXJwbDV4RmNpOVdENVd0MXdSMG1ZX1Q5Vy1fNTh0SjBUTUJ0TE9tbkpxUXl4eEdhVlpWM2NpWHQ3YXdKRWJYLU0wZWxJZWxxa0RJTTlhaHZPUzJPRUs2NnY4Qkxza3dCOXZzYTZxcmVrUjhXd0Y4eXJNV013dm1rUHA3Znh0SFhmSjZZZGxMYVBydkVLZ3NhSU5wd2hnT1NmYk1EWHg3VEI5UjJKdm5xaTJ4V0pnT2RRQXB4cFk?oc=5",
       "source": "Business Upturn"
      }
     ]
@@ -1463,6 +1534,20 @@
       "detail": "Monitoring Agency Report for the quarter ended September 30. 2026.",
       "url": "https://nsearchives.nseindia.com/corporate/ZEEL_03112026182350_SEIntimationMonitoringagencyreportsigned.pdf",
       "source": "03 Nov 18:25"
+     },
+     {
+      "tier": "deal",
+      "kind": "bulk deal",
+      "detail": "JAINAM BROKING LIMITED buy 6,756,088 shares (Rs 43.3 crore)",
+      "url": "",
+      "source": ""
+     },
+     {
+      "tier": "deal",
+      "kind": "bulk deal",
+      "detail": "ARTHKUMBH VENTURES LLP buy 5,449,282 shares (Rs 36.5 crore)",
+      "url": "",
+      "source": ""
      }
     ]
    },
@@ -1594,7 +1679,7 @@
    "raw_pct_change": 10.0,
    "corporate_action": null,
    "why": {
-    "headline": "Investor Meeting, reported by CNBC TV18",
+    "headline": "Investor Meeting, reported by Hindu BusinessLine",
     "confidence": "high",
     "evidence": [
      {
@@ -1621,16 +1706,16 @@
      {
       "tier": "news",
       "kind": "results",
-      "detail": "Dhoot Transmission Q2 Results: Net profit flat after ₹55 crore in exceptional charges",
-      "url": "https://news.google.com/rss/articles/CBMi5AFBVV95cUxNYVEzS1FxZXhNanNNVnllQTZ3dFhOX0s2MVBVZ0tGbkhuTGpibzNDZWdOUWRnY3FTczFaVW91TG12NmxQZEQ3RE4tUlg1WFNjVWE2NzhwbW9VQy1iTUhwVzQ4ZzJtWTZJU2pkR0VOTF85S2hLWHpEQUd1M1RBN3ZrWHlpa1pHeFlBQk1zT05YU3JtTFpPSUszTFEwUnBoX3dJRjByREJ2STl6ZmZEVDJmekd1ZlVQRmhyN2lBV295TmoxODNkZUVQNkZIOHJjU3ZDbkVKR3UyRWl1R0J2blhYaVhBUVfSAeoBQVVfeXFMTjBiRk1UT2doSmh6QXdyZEIwTG5HLWExRzR6elhpR3FuRjhSbERreW1KMjVBdEpyX1B5X0dXakZYd1NTM1JDdFlhNTZBUU1wRE1HdXRPb25ROG13ZjZzMFJxR1RNWnBkMGhKeXlDMjBjd1dWOTdZdFc2YzVqMHVNc1dhN2ZJT3Y0SEp3Y3dIVzRhX1VJVmJDSmlvTUs0YlloTWlKN0FVaTQ3Y3U4Zi11dEloWVBPcXNuUnpDalpwbFZiSjZxZEwtMzcxTEF4cUhqZUMtaG5EcldWRUppNlNWY2lFN1VYajN2d3ZB?oc=5",
-      "source": "CNBC TV18"
+      "detail": "Dhoot Transmission posts 61% revenue jump in Q2, EV business crosses 31% of sales",
+      "url": "https://news.google.com/rss/articles/CBMi3gFBVV95cUxOSDNtczFqczN2R1E2WEkyWFlFZE0xeERYM3l4eTRXeDc1WFRHVlFfak9Jd2xRTE5mb2VjVGZkd1htd09EN0VBZHM2ajlSWnhTX2hWVXUyb3ZEOVp1Nk0xc0dsZy1rb25HS3JJUkRnTWgxaDJtamhtX1VqekxPTF94Nk5kRzlDMTF0Z1JzaVQ2akVWLTNXZXZTLVNmekJnRElCTDBfWGZuQzF2cTk2azJrTFJjU1FRbjFMblBiaWlNSGtKZ2Znanc0a1JFN2tzOFdpM2lQSldlNURtR01pdFHSAeQBQVVfeXFMT3NuRk9EUVYzRmVYZUlfcnppLWViSXdPSTFITkoxaFVIdl96cTJnelpyMEg1d29XcERlODB5X3ctc1V0Q1pIMmYyYnJpQ3V5VVZXQkt3NHUwc3hDQl9fWnM1dWZLeVF5cExUUnpMb1ZGS1FXSWhHM0Qwckh5eHREcW9Bd1d5ZmRIdU9uRmZPNGhqb2w2Tm5SbUJtMThhSDA5LXY4ZHRQaVVZcUF0YUhPOVI5OElkV0hKVElmWjcwNXdQckNuY0F4MU10TFJzUGdoWThLaFJ0QTVDUW1JUTU0dE1BRTds?oc=5",
+      "source": "Hindu BusinessLine"
      },
      {
       "tier": "news",
       "kind": "results",
-      "detail": "Dhoot Transmission posts 61% revenue jump in Q2, EV business crosses 31% of sales",
-      "url": "https://news.google.com/rss/articles/CBMi3gFBVV95cUxOSDNtczFqczN2R1E2WEkyWFlFZE0xeERYM3l4eTRXeDc1WFRHVlFfak9Jd2xRTE5mb2VjVGZkd1htd09EN0VBZHM2ajlSWnhTX2hWVXUyb3ZEOVp1Nk0xc0dsZy1rb25HS3JJUkRnTWgxaDJtamhtX1VqekxPTF94Nk5kRzlDMTF0Z1JzaVQ2akVWLTNXZXZTLVNmekJnRElCTDBfWGZuQzF2cTk2azJrTFJjU1FRbjFMblBiaWlNSGtKZ2Znanc0a1JFN2tzOFdpM2lQSldlNURtR01pdFHSAeQBQVVfeXFMT3NuRk9EUVYzRmVYZUlfcnppLWViSXdPSTFITkoxaFVIdl96cTJnelpyMEg1d29XcERlODB5X3ctc1V0Q1pIMmYyYnJpQ3V5VVZXQkt3NHUwc3hDQl9fWnM1dWZLeVF5cExUUnpMb1ZGS1FXSWhHM0Qwckh5eHREcW9Bd1d5ZmRIdU9uRmZPNGhqb2w2Tm5SbUJtMThhSDA5LXY4ZHRQaVVZcUF0YUhPOVI5OElkV0hKVElmWjcwNXdQckNuY0F4MU10TFJzUGdoWThLaFJ0QTVDUW1JUTU0dE1BRTds?oc=5",
-      "source": "Hindu BusinessLine"
+      "detail": "Dhoot Transmission Q2 Results: Net profit flat after ₹55 crore in exceptional charges",
+      "url": "https://news.google.com/rss/articles/CBMi5AFBVV95cUxNYVEzS1FxZXhNanNNVnllQTZ3dFhOX0s2MVBVZ0tGbkhuTGpibzNDZWdOUWRnY3FTczFaVW91TG12NmxQZEQ3RE4tUlg1WFNjVWE2NzhwbW9VQy1iTUhwVzQ4ZzJtWTZJU2pkR0VOTF85S2hLWHpEQUd1M1RBN3ZrWHlpa1pHeFlBQk1zT05YU3JtTFpPSUszTFEwUnBoX3dJRjByREJ2STl6ZmZEVDJmekd1ZlVQRmhyN2lBV295TmoxODNkZUVQNkZIOHJjU3ZDbkVKR3UyRWl1R0J2blhYaVhBUVfSAeoBQVVfeXFMTjBiRk1UT2doSmh6QXdyZEIwTG5HLWExRzR6elhpR3FuRjhSbERreW1KMjVBdEpyX1B5X0dXakZYd1NTM1JDdFlhNTZBUU1wRE1HdXRPb25ROG13ZjZzMFJxR1RNWnBkMGhKeXlDMjBjd1dWOTdZdFc2YzVqMHVNc1dhN2ZJT3Y0SEp3Y3dIVzRhX1VJVmJDSmlvTUs0YlloTWlKN0FVaTQ3Y3U4Zi11dEloWVBPcXNuUnpDalpwbFZiSjZxZEwtMzcxTEF4cUhqZUMtaG5EcldWRUppNlNWY2lFN1VYajN2d3ZB?oc=5",
+      "source": "CNBC TV18"
      },
      {
       "tier": "news",
@@ -1978,10 +2063,10 @@
      },
      {
       "tier": "news",
-      "kind": "results",
-      "detail": "Redington shares surge 11% on strong Q2 results; profit rises 21% to Rs 422 crore",
-      "url": "https://news.google.com/rss/articles/CBMi2wFBVV95cUxQeGU3SnJ6Ulpqd1R0WXM0ZE9Ga21Qc19YQXh6VDBlaTg5eDlzb2VyTnZta1ZPZXQtOGdYUDBlTVVZeDVYMGxvaEM3WDFJWnlMZURFcTVPMDFyR3RhbWQxTGxOMUpyT0ZtMWd4bW54TlJudjF6UlhpcC03REtjUjNBbUhFbDdkeThpMFpubndySHF2MzJpYW9zdHVfTmhSZFlPUVZtaXhEaW1xeVNzM1oyWUtZeG5XOFV3b21oYi1MT1dnWWc2NkJpT21ndUYyUEFfSDlFWDN6dWNSX1nSAeABQVVfeXFMUHl3Zkdzcnhob1lyTDJvRW9wRUVsMWcxbldhNnZPMnk4MW9EM1dWQTBnQjZObzgwLXRUM3ZKVXlFcGNlbTBKaUxKSmxiQi1kNG1DSnpRVmYySUxSNDBHNFg1TWZDVHdsRHdySXVZc1FlVjBELW84cjFSdXl4cktoR3FBeENUQ2Y2dWktLWtFNmtPLS1ES211OW1TMW5hYzRBUkt2VTJjVlYxY2NMOVhBY3JOaGhlYzJwYkpnQk5WcGhFZmhtekI3LXZFTEVfZDJBUmtzU1gxajBhdmxFeE5SOFU?oc=5",
-      "source": "Moneycontrol"
+      "kind": "broker action",
+      "detail": "Redington Gets Motilal Oswal's 'Buy' Initiation, Sees Up To 36% Upside; Check Target Price",
+      "url": "https://news.google.com/rss/articles/CBMiyAFBVV95cUxOUWtSOVA5Y3pzbkxGUWxnRHVzWmtzbjBhTnM4V3R2dmhJOHBsc192bFo1bHBlZlUtNm9oci1Qazg4SkotNWM5N0plZXNRRy1VLUpMTVJWc3djeVZBWmtWcm5kU1BobmJHRWZ1cVdUZ1ZyS0N6X1hkVVNXVTNVVnBUcWJaTVJsaUZLTWpseGtUQzZ3b1kycWxhREJZREt0VW16SzUwejRqTXZfMjJOT2RyU1l6MHotT3JpYklEZHNqMWl1WkZzZkh0aQ?oc=5",
+      "source": "NDTV Profit"
      }
     ]
    },
@@ -2019,7 +2104,7 @@
    "raw_pct_change": 9.35,
    "corporate_action": null,
    "why": {
-    "headline": "Results, reported by Business Upturn",
+    "headline": "Results, reported by Economic Times",
     "confidence": "high",
     "evidence": [
      {
@@ -2042,6 +2127,20 @@
       "detail": "Allcargo Terminals Limited has informed the Exchange about statement of deviation(s) or variation(s) under Reg. 32",
       "url": "https://nsearchives.nseindia.com/corporate/ALLCARGOTERMINALS_04112026140758_Reg_32.pdf",
       "source": "04 Nov 14:08"
+     },
+     {
+      "tier": "news",
+      "kind": "results",
+      "detail": "Allcargo Terminals shares jump 12% after Q2 profit surges 86% YoY to Rs 21 crore",
+      "url": "https://news.google.com/rss/articles/CBMi-AFBVV95cUxNdmNoOV94RXhQa0ZISy1qXzlPR1ByM1N1Z3JDOXZhRksyZVVsREZldmRpVVVVT0FYR095NVlBRXBsVEpyMWlaUXJTX0R0LUp5bU1pMkNJYWRZYWlhWEd5MG9ocXU1eHBFLU9YMHZORjV1NnJmdlhjNGR3NDFYRVNMZ0NTUm9aQ3ZKU1IwY2dUZHgyTmZlMWpUNFFJVkpRbDcwazNmcGF2T3UtdkNzTXhOTXAzTWhPeFhOX1F5OWtXU3dPcVRUX3lqMHVYWmIyVDRlM3J6YTBNcE5tOUpyTk9mX3JBX2tRaVlaN0w4VHpQd1IwYnQ1NW5sRdIB8gFBVV95cUxPbmdEYWhaZlZmN1JfS1YycnQ4bUxzVkZobGlvVXNBY0VtZUlSNmNQX0YySko3cGwzeGZWWGxnN0QwLWp0QzR6bWJlaVUzQzE3QlFaa3IzODFGSlkxR1JwUlVDekNLcEc5TEJSV2hNZ2daeVFsQUNpUEo3TS1mcHh2TGswcy1PTlFOY3daRzNOZmFaMGVpeXNKWExzZnRzdldGTHRERDVOb0dkN3lHbFlQN00tYW8yaWRkTkQ5MWVGMGVkcTFyQTJOOEE4V2ZfeVpIeDZELTljNmlnMDhZY3BVRnM0X1ZfcVdPYmw3WTlIN2FLQQ?oc=5",
+      "source": "Economic Times"
+     },
+     {
+      "tier": "news",
+      "kind": "results",
+      "detail": "Allcargo Terminals Q2 Results: Profit Nearly Doubles, Revenue Jumps 22%",
+      "url": "https://news.google.com/rss/articles/CBMisgFBVV95cUxNNFFmSldCSlpwRkNROGJFQkNOeXlFeG5lQm5EdDktT2l2VDY2MkVoSjk4enlzVkNpNXFKRGlPd080VFI4MU41cUhoMEQ1NndjZEF2STdobEJzMmZVZDJKdGRXUXozS3djMGVhVTA1UEMxdTMxRWd0X2FWWTZZOTg3bksteFVjeEg3YUQzaXpxR3A1VWdyNW5NSFN1MzVvaThxdlFaVWtpUnN6Um1jcThSNGZR0gG6AUFVX3lxTE4xRTFaaGRrb0pfX3pPWndJNnFOQVRqOHk2Ykt0NnlUa3pEWVlxZ2YtWnRSdEZDLWQ5SzFRZFgwWkl2OFVjMzNiWk1HZWxiVUFOT09GSjJLaHR0NENJWHBLcUxxdUhBWV9pazd6TTgwZ3A5ekMzTE9yakRhaGtBVi1hX0d5UFJYNHJkNzlqY3QzNWx4MUhiUUFTTlBFRXFNUXN3d2JUb0c1V2hyQmxpdFpIUl93YzBsb1F6Zw?oc=5",
+      "source": "NDTV Profit"
      },
      {
       "tier": "news",
@@ -2205,15 +2304,15 @@
      {
       "tier": "news",
       "kind": "results",
-      "detail": "Crizac Q2 FY27 slides: revenue drops 37% but guidance maintained By Investing.com",
-      "url": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxOcGEyVkRTVG51QWlDekpkZGNwUFM1enhCaExwczB0MXhubUhtNkNuamE0amJydHlVU09UdVk3R3NqcTM4N3ExMGtZeHhEUU1kekh4X3RpZzlwSjNJR1NzclZBa0dCeGdZcm5CYjRScHd3YkNEWUsyWGNESFFIZ2ZZcWJOUWhoUGM0OVp5QUlCQWVfcl9qUDRNc1NEdk04WjlEWF9ZekxrUWs3VmJMTlBRZm0xWVNkWkFUVG42bFZ1RzA?oc=5",
+      "detail": "Crizac Q2 FY27 slides: revenue drops 37% but guidance maintained",
+      "url": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxQVkZVZE5YeEtQaTc3a3NxNWZFWWxVOWo1OXVHME10NFBCLS1iN2RHTFFRZWVmRS1WZUlFcGxESVd1VWhQZ0JUTFJzYnJsYk1aSDJxQ21MM0FTek5pN0tSampkb1hSWGllLTZBZGQtbkYtOFdsbVBGSm5vTE5pa082UG5zbDBMRW9XY2tRSVFnT0ZkQXBPQWpFREhIS3RpMTU2TDNvdGtBRnUyMWZrU2ZBYk5mTDJOR0lYUkY4?oc=5",
       "source": "Investing.com"
      },
      {
       "tier": "news",
       "kind": "results",
       "detail": "Crizac share price slides as Q2 revenue falls more than a third",
-      "url": "https://news.google.com/rss/articles/CBMipgFBVV95cUxPejhZdUczWTUwMTBYX0ptZlZjbFByVTZCNlFCd2o1MEJwbVlpQ3F4dVZ0bFA2WmdZY1RyT3pNNHI5MDRQLUFLNjdaQllJZzFYbk03WGIyLVpaelN3SXEwdWM5Mjd4dEs3ZkgxWnZ6NnhpWVk1ZzhhbEdVV21mMTNXcGNyOGFOTi1LeUctOVAtUGhCaUZlWjlKY0ZGeE5JSktaUTc3Q3NB?oc=5",
+      "url": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxQTDNlYU52RTgzN2NiOG9PcV9DbDRjTmJBU3dSYzFzbnhrYkw5ZXRNRWJrbTBEUmFLT0JEVTVqdlUzZUpLbXRKRkZVNEFQdFZFcGtqWU1UZkFjUWM4NTFvRy1ETGdKZ2RfZnl5NE5oclVFSzhld1VTRGpNeWs4NGNPY0JjM0IybEdhSzIyX2tacFpNWWVrcElmUk9LUmVpRnJ0cFRHazR6RFA2b1U?oc=5",
       "source": "Business Upturn"
      }
     ]
@@ -2293,15 +2392,15 @@
    "raw_pct_change": 8.91,
    "corporate_action": null,
    "why": {
-    "headline": "Results (Moneycontrol)",
+    "headline": "Results (Economic Times)",
     "confidence": "medium",
     "evidence": [
      {
       "tier": "news",
       "kind": "results",
       "detail": "Advait Energy Transitions Q2 profit jumps 89% to Rs 19.18 crore; revenue rises 41%",
-      "url": "https://news.google.com/rss/articles/CBMi3gFBVV95cUxPUWNoNnlYOURvM0RWbDZpWmZJSXlyV3NNS1FyV0JIR045R0lPTk53Vl8tS2FUUC1rX09jNVp3YlRsMEFGX3Q4cm1XODlyb2FVaUE5TE1CaGpWSnRuVUJiSVQ3bG10c0x3bmh3dFFyd1BJbGRnaWlvWDlsQW9uNjJQdzZsVUxuRXRVSDlsQnZsSjlwYThhSUw1VUphWHd0d3ZLQUdheHVJS3dLdnBKc2YzZVhYMEtDYUo5eUFDMmhpck1vdG9HWTQzLUVEOWFHMUwtUVc5TXNBbzlDRFhRSGfSAeMBQVVfeXFMT1ZNbEJ5dml2QlZ1WHB1bm1iYUR0QnVOalROVVl3bHJPZU4wSk1XZkRzTWVUekJSTG9QdHJuX1lmZ0U2bFhuZWFWTjM4aHhNRk9Fd0hHWlM3cWVrRUVka3RuMThabkVVLXh6SDhGUjliV3NUaExUZXRLZV9pa1Q4dm9VM05aLUx1bTNJQ3VIT0p5X2dkcEhTU0ZGMWE0M2h3TzNITEhyU2VEYnVvZTNfdldFYllPLUVXOTlCY044WmVHcTNSQWtKbGtBaW1IUWxWd3A1MF9LMU8tV3VvZUJ4RWVnVEE?oc=5",
-      "source": "Moneycontrol"
+      "url": "https://news.google.com/rss/articles/CBMi6wFBVV95cUxNS2dCck4tc25xdGZRaWlyNkl0T3hmOGE1dm1SNjdndmtHZTlxYTAxWl92dUljQXFmZ0YwaWJ6LUhvNkpBeWhBZ0FNNzYzYnQ4X0tkR3FDT3pOUmd0ME5zZXBGeTFkdUMya25vMjAxQzhabGpXTzB2VTRVVnlsNFhnWFZPcmNGVjA1VXR3Zmgyajd3dmQ5Q2g3VlBDamoyaVgtakZCQmw4a2NmZThPVmNrSEhyX2RoMTZ3enpkV1N4Z3lDcmdHbGh0Yjd0dXJOZEpwSVJ2SHpHQnhzOEdWYkpMbnFvSldZM0lJQTJV0gHwAUFVX3lxTE5rRlh2RnJxQkY0UHBTa284Sk14RXF6eE9mNFpIQmh4NFkzNkV2OUtPV01uUy1BYmRLVjRvTFFYNWg4ekR4RGktVmRTVVV4UDdQUDdyby11eWZ0THE5b254QzNULW1jckNfMUM5Z2hETXk1SElxblFBWFF1WjZvT2Y2LVp0RE53ZzdWVFU2WmNUSDZIdVl1VlMtMkR2ZVJJTW9nZnFLRl9NWEhmNFc4X0pJZnFTU0lZUDhlTDJvWTMxbDJHRlFJMjMzTDJ0TnpDZVRDNDFxeW9RMUVLWVpZQ24zekRGbFNmSHRBaVJ6SkRnMQ?oc=5",
+      "source": "Economic Times"
      },
      {
       "tier": "news",
@@ -2506,7 +2605,7 @@
    "raw_pct_change": 8.55,
    "corporate_action": null,
    "why": {
-    "headline": "Results, reported by Businessworld",
+    "headline": "Results disclosed to the exchange",
     "confidence": "high",
     "evidence": [
      {
@@ -2515,13 +2614,6 @@
       "detail": "Smarten Power Systems Limited has informed the Exchange regarding a press release dated November 04, 2026, titled \"Press Release on H1 FY 27 Financial Results\".",
       "url": "https://nsearchives.nseindia.com/corporate/SMARTENPOWER_04112026105622_NSEPR03112026.pdf",
       "source": "04 Nov 10:56"
-     },
-     {
-      "tier": "news",
-      "kind": "results",
-      "detail": "Smarten Power Systems H1 FY27 Profit Jumps 104%, Revenue Rises 77%",
-      "url": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxPT1pldEZ0UEYwX1pOUVh2dWV3aVJsOXllc0dJTkFDYXlINGpZck9yckVCUzdBckNLSDJWcnBwR3FFM0FfNjBySUptd3dtNDlYbTZFTm5LZzFNanV4U181cml0cGF3WFpsZU5GMThOTkl2V0hMTE5pQzNfc0JJTGZnYmhudmhkcVZpcG9HNDk5VlN4YXB4MnBqRHpLejQyUXFoQkJOOEpwV080cHM?oc=5",
-      "source": "Businessworld"
      }
     ]
    },
@@ -2993,7 +3085,7 @@
      {
       "tier": "news",
       "kind": "management change",
-      "detail": "Skyways Air Services accepts HR chief Kamal Kant Virhare's resignation",
+      "detail": "Skyways Air Services accepts AVP-HR Kamal Kant Virhare's resignation",
       "url": "https://news.google.com/rss/articles/CBMixgFBVV95cUxOSTNVX0VQcGg1b3hCTjdjdHBiTTdXcUlYaWFHLVZ4MGlwMUFMTEhlemwxMFNqSzhXVUVtLUhoLTZjSHRLakUxM0E4R2lUNEo5X181SjNpajEtOF9SYnR6YURpVmRSTThqYkxsYWJ1YzFPby1Eb2N6SV9oVGZNVzBhVjRzNjNWS1Nmb1BqajczN245dE9uRnZQNEVUSGFRT2RGWjZpTERtMkNtOWFtZ1NLQ2xYU3l3Q2VtYXB3cHBfbVZPU29wNVE?oc=5",
       "source": "Scanx"
      }
@@ -3014,15 +3106,36 @@
    "raw_pct_change": 7.69,
    "corporate_action": null,
    "why": {
-    "headline": "Regulatory Or Legal (Business Today)",
+    "headline": "Results (Mint)",
     "confidence": "medium",
     "evidence": [
+     {
+      "tier": "news",
+      "kind": "results",
+      "detail": "US Midterm Election Results Impact: Senco Gold, PC Jeweller, Titan- Jewellery stocks gain as gold, silver prices rebound",
+      "url": "https://news.google.com/rss/articles/CBMimAJBVV95cUxNcFFXc1lPZEQ4SVhQRzFTeWt4cHo0d1pRN1RScFp5cmpMQkdiU1g1VUE3cGptWFZ1WUhTM0FTdUY0YmIxVTFFNEw0ZzNtWEZhUnJCZkEteEhuUjRSVTNGWnFQNm5SQTBhd1JsNlhSSjhvNzN1Q2pzLVpHMDU0dmt1ejhlYzFrZXpPU2hxandyMGFVUUp4YjllaWlSVkw5N1laVVhjRmZwNWlmb05XdzFQOXRmaVFESUtWVFhTM0FHNzdMQ25YOVI4YlEyTEtwWnQyUzJPdlJHQXYwZDRfLUJMMHY2dXJ1TDl6Nk9CT3FzYXVBUmsyblU5NzQ3a0k4SkZyakxYMFRJWG16djhhNzN2WE9SZ2dkSXRi0gGYAkFVX3lxTE1wUVdzWU9kRDhJWFBHMVN5a3hwejR3WlE3VFJwWnlyakxCR2JTWDVVQTdwam1YVnVZSFMzQVN1RjRiYjFVMUU0TDRnM21YRmFSckJmQS14SG5SNFJVM0ZacVA2blJBMGF3Umw2WFJKOG83M3VDanMtWkcwNTR2a3V6OGVjMWtlek9TaHFqd3IwYVVRSnhiOWVpaVJWTDk3WVpVWGNGZnA1aWZvTld3MVA5dGZpUURJS1ZUWFMzQUc3N0xDblg5UjhiUTJMS3BadDJTMk92UkdBdjBkNF8tQkwwdjZ1cnVMOXo2T0JPcXNhdUFSazJuVTk3NDdrSThKRnJqTFgwVElYbXp2OGE3M3ZYT1JnZ2RJdGI?oc=5",
+      "source": "Mint"
+     },
      {
       "tier": "news",
       "kind": "regulatory or legal",
       "detail": "PC Jeweller stock falls over 4% on 'warning letters' from SEBI",
       "url": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxQaUF3MWFHVEl4SmdSdzRteDBkRU5EZzBvWTUtQWVFNUlta2NiWnp2eTZpYmZabWlXa2N6Q01YdVNoMlJudUkwMC1ZZWlSVXlDdmliVWtwSUdOWUdyNHVGTkkwY0RvS09IT3c5ZDgtaTBEVEt2LTRzbmRzXzRVSThUWDlpU0p0clFLZUJzTG5keEpNLWlrU3A0WTdJZmtjWWkyRGRsb3ZreWZGZWtWeWdVWnBEelVHekVNdzh1b2tvYmotQTjSAcgBQVVfeXFMTlZkOVJYc2RJTFFqWUJZRzhuXzdaOUVUUFoxMUFZbm9tRlRUT2loR2RGa09PZXo1Q29GalZLbk1YQXFoRHNmVlQyQ0tOQmJKQUVacFdrVmNpMzFhXzR6cjdyRkpOQWIwYVFPc1lGb2g3eXpmcnpJVUtuMV9QT2NTWDlGaFVCOGt0MS1UQWRoc2s2N244T1lVOGFoVDdiS3NiVzJ4VEM0cG15OHlMT1M1MWd0dkZBRWNLVXc3dW1yQmlGS0wtMWR6SmY?oc=5",
       "source": "Business Today"
+     },
+     {
+      "tier": "deal",
+      "kind": "bulk deal",
+      "detail": "JUMP TRADING FINANCIAL INDIA PRIVATE LIMITED buy 71,404,981 shares (Rs 110.0 crore)",
+      "url": "",
+      "source": ""
+     },
+     {
+      "tier": "deal",
+      "kind": "bulk deal",
+      "detail": "JUMP TRADING FINANCIAL INDIA PRIVATE LIMITED sell 71,404,981 shares (Rs 110.0 crore)",
+      "url": "",
+      "source": ""
      }
     ]
    },
@@ -3410,22 +3523,22 @@
      {
       "tier": "news",
       "kind": "results",
-      "detail": "JTL Industries reports revenue of ₹13,354 Mn in H1 FY27, showcasing robust growth",
-      "url": "https://news.google.com/rss/articles/CBMivwFBVV95cUxNcTZueGtveHE4VUNnR0dDVm9fY2M1VEpVckQ4TVN3LVVwRzBUSENVTWRQQUFMV2lORURKZWJrQWI0SUFYSVdKSW1rckt4M29Cb0tFYWNOR1UyMEsxQW9UZjBDaDRCZ19iazJobVFwZW95WFpNdEZVM2RpbGdJZktCeWFFdTBjVkZmRlE0TGx0ckdyVkdrNEpjUzJtRmNWendjTnIxSElhLUVNNVN2OHlPb0VSbjNtVmtDSnRYajJaZw?oc=5",
+      "detail": "JTL Industries reports ₹6,138 Mn revenue in Q2 FY27 with strong growth metrics",
+      "url": "https://news.google.com/rss/articles/CBMitwFBVV95cUxNZ20tV214RmpEVmR6U0NONXBrUE9DUTRIa1ZGcmVCMXFlb1E0SDBCbU52UkdwQzdDM2wxd2lUY3MtTUhWMHFwLUZWSWRtREpYOGIwYkZlTlBISDdzUk5CeE4ycFhyX1VCZ2VPak5nR01RU3NJNW95OW9JLTZ0Z2gwMUtjVUtHRUs4bVVEa1gtbVlib295S1JmQVk4R0JzSzgzM2EtTE9ad3dISzV2TnZLbm9fakFoelk?oc=5",
       "source": "Business Upturn"
      },
      {
       "tier": "news",
       "kind": "results",
       "detail": "JTL Industries reports quarterly revenue exceeding ₹53,000 lakhs",
-      "url": "https://news.google.com/rss/articles/CBMiqgFBVV95cUxPcTh4OGhValR0UGhKNTNBbXBRTzBaQWtRUVRaMGdCOXhDdWhMYzVmLTd4YXE4V3dLZS1xZ2tMOTVJb0sxbWRrOUVUT2F4b3psODhGQW5RRHRoVlFfM3c3OHExT1B4TzRZNTBwN3lnRGpvU1ZkTVl0VjdCaUpxV2VON01fbExjOEpnLWF3WV9xdUQyNmZyME1HWEtmRjBxYTdhOTZTUFg2TWxsdw?oc=5",
+      "url": "https://news.google.com/rss/articles/CBMipAFBVV95cUxPaVU3VlBpbUY1Y3ZKRkNVVHV2b0ZmYjFnTFhXVmpHR2hlR3hZRWJjLWNjYzZCRXlDMVhCaDlkNTVIV1p3ckgxWmVERmEtMG50YlRmUEF4YVJGU0hNZkp5Tklmcm4weklCUjkzMVl1YUIyZnBDeERtUklnYjJCS1hpQVRhb0owYVJ1enNwQktobi00WndJMFNROFI4OHhyMHNoSVR6Tw?oc=5",
       "source": "Business Upturn"
      },
      {
       "tier": "news",
       "kind": "results",
-      "detail": "JTL Industries Q2 Results: Net profit jumps 31% YoY to Rs 28.2 crore, revenue surges 43%",
-      "url": "https://news.google.com/rss/articles/CBMi6wFBVV95cUxNUDBBRHpXblRBa09tZjE2dGJpUkpsWDZqVTM1bTZHU3dJTDhmZHZJZWhPemp4TFd6ektmVE9VMXVuZEhVb3VER2Vib0VLeExXRXhxUWlpd0lZdk93QlkzWGpIRDFYN1c1LUdSZWRBNjE5aXNVQ05QNV9YMFA3M3hoRlhrSkdxS013bGh6bTZqU3JDUmc1WkJLMXpNY1k3RWhvblBqd0Z6NU5xMWxuSFdHVUUzT2JyMUlhUlJjM0JMelJQNnZvVERJbEU0dEJPYkpFaEZPclZDeU9VT1pua2JrYk1jY2V4R2NnTjZN?oc=5",
+      "detail": "JTL Industries reports revenue of ₹13,354 Mn in H1 FY27, showcasing robust growth",
+      "url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxNYTRNZ3YtZE1POVBCVFdWUHhEdkk2cW1uczNjMF9QU19IQWV3Tm5VMnNOeFdBRzVZV1FXUkk0R1Z0aTZGYlZTaWxLWG56eFJFQl80SHlkUldsd1hLWVl2ejF3Z3laN3VMVXF3M3lCcG91MHhRbktKdm9sTHZRcTZsclZfQTV3RTVock9kQnRsWVdwbWVKUFc5Q1JUdE94YUVzdG9PX3dONjR3aHJlRE1SRXNOXzJqMV8ybEE?oc=5",
       "source": "Business Upturn"
      }
     ]
@@ -3614,9 +3727,17 @@
    "raw_pct_change": 7.14,
    "corporate_action": null,
    "why": {
-    "headline": "No disclosed reason",
-    "confidence": "none",
-    "evidence": []
+    "headline": "Results (Business Upturn)",
+    "confidence": "medium",
+    "evidence": [
+     {
+      "tier": "news",
+      "kind": "results",
+      "detail": "Blue Jet Healthcare Q2 results: Net profit jumps 96.6% YoY to Rs 102.52 crore, revenue surges 127%",
+      "url": "https://news.google.com/rss/articles/CBMi8wFBVV95cUxOUkRwU2sxN3QzTGVHYm95bHZOQkdBR1lQeXAzWElKdllMV21faEI2UkU0OHJVZS1jSF9jYmdRSnlJcjdXdXhIbk43SmRVcXZrZTl6X3h6TjlHT0RpbjZ4TUlGS0hZUGtTSHduUVlDRW5OZGx2bS1RMEYtQlJDZFRQdUlpM245c0IxZXRJY0kza3dTd3JwX0IyMHU5R1lUUnVLRUo2cmZ1VHNDSHk1dGVLMXNmeHZNcldUWEZZMXhGYmRvQlVBeWtmbFM0R2wyN0Vtc29BVFpmMmF1QVJ3LW9JQW5WWFJwd1VWSXg5OVktN1d3YjQ?oc=5",
+      "source": "Business Upturn"
+     }
+    ]
    },
    "news_checked": true
   },
@@ -3920,9 +4041,17 @@
    "raw_pct_change": 6.85,
    "corporate_action": null,
    "why": {
-    "headline": "No disclosed reason",
-    "confidence": "none",
-    "evidence": []
+    "headline": "M&A Or Stake (Investing.com)",
+    "confidence": "medium",
+    "evidence": [
+     {
+      "tier": "news",
+      "kind": "M&A or stake",
+      "detail": "Form 8K FACT II Acquisition Corp Unit For: 4 November By Investing.com",
+      "url": "https://news.google.com/rss/articles/CBMiswFBVV95cUxPNXpRd2RiY2xqOGJ0NHk3R2Q2QlBReVNSRWZDMjNlcF9EeHRJUVRweFVNU21UR0ZXTWJZQVdVWlJPd1MtQnRJNHlwRi00ZzVGRTBEQ2dzcDhTOFFNLTA5UlZUTmE3TU93amR6a2czRG5IR01MUGhfazBJQk0tS3lKQ3ZCSGRETF93YjlwbG9zUDdSYkNoeDB6NGNIbkJoV3NzRVNBTWtQUF90TllBeTZKNWw3WQ?oc=5",
+      "source": "Investing.com"
+     }
+    ]
    },
    "news_checked": true
   },
@@ -4194,7 +4323,7 @@
   },
   {
    "symbol": "EASTWEST",
-   "name": "EASTWEST",
+   "name": "EAST WEST FREIGHT CARRI L",
    "board_code": null,
    "series": "EQ",
    "direction": "UP",
@@ -4224,9 +4353,24 @@
    "raw_pct_change": 6.72,
    "corporate_action": null,
    "why": {
-    "headline": "No disclosed reason",
-    "confidence": "none",
-    "evidence": []
+    "headline": "Results (Business Upturn)",
+    "confidence": "medium",
+    "evidence": [
+     {
+      "tier": "news",
+      "kind": "results",
+      "detail": "Marine Electricals shares rise 2.4% after Q2 profit nearly doubles to ₹31.8 crore, revenue jumps 82%",
+      "url": "https://news.google.com/rss/articles/CBMi4AFBVV95cUxPaWp0VVNZc0cwdjI1QkY0OU1rTXFjY3haYmgwMERON1F0c1RLM3RjRFl4a3FFSjdYVXNhYzNhVUZ0ZU9CM0Qwc2dPdHJ1WDVHNGVzWXRFRmlITnc4S1BFU1lDTFF4cGhNZzk3Vjgyb0FSRERxbEswaTYzeHk0SURvSUNObndTM2V5X3YwOEt5akh1dWlxeVBmbUxJZFp1Z3JlenMzeDBhMjZQckRqYmt6a1VmN2wtcmlyZ2Y3Z2JnQnRyek15R2lnOGJfWGpmUXZUSGRUY3hkelQwUzJ1WDVSMQ?oc=5",
+      "source": "Business Upturn"
+     },
+     {
+      "tier": "news",
+      "kind": "results",
+      "detail": "Marine Electricals Q2 results: Net profit nearly doubles to ₹31.8 crore, revenue jumps 82% to ₹404.7 crore",
+      "url": "https://news.google.com/rss/articles/CBMi2gFBVV95cUxPalRmWGpsZTFtS3pzS2ludWZIb1VDZ01lYi1kSm03cDZnWDVNWjQ4WmJfWHN1TVgtd295ZTI4d09DTTA1X2dFSDIxSkdWQk9NUkZRX0swQVNUVUc2RnNuczdRbi1XTTBjVVBCZkpLejNhQV92NThKc0xWcWFJbzlHNUszdW9zSVNMcE1vUDViX1RPclRrSWZCX0VUakZNUVh4djBDVmtKckR4Z3kxNjBEY19fRjN2ci1uSnBFWllMd3hNMXRaUFZuMUdFeFljWTItRnBjMHJWY1k4QQ?oc=5",
+      "source": "Business Upturn"
+     }
+    ]
    },
    "news_checked": true
   },
@@ -4243,9 +4387,17 @@
    "raw_pct_change": 6.67,
    "corporate_action": null,
    "why": {
-    "headline": "No disclosed reason",
-    "confidence": "none",
-    "evidence": []
+    "headline": "Results (NDTV Profit)",
+    "confidence": "medium",
+    "evidence": [
+     {
+      "tier": "news",
+      "kind": "results",
+      "detail": "Buy, Sell Or Hold: Hitachi Energy, MCX, NHPC, Eternal And Varun Beverages — Ask Profit",
+      "url": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxNRk01Y1AtRDBKczdfcVdYWGs2THhLY3pFeGgtMWpvd1g2RXRRTEFYUHhCTktvOUZqa1haT0lEQm9rYnVMbXc3NHFDejBvWkFvY05OMFFJcmktZWxqN3NsUnhZdXJkVzlxRFZLYWFqNHlyVUN1YWc0aTNKc2E4ejdHVWVRMF9zOHZzR1VwaU1aU2pKWmF1VWt2VHJmMUk3ZlB1Qjl4OUxGOFVIekdpa0hCdzdPZEs4TDd5TFkwZGlhUk_SAcgBQVVfeXFMUHkwQnBIZWY3TFJpa3NsZWxpZHVmX2dSd2ZHaG03UlRWRVNKTndmNEZ1b0JOa1lhT0wyRGc0MmlfYkRJTzNMeUl2VTRROFNhRXE0bFZrZEFVX2dYblJXbXFzWS1nYzk1amRsN0VVQ01WT2ttWTZUN3g5RHgwdWFDWjRIV1l5akpJaml0V2NreFduR20tRmNKLXdKeUQwdE01YkQ1UnVZeWhWd3RUOHhOOE11TzRDY3VGX3RMRm5FM1VXWVdzcWR5cHM?oc=5",
+      "source": "NDTV Profit"
+     }
+    ]
    },
    "news_checked": true
   },
@@ -4281,9 +4433,17 @@
    "raw_pct_change": 6.6,
    "corporate_action": null,
    "why": {
-    "headline": "No disclosed reason",
-    "confidence": "none",
-    "evidence": []
+    "headline": "Results (Scanx)",
+    "confidence": "low",
+    "evidence": [
+     {
+      "tier": "news",
+      "kind": "results",
+      "detail": "Navkar Corp Q2FY27 Results: Net profit rises 170% YoY to ₹11.8 crore",
+      "url": "https://news.google.com/rss/articles/CBMitwFBVV95cUxOOVUza1ZmTlZUZl9TZFV0SDJRaThhOVBBcXZCLXhDUHg4c0VILWx0cTJQdGZReUhzcVpRMGE2WVhiQjNpWE9iZVFHSG9EYW51VkxWUmJHVnJuUnhmbzcyUDFzY0RtTVM0WjV1WVZfb1Qxa3dwRk9IQmVyYnhORVJhZXMyb2RyQXdQSzhsekw0UzZkb2tIYmJ6RDEyemx4N1p1bmNxYjNFVE44TkpScEFVVHY4a25BNU0?oc=5",
+      "source": "Scanx"
+     }
+    ]
    },
    "news_checked": true
   },
@@ -4300,9 +4460,24 @@
    "raw_pct_change": 6.58,
    "corporate_action": null,
    "why": {
-    "headline": "No disclosed reason",
-    "confidence": "none",
-    "evidence": []
+    "headline": "Bulk deal of Rs 41.6 crore",
+    "confidence": "medium",
+    "evidence": [
+     {
+      "tier": "deal",
+      "kind": "bulk deal",
+      "detail": "ACME CAPITAL MARKET LIMITED sell 773,475 shares (Rs 41.6 crore)",
+      "url": "",
+      "source": ""
+     },
+     {
+      "tier": "deal",
+      "kind": "bulk deal",
+      "detail": "ACME CAPITAL MARKET LIMITED buy 773,475 shares (Rs 41.4 crore)",
+      "url": "",
+      "source": ""
+     }
+    ]
    },
    "news_checked": true
   },
@@ -4473,16 +4648,16 @@
      {
       "tier": "news",
       "kind": "results",
-      "detail": "Fusion Finance share price zooms nearly 16% on Q2 turnaround",
-      "url": "https://news.google.com/rss/articles/CBMixAFBVV95cUxOdjNpejBlc21Da1Z0ZFB1VWdaYjJ0bEhLeW5fdElKVGQ3UWNpdDM3WG9oUnd4X1NOaFU0MGlNTjZsU3JDOGpqZF92UFp0WE5tdXl0TDFkSnR1ZGl0czc5bDZiVmJfaUZDekFqWGdNVGlnS2FNbFlHMHh0NkpDMldEUnN5UzVWM0xzUWtUbUtPZ05TUDF1dmZwa09mNVJQN3lBdl9OVS1ndFlSSUVWZEdzcFVuS21sMzY0TnZZeVgwbjFyWFIw0gHKAUFVX3lxTFBrQTBzMEowWnVwMXUzUGdtTUNLZ1licDBaby1YNWhOZHdySVI4M2plc1loZzdTdy1WT0Y0WWZzRmZaRlVLaXVyaVQwdXJfUkRvenhtakk1UVBKSjh5UW50MU8zUWZnRDZEdDNtUWZOMkxKNm9WVkFINS1BbGNtTlFYT2lqTDgwM1lsUkZ1bGlGZlVpY1I0NWlvNTlyakFVNWZ0ZGl5MmNDNU1yQi1Ba014UFB3Z3FrOUhGaFM3VnJjTUk0RWgzMng4ZGc?oc=5",
-      "source": "Business Standard"
+      "detail": "Fusion Finance swings to Rs 86.5 crore profit as asset quality improves",
+      "url": "https://news.google.com/rss/articles/CBMi3gFBVV95cUxOQ1JYWk9QVHhrdUNjMmUyeGp5clJ5aUJRX1Z2aF9wTmFxUHgtZlhlTVJBSGtRQ1dONURqcTJNbWlMRVdWWGd6UVdCR0JOOTllbERrRXhlaVMwSHdkTXpLTE12WHJtY2MwamEzRW1Ra3VTeU44bl9nLVFGb0RSTVpQY3Z3cmNVTDgtaTNUMC1mWmUtQVgyOVJFRlVxMEN3cUFES3JrQjVLaG1WMFpuMXQ2cDZyc2t1NTVXTmx1WUFfV3hTU3BMblhCaDd5U3dLYlphNTJDcVVlZzktWEtmcmfSAeMBQVVfeXFMT3o2VXYzWjhFWHdITVR1dllHVjJENTZqU0hPMjd1WTJqbkRZZ0d2VElKR3IzVnd3OW55ZXA2ZzV3SHh4QXlGQnZBejYtRWNPWC14LTZLQ0dqWVlZbFJQckVhU2ZCVTVsTHVWd3ktd2c4dXBZekEzajFVUkpfVUU4V2RfUTZ5ZXNBUmlFYjJpV1BoNTd1SmVSUWxsa3V6T2RnT1Z0Wml1R1BzTEFjNEwydU9VemdzRGRJUFZsMFQxbXliRVFLMUNYSGUtcVpTSFNKN0RNUlphRHNrdXJWNlU1RFJPbWs?oc=5",
+      "source": "Economic Times"
      },
      {
       "tier": "news",
       "kind": "results",
-      "detail": "Fusion Finance swings to Rs 86.5 crore profit as asset quality improves",
-      "url": "https://news.google.com/rss/articles/CBMi3gFBVV95cUxOQ1JYWk9QVHhrdUNjMmUyeGp5clJ5aUJRX1Z2aF9wTmFxUHgtZlhlTVJBSGtRQ1dONURqcTJNbWlMRVdWWGd6UVdCR0JOOTllbERrRXhlaVMwSHdkTXpLTE12WHJtY2MwamEzRW1Ra3VTeU44bl9nLVFGb0RSTVpQY3Z3cmNVTDgtaTNUMC1mWmUtQVgyOVJFRlVxMEN3cUFES3JrQjVLaG1WMFpuMXQ2cDZyc2t1NTVXTmx1WUFfV3hTU3BMblhCaDd5U3dLYlphNTJDcVVlZzktWEtmcmfSAeMBQVVfeXFMT3o2VXYzWjhFWHdITVR1dllHVjJENTZqU0hPMjd1WTJqbkRZZ0d2VElKR3IzVnd3OW55ZXA2ZzV3SHh4QXlGQnZBejYtRWNPWC14LTZLQ0dqWVlZbFJQckVhU2ZCVTVsTHVWd3ktd2c4dXBZekEzajFVUkpfVUU4V2RfUTZ5ZXNBUmlFYjJpV1BoNTd1SmVSUWxsa3V6T2RnT1Z0Wml1R1BzTEFjNEwydU9VemdzRGRJUFZsMFQxbXliRVFLMUNYSGUtcVpTSFNKN0RNUlphRHNrdXJWNlU1RFJPbWs?oc=5",
-      "source": "Economic Times"
+      "detail": "Fusion Finance share price zooms nearly 16% on Q2 turnaround",
+      "url": "https://news.google.com/rss/articles/CBMixAFBVV95cUxOdjNpejBlc21Da1Z0ZFB1VWdaYjJ0bEhLeW5fdElKVGQ3UWNpdDM3WG9oUnd4X1NOaFU0MGlNTjZsU3JDOGpqZF92UFp0WE5tdXl0TDFkSnR1ZGl0czc5bDZiVmJfaUZDekFqWGdNVGlnS2FNbFlHMHh0NkpDMldEUnN5UzVWM0xzUWtUbUtPZ05TUDF1dmZwa09mNVJQN3lBdl9OVS1ndFlSSUVWZEdzcFVuS21sMzY0TnZZeVgwbjFyWFIw0gHKAUFVX3lxTFBrQTBzMEowWnVwMXUzUGdtTUNLZ1licDBaby1YNWhOZHdySVI4M2plc1loZzdTdy1WT0Y0WWZzRmZaRlVLaXVyaVQwdXJfUkRvenhtakk1UVBKSjh5UW50MU8zUWZnRDZEdDNtUWZOMkxKNm9WVkFINS1BbGNtTlFYT2lqTDgwM1lsUkZ1bGlGZlVpY1I0NWlvNTlyakFVNWZ0ZGl5MmNDNU1yQi1Ba014UFB3Z3FrOUhGaFM3VnJjTUk0RWgzMng4ZGc?oc=5",
+      "source": "Business Standard"
      }
     ]
    },
@@ -4539,15 +4714,29 @@
    "raw_pct_change": 6.44,
    "corporate_action": null,
    "why": {
-    "headline": "Results (Scanx)",
-    "confidence": "low",
+    "headline": "Results (CNBC TV18)",
+    "confidence": "medium",
     "evidence": [
      {
       "tier": "news",
       "kind": "results",
-      "detail": "Uno Minda reschedules Q2FY27 earnings call to 3:30 pm on Nov 5",
-      "url": "https://news.google.com/rss/articles/CBMiswFBVV95cUxPZTEyZEtYdVRIb1EwWks3NG1yOVRQbEljOVJLYmdzSVJaM1NIUGpiRlN6eVNMNHJDTDdTOWgzM3BpeEtfeVBBQjBKSTZSM3JnTXNLT0ZkOXBXLWZBY2tRZmxDQzFmNEJ0Z1dDeEJUd19NUnRNVC1OQ2ZUM2h5ZnBzcGRxNGZZX0JwOW5paDdiSEJBNDktQUdrR2ZubkFIblFfdC1jSUxFQ2pneDhKdXJ5b0RrSQ?oc=5",
-      "source": "Scanx"
+      "detail": "Uno Minda shares rally 10% after Q2 profit jumps 38%; board approves ₹85 crore investment",
+      "url": "https://news.google.com/rss/articles/CBMivgFBVV95cUxNZE9TQVRMNU9CZDhnSVJlVkhUVkNLX0xoWHQ0bXRoXzdaeUh4OVJTUl9mYU83YmxFdjhIbjAtR1ZFd3FGVTM4eGlDSGphTGhNUk5TcHlPM05ldnlWQXA4QnNPOFJSVTk3WkFmZG05aE41VUxqOVhfdDU4bGlVbUZ5akJpQXc0Q1FSMkdoZjdZa1M2NW1Xa3JPeVR3aVRDRlE1RUFNMHdycUJJTHZrXzBpdkE5Ty02Vm1SbXYzZkFB?oc=5",
+      "source": "CNBC TV18"
+     },
+     {
+      "tier": "news",
+      "kind": "results",
+      "detail": "Uno Minda Q2 results: Net profit jumps 40% YoY to Rs 420 crore, revenue rises 38.2%, beats estimates",
+      "url": "https://news.google.com/rss/articles/CBMi-gFBVV95cUxQRHg3MVdLX0xyaUlPaHBpbElZX2tULU91eXBxaUZEeWhCQkVSdnlVeVZqc0M3LTR3eXpVZTNybGtFcGo3ek5acjdJWVlldFBIdmNBaFR0TUhTaDlwOHZ1RTYyQTY4djNlYzJmYUlWd3pFU0hBeUNTMk9wejhyeWF0ZE1BdE50RmlDMkZyNkNlLVRQeEwyc1l0UEdMSTEyU1JOYVlMQnVkUVBQbkFEUXI0UUdGSk5ETjVrQS1ZSUxMMDVZc2dFVjVKQWdGQUg5a185djN5RGNtQzhJbFJxdFhvMWZ6V0U1RF9BQkhZQ2pRYklmR3RBTUtQVTBR?oc=5",
+      "source": "Business Upturn"
+     },
+     {
+      "tier": "news",
+      "kind": "operations",
+      "detail": "Uno Minda approves Rs. 85 crore investment for sunroof manufacturing expansion",
+      "url": "https://news.google.com/rss/articles/CBMitAFBVV95cUxNeUV1OFo5X0JEQlpGSzIyZ04zaU4wcUFuam51RlJzcXhqYjI5dEoydjdaamRkNUZhZkZzYzItVDMteVhSTHNraW9ONmRaYVlzel9BbDI2dVZWV0RSRWI5VnktMzI1VXAyQlRKZWw0V011c0xacVFOa1lpMm5uakxOSDh4VGI4Y3RlVEQtc0JrdFlwdTBpYXdhQXpjdk9jLXpCQlB2NzhOT09EbEJjcDVrM0RhV0E?oc=5",
+      "source": "Business Upturn"
      }
     ]
    },
@@ -4627,16 +4816,16 @@
      {
       "tier": "news",
       "kind": "results",
-      "detail": "Exide Industries Q2 results: Net profit soars 75.1% YoY to ₹386 crore; shares jump 7%",
-      "url": "https://news.google.com/rss/articles/CBMi_gFBVV95cUxPTFNCcmhMQUkyalN0QUYzS1gtaHF2ZVlaMk1ScHlPS25fQmdpR2NhelMtTUJRT0ZZUVViSjk5U3gtb1JGVkUwZ2xnMTBDLS1JdlBEeFdlbF9SQjVCMVRmWjVWOFhaVlRPNFZrd2pCV2NTTzFnSE03NmhUck1qRHBMQ05QT2lVOFZzakFianZYQ0gxcXNBUG9uUTVpY08wVGlxY3Z6dnhfUXI2a25sMVdRQ2ZSR3Rwbjc4cHk4anIwbVc4bHVDUHN4VU9ORXU3eFdCdUd2dEc4TThsVllpRGJkMlBvRXJSZnJKQ3A4RnlGSEliVk1DZHhGSkNGWmZkQQ?oc=5",
-      "source": "Upstox"
+      "detail": "Exide Industries reports 75% profit growth in Q2 on strong revenue",
+      "url": "https://news.google.com/rss/articles/CBMi1wFBVV95cUxNeFE5RUtlSDVab0U0cTlrdmFyTGdQeG5lX3kxdE5XS0g0bFpkQ0lFel9pQVpjTW1oOWFpTlBnYXRldWl1TzNUdnZ5TGd1TnNieEVtNnFUUjByUWN4aktsOXUtc1VfUm1xMDZDRFhVMkxfV05oeWdxWmFPemlDWlpKN3pXQ0tydU1HbGhOdHVCNW44UGtuOUdrY2tWcFJtLUhlTUxJREFhTTNsYTZhX2M3VWtiQUdSckVjcF9ldDQwRVJSSW1DQURIazAtQjd6Ul8yTzZFTGd6Y9IB3AFBVV95cUxQNXM0blF4M19TeFdGOUx4MnVfQ0tESm9UUmZyZ2ZYTnM3QkNETDZvVGtLTWZaSGI2Zm03LXFERXFuVUZSRHFzWmFza3hlb3RuVlRmS0dzLW1PdVpYd1E2NzJBVjJZNlQ1MERzZlVTRjRSUU5TRThuUU9EaURZQ2IxVTdjT0xwX3Rtc0VJUERpLXEzMVlUTzZUT1J5dkdjdDhRd3lDMmozdUxHNnNFTWwwU1YwTlZJNHJOdjU0ZHhxU0I2THZjbG9lQUVTZEtvb0oxQlNqNEs0WW94NXBv?oc=5",
+      "source": "Times of India"
      },
      {
       "tier": "news",
       "kind": "results",
-      "detail": "Exide Industries reports 18.9% revenue growth, commissions 6 GWh gigafactory",
-      "url": "https://news.google.com/rss/articles/CBMisAFBVV95cUxPeXJhQm1fdzJ5T3YyVzdhcS1CQXhNbFpSYTVHWlRWZkh2Zm9SRjNPWFlleEwzcEVFRFdwUFZ5OUxHX3V1cWtEeXlzcWdyVEtGNV9CZk5GMmR0VmZxR1N2WmFkWVF1ZzIxYnJicVNMMHRSd3FBRTdTSWxGUERleEdoWmhtcVBaVVVXYzRaVlhGbUE5NFhqWEZRbDVjMno2dlZSc3IzRTBqVmozSHRzOE1QYw?oc=5",
-      "source": "Business Upturn"
+      "detail": "Exide Industries Q2 results: Net profit soars 75.1% YoY to ₹386 crore; shares jump 7%",
+      "url": "https://news.google.com/rss/articles/CBMi_gFBVV95cUxPTFNCcmhMQUkyalN0QUYzS1gtaHF2ZVlaMk1ScHlPS25fQmdpR2NhelMtTUJRT0ZZUVViSjk5U3gtb1JGVkUwZ2xnMTBDLS1JdlBEeFdlbF9SQjVCMVRmWjVWOFhaVlRPNFZrd2pCV2NTTzFnSE03NmhUck1qRHBMQ05QT2lVOFZzakFianZYQ0gxcXNBUG9uUTVpY08wVGlxY3Z6dnhfUXI2a25sMVdRQ2ZSR3Rwbjc4cHk4anIwbVc4bHVDUHN4VU9ORXU3eFdCdUd2dEc4TThsVllpRGJkMlBvRXJSZnJKQ3A4RnlGSEliVk1DZHhGSkNGWmZkQQ?oc=5",
+      "source": "Upstox"
      }
     ]
    },
@@ -4901,7 +5090,7 @@
    "raw_pct_change": 6.21,
    "corporate_action": null,
    "why": {
-    "headline": "Results, reported by CNBC TV18",
+    "headline": "Results, reported by Economic Times",
     "confidence": "high",
     "evidence": [
      {
@@ -4928,6 +5117,13 @@
      {
       "tier": "news",
       "kind": "results",
+      "detail": "Awfis Space Solutions reports Rs 451 crore revenue from operations during Q2FY27",
+      "url": "https://news.google.com/rss/articles/CBMihAJBVV95cUxNNThFVVJZNTZrbzJrSzFtdEpNVEphS0wtMVNxMnFCZUc1X0k5SlI1c2FoVVkzVTlqajE3QWZaOEdBWW5iSWdxMjBMb2R4dE0wQVI3Tm80ai1mWnhyemtGR0RPbDRlVWFNc2laUWQwWER1RE1iTXIxUDdFWS1RSWpSS0pzdjdHcnlxS1NxUEJ1SS1KZGdLR2FyMUkwWi05SVRkb3QxdkpaX2tCX1l2NHduZ1pacXZvSUJ5OUtHcm4yZG1ockxPLTNnX3FSZnhFYV9PbUV4TFcxbE9hQ2psS3Z0ZHFoNE1FdTNxSEZHYV9MWUpUdHRFczR5cUl3Zm01RWg2ZlNWRtIBigJBVV95cUxPdllKN3RxREUzcC02c3lLUG1yZUJGRnRqZy0xZUhwOXJYNk1hSzNTUUhjS2ZhRjEyZzExUVdkWmZnUzlsZGc4ZHpXVDZXTC1FSENvakFJeU94cmVTWm11ZzUzSFVZdUkwek1FaFZkLXFhMVpRdm02RWR4Z1E3RFFuQ2tPdkVzbm1RNGVkZTR3eHYydXhidGlEbVFreGpEZUgxcG5EbWwwMTFEaDNyaHdWYlFVRXk1cEVGTmFqQ2FZSWRQUkhxdTRoRTRGNHZQMEFoYmhRTkdEWWZhT3VuVWJoQTNyak1rSlhWdmxXdVA1bHVTVHl5Q1lfU2dyS3JUZmd3MGJ0MHBfd3FkQQ?oc=5",
+      "source": "Economic Times"
+     },
+     {
+      "tier": "news",
+      "kind": "results",
       "detail": "Awfis Space Solutions Q2 results: Profit nearly doubles to ₹31 crore, margins expand",
       "url": "https://news.google.com/rss/articles/CBMixwFBVV95cUxNbDNna3Q3al94UGdlNThvclhQSUNPRG01THZfR3BLd2o4R09UU1NSOS1EUml0em1SdHV4VnJLdjZ2alEwMWpqYnRuWGJIYnptN3NMeEV1eVJHeGdxZ0RYc2RxTFhfQ29mSXFRODRwLVRaYlRrdTVPVGNjTjQyMldsNEZQemxfNHh1VkZOYkROVEROcDd0alN2T0ltLVdtQzBfb1ZHMVBJUlphU0EySTZNX3RnZmQyd2hLLUhZeWgybjAwRHY1RTZn0gHMAUFVX3lxTE1OY0hITW1lV2RNN2lmRkZFQ1JPUTdzNnpmRzYyVmhCTFZSVl9CTG5WOE0yMU1tX3BSN1ZvLTJEbXV0U1kweV9zMGdzM2NpTWNjNm1tWVFSSXpzZndnZmExU2w3R2NzX0JwUC14akFGaEhYS25aNmhQRThWX1ZzWWNPN3VaOUFjcV9GSHRxYzhEc0VRS0I5RHBNMkxUQWgxaC1jYWhyOFZ3WGU4RklxT1dvcmp6VThMTldUSS0zN1MyTkRWNzU2RlFsMkdRcA?oc=5",
       "source": "CNBC TV18"
@@ -4935,16 +5131,23 @@
      {
       "tier": "news",
       "kind": "results",
-      "detail": "Awfis Space Solutions shares rally 13% after Q2 profit jumps 94% YoY, revenue rises 20%",
-      "url": "https://news.google.com/rss/articles/CBMi7gFBVV95cUxNXzcxY0xtLXoydHBkVVhUVEpoVnJ6WDJMdW5KX3h6RXNkZzB2NWV2T3FYLUx5ODFMRHgtaHdiT1Z2WmFXc0dkSm9BYkh4c3J5dElkVXJfWTlsQUtEY0s0dUNWUk9Kc1VGWHFWZ1pXTnhyeVhWVXF6NnFhdFZoTERzRWhEbnBOLWFKdVpaOGN4dTJ4X0EzcnZ0dE1MVTdUNUxnYk5wTi15N1R4a3Q0UnB0Q1JSWl9ldEhnTnFMcmJKZlk0N0FLUWlYd1l3MjI2ZkdQUG5rM3BKRUdUaTR4MFJQUXhzaEJfZWQ2cHhFRzBn0gHzAUFVX3lxTFAzX25GRHl5ZURBZG5QcXNnek93VzdUUVRabW83dUYzS0VkZTk2UlR0TUhuLUg0bWNQMnp4dGtMX3FaOWVHRnJ0OWFNc0M0S2N6b293QUFhem5IZzlWVVBPdXljNlZnZGpFMC11U0dSd1VlRmdDVWhnc0xoMTNOTmtCRnlmc084VEwzTjF5UjVfVnIybjZOODE4TWxmX2dTamVzTG5HMDZ2ZXdLcFhlYkxKOFBjT3ZlUTg4WG50VWNfMGhtOF80ZW13VnhXdU4yVFlRY3dZVWZyQjE2Z1RSN1AzTmUzT1BqY0gtcWVwYVZoMEFLWQ?oc=5",
-      "source": "Economic Times"
+      "detail": "Awfis Space Solutions shares rally 13% on strong Q2 results | Check stock returns",
+      "url": "https://news.google.com/rss/articles/CBMi4gFBVV95cUxQNjI4NWZaVjRWckxna1FseXp5aXdOT1c5VUVlc0hVYy1FQ3NOUTRHSlJWRV9LMXl4aTZYQXpEQkw0cFpBZmNGQmtsaG5VR3dPWnlFVGU4MjJDeHVhczlod0tsdjdHWVQ1RUlZa1V0MTVTSzd1azhjaGdDem1TcVpSWkFKWEhKdVZqU2pIU05CbnlLQ1dJNENrdmVDdjdRNVJzTlpMOU5fWjN4VHNvWkFIRmUyQ1ZOa05BamUtMUY4a3Y4VnRlWXNZN1dBNmZvTGtOZXpmU1pBblZkRDBEcm1vNFd30gHnAUFVX3lxTE9SeEFxR2JQWG4xYkpkRTdVV3pvOElpdkxMSjJoM0J0SVpKWEdHNVBiLWZCWFNweEw1VWZneVJOR2NVMG1ycE13QWNkMlk2V2lCWmM0ZUNkMTByNk1uTzdRUnR6T1VtX3QwN1VNU2tfUGxCb3ZCTnlpYmotRmJZZVVQdFVjU0pjc0pSYkZpMXEwU3pKaU51d0lGTHktXzRXakMyZnJQb0xFb0oydzljT1RQU1M4cWhwdldoN2tXRWQ5bjI1blM0Q05EOHhoWWhHdE9GSDlhaTJDbFNOSWhLNGhPRlZXV1pvUQ?oc=5",
+      "source": "Mint"
      },
      {
-      "tier": "news",
-      "kind": "results",
-      "detail": "Awfis Space Solutions shares rally 13% on strong Q2 results | Check stock returns",
-      "url": "https://news.google.com/rss/articles/CBMi5wFBVV95cUxPUnhBcUdiUFhuMWJKZEU3VVd6bzhJaXZMTEoyaDNCdElaSlhHRzVQYi1mQlhTcHhMNVVmZ3lSTkdjVTBtcnBNd0FjZDJZNldpQlpjNGVDZDEwcjZNbk83UVJ0ek9VbV90MDdVTVNrX1BsQm92Qk55aWJqLUZiWWVVUHRVY1NKY3NKUmJGaTFxMFN6SmlOdXdJRkx5LV80V2pDMmZyUG9MRW9KMnc5Y09UUFNTOHFocHZXaDdrV0VkOW4yNW5TNENORDh4aFloR3RPRkg5YWkyQ2xTTkloSzRoT0ZWV1dab1HSAecBQVVfeXFMT1J4QXFHYlBYbjFiSmRFN1VXem84SWl2TExKMmgzQnRJWkpYR0c1UGItZkJYU3B4TDVVZmd5Uk5HY1UwbXJwTXdBY2QyWTZXaUJaYzRlQ2QxMHI2TW5PN1FSdHpPVW1fdDA3VU1Ta19QbEJvdkJOeWliai1GYlllVVB0VWNTSmNzSlJiRmkxcTBTekppTnV3SUZMeS1fNFdqQzJmclBvTEVvSjJ3OWNPVFBTUzhxaHB2V2g3a1dFZDluMjVuUzRDTkQ4eGhZaEd0T0ZIOWFpMkNsU05JaEs0aE9GVldXWm9R?oc=5",
-      "source": "Mint"
+      "tier": "deal",
+      "kind": "bulk deal",
+      "detail": "JUNOMONETA FINSOL PRIVATE LIMITED buy 475,096 shares (Rs 12.4 crore)",
+      "url": "",
+      "source": ""
+     },
+     {
+      "tier": "deal",
+      "kind": "bulk deal",
+      "detail": "JUNOMONETA FINSOL PRIVATE LIMITED sell 469,556 shares (Rs 12.3 crore)",
+      "url": "",
+      "source": ""
      }
     ]
    },
@@ -5066,7 +5269,7 @@
    "raw_pct_change": 6.07,
    "corporate_action": null,
    "why": {
-    "headline": "Results, reported by Moneycontrol",
+    "headline": "Results, reported by CNBC TV18",
     "confidence": "high",
     "evidence": [
      {
@@ -5093,16 +5296,16 @@
      {
       "tier": "news",
       "kind": "results",
-      "detail": "GNG Electronics Q2FY27: Strong demand and better pricing lift margins",
-      "url": "https://news.google.com/rss/articles/CBMi4AFBVV95cUxNdzdxeEhUa3R3QmRxdDJWWXdaU2J6YlgtRjF3YU5lVmtvdHZkSVZpcDlQdEpKUkxlMWlSNHZMX2ZFdmJjdDAycG9FUlFZYS1rRUVKcDhDeUN6WmVROVViMi1pYWxqR3U4WTl2dWZWQlpFTGNTRHFZTndmaFB4UmRsbjNZclIwNnFOTkdYQ184U0xUczRtbjh2SEJPb2xOeFJ0Y0NwdXNPbDNTN2dqLVhsNTdWZVoxaldaTTdwUTRqRDB6cU85RUFJVFRYTlpWS0VRdUdxajNrazc0enlVck5KadIB5gFBVV95cUxPd1JFMjF3NzNxVDM0MnVKR2EyelJFa1BKczdiMGhFUjlpWDQ2MlpwTmt0RzNwOWlEREQ1bVQ2Umtxc3JSanNrUnBPQk13T24zaXg4MVl2UkFDTE9ZbHdKa2hkNXJibzVDVnZxQ2sxMHhuMF9SdzZ1NmNlcG45RHFMbDZjNUtYeGlrMTM4LU5ia2tZWVJkdjVyUDBBMHhEMXBYaXVkcWt0NWtvUlYtMFJYaGR6WXp2ZXZKeGx6WV83ZVdjWWIxODhSR0sxR0wwTGx4R1QwOXJ6clRydW1mR1NZZ0pNNkVJQQ?oc=5",
-      "source": "Moneycontrol"
+      "detail": "GNG Electronics Q2 results: Net profit rises 73% to ₹56.3 crore, revenue jumps 42% to ₹625 crore",
+      "url": "https://news.google.com/rss/articles/CBMi-wFBVV95cUxNSVVPS2JmVmNUWkxuNlRFbVFXWXdkdkNYWU1jNWJBSTExOVB1UFBJZUtXY2hLc3ZjeUhCUDNpVVdBN3VBaFpyb1dMMVNPbUhtSVg3VF93M0tQb2NHMVdlMG5wUmhHUUgzY0I0Y0JXRmRqSXpmVm50aTVfM25ySjJDdkt1LTFyaWRjcGJFUG9ObmpJaC1uaWt6eDBTRDBodm1TU2lUVHpOMzVqcGlDQk5BMlhLU1RBZlBQVDZOUFdqa09pX1V3bjhFTWlRSHYxbkF4d25yUUk2X291NVpWZnNza3hLMDJ1SVVQODh1V2U5LThNWjJnSFJCbzlKTdIBgAJBVV95cUxNZVBoeVBBNmNsWnpFLUJoOWhDNTg5ODM3cDRfOS1YR0pBUXl2OE9NUFBwQmhKV1J5T1RVSGdnX0JtYW1HU3dFUm5lQ0hrblgwR1pteTdhMDUxNzRQSUF1bkU2STVCOU1CSEtyUVJkQUVKMEEybE1PSUp4dTk1NWo2bjZKX3BCR1dzbFBCYmZqZlBCUGNHbkxWdV9QZlZoY21lX1dYbzhnV3plSGp1WU9QaXdxZGg5M09meld0c0I2bHIxNFNFVTg4QkRFeV94eVZsZjNqY09Mbmk1SUY2Mm9IcHhoVTBJLWNuNmZJUHNDc2FTSnptWEVrWllBSWdpOTR2?oc=5",
+      "source": "CNBC TV18"
      },
      {
       "tier": "news",
       "kind": "results",
-      "detail": "GNG Electronics Q2 results: Net profit rises 73% to ₹56.3 crore, revenue jumps 42% to ₹625 crore",
-      "url": "https://news.google.com/rss/articles/CBMi-wFBVV95cUxNSVVPS2JmVmNUWkxuNlRFbVFXWXdkdkNYWU1jNWJBSTExOVB1UFBJZUtXY2hLc3ZjeUhCUDNpVVdBN3VBaFpyb1dMMVNPbUhtSVg3VF93M0tQb2NHMVdlMG5wUmhHUUgzY0I0Y0JXRmRqSXpmVm50aTVfM25ySjJDdkt1LTFyaWRjcGJFUG9ObmpJaC1uaWt6eDBTRDBodm1TU2lUVHpOMzVqcGlDQk5BMlhLU1RBZlBQVDZOUFdqa09pX1V3bjhFTWlRSHYxbkF4d25yUUk2X291NVpWZnNza3hLMDJ1SVVQODh1V2U5LThNWjJnSFJCbzlKTdIBgAJBVV95cUxNZVBoeVBBNmNsWnpFLUJoOWhDNTg5ODM3cDRfOS1YR0pBUXl2OE9NUFBwQmhKV1J5T1RVSGdnX0JtYW1HU3dFUm5lQ0hrblgwR1pteTdhMDUxNzRQSUF1bkU2STVCOU1CSEtyUVJkQUVKMEEybE1PSUp4dTk1NWo2bjZKX3BCR1dzbFBCYmZqZlBCUGNHbkxWdV9QZlZoY21lX1dYbzhnV3plSGp1WU9QaXdxZGg5M09meld0c0I2bHIxNFNFVTg4QkRFeV94eVZsZjNqY09Mbmk1SUY2Mm9IcHhoVTBJLWNuNmZJUHNDc2FTSnptWEVrWllBSWdpOTR2?oc=5",
-      "source": "CNBC TV18"
+      "detail": "GNG Electronics Q2FY27: Strong demand and better pricing lift margins",
+      "url": "https://news.google.com/rss/articles/CBMi4AFBVV95cUxNdzdxeEhUa3R3QmRxdDJWWXdaU2J6YlgtRjF3YU5lVmtvdHZkSVZpcDlQdEpKUkxlMWlSNHZMX2ZFdmJjdDAycG9FUlFZYS1rRUVKcDhDeUN6WmVROVViMi1pYWxqR3U4WTl2dWZWQlpFTGNTRHFZTndmaFB4UmRsbjNZclIwNnFOTkdYQ184U0xUczRtbjh2SEJPb2xOeFJ0Y0NwdXNPbDNTN2dqLVhsNTdWZVoxaldaTTdwUTRqRDB6cU85RUFJVFRYTlpWS0VRdUdxajNrazc0enlVck5KadIB5gFBVV95cUxPd1JFMjF3NzNxVDM0MnVKR2EyelJFa1BKczdiMGhFUjlpWDQ2MlpwTmt0RzNwOWlEREQ1bVQ2Umtxc3JSanNrUnBPQk13T24zaXg4MVl2UkFDTE9ZbHdKa2hkNXJibzVDVnZxQ2sxMHhuMF9SdzZ1NmNlcG45RHFMbDZjNUtYeGlrMTM4LU5ia2tZWVJkdjVyUDBBMHhEMXBYaXVkcWt0NWtvUlYtMFJYaGR6WXp2ZXZKeGx6WV83ZVdjWWIxODhSR0sxR0wwTGx4R1QwOXJ6clRydW1mR1NZZ0pNNkVJQQ?oc=5",
+      "source": "Moneycontrol"
      },
      {
       "tier": "news",
@@ -5254,16 +5457,16 @@
      {
       "tier": "news",
       "kind": "results",
-      "detail": "Alembic Pharma shares hit 20% upper circuit after strong Q2 results",
-      "url": "https://news.google.com/rss/articles/CBMi0AFBVV95cUxOY1RLc1RlYk4zeUF2WEk3ckNOQ3hQSEhONkV4NHpRY3RaTmVhYU4zQW9oRGtMa1c1SXBrTUlRdURwcldQVTJRTUlCdUdubTc5MFV5a3A4U2pkcFBDaFRwOUEyR2h0VU1hSk1jRUpRQWlScF9KdHBZWTh1T2ZqQ3o4NWR6QkpHVFVMdXUtczNtRUdDZ1hLUFFremJ3RTFmbU5hTHgwTlZybWtUVF9WV2ZvUTZwMWpfV1BaSm1XeUJoWlZsNnlMU3FtSjdmSlZlMHda0gHQAUFVX3lxTE5jVEtzVGViTjN5QXZYSTdyQ05DeFBISE42RXg0elFjdFpOZWFhTjNBb2hEa0xrVzVJcGtNSVF1RHByV1BVMlFNSUJ1R25tNzkwVXlrcDhTamRwUENoVHA5QTJHaHRVTWFKTWNFSlFBaVJwX0p0cFlZOHVPZmpDejg1ZHpCSkdUVUx1dS1zM21FR0NnWEtQUWt6YndFMWZtTmFMeDBOVnJta1RUX1ZXZm9RNnAxal9XUFpKbVd5QmhaVmw2eUxTcW1KN2ZKVmUwd1o?oc=5",
-      "source": "Moneycontrol"
+      "detail": "Alembic Pharma Q2 net profit climbs 81% to ₹335 crore on US branded pivot",
+      "url": "https://news.google.com/rss/articles/CBMi5wFBVV95cUxPejVNdFZHZHFyUFFaTGJPUUthaU9GcEpCRS0wdG1mNnhHSXg2UHhEQ0MxcmdnRmRoeExzdWR1TFgtSy1WTG9pcE1pSnJCM3REQ1VROGdaaW1zQmRhMlBrbTZ0RHJCTjlPMlZGaW9FVExrRVdOSjNNYnIweHRnMHJWMmJHZ0h2RnFUdDhVRW1RanB3NWU2VW1BUnFpUFdJS21nTU5WQ21LcmMxajdsU2h1NGtLSWJIVXVraDRBM0lVQmRQVm1fM1o2Q3VzZXpwT0FBT1dwbVoyRU1IYWV4S2EzbTlvUWJWYzjSAewBQVVfeXFMUEpwbXpCNjNVWktvaVdwX2k2c1F0cUlaNzdhaFpjb1FwZVo3dldnZnhtcmoxREFSNXAtNlkta0VTRVgyYTQ5bENpVDRjU25yU1Q3RTJzQkE0dUZEQkticXZEV05zMkRsMW83Z2lwLXA5S3lfRk9OZ2lKVC1XZVE5dTRLREdtb3NheFI0aGx3VE5BcDNhMnJXbklRVWNIdGxwQXlhajIyTWh6dnhBTGFkNXdPWWJkSUNoeEsteWZxTEh0c3Ryd0VBbnVyODdOck12LU1PbUdVX2tKWjRaeWkzeDd2UWdVcUVjM1ZHTXY?oc=5",
+      "source": "Economic Times"
      },
      {
       "tier": "news",
       "kind": "results",
-      "detail": "Alembic Pharmaceuticals Q2 Results: Shares jump 20% after profit rises 81%; US business grows 77%",
-      "url": "https://news.google.com/rss/articles/CBMiyAFBVV95cUxPWE9kT1V4MHc5QmVvTWYwMVkzN0RKVHVQS3MyWnRXX0NUOVRrNkN3cU9pYThDcjY3V2RYekRzbU1NUFJPb00zR0hoNS1jb0NJMm93bV9IMm5zVkZEM2lkMklpa2J2cjhyTTRxTEEtckFxR0JQUG00T1VtTjdiY3J6ZHZqWGhSbVFYbDBIM1FQRTdFREZfeHJWQ1ByNHpGc2t0UzIzWTlfOGdFT1VXc1J1dURrU2VTcERhenF3RjlXb1RmM3JYbUZTNtIBzgFBVV95cUxOV09kbTB0b0tudHk1NkdZVndFT2VrSTFraWxLVHQ5QlZZdFk4bW5CV0tUSmlqR2tMMjlIbVFScFltazZfQ0JRcFpwMmVuNUlvRWxQNExFc1VNOU1MVlhJLXo0TnlTQVZLQTJKMF92dk8yWkhkQmIteUxubnJqX0Q3bWl0OTZJWmNfcUNPSGtKNTZWNFZvVnNNSm1zcDQwUGd3eG9ZYVNiTjJHWGhCQmcwUjJtbGVsUnZqd3RBaVhVVHpxNHVvZ1ZhQTlWN2ExUQ?oc=5",
-      "source": "CNBC TV18"
+      "detail": "Alembic Pharma shares hit 20% upper circuit after strong Q2 results",
+      "url": "https://news.google.com/rss/articles/CBMi0AFBVV95cUxOY1RLc1RlYk4zeUF2WEk3ckNOQ3hQSEhONkV4NHpRY3RaTmVhYU4zQW9oRGtMa1c1SXBrTUlRdURwcldQVTJRTUlCdUdubTc5MFV5a3A4U2pkcFBDaFRwOUEyR2h0VU1hSk1jRUpRQWlScF9KdHBZWTh1T2ZqQ3o4NWR6QkpHVFVMdXUtczNtRUdDZ1hLUFFremJ3RTFmbU5hTHgwTlZybWtUVF9WV2ZvUTZwMWpfV1BaSm1XeUJoWlZsNnlMU3FtSjdmSlZlMHda0gHQAUFVX3lxTE5jVEtzVGViTjN5QXZYSTdyQ05DeFBISE42RXg0elFjdFpOZWFhTjNBb2hEa0xrVzVJcGtNSVF1RHByV1BVMlFNSUJ1R25tNzkwVXlrcDhTamRwUENoVHA5QTJHaHRVTWFKTWNFSlFBaVJwX0p0cFlZOHVPZmpDejg1ZHpCSkdUVUx1dS1zM21FR0NnWEtQUWt6YndFMWZtTmFMeDBOVnJta1RUX1ZXZm9RNnAxal9XUFpKbVd5QmhaVmw2eUxTcW1KN2ZKVmUwd1o?oc=5",
+      "source": "Moneycontrol"
      }
     ]
    },
@@ -5679,9 +5882,17 @@
    "raw_pct_change": 5.88,
    "corporate_action": null,
    "why": {
-    "headline": "No disclosed reason",
-    "confidence": "none",
-    "evidence": []
+    "headline": "Results (Scanx)",
+    "confidence": "low",
+    "evidence": [
+     {
+      "tier": "news",
+      "kind": "results",
+      "detail": "Vindhya Telelinks Q2FY27 Results: Net profit up 34% YoY to ₹79.3 crore",
+      "url": "https://news.google.com/rss/articles/CBMivwFBVV95cUxQb1VfbnpnUExEVVBXVS02SXdrUEw2SjE4NElFaGZpT2ZJME1MdmFBLVZCWE4xaHpZdWdjMDNjVjljTm9CbXFKOHQ5ZWo1NE16R0VBTm9RcEc1aEc1eWd2VUMwdHFMYVN0ekJuTlBiVEhxektGWVVoM1ZncGRHR0szejdXdkkxYWRuRENoT3FrUTFVdE1pMG5ES1F1Nnd6aTBqcWM2Slo4dU43aDgtY19OQjJXVzg0UGUzS1ZUeWpjNA?oc=5",
+      "source": "Scanx"
+     }
+    ]
    },
    "news_checked": true
   },
@@ -5829,7 +6040,7 @@
      {
       "tier": "news",
       "kind": "results",
-      "detail": "Subex Q2FY27 Results: Net profit up 400% YoY, EBITDA margin at 20.75%",
+      "detail": "Subex releases audio recording of Q2FY27 earnings call",
       "url": "https://news.google.com/rss/articles/CBMitwFBVV95cUxPNUw1M2tKYmUwbi0xMUY2OXpKOHpidjVJNGg0SktkZnRWeUNDaFlSTmcyeF8wb1p1elpvMjRCT0ZYRjRmRFhJcXBvSmpvbmJKTmkwU3U1Nm9BdDdhdFFRRjh5dTdDTFBpc1RPR0ZRdWYxTFc4Q0p3Ynl6a3o3NWZjZXBaQUwzOTN4TVZPeHAzZUtpTEFRVC0tM1NLdFItYkRDTVNQV0dOMkFlcThUZVNNOWJERjNVbmc?oc=5",
       "source": "Scanx"
      }
@@ -5880,7 +6091,7 @@
   },
   {
    "symbol": "ORTINGLOBE",
-   "name": "ORTIN GLOBAL",
+   "name": "ORTINGLOBE",
    "board_code": null,
    "series": "EQ",
    "direction": "UP",
@@ -6010,15 +6221,29 @@
    "raw_pct_change": 5.79,
    "corporate_action": null,
    "why": {
-    "headline": "Results (Scanx)",
-    "confidence": "low",
+    "headline": "Results (Business Upturn)",
+    "confidence": "medium",
     "evidence": [
      {
       "tier": "news",
       "kind": "results",
-      "detail": "Universal Cables Q1FY27 profit surges 91% on export volume growth",
-      "url": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxNWDhJRExpYUwwWXgydVdvUFRjQ2plTUNSRXBySmRvbjdOb1QzMWpFUG1NY2g4Y1FyWkJrd3gzUEdWUW1kbXpnd0NTSW1xVGZ4MEZDN0FEYzF3endrazRjZXEzeTU3c1o3ZFZDUURUWk5BWlhabUZmS015b3lld0N5SV8zMDdQMVdkY0pfR0dUSzdfVTlzSUZYZ2xUUE9yVkMtRFJ1WlpONDVBR19BdlkzR1hTR2JjcGk4dGJ5ME5yYXg?oc=5",
-      "source": "Scanx"
+      "detail": "Universal Cables announces financial results and board changes",
+      "url": "https://news.google.com/rss/articles/CBMioAFBVV95cUxOekRzZmtOODVEclRlcTJMZkFNejRDSmYtRW1GRktzd1Q0ZDVMYVlIaUV3UjJxUmtsaVRHZFpCMFhOOHVXY1R3Y1B2NG1xQzZCdEJYUDdUbk1rWTFETzU5NWMtUG12M2dzdzdIbGs5N2VQN21keERGNktLR0dIUWdJNjVCSnVtV2F0M0g0MFlqQ3ZUbzdkYVVNaDd5dEhzV0F2?oc=5",
+      "source": "Business Upturn"
+     },
+     {
+      "tier": "news",
+      "kind": "results",
+      "detail": "Universal Cables reports unaudited financial results for September 2026 quarter",
+      "url": "https://news.google.com/rss/articles/CBMitwFBVV95cUxQVndFdjY1RTliZUJrYXVwYzloMHZ0V3o4TFhpRXJPRWk4WGpvTWNaRXAwZ3VuZWVZczhnQk9IeG9HckdrT2RBb05rcmZRUGpLdFQzakhRa2xfdnNLNW5KaVZSb1A5RUZKelA0U245cVdMUkNKd2dPQUJ0S0dEb1hGclJlU0Q5bnRPREtpRzIxbGhUOFBsZ1dXUUdhYUl5QkdxOWpuamtkekpJR1FUT3M5cFF0azFtNlE?oc=5",
+      "source": "Business Upturn"
+     },
+     {
+      "tier": "news",
+      "kind": "results",
+      "detail": "Universal Cables reports earnings and board changes in latest filing",
+      "url": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxOOF9XTnllTE5DUUpMQ1FYQVlDdkhITllvVTktOFFhcEVubDNFa3c1bmFWdHVveThVS2x5RjdhaHduTU8xQUxMcGxOa1oyOC0tQmUtbzJHSnFJdlR5REl6R2ZWSmdGVUllZVliMndiYmxsMnlWMnNMQUdoUkdxVG1JNGwwX1ZPZEFzSkFndTZYMGtQdGNuX2VBMWV0WmdPTjRRNTM3ZVZrSjI?oc=5",
+      "source": "Business Upturn"
      }
     ]
    },
@@ -6135,9 +6360,17 @@
    "raw_pct_change": 5.76,
    "corporate_action": null,
    "why": {
-    "headline": "No disclosed reason",
-    "confidence": "none",
-    "evidence": []
+    "headline": "Results (Sahi)",
+    "confidence": "low",
+    "evidence": [
+     {
+      "tier": "news",
+      "kind": "results",
+      "detail": "GMM Pfaudler Reports Q2 Revenue of ₹1,060 Crore, Up From ₹900 Crore YoY",
+      "url": "https://news.google.com/rss/articles/CBMimgFBVV95cUxOWGR3WVVOV3A0WEVnRGVHR3hBQjZ2cnRCSzRwRXRiaWxFWEhETWxmbkdMZGxYVFlhbGpQQUlwRmttRTZnUkQ4Y2t0d3NCU3o0RE55WU80N0paUUJVbGpQb1M5endoM1NXUE5WdG5ucVlIMEpkUlY2aXFFNVVoclhMa0dLWUxpc09FVjdsUVA2ZXJKamN1N0NYUW1R?oc=5",
+      "source": "Sahi"
+     }
+    ]
    },
    "news_checked": true
   },
@@ -6154,9 +6387,17 @@
    "raw_pct_change": 5.76,
    "corporate_action": null,
    "why": {
-    "headline": "No disclosed reason",
-    "confidence": "none",
-    "evidence": []
+    "headline": "Operations (Moneycontrol)",
+    "confidence": "medium",
+    "evidence": [
+     {
+      "tier": "news",
+      "kind": "operations",
+      "detail": "Deepa Jewellers: Expanding capacity and reach to drive strong growth",
+      "url": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxNOVFQZDZneHA3YzY4bzN4V3B6cHN1WC1TWW1yTUZ1dXZaX0llcC1rMFAybm0tYnAyLWtkNktOWUlMWlAyTHF5ZTFLMVFBcnB1V185Nm1FbnBtM0hvUVFQWG5lV2h1bUJFM3IzbndZaTJWbS04dXpYY2EwSHhvNW9RMjNCaV94SEJKX2xjcXg3RlNpX0IzM3doZGU3RXN2YXdQZVpsMVBpd3lDQjRHcy02RTJPU1pyd3hfQWhmdzhobDYyUdIBxwFBVV95cUxOWTZLVkJ4eUo1aDZYaW1lUXExUFVfSk1UenMyanVCdmdIMklLRW5aNHdXM3d0T1JCSXBXdEZnZ0tDYUN6QktWT3FiN2xRaWphbUY1RDdvT2pQdW1zbzBUckJySGI3S05aXy1PS0RRLWYtX1Q2dDY3S2R3c2lIM2RmQ1RFTnBpekIxNXJQbk1GRmxLMzJsTzI1ZklUUHNPUlNPTkJPOHk3ZGsybmxRbUU4TF8ycDctXzBFT29IZVlvOGkwZk9wbk13?oc=5",
+      "source": "Moneycontrol"
+     }
+    ]
    },
    "news_checked": true
   },
@@ -6186,7 +6427,7 @@
      {
       "tier": "news",
       "kind": "capital action",
-      "detail": "IG Petrochemicals sets Nov 6 record date for interim dividend",
+      "detail": "IG Petrochemicals sets Nov 13 record date for interim dividend",
       "url": "https://news.google.com/rss/articles/CBMitAFBVV95cUxPR1BsY2J2eGVTRXYzRmk3UDRzNWFTNVAtb1g4QmVEaldocUJMS1V3dzJwWUJXbHVCaGlkOUUzdkk3MS1ON2ZoejEzUFRNamRKNnF1bDlKV1lPZEhSSVYzNWRoUnBpbDQ5aWNnMDAxdjVXM3RPMXE0dVRHRDlsSUVXUnAxTkZKeDFiUl9ncVpNV2cxdmhFNGMxMF9JZnJRNmxrYXlyNVFoS0p3VUlncFZZbUl3MDg?oc=5",
       "source": "Scanx"
      }
@@ -6354,7 +6595,7 @@
   },
   {
    "symbol": "LKPSEC",
-   "name": "LKPSEC",
+   "name": "L K P SECURITIES",
    "board_code": null,
    "series": "EQ",
    "direction": "UP",
@@ -6365,9 +6606,17 @@
    "raw_pct_change": 5.72,
    "corporate_action": null,
    "why": {
-    "headline": "No disclosed reason",
-    "confidence": "none",
-    "evidence": []
+    "headline": "Results (Scanx)",
+    "confidence": "low",
+    "evidence": [
+     {
+      "tier": "news",
+      "kind": "results",
+      "detail": "LKP Securities Q2FY27 Results: Net profit falls 39% YoY to ₹124 lakh",
+      "url": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxNM3JZaGtlUUx1SmpON1VtaDVZb2xCVF82dFI2aXFqVXNBYXNTYTd5OWIyZzdmX0JvdUF4d2tGT0h3Y01NZk1SOE5kRTdPQTB1eUhuQVFWbFd5SUtGVVYtb2d5Tk56LTBFRmJPb0NzLXBBNFpFNXE0dUVDODlVSW5SdXFzODc1TEFPUTRDeHZZZTlzVU1INUFhQXJMMklXa2RyQ2xSWVNuZUZuTFV5dTU0c29UMlBXeTUxWWxB?oc=5",
+      "source": "Scanx"
+     }
+    ]
    },
    "news_checked": true
   },
@@ -6430,9 +6679,16 @@
    "raw_pct_change": 5.71,
    "corporate_action": null,
    "why": {
-    "headline": "Order Win (Mint)",
+    "headline": "Results (Moneycontrol)",
     "confidence": "medium",
     "evidence": [
+     {
+      "tier": "news",
+      "kind": "results",
+      "detail": "Gold, silver rally as US midterm results weigh on dollar; gold tops $4,023, silver approaches $52",
+      "url": "https://news.google.com/rss/articles/CBMi-gFBVV95cUxOQWhtQzV4clMzSzhURnJFTHhydkRDUy1zQVlKNmh5MW1BcXhJSkk4SlIteHlYQXJzTllkYVB0QloyandVcGlNclRFYkt1QVJDZXBTZk5QeS1PS1VlVXpOWkdIVm9PaEhMSjJnQTBFbVNRN3JhZ0wybEZ0N2VpYW9wX0hvMWNCcWFEclhNWG9HVFdoMzROWEsxRWp2TlZBSUlJdktVVXA5M3d1TmpqendqQ3Z3MHp3ZG1FN2g5emZ0cFZ6QWRwWl80RzNfalhIQmhOWmFFNlMwVTJzX2RhbGczTkpUS3R0SkU5QW1kcm5nc1JQYlJUVDBTU1Fn0gH_AUFVX3lxTFBGdG93LXFCVG9vZFRHMlhCNElLZzVlb0JMZUxpOUtMRkd1Q1NzNTNBX2VVcnlxS3Q2czh3UDlmZUg5X3ZSU2RsN2MwUVR2WjhodmtPT2RtS1JRZDlhWnIxWktZTkMtaEJtcS1LcDVvUHhJRUlKTHlCX0lTbnFTd0hTV1F1V2NrdnpMcHZ4ZVBpT3ZCS1JMN2NKVTlQMHI3aTlvNlVTX0tzYmtfXzFuVkthNUpuYU00YUZmQXZ4SUNaQTJnendyWExWd2FYNWppVFRhbVNPaWNDcHl2clpGeFZMSGdmZmQzcjc5bG9Uc0JkOEs3RHNHNnRRUUIxNEVTNA?oc=5",
+      "source": "Moneycontrol"
+     },
      {
       "tier": "news",
       "kind": "order win",
@@ -6443,9 +6699,9 @@
      {
       "tier": "news",
       "kind": "results",
-      "detail": "Gold, silver rally as US midterm results weigh on dollar; gold tops $4,023, silver approaches $52",
-      "url": "https://news.google.com/rss/articles/CBMi_wFBVV95cUxQRnRvdy1xQlRvb2RURzJYQjRJS2c1ZW9CTGVMaTlLTEZHdUNTczUzQV9lVXJ5cUt0NnM4d1A5ZmVIOV92UlNkbDdjMFFUdlo4aHZrT09kbUtSUWQ5YVpyMVpLWU5DLWhCbXEtS3A1b1B4SUVJSkx5Ql9JU25xU3dIU1dRdVdja3Z6THB2eGVQaU92QktSTDdjSlU5UDByN2k5bzZVU19Lc2JrX18xblZLYTVKbmFNNGFGZkF2eElDWkEyZ3p3clhMVndhWDVqaVRUYW1TT2ljQ3B5dnJaRnhWTEhnZmZkM3I3OWxvVHNCZDhLN0RzRzZ0UVFCMTRFUzTSAf8BQVVfeXFMUEZ0b3ctcUJUb29kVEcyWEI0SUtnNWVvQkxlTGk5S0xGR3VDU3M1M0FfZVVyeXFLdDZzOHdQOWZlSDlfdlJTZGw3YzBRVHZaOGh2a09PZG1LUlFkOWFacjFaS1lOQy1oQm1xLUtwNW9QeElFSUpMeUJfSVNucVN3SFNXUXVXY2t2ekxwdnhlUGlPdkJLUkw3Y0pVOVAwcjdpOW82VVNfS3Nia19fMW5WS2E1Sm5hTTRhRmZBdnhJQ1pBMmd6d3JYTFZ3YVg1amlUVGFtU09pY0NweXZyWkZ4VkxIZ2ZmZDNyNzlsb1RzQmQ4SzdEc0c2dFFRQjE0RVM0?oc=5",
-      "source": "Moneycontrol"
+      "detail": "US Midterm Election Results Impact on Gold, Silver Jewellery Stocks: Senco, PC, Titan shares shine on Trump's loss",
+      "url": "https://news.google.com/rss/articles/CBMikwJBVV95cUxPb0t2MTBzcHNFQkVfWEI0X1NKbGktMlNLU0JjQ0JRTWVKaU1hSG9SWGdiQW5DQVRQcXdianQwN21OdWswd3p0NGx5SkFNN0RKa1p3ZEYzcm1RbTA1aUFKR1cyX1dUbjh3X1kzSjdmUE9uV1k2RHp5TkNSZTJkbHcyWFExOGRNM21ZMnlKbmczcGxuQWlWLXpPZ05BXzd4Qjd1V1U2RkdJXzFGTGhDa3FFUzU1N2ZSTTdIcUlyV0pidWNmWmFwYXlzZ3RzRnZiMVRmTlpIbGhjUVpCWlRwS1U0M0xIbkk5MTBOT1B3aDhWUjBQdE1vWGp6b0hPM0pjTkdseHZYSUR6YVR2T0NtSFZBR0xhRdIBmAJBVV95cUxNcFFXc1lPZEQ4SVhQRzFTeWt4cHo0d1pRN1RScFp5cmpMQkdiU1g1VUE3cGptWFZ1WUhTM0FTdUY0YmIxVTFFNEw0ZzNtWEZhUnJCZkEteEhuUjRSVTNGWnFQNm5SQTBhd1JsNlhSSjhvNzN1Q2pzLVpHMDU0dmt1ejhlYzFrZXpPU2hxandyMGFVUUp4YjllaWlSVkw5N1laVVhjRmZwNWlmb05XdzFQOXRmaVFESUtWVFhTM0FHNzdMQ25YOVI4YlEyTEtwWnQyUzJPdlJHQXYwZDRfLUJMMHY2dXJ1TDl6Nk9CT3FzYXVBUmsyblU5NzQ3a0k4SkZyakxYMFRJWG16djhhNzN2WE9SZ2dkSXRi?oc=5",
+      "source": "Mint"
      }
     ]
    },
@@ -6981,9 +7237,17 @@
    "raw_pct_change": 5.57,
    "corporate_action": null,
    "why": {
-    "headline": "No disclosed reason",
-    "confidence": "none",
-    "evidence": []
+    "headline": "Operations (Scanx)",
+    "confidence": "low",
+    "evidence": [
+     {
+      "tier": "news",
+      "kind": "operations",
+      "detail": "ELGI Equipments Announces Revised Timeline for Capacity Expansion Project Due to Regulatory Delays",
+      "url": "https://news.google.com/rss/articles/CBMi6wFBVV95cUxQQ1hRdC1UeGFVSWxtXzRGY0czdXl3Zm1Hd1FMUUR2NlU4eU13NHhmRXBVN05POTdjYURpMl9oSm1NeWFUNkFwVk5hS2w0cVM2dlh6SXFHeGQzX1lBTGpuaTBQNi10WVBGN01ENDhkSUR1RFY1YzlIczZBYUltcmxwZ05PYTZYZ0RyeWhxTy1vYUc0Q3pZNkhjZm93WDVRM1Zad1h2ZWZHSHFxWGN3MGVadmJVamc3ZXY1SVRhYWZLaEJuUVdqa0ZreHhHVlpnbGdNc3dZSmR2cGtZVVVaODVPa2NiVWpEcHVoUTVB?oc=5",
+      "source": "Scanx"
+     }
+    ]
    },
    "news_checked": true
   },
@@ -7047,6 +7311,20 @@
       "detail": "Earnings Call Audio Recording of the Un-audited Standalone and Consolidated Financial Results for the quarter and half year ended September 30, 2026",
       "url": "https://nsearchives.nseindia.com/corporate/AJMERA_03112026181427_Intimation_sd.pdf",
       "source": "03 Nov 18:15"
+     },
+     {
+      "tier": "deal",
+      "kind": "bulk deal",
+      "detail": "CELLO PENS AND STATIONERY PRIVATE LIMITED buy 2,500,000 shares (Rs 35.2 crore)",
+      "url": "",
+      "source": ""
+     },
+     {
+      "tier": "deal",
+      "kind": "bulk deal",
+      "detail": "VALUEQUEST INVESTMENT ADVISORS PRIVATE LIMITED sell 2,500,000 shares (Rs 35.2 crore)",
+      "url": "",
+      "source": ""
      }
     ]
    },
@@ -7469,7 +7747,7 @@
    "raw_pct_change": 5.39,
    "corporate_action": null,
    "why": {
-    "headline": "Results, reported by Upstox",
+    "headline": "Results, reported by Moneycontrol",
     "confidence": "high",
     "evidence": [
      {
@@ -7492,6 +7770,13 @@
       "detail": "Dr. Lal Path Labs Ltd. has informed the Exchange that Board of Directors at its meeting held on November 04, 2026, declared 2nd Interim Dividend of Rs. 5 per equity share.",
       "url": "https://nsearchives.nseindia.com/corporate/LALPATHLAB_04112026133122_BMoutcome041126.pdf",
       "source": "04 Nov 13:32"
+     },
+     {
+      "tier": "news",
+      "kind": "results",
+      "detail": "Nomura raises Dr Lal PathLabs target price to Rs 2,280 after strong Q2; sees 12% upside",
+      "url": "https://news.google.com/rss/articles/CBMi6AFBVV95cUxNeFN5TFE3VUEtZ2RkdUxLYlRfUUcyREJLckNKNnRBaFNwUkxqRXlwSzk0WHhWTFZUY19lZlI5VDhjVHBrc2s3RlhsdVp2VTR4U2FSUTlVYWNYVkdKQVhXNDAyY1pMb0Y5SzE5cGVrY3oyazVyWEVRYWczWDB5UHFzUFVDZWZXR3pyVlIya3U4eGNCOFpVZXF4ZWtBUGU2Y19oVDI1ckVLQld5Uk5qdDFoSVlkWkhtRVVpazZOTnpQVkZSMWVtdUtmUEdpN3NJZHVvODR6OFctV1BnUVZEZ3RQZVkzOFdjQnRY0gHoAUFVX3lxTE14U3lMUTdVQS1nZGR1TEtiVF9RRzJEQktyQ0o2dEFoU3BSTGpFeXBLOTRYeFZMVlRjX2VmUjlUOGNUcGtzazdGWGx1WnZVNHhTYVJROVVhY1hWR0pBWFc0MDJjWkxvRjlLMTlwZWtjejJrNXJYRVFhZzNYMHlQcXNQVUNlZldHenJWUjJrdTh4Y0I4WlVlcXhla0FQZTZjX2hUMjVyRUtCV3lSTmp0MWhJWWRaSG1FVWlrNk5OelBWRlIxZW11S2ZQR2k3c0lkdW84NHo4Vy1XUGdRVkRndFBlWTM4V2NCdFg?oc=5",
+      "source": "Moneycontrol"
      },
      {
       "tier": "news",
@@ -7812,8 +8097,8 @@
      {
       "tier": "news",
       "kind": "broker action",
-      "detail": "GE Vernova T&D jumps on 39% EBITDA growth, 13% beat on estimates; Nomura raises target price to Rs 6,090",
-      "url": "https://news.google.com/rss/articles/CBMi9wFBVV95cUxNX19YQ2M0T19sOUU5OXFoZnhObTJFQUFmcm5zYWJHaUY3Vk1kUUR3RU42WkhxNzZNOGlfZWVFU1JwRnJGV3I3ckRqYnBCTFFWQlMzMlBXc19ndVU3OGJvTnFzMnhzMjVDLTZaal9KLXFvaHI3dTlqRWxNa05zc1hueHJMai1vaE0wdEtONGx3dGQ0MDVoM0QyMnlfMlVVMjRQa3l3YzFaVWVWT292VGZOX3RxU1ExMFRQTlZWX2JJc3hwWFB1SWVBdUJWMUFnaWRqb0wyN3lYdThOV0VkdnNMZ3RFTVd4RmxZMnc4MXJYbDNlc2w3QjdV?oc=5",
+      "detail": "GE Vernova T&D jumps on 39% EBITDA growth, 13% beat on estimates; Nomura raises target price to Rs...",
+      "url": "https://news.google.com/rss/articles/CBMi9wFBVV95cUxNX19YQ2M0T19sOUU5OXFoZnhObTJFQUFmcm5zYWJHaUY3Vk1kUUR3RU42WkhxNzZNOGlfZWVFU1JwRnJGV3I3ckRqYnBCTFFWQlMzMlBXc19ndVU3OGJvTnFzMnhzMjVDLTZaal9KLXFvaHI3dTlqRWxNa05zc1hueHJMai1vaE0wdEtONGx3dGQ0MDVoM0QyMnlfMlVVMjRQa3l3YzFaVWVWT292VGZOX3RxU1ExMFRQTlZWX2JJc3hwWFB1SWVBdUJWMUFnaWRqb0wyN3lYdThOV0VkdnNMZ3RFTVd4RmxZMnc4MXJYbDNlc2w3QjdV0gH8AUFVX3lxTE5DdlhFRUFlV2tnNHAyeGZqS0FjNm42LWVrVW9JS1JWYmJvOEVtVzNHbDJsalJkdW9YTzBQMTlXNDI5WG9RcFVuY08xR3hlNTZxUS1Nd1h5SGhFemJoS1NRMVRITkx3RFpXMDh3dHhlUmtsbnlwQTBGZHoxZmpPc0E4ZmNQbHJKNlpGUHdGTjJyb2NUZ283UDVodm5PVFRrN05LYVJwRVl4QkprcW9VOXJWbmdiZ3RmNDA2OG0yMXpkYk91T2tNR0szNHkxbmlNam9zakNMcnZQZ1lPRVM3QnBMSjJacV8wOTBOcHo5SmVqcV8xcTFMZ0tkV0drYQ?oc=5",
       "source": "Moneycontrol"
      },
      {
@@ -8008,9 +8293,17 @@
    "raw_pct_change": 5.22,
    "corporate_action": null,
    "why": {
-    "headline": "No disclosed reason",
-    "confidence": "none",
-    "evidence": []
+    "headline": "Sector Pricing (Scanx)",
+    "confidence": "low",
+    "evidence": [
+     {
+      "tier": "news",
+      "kind": "sector pricing",
+      "detail": "Rashi Peripherals faces ₹2.15 crore customs duty demand in Mumbai",
+      "url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxPWFM2dHdXTDFGRjMwa2Q2azRId29DTzdIbkR3VjhaMHk3ZjA4V3pYTkIzbTE5dV83Y3hibldLRVF1c3hQUkpEMEl3WXhFSFBhUDV4bHp2MzBUeXpnSU0tVC1nbjlNcDJjMjJNVXByLTQ5M1VFZHZnajN1dURYbnNIRzMxWEtCdXg3a0xIWDMxb2pmR3lvVTFmTll0SC1UN2k2aDZycGpncjlieGNjSFJJX25fZm5oNjRTTFE?oc=5",
+      "source": "Scanx"
+     }
+    ]
    },
    "news_checked": true
   },
@@ -8351,9 +8644,17 @@
    "raw_pct_change": 5.07,
    "corporate_action": null,
    "why": {
-    "headline": "No disclosed reason",
-    "confidence": "none",
-    "evidence": []
+    "headline": "Results (Scanx)",
+    "confidence": "low",
+    "evidence": [
+     {
+      "tier": "news",
+      "kind": "results",
+      "detail": "Oriental Trimex Limited Releases Consolidated Voting Results for EGM",
+      "url": "https://news.google.com/rss/articles/CBMi6gFBVV95cUxOUUo4M1lwdTV4TlFuVEFVMG1iOGxUaVEyZzE3VG9LRnJnbmdreEdpaTBQN0FMbkVlTy1BR3FLMmx6eWFMQVg1OFViRktsRkVUcVFZRXNjN2txR01BNm1nenNnYzhWS1hmd1ZFY3FLTEd2Qk9DaS1Yak1oV1J5dkhURWpaamFWaXFEZHh6Mjl4OWVMeTY1bElOSTlUcFJMTm9sb2NoQWFiMkFSUVRaNWlFOVFuTWN5X0NTN09aR1ZBTy1pcmt4NHZFWEk2QWNfcEZKQ01COExqRmdMLWhDdy1HZWhOUFlYU1pnN0E?oc=5",
+      "source": "Scanx"
+     }
+    ]
    },
    "news_checked": true
   },
@@ -8530,7 +8831,7 @@
    "raw_pct_change": 5.0,
    "corporate_action": null,
    "why": {
-    "headline": "Agreement, reported by Scanx",
+    "headline": "Agreement, reported by Mint",
     "confidence": "high",
     "evidence": [
      {
@@ -8542,10 +8843,10 @@
      },
      {
       "tier": "news",
-      "kind": "M&A or stake",
-      "detail": "Sammaan Capital Limited Receives Stock Exchange Approvals for Demerger Scheme with Sammaan Finserve Limited",
-      "url": "https://news.google.com/rss/articles/CBMi9wFBVV95cUxPd1MwR0ZVNzlKUEpTWnJNa01JbGY0eWV2WE85YUdjd194SWd0cEJIM0FCTDBCX25TSGpHYU1ZZEZIeE1Ed25NS3FhZmlLNEc0Q1JWRDd5cFFaM2pYWXlYRmxWX3UyN1ZlZUxNWWM0NWc2Sy1hSWt4aC00QzhfX2d4c2NXQ29VTlktT3RYNGhuSEVZbU9idFIzUlFONUJRWXlxczB2Qk54OHFVd2RuYTlmSnhuQjhaQWNKUndmYW5vU2lPYjJvMkVlTmZlSFRtZ2hUckk2VEVmUlkxN3NJUWNjNjFkR2FKYnhTQjRtTEdTOG8ydlFpQ0tv?oc=5",
-      "source": "Scanx"
+      "kind": "results",
+      "detail": "Why Sammaan Capital shares jumped 6% amid Sensex, Nifty Thursday rally after US midterm elections results; stock returns",
+      "url": "https://news.google.com/rss/articles/CBMilgJBVV95cUxOLVlRRVFpSlZ4bGJER19TeHJJM2dEbUZaSEg4dTVDb2FyUzJCOEd6LXZ1MDdEXzJqYWVGbUt5aVBlTjVrQTNNTUJFOEQwRTVhelEwaldqaHJiNWgtN3FJeVlTYXdQQ0VyMW1JSUN1cTVSTWM5aFZVTU40eElLN2lhNnJMRkxTcEpaczVpdm5Bb2JsN2dRa3VQM1JKZks4bkI1VDZMUUNtSUhZd1RHcTRJMUI0Uk91NHZ3RGpmbmpxN3ota1F1WUw2ZEhqLVdvcmlkTHp1a2pLaXloZFVHYXdsUzM1UkdicWJjc0hSeU1HTHhrWnpHWnBCQ0NvNDNCTU9IZmpWS0hjM3F2ODlTb01KalZDQnYxQdIBmwJBVV95cUxPckFsaGhaamdTbkdxOEVzSFI5dU1PWDVlMGhNZXUzaGhLQmdvVDZ2Y1lILUdlVXlZR2U4VGY5bzhFQjhMTlRPUkxuYUk1VS1UVEsxVFpTeF9NR0ZGcDJmNkVKWjRzOFlUdkhYQy1mS3NXaXdmaDlvZnlPdGE1T2puYTBPbWxyMGRTcW9sMEdiRE4tUzJKVHlmUGw0Q00zM1B6c1cyQXpWcGs1anU1bnh2bGcwN1A5bkZJYU9jenpNRGJEOGQ4VUZpeDRvcERDODEtaTNjUnNvTXpqRTlaci1BRnN3UTEzbG5oeXdPY2xVRGl1dUZMRndOX1dtT0Z6NHVIZk11cDBhM3RxNE1TMnBPbjdtdm9KRjdJWDlB?oc=5",
+      "source": "Mint"
      }
     ]
    },
@@ -8648,9 +8949,17 @@
    "raw_pct_change": 5.0,
    "corporate_action": null,
    "why": {
-    "headline": "No disclosed reason",
-    "confidence": "none",
-    "evidence": []
+    "headline": "Bulk deal of Rs 2.4 crore",
+    "confidence": "medium",
+    "evidence": [
+     {
+      "tier": "deal",
+      "kind": "bulk deal",
+      "detail": "UPSURGE OPPORTUNITIES FUND 1 sell 122,400 shares (Rs 2.4 crore)",
+      "url": "",
+      "source": ""
+     }
+    ]
    },
    "news_checked": true
   },
@@ -8686,17 +8995,9 @@
    "raw_pct_change": 5.0,
    "corporate_action": null,
    "why": {
-    "headline": "Results (Scanx)",
-    "confidence": "low",
-    "evidence": [
-     {
-      "tier": "news",
-      "kind": "results",
-      "detail": "Indo Rama Synthetics Q2FY27 results: PAT up 202% YoY to ₹74 crore",
-      "url": "https://news.google.com/rss/articles/CBMixAFBVV95cUxNeHB6RlhCQ1hieUFmckRoOFlJZXRYXzlUR2l2MGs2b2dYMjVzYkRqRU1ZMU9HQThySkkwM3JRZGI1ajZvRy14ejJoSURXMElNQm84UUIxeTEyY3RCd0lfbTVfRVRCSTVqemJzenlDY0tuTDUxVEs4ZV96YWFnbUFzczEzTGRCb1lrS0ZlektsQ1djeUhVRTMzMGZZX0x4eEVZUXBVdEhLaFlXRWpFZUJNLWh5M3VicEM3U0taQjNtRF9SQVJh?oc=5",
-      "source": "Scanx"
-     }
-    ]
+    "headline": "No disclosed reason",
+    "confidence": "none",
+    "evidence": []
    },
    "news_checked": true
   },
@@ -8754,9 +9055,17 @@
    "raw_pct_change": 5.0,
    "corporate_action": null,
    "why": {
-    "headline": "No disclosed reason",
-    "confidence": "none",
-    "evidence": []
+    "headline": "Results (Scanx)",
+    "confidence": "low",
+    "evidence": [
+     {
+      "tier": "news",
+      "kind": "results",
+      "detail": "HFCL Q2FY27 Results: Net profit up 448% to ₹394 crore",
+      "url": "https://news.google.com/rss/articles/CBMiqgFBVV95cUxPSUUyZ2ZTd1dHRC1keWhRN3lMNml5MHJYOWs0ZkxSVzhIODJsLUFFZVRra3ByaEczajRCQ2R6NWVZWXVhOHR5YkZFZmYweXBVbHdKa2ZsSl9mbTFLZThwWkh4WFJmQkhwZV9ydmZ2clpTOHV1RjNLMUx4V0NfUTEzVHF2QTBLeXhaX2RSWk5VNERCOWt1U29uOEVwclB5WVllbHJlV0libUZsQQ?oc=5",
+      "source": "Scanx"
+     }
+    ]
    },
    "news_checked": true
   },
@@ -8782,6 +9091,13 @@
       "detail": "In continuation of our letter dated October 29, 2026, intimating the Earnings Call scheduled to be held on Tuesday, November 03, 2026, to discuss the financial performance and unaudited financial results (both standalone and consolidated) of the Company for the half year ended September 30, 2026, we",
       "url": "https://nsearchives.nseindia.com/corporate/INNOMET_03112026212846_Innomet_cover_Letter_for_VIDEO_LINKsd.pdf",
       "source": "03 Nov 21:31"
+     },
+     {
+      "tier": "deal",
+      "kind": "bulk deal",
+      "detail": "VINOD AACHI sell 75,000 shares (Rs 2.2 crore)",
+      "url": "",
+      "source": ""
      }
     ]
    },
@@ -9040,7 +9356,7 @@
    "raw_pct_change": 4.99,
    "corporate_action": null,
    "why": {
-    "headline": "Results, reported by Scanx",
+    "headline": "Results, reported by Sahi",
     "confidence": "high",
     "evidence": [
      {
@@ -9067,13 +9383,6 @@
      {
       "tier": "news",
       "kind": "results",
-      "detail": "Mold-Tek Q2FY27 Results: Net profit up 4.8x YoY on revenue growth",
-      "url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxQUEgtU3ZqNkZwSGJwTWdMRGNNWC12OVI2b0ZKTkhFR1dRdS1NbkdoemlKdlhpbFhlQWw3SUgyUTVuWEZzUExpTHMwV3JMZWVJUFM5cWRSOHN4WGVBSkhDSWJEZGdtT2lCUXg0X2NYLTFFWFQyZWs4WmFtUTF6NEtUTnVUaFRRWWJhZ0pacjFhUk9wMDl6Z0pFX3cxRHBSeVNmVXBtUl9fNXl4aXoyZlVfNGFQeFYwakxvR0E?oc=5",
-      "source": "Scanx"
-     },
-     {
-      "tier": "news",
-      "kind": "results",
       "detail": "Mold-Tek Technologies Reports Q2 EBITDA At ₹13.7 Crore With Margin Expanding To 22.5%",
       "url": "https://news.google.com/rss/articles/CBMirgFBVV95cUxNeXpEcl9QcHpWbTJkUWVOdWpCYW4zWWpyXy1vcDctbkU0OVB2ck03WWRiREVIX2dKUnRDYTFDeFdwb1hEeWpBVVVub0dpNXNJWDVBWVl1eUFOcTlad2lCR2pkYV9oX09sNVZTRHFVUHBxUlRseTQ3MEV4NFAwNW9nMS1HNGJMSVluamtid1I2NnY3ZWR5MlI4c3lDZjE5OF9wRjBkbFlSeUJwbm9CZ1E?oc=5",
       "source": "Sahi"
@@ -9081,8 +9390,8 @@
      {
       "tier": "news",
       "kind": "results",
-      "detail": "Mold-Tek Packaging Q2 EBITDA up 29% to ₹506 million",
-      "url": "https://news.google.com/rss/articles/CBMipgFBVV95cUxQNlNzdlFuMHhYLXVPcldLVmpPVmEycXE5b3JwNHlQMjZxSE9NV2E3NmxpVlpIdHE0QUNyZ3hTbnhYSU5zZDB5ZnJUN21HTTJINnlFS1piSkFYTzhlR3lIbW1CWG0temRvZnIwRERGLS1Gc3VWbWVDeEFRajV6ekMtLUw1UVBqdXBrbi1lRi11M0tIdFo3c25WYkduNi1qZGE5b0wzdDFR?oc=5",
+      "detail": "Mold-Tek Q2FY27 Results: Net profit up 4.8x YoY on revenue growth",
+      "url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxQUEgtU3ZqNkZwSGJwTWdMRGNNWC12OVI2b0ZKTkhFR1dRdS1NbkdoemlKdlhpbFhlQWw3SUgyUTVuWEZzUExpTHMwV3JMZWVJUFM5cWRSOHN4WGVBSkhDSWJEZGdtT2lCUXg0X2NYLTFFWFQyZWs4WmFtUTF6NEtUTnVUaFRRWWJhZ0pacjFhUk9wMDl6Z0pFX3cxRHBSeVNmVXBtUl9fNXl4aXoyZlVfNGFQeFYwakxvR0E?oc=5",
       "source": "Scanx"
      }
     ]
@@ -9167,9 +9476,17 @@
    "raw_pct_change": 4.99,
    "corporate_action": null,
    "why": {
-    "headline": "No disclosed reason",
-    "confidence": "none",
-    "evidence": []
+    "headline": "Results (Scanx)",
+    "confidence": "low",
+    "evidence": [
+     {
+      "tier": "news",
+      "kind": "results",
+      "detail": "Augmont Enterprises net profit rises 6.8% in Q2FY27 to ₹1,203 million",
+      "url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxPbW5SNWgzTi1HcHpJYXJELTB0TVZ5ZzNNTFJ1eWtkNnVGdVJYMklLNjdsSFBMX1dfTXo5eEJBZGt5dW5ZZUNwTFMwTUlWZmlVT2RLSTBMZGI2WFhLZ0VEQm44SnNyOU8tdVpwejNNS1d2MGdka1FBZ2pmX1hZNFdKRERfTExUS1dJdlRhQksyMFc0QzZuNTBJLWdsRWp2SXdoOE9sMWRLTDVBRVo0R2dqR1RPNEY4Q0preUE?oc=5",
+      "source": "Scanx"
+     }
+    ]
    },
    "news_checked": true
   },
@@ -9648,20 +9965,6 @@
       "detail": "Tamil Nadu CM Vijay urges PM Modi to take steps to set up Supreme Court Bench in Chennai",
       "url": "https://news.google.com/rss/articles/CBMi7wFBVV95cUxPcDBGNno4WERDOXc4QlFTbHJfdlNaQ0NWVjREc1l2MUVORWZTQmUwVEhJMjFjaTc1bElvbjc5bktoSGFaUW5RcV95cDB6UFRDRVFROFk5TWxWWGF3TWVOaElBOE5TMzRvZTJLdm1GT0xSUm1UOU5haGpkaHB6alk4c0JsR3RrNXJ0c055eW9uMjFjTEVILUNoWjQ5Y3ZXeE1kbEt0Y0ZiNGtYTktWUzYzbHUwWUpIVFc5ZGpOd1M5Nml5YTJVcnZ6TzJCLWdoUHJLVG9mQWVDdHNieGw0ZlIxdTNOUmp4SlY2TkhQTXRGY9IB9gFBVV95cUxNRmpQQTRHNHNYYmNlS1YtY2hGMVJ1UzZLVDJrYTdDSGg1YnlOeXhmZnZvdnc1dDBqV0VPWmVEMHpYckdwWlRnRE52N2RPYWNaRDdNS094UkRVSzJtVkxBOU53VmlKeDN3WWpuNkdMVWh1cFV1SEloQTBzYTVwNHIyS2VnNjIybXAxX0kyN1NkeWw1Z1BBUlc4bXNmdm9oaUViS2V3N1UwTXRYQkFGaU1xSUszaTQ3azV3Z1Vmczd5SUdNMzFGc1J0NU5PamhKVUg1TkhnbmkyQWlVZUtsQUN6TmZnWVB0Sm9ORk04cnh2Q2xrMlZVY3c?oc=5",
       "source": "The Hindu"
-     },
-     {
-      "tier": "news",
-      "kind": "results",
-      "detail": "US midterm results declared on Nov 3. Why will newly elected senators take office on Jan 3, 2027? Story...",
-      "url": "https://news.google.com/rss/articles/CBMiiwJBVV95cUxNZktYV0g2a0dYMFliUnh6ZEEtcDhlU3VnckVGaHQ3XzJ5QXhBdTBweWlFdDFYWlQtcDVfa3AwellTOUwtNkVmS0ZKWVMxZzFRNlRkbnlQSVJBM0NjdDBqTGEyVFVIbDBfR2ViRnFfcHlFVW5zTkJFQTcwUDNaX2NmM0xxMFJDWktTdERhUDY1US1vekxIbEtLXzk2NlJrckZBTV9sMzRYX2FZLU1NMnFOZjN4R0ZkN0E2SlhlTVpDQWlZVmdfUlg0Q29zUENSSVAxTzhobjJTaUdmTWx4WUtiZktxR1BscEJ2dEF0aktaTktfMkxpZlhzb2sxV2FfZ3BYc1hucXR5c1RWaWfSAZACQVVfeXFMTWV0Z0NvblA0VTFEN243WkpZQ1NvZWF5T2d5aHBqYjJnVDZ3OHB4bmdsdWh5OURrVTBEcEJaQWhLOTBQNzZxYWF5MGF0TWRPS3U4SUxFSGhka3A4bVpEa19aelFkZ1JoLTRtU2RPbllCZTZpbXppWVFwUjhyT1ltOVlEUXYxNGVmMVNKS3FndHJnY3pLUXRKZHQ2am9YMHUtM2tFRkk0S2lscGoxaDlDS2JYTzN1ZVdwVmszNElLMEhvekx5TUFFNkNERGhMQ3ljenJaUHEyNXdIUVVHb1FkQlJlcDJPeTRwa185czRBOVdhZnd5T1JSNEtDS0xKVG5MQTk5NEVzYi14eXJCVVBwcV8?oc=5",
-      "source": "Moneycontrol"
-     },
-     {
-      "tier": "news",
-      "kind": "results",
-      "detail": "US midterm election results: What happens next as Democrats take over of Congress",
-      "url": "https://news.google.com/rss/articles/CBMi9wFBVV95cUxNTVdiSGIyOEl6Rkl3T0tEajg3c1lLQU1xbkVqb211NHFtZGlQYVZHMzlnTFhCNy04b3FtM3lHbTk1Y3N0bXNfcldOV1JZTURiS004dnIxWUxkamJqN29IS1hrYkFheVNsWU1LU3pMczJ3c0w2bExUOHpBZUo1VU9lakl3UElQaHRyaWc3Ti1DN3k5dFB2WjQwLTJpR2Q5Ny1ZcHJ0TVA3MVA4QWtjSnpvX1VQT05wczdUSXNGZWRsZFpnYUgxa3c3WG9UQlBpcDJFNVFobEszR1NBaTV1WlRMMHlabnBSVzN2UmJHWXRhaGdqT2JlODZv0gH8AUFVX3lxTE9lVFQtaGwzMlpDMXQ1cFpfYVg3N0ExSnVndUI5SUJ0NGU4bjl1NnhseWhZSWZlN2JvZW9aVUIzZEJmOXJCQkx3bzkwY2c3OUVkMEJBTzI5ZG5TTVltSE5sNUlFYTZJYU80QXNoc3poNWRwaTNSWTJLWHpkSTNDSlpYLXp6U1VEbWxRdmFtRERXOXFQdVZuZWlyZjVuRVhnWDJCYmU4SzNHSUc4ZlAtTF9za040R1RESGxDdmtXbVJKTFB3N21TMm04QkdqLThrWGQwRmZ0Zk1yYzJveS1YNEtmazk4eDdXT19OeHNjNUlSOV9QR0Vyc1pmMjQ5dA?oc=5",
-      "source": "Economic Times"
      }
     ]
    },
@@ -10421,9 +10724,17 @@
    "raw_pct_change": 4.86,
    "corporate_action": null,
    "why": {
-    "headline": "No disclosed reason",
-    "confidence": "none",
-    "evidence": []
+    "headline": "Results (Scanx)",
+    "confidence": "low",
+    "evidence": [
+     {
+      "tier": "news",
+      "kind": "results",
+      "detail": "Music Broadcast Q2FY27 Results: Net profit ₹6.7 crore, revenue up 8% YoY",
+      "url": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxQZEdyZE9TU0F2UThFWjAxWmFhYlpBTkFFRVVrYzQ5eWpieEs3el9kMXNaS3lUM2VFSGdmdDBpWW90SFJJV25pc2xySE5LSnlZSWs2ZG1DYktzRFM2Z2R2UWJDWU80cFlsNWVmU0hsSkNNWWQtQVBrek9mSXE2VzJfc2V2QUdWak1GYWVkeU1BT3lxVDZLWHF0azNNaFJoTy1uNlRpMkJkNlNSa010ZTBKY0NBZldhMXZuNW9UQk44X1g3UQ?oc=5",
+      "source": "Scanx"
+     }
+    ]
    },
    "news_checked": true
   },
@@ -10516,7 +10827,7 @@
    "raw_pct_change": 4.8,
    "corporate_action": null,
    "why": {
-    "headline": "Investor Meeting disclosed to the exchange",
+    "headline": "Investor Meeting, reported by Scanx",
     "confidence": "high",
     "evidence": [
      {
@@ -10525,6 +10836,13 @@
       "detail": "Lohia Corp Limited has informed the Exchange about Schedule of meet",
       "url": "https://nsearchives.nseindia.com/corporate/LOHIA2023_03112026202716_Stock_Exchange_intimation.pdf",
       "source": "03 Nov 20:29"
+     },
+     {
+      "tier": "news",
+      "kind": "results",
+      "detail": "Lohia Corp Q2FY27 Results: Net profit rises 48% YoY to ₹777 million",
+      "url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxNVXY0QjFPQWlld09qVDRuQ2V2amw3emtVR0xIXzJhY1BGNGVIbXJyVk5yUUpXQmdaS1hsWWRTSnVHZUJ2akFBamsyLTVoa3I3N0hoOGxTajYxUDdPb1V1RC1OOTNBb3hTWTJPRGt2a09zZ3M4Z2NnU2R4VjFfSDVsNzlwbExNaFlOTEotcmFMWHEzd3R5RVBGS2pscGZjNWkwWU1yWDhRdk95Z212SVNvMVRvZ1NBVjFVZUE?oc=5",
+      "source": "Scanx"
      }
     ]
    },
@@ -10619,9 +10937,17 @@
    "raw_pct_change": 4.76,
    "corporate_action": null,
    "why": {
-    "headline": "No disclosed reason",
-    "confidence": "none",
-    "evidence": []
+    "headline": "Operations (Scanx)",
+    "confidence": "low",
+    "evidence": [
+     {
+      "tier": "news",
+      "kind": "operations",
+      "detail": "TechD Cybersecurity launches 10-city roadshow for TECHD ONE platform",
+      "url": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxNWWg2dEdQTlFtbEFQS0gya1hHaHJOWVlhRkdYYU82b0hvNm81ZDg2bjNEcVlzVWxqejNKZWFPNE9RSWUwd2Nkc1BSWjRZRThncUw4enlpeXhsc1p4WW9OT1d1dnM1dUhEeEhxbEphTHgydnR4a2VjcmhDcXJrMWc4UERfdnNVQncxOUNrY2p3TFdrdlgzaVhSVENaUmRic01KaE9vbFRRNjhObG9oajhXMEh5Rnd3clNrRS1EZU1aWGpZRnc?oc=5",
+      "source": "Scanx"
+     }
+    ]
    },
    "news_checked": true
   },
@@ -10652,7 +10978,7 @@
       "tier": "news",
       "kind": "explainer",
       "detail": "Suzlon, Grasim shares climbed up to 5% today; here's why",
-      "url": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxQcXJpR0FSZG5JYjYzLUxfSDFIWTJKU2V6MV90eHZuWTRmODM4YlNoY1pQVTllY0VSaWVuRGZBcUs0SjNublF2U2pSazJNbl9vSzZJYkxVY0ktYWNuUGtKTTAwT2t1YVl6aHhjRzAtRlNCc2dxeEZSR2FXUHlNX2IyTEUwQkVKamFPN09DTjgyU2RsNkJNZThuUDRFUF9EOEdlUVFneG5rZ0xIeFNUOUtibGtJVVgybXY1cHpOa0JUV3RsZ9IBwgFBVV95cUxQcXJpR0FSZG5JYjYzLUxfSDFIWTJKU2V6MV90eHZuWTRmODM4YlNoY1pQVTllY0VSaWVuRGZBcUs0SjNublF2U2pSazJNbl9vSzZJYkxVY0ktYWNuUGtKTTAwT2t1YVl6aHhjRzAtRlNCc2dxeEZSR2FXUHlNX2IyTEUwQkVKamFPN09DTjgyU2RsNkJNZThuUDRFUF9EOEdlUVFneG5rZ0xIeFNUOUtibGtJVVgybXY1cHpOa0JUV3RsZw?oc=5",
+      "url": "https://news.google.com/rss/articles/CBMivAFBVV95cUxPdU1Jc0pmcHhyMW5vWUo4eV9rM2NPUksyVGttakNERnpGM1FSc2w3Umt1U0ZVeVZFNDFoUURobnJEQ19Va1VsdWhvNUVDd1JHNVpQYkN6bGFDWlA0aTJkcXlidW1RajR1cWtyc3FlamQ4a2FRUWZ5ZURWR0VMRzFJalA5b3FRWE1CbFhiTzNSeWpsaXBBdXlBVUhMQkZkSVpHUnFUS2NBeUpOTmdQZ3BRVU5IYW5MbkNtenB5ONIBwgFBVV95cUxQcXJpR0FSZG5JYjYzLUxfSDFIWTJKU2V6MV90eHZuWTRmODM4YlNoY1pQVTllY0VSaWVuRGZBcUs0SjNublF2U2pSazJNbl9vSzZJYkxVY0ktYWNuUGtKTTAwT2t1YVl6aHhjRzAtRlNCc2dxeEZSR2FXUHlNX2IyTEUwQkVKamFPN09DTjgyU2RsNkJNZThuUDRFUF9EOEdlUVFneG5rZ0xIeFNUOUtibGtJVVgybXY1cHpOa0JUV3RsZw?oc=5",
       "source": "Business Today"
      }
     ]
@@ -10895,6 +11221,13 @@
      {
       "tier": "news",
       "kind": "results",
+      "detail": "Diffusion Engineers consolidated profit rises 36%, standalone falls 30% in Q1FY26",
+      "url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxOX3JKX2wwU0pFV29ENHlSVDB2QVlxZjFHSllFNlFLem5FOXVqOGhnLS1LenJyRGVJaGJxREhFbGlHQlhwa2hEbDkxa0J6WHhXY0VvOE1Oeno5Nm1rdlpDZFRodlR0cUxuSlUyOWc4NjNNb2ZyNmNsNWYzMk5PRkFWckg5YUg0eWh6Z0JWVDNGX1RPbXBHTEN4ZGg0dU1WZU8xcXBqak5uTHZISGhQNnMwRWpPWlhyLXRyZUE?oc=5",
+      "source": "Scanx"
+     },
+     {
+      "tier": "news",
+      "kind": "results",
       "detail": "Diffusion Engineers Q2FY27 Results: Standalone net profit up 53.6% YoY",
       "url": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxPOVJub1A5S091WEpYdVhhb0JiU0VPT0JqRF83Sm9RU09sWFJWZ0dlQjVGc2RCVGd4V1N4NEJGNVZaUU5pYlMtOHJtengxYUNxVDZ1V29EOGJVZGZPU0YyeWtrODhNSUpUdEhEWFZyeURfd3lDWkdoRWFvLTczeUllLXl6UVBMWVVsbW9XWU9DZGhJbWtJQTFqdEppTGlJNTdraFg3d3F4MHVmLU1GZkliQkUzSTNnel9EcGptcW5PcEVISG8?oc=5",
       "source": "Scanx"
@@ -10916,9 +11249,17 @@
    "raw_pct_change": 4.72,
    "corporate_action": null,
    "why": {
-    "headline": "No disclosed reason",
-    "confidence": "none",
-    "evidence": []
+    "headline": "Management Change (Scanx)",
+    "confidence": "low",
+    "evidence": [
+     {
+      "tier": "news",
+      "kind": "management change",
+      "detail": "Canara Robeco AMC seeks shareholder approval for director appointment",
+      "url": "https://news.google.com/rss/articles/CBMivwFBVV95cUxQTlp3enhLZF9BUmxkWU5GUG5GUnozVTF5ZmJMcHFHV3NOOVpTX1prVkx4VjI3WUtFZDZ4dmRqdWFjUGYzT0RlZDJNc1k1Z3ppcndkUjRPNThZeEJCZzdXMTh4RXJSWDZLOXFyXzJFOGd2M25wQWlBVTBpdGVIUVgwdk5jem93MFFPNmZKVjBjOGtETGQ1eVJwTXB0VDFYM2xCWWs2R0xJZkNiZlZfR0VkSHBKbGVRX0pIRXhWZHlQVQ?oc=5",
+      "source": "Scanx"
+     }
+    ]
    },
    "news_checked": true
   },
@@ -10935,7 +11276,7 @@
    "raw_pct_change": 4.71,
    "corporate_action": null,
    "why": {
-    "headline": "Investor Meeting, reported by Business Standard",
+    "headline": "Investor Meeting, reported by Economic Times",
     "confidence": "high",
     "evidence": [
      {
@@ -10947,17 +11288,24 @@
      },
      {
       "tier": "news",
+      "kind": "results",
+      "detail": "Bharat Electronics shares gain 3% as Motilal raises target price after Q2; Elara Capital upgrades to Buy",
+      "url": "https://news.google.com/rss/articles/CBMihwJBVV95cUxQeWFOYnE1YW12MG9OM3dzQlFLWkZfeHRHVFdTTUlfU3JVUHBNVGswQV9tTVYzb2hFRUVzUlRuT3UxektkRVYzcURzaTh0aTZRWF9DS3Z6RjdKSFg2MXEwTkhlTjZsandWZXRhaFIxUVc4Y1pPTkVaemdYbmtsaklmc2ppRGJiOGlRNWRXaFVMRDZNVGxOb1F6XzBucWs1R2JFMmw2WktVMDJOUTBkZ2xoMl9RYnYtbVpUSkExMkJvOHpSNU9XeFI5LWdzVGhQYXE5LWFlWXgxeGFiNERZYjBlLVBLTHZ3c04yTmpEbUpsU0JKbTNVTE11ZGRkbFpRdzhLNlhBWjlEZ9IBjAJBVV95cUxNa0ZodS1aZ1NwcjZQNVpUWTllR3B3ZmdTZFU0bElQU3dYT29QdEdvV3J5ZkNhQ2d3US0tWWpiUVR4bDhQRHplcjA0V0Fvd2VuODVLem0yeG0tNkxjY1RQX29ZeWhxM3YtM0drS0UxVzVEYjRiSU5xSVlZRzRTVUpabXBaTnNxbXB5R05wbkVjM2VGNUtuTGdtak5ZbEpNd3FiX2VWZ29Yc2dmU3ZUWWxKWVBRa3RXUjFTdGY1LWN3Q0wtMFgyUTUwS2Q2N2lPbWdnb29xZHRyaG9JZy1sTkRaV0lnX3dqWDM5bXdZajdzR19zbFpqcUE3N01SVXFLUTEzNUZOUVd5YWJFemJW?oc=5",
+      "source": "Economic Times"
+     },
+     {
+      "tier": "news",
       "kind": "order win",
-      "detail": "Order inflow guidance, outlook to drive gains for Bharat Electronics",
+      "detail": "Strong Q2 and order inflows to drive gains for Bharat Electronics",
       "url": "https://news.google.com/rss/articles/CBMizwFBVV95cUxQWFY1aTJ3OWoxbDBrVDlTS1h1Tmo4al9kQUFmLW16WDJfZ21LWE81VFJrd1N2SjR3UUttNGlZMlI3enZYbGFmYmJoRkRZMGVTa3l6UjlOTXZyZGlfU3hDU3c5THJmd2ZseHhVa1YwR0d1ZTFCcEM0UHdaYTh0Y2dBeWdMVG44aGx3dzBVbGl6bm5UZWN0cFktRVhXcHBEOXFxU0E1RkVVWTFTSVl1c2cwckdSSHZYc2U5UFJIckkwWktpaV8xM2UzeEFZMktVcTTSAdQBQVVfeXFMTVMtVEtWN0FkcGdFQXJfZkFYdHNaUzZnZU1KaDJhbUVhdlM3VlZpaGROWUlTY2V5aUIwX2VYbzlVSmhKRW91LVZkNzRvdE1iNnl5V29MUk80UEpOUkI2Q2tSX2dxU0t2WlVPOTk5ODNiZ1lyT2hEZnVPeVZYRS04X0lfQUFjRktMdGJEVEQtT2RtX2h6X19JZDFRTmJneDRTaUEzc3FiR083eEtXRFktOXJ2VGd0a25ET3pEM3BoSU9xTE5hdnExc0p1Z1lIVkppMWh4ZzU?oc=5",
       "source": "Business Standard"
      },
      {
       "tier": "news",
-      "kind": "results",
-      "detail": "Bharat Electronics shares gain 3% as Motilal raises target price after Q2; Elara Capital upgrades to Buy",
-      "url": "https://news.google.com/rss/articles/CBMihwJBVV95cUxQeWFOYnE1YW12MG9OM3dzQlFLWkZfeHRHVFdTTUlfU3JVUHBNVGswQV9tTVYzb2hFRUVzUlRuT3UxektkRVYzcURzaTh0aTZRWF9DS3Z6RjdKSFg2MXEwTkhlTjZsandWZXRhaFIxUVc4Y1pPTkVaemdYbmtsaklmc2ppRGJiOGlRNWRXaFVMRDZNVGxOb1F6XzBucWs1R2JFMmw2WktVMDJOUTBkZ2xoMl9RYnYtbVpUSkExMkJvOHpSNU9XeFI5LWdzVGhQYXE5LWFlWXgxeGFiNERZYjBlLVBLTHZ3c04yTmpEbUpsU0JKbTNVTE11ZGRkbFpRdzhLNlhBWjlEZ9IBjAJBVV95cUxNa0ZodS1aZ1NwcjZQNVpUWTllR3B3ZmdTZFU0bElQU3dYT29QdEdvV3J5ZkNhQ2d3US0tWWpiUVR4bDhQRHplcjA0V0Fvd2VuODVLem0yeG0tNkxjY1RQX29ZeWhxM3YtM0drS0UxVzVEYjRiSU5xSVlZRzRTVUpabXBaTnNxbXB5R05wbkVjM2VGNUtuTGdtak5ZbEpNd3FiX2VWZ29Yc2dmU3ZUWWxKWVBRa3RXUjFTdGY1LWN3Q0wtMFgyUTUwS2Q2N2lPbWdnb29xZHRyaG9JZy1sTkRaV0lnX3dqWDM5bXdZajdzR19zbFpqcUE3N01SVXFLUTEzNUZOUVd5YWJFemJW?oc=5",
-      "source": "Economic Times"
+      "kind": "order win",
+      "detail": "Bharat Electronics: Nomura raises target price to Rs 520 on large defence order pipeline",
+      "url": "https://news.google.com/rss/articles/CBMi5gFBVV95cUxQWFBtUFlEd3Q4T1hxRGtEamRydk5ZRUFGVkMwOS1EY1dMQ24wdi05alBpQkdXZ2wwaEkyQl9sOEtsTzRiSDY3WFFSdmtEWTItM0xyR3E4dnlnZDJUajVtMWpjTGo0b1pOalRwME5PZlY5MWEtcUZ4SFpwaWZRTTZFWWsyR0l3VG9iblhqOVM3V2pPb1pJeVVGTW9ZNFZQN0dOSEZtYXh4STJzWHlVaDNOdXlYSFZNTUxKRGRaU3ZSeWpkTHZpUXNIY214N0UtNXVGaTBwUG9RVUJTVGdwOHRJTzlrR1Y0QdIB6wFBVV95cUxNaGRLYTJlNlQyZ0J0TDF3dHhfTzZJdDh4eF9WY2U2U1VOeEZoWVl0NTluZkZ1Nk10c0NtLWJxT1dIVExCd0hTOUxHVzFlazQ5Y3VIRXNQQmx3T19SWnBTTnB6M0huYnkxdXkzMWR2SFZNQTV5NzNmSGd1UFNBMkJxcElYNnBIVDFSTXozX01nTGQzN21qREFLUnRjV1VubU5XSEJoOERiaW5MZ0NTWTg5ZTdnaWlpMzNRTVlZeFRkRE12ZVdwelYwLTc2cE9sa3QxZm1ob3RQaGhuYkZFbllMejBFZ0ZvalZReXBj?oc=5",
+      "source": "Moneycontrol"
      }
     ]
    },
@@ -11035,15 +11383,15 @@
      {
       "tier": "news",
       "kind": "results",
-      "detail": "PSP Projects Q2 FY27 slides: revenue surges 58%, margins under pressure By Investing.com",
-      "url": "https://news.google.com/rss/articles/CBMiyAFBVV95cUxPRVAzLWpYUVZJTkRkcjJtbGEtRUdtMGJScUstNGZzNjBiQWRZRDhUY1hpTFBsNHlpR0dZbXgwMFZjSGk4VjNKRzN2bGlhRUdVeGxMa0RFWmVISXlVZ3BWNmdUcVhQT2hTMHNIWmRQd1JDV0E0SEp2QVhBWGFhVjlsT1FlRDN1aWZBYXlJYTFkZ3BUMmdXOGxTRkRZbnVmQkNTUkpaR1N0bGZxZ3RHZnp5aXBZRUJTZndzTTlFWUhNbnFQRlZYTk9Jbw?oc=5",
+      "detail": "PSP Projects Q2 FY27 slides: revenue surges 58%, margins under pressure",
+      "url": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxOYkFPc0ljUk80Y2ZwV0ZBQ2E5cVM0Y2c0YXNZX2U1a3Vaa3JlTTZZb3Z2Wmc2d0Y2NjNPX0ZtYUlNY3d2NmF6VndweFBJVEtXNVBqTEJJWW9zSjNaTlc3ZEpWUFpLanFDUFFaMWdqdUdDWUJ2QUVadEdoMUFMWGVORU92dXRYallVVmdFWjAxZGhVNUVMdjNvSkNyalE5dTNOTXJfb1Z6NkZaalVsa1FiaUFSZEppYndLdjhKNEJuR0NTdUE?oc=5",
       "source": "Investing.com"
      },
      {
       "tier": "news",
       "kind": "results",
       "detail": "PSP Projects Q2 Results: Net profit surges 88.8% YoY to Rs 30.2 crore; Revenue rises 58.3%",
-      "url": "https://news.google.com/rss/articles/CBMi6AFBVV95cUxNUUhVdXJMd2R4ZU45YWt2SE1pc2NRTU5uUkhSTzJGOTlPU2FJUURrOW8zWjlmWVhnM1lUV0NzX3piaDE2c1JpbThCRWVIdDZrUHRKYmJOOEVWS0ZqZW9GV2liMnV1U2xRd1pRRXJNWTVsUzZrcUZfWE5tU2VycDJDR3NOZ25pV24zUHNZTDU1RVNkWTc1YVl3ZjkxdGtVWjBDOEdhd0J3bHY4blFpZVpyRGdhV0RCXzA5WFc4Q2lfWVBoWmRsRnpqSmRxaGdQSWxPRjFvbkZmVXVfdXZzOWlQdVBmazRwZS1B?oc=5",
+      "url": "https://news.google.com/rss/articles/CBMi7gFBVV95cUxOeTY2NjNIemdYTm16VjMyOTBJRWs1MkN1azRiWVJ5aFFIMXlUMWFNaUpOY1R3aWpCdFNJeTAxcEdZZ0Q0bm54aVJERVRRZDdLWG5qaHdrdFVQSVE4aTRTV3pCUmJ3Z1RjcFBzWEZJc2xjMnlxTDdlVDJmWmpwZHQyV2hWbnFCVlRidUNPZ1JtSnhOYVdnbzNSUDFIU0cxWnFQSkFlYzdSb3hjN0VYOHl6ZXFyWHVPSmdJWk5UNi1NOVJudFoxVFpNa3NSbTgtNkhuUU91ZGZyZEF3dy1LbHYwbnBOZFUwcENTenVpbmln?oc=5",
       "source": "Business Upturn"
      }
     ]
@@ -11342,9 +11690,17 @@
    "raw_pct_change": 4.63,
    "corporate_action": null,
    "why": {
-    "headline": "No disclosed reason",
-    "confidence": "none",
-    "evidence": []
+    "headline": "Results (Scanx)",
+    "confidence": "low",
+    "evidence": [
+     {
+      "tier": "news",
+      "kind": "results",
+      "detail": "Adroit Infotech publishes Q1FY27 results in newspapers",
+      "url": "https://news.google.com/rss/articles/CBMivAFBVV95cUxQSHhOeDhqWFhEdlJTTXBzY010amZ4MWhlSkwyYmFOd2w2QVFOQUo2VGU3R3dtV091cnRUbG5mQVdHNGgyY0IxVldBRnRrVWdQSHlTelVvTkRxbVp2V0VFWjRWVWxFbmVNVjJJTnpGMGtzSzdlWHNIb2hVWWdPekJaZEJ1SjdzckVtQVYtNGg4Z2x5LVg0NXBPRDVnR3UwdmtZaHZKTFZrNUtoTVdXc2F0cXQxaFh0Nm44cmg1dQ?oc=5",
+      "source": "Scanx"
+     }
+    ]
    },
    "news_checked": true
   },
@@ -11380,7 +11736,7 @@
    "raw_pct_change": 4.62,
    "corporate_action": null,
    "why": {
-    "headline": "Results, reported by Sahi",
+    "headline": "Results disclosed to the exchange",
     "confidence": "high",
     "evidence": [
      {
@@ -11389,13 +11745,6 @@
       "detail": "Kothari Petrochemicals Limited has submitted to the Exchange, the Unaudited financial results for the quarter and half year ended September 30, 2026.",
       "url": "https://nsearchives.nseindia.com/corporate/KOTHARIPET_03112026163206_OutcomeofBoardMeeting_03112026.pdf",
       "source": "03 Nov 16:34"
-     },
-     {
-      "tier": "news",
-      "kind": "results",
-      "detail": "Kothari Petrochemicals Q2 Revenue Increases to ₹165 Crore From ₹143 Crore YoY",
-      "url": "https://news.google.com/rss/articles/CBMiowFBVV95cUxNdVJaWVJGeEFSa21mR25sV2dERHlhdlR1VTBkZXJaclJqbXdEbFhyRGFVak1mdC1SeVlkQ0ZnV3ZVRjhUOWtSZG9NSGh0dURKMGQ5dS1feTY4Y05MaFllTlZoZ2psbXpLMDhEWWt3YkI2UWJsY05HNGQzakZmc0EzUjBJVDJPa2R6V2d1clV2V3Z4ZjNPZ29ETzRyVWhkeUJoeDdV?oc=5",
-      "source": "Sahi"
      }
     ]
    },
@@ -11691,17 +12040,9 @@
    "raw_pct_change": 4.54,
    "corporate_action": null,
    "why": {
-    "headline": "Results (Scanx)",
-    "confidence": "low",
-    "evidence": [
-     {
-      "tier": "news",
-      "kind": "results",
-      "detail": "Shree Ganesh Remedies Q2FY27 net profit down 67% YoY to ₹1.63 crore",
-      "url": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxNSXZHLW1XVWJnd1pyLUw2LVNfRHlpa2RmVVJkQXhCcHprYTdRNjlrcFhfbEFtVFk0Q0xxWGE3djVHY2FERHdqbHZoaUV1MnNHdG1pbHpKY0plYnptTEdBeTI3ZUZSNlhTWVNPb2dHR01GUHBaamtfWVlsa2o5S1NrRGJ4NGtHNFdMUlB3VmxWYlhWMVVxWWN1YUpNc2xhNXU1VERCc2lMdlJmZU9JcGxwSF9OeGhGdHJSUUhjTFRycHZJbVU?oc=5",
-      "source": "Scanx"
-     }
-    ]
+    "headline": "No disclosed reason",
+    "confidence": "none",
+    "evidence": []
    },
    "news_checked": true
   },
@@ -11745,9 +12086,17 @@
    "raw_pct_change": 4.54,
    "corporate_action": null,
    "why": {
-    "headline": "No disclosed reason",
-    "confidence": "none",
-    "evidence": []
+    "headline": "M&A Or Stake (Scanx)",
+    "confidence": "low",
+    "evidence": [
+     {
+      "tier": "news",
+      "kind": "M&A or stake",
+      "detail": "Mayur Uniquoters Promoter Kiran Poddar Increases Stake with Fresh Acquisition",
+      "url": "https://news.google.com/rss/articles/CBMi5gFBVV95cUxPMmNzeXM0dko2R09LTG1uYldDdkl5TkhnczBvVDVrOHVoVzF2amkwUHZPWklCV0RfMzZGVjZhMlBhUFhGTXUxMERqVHFSRXhkNVJkckl0aDJQT21FSnRMdUoxdi1BZzJyQkZrWEJBcGZYeDRJbHFsTVVCM1VSeHN0cWNTRVNnMFM2Mkg0ZUlnQlRBcF9RODY0cHdGR3ppU0VCNjVDeVFNdnFQVUtFQTBKUkdtQnAySEV2ZHFqWWxlUTB6RFRhQVBsakI1eWRFM1c0eExYbHZ0b0dMZnNISVBFX0w2eWZzdw?oc=5",
+      "source": "Scanx"
+     }
+    ]
    },
    "news_checked": true
   },
@@ -11764,7 +12113,7 @@
    "raw_pct_change": 4.54,
    "corporate_action": null,
    "why": {
-    "headline": "Investor Meeting, reported by Business Standard",
+    "headline": "Investor Meeting, reported by Mint",
     "confidence": "high",
     "evidence": [
      {
@@ -11777,16 +12126,16 @@
      {
       "tier": "news",
       "kind": "results",
-      "detail": "13x rise in Q2 PAT, resilient margins lift Welspun Living shares by 11%",
-      "url": "https://news.google.com/rss/articles/CBMi0gFBVV95cUxQT2g3ZzNEZF9pNUdYT3otc1BON2dLQUgxRUM5aGVBdEwyNm1ZVEY5ZzNzYVdudjM4WDRJa0JPSnpPNDlxeHExczR6QjlFbVZsREx0UUdVVVZSVGVTR0hDRXBOM1ZpbHphTndmN0hIV2FqVzNiVko0Q3h3aEo1RWFfZXU3V0Q4Q29uRXRVTzRyY05LY1ljdUtTZ2Q2RTY0RmVlNks4Q0VPS2lES3k3aHlkNGtQNERWUHpLUFp0TG9Gc1gzUjZ3cjA2a2h4TGtPRXNJcGfSAdcBQVVfeXFMT01jZERBOFVHTFN3ZXo3dTItT1ZMNnZwQlFsNHBfejRCTzZNQ3NOalF4OVo3UU9sS1JoLUJaU3AtYkFMUzhiTWJzMUl2ZENESENOb19YWjcyVHhUT2xqeGZZX2ZUbzJsam9OeHdXX0xkRnJhcUlzWFZ4dFc4VkNKSndDb1NXWHhfM3N3NjJJdFl0SE9IYWNlRjVLc3E0elg1S2pMT1pkUjlVUzRVZHVnR3NhWXRCbTFRamVGc1BfY21xMmRUT3YyUTROMGdEMHlDQXBsVUxSYjA?oc=5",
-      "source": "Business Standard"
+      "detail": "Welspun Living shares: Up 80% in 6 months, rise 10% today post Q2 results; buy, sell or hold? What brokerages suggest",
+      "url": "https://news.google.com/rss/articles/CBMijAJBVV95cUxNNWZXUC1IM0s4S0R3ZFdrY3RtenNURWFMZUlFZnJjdGFJZDhMYmVUQkFCeGQxNlhsTWhURHFiYmZvc1JNR1RBVDlCSWhBUzY4VzBFS3pmbzhYRUJFR3R0MGxtYm5hRFlqTHJ1T04tdnl0eE1CcEtvY2czNXdjeTJ2ejJPMFR2Q0RzQWVtcEh0clFqQUIzWVRLNnMySWJBUmNoU1pxWlBIR2hDemFxVVZFTkJkUDJZb0t3ckVxNGxMTDFPN3hZSE1EbEh5Z2pDNTNxM2JOUlQ0WUl6b1k1VFNjNFZyU1dyTWN1NFNlSEZDWGVzMlJlMFBDejZ5bE9EY19YSTJGWGd2bzVLUkhW0gGSAkFVX3lxTE51UnplS0tqTHdjNllsTllDS201MTNvRndSb3RTb3dKTzRUSWtEUTNjbDMyWS1Kdlp6c2xySG5CQXFkQUU3Uk1RYjU1WGdRbTVISkJtNzFHWlRHRkhsR2RvRE1jN0k4NEJkRHM0RktsNllpZnJ0RVRfbFdrZDRFRkw5aEUzZXF3bW9OVXRUakk5N1BSYXh1VWNqTXA4RU0zenBiOG05UFBzei0tS29rS294b0MzbVZuUWgyMXJWcnYtRlR0aGpYa24xWHB0SDlaWHZ1WHpIakFLVUhiYldlTm1tc3U2ajA4VlZIbkFpOG1HQmltc1JUN2dHaTVpSk9GT3dBWUdRSDFmdWJyelhfejFTQ0E?oc=5",
+      "source": "Mint"
      },
      {
       "tier": "news",
       "kind": "results",
-      "detail": "Welspun Living shares: Up 80% in 6 months, rise 10% today post Q2 results; buy, sell or hold? What brokerages suggest",
-      "url": "https://news.google.com/rss/articles/CBMijAJBVV95cUxNNWZXUC1IM0s4S0R3ZFdrY3RtenNURWFMZUlFZnJjdGFJZDhMYmVUQkFCeGQxNlhsTWhURHFiYmZvc1JNR1RBVDlCSWhBUzY4VzBFS3pmbzhYRUJFR3R0MGxtYm5hRFlqTHJ1T04tdnl0eE1CcEtvY2czNXdjeTJ2ejJPMFR2Q0RzQWVtcEh0clFqQUIzWVRLNnMySWJBUmNoU1pxWlBIR2hDemFxVVZFTkJkUDJZb0t3ckVxNGxMTDFPN3hZSE1EbEh5Z2pDNTNxM2JOUlQ0WUl6b1k1VFNjNFZyU1dyTWN1NFNlSEZDWGVzMlJlMFBDejZ5bE9EY19YSTJGWGd2bzVLUkhW0gGSAkFVX3lxTE51UnplS0tqTHdjNllsTllDS201MTNvRndSb3RTb3dKTzRUSWtEUTNjbDMyWS1Kdlp6c2xySG5CQXFkQUU3Uk1RYjU1WGdRbTVISkJtNzFHWlRHRkhsR2RvRE1jN0k4NEJkRHM0RktsNllpZnJ0RVRfbFdrZDRFRkw5aEUzZXF3bW9OVXRUakk5N1BSYXh1VWNqTXA4RU0zenBiOG05UFBzei0tS29rS294b0MzbVZuUWgyMXJWcnYtRlR0aGpYa24xWHB0SDlaWHZ1WHpIakFLVUhiYldlTm1tc3U2ajA4VlZIbkFpOG1HQmltc1JUN2dHaTVpSk9GT3dBWUdRSDFmdWJyelhfejFTQ0E?oc=5",
-      "source": "Mint"
+      "detail": "13x rise in Q2 PAT, resilient margins lift Welspun Living shares by 11%",
+      "url": "https://news.google.com/rss/articles/CBMi0gFBVV95cUxQT2g3ZzNEZF9pNUdYT3otc1BON2dLQUgxRUM5aGVBdEwyNm1ZVEY5ZzNzYVdudjM4WDRJa0JPSnpPNDlxeHExczR6QjlFbVZsREx0UUdVVVZSVGVTR0hDRXBOM1ZpbHphTndmN0hIV2FqVzNiVko0Q3h3aEo1RWFfZXU3V0Q4Q29uRXRVTzRyY05LY1ljdUtTZ2Q2RTY0RmVlNks4Q0VPS2lES3k3aHlkNGtQNERWUHpLUFp0TG9Gc1gzUjZ3cjA2a2h4TGtPRXNJcGfSAdcBQVVfeXFMT01jZERBOFVHTFN3ZXo3dTItT1ZMNnZwQlFsNHBfejRCTzZNQ3NOalF4OVo3UU9sS1JoLUJaU3AtYkFMUzhiTWJzMUl2ZENESENOb19YWjcyVHhUT2xqeGZZX2ZUbzJsam9OeHdXX0xkRnJhcUlzWFZ4dFc4VkNKSndDb1NXWHhfM3N3NjJJdFl0SE9IYWNlRjVLc3E0elg1S2pMT1pkUjlVUzRVZHVnR3NhWXRCbTFRamVGc1BfY21xMmRUT3YyUTROMGdEMHlDQXBsVUxSYjA?oc=5",
+      "source": "Business Standard"
      },
      {
       "tier": "news",
@@ -12457,9 +12806,17 @@
    "raw_pct_change": 4.39,
    "corporate_action": null,
    "why": {
-    "headline": "No disclosed reason",
-    "confidence": "none",
-    "evidence": []
+    "headline": "Fundraise Or Deal (Scanx)",
+    "confidence": "low",
+    "evidence": [
+     {
+      "tier": "news",
+      "kind": "fundraise or deal",
+      "detail": "L&T Finance allots Rs 1,000 Cr NCDs via private placement",
+      "url": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxQUWdQZDdRZEY4dVFCaTNqMDYweVVoZ1pMd0h1X2x0N0ZaTnVLWVk2ZHE5R0I0NVpDYVVkUHlHdU93Mk5TM09ONXhiZUNlRk1yTU5BTFdDdEllMXo0aFNjN3BlWERCLXdyQnhCVFlWSlJGZjZ2UlJUUVZjM3Jvalh0ZW5MbXFFdEVDeXg0eE9MRFVEZnBZM1NJdnZxRUI3c0xLaWlfbmZCNzVOMkktdHFDQkw3UGxySHZH?oc=5",
+      "source": "Scanx"
+     }
+    ]
    },
    "news_checked": true
   },
@@ -12476,9 +12833,24 @@
    "raw_pct_change": 4.38,
    "corporate_action": null,
    "why": {
-    "headline": "No disclosed reason",
-    "confidence": "none",
-    "evidence": []
+    "headline": "Results (Economic Times)",
+    "confidence": "medium",
+    "evidence": [
+     {
+      "tier": "news",
+      "kind": "results",
+      "detail": "Kansai Nerolac Q2 net profit rises 8% YoY to Rs 144 crore",
+      "url": "https://news.google.com/rss/articles/CBMi2wFBVV95cUxOOUc1RGJHX21fMHU4ZFZ6M2JmYmJja2FGdTRMaTdLOW1pTnBIWklLdW00Y0Z5YW1ES2hDTkZrdG15V2FoVzFiZklCRk8wNmJsLUdvX3Z0TVVwSDZMa3V0Q2p2MGJZTGhjRGZQbUZZSHdGT25SVlZnOEZHbExFdmkwRHdNdzY5UVFscGdfaXIybmlYUnc4UnpZanBQeVlSZ3V5eEpPSnNmeGxBUTNGbE5CX2xNRWNzZTZJRS11bE1Sb25xTklVRHdKWEstdWxDbFdZT1ZuUUg4RExrTGfSAdQBQVVfeXFMTTFvdmRrdUJ3UHdoU3c2QzluV0lBb1BUdEk1Z3lfQzF3ZllGazM1aHFzM3gxcDRGSzFIMENxNk5RU2JWOFZ0TWlWa3VnRUNJUWNvb1R1eV9Ibmxhejc5anlwQUQzSHFuOWpZMjZXQmZvNWpuVzl6Umd6MGZzdmNQV294WGItXzRmQWRQd1VqY3JQYi13bndaeWN0cy11dkxia2FYREtQOW5vV3ZrR0x4RTN2ek9EMmhRTlRBenpTSEo3XzlBWnJVbzYwa3NxbW9LbkoxcXg?oc=5",
+      "source": "Economic Times"
+     },
+     {
+      "tier": "news",
+      "kind": "results",
+      "detail": "Kansai Nerolac Q2 results: Net profit rises 8.4% to ₹146 crore, revenue up 18.6%",
+      "url": "https://news.google.com/rss/articles/CBMi1gFBVV95cUxNdmptZDJuWHF1RHFCdVFTX1UtUW03WFFySmNnbkw1Q2Y5TW5acTR5bVV0b28xWGkxNlZ1YWowWnZkSzdFb282MUcyYTAyT3Vuc1VENnBBN0JsbkpYSnM1eVdZVnBxbHFIbEZ5S2QzWWNFVkNKMUZWM25QT3dLZ1dYME9Ba0NNS2xvLUhMQ0laeThqVjdONjFYOWwzRVpPSjRyVDMyYXVvR0V3LXIyQWpzc0dIUXYzbHJNSXR1YTdpZXlxdXdxWmxRWTNnNDhpczlPTF82RmZR0gHWAUFVX3lxTE12am1kMm5YcXVEcUJ1UVNfVS1RbTdYUXJKY2duTDVDZjlNblpxNHltVXRvbzFYaTE2VnVhajBadmRLN0VvbzYxRzJhMDJPdW5zVUQ2cEE3QmxuSlhKczV5V1lWcHFscUhsRnlLZDNZY0VWQ0oxRlYzblBPd0tnV1gwT0FrQ01LbG8tSExDSVp5OGpWN042MVg5bDNFWk9KNHJUMzJhdW9HRXctcjJBanNzR0hRdjNsck1JdHVhN2lleXF1d3FabFFZM2c0OGlzOU9MXzZGZlE?oc=5",
+      "source": "CNBC TV18"
+     }
+    ]
    },
    "news_checked": true
   },
@@ -12562,6 +12934,13 @@
       "kind": "results",
       "detail": "Dam Capital Advisors profit falls 35% as core segments post losses",
       "url": "https://news.google.com/rss/articles/CBMixAFBVV95cUxOY0RqdW1MQlZ6amZzSzhycGk2aHNqdDB4MUl5enZvMEJZeHJXRDV5eHBUM3VoamZyZTE1UXRyVEtsQkpoaUFUXy1IN3lMTkp0eWJJektianh0RjdCUkpvaEVHTk80Nzh2eU9kQlI3OTN6SDNxRzJGSVRNdmNWS0JuWVBIYWZWbTRSVGNUcHZvMV9aQ2FhSExHSC0wU1dkMVQyUWFXSWtCRTR1M3FLYmFKNm1TZnZSVW5YMV91cU82VC13U1Q5?oc=5",
+      "source": "Scanx"
+     },
+     {
+      "tier": "news",
+      "kind": "results",
+      "detail": "Dam Capital Q2FY27 net profit down 74% YoY to ₹13.54 crore",
+      "url": "https://news.google.com/rss/articles/CBMixgFBVV95cUxNeTNidVNza0NSa0dHWThZR25BXzlvZFZkUWJsZ2RZYWNtWl9iVk5DV0djeXFoUnN5OU13emVaUDZjTWxnLV9Nb1hQcm9venphdTNwbVBlZXNtb01hNFZtd2JiLXNvYWhMcVozVUxMR0hmdHRoNTQ4UmxaY2lLQkIxTEgybVlud0VqbU1aeVQwYjZYUUI5Q2J6cmVmdG1hXzBkZVc3TXk2b0l0X2xoa3JjalBabXFVRVo3dWdmYTQ0Y0RxT2tDWEE?oc=5",
       "source": "Scanx"
      }
     ]
@@ -12828,17 +13207,9 @@
    "raw_pct_change": 4.3,
    "corporate_action": null,
    "why": {
-    "headline": "Results (Business Upturn)",
-    "confidence": "medium",
-    "evidence": [
-     {
-      "tier": "news",
-      "kind": "results",
-      "detail": "Finolex Industries share price rises even as Q2 profit falls 6.9%",
-      "url": "https://news.google.com/rss/articles/CBMisgFBVV95cUxNWTFNQTNLLXByTmlkMmpXWlRUbG5KQ19EUjl6SDFVdTdxclNJaVBWZmYtNWFnMDdTTDk3YVJoM3FPTFhwS3kzalE3VDlCek9aSHJjb01ZWDVSTFh6N3o4ODRkb3l3VzFrbm5zR0d0ZzRoUkFkdW9MTmNpdmVWb2hUZFVKZXR1eUFoWVFRbzRfZndCQS12LVk4SEdTUzVkQVoyMUZ3b2NpVWg0Z2x5STBRQjRR?oc=5",
-      "source": "Business Upturn"
-     }
-    ]
+    "headline": "No disclosed reason",
+    "confidence": "none",
+    "evidence": []
    },
    "news_checked": true
   },
@@ -12982,15 +13353,15 @@
    "raw_pct_change": 4.27,
    "corporate_action": null,
    "why": {
-    "headline": "Order Win (Scanx)",
-    "confidence": "low",
+    "headline": "Results (Business Upturn)",
+    "confidence": "medium",
     "evidence": [
      {
       "tier": "news",
-      "kind": "order win",
-      "detail": "Lloyds Engineering Works Q2FY27 Results: Net profit falls 1.7%, order book hits ₹10,355 crore",
-      "url": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxQN1VlS1VSV3FkVjJXd2xGVHNzMEtubWVxbElBejY5YXNpa2RVOW9hOVZFQjk1Q2t4Ri1ySUJQVk5uazBjQWJSc3J6Z1lOcnc2aTY2Wm93amNaX0laaVlJZDRPbDYtWmpiZkNqeUE1VjlvWFMwVXpaaEE4NEdmbzh0NzZBNzJWQ2NLaVFnNUg4S1VBWUliSUwzT1JfSmxNSi1MS3ZSM19pZ1dqbzJyVlAwczc5SlpmYXZxa180?oc=5",
-      "source": "Scanx"
+      "kind": "results",
+      "detail": "Lloyds Enterprises Q2 Results: Revenue Jumps 70.5% YoY to ₹694 Crore, Net Profit Declines 41.7%",
+      "url": "https://news.google.com/rss/articles/CBMi8AFBVV95cUxPV1RYLUtrdkh5czhCWEZ3SU9ZM2pfMGdkR2RGQnNDTlFQTzlPS0J0MllLX3ZTaUl2Q1ZlejZmWEw2Ty0wSmlrdkozdnJNd1R1cnNqX0xGYlBrZmI4LTQwQnpsY1MzUVRJbE5lWnBLbEdDc09ybnlhOFBuS1BGOHdLc3VXbGMyX3BXek41ZTZ1dmdpWGR1dElKa2M3am8tM18zWFBtbXFMd1dSenpha0hrUTVFZzdrYk1lekZYZ2N2LWFwb2w3TDRYQS1GSW8xcGw3OVRMU2tTSUs1ZXpVSElZRkk4dEJBcTM0ODBxMTdwUVA?oc=5",
+      "source": "Business Upturn"
      }
     ]
    },
@@ -13107,7 +13478,7 @@
       "tier": "news",
       "kind": "regulatory or legal",
       "detail": "Madras High Court permits Vaiko to oppose Vedanta’s plea for ‘green copper’ plant at Thoothukudi Sterlite premises",
-      "url": "https://news.google.com/rss/articles/CBMijgJBVV95cUxObTVYdW5qYzZtZ0JDanF3YUtQLTFEOWlOb1pwMDBtbE9sckhNN21ieVJkUG1zMDU3Yy1ua0RhWUVpRXJZXzJsTVI5WDNyN1JvTHMzSjlhaWR2SFVvWndvLUZtOTZUd0VoMDEwMnBmbFZzWDlMRWtTNGx1RldxV0pZWDVhMC1sd25WZ2kyZ0RkaGZRdkVTMXlHclNoRF9HOUROdnlOeHZxVWdleFQ5T3JyeUw0OGJUWjRERHVyZ0dtMkJqVld2cFlVTjRIQWo2OGtWYzFpXzZPeFJuOXlZNGo1c3FKWkQxYnRMazhndW1rc29CazhhMkVRMjhZVV8zM0RLRDJlZUNwVGpwRml2Mmc?oc=5",
+      "url": "https://news.google.com/rss/articles/CBMijgJBVV95cUxObTVYdW5qYzZtZ0JDanF3YUtQLTFEOWlOb1pwMDBtbE9sckhNN21ieVJkUG1zMDU3Yy1ua0RhWUVpRXJZXzJsTVI5WDNyN1JvTHMzSjlhaWR2SFVvWndvLUZtOTZUd0VoMDEwMnBmbFZzWDlMRWtTNGx1RldxV0pZWDVhMC1sd25WZ2kyZ0RkaGZRdkVTMXlHclNoRF9HOUROdnlOeHZxVWdleFQ5T3JyeUw0OGJUWjRERHVyZ0dtMkJqVld2cFlVTjRIQWo2OGtWYzFpXzZPeFJuOXlZNGo1c3FKWkQxYnRMazhndW1rc29CazhhMkVRMjhZVV8zM0RLRDJlZUNwVGpwRml2MmfSAZQCQVVfeXFMUDQ3N0dyR1Z5NFpqamtaVXQ0aFdVVU9ZVFNEX3hORkpSTERrc0JXc21kLXJFMUNKRGY5OEM5Rldza3VodC12b2JwWWpmNHBUQnBQeDdQSnUtSnM5cUxMWEpGMnhWTTJBMlktV0VXQjlCYUpLc3JkSmNkcWxYSTJaRHVEd1JWYk4tYmQ3UUk5N2N6TFlkRmc1aTZpQk5rYnp0MHNuRlptT0V1dEFUa3lQODYzUE9BbV80MmJKWnRMZGFfZXhqMUNlTGZfd2h5bTRzUmdiZ1QyQTVEQkhRVkhhOXpEcDFBNXVQNzlmNjdmaVNULVotRFNvQUtFNlUtR0J4Y1Ric1IwMXpyZ0pQWFZxaXJ2MWhw?oc=5",
       "source": "The Hindu"
      },
      {
@@ -13577,13 +13948,6 @@
       "detail": "RSWM Q2FY27 results: Net profit jumps 290% to ₹24.53 crore",
       "url": "https://news.google.com/rss/articles/CBMirgFBVV95cUxPVVpJY1lvV3BDM1AtYmJCSFFUbnExSDZBb1l3NVBiZkJaLVVBSVpoel9iVUpmNlVYY3R1MkNhc1MtazA4bG00X2NrSFVZcE9OQmxqeW4tY3VzSUhjNW5hUE00QXQzMEFCUGt6ZGJOaTBIM212ZGU3dnBlWW84ZVE5OUZWQVhFUUhjQmdPSVBUNklHRTg1LS1MOUxESjFPV3pLalpPNUpxbHR3WnJTUnc?oc=5",
       "source": "Scanx"
-     },
-     {
-      "tier": "news",
-      "kind": "operations",
-      "detail": "RSWM Ltd signs JV with Noize Design Studio for ₹186 crore green garment plant",
-      "url": "https://news.google.com/rss/articles/CBMivgFBVV95cUxPNEdIX2h2MXhoYW9kdks5cE1ibUxuWjAyUjdaaWpTR195U2xsbnlLdTNIZFVFcEhsUnQyN2VZWEo0MzRocG5wdGVlbko1VFFXWkFsV0lOLWlTVnVjUWxTQWRYdDVqYTllTWZLYzV1X0UtRWdtLUpoN0RKeEpURXhibXlpNnZHZFR4SkE0azRwc2xvTVlIMDhHR0ZiWFZBWHpOb2lRTGk5Tm92dlZPaTR5bGhNQkRlakFxTFdLcmhn?oc=5",
-      "source": "Scanx"
      }
     ]
    },
@@ -13621,9 +13985,24 @@
    "raw_pct_change": 4.13,
    "corporate_action": null,
    "why": {
-    "headline": "No disclosed reason",
-    "confidence": "none",
-    "evidence": []
+    "headline": "Management Change (Scanx)",
+    "confidence": "low",
+    "evidence": [
+     {
+      "tier": "news",
+      "kind": "management change",
+      "detail": "Vineet Laboratories appoints M/s. Krishna Reddy & Co. as internal auditor for FY27",
+      "url": "https://news.google.com/rss/articles/CBMivAFBVV95cUxNYm5wakNRVENKM3ZfU0JPQnA2bHBOU3dqVTJPSEx6Nm5MU3QzSV8wMzNmUFBzN3Y2bmp3ZGlPRURnUTBRS0Z3anEtc0VvdEVWM1dBOTkwYnVva01lb3BKeFNURW1kMGc5TnFEQXpCVjJNNkxSb2JXV2ktTDR0T0pSTDhxZzVuSDliUmxTN1JMdzYxMjNfbTNpd0hDOGYxWThqZ0xXSVlRc18xVkZ6dXNnYWJ0UGcxVkZ4azVBUw?oc=5",
+      "source": "Scanx"
+     },
+     {
+      "tier": "news",
+      "kind": "management change",
+      "detail": "Vineet Laboratories appoints Mannidi & Associates as cost auditor for FY27",
+      "url": "https://news.google.com/rss/articles/CBMivwFBVV95cUxPSkdNRUdaTXNIbUl3MkYzWGY4Vl82U1haSDZYbzRlY01xUXdYM19BSGtrMm5aeUk5ZWZ3REVTT0loWjBQbVZlWHVybm5mOW1GMnlTbmVlNndiVWFNTnJURDRjRURYWGdfQWFUSWZnLTMtdlBKakJEbXIybU1ka0FvU1BBRVhOV3U2NWw1VmR5ekVwMGpSSUlQTFdJb0pBbDZaX3JNdnVURkdlVjdkY01BcEo3NTFvbktQc21vU2lLZw?oc=5",
+      "source": "Scanx"
+     }
+    ]
    },
    "news_checked": true
   },
@@ -13653,23 +14032,16 @@
      {
       "tier": "news",
       "kind": "results",
-      "detail": "Bajaj Finserv shares rise 2%, extend gains after Q2 results. Why Jefferies reduced target price but still",
-      "url": "https://news.google.com/rss/articles/CBMipwJBVV95cUxORjd2djRteHdLSUlncy1UZFdpMWM5VWgyZkRwZGlURGhCaE1uTHlQYlNUaVhLYUViQldBTHA1NzZNZy1qUm9zSDM3UEp4Sk00U1F4R1hvdk9vT3FzLTlabkViQlFZWjFfSEUxZVg5elJfYkctZHFrMXk0M05PNUZLQ0dVU2NUYkw0aEo3WnFoWGliRTN6cXVaSDlZRWY3RGxaRFBSaHY3dUJLMUVzbjJqWmFaRFg4WXloVDgtdE9CNUEyQy1QSTgzVWVrbjB1MTctLUFRLU1wejh4cDlac2lhSFYtNUFRLVVVeFpVNHpxMi1WNUNTRF82UzhQU0dXLXhLWlZubkoxcGl2QzRYSWFCMGF1VURPZDJhR0tXWjR6eDJXaGllRzFZ0gGgAkFVX3lxTE9qbVpqS21CV2JLVmNFUFZoYnVOU1czM0t6WG1ZWmpzbGZtbWREaUFTODR1bEZPcTVqR0t4RnMtdkM5XzVfeEowd2xGQ202OC1OeUNJdFUzYVhDaUplMVNmWGRkVnZuWEVwRjBsMFpnWUNvckdKZzlWaXJfektNczlEOUJ0dFdOaFh5UVdVVndEczh2akM1NlVoaVMxWUI5RXhqUjktTV9fbXV0RFdyMG0tWHZ4eHpvTG16M2RhNWpxYlpCLWJ4M1U5T0ZBX2x5WE52NjNlTGN0ZHdBaW9vcVR0YXFWMjBWb2luSHhmWGdJZWYzT3BhTmRjeHVjd1lIS1dTWVZIOEJfTno0VC05QzAyMTFpRC1KUWtrN0hNRGE2RA?oc=5",
+      "detail": "Bajaj Finserv Q2 Results: Net profit jumps 23% YoY to Rs 2,758 crore, shares rise 2%",
+      "url": "https://news.google.com/rss/articles/CBMi7gFBVV95cUxOaUs5cUU2VU5ja1FNMlhXd29zRWZUWl92eVFrZElvcUdBQ0lVekZFVnZYbnBEX2lWczJaZ1JUVGd6M3VDSVcxWHRqSU9tbXdGQ3FCeUhnNFVRVTdqczBoLXR1NjJFSFM2S0l6Z1duZFpKYjBSM3g0Z0hpdlNRWktxQUUxOWZZWHVad3JBSVgwSl9xblF0V0tLMTVFU2hISlB5UzlJU0tYb1pIdkE0dUFGN2Jxb3kwT19yYlM3dGExOUxjdlRoVTZ3UzdFeUVxWDVsNVdPdVRFa05Jc19aQU5ZTVR6a1QwbDhRYWduT3VB0gHzAUFVX3lxTE9DSzVhN3JfSlR5MW50VDhGaFFydndZYWk3RTJIQW9waXJKY3hOdVJJSTMwaGVIZmxuLThhQlZwVjNwOFZVYjM3V2FKaTFBTDlRazJtRDdCa1R3eWZvUFoyUjRreWhEUnZrQ1llUXNBb0czRUtHR2t5Y0VUWGlRVWZuRVlCZVVTdGFnRmo4YkdNNl82UEpLMHE0VWtqQ0xmZnllcHZoX01LSkJkSHE2NkZLLUZMYnJfYUN4NGhWanVXcExTTVJsVUp1czN4VmU5clNaeTM1dVBBWmtsMERJc3RucFRIRi01ZWkwQ2hiQzlsTURkOA?oc=5",
       "source": "Economic Times"
      },
      {
       "tier": "news",
-      "kind": "results",
-      "detail": "Bajaj Finserv Q2 results: Net profit rises 23% to Rs 2,758 crore; NII grows 24%, AUM up 26%",
-      "url": "https://news.google.com/rss/articles/CBMi2AFBVV95cUxPdmFvWTNPUVBtV3pTcm44UmRiYkJpVzZraUdCRUhJLUJ0bWRTU3ZGcEpSajhsczEtQV9GX3RFVzN5ekttbHdwbTFCWjVLajFNQS1JMjRhbWFQckhOSERIVVpwT0xDckhBS0Y1RGhwb241OW52NEtHQl82V3Bvb3E1c1RRX2dIelVLUlhhR1JQdHJMbEtrSzJ1T3Y4djJYMFpsSUJ5VG9aTmxhNkhKUHNPME9Mb1N6ZTJRazdQS3VvQUYzQTEtZTFPQXl3QlFFUEVTcnRFLU56T2PSAd4BQVVfeXFMT1ZhZWtrOXpuTTRwb2Q5QkFoQkgxTW0xanM4MzJ1TEdBTTM5ODBOUFR1OFhXbHlDaC1tdElJdzZnOEZtMlF4R1lfUXJQVzI2ZzRWQTcxR2ExQXJJWGp6WnZaMkVaWVlzNTVmcW1taXI2Y3FRUnZ6enZUZ3hUVHJ6X1M5aVRJM3J0ZFJweV9SVjN1aDZOZjliVXV3aHlWM0pveHBWWC1WT3J1MVlqbjdnTkE5OUZmb3FuTnFBMVQzZVhEd2JuaVVTRVUzMHIwSGdmajJaV29oZzQxYzZ2dUJn?oc=5",
-      "source": "Moneycontrol"
-     },
-     {
-      "tier": "news",
-      "kind": "results",
-      "detail": "Bajaj Finserv Q2 results: Net profit rises 22.9%, AUM up 26%",
-      "url": "https://news.google.com/rss/articles/CBMixAFBVV95cUxNcnhiNjdrd1RQTlU0QWpHV3AyZHhkZFRaS1hHNlBERlczajdSTVdZdVdzanh4SFpibjVrc3YtcDM2OHNCYjgxWkJ0NUJOQ2NMc2Y1ZDNhNDZ4YkFyMWY2SVFSV21zeEtIZU5NTUVITjdQQjYwbmFRUERUajUzN1JRVE9TZFlKWU5vZFM1LWdSTmRrWWxQSzMweE53eGpoX0RGUVk4ajJfOWdPVFFfNHBWcnJFZGpPYzQwSmhRM1F0bVN1M0N00gHKAUFVX3lxTE1ObkpGNUxidkJueDhKZ3dEQ1F5SjhqQWRyUHRtNUFmVVlwdjJqX3padDBHRGJ1eWYxZzRNTkpHX2h3SmJ6Zm5LNXZOSkNlbkZvMmtWemV0MWdZcXdpTXZSYlJYWmkzdW9fdWY2SXlVN2R3c3JwQjlEQXBsSkwzdHEzZ0c2Q2QxRzhRVlhKX08yTTVIYVpQY2lzY2N2MEsxZU8zbEtoY2pOVnJsR2xCVW9ZbzFRYzM4bFliRlZpejFJdWJQZEtyY001bXc?oc=5",
-      "source": "CNBC TV18"
+      "kind": "fundraise or deal",
+      "detail": "Bajaj Housing Finance allocates NCDs worth Rs. 3,002.6837 crore on placement",
+      "url": "https://news.google.com/rss/articles/CBMisgFBVV95cUxNR1NJUjkyWmRpZF80X3lONm5Kazg5WVZqQnMxSmVUa3I0YV9WaTZjR3BEaV9yMWJqeGQxbGtuZjVCMmw2RzBWVG5ER0NEcG1uVkR3Z192QUpqV0I3c3FtZlZ6ZmFBb19aaFlLMEZ5ajd6cFBuSnJOV2U0TUpNbWxmSDVkaGxtZ0xsUGlIV0k1UHJZNHdNLVZvU0Mwb3VLNm1RcVNGamUzZlBpVUwtcENCaXJR?oc=5",
+      "source": "Business Upturn"
      }
     ]
    },
@@ -13707,9 +14079,17 @@
    "raw_pct_change": 4.12,
    "corporate_action": null,
    "why": {
-    "headline": "No disclosed reason",
-    "confidence": "none",
-    "evidence": []
+    "headline": "M&A Or Stake (Scanx)",
+    "confidence": "low",
+    "evidence": [
+     {
+      "tier": "news",
+      "kind": "M&A or stake",
+      "detail": "Sindhu Trade Links Board Approves 78.26% Acquisition of Advent Coal Resources",
+      "url": "https://news.google.com/rss/articles/CBMi0AFBVV95cUxNYVIzdE5NMjZTSXZLVFNuZU1ZQkFqazB1VEQzSzZmUWlhal9zc2dCRklvZnZ4X05OVzcyWHdjUjI3U0w0VVhDaG1uUWZneGpXY2lVbGVSOFBqVHprbUFUc1Z3Y25jRTdDUmIxQmNvdHdMLWxqc2l1enU2WjdCUUt2aWJwYmliaXJzOUpBUnQ2UXhGVzAtMXlIcnk2THg5NUgxTnRyaTkzNVNuejV3T281ZXdpdmNpQTZzeWJ3N1h6Y2pwRzRpTWlEeEFUeEd1WTEx?oc=5",
+      "source": "Scanx"
+     }
+    ]
    },
    "news_checked": true
   },
@@ -13810,9 +14190,17 @@
    "raw_pct_change": 4.1,
    "corporate_action": null,
    "why": {
-    "headline": "No disclosed reason",
-    "confidence": "none",
-    "evidence": []
+    "headline": "Capital Action (Scanx)",
+    "confidence": "low",
+    "evidence": [
+     {
+      "tier": "news",
+      "kind": "capital action",
+      "detail": "Oswal Agro Mills revises FY27 interim dividend record date to Nov 10",
+      "url": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxOeTNKWnlwUC12MkNsZEF3dDBsRFFqNUVObU5pOTRfdzctX2VtR1o1MlNXcUhnajBYUTJ6ejhhcDBvTWNJZkRRdjhGdTFGNW82N0Z3SWZiVVFCdVZCSmQ5YXBDZGJnd2ZKaFM0elI1Y3FwdTN2MF9feGRZWTI5VlZJVzNQY09Db1dmRU95QlJaTUJKYllDMEJyRERLeENRdVF5NDhzbjA1NDR2NjJmMEtaVFRxdlNDOTV4UERN?oc=5",
+      "source": "Scanx"
+     }
+    ]
    },
    "news_checked": true
   },
@@ -13867,9 +14255,17 @@
    "raw_pct_change": 4.09,
    "corporate_action": null,
    "why": {
-    "headline": "No disclosed reason",
-    "confidence": "none",
-    "evidence": []
+    "headline": "Results (Scanx)",
+    "confidence": "low",
+    "evidence": [
+     {
+      "tier": "news",
+      "kind": "results",
+      "detail": "Siemens Energy India net profit surges 67.8% to ₹441 crore in Q3FY26",
+      "url": "https://news.google.com/rss/articles/CBMixwFBVV95cUxNMndCM1RaeDJSS3ZrVVRZcFBtTV9QUHcyeGdlOFphTUNkVkxFQTZGbFJoY0g3RkhIWG5SMkVuSEQxV1QtWHB2QmZyQWlES2FldEVSRHlRZUJLY2V3UFRzZWhZZVZxWDhvTlVSbTMyQnZualBCVmg1T2RmazhXZ2hnMlVpNVZhb2E5dXVYX3FFR1FoRU5xanpSRFlhcnFSdV9UTUhoM0RzWWh3b3FHX1JEMUxDajVDT2ZnQ296ZnlpWmRjNDZJRjlR?oc=5",
+      "source": "Scanx"
+     }
+    ]
    },
    "news_checked": true
   },
@@ -13995,6 +14391,13 @@
       "detail": "NDR Auto Components Reports Q2 Net Profit Of ₹19.8 Crore On ₹240 Crore Revenue",
       "url": "https://news.google.com/rss/articles/CBMipAFBVV95cUxNbHBVSUJkRXBHMl9Nc3pWZmNTU2c4Z2RJS0pRX0M0bllPSXp3cWEyUDlleEtEeTR0bUJqcGs4RXhIVFVGTGFfUlNaQldydkZyR0RkanU4Vm13OXN1aWJBMDlWS1VPRDN6SEFZckdqR19SYTZVMzRuLU5mX3FjM1lRUWIzdzN5TFBSQUtQTmFsM0xJM0d2SDRudG0yV2llbEJvTG4tQg?oc=5",
       "source": "Sahi"
+     },
+     {
+      "tier": "news",
+      "kind": "results",
+      "detail": "NDR Auto Q2FY27 Results: Net profit up 33% YoY to ₹19.78 crore",
+      "url": "https://news.google.com/rss/articles/CBMixAFBVV95cUxOcF9TN29BVk5WejJkcXpKc19PR2VOY1o4c3FjWjBrOHZwcTJFN2k2clVMNTJTbmpGSDBWcnAweV8tMXZ4M21XQzA3aWZSbUZKcTFXMDE4QndCYUdFTUliZEx1WnNpQm01Mng3eEl5cjJNclRGcXNFSEpNYXZqX3NSYXlwaGpXZFJxVDk5YVgtWVFWSGVueC1TVXE5Z3BnbGJEOGVJZU9lMmZvaDQtR3kyZ05BWjJZY1FER3VMaGJXcXJSRnND?oc=5",
+      "source": "Scanx"
      }
     ]
    },
@@ -14028,6 +14431,13 @@
       "kind": "results",
       "detail": "Aegis Logistics FY26 profit rises 41% on record gas EBITDA",
       "url": "https://news.google.com/rss/articles/CBMitgFBVV95cUxOelZGQXA0WWJ4OVpPTmN6WUpiNzRSV2FmZkxvMjBiLTZtU3BDSVZfVHExUGg5eHZwczVqQmtzcWJCX2w2VnpGbWFHRDdFV1QtZ1QxNlZSQVAwNU9BWnFMWmlMbWE2MWtERkVGc1c1bW9OamI3RDl3cnlIaHl2ak02c051ZHVqZGJlNy1INDdUOUV4ZWtOcHJ5UEZpMkpCTHBaU0N4ejZtajQ4ZkV1Wm9sckV5LVFHdw?oc=5",
+      "source": "Scanx"
+     },
+     {
+      "tier": "news",
+      "kind": "results",
+      "detail": "Aegis Logistics Q2FY27 Results: Earnings call audio recording released",
+      "url": "https://news.google.com/rss/articles/CBMixAFBVV95cUxNem1JTzg2RDk3eDU2WTNqcXY2al95SmR0eFJiLUFqeFktcWxncTR0ZXVrWmgxZERGaUZHRFZpcV9HZTJuVXY5N3dXcXZpd1d5emdWVXNTWjh4SGV2SVJqYkFrcldYd2JSRVdQaGxlZmNJb0c0NGFNQ1h1Qk5ZRE02TGNjYk02STJ2X1l4NGRHNWx3ZGNFWlh6eU9ZYTlMNXotc1JUTmVxMEZXSUp6SzFkQjM2NmR2b080bTZaNzgzLW10NDhn?oc=5",
       "source": "Scanx"
      }
     ]
@@ -14389,6 +14799,13 @@
       "detail": "M&M, Glenmark Pharma, Tata Power, Bajaj Finance shares among brokerage's top Diwali 2026 picks",
       "url": "https://news.google.com/rss/articles/CBMi7gFBVV95cUxNVUEyRG1VQUh2am1TMExWNXBVWUxzM0hQS3lzbldJQzJOd29LOTVPSnZCY0FrdGRjYmhEUXBsamFyQVhWTXNmTzJYbllvWUJNd2swcWxwQ1lZT05sTG00SHBsZlBxd2dTcDZzV2JSRFR3RmdtVlhtWUg4VHVfTkhxZVRPOE1zY1oyMjREc29kUHNIQ2FVQURPNHZnNWp2OHYzTEp3U0FsR3ZCZk5QMkpsdU92MWFsLWk4eFhWZEpiS1pqTnpFNXd0LVp0RlNZTngtSE5SRWR4Vlc0S0lPdm1YSWhYT2x1Y3RzQ2VkWl930gHzAUFVX3lxTE1YQmlkeF90X1JyTDNra012NHYwZzZrSk1VS0JEQ1U1UnU3d1paYm82UDdXUlRWRjI1dW5iYnVOTlRRVXRjYTBVQkM2Y0JIUWlET2ZlZzhiMUQxWDhqeEpiTGJoZEFiR19NdVhIU3dTUWtkaUx4M1k0cDNCOFk0aW5JVDlia2V0a0xvN0h0ZmkxeUFNU0xjVm9xRW90a3RPUkp3bDZzX0I1U3RCUTBxVXZtTk1pNzN6YTU3T2FhS0pSSjZWT2hNYkFpdHdCd3VVS2ptLUsxRXVxVkJldUxXWnNxQ3dMbW1ySVRsWDNqTDFFSG9WWQ?oc=5",
       "source": "Business Today"
+     },
+     {
+      "tier": "news",
+      "kind": "results",
+      "detail": "Top Q2 results today, November 4: Bharti Airtel, M&M, Titan, Britannia, LIC, ONGC, Glenmark Pharma among key companies to announce earnings",
+      "url": "https://news.google.com/rss/articles/CBMipAJBVV95cUxOam1rNGVzenFvcXFBd2VVcUw2dmJ3RGs2WG9NcHM1blVlekFRWk5CQUpyQUFjWVphYi1zd240WFpiTzRtTGZkN3k3WVVZbW5QSHhLbGxkaFlKSWx3bUVValZOdG5kYThYQjZSMzctM0tub29aS2dIYVh6cDdBZVNUbWZVZTJvc0F5Z0taUExHSGE2akRtX3ZDa0JhZzdERDI5MDFjQlpwbHRibXQ5Nm1iVjBXUlNaaFo5bDhkLU9BLW85eWZFQjg0MkE2UlQzOE1TYkIyUWU4dTl1a3dqWEJLTHBNMkhhekM3NjJqR0I0dEFEMTdRc2NFazBKaGh3M0lsNlJkMjZwa01jb0xCWG04R0NBbWhBTUg1NWgwZW1pTjBvRU03?oc=5",
+      "source": "Business Upturn"
      }
     ]
    },
@@ -14646,7 +15063,7 @@
    "raw_pct_change": -4.23,
    "corporate_action": null,
    "why": {
-    "headline": "Results, reported by Business Standard",
+    "headline": "Results, reported by CNBC TV18",
     "confidence": "high",
     "evidence": [
      {
@@ -14672,24 +15089,24 @@
      },
      {
       "tier": "news",
-      "kind": "results",
-      "detail": "Zydus Lifesciences Q2 results: Net profit falls 26.6% to ₹925.5 crore",
-      "url": "https://news.google.com/rss/articles/CBMi4gFBVV95cUxPendsSy1VOVZmRHphWTh6SGtZY01HdGxrbmVQOWpqTFFWRGJ4VmE3ZVZGY2NvSTJvRmI1dUtkVWZBaXhFS1dxN0RsLUZudkRrXzVmRmF1aldvMXhyLS1QWk0xYTVCTjhBalZKVnBKZlRjWEVGeFJwZ1VuR2c3VFpULUF0QzNneGMtREMyUWtKYXRPbnZudVFGT2ZlQmpvQy1yNHEtbFpfci1jM1N1V0Fvb3RicjgtbkhXaWJzYzlQUEpTNFVTdWh6MldiNmxQUWNhVzhaZU0xak43OFNMa1dUYXB30gHnAUFVX3lxTE5BRE95RFI0d2dBRVAxLVlDdW5NMjJhZzRNUW9QbU9kUjBhc2Q1N3l0SHI4RTVIbEhzQVYxUEdUY2VQMElXQW9WTGxHT2hxN2JtaHlhcUtLYWVXdzUtY2l2THJJdTB5TVBMd25nNmhxLUlxVkZEamgzVTM0UjlvQTYtN1NZRUY0aDRfbUduaDROWlI2dTVnYlM4OVRpejUzc083MGlBLVlKWjl5VWZYYVhxcjVqRjc0MGd3aDR5anlEdmRnM21yWENYb3ZVYXZOODhwVkU4cW1LWVRRWUotWTl0R1BUdC1Bdw?oc=5",
-      "source": "Business Standard"
+      "kind": "order win",
+      "detail": "Zydus Lifesciences Q2 Results: Shares fall after profit drops 27%, margins contract",
+      "url": "https://news.google.com/rss/articles/CBMivwFBVV95cUxNSzBHeWlRbTk1RTQ3YU1TUWFrbi16d19SVXdRZTI4WWxZUzRRTlFqb3NZRVhtQWxvN3lCWEdBTDIwbmJSTmc3bENUTVpYb20wYS1ZbUU3WmdiUTNlWkFhRVdXMUVrMVliVHN2eV9rdmpiMW5vSnFlN3VIakJoSDQ5WVdmR0FMZWpzYUFVSllpb0U3TUFKWHB4aEZzaHE2NTRzYXFEVkxQWjJlSnQ4MFpPUDlQT3dKS18tZlhtNGRxSdIBxAFBVV95cUxONUdLYTZHTVRvYjRaOUQtNTlpOTU2MndZakV4dTNFT0dIOEY0eTFZMUhfb2FMYXdRSVYxT3BzNEVQaDNwa3NqUkt2X3JDazlnXzRWYi1Dd3dDVDdJTU5XcjRfWXdUZ0RrWDNOc3FtdXhheGJQazZsWlg2RDB1dG9NbWJab1NqWWl3RjBMd2w2aVM3RUVwdnFFdzVSR2ZoMExXU1U1MWRiUVh3OVZCRWRDb24tNzczRmtIQld1VHZhOWFSd2Yy?oc=5",
+      "source": "CNBC TV18"
+     },
+     {
+      "tier": "news",
+      "kind": "operations",
+      "detail": "Zydus to invest $100 Mn in Saroglitazar commercialisation; targets March launch",
+      "url": "https://news.google.com/rss/articles/CBMi7wFBVV95cUxOLXpSYXAtN0lSSC13Y3ZTbzlEYVpJWlVMdHN2VEFIeElvaVEwclN0XzMwY0g2ZEEwU2lJN3puMTBwUzh2dTZwNVhKU1I5enYzc0g4bGZmR2ZHWVpXbUVYRmdaZTJjVkRMa1pqZE1HVWFfUVpLX3B6UEdBZDZ3WlljZnc2ZFZTaEMyRWZUdjBDOHMxNUN1Vl85NjR5RW9ZVUN6a1lDdkRrb0hDT0hPSlppcUEySXZaQmhuMzZrNHFjUjBNR3JNMEZVM3B0ZHNheGxDOGVncDdUZnZyeUVlTzhPWkdqWEctSi1VSmVSV0c4SdIB9AFBVV95cUxQWHdsLUY1WHpKMEpUUFJfRU9BMGxPcTlhNGxqZ0FJMUNOdGlSdVFmQVdERG14M2FhRG9KbEJESzRCMGRBZDJfbnZKU2lmVHVkaXZyQkVQTGU2V0NBZlJnVHlkek9kTmZDNEdmcTY1dDhnaHhWNlpMVldpaGh4eHlFdklaYXNpMllXQ3kyRjJBLWtQSUJqc2pLWGZrV0pNTjJDTWdvSEJXS0JyM0NuUkx1OEpIWDJBQWtjd1NXUS1Sd2QzQ2NYRS1OSDRzd29Wcjltb1UzeW9NdHpGcXJDNWpvbmdRYTVDcnltWGNwZV9BRGU5bXEx?oc=5",
+      "source": "Economic Times"
      },
      {
       "tier": "news",
       "kind": "results",
       "detail": "Zydus Lifesciences Q2 net profit falls 27% as expenses outpace revenue growth; shares decline 3.5%",
-      "url": "https://news.google.com/rss/articles/CBMi9wFBVV95cUxQeENYWmdaNTk3VzR0Y1lFX1dkVkdYX1lBSnBNT1lmUDVpZURhRXhXUkV4LXgxcHdpRU5xYmU5VEFqdzNBTzQxVFVUWlZPeFZKTlVfaEh0aWd2d2R2VjlPRHVkRG5XdTBLT3RsbHFiMWNrendmdl9PaDVZOGRSRE9XSEtETHJzUW02dEFzWkhqeGxzbFBjcHlkNkZ4cHpGdThjbXRxN1JyYXNVQ1dQU1hidVhVaTh6ckgyZmVpOHNyOEZUeDAyd0VHYThoUnYwcFlMSzZWZFVuVENEZlpJM1ctS2VjT2pSSmFXazRiTmVKLTdsWTUxR3BR0gH3AUFVX3lxTFB4Q1haZ1o1OTdXNHRjWUVfV2RWR1hfWUFKcE1PWWZQNWllRGFFeFdSRXgteDFwd2lFTnFiZTlUQWp3M0FPNDFUVVRaVk94VkpOVV9oSHRpZ3Z3ZHZWOU9EdWREbld1MEtPdGxscWIxY2t6d2Z2X09oNVk4ZFJET1dIS0RMcnNRbTZ0QXNaSGp4bHNsUGNweWQ2RnhwekZ1OGNtdHE3UnJhc1VDV1BTWGJ1WFVpOHpySDJmZWk4c3I4RlR4MDJ3RUdhOGhSdjBwWUxLNlZkVW5UQ0RmWkkzVy1LZWNPalJKYVdrNGJOZUotN2xZNTFHcFE?oc=5",
+      "url": "https://news.google.com/rss/articles/CBMi8gFBVV95cUxOUEZJYVRQdEtQU0l3TmRRdWhZMVp1V0MxMHdob2JtSjk3VFQxVTQ3dGRMQTI0Z2dGWkxiS1Y2QnFCUnpQdWhtU2Q1cFVmLVlLZERNMEZaa0x1NDdFUnBVT2M2NUwweV96RFB2UjdEc1pGTmtScC1EeFRma1YwQ3EyaGF4WWZpLVB3NzI5anhHcVZpa3lYaC0wM01NRTd2S0NKcU14TTVFNElacmwyUU1NSmczeDhYbjhkUGxqTTlsWklCT05JMmc1Y0M3Wi1tb2N6cm1PS0FqdkNELXQ1ZzN2dW9rQlFyOG5iVEVuVDRBb0FKd9IB9wFBVV95cUxQeENYWmdaNTk3VzR0Y1lFX1dkVkdYX1lBSnBNT1lmUDVpZURhRXhXUkV4LXgxcHdpRU5xYmU5VEFqdzNBTzQxVFVUWlZPeFZKTlVfaEh0aWd2d2R2VjlPRHVkRG5XdTBLT3RsbHFiMWNrendmdl9PaDVZOGRSRE9XSEtETHJzUW02dEFzWkhqeGxzbFBjcHlkNkZ4cHpGdThjbXRxN1JyYXNVQ1dQU1hidVhVaTh6ckgyZmVpOHNyOEZUeDAyd0VHYThoUnYwcFlMSzZWZFVuVENEZlpJM1ctS2VjT2pSSmFXazRiTmVKLTdsWTUxR3BR?oc=5",
       "source": "Moneycontrol"
-     },
-     {
-      "tier": "news",
-      "kind": "results",
-      "detail": "Zydus Lifesciences Q2 results: Net profit declines 27% YoY; US business revenue grows to ₹3,315 crore",
-      "url": "https://news.google.com/rss/articles/CBMi8AFBVV95cUxQZXIzQmJ2RTA4dnVfMTVBN1VCNWsxbk5yMVNOTzhBa0NXaG83Zk5iSnloZnM1eGx5TUtuc3FuR3l2RVllSlY5T09pVWQwRzlpTGRWUDNEd1FxbC11QnFBN09UQmdsZmdKbU1ONWtrd21LaUk4S2JRYkYzU1ZDbkx4ck5TN1pTTTZENk9wMGtWOGJCX0dsOGlxYXlJVUYxVXVYV2Ewb0pYd01JNGFvUl8tcHRfN2E5aFZFN0NBRDBPRlg3dERIQkdDbEI1TTVhV1g5bWxvZGRiWFFmUHRhby02LXFqTU5Qc0M3YlozU1NNUmg?oc=5",
-      "source": "Upstox"
      }
     ]
    },
@@ -14965,7 +15382,7 @@
    "raw_pct_change": -4.48,
    "corporate_action": null,
    "why": {
-    "headline": "Results disclosed to the exchange",
+    "headline": "Results, reported by Scanx",
     "confidence": "high",
     "evidence": [
      {
@@ -14988,6 +15405,13 @@
       "detail": "Aarnav Fashions Limited has informed the Exchange regarding Outcome of Board Meeting held on November 03, 2026.",
       "url": "https://nsearchives.nseindia.com/corporate/AARNAV_03112026224154_AFL_Results_30092026signedDSC1.pdf",
       "source": "03 Nov 22:42"
+     },
+     {
+      "tier": "news",
+      "kind": "results",
+      "detail": "Aarnav Fashions Q2FY27 Results: Net profit falls 30% YoY to ₹165 lakh",
+      "url": "https://news.google.com/rss/articles/CBMivAFBVV95cUxQM25XWkJWSC14aUpiVEFXbUNUWXFIaWcxQjc3WnRNdENTaTNfbmlIcXkyRExRYW1ZSzBaQUNIQ1liM1NoQXNmelpjNFVja180UGFXcDJLRlo1MTludzMwakg2SU5XU1lEWWtmb2F6RWtIay1NeS11QnRyOGtXdlRzYm5MMzZ1UmwtSk1udTFQZG1jSEYtQ291d3pralJZb3l3Q2NqWkN0aGNwQlRFU2NwQ3VnQ3JidVNLOThqNA?oc=5",
+      "source": "Scanx"
      }
     ]
    },
@@ -15124,6 +15548,20 @@
       "detail": "SFC Environmental Technologies Limited has informed the Exchange about General Updates",
       "url": "https://nsearchives.nseindia.com/corporate/COMPLIANCE_SFC_03112026173824_Intimation_under_30_5_.pdf",
       "source": "03 Nov 17:38"
+     },
+     {
+      "tier": "deal",
+      "kind": "bulk deal",
+      "detail": "MICROCURVES TRADING PRIVATE LIMITED sell 1,785,875 shares (Rs 78.6 crore)",
+      "url": "",
+      "source": ""
+     },
+     {
+      "tier": "deal",
+      "kind": "bulk deal",
+      "detail": "MICROCURVES TRADING PRIVATE LIMITED buy 1,785,875 shares (Rs 78.5 crore)",
+      "url": "",
+      "source": ""
      }
     ]
    },
@@ -15427,6 +15865,20 @@
       "detail": "BLS Polymers Limited has informed the Exchange regarding 'Intimation Under Regulation 6(1) Of The Securities And Exchange Board Of India (Listing Obligations And Disclosure Requirements) Regulations, 2015",
       "url": "https://nsearchives.nseindia.com/corporate/BLSPOLYMERS_03112026162809_Disclosure_of_Appointment_of_CS_Reg_6_1___003__Signed.pdf",
       "source": "03 Nov 16:28"
+     },
+     {
+      "tier": "deal",
+      "kind": "bulk deal",
+      "detail": "MICROCURVES TRADING PRIVATE LIMITED sell 2,499,690 shares (Rs 68.6 crore)",
+      "url": "",
+      "source": ""
+     },
+     {
+      "tier": "deal",
+      "kind": "bulk deal",
+      "detail": "MICROCURVES TRADING PRIVATE LIMITED buy 2,499,690 shares (Rs 68.5 crore)",
+      "url": "",
+      "source": ""
      }
     ]
    },
@@ -15770,7 +16222,7 @@
    "raw_pct_change": -4.92,
    "corporate_action": null,
    "why": {
-    "headline": "Results, reported by Sahi",
+    "headline": "Results, reported by Scanx",
     "confidence": "high",
     "evidence": [
      {
@@ -15793,6 +16245,13 @@
       "detail": "The Sandesh Limited has informed the Exchange regarding Resignation of Mr. Joshi Hardik Arunkumar as Company Secretary & Compliance Officer of the company w.e.f. November 14, 2026.",
       "url": "https://nsearchives.nseindia.com/corporate/SANDESH_1_03112026192711_Outcome_of_BM__03-11-2026.pdf",
       "source": "03 Nov 19:27"
+     },
+     {
+      "tier": "news",
+      "kind": "results",
+      "detail": "Sandesh Ltd Q2FY27 Results: Net loss widens to ₹158.55 lakh",
+      "url": "https://news.google.com/rss/articles/CBMisAFBVV95cUxPdldLcDctTHdvLUZBZy1PeTVROE5kdlpVME5UZEVpNFlJQThvVmVseUloY3NVMF90OVJVY25oU1F0QXhReFA1RHdRdXBERUk5RWF1UVhscDMyWWxsbDR6cGYtemtNbTY2QVVKdndiS3dzMnBvMG1Edm1MSWUwdEc4VFZydG9BOGFpZlBoV044dmRpTU1WX1ExUTc0Ri1YNDJ1REc3dnI4YzlKNVZuRzJPQg?oc=5",
+      "source": "Scanx"
      },
      {
       "tier": "news",
@@ -16095,7 +16554,7 @@
   },
   {
    "symbol": "SPRL",
-   "name": "SPRL",
+   "name": "SP REFRACTORIES",
    "board_code": null,
    "series": "ST",
    "direction": "DOWN",
@@ -16471,15 +16930,15 @@
    "raw_pct_change": -5.08,
    "corporate_action": null,
    "why": {
-    "headline": "Results (Scanx)",
+    "headline": "Results (Sahi)",
     "confidence": "low",
     "evidence": [
      {
       "tier": "news",
       "kind": "results",
-      "detail": "Bharat Wire Ropes Q2 net profit falls 21% to ₹17.44 crore",
-      "url": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxNZFNRQm51OTVwYnVhNkNTcUwyakRXOUNMNkhXUHUzOWM4c1FaempwOFUzVHRxYXVfQjhiLWlPSklDMUgxR3ltdWpmd0dKREU2SzJVbnBJVGJSWnhSUXk5QWR0ZjVrSEQyb0hMUXFSWmtHeTdDQzVkV044aHNpTDBpUU5qMUo3YjBCa0RGeTg1X1FnUGtFOVNYV3NiOHhzXzl5bTNOZEhpTXNYbEc3VDN5Z09yS1FKUUNwbE1lVzNVUnBqMkU?oc=5",
-      "source": "Scanx"
+      "detail": "Bharat Wire Ropes Posts Q2 Revenue Of ₹1.81 Billion Versus ₹1.65 Billion YoY",
+      "url": "https://news.google.com/rss/articles/CBMiogFBVV95cUxONERBak01VXdUMnRtQ0FidGx1UnByaDI5REE1bG84bXEyREcwX2x4VWRFbEd1TlE5amVaSi1YbFBDYXJoTnN5Rm1ES002THBYcTRLc0hfUmNiajA1RTh3UVRGdGdPU253ZW1UOUxNNXByUXF3ZjUxVzhQLVhKUk0xbTNNeGdPWEE4eVg0LUI4VFVQSGVvR3phTjluOXlOekVRWFE?oc=5",
+      "source": "Sahi"
      }
     ]
    },
@@ -16676,7 +17135,7 @@
       "tier": "news",
       "kind": "results",
       "detail": "Thangamayil Jewellery Q2 earnings: Stock falls 7% amid decline in gross profit, EBITDA margins",
-      "url": "https://news.google.com/rss/articles/CBMi9gFBVV95cUxQU2NONHVKSy1ERy00c2VWNU8zTWtHbGcwME9Eb3hCOThhTU82UEtmYXpTN1ZJNmQybWZINklqQlZqaWtQN0Z1ZUpOOFkwcEx6SVNuYklfVEtjRTdpUjU4ODZTUGllbkVWU1pwQlpHaHFGeVJaX3NtS09aWkdfZDJRV0pjdExrTlJxaDhKWkk1VEtzc2x6VmQxR1NlSnRVZDZjNjlWdDZRTnJVWlB2OVBqVkpqVXRPZ29iVm13ajliRWdMcEFKcF91QnhpbHR0eWx2RU5vQ1pmOWkzb1Q5WW5ZTVVIZXFiZzRvdGlUa2pUNjFMVE5IRVHSAfYBQVVfeXFMUFNjTjR1SkstREctNHNlVjVPM01rR2xnMDBPRG94Qjk4YU1PNlBLZmF6UzdWSTZkMm1mSDZJakJWamlrUDdGdWVKTjhZMHBMeklTbmJJX1RLY0U3aVI1ODg2U1BpZW5FVlNacEJaR2hxRnlSWl9zbUtPWlpHX2QyUVdKY3RMa05ScWg4SlpJNVRLc3NselZkMUdTZUp0VWQ2YzY5VnQ2UU5yVVpQdjlQalZKalV0T2dvYlZtd2o5YkVnTHBBSnBfdUJ4aWx0dHlsdkVOb0NaZjlpM29UOVluWU1VSGVxYmc0b3RpVGtqVDYxTFROSEVR?oc=5",
+      "url": "https://news.google.com/rss/articles/CBMi8AFBVV95cUxQMVk5RHFocS1sU3EwdU9ZNHJEWmFWb1g1SlBWWjRWNHhCRG5XRXNPMFQtOS1yelRXbEthUGQwUnJiZ19KbU1xeU1EbTNJWEN6SWxocE5ON0ZOMjBvSzF2eXlmTkdNbFBSQVl6Sm5QTW9zMXNaZDFWLXJzdEpYQ2x5dXRobzAzcXJRbmh5eUdtZzRJMGo5MW5EZmhGMnVscGl2Q3hBc2ZGQW1KV1lPdEw4OW95bDJUaEttSDVucnRBQXBXX0M1RnlnOEt4MW15V2ZsWng5Nng1SndxMHMyQUxpZ2hvMnFQTTJwT0JSWnhJbEXSAfYBQVVfeXFMUFNjTjR1SkstREctNHNlVjVPM01rR2xnMDBPRG94Qjk4YU1PNlBLZmF6UzdWSTZkMm1mSDZJakJWamlrUDdGdWVKTjhZMHBMeklTbmJJX1RLY0U3aVI1ODg2U1BpZW5FVlNacEJaR2hxRnlSWl9zbUtPWlpHX2QyUVdKY3RMa05ScWg4SlpJNVRLc3NselZkMUdTZUp0VWQ2YzY5VnQ2UU5yVVpQdjlQalZKalV0T2dvYlZtd2o5YkVnTHBBSnBfdUJ4aWx0dHlsdkVOb0NaZjlpM29UOVluWU1VSGVxYmc0b3RpVGtqVDYxTFROSEVR?oc=5",
       "source": "Business Today"
      },
      {
@@ -16803,8 +17262,8 @@
      {
       "tier": "news",
       "kind": "results",
-      "detail": "BASF India Q2 results: Net profit falls 39% YoY to Rs 61.71 crore, revenue up 23.5%",
-      "url": "https://news.google.com/rss/articles/CBMi5AFBVV95cUxPYzdleE1Qa09GTmNsZzBGNlhVNkRFdVF0M0pHNk9xN2pmU2xPb0NKWXh0VlpDY2c4UWdTUnNWNW00bGNMMmdOSzRhbzBIbFphX1pxa2o1UDd5TzkxaE1CTWQwQ0xuSVhEb1NQYlB3ZVJ5dF8wRk5kanp1MjQxeC1hd3JETW9DWk5pVEtkRGVFTTVZZGIwdTZsMUZWbDhyTkJnU3VybVVndkEtUmwxcFFkNzF0cWdlZHIyQUZ1R1h5SHpaV1N4Zk9mcnNTOURlamxBZngxOWs3UnF1RjJzQkVvd0lQclQ?oc=5",
+      "detail": "BASF India Q2 results: Net profit falls 42.1% YoY to Rs 62 crore, revenue up 24.1%",
+      "url": "https://news.google.com/rss/articles/CBMi3wFBVV95cUxOTWlyTVhkS0FYZ21hSWxXbTdRN0RjRy1tWi1UTkl6aUZmQ0pqU01DVDhETXA0V2NBdHFYVW5JbFhuLTBUX0E2Wkk4Vm9meTkzS2JlVVBua2N1Q013bmJrQmZOR3c3cVphbms3am5lS05aWkxJSVZQTjJpamxvYzU1QVhzUHZvd2hEeUJEZTRpU1ppRUQ1VVBiSnRVSzNKNEhkbFRNSHp3S2ZxVkpYNkFnV1VaaFdQVlZFYnd3WWU3SGtEUThkbzVXVjFnWUtuWk5nNzR2dWJ6X2pTWmI0QVRF?oc=5",
       "source": "Business Upturn"
      }
     ]
@@ -17241,6 +17700,13 @@
       "detail": "GPT Infraprojects declares ₹1 interim dividend, posts Q2FY27 profit",
       "url": "https://news.google.com/rss/articles/CBMivwFBVV95cUxQeGRUX0pULXZJTVNiTkNqYnpCMWxvNkFnOXllVS1RbzBkdzE3UXNpMFNITEdlOVM4RjJITzV2UHFYalJqam50MGFtTm1fRURnelNkVG1FSE1MN0lzdDNjaC1nNFVLcnRNYW1QS1otaElqaXVIV3NVQy11ZjRQXzM1QTBYZXNMN1JVQVc0Q2loUzJSdTNCRWQ1ZVROcDQyUXVaMldqWW5FNk16SFEzeU9YcTJodzkwNXd4c29MRFJqSQ?oc=5",
       "source": "Scanx"
+     },
+     {
+      "tier": "news",
+      "kind": "results",
+      "detail": "GPT Infraprojects Posts Q2 Consolidated Net Profit of ₹18.3 Crore Versus ₹21.8 Crore YoY",
+      "url": "https://news.google.com/rss/articles/CBMisgFBVV95cUxNTWdmVjVlcWJGWEZMV0JUQ2Nma1haVjR5SVExUkxaS2ZJQVlZTkRvN3FYcElGWUZ5RENCbjNUZDVqU2tneW9xbmdJYmRLSEt5UjJqcDExVEhsN3BLd1JRWXBGSWlKQUJYQnJuWjN2V0pJdVZVbEZDY1pQNjRHcFdEZ1ZVSzJkREhDX3l5MTA0cm4zbFo2VnE5VHVUV0tsQmhabDNjN1dCMDd4Ti1XSVE2UzdR?oc=5",
+      "source": "Sahi"
      }
     ]
    },
@@ -17309,6 +17775,20 @@
       "detail": "Monitoring Agency Report - IPO",
       "url": "https://nsearchives.nseindia.com/corporate/SHANTIGOLD_03112026204818_Monitoring_Agency_Report_IPO_SGIL.pdf",
       "source": "03 Nov 20:48"
+     },
+     {
+      "tier": "deal",
+      "kind": "bulk deal",
+      "detail": "QE SECURITIES LLP buy 447,750 shares (Rs 11.8 crore)",
+      "url": "",
+      "source": ""
+     },
+     {
+      "tier": "deal",
+      "kind": "bulk deal",
+      "detail": "QE SECURITIES LLP sell 432,496 shares (Rs 11.5 crore)",
+      "url": "",
+      "source": ""
      }
     ]
    },
@@ -17482,6 +17962,20 @@
       "detail": "Pashupati Cotspin shares hit 10% lower circuit ahead of Q2 results after a stunning 70% monthly rally | What lies ahead?",
       "url": "https://news.google.com/rss/articles/CBMikwJBVV95cUxQZXlGRnd2eVdjTXU1WFdHZV9KWS1ZNm5SNW5HdXFuNkdyckZ4WnllNlNWTmNpU2NDQXJyMjZfMzd3QmVzcExMSGxKN19tZWtxV2tjN21US2ZScjFoXzZHRjBOc3JpQURzVVMtVzlPYVd5SGExY2loOGJVVTJ4OGktdkYxRWsyTjQyOXVRbGxUcElIdlUteC1ISmRiRnZXNE5OaVNGODRQUkRaZVBEb1YxZDYyRV9Hdm84OE9FbDFQNkFFVV8tOWpCbU1fNU9ZVXhlMTRUR1NySEJPdXVhUDVpeDhaRW5mQU9mRzZGTWZmWDRnZmVHUjQycXdOcjBoOVJ2b2Fzbk5HX2U5VTI2SWlVSGM4Y9IBmAJBVV95cUxOQlhWeXl2R2VkU1BGZ3RoeWZ3X21rcVdiTS0xNV9vQ05RNGNMZlRianVsTUtuTmNCbmRtZ2J4NWpFTUhVUmJxdUZKR09NQ2ZhSXBkaWEzVmxaNExoM2psWVJaQ2I0Zl92ZU1VbW9PazJHejduWjFGbERrcl9BZ29rdUFvNWdmcWlzRzQxcDVjaTNmRjFtVFptMzA5SUc0dGp3Z2hKTXNvNEJhNUV6N2dKT0MyenpSRWZEN1BzNEJ5MWJkdS1Hb1g2NWUyYS1CcFNFNjZUMDdpUHEtMlpxQ2ZaVWNWNDhGMHF6NXk0aG9zejJxVnlVcHlwcVlNNHlhbF9aLWlGc1Z6T25IWmZybW1vQVg1WTJra1dU?oc=5",
       "source": "Mint"
+     },
+     {
+      "tier": "deal",
+      "kind": "bulk deal",
+      "detail": "HRTI PRIVATE LIMITED sell 1,001,598 shares (Rs 15.2 crore)",
+      "url": "",
+      "source": ""
+     },
+     {
+      "tier": "deal",
+      "kind": "bulk deal",
+      "detail": "QE SECURITIES LLP buy 828,768 shares (Rs 11.6 crore)",
+      "url": "",
+      "source": ""
      }
     ]
    },
@@ -17519,7 +18013,7 @@
    "raw_pct_change": -11.58,
    "corporate_action": null,
    "why": {
-    "headline": "Management Change, reported by Sahi",
+    "headline": "Management Change, reported by Scanx",
     "confidence": "high",
     "evidence": [
      {
@@ -17546,16 +18040,16 @@
      {
       "tier": "news",
       "kind": "results",
-      "detail": "DIC India Reports Q2 Revenue of 2.74B Rupees Versus 2.23B YoY",
-      "url": "https://news.google.com/rss/articles/CBMikAFBVV95cUxOSUVJQ09qRVczaV9GWkdaVG9JLXBHTnlkTkdIUmU0Zl8yV1Z4TzhvYjY1NmdZd0F0LUE1dDltSGd2Si1vYXpRZFZmZEhyWE53QlVxeUs4OWlRblg1UTJoTFNRVjhVa2M4U0NNc0xoVzhsWDJaLVZjR0xCREY0RVhybExySGN4UkppN0ZIU3BfRnE?oc=5",
-      "source": "Sahi"
+      "detail": "DIC India Q2FY27 Results: Net profit down 66% to ₹2 crore, revenue up 23%",
+      "url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxOVlprRUlrNUVVZnJySFltQTBEZXluUi0zZjR5RUh2X1ZoVE1zZ2p1cjVKcVItZjlzQkN3ajQyN295RW9kRmtnQkpNRmJ0T1dnTjRVYko0VF9DdHoya0NNdHc1V2l1Qm9tM3FUQ3hSUm5SeHV0UXB1WWNVVEhjU3VMbUNQakVkalh6YXRHR2s4ZGVCWmVYTVI2UFpockY3bHFlc2p6X1E4S3lhSVRudkZ5V1V3THpyQ0FqZVE?oc=5",
+      "source": "Scanx"
      },
      {
       "tier": "news",
       "kind": "results",
-      "detail": "DIC India Q2FY27 Results: Net profit down 66% to ₹2 crore, revenue up 23%",
-      "url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxOVlprRUlrNUVVZnJySFltQTBEZXluUi0zZjR5RUh2X1ZoVE1zZ2p1cjVKcVItZjlzQkN3ajQyN295RW9kRmtnQkpNRmJ0T1dnTjRVYko0VF9DdHoya0NNdHc1V2l1Qm9tM3FUQ3hSUm5SeHV0UXB1WWNVVEhjU3VMbUNQakVkalh6YXRHR2s4ZGVCWmVYTVI2UFpockY3bHFlc2p6X1E4S3lhSVRudkZ5V1V3THpyQ0FqZVE?oc=5",
-      "source": "Scanx"
+      "detail": "DIC India Reports Q2 Revenue of 2.74B Rupees Versus 2.23B YoY",
+      "url": "https://news.google.com/rss/articles/CBMikAFBVV95cUxOSUVJQ09qRVczaV9GWkdaVG9JLXBHTnlkTkdIUmU0Zl8yV1Z4TzhvYjY1NmdZd0F0LUE1dDltSGd2Si1vYXpRZFZmZEhyWE53QlVxeUs4OWlRblg1UTJoTFNRVjhVa2M4U0NNc0xoVzhsWDJaLVZjR0xCREY0RVhybExySGN4UkppN0ZIU3BfRnE?oc=5",
+      "source": "Sahi"
      }
     ]
    },
