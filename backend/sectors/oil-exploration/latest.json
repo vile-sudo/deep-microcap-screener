@@ -1,18 +1,53 @@
 {
- "updated": "2026-11-04T06:46+05:30",
+ "updated": "2026-11-05T07:01+05:30",
  "figures": [
   {
-   "label": "Brent crude",
-   "value": "$103.60/bbl",
-   "as_of": "2026-11-03",
-   "note": "-$1.17 (-1.1%) on the day; WTI $96.09",
+   "label": "Brent crude (intraday)",
+   "value": "$100.60/bbl",
+   "as_of": "2026-11-04",
+   "note": "-2.9% (-$3.04) at 9:40 a.m. ET; third straight loss",
    "source": {
-    "publisher": "CNBC",
-    "url": "https://cnbc.com/2026/11/03/oil-prices-climb-after-us-reportedly-strikes-irans-qeshm-island.html"
+    "publisher": "OilPrice.com",
+    "url": "https://oilprice.com/Latest-Energy-News/World-News/Brent-Falls-to-100-as-Traders-Bet-on-a-US-Iran-Deal.html"
+   }
+  },
+  {
+   "label": "WTI crude (intraday)",
+   "value": "$93.23/bbl",
+   "as_of": "2026-11-04",
+   "note": "-$2.86 (3%) at 9:40 a.m. ET",
+   "source": {
+    "publisher": "OilPrice.com",
+    "url": "https://oilprice.com/Latest-Energy-News/World-News/Brent-Falls-to-100-as-Traders-Bet-on-a-US-Iran-Deal.html"
    }
   }
  ],
  "items": [
+  {
+   "date": "2026-11-04",
+   "title": "Brent slides to about $100.60 intraday, a third straight loss, on US-Iran deal hopes",
+   "text": "Brent was down $3.04 (2.9%) to $100.60/bbl at 9:40 a.m. ET on 4 November, and WTI fell $2.86 to $93.23, as traders priced in a possible US-Iran settlement. A senior Iranian official said Tehran could reopen Hormuz within two days if Washington met its demands, and JPMorgan estimated a 1.4 million bpd global surplus in October. Grafa reported Brent near $103.60 earlier that morning, so levels remain volatile. Lower crude eases India's import bill but trims realisations for upstream producers such as ONGC and Oil India.",
+   "tone": "watch",
+   "companies": [
+    "ONGC",
+    "OIL"
+   ],
+   "sources": [
+    {
+     "publisher": "OilPrice.com",
+     "title": "Brent Falls to $100 as Traders Bet on a U.S.-Iran Deal",
+     "url": "https://oilprice.com/Latest-Energy-News/World-News/Brent-Falls-to-100-as-Traders-Bet-on-a-US-Iran-Deal.html",
+     "date": "2026-11-04"
+    },
+    {
+     "publisher": "Grafa",
+     "title": "Oil prices rebound as Brent reaches $103.60",
+     "url": "https://grafa.com/en/news/united-states/oil-prices-rebound-brent-103-60-middle-east-supply",
+     "date": "2026-11-04"
+    }
+   ],
+   "added": "2026-11-05"
+  },
   {
    "date": "2026-11-03",
    "title": "Brent settles at $103.60, down $1.17, for a second daily fall on US-Iran deal hopes",
@@ -1123,30 +1158,6 @@
      "publisher": "Business Today",
      "title": "Indian Oil, HPCL, BPCL shares rise as brent crude prices fall for fourth day",
      "url": "https://www.businesstoday.in/markets/stocks/story/indian-oil-hpcl-bpcl-shares-rise-as-brent-crude-prices-fall-for-fourth-day-556822-2026-09-21",
-     "date": "2026-09-21"
-    }
-   ],
-   "added": "2026-09-22"
-  },
-  {
-   "date": "2026-09-20",
-   "title": "Welspun Corp's Saudi associate EPIC wins ₹2,000 crore Aramco pipe order",
-   "text": "Welspun Corp said its Saudi associate company East Pipes Integrated Company (EPIC), in which Welspun holds a 22% stake, signed a contract with Saudi Aramco to manufacture and supply steel pipes worth about SAR 771 million (~₹2,000 crore including VAT), to be executed over six months with financial impact spread from Q4 FY27 through Q1 FY28. Welspun Corp shares jumped about 5% to a record high of ₹2,797.60 on the news.",
-   "tone": "good",
-   "companies": [
-    "WELCORP"
-   ],
-   "sources": [
-    {
-     "publisher": "Business Standard",
-     "title": "Welspun Corp's associate company bags Rs 2,000-cr contract from Aramco",
-     "url": "https://www.business-standard.com/markets/capital-market-news/welspun-corp-s-associate-company-bags-rs-2-000-cr-contract-from-aramco-126092100420_1.html",
-     "date": "2026-09-21"
-    },
-    {
-     "publisher": "Business Today",
-     "title": "Welspun Corp stock in focus as arm wins 'large' order from Saudi Aramco",
-     "url": "https://www.businesstoday.in/markets/stocks/story/welspun-corp-stock-in-focus-as-arm-wins-large-order-from-saudi-aramco-556727-2026-09-21",
      "date": "2026-09-21"
     }
    ],

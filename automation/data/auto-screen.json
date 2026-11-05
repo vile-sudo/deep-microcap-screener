@@ -14751,6 +14751,20 @@
    "on": "2026-11-04",
    "result": "sector",
    "detail": "Information Technology / IT - Services / IT Enabled Services"
+  },
+  "INE0XFY01011": {
+   "on": "2026-11-05",
+   "result": "sector",
+   "detail": "no sector"
+  },
+  "INE0O0220019": {
+   "on": "2026-11-05",
+   "result": "not on screener"
+  },
+  "INE207H01026": {
+   "on": "2026-11-05",
+   "result": "added",
+   "detail": "GNRL"
   }
  },
  "runs": [
@@ -15113,6 +15127,16 @@
    "fetched": 4,
    "sector": 4,
    "added_codes": []
+  },
+  {
+   "on": "2026-11-05",
+   "fetched": 3,
+   "sector": 1,
+   "not on screener": 1,
+   "added": 1,
+   "added_codes": [
+    "GNRL"
+   ]
   }
  ]
 }
