@@ -1,28 +1,84 @@
 {
- "updated": "2026-11-05T07:01+05:30",
+ "updated": "2026-11-06T06:48+05:30",
  "figures": [
   {
-   "label": "Brent crude (intraday)",
-   "value": "$100.60/bbl",
-   "as_of": "2026-11-04",
-   "note": "-2.9% (-$3.04) at 9:40 a.m. ET; third straight loss",
+   "label": "Brent crude",
+   "value": "$96.96/bbl",
+   "as_of": "2026-11-05",
+   "note": "+2.47% on the day, after a two-month low near $93 on 4 Nov; intraday quote, not ",
    "source": {
-    "publisher": "OilPrice.com",
-    "url": "https://oilprice.com/Latest-Energy-News/World-News/Brent-Falls-to-100-as-Traders-Bet-on-a-US-Iran-Deal.html"
+    "publisher": "The National",
+    "url": "https://www.thenationalnews.com/business/energy/2026/11/05/oil-rebounds-from-two-month-low-as-uncertainty-lingers-over-iran-war/"
    }
   },
   {
-   "label": "WTI crude (intraday)",
-   "value": "$93.23/bbl",
-   "as_of": "2026-11-04",
-   "note": "-$2.86 (3%) at 9:40 a.m. ET",
+   "label": "WTI crude",
+   "value": "$89.90/bbl",
+   "as_of": "2026-11-05",
+   "note": "+2.02% on the day",
    "source": {
-    "publisher": "OilPrice.com",
-    "url": "https://oilprice.com/Latest-Energy-News/World-News/Brent-Falls-to-100-as-Traders-Bet-on-a-US-Iran-Deal.html"
+    "publisher": "The National",
+    "url": "https://www.thenationalnews.com/business/energy/2026/11/05/oil-rebounds-from-two-month-low-as-uncertainty-lingers-over-iran-war/"
+   }
+  },
+  {
+   "label": "ONGC nominated crude realisation",
+   "value": "$92.33/bbl",
+   "as_of": "2026-09-30",
+   "note": "Q2 FY27 average, +37.1% year-on-year",
+   "source": {
+    "publisher": "PSU Watch",
+    "url": "https://psuwatch.com/newsupdates/ongc-q2-net-profit-rises-57-to-rs-15489-cr-oil-and-gas-output-slips-3"
    }
   }
  ],
  "items": [
+  {
+   "date": "2026-11-05",
+   "title": "ONGC Q2 standalone profit up 57.3% to Rs 15,489 crore; Rs 8 interim dividend",
+   "text": "ONGC's standalone Q2 FY27 net profit rose 57.3% year-on-year to Rs 15,489 crore (down 9.1% on Q1); H1 profit was Rs 32,522 crore. Nominated-field crude realisation averaged $92.33/bbl, up 37.1%, but standalone crude output fell 4.2% to 4.437 MMT and total oil and gas output fell 2.9% to 9.515 MMT. The interim dividend is Rs 8 per share (record date 12 November), and two Western Offshore projects worth about Rs 11,800 crore were awarded. Higher realisations are lifting earnings while volumes still slip.",
+   "tone": "good",
+   "companies": [
+    "ONGC"
+   ],
+   "sources": [
+    {
+     "publisher": "PSU Watch",
+     "title": "ONGC Q2 net profit rises 57% to Rs 15,489 cr, oil and gas output slips 3%",
+     "url": "https://psuwatch.com/newsupdates/ongc-q2-net-profit-rises-57-to-rs-15489-cr-oil-and-gas-output-slips-3",
+     "date": "2026-11-05"
+    },
+    {
+     "publisher": "PSU Connect",
+     "title": "ONGC declares results for Q2 FY'27",
+     "url": "https://www.psuconnect.in/financial/ongc-declares-results-for-q2-fy27-net-profit-for-q2-soars",
+     "date": "2026-11-05"
+    }
+   ],
+   "added": "2026-11-06"
+  },
+  {
+   "date": "2026-11-05",
+   "title": "Brent rebounds 2.47% to $96.96 after touching $93, a two-month low; no US-Iran deal yet",
+   "text": "Brent rose 2.47% to $96.96/bbl on Thursday after briefly touching $93 on Wednesday, its lowest in two months; WTI rose 2.02% to $89.90. Both benchmarks are down about 14% on the week. A tanker mine strike east of Hormuz reported by Iran's navy and the lack of a peace deal supported prices; UBS's Paul Donovan sees post-war fair value of $80-85/bbl, while Saxo's Ole Hansen calls prices vulnerable to renewed volatility. Lower crude trims ONGC and Oil India realisations but eases the import bill and OMC margins.",
+   "tone": "watch",
+   "companies": [
+    "ONGC",
+    "OIL",
+    "IOC",
+    "BPCL",
+    "HINDPETRO"
+   ],
+   "sources": [
+    {
+     "publisher": "The National",
+     "title": "Oil rebounds from two-month low as uncertainty lingers over Iran war",
+     "url": "https://www.thenationalnews.com/business/energy/2026/11/05/oil-rebounds-from-two-month-low-as-uncertainty-lingers-over-iran-war/",
+     "date": "2026-11-05"
+    }
+   ],
+   "added": "2026-11-06"
+  },
   {
    "date": "2026-11-04",
    "title": "Brent slides to about $100.60 intraday, a third straight loss, on US-Iran deal hopes",
@@ -1040,128 +1096,6 @@
     }
    ],
    "added": "2026-09-23"
-  },
-  {
-   "date": "2026-09-21",
-   "title": "Hormuz-risk VLCC freight rockets to $1.1 million/day, 12x pre-crisis levels",
-   "text": "Very large crude carrier rates on the Persian Gulf-to-Asia route have surged to about $1.1 million a day, a roughly 12-fold jump within months from a 20-year average of $29,900/day, as fewer vessels are willing to transit the Strait of Hormuz. Shipping crude out of the Gulf now costs over $22/bbl versus about $2/bbl a year ago, a cost that ultimately falls on Indian refiners on top of already-elevated crude prices. High charter rates are a tailwind for Indian tanker owners such as Great Eastern Shipping.",
-   "tone": "watch",
-   "companies": [
-    "GESHIP",
-    "IOC",
-    "BPCL",
-    "HINDPETRO"
-   ],
-   "sources": [
-    {
-     "publisher": "ThePrint",
-     "title": "$1 million-a-day oil tankers: Cost of hiring oil tankers has spiralled amid West Asia crisis",
-     "url": "https://theprint.in/economy/1-million-a-day-oil-tankers-cost-of-hiring-oil-tankers-has-spiralled-amid-west-asia-crisis/3048529/",
-     "date": "2026-09-21"
-    }
-   ],
-   "added": "2026-09-23"
-  },
-  {
-   "date": "2026-09-21",
-   "title": "Brent falls for 4th straight day below $102 as Saudi exports recover, Iran talks hoped for",
-   "text": "Brent crude fell to around $100-101.5/bbl on 21 September, its lowest since 10 September and a fourth consecutive daily decline, as Saudi Arabia's crude exports recovered to more than 4 million bpd (from about 2.4 million bpd in August) despite a Houthi missile and drone attack on Riyadh and an Aramco site at Yanbu. Prices eased further on hopes that President Trump could meet Iran's president at the UN General Assembly this week, reducing the war-risk premium. Brent November futures settled at $101.38/bbl and WTI October futures at $93.74/bbl. Lower crude is a relief for India's import bill and refiners' marketing losses, but reduces near-term realisations for producers.",
-   "tone": "watch",
-   "companies": [
-    "ONGC",
-    "OIL",
-    "RELIANCE",
-    "VOGL",
-    "IOC",
-    "BPCL",
-    "HINDPETRO"
-   ],
-   "sources": [
-    {
-     "publisher": "HDFC Sky",
-     "title": "Brent Crude Oil Price Today September 21, 2026: Brent Crude Falls to $101.5, WTI at $97.9 as Supply Concerns Ease",
-     "url": "https://hdfcsky.com/news/brent-crude-oil-price-today-september-21-2026-brent-crude-falls-to-101-5-wti-at-97-9-as-supply-concerns-ease",
-     "date": "2026-09-21"
-    },
-    {
-     "publisher": "Kotak Securities",
-     "title": "Closing Bell, 21 September 2026: Sensex, Nifty End Higher As Oil Prices Decline",
-     "url": "https://www.kotakneo.com/news/market-news/closing-bell-21-september-2026/",
-     "date": "2026-09-21"
-    }
-   ],
-   "added": "2026-09-22"
-  },
-  {
-   "date": "2026-09-21",
-   "title": "Indian refiners eye alternatives to Russian crude after new US sanctions law",
-   "text": "Indian refiners have begun exploring alternative crude sources after the US signed a sanctions law authorising tariffs of up to 100% on countries buying Russian oil and gas, with the list of targeted buyers reassessed every 180 days. India's Russian crude imports were already down to about 1.9 million bpd in September, the lowest since April 2026 and still over 35% of India's total crude imports. Russian Urals delivered to India cost around $133/bbl last week versus higher-priced Middle Eastern grades, so replacing these volumes would raise India's import bill.",
-   "tone": "watch",
-   "companies": [
-    "IOC",
-    "BPCL",
-    "HINDPETRO",
-    "RELIANCE"
-   ],
-   "sources": [
-    {
-     "publisher": "Business Today",
-     "title": "Will India cut down on Russian crude purchases due to US tariffs? Here's what we know",
-     "url": "https://www.businesstoday.in/india/story/will-india-cut-down-on-russian-crude-purchases-due-to-us-tariffs-heres-what-we-know-556830-2026-09-21",
-     "date": "2026-09-21"
-    },
-    {
-     "publisher": "Bloomberg",
-     "title": "India's Oil Buyers May Cut Russian Cargoes in Wake of US Threats",
-     "url": "https://www.bloomberg.com/news/articles/2026-09-21/india-s-oil-buyers-may-cut-russian-cargoes-in-wake-of-us-threats",
-     "date": "2026-09-21"
-    }
-   ],
-   "added": "2026-09-22"
-  },
-  {
-   "date": "2026-09-21",
-   "title": "ONGC strikes gas at first Mahanadi deepwater well under Samudra Manthan",
-   "text": "ONGC struck gas at the MN-DW18-1-H-D well in the Mahanadi offshore basin, about 43 km off Konark (Odisha), at an interval of 1,441-1,452 metres after drilling to a target depth of 1,623 metres. It is the company's first deepwater well in the Mahanadi basin under the government's ₹84,084 crore Samudra Manthan campaign, and ONGC said the well has been flowing gas with encouraging flow and reservoir pressure for three days. The find's proximity to shore could support faster monetisation via shared infrastructure, subject to appraisal. ONGC shares closed 1.22% higher at ₹235.63 the same day, with the announcement made after market hours.",
-   "tone": "good",
-   "companies": [
-    "ONGC"
-   ],
-   "sources": [
-    {
-     "publisher": "PSU Watch",
-     "title": "ONGC strikes gas at its first Mahanadi deepwater well under Samudra Manthan",
-     "url": "https://psuwatch.com/newsupdates/ongc-strikes-gas-at-its-first-mahanadi-deepwater-well-under-samudra-manthan",
-     "date": "2026-09-21"
-    },
-    {
-     "publisher": "Upstox",
-     "title": "Oil and Natural Gas Corp strikes gas at deepwater well in Mahanadi offshore Basin; key details",
-     "url": "https://upstox.com/news/market-news/stocks/ongc-shares-in-focus-on-striking-gas-at-deepwater-well-in-mahanadi-offshore-basin-key-details/article-200612/",
-     "date": "2026-09-21"
-    }
-   ],
-   "added": "2026-09-22"
-  },
-  {
-   "date": "2026-09-21",
-   "title": "OMC stocks rally as four-day Brent slide eases under-recovery pressure",
-   "text": "Shares of Indian Oil, BPCL and HPCL rose as Brent's four-day, roughly 4% decline lowered crude procurement costs for the state refiners, which have been holding petrol and diesel prices steady despite high crude. BPCL gained about 3% over four sessions to ₹315.75 (from ₹306.80 on 17 September), Indian Oil rose 2.68% to ₹137.70 (from ₹134.10), and HPCL gained about 2.5% to a high of ₹359.55 (from ₹350.45).",
-   "tone": "good",
-   "companies": [
-    "IOC",
-    "BPCL",
-    "HINDPETRO"
-   ],
-   "sources": [
-    {
-     "publisher": "Business Today",
-     "title": "Indian Oil, HPCL, BPCL shares rise as brent crude prices fall for fourth day",
-     "url": "https://www.businesstoday.in/markets/stocks/story/indian-oil-hpcl-bpcl-shares-rise-as-brent-crude-prices-fall-for-fourth-day-556822-2026-09-21",
-     "date": "2026-09-21"
-    }
-   ],
-   "added": "2026-09-22"
   }
  ]
 }

@@ -14765,6 +14765,11 @@
    "on": "2026-11-05",
    "result": "added",
    "detail": "GNRL"
+  },
+  "INE0CJD01037": {
+   "on": "2026-11-06",
+   "result": "known to the public",
+   "detail": "29,613 shareholders -- already public knowledge, over the 25,000 limit"
   }
  },
  "runs": [
@@ -15137,6 +15142,12 @@
    "added_codes": [
     "GNRL"
    ]
+  },
+  {
+   "on": "2026-11-06",
+   "fetched": 1,
+   "known to the public": 1,
+   "added_codes": []
   }
  ]
 }
