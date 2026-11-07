@@ -1,0 +1,924 @@
+{
+ "slug": "crgo-electrical-steel-transformer-core-localisation",
+ "name": "CRGO Electrical Steel & Transformer Core Localisation",
+ "icon": "chip",
+ "edition": "2026-W45",
+ "updated": "2026-11-07",
+ "scope": "India's import-dependent CRGO / amorphous transformer-steel supply chain, the DGTR anti-dumping probe, JSW JFE capacity build-out, and the listed steel makers, core processors and transformer makers exposed to it.",
+ "summary": {
+  "one_line": "India still imports about 90% of its 400-450 kt/yr CRGO. The DGTR case has no preliminary findings yet, and final findings are due by about Jun 2027. JSW JFE now targets full Vijayanagar output in 2027 and Nashik phases over 2028-30. Mangal's Q2 profit fell 18%, and the processor stocks have not re-rated.",
+  "key_points": [
+   "Demand is about 400-450 kt a year against 40-50 kt of domestic output, so about 90% is imported (S1). Imports of the products under investigation were worth $821.5m in FY26, up 15.5% YoY. China supplied 33.6% of CRGO imports, Japan 31.4%, Russia 20.6% and Korea 6.5% (S4).",
+   "DGTR opened the case on 22 Jun 2026 (F. No. 6/17/2026-DGTR). It covers CRGO and amorphous metal from China, Japan, Korea and Russia, on a petition by JSW JFE Electrical Steel Nashik (S5). The period of investigation is Apr 2025-Mar 2026, and the applicant wants duties applied up to 90 days retrospectively (S6). Final findings are due within one year, extendable by six months, so by about Jun 2027 and Dec 2027 at the latest (S26). As of 7 Nov 2026 we found no preliminary findings.",
+   "New this week: on 16 Oct 2026 SteelOrbis reported that the Vijayanagar line has been doubled to 100 kt/yr with full production scheduled for 2027, and that Nashik goes from 50 to 250 kt/yr in phases over 2028-2030 (S31). The approved capex is Rs 5,845 cr for a combined 350 ktpa (S7, S8).",
+   "Lower prices are still squeezing processors. Mangal Electrical's Q2 FY27 revenue rose 9.2% YoY to Rs 168.6 cr, but operating profit fell 29.4% and PAT fell 17.5% to Rs 10.97 cr (results declared 31 Oct 2026) (S30). Its Q1 CRGO realisation was already down about 18% YoY (S25). We found no Sep-quarter filing yet from Vilas or Jay Bee.",
+   "The grid pull is large: the National Electricity Plan budgets Rs 9.15 lakh crore for transmission to 2032 and lifts transformation capacity from 1,251 GVA to 2,342 GVA (S32). KNN puts the 2024 base at 1,290 GVA (S11).",
+   "The theme has not re-rated. On 5 Nov Jay Bee was at Rs 90, -35.7% over 1 year and -24.0% YTD (S19). On 6-7 Nov Vilas was at Rs 338.75 after a 7.1% one-day fall, with a 1-year return of -13% to -15% (S18). On 3 Nov JSW Steel was +4.4% over 6 months and +9.5% over 1 year (S29).",
+   "The JV is still immaterial to JSW Steel. JSW reported Q2 FY27 consolidated revenue of Rs 54,486 cr and PAT of Rs 5,359 cr (S21), and PL Capital's result note has no electrical-steel element in its thesis (S28)."
+  ],
+  "for_investors": [
+   {
+    "title": "Who benefits",
+    "tone": "good",
+    "points": [
+     "JSW Steel, through the 50:50 JSW JFE JV. The JV is the petitioner and the only producer accepted as domestic industry (S5). A duty would support pricing as Vijayanagar ramps toward full output in 2027 and Nashik in 2028-30 (S31).",
+     "Processors with domestic sourcing. ICRA notes Vilas has diversified to domestic CRGO suppliers since FY2021 (S12). Mangal Electrical, a 16,200 MT CRGO processor, registered with DGTR as a supporter of the domestic industry (S5, S22).",
+     "Proterial's Metglas amorphous plant at Sri City (about 30 kt/yr, 74:26 with unlisted Shirdi Sai Electricals) would supply from inside any duty wall (S16). It was targeted to start in Oct 2026; we found no confirmation that it has."
+    ]
+   },
+   {
+    "title": "Who is hurt / risks",
+    "tone": "bad",
+    "points": [
+     "Transformer makers that import CRGO. Indo Tech is registered with DGTR as user and importer, and TARIL as importer (S5). CRGO is about 33-35% of their raw-material cost, according to TARIL (S10). TERI estimates a 10% CRGO price rise adds 1.5-3% to transformer cost (S11).",
+     "Processors on thin margins. Mangal's Q2 FY27 net margin fell to 6.5% from 8.6% (S30). Jay Bee's FY26 EBITDA margin was 6.2% (S14). ICRA flags Vilas's 80-90 day inventory, its ~45-55% customer concentration and its lack of formal hedging (S12).",
+     "For JSW Steel the payoff is small and late. The JV is unlisted and 50%-owned (S7), JSW booked Rs 54,486 cr of revenue in Q2 FY27 alone (S21), and most new capacity arrives only in 2027-30 (S31)."
+    ]
+   },
+   {
+    "title": "What to watch",
+    "tone": "watch",
+    "points": [
+     "DGTR preliminary findings, if any. Final findings are due by about 22 Jun 2027, extendable to about Dec 2027, and any duty then needs government notification (S5, S26).",
+     "H1 FY27 results from Vilas and Jay Bee, not yet filed as of 7 Nov 2026. Watch Vilas's 45-50% FY27 growth guidance (S13) and Jay Bee's 16,000-18,000 t volume guidance (S14).",
+     "Vijayanagar's ramp toward full production in 2027 (S31), and confirmation that Metglas Sri City has started (S16)."
+    ]
+   }
+  ]
+ },
+ "kpis": [
+  {
+   "label": "India CRGO demand",
+   "value": "400-450 kt/yr",
+   "sub": "GTRI estimate, Jun 2026 (S1)"
+  },
+  {
+   "label": "Domestic CRGO output",
+   "value": "40-50 kt/yr",
+   "sub": "~90% imported (S1)"
+  },
+  {
+   "label": "Imports under probe",
+   "value": "$821.5m",
+   "sub": "FY26, +15.5% YoY (S4)"
+  },
+  {
+   "label": "JSW JFE target capacity",
+   "value": "350 ktpa",
+   "sub": "Vijayanagar 2027, Nashik 2028-30 (S31)"
+  },
+  {
+   "label": "JSW JFE expansion capex",
+   "value": "Rs 5,845 cr",
+   "sub": "approved Aug 2025 (S7)"
+  },
+  {
+   "label": "DGTR final-findings deadline",
+   "value": "~Jun 2027",
+   "sub": "1 yr from 22 Jun 2026, +6 mo extendable (S5, S26)"
+  },
+  {
+   "label": "Transmission outlay to 2032",
+   "value": "Rs 9.15 lakh cr",
+   "sub": "NEP-Transmission; 2,342 GVA target (S32)"
+  },
+  {
+   "label": "Jay Bee 1-yr return",
+   "value": "-35.7%",
+   "sub": "as of 5 Nov 2026 (S19)"
+  }
+ ],
+ "sections": [
+  {
+   "id": "theme_explainer",
+   "title": "Theme explainer",
+   "subsections": [
+    {
+     "title": "What CRGO and amorphous metal are",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "Cold-rolled grain-oriented (CRGO) electrical steel and amorphous metal are the core materials of power and distribution transformers. About 98% of CRGO output goes into transformers (S11). Amorphous ribbon, such as Proterial's Metglas, cuts transformer no-load losses and can reduce standby power use by roughly one-third compared with conventional electrical sheet (S16). DGTR took a prima facie view that the two are substitutable, which is why amorphous metal is in scope even though the applicant makes only CRGO. Interested parties can contest that view (S6)."
+      },
+      {
+       "type": "p",
+       "text": "The supply chain has three layers. Steel mills make the CRGO coil. Processors slit, cut and assemble it into laminations and cores: Vilas, Jay Bee, Mangal, and TARIL's POSCO Poggenamp unit. Transformer makers come last (S10, S12, S22). Estimates of CRGO's cost share differ because they use different bases. TARIL puts it at about 33-35% of transformer raw-material cost (S10). TERI puts it at 15-20% of a standard transformer's bill of materials, while an MSME source quoted 40-50% (S11)."
+      }
+     ]
+    },
+    {
+     "title": "Demand-supply gap, import mix and BIS licensing",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "India CRGO balance and import sources",
+       "columns": [
+        "Metric",
+        "Value",
+        "Source"
+       ],
+       "rows": [
+        [
+         "Annual consumption",
+         "400,000-450,000 t",
+         "GTRI (S1)"
+        ],
+        [
+         "Domestic production",
+         "40,000-50,000 t",
+         "GTRI (S1)"
+        ],
+        [
+         "Import dependence",
+         "~90%",
+         "GTRI (S1)"
+        ],
+        [
+         "Imports of products under probe, FY26",
+         "$821.5m (+15.5% YoY)",
+         "GTRI via Basis Point (S4)"
+        ],
+        [
+         "China share of CRGO imports, FY26",
+         "33.6%",
+         "S4"
+        ],
+        [
+         "Japan share",
+         "31.4%",
+         "S4"
+        ],
+        [
+         "Russia share",
+         "20.6%",
+         "S4"
+        ],
+        [
+         "South Korea share",
+         "6.5%",
+         "S4"
+        ]
+       ]
+      },
+      {
+       "type": "chart",
+       "title": "Share of India's CRGO imports by country, FY26",
+       "unit": "%",
+       "series": [
+        {
+         "name": "Import share",
+         "points": [
+          [
+           "China",
+           33.6
+          ],
+          [
+           "Japan",
+           31.4
+          ],
+          [
+           "Russia",
+           20.6
+          ],
+          [
+           "South Korea",
+           6.5
+          ]
+         ]
+        }
+       ],
+       "source": "Source: GTRI via Basis Point Insight (S4)"
+      },
+      {
+       "type": "p",
+       "text": "BIS licensing already acts as a non-tariff gate. Imports must comply with IS 3024. In 2024, BIS licences for major Chinese exporters expired or were not renewed, which halted some shipments. The result was an acute shortage, especially of Hi-B grade, and user industry asked for imports to be allowed until domestic output began (S27). GTRI argues that because imports already need BIS certification, the anti-dumping dispute is about price, not quality (S1)."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "policy_and_capex",
+   "title": "Policy and capex",
+   "subsections": [
+    {
+     "title": "DGTR anti-dumping investigation",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "Case facts (status as of 7 Nov 2026)",
+       "columns": [
+        "Item",
+        "Detail",
+        "Source"
+       ],
+       "rows": [
+        [
+         "File no.",
+         "F. No. 6/17/2026-DGTR",
+         "S5"
+        ],
+        [
+         "Initiation",
+         "22 Jun 2026",
+         "S5"
+        ],
+        [
+         "Product",
+         "CRGO electrical steel and amorphous metal",
+         "S5, S6"
+        ],
+        [
+         "Countries",
+         "China PR, Japan, Korea RP, Russia",
+         "S5"
+        ],
+        [
+         "Petitioner",
+         "JSW JFE Electrical Steel Nashik Pvt Ltd",
+         "S5"
+        ],
+        [
+         "Period of investigation",
+         "1 Apr 2025 - 31 Mar 2026",
+         "S6"
+        ],
+        [
+         "Injury period",
+         "2022-23 to 2024-25 per GTRI; Apr 2022 - Mar 2026 per Mondaq",
+         "S1, S6"
+        ],
+        [
+         "Retrospective duty request",
+         "Up to 90 days before provisional duty",
+         "S6"
+        ],
+        [
+         "Deadline for final findings",
+         "1 year from initiation (~22 Jun 2027), extendable by 6 months",
+         "S26"
+        ],
+        [
+         "Interested parties",
+         "98 entries on the 3 Sep 2026 list",
+         "S5"
+        ],
+        [
+         "Status",
+         "No preliminary or final findings found as of 7 Nov 2026",
+         "S5"
+        ]
+       ]
+      },
+      {
+       "type": "p",
+       "text": "GTRI's case against a duty: CRGO was previously left out of safeguard duties because India depended on imports, and with domestic output under one-tenth of demand a duty mainly raises transformer and grid costs (S1). The Indian Steel Association replies that CRGO needs 7-10 times the investment per tonne of conventional greenfield steel, and that unchecked subsidised imports could undermine foreign investors' confidence (S11). An MSME federation official, speaking anonymously, says JSW is 'the only beneficiary' (S11)."
+      },
+      {
+       "type": "callout",
+       "tone": "warn",
+       "text": "Opposition is broad. DGTR's 3 Sep 2026 list includes the Embassy of Japan, Russia's Ministry of Economic Development, IEEMA, KOSA and the China Iron and Steel Association. Several listed transformer makers registered as user industry or importers (S5). Indian rules set no fixed deadline for preliminary findings or provisional duty (S26), so the timing of any interim duty is uncertain."
+      }
+     ]
+    },
+    {
+     "title": "JSW JFE capacity plan, other new supply and the grid pull",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "Announced domestic electrical-steel capacity",
+       "columns": [
+        "Plant",
+        "Current",
+        "Target",
+        "Capex",
+        "Timing",
+        "Source"
+       ],
+       "rows": [
+        [
+         "JSW JFE Nashik (ex-thyssenkrupp)",
+         "50 ktpa",
+         "250 ktpa",
+         "~Rs 4,300 cr",
+         "Phased commissioning 2028-2030",
+         "S7, S8, S31"
+        ],
+        [
+         "JSW JFE Vijayanagar (greenfield)",
+         "Under construction; plan doubled from 50 ktpa",
+         "100 ktpa",
+         "+Rs 1,545 cr",
+         "Full production scheduled 2027; Tenova lines ordered 2025",
+         "S7, S31"
+        ],
+        [
+         "Metglas (India): Proterial 74% / Shirdi Sai 26%, Sri City",
+         "-",
+         "~30 kt/yr amorphous ribbon",
+         "~$77-80m",
+         "Targeted Oct 2026; start not confirmed",
+         "S16"
+        ]
+       ]
+      },
+      {
+       "type": "chart",
+       "title": "Domestic electrical-steel capacity: today vs announced",
+       "unit": "kt/yr",
+       "series": [
+        {
+         "name": "Capacity",
+         "points": [
+          [
+           "Domestic output today (GTRI)",
+           50
+          ],
+          [
+           "JSW JFE post-expansion",
+           350
+          ],
+          [
+           "+ Metglas amorphous",
+           380
+          ],
+          [
+           "Demand (upper GTRI est.)",
+           450
+          ]
+         ]
+        }
+       ],
+       "source": "Source: GTRI (S1), Wire & Cable India / SteelOrbis (S7, S31), machinist.in (S16); the cumulative sum is our arithmetic"
+      },
+      {
+       "type": "p",
+       "text": "Demand is set to keep rising. The National Electricity Plan (Transmission) budgets Rs 9.15 lakh crore to 2032. It takes the transmission network from 4.85 lakh ckm to 6.48 lakh ckm, and transformation capacity at 220 kV and above from 1,251 GVA to 2,342 GVA (S32). KNN gives a 1,290 GVA base for the same target (S11). On our arithmetic, even the full 350 ktpa from the JV plus 30 kt of amorphous ribbon (about 380 kt) sits below today's 400-450 kt demand estimate (S1, S16, S31). On these figures, imports look likely to remain the marginal supply through 2030."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "listed_company_impact",
+   "title": "Listed company impact",
+   "subsections": [
+    {
+     "title": "Core processors: Vilas Transcore, Jay Bee Laminations, Mangal Electrical",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "Processor operating snapshot (latest disclosed)",
+       "columns": [
+        "Metric",
+        "Vilas Transcore",
+        "Jay Bee Laminations",
+        "Mangal Electrical"
+       ],
+       "rows": [
+        [
+         "CRGO capacity",
+         "36,000 MTPA (S13)",
+         "23,340 MTPA (S15)",
+         "16,200 MT (S22)"
+        ],
+        [
+         "Latest volume",
+         "6,550 t in Q1 FY27, +41.2% YoY (S13)",
+         "15,554 t in FY26 vs 12,400 t (S14)",
+         "CRGO volume +~32% YoY in Q1 FY27 (S25)"
+        ],
+        [
+         "Latest revenue",
+         "Rs 132.4 cr Q1 FY27, +18.2% YoY (S13)",
+         "Rs 548.0 cr FY26 vs Rs 367.5 cr, incl. EPC (S14)",
+         "Rs 168.6 cr Q2 FY27, +9.2% YoY (S30)"
+        ],
+        [
+         "Price / margin",
+         "CRGO price down ~20% to Rs 190-195/kg (S13); OPBDIT 12.6% FY25 (S12)",
+         "EBITDA 6.2% FY26 vs 11.7% (S14)",
+         "Q2 FY27 operating profit -29.4%, PAT Rs 10.97 cr (-17.5%), net margin 6.5% vs 8.6% (S30)"
+        ],
+        [
+         "Working capital / concentration",
+         "Inventory 80-90 days; one customer ~45-55% of sales (S12)",
+         "Receivables Rs 190.7 cr vs Rs 78.1 cr (S14)",
+         "n/a"
+        ],
+        [
+         "Guidance",
+         "FY27 revenue growth 45-50% (S13)",
+         "FY27 CRGO volume 16,000-18,000 t (S14)",
+         "n/a"
+        ],
+        [
+         "Sep-quarter / H1 FY27",
+         "Not yet filed (as of 7 Nov)",
+         "Not yet filed (as of 7 Nov)",
+         "Declared 31 Oct 2026 (S30)"
+        ]
+       ]
+      },
+      {
+       "type": "p",
+       "text": "Mangal is the first processor to report the Sep quarter, and it shows the squeeze: revenue still grew while operating profit fell by almost a third (S30). Falling CRGO prices have so far hurt processor realisations more than a duty could, because volume growth has run well ahead of revenue (S13, S14, S25). A duty would reverse the price trend. Processors that can pass costs through would book inventory gains. Any lag in pass-through would compress margins that ICRA already flags as sensitive to CRGO prices and forex, with no formal hedging (S12). Neither Vilas nor Jay Bee is on DGTR's interested-party list, while Mangal backs the petition (S5)."
+      }
+     ]
+    },
+    {
+     "title": "JSW Steel and transformer makers",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "JSW Steel holds 50% of the JV and JFE holds the rest (S7). JSW's Q2 FY27 consolidated revenue was Rs 54,486 cr and PAT was Rs 5,359 cr (S21). As an illustration only (our arithmetic, not a forecast): 350 ktpa at the Rs 190-195/kg CRGO price Vilas cites (S13) gives roughly Rs 6,700 cr of gross revenue for the whole JV. That is about 3% of JSW's annualised Q2 revenue before applying its 50% share, and it would build only through 2027-30 (S31)."
+      },
+      {
+       "type": "p",
+       "text": "Downstream, DGTR registrants include CG Power (as user industry and as exporter/producer), Hitachi Energy India, Indo Tech (user and importer), TARIL (importer), Atlanta Electricals and BHEL (S5). TARIL has partly hedged through backward integration: in Jan 2025 it bought 51% of POSCO Poggenamp Electrical Steel, a 24,000 t/yr CRGO processor (S10). TERI estimates a 10% CRGO price rise adds 1.5-3% to transformer cost, and a 20% rise adds 3-6% (S11)."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "research_house_views",
+   "title": "Research house views",
+   "subsections": [
+    {
+     "title": "Who is saying what",
+     "blocks": [
+      {
+       "type": "bullets",
+       "items": [
+        "GTRI (Ajay Srivastava): a duty raises transformer and grid costs while giving little protection, because domestic output is under one-tenth of demand (S1, S4).",
+        "TERI (Alekhya Datta): a 10% CRGO price rise adds 1.5-3% to transformer cost, and a 20% rise adds 3-6% (S11).",
+        "Indian Steel Association (Alok Sahay): domestic CRGO capacity is capital-intensive, and subsidised imports threaten investment (S11).",
+        "ICRA (Vilas, Jul 2025): reaffirmed [ICRA]A- (Stable)/A2+, citing interest cover of 29.7x against working-capital intensity, customer concentration and exposure to CRGO prices (S12).",
+        "PL Capital (JSW Steel Q2 FY27, 24 Oct 2026): the thesis rests on volumes, the capex pipeline and the BPSL/JFE expansion, with no electrical-steel element (S28)."
+       ]
+      },
+      {
+       "type": "callout",
+       "tone": "info",
+       "text": "Coverage is still thin. This week we again found no sell-side initiation or sector note framing JSW Steel, Vilas, Jay Bee or Mangal as a CRGO localisation play. Discussion is limited to think tanks, trade press, a rating rationale and retail results sites (S14, S30)."
+      }
+     ]
+    },
+    {
+     "title": "Has the market priced it in?",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "Stock performance (latest dated readings found; today's numbers are on the dashboard)",
+       "columns": [
+        "Stock",
+        "As of",
+        "Price",
+        "6-month",
+        "1-year",
+        "52-week range",
+        "Source"
+       ],
+       "rows": [
+        [
+         "JSW Steel",
+         "3 Nov 2026",
+         "Rs 1,320",
+         "+4.39%",
+         "+9.45%",
+         "Rs 1,073-1,351",
+         "S29"
+        ],
+        [
+         "Vilas Transcore",
+         "6-7 Nov 2026",
+         "Rs 338.75 (-7.08% on the day)",
+         "-17.5% to -25.7% (page shows both)",
+         "-13.2% to -15.0% (page shows both)",
+         "Rs 313.25-495",
+         "S18"
+        ],
+        [
+         "Jay Bee Laminations",
+         "5 Nov 2026",
+         "Rs 90.00",
+         "n/a (3-month +0.6%)",
+         "-35.7% (YTD -24.0%)",
+         "Rs 70-147.95",
+         "S19"
+        ]
+       ]
+      },
+      {
+       "type": "chart",
+       "title": "1-year stock return, latest reading",
+       "unit": "%",
+       "series": [
+        {
+         "name": "1-year return",
+         "points": [
+          [
+           "JSW Steel (3 Nov)",
+           9.45
+          ],
+          [
+           "Vilas Transcore (6-7 Nov, low end)",
+           -15.0
+          ],
+          [
+           "Jay Bee (5 Nov)",
+           -35.7
+          ]
+         ]
+        }
+       ],
+       "source": "Source: 5paisa (S29), Anand Rathi (S18), Value Research (S19)"
+      },
+      {
+       "type": "p",
+       "text": "What changed since last week: Jay Bee's 1-year return improved from -53.3% on 28 Oct to -35.7% on 5 Nov. Most of that is a base effect: its 52-week high reset from Rs 199.95 to Rs 147.95 while the price rose only from Rs 81.20 to Rs 90 (S19). Vilas fell 7.1% on 6 Nov, to Rs 338.75, near the bottom of its 52-week range; we found no news explaining the move (S18). JSW Steel trades near its 52-week high (S29). The processors are still down over a year, so the probe has not re-rated them."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "risks_and_catalysts",
+   "title": "Risks and catalysts",
+   "subsections": [
+    {
+     "title": "Key risks",
+     "blocks": [
+      {
+       "type": "bullets",
+       "items": [
+        "The duty could be rejected or diluted. Opposition is organised, including foreign governments, industry associations and large user-industry registrants (S5), and GTRI and TERI stress the cost to the grid (S1, S11).",
+        "Timing mismatch: final findings may not come until Jun-Dec 2027 (S26), while Nashik's expansion phases in only over 2028-30 (S31). A duty imposed first would raise costs before domestic supply is there.",
+        "Processor price volatility. CRGO realisations fell about 18-20% YoY into Q1 FY27 (S13, S25), and Mangal's Q2 operating profit fell 29.4% (S30). A duty-led price rebound could squeeze processors that cannot pass it through (S12).",
+        "Liquidity and concentration. Vilas (~Rs 829 cr) and Jay Bee (Rs 203 cr) are micro/small caps (S18, S19), and Vilas depends on one customer for ~45-55% of sales (S12).",
+        "Materiality for JSW Steel. The JV is unlisted, 50%-owned and small next to group revenue (S7, S21)."
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Catalyst calendar",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "Near-term catalysts",
+       "columns": [
+        "Event",
+        "Timing",
+        "Source"
+       ],
+       "rows": [
+        [
+         "Vilas and Jay Bee H1 FY27 results",
+         "Expected Nov 2026; not filed as of 7 Nov",
+         "S13, S14 (guidance to track)"
+        ],
+        [
+         "Mangal Q2 FY27 results",
+         "Done, 31 Oct 2026: PAT -17.5%",
+         "S30"
+        ],
+        [
+         "Metglas Sri City plant start",
+         "Targeted Oct 2026; unconfirmed",
+         "S16"
+        ],
+        [
+         "DGTR preliminary findings (if any)",
+         "No statutory date",
+         "S26"
+        ],
+        [
+         "JSW JFE Vijayanagar full production",
+         "Scheduled 2027",
+         "S31"
+        ],
+        [
+         "DGTR final findings",
+         "Due ~22 Jun 2027; extendable ~6 months",
+         "S5, S26"
+        ],
+        [
+         "Government duty notification",
+         "After final findings",
+         "S26"
+        ],
+        [
+         "JSW JFE Nashik phased commissioning",
+         "2028-2030",
+         "S31"
+        ]
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "companies": [
+  {
+   "name": "JSW Steel",
+   "nse": "JSWSTEEL",
+   "bse": "500228",
+   "bucket": "electrical_steel_makers",
+   "role": "Owns 50% of JSW JFE Electrical Steel. The JV's Nashik CRGO plant (50 ktpa) is the DGTR petitioner, and the JV is expanding to 350 ktpa across Nashik and Vijayanagar (S5, S7, S31).",
+   "impact": "The JV is the main beneficiary of any duty (S11). It is still small next to JSW's Rs 54,486 cr Q2 FY27 revenue, and new capacity arrives over 2027-30 (S21, S31). The stock was +9.45% over 1 year on 3 Nov 2026 (S29)."
+  },
+  {
+   "name": "Vilas Transcore",
+   "nse": "VILAS",
+   "bse": null,
+   "bucket": "core_processors",
+   "role": "Vadodara maker of CRGO laminations and cores with 36,000 MTPA capacity (S12, S13).",
+   "impact": "Q1 FY27 volume grew 41% despite ~20% lower CRGO prices (S13). Its 80-90 day inventory and lack of formal hedging leave it exposed to a duty-led price swing (S12). The stock fell 7.1% on 6 Nov to Rs 338.75 and is -13% to -15% over 1 year (S18)."
+  },
+  {
+   "name": "Jay Bee Laminations",
+   "nse": "JAYBEE",
+   "bse": null,
+   "bucket": "core_processors",
+   "role": "CRGO core and lamination processor (23,340 MTPA) that also makes transformers and does EPC work (S14, S15).",
+   "impact": "Its FY26 EBITDA margin fell to 6.2% as CRGO prices swung, and receivables more than doubled (S14). The stock was -35.7% over 1 year and -24.0% YTD on 5 Nov 2026 (S19)."
+  },
+  {
+   "name": "Mangal Electrical Industries",
+   "nse": null,
+   "bse": null,
+   "bucket": "core_processors",
+   "role": "Rajasthan CRGO processor with 16,200 MT capacity plus transformer and amorphous units; listed Aug 2025 (S22).",
+   "impact": "The only listed company registered with DGTR as a 'supporter to domestic industry' (S5). Q2 FY27 revenue rose 9.2%, but PAT fell 17.5% to Rs 10.97 cr and net margin fell to 6.5% (S30)."
+  },
+  {
+   "name": "Transformers & Rectifiers (India)",
+   "nse": "TARIL",
+   "bse": "532928",
+   "bucket": "other",
+   "role": "Power transformer maker that owns 51% of POSCO Poggenamp, a 24,000 t/yr CRGO processor (S10).",
+   "impact": "Registered with DGTR as an importer (S5). CRGO is 33-35% of its raw-material cost, so a duty raises input costs, partly offset by its in-house processing (S10)."
+  },
+  {
+   "name": "Indo Tech Transformers",
+   "nse": "INDOTECH",
+   "bse": "532717",
+   "bucket": "other",
+   "role": "Transformer maker registered as both user industry and CRGO importer in the DGTR case (S5).",
+   "impact": "Faces higher CRGO costs if a duty comes; TERI puts the hit at 1.5-3% of transformer cost per 10% CRGO price rise (S11)."
+  },
+  {
+   "name": "CG Power and Industrial Solutions",
+   "nse": "CGPOWER",
+   "bse": "500093",
+   "bucket": "other",
+   "role": "Transformer maker registered with DGTR as user industry and as exporter/producer (S5).",
+   "impact": "A large CRGO consumer engaged in the case. A duty raises its input costs, while the 2,342 GVA grid target supports demand (S5, S11, S32)."
+  },
+  {
+   "name": "Hitachi Energy India",
+   "nse": "POWERINDIA",
+   "bse": "543187",
+   "bucket": "other",
+   "role": "Power transformer maker registered as user industry in the CRGO probe (S5).",
+   "impact": "Faces CRGO cost inflation, while the Rs 9.15 lakh crore transmission plan to 2032 supports demand (S5, S32)."
+  },
+  {
+   "name": "Atlanta Electricals",
+   "nse": null,
+   "bse": null,
+   "bucket": "other",
+   "role": "Power transformer maker registered as user industry in the probe (S5).",
+   "impact": "A CRGO buyer, so a duty raises its input costs (S5, S11)."
+  },
+  {
+   "name": "Bharat Heavy Electricals",
+   "nse": "BHEL",
+   "bse": "500103",
+   "bucket": "other",
+   "role": "State-owned transformer and power-equipment maker registered in the probe as user industry (S5).",
+   "impact": "A CRGO consumer affected by any duty (S5, S11)."
+  }
+ ],
+ "sources": [
+  {
+   "id": "S1",
+   "publisher": "KNN India (GTRI)",
+   "title": "Anti-dumping probe on electrical steel could hit transformer costs, slow grid expansion: GTRI",
+   "url": "https://knnindia.co.in/news/newsdetails/sectors/exportimports/anti-dumping-probe-on-electrical-steel-could-hit-transformer-costs-slow-grid-expansion-gtri",
+   "date": "2026-06-26",
+   "kind": "research"
+  },
+  {
+   "id": "S4",
+   "publisher": "Basis Point Insight (GTRI data)",
+   "title": "India Anti-Dumping Probe on Transformer Steel May Raise Grid Costs - GTRI",
+   "url": "https://www.basispointinsight.com/Story/india-anti-dumping-probe-on-transformer-steel-may-raise-grid-costs---gtri_dd5977125311.html",
+   "date": "2026-06-27",
+   "kind": "news"
+  },
+  {
+   "id": "S5",
+   "publisher": "DGTR, Ministry of Commerce & Industry",
+   "title": "List of interested parties - Anti-dumping investigation on CRGO and Amorphous Metal from China PR, Japan, Korea RP and Russia (F. No. 6/17/2026-DGTR)",
+   "url": "https://dgtr.gov.in/sites/default/files/2026-09/RIPL%20CRGO%20(1).pdf",
+   "date": "2026-09-03",
+   "kind": "primary"
+  },
+  {
+   "id": "S6",
+   "publisher": "Mondaq / Legal500",
+   "title": "Anti-dumping investigation initiated in India on CRGO and amorphous metal imports from Japan, China, Korea RP and Russia - what should Japanese exporters do next",
+   "url": "https://www.mondaq.com/anti-dumping-investigation-initiated-in-india-on-crgo-and-amorphous-metal-imports-from-japan-china-korea-rp-and-russia-what-should-japanese-exporters-do-next/1838576",
+   "date": "2026-09-03",
+   "kind": "research"
+  },
+  {
+   "id": "S7",
+   "publisher": "Wire & Cable India",
+   "title": "JSW and JFE to invest INR 5,845 Crore for Expanding Electrical Steel Production in India",
+   "url": "https://www.wirecable.in/?p=35259",
+   "date": "2025-08-04",
+   "kind": "news"
+  },
+  {
+   "id": "S8",
+   "publisher": "The Machine Maker",
+   "title": "JSW JFE Electrical Steel Announces Major Capacity Expansion to Meet Growing CRGO Demand in India",
+   "url": "https://themachinemaker.com/news/jsw-jfe-electrical-steel-announces-major-capacity-expansion-to-meet-growing-crgo-demand-in-india/",
+   "date": "2025-08-04",
+   "kind": "news"
+  },
+  {
+   "id": "S10",
+   "publisher": "T&D India",
+   "title": "TARIL acquires controlling stake in POSCO Poggenamp Electrical Steel",
+   "url": "https://www.tndindia.com/taril-acquires-controlling-stake-in-posco-poggenamp-electrical-steel/",
+   "date": "2025-01-30",
+   "kind": "news"
+  },
+  {
+   "id": "S11",
+   "publisher": "KNN India",
+   "title": "CRGO steel probe sparks MSME concerns over costs, power tariffs",
+   "url": "https://knnindia.co.in/news/newsdetails/msme/crgo-steel-probe-sparks-msme-concerns-over-costs-power-tariffs",
+   "date": "2026-07-01",
+   "kind": "news"
+  },
+  {
+   "id": "S12",
+   "publisher": "ICRA",
+   "title": "Vilas Transcore Limited: Ratings reaffirmed",
+   "url": "https://www.icra.in/Rating/GetRationalReportFilePdf?id=136305",
+   "date": "2025-07-14",
+   "kind": "research"
+  },
+  {
+   "id": "S13",
+   "publisher": "Vilas Transcore (NSE filing)",
+   "title": "Q1 FY27 Business Update",
+   "url": "https://nsearchives.nseindia.com/corporate/VILAS_04082026202854_NSE_Q1_FY26_27businessupdate_VILAS.pdf",
+   "date": "2026-08-04",
+   "kind": "company"
+  },
+  {
+   "id": "S14",
+   "publisher": "multibagg.ai",
+   "title": "Jay Bee Laminations FY26: Revenue Jump, Margin Pressure, and a Fast EPC Entry",
+   "url": "https://www.multibagg.ai/market-pulse/articles/jaybee-fy26-94241",
+   "date": "2026-05-17",
+   "kind": "other"
+  },
+  {
+   "id": "S15",
+   "publisher": "Jay Bee Laminations (NSE filing)",
+   "title": "Intimation of investor presentation (H2 & FY26)",
+   "url": "https://nsearchives.nseindia.com/corporate/JAYBEE_18052026175326_Intimation_of_investor_presentation.pdf",
+   "date": "2026-05-18",
+   "kind": "company"
+  },
+  {
+   "id": "S16",
+   "publisher": "machinist.in",
+   "title": "Proterial to establish amorphous electrical steel plant in Andhra Pradesh",
+   "url": "https://machinist.in/2026/03/proterial-to-establish-amorphous-electrical-steel-plant-in-andhra-pradesh/",
+   "date": "2026-03-01",
+   "kind": "news"
+  },
+  {
+   "id": "S18",
+   "publisher": "Anand Rathi",
+   "title": "Vilas Transcore Ltd share price",
+   "url": "https://anandrathi.com/stocks/vilas-transcore-ltd",
+   "date": "2026-11-06",
+   "kind": "other"
+  },
+  {
+   "id": "S19",
+   "publisher": "Value Research",
+   "title": "Jay Bee Laminations Ltd",
+   "url": "https://www.valueresearchonline.com/stocks/340258/jay-bee-laminations-ltd/",
+   "date": "2026-11-05",
+   "kind": "other"
+  },
+  {
+   "id": "S21",
+   "publisher": "Kotak Neo",
+   "title": "JSW Steel Q2 profit surges as revenue and sales rise; share price in focus",
+   "url": "https://www.kotakneo.com/news/stocks/jsw-steel-q2-profit-surges-as-revenue-and-sales-rise-share-price-in-focus/",
+   "date": "2026-10-23",
+   "kind": "news"
+  },
+  {
+   "id": "S22",
+   "publisher": "Business Standard",
+   "title": "Last chance to bid: Mangal Electrical IPO ends today; subscription nears 3x",
+   "url": "https://www.business-standard.com/markets/news/last-chance-to-bid-mangal-electrical-ipo-ends-today-subscription-nears-3x-gmp-up-4-125082200401_1.html",
+   "date": "2025-08-22",
+   "kind": "news"
+  },
+  {
+   "id": "S25",
+   "publisher": "Choice India",
+   "title": "Mangal Electrical Reports 40% Revenue Growth, PAT Doubles In Q1 FY27",
+   "url": "https://choiceindia.com/news/mangal-electrical-q1-fy27-results-revenue-growth-pat-doubles",
+   "date": "2026-07-30",
+   "kind": "news"
+  },
+  {
+   "id": "S26",
+   "publisher": "Lakshmikumaran & Sridharan",
+   "title": "Provisional anti-dumping measures in India - a misused provision",
+   "url": "https://www.lkslaw.com/insights/articles/provisional-anti-dumping-measures-in-india-a-misused-provision",
+   "date": "2026-01-28",
+   "kind": "research"
+  },
+  {
+   "id": "S27",
+   "publisher": "KNN India",
+   "title": "No domestic CRGO steel till 2027; industry appeals for allowing imports",
+   "url": "https://knnindia.co.in/news/newsdetails/sectors/manufacturing/no-domestic-crgo-steel-till-2027-industry-appeals-for-allowing-imports",
+   "date": "2024-05-09",
+   "kind": "news"
+  },
+  {
+   "id": "S28",
+   "publisher": "PL Capital (Prabhudas Lilladher)",
+   "title": "JSW Steel (JSTL IN) Q2FY27 result update",
+   "url": "https://www.plindia.com/pl-research/jsw-steel-jstl-in-q2fy27-result-update-on-a-strong-growth-trajectory-poised-for-the-next-leap-upgrade-to-buy/",
+   "date": "2026-10-24",
+   "kind": "research"
+  },
+  {
+   "id": "S29",
+   "publisher": "5paisa",
+   "title": "JSW Steel share price ends at Rs 1,320, up 0.77% on November 3",
+   "url": "https://www.5paisa.com/blog/jsw-steel-stock-update-03-nov-26",
+   "date": "2026-11-03",
+   "kind": "news"
+  },
+  {
+   "id": "S30",
+   "publisher": "Univest",
+   "title": "Mangal Electrical Industries Q2 results FY27: PAT Rs 11 crore",
+   "url": "https://univest.in/blogs/mangal-electrical-industries-q2-results-fy27-pat-11-crore",
+   "date": "2026-10-31",
+   "kind": "news"
+  },
+  {
+   "id": "S31",
+   "publisher": "SteelOrbis",
+   "title": "JSW JFE reviews engineering plans for electrical steel project with Tenova",
+   "url": "https://www.steelorbis.com/steel-news/latest-news/jsw-jfe-reviews-engineering-plans-for-electrical-steel-project-with-tenova-1484190.htm",
+   "date": "2026-10-16",
+   "kind": "news"
+  },
+  {
+   "id": "S32",
+   "publisher": "T&D India",
+   "title": "National Electricity Plan 2032 finalized; outlay pegged at over Rs 9 trillion",
+   "url": "https://www.tndindia.com/national-electricity-plan-2032-finalized-outlay-pegged-at-over-rs-9-trillion/",
+   "date": "2024-09-24",
+   "kind": "news"
+  }
+ ],
+ "method": "Weekly refresh of the 2026-W44 edition, researched on 7 Nov 2026 with web search and direct page fetches. We searched for new DGTR action (no preliminary findings found), Sep-quarter results for Vilas, Jay Bee and Mangal (only Mangal's, declared 31 Oct, were found), JSW JFE project news, the Metglas Sri City start (still unconfirmed; an Oct 2026 trade article seen in search still described it as targeted), and current stock prices. New this week: Mangal's Q2 FY27 results (S30), taken from Univest because the Arthneeti page was internally inconsistent on PAT; SteelOrbis on the Vijayanagar 2027 and Nashik 2028-30 timing (S31); the NEP-Transmission Rs 9.15 lakh crore outlay and GVA targets (S32, whose 1,251 GVA base differs from KNN's 1,290); and refreshed returns for JSW Steel (S29), Vilas (S18) and Jay Bee (S19). We dropped the 16 Oct JSW price page (S20), the Outlook Business GTRI piece (S3), the Angel One initiation story (S24) and the John Cockerill furnace contract (S9). We could not re-confirm the earlier Q1 2027 Nashik furnace-completion target this week, so it is no longer used. Carried-forward figures (GTRI balance, import mix, JV capex, ICRA, Vilas Q1, Jay Bee FY26, the DGTR interested-party list) come from previously fetched sources; the DGTR case facts, the JV capacity numbers and the Vilas Q1 figures reappeared in this week's searches. The Vilas return page shows two inconsistent sets of 6-month and 1-year figures, so both are reported, and its price (Rs 338.75) differs from the dashboard's early-6-Nov reading (Rs 365, which matches the prior close of Rs 364.55). We found no other listed CRGO steel maker; NLMK India and Shirdi Sai Electricals appear unlisted, so mid- and large-cap coverage of producers is limited to JSW Steel, which is the honest state of this niche. Voltamp and Shilchar were again left out for lack of a citable CRGO link. NSE symbols for Mangal and Atlanta are left null because we did not confirm them. Revenue arithmetic is our own and labelled as such; the report gives no ratings or price targets. Source IDs are not contiguous.",
+ "bucket_labels": {
+  "electrical_steel_makers": [
+   "Electrical Steel Producers",
+   "Listed companies making or building CRGO / amorphous electrical steel capacity, directly or through a JV"
+  ],
+  "core_processors": [
+   "CRGO Core & Lamination Processors",
+   "Listed companies slitting, cutting and assembling CRGO into transformer laminations and cores, expanding capacity"
+  ],
+  "other": [
+   "Other",
+   ""
+  ]
+ },
+ "kind": "theme"
+}

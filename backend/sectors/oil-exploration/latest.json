@@ -1,38 +1,40 @@
 {
- "updated": "2026-11-06T06:48+05:30",
+ "updated": "2026-11-07T06:24+05:30",
  "figures": [
   {
    "label": "Brent crude",
-   "value": "$96.96/bbl",
-   "as_of": "2026-11-05",
-   "note": "+2.47% on the day, after a two-month low near $93 on 4 Nov; intraday quote, not ",
+   "value": "$99.90/bbl",
+   "as_of": "2026-11-06",
+   "note": "Friday morning, +1.67% on the day; about -12% on the week per the source",
    "source": {
-    "publisher": "The National",
-    "url": "https://www.thenationalnews.com/business/energy/2026/11/05/oil-rebounds-from-two-month-low-as-uncertainty-lingers-over-iran-war/"
-   }
-  },
-  {
-   "label": "WTI crude",
-   "value": "$89.90/bbl",
-   "as_of": "2026-11-05",
-   "note": "+2.02% on the day",
-   "source": {
-    "publisher": "The National",
-    "url": "https://www.thenationalnews.com/business/energy/2026/11/05/oil-rebounds-from-two-month-low-as-uncertainty-lingers-over-iran-war/"
-   }
-  },
-  {
-   "label": "ONGC nominated crude realisation",
-   "value": "$92.33/bbl",
-   "as_of": "2026-09-30",
-   "note": "Q2 FY27 average, +37.1% year-on-year",
-   "source": {
-    "publisher": "PSU Watch",
-    "url": "https://psuwatch.com/newsupdates/ongc-q2-net-profit-rises-57-to-rs-15489-cr-oil-and-gas-output-slips-3"
+    "publisher": "Trading and Investment News",
+    "url": "https://www.tradingandinvestmentnews.co.uk/oil-prices-iran-peace/"
    }
   }
  ],
  "items": [
+  {
+   "date": "2026-11-06",
+   "title": "Brent heads for about 12% weekly fall on US-Iran deal hopes; no agreement signed yet",
+   "text": "Brent opened Wednesday near $104 and settled at $93.52, down 9.73%, recovered to about $94 on Thursday and rose 1.67% to $99.90 on Friday morning, per the cited report. It says neither side has signed a deal, Iran reported three more tanker attacks in Hormuz on Thursday, and Rapidan Energy Group puts the chance of renewed fighting at 80%. Lower crude trims realisations for ONGC and Oil India but eases the import bill and marketing losses for refiners.",
+   "tone": "watch",
+   "companies": [
+    "ONGC",
+    "OIL",
+    "IOC",
+    "BPCL",
+    "HINDPETRO"
+   ],
+   "sources": [
+    {
+     "publisher": "Trading and Investment News",
+     "title": "Oil Prices Iran Peace Bet: Brent Eyes 12% Weekly Slump",
+     "url": "https://www.tradingandinvestmentnews.co.uk/oil-prices-iran-peace/",
+     "date": "2026-11-06"
+    }
+   ],
+   "added": "2026-11-07"
+  },
   {
    "date": "2026-11-05",
    "title": "ONGC Q2 standalone profit up 57.3% to Rs 15,489 crore; Rs 8 interim dividend",
@@ -1047,55 +1049,6 @@
     }
    ],
    "added": "2026-09-24"
-  },
-  {
-   "date": "2026-09-22",
-   "title": "Iran offers to reopen Hormuz in 7 days as Saudi restarts pipeline; Brent hits 2-week low",
-   "text": "A senior Iranian official said Tehran could reopen the Strait of Hormuz within seven days if the US eases military pressure and lifts its blockade on Iranian ports, an offer President Pezeshkian pressed at the UN General Assembly; Iran's Fars News Agency later disputed the report. Saudi Arabia separately restarted its East-West pipeline after a drone-strike shutdown and resumed loading crude at Yanbu, lifting Hormuz-transiting flows back to about 2.9 mb/d from August's 700,000 b/d. Brent fell to a two-week low, trading near $98-100/bbl intraday, on the twin developments. Sustained lower or more volatile crude would ease cost pressure for refiners but cut realisations for ONGC, Oil India and Vedanta's Cairn Oil & Gas.",
-   "tone": "watch",
-   "companies": [
-    "ONGC",
-    "OIL",
-    "VOGL",
-    "IOC",
-    "BPCL",
-    "HINDPETRO"
-   ],
-   "sources": [
-    {
-     "publisher": "BNN Bloomberg",
-     "title": "Oil Falls to Two-Week Low as Gulf Supply Outlook Improves",
-     "url": "https://www.bnnbloomberg.ca/markets/oil/2026/09/22/oil-falls-to-two-week-low-as-gulf-supply-outlook-improves/",
-     "date": "2026-09-22"
-    },
-    {
-     "publisher": "CoinDesk",
-     "title": "Live Updates: Oil Falls as Iran Signals Possible Hormuz Reopening; Bitcoin Holds Near $86,000",
-     "url": "https://www.coindesk.com/markets/2026/09/22/live-updates-oil-falls-as-iran-signals-possible-hormuz-reopening-bitcoin-holds-near-usd86-000",
-     "date": "2026-09-22"
-    }
-   ],
-   "added": "2026-09-23"
-  },
-  {
-   "date": "2026-09-22",
-   "title": "India's crude import bill jumps 48% to $74.8 bn in April-August FY27",
-   "text": "India's crude oil import bill rose 48.4% year-on-year to $74.8 billion in April-August FY27, from $50.4 billion a year earlier, PPAC data show, even as import volumes slipped to 100.7 MMT from 101.1 MMT. August alone cost $11.7 billion, up 18.2% YoY, as the Indian crude basket averaged $90.19/bbl versus $69.11 a year ago. The rise is almost entirely price-driven by the Hormuz-crisis spike in crude, widening India's trade deficit and the cost burden on state refiners.",
-   "tone": "bad",
-   "companies": [
-    "IOC",
-    "BPCL",
-    "HINDPETRO"
-   ],
-   "sources": [
-    {
-     "publisher": "The Tribune",
-     "title": "India's crude oil imports bill increased by 48.4% to USD 74.8 billion during April-August due to higher global prices",
-     "url": "https://www.tribuneindia.com/news/business/indias-crude-oil-imports-bill-increased-by-48-4-to-usd74-8-billion-during-april-august-due-to-higher-global-prices",
-     "date": "2026-09-22"
-    }
-   ],
-   "added": "2026-09-23"
   }
  ]
 }
