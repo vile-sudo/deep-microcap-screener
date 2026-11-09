@@ -14780,6 +14780,11 @@
    "on": "2026-11-07",
    "result": "sector",
    "detail": "no sector"
+  },
+  "INE2RWX01016": {
+   "on": "2026-11-09",
+   "result": "sector",
+   "detail": "no sector"
   }
  },
  "runs": [
@@ -15168,6 +15173,12 @@
   {
    "on": "2026-11-08",
    "fetched": 0,
+   "added_codes": []
+  },
+  {
+   "on": "2026-11-09",
+   "fetched": 1,
+   "sector": 1,
    "added_codes": []
   }
  ]
