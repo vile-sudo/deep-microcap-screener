@@ -1,7 +1,7 @@
 {
  "trade_date": "2026-11-09",
  "threshold_percent": 4.0,
- "generated_at": "2026-11-10T14:26:32+05:30",
+ "generated_at": "2026-11-10T18:35:59+05:30",
  "stats": {
   "scanned": 3435,
   "flagged": 385,
@@ -124,9 +124,17 @@
    "raw_pct_change": 19.66,
    "corporate_action": null,
    "why": {
-    "headline": "No disclosed reason",
-    "confidence": "none",
-    "evidence": []
+    "headline": "Results (Mint)",
+    "confidence": "medium",
+    "evidence": [
+     {
+      "tier": "news",
+      "kind": "results",
+      "detail": "Urban Enviro Waste Management Rts Q1 Results",
+      "url": "https://news.google.com/rss/articles/CBMinwFBVV95cUxQa2h3NTJjbWlBQkQ2Z19IY3Y2aENxMzFKd204QkZickZlRnpqZkV5dHlXX1lUMThxWkl2X2NEYTk5anVFOWV0a1lrODExd3NzbU5leGVaRjg2bmFmX3lSejhFNkdMNE13VjlMSnFmd3pjaDFNR0FKOTFMX0FGUlFiQTlESVo5M0JRcVlGRWJBekdoSFlsS2dqS0xvME1jNWs?oc=5",
+      "source": "Mint"
+     }
+    ]
    },
    "news_checked": true
   },
@@ -1535,9 +1543,17 @@
    "raw_pct_change": 6.16,
    "corporate_action": null,
    "why": {
-    "headline": "No disclosed reason",
-    "confidence": "none",
-    "evidence": []
+    "headline": "Operations (Scanx)",
+    "confidence": "low",
+    "evidence": [
+     {
+      "tier": "news",
+      "kind": "operations",
+      "detail": "Bondada Engineering incorporates wholly owned subsidiary in UAE for global expansion",
+      "url": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxNb3NMT3kwMkdyaXNUSE5IQ1pfUE5XbzFJa0IzYVZXRUJzU2lWTkZ4aXo5ZHFheEVwcFc1NlZ6aUpXdmJPY0dsZm81aTl2TWV1QWg0OVBZdkV3VGtEN3V4aGlYTFdkdy0xYi0ya3NpQ1o1blpLU0xJQkx5c1VCRVFXTjFIZHNTQW1rVU5EekRRdlBvbGhnUUM2TE1TREt2X21PcE04ejVSRTdYNGVCNF9qTG9wSnR4aXNjbTRybFR5bzFTQQ?oc=5",
+      "source": "Scanx"
+     }
+    ]
    },
    "news_checked": true
   },
@@ -2204,7 +2220,7 @@
    "raw_pct_change": 5.23,
    "corporate_action": null,
    "why": {
-    "headline": "Investor Meeting, reported by Scanx",
+    "headline": "Investor Meeting disclosed to the exchange",
     "confidence": "high",
     "evidence": [
      {
@@ -2213,13 +2229,6 @@
       "detail": "Ceinsys Tech Limited has informed the Exchange about Schedule of meet",
       "url": "https://nsearchives.nseindia.com/corporate/CEINSYSTECH_07112026132551_SEIntimationofInvestorMeetofCTL17112026.pdf",
       "source": "07 Nov 13:28"
-     },
-     {
-      "tier": "news",
-      "kind": "order win",
-      "detail": "Ceinsys Tech wins Rs 112.42 crore order from State Water and Sanitation Mission, Maharashtra",
-      "url": "https://news.google.com/rss/articles/CBMixwFBVV95cUxOTjJGNnJkYTZvV0huZG9Fb25jWEU2bFBNT19FdW5nbzczaGFfTHhLZTVLNTVEY2FrS2Z2eVljOURVZGM1ZllUUU9vbFQ4T3NoTE5tMTdkUEhZdjI3THZKd0VVR3VEZ3BaanVFMTRaT3pfYnBVcEFiekZGdU9NdEtjUXdwNUVjMjc3ZVpvZjhjVm1LSTFxTnVydzZUMWpCTEZ1Ti1yTWZ5TXFfaWtNZnlPdTlLQ3AwRU1yRjFqemlpYmwwQXBVVHpn?oc=5",
-      "source": "Scanx"
      }
     ]
    },
@@ -3826,13 +3835,6 @@
       "detail": "How does IDBI Bank valuation compares with earlier bank acquisitions",
       "url": "https://news.google.com/rss/articles/CBMiyAFBVV95cUxPMHFwT3M3OXdzdndXUEFxbWVXRGFCY0NmUlg3UGZMX281SURaLWNQZVNxQUlSOThEZVlfUWh3ZDBuYTJoVW9TSUF5aVFCUHlDa1R4TnV4ZFlhTzlib3ZDQVZxT2VCWGN6d3RGeng0VXR6MlJ4bWlXTkE0ZTBHOFR1X192dVNOQ01QZ2NQdUFRenE2V19ZQU0tTUhudllVX3BzaUlHMFpsTllQdFpfZ19kcFVoM1ZLMVQwTWlOaWZfOXRmSExuZmtDTNIBzgFBVV95cUxOVVVwLWhaVWZKNTVVci1iUFI0MUtjY3JEN0VrMzl4ZThweTB5Z3dvcEtqakl4M1lNQlIwdmE0alk1MVlMcWVSYm5lZzZUMEN2d1dsZ1hSZW9RVWp2bFI3cUJXVVVQdW5remw4akljWGFERm1YRUM4RDRIYThKVl9xOWVBaEFHMWtQS2g5eUhTUHZyQW45bGo4YXA2SXpuZEs4UTJ2OTRGQWtjbl95SzJhMm5LdG5iWUJCazFRa25UNGt3aFZmSW8zTkxYeEdSUQ?oc=5",
       "source": "Economic Times"
-     },
-     {
-      "tier": "news",
-      "kind": "explainer",
-      "detail": "Bank holiday today, 10 Nov Tuesday: Bank branches closed in Ahmedabad, Bengaluru, Mumbai and 4 other cities; here's why",
-      "url": "https://news.google.com/rss/articles/CBMijgJBVV95cUxQQmNWYXp0eFRPX1FsNVhYSzkzTU9BU3dTLXR6dXNSS3JOLUZLUGoweUp2MDkxclZPbDdPTl9uR3BBTU1ZZDBHN1ZaYllSUW90bU4tR1o2T1dxZjBNT3lYVXlVaGVhUjRjakg5SkxiR2hyRV9wQnl5TmZjTnJTNXFzWW1BX25NcHlrdW9qZ1RWdGRGNl9wRE12NFlZY0RjNHhzMjJfaWV0NXVtcTNVd3NCaHpyaUFYSmNScndxNWUtLVBLVW5jTDZ1VV9PWm9EaEdRMGhvVVFTMnMxc0NBZVc0WmsyUXdGVW43Z01jWEhOVnNOSm41Tl85MXdBcGV6NnBzMzhJVXd5QVZENGZjOUHSAZMCQVVfeXFMTnVXTV9lTi1oSHJ4MGlsT0d4MTg2TXcwTENJTjRoTDFGMTA5MWxwaFR0Wk42SmlPMGtKMU1jcEthQkZtQTZMSUFwSGMxN3B4cGUtZERTNDdnNnBISkx6eEpQdTNGTUEtUmNHbmc3VFp4NEFHYms4ZDFvNVVaVmlwWVhnRkNkOVM0cTh1NVg4MlgtalJqWDJCaFlQOHY1YkNaZHFJYVhSWWhDWjhhdkFobVl6OGpKaXNlSDk1aTF4U3FiTzA0U3gwX0cwMjNRWnNyVVNEVFlfai0ySkl3RUwzMXJMQUhHTTdpSkxEN0o5eWoxR3pOUGtwOFdyUUxmQi1HNVUtWnRRWXBrcE9tOWY3Tk5neVE?oc=5",
-      "source": "Mint"
      }
     ]
    },
@@ -4427,9 +4429,16 @@
    "raw_pct_change": 4.33,
    "corporate_action": null,
    "why": {
-    "headline": "Capital Action (Mint)",
+    "headline": "Results (Moneycontrol)",
     "confidence": "medium",
     "evidence": [
+     {
+      "tier": "news",
+      "kind": "results",
+      "detail": "Cochin Shipyard Q2 net profit halves to Rs 54 crore; declares dividend",
+      "url": "https://news.google.com/rss/articles/CBMizwFBVV95cUxPZDZXN0t6elVoYWdwVHNfdDEyQ09abkZrb29GbDByU1U0UjRnblpEaFBXcS03dlVyWGpJZmswMlZ2SjFmUXlUXzdralphWEtaUF9TZDNIb1pQYVotSDM2ZUwwWlRHMmxRN0cxTFJBMkVFaEgyMTZyMTFfOVFqN0hFdzR3bFE1cEJrLXZRbnRQYml2ZlRaUHpPQnJ6UTBQNWFfbE9UcDVBT095NVhubmEtS25LSkkwWi1lTGRObWlzVFZVZDgwM0gwNWJ0TUEtUDTSAdQBQVVfeXFMTmkwZ2ozV29zNHNueWs0Rlp3T1BjOXRjNGh0LXVadmpkSkR1ellIU0tPcmU1MzgtSm83Y2xUZlZIbmJaU2NDWGRFVGwwZXNWYlBIbGoxYWR3eWs5ZFNYLXFkdDFTOGV0MXBCR1h2N2FmQTBJblJpOGsybEV1WG0yMW1oUHVmNm9OeS1FV3o3Z3VlZlpwQzRXOHByUDRxcUxxdXpjRWw1WWhhYkxVbzAwY0g0OEFrWjd2a3JfdVB1SWVDSXk2WlllV3JHUmhPcnlXd1hBRlg?oc=5",
+      "source": "Moneycontrol"
+     },
      {
       "tier": "news",
       "kind": "capital action",
@@ -4440,16 +4449,9 @@
      {
       "tier": "news",
       "kind": "results",
-      "detail": "Q2 Results 10th Nov Oct Live: Kalyan Jewellers, MRF, Cochin Shipyard, Avanti Feeds, Titagarh Rail Systems, MMTC to announce Q2 results",
-      "url": "https://news.google.com/rss/articles/CBMiswJBVV95cUxNQk4xamFqLUpNdDQ4NjRNem8zRVVRX2M3a3dhalNkRUNIQUVScEY1SnFfbVoxMTZjT0FRUkZ2MnplQ0xvYzhnUk9Xdlp0ZE1pVmIwYXA3VTB6YVJ2Q3NEamNNRThYcjFTOWQzU2xSSHV5aXlmSUFiYTU1d0U5Y3ZMTlBCT2M5WmQwUlhkNXladXJGcWxvWDlQT0Nwa3lYMFdBdlVPN0IwRDJjN2w2TUl0ejViM01qZFBJU2ZwenFOOFJucWR3N0FWSXlhSExuV3pyczE2aktlbnVydTVxV19fRi13aXoxM3AwQm9VanNjS3YtLUI2Q2NyNzd6S1FrUmJSSE1jR0o5cnpqRV9xSXVORlBTQTRlV2xPdnpOTGkwRkU4ZXBRdzVqSnJ2dDVIbzZadHhn0gGzAkFVX3lxTE1CTjFqYWotSk10NDg2NE16bzNFVVFfYzdrd2FqU2RFQ0hBRVJwRjVKcV9tWjExNmNPQVFSRnYyemVDTG9jOGdST1d2WnRkTWlWYjBhcDdVMHphUnZDc0RqY01FOFhyMVM5ZDNTbFJIdXlpeWZJQWJhNTV3RTljdkxOUEJPYzlaZDBSWGQ1eVp1ckZxbG9YOVBPQ3BreVgwV0F2VU83QjBEMmM3bDZNSXR6NWIzTWpkUElTZnB6cU44Um5xZHc3QVZJeWFITG5XenJzMTZqS2VudXJ1NXFXX19GLXdpejEzcDBCb1Vqc2NLdi0tQjZDY3I3N3pLUWtSYlJITWNHSjlyempFX3FJdU5GUFNBNGVXbE92ek5MaTBGRThlcFF3NWpKcnZ0NUhvNlp0eGc?oc=5",
+      "detail": "Cochin Shipyard Q2 profit declines 50% to ₹53.8 cr",
+      "url": "https://news.google.com/rss/articles/CBMivwFBVV95cUxNZFJOWFJoaVhEaDgzUWNNR0gzWW5vZDJlY0hJQ2JyZjBJTkRnM1g3dmw1UnVSSHVoTl91RzU3M1lIM0dxT1NpU0lGQTFnQTJUT3RGU093dmFHYXZoaktfMmNjYUgxTE94OGozZ3V5Q1FYdnZkOHZKVUpEaVhUcEN4SEdzMWZWaHd2d2ZRa2VtZ2RwUzgwdjZkUkdsbllraVdQblVSOU5jQS1mTmFseHFYanBUOFdSNWF3bG1sRkRINNIBxgFBVV95cUxPSHkxX25FRDBUT1h4LWs5NUsxX0JDaWVXQ3NDQWExNjVVT0Q0cW9pS1hFNUV4RlNnRkd0aGV0Sm1NSXQ3aEN6NW1KTGpPLXl6SGx3ZzMtbGpYQ3BYbF9FME9SanBmcXdjd3BXajBaSXpNSnE4NE1GRE1iXzg0SzNlakFUU21FclQtZU41T1FwS21hcTk0Ri1RNG0wcVpPVmdXTThDN1F3Rkh4SEsteTVhUzR5R3VMbFAtbHBkdzdyVll4bjMzcnc?oc=5",
       "source": "Hindu BusinessLine"
-     },
-     {
-      "tier": "news",
-      "kind": "results",
-      "detail": "Q2 Results, Nov 10: Kalyan Jewellers, MRF, Cochin Shipyard, Avanti Feeds, Titagarh Rail Systems, Rentomojo, MMTC, others to post earnings",
-      "url": "https://news.google.com/rss/articles/CBMimAJBVV95cUxOTWxjOEJJWDV2c2xWQzdibjdnSU84cVUxUG9JdGxyN0lEaFhjM3NjZjlDY1ZVeWExTkxOZ1BoYlIxSUhpUnA5ZlFlUHp0b3ZCbE5HZjR0cGhPSTB3QUhncGc0M3JZWEJETklDQnNaZkljdURfeVFUTWNhWmVHTVlzZlVHcGVJSjRPczVBQ0w4THlrMDZEUVN6eXMxcFB0alpraFpKODhqMmc2R3hfNXVSemxKNk00QUxCYTVDNlA4aTRHMnNGMmRWTHpjUEh5aUxwTTdNdWFjbHBWMHp1Tjl6T3Z2dTN0aHlsREJ5aTNMX3VvV3J6ekFfUnA4bzV5bndEVVk1WU14SEo0NnVWR0g0UTRIQUpHMUlk?oc=5",
-      "source": "Upstox"
      }
     ]
    },
@@ -5836,7 +5838,7 @@
    "raw_pct_change": -4.53,
    "corporate_action": null,
    "why": {
-    "headline": "Esop/Esos/Esps disclosed to the exchange",
+    "headline": "Results, reported by Scanx",
     "confidence": "high",
     "evidence": [
      {
@@ -5845,6 +5847,13 @@
       "detail": "Piramal Finance Limited has informed the Exchange regarding allotment of 600000 equity shares to PFL Employee ESOP Trust",
       "url": "https://nsearchives.nseindia.com/corporate/Piramalcapital_06112026185354_PFL_SE_Intimation_ESOP_06112026_sd.pdf",
       "source": "06 Nov 18:54"
+     },
+     {
+      "tier": "news",
+      "kind": "results",
+      "detail": "Piramal Finance Q2FY27 net profit rises 67% to ₹545 crore",
+      "url": "https://news.google.com/rss/articles/CBMirgFBVV95cUxPYkFnSVFuSDhXaXJ6dFQzaVFfRDNyb3VPQzVySjJyVkNSYl93U1NOU0Q4UGlOd25jNVI0T3hfYzQtNXo5T3Y0ZjB0clRVLUkzT2x2Zng2WG9Pb3pDaUFRbDRBemNmOHJJOEVNM010Q25jWjQ1emNKTVB2Y0ZCcmlKM1o2dkxSaUR4SW12aW04aGQ5QzY0SnVicFdKcHpTVXRfZjM5NktNejEzTzBxYUE?oc=5",
+      "source": "Scanx"
      }
     ]
    },
@@ -7786,9 +7795,17 @@
    "raw_pct_change": -5.18,
    "corporate_action": null,
    "why": {
-    "headline": "No disclosed reason",
-    "confidence": "none",
-    "evidence": []
+    "headline": "Operations (Scanx)",
+    "confidence": "low",
+    "evidence": [
+     {
+      "tier": "news",
+      "kind": "operations",
+      "detail": "Frog Innovations approves AI business expansion, NSE Main Board migration",
+      "url": "https://news.google.com/rss/articles/CBMiyAFBVV95cUxPSm5KejQ3STdiWGM4YlR4dThRNUFDazFDcFNyOEdLaXFCeEFpel9URDZTX1pIM1ZRXy1zSVpYUlU1MFFzOVBVcm45eGg5OWlMUDE4Tmdhei0yWTRFandrVk5JY1UxY3BWWUZEODE1N2FBN2xrRUI4aUh2Y0hMOTZ5YU0zTWpsU2diaW1RMWtYSnJzRG5VdXZMcFcyY3ppdGJtNHVXTmF5cld5eXNfMTNrVlZTa0VENlBSMldhejhBLTJLRzlGWFVoSg?oc=5",
+      "source": "Scanx"
+     }
+    ]
    },
    "news_checked": true
   },
@@ -9180,7 +9197,7 @@
       "tier": "news",
       "kind": "results",
       "detail": "South West Pinnacle Exploration reports H1 revenue growth of Rs. 1194 mn amid challenges",
-      "url": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxNQWZVOEI2UHhsNllGeVlzbW1CRE9lam1IbjdCVWVTejhVX0QxOTJ6MVZ6YXNaeGFqX1gxeUUxRWNzdGxVandBTVpZUDJuU2RHWlVGYVdNYjFrQTQ5eUpoMV9XU2dmN0U2eVZfZlpSQ0ItZ0lSUExKbmN0VzhxNnAzNnNmZmU1eS1Takd4dFFmWVlOdGgtWm1Hb1Fwb2puck16Rl9GSHczX3NqODlTMnNqNVJBTllCMnRRZG55MHJGMEMzdw?oc=5",
+      "url": "https://news.google.com/rss/articles/CBMixwFBVV95cUxPMTNSWDNhZ3JmZTlzemZDa201WnBaWGIxN3ZXdzhLbmhMYWdDOTgxQUpHZ3ZYeGp4TFh0LTNkVW04TDE0NnVhTDFYel90d3pLLTItLWxzWDBDS2oyXzJZa0ZueEJzWmtzd0I1QUVpUERxMGxVV2gwY1J1LXdVZE8xQ1h3alptbklFck00VlFWbFUxSkxyTGR0d2IzUkdjS216dDJLT19vbXF5SUhmVDlRRFpCcXFSZXUxTlBpdmRmRmlzMG5yMjNj?oc=5",
       "source": "Business Upturn"
      },
      {
