@@ -14785,6 +14785,10 @@
    "on": "2026-11-09",
    "result": "sector",
    "detail": "no sector"
+  },
+  "INE018420013": {
+   "on": "2026-11-12",
+   "result": "not on screener"
   }
  },
  "runs": [
@@ -15189,6 +15193,12 @@
   {
    "on": "2026-11-11",
    "fetched": 0,
+   "added_codes": []
+  },
+  {
+   "on": "2026-11-12",
+   "fetched": 1,
+   "not on screener": 1,
    "added_codes": []
   }
  ]
