@@ -22290,7 +22290,203 @@
   "seen_on": "2026-09-18",
   "source": "sweep",
   "moat_signal": null,
-  "moat_evidence": null
+  "moat_evidence": null,
+  "profile": {
+   "symbol": "543517",
+   "company": "Hariom Pipe Industries Limited",
+   "isin": "INE00EV01017",
+   "board": "BSE",
+   "source": {
+    "document": "final prospectus",
+    "url": "https://nsearchives.nseindia.com/corporate/FP_hariompipe_07APR2022.pdf",
+    "filed": "07-Apr-2022",
+    "pdf_bytes": 4664284,
+    "extracted_chars": 985535
+   },
+   "grade": "company-stated",
+   "verified_against": null,
+   "claims": {
+    "ip": {
+     "count": 1,
+     "dropped_as_industry_commentary": 5,
+     "terms": [
+      "trademarks"
+     ],
+     "evidence": [
+      {
+       "match": "trademarks",
+       "sentence": "Intellectual property related approvals We have registered following trademarks with the Trade Mark Registry Particulars of Mark HARIOM PIPES Type of mark Class Word Word 272 6 Trade Mark Number 3465133 Validity January 23, 2027 6 2147653 May 6, 2031 OTHER REGULATORY A"
+      }
+     ]
+    }
+   },
+   "risk_factors": {
+    "customer_concentration": {
+     "count": 8,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "top 10 customers",
+      "customer concentration",
+      "top ten customers"
+     ],
+     "evidence": [
+      {
+       "match": "top 10 customers",
+       "sentence": "We have historically derived, and may continue to derive, a significant portion of our income from our top 10 customers."
+      },
+      {
+       "match": "top 10 customers",
+       "sentence": "Our top 10 customers represented 58."
+      },
+      {
+       "match": "customer concentration",
+       "sentence": "We cannot assure you that we will be able to maintain historic levels of business and/or negotiate and execute long term contracts on terms that are commercially viable with our significant customers or that we will be able to significantly reduce customer concentration in the future."
+      }
+     ]
+    },
+    "promoter_litigation": {
+     "count": 9,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "proceedings against our Promoters",
+      "criminal proceedings"
+     ],
+     "evidence": [
+      {
+       "match": "proceedings against our Promoters",
+       "sentence": "ur Company Civil Proceedings Outstanding legal proceedings by our Company Civil Proceedings LITIGATIONS INVOLVING OUR PROMOTERS AND DIRECTORS Outstanding legal proceedings against our Promoters & Directors Amount involved 1 10."
+      },
+      {
+       "match": "proceedings against our Promoters",
+       "sentence": "93 LITIGATIONS INVOLVING OUR PROMOTERS AND DIRECTORS Outstanding legal proceedings against our Promoters & Directors Civil Proceedings Our Promoter and Director, Rupesh Kumar Gupta 1 Not ascertainable PENDING CLAIMS RELATED TO DIRECT AND INDIRECT TAXES INVOLVING OUR COMPANY, PROMOTERS AND DIRECTORS Pending claims due to tax authorities from our 3 592."
+      },
+      {
+       "match": "criminal proceedings",
+       "sentence": "266 SECTION VII – LEGAL AND OTHER INFORMATION OUTSTANDING LITIGATION AND MATERIAL DEVELOPMENTS Except as stated below there are no outstanding (i) criminal proceedings, (ii) actions by statutory or regulatory authorities, (iii) claims for any direct or indirect tax liabilities (on consolidated basis); or (iv) other pending litigation as have bee"
+      }
+     ]
+    },
+    "related_party": {
+     "count": 22,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "Related Party Transactions",
+      "related party transactions",
+      "Related party transactions"
+     ],
+     "evidence": [
+      {
+       "match": "Related Party Transactions",
+       "sentence": "Related Party Transactions We have entered into related party transactions with related parties."
+      },
+      {
+       "match": "related party transactions",
+       "sentence": "A summary of the related party transactions entered into by our Company for nine months period ended December 31, 2021 and six months period ended 19 September 30, 2021 and for the Fiscals 2021, 2020 and 2019 as deriv"
+      },
+      {
+       "match": "Related Party Transactions",
+       "sentence": "74 For further details, see “Restated Financial Statements – Note 31 – Related Party Transactions and Disclosures” at page 171."
+      }
+     ]
+    }
+   },
+   "objects_of_the_issue": {
+    "fresh_issue": {
+     "count": 4,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "Fresh Issue",
+      "Fresh issue"
+     ],
+     "evidence": [
+      {
+       "match": "Fresh Issue",
+       "sentence": "com PROMOTERS: RUPESH KUMAR GUPTA AND SAILESH GUPTA DETAILS OF ISSUE TO PUBLIC Type Fresh Issue Fresh Issue Size Total Issue Size Up to ₹ 13,005 Lakhs (subject to finalisation of Basis of Allotment) Up to ₹ 13,005 Lakhs (subject to finalisation of Basis of Allotment) Eligibility & Sh"
+      },
+      {
+       "match": "Fresh Issue",
+       "sentence": "Accordingly, our Company confirms that there is no requirement to make firm arrangements of finance through verifiable means towards at least 75% of the stated means of finance, excluding the amount to be raised from the Fresh Issue and existing identifiable accruals as required under the SEBI ICDR Regulations."
+      },
+      {
+       "match": "Fresh issue",
+       "sentence": "of equity shares at the beginning and at the end of the period/year At the beginning of the period/year Add: Issued during the period/year (a) Fresh issue of Equity Shares (b) On Conversion of convertible preference shares into Equity Shares (Refer note no."
+      }
+     ]
+    },
+    "capital_expenditure": {
+     "count": 24,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "capital expenditure",
+      "setting up of",
+      "expansion of our",
+      "Capital Expenditure",
+      "Setting up of"
+     ],
+     "evidence": [
+      {
+       "match": "capital expenditure",
+       "sentence": "Objects of the Issue Our Company proposes to utilise the Net Proceeds towards funding the following objects: (in ₹ lakhs) Particulars Funding capital expenditure requirements Funding the working capital requirements of our Company General corporate purposes* Total Amount 5,005."
+      },
+      {
+       "match": "setting up of",
+       "sentence": "From the Net Proceeds of the Issue, we will be deploying funds for setting up of two (2) additional pipe mills adjacent to our existing Unit I."
+      },
+      {
+       "match": "capital expenditure",
+       "sentence": "09 The cash flows of a company is a key indicator to show the extent of cash generated from operations to meet its capital expenditure, pay dividends, repay loans and make new investments without raising finance from external resources."
+      }
+     ]
+    },
+    "working_capital": {
+     "count": 26,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "working capital requirements",
+      "working capital requirement",
+      "Working Capital Requirement",
+      "Working Capital Requirements"
+     ],
+     "evidence": [
+      {
+       "match": "working capital requirements",
+       "sentence": "Objects of the Issue Our Company proposes to utilise the Net Proceeds towards funding the following objects: (in ₹ lakhs) Particulars Funding capital expenditure requirements Funding the working capital requirements of our Company General corporate purposes* Total Amount 5,005."
+      },
+      {
+       "match": "working capital requirements",
+       "sentence": "Our Company has availed loans and facilities in the ordinary course of its business for inter alia meeting working capital requirements and capital expenditure."
+      },
+      {
+       "match": "working capital requirements",
+       "sentence": "Our operations are subject to high working capital requirements."
+      }
+     ]
+    },
+    "general_corporate": {
+     "count": 11,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "General corporate purposes",
+      "general corporate purposes"
+     ],
+     "evidence": [
+      {
+       "match": "General corporate purposes",
+       "sentence": "Objects of the Issue Our Company proposes to utilise the Net Proceeds towards funding the following objects: (in ₹ lakhs) Particulars Funding capital expenditure requirements Funding the working capital requirements of our Company General corporate purposes* Total Amount 5,005."
+      },
+      {
+       "match": "general corporate purposes",
+       "sentence": "00 The amount utilised for general corporate purposes shall not exceed 25% of the Gross Proceeds of the Issue."
+      },
+      {
+       "match": "General corporate purposes",
+       "sentence": "Funding capital expenditure requirements; Funding the working capital requirements of our Company; and General corporate purposes."
+      }
+     ]
+    }
+   },
+   "profiled_on": "2026-11-14"
+  }
  },
  {
   "sym": "539300",
@@ -147803,7 +147999,7 @@
      ]
     }
    },
-   "profiled_on": "2026-11-12"
+   "profiled_on": "2026-11-14"
   }
  },
  {
@@ -148066,7 +148262,7 @@
      ]
     }
    },
-   "profiled_on": "2026-11-12"
+   "profiled_on": "2026-11-14"
   }
  },
  {
@@ -154792,7 +154988,7 @@
      ]
     }
    },
-   "profiled_on": "2026-11-12"
+   "profiled_on": "2026-11-14"
   }
  },
  {
@@ -166231,7 +166427,215 @@
   "seen_on": "2026-10-23",
   "source": "new-listing",
   "moat_signal": null,
-  "moat_evidence": null
+  "moat_evidence": null,
+  "profile": {
+   "symbol": "LOANFRONT",
+   "company": "Vaibhav Vyapaar Limited",
+   "isin": "INE1KAA01025",
+   "board": "SME",
+   "source": {
+    "document": "draft prospectus",
+    "url": "https://nsearchives.nseindia.com/emerge/corporates/content/AD_IPO_7235_01092026191103.zip",
+    "filed": "01-Jul-2026",
+    "pdf_bytes": 6610930,
+    "extracted_chars": 1202895
+   },
+   "grade": "company-stated",
+   "verified_against": null,
+   "claims": {
+    "ip": {
+     "count": 10,
+     "dropped_as_industry_commentary": 10,
+     "terms": [
+      "proprietary technology",
+      "trademark",
+      "Trademark"
+     ],
+     "evidence": [
+      {
+       "match": "proprietary technology",
+       "sentence": "The development, enhancement and deployment of our mobile application and proprietary technology involve significant technical, operational and 30 financial risks, including delays, cost overruns and performance issues."
+      },
+      {
+       "match": "trademark",
+       "sentence": "Our customer onboarding and end-to-end lending operations are substantially dependent on the recognition and continued use of the “LoanFront” trademark."
+      },
+      {
+       "match": "trademark",
+       "sentence": "Our customer acquisition, onboarding and end-to-end digital lending operations are substantially dependent on the recognition, credibility and continued use of the trademark, which serves as the primary interface between us and our customers."
+      }
+     ]
+    }
+   },
+   "risk_factors": {
+    "promoter_litigation": {
+     "count": 8,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "criminal proceedings",
+      "Criminal proceedings",
+      "criminal cases"
+     ],
+     "evidence": [
+      {
+       "match": "criminal proceedings",
+       "sentence": "179 SECTION VII - LEGAL AND OTHER INFORMATION OUTSTANDING LITIGATIONS AND MATERIAL DEVELOPMENTS Except as stated in this section, there are no outstanding: (a) criminal proceedings; (b) actions by statutory or regulatory authorities; (c) claims relating to direct and indirect taxes; or (d) Material Litigation (as defined below); involving our Company, its Directors, the Promoters, KMPs, SMPs, Subsidiary and the Group Companies (\"Relevant Parties\")."
+      },
+      {
+       "match": "criminal proceedings",
+       "sentence": "In accordance with the Materiality Policy, all outstanding litigation, including any litigation involving the Relevant Parties, other than criminal proceedings and actions by regulatory authorities and statutory authorities, will be considered material if: Litigation where the value or expected impact in terms of value, exceeds the lower"
+      },
+      {
+       "match": "criminal proceedings",
+       "sentence": "In terms of the materiality policy above any litigations (apart from (a) criminal proceedings; (b) actions by statutory or regulatory authorities and (c) claims relating to direct and indirect taxes), the monetary value of which or the adverse impact resulting from such litigation exceeds 6."
+      }
+     ]
+    },
+    "related_party": {
+     "count": 29,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "RELATED PARTY TRANSACTIONS",
+      "related party transactions",
+      "Related Party Transactions",
+      "Related Parties Transactions",
+      "Related Party Transaction",
+      "Related party transactions"
+     ],
+     "evidence": [
+      {
+       "match": "RELATED PARTY TRANSACTIONS",
+       "sentence": "23 SUMMARY OF RELATED PARTY TRANSACTIONS."
+      },
+      {
+       "match": "related party transactions",
+       "sentence": "In terms of SEBI (ICDR) Regulations, the term “Our Group Companies” includes companies (other than promoters and subsidiary) with which there were related party transactions as disclosed in the Restated Financial Statements as covered under the 2 Independent Director Indian GAAP IRS ISIN Equity ISIN Debentures Key Managerial Personnel/ Key Managerial Employees Key Performance Indicators or “KPIs” M."
+      },
+      {
+       "match": "RELATED PARTY TRANSACTIONS",
+       "sentence": "(The remainder of this page has been intentionally left blank) 23 SUMMARY OF RELATED PARTY TRANSACTIONS A summary of related party transactions as per the requirements under AS 18 – Related Party Disclosures read with SEBI ICDR Regulations entered into by our Company with rela"
+      }
+     ]
+    }
+   },
+   "objects_of_the_issue": {
+    "offer_for_sale": {
+     "count": 9,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "Offer For Sale",
+      "OFFER FOR SALE",
+      "Offer for Sale",
+      "offer for sale",
+      "Offer for sale"
+     ],
+     "evidence": [
+      {
+       "match": "Offer For Sale",
+       "sentence": "com PROMOTERS OF OUR COMPANY: ITHA VENKATA RAGHAVA GOWRINATH AND CAPFRONT TECHNOLOGIES PRIVATE LIMITED DETAILS OF THE ISSUE Type Fresh issue size# Offer For Sale Size Total issue size# Eligibility and allocation of the offer Up to 76,00,000 Equity Up to 76,00,000 of Face This Issue is being made in terms of Regulation 229 Fresh Issue Shares aggr"
+      },
+      {
+       "match": "OFFER FOR SALE",
+       "sentence": "DETAILS OF OFFER FOR SALE, SELLING SHAREHOLDERS AND THEIR AVERAGE COST OF ACQUISITION – NOT APPLICABLE AS THE ENTIRE ISSUE CONSTITUTES FRESH ISSUE OF EQUITY SHARES RISK IN RELATION TO THE FIRST ISSUE This being the first public issue of Equity Shares, there has been no formal market for the Equity Shares."
+      },
+      {
+       "match": "Offer for Sale",
+       "sentence": "ional Stock Exchange of India Limited National Statistical Office National Financial Switch Outstanding Overseas Corporate Body Original Equipment Manufacturer Offer for Sale Overseas Citizen of India Per annum (per year) Post meridiem Price-to-Earnings Ratio Private Equity Permanent Account Number Form for filing return of allotment of securities Profit After Tax Payment of Bonus Act, 1965 12 PDF PM PPE PFCE PLI P."
+      }
+     ]
+    },
+    "fresh_issue": {
+     "count": 25,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "Fresh issue",
+      "Fresh Issue",
+      "FRESH ISSUE",
+      "fresh issue",
+      "fresh Issue"
+     ],
+     "evidence": [
+      {
+       "match": "Fresh issue",
+       "sentence": "com PROMOTERS OF OUR COMPANY: ITHA VENKATA RAGHAVA GOWRINATH AND CAPFRONT TECHNOLOGIES PRIVATE LIMITED DETAILS OF THE ISSUE Type Fresh issue size# Offer For Sale Size Total issue size# Eligibility and allocation of the offer Up to 76,00,000 Equity Up to 76,00,000 of Face This Issue is being made in terms of Regulation 229 Fresh"
+      },
+      {
+       "match": "Fresh Issue",
+       "sentence": "ze Total issue size# Eligibility and allocation of the offer Up to 76,00,000 Equity Up to 76,00,000 of Face This Issue is being made in terms of Regulation 229 Fresh Issue Shares aggregating to ₹ Nil value ₹5/- each (2) and 253 of Chapter IX of SEBI (ICDR) [●] Lakhs aggregating to ₹ [●] Lakhs Regulations, 2018 as amended from time to time."
+      },
+      {
+       "match": "FRESH ISSUE",
+       "sentence": "DETAILS OF OFFER FOR SALE, SELLING SHAREHOLDERS AND THEIR AVERAGE COST OF ACQUISITION – NOT APPLICABLE AS THE ENTIRE ISSUE CONSTITUTES FRESH ISSUE OF EQUITY SHARES RISK IN RELATION TO THE FIRST ISSUE This being the first public issue of Equity Shares, there has been no formal market for the Equity Shares."
+      }
+     ]
+    },
+    "capital_expenditure": {
+     "count": 10,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "capital expenditure",
+      "expansion of our"
+     ],
+     "evidence": [
+      {
+       "match": "capital expenditure",
+       "sentence": "Our ability to meet our further capital expenditure requirements."
+      },
+      {
+       "match": "expansion of our",
+       "sentence": "The Company intends to utilise a portion of the Net Proceeds to strengthen its capital base and support future business growth, particularly for onward lending activities expected to arise from the continued expansion of our operations and assets."
+      },
+      {
+       "match": "capital expenditure",
+       "sentence": "This growth was primarily driven by services, manufacturing, and government capital expenditure."
+      }
+     ]
+    },
+    "working_capital": {
+     "count": 2,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "working capital requirement",
+      "working capital requirements"
+     ],
+     "evidence": [
+      {
+       "match": "working capital requirement",
+       "sentence": "The Board shall, inter alia, consider certain financial, internal and external parameters before declaring dividend including level of debt, capital expenditure requirement, working capital requirement and profit earned during the year."
+      },
+      {
+       "match": "working capital requirements",
+       "sentence": "26 lakh in FY 2026, primarily on account of higher working capital requirements and increased funding needs to support the expansion in lending operations and overall business growth."
+      }
+     ]
+    },
+    "general_corporate": {
+     "count": 12,
+     "dropped_as_industry_commentary": 0,
+     "terms": [
+      "General Corporate Purpose",
+      "general corporate purposes",
+      "GENERAL CORPORATE PURPOSES",
+      "General corporate purposes"
+     ],
+     "evidence": [
+      {
+       "match": "General Corporate Purpose",
+       "sentence": "General Corporate Purpose (Collectively referred as the “objects”) In the event, the Net Proceeds are unutilised for (i) Augment the capital base of our Company; and (ii) general corporate purposes, s"
+      },
+      {
+       "match": "General Corporate Purpose",
+       "sentence": "00 [●] 2 General Corporate Purpose* [●] [●] TOTAL [●] [●] * To be finalized on determination of the Issue Price and updated in the Draft Red Herring Prospectus prior to filing with the ROC."
+      },
+      {
+       "match": "general corporate purposes",
+       "sentence": "The amount utilized for general corporate purposes shall not exceed 15% of the Gross Proceeds of the Issue or Rs 1,000 lakhs, whichever is less."
+      }
+     ]
+    }
+   },
+   "profiled_on": "2026-11-14"
+  }
  },
  {
   "sym": "BONFIG",
@@ -180003,6 +180407,36 @@
   "plausible": true,
   "verdict": null,
   "seen_on": "2026-11-12",
+  "source": "new-listing",
+  "moat_signal": null,
+  "moat_evidence": null
+ },
+ {
+  "sym": "539200",
+  "name": "Noble Polymers Ltd",
+  "board": "BSE",
+  "isin": "INE203Q01034",
+  "listed": null,
+  "hint": "chemicals",
+  "why": "sector plausible",
+  "plausible": true,
+  "verdict": null,
+  "seen_on": "2026-11-14",
+  "source": "new-listing",
+  "moat_signal": null,
+  "moat_evidence": null
+ },
+ {
+  "sym": "751155",
+  "name": "Suvidhaa Infoserve Ltd",
+  "board": "BSE",
+  "isin": "INE018420013",
+  "listed": null,
+  "hint": null,
+  "why": "sector unknown, SME platform",
+  "plausible": false,
+  "verdict": null,
+  "seen_on": "2026-11-14",
   "source": "new-listing",
   "moat_signal": null,
   "moat_evidence": null
