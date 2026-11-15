@@ -1,18 +1,141 @@
 {
- "updated": "2026-11-07T06:24+05:30",
+ "updated": "2026-11-15T06:12+05:30",
  "figures": [
   {
-   "label": "Brent crude",
-   "value": "$99.90/bbl",
-   "as_of": "2026-11-06",
-   "note": "Friday morning, +1.67% on the day; about -12% on the week per the source",
+   "label": "Brent crude (Jan futures)",
+   "value": "$95.84/bbl",
+   "as_of": "2026-11-13",
+   "note": "settle, +2 cents on the day; about -2.5% on the week",
    "source": {
-    "publisher": "Trading and Investment News",
-    "url": "https://www.tradingandinvestmentnews.co.uk/oil-prices-iran-peace/"
+    "publisher": "Rigzone",
+    "url": "https://www.rigzone.com/news/wire/crude_fluctuates_as_iran_tensions_persist-13-nov-2026-185085-article/"
+   }
+  },
+  {
+   "label": "WTI crude (Dec futures)",
+   "value": "$88.56/bbl",
+   "as_of": "2026-11-13",
+   "note": "settle, -0.2% on the day",
+   "source": {
+    "publisher": "Rigzone",
+    "url": "https://www.rigzone.com/news/wire/crude_fluctuates_as_iran_tensions_persist-13-nov-2026-185085-article/"
+   }
+  },
+  {
+   "label": "EIA 2027 Brent forecast",
+   "value": "$86/bbl",
+   "as_of": "2026-11-11",
+   "note": "November STEO; 2026 at $97",
+   "source": {
+    "publisher": "Oil & Gas Journal",
+    "url": "https://www.ogj.com/general-interest/economics-markets/news/55418180/eia-sees-brent-near-100-bbl-through-yearend-2026-as-middle-east-supply-constraints-persist"
+   }
+  },
+  {
+   "label": "Oil India realised crude price",
+   "value": "US$92.24/bbl",
+   "as_of": "2026-11-12",
+   "note": "Q2 FY27, up 35% from US$68.19",
+   "source": {
+    "publisher": "Multibagg",
+    "url": "https://www.multibagg.ai/market-pulse/articles/oil-india-limited-q2-profit-announcement-cmwdeq8dc002e2dqpwq9bzu7p"
    }
   }
  ],
  "items": [
+  {
+   "date": "2026-11-13",
+   "title": "Brent settles at $95.84, second weekly fall; IEA sees Q4 surplus for first time since war began",
+   "text": "Brent's January contract settled at $95.84/bbl on 13 November and WTI at $88.56, each down about 2.5% on the week after a roughly 13% drop the week before. The IEA's monthly report said the market returns to surplus this quarter for the first time since the Iran war began, with crude inventories up 1.7 million b/d in October, though supply stays tight and Hormuz tanker attacks continue. Lower crude trims upstream realisations for ONGC and Oil India but eases the import bill and refiner input costs.",
+   "tone": "watch",
+   "companies": [
+    "ONGC",
+    "OIL",
+    "IOC",
+    "BPCL",
+    "HINDPETRO"
+   ],
+   "sources": [
+    {
+     "publisher": "The National",
+     "title": "Oil on track to post second weekly decline as Trump eases fears of renewed war with Iran",
+     "url": "https://www.thenationalnews.com/business/energy/2026/11/13/oil-on-track-to-post-second-weekly-decline-as-trump-eases-fears-of-renewed-war-with-iran/",
+     "date": "2026-11-13"
+    },
+    {
+     "publisher": "Rigzone",
+     "title": "Crude Fluctuates as Iran Tensions Persist",
+     "url": "https://www.rigzone.com/news/wire/crude_fluctuates_as_iran_tensions_persist-13-nov-2026-185085-article/",
+     "date": "2026-11-13"
+    }
+   ],
+   "added": "2026-11-15"
+  },
+  {
+   "date": "2026-11-12",
+   "title": "Oil India Q2 consolidated profit up 53% to Rs 2,521 crore; Rs 7 interim dividend",
+   "text": "Oil India's board on 12 November reported Q2 FY27 standalone PAT of Rs 2,259 crore (+116%) and consolidated PAT of Rs 2,521 crore (+53%). Crude output rose 20% to 1.021 MMT and the realised crude price was US$92.24/bbl, up 35% from US$68.19. An interim dividend of Rs 7 per share was recommended. Consolidated profit was down 37% from Rs 4,026.83 crore in the June quarter.",
+   "tone": "good",
+   "companies": [
+    "OIL"
+   ],
+   "sources": [
+    {
+     "publisher": "Multibagg",
+     "title": "Oil India Limited Q2 profit rises 116% on output, prices",
+     "url": "https://www.multibagg.ai/market-pulse/articles/oil-india-limited-q2-profit-announcement-cmwdeq8dc002e2dqpwq9bzu7p",
+     "date": "2026-11-12"
+    },
+    {
+     "publisher": "Multibagg",
+     "title": "Oil India Q2 profit rises 53% to Rs 2,520 crore",
+     "url": "https://www.multibagg.ai/market-pulse/articles/oil-india-q2-profit-rises-announcement-cmwdeh7m000172dqpuboj8xte",
+     "date": "2026-11-12"
+    }
+   ],
+   "added": "2026-11-15"
+  },
+  {
+   "date": "2026-11-11",
+   "title": "EIA November STEO: Brent near $100 to year-end, $97 in 2026, $86 in 2027",
+   "text": "EIA's November outlook expects Brent near $100/bbl through end-2026, averaging $97 in 2026 and $86 in 2027, falling to $77 by Q4 2027. Brent averaged $124 in October and fell below $100 on 4 November. Middle East shut-ins averaged an estimated 2.5 million b/d in October, down from a 10.9 million b/d peak in May, and stock builds of 3.5 million b/d are projected for H1 2027. The 2027 price path is supportive for upstream earnings but implies lower realisations next year.",
+   "tone": "info",
+   "companies": [
+    "ONGC",
+    "OIL",
+    "VOGL"
+   ],
+   "sources": [
+    {
+     "publisher": "Oil & Gas Journal",
+     "title": "EIA sees Brent near $100/bbl through yearend 2026 as Middle East supply constraints persist",
+     "url": "https://www.ogj.com/general-interest/economics-markets/news/55418180/eia-sees-brent-near-100-bbl-through-yearend-2026-as-middle-east-supply-constraints-persist",
+     "date": "2026-11-11"
+    }
+   ],
+   "added": "2026-11-15"
+  },
+  {
+   "date": "2026-11-09",
+   "title": "DGH extends OALP-X/XI deepwater bid deadline to 10 December, seventh extension for OALP-X",
+   "text": "The deadline for deepwater and ultra-deepwater blocks in OALP-X and OALP-XI moved from 15 November to 10 December 2026; DGH gave no reason. Industry sources link it to the Rs 84,084 crore Samundra Manthan offshore scheme (guidelines 22 October), which covers up to 50% of deepwater drilling costs, capped at Rs 675 crore per well. This is the seventh extension for OALP-X, so the 15 November closing date in the weekly edition is superseded.",
+   "tone": "watch",
+   "companies": [
+    "ONGC",
+    "OIL",
+    "RELIANCE",
+    "VOGL"
+   ],
+   "sources": [
+    {
+     "publisher": "The Week (PTI)",
+     "title": "Govt extends OALP-X, XI bidding deadlines again to Dec 10",
+     "url": "https://www.theweek.in/wire-updates/business/2026/11/09/govt-extends-oalp-x-xi-bidding-deadlines-again-to-dec-10.html",
+     "date": "2026-11-09"
+    }
+   ],
+   "added": "2026-11-15"
+  },
   {
    "date": "2026-11-06",
    "title": "Brent heads for about 12% weekly fall on US-Iran deal hopes; no agreement signed yet",
@@ -715,340 +838,6 @@
     }
    ],
    "added": "2026-10-02"
-  },
-  {
-   "date": "2026-09-30",
-   "title": "PPAC posts October domestic gas price and Oct 2026-Mar 2027 ceiling; PAF notice follows on 1 Oct",
-   "text": "PPAC listed on 30 September the Domestic Natural Gas Price for 1-31 October 2026 and the Gas Price Ceiling for 1 October 2026 to 31 March 2027, plus the Indian Crude Basket ratio for October. A Price Adjustment Factor notification for 1 October-31 December 2026 was posted on 1 October. The price values sit in PDFs that could not be read, so the new levels are not stated here. These set realisations for ONGC and Oil India's regulated and difficult-field gas.",
-   "tone": "info",
-   "companies": [
-    "ONGC",
-    "OIL"
-   ],
-   "sources": [
-    {
-     "publisher": "PPAC",
-     "title": "Gas Price",
-     "url": "https://ppac.gov.in/natural-gas/gas-price",
-     "date": "2026-10-01"
-    },
-    {
-     "publisher": "PPAC",
-     "title": "Important News",
-     "url": "https://ppac.gov.in/all-imp-news",
-     "date": "2026-10-01"
-    }
-   ],
-   "added": "2026-10-02"
-  },
-  {
-   "date": "2026-09-30",
-   "title": "Brent falls 2.6% to $102.59 as Gulf crude exports recover; Hormuz flows rise",
-   "text": "Al Jazeera reports Brent fell 2.6% to $102.59 a barrel on Tuesday as traders focused on recovering Middle East exports. Gulf crude exports reached 16.328 million bpd in September, the highest since the war began in late February and just under 80% of pre-war levels, while Brent still gained roughly 13% over the month. Lower crude eases under-recovery pressure on HPCL and BPCL and India's import bill, but it trims realisation upside for producers such as ONGC and Oil India.",
-   "tone": "info",
-   "companies": [
-    "ONGC",
-    "OIL",
-    "HINDPETRO",
-    "BPCL"
-   ],
-   "sources": [
-    {
-     "publisher": "Al Jazeera",
-     "title": "Economic war: Is Iran losing its leverage over the Strait of Hormuz?",
-     "url": "https://www.aljazeera.com/news/2026/9/30/economic-war-is-iran-losing-its-leverage-over-the-strait-of-hormuz",
-     "date": "2026-09-30"
-    }
-   ],
-   "added": "2026-10-01"
-  },
-  {
-   "date": "2026-09-30",
-   "title": "ONGC falls 2.78% to ₹223.60 as Sensex, Nifty close lower on elevated crude",
-   "text": "The Sensex closed 48.78 points lower at 72,480.29 and the Nifty fell 95.75 points to 22,620.45, with HDFC Securities' report citing elevated oil prices as a concern for crude-importing India. ONGC declined 2.78% to ₹223.60. FPIs sold about Rs 9,980 crore of Indian equities on Tuesday, the largest single-day outflow in four months.",
-   "tone": "bad",
-   "companies": [
-    "ONGC"
-   ],
-   "sources": [
-    {
-     "publisher": "HDFC Sky",
-     "title": "Sensex, Nifty End Lower as Metal, Pharma Stocks Drag",
-     "url": "https://hdfcsky.com/news/market-close-report-today-september-30-2026-sensex-ends-flat-nifty-declines-as-elevated-oil-weighs",
-     "date": "2026-09-30"
-    }
-   ],
-   "added": "2026-10-01"
-  },
-  {
-   "date": "2026-09-28",
-   "title": "Morgan Stanley positive on HPCL, BPCL, ONGC and Oil India; flags three 'surprises'",
-   "text": "Morgan Stanley said it is positive on HPCL, BPCL, ONGC and Oil India (plus Adani Power and Adani Energy Solutions), citing three surprises. India's LNG consumption has not slowed despite costs about 2.5 times higher, power spreads for gas and coal generation are improving, and corporates are shifting capital towards trading, tanker ownership and fuel storage. The article gives no target prices. It supports the case for both producers and OMCs despite the supply shock.",
-   "tone": "good",
-   "companies": [
-    "HINDPETRO",
-    "BPCL",
-    "ONGC",
-    "OIL"
-   ],
-   "sources": [
-    {
-     "publisher": "BusinessToday",
-     "title": "BPCL, HPCL, IOC, ONGC, Adani Power: Morgan Stanley positive on oil stocks, flags 3 surprises",
-     "url": "https://www.businesstoday.in/markets/stocks/story/bpcl-hpcl-ioc-ongc-adani-power-morgan-stanley-positive-on-oil-stocks-flags-3-surprises-558125-2026-09-28",
-     "date": "2026-09-28"
-    }
-   ],
-   "added": "2026-09-29"
-  },
-  {
-   "date": "2026-09-28",
-   "title": "Oil jumps as US-Iran talks stall; Brent up 4.09% to $108.59 on The National's report",
-   "text": "The National reported Brent at $108.59/bbl (+4.09%) and WTI at $96.31 (+4.21%) on 28 September after President Trump rejected Iran's seven-day Hormuz reopening plan while leaving room for talks. Reports that Saudi Arabia's East-West pipeline had reopened limited the gains. Higher crude helps upstream realisations at ONGC and Oil India but deepens under-recoveries for the state-run fuel retailers.",
-   "tone": "watch",
-   "companies": [
-    "ONGC",
-    "OIL",
-    "HINDPETRO",
-    "BPCL"
-   ],
-   "sources": [
-    {
-     "publisher": "The National",
-     "title": "Oil prices rise as US-Iran peace talks hit stalemate",
-     "url": "https://www.thenationalnews.com/business/energy/2026/09/28/oil-prices-rise-as-us-iran-peace-talks-hit-stalemate/",
-     "date": "2026-09-28"
-    }
-   ],
-   "added": "2026-09-29"
-  },
-  {
-   "date": "2026-09-27",
-   "title": "Iran's Hormuz authority threatens to bar ships using 'illegal routes'",
-   "text": "Iran's Persian Gulf Strait Authority (PGSA) warned that some charterers are forcing vessels onto unauthorised routes through the Strait of Hormuz, saying this risks \"financial and life losses for the vessel, owner, master and crew\" and that all vessels belonging to non-compliant charterers could face future passage restrictions. The warning adds a fresh layer of risk on top of already-elevated war-risk insurance and freight costs for the roughly one-fifth of global oil and LNG that transits the strait. For India, which sources a large share of its crude and LNG via Hormuz, this raises the risk of further freight and insurance costs feeding into landed fuel costs and tanker operators' war-risk premiums.",
-   "tone": "watch",
-   "companies": [
-    "GESHIP"
-   ],
-   "sources": [
-    {
-     "publisher": "Oman Observer",
-     "title": "Iran warns against using 'illegal routes' in Hormuz",
-     "url": "https://www.omanobserver.om/article/1196830/business/iran-warns-against-using-illegal-routes-in-hormuz",
-     "date": "2026-09-27"
-    }
-   ],
-   "added": "2026-09-28"
-  },
-  {
-   "date": "2026-09-26",
-   "title": "Trump rejects Iran's 7-day roadmap to reopen the Strait of Hormuz",
-   "text": "President Trump said on 26 September he had rejected Iran's proposal, relayed via Qatar, to reopen the Strait of Hormuz within seven days in return for the US lifting its naval blockade of Iranian ports, waiving oil-sanctions and releasing frozen assets, telling reporters \"I reject their proposal.\" The strait has been effectively closed since 28 February, with Al Jazeera's correspondent calling the roadmap \"dead in the water\" and only a handful of vessels transiting daily versus a normal ~85. The rejection extends the uncertainty India faces on Gulf-transiting crude and LNG cargoes, keeping freight costs and crude prices exposed to renewed spikes; it is a tailwind for realisations at upstream producers ONGC, Oil India, Vedanta and Reliance but prolongs under-recovery pain for state refiners IOC, BPCL and HPCL, whose pump prices remain frozen.",
-   "tone": "watch",
-   "companies": [
-    "ONGC",
-    "OIL",
-    "VOGL",
-    "RELIANCE",
-    "IOC",
-    "BPCL",
-    "HINDPETRO"
-   ],
-   "sources": [
-    {
-     "publisher": "Al Jazeera",
-     "title": "Trump rejects Iran's seven-day roadmap to reopen Strait of Hormuz",
-     "url": "https://www.aljazeera.com/news/2026/9/26/trump-rejects-irans-seven-day-roadmap-to-reopen-strait-of-hormuz",
-     "date": "2026-09-26"
-    },
-    {
-     "publisher": "Straits Daily Brief",
-     "title": "Strait of Hormuz Status: September 26, 2026",
-     "url": "https://straits.live/briefs/2026-09-26",
-     "date": "2026-09-26"
-    }
-   ],
-   "added": "2026-09-27"
-  },
-  {
-   "date": "2026-09-25",
-   "title": "Iran's FM details 7-day Hormuz reopening plan at UN; Brent eases to ~$105-106",
-   "text": "Iran's Foreign Minister Abbas Araghchi told delegates at the UN General Assembly that Tehran has offered Washington a plan to reopen the Strait of Hormuz to shipping within seven days if the US lifts its naval blockade, waives sanctions on Iranian oil sales and observes a ceasefire including Lebanon; initial steps would take 4-5 days, with the strait opening on day six. Brent eased on the news, trading around $105.81/bbl (-0.74%) at Thursday's open and near $105-106 through the session, while WTI fell 1.54% to $93.19, as traders stayed cautious given past failed talks. A sustained reopening would ease India's elevated import bill and OMC under-recoveries but would also pull down crude realisations for ONGC, Oil India and Reliance.",
-   "tone": "watch",
-   "companies": [
-    "ONGC",
-    "OIL",
-    "RELIANCE",
-    "VOGL",
-    "IOC",
-    "BPCL",
-    "HINDPETRO"
-   ],
-   "sources": [
-    {
-     "publisher": "Al Jazeera",
-     "title": "What's in Iran's seven-day plan to reopen the Strait of Hormuz?",
-     "url": "https://www.aljazeera.com/news/2026/9/25/whats-in-irans-seven-day-plan-to-reopen-the-strait-of-hormuz",
-     "date": "2026-09-25"
-    },
-    {
-     "publisher": "HDFC Sky",
-     "title": "Stock Market Open Report Today, September 25, 2026: Sensex, Nifty open in green as Iran talks progress, crude slides, Asian stocks slip",
-     "url": "https://hdfcsky.com/news/stock-market-open-report-today-september-25-2026-sensex-nifty-open-in-green-as-iran-talks-progress-crude-slides-asian-stocks-slip",
-     "date": "2026-09-25"
-    }
-   ],
-   "added": "2026-09-26"
-  },
-  {
-   "date": "2026-09-25",
-   "title": "Welspun Corp's US arm wins record $412.5 mn pipe order; order book hits $4.7 bn",
-   "text": "Welspun Tubular LLC, the US subsidiary of Welspun Corp, won its largest-ever HFIW pipe order worth about $412.5 million (~₹4,000 crore), for pipes to evacuate over 3 billion cubic feet of gas from the Permian Basin to the US Gulf Coast, to be manufactured at its upgraded Little Rock, Arkansas mill and executed across FY28-FY29. The win takes Welspun Corp's global order book to a record ~$4.7 billion (~₹45,000 crore), and shares rose as much as 5% on the news. It follows the company's ₹2,000 crore Aramco order via its Saudi associate EPIC earlier in the month, underlining strong overseas demand for Indian line-pipe capacity.",
-   "tone": "good",
-   "companies": [
-    "WELCORP"
-   ],
-   "sources": [
-    {
-     "publisher": "HDFC Sky",
-     "title": "Welspun Corp Wins ₹4,000 Crore US Pipe Order; Shares Rise 3.45%",
-     "url": "https://hdfcsky.com/news/welspun-corp-wins-rs-4000-crore-us-pipe-order-shares-rise-3-45-percent",
-     "date": "2026-09-25"
-    }
-   ],
-   "added": "2026-09-26"
-  },
-  {
-   "date": "2026-09-24",
-   "title": "Iran offers phased Hormuz reopening at UN talks; Brent swings to $108 then eases to $106.60",
-   "text": "At UN-mediated talks in New York on 23 September, Iran presented the US a roadmap for a regionwide ceasefire of up to 60 days and a phased reopening of the Strait of Hormuz, with hardline security official Mohsen Rezaei saying Washington had four to five days to accept; Donald Trump ruled out lifting the naval blockade before Iran shows 'goodwill'. Brent then spiked to a session high of $108.23 on 24 September after Houthi missiles hit Saudi cities including Yanbu and Taif, before easing to close up 3.4% at $106.60 as markets weighed the reopening talk. Continued volatility keeps upstream realisations elevated but sustains pressure on Indian refiners' under-recoveries.",
-   "tone": "watch",
-   "companies": [
-    "ONGC",
-    "OIL",
-    "RELIANCE",
-    "IOC",
-    "BPCL",
-    "HINDPETRO"
-   ],
-   "sources": [
-    {
-     "publisher": "Al Jazeera",
-     "title": "US, Iran hold mediated UNGA talks on ending war, opening Strait of Hormuz",
-     "url": "https://www.aljazeera.com/news/2026/9/23/us-iran-hold-mediated-unga-talks-on-ending-war-opening-strait-of-hormuz",
-     "date": "2026-09-23"
-    },
-    {
-     "publisher": "The National",
-     "title": "Iran 'presents US with road map for regionwide ceasefire and Hormuz reopening'",
-     "url": "https://www.thenationalnews.com/news/mena/2026/09/23/iran-us-meeting-new-york/",
-     "date": "2026-09-23"
-    },
-    {
-     "publisher": "CNBC",
-     "title": "Oil prices pull back from session highs after report of talks for phased reopening of Strait of Hormuz",
-     "url": "https://www.cnbc.com/2026/09/24/oil-iran-crude-kepler-trump-us-un-.html",
-     "date": "2026-09-24"
-    },
-    {
-     "publisher": "OilPrice.com",
-     "title": "Brent Holds Above $102 as Iran Talks Stall Over Hormuz Conditions",
-     "url": "https://oilprice.com/Latest-Energy-News/World-News/Brent-Holds-Above-102-as-Iran-Talks-Stall-Over-Hormuz-Conditions.html",
-     "date": "2026-09-24"
-    }
-   ],
-   "added": "2026-09-25"
-  },
-  {
-   "date": "2026-09-24",
-   "title": "Sensex, Nifty slide over 1.6% as Brent rally and bond yields spike; ONGC bucks the trend",
-   "text": "The Sensex fell 1,247.71 points (-1.67%) to 73,580.54 and the Nifty 50 dropped 383.70 points (-1.64%) to 23,063.10 on 24 September as Brent's rally past $106 combined with a surge in US 10-year bond yields and a weaker rupee to hit broader sentiment. ONGC was one of the few Nifty gainers on the day even as banking stocks led the selloff, underlining how upstream producers continue to be treated as a hedge against the ongoing crude spike. Oil marketing companies remain the flip side of the same trade, as sustained high crude keeps pressure on their margins.",
-   "tone": "watch",
-   "companies": [
-    "ONGC",
-    "IOC",
-    "BPCL",
-    "HINDPETRO",
-    "RELIANCE"
-   ],
-   "sources": [
-    {
-     "publisher": "Business Standard",
-     "title": "Stock Market Close: RIL, financials drag Sensex 1248 pts down, Nifty at 23,063",
-     "url": "https://www.business-standard.com/markets/news/stock-market-live-september-24-sensex-today-nifty-gift-nifty-nse-share-price-brent-crude-oil-price-126092400122_1.html",
-     "date": "2026-09-24"
-    }
-   ],
-   "added": "2026-09-25"
-  },
-  {
-   "date": "2026-09-23",
-   "title": "Indian seafarer killed as bulk carrier Cape Dao struck near Strait of Hormuz",
-   "text": "The Antigua and Barbuda-flagged bulk carrier Cape Dao, carrying 20 Indian seafarers, was hit by an unknown projectile near Oman's Musandam peninsula on 23 September, killing one Indian crew member and setting the vessel on fire; India's foreign ministry confirmed the death and condemned the attack. The incident adds to the toll on shipping transiting the Strait of Hormuz and underscores the elevated war-risk premiums and freight costs Indian-bound tankers and bulk carriers continue to face.",
-   "tone": "bad",
-   "companies": [
-    "GESHIP"
-   ],
-   "sources": [
-    {
-     "publisher": "Business Standard",
-     "title": "Cargo ship MV Cape Dao hit in Strait of Hormuz, 1 Indian on board killed",
-     "url": "https://www.business-standard.com/world-news/cargo-ship-mv-cape-dao-hit-in-strait-of-hormuz-1-indian-on-board-killed-126092301565_1.html",
-     "date": "2026-09-23"
-    },
-    {
-     "publisher": "TradeWinds",
-     "title": "Indian seafarer dies as capesize bulker struck in Strait of Hormuz",
-     "url": "https://www.tradewindsnews.com/casualties/indian-seafarer-dies-as-capesize-bulker-struck-in-strait-of-hormuz/2-1-2048130",
-     "date": "2026-09-23"
-    }
-   ],
-   "added": "2026-09-25"
-  },
-  {
-   "date": "2026-09-23",
-   "title": "ICRA: state fuel retailers losing Rs 530 crore/day as crude tops $117; govt holds pump prices",
-   "text": "ICRA estimates Indian Oil, BPCL and HPCL are together losing about Rs 530 crore a day, with marketing losses of roughly Rs 8/litre on petrol and Rs 9/litre on diesel plus an LPG under-recovery near Rs 300/cylinder, after the Indian crude basket climbed to $117.4/bbl on 21 September versus a FY26 average of about $66. Government officials said there is no proposal yet to raise retail petrol or diesel prices, but the state may consider financial support for the OMCs if crude stays elevated. Sustained losses would pressure OMC cash flow and raise their working-capital borrowing.",
-   "tone": "bad",
-   "companies": [
-    "IOC",
-    "BPCL",
-    "HINDPETRO"
-   ],
-   "sources": [
-    {
-     "publisher": "Business Today",
-     "title": "Why are oil marketing companies facing Rs 530 crore losses daily?",
-     "url": "https://www.businesstoday.in/latest/economy/story/why-are-oil-marketing-companies-facing-rs-530-crore-losses-daily-557375-2026-09-23",
-     "date": "2026-09-23"
-    },
-    {
-     "publisher": "Business Today",
-     "title": "No petrol, diesel price hike proposal yet; govt may support OMCs if crude stays high",
-     "url": "https://www.businesstoday.in/india/story/no-petrol-diesel-price-hike-proposal-yet-govt-may-support-omcs-if-crude-stays-high-557309-2026-09-23",
-     "date": "2026-09-23"
-    }
-   ],
-   "added": "2026-09-24"
-  },
-  {
-   "date": "2026-09-23",
-   "title": "Kotak: Oil India's valuation premium over ONGC not backed by fundamentals",
-   "text": "Kotak Institutional Equities said Oil India's outperformance over ONGC - a roughly 15-percentage-point gap since end-February and 14 points since end-June - mainly reflects investor rotation into mid-caps rather than superior fundamentals, since ONGC retains a structural edge in reserve-to-production ratio for both oil and gas. The brokerage flagged that ONGC's stock fell even as crude prices rallied sharply, calling the valuation gap a mispricing that could narrow if sentiment shifts back toward large-caps.",
-   "tone": "info",
-   "companies": [
-    "ONGC",
-    "OIL"
-   ],
-   "sources": [
-    {
-     "publisher": "Whalesbook",
-     "title": "Kotak Questions Oil India Premium Over ONGC",
-     "url": "https://www.whalesbook.com/news/English/brokerage-reports/Kotak-Questions-Oil-India-Premium-Over-ONGC/6ab398a65aacb956d07df62f",
-     "date": "2026-09-23"
-    }
-   ],
-   "added": "2026-09-24"
   }
  ]
 }
