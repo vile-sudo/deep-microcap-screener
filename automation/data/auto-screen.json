@@ -14789,6 +14789,11 @@
   "INE018420013": {
    "on": "2026-11-12",
    "result": "not on screener"
+  },
+  "INE00HZ01029": {
+   "on": "2026-11-16",
+   "result": "sector",
+   "detail": "Services / Commercial Services & Supplies / Trading & Distributors"
   }
  },
  "runs": [
@@ -15204,6 +15209,12 @@
   {
    "on": "2026-11-14",
    "fetched": 0,
+   "added_codes": []
+  },
+  {
+   "on": "2026-11-16",
+   "fetched": 1,
+   "sector": 1,
    "added_codes": []
   }
  ]

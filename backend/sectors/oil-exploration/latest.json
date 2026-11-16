@@ -1,48 +1,56 @@
 {
- "updated": "2026-11-15T06:12+05:30",
+ "updated": "2026-11-16T06:04+05:30",
  "figures": [
   {
-   "label": "Brent crude (Jan futures)",
+   "label": "Brent crude",
    "value": "$95.84/bbl",
    "as_of": "2026-11-13",
-   "note": "settle, +2 cents on the day; about -2.5% on the week",
+   "note": "+2 cents on the day, about -2.5% on the week; latest settlement before the 14 No",
    "source": {
-    "publisher": "Rigzone",
-    "url": "https://www.rigzone.com/news/wire/crude_fluctuates_as_iran_tensions_persist-13-nov-2026-185085-article/"
+    "publisher": "FinanceFeeds",
+    "url": "https://financefeeds.com/brent-crude-oil-price-95-84-sunday-futures-open-week-ahead-iran-mine-claims-bull-98-bear-91/"
    }
   },
   {
-   "label": "WTI crude (Dec futures)",
+   "label": "WTI crude",
    "value": "$88.56/bbl",
    "as_of": "2026-11-13",
-   "note": "settle, -0.2% on the day",
+   "note": "-0.2% on the day",
    "source": {
-    "publisher": "Rigzone",
-    "url": "https://www.rigzone.com/news/wire/crude_fluctuates_as_iran_tensions_persist-13-nov-2026-185085-article/"
-   }
-  },
-  {
-   "label": "EIA 2027 Brent forecast",
-   "value": "$86/bbl",
-   "as_of": "2026-11-11",
-   "note": "November STEO; 2026 at $97",
-   "source": {
-    "publisher": "Oil & Gas Journal",
-    "url": "https://www.ogj.com/general-interest/economics-markets/news/55418180/eia-sees-brent-near-100-bbl-through-yearend-2026-as-middle-east-supply-constraints-persist"
-   }
-  },
-  {
-   "label": "Oil India realised crude price",
-   "value": "US$92.24/bbl",
-   "as_of": "2026-11-12",
-   "note": "Q2 FY27, up 35% from US$68.19",
-   "source": {
-    "publisher": "Multibagg",
-    "url": "https://www.multibagg.ai/market-pulse/articles/oil-india-limited-q2-profit-announcement-cmwdeq8dc002e2dqpwq9bzu7p"
+    "publisher": "FinanceFeeds",
+    "url": "https://financefeeds.com/brent-crude-oil-price-95-84-sunday-futures-open-week-ahead-iran-mine-claims-bull-98-bear-91/"
    }
   }
  ],
  "items": [
+  {
+   "date": "2026-11-15",
+   "title": "Iran claims three tankers hit mines in Hormuz; US disputes, says main routes are clear",
+   "text": "Iran's navy and Revolutionary Guards said three tankers hit naval mines and caught fire in the Strait of Hormuz on 13-14 November. No ship has been named, Reuters could not verify the claims, and the US military says it has cleared the main routes. Brent settled at $95.84 on 13 November, its second weekly loss, and futures reopened Sunday evening. Confirmation would be an upside risk for crude and for India's import bill. A rebuttal that holds would favour the downstream refiners over upstream producers such as ONGC and Oil India.",
+   "tone": "watch",
+   "companies": [
+    "ONGC",
+    "OIL",
+    "IOC",
+    "BPCL",
+    "HINDPETRO"
+   ],
+   "sources": [
+    {
+     "publisher": "FinanceFeeds",
+     "title": "Brent Crude Oil Price: $95.84 Sunday Before the Futures Open, Iran Mine Claims",
+     "url": "https://financefeeds.com/brent-crude-oil-price-95-84-sunday-futures-open-week-ahead-iran-mine-claims-bull-98-bear-91/",
+     "date": "2026-11-15"
+    },
+    {
+     "publisher": "Admiral Markets",
+     "title": "Strait of Hormuz Mine Claims: How Oil May Open This Week",
+     "url": "https://admiralmarkets.com/analytics/traders-blog/strait-of-hormuz-tanker-mines-oil-price",
+     "date": "2026-11-15"
+    }
+   ],
+   "added": "2026-11-16"
+  },
   {
    "date": "2026-11-13",
    "title": "Brent settles at $95.84, second weekly fall; IEA sees Q4 surplus for first time since war began",
@@ -811,33 +819,6 @@
     }
    ],
    "added": "2026-10-03"
-  },
-  {
-   "date": "2026-10-01",
-   "title": "Brent edges up to $98.67 as Saudi Yanbu loadings restart; OPEC+ seen holding November targets",
-   "text": "On 1 October Brent rose 0.6% to $98.67/bbl and WTI 0.5% to $90.09/bbl, supported by the restart of Saudi tanker loadings from Yanbu after the East-West Pipeline resumed, and by Iran saying it had received a US response to its latest proposal to revive the collapsed ceasefire. US crude inventories rose 922,000 barrels to 427.3 million barrels in the week to 25 September, against expectations of a draw. Sources say OPEC+ is likely to leave November output targets unchanged at its online meeting on Sunday; the Brent quote is the December contract, as the November contract expired at $103.50 on 30 September. Lower crude eases under-recovery pressure for HPCL and BPCL but trims realisations for upstream producers such as ONGC and Oil India.",
-   "tone": "watch",
-   "companies": [
-    "ONGC",
-    "OIL",
-    "HINDPETRO",
-    "BPCL"
-   ],
-   "sources": [
-    {
-     "publisher": "Yahoo Finance",
-     "title": "Oil prices hold steady as Gulf exports resume and US-Iran talks progress",
-     "url": "https://finance.yahoo.com/energy/articles/oil-prices-hold-steady-gulf-105242042.html",
-     "date": "2026-10-01"
-    },
-    {
-     "publisher": "Rio Times",
-     "title": "Oil markets: Wednesday, September 30, 2026",
-     "url": "https://riotimesonline.com/oil-markets-latam-thursday-october-1-2026",
-     "date": "2026-09-30"
-    }
-   ],
-   "added": "2026-10-02"
   }
  ]
 }
