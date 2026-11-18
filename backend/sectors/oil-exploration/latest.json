@@ -1,38 +1,56 @@
 {
- "updated": "2026-11-17T09:03+05:30",
+ "updated": "2026-11-18T08:14+05:30",
  "figures": [
   {
    "label": "Brent crude",
-   "value": "$92.44/bbl",
-   "as_of": "2026-11-16",
-   "note": "-3.6% (-$3.40) on the day; settlement",
+   "value": "~$93/bbl",
+   "as_of": "2026-11-17",
+   "note": "$91.8 early Asia (-0.7%); about $93 later in the day",
    "source": {
-    "publisher": "Yahoo Finance (Reuters)",
-    "url": "https://finance.yahoo.com/energy/articles/oil-prices-fall-expectations-coming-020042042.html"
+    "publisher": "OilPrice.com",
+    "url": "https://oilprice.com/Energy/Energy-General/Brent-Stuck-Near-93-as-Hormuz-Tanker-Attacks-Offset-Gulf-Export-Surge.html"
    }
   },
   {
    "label": "WTI crude",
-   "value": "$85.72/bbl",
-   "as_of": "2026-11-16",
-   "note": "-3.2% (-$2.84) on the day; settlement",
-   "source": {
-    "publisher": "Yahoo Finance (Reuters)",
-    "url": "https://finance.yahoo.com/energy/articles/oil-prices-fall-expectations-coming-020042042.html"
-   }
-  },
-  {
-   "label": "IEA Q4 2026 supply",
-   "value": "105 mb/d (+1.7 mb/d vs demand)",
-   "as_of": "2026-11-16",
-   "note": "IEA previously forecast a Q4 deficit",
+   "value": "$85.1/bbl",
+   "as_of": "2026-11-17",
+   "note": "-0.7% in early Asian trading",
    "source": {
     "publisher": "CNBC",
-    "url": "https://www.cnbc.com/2026/11/16/oil-prices-brent-wti-latest.html"
+    "url": "https://cnbc.com/2026/11/17/iran-war-trump-hormuz-oil-.html"
    }
   }
  ],
  "items": [
+  {
+   "date": "2026-11-17",
+   "title": "Brent steady near $92-93 as record Hormuz tanker attacks offset rising Gulf exports",
+   "text": "Brent traded around $91.8 in early Asian hours and about $93 later on 17 November, with CNBC reporting UKMTO said a tanker was hit by a projectile in the Strait of Hormuz and Iran's navy claiming four tankers struck mines. A third US carrier has arrived in the Gulf and indirect US-Iran talks via Qatar have stalled, while OilPrice notes rising Middle East exports are capping prices. Brent in the low $90s, well below October's $117.64 high, is supportive of realisations for ONGC and Oil India but eases the import bill and OMC input costs.",
+   "tone": "watch",
+   "companies": [
+    "ONGC",
+    "OIL",
+    "IOC",
+    "BPCL",
+    "HINDPETRO"
+   ],
+   "sources": [
+    {
+     "publisher": "CNBC",
+     "title": "Iran escalates threats as third U.S. carrier arrives in Middle East, tanker struck in Hormuz",
+     "url": "https://cnbc.com/2026/11/17/iran-war-trump-hormuz-oil-.html",
+     "date": "2026-11-17"
+    },
+    {
+     "publisher": "OilPrice.com",
+     "title": "Brent Stuck Near $93 as Hormuz Tanker Attacks Offset Gulf Export Surge",
+     "url": "https://oilprice.com/Energy/Energy-General/Brent-Stuck-Near-93-as-Hormuz-Tanker-Attacks-Offset-Gulf-Export-Surge.html",
+     "date": "2026-11-17"
+    }
+   ],
+   "added": "2026-11-18"
+  },
   {
    "date": "2026-11-16",
    "title": "Brent settles at $92.44, down 3.6%, as Middle East exports recover and IEA sees Q4 surplus",

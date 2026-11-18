@@ -14798,6 +14798,11 @@
   "INE0RRU20024": {
    "on": "2026-11-17",
    "result": "not on screener"
+  },
+  "INE2OD001016": {
+   "on": "2026-11-18",
+   "result": "sector",
+   "detail": "no sector"
   }
  },
  "runs": [
@@ -15225,6 +15230,12 @@
    "on": "2026-11-17",
    "fetched": 1,
    "not on screener": 1,
+   "added_codes": []
+  },
+  {
+   "on": "2026-11-18",
+   "fetched": 1,
+   "sector": 1,
    "added_codes": []
   }
  ]
