@@ -1,28 +1,50 @@
 {
- "updated": "2026-11-18T08:14+05:30",
+ "updated": "2026-11-19T07:43+05:30",
  "figures": [
   {
    "label": "Brent crude",
-   "value": "~$93/bbl",
-   "as_of": "2026-11-17",
-   "note": "$91.8 early Asia (-0.7%); about $93 later in the day",
+   "value": "$93.09/bbl",
+   "as_of": "2026-11-18",
+   "note": "-0.05% at last check; prior settle $93.14; about -20% in November",
    "source": {
-    "publisher": "OilPrice.com",
-    "url": "https://oilprice.com/Energy/Energy-General/Brent-Stuck-Near-93-as-Hormuz-Tanker-Attacks-Offset-Gulf-Export-Surge.html"
+    "publisher": "10bmnews",
+    "url": "https://10bmnews.com/oil-prices-today-brent-hovers-near-93-despite-hormuz-attacks-why-supply-glut-is-keeping-bulls-in-check/"
    }
   },
   {
    "label": "WTI crude",
-   "value": "$85.1/bbl",
+   "value": "$86.01/bbl",
    "as_of": "2026-11-17",
-   "note": "-0.7% in early Asian trading",
+   "note": "settle, +0.34%; about -16% in November",
    "source": {
-    "publisher": "CNBC",
-    "url": "https://cnbc.com/2026/11/17/iran-war-trump-hormuz-oil-.html"
+    "publisher": "10bmnews",
+    "url": "https://10bmnews.com/oil-prices-today-brent-hovers-near-93-despite-hormuz-attacks-why-supply-glut-is-keeping-bulls-in-check/"
    }
   }
  ],
  "items": [
+  {
+   "date": "2026-11-18",
+   "title": "Brent near $93.09 as US crude stocks rise 5.3 mb and Goldman flags possible 2027 surplus",
+   "text": "Brent traded at $93.09 a barrel, down 0.05%, after settling at $93.14 on 17 November, and has fallen about 20% in November (WTI down 16%). US crude inventories rose 5.3 million barrels last week, the IEA expects a surplus of about 2 million barrels per day this quarter, and Goldman Sachs reportedly warned of a possible surplus next year as Middle East exports recover. Hormuz attacks, including the IRGC's claim that four tankers struck mines, limit the downside. Lower crude would weigh on realisations for upstream producers, while helping refiners and gas buyers.",
+   "tone": "watch",
+   "companies": [
+    "ONGC",
+    "OIL",
+    "IOC",
+    "BPCL",
+    "HINDPETRO"
+   ],
+   "sources": [
+    {
+     "publisher": "10bmnews",
+     "title": "Oil Prices Today: Brent Hovers Near $93 Despite Hormuz Attacks, Why Supply Glut Is Keeping Bulls In Check",
+     "url": "https://10bmnews.com/oil-prices-today-brent-hovers-near-93-despite-hormuz-attacks-why-supply-glut-is-keeping-bulls-in-check/",
+     "date": "2026-11-18"
+    }
+   ],
+   "added": "2026-11-19"
+  },
   {
    "date": "2026-11-17",
    "title": "Brent steady near $92-93 as record Hormuz tanker attacks offset rising Gulf exports",
@@ -807,27 +829,6 @@
     }
    ],
    "added": "2026-10-06"
-  },
-  {
-   "date": "2026-10-04",
-   "title": "OPEC+ keeps November output targets unchanged, extending pause",
-   "text": "OPEC+ kept its November production targets unchanged, extending the pause that began in October after six months of gradual increases. The seven core members' combined quota stays at about 31 million bpd, and 2 million bpd of 2022 cuts remain in place through year-end. Most members are pumping below quota because of the Gulf conflict and the effectively closed Strait of Hormuz. Brent was quoted at $102.25/bbl. For India, a hold keeps supply tight and crude elevated, which supports upstream realisations at ONGC and Oil India but pressures refiner margins at HPCL and BPCL.",
-   "tone": "watch",
-   "companies": [
-    "ONGC",
-    "OIL",
-    "HINDPETRO",
-    "BPCL"
-   ],
-   "sources": [
-    {
-     "publisher": "The National",
-     "title": "Opec+ keeps oil output targets unchanged for November",
-     "url": "https://www.thenationalnews.com/business/energy/2026/10/04/opec-keeps-oil-output-targets-unchanged-for-november/",
-     "date": "2026-10-04"
-    }
-   ],
-   "added": "2026-10-05"
   }
  ]
 }
