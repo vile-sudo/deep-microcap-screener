@@ -1,28 +1,50 @@
 {
- "updated": "2026-11-19T07:43+05:30",
+ "updated": "2026-11-20T07:55+05:30",
  "figures": [
   {
    "label": "Brent crude",
-   "value": "$93.09/bbl",
-   "as_of": "2026-11-18",
-   "note": "-0.05% at last check; prior settle $93.14; about -20% in November",
+   "value": "$91.98/bbl",
+   "as_of": "2026-11-19",
+   "note": "+3 cents on the day",
    "source": {
-    "publisher": "10bmnews",
-    "url": "https://10bmnews.com/oil-prices-today-brent-hovers-near-93-despite-hormuz-attacks-why-supply-glut-is-keeping-bulls-in-check/"
+    "publisher": "Reuters via Yahoo Finance",
+    "url": "https://finance.yahoo.com/news/oil-prices-steady-supply-surplus-024608326.html"
    }
   },
   {
    "label": "WTI crude",
-   "value": "$86.01/bbl",
-   "as_of": "2026-11-17",
-   "note": "settle, +0.34%; about -16% in November",
+   "value": "$83.21/bbl",
+   "as_of": "2026-11-19",
+   "note": "-5 cents; lowest close since 26 Aug",
    "source": {
-    "publisher": "10bmnews",
-    "url": "https://10bmnews.com/oil-prices-today-brent-hovers-near-93-despite-hormuz-attacks-why-supply-glut-is-keeping-bulls-in-check/"
+    "publisher": "Reuters via Yahoo Finance",
+    "url": "https://finance.yahoo.com/news/oil-prices-steady-supply-surplus-024608326.html"
    }
   }
  ],
  "items": [
+  {
+   "date": "2026-11-19",
+   "title": "Brent settles flat at $91.98 as Hormuz mine reports offset US stock build; WTI at $83.21",
+   "text": "Brent settled up 3 cents at $91.98/bbl on 19 November and WTI eased 5 cents to $83.21, its lowest close since 26 August. Iran's navy said two tankers hit mines in the Strait of Hormuz (unverified by Reuters), while a larger-than-expected US inventory build and a 21% rise in Saudi September crude exports (5.38 mb/d, JODI) weighed. The IEA put cumulative Middle East conflict losses at 2.8 billion barrels of oil and 60 bcm of Gulf gas. Lower crude pressures upstream realisations for ONGC and Oil India but eases the import bill and marketing margins for OMCs.",
+   "tone": "watch",
+   "companies": [
+    "ONGC",
+    "OIL",
+    "IOC",
+    "BPCL",
+    "HINDPETRO"
+   ],
+   "sources": [
+    {
+     "publisher": "Reuters via Yahoo Finance",
+     "title": "Oil settles flat as Hormuz disruptions offset global surplus fears",
+     "url": "https://finance.yahoo.com/news/oil-prices-steady-supply-surplus-024608326.html",
+     "date": "2026-11-19"
+    }
+   ],
+   "added": "2026-11-20"
+  },
   {
    "date": "2026-11-18",
    "title": "Brent near $93.09 as US crude stocks rise 5.3 mb and Goldman flags possible 2027 surplus",
@@ -802,33 +824,6 @@
     }
    ],
    "added": "2026-10-07"
-  },
-  {
-   "date": "2026-10-05",
-   "title": "Brent near $102 while Murban hits $110 on Hormuz shipping costs; Brent-WTI gap over $11",
-   "text": "Gulf News reported Brent at $102.31/bbl in early Tokyo trade on 5 October, up 0.07%, with Murban at $110/bbl. It cited tanker shortages, high insurance costs and longer routes, with record VLCC freight raising delivered crude costs and squeezing refiner margins. The Brent-WTI spread exceeded $11/bbl. Elevated crude supports ONGC and Oil India realisations but keeps pressure on HPCL and BPCL margins. Other pages showed different Brent levels the same day (Fortune: $105.81 at 7 a.m. ET), so the intraday level is uncertain.",
-   "tone": "watch",
-   "companies": [
-    "ONGC",
-    "OIL",
-    "HINDPETRO",
-    "BPCL"
-   ],
-   "sources": [
-    {
-     "publisher": "Gulf News",
-     "title": "Oil prices split as Brent tops $102, Murban hits $110 per barrel on Oct. 5, 2026",
-     "url": "https://gulfnews.com/world/americas/oil-prices-split-as-brent-tops-102-murban-hits-110-per-barrel-on-oct-5-2026-1.500698305",
-     "date": "2026-10-05"
-    },
-    {
-     "publisher": "Fortune",
-     "title": "Current price of oil as of October 5, 2026",
-     "url": "https://fortune.com/article/price-of-oil-10-05-2026/",
-     "date": "2026-10-05"
-    }
-   ],
-   "added": "2026-10-06"
   }
  ]
 }

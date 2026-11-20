@@ -1,0 +1,783 @@
+{
+ "slug": "titanium-dioxide-pigment-antidumping-duty",
+ "name": "Titanium Dioxide (TiO2) Pigment: Domestic Producers Behind a Re-imposed Anti-Dumping Duty",
+ "icon": "chip",
+ "edition": "2026-W47",
+ "updated": "2026-11-20",
+ "scope": "India's TiO2 pigment market after the 24 Oct 2026 re-imposition of a 5-year anti-dumping duty (USD 460-681/t) on Chinese TiO2, and what it means for listed producers, feedstock players and paint-maker users.",
+ "summary": {
+  "one_line": "The duty is back for five years, but the only listed producer, Meghmani's Kilburn TiO2 unit, is still shut on sulphuric-acid costs, and Adani's Rs 16,000 cr titanium park is still only a proposal to the state, so this is a restart option rather than an earnings story so far.",
+  "key_points": [
+   "Notification 26/2026-Customs (ADD) of 24 Oct 2026 imposes USD 460-681/t on TiO2 from China for five years: Anhui Gold Star USD 609, Shandong Jinhai/Xianghai USD 563, LB Group/Henan Billions USD 460, non-sampled co-operating producers USD 510 and a residual of USD 681. Food, pharma, skin-care, textile/fibre and sub-100 nm nano grades are excluded (S1, S2).",
+   "The new duty replaces the May 2025 levy (Notification 12/2025). The Calcutta High Court quashed that levy on 22 Sep 2025 for procedural reasons: DGTR had relied on confidential information that the Indian Paint Association could not rebut. It was not struck down on the merits. DGTR's remand findings of 3 Aug 2026 again found dumping, injury and causation (S1, S5).",
+   "India's TiO2 market is put at 485,000 tpa, with about 79% imported and 62% sourced from China (S6). DGTR's remand findings put China at 57% of Indian demand (S4). Paints take about 60% of demand and plastics 25% (S6).",
+   "Meghmani Organics (via Kilburn Chemicals) holds about 18% of India's TiO2 capacity with anatase-grade sulphate-process output at Dahej (S6). Phase 1 was 16,500 tpa, with a Rs 375 cr Phase 2 planned to double it to 33,000 tpa (S10). The plant was shut in late Nov 2025 (S7).",
+   "At Q2 FY27 results (Nov 2026), management said TiO2 was still suspended because sulphuric acid had risen about 7-8x, while calling the re-imposed duty positive. No restart date was given (S9). On the Q1 call it guided to about Rs 10-12 cr annual losses while the unit stays idle (S8).",
+   "Adani: Alluvial Heavy Minerals runs APMDC beach-sand blocks of about 991 ha at Srikakulam and Bheemunipatnam (S17). A 200,000 t pigment plus 10,000 t titanium metal park costing about Rs 16,000 cr has been submitted to the AP government but is not approved; incentives, extra leases and the minerals policy are all pending (S15, S16).",
+   "Meghmani's stock is down 23% over one year on screener.in (S11); Kotak Neo showed -35% on 30 Oct 2026 (S13). It trades at about 0.84x book (S11). Coverage of the TiO2 angle is limited to retail and AI-research sites. We found no broker initiation (S6, S8)."
+  ],
+  "for_investors": [
+   {
+    "title": "Who benefits",
+    "tone": "good",
+    "points": [
+     "Meghmani Organics is the only listed company with a TiO2 pigment plant. The duty adds USD 460-681/t to Chinese landed cost (S1). Benefits only accrue once the Kilburn unit restarts, and management has not said when (S9).",
+     "Feedstock makers Cochin Minerals & Rutile (synthetic rutile, export-oriented) (S19) and DCW (synthetic rutile is one of its specialty lines) (S20) are adjacent, but neither discloses any duty-linked change in domestic demand."
+    ]
+   },
+   {
+    "title": "Who is hurt / risks",
+    "tone": "bad",
+    "points": [
+     "Paint makers lose the duty-free window. Berger had said the duty withdrawal gave a marginal cost benefit (S25), and the Indian Paint Association led the earlier court challenge (S5).",
+     "Sulphuric acid inflation, not Chinese dumping, is what kept Meghmani's plant shut through Q2 FY27 (S8, S9).",
+     "The residual USD 681/t applies to any non-Chinese exporter of Chinese-origin TiO2, which limits re-routing (S1). Chinese chloride-route capacity is still growing, and TiPMC expects anti-dumping duties to redirect Chinese exports (S23)."
+    ]
+   },
+   {
+    "title": "What to watch",
+    "tone": "watch",
+    "points": [
+     "Q3 FY27 results (Jan-Feb 2027): whether Kilburn restarts and whether the Phase 2 plan is revived (S9, S10).",
+     "Any fresh writ or appeal by paint users against the 2026 notification (S5).",
+     "AP cabinet decisions on the beach-sand/rare-earth policy, extra leases for Alluvial and project incentives (S15, S16).",
+     "Chinese TiO2 price moves after TiPMC's 2027 forecast of a 'cautious recovery' (S23)."
+    ]
+   }
+  ]
+ },
+ "kpis": [
+  {
+   "label": "ADD on Chinese TiO2",
+   "value": "USD 460-681/t",
+   "sub": "5 yrs from Oct 2026, Notif. 26/2026-Cus (ADD) (S1)"
+  },
+  {
+   "label": "India TiO2 market",
+   "value": "485,000 tpa",
+   "sub": "~79% imported, as of Nov 2026 (S6)"
+  },
+  {
+   "label": "China share of Indian demand",
+   "value": "57-62%",
+   "sub": "DGTR remand POI (S4) vs industry estimate (S6)"
+  },
+  {
+   "label": "Meghmani share of India capacity",
+   "value": "~18%",
+   "sub": "Kilburn, Dahej; anatase grade (S6)"
+  },
+  {
+   "label": "Kilburn TiO2 plant status",
+   "value": "Suspended",
+   "sub": "Since late Nov 2025; still shut at Q2 FY27 (S7, S9)"
+  },
+  {
+   "label": "Meghmani 1-yr return",
+   "value": "-23%",
+   "sub": "screener.in, 19 Nov 2026 (S11); -35% on Kotak Neo, 30 Oct (S13)"
+  },
+  {
+   "label": "Adani titanium park (proposal)",
+   "value": "Rs 16,000 cr",
+   "sub": "200 kt pigment + 10 kt metal, not approved (S16)"
+  }
+ ],
+ "sections": [
+  {
+   "id": "theme_explainer",
+   "title": "Theme explainer: TiO2 pigment and India's import gap",
+   "subsections": [
+    {
+     "title": "Product, process and end markets",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "TiO2 pigment is the main white pigment used in paints and plastics. In India, paints and coatings take about 60% of demand, plastics 25% and other uses 15% (S6). It is made by two routes. The sulphate route digests ilmenite in sulphuric acid, which is why acid prices drive costs at Meghmani's Kilburn unit (S6, S8). The chloride route chlorinates beneficiated ilmenite with petroleum coke at about 900°C to make TiCl4, which is then oxidised to TiO2. In India, Kerala Minerals & Metals (KMML) uses this route to make rutile-grade pigment (S22). Kilburn makes anatase grade through the sulphate route (S6). Grade matters legally as well: the Calcutta High Court case turned partly on DGTR's claim that 'rutile through sulphate' grades were made domestically (S5)."
+      },
+      {
+       "type": "p",
+       "text": "Globally, TiPMC Consulting estimates TiO2 demand at 7.37 mt in 2026 (+1.1%) and projects 7.61 mt in 2027 (+3.2%). Developing Asia drives most of the growth, and TiPMC calls the outlook 'a cautious recovery rather than a return to a traditional volume-led upcycle' (S23). India's demand is described as growing at a double-digit rate (S6)."
+      }
+     ]
+    },
+    {
+     "title": "India's import dependence and domestic producers",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "Indian TiO2 pigment producers by share of domestic capacity (S6), with listing status",
+       "columns": [
+        "Producer",
+        "Share of Indian capacity",
+        "Process / grade",
+        "Listed?"
+       ],
+       "rows": [
+        [
+         "Kerala Minerals & Metals (KMML)",
+         "40%",
+         "Chloride, rutile (S22)",
+         "No - Govt of Kerala undertaking (S22)"
+        ],
+        [
+         "Kilburn Chemicals (Meghmani Organics)",
+         "18%",
+         "Sulphate, anatase (S6)",
+         "Via parent MOL (NSE: MOL)"
+        ],
+        [
+         "Travancore Titanium Products",
+         "17%",
+         "n/a",
+         "Not found on NSE/BSE"
+        ],
+        [
+         "V.V. Titanium Pigments",
+         "16%",
+         "n/a",
+         "Not found on NSE/BSE"
+        ]
+       ]
+      },
+      {
+       "type": "p",
+       "text": "One industry note puts India's market at 485,000 tpa, with domestic supply at 21%, China at 62% and other origins at 17% (S6). DGTR's remand findings put Chinese imports at 57% of Indian demand during the period of investigation (S4). In Jan 2023 the import share was quoted at about 70% (S10), which suggests dependence has risen."
+      },
+      {
+       "type": "chart",
+       "title": "Sources of India's TiO2 supply",
+       "unit": "% of requirement",
+       "series": [
+        {
+         "name": "Share",
+         "points": [
+          [
+           "Domestic",
+           21
+          ],
+          [
+           "China",
+           62
+          ],
+          [
+           "Other imports",
+           17
+          ]
+         ]
+        }
+       ],
+       "source": "Source: Multibagg industry note, Nov 2026 (S6)"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "policy_and_capex",
+   "title": "Policy and capex",
+   "subsections": [
+    {
+     "title": "Notification 26/2026-Customs (ADD): what it imposes",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "Anti-dumping duty on TiO2 originating in or exported from China PR (HS 2823 00 10, 3206 11 10, 3206 11 90) (S1)",
+       "columns": [
+        "Producer",
+        "USD/t"
+       ],
+       "rows": [
+        [
+         "Anhui Gold Star Titanium Dioxide (Group)",
+         "609"
+        ],
+        [
+         "Shandong Jinhai Titanium Resources Technology / Shandong Xianghai Titanium",
+         "563"
+        ],
+        [
+         "LB Xiangyang, LB Sichuan, LB Lufeng, LB Group, Henan Billions Advanced Material",
+         "460"
+        ],
+        [
+         "Non-sampled co-operating producers (incl. Pangang, Jiangxi Tikon (Tronox), Ningbo Xinfu, others)",
+         "510"
+        ],
+        [
+         "Any other Chinese producer; China-origin goods exported via a third country",
+         "681"
+        ]
+       ]
+      },
+      {
+       "type": "bullets",
+       "items": [
+        "Duration: five years from publication in the Official Gazette (S1).",
+        "Exclusions: food, pharma tablet coatings, skin-care/sunscreen, textile and fibre uses (not textile printing pigment), rutile for décor paper at the fibre/pulp stage, and nano/ultrafine TiO2 below 100 nm for textiles and paints (S1).",
+        "Enforcement: excluded end uses are declared on the Bill of Entry under an undertaking to pay duty plus interest if goods are diverted, per CBIC Circular 46/2026-Customs of 27 Oct 2026 (S2).",
+        "Notification 25/2026 rescinds the May 2025 Notification 12/2025-Customs (ADD) (S1, S2). India's earlier TiO2 measures date back to a 2015 investigation and definitive duties in Feb 2017 (S3)."
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Why the 2025 duty fell and how durable the new one is",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "In Indian Paint Association v. Union of India (WPO 148 of 2025, 22 Sep 2025), the Calcutta High Court quashed the May 2025 duty (S1). The court held that DGTR relied on information withheld as confidential without non-confidential summaries, breaching Rule 7(2) of the Anti-Dumping Rules and Article 6.9 of the WTO Anti-Dumping Agreement. It sent the case back to DGTR from the stage of the petitioner's response. The court also rejected the government's argument that the petitioner should have gone to CESTAT first, because CESTAT's anti-dumping bench had not been constituted for over a year (S5)."
+      },
+      {
+       "type": "callout",
+       "tone": "info",
+       "text": "Durability (our inference): the remand findings of 3 Aug 2026 were issued specifically to cure the disclosure defect (S1), so a repeat procedural challenge has less to work with. However, the paint users' association has already won once (S5), and if the CESTAT route is still unavailable, writ petitions remain the obvious avenue. We found no new challenge filed as of 20 Nov 2026."
+      }
+     ]
+    },
+    {
+     "title": "Capex: Meghmani Phase 2 and the Adani titanium park",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "Announced or proposed TiO2 capacity linked to listed groups",
+       "columns": [
+        "Project",
+        "Capacity",
+        "Capex",
+        "Status"
+       ],
+       "rows": [
+        [
+         "Kilburn/Meghmani Phase 1, Dahej",
+         "16,500 tpa",
+         "Rs 275 cr incl. Rs 132 cr acquisition",
+         "Commissioned Jan 2023 (S10); suspended since late Nov 2025 (S7, S9)"
+        ],
+        [
+         "Kilburn/Meghmani Phase 2, Dahej",
+         "+16,500 tpa (to 33,000)",
+         "Rs 375 cr",
+         "Targeted Q3 FY24 in 2023 (S10); no updated timeline in FY27 commentary (S8, S9)"
+        ],
+        [
+         "Adani Group titanium park, Srikakulam (AP)",
+         "200,000 t pigment + 10,000 t titanium metal",
+         "~Rs 16,000 cr",
+         "Proposal submitted to AP government; incentives, extra leases and policy pending (S15, S16)"
+        ]
+       ]
+      },
+      {
+       "type": "callout",
+       "tone": "warn",
+       "text": "The Adani plant has no company filing behind it. Karan Adani briefed the AP Chief Minister in Aug 2026 (S14). AP state disclosures reported in Oct 2026 describe a proposal that will go to the industries department for examination (S15). Adani Enterprises' own disclosure covers only the beach-sand mining project, not a pigment plant (S17)."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "listed_company_impact",
+   "title": "Listed company impact",
+   "subsections": [
+    {
+     "title": "Meghmani Organics: a restart option, not yet a restart",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "Meghmani bought Kilburn Chemicals for Rs 132 cr in Dec 2021 and commissioned a 16,500 tpa TiO2 plant at Dahej in Jan 2023 (S10). The unit makes anatase grade by the sulphate route and has a 12 MW captive power plant. It holds about 18% of Indian capacity (S6). Meghmani shut the plant in late Nov 2025, citing the duty lapse and high sulphuric acid costs, and at the time it projected a restart in Q2 FY27 / mid-2026, depending on DGTR (S7). On the Q1 FY27 call (30 Jul 2026), management said there was 'no timeline' until acid costs normalise and the duty is 'back on track'. It reported TiO2 EBITDA of about -Rs 3 cr for the quarter and estimated annual losses of Rs 10-12 cr while idle. Acid had risen from about Rs 4-5 to Rs 35-40 per unit (S8). In Q2 FY27 (results published 7 Nov 2026), the unit was still suspended. Management cited acid up about 7-8x and called the re-imposed duty positive (S9)."
+      },
+      {
+       "type": "chart",
+       "title": "Meghmani Organics consolidated quarterly results",
+       "unit": "Rs crore",
+       "series": [
+        {
+         "name": "Sales",
+         "points": [
+          [
+           "Q3 FY26",
+           509
+          ],
+          [
+           "Q4 FY26",
+           474
+          ],
+          [
+           "Q1 FY27",
+           543
+          ],
+          [
+           "Q2 FY27",
+           667
+          ]
+         ]
+        },
+        {
+         "name": "Net profit",
+         "points": [
+          [
+           "Q3 FY26",
+           -4
+          ],
+          [
+           "Q4 FY26",
+           8
+          ],
+          [
+           "Q1 FY27",
+           48
+          ],
+          [
+           "Q2 FY27",
+           34
+          ]
+         ]
+        }
+       ],
+       "source": "Source: screener.in, 19 Nov 2026 (S11)"
+      },
+      {
+       "type": "callout",
+       "tone": "info",
+       "text": "Sensitivity (our arithmetic on cited figures): avoiding the Rs 10-12 cr annual idle loss (S8) equals roughly 35-40% of FY26 consolidated net profit of Rs 29 cr (S11). At 16,500 tpa (S10), each USD 100/t of realisation is about USD 1.65 mn of revenue a year at full utilisation. Pigments (ex-TiO2) earned Rs 16 cr EBITDA on Rs 161 cr revenue in Q2 FY27 at 51% utilisation (S9)."
+      }
+     ]
+    },
+    {
+     "title": "Adani Enterprises and feedstock adjacencies",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "Adani Enterprises' Natural Resources segment discloses a beach-sand mining project, run through Alluvial Heavy Minerals Ltd, on APMDC-owned blocks of about 991 ha at Srikakulam and Bheemunipatnam. It is designed to process 10 mtpa of raw sand for ilmenite, rutile and zircon (S17). Press reports say the three leases hold about 6.68 mt of ilmenite, roughly 10 years of supply for the proposed park, and that the company wants two more leases for a 20-25 year life (S15, S16). At a market capitalisation of about Rs 3.66 lakh cr (S18), the titanium plan is immaterial to Adani Enterprises today."
+      },
+      {
+       "type": "p",
+       "text": "Among smaller caps, Cochin Minerals & Rutile (BSE 513353, market cap about Rs 288 cr) makes synthetic rutile, a high-grade feedstock for TiO2 pigment, at Edayar, Kochi. It is 100% export-oriented and reported FY26 sales of Rs 295 cr (S19). DCW (BSE 500117) lists synthetic rutile among its specialty chemicals (S20). Neither has announced a move into pigment. Their link to the duty is indirect, through feedstock demand from domestic pigment plants."
+      },
+      {
+       "type": "callout",
+       "tone": "warn",
+       "text": "Coverage gap: we checked large, mid and small caps. Meghmani is the only listed operating TiO2 pigment producer. KMML is a Kerala government undertaking (S22), and we did not find Travancore Titanium Products or V.V. Titanium on NSE/BSE. No listed paint maker has disclosed backward integration into TiO2."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "research_house_views",
+   "title": "Research house views and market pricing",
+   "subsections": [
+    {
+     "title": "Has the market priced it in?",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "Meghmani Organics (NSE: MOL) market data",
+       "columns": [
+        "Metric",
+        "Value",
+        "Source"
+       ],
+       "rows": [
+        [
+         "Price (19 Nov 2026)",
+         "Rs 53.6",
+         "S11"
+        ],
+        [
+         "Market cap",
+         "Rs 1,364 cr",
+         "S11"
+        ],
+        [
+         "High / low",
+         "Rs 70.5 / Rs 36.4",
+         "S11"
+        ],
+        [
+         "P/E; price/book",
+         "15.8x; ~0.84x",
+         "S11"
+        ],
+        [
+         "1-yr return",
+         "-23% (screener.in) / -35.2% (Kotak Neo, 30 Oct 2026)",
+         "S11, S13"
+        ],
+        [
+         "3-yr CAGR",
+         "-9%",
+         "S11"
+        ]
+       ]
+      },
+      {
+       "type": "p",
+       "text": "We could not source verified 1-, 3- and 6-month returns, so we leave them out. The stock sits about 47% above its 52-week low and still below the high (our arithmetic on S11), so there is no sign of a duty-led re-rating. Coverage is thin: a Multibagg note (5 Nov 2026) on Meghmani's 18% capacity share (S6), and AI-generated summaries of the earnings calls (S8). We found no sell-side initiation or report focused on TiO2."
+      }
+     ]
+    },
+    {
+     "title": "Global price views",
+     "blocks": [
+      {
+       "type": "bullets",
+       "items": [
+        "TiPMC (Fall 2026 forecast): the global average price was about USD 3,251/t in Q2 2026 (+2.9% QoQ). Further increases will be harder to push through. Chinese chloride capacity keeps expanding, and about 310,000 t of former Venator capacity is coming back in Europe (S23).",
+        "Intratec's April 2026 sample prices: China USD 2,370/t (+14% MoM, +12% YoY), Southeast Asia USD 2,390/t, Europe USD 3,710/t (S24). On these prices, the USD 460-681/t duty equals roughly 19-29% of the China price (our arithmetic on S1, S24)."
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "risks_and_catalysts",
+   "title": "Risks and catalysts",
+   "subsections": [
+    {
+     "title": "Risks",
+     "blocks": [
+      {
+       "type": "bullets",
+       "items": [
+        "Re-litigation: the paint users' association overturned the 2025 duty on procedure (S5), and the new notification could face a similar challenge.",
+        "Input costs: sulphuric acid up about 7-8x is the stated reason Kilburn is still shut (S9). The duty alone does not fix sulphate-route economics (S8).",
+        "Chinese pricing and re-routing: the USD 681/t residual covers China-origin goods shipped via third countries (S1). TiPMC sees Chinese capacity growing and duties redirecting Chinese exports (S23).",
+        "Paint-maker pushback: paint makers were already raising prices in 2026 on crude-linked input costs. Asian Paints took 6-8% and then 3-5% (S26), and the duty adds to their cost base. Berger had cited marginal relief from the duty withdrawal (S25).",
+        "Execution: Meghmani's Phase 2 is years behind its original Q3 FY24 target (S10). The Adani park depends on state incentives, extra leases and a pending beach-sand policy (S15, S16)."
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Catalysts",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "Near-term catalysts",
+       "columns": [
+        "Event",
+        "Timing",
+        "Why it matters"
+       ],
+       "rows": [
+        [
+         "Meghmani Q3 FY27 results and call",
+         "Jan-Feb 2027 (expected)",
+         "Restart decision, TiO2 loss run-rate, Phase 2 (S8, S9)"
+        ],
+        [
+         "Customs implementation of end-use exclusions",
+         "Ongoing from Oct 2026",
+         "Leakage through excluded grades (S2)"
+        ],
+        [
+         "Any writ against Notification 26/2026",
+         "Open",
+         "Duty durability (S5)"
+        ],
+        [
+         "AP beach-sand/rare-earth policy; extra leases for Alluvial",
+         "Cabinet decision 'expected soon' as of Oct 2026",
+         "Gates the Adani park (S15)"
+        ],
+        [
+         "Chinese export price moves",
+         "Monthly",
+         "Effective protection versus the USD 460-681/t duty (S23, S24)"
+        ]
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "companies": [
+  {
+   "name": "Meghmani Organics Ltd",
+   "nse": "MOL",
+   "bse": "543331",
+   "bucket": "domestic_tio2_producers",
+   "role": "Owns Kilburn Chemicals, whose Dahej plant makes anatase TiO2 by the sulphate route; about 18% of Indian capacity, 16,500 tpa Phase 1 (S6, S10).",
+   "impact": "The most direct beneficiary of the USD 460-681/t duty (S1), but the plant has been suspended since Nov 2025 on sulphuric acid costs, with no restart date at Q2 FY27 (S7, S9). A restart would stop idle losses of about Rs 10-12 cr a year (S8)."
+  },
+  {
+   "name": "Adani Enterprises Ltd",
+   "nse": "ADANIENT",
+   "bse": null,
+   "bucket": "planned_integrated_capacity",
+   "role": "Natural Resources segment runs a beach-sand mining project through Alluvial Heavy Minerals on about 991 ha of APMDC blocks, designed to process 10 mtpa of raw sand for ilmenite, rutile and zircon (S17).",
+   "impact": "A group-level Rs 16,000 cr, 200,000 t pigment proposal is with the AP government and not approved (S15, S16). It is not a company filing, and is immaterial to a market cap of about Rs 3.66 lakh cr (S18)."
+  },
+  {
+   "name": "Adani Ports and SEZ Ltd",
+   "nse": "ADANIPORTS",
+   "bse": null,
+   "bucket": "other",
+   "role": "Its MD Karan Adani led the delegation that briefed the AP Chief Minister on the proposed titanium plant in Aug 2026 (S14).",
+   "impact": "No company-level disclosure of a TiO2 project. Any link is through group-level proposals only (S14)."
+  },
+  {
+   "name": "Cochin Minerals & Rutile Ltd",
+   "nse": null,
+   "bse": "513353",
+   "bucket": "other",
+   "role": "Export-oriented maker of synthetic rutile, a high-grade titanium feedstock for TiO2 pigment and sponge, at Edayar, Kochi (S19).",
+   "impact": "Indirect: a domestic pigment restart could add a home market for feedstock. It has no pigment plans. FY26 profit fell to Rs 13 cr from Rs 24 cr (S19)."
+  },
+  {
+   "name": "DCW Ltd",
+   "nse": "DCW",
+   "bse": "500117",
+   "bucket": "other",
+   "role": "Diversified chemicals maker whose specialty range includes synthetic rutile (S20).",
+   "impact": "A marginal feedstock adjacency. The duty does not directly affect its synthetic rutile exports (S20)."
+  },
+  {
+   "name": "Asian Paints Ltd",
+   "nse": "ASIANPAINT",
+   "bse": null,
+   "bucket": "other",
+   "role": "India's largest paint maker and a TiO2 consumer. Paints are about 60% of Indian TiO2 demand (S6).",
+   "impact": "Faces a higher landed TiO2 cost on top of 2026 crude-linked inflation, after two price hikes of 6-8% and 3-5% (S26)."
+  },
+  {
+   "name": "Berger Paints India Ltd",
+   "nse": "BERGEPAINT",
+   "bse": null,
+   "bucket": "other",
+   "role": "Paint maker and TiO2 user. Said it benefited from winning the case against the duty (S25).",
+   "impact": "The marginal cost relief it cited from the duty withdrawal reverses with the re-imposition (S25, S1)."
+  },
+  {
+   "name": "Kansai Nerolac Paints Ltd",
+   "nse": "KANSAINER",
+   "bse": null,
+   "bucket": "other",
+   "role": "Paint maker named among companies lined up to raise prices on input costs in 2026 (S26).",
+   "impact": "A TiO2 cost uplift from the duty adds to 2026 input pressures. Pass-through depends on competitive intensity (S26)."
+  },
+  {
+   "name": "Indigo Paints Ltd",
+   "nse": "INDIGOPNTS",
+   "bse": null,
+   "bucket": "other",
+   "role": "Smaller decorative paint maker named among companies expected to pass on higher input costs (S26).",
+   "impact": "A smaller player with less pricing power, exposed to any TiO2 cost increase (S26)."
+  }
+ ],
+ "sources": [
+  {
+   "id": "S1",
+   "publisher": "World Trade Scanner (text of CBIC Notification 26/2026-Customs (ADD))",
+   "title": "Customs Issues Anti-dumping Notification - Titanium Dioxide from China PR",
+   "url": "https://worldtradescanner.com/26-Cus(ADD)-24.10.2026.htm",
+   "date": "2026-10-24",
+   "kind": "primary"
+  },
+  {
+   "id": "S2",
+   "publisher": "TeamLease RegTech",
+   "title": "CBIC issued Anti-Dumping Duty on imports of Titanium Dioxide originating in or exported from China PR",
+   "url": "https://teamleaseregtech.com/updates/article/60752/cbic-issued-anti-dumping-duty-on-imports-of-titanium-dioxide-originati/",
+   "date": "2026-10-27",
+   "kind": "other"
+  },
+  {
+   "id": "S3",
+   "publisher": "Angel One",
+   "title": "India extends anti-dumping duty on Chinese titanium dioxide for 5 years",
+   "url": "https://www.angelone.in/news/economy/india-extends-anti-dumping-duty-on-chinese-titanium-dioxide-for-5-years",
+   "date": "2026-10-26",
+   "kind": "news"
+  },
+  {
+   "id": "S4",
+   "publisher": "Asian Metal",
+   "title": "DGTR recommends anti-dumping duty on Chinese titanium dioxide",
+   "url": "https://www.asianmetal.com/news/2356669/DGTR-recommends-anti-dumping-duty-on-Chinese-titanium-dioxide/1",
+   "date": "2026-08-11",
+   "kind": "news"
+  },
+  {
+   "id": "S5",
+   "publisher": "Millennium Post",
+   "title": "Can't hide key facts in China trade probe under confidentiality (Calcutta HC)",
+   "url": "https://www.millenniumpost.in/bengal/cant-hide-key-facts-in-china-trade-probe-under-confidentiality-632524",
+   "date": "2025-10-24",
+   "kind": "news"
+  },
+  {
+   "id": "S6",
+   "publisher": "Multibagg",
+   "title": "MOL TiO2 holds 18% Indian capacity as China duty returns",
+   "url": "https://www.multibagg.ai/market-pulse/articles/mol-tio2-import-substitution-capacity-ppt-cmw38ngly003e2hmn0sohj6ma",
+   "date": "2026-11-05",
+   "kind": "research"
+  },
+  {
+   "id": "S7",
+   "publisher": "Whalesbook",
+   "title": "Meghmani Organics Posts Loss on TiO2 Woes, Standalone Business Shines",
+   "url": "https://www.whalesbook.com/news/English/chemicals/Meghmani-Organics-Posts-Loss-on-TiO2-Woes-Standsalone-Business-Shines/6987200cb81b2b81dcfc354c",
+   "date": "2026-02-07",
+   "kind": "news"
+  },
+  {
+   "id": "S8",
+   "publisher": "Perivis",
+   "title": "TiO2 Suspension Tied to Raw Material Shock and Anti-Dumping (Meghmani Q1 FY27 call summary)",
+   "url": "https://blog.perivis.com/2026/08/04/tio2-suspension-tied-to-raw-material-shock-and-anti-dumping/",
+   "date": "2026-08-04",
+   "kind": "research"
+  },
+  {
+   "id": "S9",
+   "publisher": "Multibagg",
+   "title": "Meghmani Organics Q2 FY27 profit rises 193% to Rs 33.9 crore",
+   "url": "https://www.multibagg.ai/market-pulse/articles/meghmani-organics-q2-profit-surges-cmw66fz1x00ai2bnxjgo978px",
+   "date": "2026-11-07",
+   "kind": "news"
+  },
+  {
+   "id": "S10",
+   "publisher": "Indian Chemical News",
+   "title": "Meghmani Organics commissions Titanium Dioxide plant; Phase 2 Capex plan of Rs. 375 Cr",
+   "url": "https://www.indianchemicalnews.com/chemical/lite/meghmani-organics-commissions-titanium-dioxide-plant-phase-2-capex-plan-of-rs-375-cr-16177",
+   "date": "2023-01-24",
+   "kind": "news"
+  },
+  {
+   "id": "S11",
+   "publisher": "Screener.in",
+   "title": "Meghmani Organics Ltd - consolidated financials and price",
+   "url": "https://www.screener.in/company/MOL/consolidated/",
+   "date": "2026-11-19",
+   "kind": "other"
+  },
+  {
+   "id": "S13",
+   "publisher": "Kotak Neo",
+   "title": "Meghmani Organics Share Price",
+   "url": "https://www.kotakneo.com/stocks/meghmani-organics-share-price/",
+   "date": "2026-10-30",
+   "kind": "other"
+  },
+  {
+   "id": "S14",
+   "publisher": "Free Press Journal (PTI)",
+   "title": "Adani Group Proposes Rs 16,000 Crore Titanium Plant In Andhra Pradesh's Srikakulam",
+   "url": "https://www.freepressjournal.in/india/adani-group-proposes-16000-crore-titanium-plant-in-andhra-pradeshs-srikakulam",
+   "date": "2026-08-12",
+   "kind": "news"
+  },
+  {
+   "id": "S15",
+   "publisher": "ETV Bharat",
+   "title": "Adani Group Submits Proposal For Titanium Park In Srikakulam, Andhra Pradesh Govt Formulates Plan To Utilise Abundant Beach Sand Minerals",
+   "url": "https://www.etvbharat.com/en/state/adani-group-submits-proposal-to-andhra-pradesh-to-set-up-titanium-park-in-srikakulam-enn26101801178",
+   "date": "2026-10-18",
+   "kind": "news"
+  },
+  {
+   "id": "S16",
+   "publisher": "Channel IAM",
+   "title": "Adani Plans Rs 16,000 Crore Titanium Park",
+   "url": "https://en.channeliam.com/2026/10/21/adani-group-titanium-park-andhra-pradesh/",
+   "date": "2026-10-21",
+   "kind": "news"
+  },
+  {
+   "id": "S17",
+   "publisher": "Adani Enterprises",
+   "title": "Business Segment Performance Review - Natural Resources (Annual Report 2026 digital)",
+   "url": "https://www.adanienterprises.com/digital-reports/enterprises/2026/natural-resources.html",
+   "date": "2026-06-01",
+   "kind": "company"
+  },
+  {
+   "id": "S18",
+   "publisher": "Screener.in",
+   "title": "Adani Enterprises Ltd",
+   "url": "https://www.screener.in/company/ADANIENT/consolidated/",
+   "date": "2026-11-19",
+   "kind": "other"
+  },
+  {
+   "id": "S19",
+   "publisher": "Screener.in",
+   "title": "Cochin Minerals & Rutile Ltd",
+   "url": "https://www.screener.in/company/513353/",
+   "date": "2026-11-19",
+   "kind": "other"
+  },
+  {
+   "id": "S20",
+   "publisher": "Stock Analysis",
+   "title": "DCW Limited (BOM:500117) company profile",
+   "url": "https://stockanalysis.com/quote/bom/500117/company",
+   "date": "2026-11-20",
+   "kind": "other"
+  },
+  {
+   "id": "S22",
+   "publisher": "Kerala Minerals & Metals Ltd",
+   "title": "Process",
+   "url": "https://www.kmml.com/process",
+   "date": "2026-11-20",
+   "kind": "company"
+  },
+  {
+   "id": "S23",
+   "publisher": "PCI Magazine (TiPMC Consulting)",
+   "title": "TiO2 Recovery Faces New Pressure as Global Capacity Returns",
+   "url": "https://www.pcimag.com/articles/115502-tio-recovery-faces-new-pressure-as-global-capacity-returns",
+   "date": "2026-11-13",
+   "kind": "research"
+  },
+  {
+   "id": "S24",
+   "publisher": "Intratec",
+   "title": "Titanium Dioxide Prices",
+   "url": "https://www.intratec.us/solutions/primary-commodity-prices/commodity/titanium-dioxide-prices",
+   "date": "2026-11-06",
+   "kind": "research"
+  },
+  {
+   "id": "S25",
+   "publisher": "Investywise",
+   "title": "Berger Paints India Q3 FY26 Results Transcript Highlights",
+   "url": "https://www.investywise.com/?p=51934",
+   "date": "2026-02-10",
+   "kind": "news"
+  },
+  {
+   "id": "S26",
+   "publisher": "Upstox",
+   "title": "Sector watch: Asian Paints, Berger - will price hikes brush off input cost concerns for paint stocks?",
+   "url": "https://upstox.com/news/market-news/stocks/sector-watch-asian-paints-berger-will-price-hikes-brush-off-input-cost-concerns-for-paint-stocks/article-192499/",
+   "date": "2026-04-21",
+   "kind": "news"
+  }
+ ],
+ "method": "First edition, researched on 20 Nov 2026 with web search and page fetches. The duty table and exclusions come from a reproduction of the notification text (S1), cross-checked against CBIC circular coverage (S2) and news reports (S3, S4). The court history comes from coverage of the Calcutta HC judgment (S5). Meghmani's TiO2 status is traced across the Q3 FY26, Q1 FY27 and Q2 FY27 commentary (S7-S9); the original transcripts were not opened, so call summaries from secondary sites are attributed. The Adani status is checked against AEL's own segment disclosure (S17) and AP-government-sourced press reports (S14-S16). We screened listed paint, mineral-sands and chemical companies across market-cap tiers. Only Meghmani operates a TiO2 pigment plant. Feedstock and user companies are classed as 'other'. Market data is from screener.in (19 Nov 2026). Sensitivities marked 'our arithmetic' are derived from cited figures. Short-period (1/3/6-month) returns could not be verified and are omitted. The official CBIC PDF and Adani investor presentation PDFs could not be text-extracted.",
+ "bucket_labels": {
+  "domestic_tio2_producers": [
+   "Listed TiO2 Pigment Producers",
+   "Listed companies with an operating TiO2 pigment plant in India that benefit directly from the import-duty reset"
+  ],
+  "planned_integrated_capacity": [
+   "Ilmenite Feedstock & Planned Ilmenite-to-TiO2 Capacity",
+   "Listed companies with company-disclosed ilmenite/beach-sand mining aimed at TiO2 value-addition; the TiO2 plant itself is a group proposal briefed to the state, not yet a company filing (inference, not confirmed intent)"
+  ],
+  "other": [
+   "Other",
+   ""
+  ]
+ },
+ "kind": "theme"
+}
