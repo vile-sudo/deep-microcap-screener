@@ -1,7 +1,7 @@
 {
  "trade_date": "2026-11-20",
  "threshold_percent": 4.0,
- "generated_at": "2026-11-20T19:07:17+05:30",
+ "generated_at": "2026-11-21T14:20:59+05:30",
  "stats": {
   "scanned": 3461,
   "flagged": 397,
@@ -60,7 +60,7 @@
   },
   {
    "symbol": "PARAMATRIX",
-   "name": "PARAMATRIX",
+   "name": "PARAMATRIX TECHNOLOGIES L",
    "board_code": null,
    "series": "SM",
    "direction": "UP",
@@ -219,9 +219,17 @@
    "raw_pct_change": 10.92,
    "corporate_action": null,
    "why": {
-    "headline": "No disclosed reason",
-    "confidence": "none",
-    "evidence": []
+    "headline": "Management Change (Scanx)",
+    "confidence": "low",
+    "evidence": [
+     {
+      "tier": "news",
+      "kind": "management change",
+      "detail": "Sigachi Industries seeks approval for two director appointments",
+      "url": "https://news.google.com/rss/articles/CBMitwFBVV95cUxOVGZwY3VzQkFBMEZneERnREpYUjhIUUY0ZU80UFY0RWJ2WHp6Q25XeW9RQVdod05ZdEZhbU9OTU03OGlva1RyWDNLQ284VGtzUkNSWTkzdFZibGlCdHlZSVBuTGwtVXlobG1YYkxRZnREU0pwSmRfd3pUTy0wc0JxZVU2VnNTRXhQbXJyeU4zZTFBbW1CeGIxR1hCTFV5VE9QVzhxOFV2Z2R0UDgxN2ZZQTNLNVBWbDA?oc=5",
+      "source": "Scanx"
+     }
+    ]
    },
    "news_checked": true
   },
@@ -362,9 +370,17 @@
    "raw_pct_change": 9.23,
    "corporate_action": null,
    "why": {
-    "headline": "No disclosed reason",
-    "confidence": "none",
-    "evidence": []
+    "headline": "Management Change (Scanx)",
+    "confidence": "low",
+    "evidence": [
+     {
+      "tier": "news",
+      "kind": "management change",
+      "detail": "Chembond appoints Pramod Bawa as CEO and key managerial personnel",
+      "url": "https://news.google.com/rss/articles/CBMitgFBVV95cUxQdkR4bHdJRVVpa0EwdGJUeWpINVRTYl85Yk15UFFaX0hQOW5QaEJCdUVUSXdxdFhKREFyUnpJSU9kdDkyS0x0QWx4NnNBUmo0V3hQQU5CVFQySy1MaFJ5eUJXZnJRNmhQREdiU1JENmlRZ2dNUk5HdDl3Tl9lREdhTktxc1ZRX3dzcWpfWHY3Vmc1UGUtUDRJZ2pBUmxNRHplVnVFM3dVTGhnOVN1d1o4aVlrZzZsQQ?oc=5",
+      "source": "Scanx"
+     }
+    ]
    },
    "news_checked": true
   },
@@ -400,7 +416,7 @@
    "raw_pct_change": 8.59,
    "corporate_action": null,
    "why": {
-    "headline": "Investor Meeting, reported by Business Today",
+    "headline": "Investor Meeting, reported by Mint",
     "confidence": "high",
     "evidence": [
      {
@@ -416,6 +432,13 @@
       "detail": "IndusInd Bank Limited has informed the Exchange about Outcome of Analysts/institutional investors meet",
       "url": "https://nsearchives.nseindia.in/corporate/INDUSINDBK1_19112026180655_FinalUpload.pdf",
       "source": "19 Nov 18:07"
+     },
+     {
+      "tier": "news",
+      "kind": "regulatory or legal",
+      "detail": "IndusInd Bank fires former MD Kathpalia post internal probe, invokes clawback arrangement",
+      "url": "https://news.google.com/rss/articles/CBMi5AFBVV95cUxQVzNJRG5ZN2VWRDVHekF4SHh4bG42ZXpmcVJwbGlCU3o4dF9tejdiLU9yNDY3cmw4MUw2ODJEa2stVFlrM3dWOUxXdHRkXzI5VmFBVjloZXFtNlk4SHRoUUtzdzlMV0gyUTB1TUNLOFREV0p5ZDFqMHVVM2EzN2Q3eTBmWkFRLXNrRjl0ZklpT3RsUm91ekZGaVRjc1FLeE9uNXNLdHp6WXZmVlFtVGl6WDAyWXpzOGNISzRTZDF2aHJwMXF6R1NxU1RGdkRTY2tkRHFycThqcnRLVlFWUzR3eXVvOGLSAeoBQVVfeXFMT0JEOWxrR2NfZ2FIajV6bDUzbEhxTmdWYjJqZ2plTVVORndGb0x4MVRnTlFOMm0xY3YxeGU0Q1k0aVliRVRPejV3MXR4X21SQU5lNjBGazhWcXN4VkdJWDRzTDlhV2hCUmtteVZhck9DcW5ZZUY5UFNyOEFsdHpTNWI1RkFXOVo1cjZrc2VOV1dTUFB6UW4xVDFSN2Qxd0h6bDBONDQwT2ZmQWdfMnFiMWsxUC1hOFdKYWdmdW9Vb3Q3dnlCcmcyY3ppZ2lRcmx3cEcwRVlFdEg0SDVEdDlLVkhsaWFnbExONjNB?oc=5",
+      "source": "Mint"
      },
      {
       "tier": "news",
@@ -1273,28 +1296,14 @@
    "raw_pct_change": 5.0,
    "corporate_action": null,
    "why": {
-    "headline": "Results (Investing.com)",
+    "headline": "Broker Action (Investing.com)",
     "confidence": "medium",
     "evidence": [
      {
       "tier": "news",
-      "kind": "results",
-      "detail": "Precision Optics beats estimates on revenue growth By Investing.com",
-      "url": "https://news.google.com/rss/articles/CBMisAFBVV95cUxOa1Juc3VMYU1lOTlsVFZzUGd1NHd1Y2xYVEVTLVBFeDNuX3MwRGloNld3dHlxZW1QWmlpTndaSUYxNE9SbjNYRWlfYWhDUVZ3T2hFVU11cGVLNjhwRl82U1RHSmpScnJMUkpKVm9kV3JLMEJyVDduM25nWnZSTWNHT215YTFfdjlpR0hZcl9YZC1IUWZGZkN3aUdDWUZzOTBHTXZXeEMyWUdEMXN1b1NsOA?oc=5",
-      "source": "Investing.com"
-     },
-     {
-      "tier": "news",
       "kind": "broker action",
-      "detail": "B.Riley initiates Praxis Precision Medicines stock with buy rating on drug approvals By Investing.com",
+      "detail": "B.Riley initiates Praxis Precision Medicines stock with buy rating on drug approvals",
       "url": "https://news.google.com/rss/articles/CBMi3AFBVV95cUxPM2gtdW5FVmZFYTdVVmRrQ0h6RWdYbzhUV2lscXgzWndQRXJ0eEo5WWVnLXp3elNQZnoxYTFvVUVRV2dTNUVlaVBWR2IzQVRZd29jZV9uMEhhcmJtSjFvcE9LUm1JWTAtVzZHS3M0OV8xWmx2YWZXSFVjRFQtUTdobmRHbTFmd3ZCTTZvOWpiZ3pSSzRXNEtzNEFjOGwwRHI2MkY5OW1IcDBzUFYtMkhqR0tDMGNvNjNuWndFZEd0d2czWDNrZnV4MmhESEpheGtsOW43SDN4X1U1d2s4?oc=5",
-      "source": "Investing.com"
-     },
-     {
-      "tier": "news",
-      "kind": "broker action",
-      "detail": "Wells Fargo upgrades Praxis Precision Medicines stock rating on endpoint confidence By Investing.com",
-      "url": "https://news.google.com/rss/articles/CBMi3AFBVV95cUxNUjZvcEhqY1hoSjlaQjJOdUdNTnpNYTd4RjRUTGhwR19LdjdkZk1WeU9KVlEyMndqLUx0a3FzdFdyTVgzYU9UN1FNSV9ONm1oZUczZzZON2RJUFoyVWJiVWEtaWktRGxnVG54ajRQN2NIU1hEUi1aMnZMSEh3UDNKN1hQSjVjOVNVSE9ackt2M3pXN0lLUXY4dFRJT0pTYjVUcU5Zb2I2b2dFektrN3M2em5uSFF2TTExVEVVQzBIVnp5VGVWTUk3Rk1IbEM0enh4SEJrZEN6SkwyRE5p?oc=5",
       "source": "Investing.com"
      }
     ]
@@ -1378,16 +1387,16 @@
      },
      {
       "tier": "news",
-      "kind": "management change",
-      "detail": "Runwal Enterprises CSMO Balwinder Singh Reen resigns on personal grounds",
-      "url": "https://news.google.com/rss/articles/CBMixAFBVV95cUxNWk9VeTNLNklMVmd3RlR2WFBOdktrbHVzeWdxYUdEeEFVY0VBamRpbUtpSkNBZDdhd0plWUExQkRzR2h3NWZHU2lBZTlIdE9kVHQtdE5qREZRMGV3Y2NBMzY3VWVKNGNSUGNlZmhRanhfR2lud3c0aXN6MUV0MHg2ZmxvLWZwZ05pWFdpX25rVUhFVVNBdm5YZkhtcElVeEtBdnYwelNOTmY0Z0pXV05KXzNkV2ZQY2M3SGdLRTJQSHl4Z09O?oc=5",
+      "kind": "regulatory or legal",
+      "detail": "Runwal Enterprises submits fair disclosure code under SEBI PIT regulations",
+      "url": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxPM1Y1ejRZc01lck1MSW5MRC1QaGY4ajJWWkFZNDhjWGhqYnNhaVZrWHdrVkRlcHV0LVQ4WEs0a25Id05nLVpGcWJuQ2ZnaldwNDhkRVJsTWFyVER6SmlCM1pKTmhxcVZPd0JUX0xJaHg3MXVnR0pONXFhOUt4NHFCS3ZsTzc2VmlsaGpCVll4UDk0aUZIZkpLeVFTdzZJUHVKMTZMZUJJYTFUZGpUUzVaek9rcElnV0U4UWZJ?oc=5",
       "source": "Scanx"
      },
      {
       "tier": "news",
-      "kind": "regulatory or legal",
-      "detail": "Runwal Enterprises submits fair disclosure code under SEBI PIT regulations",
-      "url": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxPM1Y1ejRZc01lck1MSW5MRC1QaGY4ajJWWkFZNDhjWGhqYnNhaVZrWHdrVkRlcHV0LVQ4WEs0a25Id05nLVpGcWJuQ2ZnaldwNDhkRVJsTWFyVER6SmlCM1pKTmhxcVZPd0JUX0xJaHg3MXVnR0pONXFhOUt4NHFCS3ZsTzc2VmlsaGpCVll4UDk0aUZIZkpLeVFTdzZJUHVKMTZMZUJJYTFUZGpUUzVaek9rcElnV0U4UWZJ?oc=5",
+      "kind": "management change",
+      "detail": "Runwal Enterprises CSMO Balwinder Singh Reen resigns on personal grounds",
+      "url": "https://news.google.com/rss/articles/CBMixAFBVV95cUxNWk9VeTNLNklMVmd3RlR2WFBOdktrbHVzeWdxYUdEeEFVY0VBamRpbUtpSkNBZDdhd0plWUExQkRzR2h3NWZHU2lBZTlIdE9kVHQtdE5qREZRMGV3Y2NBMzY3VWVKNGNSUGNlZmhRanhfR2lud3c0aXN6MUV0MHg2ZmxvLWZwZ05pWFdpX25rVUhFVVNBdm5YZkhtcElVeEtBdnYwelNOTmY0Z0pXV05KXzNkV2ZQY2M3SGdLRTJQSHl4Z09O?oc=5",
       "source": "Scanx"
      }
     ]
@@ -1605,31 +1614,9 @@
    "raw_pct_change": 4.98,
    "corporate_action": null,
    "why": {
-    "headline": "Operations (Reuters)",
-    "confidence": "medium",
-    "evidence": [
-     {
-      "tier": "news",
-      "kind": "operations",
-      "detail": "Take-Two set to shatter sales records as 'GTA VI' launches to massive fanfare",
-      "url": "https://news.google.com/rss/articles/CBMisgFBVV95cUxONUF6bm1SdVF6MDNJX3VvZXF3d0pzLVVoQXJxUTJEZ1ZqaGszRTNTOWNPaXRrOXhFcEhJeGJfT2V6dkVocUxyQVZaXzlQOXFtOVJZMER1WmxMbTN5VXFqMXJfbkhabFNtd1VTbnJ6dGVVSlJua2EwSGRYUHk5QmhtaXhaWV9NQWFSalhRZU5takkwWkNzeGV1TWpFRVBtWmJvbEFMLUhpZEJDRXl2Y3FveFZn?oc=5",
-      "source": "Reuters"
-     },
-     {
-      "tier": "news",
-      "kind": "fundraise or deal",
-      "detail": "Watch Big Take: All Eyes on Anthropic’s IPO",
-      "url": "https://news.google.com/rss/articles/CBMilgFBVV95cUxQRGJ5QTJldlhHRUR6RTNjc1otMEFDUHlfWXhRUjFmdkYzRjZKOXNzSUJCNGF1TkVNOU1KWEEyYXVHVGpVX0FJMzlLUzdYOGJ5V1RNWU1OLXoxbjNNbXVmdWFzdWZlVnB5T282NFI3dk5LcE1HeUZNZndCRF9KM0p6VTJva0ZaMmFlM1V2cnQ2N05va2hKQ2c?oc=5",
-      "source": "Bloomberg"
-     },
-     {
-      "tier": "news",
-      "kind": "regulatory or legal",
-      "detail": "Right to breathe: Can you take the government to court over polluted air?",
-      "url": "https://news.google.com/rss/articles/CBMi3AFBVV95cUxPRjZJbjVGZzVLQXhMTkNIUkU2cnVqNzVnY29odF9fRkVuR0RzV05yZmdOekpkQ0huUkNXME9ESEpNb3NSNDNVUGFIR1JucG4zajFlaWI0dFRtZE1PVlJTR0RKMFFqQWlvTTh1dEgxempOYV9sd3ZtVmxCaHMwQ0xJZ2VqSnRhV1Ywbk4tcks4Ymg0T0ZFamVBRWFyQUdETWxVd0hXdzY5N1JCajNnb3dMekN0T1lDVmJsaVVvbDNmcEU1cjZVdXczdXIwVmZkNUp2amk2UnNZdEdXVVJh?oc=5",
-      "source": "Times of India"
-     }
-    ]
+    "headline": "No disclosed reason",
+    "confidence": "none",
+    "evidence": []
    },
    "news_checked": true
   },
@@ -2082,6 +2069,13 @@
       "detail": "Rishabh Instruments Ltd (NSE:RISHABH) (H1 2027) Earnings Call Highlights: EEI Segment Surges ... By GuruFocus",
       "url": "https://news.google.com/rss/articles/CBMi1AFBVV95cUxOd0dnVWN3eEFwSXFlODROTWk2bFo4dnBqcDJFVUZ1WkF3bzd4RDA1dXloeEo4bkl5ZjZrYThIZUdsLTBPcUo0M0djeE1OUklyZS1Vd3dRMWJJMmhmWTlnNlVOLXk5TWxpVnpXRzVhaUl4ZHBnZ3ZmZ0k2Z3MxbHFQWFI3dExBVXdKaWpxcWxHWURmUUh6dVFLOTVIWk1GUUxqZzczMG9zTW8wbXF3d3BnLXQ3WjlfQ3J5Wi01bnhhaE5aMVg1ZFRrMjZMWFUtT2tLSUpReQ?oc=5",
       "source": "Investing.com"
+     },
+     {
+      "tier": "news",
+      "kind": "results",
+      "detail": "Rishabh Instruments Q2FY27: Management guides EEI margin to 20-22%, cites aluminum drag",
+      "url": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxQaHBSWFJLNFNiVl9RQlBCT1JuZEh0MXdlSGRHU0w5ZWMwT09KckQ4WnBaM2JneC05Q0Z1dTAtMjhjZjM5a1h6SFc0TElQQkI1aDNkVGdBLVZTci02RzhSNkhZWkJUcEJaejBBVno2NUpkUDIxeGk1cFlkMkxfS1NsWElCYmlvNHh1bzA3RG16VTk5N09CRzBERG9MM1VaQUJyT3JJN3NPbFJXcnRyaXNCN0s0R050NlpieDFLV09vbU0?oc=5",
+      "source": "Scanx"
      }
     ]
    },
@@ -2200,13 +2194,6 @@
       "detail": "BlackRock raises its stake in Axis Bank to 5%",
       "url": "https://news.google.com/rss/articles/CBMipwFBVV95cUxPbXZ0MWNHNHhSanpjYUZYYXM2TW0wcDNRZEpPQmdvWnhnTFpmcmdWTDdZNkNrQzhHSzBlaGxZTml4T1VYQ0JCdWJaQjNyOU1uY1d2TUM5TDVXWGxPNUoxbXEzVUVDTFluZTBwRHJGZUkzWlRJOE1lZmYxWDNXaW5iQ3BmRi1iVmxoejRTdnlyMnJtUEpjSzU4NDJnZUpwcVNYdTVmVjgxd9IBpwFBVV95cUxPbXZ0MWNHNHhSanpjYUZYYXM2TW0wcDNRZEpPQmdvWnhnTFpmcmdWTDdZNkNrQzhHSzBlaGxZTml4T1VYQ0JCdWJaQjNyOU1uY1d2TUM5TDVXWGxPNUoxbXEzVUVDTFluZTBwRHJGZUkzWlRJOE1lZmYxWDNXaW5iQ3BmRi1iVmxoejRTdnlyMnJtUEpjSzU4NDJnZUpwcVNYdTVmVjgxdw?oc=5",
       "source": "Economic Times"
-     },
-     {
-      "tier": "news",
-      "kind": "results",
-      "detail": "HDFC Bank vs Axis Bank: Both shares recover after Q2 sell-off; which banking stock offers higher upside? Check targets",
-      "url": "https://news.google.com/rss/articles/CBMikwJBVV95cUxPWWYwaURWZENPRXVuRy1CaFMxVmttM216ZHp2bFpCdTZ4eGZnTkV6d1RRS2xVZlYxV2hHa1ZpWDhKYUFXQmJBNlZheDJKa3JDZG1JbzJGdTFzTm9lTnRhOGJnVk8zVUFzSGlrNDdfQUNtakEtYm5aNWtNamM3ckdUNi04OUd0RGphYk1BZDhjb3JfZ284V3VaUzdNRVJjc1BXMWZEM2RGYjNxbUFjVUs3SXB1NTNnVGktTzlCaVhTSEVWZ3dGdTFUVUtCZ0M1UUVoVnd3NlZyNWlfQmFac3RTWFo5XzlhSnVldEE2Y29mSVdSZmdSdjBWZ2w5T0FsZ002Z0hBY2lXMExMRjFtLUdIdFoyRdIBmAJBVV95cUxPYkstRUJFLW1lcW9idkVIcDlIejc1QU5hOGdwaU9OQ1hqVjZnMWhYZ0ZuWkhoTS1JalBLcTEtSTZUNVE1T0N0VGtHUDlsRUZFZ3hsU005UUpaUWdPRzRUcWZKLW1INkdiQmZTR0pmZzhWaWVsUzVHNlVNQVpmbmluNzNFb0xENjItZnRGdkZHNC1UeE0xNWF2QjYwaVZMMTEzVmItUkpvTWxqTG0wV3ZyZ3o3dXR4NkMxNC1kLTI4elowcFdRMVZSbXN1WjMtT3Z5cGNrT1FUam9vR0NrNGI0TGh0TkI2YnQzWDBDdXdHdm55U2xjMm1SQWxSZzY5eld5YTRnUzZOMmdvcXlET1NCVVpDUE00Z0pN?oc=5",
-      "source": "Mint"
      }
     ]
    },
@@ -2711,17 +2698,9 @@
    "raw_pct_change": 4.31,
    "corporate_action": null,
    "why": {
-    "headline": "Capital Action (Scanx)",
-    "confidence": "low",
-    "evidence": [
-     {
-      "tier": "news",
-      "kind": "capital action",
-      "detail": "Kotyark Industries allots 10.2 crore bonus shares in 10:1 ratio",
-      "url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxOajh4V1MwNG01cjlpeGFQZE0xU09WZV9IMkN6bHhHUFFvTDdiamVfNlRyVEVjM0RCVnFiZDU2NFdIZlZaTUxMNlpQOXRpdnEtMFdqb0RQQUF0VmlhcDRmT25TYkgxVjBXeVoxUlNUM0E0ZHpPdDNxdkdYM2w0NmF0V1hsTE5sYlBUTHNkQnBybG05OVNsZ1ZNdjdWOUNoYXpTYXM4RWYwMzNDUlNpZmRYV0kzcTNfQTQ5TEE?oc=5",
-      "source": "Scanx"
-     }
-    ]
+    "headline": "No disclosed reason",
+    "confidence": "none",
+    "evidence": []
    },
    "news_checked": true
   },
@@ -2861,8 +2840,8 @@
      {
       "tier": "news",
       "kind": "order win",
-      "detail": "Dilip Buildcon share price rises 4% on Rs 419.47 crore order win",
-      "url": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxNQUw4ODFXVzI3aW9JMjV6MEdXRWFYM1ZxUlNRT0gtd0JrR1JLOWh4SmtJQjNkNTNpSWxlQ0U2S1hXT0Rjblplczd2dVZ1SzI0Ym1mdGlRNlZURHVUczA5YXFlZGN6bHJoQlo5ajhLSkZ0WUFMNnJyYkd6ZFVRRHhMRmpTMkt1enRVb0Vxa1ZKSzZaTTNjbkNDOV9wZHB1T2ZkNVJVQVVETnVuU1d3WmpnQkYyNlZkdTlLaGs0NVEzVE7SAcYBQVVfeXFMTV9rSlBfSkt5aWJHZ29yOGUwalhQOXZuWHNrMlBUNWR4OUpLREVMLVFnU0RUVEpGcHBncmgxcFd0RUZBRzR3UmJxblctMGFvME1SZmd1QnBISjN3UWpSM1ZicGFKNzgxRi0yYU1PamZ2WVRER2tLcVVhWGYwYzNxWmRwT09QdFh3cVg1aDFMQmI1Q2RabmNDR1UtVTJWQllKdHU4bC1XTlk5RU9tUGF5SXdrVVpUYWYyUkVESEVVZVdaclA0dTFB?oc=5",
+      "detail": "Dilip Buildcon sheres in focus on Rs 419.47 crore order win",
+      "url": "https://news.google.com/rss/articles/CBMixgFBVV95cUxNX2tKUF9KS3lpYkdnb3I4ZTBqWFA5dm5Yc2syUFQ1ZHg5SktERUwtUWdTRFRUSkZwcGdyaDFwV3RFRkFHNHdSYnFuVy0wYW8wTVJmZ3VCcEhKM3dRalIzVmJwYUo3ODFGLTJhTU9qZnZZVERHa0txVWFYZjBjM3FaZHBPT1B0WHdxWDVoMUxCYjVDZFpuY0NHVS1VMlZCWUp0dThsLVdOWTlFT21QYXlJd2tVWlRhZjJSRURIRVVlV1pyUDR1MUHSAcYBQVVfeXFMTV9rSlBfSkt5aWJHZ29yOGUwalhQOXZuWHNrMlBUNWR4OUpLREVMLVFnU0RUVEpGcHBncmgxcFd0RUZBRzR3UmJxblctMGFvME1SZmd1QnBISjN3UWpSM1ZicGFKNzgxRi0yYU1PamZ2WVRER2tLcVVhWGYwYzNxWmRwT09QdFh3cVg1aDFMQmI1Q2RabmNDR1UtVTJWQllKdHU4bC1XTlk5RU9tUGF5SXdrVVpUYWYyUkVESEVVZVdaclA0dTFB?oc=5",
       "source": "Moneycontrol"
      },
      {
@@ -3072,15 +3051,15 @@
    "raw_pct_change": 4.01,
    "corporate_action": null,
    "why": {
-    "headline": "Management Change (Business Upturn)",
-    "confidence": "medium",
+    "headline": "Management Change (Scanx)",
+    "confidence": "low",
     "evidence": [
      {
       "tier": "news",
       "kind": "management change",
       "detail": "Cyient appoints Dhirendra Nath as Chief People Officer",
-      "url": "https://news.google.com/rss/articles/CBMilgFBVV95cUxNM2szYVd5NWNKUnNiUTBfSWxXZVotNjYtUEsxT1VHMm9uYjVKenRhWHh6QmxhNk5aM2ZTbUdER1lEbXFxam16Qkw0SlJYSDExR2t4SVRRVkV5bHRyWFdqYnpVeEo4NlpHamNKZUJhOGQwckxFZUl1VDhtQ1pDUzBDTzl0YXZ6M3ZQWEdsR2FYQ0tQM3VNM0E?oc=5",
-      "source": "Business Upturn"
+      "url": "https://news.google.com/rss/articles/CBMirAFBVV95cUxNbjVyaEpXazNabnhGNnVleWtwLWhWbkNUTnIwM3VlV2xXaFgyX0N3N2E4NU0xVkRUaVlVN0lJRHdteEUzR1dOQzE4TnJLN3pYMHphSkUtaUhTSVdJclEtVnhDWmg3T1lBSFNpc0RBRXhQeGtmU3JzejRwREJtRXNQNHRiU0JGcHo1d2l4YjFMWTJWblZqcGZLOFNVVkQ4a1FhZkVrVUZxaXdkLUhl?oc=5",
+      "source": "Scanx"
      }
     ]
    },
@@ -3221,8 +3200,8 @@
      {
       "tier": "news",
       "kind": "fundraise or deal",
-      "detail": "Urban Company raises ₹2,500 crore via QIP; issue subscribed over 6 times",
-      "url": "https://news.google.com/rss/articles/CBMi1AFBVV95cUxNSWxvRk5tZ2gyOFl5dmp2bFl2T05XMWNtb0ZhWXNoX3BtdG5QaEtnNFItSHBTN1c1WDg4SDVMUGQ4R1VxTjNnRHVvQnI3MUZDOVN0SHd4YlJGdk40dUpwUE5XSDlCdmlzLTV1TUJVbDlLMEVfc2F2eFpWUHRLZExRbzJHWjdzQllGTU1JQmRqQkVNNkN1WEx0aHp4bVdYVmcxWGxvZTZuM0tnMnIxd1g4MVc3YjJvZXctUVV0MjhEWjlMUTZOUFJid1hpdktnT0d1Q0I0TtIB2gFBVV95cUxOeUZ1cHgzcFQxOGRFb2Jlb2VqQUUxUWRKTnV5YzNkeGpZSlBjZGNnd24xODA0aGdzUkp5cUxKbGd3dnBjTnRzUWxoUXVNSzRGMFN1T0NnVzVmbmtxNVB5TXdQNUlfXzJwc1JmWnFsandsc3ZyY0lJQkNTdHRjVi1HWC15R3drQ0RGVjR0VkVnTUhoQllZYlVoRE9zUVlmS1BYUEV1YTdaUnVxZGwtdnZJY19RRDRrRmFhclpOeGZOSkp2TTVUdU9SVDZDVHRDS3NkMm9MaGFpaVZDdw?oc=5",
+      "detail": "Urban Company shares slip 2% as firm launches ₹2,500 crore QIP issue",
+      "url": "https://news.google.com/rss/articles/CBMizgFBVV95cUxPSnZGY21fQ05kbFFiYVNMY1JDX2lTa3ZHSjRyVnlPOFNaUlNndWdMYzRSLTlqeFJEWUhmMnQ4a09QMU9pZzJ2YlF0ZVpNeEx1WUZ1bjY2YndEQWVnWFVaX002Um52cFhVTmlrUTR0VjQ1UnYtWXh4eU8yeDgtZXdqSHFHaW55dENaYXFWR2JoY3RoSnJOOG9kUERxQndPTTRrNnVwS1BZUDFvLS03cDI2RzA0eUJ3UkJyZlJGZUZaeWtnQnNMM3M0UW95dDFvd9IB0wFBVV95cUxQcnNFazBtekJWZ0tvN2E5YnA1MnVyYTg0TWtJSmJnVzdfY292WS1hUUpEVll1djE3ZHI2eEg5Z3BqUzlPOFhoRWY1OTE4VFVqSVYxWS1pN2dqTFAzcWpkdks5S24yWVhKQl85YmNsYVhNLS1Gb2Q0LVUtWEJqMlBOd2loUUQ0aWFMV2xBaW5FcEItdVJuVmtrUXRRZFhkUzN5NEUyT05xMkNjcnJTQU16YlVqUVNtWG8tems3WlFuZVpVYjJCUUYwVy1zc0kzOUt1eW1j?oc=5",
       "source": "Business Standard"
      },
      {
@@ -3235,9 +3214,9 @@
      {
       "tier": "news",
       "kind": "fundraise or deal",
-      "detail": "Urban Company raises ₹2,500 crore through QIP amid strong investor demand",
-      "url": "https://news.google.com/rss/articles/CBMi1gFBVV95cUxQSEJnalNCRjJMWmJabEs3SGpPb1pSOUNnQ2RuVXZxMTdyOHEwSDJLMmZXTzgtbndteG1iNmpxU1FWQU5DVzVLazdXMjk1dWN3RXd4TWlvRFlveHowVVZZOHdUZ0RWYk04Q3FxRGg2OG1uQWJmY2ZDMXMycG1yYk5naVZubXM0aWExSEhRYkF0YzdZdTlpelZDRlpFZWFSQTJ6eHpscTYxNUJ3SlR3NXBWc0tkdDJyWjFjbHdpMXNmS2hGX0Etd3FaQzZtZ0xuYVhiR0txbmln0gHcAUFVX3lxTE1pTjZIVzYwOGN6MktQSVBYTEJjR29iRTlia0d4djRadzdIaWFxUUE4SFN6LUVZLTlqRzItYTE2TFltTF9ZcXE4d2ZFOWp2VU43dnRsbGRHeUNBQXVGZWtQVmRIU0lFRzZtYVNjME92UXdybHFlMTY0amlBN3YzZWN0TU1pR0NUSDc0cHhJWklmWUJ4SENrYktyMVVPVGpMN0Rsb0YxQ2lFVTRCLVo4anlqUS1Zc21lR2JxbU94MVBQN2dGdVlHSlBtUjAwdUhvYWI3WS1DS2hDTDZnR3Q?oc=5",
-      "source": "Hindu BusinessLine"
+      "detail": "Urban Company QIP: Rs 2,500 crore QIP oversubscribed 6 times; SBI MF, ICICI Prudential, Goldman Sachs,...",
+      "url": "https://news.google.com/rss/articles/CBMikAJBVV95cUxOWHdQNDRUc0tHVC1kb1B3cm1PZVdtdzRROGdETDJybi1vTlUzcFhmdzRyRnFMajhhMjVGNUZvazZKRDU4Z040Ynh2cnFvWWtwelIzRmw0TDR3dDI0eTFTT09hdDhZZVh0MXJBeTF4MVBoOFFmb0dueWVqa19WYW9Bb0duZHNDcFUxTjRCMGJqUDBVU200SlQwX3lONGo3UVVMcXFncVE4MzlZTGVTOU93TGpmMWREVFJNblVNOWZhQld2MTk3WU9Td3psWlRzR1FwUXVyd0tHeWZhR0daSHpTeXpLRnVDczMtdUNPcnU5TjY0REg0WUZWRndZWnJhNFNvUEc3WHl5d3p1UXVQUXJoQdIBlgJBVV95cUxQeDU0Ql93Rm1qNkxZVUQ0RUZ3aDFQQTliem9aNmplWDY4UklUMXplTFJrWG9NV2ZZdzFLZWc2VmhveldLbnpzX2ozdmVXN3JXUm5ZYzVJOXFfS0N1Q2lPeEJsUEpWSVVYWmNPQ2lEaDU5SWU3eEZaZTYxZVhOS3UzNmJjeXByUk9Vbkp1NUk2TGtBUDY5d21WbkE3Uk81S2hjNWVMdXBjUEVxbnUybUkyMVMwcFFveUxfOWk2b2pTdTdmWjBaVURIWE1LS194TjRiR2cwenRvX1ZzV1l5MmlRc2VNdlpacHVfemtpZm9sck1zRElFb1dzNWl0NUdDMVNPN1lpQTBqc0M5Wlh0NjhJeWhWcEQ3QQ?oc=5",
+      "source": "Moneycontrol"
      }
     ]
    },
@@ -3382,6 +3361,13 @@
      },
      {
       "tier": "news",
+      "kind": "management change",
+      "detail": "Kronox Lab Sciences seeks approval for new MD, CEO and director appointments",
+      "url": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxQOGRicWFlUW9JWEx2ZFEwa0t5YmVubV90MDMySmZ4amhpSklCOXBTcjJOMS1JdGZQNGxPcVN6X1dkRXg2OGUwMHFaRmtEaVFZSmlKS2dJbWpxZG1XbGp6cG5lbnBOTHhWTWR4WUdBR01NS3oxSmpKakx5eEUtQkVHV0VqZl9Zekw5ZDdIRUR5SG1YSlg0NU9vT3RTd0tSMWxiUEdseFMtTzhRTkJOXy0zdHlSOGFkSlBpTWRvWkQ3MUpDdw?oc=5",
+      "source": "Scanx"
+     },
+     {
+      "tier": "news",
       "kind": "pledge or encumbrance",
       "detail": "Indo Borax pledges 1.86 crore Kronox shares for ₹225 crore term loan",
       "url": "https://news.google.com/rss/articles/CBMivAFBVV95cUxNaE5fckRTekY4X1RZczRPVld0NjBrbTJyem9NbWl2VU94VUtVR2VreVI4Q1JsY0t5ZmRHTWRUQUd4aEo1OGVfekhKeVExNmhnLXh4d1RSU280bDVnRUpkbmtPZjlGU3VyQmJXczhNeWdDSkI1OXBFblMzYnhRMW5DMUN4VXktNWNUVWRmWXFVaFluZVQzRUFJUmN2WlhVcXdUcnpvOUxMNjZMa1dfdW9XY1AzdkRER1BBR2ZXUQ?oc=5",
@@ -3442,9 +3428,17 @@
    "raw_pct_change": -4.12,
    "corporate_action": null,
    "why": {
-    "headline": "No disclosed reason",
-    "confidence": "none",
-    "evidence": []
+    "headline": "M&A Or Stake (Scanx)",
+    "confidence": "low",
+    "evidence": [
+     {
+      "tier": "news",
+      "kind": "M&A or stake",
+      "detail": "Vidya Wires promoter Shailesh Rathi buys 2.6 lakh shares, stake hits 34.67%",
+      "url": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxPalJyb1NOYU9tc3V2c3dwZDV6QlVmNUpaUHFMZm9COURfWWpqdFIydWNqODQ0VEZmX2oyODF5Sm1nZmkxWU85cUNMTUdyckctYWJEd1JNY0tEM0lsVVQ5bFdfN1pYTF9QY0NZUkxmdThhUHJlR09mSTY3ZS1tbEwtQndGOFM4cXZmdGRLV0JVSk51b0liZGhfMFJxVmxsRG9RRmtSdEQ2REMyVzFIU3h5MVp2UmNDUmQzbjJ5ZU53WUtTZWs?oc=5",
+      "source": "Scanx"
+     }
+    ]
    },
    "news_checked": true
   },
@@ -4660,7 +4654,7 @@
    "raw_pct_change": -4.5,
    "corporate_action": null,
    "why": {
-    "headline": "Investor Meeting, reported by Scanx",
+    "headline": "Investor Meeting, reported by Investing.com",
     "confidence": "high",
     "evidence": [
      {
@@ -4673,23 +4667,9 @@
      {
       "tier": "news",
       "kind": "results",
-      "detail": "Steelcast raises FY27 revenue growth forecast to 30%",
-      "url": "https://news.google.com/rss/articles/CBMisgFBVV95cUxOU1RuN3B5OFBoWVZzOTJmTVdkSDEwa2RnSDg0TFYxNG9kU2VtcDZzajF5QUNQTUVqdVJ3Q04tbWlxeTV0bGNSX0xia0xyTEZ1eVJxS1pfTTlwNkxRWDNIdEtFLU01X3dEaHRGUFdDRUh1WEs5SXRxVkwyc0NrclZ6VTl3NnIxX1NVb1dxSEVBMjVHUThCTGV1Y2NaZlBGN2Z4eXFna0JJZHkyaHJJRFNnb0xn?oc=5",
-      "source": "Scanx"
-     },
-     {
-      "tier": "news",
-      "kind": "results",
-      "detail": "Steelcast Raises FY27 Revenue Growth Forecast To 30% And Approves ₹151 Crore Investment",
-      "url": "https://news.google.com/rss/articles/CBMisAFBVV95cUxQOVBIT3pOSGFmV3F3WENIZ05FUVEwNWFDTU5XcDhoVXZwbERNU0xaUk9FNUh6V0tLTHhiLVhfYVhtSHJjajFzaUQtam5kNkZFYzJzM2hkVlU4WGNMU3Vma1lxNmRKcEk0MnNDcmVseEo0dmFIOUREZGl2MUwzYVJ3bExOVmVfTlVGQUNtckVzTUl2YmN3empYbng3X2R3cWZ5ZmdROS1hVnZWRjBLVXFoRg?oc=5",
-      "source": "Sahi"
-     },
-     {
-      "tier": "news",
-      "kind": "results",
-      "detail": "Steelcast Q2FY27 Results: Revenue up 29% YoY, EBITDA margin dips to 24.5%",
-      "url": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxQclpBVFF3Y1I2UFo1M2ItSlBKUy1ieVdHeTlJNTZsdzMzTDhwSnNBcUNPTzZNTHBNd2g1Z2wtMEtKZXZzUGJ6b0I2amJNUHBLOFphWDJUN2Fya3I5MnlvUTMyVXVNT19aanpEMWtYMHBjeHM5RElvM1dTSHp5OHdlRXVJSmJLVmMyTkpudGlYWGhOejJFOUlKOUsxLWFaRGlxUjAtZEZINktLUlF0RlFSMTlwVmNUSjZBQUlHNTNSWGMyQQ?oc=5",
-      "source": "Scanx"
+      "detail": "Steelcast Ltd (BOM:513517) (Q2 2027) Earnings Call Highlights: 29% Revenue Surge, Debt-Free ... By GuruFocus",
+      "url": "https://news.google.com/rss/articles/CBMizwFBVV95cUxOOGdrYXdOazNrX3hvNUtUUUwyTmJWRTdLZkt2WkJfc3ZiQmNIYXRFeTljTVpWZHY3S21hXzBPZ29HZmx3U29PdDhocHlLR0UxOE9CMjk5SXRhM1NBVHZKTUhsZzJ6RHA2TmlBN082dTNLbl9mSU5kemVENFdsZW0zdldJNXJVaEJjY29rX2RNLWNqdktJMURoUXdmWlNHS1pfbnlNSkxCM25LdVduZ3oycDk5T3JQMXJNaXk0YkRKa2NVTEFac08yaTlvTjZPS1k?oc=5",
+      "source": "Investing.com"
      }
     ]
    },
@@ -5751,7 +5731,7 @@
       "tier": "news",
       "kind": "results",
       "detail": "E2E Networks, Mtar Tech shares snap 2-day decline as Nvidia earnings beat estimates",
-      "url": "https://news.google.com/rss/articles/CBMi5gFBVV95cUxQNzljX2hOSENSdzdhX3gzRmZzOVp0TTUxdUJTWG0zUllpaEN0MGtiNW1fT1FObzByTHZmRlR4NFR2UWcxUkJIcTQtQkdKaVZ6NndXOVl1QzUxRVJRM2ZmN0tua0V5Vkw5YktsczBaQ3pWOE9pTzFXN0kwMG1oSFVmeXZjaGx6R05aZnptLXIycWxwWkRDVTNNSzZ5TVQzaFlZZmh6aEVOdk5wQjBkTDI3bUVzYzBFdE9OeDQ5SWhrbjZwN0hlVmRfRmhSOVdrQnVpQTRrN3h6Z18zeU9JNXlEVTRaWlA2QdIB5gFBVV95cUxQNzljX2hOSENSdzdhX3gzRmZzOVp0TTUxdUJTWG0zUllpaEN0MGtiNW1fT1FObzByTHZmRlR4NFR2UWcxUkJIcTQtQkdKaVZ6NndXOVl1QzUxRVJRM2ZmN0tua0V5Vkw5YktsczBaQ3pWOE9pTzFXN0kwMG1oSFVmeXZjaGx6R05aZnptLXIycWxwWkRDVTNNSzZ5TVQzaFlZZmh6aEVOdk5wQjBkTDI3bUVzYzBFdE9OeDQ5SWhrbjZwN0hlVmRfRmhSOVdrQnVpQTRrN3h6Z18zeU9JNXlEVTRaWlA2QQ?oc=5",
+      "url": "https://news.google.com/rss/articles/CBMi4AFBVV95cUxQVUlvZG91TlBNNC0xc1RsbW9DT3NjaUlZb3AyanBpQW9VeVhxMHo3Nm1zU3FVdzdGbEQwRWtkY080bkRHald3eFNIRDB4OFNVbnBKd19nSVh6TUFFeVV3ajJyU2QwUjdqdHJLMm5FUkFMcVFvczN5SVl6VTZsNmlkRjJISUdVZVEwTTlFc01TU192RUxZQjU4V2FmVk5YTnhZNEdtbG1WeXRVUDVWQlhydFlWU1kySGVEeDVHeDBwNHU5YVZKeDhWbzNLVFNJMVRGbUhCTl9vWHVFZFZ4TUw2YdIB5gFBVV95cUxQNzljX2hOSENSdzdhX3gzRmZzOVp0TTUxdUJTWG0zUllpaEN0MGtiNW1fT1FObzByTHZmRlR4NFR2UWcxUkJIcTQtQkdKaVZ6NndXOVl1QzUxRVJRM2ZmN0tua0V5Vkw5YktsczBaQ3pWOE9pTzFXN0kwMG1oSFVmeXZjaGx6R05aZnptLXIycWxwWkRDVTNNSzZ5TVQzaFlZZmh6aEVOdk5wQjBkTDI3bUVzYzBFdE9OeDQ5SWhrbjZwN0hlVmRfRmhSOVdrQnVpQTRrN3h6Z18zeU9JNXlEVTRaWlA2QQ?oc=5",
       "source": "Moneycontrol"
      }
     ]
@@ -5798,7 +5778,7 @@
   },
   {
    "symbol": "MAKS",
-   "name": "MAKS",
+   "name": "MAKS ENERGY SOL INDIA",
    "board_code": null,
    "series": "SM",
    "direction": "DOWN",
@@ -5912,7 +5892,7 @@
   },
   {
    "symbol": "GRANDOAK",
-   "name": "GRANDOAK",
+   "name": "GRAND OAK CANYONS DIST L",
    "board_code": null,
    "series": "EQ",
    "direction": "DOWN",
@@ -6993,9 +6973,17 @@
    "raw_pct_change": -5.0,
    "corporate_action": null,
    "why": {
-    "headline": "No disclosed reason",
-    "confidence": "none",
-    "evidence": []
+    "headline": "Fundraise Or Deal (Mint)",
+    "confidence": "medium",
+    "evidence": [
+     {
+      "tier": "news",
+      "kind": "fundraise or deal",
+      "detail": "Upcoming dividend, split, rights issue record dates next week, Nov 23-27: Pashupati Cotspin, Zee Ent, Varvee, and more",
+      "url": "https://news.google.com/rss/articles/CBMijgJBVV95cUxNeHVHMHZKS3RVaXQwanB4NU55OEhnME00a094N1kxYTZmR3phbXRVcG1PU0NMa0JzLVF1cXBNa3FxUzV6bUh6OXFyOFZ4LUo2VDhSdC04ekVwbFh6RFFlZHY3NFg0ekktRXBhRlQxd1R2NkNLTnRUZFpVdVdObXljSG9LX0lUYVRxd01Fak11V0p4LUhkMVhUalRQdDNnOHM1UnpSSnh1aDBLa011eGpVRHVFZm40WC1tQXNuTllNR18wOXdrREM5N1ZQMUJIblJsU200SE93Q0tmSkRJMlN4YWVNRnNtTml5V2g5clc0eWVDdGpNZmxkZWNpMURHV0RncGVaVmlzYjZ3dkVmTHfSAZMCQVVfeXFMTVFOWlpKWXVxQzZWSU0wRUR6dGRVdDJ4dUFlRDlZNU0tU3EtTEloZUhNRm9JZjZFeWgwNGRfRk56SF9ieElMX0U2eU5aY1hGR1JMOGlJdlluNHJPMW00bnFDRDlJUE44T25ZbWh5ZzBFTUhZbmI1NGtuQVA3dWwxbldldWpuVEt4clhvSDVWVXdHU1U3cFJleWw1T0ttaDNONUVHVXNBMDlJUkNxazdMOWlhdlZoa2h1ZUR2d3hWNGdpQzdDamJSajVJX1hiV3lRNmFqVGlWVHNGQlNPUDF5Q0xCQ2l5TUtnNUJKZmJmekJHT21fT3djS0MtcTg4SDlETzBRWFE4ZkpOWEg2bDVkUm51WU0?oc=5",
+      "source": "Mint"
+     }
+    ]
    },
    "news_checked": true
   },
@@ -7214,17 +7202,17 @@
      },
      {
       "tier": "news",
+      "kind": "fundraise or deal",
+      "detail": "Fairfax likely seller in $370.5 million IIFL Finance block deal, CNBC-TV18 reports",
+      "url": "https://news.google.com/rss/articles/CBMi2AFBVV95cUxNYU83aHpyRTFEUFV3LWVXd210dU44SHZVT1hGaGpaTUt4SVg5T0FXcTJhclZoN2ZjTV9UWTBiYUZpczZlbkp2UFpodzAwTkNVaHFfUkt1bWtiekJnT1Btc0JtQjBqNTU2NEd5YlVieFJJN1ZtMTNxc0FkbzluaU1vMmxOR2dReXRzYkxET0s0SXpkMkx0X19URmlPWU1BQWV1R052OEFQeXE1Q1NyelQwMGRCeVh6NnJVbXdkZXpsTk0zZEtkV0NtaTBiVk90cXNDYlg4bkNoNDXSAd4BQVVfeXFMUEF2Zk5GNEJncGVSam5yRTRxQU8yTG1FRXN0WnpNdFY3OEJOY19qc2JYN09hQWNMTFlHcUdaLUd5SDRyU21ONWFsTU1xM01YVUpiRU0wejlQek9XTkYxQVE1em9CNVBwSjU5bXJqaVY4N3lpVDB1bm1Pd3paRzV3MG1SZUxQVDlUeGU3bTRmeUhNMkFraGVwbUxiYl9fT1BOeHUzQlhmT1FLd2JvVUNqYTYydFA4dE5zaTkzWjUwSWN3NFI1VXJQWU1nOFNja2llNmkxVHN4amM0YkRpU3hR?oc=5",
+      "source": "Economic Times"
+     },
+     {
+      "tier": "news",
       "kind": "M&A or stake",
       "detail": "Blackstone to acquire 16% stake in IIFL Finance, boosting Tier 1 capital ratio",
       "url": "https://news.google.com/rss/articles/CBMi7gFBVV95cUxNRFpnWGJsRnRLVXRhSlBScFo0Q3psTDhqNWNub2FIa2owSW5wbFI0Y3BDQV84NWxmTGFpSXpVckxkZ0kzYmRBT3pHSWtlN1pSeDBxQ3pOaHQ4Q0tUSUZ0QmJNUlQ2RHU4TF9NUDhxaFAtZ3JkOHpwb2tCZXpYSk9HbHhSM0plcjlseGw4NkpRQnNjOGlITEtrcjJmcjB0V2dsb09BbDk5YWRxT2JUU09VMlpWV1FFcDJxRnVuSTZMUVloaWVSMUNoX05PUHIwYzlnQkZDUjdxbV93YmtEZi1jZS1XUmRZLUs2RHI2WXBn0gH0AUFVX3lxTE9tWE1hUi1lbWlFeFJXeWJRM3MxenFhU3RmMU5CMk1YNUxpb2VqdS1ud09SSHhrWkZfcnRwcnB2WFBnbjBDd2gxdi02dXFKdzZfcmRvSjdMaTEtdzBXTm5qZjFISU0ydFczNnNQcFZQMjRKOXN4R25GdDVsczhFUFlMY1BuMzN1a1NfRXlSMnJQcl9Nd2d4c2FoLU56V0UxckVfUF9lZi0tUU5tbTEtRlpvRndZOXptTGRLb2pUVGdCZ0V6TVViWmxscnllbUVHemZiWlFQUWg4Q0dvVVdHTlVGSjJvY0RoSHEwUXNSU2xJV3BUWVE?oc=5",
       "source": "Hindu BusinessLine"
-     },
-     {
-      "tier": "news",
-      "kind": "fundraise or deal",
-      "detail": "IIFL Finance shares gain 6% after block deal; Fairfax likely seller",
-      "url": "https://news.google.com/rss/articles/CBMizAFBVV95cUxNNzdVRG5xeFFlUDhveWZpdy15Uy1TaVhpbTBOT3oxQW9LaXNPcDB1QnlfbDJlOFBsRXZtR0lqMXFDV1BMZEF6Sk1Xc3RmQ01VbWc4SWFtY3pJaGVBQlFfZlFyOGFTaEJVME1QZU4tXzVLbnlqTWpFenZEdjByTHhrOHhrX2VOd3FPVjRNT0paRXVEZ1BfQmd5aWk4R0dTaGEtSl9vUkF6ZzVaQzk5ekdBb1ptMzBXSDlmXzZFZ05XdjZVc1doSi1GNmg0UlLSAdIBQVVfeXFMTjR6VWpHSUlCUExDbkhSX2tvWnpPTDJWMjZpNXVUMlV2ZThxbGd0aXBIaXJUZG1NVVVmOVU5eERsREpVdkNEWXVnMjlOXzFXN1JqOWxQS3lJY3k2VWpkd1VScGgzcmp6WHNQQmFvYS1hbGIxdEU5Wm5qcl9DdnBRRU9sWVdyMlI4NGhsWVlWTjFLUnZhcEV0dmtndUI2aC0weUVWUjFqek92NC1PQWlwMWxiNXVzTUVsOVF5cUZSNDFPS1pjXzJFcmI2aUlSa2hBaUV3?oc=5",
-      "source": "Business Standard"
      }
     ]
    },
@@ -7475,9 +7463,17 @@
    "raw_pct_change": -5.24,
    "corporate_action": null,
    "why": {
-    "headline": "No disclosed reason",
-    "confidence": "none",
-    "evidence": []
+    "headline": "Order Win (Scanx)",
+    "confidence": "low",
+    "evidence": [
+     {
+      "tier": "news",
+      "kind": "order win",
+      "detail": "Om Power wins Rs 46.57 crore order from GETCO",
+      "url": "https://news.google.com/rss/articles/CBMingFBVV95cUxObElwdnA1TjhDdUlqVmNoZ0VFb0JoUndLWll6Q0xEbEFtM1ZubWRGUjBVM0lWaVVhQllLR04tYXBtLU1hTEY5Q0FpdUo1M2N6c2lCcE9lMlNNeEJBaHBvaDBiTEU2Rm1IUUY3cUt6RkVLaHo1NmxmNVlnTlNRQ0U1emQ5MVlaWVY4Ukoxd1cxN1JiRlUyeUxJbnZLWFNJQQ?oc=5",
+      "source": "Scanx"
+     }
+    ]
    },
    "news_checked": true
   },
@@ -7654,9 +7650,17 @@
    "raw_pct_change": -5.49,
    "corporate_action": null,
    "why": {
-    "headline": "No disclosed reason",
-    "confidence": "none",
-    "evidence": []
+    "headline": "Management Change (Scanx)",
+    "confidence": "low",
+    "evidence": [
+     {
+      "tier": "news",
+      "kind": "management change",
+      "detail": "Gayatri Highways appoints two independent directors after chairman exit",
+      "url": "https://news.google.com/rss/articles/CBMivwFBVV95cUxOVVFtZU5IZjFOTnRWZEF2OXNBV1BSeW1hakJXUDlEQklFQnFiZjFHcWV6U1pkWW1hUEQ1cWlKZjVGa3VERWk3SXdSeWd5UnRVQTJXdXhYVm1lRWYzMzVDdksxOEM4ZTIxM3BsSl9uazJWcEI1Y2tuQTQ5Z1E0UGNxRmljQ3VNajFqbWlCQ0JmblRVSDgzVTlCSGhMV2YxWFp1T2FHbXBFSG5rVnpoUzRUS2szRHk1dlo2RjVkYmNJWQ?oc=5",
+      "source": "Scanx"
+     }
+    ]
    },
    "news_checked": true
   },
@@ -7673,9 +7677,17 @@
    "raw_pct_change": -5.5,
    "corporate_action": null,
    "why": {
-    "headline": "No disclosed reason",
-    "confidence": "none",
-    "evidence": []
+    "headline": "Regulatory Or Legal (Scanx)",
+    "confidence": "low",
+    "evidence": [
+     {
+      "tier": "news",
+      "kind": "regulatory or legal",
+      "detail": "Delhi High Court dismisses Income Tax appeal against AceVector for AY 2017-18",
+      "url": "https://news.google.com/rss/articles/CBMivwFBVV95cUxPMmUtSU1fd01oamw5dnpkaFJRSlVvMmhNMXQwNlluTFgydExDV2JCYm5VYVZOYXJ1ZHpsYnhuclNhd1Azcjg2YzJncjJFSENtMjJJNnNYWjNVa1Z0NWxVX01yeGhkR0lXbk1KX28tS1dULWFuRkxqMUhuUDU1em5NVWJtbWpZSUFHOVlGVGpUU2s3aFBmakdQdU9mQTZMeDlTU1lQTnU3WjFQSnExXzI1QWdkRmxWTmxPc2xhSENkZw?oc=5",
+      "source": "Scanx"
+     }
+    ]
    },
    "news_checked": true
   },
@@ -7810,7 +7822,7 @@
       "tier": "news",
       "kind": "results",
       "detail": "E2E Networks, Mtar Tech shares snap 2-day decline as Nvidia earnings beat estimates",
-      "url": "https://news.google.com/rss/articles/CBMi5gFBVV95cUxQNzljX2hOSENSdzdhX3gzRmZzOVp0TTUxdUJTWG0zUllpaEN0MGtiNW1fT1FObzByTHZmRlR4NFR2UWcxUkJIcTQtQkdKaVZ6NndXOVl1QzUxRVJRM2ZmN0tua0V5Vkw5YktsczBaQ3pWOE9pTzFXN0kwMG1oSFVmeXZjaGx6R05aZnptLXIycWxwWkRDVTNNSzZ5TVQzaFlZZmh6aEVOdk5wQjBkTDI3bUVzYzBFdE9OeDQ5SWhrbjZwN0hlVmRfRmhSOVdrQnVpQTRrN3h6Z18zeU9JNXlEVTRaWlA2QdIB5gFBVV95cUxQNzljX2hOSENSdzdhX3gzRmZzOVp0TTUxdUJTWG0zUllpaEN0MGtiNW1fT1FObzByTHZmRlR4NFR2UWcxUkJIcTQtQkdKaVZ6NndXOVl1QzUxRVJRM2ZmN0tua0V5Vkw5YktsczBaQ3pWOE9pTzFXN0kwMG1oSFVmeXZjaGx6R05aZnptLXIycWxwWkRDVTNNSzZ5TVQzaFlZZmh6aEVOdk5wQjBkTDI3bUVzYzBFdE9OeDQ5SWhrbjZwN0hlVmRfRmhSOVdrQnVpQTRrN3h6Z18zeU9JNXlEVTRaWlA2QQ?oc=5",
+      "url": "https://news.google.com/rss/articles/CBMi4AFBVV95cUxQVUlvZG91TlBNNC0xc1RsbW9DT3NjaUlZb3AyanBpQW9VeVhxMHo3Nm1zU3FVdzdGbEQwRWtkY080bkRHald3eFNIRDB4OFNVbnBKd19nSVh6TUFFeVV3ajJyU2QwUjdqdHJLMm5FUkFMcVFvczN5SVl6VTZsNmlkRjJISUdVZVEwTTlFc01TU192RUxZQjU4V2FmVk5YTnhZNEdtbG1WeXRVUDVWQlhydFlWU1kySGVEeDVHeDBwNHU5YVZKeDhWbzNLVFNJMVRGbUhCTl9vWHVFZFZ4TUw2YdIB5gFBVV95cUxQNzljX2hOSENSdzdhX3gzRmZzOVp0TTUxdUJTWG0zUllpaEN0MGtiNW1fT1FObzByTHZmRlR4NFR2UWcxUkJIcTQtQkdKaVZ6NndXOVl1QzUxRVJRM2ZmN0tua0V5Vkw5YktsczBaQ3pWOE9pTzFXN0kwMG1oSFVmeXZjaGx6R05aZnptLXIycWxwWkRDVTNNSzZ5TVQzaFlZZmh6aEVOdk5wQjBkTDI3bUVzYzBFdE9OeDQ5SWhrbjZwN0hlVmRfRmhSOVdrQnVpQTRrN3h6Z18zeU9JNXlEVTRaWlA2QQ?oc=5",
       "source": "Moneycontrol"
      }
     ]
@@ -8342,9 +8354,9 @@
      },
      {
       "tier": "news",
-      "kind": "operations",
-      "detail": "Vishnu Chemicals stops Visakhapatnam plant for integration projects",
-      "url": "https://news.google.com/rss/articles/CBMivAFBVV95cUxNMWVNYXM5dlJJSGk2MG85TXdHRC13RFB2RE9may1SQWs0ODVCNlBPS2tmWkdENndLUGVWUk1ERV9fMkkwRVJrYlAyY3RwWW9nZVNOUS1lMmIwdVBNQ2w5cThkT2JuM2JZZTZNdHhwdG1Hcl9hTUNROV8wNVRpLTFObU1NeF90cWx4VWowVERyeHhRUFppWlRvVVB1ZlhxMUFzNjZadnRvc0VjTHRUWmU4WWZBOXUzb3VlYlpWTQ?oc=5",
+      "kind": "M&A or stake",
+      "detail": "Vishnu Chemicals subsidiary acquires 18.69% stake in Fractal Nova",
+      "url": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxQS1ktY2Zxb3EtOVdUeGJtWkw4NmRTQTJyeG1DazhRSmwwcHV1cWs4N0NWOXFjNHFQYm40M3N5S1lPX0JzU1hWTDdFT09rWWt0WmoxY1N2allLMk1leGJsSG4yV09sWjJ2ZEFNQ2pVaUczVnZoU1hwREZwRllXMVZMV1Vwa1FYeDVYOGNNQjNTWnZIX2FlWFk4bGVoV3oxMnhiSC1yakdMQy1jdzkxNWhGbDhOSUZtWFRIM0lISk9seTA?oc=5",
       "source": "Scanx"
      },
      {
@@ -8433,6 +8445,13 @@
       "detail": "Aeroflex Enterprises invests ₹10 crore in subsidiary via rights issue",
       "url": "https://news.google.com/rss/articles/CBMivwFBVV95cUxPOTFuMUVnaXlhVTYzbkZFS0xlVzQwMlM0ZGN3MUp6THdEamV6bFUwdF9JcS1CUE1BWTNNaVp4ekZzc1B5cXd4UTFkX2hDcXBsTTJodW0zYUU2N01Kb0xVaml3VXpCakEtYk5hOWdPX28xeTdwZkJLUm1FUjV2enZ2S1lHSDNZNHJWUFBVbDl1SC1BQjV1VTJtVUxRcDJGZzctdUItMmVmYWZtVmgtOFVqcmlpVW5fRHk3VGRDWnlnbw?oc=5",
       "source": "Scanx"
+     },
+     {
+      "tier": "news",
+      "kind": "fundraise or deal",
+      "detail": "Aeroflex Enterprises Invests ₹10 Crore In Subsidiary Aeroflex Finance Via Rights Issue",
+      "url": "https://news.google.com/rss/articles/CBMisAFBVV95cUxNRnN5SWZZTG1TZFo5X1RpYnBRY09LcENVY2xsbVRaa3RiLThOVVBCVnBjTm5NaDRFQVdBYmdyNTFVd3h1ei01akpBelRCSENjWW91NVlodU5OcFUyRGQwSjRxSVd6YzIyRHJ6NmpmYnhMTGo4R3NQUHlXNTRpb1lYbzNMX0lTdVlaRmdKNGhOMGU4cFBaTFVLU0pzUlhEZVVJX0JJQ1I3LXRuam54OWt3Sw?oc=5",
+      "source": "Sahi"
      },
      {
       "tier": "news",
@@ -8538,9 +8557,17 @@
    "raw_pct_change": -8.75,
    "corporate_action": null,
    "why": {
-    "headline": "No disclosed reason",
-    "confidence": "none",
-    "evidence": []
+    "headline": "Results (Scanx)",
+    "confidence": "low",
+    "evidence": [
+     {
+      "tier": "news",
+      "kind": "results",
+      "detail": "GNG Electronics reports 32% revenue surge in Q1FY27 on margin expansion",
+      "url": "https://news.google.com/rss/articles/CBMivAFBVV95cUxPSDBqVlNHdWRYSXFXaGlfVjRQeWM1eUlNeFhrNTR2b0QxdWtHRWEtamI2TnU2c3phRUQ1d2JpMm5GOEpEOUxuOEtSdExQSGpBRG5wUjJIdmFQS25LVG1Hb09GNUNSdUZVV0M0Tkx2QXJtaU9TZTM3dUFqQzRzcVE2b2djaFVKd3hfZ3YySmFXeXctVXVHaVAyeUEzY1l5UHBZMHV4MzV5MGVVTUh2VW5kNlRpZ2ZPNzd2OVRtYw?oc=5",
+      "source": "Scanx"
+     }
+    ]
    },
    "news_checked": true
   },
