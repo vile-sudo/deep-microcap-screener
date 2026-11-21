@@ -1,28 +1,47 @@
 {
- "updated": "2026-11-20T07:55+05:30",
+ "updated": "2026-11-21T06:58+05:30",
  "figures": [
   {
    "label": "Brent crude",
-   "value": "$91.98/bbl",
-   "as_of": "2026-11-19",
-   "note": "+3 cents on the day",
+   "value": "$91.31/bbl",
+   "as_of": "2026-11-20",
+   "note": "-0.7% intraday; near 5% weekly fall",
    "source": {
-    "publisher": "Reuters via Yahoo Finance",
-    "url": "https://finance.yahoo.com/news/oil-prices-steady-supply-surplus-024608326.html"
+    "publisher": "RTE (Reuters)",
+    "url": "https://www.rte.ie/news/business/2026/1120/1599964-world-oil-prices/"
    }
   },
   {
    "label": "WTI crude",
-   "value": "$83.21/bbl",
-   "as_of": "2026-11-19",
-   "note": "-5 cents; lowest close since 26 Aug",
+   "value": "$82.85/bbl",
+   "as_of": "2026-11-20",
+   "note": "Dec contract, -0.4% intraday; about 6.5% weekly fall",
    "source": {
-    "publisher": "Reuters via Yahoo Finance",
-    "url": "https://finance.yahoo.com/news/oil-prices-steady-supply-surplus-024608326.html"
+    "publisher": "RTE (Reuters)",
+    "url": "https://www.rte.ie/news/business/2026/1120/1599964-world-oil-prices/"
    }
   }
  ],
  "items": [
+  {
+   "date": "2026-11-20",
+   "title": "Brent heads for third weekly fall at about $91.31 as Hormuz flows return to pre-war levels",
+   "text": "Brent was down 67 cents (0.7%) at $91.31 a barrel on 20 November and on track for a near 5% weekly decline; WTI was at $82.85, heading for a 6.5% weekly drop. Crude shipments through Hormuz have returned to roughly pre-war levels, raising surplus expectations, while Houthi threats and tanker incidents keep a risk premium. OPEC+ meets on 29 November to set 2027 output policy. Lower crude eases India's import bill but trims realisations for ONGC and Oil India.",
+   "tone": "watch",
+   "companies": [
+    "ONGC",
+    "OIL"
+   ],
+   "sources": [
+    {
+     "publisher": "RTE (Reuters)",
+     "title": "Oil set for third weekly decline on strong export flows",
+     "url": "https://www.rte.ie/news/business/2026/1120/1599964-world-oil-prices/",
+     "date": "2026-11-20"
+    }
+   ],
+   "added": "2026-11-21"
+  },
   {
    "date": "2026-11-19",
    "title": "Brent settles flat at $91.98 as Hormuz mine reports offset US stock build; WTI at $83.21",
@@ -803,27 +822,6 @@
     }
    ],
    "added": "2026-10-09"
-  },
-  {
-   "date": "2026-10-06",
-   "title": "Brent settles at $100.30, down 1.89%, as Gulf exports exceed pre-war levels and G7 plans stock release",
-   "text": "Brent settled at $100.30 a barrel, down $1.93 (1.89%), and WTI at $89.18, down $0.25 (0.28%). Gulf News cites Middle Eastern exports above 18 million bpd on several days in late September, a G7 plan to release 100 million barrels from emergency reserves over four months, and Saudi cuts to November Asian OSPs. Prices remain roughly 40% above pre-war levels on Hormuz risk. Lower crude eases pressure on Indian refiners/OMCs such as HPCL and BPCL, but trims realisations for upstream producers ONGC and Oil India.",
-   "tone": "watch",
-   "companies": [
-    "ONGC",
-    "OIL",
-    "HINDPETRO",
-    "BPCL"
-   ],
-   "sources": [
-    {
-     "publisher": "Gulf News",
-     "title": "Oil prices fall: Brent settles at $100.32 as markets weigh higher Gulf exports, G7 supply boost",
-     "url": "https://gulfnews.com/business/energy/oil-prices-fall-brent-settles-at-10032-as-markets-weigh-higher-gulf-exports-g7-supply-boost-1.500699626",
-     "date": "2026-10-06"
-    }
-   ],
-   "added": "2026-10-07"
   }
  ]
 }
