@@ -1,7 +1,7 @@
 {
  "trade_date": "2026-11-20",
  "threshold_percent": 4.0,
- "generated_at": "2026-11-22T14:17:05+05:30",
+ "generated_at": "2026-11-22T18:30:11+05:30",
  "stats": {
   "scanned": 3461,
   "flagged": 397,
@@ -1144,9 +1144,17 @@
    "raw_pct_change": 5.13,
    "corporate_action": null,
    "why": {
-    "headline": "No disclosed reason",
-    "confidence": "none",
-    "evidence": []
+    "headline": "M&A Or Stake (Scanx)",
+    "confidence": "low",
+    "evidence": [
+     {
+      "tier": "news",
+      "kind": "M&A or stake",
+      "detail": "Sejal Glass approves ₹40.80 crore acquisition of Magnumtuff glass business",
+      "url": "https://news.google.com/rss/articles/CBMixAFBVV95cUxNSWZIaWZ6TUdaZmZ3X08tbnZIbnRYYmplbUo3RFVwNlZuWVo4TW9KWjl1SEpreHZaSUhpNGtqeXBCc1VPN2w4TmdVU1RsZTF6MmM4MlMwN3VIX01MdUxvb3U3OEd1djJSUFRuTFFrQ016ZURGVmxLQjUtLVc4aXN3UmhOYUl2WS1XaWZaZjZRR1B6SkJfSElHVzk3Zl9BWXYxVHlrbWZmWi1EMk93Y2RUZFZxVV9jRGFSeFkySzQ0ZFhuSlFF?oc=5",
+      "source": "Scanx"
+     }
+    ]
    },
    "news_checked": true
   },
@@ -5707,13 +5715,6 @@
       "detail": "Apollo Micro Systems Targets New Defence Frontier with Proposed A-Thon Allterrain Stake",
       "url": "https://news.google.com/rss/articles/CBMizwFBVV95cUxOajlMTF9Ld0ZTOXRNZzhKcWVNXzRUMXRoRklsU0FXX0dSY25LaUFRUi1sa1FrWVozbVJWYnMwSVFCNWlFVVp4V05hbDBuUUFTZHcyRFdhMTZIUTA4MHlkdkRiQ1lxSC0xYWJyc3lVWlU0cFg5YTFtblFKMjhWVGczZTNURmtXYVRJZjIxNGNlZU41QWYxcFVKOXBGMkMtOW1LbHdFOThPWk5TYURZdkFwVEkwYzdXNnYzVXoyY2Y0SF91MUNXMmFQNGVQbjNieTg?oc=5",
       "source": "PTI"
-     },
-     {
-      "tier": "news",
-      "kind": "M&A or stake",
-      "detail": "Apollo Micro Systems to acquire 26% stake in A-Thon; check stock reaction",
-      "url": "https://news.google.com/rss/articles/CBMi0gFBVV95cUxOcVpQMUxhenpjenZLOWJvcDAweXZwSUhLWTNUUmwwZ3hsTzNRRG9yZU9QUHRHOGdnWHNHRmpCaWJYSkluaGhIZFhaR3FxOG1ycmFONVhKRDAwbVoxSm9ob3I5R1M5bHd3N1o0R3dfV2NkWEtQRi0zT0NkdURaZFF4cGhRaXNSS3U1ZVlnR0lqRkdiamRsemRrWjJXLTU2eXhwVUdEQWdndHQ4SVRWRElZQ0Q2SlFodXlpOGN0SnlYaVl3SmpYQnFsY2R4UEN6N3ZiLUHSAdcBQVVfeXFMT1FuMktVd0l0aWF4SmRrQUNUXzFxLUZOR2VWV2dBWENqR21JeHJxcFp5RENnX3F5MGhFbE1zMWVtUlo5RHpmNzYtcWowYVFZYXpvRnJoQk80RG05ZXMzYjdQMzl2dmdEdU5nR2FPOS02SWpMZkk4TEtNWjBDTEJDNUV6ZHB2bFUzWTF2QjR4VFp3OS1xdENqSnd5d0NJUy1WUE5zZnFEYVJBQ3JrYmpXVE5uZFl2bVpiTlRZMTFneVdpLTZlcllyd1UtR1o0VGVqUVZ4eTQ5Ukk?oc=5",
-      "source": "Business Today"
      }
     ]
    },
@@ -7983,17 +7984,9 @@
    "raw_pct_change": -6.17,
    "corporate_action": null,
    "why": {
-    "headline": "Results (Scanx)",
-    "confidence": "low",
-    "evidence": [
-     {
-      "tier": "news",
-      "kind": "results",
-      "detail": "Beta Drugs Q1FY27 net profit rises 41% to ₹165 Mn on strong sales",
-      "url": "https://news.google.com/rss/articles/CBMioAFBVV95cUxNOWtDY25WS0t5dHUwLWVzUHBoXzdBdWFWZU5UX1BpT0RERGlqYV9GUTJQVGFsakNHTmRpTHFPVUFKdGRodzU1eGZPRDJwMjQ4RGZNSjQtQm1nSk1vT0JZV3JKcWtGc0xobmZhNkNmWlBlYUFQT1VaM0xXSHJKa1lSc05rZnhQd3JSdmloM192d3MwMTFneW12aUx0X2tOSUpI?oc=5",
-      "source": "Scanx"
-     }
-    ]
+    "headline": "No disclosed reason",
+    "confidence": "none",
+    "evidence": []
    },
    "news_checked": true
   },
@@ -8356,8 +8349,8 @@
      {
       "tier": "news",
       "kind": "M&A or stake",
-      "detail": "Vishnu Chemicals Unit Acquires 18.69% Stake In Fractal Nova",
-      "url": "https://news.google.com/rss/articles/CBMijAFBVV95cUxOM2VHREJRQjhkdktUSV9QWGpjSzdyQnV3TThlRGdCSDk3MHNMZk9Fb3hUZlpGVURpOUFPOUxOLXZScGxfSlFrcVlUZVJ6c25ZTDdRakRMM05uUzExclc4aFN4a0otY0R6Ym9UVWZUOGR6WXdwalh0VmllRzRmb2RtZ1ZkcVJKYlJfQUNzZQ?oc=5",
+      "detail": "Vishnu Chemicals Signs Deal To Acquire 18.69% Stake In Fractal Nova",
+      "url": "https://news.google.com/rss/articles/CBMilwFBVV95cUxOWTRQQ2c1RGNOUG5QbjNpQjhMTV9zNTk5czlVMW9DSXJqNlYwYVVnZE8xbENpUnVDRXJaN2FrUjc5a0Fnb1RBWGNDS3dMczRqWGpnQTh3a1NuYlRHM1AxVnMwNzVLWDk4dnJSYTBHUVlmTFV4MF9xZmhhaEY0US1VY3lvV1UwYzBRdUdLdDgzaVZDXzcwbDZN?oc=5",
       "source": "Sahi"
      },
      {
@@ -8370,8 +8363,8 @@
      {
       "tier": "news",
       "kind": "M&A or stake",
-      "detail": "Vishnu Chemicals Signs Deal To Acquire 18.69% Stake In Fractal Nova",
-      "url": "https://news.google.com/rss/articles/CBMilwFBVV95cUxOWTRQQ2c1RGNOUG5QbjNpQjhMTV9zNTk5czlVMW9DSXJqNlYwYVVnZE8xbENpUnVDRXJaN2FrUjc5a0Fnb1RBWGNDS3dMczRqWGpnQTh3a1NuYlRHM1AxVnMwNzVLWDk4dnJSYTBHUVlmTFV4MF9xZmhhaEY0US1VY3lvV1UwYzBRdUdLdDgzaVZDXzcwbDZN?oc=5",
+      "detail": "Vishnu Chemicals Unit Acquires 18.69% Stake In Fractal Nova",
+      "url": "https://news.google.com/rss/articles/CBMijAFBVV95cUxOM2VHREJRQjhkdktUSV9QWGpjSzdyQnV3TThlRGdCSDk3MHNMZk9Fb3hUZlpGVURpOUFPOUxOLXZScGxfSlFrcVlUZVJ6c25ZTDdRakRMM05uUzExclc4aFN4a0otY0R6Ym9UVWZUOGR6WXdwalh0VmllRzRmb2RtZ1ZkcVJKYlJfQUNzZQ?oc=5",
       "source": "Sahi"
      }
     ]
@@ -8452,13 +8445,6 @@
       "kind": "fundraise or deal",
       "detail": "Aeroflex Enterprises invests ₹10 crore in subsidiary via rights issue",
       "url": "https://news.google.com/rss/articles/CBMivwFBVV95cUxPOTFuMUVnaXlhVTYzbkZFS0xlVzQwMlM0ZGN3MUp6THdEamV6bFUwdF9JcS1CUE1BWTNNaVp4ekZzc1B5cXd4UTFkX2hDcXBsTTJodW0zYUU2N01Kb0xVaml3VXpCakEtYk5hOWdPX28xeTdwZkJLUm1FUjV2enZ2S1lHSDNZNHJWUFBVbDl1SC1BQjV1VTJtVUxRcDJGZzctdUItMmVmYWZtVmgtOFVqcmlpVW5fRHk3VGRDWnlnbw?oc=5",
-      "source": "Scanx"
-     },
-     {
-      "tier": "news",
-      "kind": "M&A or stake",
-      "detail": "Aeroflex Neu Allots ₹3 Cr Stake in Stilonn Valves",
-      "url": "https://news.google.com/rss/articles/CBMi6gFBVV95cUxPNlVlTlFsbGVnY19iNFAyZlFZLW55Q09qMGtNRFhtRC02UlkzTmUzRW9RTFFPT2JDREYzOEhHOXBIY053Nl9xUGN4bmZHd1lsRm9pOHZnMktVbllxeFJzd2dBX252NGRnNHp5RUpEQm1YT0txdXZNZDQyN3ZQMWd3enJlN3EtRmVMUjBUMkNuMWFwNjdpaVE0dFlfa2xsdFZEMFBfal9heGhXMGNYYXQwbVlYbVhhbVdiTjlYVjMyal9NdnZma0Fma0ZYWnluOFhZbzc4N09yYzJWb0hkdXpiZHA0Mmd3ajd5YkE?oc=5",
       "source": "Scanx"
      }
     ]
