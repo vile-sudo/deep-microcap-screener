@@ -1,28 +1,77 @@
 {
- "updated": "2026-11-21T06:58+05:30",
+ "updated": "2026-11-22T06:23+05:30",
  "figures": [
   {
-   "label": "Brent crude",
-   "value": "$91.31/bbl",
+   "label": "Brent crude (Jan futures)",
+   "value": "$92.57/bbl",
    "as_of": "2026-11-20",
-   "note": "-0.7% intraday; near 5% weekly fall",
+   "note": "+0.64% on the day; -3.41% on the week",
    "source": {
-    "publisher": "RTE (Reuters)",
-    "url": "https://www.rte.ie/news/business/2026/1120/1599964-world-oil-prices/"
+    "publisher": "FinanceFeeds",
+    "url": "https://financefeeds.com/brent-crude-oil-price-92-57-saturday-week-ahead-opec-plus-29-november-bull-96-bear-89/"
    }
   },
   {
-   "label": "WTI crude",
-   "value": "$82.85/bbl",
+   "label": "WTI (Dec futures)",
+   "value": "$83.98/bbl",
    "as_of": "2026-11-20",
-   "note": "Dec contract, -0.4% intraday; about 6.5% weekly fall",
+   "note": "+0.93% on the day; -5.17% on the week",
    "source": {
-    "publisher": "RTE (Reuters)",
-    "url": "https://www.rte.ie/news/business/2026/1120/1599964-world-oil-prices/"
+    "publisher": "FinanceFeeds",
+    "url": "https://financefeeds.com/brent-crude-oil-price-92-57-saturday-week-ahead-opec-plus-29-november-bull-96-bear-89/"
+   }
+  },
+  {
+   "label": "India crude import bill (Oct)",
+   "value": "$19.5 bn",
+   "as_of": "2026-10-31",
+   "note": "+~88% y/y; April-October $111 bn",
+   "source": {
+    "publisher": "Maritime Gateway",
+    "url": "https://www.maritimegateway.com/indias-october-crude-import-bill-surges-to-19-5-billion-as-oil-prices-climb/"
    }
   }
  ],
  "items": [
+  {
+   "date": "2026-11-21",
+   "title": "India's October crude import bill jumps to $19.5 bn; April-October at $111 bn",
+   "text": "India's crude import bill for October 2026 was $19.5 billion, up nearly 88% year-on-year, with volumes up only 11%, so price drove most of the rise. Provisional PPAC data put April-October crude imports at $111 billion (+53.5%) on volumes up 2.7% to 146.6 million tonnes. LNG imports cost $11 billion (+35.8%) on volumes up 7.4% to 22,175 MMSCM. A heavy import bill keeps pressure on the government to back domestic output, which supports ONGC and Oil India.",
+   "tone": "watch",
+   "companies": [
+    "ONGC",
+    "OIL"
+   ],
+   "sources": [
+    {
+     "publisher": "Maritime Gateway",
+     "title": "India's October crude import bill surges to $19.5 billion as oil prices climb",
+     "url": "https://www.maritimegateway.com/indias-october-crude-import-bill-surges-to-19-5-billion-as-oil-prices-climb/",
+     "date": "2026-11-21"
+    }
+   ],
+   "added": "2026-11-22"
+  },
+  {
+   "date": "2026-11-21",
+   "title": "Brent settles at $92.57 on 20 Nov, third weekly fall; OPEC+ meets 29 Nov on 2027 quotas",
+   "text": "Brent's January contract settled at $92.57 on 20 November, up 0.64% on the day but down 3.41% on the week from $95.84, its third straight weekly loss. WTI settled at $83.98. A tanker fire near Hormuz lifted prices on Friday, while the IEA's view that supply is back in surplus weighed on them. OPEC+ is expected to set 2027 production levels on 29 November. Lower crude trims upstream realisations for ONGC, Oil India and Reliance.",
+   "tone": "watch",
+   "companies": [
+    "ONGC",
+    "OIL",
+    "RELIANCE"
+   ],
+   "sources": [
+    {
+     "publisher": "FinanceFeeds",
+     "title": "Brent Crude Price $92.57: 8 Days to OPEC+ 2027 Quota Call",
+     "url": "https://financefeeds.com/brent-crude-oil-price-92-57-saturday-week-ahead-opec-plus-29-november-bull-96-bear-89/",
+     "date": "2026-11-21"
+    }
+   ],
+   "added": "2026-11-22"
+  },
   {
    "date": "2026-11-20",
    "title": "Brent heads for third weekly fall at about $91.31 as Hormuz flows return to pre-war levels",

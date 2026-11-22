@@ -1,0 +1,874 @@
+{
+ "slug": "critical-mineral-recycling-li-ion-ewaste",
+ "name": "Critical Mineral Recycling: Li-ion Black Mass & E-Waste Urban Mining",
+ "icon": "chip",
+ "edition": "2026-W47",
+ "updated": "2026-11-22",
+ "scope": "India's Rs 1,500 cr Critical Mineral Recycling Incentive Scheme, the new black mass export ban and Rs 2,814 cr processing scheme, battery EPR rules, and the listed companies moving from scrap handling and black mass into lithium, nickel, cobalt, copper and precious-metal recovery.",
+ "summary": {
+  "one_line": "Policy moved twice this month. DGFT banned Li-ion black mass exports with effect from 10 Nov 2026, and the Cabinet cleared a Rs 2,814 cr capex scheme for lithium and nickel processing on 4 Nov. Both favour domestic refiners over shredders. Listed exposure is still small and mostly pre-refining, and the stocks have not re-rated: Gravita is -8% over 6 months and -13% over 1 year.",
+  "key_points": [
+   "New this week: DGFT moved ITC (HS) 85491400, which identifies Li-ion black mass, from 'Free' to 'Prohibited' with immediate effect. The government said domestic recycling capacity is 'underutilised due to inadequate availability of feedstock' and that some recyclers have had to import black mass (S9, S11).",
+   "Also new: on 4 Nov 2026 the Cabinet approved a Rs 2,814 cr Capex Support Scheme for Critical Mineral Processing. It offers a 30% capital subsidy for two lithium plants of at least 30 kt and two nickel plants of at least 50 kt, capped at Rs 500 cr and Rs 900 cr per beneficiary and selected by least-cost bidding. The minister said feedstock may come 'after mining or after recycling' (S13).",
+   "The Rs 1,500 cr recycling scheme is unchanged. 58 entities are eligible (20 cleared on 30 Mar and 38 on 29 Apr 2026), with about 850 KTPA pledged against a target of at least 270 kt and about Rs 5,000 cr of investment. Support starts only after production begins (S1, S2). We still found no official list of the 58 names and no disbursal.",
+   "Shredding capacity far exceeds refining capacity. Arihant Capital counts 57 Li-ion recyclers on the CPCB EPR portal with about 5.17 lakh MT of combined capacity, but India can process only about 75,500 t of black mass a year (S11).",
+   "Gravita (Q2 FY27 call, 28 Oct): Li-ion is 'expected to start contributing in the next four to five years', and its earlier guidance assumed no meaningful Li-ion revenue through FY29 (S7). Lead volumes fell 11% on scrap shortages, and capex remains Rs 1,680 cr through FY29 (S6).",
+   "Eco Recycling's Q2 FY27 standalone results (4 Nov) showed revenue of Rs 16.42 cr (+14% YoY) and PAT of Rs 7.53 cr (+22%), with no Li-ion or critical-minerals update (S8). Its scheme status is still the provisional JNARDDC eligibility letter of 30 Apr 2026 disclosed to BSE (S3).",
+   "Namo eWaste: H1 FY27 battery revenue was about Rs 35 cr of about Rs 124 cr. It processes 1 tpd of black mass, targets 5 tpd in 12-18 months, and plans a hydromet plant of more than Rs 70 cr. A concall summary says the Ministry of Mines scheme allotted Rs 60 cr to that project; the company has not confirmed this in an exchange filing (S15).",
+   "Nothing is priced in. On 21 Nov, screener.in put Gravita 22.6%, Eco Recycling 29.2% and Namo eWaste 34.7% below their 52-week highs (S27)."
+  ],
+  "for_investors": [
+   {
+    "title": "Who benefits",
+    "tone": "good",
+    "points": [
+     "Domestic refiners and integrated recyclers, which now keep domestic black mass feed under the export ban (S9). Among listed names, only Namo eWaste (pilot, 1 tpd) has disclosed black mass refining activity (S15).",
+     "Small e-waste and Li-ion recyclers, for which a capped incentive of Rs 25-50 cr (S2) is large against revenue. Eco Recycling's H1 FY27 standalone revenue was about Rs 32.6 cr (S8).",
+     "Integrated metals players that can bid on large-scale lithium and nickel processing under the new Rs 2,814 cr scheme (S13). Hindalco is the listed name already doing urban mining at Pakhajan (S18)."
+    ]
+   },
+   {
+    "title": "Who is hurt / risks",
+    "tone": "bad",
+    "points": [
+     "Export-reliant shredders (R2). Before the ban, R2 recyclers said overseas buyers paid about 2% more, and Namo's management had argued for a phased approach (S17). Inventus Battery Energy Technologies argued that black mass producers depend on exports because India has no battery-grade NMC powder producers (S17).",
+     "Domestic black mass prices could fall while refining capacity (about 75,500 t) remains far below shredding capacity (about 5.17 lakh MT) (S11).",
+     "Recovered metal still has to reach battery grade. Down To Earth warns India 'risks retaining the raw recycling intermediate while continuing to depend on imported refined materials' (S12)."
+    ]
+   },
+   {
+    "title": "What to watch",
+    "tone": "watch",
+    "points": [
+     "DGFT transitional arrangements (FTP para 1.05) for black mass shipments already contracted (S9).",
+     "Guidelines and bidding for the Rs 2,814 cr processing scheme, and whether recyclers qualify as 'after recycling' feedstock suppliers (S13).",
+     "The first capacity-commencement notices and subsidy releases under the Rs 1,500 cr scheme, and an official list of the 58 entities (S1).",
+     "Namo eWaste filing any scheme approval for its hydromet project; Eco Recycling's decision on its critical-minerals recovery project; Gravita's consent to operate at Mundra (S7, S15)."
+    ]
+   }
+  ]
+ },
+ "kpis": [
+  {
+   "label": "Black mass exports",
+   "value": "Prohibited",
+   "sub": "DGFT, effective 10 Nov 2026 (S9)"
+  },
+  {
+   "label": "New processing scheme",
+   "value": "Rs 2,814 cr",
+   "sub": "30% capex subsidy, 2 Li + 2 Ni plants; approved 4 Nov 2026 (S13)"
+  },
+  {
+   "label": "Recycling scheme outlay",
+   "value": "Rs 1,500 cr",
+   "sub": "FY26-FY31 (S2)"
+  },
+  {
+   "label": "Recyclers approved",
+   "value": "58",
+   "sub": "~850 KTPA pledged vs at least 270 kt target (S1, S2)"
+  },
+  {
+   "label": "Li-ion recycler capacity vs black mass processing",
+   "value": "~5.17 lakh MT vs ~75,500 t",
+   "sub": "57 CPCB-registered recyclers (S11)"
+  },
+  {
+   "label": "Gravita 6-month return",
+   "value": "-8.25%",
+   "sub": "to 20 Nov 2026; 1-year -12.91% (S14)"
+  },
+  {
+   "label": "Eco Recycling Q2 FY27 PAT",
+   "value": "Rs 7.53 cr",
+   "sub": "Standalone, +22% YoY (S8)"
+  },
+  {
+   "label": "EV battery recovery target",
+   "value": "90%",
+   "sub": "BWMR, from 2026-27 (S21)"
+  }
+ ],
+ "sections": [
+  {
+   "id": "theme_explainer",
+   "title": "What critical mineral recycling means in India",
+   "subsections": [
+    {
+     "title": "Black mass, hydromet refining and urban mining",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "Li-ion recycling has two steps. First, spent cells and gigafactory scrap are shredded into 'black mass', an intermediate that contains lithium, cobalt, nickel and manganese (S9). Second, hydrometallurgical refining converts black mass into battery-grade salts. Down To Earth notes that this second step 'requires investment in advanced processing, refining and purification' (S12). E-waste 'urban mining' recovers copper, precious and special metals from printed circuit boards. Hindalco's Pakhajan plant is one example (S18). The Rs 1,500 cr scheme is meant to reward actual mineral extraction, not black mass production alone (S2, S3)."
+      },
+      {
+       "type": "bullets",
+       "items": [
+        "Shredders far outnumber refiners. Arihant Capital counts 57 Li-ion recyclers on the CPCB EPR portal with about 5.17 lakh MT of combined capacity, but only about 75,500 t a year of black mass processing capacity (S11).",
+        "Most refining capacity is in private hands: EVreporter lists Attero at up to 15,000 MT/yr, Rubamin at 10,000 MTA and Exigo at 7,600 MTA (S17). Rubamin said in Nov 2025 that domestic refiners were 'already short of feedstock' (S17).",
+        "LFP chemistries contain no nickel or cobalt, so they may need stronger EPR support to be recycled economically (S12)."
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Shredding vs refining: where value sits",
+     "blocks": [
+      {
+       "type": "chart",
+       "title": "Registered Li-ion recycling capacity vs black mass processing capacity",
+       "unit": "thousand tonnes per year",
+       "series": [
+        {
+         "name": "Capacity",
+         "points": [
+          [
+           "Li-ion recyclers on CPCB portal (57)",
+           517
+          ],
+          [
+           "Black mass processing",
+           75.5
+          ]
+         ]
+        }
+       ],
+       "source": "Source: Arihant Capital (S11)"
+      },
+      {
+       "type": "callout",
+       "tone": "info",
+       "text": "The export ban secures feedstock for refiners but does not create refining capacity. The listed universe sits mostly on the shredding side. Namo eWaste is the only listed company with a disclosed (pilot) black mass refining line (S11, S12, S15)."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "policy_and_capex",
+   "title": "Policy, schemes and pledged capex",
+   "subsections": [
+    {
+     "title": "What changed in November 2026",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "November 2026 policy moves",
+       "columns": [
+        "Measure",
+        "Date",
+        "Key terms",
+        "Source"
+       ],
+       "rows": [
+        [
+         "DGFT export ban on Li-ion black mass (ITC HS 85491400)",
+         "10 Nov 2026",
+         "'Free' to 'Prohibited', with immediate effect until further orders; FTP 2023 para 1.05 transitional arrangements apply; aim is to keep feedstock for domestic refining",
+         "S9, S12"
+        ],
+        [
+         "Capex Support Scheme to Promote Critical Mineral Processing",
+         "4 Nov 2026",
+         "Rs 2,814 cr, FY27-FY31; 30% capital subsidy; 2 lithium plants of at least 30 kt (cap Rs 500 cr each) and 2 nickel plants of at least 50 kt (cap Rs 900 cr each); technical qualification then least-cost bidding; paid in 3 milestone tranches",
+         "S13"
+        ]
+       ]
+      },
+      {
+       "type": "p",
+       "text": "The two measures work together. The ban keeps black mass in the country, and the processing scheme pays for large plants that turn intermediates into high-purity lithium and nickel compounds. The minister said raw material may come 'whether after mining or after recycling' (S13). The plant sizes (at least 30-50 kt) are far larger than anything a listed recycler has disclosed, so the main beneficiaries are likely to be large groups, not the current small-cap recyclers (S13, S15)."
+      }
+     ]
+    },
+    {
+     "title": "The Rs 1,500 cr recycling scheme and the 58 approvals",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "Incentive Scheme for Promotion of Critical Mineral Recycling: key terms",
+       "columns": [
+        "Item",
+        "Detail",
+        "Source"
+       ],
+       "rows": [
+        [
+         "Cabinet approval / tenure",
+         "3 Sep 2025; FY2025-26 to FY2030-31",
+         "S2"
+        ],
+        [
+         "Capex subsidy",
+         "20% on plant, machinery, equipment and associated utilities",
+         "S2"
+        ],
+        [
+         "Opex subsidy",
+         "40% in year 2 and 60% in year 5 on reaching incremental-sales thresholds",
+         "S2"
+        ],
+        [
+         "Caps",
+         "Rs 50 cr per large entity; Rs 25 cr per small entity",
+         "S2"
+        ],
+        [
+         "Targets",
+         "At least 270 kt/yr capacity, ~40 kt/yr critical mineral output, ~Rs 8,000 cr investment",
+         "S2"
+        ],
+        [
+         "Approvals",
+         "58 entities (20 on 30 Mar and 38 on 29 Apr 2026); ~850 KTPA and ~Rs 5,000 cr pledged; support only after production starts",
+         "S1"
+        ]
+       ]
+      },
+      {
+       "type": "chart",
+       "title": "Scheme capacity: Cabinet target vs pledged by 58 approved entities",
+       "unit": "kt per year",
+       "series": [
+        {
+         "name": "Capacity",
+         "points": [
+          [
+           "Target (Sep 2025)",
+           270
+          ],
+          [
+           "Pledged (Apr 2026)",
+           850
+          ]
+         ]
+        }
+       ],
+       "source": "Source: IANS (S2); PIB (S1)"
+      },
+      {
+       "type": "callout",
+       "tone": "warn",
+       "text": "Pledged capacity is about 3.1x the target, but pledged investment is only about 0.6x the expected Rs 8,000 cr (S1, S2). This points to low-capex pre-processing lines. We found no official list of the 58 names and no disbursal. Among listed companies, Eco Recycling has disclosed a provisional eligibility letter to BSE (S3). A concall summary says Namo eWaste has a Rs 60 cr scheme allocation for its hydromet project, but no exchange filing confirms it (S15)."
+      }
+     ]
+    },
+    {
+     "title": "Battery Waste Management Rules (EPR)",
+     "blocks": [
+      {
+       "type": "bullets",
+       "items": [
+        "EV and portable batteries: minimum recovery target rises to 90% from 2026-27 (S21).",
+        "EV batteries: minimum domestic recycled content starts at 5% in 2027-28 and rises to 20% by 2030-31 (S12, S21).",
+        "The Centre for Science and Environment (CSE) argues that undervalued EPR certificates discourage investment in high-recovery technology (S12)."
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "listed_company_impact",
+   "title": "Listed company impact",
+   "subsections": [
+    {
+     "title": "Core names: Gravita and Eco Recycling",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "Disclosed Li-ion / e-waste assets and latest results",
+       "columns": [
+        "Company",
+        "Li-ion / critical-mineral asset",
+        "Latest quarter",
+        "Scheme status",
+        "Sources"
+       ],
+       "rows": [
+        [
+         "Gravita India",
+         "6,000 MTPA Mundra Li-ion pilot (Jan 2026, ~Rs 14 cr); currently converts batteries to black mass and is doing R&D on processing",
+         "Q2 FY27: lead volumes -11% YoY on scrap shortage; Li-ion 'expected to start contributing in the next four to five years'",
+         "No public evidence of eligibility",
+         "S4, S5, S6, S7"
+        ],
+        [
+         "Eco Recycling (Ecoreco)",
+         "E-waste and 6,000 MTPA Li-ion pre-processing at Vasai; proposed critical-minerals recovery project",
+         "Q2 FY27 standalone: revenue Rs 16.42 cr (+14%), PAT Rs 7.53 cr (+22%), operating profit Rs 9.11 cr (55.5% margin)",
+         "Provisional JNARDDC eligibility letter, 30 Apr 2026, disclosed to BSE 5 May 2026",
+         "S3, S8"
+        ]
+       ]
+      },
+      {
+       "type": "p",
+       "text": "Gravita: the 6,000 MTPA Li-ion plant is small against a group expanding from about 4.8 lakh to 8 lakh tonnes by FY29, under a Rs 1,680 cr capex plan (S7). The Q2 call focused on scrap sourcing (74% imported last quarter) and copper. Management guided to lead volume growth of 18-20% a year (S6). Li-ion contribution is 'expected in the next four to five years' (S7), so it is not an FY28 earnings driver. Eco Recycling: Q2 margin gains came from 'operational efficiencies in its e-waste management segment', with no Li-ion disclosure (S8). Its H1 FY27 standalone revenue was about Rs 32.6 cr (Q1 Rs 16.19 cr, Q2 Rs 16.42 cr) (S8), so a capped scheme incentive of up to Rs 25-50 cr (S2) would be material. Neither company has given Li-ion revenue guidance, so we do not estimate an FY28 contribution."
+      }
+     ]
+    },
+    {
+     "title": "Other listed participants and adjacencies",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "Other Indian listed companies with confirmed links (lead-acid-only recyclers excluded)",
+       "columns": [
+        "Company",
+        "Evidence",
+        "Stage",
+        "Sources"
+       ],
+       "rows": [
+        [
+         "Namo eWaste Management (NSE SME)",
+         "Nashik battery recycling at above 30% utilisation in H1 FY27; ~Rs 35 cr battery revenue; black mass refining pilot at 1 tpd, targeting 5 tpd; hydromet plant of more than Rs 70 cr planned; FY28 revenue target Rs 700-750 cr (management)",
+         "Operating; refining pilot",
+         "S15"
+        ],
+        [
+         "Nile Ltd",
+         "Subsidiary Nile Li-Cycle began Phase 1 Li-ion recycling (mixed metal oxide) in Telangana in Mar 2024; core business is lead",
+         "Operating, small scale",
+         "S22, S27"
+        ],
+        [
+         "Hindalco Industries",
+         "PCB e-waste plant at Pakhajan recovering copper plus rare earths and special metals",
+         "Commissioned (Jun 2026)",
+         "S18"
+        ],
+        [
+         "Tata Chemicals",
+         "Pilot recovery of Li, Co, Ni and Mn from spent Li-ion cells near Mumbai, targeting 500 t",
+         "Pilot (2019); no recent update found",
+         "S19, S22"
+        ],
+        [
+         "Pondy Oxides & Chemicals",
+         "Partnership with ACE Green Recycling; MoU with Tamil Nadu for recycling facilities including Li-ion",
+         "Exploratory",
+         "S22"
+        ],
+        [
+         "Exide Industries",
+         "Li-ion cell, pack and module investment; recycling arm is lead-only; Arihant names it a potential beneficiary of the ban",
+         "Adjacency (scrap / EPR)",
+         "S11, S23"
+        ],
+        [
+         "Amara Raja Energy & Mobility",
+         "60 MWh cell qualification plant (Jul 2026) under a 16 GWh programme; its Cheyyar recycling plant is for lead",
+         "Adjacency (scrap / EPR)",
+         "S22, S24"
+        ]
+       ]
+      },
+      {
+       "type": "p",
+       "text": "Coverage by size. Large caps (Hindalco, Tata Chemicals, Exide, Amara Raja) are mostly adjacency. Mid caps are limited to Gravita and Pondy Oxides, where Li-ion is a small option. The real Li-ion and e-waste pure plays are all small caps: Eco Recycling (Rs 773 cr), Namo eWaste (Rs 582 cr) and Nile (Rs 358 cr) (S27). Correction: last edition excluded Nile as lead-only. Its Li-ion subsidiary is in fact operating (S22), so it is now included."
+      }
+     ]
+    },
+    {
+     "title": "How much is priced in",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "Market snapshot (screener.in, 21 Nov 2026; Nile 20 Nov)",
+       "columns": [
+        "Company",
+        "Price (Rs)",
+        "Market cap (Rs cr)",
+        "P/E",
+        "vs 52-wk high",
+        "Source"
+       ],
+       "rows": [
+        [
+         "Gravita India",
+         "1,482",
+         "10,938",
+         "27.5x",
+         "-22.6%",
+         "S27"
+        ],
+        [
+         "Eco Recycling",
+         "400",
+         "773",
+         "29.7x",
+         "-29.2%",
+         "S27"
+        ],
+        [
+         "Namo eWaste",
+         "254",
+         "582",
+         "34.2x",
+         "-34.7%",
+         "S27"
+        ],
+        [
+         "Pondy Oxides",
+         "372",
+         "2,834",
+         "22.1x",
+         "-42.6%",
+         "S27"
+        ],
+        [
+         "Nile",
+         "1,193",
+         "358",
+         "9.0x",
+         "52-wk range 1,188-2,065",
+         "S27"
+        ],
+        [
+         "Hindalco",
+         "930",
+         "2,08,880",
+         "10.9x",
+         "-21.1%",
+         "S27"
+        ]
+       ]
+      },
+      {
+       "type": "chart",
+       "title": "Market cap: 31 Oct vs 21 Nov 2026",
+       "unit": "Rs cr",
+       "series": [
+        {
+         "name": "31 Oct 2026",
+         "points": [
+          [
+           "Eco Recycling",
+           789
+          ],
+          [
+           "Namo eWaste",
+           778
+          ]
+         ]
+        },
+        {
+         "name": "21 Nov 2026",
+         "points": [
+          [
+           "Eco Recycling",
+           773
+          ],
+          [
+           "Namo eWaste",
+           582
+          ]
+         ]
+        }
+       ],
+       "source": "Source: screener.in (S27); 31 Oct values from the prior edition's screener.in snapshot"
+      },
+      {
+       "type": "p",
+       "text": "The black mass ban and the processing scheme did not lift the small caps. Namo eWaste's market cap fell from about Rs 778 cr to Rs 582 cr, and Eco Recycling's from Rs 789 cr to Rs 773 cr, between 31 Oct and 21 Nov (S27). Gravita recovered somewhat after its Q2 results. Upstox shows Rs 1,484.90 on 20 Nov, with a 6-month return of -8.25% and a 1-year return of -12.91% (S14). The brief's 'Gravita ~+15% in 6 months' is therefore contradicted by the data."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "research_house_views",
+   "title": "Research house and media views",
+   "subsections": [
+    {
+     "title": "Broker and research views",
+     "blocks": [
+      {
+       "type": "bullets",
+       "items": [
+        "Arihant Capital (19 Nov 2026) on the black mass ban: Gravita 'could get a steady supply of battery scrap which it can process into industrial-grade products', and the ban 'could support a stronger domestic supply chain' for Exide's Li-ion cell business (S11).",
+        "Ashika Institutional Equities (via Business Today, Jul 2026) initiated on Gravita, Pondy Oxides and Jain Resource. Its thesis rests on recycling formalisation under BWMR and EPR, plus copper and lead capacity, not Li-ion (S25).",
+        "Down To Earth / CSE: the ban secures feedstock but not quality. It does not guarantee 'sufficient volumes, predictable quality, viable margins, or assured demand' (S12)."
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Retail and industry media",
+     "blocks": [
+      {
+       "type": "bullets",
+       "items": [
+        "Upstox, 'Top stocks in battery recycling space' (updated Sep 2024): Amara Raja, Exide, Tata Chemicals, Gravita, Pondy Oxides and Nile (S22).",
+        "Trade Brains, 'Top 3 e-waste management stocks' (Jun 2026): Gravita, Namo eWaste and Eco Recycling (S26).",
+        "Industry positions on export curbs (EVreporter, Nov 2025): Attero, Rubamin and Exigo backed them, while Namo eWaste and Lohum argued for a phased approach (S17)."
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "risks_and_catalysts",
+   "title": "Risks and catalysts",
+   "subsections": [
+    {
+     "title": "Key risks",
+     "blocks": [
+      {
+       "type": "bullets",
+       "items": [
+        "Feedstock and quality: the government says capacity is underused for lack of feedstock (S9), and recovered material may not meet cell-maker specifications (S12).",
+        "Ban disruption for shredders: R2 recyclers previously earned higher overseas payables, and industry participants said producers rely on exports until a domestic CAM (cathode active material) industry exists (S17).",
+        "Technology execution: Namo's 5 tpd refining scale-up and hydromet plant are 12-18 months and 2-3 years away (S15). Gravita's Li-ion contribution is 4-5 years out (S7).",
+        "Disbursal timing: Rs 1,500 cr scheme support comes only after production starts, and the opex portion is back-ended (S1, S2).",
+        "Scale mismatch: the new processing scheme targets plants of at least 30-50 kt, likely out of reach for current listed small caps (S13).",
+        "Core-business drag: Gravita's lead volumes fell 11% on scrap availability (S6)."
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Catalysts calendar",
+     "blocks": [
+      {
+       "type": "table",
+       "caption": "Upcoming events",
+       "columns": [
+        "Event",
+        "Timing",
+        "Why it matters",
+        "Source"
+       ],
+       "rows": [
+        [
+         "Rs 2,814 cr processing scheme guidelines and bidding",
+         "FY27 onward",
+         "Shows whether recyclers or large groups capture the lithium and nickel processing subsidy",
+         "S13"
+        ],
+        [
+         "Implementation of the black mass ban and transitional shipments",
+         "Nov-Dec 2026",
+         "Domestic black mass pricing and shredder margins",
+         "S9"
+        ],
+        [
+         "First capacity commencements and subsidies under the Rs 1,500 cr scheme",
+         "FY27-FY28",
+         "First cash to approved recyclers",
+         "S1, S2"
+        ],
+        [
+         "Namo eWaste black mass refining at 5 tpd; H2 FY27 revenue vs Rs 350 cr benchmark",
+         "12-18 months; FY27",
+         "Tests the only listed refining pilot",
+         "S15"
+        ],
+        [
+         "Gravita Mandvi 29,400 MTPA expansion; Li-ion consent to operate",
+         "Within 12 months; not dated",
+         "Signals capex priority versus Li-ion",
+         "S6, S7"
+        ],
+        [
+         "EV recycled-content mandate (5%)",
+         "2027-28",
+         "Domestic demand for refined salts",
+         "S21"
+        ]
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "companies": [
+  {
+   "name": "Gravita India Ltd",
+   "nse": "GRAVITA",
+   "bse": "533282",
+   "bucket": "liion_battery_recyclers",
+   "role": "Diversified recycler (lead, aluminium, plastic, copper). Commissioned a 6,000 MTPA Li-ion recycling pilot at Mundra in Jan 2026 for about Rs 14 cr (S4, S7).",
+   "impact": "Li-ion is 'expected to start contributing in the next four to five years' (S7). Arihant says the black mass ban could secure battery scrap feed (S11). FY28 earnings still depend on lead and copper (S6)."
+  },
+  {
+   "name": "Eco Recycling Ltd (Ecoreco)",
+   "nse": null,
+   "bse": "530643",
+   "bucket": "ewaste_urban_mining",
+   "role": "E-waste recycler and ITAD/EPR service provider with Li-ion pre-processing at Vasai. Q2 FY27 standalone revenue was Rs 16.42 cr (S8).",
+   "impact": "The only listed name with a filed (provisional) scheme eligibility letter (S3). A capped incentive would be large against about Rs 32.6 cr of H1 revenue (S2, S8)."
+  },
+  {
+   "name": "Namo eWaste Management Ltd",
+   "nse": "NAMOEWASTE",
+   "bse": null,
+   "bucket": "liion_battery_recyclers",
+   "role": "NSE SME e-waste and battery recycler. About Rs 35 cr of H1 FY27 battery revenue; black mass refining pilot at 1 tpd (S15).",
+   "impact": "The most direct listed beneficiary of the ban if it scales refining to 5 tpd. The reported Rs 60 cr scheme allocation for its hydromet plant needs filing confirmation (S15)."
+  },
+  {
+   "name": "Nile Ltd",
+   "nse": "NILE",
+   "bse": "530129",
+   "bucket": "liion_battery_recyclers",
+   "role": "Lead producer whose subsidiary Nile Li-Cycle began Phase 1 Li-ion recycling (mixed metal oxide) in Telangana in Mar 2024 (S22).",
+   "impact": "A small-cap Li-ion option (Rs 358 cr market cap) on a lead-dominated base of about Rs 1,024 cr TTM sales (S27)."
+  },
+  {
+   "name": "Hindalco Industries Ltd",
+   "nse": "HINDALCO",
+   "bse": "500440",
+   "bucket": "ewaste_urban_mining",
+   "role": "Runs a PCB e-waste recycling plant at Pakhajan recovering copper, rare earths and special metals (S18).",
+   "impact": "Scale makes it a natural bidder for large processing schemes (S13), though e-waste is immaterial to group earnings (S18, S27)."
+  },
+  {
+   "name": "Tata Chemicals Ltd",
+   "nse": "TATACHEM",
+   "bse": "500770",
+   "bucket": "liion_battery_recyclers",
+   "role": "Pilot recovery of Li, Co, Ni and Mn from spent Li-ion cells near Mumbai (S19).",
+   "impact": "Dormant option; no recent scale-up disclosure found (S19, S22)."
+  },
+  {
+   "name": "Pondy Oxides & Chemicals Ltd",
+   "nse": "POCL",
+   "bse": "532626",
+   "bucket": "other",
+   "role": "Lead and copper recycler. Partnership with ACE Green Recycling and a Tamil Nadu MoU covering Li-ion recycling (S22).",
+   "impact": "Li-ion is exploratory; brokers value it on lead and copper (S25)."
+  },
+  {
+   "name": "Exide Industries Ltd",
+   "nse": "EXIDEIND",
+   "bse": "500086",
+   "bucket": "other",
+   "role": "Li-ion cell, pack and module investor. Its recycling arm is lead-only (S23).",
+   "impact": "A gigafactory scrap source and EPR-obligated producer. Arihant names it a potential beneficiary of a domestic recycled-materials chain (S11, S21)."
+  },
+  {
+   "name": "Amara Raja Energy & Mobility Ltd",
+   "nse": "ARE&M",
+   "bse": "500008",
+   "bucket": "other",
+   "role": "Commissioned a 60 MWh cell qualification plant under a 16 GWh programme (S24). Its Cheyyar recycling plant is for lead (S22).",
+   "impact": "Indirect exposure through scrap and EPR. No company-confirmed Li-ion recycling plant found (S22, S24)."
+  }
+ ],
+ "sources": [
+  {
+   "id": "S1",
+   "publisher": "Press Information Bureau (Ministry of Mines)",
+   "title": "India Advances Critical Mineral Security: 58 Companies Eligible for Recycling Scheme",
+   "url": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2256977&reg=3&lang=1",
+   "date": "2026-04-30",
+   "kind": "primary"
+  },
+  {
+   "id": "S2",
+   "publisher": "IANS",
+   "title": "Cabinet approves Rs 1,500 crore incentive scheme to boost critical mineral recycling",
+   "url": "https://ianslive.in/cabinet-approves-rs-1500-crore-incentive-scheme-to-boost-critical-mineral-recycling--20250903194204",
+   "date": "2025-09-03",
+   "kind": "news"
+  },
+  {
+   "id": "S3",
+   "publisher": "ScanX",
+   "title": "Eco Recycling gets NCMM eligibility to advance recovery of key minerals (BSE Reg 30 disclosure)",
+   "url": "https://scanx.trade/stock-market-news/companies/eco-recycling-limited-receives-eligibility-status-under-national-critical-minerals-mission-ncmm/39504927",
+   "date": "2026-05-05",
+   "kind": "news"
+  },
+  {
+   "id": "S4",
+   "publisher": "IamRenew",
+   "title": "Gravita India commissions lithium-ion battery recycling plant at Mundra",
+   "url": "https://www.iamrenew.com/environment/gravita-india-commissions-lithium-ion-battery-recycling-plant-at-mundra/",
+   "date": "2026-01-24",
+   "kind": "news"
+  },
+  {
+   "id": "S5",
+   "publisher": "Gravita India (exchange filing)",
+   "title": "Transcript of Q1 FY27 earnings conference call, 28 Jul 2026",
+   "url": "https://www.gravitaindia.com/Upload/PDF/Transcriptfinal28072026.pdf",
+   "date": "2026-07-30",
+   "kind": "company"
+  },
+  {
+   "id": "S6",
+   "publisher": "Multibagg",
+   "title": "Gravita says worst scrap disruption is over, lead volumes to rise (Q2 FY27 concall)",
+   "url": "https://www.multibagg.ai/market-pulse/articles/gravita-scrap-sourcing-recovery-plan-concall-cmvwkhv1p000m2rmhob2i91ap",
+   "date": "2026-10-31",
+   "kind": "news"
+  },
+  {
+   "id": "S7",
+   "publisher": "Sovrenn",
+   "title": "Gravita India concall summaries (Q2 FY27, Q4 FY26, Q3 FY26)",
+   "url": "https://www.sovrenn.com/concall-summary/gravita-india",
+   "date": "2026-10-28",
+   "kind": "research"
+  },
+  {
+   "id": "S8",
+   "publisher": "Multibagg",
+   "title": "Eco Recycling Limited Q2 profit rises 22%, revenue Rs 16.42 crore",
+   "url": "https://www.multibagg.ai/market-pulse/articles/eco-recycling-q2-profit-growth-cmw2646cv000i2mtk8xo74u4k",
+   "date": "2026-11-04",
+   "kind": "news"
+  },
+  {
+   "id": "S9",
+   "publisher": "DD India (Prasar Bharati)",
+   "title": "DGFT bans export of lithium-ion battery black mass to boost domestic recycling, critical mineral recovery",
+   "url": "https://ddindia.co.in/2026/11/dgft-bans-export-of-lithium-ion-battery-black-mass-to-boost-domestic-recycling-critical-mineral-recovery/",
+   "date": "2026-11-11",
+   "kind": "primary"
+  },
+  {
+   "id": "S11",
+   "publisher": "Arihant Capital (Arihant Plus)",
+   "title": "Why is India banning exports of battery waste?",
+   "url": "https://www.arihantplus.com/blogs/stocks/why-is-india-banning-exports-of-battery-waste",
+   "date": "2026-11-19",
+   "kind": "research"
+  },
+  {
+   "id": "S12",
+   "publisher": "Down To Earth",
+   "title": "India bans black mass exports to retain critical minerals. Can domestic industry capture their value?",
+   "url": "https://www.downtoearth.org.in/energy/india-bans-black-mass-exports-to-retain-critical-minerals-can-domestic-industry-capture-their-value",
+   "date": "2026-11-12",
+   "kind": "news"
+  },
+  {
+   "id": "S13",
+   "publisher": "PSU Watch",
+   "title": "Cabinet approves Rs 2,814-cr capex support for 4 lithium & nickel processing plants",
+   "url": "https://psuwatch.com/newsupdates/cabinet-approves-rs-2814-cr-capex-support-for-4-lithium-nickel-processing-plants",
+   "date": "2026-11-04",
+   "kind": "news"
+  },
+  {
+   "id": "S14",
+   "publisher": "Upstox",
+   "title": "Gravita India share price",
+   "url": "https://upstox.com/stocks/gravita-india-limited-share-price/",
+   "date": "2026-11-20",
+   "kind": "other"
+  },
+  {
+   "id": "S15",
+   "publisher": "Sovrenn",
+   "title": "Namo eWaste Management Q2 FY27 concall: Rs 124 cr H1 revenue & outlook",
+   "url": "https://www.sovrenn.com/concall-summary/namo-ewaste-management/namo-ewaste-management-q2-fy27-concall-rs-124-cr-h1-revenue-outlook",
+   "date": "2026-11-18",
+   "kind": "research"
+  },
+  {
+   "id": "S17",
+   "publisher": "EVreporter",
+   "title": "Government tightens lithium-ion battery black mass export curbs: stakeholders share perspective",
+   "url": "https://evreporter.com/government-tightens-lithium-ion-battery-black-mass-export-curbs-stakeholders-share-perspective/",
+   "date": "2025-11-08",
+   "kind": "news"
+  },
+  {
+   "id": "S18",
+   "publisher": "The Tribune (ANI)",
+   "title": "Hindalco says e-waste recycling will support India's critical minerals and rare earth recovery efforts",
+   "url": "https://www.tribuneindia.com/news/business/hindalco-says-e-waste-recycling-will-support-indias-critical-minerals-and-rare-earth-recovery-efforts/",
+   "date": "2026-06-19",
+   "kind": "news"
+  },
+  {
+   "id": "S19",
+   "publisher": "Tata Chemicals",
+   "title": "Tata Chemicals launches Li-ion battery recycling operations",
+   "url": "https://www.tatachemicals.com/media/newsroom/press-releases/tata-chemicals-lion-battery-operations",
+   "date": "2019-09-01",
+   "kind": "company"
+  },
+  {
+   "id": "S21",
+   "publisher": "International Energy Agency",
+   "title": "Battery Waste Management Rules 2022 (policy database)",
+   "url": "https://www.iea.org/policies/25166-battery-waste-management-rules-2022",
+   "date": "2022-08-22",
+   "kind": "primary"
+  },
+  {
+   "id": "S22",
+   "publisher": "Upstox",
+   "title": "Top stocks in battery recycling space in India: Amara Raja, Exide, Tata Chemicals, Gravita and more",
+   "url": "https://upstox.com/news/market-news/stocks/top-stocks-in-battery-recycling-space-in-india-amara-raja-exide-tata-chemicals-gravita-and-more/article-114995",
+   "date": "2024-09-06",
+   "kind": "other"
+  },
+  {
+   "id": "S23",
+   "publisher": "Exide Industries (NSE filing)",
+   "title": "Investor Presentation Q1 FY27",
+   "url": "https://nsearchives.nseindia.com/corporate/EXIDEIND_01082026172646_sdInvestorPresentationQ1FY27.pdf",
+   "date": "2026-08-01",
+   "kind": "company"
+  },
+  {
+   "id": "S24",
+   "publisher": "Amara Raja Energy & Mobility (NSE filing)",
+   "title": "Inauguration of Customer Qualification Plant",
+   "url": "https://nsearchives.nseindia.com/corporate/AMARARAJA_15072026154533_CQPinauguration15072026.pdf",
+   "date": "2026-07-15",
+   "kind": "company"
+  },
+  {
+   "id": "S25",
+   "publisher": "Business Today (Ashika Institutional Equities view)",
+   "title": "Metal recycling stocks to buy: Gravita, Pondy Oxides, Jain Resource among top picks",
+   "url": "https://www.businesstoday.in/markets/stocks/story/metal-recycling-stocks-to-buy-gravita-pondy-oxides-jain-resource-among-top-picks-545274-2026-07-26",
+   "date": "2026-07-26",
+   "kind": "research"
+  },
+  {
+   "id": "S26",
+   "publisher": "Trade Brains",
+   "title": "Top 3 e-waste management stocks with strong fundamentals in India to keep an eye on",
+   "url": "https://tradebrains.in/top-3-e-waste-management-stocks-with-strong-fundamentals-in-india-to-keep-an-eye-on/",
+   "date": "2026-06-23",
+   "kind": "other"
+  },
+  {
+   "id": "S27",
+   "publisher": "Screener.in",
+   "title": "Company pages: Gravita, Eco Recycling (530643), Namo eWaste, Pondy Oxides, Hindalco, Nile (consolidated)",
+   "url": "https://www.screener.in/company/NILE/consolidated/",
+   "date": "2026-11-21",
+   "kind": "other"
+  }
+ ],
+ "method": "Weekly refresh of the 2026-W44 edition, researched on 2026-11-22 with web search and direct page fetches. New this week: the DGFT black mass export ban of 10 Nov 2026 (DD India, Down To Earth, Arihant Capital) and the Rs 2,814 cr Capex Support Scheme for Critical Mineral Processing of 4 Nov 2026 (PSU Watch; the PMIndia page returned 403). Also new: Eco Recycling's Q2 FY27 standalone results; Namo eWaste's Q2 FY27 concall summary, including its black mass pilot and a reported scheme allocation that no exchange filing confirms; and Gravita Q2 FY27 concall commentary from Multibagg and Sovrenn summaries (the transcript PDF returned 404). Nile Ltd was added after confirming its Li-ion subsidiary, correcting last edition's exclusion. Market data is the screener.in snapshot in numbers.json (21 Nov 2026), plus screener.in for Nile and Upstox for Gravita returns. Carried over from last edition: the scheme terms, PIB approvals, BWMR targets, Hindalco, Tata Chemicals, Exide and Amara Raja, and the broker and media pieces. Dropped as stale: Gravita's Q2 headline-revenue reconciliation, the MarketsMojo returns and the Pondy FilingReader item. No official list of the 58 entities, no disbursal and no Gravita scheme application was found. Source IDs S10, S16 and S20 are intentionally unused. No ratings or price targets are given.",
+ "bucket_labels": {
+  "liion_battery_recyclers": [
+   "Li-ion battery recyclers",
+   "Listed companies with commissioned or announced Li-ion battery recycling / black mass capacity"
+  ],
+  "ewaste_urban_mining": [
+   "E-waste & urban mining",
+   "Listed e-waste recyclers recovering precious and critical metals, scheme-eligible"
+  ],
+  "other": [
+   "Other",
+   ""
+  ]
+ },
+ "kind": "theme"
+}
