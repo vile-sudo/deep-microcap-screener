@@ -1,18 +1,57 @@
 {
- "updated": "2026-11-23T06:34+05:30",
+ "updated": "2026-11-24T11:02+05:30",
  "figures": [
   {
-   "label": "Brent crude (Jan futures)",
-   "value": "$92.57/bbl",
-   "as_of": "2026-11-20",
-   "note": "+0.64% on the day, -3.41% on the week; Feb contract $89.95",
+   "label": "Brent crude",
+   "value": "$88.97/bbl",
+   "as_of": "2026-11-24",
+   "note": "-0.45% at 0147 GMT, after lowest close since 31 Aug on 23 Nov",
    "source": {
-    "publisher": "FinanceFeeds (citing Reuters settlement)",
-    "url": "https://financefeeds.com/brent-crude-oil-price-92-57-sunday-week-ahead-opec-plus-29-november-2027-quotas-bull-97-bear-88/"
+    "publisher": "Business Recorder",
+    "url": "https://www.brecorder.com/news/40450477/oil-holds-near-three-month-low-as-rising-supply-offsets-hormuz-threat"
+   }
+  },
+  {
+   "label": "WTI crude",
+   "value": "$79.94/bbl",
+   "as_of": "2026-11-24",
+   "note": "-0.29% at 0147 GMT",
+   "source": {
+    "publisher": "Business Recorder",
+    "url": "https://www.brecorder.com/news/40450477/oil-holds-near-three-month-low-as-rising-supply-offsets-hormuz-threat"
    }
   }
  ],
  "items": [
+  {
+   "date": "2026-11-23",
+   "title": "Brent falls below $89 to lowest since late August; OPEC+ meets 29 Nov on 2027 quotas",
+   "text": "Brent fell below $89 on 23 November for the first time since late August; the January 2027 contract touched $86.20 intraday and settled provisionally at $86.58 per Investing.com, as cited by House of Saud. Business Recorder had Brent at $88.97 and WTI at $79.94 early on 24 November, citing rising Middle East flows, Libya's Sharara pipeline reopening, and Deutsche Bank's estimate of a 52 million barrel October global inventory build. OPEC+ meets in Vienna on 29 November to set 2027 quotas, with current authorisations expiring 31 December. Lower crude trims realisations for ONGC and Oil India, though it eases India's import bill and helps refiners and gas users.",
+   "tone": "watch",
+   "companies": [
+    "ONGC",
+    "OIL",
+    "RELIANCE",
+    "IOC",
+    "BPCL",
+    "HINDPETRO"
+   ],
+   "sources": [
+    {
+     "publisher": "House of Saud",
+     "title": "Brent third weekly loss, falls below $89",
+     "url": "https://houseofsaud.com/brent-third-weekly-loss-nov23/",
+     "date": "2026-11-23"
+    },
+    {
+     "publisher": "Business Recorder",
+     "title": "Oil holds near three-month low as rising supply offsets Hormuz threat",
+     "url": "https://www.brecorder.com/news/40450477/oil-holds-near-three-month-low-as-rising-supply-offsets-hormuz-threat",
+     "date": "2026-11-24"
+    }
+   ],
+   "added": "2026-11-24"
+  },
   {
    "date": "2026-11-21",
    "title": "India's October crude import bill jumps to $19.5 bn; April-October at $111 bn",
