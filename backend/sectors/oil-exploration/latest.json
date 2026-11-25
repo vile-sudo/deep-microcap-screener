@@ -1,28 +1,56 @@
 {
- "updated": "2026-11-24T11:02+05:30",
+ "updated": "2026-11-25T09:34+05:30",
  "figures": [
   {
-   "label": "Brent crude",
-   "value": "$88.97/bbl",
+   "label": "Brent crude (Jan futures)",
+   "value": "$91.40/bbl",
    "as_of": "2026-11-24",
-   "note": "-0.45% at 0147 GMT, after lowest close since 31 Aug on 23 Nov",
+   "note": "+2.27% on the day; intraday low $88.10",
    "source": {
-    "publisher": "Business Recorder",
-    "url": "https://www.brecorder.com/news/40450477/oil-holds-near-three-month-low-as-rising-supply-offsets-hormuz-threat"
+    "publisher": "The Nation (Thailand)",
+    "url": "https://www.nationthailand.com/news/world/40073886"
    }
   },
   {
    "label": "WTI crude",
-   "value": "$79.94/bbl",
+   "value": "$82.05/bbl",
    "as_of": "2026-11-24",
-   "note": "-0.29% at 0147 GMT",
+   "note": "+2.35% on the day; intraday low $79.07",
    "source": {
-    "publisher": "Business Recorder",
-    "url": "https://www.brecorder.com/news/40450477/oil-holds-near-three-month-low-as-rising-supply-offsets-hormuz-threat"
+    "publisher": "The Nation (Thailand)",
+    "url": "https://www.nationthailand.com/news/world/40073886"
    }
   }
  ],
  "items": [
+  {
+   "date": "2026-11-24",
+   "title": "Brent rebounds 2.3% to $91.40 after touching $88.10 as Hormuz ship attacks resume",
+   "text": "Brent January futures settled at $91.40/bbl on 24 November, up $2.03 (+2.27%), after falling to $88.10, the lowest since 27 August; WTI settled at $82.05. Three ships were hit by unidentified projectiles near Hormuz on 23 November, though all kept sailing. Deutsche Bank estimates an October global oversupply of 1.7 mb/d, which analysts say caps rebounds. Lower crude trims upstream realisations for ONGC and Oil India but eases the import bill and margin pressure for refiners.",
+   "tone": "watch",
+   "companies": [
+    "ONGC",
+    "OIL",
+    "IOC",
+    "BPCL",
+    "HINDPETRO"
+   ],
+   "sources": [
+    {
+     "publisher": "The Nation (Thailand)",
+     "title": "Brent closed US$2.03 higher on Tuesday after reports of attacks on shipping around the Strait of Hormuz",
+     "url": "https://www.nationthailand.com/news/world/40073886",
+     "date": "2026-11-24"
+    },
+    {
+     "publisher": "Seeking Alpha",
+     "title": "Oil rebounds as Hormuz attacks renew supply fears",
+     "url": "https://seekingalpha.com/news/4676386-oil-rebounds-as-hormuz-attacks-renew-supply-fears",
+     "date": "2026-11-24"
+    }
+   ],
+   "added": "2026-11-25"
+  },
   {
    "date": "2026-11-23",
    "title": "Brent falls below $89 to lowest since late August; OPEC+ meets 29 Nov on 2027 quotas",
@@ -831,28 +859,6 @@
     }
    ],
    "added": "2026-10-13"
-  },
-  {
-   "date": "2026-10-10",
-   "title": "Brent settles at $104.72 on 9 Oct as Gulf of Mexico storm shut-ins offset Iran-talk relief",
-   "text": "Brent futures settled at $104.72/bbl on Friday 9 October, up 44 cents (0.42%), and WTI at $91.85, up 36 cents (0.39%). Producers halted more than 70% of US Gulf crude output ahead of Hurricane Isaias, lifting prices after earlier losses driven by Trump's pledge not to attack Iran before the midterm elections and China's planned resumption of refined fuel exports. Crude holding above $100 keeps ONGC and Oil India realisations high but weighs on oil marketing companies' margins and India's import bill.",
-   "tone": "watch",
-   "companies": [
-    "ONGC",
-    "OIL",
-    "IOC",
-    "BPCL",
-    "HINDPETRO"
-   ],
-   "sources": [
-    {
-     "publisher": "Nation Thailand",
-     "title": "Oil rises as Isaias cuts over 70% of US Gulf output on Oct 9",
-     "url": "https://nationthailand.com/news/world/40072074",
-     "date": "2026-10-10"
-    }
-   ],
-   "added": "2026-10-12"
   }
  ]
 }
