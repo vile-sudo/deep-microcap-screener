@@ -1,28 +1,56 @@
 {
- "updated": "2026-11-25T09:34+05:30",
+ "updated": "2026-11-26T08:41+05:30",
  "figures": [
   {
    "label": "Brent crude (Jan futures)",
-   "value": "$91.40/bbl",
-   "as_of": "2026-11-24",
-   "note": "+2.27% on the day; intraday low $88.10",
+   "value": "$94.61/bbl",
+   "as_of": "2026-11-25",
+   "note": "+3.5% on the day",
    "source": {
-    "publisher": "The Nation (Thailand)",
-    "url": "https://www.nationthailand.com/news/world/40073886"
+    "publisher": "CNBC",
+    "url": "https://cnbc.com/2026/11/25/oil-wti-brent-hormuz-middle-east.html"
    }
   },
   {
-   "label": "WTI crude",
-   "value": "$82.05/bbl",
-   "as_of": "2026-11-24",
-   "note": "+2.35% on the day; intraday low $79.07",
+   "label": "WTI crude (Jan futures)",
+   "value": "$83.68/bbl",
+   "as_of": "2026-11-25",
+   "note": "+2% on the day",
    "source": {
-    "publisher": "The Nation (Thailand)",
-    "url": "https://www.nationthailand.com/news/world/40073886"
+    "publisher": "Rigzone",
+    "url": "https://rigzone.com/news/oil_up_as_hormuz_attacks_counter_recovery_in_supply-25-nov-2026-185171-article"
    }
   }
  ],
  "items": [
+  {
+   "date": "2026-11-25",
+   "title": "Brent jumps 3.5% to $94.61 after Houthi claim of Saudi Ras Tanura attack",
+   "text": "Brent January futures settled at $94.61/bbl, up 3.5%, and WTI at $83.68, up 2%, after Yemen's Houthis claimed an attack on Saudi Arabia's Ras Tanura refinery and Riyadh's financial district. Saudi forces said they intercepted four drones aimed at Ras Tanura. Iran also stepped up attacks on ships in Hormuz, though its claims of mined tankers are unconfirmed. Higher crude helps ONGC and Oil India realisations but raises India's import bill and refiners' costs.",
+   "tone": "watch",
+   "companies": [
+    "ONGC",
+    "OIL",
+    "IOC",
+    "BPCL",
+    "HINDPETRO"
+   ],
+   "sources": [
+    {
+     "publisher": "CNBC",
+     "title": "Oil prices rise after Houthis say they attacked Saudi refinery",
+     "url": "https://cnbc.com/2026/11/25/oil-wti-brent-hormuz-middle-east.html",
+     "date": "2026-11-25"
+    },
+    {
+     "publisher": "Rigzone",
+     "title": "Oil Up as Hormuz Attacks Counter Recovery in Supply",
+     "url": "https://rigzone.com/news/oil_up_as_hormuz_attacks_counter_recovery_in_supply-25-nov-2026-185171-article",
+     "date": "2026-11-25"
+    }
+   ],
+   "added": "2026-11-26"
+  },
   {
    "date": "2026-11-24",
    "title": "Brent rebounds 2.3% to $91.40 after touching $88.10 as Hormuz ship attacks resume",

@@ -14803,6 +14803,15 @@
    "on": "2026-11-18",
    "result": "sector",
    "detail": "no sector"
+  },
+  "INE101P01016": {
+   "on": "2026-11-26",
+   "result": "sector",
+   "detail": "no sector"
+  },
+  "INE546Y20048": {
+   "on": "2026-11-26",
+   "result": "not on screener"
   }
  },
  "runs": [
@@ -15271,6 +15280,13 @@
   {
    "on": "2026-11-25",
    "fetched": 0,
+   "added_codes": []
+  },
+  {
+   "on": "2026-11-26",
+   "fetched": 2,
+   "sector": 1,
+   "not on screener": 1,
    "added_codes": []
   }
  ]
