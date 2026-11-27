@@ -14812,6 +14812,26 @@
   "INE546Y20048": {
    "on": "2026-11-26",
    "result": "not on screener"
+  },
+  "INE0Y9J01020": {
+   "on": "2026-11-27",
+   "result": "sector",
+   "detail": "no sector"
+  },
+  "INE03K401026": {
+   "on": "2026-11-27",
+   "result": "sector",
+   "detail": "no sector"
+  },
+  "INE11NS01011": {
+   "on": "2026-11-27",
+   "result": "sector",
+   "detail": "no sector"
+  },
+  "INE273D01035": {
+   "on": "2026-11-27",
+   "result": "added",
+   "detail": "VGL"
   }
  },
  "runs": [
@@ -15288,6 +15308,15 @@
    "sector": 1,
    "not on screener": 1,
    "added_codes": []
+  },
+  {
+   "on": "2026-11-27",
+   "fetched": 4,
+   "sector": 3,
+   "added": 1,
+   "added_codes": [
+    "VGL"
+   ]
   }
  ]
 }

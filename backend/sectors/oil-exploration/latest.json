@@ -1,28 +1,74 @@
 {
- "updated": "2026-11-26T08:41+05:30",
+ "updated": "2026-11-27T08:43+05:30",
  "figures": [
   {
-   "label": "Brent crude (Jan futures)",
-   "value": "$94.61/bbl",
-   "as_of": "2026-11-25",
-   "note": "+3.5% on the day",
+   "label": "Brent crude",
+   "value": "$96.57/bbl",
+   "as_of": "2026-11-26",
+   "note": "+$1.96 (+1.2%) on the day; third straight gain",
    "source": {
-    "publisher": "CNBC",
-    "url": "https://cnbc.com/2026/11/25/oil-wti-brent-hormuz-middle-east.html"
+    "publisher": "The Globe and Mail (Reuters)",
+    "url": "https://www.theglobeandmail.com/investing/article-oil-prices-fall-as-supply-concerns-linger-after-iran-claims-mine/"
    }
   },
   {
-   "label": "WTI crude (Jan futures)",
-   "value": "$83.68/bbl",
-   "as_of": "2026-11-25",
-   "note": "+2% on the day",
+   "label": "US crude stocks",
+   "value": "418.9 mb",
+   "as_of": "2026-11-26",
+   "note": "+1.1 mb in week to 20 Nov, vs +1.5 mb expected",
    "source": {
-    "publisher": "Rigzone",
-    "url": "https://rigzone.com/news/oil_up_as_hormuz_attacks_counter_recovery_in_supply-25-nov-2026-185171-article"
+    "publisher": "The Globe and Mail (Reuters)",
+    "url": "https://www.theglobeandmail.com/investing/article-oil-prices-fall-as-supply-concerns-linger-after-iran-claims-mine/"
    }
   }
  ],
  "items": [
+  {
+   "date": "2026-11-26",
+   "title": "Brent settles at $96.57 on Houthi Ras Tanura claim and Hormuz mine strikes; OPEC+ meets 29 Nov",
+   "text": "Brent settled at $96.57/bbl on 26 November, up $1.96 (1.2%), a third straight gain and about 8% above Monday's $89.37 settlement. The Houthis said they attacked Saudi Arabia's Ras Tanura refinery, and Iran's Revolutionary Guards said two tankers hit mines near Oman's Khasab port. Two sources told Reuters OPEC+ may roll over current output targets for at least Q1 2027 at its 29 November meeting. Higher crude supports realisations for ONGC and Oil India, but adds to India's import bill and to downstream margin pressure.",
+   "tone": "watch",
+   "companies": [
+    "ONGC",
+    "OIL",
+    "IOC",
+    "BPCL",
+    "HINDPETRO"
+   ],
+   "sources": [
+    {
+     "publisher": "The Globe and Mail (Reuters)",
+     "title": "Brent settles higher as mine strikes, refinery attack stoke Middle East supply concerns",
+     "url": "https://www.theglobeandmail.com/investing/article-oil-prices-fall-as-supply-concerns-linger-after-iran-claims-mine/",
+     "date": "2026-11-26"
+    },
+    {
+     "publisher": "GSM Global News",
+     "title": "Brent Settles at $96.57 as Houthi Attacks on Saudi Refineries and Hormuz Mine Reports Stoke Supply Fears",
+     "url": "https://gsmglobalnews.com/article/d20261126-brent96571.html",
+     "date": "2026-11-26"
+    }
+   ],
+   "added": "2026-11-27"
+  },
+  {
+   "date": "2026-11-26",
+   "title": "UBS keeps Buy, Rs 215 target on GAIL after PNGRB proposes pipeline returns overhaul",
+   "text": "UBS reiterated Buy on GAIL with a Rs 215 target, calling PNGRB's proposals a modest near-term positive. PNGRB proposes awarding new gas pipelines on lowest capital expenditure bidding, replacing the 12% post-tax return on capital employed with a 14% return on equity at a 70:30 debt-equity mix, with tariffs adjusted for actual volumes. UBS sees more upside if some provisions extend to existing pipelines. The proposal is not yet final.",
+   "tone": "good",
+   "companies": [
+    "GAIL"
+   ],
+   "sources": [
+    {
+     "publisher": "Business Upturn",
+     "title": "GAIL shares rise as UBS reiterates Buy with Rs215 target, citing PNGRB's proposed lowest capex bidding for gas pipelines",
+     "url": "https://businessupturn.com/business/gail-shares-rise-as-ubs-reiterates-buy-with-rs215-target-citing-pngrbs-proposed-lowest-capex-bidding-for-gas-pipelines",
+     "date": "2026-11-26"
+    }
+   ],
+   "added": "2026-11-27"
+  },
   {
    "date": "2026-11-25",
    "title": "Brent jumps 3.5% to $94.61 after Houthi claim of Saudi Ras Tanura attack",
@@ -865,28 +911,6 @@
     }
    ],
    "added": "2026-10-14"
-  },
-  {
-   "date": "2026-10-12",
-   "title": "Brent rises above $106 to highest since 29 Sep on Houthi strike on Riyadh airport, Hormuz tanker attacks",
-   "text": "Brent futures rose $1.24, or 1.2%, to $106.19 a barrel by 11:24 GMT on 12 October, the highest since 29 September; WTI gained $1.11 to $92.96. The Houthis claimed a Saturday attack on Riyadh's King Khalid International Airport, and UKMTO reported a tanker struck by a drone near Sohar, Oman and another vessel damaged in the Strait of Hormuz. Higher crude supports upstream realisations for ONGC and Oil India but widens under-recoveries and import-bill pressure for India.",
-   "tone": "watch",
-   "companies": [
-    "ONGC",
-    "OIL",
-    "IOC",
-    "BPCL",
-    "HINDPETRO"
-   ],
-   "sources": [
-    {
-     "publisher": "The Sunday Guardian",
-     "title": "Oil Prices Today: Brent Crude Climbs to Near Two-Week High at $106.19 as Houthi Attacks on Saudi Arabia and Strait of Hormuz Tanker Strikes Raise Supply Fears",
-     "url": "https://sundayguardianlive.com/world/oil-prices-today-brent-crude-climbs-to-near-two-week-high-at-10619-as-houthi-attacks-on-saudi-arabia-and-strait-of-hormuz-tanker-strikes-raise-supply-fears-304200/",
-     "date": "2026-10-12"
-    }
-   ],
-   "added": "2026-10-13"
   }
  ]
 }
