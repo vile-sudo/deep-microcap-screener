@@ -1,7 +1,7 @@
 {
  "trade_date": "2026-11-26",
  "threshold_percent": 4.0,
- "generated_at": "2026-11-26T19:54:26+05:30",
+ "generated_at": "2026-11-27T15:43:06+05:30",
  "stats": {
   "scanned": 3451,
   "flagged": 401,
@@ -61,7 +61,7 @@
    "raw_pct_change": 15.82,
    "corporate_action": null,
    "why": {
-    "headline": "Investor Meeting disclosed to the exchange",
+    "headline": "Investor Meeting, reported by Scanx",
     "confidence": "high",
     "evidence": [
      {
@@ -77,6 +77,13 @@
       "detail": "Bondada Engineering Limited has informed the Exchange about Schedule of meet",
       "url": "https://nsearchives.nseindia.in/corporate/BONDADA_26112026125237_Intimation_of_Analyst_meeting-BEL-2nd_Dec_2026.pdf",
       "source": "26 Nov 12:53"
+     },
+     {
+      "tier": "news",
+      "kind": "order win",
+      "detail": "Aar Shyam India Investment wins Rs 7.69 crore work order from Bondada Engineering",
+      "url": "https://news.google.com/rss/articles/CBMivgFBVV95cUxQb1FMZVJ6NTQ4ZXpNMmJfS2lrYVl3eEROeHBSRHJxR0w0bnpKWTRYaFl3NVBEbEpkalExY0pNczVKcS1VMTZyQWo3d2FjTGR3S185cXc2S2lRR2tWZFVCdmtKUGRDOGNLX285NUN6UG02QjU4X2Q2NkpfREhMQzZKZWs4YlFYa3M0M0JQVlBHZm15SU1mOUdRNXA1QnVONmJXMGpWbUs3LThXUV82U1J4OGVjTGRXNVdZeWhLaEJn?oc=5",
+      "source": "Scanx"
      }
     ]
    },
@@ -183,6 +190,20 @@
       "detail": "Dhampur Sugar Mills, Uttam Sugar, Shree Renuka shares surge up to 14%; here's why",
       "url": "https://news.google.com/rss/articles/CBMi9gFBVV95cUxPUjJRb1pCd18xbUd4LW9nTzUybE5YaXJVck02dk5xNkt5aXNDV3RPYjhqNTA4aVpDTFp3dVJ6OW5XX0pjcUh5SWd0Rnl1WnRXamcwUmhCRzBHSFFudGxlZV93Vy0wa3lLR0VPSFJ5M1M0blRxckJaTUpGajlnd25WZXdkX1J4OUs0R2hvYnJjdjUzbnM1ZWIyb2tSNzh0Z1NtTFNEd1VLTlp0SkpqUHhFWXNyY2t6VWZ3SkQwQm9ydi1taTZubWlBcGh6b1BUQW1vYUkyaG9RODBRS0dyWFBqQkdJeW1RaXFULWl3RVY5eVBzWXJRWHfSAeIBQVVfeXFMTUhmYnBxSXkyc0UyQ1NTLTRZQ29YZ3NJRHptZndxRFZJMkxQSm5oQkpZc2dyR294c0Z4aGl2dHZIS1VfeUl1SDZUYUVTU016QUZLMzRzbGU5RkFHcUJ5b0t1WEs4RVh2SmlxX3pqM2VYdVhwaWNGZF9DdHB5ZUNRMGFQSUZDWnJSaTdtQUt4UUVCYlRnLThfWEtTcHJ0OXA0eXROeXVlSFY0eEMwNlFocHhJUGpaeE95dHczcUxBT2xrbThFeHJQWElOLWRMNHBPd2tRNVBwN0FKOFBiaG95X0ZZUQ?oc=5",
       "source": "Business Today"
+     },
+     {
+      "tier": "deal",
+      "kind": "bulk deal",
+      "detail": "MICROCURVES TRADING PRIVATE LIMITED sell 1,527,955 shares (Rs 27.5 crore)",
+      "url": "",
+      "source": ""
+     },
+     {
+      "tier": "deal",
+      "kind": "bulk deal",
+      "detail": "MICROCURVES TRADING PRIVATE LIMITED buy 1,527,955 shares (Rs 27.5 crore)",
+      "url": "",
+      "source": ""
      }
     ]
    },
@@ -220,9 +241,24 @@
    "raw_pct_change": 10.73,
    "corporate_action": null,
    "why": {
-    "headline": "No disclosed reason",
-    "confidence": "none",
-    "evidence": []
+    "headline": "Bulk deal of Rs 55.4 crore",
+    "confidence": "medium",
+    "evidence": [
+     {
+      "tier": "deal",
+      "kind": "bulk deal",
+      "detail": "ARIHANT CAPITAL MARKETS LIMITED buy 2,744,324 shares (Rs 55.4 crore)",
+      "url": "",
+      "source": ""
+     },
+     {
+      "tier": "deal",
+      "kind": "bulk deal",
+      "detail": "ARIHANT CAPITAL MARKETS LIMITED sell 2,744,324 shares (Rs 55.2 crore)",
+      "url": "",
+      "source": ""
+     }
+    ]
    },
    "news_checked": true
   },
@@ -325,7 +361,7 @@
      {
       "tier": "news",
       "kind": "order win",
-      "detail": "RMC Switchgears shares gain more than 18% after bagging Rs 521.83-crore contract",
+      "detail": "RMC Switchgears shares hit 20% upper circuit after securing Rs 521.83-crore contract",
       "url": "https://news.google.com/rss/articles/CBMizwFBVV95cUxOUVota1o2aXB1dkh4MVJLTFl3eUdnMDZTdWg2RXprb3lxSkoxZmh5eXk3ZE1RTnduV2EtR012RjdJVGhreXhMOGctMWFZT0ZVN25ZejNqUHRFejFlUl9Oc25uNHVjVDRoM2tpeWZWYzlaRWtJYUZFVVFxT0xmcTcwa01ER0x1VlB0YS1ZZmJya19DY29CSEpPVThhVWdkNHJNN05jbE9leHlLNmp0d0xMMDhuQ0FjcUppYmNRUFdIZnloT0g5ckVYWHdEdFlBb03SAdQBQVVfeXFMTjY2dHV5TWhJMVpFSV9oU0hhLUZlamd2S1pYZUFtczVfbEFoT212VWVJMGxCUklRODEyUDdjcFhVVGxnZ2dtbko3ZUhWaEZJeE1RNW5SeXlqUVkyRVJlTlJMX2UzWHoyRS16N255cGx6NmdFbGlQQmhHZ0pYOGRKTjQtbWt3WDY1MHdzUmdSeHRLNFozOGpOcUZZZDhhb3hnQ3dxaDg4ajZoeXVubHc1dDdKZ1M2SDU0SXYtaVVTYzZ2ZlhQRzZmdk4tY0JjWUUyenVYZDg?oc=5",
       "source": "Moneycontrol"
      }
@@ -898,9 +934,23 @@
    "raw_pct_change": 7.49,
    "corporate_action": null,
    "why": {
-    "headline": "Explainer (Business Upturn)",
+    "headline": "Broker Action (Business Today)",
     "confidence": "medium",
     "evidence": [
+     {
+      "tier": "news",
+      "kind": "broker action",
+      "detail": "Avalon Tech, Syrma SGS shares jump after JPMorgan rating upgrades; check details",
+      "url": "https://news.google.com/rss/articles/CBMi3wFBVV95cUxNa29OaXBySDlMSm5rRkEycVd4WExYRk9nU0h1M3lTVkNpMWNLckdVZExkSFk5TXlKM1JvMHZuQUJHaldBRF8tMVgwQXB5UkhJdWdDWXR2WWJaVVg3aWIzU3I3U0drNXNfV3BpRFgzemdqSktreEtvS3l5Y2ppNDF4V1BrZnpZQlhUbE91NzE3X1ViendsdkM4U05YakNTTzdxTmxjMTVOal9VaUJROVNKNXJER1Bjc2pUUnEwTjE3V1FtSWJzSVpPTnZaa3NwOHlTaTI4U05DcktVWVl0WGh30gHkAUFVX3lxTFBrUlZZcWpvbVFydkpqTVpuWDBGck45YS1uS2JpdFRFV3VnRW1uMWhGLUg2RzhUbjJNWXJtR1FvUGhOWFFOTGtvMmVYbUtxQUI4WHVHU3hmeTdCWWNTLUlVcXF5ckl2RzF2ZWVxVFRrT0lTakQ4eHBnNklkLVYwVkNUVWE1a0kwYkg0ZGNZMGktcU56ekhKbU81Vy1GckNqS1hkRFdXLThybFhtb25JcFEwaUFEWXZvald5VmJrZ3lkWnJScVg3S1ZDVFR3WDVqRmdyckpVN3ctUWxJd1Z2QksxVXFoOQ?oc=5",
+      "source": "Business Today"
+     },
+     {
+      "tier": "news",
+      "kind": "explainer",
+      "detail": "Why did Avalon Technologies shares rally over 4% today? Here's what's driving the stock",
+      "url": "https://news.google.com/rss/articles/CBMixwFBVV95cUxOV3dvcXpMTDk1VGFYdjZMcmM2SlhPMWdjTWRhTkc3WDZMaURPZm9mZGVISmE5a1Jza2RjSEphcFlnR1Z2VTFaNGNpVWtIaEdldEJyUkwtamRheUVBQTZ0ZE40blA2dUwwMzBDeUgxV2hwQVZwNFFJRTY4eE4zM0FzcE5RWnpaTXV4MmRXUDkyRUJGWk1JQk96dVBqQTV6VTM2RHNHM3VaYkZYSDhaMWNaUk9ZWENrVGkzNEpOXzRyN0Vvb1AzY3ZV?oc=5",
+      "source": "Business Upturn"
+     },
      {
       "tier": "news",
       "kind": "explainer",
@@ -1005,6 +1055,20 @@
       "detail": "Jupiter Wagons share gain 13% in early deals, here's why",
       "url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxQUUJ3aGFOSzlNQ2JiYzlCeWg1VHJPOHUtc0FMUThrMmxBSHJIUkJrajN2RXJxWUtibzBWYnVNcHVpOTNZalZMLWRqVG5UNGd5M0plTVA5dy1GMU9XZDVkQXVoQmg4SkpLblpnaFVXX0lMcW5sa1V1TVNLS2xrZmVGcjVuQ3RYd1hkOFd0b0RFRExKVXpyLW1FM25lT0hCVlRCcHAyeWFqSWtKc0x1eG56UjNpTzFGUU55clHSAb8BQVVfeXFMT1dPbV9QRExZcklIb0pwVklqMTRBZXhKUGhIT0I1TW5LVFBVb3NLRVFxYm5udjgzQXpRLTdZMG9BQ2x5U20tMVV4YlA5ZlV0RWlPekJTOWQtbEVzQmtTd2dlb3BWVGFmRE9FTVJfc21NRnVlT0RldnlITWQ5WTFRd05LdlJhOVo2a21zUWZIR2tBWFdYZ2VVNzd3U0taOXViaDNnNXYzWkZEM3JMelhMOXVoTWR0dm10bnpxVFRwLWc?oc=5",
       "source": "Business Today"
+     },
+     {
+      "tier": "deal",
+      "kind": "bulk deal",
+      "detail": "QE SECURITIES LLP buy 4,478,721 shares (Rs 105.1 crore)",
+      "url": "",
+      "source": ""
+     },
+     {
+      "tier": "deal",
+      "kind": "bulk deal",
+      "detail": "QE SECURITIES LLP sell 4,464,252 shares (Rs 104.7 crore)",
+      "url": "",
+      "source": ""
      }
     ]
    },
@@ -1309,6 +1373,20 @@
       "detail": "Hma Agro Industries Limited has informed the Exchange about General Updates",
       "url": "https://nsearchives.nseindia.in/corporate/HMA_25112026162916_Intimation_on_Update_on_Shifting_of_Registered_Office.pdf",
       "source": "25 Nov 16:29"
+     },
+     {
+      "tier": "deal",
+      "kind": "bulk deal",
+      "detail": "HRTI PRIVATE LIMITED sell 2,993,810 shares (Rs 13.6 crore)",
+      "url": "",
+      "source": ""
+     },
+     {
+      "tier": "deal",
+      "kind": "bulk deal",
+      "detail": "HRTI PRIVATE LIMITED buy 2,760,204 shares (Rs 12.5 crore)",
+      "url": "",
+      "source": ""
      }
     ]
    },
@@ -1335,7 +1413,7 @@
   },
   {
    "symbol": "ODYCORP",
-   "name": "ODYSSEY CORPORATION",
+   "name": "ODYCORP",
    "board_code": null,
    "series": "EQ",
    "direction": "UP",
@@ -1427,13 +1505,6 @@
       "detail": "Sweet surge! Why sugar stocks jumped up to 14% today? Balrampur Chini, Shree Renuka, Bajaj Hindusthan - Rally reason?",
       "url": "https://news.google.com/rss/articles/CBMiiwJBVV95cUxOQktJX2dHTTdva0pvQkpZci1IMHhSUHk3bnpmS0hiRDBwVC1tdUx0NmNqTzFsa3BQTXQ3UEJ3S0FWTENtbTQ3N2JidTZJYzFMdDc5dzJ3SENnSEpIeng5ckZvT3A1WTVma1huenRpczY3Q2RZTl9Gd3BYVlpQMTNWNUE1d2dyMjBHY1d5SGVxUmc0VElaMWdWUXVFSHo3M0Q0VDdKdjZhR1pWUjVDamFCa0VCcldaU25jNmVmaXRfeUhnXzNoNEw3QWMtOTV0VlpwdHZyOVNVcXhMUmJNZ1pUeGt5cFVNUWhkR3FTMmx5T0twU2ZwUy1fYVpVTm56ZWl4UVJzYW14VlE3MGPSAZACQVVfeXFMTklsSTdzYVRBNzlTZnBXcGFsbmZBcjVMWXN5ZWg0Z2lUMk1YVUFsd0JJbjRwNU5uOVlhaGJpMm1wU2tmRWh3eHUyR19zZUZIdTY2SmNRR3hXeUdVaG1EQ1ZENS0wczRjbE4ydnpnMzlKSFFEYzhPdUNycDlTejBvX2FJa1h1YXVCZ2pjOERpT2hxODFxSXc4ODhDUXg2M3N4WUJPd0ZRRVNUZHlnT21iV2cwQ2J2aHRNZy03aGlELUpZSUJMektwUzFpM2ZmRmp0bGFvc1lNMjlJN1hBMzVia2pwU0JiZFpnQlBLTGtubFYzTVI3Zi1NdTFUYVNqUTZUVExyTUFBb2ZTTFItZDdRZk4?oc=5",
       "source": "Mint"
-     },
-     {
-      "tier": "news",
-      "kind": "explainer",
-      "detail": "Balrampur Chini, EID Parry, Triveni Engineering: Sugar stocks rally up to 11%; what's driving the gains?",
-      "url": "https://news.google.com/rss/articles/CBMi6gFBVV95cUxPVnFoMHItaWFQYlIwLVpjN3B0VXNueWJJaUJSUTZFUEhfYTBhNXVZRFFveWJOY212OVlDcW1mTE8wd091UWpENmxWeHdNX3BMd2dVbUNQc3hiZEd0MmNyRGNZVUtlVTlpNUFzMHkxLVM0RldIU2FoenRxTFBZS0pWbHhNQzktQU41d2xkVnBLZzNrT1RxU1dndG9WOWxDQlVuNUtqYUZkZ2JhdmRvU0Q0UXFKam9DclhudXUxWHJZd19DY19nMEJpaW0tRW10WWx0NmljTzhPX2tKajN1aUJJX2I3cTZiVk1Dd0E?oc=5",
-      "source": "Upstox"
      }
     ]
    },
@@ -1466,7 +1537,7 @@
       "tier": "news",
       "kind": "M&A or stake",
       "detail": "After selling APL Apollo stake to Tata Steel, Sanjay Gupta family shifts focus to SG Mart",
-      "url": "https://news.google.com/rss/articles/CBMi3AFBVV95cUxNaHpoemlnOWp2dGNjQXVNdzNhak51aURoeGJVNEFaX0ZQcXl4d0NiOXhSNDk2UUdLR3FNT29fY2RnbXBkQWdIYklTeFdfZGV3SlZuN2F3RTBZMjN6RjFPdEo3LVpsVS0zcWVUNXNIMXdTMXlPNVFpajRSdmpPa3BxTTZwdHF2UGlfRDVzRlZpd2I5b3JNaDVaSXZQUmlDbUFVai1RYkN6YnVoaktDbnl2Wnp6b0VGaE1fNmItckFpTEduRVdPa3RsVXI0MWZnd3VWQ01oWlNWckctbXk30gHiAUFVX3lxTE8yZkE5Y3RtVm9wT0hFUEdybVo4ZEF0N3ZHTzFPWTUxay1xdWNTNDh4TDd5SUVnUnhCRW50ZWtNbm5jZjlCY2RNdTRpNnplZkhYVXBQRmhLbE1CR3g4YXU0MENpOEh1ckd4cTdkTG1aOGN4Yjl0azljdWpnNl9YaGJQUFBudFNzSFFOS1BHYktmMDRkMHNITUNYcTNZQWk3TVluejIybmpFSGNRZ0ViaFlFUGUyZ1U0VXplckxucmFhb3AxckJFTTJOWFRlRkdaQjFVRVpzRTdodUxVMlRjT2k1S0E?oc=5",
+      "url": "https://news.google.com/rss/articles/CBMi3AFBVV95cUxNaHpoemlnOWp2dGNjQXVNdzNhak51aURoeGJVNEFaX0ZQcXl4d0NiOXhSNDk2UUdLR3FNT29fY2RnbXBkQWdIYklTeFdfZGV3SlZuN2F3RTBZMjN6RjFPdEo3LVpsVS0zcWVUNXNIMXdTMXlPNVFpajRSdmpPa3BxTTZwdHF2UGlfRDVzRlZpd2I5b3JNaDVaSXZQUmlDbUFVai1RYkN6YnVoaktDbnl2Wnp6b0VGaE1fNmItckFpTEduRVdPa3RsVXI0MWZnd3VWQ01oWlNWckctbXk3?oc=5",
       "source": "Moneycontrol"
      },
      {
@@ -1475,6 +1546,20 @@
       "detail": "Multibagger stock: SG Mart surges 13% to record high on fundraise buzz",
       "url": "https://news.google.com/rss/articles/CBMi0AFBVV95cUxNUFJFVlRfek1aSjZ4QTE3cS0xbmxiRFhndzIwYXNmbTBneXZIWjZLY3NrcHdGZ1dXa1NvZkxEdHRISjlhelQ4TFdncURYT3ZDWWliMmlQcnBWdlcySTkwNXFGUXdHUVpGV00yMlJVWjNKcW1IWDEyOFNkaF9fYzJyby16YzQ0MS1wajkyUDh4bGo1Vm9jODRla1B4d2Y2eC1HMnhhMTBnRFQtb3BsQ3V6Y01aSk1RWWpBMHFpeENoTVpfaGJwY2lFX0RIYkRaTzVC0gHWAUFVX3lxTE83eThfZDhINVZqMXRFOUxVWWFmZ3FrVkdmVVcyMVNnb20zcWhyQUxtTnZwLWRERU9NbFRZd3lwYldrQ3JtbDBzZ3BMV3lyTG1OYlpZTElXaTV6U1FIQ3NJN3FjUmtJbGJlNFBPNUFzRS02WVpuOVk5UmRmX3lzRUhBYmhxLXNnTE4wZFlaZ0pkNDdDcEI0cWx5NGRueUxwTXVaV2toWVd1enFDMG9LOUJxRG5qbTBpWWV0MFgyMzlCT0piQXJ6VFExUlF4R2YwLTRrbGNXRnc?oc=5",
       "source": "Business Standard"
+     },
+     {
+      "tier": "deal",
+      "kind": "bulk deal",
+      "detail": "QE SECURITIES LLP sell 1,258,122 shares (Rs 106.7 crore)",
+      "url": "",
+      "source": ""
+     },
+     {
+      "tier": "deal",
+      "kind": "bulk deal",
+      "detail": "QE SECURITIES LLP buy 1,230,983 shares (Rs 104.7 crore)",
+      "url": "",
+      "source": ""
      }
     ]
    },
@@ -1889,7 +1974,7 @@
    "raw_pct_change": 5.59,
    "corporate_action": null,
    "why": {
-    "headline": "Agreement, reported by Scanx",
+    "headline": "Agreement, reported by Sahi",
     "confidence": "high",
     "evidence": [
      {
@@ -1898,13 +1983,6 @@
       "detail": "Viviana Power Tech Limited has informed the Exchange about L1 Stage successful bidder having amount of Rs. 463.57 Cr (Rupees Four Hundred Sixty-Three Crores and Fifty-Seven Lakhs) for Pashchim Gujarat Vij Company Limited-Gujarat Wire Free City Scheme",
       "url": "https://nsearchives.nseindia.in/corporate/VIVIANA_26112026095405_VIVIANA__Intimation_of_L1_Stage_Successful_bidder_PGVCL_25112026.pdf",
       "source": "26 Nov 09:54"
-     },
-     {
-      "tier": "news",
-      "kind": "order win",
-      "detail": "Viviana Power Tech wins ₹463.57 Cr order, boosting backlog visibility",
-      "url": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxNV2VZN2ZWUEJ1Z2FCaUZIbFI0RHotUUlHd1dvUVoyYzFSLXBKVk9OLVBWeG1yUWFZSFBhVHFiTjcwWWd3RWVxdDdOY1NONUZzUEVkY3JKcnFtNzBVUkd5cFJZeWhVQm1TM21oZ3VnQ0tUeElQTFc0RDByUmJLMkVKbHhPRDFnVmRPTUw5OXlMazJCYy1TTTJVZEx0enB4VzdNbVRVU1dMZmRVUVRzdUxnVS1rTld3aGUtejdIRkZhNHA4dw?oc=5",
-      "source": "Scanx"
      },
      {
       "tier": "news",
@@ -2014,8 +2092,8 @@
      {
       "tier": "news",
       "kind": "order win",
-      "detail": "Can Welspun Corp’s $5.2 billion order book & 25% CAGR goal unlock 54% upside?",
-      "url": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxNT3RpUl9hWWcxSWZGYUhoU1duREJMNjF0bVFUY3dXRXJ6QXd6cWwtNGxYblE1Q19jWF9ydTdMRjBLdWI0c0ZZV25uYXpyVndKU3JCN2YtT3huZFRlbkl5b1N5RU5Gck85N1FSZFRtUE1FcE1wZ2VGODBua2VEd0VZZjMxMjJqRFpabnhQX21DbTEwOVNPYmJNNGhOM1FlZy03RTRXc2Q3bEExa28yVzhoUVdOWGZwRDEzc2hFMEdiamPSAccBQVVfeXFMUGl5SzlndFl6Ml9kaTBoU1FZcWJ6WUVDd0hKMTkyQlBHbEFnOVB4XzNVTHZnUG1HSjhZNTRZeW0zTkZVTEUzUnh2bkxKWDltUVZzREpuVnlBVzZOZ00zRWZuWnVFSGY2NVducEVUZjNDN08yWTNIUlExeFZMSkRoOW00eU05cjZlMXJCVGMtOGtlUFAtQkwxQnRFc0d6bklWSE1feksxR3hGd0FaN2NCbDBOc2FyR2xZcUxLU21KaFZicDRpOU5Oaw?oc=5",
+      "detail": "Welspun Corp bags new export order, global order book at Rs 50,000 cr",
+      "url": "https://news.google.com/rss/articles/CBMi2gFBVV95cUxOSmRReEMtT3c0T3Q4Rk53WXpCX2R6Q2dlTGE3c1oyemtvRDRDWklZZWhBSHhvVlhza3NSMUFpeVR0LVZ3RzBRRnVrZ3VpVUtQMURMTElQQWhxUWFoZVNWVHdnWHY0T25RLVZNLThsSXM5NFp3RWNMN2FSM1I5US1Ic182dDN2ZXRYU3ROWFlwc25jU3c3cS00dG4yMURFN2k0cERqendHQjdxX094cE5iM0pIdjNoZVZGSFA4MjI2SjdFYWtXZm1fY3hFUEduRmk3Q1otS1lHQ0xJUdIB4AFBVV95cUxNbXBGTkNPTUhaakloOHcwTUJWbWd2MXN5MF9yQUZ4TlItcHJLUnRuczlxc1RPcnQ1VG1qSlFkQUpoMC0waTE1QmIyZ0luc1VsUk5PYWhmS1lfcVFfU1lYaXhvT1Q2V2xoZi11NV9oNnJpTHdzeDlKbnVyclZ3bXVDVnQwbHd6dXpMVGN1eWRPQ0Z2VThGOWl0RnRMZEpHaGxhVGJsUjN1dHBTMVNSbjBwUDZJb0x5TW1GYlpaSmdKQTduNG56VjcxaXNhMWlYTW9WeE1BQmthaExUMEFKUVZuMA?oc=5",
       "source": "Financial Express"
      }
     ]
@@ -2108,6 +2186,13 @@
       "detail": "Fact Check: Birmingham injunction is not an outright ban on British and English flags",
       "url": "https://news.google.com/rss/articles/CBMiswFBVV95cUxNNklpT1ZrVkVZSks4YkFXVTkwS0ZQWmF6ZUNQbEV1NVpVdW1DOFBKZ1FmUFZQZlV1RzlKWEtnNzFCMzRxY3ZUbF80Q1k0blliai1OMHJwTjZBNlg0U0JTQXB5VTM3QUlpT005OXVNZUdUcVZ2VlROXzhiVm80OGt4NFpBOUdJLXF5Y2NFRm9EM2dRZE9jMXc5OGJXa1NsUVRhUFB4MDdnM3dZR0R6eDA5bXFsdw?oc=5",
       "source": "Reuters"
+     },
+     {
+      "tier": "news",
+      "kind": "pledge or encumbrance",
+      "detail": "Fact Check: Video of military help pledge signing misrepresented as halal meat supply agreement",
+      "url": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxPYllPM0xkNzI5dE92N29qNHJRcHJSeks4MFdqSzQ5TG9yUmQwVk1aZjByMXZqUklSNmJ5dmZxeVRFREFSZWpQZjBaN3dKTUEzVVMyVlRhVlhlbDIxeHNPd0E4SFA2LW5uMUlMZ1dXVWRsMHRuWWFCaFFjUWVaMlpzLVJXNG5yUHhBNHA1N0RTdGxuZXJHS1kxcDYzQm40ZXh2VXlPVmViclNHbW9JS0tfemFYWTBPYnN2QmZhV3BCWkVXdw?oc=5",
+      "source": "Reuters"
      }
     ]
    },
@@ -2192,6 +2277,20 @@
       "detail": "Greaves Cotton Limited has informed the Exchange regarding a press release dated November 26, 2026, issued by Greaves Electric Mobility Limited, subsidiary of the Company,, titled \"Ampere partners with CSC Grameen eStore to strengthen presence in rural and emerging markets\".",
       "url": "https://nsearchives.nseindia.in/corporate/GREAVESCOT_26112026115108_GCL_GEML_Ampere_CSCsd.pdf",
       "source": "26 Nov 11:51"
+     },
+     {
+      "tier": "deal",
+      "kind": "bulk deal",
+      "detail": "QE SECURITIES LLP sell 2,252,274 shares (Rs 72.3 crore)",
+      "url": "",
+      "source": ""
+     },
+     {
+      "tier": "deal",
+      "kind": "bulk deal",
+      "detail": "QE SECURITIES LLP buy 2,228,252 shares (Rs 71.6 crore)",
+      "url": "",
+      "source": ""
      }
     ]
    },
@@ -2473,24 +2572,9 @@
    "raw_pct_change": 5.0,
    "corporate_action": null,
    "why": {
-    "headline": "Fundraise Or Deal (Business Upturn)",
-    "confidence": "medium",
-    "evidence": [
-     {
-      "tier": "news",
-      "kind": "fundraise or deal",
-      "detail": "Vaxtex Cotfab proposes Rs. 250 crore fundraise and approves preferential issues",
-      "url": "https://news.google.com/rss/articles/CBMitgFBVV95cUxQelkwR3ppNEFDR0EwTUV0NU9zblY1d19nTV9mRVBnUXFFUVh0YTBLWUZDN1I4Z3FXcDNLNjBrZHM0WjJQcTZSck5KaWpTeG9oOTNXa3UzdEs3UFZuOF9hTGROZm9NSk5wazJhdkg0S0E1ZGJ3N1AwVUVwQUNubGRCR3ZvV01nTFN6MTJxcS1hdy1RRjFiZmxBaGtqT18zUXAwd01DRl81ZkJ4bjh6SE5HRHFvcllldw?oc=5",
-      "source": "Business Upturn"
-     },
-     {
-      "tier": "news",
-      "kind": "fundraise or deal",
-      "detail": "Vaxtex Cotfab plans ₹250 crore fundraising and authorised share capital increase",
-      "url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxPMkxuRmNLeDUxdjdIQzdjV2RoOWZnSlExNmpNMXk3SW5VRG56RUU5eXNEa0lyUEV6OGo3OHVMNlpNYXZOQzJRWW1HMWo4d1h5cmZfSUhpZS0tQXY1MkoyN1Zab3dVUGVYaHJQSkR5czdaMnluWl9yNHUxRFdIMFlsOHRNbUpEV0pWMnRrNjNRQXZBUVZKTGFHMlNfSmV1ZDJuQm1BekVla3dpOW90LWxWdWR3UlZqT01rVXc?oc=5",
-      "source": "Business Upturn"
-     }
-    ]
+    "headline": "No disclosed reason",
+    "confidence": "none",
+    "evidence": []
    },
    "news_checked": true
   },
@@ -2659,9 +2743,17 @@
    "raw_pct_change": 5.0,
    "corporate_action": null,
    "why": {
-    "headline": "No disclosed reason",
-    "confidence": "none",
-    "evidence": []
+    "headline": "Order Win (Scanx)",
+    "confidence": "low",
+    "evidence": [
+     {
+      "tier": "news",
+      "kind": "order win",
+      "detail": "Global Pet Industries wins Rs 3.2 crore order from Omniflux Energy FZCO",
+      "url": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxOUjFVbkVmRnBvMENOYUVNVE1jaFBBTHNqTmZ6LTVSdmx0REV5akFjQVFwb3ExSVlHWk53UUl2QjI5bHRYdnlCNGJqU1FNSmwydkJ0ZFk4VVdLcF9ITzJpV0E5clZtSHN3eUtXUUhfdC1oLWNjVXdNRm1oR2R6Ry1Udkp2S0N0bjYwV2xrUzh5SzRKZDJmSXJxYUdXTlR4VTVUcTdWejZGTFd6VDdQRzZ4MU5yYURYb2dWNGlVOUl6ZHk?oc=5",
+      "source": "Scanx"
+     }
+    ]
    },
    "news_checked": true
   },
@@ -2800,9 +2892,17 @@
    "raw_pct_change": 4.99,
    "corporate_action": null,
    "why": {
-    "headline": "No disclosed reason",
-    "confidence": "none",
-    "evidence": []
+    "headline": "Operations (Scanx)",
+    "confidence": "low",
+    "evidence": [
+     {
+      "tier": "news",
+      "kind": "operations",
+      "detail": "Swaraj Suiting gets in-principle approval for preferential issue of securities",
+      "url": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxQNFhnU0xERHZsTExNZThaOW5EaV9valMwUldNNm1yWUNuVExxZnk3aXVjWjVscjlUUTlYVmN2WDlZeXRjVUNBMFQwOWRrZTE3UXFZWEpUS2pIZF90b09FOXNLTVJUMHRpYnpZZXJvaHJPVm9PZzhBSi0wdndZa1Zaem9IUERyRnFqR0lQZ211MGg1bUZNaEcwaGNVSEJZTDJBYjZGZnMwNWdoMy0tYzdwMjdpcElPaHJ6OGM0TDczM2ZzWVk?oc=5",
+      "source": "Scanx"
+     }
+    ]
    },
    "news_checked": true
   },
@@ -2930,7 +3030,7 @@
    "raw_pct_change": 4.99,
    "corporate_action": null,
    "why": {
-    "headline": "Press Release disclosed to the exchange",
+    "headline": "Order Win, reported by Scanx",
     "confidence": "high",
     "evidence": [
      {
@@ -2939,6 +3039,13 @@
       "detail": "Adisoft Technologies Limited has informed the Exchange regarding a press release dated November 25, 2026, titled \"Adisoft Technologies Bags Order Equivalent to 17 Percent of H1 FY27 Total Income\".",
       "url": "https://nsearchives.nseindia.in/corporate/ADISOFT_26112026123815_Press_release.pdf",
       "source": "26 Nov 12:38"
+     },
+     {
+      "tier": "news",
+      "kind": "order win",
+      "detail": "Adisoft Technologies wins Rs 12.56 crore order from domestic private entity for Industry 4.0 solutions",
+      "url": "https://news.google.com/rss/articles/CBMivAFBVV95cUxOUzJSWFlyeWRTeGRSb2p5S2l3a2U4MUVLUDV3RUpKWllUY0dJdko5czlHMzJ6R1RVd25LZVdUb251ZlVoUVp1LS1CTGdfZUp3RjI0UlhsOHZWbmkzQmdrN3EyT3BHTmcyQlJYb0Ric25oa0FIWWU1TFBHa2hPWm9LOFlHeFJjMWhrcDFZYlpGTktKRGZHVkowYXZ5bndtZnJScWJwNnVybHZZVlFXWkd4c3ZzNC1fdXJGcEVxRA?oc=5",
+      "source": "Scanx"
      }
     ]
    },
@@ -3258,15 +3365,22 @@
    "raw_pct_change": 4.94,
    "corporate_action": null,
    "why": {
-    "headline": "Capital Action (Business Upturn)",
+    "headline": "Bulk deal of Rs 11.7 crore",
     "confidence": "medium",
     "evidence": [
      {
-      "tier": "news",
-      "kind": "capital action",
-      "detail": "Pashupati Cotspin swings 10% on its ex-dividend day",
-      "url": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxOLTl1Q1QwWi0zT1Jyd3ZHQlN2cEt6cE1vXzRoaWlNLThRcGlKVGduMU45dUU3dE9VbmdCaG1ZZ2c3SkdUS2tFdWlaaDZqRnhzbTRUOUdCemlpS05xLWZ2OVg5aW45OC16TG5BOWpGcVBGOHlsVDI1eVNqd1AydzdXRS1MeWJDZmh6bzNOOW1qaGFyclNMaGlwY190WWltSU9QeUJnMFF3bWVzRkd2VHJpSncybzZxNzQ5?oc=5",
-      "source": "Business Upturn"
+      "tier": "deal",
+      "kind": "bulk deal",
+      "detail": "NEO APEX SHARE BROKING SERVICES LLP buy 3,738,494 shares (Rs 11.7 crore)",
+      "url": "",
+      "source": ""
+     },
+     {
+      "tier": "deal",
+      "kind": "bulk deal",
+      "detail": "NEO APEX SHARE BROKING SERVICES LLP sell 3,238,494 shares (Rs 10.1 crore)",
+      "url": "",
+      "source": ""
      }
     ]
    },
@@ -3285,15 +3399,15 @@
    "raw_pct_change": 4.93,
    "corporate_action": null,
    "why": {
-    "headline": "M&A Or Stake (Hindu BusinessLine)",
+    "headline": "M&A Or Stake (Economic Times)",
     "confidence": "medium",
     "evidence": [
      {
       "tier": "news",
       "kind": "M&A or stake",
-      "detail": "Lodha Developers sitting on inventory worth ₹2 lakh crore, to invest less on land acquisition",
-      "url": "https://news.google.com/rss/articles/CBMi-AFBVV95cUxOaVVSZTBUN0U4dDRPb0hXNmdrdHVuNkpJTlNCSmI5aXFLV3hRMm1oODc2blJ4ejFHek1RM1NjZ05jbktHLW1NQ2I0cklUeXhEZlkxVEh3V0xpR1ZjTWtFMjFMRmp6YVVPTEFpdHRLaUIyMFF3WkQxNV9QZEY4eHZsUTlWUHloOUpaOGtmdnIyUmIxeXV0MkNWQXBkeDJSX21QcFVDand4N1BMRlRNR2RRbWZUc2JCLUY2dUl6bVFOdUNnazFGRlozeTNUNnBjS3NBaGZMdjlQWjdtMmJMNk1sUHlxRXdwaU90dlZVdTBrTVBnTXN6eXhCMNIB_wFBVV95cUxQbExZeFNpN0YzbzhiaUZCZllYZkEtSHdvWUpveU9abHVDekdiQkJxRmJPcWhyb0NZdVZ2Vmh3WFRfOFJhZGoyUGcyakk3Qm1EeVFlajlPRkUtYTdRRGtXY0t3LWZyZVJXa3lJNzFOZlN0SlcwU0NsbHh6c3Z5cDRCeGJrTndGcEZCZHdfSWgxR1lUMF9OZFlzbzNNdUhlYktQTzNtUnZWYnBGLUZfeDJ6WmdELWQ3MkVKRVlPWWVyZDkteTl0LWdtaElsWno4SXNIUHFWcFNpdzJONHNoekZ5TzVNRUxYNWY0anBwSWdiUTRweUhBRW9tQlZRNC11YVU?oc=5",
-      "source": "Hindu BusinessLine"
+      "detail": "Lodha Developers sitting on inventory worth Rs 2 lakh cr, to invest less on land acquisition",
+      "url": "https://news.google.com/rss/articles/CBMi3AJBVV95cUxOb3MxeUVZbl9DM0Nfc3JRdHU4cDRITWRYd1RTVFoxdWtFNzhvaU1LVnBLOFl6VFNrV2tBTEVlNkUwQWZwRHFDbFcyOHNSa2syeDFMN0FyaFhzOUxuWHhtUXk4V0xpRE9zbFF1d3NTZjh2RnV5UWtTN0tONHhkTXl2LVRQTzdHZnlxZTNHV0t4R3hPajcwdXF2a3JubGdiZUdrYl9xaWpFOFRQaFBiQlRRVEhHVktseTAwcWJ0RmRrU2pISm1jX0pvMlZ1OWhqNXdnOE9HU25LT0QtdDYyYW9qb2I4SDk0dEdZZkVLRGhpZ2c0VGNnTTc2ZjdIUmtPakpMRjdpeHgyanJ2Vmp6UGNrTmRFN3VyREMwZ2xkamNDWUQydGdCMVlaOXFucVFmNGl3UmpLS2dlNllGYXRnZzIxX2QyTUVhQmVUT2x6UDhxSWUtdHppMzF6dHlMZUPSAZgCQVVfeXFMTmh0Z2F3VzB0VVRja2V5czZyNmFFOVFnUEQ5Wk5GVldEUHdJMlBhMFEwbV80c3J2VTMyQ3NLQVpEanFHSmxMS01WeWp1RFg2QW5OeUJXYmRHQzJyZmtvYkJjd3lpWkI4Q3ByRlA3ajkzSmRELWI3a01iVjBPU19kSnZjRFZlSkJpckZBQWNsd09saXk0WGd3b1phSGJVa3V1VkRNXzZrMGtmYUNISVVfLTNzSnRoUllJZTNqMlJuY0lLWU1FY1Ztbzd6cUExdEU1ZUY3Y0t0cW41Nno0RndPQS1XQVFldHVrNWZRQ1h5c1hPQ2k4UVUzbF9ucnJFNEJxWDNqQXN1bXlHekNDY1o5aWV6TndCbTFSWQ?oc=5",
+      "source": "Economic Times"
      }
     ]
    },
@@ -3597,7 +3711,7 @@
    "raw_pct_change": 4.85,
    "corporate_action": null,
    "why": {
-    "headline": "Investor Meeting disclosed to the exchange",
+    "headline": "Investor Meeting, reported by Business Today",
     "confidence": "high",
     "evidence": [
      {
@@ -3606,6 +3720,27 @@
       "detail": "Omnitech Engineering Limited has informed the Exchange about General Updates on schedule of one to one meetings with Investor Groups",
       "url": "https://nsearchives.nseindia.in/corporate/OMNITECHENG_25112026202433_Intimation1.pdf",
       "source": "25 Nov 20:25"
+     },
+     {
+      "tier": "news",
+      "kind": "order win",
+      "detail": "Omnitech Engineering shares gain 5% after BrahMos Aerospace order; key details",
+      "url": "https://news.google.com/rss/articles/CBMi3AFBVV95cUxPbFgtSW1KZTJRZ3NOcnk0ajJFSGItS0ZpeFRoSWFUdjh0cklpZGVlV2xqQkxzTXFNdVF6LXhTOFRRQ1pfS0J0WTBqc0NPOTU2b3hhOUVLR2twSlRKS0xjUWp6Z2RNWmItZXhDZ2FOSWE4dHN1SUV6UmFHejRCLV8wMUtIbnJSQ1NEWTZic3k3WmdtQm5XN215THJCa0lnWWljc2hfMmozZG5yT2NQbHhHUWxxUC1JanBQUHpQN21kSjVGbEEyalJlZTJrdzd0T2ZvVnVQWjk1c2dEd3M40gHiAUFVX3lxTE9uN3pOOG1oaE1GZ055aWR5RUsxeDd1Q3RpajFWTXppMXhpMG4xenhDTjRNcHRuX1ktQXNTV3R5R2k3UXRYRWlWMFdqcHlxTHV4c2F4NEl2TW1rMU84bzQtRnpCTWd3LV9MaERsZldqazZHZnF0d3B5M0ZxeS1PVG5GU2lrb3J1QUVnRUlCZlFpckl2RkFpRWlGN1dpSTZZZ2JIUndMb3VRei1OTU9vWjBFb2g2bUNvNEw5X0hCblFuTndVZHJ0S0NVcHMzbzhRSGk4NHJfOFhFak11ZkhjdDlrQVE?oc=5",
+      "source": "Business Today"
+     },
+     {
+      "tier": "news",
+      "kind": "order win",
+      "detail": "Omnitech Engineering receives development order from BrahMos Aerospace",
+      "url": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxORnlidkJUNHZjX0xTbWNDRi1obEZWVW53UmpzWFQ0OTB0VjdrQmZUZDEySE9DLWFHUDN2c0o4WDlNSk9IbFhiVUg0Qll2M0pJSzNSSjdidUtnNS1jdnR5cUlnc1hCRGFFV3NIU2R6MnhreGhDU3RnTzdIV01jT2lLb003ZzhZaElKb2FSWUNNaHoyM0JvSUJYYUVtcjk4OXpyazJYTEFCaWJnTm8?oc=5",
+      "source": "Business Upturn"
+     },
+     {
+      "tier": "news",
+      "kind": "order win",
+      "detail": "Omnitech Engineering shares jump nearly 5% after receiving development order from BrahMos Aerospace",
+      "url": "https://news.google.com/rss/articles/CBMi4AFBVV95cUxPQllHRm5pbHJZc0NmTU5GY24tM2NHVXVwUktJT214bEQ0N2pST1NMTnJOeElOWnI4SkdVZDFDaVhWM1dfN3VFQkN2M2FRd2FkdDZYaEtLSWtIa0lVRFNWR1hQeFJYUm9rSEhPblc3X3NTcllIQ001ZXpBOHI2eEdvQlNXVEZodHA3RmRaTTY4Rjk1SnRlX3ZSRWo1cV84R2JjSVlzcVlRZjNYR3NjcWtHUGVqaFJvaVh3cEFfTnZBcml1Ui1kcTRhWWg1LWQ1U0l3Mm9CNnNnbEdra3BvNXIwRQ?oc=5",
+      "source": "Business Upturn"
      }
     ]
    },
@@ -3933,6 +4068,13 @@
      {
       "tier": "news",
       "kind": "order win",
+      "detail": "LCC Projects shares jump 6% as JV bags ₹728 crore Rajasthan irrigation project",
+      "url": "https://news.google.com/rss/articles/CBMizgFBVV95cUxPelg2T2VxOVpZOG03dTRJcEVXNFFZeXByQVNsRkxlYU1xdGtST2xfU3ZycHg5aVpBZWFkRlo4UW1IOGxoVDR0cC0teTYzNGVfUHkyZ0pFbjFsclBaRTluN3pla0JFekF4TzdJWWVGb3lkejI1YXVhc015WXBUWll1bFZINE9nQnJhNHBwMnpHZmhOT1RQM3B2RHZQMmREUW1oeVNKMFNUUU55anR6eFNjMER4VWM0QXNSdXI5N29TLW1zb2UzYlpuV21WMUJpUdIB0wFBVV95cUxNdWRsa2VabEhPakdnMnVIeVZlYXVtcnViNTk2UXdOeHRfb2RzN3JBQmRMUFFwSmhMQUhGVDVhc2ItN3N0RmtVVkRTalFlV1pheTlKem5kSjRtWG9hMTdDOWN5bzhaeFExM0ZQSDNQeXRKY2R6OXhLeVdWRjZFLS0wUjNmdzd5b3FOUVNLcXZMaHhoVkM1WjBWOFZ5bHhTSzZIalhkNmNlUTdhMnRudlpqTmF1bFFpN0ZDSUE2RkQ0SkF1UEJMeEJteU9KUk15ZTlpYlkw?oc=5",
+      "source": "CNBC TV18"
+     },
+     {
+      "tier": "news",
+      "kind": "order win",
       "detail": "LCC Projects shares jump 10% on bagging order worth over ₹728 crore; everything investors need to know",
       "url": "https://news.google.com/rss/articles/CBMi7wFBVV95cUxNNEtYT0ZXVG1hYm45R3B5Qjh0ZmVIVDZSQzBwUlpjeTNFZm9QbnVtNlg5ZmRBeVNmZFJUalJhZ0dlbDBoOGlQY0s3dzE4eEhkS2lrRHdWNl9Ta29LY3FEM1JrbFBybkNWLVpoaXBPT0ZFeFZ3d0MxakxOdU9ZSlNYVldMdHVHcjF4THl2ZEJXY2FkNVFqbWREVHczeE1ocURjU1pNSnhlWDZyY2pkX05TclhXXzZFbGJoSGF2Qm5FWFNfY3dpTENNRHFzbUhCWUZlLVdnY1JydDlFckw5ZGcwT3pzWFdaM1lYeVpVR2F4MA?oc=5",
       "source": "Upstox"
@@ -4061,17 +4203,10 @@
      },
      {
       "tier": "news",
-      "kind": "sector pricing",
-      "detail": "TCS, Wipro, Infosys to HCL Tech shares: Why are Indian IT stocks skyrocketing despite Trump's tariffs threat? Explained",
-      "url": "https://news.google.com/rss/articles/CBMikgJBVV95cUxONU9DRklyMkE4SndGNnVPZWgtb0FWdFFZcTBGZHFaRFVZanJTR3pia0tFaUoyS2djaHJRUWstaUxYcjltc1ZRak9ZWkZoWjlRaGFqRW42YnhIZUpadFByY192VVh0UkoycEFTQzI1b3VzcWhoN09LLU8td3RLYU90ZFlLV01RdDRqVmNNTnkxUFhkVXhRdHhQSnROWEhVa0xpSC00TzhxVm4yb2FtaDc0aHFnMWxVcEQ2eWVJQTV5TXJfU1hzdnZZT19TTWtGTkxPMXBkcm1oRi16ME4tMVo4SHlhTlVOTVNnUGRHbDdzRGZpai15dzJPUnlSNHVsWXVVTmpsYi04SVlQQXVMYTlXRzd30gGXAkFVX3lxTE9UMlgyV2JDSm9MUTJHbGp6OThvMFlabFpTNm5xZ3d1T2phSkZXY0FteHRHSGlsbDVDTU1nb3E3YWdBOGhKZlhzbjlGcV8yOFAtY2dIYWtNcmtNSGtHTzNXV2tJWEM5TGxPbTM0TWNKYkdtWDdVVmZsTl9vUmlyeUxxTHYwa3J0UTQxNTlxMlp1RFlJWHRFRmpaLUsyQzN5c3F2bEx5b1RuTWdvR2ZsaHRLOEwzWEFUbWJUMXVrOW45MFk3eEIzMWczWU00cXRxV3VwVE5laERmcGhWQlR6bUhOZ2JqcEE0YTJUajBTcEpvY2dfVTJ2b3puQUM1TjZwaXJEWW1vZUNjRldnbU4yMU02TFhqbWFEYw?oc=5",
-      "source": "Mint"
-     },
-     {
-      "tier": "news",
-      "kind": "capital action",
-      "detail": "Jefferies, Bernstein Split On IT Stocks: Coforge, HCL Tech Get Thumbs-Up, Infosys And Wipro Get Underperform Ratings",
-      "url": "https://news.google.com/rss/articles/CBMimAJBVV95cUxNaXFLS1QxblpGYTRVVTBuWHlDZHlqYmh6bTI3MklzNTVURXZKdXhyQXFremZxbkpYT0ViNkhtVlF1YmQ5S0hvYzNnR1BWOGw1R1owRVNLOXlBOFZoQ2F4V1BkSGd3ZEFIeVhZRDR5TEItWGtIRU1memZYY0VTUlNPUTMyalUwOG9wZGhlQjF5WnlKQmM3MDZESGh6V2tGRUNFMnFRQVhBR25ybTdGRGt6aDFPdllDUFR1NWxTaGFWbTg3ZW0xTEljQ3RmZkswQjJYR2V2OVl4M1d5R0ZYUjdrUUpBVDdxSFBEd3oxek5jUS1QWVdvQ1gtUk95R0NrN013NEFJXzdRak9SUEo2M0YtbzhUQUFWZFJn0gGgAkFVX3lxTE51ZXJTQTBpQS1yQ1dSOURwZnJQeEN3bWdUTDYtaHZYb3dNd0FiUEw2YmVibGZfd2pqenkwNzcyM2kzNjFWWmEyUzdYZEw4M1E4aGxpeVAxRy1FODNIZEpNcFgyZF9XMHJtVmc5XzRyTTQ4MnFlMmpKRmQ2N2FQckRuMDFvaGlZeUFSQlIyMi1TajdtQWw5NFFraU5ZS3N5VzBKbmhIel9VSERXcXZDQWh2Y2hUT3ZrTTFaM3JtMkx0NXE0OE02R09oeTBjVm1iaEhoSmtxbDZPSWxTazlEVF8wY01obEcwUlFlQnlicFFrWTB2WnNweHBjeDVIc3JEbEhLbXZ1NHZ6U3hFdXMyakJoaVMyMDNobHVUU2l6dHFyaA?oc=5",
-      "source": "NDTV Profit"
+      "kind": "order win",
+      "detail": "IIT Madras alumnus uses Wi-Fi to make robots move, wins Infosys Prize",
+      "url": "https://news.google.com/rss/articles/CBMi9wFBVV95cUxNTEpxXzRFMGtqVUF1RG1OTlc1SGVNMjdEVGlJNVg5UTR5SGRQRV80THMyVU9oanZGeWNzNHN2Z3J6Szc1NkZ3bHM5dUlCS3dqaTJBWEJkZ09qRjl2cUgwQzIwSFgwYUZZcVF3SnFYTWs4UjVWSVdJWEFTVTdxd3d3VkRoU2V1bEVuQzJiaFFYZElrTXhHRzBPV2J3TzlpWTJjdHgwNm92d0JDdFNGdDMtOEoxWWFhamdWSFRZNGxTY3VCOTBMQTktSGtxdVFFSENUNVpHZVZvOGZBcTN5MDg0NXJLSmwwWVpRbTJzXzJ1YmJsWFYycGlr0gH3AUFVX3lxTE1MSnFfNEUwa2pVQXVEbU5OVzVIZU0yN0RUaUk1WDlRNHlIZFBFXzRMczJVT2hqdkZ5Y3M0c3ZncnpLNzU2Rndsczl1SUJLd2ppMkFYQmRnT2pGOXZxSDBDMjBIWDBhRllxUXdKcVhNazhSNVZJV0lYQVNVN3F3d3dWRGhTZXVsRW5DMmJoUVhkSWtNeEdHME9XYndPOWlZMmN0eDA2b3Z3QkN0U0Z0My04SjFZYWFqZ1ZIVFk0bFNjdUI5MExBOS1Ia3F1UUVIQ1Q1WkdlVm84ZkFxM3kwODQ1cktKbDBZWlFtMnNfMnViYmxYVjJwaWs?oc=5",
+      "source": "India Today"
      }
     ]
    },
@@ -4250,9 +4385,17 @@
    "raw_pct_change": 4.57,
    "corporate_action": null,
    "why": {
-    "headline": "No disclosed reason",
-    "confidence": "none",
-    "evidence": []
+    "headline": "Order Win (Scanx)",
+    "confidence": "low",
+    "evidence": [
+     {
+      "tier": "news",
+      "kind": "order win",
+      "detail": "Trom Industries wins Rs 10.11 crore work order from Ahmedabad Municipal Corporation",
+      "url": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxPX3FMTVM5SFhRX29TYUtsdklEdENtaldhcklFNjdka25Hdy1wcFFsQnUxcEROdFNxNTlaWTctNzdGUnI3cHJ4WWVEMEpuaE1UQ0hHVm5uSXNXaVpjcWVjSTRqRDJheEdEejUzNndDcmxtVWwtamh3TXRWS29sRWppdHpFcUtRcVRvY083WFAxZ0RqRVJYazJhSWRCdmJTY1dNckl2UmNCTE1yanRlMHV0WFN0dGNmaGlnb2NGaHFvSVE?oc=5",
+      "source": "Scanx"
+     }
+    ]
    },
    "news_checked": true
   },
@@ -5650,9 +5793,17 @@
    "raw_pct_change": -4.03,
    "corporate_action": null,
    "why": {
-    "headline": "No disclosed reason",
-    "confidence": "none",
-    "evidence": []
+    "headline": "Operations (Times of India)",
+    "confidence": "medium",
+    "evidence": [
+     {
+      "tier": "news",
+      "kind": "operations",
+      "detail": "CM Yogi launches 88 statue devpt projects in Kanpur",
+      "url": "https://news.google.com/rss/articles/CBMiyAFBVV95cUxPQldweFk2SHpaUy1mMG44enVxbC1BRTdpYzB3MGJ0Q1pGUHBHc3d3Mkw2cHNHekhxdktxLWxVaTJMMEdLM1VFb0lhSWJucU9uc0FrUTlLTFlnX1E4T2wtQTdfTlN4Yk1LQ3VTd3BuMUNiVkZRWnRWMldXNllDSXhOY3RDMW9xeWdvTEdTa0VJZ0swbllsZ0VTdWdSbmMtcUMwWGdydDlaUVNJMnB2NTM2dzFaWllXNDZoY1ZXamVCdHNQdFhYaVhQSNIByAFBVV95cUxPQldweFk2SHpaUy1mMG44enVxbC1BRTdpYzB3MGJ0Q1pGUHBHc3d3Mkw2cHNHekhxdktxLWxVaTJMMEdLM1VFb0lhSWJucU9uc0FrUTlLTFlnX1E4T2wtQTdfTlN4Yk1LQ3VTd3BuMUNiVkZRWnRWMldXNllDSXhOY3RDMW9xeWdvTEdTa0VJZ0swbllsZ0VTdWdSbmMtcUMwWGdydDlaUVNJMnB2NTM2dzFaWllXNDZoY1ZXamVCdHNQdFhYaVhQSA?oc=5",
+      "source": "Times of India"
+     }
+    ]
    },
    "news_checked": true
   },
@@ -5848,7 +5999,7 @@
    "raw_pct_change": -4.15,
    "corporate_action": null,
    "why": {
-    "headline": "General Updates disclosed to the exchange",
+    "headline": "Fundraise Or Deal, reported by Scanx",
     "confidence": "high",
     "evidence": [
      {
@@ -5857,6 +6008,13 @@
       "detail": "Suvidhaa Infoserve Limited has informed the Exchange about Allotment of shares pursuant to Rights Issue.",
       "url": "https://nsearchives.nseindia.in/corporate/SUVIDHAA_25112026225053_Intimation_of_Allotment_of_Shares.pdf",
       "source": "25 Nov 22:51"
+     },
+     {
+      "tier": "news",
+      "kind": "fundraise or deal",
+      "detail": "Suvidhaa Infoserve extends rights issue closing date to November 23, 2026",
+      "url": "https://news.google.com/rss/articles/CBMixAFBVV95cUxOcXlHSm1hWm00QndLOThELXlISUltVDltdnBLTmtTM0lEU0lrY0lTSTNXbjQ3T1RVejlITXlwV0pQSWx2Slg3eC1WXzNTYXdmUy0xaVVmTWlqTEhqbWppOEw5bXpRbkpncnJIS2JiQkwzZ2FlSHhLUGgwa3VnaTEtVGFrZ19Tc054YUsxZkltTWpUa05pRGRQSGhuSWR1X3lFTHlmcEFEdng4YTdHNlBnMFpMNVJBTlNLVnJoUDRoVWFxak1P?oc=5",
+      "source": "Scanx"
      }
     ]
    },
@@ -6401,7 +6559,7 @@
   },
   {
    "symbol": "ALCODIS",
-   "name": "ALCODIS",
+   "name": "ALCOKRAFT DISTILLERIE",
    "board_code": null,
    "series": "SM",
    "direction": "DOWN",
@@ -6564,9 +6722,16 @@
    "raw_pct_change": -4.76,
    "corporate_action": null,
    "why": {
-    "headline": "Management Change (Scanx)",
+    "headline": "Regulatory Or Legal (Scanx)",
     "confidence": "low",
     "evidence": [
+     {
+      "tier": "news",
+      "kind": "regulatory or legal",
+      "detail": "Runwal Enterprises submits fair disclosure code under SEBI PIT regulations",
+      "url": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxPM1Y1ejRZc01lck1MSW5MRC1QaGY4ajJWWkFZNDhjWGhqYnNhaVZrWHdrVkRlcHV0LVQ4WEs0a25Id05nLVpGcWJuQ2ZnaldwNDhkRVJsTWFyVER6SmlCM1pKTmhxcVZPd0JUX0xJaHg3MXVnR0pONXFhOUt4NHFCS3ZsTzc2VmlsaGpCVll4UDk0aUZIZkpLeVFTdzZJUHVKMTZMZUJJYTFUZGpUUzVaek9rcElnV0U4UWZJ?oc=5",
+      "source": "Scanx"
+     },
      {
       "tier": "news",
       "kind": "management change",
@@ -6877,7 +7042,7 @@
   },
   {
    "symbol": "USASEEDS",
-   "name": "UPSURGE SEEDS OF AGRI",
+   "name": "USASEEDS",
    "board_code": null,
    "series": "SM",
    "direction": "DOWN",
@@ -6964,22 +7129,15 @@
    "raw_pct_change": -4.94,
    "corporate_action": null,
    "why": {
-    "headline": "Broker Action (The Hindu)",
+    "headline": "Regulatory Or Legal (Moneycontrol)",
     "confidence": "medium",
     "evidence": [
      {
       "tier": "news",
-      "kind": "broker action",
-      "detail": "Initiative to take Constitution Day event to taluk centres welcomed",
-      "url": "https://news.google.com/rss/articles/CBMi0gFBVV95cUxOcGFUOG03WGptOFhYblY0ZmxuMTdJNS1WeEdnX1RtdEowZWNPbmdTNXN2SXFBaF9JT09WMGY4c1VKNk1qaUlkUE5qQW5yNTYwVy1sX0lZN09JeU4tYldWb2w0RHlXa19GTUVfeTg3dkIyWDJWeGxOS185T2UwTnBsQm9vak1xSkQ2eEh3aHhzclFwNnhfc2RIWnJBby16aFFGeS1NdW92ckI4dXd3NGtYcmRvNDBpX0tSSFlDSzR5cEU5TXIyNDNGWFA1S0F2UUF0MGc?oc=5",
-      "source": "The Hindu"
-     },
-     {
-      "tier": "news",
-      "kind": "order win",
-      "detail": "'TN Governor should take account of Collector's complaint, law & order report from CM': Udhayanidhi",
-      "url": "https://news.google.com/rss/articles/CBMi6wFBVV95cUxOY0pwaTR3QkMyUHk5Z3JINmlNelpRWVkxQm5XcDdYcFA2dEdIcFdreVhIei1KM3JLR0RGYnRWUC01VDdoY1Z3dFFicloydEExcGRpSzdwYlIzRGlmYjRzTFVpOWNlSmZtWVdIVnhFbHRKN3dnNVYyd1c0SjZDU2NmbHJBV2g3d0Q4SzRQQnptMC1SWHpYRWFveHJtS0M0SW1oNVhzZ0lNQmZVVEptbDR6SHNGdEFMbXVQMTU3UktodjFXOHpVZ2lib2duc3VLMjVrc0NUUkRzTE53aVBwR29rTXV5M18tbWd5MTM40gH4AUFVX3lxTE9TOXdCaHNwYm1VTDlpTkNQYWdOTnNTVXNrOGJ0Tm9GbmdFQzMtTDlrUHc1Si04R0hlVXBUdm1lOEk5UWV5ZjBhRHFUalB6b0xRM3dtaUs2V1BtM2llOFRkOEpjR3lqenNsV3ZMLWNma1g5UU5nQWkzVUxMaEdERFQzOWg3NVpzNTY4dmVxYm9Nd0ZiWTk3VUNid0dSRUIwZU9aVnB4NmdDVXg5cDZqYkVLa2NFeVhRNTQwMWdBSmJWSUtGOWJjdTlmbm1lUjJMTklDckVnN0VlSjBIUS1MY2M2Q2Q2d3FtTXNmbjVEcGMwTGF1cFZhVjFY?oc=5",
-      "source": "New Indian Express"
+      "kind": "regulatory or legal",
+      "detail": "India to take up fresh US tariff threat once findings of excess manufacturing capacity probe are clear",
+      "url": "https://news.google.com/rss/articles/CBMi8AFBVV95cUxNakhMYjFtQ0VNNzhfNGNCejhHeGp3ZGg2UVRIM1dfa1Y0ZnRrTnRENF9MNXhYeVZjUFgxVzYxU1lYdUl3MXdoNnRrTHBTUHMzYkpEemNFTk1pWEJQZnl6SWRpa2pwQWxiWDhPSUh4TG5JbzdQa21jZEVDUUtrOERFTUd4TkY1aHdocTRoUzFSb1ZHeWVXeklwZGUtNXVVODJwZ3hiNEotS3UtSG1JN0xQX0xuRnpXQ3FVN3duQV9HMlB0djlURElKQ0RiOU1VMktWS2tQWW5tdTBZbFZzN2lpSWlZak1XMFFYNDJaNk5HRmjSAfYBQVVfeXFMUGhHN3Rnc2JxTVlQUmhhcHlYdXpkQ1U0NWMxU2dOemxLWm5aSlZOaHlPMHpSeFBwQVljQ21CdDJhZUFMdEZ3Z1FIbzlQckd2M3JYczZmWVU5UFFIdHFvS0JoYTc1U0FjQm50VjNLUlluZUZNOHc1U0t5QTEyQ1lKOGpVNFZYbXhBTkg4bGtaT0JUc2xkSHBUZGJrU25NSGtPOVF6b1U0V3FnUHg4THJkc3ZySXgwWi0zT3A0eXhXTVpOcnE0aGFfa1BBSFprQzY3Sjk5ZU1jLWFBNFlrQ2oyWTAzUk5ISnJyVmtBZW5DMzQ2RmhhZlRB?oc=5",
+      "source": "Moneycontrol"
      }
     ]
    },
@@ -7691,9 +7849,24 @@
    "raw_pct_change": -5.24,
    "corporate_action": null,
    "why": {
-    "headline": "No disclosed reason",
-    "confidence": "none",
-    "evidence": []
+    "headline": "Bulk deal of Rs 30.4 crore",
+    "confidence": "medium",
+    "evidence": [
+     {
+      "tier": "deal",
+      "kind": "bulk deal",
+      "detail": "QE SECURITIES LLP sell 2,021,365 shares (Rs 30.4 crore)",
+      "url": "",
+      "source": ""
+     },
+     {
+      "tier": "deal",
+      "kind": "bulk deal",
+      "detail": "HRTI PRIVATE LIMITED buy 1,976,883 shares (Rs 29.6 crore)",
+      "url": "",
+      "source": ""
+     }
+    ]
    },
    "news_checked": true
   },
@@ -7965,7 +8138,7 @@
    "raw_pct_change": -5.99,
    "corporate_action": null,
    "why": {
-    "headline": "Investor Meeting, reported by Scanx",
+    "headline": "Investor Meeting disclosed to the exchange",
     "confidence": "high",
     "evidence": [
      {
@@ -7974,20 +8147,6 @@
       "detail": "DCB Bank Limited has submitted the Exchange a copy Srutinizers report of Postal Ballot. Further, the company has informed the Exchange regarding voting results.",
       "url": "https://nsearchives.nseindia.in/corporate/ujwal727_25112026190239_BSENSELetterPostalBallotResults25112026.pdf",
       "source": "25 Nov 19:02"
-     },
-     {
-      "tier": "news",
-      "kind": "management change",
-      "detail": "DCB Bank shareholders approve Thiyagarajan Kumar re-appointment with 99.44% votes",
-      "url": "https://news.google.com/rss/articles/CBMixAFBVV95cUxQelZWTW1UU3NmZ25LY1NqN1R4M1NhWU9pWFNnalRRNjI5TTc2ZmIwZlIwNWdzT0JSUmN5VS1zVFF4Ul9vQWg3MmJpbkE2V3lTb0hOTHY1bUlpZUF1MG1KRGZ6ZjFJS0RxT2pyRmdIUjR3dTBxNzVLZ0E1ZkhISXl2UTB5X0Z3aklDSTgyOU45VHFRekU1eW44YVVOd05BcFpybFRGcmJFcldUdnF4YVdmdFByM19ka2x6QVA2cXMxQ1o1OGEx?oc=5",
-      "source": "Scanx"
-     },
-     {
-      "tier": "news",
-      "kind": "management change",
-      "detail": "DCB Bank Shareholders Approve Re-appointment of Independent Director Thiyagarajan Kumar with 99.44% Votes",
-      "url": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxOeXRyeG0tV0FZRWRCYjBzU29lR3U1Tnl0ZXhRX1hRQkpXLTZMRTdEV1AyQnMtZWVZajVCS1BnVHhwOFIwWFl4Y3Z4YjNfWGswVkdnaGZ0X2F6bmhuMml2UlZERHFabW8yNFJvTWJHQU5mZnlBalFMWXNtbU50U0VJX3FIY0hZRUFhZjU2S1RFX3VqMzZxM0pvaFRHLXNqXzlhTU9RVUlSeU5yM0hsMnJwdWZsVlppMWNadmlDNlVkZFg?oc=5",
-      "source": "PSU Connect"
      }
     ]
    },
@@ -8174,7 +8333,7 @@
   },
   {
    "symbol": "SVGLOBAL",
-   "name": "SVGLOBAL",
+   "name": "S V GLOBAL MILL",
    "board_code": null,
    "series": "EQ",
    "direction": "DOWN",
@@ -8242,9 +8401,17 @@
    "raw_pct_change": -6.98,
    "corporate_action": null,
    "why": {
-    "headline": "No disclosed reason",
-    "confidence": "none",
-    "evidence": []
+    "headline": "Management Change (Scanx)",
+    "confidence": "low",
+    "evidence": [
+     {
+      "tier": "news",
+      "kind": "management change",
+      "detail": "TCI Express seeks shareholder nod for Ranjana Agarwal's director appointment",
+      "url": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxNVHlXMlJBbTZqb1l3TDV5R1Z6M1BzX3JNXzJSenRxc2NDOC1sX0pKeFVUNFFjOXppRnZDLW5SQlh0VFF0dVlFRXlhTEJsWmpPVW96dHIzZ1hDa3lTRzdoZHdfT0gyNDRXQVRUQzJzUHc4emVVRUJETDRGYVpvRExPTk1EcUpYNC1KTnU0LW9sbHF1RFNvTEp0QVNkdmhnVER3RUxJT0JWVUVMU2JlUUIwenpBYk1xbWJR?oc=5",
+      "source": "Scanx"
+     }
+    ]
    },
    "news_checked": true
   },
