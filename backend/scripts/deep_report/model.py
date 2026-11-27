@@ -128,7 +128,13 @@ def derived(y: dict, q: dict, sh: dict) -> dict:
         i = last if i is None else i
         return arr[i] if 0 <= i < len(arr) else None
 
-    roe = [_r(_div(y["pat"][i], ((y["equity"][i] or 0) + (y["equity"][i - 1] or y["equity"][i] or 0)) / 2) * 100) if i > 0 and y["pat"][i] is not None and y["equity"][i] else None for i in range(len(cols))]
+    def roe_at(i):
+        if i <= 0 or y["pat"][i] is None or not y["equity"][i]:
+            return None
+        r = _div(y["pat"][i], ((y["equity"][i] or 0) + (y["equity"][i - 1] or y["equity"][i] or 0)) / 2)
+        return None if r is None else _r(r * 100)      # average equity of zero (it changed sign): no ROE
+
+    roe = [roe_at(i) for i in range(len(cols))]
     de = [_r(_div(y["borrowings"][i], y["equity"][i]), 2) for i in range(len(cols))]
     icov = [_r(_div((y["pbt"][i] or 0) + (y["interest"][i] or 0), y["interest"][i]), 1) if y["interest"][i] else None for i in range(len(cols))]
     cfo_pat = [_r(_div(y["cfo"][i], y["pat"][i]), 2) if (y["pat"][i] or 0) > 0 else None for i in range(len(cols))]

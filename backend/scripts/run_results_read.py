@@ -42,6 +42,9 @@ import requests
 
 BACKEND_DIR = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(BACKEND_DIR))
+
+from app import period_labels as PL  # noqa: E402
+
 OUT_FILE = BACKEND_DIR / "data" / "results_read" / "latest.json"
 MODEL = os.environ.get("RESULTS_READ_MODEL") or "claude-opus-5-5"
 RESULT_CATS = ("Outcome of Board Meeting", "Financial Result Updates")
@@ -181,7 +184,7 @@ def history(sym: str, qe: str) -> str:
             raw = json.loads((BACKEND_DIR / "data" / "companies_raw.json").read_text(encoding="utf-8"))
             board = json.loads((BACKEND_DIR / "data" / "results_in" / "latest.json").read_text(encoding="utf-8")).get("companies") or {}
             for c in raw:
-                q = (board.get(str(c.get("code") or "")) or {}).get("quarters")
+                q = PL.cleaned((board.get(str(c.get("code") or "")) or {}).get("quarters"))
                 if q and c.get("nse_code"):
                     _HIST[str(c["nse_code"]).upper()] = q
         except (OSError, ValueError):
@@ -190,7 +193,7 @@ def history(sym: str, qe: str) -> str:
             uni = json.loads(gzip.decompress((BACKEND_DIR / "data" / "results_universe" / "latest.json.gz").read_bytes()))
             for k, v in (uni.get("companies") or {}).items():
                 if k.startswith("NSE:") and v.get("quarters"):
-                    _HIST.setdefault(k[4:], v["quarters"])
+                    _HIST.setdefault(k[4:], PL.cleaned(v["quarters"]))
         except (OSError, ValueError, EOFError):
             pass
     q = _HIST.get(sym.upper())

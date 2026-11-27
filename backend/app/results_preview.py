@@ -41,6 +41,7 @@ from pathlib import Path
 import requests
 
 from . import charts
+from . import period_labels as PL
 
 BACKEND_DIR = Path(__file__).resolve().parent.parent
 DATA = BACKEND_DIR / "data"
@@ -248,7 +249,7 @@ class Market:
 
     def __init__(self):
         raw = _load(DATA / "companies_raw.json", [])
-        board_results = _load(DATA / "results_in" / "latest.json", {}).get("companies") or {}
+        board_results = {k: PL.heal(v) for k, v in (_load(DATA / "results_in" / "latest.json", {}).get("companies") or {}).items()}
         self.guidance = _load(DATA / "guidance_in" / "latest.json", {}).get("companies") or {}
         self.calls = _load(DATA / "call_outlook" / "latest.json", {})
         self.ent: dict[str, dict] = {}
@@ -261,6 +262,7 @@ class Market:
             key = f"NSE:{nse}" if nse and not nse.isdigit() else f"BSE:{bse or code}"
             self.ent[key] = {"q": q, "code": code, "exchange": key[:3], "symbol": nse or bse, "name": c.get("name") or code}
         for key, v in (_load(DATA / "results_universe" / "latest.json.gz", {}).get("companies") or {}).items():
+            v = PL.heal(v)
             if key in self.ent and v.get("quarters") and (v["quarters"].get("periods") or [""])[-1:] != (self.ent[key]["q"].get("periods") or [""])[-1:] \
                     and standard(v["quarters"].get("periods") or []) and qend(v["quarters"]["periods"][-1]) > qend(self.ent[key]["q"]["periods"][-1]):
                 self.ent[key]["q"] = v["quarters"]      # a board company that just reported: the evening fetch is newer

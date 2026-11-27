@@ -30,6 +30,9 @@ import requests
 
 BACKEND_DIR = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(BACKEND_DIR))
+
+from app import period_labels as PL  # noqa: E402
+
 OUT = BACKEND_DIR / "data" / "results_preview" / "pead_history.json.gz"
 BHAV = BACKEND_DIR / ".bhav_cache"
 Q_FROM, Q_TO = date(2019, 6, 30), date(2024, 6, 30)       # quarters fetched from XBRL (SRWD SUE with a forecast-error
@@ -190,11 +193,12 @@ def main() -> int:
     uni = json.loads(gzip.decompress((BACKEND_DIR / "data" / "results_universe" / "latest.json.gz").read_bytes())).get("companies") or {}
     basis, screener = {}, {}
     for c in raw:
-        b = board.get(str(c.get("code") or ""))
+        b = PL.heal(board.get(str(c.get("code") or "")))
         if b and c.get("nse_code") and not str(c["nse_code"]).isdigit():
             basis[str(c["nse_code"]).upper()] = b.get("basis") or "consolidated"
             screener[str(c["nse_code"]).upper()] = b.get("quarters") or {}
     for k, v in uni.items():
+        v = PL.heal(v)
         if k.startswith("NSE:") and k[4:] not in basis:
             basis[k[4:]] = v.get("basis") or "consolidated"
             screener[k[4:]] = v.get("quarters") or {}

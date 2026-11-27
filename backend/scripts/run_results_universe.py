@@ -39,7 +39,8 @@ KEEP = ("periods", "sales", "operating_profit", "opm", "other_income", "interest
 
 def load() -> dict:
     try:
-        return json.loads(gzip.decompress(OUT_FILE.read_bytes()).decode("utf-8")).get("companies") or {}
+        out = json.loads(gzip.decompress(OUT_FILE.read_bytes()).decode("utf-8")).get("companies") or {}
+        return {k: R.PL.heal(v) for k, v in out.items()}     # entries from before the "(S)" headings were handled
     except (OSError, ValueError, EOFError):
         return {}
 

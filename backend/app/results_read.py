@@ -12,6 +12,8 @@ import json
 from datetime import date
 from pathlib import Path
 
+from . import period_labels as PL
+
 DATA = Path(__file__).resolve().parent.parent / "data"
 READ_FILE = DATA / "results_read" / "latest.json"
 MON = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
@@ -28,14 +30,14 @@ def _basis() -> dict:
             for c in raw:
                 x = board.get(str(c.get("code") or ""))
                 if x and c.get("nse_code"):
-                    b[str(c["nse_code"]).upper()] = x.get("basis") or "consolidated"
+                    b[str(c["nse_code"]).upper()] = PL.heal(x).get("basis") or "consolidated"
         except (OSError, ValueError):
             pass
         try:
             uni = json.loads(gzip.decompress((DATA / "results_universe" / "latest.json.gz").read_bytes())).get("companies") or {}
             for k, v in uni.items():
                 if k.startswith("NSE:"):
-                    b.setdefault(k[4:], v.get("basis") or "consolidated")
+                    b.setdefault(k[4:], PL.heal(v).get("basis") or "consolidated")
         except (OSError, ValueError, EOFError):
             pass
         _cache["basis"] = b

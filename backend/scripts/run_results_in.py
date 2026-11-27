@@ -37,6 +37,10 @@ import requests
 from bs4 import BeautifulSoup
 
 BACKEND_DIR = Path(__file__).resolve().parent.parent
+sys.path.insert(0, str(BACKEND_DIR))
+
+from app import period_labels as PL  # noqa: E402
+
 RAW = BACKEND_DIR / "data" / "companies_raw.json"
 OUT_FILE = BACKEND_DIR / "data" / "results_in" / "latest.json"
 PROFILE_FILE = BACKEND_DIR / "data" / "results_in" / "profile.json"
@@ -73,7 +77,7 @@ def _table(section) -> dict | None:
     t = section.select_one("table.data-table")
     if t is None:
         return None
-    periods = [th.get_text(strip=True) for th in t.select("thead th")][1:]
+    periods = [PL.clean(th.get_text(" ", strip=True)) for th in t.select("thead th")][1:]
     out = {"periods": periods}
     for tr in t.select("tbody tr"):
         cells = tr.select("td")
@@ -90,7 +94,7 @@ def _rows(table, keep: int) -> dict | None:
     """Any screener data-table as {'periods': [...], 'rows': [[label, [values...]], ...]}, newest `keep` columns."""
     if table is None:
         return None
-    periods = [th.get_text(strip=True) for th in table.select("thead th")][1:]
+    periods = [PL.clean(th.get_text(" ", strip=True)) for th in table.select("thead th")][1:]
     rows = []
     for tr in table.select("tbody tr"):
         cells = tr.select("td")
@@ -158,7 +162,10 @@ def parse(html: str) -> dict | None:
         if date and links.get("transcript"):
             calls.append({"date": date.group(1), "transcript": links["transcript"], "ppt": links.get("ppt")})
     h1 = soup.select_one("h1")
-    return {"quarters": quarters, "annual": annual, "concalls": calls[:KEEP_CALLS], "top": _top(soup), "profile": _profile(soup),
+    heads = soup.select("#quarters table.data-table thead th")
+    # a consolidated table whose newest quarter is a standalone column ("Sep 2026 (S)"): standalone history
+    standalone = bool(heads) and PL.is_standalone(heads[-1].get_text(" ", strip=True))
+    return {"standalone_latest": standalone, "quarters": quarters, "annual": annual, "concalls": calls[:KEEP_CALLS], "top": _top(soup), "profile": _profile(soup),
             "name": h1.get_text(" ", strip=True) if h1 else None}
 
 
@@ -191,7 +198,8 @@ def fetch(rec: dict, session: requests.Session):
                 return None, True
             entry = parse(r.text) if r.status_code == 200 else None
             if entry:
-                entry["basis"], entry["screener_code"] = basis, cand
+                entry["basis"] = "standalone" if entry.pop("standalone_latest", False) else basis
+                entry["screener_code"] = cand
                 if found is None or _last_quarter(entry) > _last_quarter(found):
                     found = entry
                 if _last_quarter(found) >= stale:
@@ -219,11 +227,11 @@ def main() -> int:
         prev_prof = json.loads(PROFILE_FILE.read_text(encoding="utf-8")).get("companies") or {}
     except (OSError, ValueError):
         prev_prof = {}
-    profiles = dict(prev_prof)
+    profiles = {k: PL.cleaned(v) for k, v in prev_prof.items()}
 
     session = requests.Session()
     session.headers.update(HEADERS)
-    out = dict(prev)
+    out = {k: PL.heal(v) for k, v in prev.items()}     # entries on file from before the "(S)" headings were handled
     ok = failed = blocks = 0
     now = datetime.now(timezone.utc).isoformat(timespec="seconds")
     for i, rec in enumerate(companies, 1):

@@ -17,11 +17,17 @@ import os
 import re
 import shutil
 import subprocess
+import sys
 import tempfile
 import time
+from pathlib import Path
 
 import requests
 from bs4 import BeautifulSoup
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[2]))       # backend/, for the app package
+
+from app import period_labels as PL  # noqa: E402
 
 SCREENER_HEADERS = {"User-Agent": "Mozilla/5.0 (compatible; personal-research-screener/1.0; research script, not a bulk crawler)"}
 FILING_HEADERS = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/124.0 Safari/537.36",
@@ -71,7 +77,7 @@ def _table(section) -> dict:
     t = section.select_one("table")
     if t is None:
         return out
-    out["columns"] = [th.get_text(" ", strip=True) for th in t.select("thead th")][1:]
+    out["columns"] = [PL.clean(th.get_text(" ", strip=True)) for th in t.select("thead th")][1:]
     for tr in t.select("tbody tr"):
         tds = tr.select("td")
         if len(tds) < 2:
@@ -98,7 +104,11 @@ def fetch_company(code_candidates) -> dict | None:
             # screener serves an empty consolidated view for standalone-only companies
             if suffix and not any(v is not None for v in (pl["rows"].get("Sales") or pl["rows"].get("Revenue") or [])):
                 continue
-            return parse_company(soup, url, consolidated=bool(suffix))
+            # a consolidated page whose newest quarter is a standalone column ("Sep 2026 (S)") is showing the
+            # standalone history: say so
+            heads = soup.select("#quarters table thead th")
+            standalone = bool(heads) and PL.is_standalone(heads[-1].get_text(" ", strip=True))
+            return parse_company(soup, url, consolidated=bool(suffix) and not standalone)
     return None
 
 
