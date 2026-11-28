@@ -1,7 +1,7 @@
 {
  "trade_date": "2026-11-27",
  "threshold_percent": 4.0,
- "generated_at": "2026-11-27T19:50:20+05:30",
+ "generated_at": "2026-11-28T14:56:02+05:30",
  "stats": {
   "scanned": 3452,
   "flagged": 358,
@@ -262,9 +262,16 @@
    "raw_pct_change": 16.72,
    "corporate_action": null,
    "why": {
-    "headline": "Management Change (Scanx)",
+    "headline": "Operations (Scanx)",
     "confidence": "low",
     "evidence": [
+     {
+      "tier": "news",
+      "kind": "operations",
+      "detail": "Mafatlal Industries secures NSE listing approval for equity shares",
+      "url": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxQazc0NFhaQkV2Nm83QUVXNnAxSlJsaTdaendFaG5Sbm90S1J2SVU3THNqdGV1dW5xd0NkdFRVUmkweU8xNjRZWko3OThuRU5Pcm9BSUlSOFlwLUtma2NvcUhOaHpuYlFROUtPYU5NQlR6TktZMWN1RXpNX3JsMkNvYmFTX1REUTliQ19tM1MxelF0MUtscHZ0ZzRpSVJzNi16TW5pOHk1cGhsbHJ5Yi0tbGxURGdVQkpsbkhXQjdZY1lJQQ?oc=5",
+      "source": "Scanx"
+     },
      {
       "tier": "news",
       "kind": "management change",
@@ -277,13 +284,6 @@
       "kind": "results",
       "detail": "Mafatlal Industries targets $1 billion revenue by decade-end",
       "url": "https://news.google.com/rss/articles/CBMiswFBVV95cUxNM1hnbnA3TDJDazZ4UzRPVnBhMGNKUUVlMm1HTTdfcW5ON3pPeW1QOW5QNV9ZTUpRR3FSVGZwNWJPMU5CS1JwclByb0ZlRDhVT29TZkhXcWtUY1pya0x2NmxDNi1BVDA5MDlSSnZma2RpOGdSb056ckVmdk80anhJcWREYTFEcUNRSDNBZFFuSWF0bldjdC1oWngzeEF5YkFGa2ZJRVc5VzBqMnFVSkRXU1ZsVQ?oc=5",
-      "source": "Scanx"
-     },
-     {
-      "tier": "news",
-      "kind": "operations",
-      "detail": "Mafatlal Industries secures NSE listing approval for equity shares",
-      "url": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxQazc0NFhaQkV2Nm83QUVXNnAxSlJsaTdaendFaG5Sbm90S1J2SVU3THNqdGV1dW5xd0NkdFRVUmkweU8xNjRZWko3OThuRU5Pcm9BSUlSOFlwLUtma2NvcUhOaHpuYlFROUtPYU5NQlR6TktZMWN1RXpNX3JsMkNvYmFTX1REUTliQ19tM1MxelF0MUtscHZ0ZzRpSVJzNi16TW5pOHk1cGhsbHJ5Yi0tbGxURGdVQkpsbkhXQjdZY1lJQQ?oc=5",
       "source": "Scanx"
      }
     ]
@@ -630,9 +630,16 @@
    "raw_pct_change": 9.5,
    "corporate_action": null,
    "why": {
-    "headline": "Bulk deal of Rs 25.4 crore",
-    "confidence": "medium",
+    "headline": "Regulatory Or Legal (Scanx)",
+    "confidence": "low",
     "evidence": [
+     {
+      "tier": "news",
+      "kind": "regulatory or legal",
+      "detail": "Jagran Prakashan reports Supreme Court settlement in JMNIPL share dispute",
+      "url": "https://news.google.com/rss/articles/CBMixgFBVV95cUxNbWJ4U1FUSjRPWDdWblZBZE9sMkU2cnpxNUVGNG5RNTZGOS00NG90QVktd2ZDakVNRFVicWJ6Y3Y3Y0lHZ0RweEFoUWY5alRCNXdiTmNoeFE4TVA5ZjdneTQ0WXUwOF9UWkExUnZHaE90WDZITFRvTFNMdjlEYTV2Q1J4MlRIcXgzZEdUNXVCZU5CQkZSQmEzVmtvYzIyVkpEalFCcVAxVWdEeDRXN2h0dFMtM1BYTW5qOXdtSC1NbVU4eEhVRUE?oc=5",
+      "source": "Scanx"
+     },
      {
       "tier": "deal",
       "kind": "bulk deal",
@@ -913,10 +920,10 @@
      },
      {
       "tier": "news",
-      "kind": "fundraise or deal",
-      "detail": "Patel Engineering board to mull fundraiser via NCD issue; shares rally 11% over a month",
-      "url": "https://news.google.com/rss/articles/CBMi3AFBVV95cUxPQnBsUDlYdjhFQUo5TlhmTURIM2J3NmJsS3QwcWVOZUlXRzhQQlFLSFY5R3JZa2wzbzJ1TXNDUmswd1VhMEhxSERXTnhOeGhOU1JGRmZqZGxxaWd5RXc0T0FnMTU1QnRUME9NNVFlNG1qWlZPajJwR0dWREcwbkE5LWhfVVZvSU5ycWlXWDRsVnBOcHVKU3U0V0xVT1dNT0dBZXVYVUd6Y0hyMmJOejd2TVpNSnNqYkc0OHFKMTJFblkySVRjV2t5QWRTR1VzQXAzZ3FlNUVkdUZCSE9N?oc=5",
-      "source": "Upstox"
+      "kind": "order win",
+      "detail": "Patel Engineering secures ₹1,441.04 crore Gongri hydro project contract",
+      "url": "https://news.google.com/rss/articles/CBMirgFBVV95cUxQTi1naUw3M0hlRTVhaHZ2V2t6QlpqSDVkdHBsdTdRdGx1MkREUUZDQ1NBU0pLZlp0NjFXQTE1aUI5SzBoMGFsOTFKQVpHcXU1anF5VDNkampLYzZIWTZmUVlhQ1BVMDV3MmxFZWZYdmM1UFd3djFwMFhhREViZkJUVEUtcGFHOVJHMTB4elJvMUx1UUx6dVhBeExRb3FLM2F2Y19jN2Y1M0I0MmhfckE?oc=5",
+      "source": "Business Upturn"
      }
     ]
    },
@@ -974,8 +981,8 @@
      {
       "tier": "news",
       "kind": "broker action",
-      "detail": "Bombardier stock initiated at Outperform by Raymond James with C$385 target By Investing.com",
-      "url": "https://news.google.com/rss/articles/CBMi0AFBVV95cUxOdnZhNFFYVERvd2gxcS15T0VpZ0I3UzFiWmI2UVU5RGJaN0lERDV3UXRhT29vSkl3c1VWSUtEcktkS0lXVDdsc01TeTJMblhCb3IxQ2xRZkRTQTlEcjU0ZmJWNldFQ2xsV3pMR1pjdVV6d1dMa3VNVFg1TXl4Rmpld1RwSC1pQmRrTUZlTGt5S2U5NURmbXYwOHk4SC1GZk90eVpWSEREOHdBSDZUQ1Q3NUNFLS1LdGFkWFRZMFJuUHFfWmtiU3FYQUZPTDZqc2VZ?oc=5",
+      "detail": "GoodRx stock rating cut by Raymond James on GLP-1 headwinds By Investing.com",
+      "url": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxPLUsxVDdUVzdmNlMzV0xxbzRLSVIxcklDT3JYei1wYU5oSHNUcjR2UFFtQzEwcTgwUk1McjdqYzdQbEVSNTY1TURHOTRic2tqWFNNMGRFU0tobWJGSnRJd25mY0xEODFxVExqLXI1cGdZY0hZaTJoeHVab3B0Z2xRWDJFZjFwMTYtMHBRQ3F4MG1pLUpBbXdxQlJzeEZkMVo1blZoZDEyOWo3Ujc5Rjg0dzhrYllrRU9MTzVz?oc=5",
       "source": "Investing.com"
      }
     ]
@@ -1246,22 +1253,22 @@
    "raw_pct_change": 7.45,
    "corporate_action": null,
    "why": {
-    "headline": "Capital Action (Business Standard)",
+    "headline": "Capital Action (Moneycontrol)",
     "confidence": "medium",
     "evidence": [
-     {
-      "tier": "news",
-      "kind": "capital action",
-      "detail": "Supriya Lifescience shares soar 9% as firm to mull first-ever buyback",
-      "url": "https://news.google.com/rss/articles/CBMi1wFBVV95cUxPME51d1UwWFNtZnRpM19pY0dzUzFjd0t1Mm9VVTNJOENzeUZGaEdBX2hSVE5GTHN2ZnFQSmxjVUV5ZU1aVi1IamxIRXhIMkoyYnFsM3dfdW80NVhwNTczTGowTXd3bHF3NUJkVy14TllYNy1oQjNzSGd3TDZlNG5BU1lTWGEzaERlU3VVUnB0MkZyQVczcVI4VmRYNzNmR2tKXzQ2SEVGSlFZbWJJUXFqb2hJMy1qX1dPd0lEWVF5SXdIZHdENHc3aUp3WFc2bFhKLUFseXNsc9IB3AFBVV95cUxQcWo1a084SnRkOHY3WldJbDlDNTBwZlFEZVlxQkNrLS05NHA1Q00zUkJ6NU0zSm9GandIVy1qQWxkX0hjZWphOVNuZDNLRHdpV0p0Y05IVklhTkVpdEdpR0Y1bW9DblNpcDlxRlE0b2R0S1RManpKZmJiT182LW5fTXFMUllWRVYxMG1iUUh1OGZvcGw4cGR1NWtya2hFa0puWWkyTjN6cnhLMHpMSjR0THlWQUFUUWpBZGtzUTVoNmtDTS1hRV9DVzR4cERyQTFwZ2V6UzZiOUxRYjZN?oc=5",
-      "source": "Business Standard"
-     },
      {
       "tier": "news",
       "kind": "capital action",
       "detail": "Supriya Lifescience shares settle 7% higher as pharma company considers first-ever buyback; board meet next week",
       "url": "https://news.google.com/rss/articles/CBMihgJBVV95cUxQbHpTSjlmNTQwS084aU83NHQxM04wS3owLVNQLWlvNW5mb0VCMmZMMTg1RkZvQmRrNE5xdWhSZ1NBQnM0cUxEanVNeWI2aTlSVV9VRVJIOTVtdnkzQmFsWnk5SUZtSkh3bVpZYTRnSFIzeV9maDk0YzAtMFpVYWdWUUxTRl9jWko3RnM3MGs5WUpfTTFacEV6cWhkT3k1ZTF6RlBOMENrNWljR0NPaGtGamI2R3VaMURFeDdCSHVmVnV3dEloWkwwa0NaR2tKMVh5Wmc2WUM2WDg4SFZUNnN3SW92S19YeV80WFBCWDhvdUx3U3ZheDBxWDhYRkpyQnVob2dEUnJ3?oc=5",
       "source": "Moneycontrol"
+     },
+     {
+      "tier": "news",
+      "kind": "capital action",
+      "detail": "Supriya Lifescience shares soar 9% as firm to mull first-ever buyback",
+      "url": "https://news.google.com/rss/articles/CBMi1wFBVV95cUxPME51d1UwWFNtZnRpM19pY0dzUzFjd0t1Mm9VVTNJOENzeUZGaEdBX2hSVE5GTHN2ZnFQSmxjVUV5ZU1aVi1IamxIRXhIMkoyYnFsM3dfdW80NVhwNTczTGowTXd3bHF3NUJkVy14TllYNy1oQjNzSGd3TDZlNG5BU1lTWGEzaERlU3VVUnB0MkZyQVczcVI4VmRYNzNmR2tKXzQ2SEVGSlFZbWJJUXFqb2hJMy1qX1dPd0lEWVF5SXdIZHdENHc3aUp3WFc2bFhKLUFseXNsc9IB3AFBVV95cUxQcWo1a084SnRkOHY3WldJbDlDNTBwZlFEZVlxQkNrLS05NHA1Q00zUkJ6NU0zSm9GandIVy1qQWxkX0hjZWphOVNuZDNLRHdpV0p0Y05IVklhTkVpdEdpR0Y1bW9DblNpcDlxRlE0b2R0S1RManpKZmJiT182LW5fTXFMUllWRVYxMG1iUUh1OGZvcGw4cGR1NWtya2hFa0puWWkyTjN6cnhLMHpMSjR0THlWQUFUUWpBZGtzUTVoNmtDTS1hRV9DVzR4cERyQTFwZ2V6UzZiOUxRYjZN?oc=5",
+      "source": "Business Standard"
      },
      {
       "tier": "news",
@@ -1306,17 +1313,9 @@
    "raw_pct_change": 7.16,
    "corporate_action": null,
    "why": {
-    "headline": "M&A Or Stake (Scanx)",
-    "confidence": "low",
-    "evidence": [
-     {
-      "tier": "news",
-      "kind": "M&A or stake",
-      "detail": "SMALLCAP World Fund raises Aegis Logistics stake to 5.0025%",
-      "url": "https://news.google.com/rss/articles/CBMisgFBVV95cUxQc0RCc0gtLVcxRnF0bFlST0tGTkh4TUU3N3lvdDlaSlNOV00zX0hHdjBNaFozWnJJOFFiRkVfMXZRRTdVU2NpYTYtSjNqdFZYZUtNR1ozVE5xem12cEVxcDI0MTVYcmxYdW5LVENROFhFS3lUdGRrVE94S19GOEZZektrTTJweWhpQkc3eFdzMkZmOWsxMGd2WVdZdnRlU3I5Yi1iaTNVWklRUzJ2SzZBeFBR?oc=5",
-      "source": "Scanx"
-     }
-    ]
+    "headline": "No disclosed reason",
+    "confidence": "none",
+    "evidence": []
    },
    "news_checked": true
   },
@@ -1688,9 +1687,17 @@
    "raw_pct_change": 6.32,
    "corporate_action": null,
    "why": {
-    "headline": "No disclosed reason",
-    "confidence": "none",
-    "evidence": []
+    "headline": "Management Change (Scanx)",
+    "confidence": "low",
+    "evidence": [
+     {
+      "tier": "news",
+      "kind": "management change",
+      "detail": "Jeena Sikho Lifecare appoints Raj Kaushik & Associates as cost auditor for FY27",
+      "url": "https://news.google.com/rss/articles/CBMixgFBVV95cUxNV2VLdWpkTmlaV05sYTZFclpHOU1KQkFmRmlrU3gyREJVMi1aakpibWE1RnBPNGRERFJHeGIzbXVRSFQ1MXRHY1ZuSXk3bGVpTDd3cjRBNVVwcjdVNmN1bnlaN2l3dHN3eE5OWGRMNVZJamhJcWM3blhCWnVTaG4yT3lpQ191TEFqZ1BmTmNiTDdBcjBVa3dmUEFtYmloMmJQZnZhY2ZKSnlRRjhmLXFQWFR4VUUzOGZ2anhFbUJkQ041dmFjU0E?oc=5",
+      "source": "Scanx"
+     }
+    ]
    },
    "news_checked": true
   },
@@ -1783,17 +1790,9 @@
    "raw_pct_change": 6.12,
    "corporate_action": null,
    "why": {
-    "headline": "Results (Scanx)",
-    "confidence": "low",
-    "evidence": [
-     {
-      "tier": "news",
-      "kind": "results",
-      "detail": "Andrew Yule publishes Q2FY27 financial results in newspapers",
-      "url": "https://news.google.com/rss/articles/CBMisAFBVV95cUxNR3ZlRU9TTmpsdXU5RW5oZnZfMUtSTG9idlpSejE2RjViYmk5Tk4wQ2l3Ri0za2pUSjgtR3VEOFlXRDRqM2lBelpTY0JHQ2RlR3k1aWduOW13cElubXFQWEo2cmpWVGd3X1JhZzRrRXZJaWc1NjV3Q1NEb25LemIwaWtLT2xJTzQ5cFZFUFY4ZVk4NG5mZWhsSWQ1UkJrNGN1VGNmUU5ySHNvMmFJcjZKeg?oc=5",
-      "source": "Scanx"
-     }
-    ]
+    "headline": "No disclosed reason",
+    "confidence": "none",
+    "evidence": []
    },
    "news_checked": true
   },
@@ -1997,9 +1996,17 @@
    "raw_pct_change": 5.74,
    "corporate_action": null,
    "why": {
-    "headline": "No disclosed reason",
-    "confidence": "none",
-    "evidence": []
+    "headline": "Order Win (Scanx)",
+    "confidence": "low",
+    "evidence": [
+     {
+      "tier": "news",
+      "kind": "order win",
+      "detail": "Annu Projects sees Q4 surge, targets ₹2,000 crore order book by FY27 end",
+      "url": "https://news.google.com/rss/articles/CBMivwFBVV95cUxOMjJFOTBmbjRSbHJMZ1B5aEtLRkw5OC1zQ2hxUVJ3aGFoLWJITHgzdUlKRWNlVTZBZXBzRjdrVkJsblpGTWV1bkVMUm9Ncmc0UnRlQ3VmMmhwNFVDMHZpYktHSWp6Vko3Y2ctbVFoeGNUdVVyaC1oMy04RHQtOTRzbkVVWGxWZ19wSU1fZVZPT2I0eU1WZ1M0NmQ4MTFlSTZlczlubDBZYXdyWmlxdm9FQ1VkS08yYjhmWGIyeHhfOA?oc=5",
+      "source": "Scanx"
+     }
+    ]
    },
    "news_checked": true
   },
@@ -2560,7 +2567,7 @@
    "raw_pct_change": 5.03,
    "corporate_action": null,
    "why": {
-    "headline": "Management Change, reported by Business Upturn",
+    "headline": "Fundraise Or Deal, reported by NDTV Profit",
     "confidence": "high",
     "evidence": [
      {
@@ -2569,6 +2576,13 @@
       "detail": "Angel One Limited has informed the Exchange regarding Allotment of 235310 Shares.",
       "url": "https://nsearchives.nseindia.in/corporate/ANGEL8896_27112026143011_Intimation.pdf",
       "source": "27 Nov 14:31"
+     },
+     {
+      "tier": "news",
+      "kind": "fundraise or deal",
+      "detail": "Ionic Wealth Announces Rs 177 Crore Fundraise From Angel One To Ramp Up Growth",
+      "url": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxQTDBGSllhN3RVd1Z0SzBjM1liWmZoZnEzT2taYURtaUxORW91T2pjNzF2b3dvNmRHZWJMSGlfR2RVQ3dnRzQ2NFBFVUQ4X1FXMnhGM3lDOEM2dGVsZWM4SWFkUTI5bEUzNncxRThmaXlaT19FVmRWVHZmZTIyMzEzOEFlSVdudzYwSU9WQnctUVhhSksxaDMzMDdxNU9YMFpUT0UzLVU3MFJIT05jZ28xaGl5TUVVM2J4VS13UzFSZTjSAcgBQVVfeXFMT3VKV1BpTGVBV3pnMGtHWVd3X3NGNGdXZmFkTE5FMHBYR2pnUEt3X0xZM1hkakN2WEVhbHAzZkEtWXpxczhDR0dqT09QbE1ZQ1JpM0JfdF9DNUs2Z1Y4eEZQZ1I0WDJIWkp4Y1BZUGZ2VzRZVENEOHVZcXlGMmxPMUVvdWR3MGpNY21RaG1iNDgtQkhPYlp6NGszS2dGcTJ5LVh0aV8xMHR3dXpjbHFBdzhzQXNsTENSZF9UclNvVVdSYzJNc05ybUw?oc=5",
+      "source": "NDTV Profit"
      },
      {
       "tier": "news",
@@ -2884,17 +2898,9 @@
    "raw_pct_change": 4.99,
    "corporate_action": null,
    "why": {
-    "headline": "Results (Scanx)",
-    "confidence": "low",
-    "evidence": [
-     {
-      "tier": "news",
-      "kind": "results",
-      "detail": "Sahasra Electronic Solutions reports 45% revenue growth in FY26",
-      "url": "https://news.google.com/rss/articles/CBMizAFBVV95cUxNT0ZwYjhQT1liTlBqa1FzdGxLZTMyeGJVYmRORFg0cUtYdzRya0JoRFZXckx3NkxvaWlhaml3MlVIZ1hQbUo0bXFTQzlZM2tfcXJnUlUweS1EcGRqWjFWRmJnU2pKSWl6VGJTd0wtMWQ2UDhnNTdpU3RjRGdBYXhjSi1aQ3hHWXdncTBLNG9CbTNkMm43ekhDelRMa2cyX19wOXIySTlyNEc2OGtwVnFiajdVY3V6LVhaZlExalVVWVF3MmNTT3NDOGZDVUQ?oc=5",
-      "source": "Scanx"
-     }
-    ]
+    "headline": "No disclosed reason",
+    "confidence": "none",
+    "evidence": []
    },
    "news_checked": true
   },
@@ -3800,7 +3806,7 @@
   },
   {
    "symbol": "RITEZONE",
-   "name": "RITE ZONE CHEMCON IND",
+   "name": "RITEZONE",
    "board_code": null,
    "series": "SM",
    "direction": "UP",
@@ -4112,6 +4118,13 @@
       "detail": "India to take up fresh US tariff threat once findings of excess manufacturing capacity probe are clear",
       "url": "https://news.google.com/rss/articles/CBMi8AFBVV95cUxNakhMYjFtQ0VNNzhfNGNCejhHeGp3ZGg2UVRIM1dfa1Y0ZnRrTnRENF9MNXhYeVZjUFgxVzYxU1lYdUl3MXdoNnRrTHBTUHMzYkpEemNFTk1pWEJQZnl6SWRpa2pwQWxiWDhPSUh4TG5JbzdQa21jZEVDUUtrOERFTUd4TkY1aHdocTRoUzFSb1ZHeWVXeklwZGUtNXVVODJwZ3hiNEotS3UtSG1JN0xQX0xuRnpXQ3FVN3duQV9HMlB0djlURElKQ0RiOU1VMktWS2tQWW5tdTBZbFZzN2lpSWlZak1XMFFYNDJaNk5HRmjSAfYBQVVfeXFMUGhHN3Rnc2JxTVlQUmhhcHlYdXpkQ1U0NWMxU2dOemxLWm5aSlZOaHlPMHpSeFBwQVljQ21CdDJhZUFMdEZ3Z1FIbzlQckd2M3JYczZmWVU5UFFIdHFvS0JoYTc1U0FjQm50VjNLUlluZUZNOHc1U0t5QTEyQ1lKOGpVNFZYbXhBTkg4bGtaT0JUc2xkSHBUZGJrU25NSGtPOVF6b1U0V3FnUHg4THJkc3ZySXgwWi0zT3A0eXhXTVpOcnE0aGFfa1BBSFprQzY3Sjk5ZU1jLWFBNFlrQ2oyWTAzUk5ISnJyVmtBZW5DMzQ2RmhhZlRB?oc=5",
       "source": "Moneycontrol"
+     },
+     {
+      "tier": "news",
+      "kind": "M&A or stake",
+      "detail": "Adani may take stake in existing airline or back startup, says group CFO",
+      "url": "https://news.google.com/rss/articles/CBMi7gFBVV95cUxOTTVuTFUwS2JFX3djeXUwdU11RkJTRlBrT3hsWlFUYjY1M0NKT3QxOVV4b0o4ZFowUUVBbjFwR1NEVG9oYnQ2NVU4eUV2V2xGbFhMcFZvUVpMZ0lXNHBRMlVDdVYyd1BDNEl5NkxPSXB1NC1aVkgxa0VTRHEweDIwUUVHWXdBU1J6QVRGbHN2NE9yemZKMWRsX1UtMkJzeExBU0JsZEdBeUdVWU5kV21KYmk5RWhkYVpVRVoxNUwwQlZzWVZ5UzE3MmlUWGVnUVloTnViUV9LbVlUejhweWNzRHJWX1RsTUtRekV3M1lR0gHzAUFVX3lxTE9taGJIYk5QVEJHTUZtQ19DTUNBQlN5aE5oU1lWMkJGdTR1UGtiOXJmLTZITGlhcEtXTnlQUE1UZ1UyLUZOc3cyd19pbjhhbmFtSWozaXJmeTAxODlaU3hkZWJhRzNDSEgxeng2SXVjdkl0ay1yZFpCdkJtMUJYejAwQXFJaXNDdElKLV9ZWUNVTHJURGJtVDE4TjlKbG9keEo3YlJnNnBHUlZoeGsyVjJ0X2huZEJCa1VhaDVlTkQtSEdZYjBRY1QxZVVueVdNM1Nndm1XaEJSaEFGUm9laVVBZ3llaWRyS1NBS25PcGhTS01aSQ?oc=5",
+      "source": "Times of India"
      }
     ]
    },
@@ -4149,9 +4162,24 @@
    "raw_pct_change": 4.8,
    "corporate_action": null,
    "why": {
-    "headline": "No disclosed reason",
-    "confidence": "none",
-    "evidence": []
+    "headline": "Order Win (CNBC TV18)",
+    "confidence": "medium",
+    "evidence": [
+     {
+      "tier": "news",
+      "kind": "order win",
+      "detail": "E2E Networks bags ₹136 crore international order from AI foundation model developer",
+      "url": "https://news.google.com/rss/articles/CBMi6AFBVV95cUxORlRmRGhPaktLdkJtYUpKSGtkRy1GYTYxcnQ4WUdSRkNDZXc5V014UE5STlU3RlZjaUV0R2htX3lDbXFDNFdYZWd4aUk3Um84RFpXTl9ONFRJc0lNd291bk5zakNQT2dPNDAwU1U0Sms0eXRSSU00bUhKNGwyb1NCTVhSMkVNeGRSU2FDZUNKaWNicVJHcnh3b05nN2p4N0FmbGNxQ2p5cGg0N09DU3VIb1hwem9ieHd6aEo2ajRaOU91Wmk5cTVyZUZEVWlTU3JpZkVGaFMxdDBPdUM5MnNfS0FhY0VIbzhu0gHoAUFVX3lxTE5GVGZEaE9qS0t2Qm1hSkpIa2RHLUZhNjFydDhZR1JGQ0NldzlXTXhQTlJOVTdGVmNpRXRHaG1feUNtcUM0V1hlZ3hpSTdSbzhEWldOX040VElzSU13b3VuTnNqQ1BPZ080MDBTVTRKazR5dFJJTTRtSEo0bDJvU0JNWFIyRU14ZFJTYUNlQ0ppY2JxUkdyeHdvTmc3ang3QWZsY3FDanlwaDQ3T0NTdUhvWHB6b2J4d3poSjZqNFo5T3VaaTlxNXJlRkRVaVNTcmlmRUZoUzF0ME91Qzkyc19LQWFjRUhvOG4?oc=5",
+      "source": "CNBC TV18"
+     },
+     {
+      "tier": "news",
+      "kind": "order win",
+      "detail": "E2E Networks secures USD 14.63 million order for GPU cloud computing services",
+      "url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxOTlZTd3ZrQWNUbjdvWkZFY1F2UGZNTVBEWEZYbTdaRzlmQXVJNFo5TThBNmk1T3E1X0lYeDAwblRlWXJQamhDZTdIZ0YxbkFkOVFQZmJEZXJKWUUtNUNISWQ3UjY5cTRhUWQ4dEdrWGlWLW1hUzZ0OFdMR2E0N0dJWVZIOXg3bjY3WS1qZ3dQT05LZG8xLXNLSkxaYUxZYThsNnFtQkpvX1dJcUNzMnFUNlVXem9uNlQ3VEE?oc=5",
+      "source": "Business Upturn"
+     }
+    ]
    },
    "news_checked": true
   },
@@ -5759,17 +5787,9 @@
    "raw_pct_change": 4.08,
    "corporate_action": null,
    "why": {
-    "headline": "Operations (Scanx)",
-    "confidence": "low",
-    "evidence": [
-     {
-      "tier": "news",
-      "kind": "operations",
-      "detail": "Polyplex subsidiary adds $78.41 mn capacity in Thailand",
-      "url": "https://news.google.com/rss/articles/CBMirAFBVV95cUxQR1VJRkx5U3VTd0I3VzZIUUlybnNDekxKMHpzQnlJTEw4NVNFbk1MYlZoTjc4WFdlajhmUjBkWVlDUkpqU1lkM21WSEEwTC03Z0NzNUtPVHJPRjVYMy1kUkx6N3FPaFpMM0pGZEpzWkJ1cWFqM1JNMnc2R2hBQkd4M0dXR2ZCc2pUZVhvdXhNNkFGcUFobWxiUHd6RWxSbmJLMnd0SnhyRkU1UGVO?oc=5",
-      "source": "Scanx"
-     }
-    ]
+    "headline": "No disclosed reason",
+    "confidence": "none",
+    "evidence": []
    },
    "news_checked": true
   },
@@ -5897,9 +5917,16 @@
    "raw_pct_change": 4.04,
    "corporate_action": null,
    "why": {
-    "headline": "Results (Scanx)",
+    "headline": "M&A Or Stake (Scanx)",
     "confidence": "low",
     "evidence": [
+     {
+      "tier": "news",
+      "kind": "M&A or stake",
+      "detail": "Trident Texofab promoter group acquires 12,028 shares, stake up to 7.79%",
+      "url": "https://news.google.com/rss/articles/CBMivgFBVV95cUxPV21fcFlscmtKYXYwZTQ4VHEwMlVJN0tkTUR3Vkt4Z2pRTFdEMTh3R2czemdHYndrTDZlVDd0ZFJDc3ZFYmVEZGxadU90TURUVnJvSEpxQVRRcE95dV9SOUlQb25idkhNSHF6bFB0bnVSTnl1LVBDZHpQbFFraElmUG0yY0ROcVNLaWNXeFV3aFd1TWhzRklxMVgxNVZyY1JnLUVfZlVyc29vanFDanZKZkFqeFdqNzR6UFpGUGJR?oc=5",
+      "source": "Scanx"
+     },
      {
       "tier": "news",
       "kind": "results",
@@ -5981,21 +6008,21 @@
    "raw_pct_change": -4.03,
    "corporate_action": null,
    "why": {
-    "headline": "Fundraise Or Deal (The Hindu)",
+    "headline": "Results (Investing.com)",
     "confidence": "medium",
     "evidence": [
-     {
-      "tier": "news",
-      "kind": "fundraise or deal",
-      "detail": "Robotic technology can improve precision and recovery in knee replacement, say experts",
-      "url": "https://news.google.com/rss/articles/CBMi3wFBVV95cUxOVDBIMlA3QUg2WDJ3WktkRHE3NTY3YlYzSmRtV3pYSWhCaHlueXk3Um1nVzdZRnR5WElsUTZiNllQTXRVRUZ0LUxsdHVUbEdqd21jeGZIVDlObC1fUTl1R19uMzNuVGMzSXQ2cVlhWnpyazFxTXBKMFpMVUhKYjVrV0MzdVZCU0xXbHh5WEVCblZOZ2tyVXZPNHpiNk1sZXRQWXRxbFNWbW53QjUwdGpnaVJnSE1ZSFZ3UnlEMWpvWFR6Wlh1TnpfcjZkSTU4R1VUOVVBQ1FnWkZLdGYtYWkw0gHmAUFVX3lxTE5MWUJrVzlnT25TSGZCYjAyUl9XOThsN00yMjJIbFhobzZ2dUJjU0FzYmtkcHNtcGNJRzhDUENJdThwbkhCbnphZUhzNFZGN19QTW8zVGctTE5yLXVPMXhabVh5QmlXVmdUZUE1VzVLRXYtMkJHaDBrYW9ieks3YjhjVVl6R2dCRGJtQ09JRXNVclp2b0VEME1nRzhuN1g2bU5HbUtpcGIwZ1MzajJpMmphcjlKOVZ5LXYwRUxzY2pCRm1TbWVKZ2tYZklJWFlReHMzellxV19KVkFXUWpMclpoWHFrd0FR?oc=5",
-      "source": "The Hindu"
-     },
      {
       "tier": "news",
       "kind": "results",
       "detail": "SBO shares rise on strong Q3 orders in precision technology",
       "url": "https://news.google.com/rss/articles/CBMivgFBVV95cUxObHRLMElPcklMRjNCdF8zUjI4V29BdHpfOGM3dk1lQXNMUjhBVWhnaG1CY0hHMFBxX204R3lrMlNpQjFXRW5NWkJ5aTJSQUxkM2FYSG13VkxYTUNJQVhYOGpyVWNvUlM3MGxLeUMwaG5KWktSQWRzMVZSZVB0XzdZRHNLQlpJMnBVZWJzYV9xeWlzUzd4ZjkwQ1NVZ2s5Qmh1NTBYeG5QQllwT2RRSzNVU0xtVFVIeXp6RmRBWkln?oc=5",
+      "source": "Investing.com"
+     },
+     {
+      "tier": "news",
+      "kind": "results",
+      "detail": "SBO shares rise on strong Q3 orders in precision technology By Investing.com",
+      "url": "https://news.google.com/rss/articles/CBMivAFBVV95cUxOaWJvSkpMYXZjMlpoVGNHWjZNa2FhNUtRWXVjQWt1VVgxNDhaOHFmdlIzV0YwMkdyUzJkbjFGNnlmNmRQMUJWNlAzWXRWQlZLSnRMV1FRMWhDRVc1Zk1ZXzh6QXRTcFRiLUpUNWpZdEtRaG81Y3Q0OG8tTHdjX28ybjZSTHRUaDJUVXd3SF9vSjRNclVBWWl4bS1BNmlpd3VkVE5EY2NlcFdPT0prLXVlNlBpQWk3U3FfWmhsbQ?oc=5",
       "source": "Investing.com"
      }
     ]
@@ -6530,7 +6557,7 @@
   },
   {
    "symbol": "TVVISION",
-   "name": "TVVISION",
+   "name": "TV VISION",
    "board_code": null,
    "series": "BE",
    "direction": "DOWN",
@@ -6661,13 +6688,6 @@
      {
       "tier": "news",
       "kind": "sector pricing",
-      "detail": "Hyundai Motor India, Tata Motors Passenger Vehicles to raise prices from December 1",
-      "url": "https://news.google.com/rss/articles/CBMivwFBVV95cUxOT1dNS0RJeDVvNU9rMUE0VEhSemhDZm5hUVQ2NkVUQzVnUXlMQmFCWjU4dDg1YWVwSkRrSTJxdm8tMWFVdkUtMllzeEF1dFhtSmxzX3dmZzRaTU9GSzZwbHkyQy1PeHJNdUlCMGNmcnp6dzBWaTFkTW01MXBCZHhMckdfZ05DZVBHbW1FanU1QWhLRDhXLTNQS3hpWFJQSmgtb2ZUUHdwV0RRcFNRX0hRazhuRF9naFBxZVdLUm1ZUQ?oc=5",
-      "source": "Reuters"
-     },
-     {
-      "tier": "news",
-      "kind": "sector pricing",
       "detail": "Hyundai Motor India to raise prices by up to 8,000 rupees from December 1",
       "url": "https://news.google.com/rss/articles/CBMirgFBVV95cUxNSVd6b3hkc0EzRnVLV1hqN1Rrei1uelRwSlRoTW5TdkRpb3RXSGsxRl9mbXBlWmN1dldVal9QS2o5N3JwVzQzTGo0OERDTUs4NkFkTXBid2pPbUtUTmFyWlZyWmhEU0I1NzhnZHhhOUswb0hoejNNaFlWWmFaTF84MFFCSzgwa2VTUnNBaUhjZ0ZuSTU0cXRYSDdTalE3aThqaDcyVEduTmRKek11cmc?oc=5",
       "source": "Reuters"
@@ -6675,9 +6695,16 @@
      {
       "tier": "news",
       "kind": "sector pricing",
-      "detail": "Hyundai Motor India to raise prices by up to ₹8,000 from December 1",
-      "url": "https://news.google.com/rss/articles/CBMizAFBVV95cUxOZzI4a3B1ejdqYzlCSTJYZV9UdGpoVlVxOG5KQklMVElodWVYTlFLV21pZm5jdWp6VzZ3SDlxdjVDRXJTV3gxVXcwR0gwNW1lMVhNYV9WTGdIQjVBdldoNlhSbGk3cDZSSVBwSEJvUHF5WEFmTzl1S05ueGhIc3lhTnJLQ0xjVXlpWHk3M2J4OHBTX1pwcVR1TmR0bGFWb1BCa21McGwxc09ab1RuV18wbGI5VmNTMnloYm00LXhCNnU1Zm05YVpONlVBcXnSAdMBQVVfeXFMUG85ZUoyWXc5eVBESHZVTGRickwwQTBfWDZ1bml4MnlQUWdEc0hIMGNOeHpKTVZFUXExQmM5dFNkMXdlRVYxSWV5Qzk1enNQMFl4Y0VRWE9HZndIbXRTZDBaalBLZl9IcHNHdlRBVHRfQmN1ZlBmZzZFbFFJQlJBbWJQUk9IVVNNQTNVcE81NE8taFRrNlFGV0xTRnJHaUt0X0xQM1lZMEp1eDdEN1JXaS0tUzN5R0p3MVdHMmhDeHhsR29xbXJ5dEhwSVhKM2Uzei00UQ?oc=5",
-      "source": "Hindu BusinessLine"
+      "detail": "Hyundai Motor India, Tata Motors Passenger Vehicles to raise prices from December 1",
+      "url": "https://news.google.com/rss/articles/CBMivwFBVV95cUxOT1dNS0RJeDVvNU9rMUE0VEhSemhDZm5hUVQ2NkVUQzVnUXlMQmFCWjU4dDg1YWVwSkRrSTJxdm8tMWFVdkUtMllzeEF1dFhtSmxzX3dmZzRaTU9GSzZwbHkyQy1PeHJNdUlCMGNmcnp6dzBWaTFkTW01MXBCZHhMckdfZ05DZVBHbW1FanU1QWhLRDhXLTNQS3hpWFJQSmgtb2ZUUHdwV0RRcFNRX0hRazhuRF9naFBxZVdLUm1ZUQ?oc=5",
+      "source": "Reuters"
+     },
+     {
+      "tier": "news",
+      "kind": "sector pricing",
+      "detail": "Hyundai Motor India Announces Price Hike of up to 8000 Rupees Across Select Models Starting December 1 2026",
+      "url": "https://news.google.com/rss/articles/CBMivgFBVV95cUxQSm9Db0ZMbU51UmxTQ1hySUY2eW4yeXdDOGRITzVZRm13MVkzTmJBSnZpNS0yYkRkWHZ4T2Y3ZUpLUU55bEVHbVFoRnc0eXQxa2hHcU9nNERxbS1kR1ZQOXJjR2puSXEydE8weDZTcFZtUHN3V0k1SmlXbzVoaHgzeXdUTTFuNlI1X2lGS0lpTTk4d3dycmg4MWxYR3V2b0Z0YUhJMEo4NzZCRW5LUm5QOUZfc2ZaOGQ2eUpOVDhn0gHDAUFVX3lxTFA2WGUwRXVQWXNWS01INlJaQ0Nta0xUaUZjU2gzMjloRllFeXJDelNNUlhzckdBNl9lcU1OYlczbGxxc01LZFQtaUdHQ05KTmFlS0NTS3VaLUFVWk5MV1VyLVEtMWg4MFhLQ2ZWQXBjc2VzSERPTGVBTWNfLUlRdFJGOXRwUzhIdmhVLWh4NVJ6VmwzV1NnWFFlcUY3SFpYU3NSbVZTb1VkUHlxSEVwLWNyMHVtekpKa1VJLTRnRUhxVnFINA?oc=5",
+      "source": "CNBC TV18"
      }
     ]
    },
@@ -6724,6 +6751,13 @@
       "detail": "Sudarshan Chemical to acquire 36.56% stake in Sudarshan Colorants",
       "url": "https://news.google.com/rss/articles/CBMitgFBVV95cUxPVFdOeGlpNmVtOEc0UkNkY29SR0x3SkRicWxOU0ZmX184TjFCa25SSUl3S3FkMGpkVnZXYTBhV3dIV2RMRnVmYjFpUkdwdkRPSWVHbzFhdktkZ1Q2eW1IUS1Td1JzNk5yb3pKQy1lZzdWM0Z0ZGZMajlBa01LX1NTNjVCSHZrc3NnX0ZFMGhJeHBmTWxrTnJNb2dyUUpSU0pKMDBYZXk1QjFidnhaZnIyblRPMFc3UQ?oc=5",
       "source": "Scanx"
+     },
+     {
+      "tier": "news",
+      "kind": "M&A or stake",
+      "detail": "Sudarshan Chemical to Buy 36.56% Stake in Sudarshan Colorants for ₹150.76 Crore",
+      "url": "https://news.google.com/rss/articles/CBMipgFBVV95cUxORXRoX2UzbURoTm1KNlRFajNQUGNSSEhKR296cnVlWlRnQldOWWRBSmhMLWtjZXRGZVhSdVFlTVdyTlN5UWc0MUNkWkRNNkQ4eEVnQTBKZlFBNXVMU3U3Q2NWYm9Rc1c1aXBRcno3eU9Wc2dtUUlHV1JmcHRVZHN2alB6SjZvWkp0eXFNc1lKbVRpaWVMSFZKOWRtUHRRaGV1QmhRYlFR?oc=5",
+      "source": "Sahi"
      }
     ]
    },
@@ -7225,7 +7259,7 @@
   },
   {
    "symbol": "SHYAMTEL",
-   "name": "SHYAM TELECOM",
+   "name": "SHYAMTEL",
    "board_code": null,
    "series": "EQ",
    "direction": "DOWN",
