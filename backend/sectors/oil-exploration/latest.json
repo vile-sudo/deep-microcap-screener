@@ -1,28 +1,62 @@
 {
- "updated": "2026-11-27T08:43+05:30",
+ "updated": "2026-11-28T08:39+05:30",
  "figures": [
   {
    "label": "Brent crude",
-   "value": "$96.57/bbl",
-   "as_of": "2026-11-26",
-   "note": "+$1.96 (+1.2%) on the day; third straight gain",
+   "value": "$95.44/bbl",
+   "as_of": "2026-11-27",
+   "note": "settle, -1.2% on the day, about +3% on the week; other outlets cite $96.6-97.7 f",
    "source": {
-    "publisher": "The Globe and Mail (Reuters)",
-    "url": "https://www.theglobeandmail.com/investing/article-oil-prices-fall-as-supply-concerns-linger-after-iran-claims-mine/"
+    "publisher": "The Circuitry",
+    "url": "https://thecircuitry.to/article/brent-settles-friday-at-9544-and-wti-at-8308-mwzhz7en"
    }
   },
   {
-   "label": "US crude stocks",
-   "value": "418.9 mb",
-   "as_of": "2026-11-26",
-   "note": "+1.1 mb in week to 20 Nov, vs +1.5 mb expected",
+   "label": "WTI crude",
+   "value": "$83.08/bbl",
+   "as_of": "2026-11-27",
+   "note": "settle, -60 cents vs Wednesday close (US closed Thursday)",
    "source": {
-    "publisher": "The Globe and Mail (Reuters)",
-    "url": "https://www.theglobeandmail.com/investing/article-oil-prices-fall-as-supply-concerns-linger-after-iran-claims-mine/"
+    "publisher": "The Circuitry",
+    "url": "https://thecircuitry.to/article/brent-settles-friday-at-9544-and-wti-at-8308-mwzhz7en"
    }
   }
  ],
  "items": [
+  {
+   "date": "2026-11-27",
+   "title": "Brent settles $95.44, first weekly gain of November; OPEC+ meets 29 Nov on 2027 quotas",
+   "text": "Brent settled Friday at $95.44/bbl, down $1.13 (1.2%) on the day, but gained about 3% for the week after three weekly falls, per The Circuitry. Iran's attacks on Hormuz shipping and a strike on Saudi Aramco's Jazan refinery kept supply risk in focus. OPEC+ meets online on 29 November and is expected to keep first-quarter 2027 targets unchanged, with Iraq and Kazakhstan pressing for higher capacity assessments; Rystad sees a 5 mb/d surplus in 2027. Higher crude supports upstream realisations for ONGC and Oil India, while raising India's import bill and downstream cost pressure.",
+   "tone": "watch",
+   "companies": [
+    "ONGC",
+    "OIL",
+    "IOC",
+    "BPCL",
+    "HINDPETRO"
+   ],
+   "sources": [
+    {
+     "publisher": "The Circuitry",
+     "title": "Brent settles Friday at $95.44 and WTI at $83.08",
+     "url": "https://thecircuitry.to/article/brent-settles-friday-at-9544-and-wti-at-8308-mwzhz7en",
+     "date": "2026-11-27"
+    },
+    {
+     "publisher": "Trading and Investment News",
+     "title": "OPEC Meeting Preview: Brent Near $97 Before 2027 Quota Talks",
+     "url": "https://www.tradingandinvestmentnews.co.uk/opec-meeting-2027-quotas-preview/",
+     "date": "2026-11-27"
+    },
+    {
+     "publisher": "Wisevoter",
+     "title": "Brent Climbs to $96.61 as OPEC+ Meets Sunday",
+     "url": "https://wisevoter.com/world/2026/11/27/brent-rises-ahead-of-opec-meeting",
+     "date": "2026-11-27"
+    }
+   ],
+   "added": "2026-11-28"
+  },
   {
    "date": "2026-11-26",
    "title": "Brent settles at $96.57 on Houthi Ras Tanura claim and Hormuz mine strikes; OPEC+ meets 29 Nov",
@@ -889,28 +923,6 @@
     }
    ],
    "added": "2026-10-23"
-  },
-  {
-   "date": "2026-10-13",
-   "title": "Brent settles near $106 as Saudi-Houthi risk offsets US-Russia diesel deal hopes",
-   "text": "Brent settled at about $106/bbl, down nearly $1 (about 1%), after Monday's highest close since mid-September; WTI rose about 40 cents to about $94. Loud booms were reported near Saudi Aramco's Dhahran headquarters, while hopes of a US-Russia diesel deal weighed on prices. Sustained crude near $106 supports realisations for upstream producers but widens under-recoveries for state fuel retailers.",
-   "tone": "watch",
-   "companies": [
-    "ONGC",
-    "OIL",
-    "IOC",
-    "BPCL",
-    "HINDPETRO"
-   ],
-   "sources": [
-    {
-     "publisher": "InvestingLive",
-     "title": "Catch up time! Oil settles mixed, Brent near $106; booms reported near Aramco HQ in Dhahran",
-     "url": "https://investinglive.com/commodities/catch-up-time-oil-settles-mixed-brent-near-106-booms-reported-near-aramco-hq-in-dhahran",
-     "date": "2026-10-13"
-    }
-   ],
-   "added": "2026-10-14"
   }
  ]
 }
